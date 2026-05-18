@@ -46,6 +46,45 @@ generators.
 #check (fun (X Y : MetrizableLCA) =>
   ShortExactExtension.BaerSumData (C := MetrizableLCA) (X := X) (Y := Y))
 
+noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
+    (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :
+    ShortExactExtension (C := MetrizableLCA)
+      (MetrizableLCA.biprodObj X₁ X₂) (MetrizableLCA.biprodObj Y₁ Y₂) :=
+  MetrizableLCA.shortExactExtensionBiprod e₁ e₂
+
+noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
+    (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :
+    (MetrizableLCA.shortExactExtensionBiprod e₁ e₂).i ≫
+        MetrizableLCA.biprodFst e₁.middle e₂.middle =
+      MetrizableLCA.biprodFst Y₁ Y₂ ≫ e₁.i :=
+  MetrizableLCA.shortExactExtensionBiprod_i_fst e₁ e₂
+
+noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
+    (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :
+    (MetrizableLCA.shortExactExtensionBiprod e₁ e₂).i ≫
+        MetrizableLCA.biprodSnd e₁.middle e₂.middle =
+      MetrizableLCA.biprodSnd Y₁ Y₂ ≫ e₂.i :=
+  MetrizableLCA.shortExactExtensionBiprod_i_snd e₁ e₂
+
+noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
+    (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :
+    MetrizableLCA.biprodFst e₁.middle e₂.middle ≫ e₁.p =
+      (MetrizableLCA.shortExactExtensionBiprod e₁ e₂).p ≫
+        MetrizableLCA.biprodFst X₁ X₂ :=
+  MetrizableLCA.shortExactExtensionBiprod_p_fst e₁ e₂
+
+noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
+    (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :
+    MetrizableLCA.biprodSnd e₁.middle e₂.middle ≫ e₂.p =
+      (MetrizableLCA.shortExactExtensionBiprod e₁ e₂).p ≫
+        MetrizableLCA.biprodSnd X₁ X₂ :=
+  MetrizableLCA.shortExactExtensionBiprod_p_snd e₁ e₂
+
 example (X Y : MetrizableLCA) {n : ℕ}
     {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
     (h : YonedaExtension.Rel a b) :

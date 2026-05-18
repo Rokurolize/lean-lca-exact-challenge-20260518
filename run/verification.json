@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v24-strict-biprod-exactness",
-  "generated_utc": "2026-05-18T21:10:25Z",
-  "source_tree_hash": "b3f4a41dfeff414e5af18ff0167870976fa818ef52d57988ecd3dbf21daba99f",
+  "schema": "lean-lca-exact-challenge-verification-v25-product-extension-api",
+  "generated_utc": "2026-05-18T21:16:59Z",
+  "source_tree_hash": "68eaeb264b47178ff07215c58748ecd642928f3295a15dcdcc3a522a6abf587e",
   "commands": [
     {
       "command": "lake build",
@@ -23,7 +23,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "local exact-category YonedaExt quotient exposes relation generators, split-zero, split-factor zero, relation-membership addition, witnessed Baer-chain addition, left one-fold splice product on quotients, split-left-factor product zero, fixed positive-chain left splice on the right quotient, split fixed-positive-chain product zero, and baer_sum API compatibility theorems."
+      "evidence": "local exact-category YonedaExt quotient exposes relation generators, split-zero, split-factor zero, relation-membership addition, witnessed Baer-chain addition, left one-fold splice product on quotients, split-left-factor product zero, fixed positive-chain left splice on the right quotient, split fixed-positive-chain product zero, baer_sum API compatibility theorems, and the MetrizableLCA product-extension API."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -33,12 +33,12 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "strict LCA exact category exposes coordinatewise strict biproduct exactness, local YonedaExt quotient relations, split-zero equality, split-factor zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, left one-fold and fixed positive-chain splice products on the right quotient, split-left-factor and split-positive-chain product zero, baer_sum compatibility, and Dbounded localization declarations."
+      "evidence": "strict LCA exact category exposes coordinatewise strict biproduct exactness, product extensions for pairs of one-fold MetrizableLCA extensions, local YonedaExt quotient relations, split-zero equality, split-factor zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, left one-fold and fixed positive-chain splice products on the right quotient, split-left-factor and split-positive-chain product zero, baer_sum compatibility, and Dbounded localization declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "terminal_outcome remains failed_nonterminal because arbitrary BaerSumData construction, bilinear Yoneda product descent in the left quotient variable, and stable infinity-category enhancement are not complete."
+      "evidence": "terminal_outcome remains failed_nonterminal because arbitrary BaerSumData construction still lacks the diagonal-pullback and codiagonal-pushout completion, bilinear Yoneda product descent in the left quotient variable is incomplete, and stable infinity-category enhancement is not complete."
     },
     {
       "command": "git diff --check",

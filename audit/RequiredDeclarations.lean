@@ -86,6 +86,11 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.ShortExactExtension.IsoBetween
 #check LeanLCAExactChallenge.ShortExactExtension.BaerSumData
 #check LeanLCAExactChallenge.ShortExactExtension.toYonedaExtension
+#check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBiprod
+#check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBiprod_i_fst
+#check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBiprod_i_snd
+#check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBiprod_p_fst
+#check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBiprod_p_snd
 #check LeanLCAExactChallenge.YonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension.consLeftMap
 #check LeanLCAExactChallenge.YonedaExtension.Rel

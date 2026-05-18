@@ -104,6 +104,67 @@ structure BaerSumData {X Y : C} [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y
 
 end ShortExactExtension
 
+namespace MetrizableLCA
+
+/-- Coordinatewise product of one-fold short exact extensions in `MetrizableLCA`. -/
+noncomputable def shortExactExtensionBiprod
+    {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
+    (e₁ : ShortExactExtension (C := MetrizableLCA.{u}) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X₂ Y₂) :
+    ShortExactExtension (C := MetrizableLCA.{u}) (biprodObj X₁ X₂) (biprodObj Y₁ Y₂) where
+  middle := biprodObj e₁.middle e₂.middle
+  i := biprodMap e₁.i e₂.i
+  p := biprodMap e₁.p e₂.p
+  zero := by
+    ext p
+    · exact congrArg (fun h : Y₁ ⟶ X₁ => h p.1) e₁.zero
+    · exact congrArg (fun h : Y₂ ⟶ X₂ => h p.2) e₂.zero
+  conflation := by
+    simpa [ShortExactExtension.shortComplex, strictShortExactBiprodComplex]
+      using strictShortExact_biprod e₁.conflation e₂.conflation
+
+@[simp]
+lemma shortExactExtensionBiprod_i_fst
+    {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
+    (e₁ : ShortExactExtension (C := MetrizableLCA.{u}) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X₂ Y₂) :
+    (shortExactExtensionBiprod e₁ e₂).i ≫ biprodFst e₁.middle e₂.middle =
+      biprodFst Y₁ Y₂ ≫ e₁.i := by
+  ext p
+  rfl
+
+@[simp]
+lemma shortExactExtensionBiprod_i_snd
+    {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
+    (e₁ : ShortExactExtension (C := MetrizableLCA.{u}) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X₂ Y₂) :
+    (shortExactExtensionBiprod e₁ e₂).i ≫ biprodSnd e₁.middle e₂.middle =
+      biprodSnd Y₁ Y₂ ≫ e₂.i := by
+  ext p
+  rfl
+
+@[simp]
+lemma shortExactExtensionBiprod_p_fst
+    {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
+    (e₁ : ShortExactExtension (C := MetrizableLCA.{u}) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X₂ Y₂) :
+    biprodFst e₁.middle e₂.middle ≫ e₁.p =
+      (shortExactExtensionBiprod e₁ e₂).p ≫ biprodFst X₁ X₂ := by
+  ext p
+  rfl
+
+@[simp]
+lemma shortExactExtensionBiprod_p_snd
+    {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
+    (e₁ : ShortExactExtension (C := MetrizableLCA.{u}) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X₂ Y₂) :
+    biprodSnd e₁.middle e₂.middle ≫ e₂.p =
+      (shortExactExtensionBiprod e₁ e₂).p ≫ biprodSnd X₁ X₂ := by
+  ext p
+  rfl
+
+end MetrizableLCA
+
 /-- A finite Yoneda extension chain from `X` to `Y`.
 
 The successor constructor prepends a one-fold extension

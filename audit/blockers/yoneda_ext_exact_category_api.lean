@@ -28,6 +28,11 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaRelGenerator
 #check yonedaRelationSubgroup
 #check ShortExactExtension.BaerSumData
+#check MetrizableLCA.shortExactExtensionBiprod
+#check MetrizableLCA.shortExactExtensionBiprod_i_fst
+#check MetrizableLCA.shortExactExtensionBiprod_i_snd
+#check MetrizableLCA.shortExactExtensionBiprod_p_fst
+#check MetrizableLCA.shortExactExtensionBiprod_p_snd
 #check YonedaExt.ofExtension_eq_ofExtension_of_rel
 #check YonedaExt.ofExtension_eq_ofExtension_of_relIso
 #check YonedaExt.ofExtension_eq_zero_of_split
