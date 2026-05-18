@@ -8,6 +8,7 @@
 - `MetrizableLCA`は連続加法準同型を射にしたbundleされた圏としてコンパイルする。
 - strict short exact sequenceは、閉埋め込み、開全射、忘却後の代数的完全性を含む述語としてコンパイルする。
 - split short complexがstrict short exact sequenceになること、strict short exact sequenceが`ShortComplex`の同型で保たれることはLeanで証明済みである。
+- `MetrizableLCA`のpullback objectは、積の閉部分群として構成し、そのconeがlimitであることをLeanで証明済みである。
 - 目標のexact-category instanceは、pushout/pullback安定性をまとめた`StrictExactQuillenAxioms`からだけ構成される。
 - Extとderived categoryの宣言は、abelian category側の既存APIまたは構成interfaceの境界までしか確認していない。
 
@@ -27,7 +28,7 @@
 
 ## strict LCA安定性定理の不足
 
-このprojectは`MetrizableLCA.strictShortExact`を定義している。`LeanLCAExactChallenge/LCA/StrictExact.lean`では、split short complexからstrict short exact sequenceを作る補助定理と、strict short exact sequenceの同型不変性を証明した。一方、strict monomorphismのpushout安定性とstrict epimorphismのpullback安定性は、確認したmathlib APIからは利用できなかった。handoff境界は次の宣言である。
+このprojectは`MetrizableLCA.strictShortExact`を定義している。`LeanLCAExactChallenge/LCA/StrictExact.lean`では、split short complexからstrict short exact sequenceを作る補助定理と、strict short exact sequenceの同型不変性を証明した。`LeanLCAExactChallenge/LCA/Pullback.lean`では、`MetrizableLCA`のpullbackを積の閉部分群として構成した。一方、strict monomorphismのpushout安定性と、構成済みpullbackに沿ったstrict epimorphismの安定性は、Lean証明まで到達していない。handoff境界は次の宣言である。
 
 ```lean
 LeanLCAExactChallenge.MetrizableLCA.StrictExactQuillenAxioms
@@ -40,6 +41,7 @@ LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory
 
 - `LeanLCAExactChallenge/LCA/Basic.lean`
 - `LeanLCAExactChallenge/LCA/StrictExact.lean`
+- `LeanLCAExactChallenge/LCA/Pullback.lean`
 - `LeanLCAExactChallenge/LCA/ExactCategory.lean`
 
 ## exact category上のYoneda Extの不足

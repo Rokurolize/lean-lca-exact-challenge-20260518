@@ -8,6 +8,8 @@
 - ローカルmathlib `Mathlib/Topology/Metrizable/Basic.lean`: `TopologicalSpace.MetrizableSpace`の根拠にした。
 - ローカルmathlib `Mathlib/Topology/Constructions/SumProd.lean`: split short complexを積への同型として扱うときの`continuous_fst`、`continuous_snd`、`isOpenMap_snd`、積への埋め込みを確認した。
 - ローカルmathlib `Mathlib/Topology/Maps/Basic.lean`: `IsClosedEmbedding`の合成と同型による移送の根拠にした。
+- ローカルmathlib `Mathlib/Topology/Compactness/LocallyCompact.lean`: pullback objectを閉部分空間として作るとき、local compactnessを継承する根拠にした。
+- ローカルmathlib `Mathlib/CategoryTheory/Limits/Shapes/Pullback/PullbackCone.lean`: `MetrizableLCA`の明示的pullback coneがlimitであることを示すために使った。
 - ローカルmathlib `Mathlib/Algebra/Homology/ShortComplex/Basic.lean`、`Exact.lean`、`ShortExact.lean`: `ShortComplex`、`ShortComplex.Exact`、`ShortComplex.ShortExact`の根拠にした。
 - ローカルmathlib `Mathlib/CategoryTheory/Limits/Shapes/Pullback/HasPullback.lean`: Quillen exact-categoryインターフェイスで使うpushout/pullback名の根拠にした。
 - ローカルmathlib `Mathlib/Algebra/Homology/DerivedCategory/Basic.lean`: abelian category側のderived category境界を確認した。
@@ -26,6 +28,7 @@
 - `LeanLCAExactChallenge/ExactCategory/Basic.lean`: Quillen exact categoryのローカルinterfaceをコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/Basic.lean`: metrizable LCA groupsのbundleされた圏と射の層をコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/StrictExact.lean`: strict sequence述語、代数的kernel/cokernel accessor、split strict exactness、同型不変性をコンパイル確認した。
+- `LeanLCAExactChallenge/LCA/Pullback.lean`: `MetrizableLCA`のpullback objectとlimit coneをコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/ExactCategory.lean`: strict LCA exact-category定理のうちpushout/pullback安定性が未整備である境界を、明示的なsource-patch仮定としてコンパイル確認した。
 - `LeanLCAExactChallenge/Ext/Yoneda.lean`: abelian category Extに到達できる境界をコンパイル確認した。
 - `LeanLCAExactChallenge/Derived/Bounded.lean`: exact categoryのbounded derived infinity-categoryに必要な構成interfaceをコンパイル確認した。

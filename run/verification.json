@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v5-strict-split-iso",
-  "generated_utc": "2026-05-18T18:34:20Z",
-  "source_tree_hash": "cbb0d0477021f42be1fe2b13689ed5b5e0cd8d6f4e670c9e18968ab83c634ef9",
+  "schema": "lean-lca-exact-challenge-verification-v6-lca-pullback",
+  "generated_utc": "2026-05-18T18:44:08Z",
+  "source_tree_hash": "70916bce02af76abf38963cef71c0c627c26a293e4f14c05506e917191a5487a",
   "commands": [
     {
       "command": "lake build",
@@ -30,7 +30,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "failed",
-      "evidence": "MetrizableLCA.quillenExactCategory still requires StrictExactQuillenAxioms for pushout/pullback stability; MetrizableLCA has no exact-category YonedaExt; Dbounded lacks QuillenExactCategory MetrizableLCA"
+      "evidence": "MetrizableLCA.quillenExactCategory still requires StrictExactQuillenAxioms for pushout and pullback stability; MetrizableLCA has no exact-category YonedaExt; Dbounded lacks QuillenExactCategory MetrizableLCA"
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
