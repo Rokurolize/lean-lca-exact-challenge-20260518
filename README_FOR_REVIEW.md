@@ -11,7 +11,7 @@
 - 閉埋め込み、開全射、忘却後の代数的kernel/cokernel条件を束ねたstrict short exact sequence述語
 - split short complexがstrict short exact sequenceになることのLean証明
 - strict short exact sequenceが`ShortComplex`の同型で保たれることのLean証明
-- `MetrizableLCA`のpullbackを積の閉部分群として構成するLean証明
+- `MetrizableLCA`のpullbackを積の閉部分群として構成し、射影の全射性補題まで進めたLean証明
 - pushout/pullback安定性だけを明示的境界として残したexact-category interface
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル

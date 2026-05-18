@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "更新後のgoalはproduct_successのみ完了可能である。Quillen exact-category interface、MetrizableLCAのpreadditive構造、圏同型を連続加法同型として取り出す補助定義、split short complexがstrict short exact sequenceになる証明、strict short exact sequenceの同型不変性、MetrizableLCAの明示的pullback objectとlimit cone、bundleされたcategory/morphism層までは確認済みだが、strict LCA列のpushout安定性、pullbackに沿ったdeflation安定性、exact category上のYoneda Ext、bounded derived infinity-categoryが未完成であるため、goalは未完了である。",
+  "summary": "更新後のgoalはproduct_successのみ完了可能である。Quillen exact-category interface、MetrizableLCAのpreadditive構造、圏同型を連続加法同型として取り出す補助定義、split short complexがstrict short exact sequenceになる証明、strict short exact sequenceの同型不変性、MetrizableLCAの明示的pullback objectとlimit cone、pullback射影の全射性補題、bundleされたcategory/morphism層までは確認済みだが、strict LCA列のpushout安定性、pullbackに沿ったdeflation安定性、exact category上のYoneda Ext、bounded derived infinity-categoryが未完成であるため、goalは未完了である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -31,6 +31,8 @@
     "LeanLCAExactChallenge.MetrizableLCA.algebraic_cokernel_of_strict",
     "LeanLCAExactChallenge.MetrizableLCA.pullbackObj",
     "LeanLCAExactChallenge.MetrizableLCA.pullbackIsLimit",
+    "LeanLCAExactChallenge.MetrizableLCA.pullbackFst_surjective_of_snd_surjective",
+    "LeanLCAExactChallenge.MetrizableLCA.pullbackSnd_surjective_of_fst_surjective",
     "LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory",
     "LeanLCAExactChallenge.YonedaExt",
     "LeanLCAExactChallenge.YonedaExt.zero_equiv_hom",

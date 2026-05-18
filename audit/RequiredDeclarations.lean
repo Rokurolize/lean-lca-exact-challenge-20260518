@@ -19,6 +19,8 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.algebraic_cokernel_of_strict
 #check LeanLCAExactChallenge.MetrizableLCA.pullbackObj
 #check LeanLCAExactChallenge.MetrizableLCA.pullbackIsLimit
+#check LeanLCAExactChallenge.MetrizableLCA.pullbackFst_surjective_of_snd_surjective
+#check LeanLCAExactChallenge.MetrizableLCA.pullbackSnd_surjective_of_fst_surjective
 #check LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory
 
 #check LeanLCAExactChallenge.YonedaExt

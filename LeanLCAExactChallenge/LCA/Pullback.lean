@@ -138,6 +138,18 @@ noncomputable def pullbackIsLimit : IsLimit (pullbackCone f g) :=
 noncomputable instance hasPullback : HasPullback f g where
   exists_limit := ⟨⟨pullbackCone f g, pullbackIsLimit f g⟩⟩
 
+lemma pullbackFst_surjective_of_snd_surjective (hg : Function.Surjective (g : B → C)) :
+    Function.Surjective (pullbackFst f g : pullbackObj f g → A) := by
+  intro x
+  rcases hg (f x) with ⟨y, hy⟩
+  refine ⟨⟨(x, y), hy.symm⟩, rfl⟩
+
+lemma pullbackSnd_surjective_of_fst_surjective (hf : Function.Surjective (f : A → C)) :
+    Function.Surjective (pullbackSnd f g : pullbackObj f g → B) := by
+  intro y
+  rcases hf (g y) with ⟨x, hx⟩
+  refine ⟨⟨(x, y), hx⟩, rfl⟩
+
 end MetrizableLCA
 
 end LeanLCAExactChallenge
