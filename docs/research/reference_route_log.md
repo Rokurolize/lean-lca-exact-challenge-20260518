@@ -14,18 +14,22 @@
 - mathlibの`Mathlib/Algebra/Homology/DerivedCategory/Ext/Basic.lean`と生成ドキュメントは、`CategoryTheory.Abelian.Ext`が既に存在し、`instAddCommGroup`やdegree zeroのHomとの関係も提供していることを示した。これは作業をかなり楽にした近道だが、対象はabelian categoryなので、exact category上のYoneda Extを完成させる近道ではなかった。
 - mathlibの`ShortComplex.Splitting`、`Topology.Constructions`の積空間API、`IsClosedEmbedding`と`IsOpenMap`の合成APIを調べ直したことで、split short complexがstrict short exact sequenceになる証明と、strict short exact sequenceの同型不変性をローカルで実装できた。この調査により、`StrictExactQuillenAxioms`の役割はpushout/pullback安定性の境界へ縮んだ。
 - `TopCat`のpullbackが部分空間として実装されていること、閉部分空間がlocal compactnessを継承すること、任意部分型がmetrizabilityを継承することを確認した。この経路により、`MetrizableLCA`のpullback objectを積の閉部分群として構成し、limit cone、射影の全射性と開写像性補題、kernel mapの代数的完全性移送と閉埋め込み移送をローカルで証明できた。さらに`limit.isoLimitCone`でmathlibの選んだcategorical pullbackへ移し、deflationのpullback安定性をローカル証明へ変えた。
+- mathlibの`Topology/Algebra/Group/Quotient.lean`、`Topology/Algebra/IsUniformGroup`、`Topology/Metrizable/Basic`を確認し、閉部分群による商が局所コンパクト性を継承し、商加法群の右一様性と第一可算性からmetrizabilityを得られることをローカル補題として組み立てた。これにより`MetrizableLCA`の閉部分群商を一般化し、pushout候補を`(X₂ × Y) / range (x ↦ (f x, -a x))`として構成できた。
+- `PushoutCocone.IsColimit.mk`、`QuotientAddGroup.lift`、`QuotientAddGroup.eq_iff_sub_mem`を使う経路に切り替えたことで、明示的pushout候補の条件付き余極限性、標準余核写像、余核写像の開全射性、代数的完全性をLeanで確認できた。一方、関係部分群の閉性と`Y ⟶ pushout`の閉埋め込み性は、閉グラフ・閉埋め込みの像に関する追加の位相群補題が必要な未完了境界として残った。
 
 ## 既存APIへの適応とローカル作業の分担
 
 既存APIに適応した部分は、`ShortComplex`をexact category interfaceの土台にしたこと、`TopCat`や連続写像のclassを`MetrizableLCA`のbundleに使ったこと、`CategoryTheory.Abelian.Ext`を`YonedaExt`の確認済み境界として包んだことである。
 
-ローカルで新しく作った部分は、`QuillenExactCategory` class、`MetrizableLCA` category、`strictShortExact`述語、split strict exactness証明、同型不変性証明、明示的pullback object、pullback射影の全射性と開写像性補題、pullback kernel mapの代数的完全性補題と閉埋め込み補題、categorical pullbackへの移送補題、`StrictExactQuillenAxioms`というpushout安定性のsource-patch境界、そして`BoundedDerivedInfinityCategory`という構成interfaceである。`StrictExactQuillenAxioms`とderived側のinterfaceは完成済み定理ではなく、後続のsource patchが置き換えるべき境界をLeanで壊れない形にしたものだ。
+ローカルで新しく作った部分は、`QuillenExactCategory` class、`MetrizableLCA` category、`strictShortExact`述語、split strict exactness証明、同型不変性証明、明示的pullback object、pullback射影の全射性と開写像性補題、pullback kernel mapの代数的完全性補題と閉埋め込み補題、categorical pullbackへの移送補題、閉部分群商の`MetrizableLCA`化、明示的pushout候補と条件付き余極限性、pushout候補の余核写像に関する開全射性と代数的完全性、`StrictExactQuillenAxioms`というpushout安定性のsource-patch境界、そして`BoundedDerivedInfinityCategory`という構成interfaceである。`StrictExactQuillenAxioms`とderived側のinterfaceは完成済み定理ではなく、後続のsource patchが置き換えるべき境界をLeanで壊れない形にしたものだ。
 
 ## 失敗した探索とfalse lead
 
 `ExactCategory`、`QuillenExactCategory`、`QuasiAbelian`に相当するmathlib宣言を探したが、今回のローカルmathlibでは直接使える宣言は見つからなかった。`QuasiIso`や`Quasicategory`のAPIは多数見つかったが、要求されているquasi-abelian categoryやQuillen exact categoryとは別の概念だった。
 
 `DerivedCategory`は存在したが、確認できたAPIはabelian categoryを前提にしていた。したがって、`D^b(C,E)`をexact categoryから直接作る部分は既存APIで短縮できなかった。
+
+pushoutについては、商群と開商写像のAPIは有効だったが、閉埋め込み`f`と任意の連続準同型`a`から`range (x ↦ (f x, -a x))`の閉性を直接返す既存補題は見つからなかった。`IsEmbedding.toHomeomorph`やgraph embeddingのAPIは候補になるが、閉像まで接続する補題を追加で作る必要がある。
 
 ## 近道の有無
 
