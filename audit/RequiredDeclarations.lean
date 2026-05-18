@@ -21,6 +21,10 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.pullbackIsLimit
 #check LeanLCAExactChallenge.MetrizableLCA.pullbackFst_surjective_of_snd_surjective
 #check LeanLCAExactChallenge.MetrizableLCA.pullbackSnd_surjective_of_fst_surjective
+#check LeanLCAExactChallenge.MetrizableLCA.pullbackKernelMap
+#check LeanLCAExactChallenge.MetrizableLCA.pullbackKernelMap_fst
+#check LeanLCAExactChallenge.MetrizableLCA.pullbackKernelMap_snd
+#check LeanLCAExactChallenge.MetrizableLCA.pullbackKernelMap_algebraic_exact
 #check LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory
 
 #check LeanLCAExactChallenge.YonedaExt

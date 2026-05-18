@@ -13,13 +13,13 @@
 - Schneiders, "Quasi-Abelian Categories and Sheaves"は、Hoffmann-Spitzweckが依拠するquasi-abelian categoryの背景として参照した。これは「閉埋め込みと開全射」というstrict morphismの安定性を証明するなら、quasi-abelian category側の理論をmathlibへ入れる必要がある、というgapの説明に使った。
 - mathlibの`Mathlib/Algebra/Homology/DerivedCategory/Ext/Basic.lean`と生成ドキュメントは、`CategoryTheory.Abelian.Ext`が既に存在し、`instAddCommGroup`やdegree zeroのHomとの関係も提供していることを示した。これは作業をかなり楽にした近道だが、対象はabelian categoryなので、exact category上のYoneda Extを完成させる近道ではなかった。
 - mathlibの`ShortComplex.Splitting`、`Topology.Constructions`の積空間API、`IsClosedEmbedding`と`IsOpenMap`の合成APIを調べ直したことで、split short complexがstrict short exact sequenceになる証明と、strict short exact sequenceの同型不変性をローカルで実装できた。この調査により、`StrictExactQuillenAxioms`の役割はpushout/pullback安定性の境界へ縮んだ。
-- `TopCat`のpullbackが部分空間として実装されていること、閉部分空間がlocal compactnessを継承すること、任意部分型がmetrizabilityを継承することを確認した。この経路により、`MetrizableLCA`のpullback objectを積の閉部分群として構成し、limit coneと射影の全射性補題をローカルで証明できた。
+- `TopCat`のpullbackが部分空間として実装されていること、閉部分空間がlocal compactnessを継承すること、任意部分型がmetrizabilityを継承することを確認した。この経路により、`MetrizableLCA`のpullback objectを積の閉部分群として構成し、limit cone、射影の全射性補題、kernel mapの代数的完全性移送をローカルで証明できた。
 
 ## 既存APIへの適応とローカル作業の分担
 
 既存APIに適応した部分は、`ShortComplex`をexact category interfaceの土台にしたこと、`TopCat`や連続写像のclassを`MetrizableLCA`のbundleに使ったこと、`CategoryTheory.Abelian.Ext`を`YonedaExt`の確認済み境界として包んだことである。
 
-ローカルで新しく作った部分は、`QuillenExactCategory` class、`MetrizableLCA` category、`strictShortExact`述語、split strict exactness証明、同型不変性証明、明示的pullback object、pullback射影の全射性補題、`StrictExactQuillenAxioms`というpushout/pullback安定性のsource-patch境界、そして`BoundedDerivedInfinityCategory`という構成interfaceである。`StrictExactQuillenAxioms`とderived側のinterfaceは完成済み定理ではなく、後続のsource patchが置き換えるべき境界をLeanで壊れない形にしたものだ。
+ローカルで新しく作った部分は、`QuillenExactCategory` class、`MetrizableLCA` category、`strictShortExact`述語、split strict exactness証明、同型不変性証明、明示的pullback object、pullback射影の全射性補題、pullback kernel mapの代数的完全性補題、`StrictExactQuillenAxioms`というpushout/pullback安定性のsource-patch境界、そして`BoundedDerivedInfinityCategory`という構成interfaceである。`StrictExactQuillenAxioms`とderived側のinterfaceは完成済み定理ではなく、後続のsource patchが置き換えるべき境界をLeanで壊れない形にしたものだ。
 
 ## 失敗した探索とfalse lead
 

@@ -150,6 +150,67 @@ lemma pullbackSnd_surjective_of_fst_surjective (hf : Function.Surjective (f : A 
   rcases hf (g y) with ⟨x, hx⟩
   refine ⟨⟨(x, y), hx⟩, rfl⟩
 
+noncomputable def pullbackKernelMap {X : MetrizableLCA.{u}} (i : X ⟶ B)
+    (zero : i ≫ g = 0) : X ⟶ pullbackObj f g where
+  hom' :=
+    { toFun := fun x => ⟨((0 : A), i x), by
+        change f 0 = g (i x)
+        rw [map_zero]
+        exact (congrArg (fun h : X ⟶ C => h x) zero).symm⟩
+      map_zero' := by
+        apply Subtype.ext
+        calc
+          (((0 : A), i 0) : A × B) = 0 := by ext <;> simp
+          _ = ↑(0 : pullbackSubgroup f g) := (AddSubgroup.coe_zero (pullbackSubgroup f g)).symm
+      map_add' := by
+        intro x y
+        apply Subtype.ext
+        let ux : pullbackSubgroup f g := ⟨((0 : A), i x), by
+          change f 0 = g (i x)
+          rw [map_zero]
+          exact (congrArg (fun h : X ⟶ C => h x) zero).symm⟩
+        let uy : pullbackSubgroup f g := ⟨((0 : A), i y), by
+          change f 0 = g (i y)
+          rw [map_zero]
+          exact (congrArg (fun h : X ⟶ C => h y) zero).symm⟩
+        calc
+          (((0 : A), i (x + y)) : A × B) = (↑ux + ↑uy : A × B) := by
+            ext <;> simp [ux, uy, map_add]
+          _ = ↑(ux + uy) := (AddSubgroup.coe_add (pullbackSubgroup f g) ux uy).symm
+      continuous_toFun := by
+        apply Continuous.subtype_mk
+        exact continuous_const.prodMk i.hom.continuous }
+
+lemma pullbackKernelMap_fst {X : MetrizableLCA.{u}} (i : X ⟶ B)
+    (zero : i ≫ g = 0) :
+    pullbackKernelMap f g i zero ≫ pullbackFst f g = 0 := by
+  ext x
+  rfl
+
+lemma pullbackKernelMap_snd {X : MetrizableLCA.{u}} (i : X ⟶ B)
+    (zero : i ≫ g = 0) :
+    pullbackKernelMap f g i zero ≫ pullbackSnd f g = i := by
+  ext x
+  rfl
+
+lemma pullbackKernelMap_algebraic_exact {X : MetrizableLCA.{u}} (i : X ⟶ B)
+    (zero : i ≫ g = 0)
+    (hker : ∀ b : B, g b = 0 → ∃ x : X, i x = b) :
+    ∀ p : pullbackObj f g, (pullbackFst f g) p = 0 →
+      ∃ x : X, (pullbackKernelMap f g i zero) x = p := by
+  intro p hp
+  have hp' : p.1.1 = 0 := hp
+  have hg : g p.1.2 = 0 := by
+    have hrel : f p.1.1 = g p.1.2 := p.2
+    rw [← hrel, hp']
+    simp
+  rcases hker p.1.2 hg with ⟨x, hx⟩
+  refine ⟨x, ?_⟩
+  apply Subtype.ext
+  ext
+  · exact hp'.symm
+  · exact hx
+
 end MetrizableLCA
 
 end LeanLCAExactChallenge
