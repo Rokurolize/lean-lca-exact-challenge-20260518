@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-18T22:50:18Z
+Generated: 2026-05-18T22:57:02Z
 
 Current active thread: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -9,7 +9,7 @@ No workers are launched now. The governor goal says not to run concurrently agai
 | frontier_id | target | allowed writes | verification | merge blocker | product contribution | owner |
 | --- | --- | --- | --- | --- | --- | --- |
 | `frontier-left-yoneda-descent` | left-variable quotient descent and bilinear Yoneda product compatibility | `Ext/Yoneda.lean`, audits, docs/evidence | `lake env lean audit/blockers/yoneda_ext_exact_category_api.lean` | active dirty parent worktree | required for standard Yoneda product on quotient Ext groups | active parent |
-| `frontier-degree0-hom-tail` | degree 0 head/tail compatibility, including pullback head, pushout tail, and split pushout preservation | `Ext/Yoneda.lean`, Yoneda audits | `lake build && lake env lean audit/ProductSuccessDeclarations.lean` | generator-level head pullback, arbitrary tail pushout, and split pushout preservation are implemented; quotient descent remains | required for degree-zero Yoneda composition compatibility | active parent |
+| `frontier-degree0-hom-tail` | degree 0 head/tail compatibility, including pullback head, pushout tail, and split pullback/pushout preservation | `Ext/Yoneda.lean`, Yoneda audits | `lake build && lake env lean audit/ProductSuccessDeclarations.lean` | generator-level head pullback, arbitrary tail pushout, and split pullback/pushout preservation are implemented; quotient descent remains | required for degree-zero Yoneda composition compatibility | active parent |
 | `frontier-dbounded-infinity` | stable infinity-category enhancement or product-approved tightening | `Derived/Bounded.lean`, product audit | `lake env lean audit/blockers/derived_infinity_exact_category_api.lean` | ordinary localization is not enough for product truth | required for fourth objective | unassigned |
 | `frontier-audit-hardening` | external audit and product declarations reject placeholders | `audit/external_audit.py`, `audit/ProductSuccessDeclarations.lean` | `python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json` | must not weaken product gate | prevents false product claims | unassigned |
 | `frontier-route-log` | Japanese route log, gap analysis, packet consistency | docs, manifest/evidence, packets | external audit plus packet clean extraction | refresh after proof changes | required for reviewability | active parent |

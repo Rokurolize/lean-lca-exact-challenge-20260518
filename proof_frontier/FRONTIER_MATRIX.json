@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-18T22:50:18Z",
+  "generated_utc": "2026-05-18T22:57:02Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -55,6 +55,8 @@
         "YonedaExtension.pushoutTailWith",
         "YonedaExt.ofExtension_composeTailHom_eq_pushoutTailWith",
         "arbitrary hom-head and hom-tail compatibility",
+        "MetrizableLCA.pullbackSplitting",
+        "MetrizableLCA.shortExactExtensionPullbackSplitting",
         "MetrizableLCA.pushoutSplitting",
         "MetrizableLCA.shortExactExtensionPushoutSplitting"
       ],
@@ -77,7 +79,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Generator-level head pullback, arbitrary tail pushout, and split pushout preservation are implemented; quotient descent remains incomplete.",
+      "merge_blocker": "Generator-level head pullback, arbitrary tail pushout, and split pullback/pushout preservation are implemented; quotient descent remains incomplete.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true
     },

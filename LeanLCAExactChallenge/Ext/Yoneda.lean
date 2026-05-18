@@ -290,6 +290,55 @@ noncomputable def shortExactExtensionPullbackData
   i_map := shortExactExtensionPullback_i_map e a
   map_p := shortExactExtensionPullback_map_p e a
 
+/-- The explicit pullback of a split short complex is split. -/
+noncomputable def pullbackSplitting
+    {S : ShortComplex MetrizableLCA.{u}} {Y : MetrizableLCA.{u}}
+    (a : Y ⟶ S.X₃) (s : S.Splitting) :
+    (ShortComplex.mk (pullbackKernelMap a S.g S.f S.zero) (pullbackFst a S.g)
+      (pullbackKernelMap_fst a S.g S.f S.zero)).Splitting := by
+  let r : pullbackObj a S.g ⟶ S.X₁ :=
+    pullbackSnd a S.g ≫ s.r
+  let sec : Y ⟶ pullbackObj a S.g :=
+    pullbackLift a S.g (𝟙 Y) (a ≫ s.s) (by
+      rw [Category.id_comp, Category.assoc, s.s_g, Category.comp_id])
+  refine
+    { r := r
+      s := sec
+      f_r := ?_
+      s_g := ?_
+      id := ?_ }
+  · dsimp [r]
+    rw [← Category.assoc, pullbackKernelMap_snd, s.f_r]
+  · dsimp [sec]
+    rw [pullbackLift_fst]
+  · dsimp [r, sec]
+    apply pullback_hom_ext a S.g
+    · rw [CategoryTheory.Preadditive.add_comp (C := MetrizableLCA.{u})]
+      rw [Category.assoc, pullbackKernelMap_fst]
+      rw [comp_zero, zero_add]
+      simp [Category.assoc, pullbackLift_fst]
+    · rw [CategoryTheory.Preadditive.add_comp (C := MetrizableLCA.{u})]
+      rw [Category.assoc, pullbackKernelMap_snd]
+      simp only [Category.assoc, pullbackLift_snd]
+      change (pullbackSnd a S.g ≫ s.r) ≫ S.f + (pullbackFst a S.g ≫ a) ≫ s.s =
+        𝟙 (pullbackObj a S.g) ≫ pullbackSnd a S.g
+      rw [pullback_condition]
+      rw [Category.assoc, Category.assoc]
+      rw [← CategoryTheory.Preadditive.comp_add (C := MetrizableLCA.{u})
+        (pullbackObj a S.g) S.X₂ S.X₂ (pullbackSnd a S.g)
+        (s.r ≫ S.f) (S.g ≫ s.s)]
+      rw [s.id]
+      simp
+
+/-- The canonical pullback of a split one-fold extension is split. -/
+noncomputable def shortExactExtensionPullbackSplitting
+    {X X' Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (a : X' ⟶ X)
+    (s : e.shortComplex.Splitting) :
+    (shortExactExtensionPullback e a).shortComplex.Splitting := by
+  simpa [shortExactExtensionPullback, ShortExactExtension.shortComplex] using
+    pullbackSplitting (S := e.shortComplex) a s
+
 /-- Push out a one-fold extension along a map on the kernel endpoint. -/
 noncomputable def shortExactExtensionPushout
     {X Y Y' : MetrizableLCA.{u}}
