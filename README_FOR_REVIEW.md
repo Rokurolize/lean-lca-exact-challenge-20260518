@@ -15,7 +15,7 @@
 - 閉部分群による商`MetrizableLCA`、および`(X₂ × Y) / range (x ↦ (f x, -a x))`としての明示的pushoutを構成し、関係部分群の閉性、標準射`Y ⟶ pushout`の閉埋め込み性、余極限性、余核側の開全射・代数的完全性まで進めたLean証明
 - strictなmetrizable LCA列をconflationとする`QuillenExactCategory MetrizableLCA` instance
 - `MetrizableLCA`のbinary biproductを積で構成し、mapping coneに必要な`HasBinaryBiproducts MetrizableLCA` instance
-- exact categoryのconflation chainから作るローカル`YonedaExt`型。degree 0はHom、正次数はconflation chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大、Baer sum witnessから来る生成関係で割った群としてコンパイルする。分裂一段拡大が0になり、Baer sum witnessがある場合に`sum = e₁ + e₂`となり、公開APIの`baer_sum`も同じ結果を返すことをLean定理として確認している
+- exact categoryのconflation chainから作るローカル`YonedaExt`型。degree 0はHom、正次数はconflation chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大、Baer sum witnessから来る生成関係で割った群としてコンパイルする。分裂一段拡大が0になり、Baer sum witnessがある場合に`sum = e₁ + e₂`となり、公開APIの`baer_sum`も同じ結果を返すことをLean定理として確認している。さらに、正次数の関係部分群に`sum - a - b`が入る任意のextension chainについて、`sum = a + b`と`baer_sum a b = sum`を返す汎用補題も追加した
 - bounded cochain complexのfull subcategoryを、mapping coneがexact acyclicである射でlocalizeする`Dbounded`構成
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル

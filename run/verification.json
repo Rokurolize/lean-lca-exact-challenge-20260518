@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v18-baer-sum-api",
-  "generated_utc": "2026-05-18T20:26:58Z",
-  "source_tree_hash": "9d261ac4b1130b96e07932bf673ef79c09b3d56cd8997b63e1bc256e521ffa96",
+  "schema": "lean-lca-exact-challenge-verification-v19-baer-chain-relation-api",
+  "generated_utc": "2026-05-18T20:33:23Z",
+  "source_tree_hash": "29c5160fbc120e24cc910d3bf13aaa5a9512d608aac870ce3d3aaeb120a456c4",
   "commands": [
     {
       "command": "lake build",
@@ -23,7 +23,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "local exact-category YonedaExt quotient exposes relation generators, split-zero, witnessed-Baer-addition equality, and baer_sum API compatibility theorems."
+      "evidence": "local exact-category YonedaExt quotient exposes relation generators, split-zero, relation-membership addition, witnessed Baer-chain addition, and baer_sum API compatibility theorems."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -33,7 +33,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "strict LCA exact category exposes local YonedaExt quotient relations, split-zero equality, witnessed Baer addition equality, baer_sum compatibility, and Dbounded localization declarations."
+      "evidence": "strict LCA exact category exposes local YonedaExt quotient relations, split-zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, baer_sum compatibility, and Dbounded localization declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",

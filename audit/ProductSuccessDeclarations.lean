@@ -72,6 +72,42 @@ example (X Y : MetrizableLCA) {e₁ e₂ sum : ShortExactExtension (C := Metriza
       YonedaExt.ofExtension (C := MetrizableLCA) sum.toYonedaExtension :=
   YonedaExt.baer_sum_ofExtension_eq_of_baer h
 
+example (X Y : MetrizableLCA) {n : ℕ}
+    {a b sum : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : FreeAbelianGroup.of sum - FreeAbelianGroup.of a - FreeAbelianGroup.of b ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y n) :
+    YonedaExt.ofExtension (C := MetrizableLCA) sum =
+      YonedaExt.ofExtension (C := MetrizableLCA) a +
+        YonedaExt.ofExtension (C := MetrizableLCA) b :=
+  YonedaExt.ofExtension_eq_add_of_relation_mem h
+
+example (X Y : MetrizableLCA) {n : ℕ}
+    {a b sum : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : FreeAbelianGroup.of sum - FreeAbelianGroup.of a - FreeAbelianGroup.of b ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y n) :
+    YonedaExt.baer_sum
+        (YonedaExt.ofExtension (C := MetrizableLCA) a)
+        (YonedaExt.ofExtension (C := MetrizableLCA) b) =
+      YonedaExt.ofExtension (C := MetrizableLCA) sum :=
+  YonedaExt.baer_sum_ofExtension_eq_of_relation_mem h
+
+example (X Y : MetrizableLCA) {n : ℕ}
+    {a b sum : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.BaerSumData a b sum) :
+    YonedaExt.ofExtension (C := MetrizableLCA) sum =
+      YonedaExt.ofExtension (C := MetrizableLCA) a +
+        YonedaExt.ofExtension (C := MetrizableLCA) b :=
+  YonedaExt.ofExtension_eq_add_of_baerChain h
+
+example (X Y : MetrizableLCA) {n : ℕ}
+    {a b sum : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.BaerSumData a b sum) :
+    YonedaExt.baer_sum
+        (YonedaExt.ofExtension (C := MetrizableLCA) a)
+        (YonedaExt.ofExtension (C := MetrizableLCA) b) =
+      YonedaExt.ofExtension (C := MetrizableLCA) sum :=
+  YonedaExt.baer_sum_ofExtension_eq_of_baerChain h
+
 noncomputable example (X Y : MetrizableLCA) :
     AddCommGroup (YonedaExt (C := MetrizableLCA) X Y 1) := by
   infer_instance

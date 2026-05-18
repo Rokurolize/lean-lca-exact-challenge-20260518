@@ -34,5 +34,5 @@
 - `LeanLCAExactChallenge/LCA/Pullback.lean`: `MetrizableLCA`のpullback object、limit cone、strict sequenceのcategorical pullback安定性をコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/Pushout.lean`: 閉部分群商、明示的pushout、関係部分群の閉性、標準射の閉埋め込み性、余核写像の開全射性と代数的完全性、strict sequenceのcategorical pushout安定性をコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/ExactCategory.lean`: strict LCA exact-category instanceを未証明引数なしでコンパイル確認した。
-- `LeanLCAExactChallenge/Ext/Yoneda.lean`: exact categoryのconflation chainから作るローカル`YonedaExt`をコンパイル確認した。degree 0はHom、正次数はextension chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大を零元にする関係、Baer sum witnessから来る関係で割った群である。分裂一段拡大が0になり、Baer sum witnessがある場合に一段Extで`sum = e₁ + e₂`になり、`baer_sum`も同じ結果を返す定理も確認した。
+- `LeanLCAExactChallenge/Ext/Yoneda.lean`: exact categoryのconflation chainから作るローカル`YonedaExt`をコンパイル確認した。degree 0はHom、正次数はextension chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大を零元にする関係、Baer sum witnessから来る関係で割った群である。分裂一段拡大が0になり、Baer sum witnessがある場合に一段Extで`sum = e₁ + e₂`になり、`baer_sum`も同じ結果を返す定理も確認した。正次数の関係部分群に`sum - a - b`が入る任意のextension chainから同じ加法等式と`baer_sum`等式を出す汎用補題も確認した。
 - `LeanLCAExactChallenge/Derived/Bounded.lean`: bounded cochain complexのfull subcategoryを、mapping coneがexact acyclicである射でlocalizeする`Dbounded`をコンパイル確認した。

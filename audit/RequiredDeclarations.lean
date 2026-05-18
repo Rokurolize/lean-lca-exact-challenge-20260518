@@ -86,6 +86,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension.Rel
 #check LeanLCAExactChallenge.YonedaExtension.RelIso
+#check LeanLCAExactChallenge.YonedaExtension.BaerSumData
 #check LeanLCAExactChallenge.PositiveYonedaExtFree
 #check LeanLCAExactChallenge.PositiveYonedaExt
 #check LeanLCAExactChallenge.YonedaRelGenerator
@@ -95,9 +96,13 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_ofExtension_of_rel
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_ofExtension_of_relIso
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_zero_of_split
+#check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_relation_mem
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_baer
+#check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_baerChain
 #check LeanLCAExactChallenge.YonedaExt.baer_sum
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_ofExtension_eq_of_relation_mem
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_ofExtension_eq_of_baer
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_ofExtension_eq_of_baerChain
 #check LeanLCAExactChallenge.YonedaExt.instAddCommGroup
 
 #check LeanLCAExactChallenge.boundedCochainComplex
