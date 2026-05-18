@@ -242,6 +242,108 @@ lemma shortExactExtensionBinaryBiproduct_p_snd
   rw [Category.assoc, biprodObjIsoBiprod_hom_snd]
   exact shortExactExtensionBiprod_p_snd e₁ e₂
 
+/-- Pull back a one-fold extension along a map on the quotient endpoint. -/
+noncomputable def shortExactExtensionPullback
+    {X X' Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (a : X' ⟶ X) :
+    ShortExactExtension (C := MetrizableLCA.{u}) X' Y where
+  middle := pullbackObj a e.p
+  i := pullbackKernelMap a e.p e.i e.zero
+  p := pullbackFst a e.p
+  zero := pullbackKernelMap_fst a e.p e.i e.zero
+  conflation := strictShortExact_pullback e.conflation a
+
+@[simp]
+lemma shortExactExtensionPullback_i_map
+    {X X' Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (a : X' ⟶ X) :
+    (shortExactExtensionPullback e a).i ≫ pullbackSnd a e.p = e.i :=
+  pullbackKernelMap_snd a e.p e.i e.zero
+
+@[simp]
+lemma shortExactExtensionPullback_map_p
+    {X X' Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (a : X' ⟶ X) :
+    pullbackSnd a e.p ≫ e.p = (shortExactExtensionPullback e a).p ≫ a :=
+  (pullback_condition a e.p).symm
+
+/-- Push out a one-fold extension along a map on the kernel endpoint. -/
+noncomputable def shortExactExtensionPushout
+    {X Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (a : Y ⟶ Y') :
+    ShortExactExtension (C := MetrizableLCA.{u}) X Y' where
+  middle := pushoutObj (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)
+  i := pushoutInr (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)
+  p := pushoutCokernelMap (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)
+  zero := pushoutInr_cokernel (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)
+  conflation := by
+    simpa [ShortExactExtension.shortComplex] using
+      strictShortExact_pushout (S := e.shortComplex) e.conflation a
+
+@[simp]
+lemma shortExactExtensionPushout_i
+    {X Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (a : Y ⟶ Y') :
+    a ≫ (shortExactExtensionPushout e a).i =
+      e.i ≫ pushoutInl (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a) :=
+  (pushout_condition (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)).symm
+
+@[simp]
+lemma shortExactExtensionPushout_map_p
+    {X Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (a : Y ⟶ Y') :
+    pushoutInl (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a) ≫
+        (shortExactExtensionPushout e a).p = e.p :=
+  pushoutInl_cokernel (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)
+
+/-- The canonical Baer sum extension built by product, diagonal pullback, and codiagonal pushout. -/
+noncomputable def shortExactExtensionBaerSum
+    {X Y : MetrizableLCA.{u}}
+    (e₁ e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X Y) :
+    ShortExactExtension (C := MetrizableLCA.{u}) X Y :=
+  shortExactExtensionPushout
+    (shortExactExtensionPullback (shortExactExtensionBinaryBiproduct e₁ e₂) (biprodDiag X))
+    (biprodCodiag Y)
+
+/-- Diagrammatic Baer-sum witness for the canonical MetrizableLCA Baer sum extension. -/
+noncomputable def shortExactExtensionBaerSumData
+    {X Y : MetrizableLCA.{u}}
+    (e₁ e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X Y) :
+    ShortExactExtension.BaerSumData e₁ e₂ (shortExactExtensionBaerSum e₁ e₂) where
+  productExtension := shortExactExtensionBinaryBiproduct e₁ e₂
+  productFst := biprodFst e₁.middle e₂.middle
+  productSnd := biprodSnd e₁.middle e₂.middle
+  product_i_fst := shortExactExtensionBinaryBiproduct_i_fst e₁ e₂
+  product_i_snd := shortExactExtensionBinaryBiproduct_i_snd e₁ e₂
+  product_p_fst := shortExactExtensionBinaryBiproduct_p_fst e₁ e₂
+  product_p_snd := shortExactExtensionBinaryBiproduct_p_snd e₁ e₂
+  pullbackExtension :=
+    shortExactExtensionPullback (shortExactExtensionBinaryBiproduct e₁ e₂) (biprodDiag X)
+  pullbackMap := pullbackSnd (biprodDiag X) (shortExactExtensionBinaryBiproduct e₁ e₂).p
+  pullback_i :=
+    shortExactExtensionPullback_i_map (shortExactExtensionBinaryBiproduct e₁ e₂) (biprodDiag X)
+  pullback_p :=
+    shortExactExtensionPullback_map_p (shortExactExtensionBinaryBiproduct e₁ e₂) (biprodDiag X)
+  pushoutExtension := shortExactExtensionBaerSum e₁ e₂
+  pushoutMap :=
+    pushoutInl
+      (S := (shortExactExtensionPullback (shortExactExtensionBinaryBiproduct e₁ e₂)
+        (biprodDiag X)).shortComplex)
+      (biprodCodiag Y)
+      (pushoutSubgroup_closed
+        (shortExactExtensionPullback (shortExactExtensionBinaryBiproduct e₁ e₂)
+          (biprodDiag X)).conflation
+        (biprodCodiag Y))
+  pushout_i :=
+    shortExactExtensionPushout_i
+      (shortExactExtensionPullback (shortExactExtensionBinaryBiproduct e₁ e₂) (biprodDiag X))
+      (biprodCodiag Y)
+  pushout_p :=
+    shortExactExtensionPushout_map_p
+      (shortExactExtensionPullback (shortExactExtensionBinaryBiproduct e₁ e₂) (biprodDiag X))
+      (biprodCodiag Y)
+  sumIso := ShortExactExtension.Iso.refl (shortExactExtensionBaerSum e₁ e₂)
+
 end MetrizableLCA
 
 /-- A finite Yoneda extension chain from `X` to `Y`.

@@ -41,6 +41,14 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.shortExactExtensionBinaryBiproduct_i_snd
 #check MetrizableLCA.shortExactExtensionBinaryBiproduct_p_fst
 #check MetrizableLCA.shortExactExtensionBinaryBiproduct_p_snd
+#check MetrizableLCA.shortExactExtensionPullback
+#check MetrizableLCA.shortExactExtensionPullback_i_map
+#check MetrizableLCA.shortExactExtensionPullback_map_p
+#check MetrizableLCA.shortExactExtensionPushout
+#check MetrizableLCA.shortExactExtensionPushout_i
+#check MetrizableLCA.shortExactExtensionPushout_map_p
+#check MetrizableLCA.shortExactExtensionBaerSum
+#check MetrizableLCA.shortExactExtensionBaerSumData
 #check YonedaExt.ofExtension_eq_ofExtension_of_rel
 #check YonedaExt.ofExtension_eq_ofExtension_of_relIso
 #check YonedaExt.ofExtension_eq_zero_of_split

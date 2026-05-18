@@ -139,6 +139,63 @@ noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
       (MetrizableLCA.shortExactExtensionBinaryBiproduct e₁ e₂).p ≫ biprod.snd :=
   MetrizableLCA.shortExactExtensionBinaryBiproduct_p_snd e₁ e₂
 
+noncomputable example (X X' Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : X' ⟶ X) :
+    ShortExactExtension (C := MetrizableLCA) X' Y :=
+  MetrizableLCA.shortExactExtensionPullback e a
+
+noncomputable example (X X' Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : X' ⟶ X) :
+    (MetrizableLCA.shortExactExtensionPullback e a).i ≫
+        MetrizableLCA.pullbackSnd a e.p = e.i :=
+  MetrizableLCA.shortExactExtensionPullback_i_map e a
+
+noncomputable example (X X' Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : X' ⟶ X) :
+    MetrizableLCA.pullbackSnd a e.p ≫ e.p =
+      (MetrizableLCA.shortExactExtensionPullback e a).p ≫ a :=
+  MetrizableLCA.shortExactExtensionPullback_map_p e a
+
+noncomputable example (X Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
+    ShortExactExtension (C := MetrizableLCA) X Y' :=
+  MetrizableLCA.shortExactExtensionPushout e a
+
+noncomputable example (X Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
+    a ≫ (MetrizableLCA.shortExactExtensionPushout e a).i =
+      e.i ≫ MetrizableLCA.pushoutInl
+        (S := e.shortComplex) a (MetrizableLCA.pushoutSubgroup_closed e.conflation a) :=
+  MetrizableLCA.shortExactExtensionPushout_i e a
+
+noncomputable example (X Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
+    MetrizableLCA.pushoutInl
+        (S := e.shortComplex) a (MetrizableLCA.pushoutSubgroup_closed e.conflation a) ≫
+      (MetrizableLCA.shortExactExtensionPushout e a).p = e.p :=
+  MetrizableLCA.shortExactExtensionPushout_map_p e a
+
+noncomputable example (X Y : MetrizableLCA)
+    (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y) :
+    ShortExactExtension (C := MetrizableLCA) X Y :=
+  MetrizableLCA.shortExactExtensionBaerSum e₁ e₂
+
+noncomputable example (X Y : MetrizableLCA)
+    (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y) :
+    ShortExactExtension.BaerSumData e₁ e₂
+      (MetrizableLCA.shortExactExtensionBaerSum e₁ e₂) :=
+  MetrizableLCA.shortExactExtensionBaerSumData e₁ e₂
+
+noncomputable example (X Y : MetrizableLCA)
+    (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y) :
+    YonedaExt.baer_sum
+        (YonedaExt.ofExtension (C := MetrizableLCA) e₁.toYonedaExtension)
+        (YonedaExt.ofExtension (C := MetrizableLCA) e₂.toYonedaExtension) =
+      YonedaExt.ofExtension (C := MetrizableLCA)
+        (MetrizableLCA.shortExactExtensionBaerSum e₁ e₂).toYonedaExtension :=
+  YonedaExt.baer_sum_ofExtension_eq_of_baer
+    (MetrizableLCA.shortExactExtensionBaerSumData e₁ e₂)
+
 example (X Y : MetrizableLCA) {n : ℕ}
     {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
     (h : YonedaExtension.Rel a b) :
