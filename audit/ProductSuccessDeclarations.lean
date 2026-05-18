@@ -66,6 +66,13 @@ example (X Y Z : MetrizableLCA)
       (0 : YonedaExt (C := MetrizableLCA) X Y 2) :=
   YonedaExt.ofExtension_cons_eq_zero_of_right_split e f s
 
+example (X Y : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData a) :
+    YonedaExt.ofExtension (C := MetrizableLCA) a =
+      (0 : YonedaExt (C := MetrizableLCA) X Y (n + 1)) :=
+  YonedaExt.ofExtension_eq_zero_of_splitFactorData h
+
 example (X Y : MetrizableLCA) {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA) X Y}
     (h : ShortExactExtension.BaerSumData e₁ e₂ sum) :
     YonedaExt.ofExtension (C := MetrizableLCA) sum.toYonedaExtension =
@@ -125,6 +132,15 @@ example (X Y Z : MetrizableLCA) {n : ℕ}
       YonedaExt.ofExtension (C := MetrizableLCA)
         (YonedaExtension.consLeftMap e n a) :=
   YonedaExt.leftProductByExtension_ofExtension e a
+
+example (X Y Z : MetrizableLCA) {n : ℕ}
+    (e : ShortExactExtension (C := MetrizableLCA) X Y)
+    (s : e.shortComplex.Splitting)
+    (a : YonedaExtension (C := MetrizableLCA) Y Z (n + 1)) :
+    YonedaExt.leftProductByExtension (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z) e n
+        (YonedaExt.ofExtension (C := MetrizableLCA) a) =
+      (0 : YonedaExt (C := MetrizableLCA) X Z ((n + 1) + 1)) :=
+  YonedaExt.leftProductByExtension_ofExtension_eq_zero_of_split e s a
 
 noncomputable example (X Y : MetrizableLCA) :
     AddCommGroup (YonedaExt (C := MetrizableLCA) X Y 1) := by

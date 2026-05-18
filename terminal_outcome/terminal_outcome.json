@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "更新後のgoalはproduct_successのみ完了可能である。Quillen exact-category interface、MetrizableLCAのpreadditive構造、binary biproduct、split short complexがstrict short exact sequenceになる証明、strict short exact sequenceの同型不変性、MetrizableLCAの明示的pullback objectとcategorical pullback安定性、閉部分群商、明示的pushout、pushout関係部分群の閉性、標準射Y ⟶ pushoutの閉埋め込み性、categorical pushout安定性、strict metrizable LCA列をconflationとするQuillenExactCategory MetrizableLCA instance、conflation chainから作るローカルYonedaExt、extension鎖の同型・hom等式・分裂一段拡大・Baer sum witnessから来る正次数商関係、分裂一段拡大が0になる定理、Baer sum witnessがある場合に一段Extでsum = e₁ + e₂になる定理、関係部分群にsum - a - bが入る正次数extension chainから同じ加法等式を出す汎用定理、一段拡大を左からspliceする写像が商群へ降りる定理、公開APIのbaer_sumが同じ結果を返す定理、mapping coneがexact acyclicである射でbounded complexをlocalizeするDboundedまでは確認済みである。ただし、任意の一段拡大対に対するBaer sum witnessの構成、任意次数の双線形Yoneda積、stable infinity-categoryとしての構造は未完成であるため、goalは未完了である。",
+  "summary": "更新後のgoalはproduct_successのみ完了可能である。Quillen exact-category interface、MetrizableLCAのpreadditive構造、binary biproduct、split short complexがstrict short exact sequenceになる証明、strict short exact sequenceの同型不変性、MetrizableLCAの明示的pullback objectとcategorical pullback安定性、閉部分群商、明示的pushout、pushout関係部分群の閉性、標準射Y ⟶ pushoutの閉埋め込み性、categorical pushout安定性、strict metrizable LCA列をconflationとするQuillenExactCategory MetrizableLCA instance、conflation chainから作るローカルYonedaExt、extension鎖の同型・hom等式・分裂一段拡大・split factorを含む鎖・Baer sum witnessから来る正次数商関係、分裂一段拡大とsplit factorを含む正次数鎖が0になる定理、Baer sum witnessがある場合に一段Extでsum = e₁ + e₂になる定理、関係部分群にsum - a - bが入る正次数extension chainから同じ加法等式を出す汎用定理、一段拡大を左からspliceする写像が商群へ降りる定理、分裂一段拡大を左からspliceした値が0になる定理、公開APIのbaer_sumが同じ結果を返す定理、mapping coneがexact acyclicである射でbounded complexをlocalizeするDboundedまでは確認済みである。ただし、任意の一段拡大対に対するBaer sum witnessの構成、任意次数の双線形Yoneda積、stable infinity-categoryとしての構造は未完成であるため、goalは未完了である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -99,6 +99,7 @@
     "LeanLCAExactChallenge.YonedaExtension.RelIso",
     "LeanLCAExactChallenge.YonedaExtension.BaerSumData",
     "LeanLCAExactChallenge.YonedaExtension.RightSplitData",
+    "LeanLCAExactChallenge.YonedaExtension.SplitFactorData",
     "LeanLCAExactChallenge.PositiveYonedaExtFree",
     "LeanLCAExactChallenge.YonedaRelGenerator",
     "LeanLCAExactChallenge.yonedaRelationSubgroup",
@@ -107,6 +108,7 @@
     "LeanLCAExactChallenge.YonedaExt.ofExtension_eq_zero_of_split",
     "LeanLCAExactChallenge.YonedaExt.ofExtension_cons_eq_zero_of_right_split",
     "LeanLCAExactChallenge.YonedaExt.ofExtension_eq_zero_of_rightSplitData",
+    "LeanLCAExactChallenge.YonedaExt.ofExtension_eq_zero_of_splitFactorData",
     "LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_relation_mem",
     "LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_baer",
     "LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_baerChain",
@@ -117,6 +119,7 @@
     "LeanLCAExactChallenge.YonedaExt.consLeft_relationSubgroup_le",
     "LeanLCAExactChallenge.YonedaExt.leftProductByExtension",
     "LeanLCAExactChallenge.YonedaExt.leftProductByExtension_ofExtension",
+    "LeanLCAExactChallenge.YonedaExt.leftProductByExtension_ofExtension_eq_zero_of_split",
     "LeanLCAExactChallenge.YonedaExtension",
     "LeanLCAExactChallenge.PositiveYonedaExt",
     "LeanLCAExactChallenge.YonedaExt.zero_equiv_hom",
@@ -132,7 +135,7 @@
     "LeanLCAExactChallenge.Dbounded.of"
   ],
   "known_gaps": [
-    "`YonedaExt`はexact categoryのconflation chainから作る局所的な商群として構成済みであり、extension鎖の同型、hom等式、分裂一段拡大を零元にする生成関係、Baer sum witnessから来る生成関係は入れた。分裂一段拡大が0になること、Baer sum witnessがある場合に一段Extでsum = e₁ + e₂になること、関係部分群にsum - a - bが入る正次数extension chainから同じ加法等式を出せること、一段拡大を左からspliceする写像が商群へ降りること、公開APIのbaer_sumも同じ結果を返すことも証明済みである。ただし、任意の一段拡大対に対してBaer sum witnessを構成する部分、任意次数の双線形Yoneda積と長さ方向の関係はまだ実装していない。",
+    "`YonedaExt`はexact categoryのconflation chainから作る局所的な商群として構成済みであり、extension鎖の同型、hom等式、分裂一段拡大を零元にする生成関係、split factorを含む鎖を零元にする生成関係、Baer sum witnessから来る生成関係は入れた。分裂一段拡大とsplit factorを含む正次数鎖が0になること、Baer sum witnessがある場合に一段Extでsum = e₁ + e₂になること、関係部分群にsum - a - bが入る正次数extension chainから同じ加法等式を出せること、一段拡大を左からspliceする写像が商群へ降りること、分裂一段拡大を左からspliceした値が0になること、公開APIのbaer_sumも同じ結果を返すことも証明済みである。ただし、任意の一段拡大対に対してBaer sum witnessを構成する部分、任意次数の双線形Yoneda積と長さ方向の関係はまだ実装していない。",
     "`Dbounded`はbounded cochain complexをexact weak equivalenceでlocalizeするordinary categoryとしては構成済みだが、stable infinity-categoryそのもののモデルやenhancementはまだ実装していない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
