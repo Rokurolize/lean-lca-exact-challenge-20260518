@@ -4,3 +4,4 @@ ts_utc	actor	status	artifact	evidence	next
 2026-05-18T22:50:18Z	codex	checkpoint	yoneda-pushout-splitting	implemented pushoutSplitting and shortExactExtensionPushoutSplitting; lake build and focused Yoneda audits passed	run full verification and refresh manifest/evidence
 2026-05-18T22:57:02Z	codex	checkpoint	yoneda-pullback-splitting	implemented pullbackSplitting and shortExactExtensionPullbackSplitting; lake build and focused Yoneda audits passed	refresh manifest/evidence and commit
 2026-05-18T23:00:30Z	codex	checkpoint	degree0-split-zero-ext-lemmas	implemented Ext-level split-zero lemmas for tail hom composition and head pullback; lake build and focused audits passed	refresh evidence and commit
+2026-05-18T23:08:01Z	parent	checkpoint	LeanLCAExactChallenge/Ext/Yoneda.lean	added tail pushout preservation of right-split and split-factor data plus Ext zero lemmas; focused Lean audits pass after lake build	refresh evidence and run full oracle

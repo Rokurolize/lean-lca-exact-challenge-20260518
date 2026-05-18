@@ -688,6 +688,47 @@ def pushoutTailWithData {X Y Y' : C} (f : Y ⟶ Y')
   | n + 1, YonedaExtension.cons e tail =>
       HomTailData.cons e (pushoutTailWithData f push h tail)
 
+/--
+Pushing out the right end of a chain preserves the right-split marker, provided
+one-fold pushouts preserve the chosen splitting.
+-/
+def RightSplitData.pushoutTailWith {X Y Y' : C} (f : Y ⟶ Y')
+    (push : {Z W : C} → (e : ShortExactExtension Z W) → (g : W ⟶ Y') →
+      ShortExactExtension Z Y')
+    (pushSplit : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y')
+      (_ : e.shortComplex.Splitting), (push e g).shortComplex.Splitting) :
+    {n : ℕ} → {a : YonedaExtension X Y (n + 1)} →
+      RightSplitData a → RightSplitData (YonedaExtension.pushoutTailWith f push a)
+  | 0, _, RightSplitData.one e s => by
+      simpa [ShortExactExtension.toYonedaExtension, YonedaExtension.pushoutTailWith,
+        Category.id_comp] using
+        RightSplitData.one (push e f) (pushSplit e f s)
+  | n + 1, _, RightSplitData.cons e h => by
+      simpa [YonedaExtension.pushoutTailWith] using
+        RightSplitData.cons e (RightSplitData.pushoutTailWith f push pushSplit h)
+
+/--
+Pushing out the right end of a chain preserves the existence of a split factor,
+provided one-fold pushouts preserve the chosen splitting.
+-/
+def SplitFactorData.pushoutTailWith {X Y Y' : C} (f : Y ⟶ Y')
+    (push : {Z W : C} → (e : ShortExactExtension Z W) → (g : W ⟶ Y') →
+      ShortExactExtension Z Y')
+    (pushSplit : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y')
+      (_ : e.shortComplex.Splitting), (push e g).shortComplex.Splitting) :
+    {n : ℕ} → {a : YonedaExtension X Y (n + 1)} →
+      SplitFactorData a → SplitFactorData (YonedaExtension.pushoutTailWith f push a)
+  | 0, _, SplitFactorData.head e s (YonedaExtension.ofHom g) => by
+      simpa [ShortExactExtension.toYonedaExtension, YonedaExtension.pushoutTailWith] using
+        SplitFactorData.head (push e (g ≫ f)) (pushSplit e (g ≫ f) s)
+          (YonedaExtension.ofHom (𝟙 Y'))
+  | n + 1, _, SplitFactorData.head e s tail => by
+      simpa [YonedaExtension.pushoutTailWith] using
+        SplitFactorData.head e s (YonedaExtension.pushoutTailWith f push tail)
+  | n + 1, _, SplitFactorData.cons e h => by
+      simpa [YonedaExtension.pushoutTailWith] using
+        SplitFactorData.cons e (SplitFactorData.pushoutTailWith f push pushSplit h)
+
 /-- Positive chains whose factors are all one-fold extensions. -/
 inductive PositiveChain : C → C → ℕ → Type (max u v)
   | one {X Y : C} (e : ShortExactExtension X Y) : PositiveChain X Y 0
@@ -790,6 +831,30 @@ noncomputable def yonedaExtensionPushoutTailData
     (fun {_ _} e g => shortExactExtensionPushout e g)
     (fun {_ _} e g => shortExactExtensionPushoutData e g)
     a
+
+/-- Canonical MetrizableLCA tail pushout preserves a right-split marker. -/
+noncomputable def yonedaExtensionPushoutTailRightSplitData
+    {X Y Y' : MetrizableLCA.{u}} (f : Y ⟶ Y') {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData (C := MetrizableLCA.{u}) a) :
+    YonedaExtension.RightSplitData (C := MetrizableLCA.{u})
+      (yonedaExtensionPushoutTail f a) :=
+  YonedaExtension.RightSplitData.pushoutTailWith (C := MetrizableLCA.{u}) f
+    (fun {_ _} e g => shortExactExtensionPushout e g)
+    (fun {_ _} e g s => shortExactExtensionPushoutSplitting e g s)
+    h
+
+/-- Canonical MetrizableLCA tail pushout preserves a split-factor marker. -/
+noncomputable def yonedaExtensionPushoutTailSplitFactorData
+    {X Y Y' : MetrizableLCA.{u}} (f : Y ⟶ Y') {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData (C := MetrizableLCA.{u}) a) :
+    YonedaExtension.SplitFactorData (C := MetrizableLCA.{u})
+      (yonedaExtensionPushoutTail f a) :=
+  YonedaExtension.SplitFactorData.pushoutTailWith (C := MetrizableLCA.{u}) f
+    (fun {_ _} e g => shortExactExtensionPushout e g)
+    (fun {_ _} e g s => shortExactExtensionPushoutSplitting e g s)
+    h
 
 end MetrizableLCA
 
@@ -1020,6 +1085,62 @@ theorem pullbackHeadOfExtension_eq_zero_of_metrizable_split
     (YonedaExt.ofExtension_eq_zero_of_split
       (MetrizableLCA.shortExactExtensionPullback e f)
       (MetrizableLCA.shortExactExtensionPullbackSplitting e f s))
+
+/-- Canonical tail pushout sends a MetrizableLCA right-split chain to zero in Ext. -/
+theorem ofExtension_pushoutTailWith_eq_zero_of_metrizable_rightSplitData
+    {X Y Y' : MetrizableLCA.{u}} {n : ℕ}
+    {a : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData a) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        (YonedaExtension.pushoutTailWith f
+          (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g) a) =
+      (0 : YonedaExt (C := MetrizableLCA.{u}) X Y' (n + 1)) :=
+  YonedaExt.ofExtension_eq_zero_of_rightSplitData
+    (YonedaExtension.RightSplitData.pushoutTailWith f
+      (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+      (fun {_ _} e g s => MetrizableLCA.shortExactExtensionPushoutSplitting e g s) h)
+
+/-- Canonical tail pushout sends a MetrizableLCA chain with a split factor to zero in Ext. -/
+theorem ofExtension_pushoutTailWith_eq_zero_of_metrizable_splitFactorData
+    {X Y Y' : MetrizableLCA.{u}} {n : ℕ}
+    {a : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData a) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        (YonedaExtension.pushoutTailWith f
+          (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g) a) =
+      (0 : YonedaExt (C := MetrizableLCA.{u}) X Y' (n + 1)) :=
+  YonedaExt.ofExtension_eq_zero_of_splitFactorData
+    (YonedaExtension.SplitFactorData.pushoutTailWith f
+      (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+      (fun {_ _} e g s => MetrizableLCA.shortExactExtensionPushoutSplitting e g s) h)
+
+/-- Tail hom composition sends a MetrizableLCA right-split chain to zero in Ext. -/
+theorem ofExtension_composeTailHom_eq_zero_of_metrizable_rightSplitData
+    {X Y Y' : MetrizableLCA.{u}} {n : ℕ}
+    {a : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData a) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        (YonedaExtension.composeTailHom f a) =
+      (0 : YonedaExt (C := MetrizableLCA.{u}) X Y' (n + 1)) := by
+  rw [YonedaExt.ofExtension_composeTailHom_eq_pushoutTailWith f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    a]
+  exact ofExtension_pushoutTailWith_eq_zero_of_metrizable_rightSplitData h f
+
+/-- Tail hom composition sends a MetrizableLCA chain with a split factor to zero in Ext. -/
+theorem ofExtension_composeTailHom_eq_zero_of_metrizable_splitFactorData
+    {X Y Y' : MetrizableLCA.{u}} {n : ℕ}
+    {a : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData a) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        (YonedaExtension.composeTailHom f a) =
+      (0 : YonedaExt (C := MetrizableLCA.{u}) X Y' (n + 1)) := by
+  rw [YonedaExt.ofExtension_composeTailHom_eq_pushoutTailWith f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    a]
+  exact ofExtension_pushoutTailWith_eq_zero_of_metrizable_splitFactorData h f
 
 /-- A positive-degree relation of the form `sum - a - b` gives addition in local Yoneda Ext. -/
 theorem ofExtension_eq_add_of_relation_mem {a b sum : YonedaExtension X Y (n + 1)}

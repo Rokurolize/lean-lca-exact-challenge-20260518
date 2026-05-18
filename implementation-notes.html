@@ -27,6 +27,7 @@
     <p>2026-05-18T22:50:18Z時点で、分裂一段拡大を標準pushoutしても分裂であることを<code>MetrizableLCA.pushoutSplitting</code>と<code>MetrizableLCA.shortExactExtensionPushoutSplitting</code>で証明した。これにより、tail hom作用を商群上に降ろす際のsplit-zero関係に対する主要な局所障害は除いた。ただし、iso関係、Baer関係、hom-tail関係を含む全relation subgroup保存はまだ未実装である。</p>
     <p>2026-05-18T22:57:02Z時点で、分裂一段拡大を標準pullbackしても分裂であることも<code>MetrizableLCA.pullbackSplitting</code>と<code>MetrizableLCA.shortExactExtensionPullbackSplitting</code>で証明した。degree 0 head作用を商群上に降ろす際のsplit-zero関係についても同じ局所障害を除いたが、全relation subgroup保存はまだ未実装である。</p>
     <p>2026-05-18T23:00:30Z時点で、上記を<code>YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_split</code>と<code>YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_split</code>としてExtレベルの零元等式に接続した。これらはsplit-zero生成関係の保存に対応する局所事実であり、商群上の完全なhead/tail作用ではない。</p>
+    <p>2026-05-18T23:08:01Z時点で、tail側の標準pushoutが<code>RightSplitData</code>と<code>SplitFactorData</code>を保つことを再帰的に証明し、対応するpushout normal formと<code>composeTailHom</code>がExtで0になる定理を追加した。これによりtail hom作用についてright-split/split-factor生成関係の局所保存は確認済みになったが、Baer関係とhom-tail関係のpushout結合性を含む全商降下はまだ残っている。</p>
   </section>
   <section>
     <h2>worker方針</h2>

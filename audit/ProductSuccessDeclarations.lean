@@ -280,6 +280,50 @@ noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
   MetrizableLCA.yonedaExtensionPushoutTailData f a
 
 noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData a) (f : Y ⟶ Y') :
+    YonedaExtension.RightSplitData (MetrizableLCA.yonedaExtensionPushoutTail f a) :=
+  MetrizableLCA.yonedaExtensionPushoutTailRightSplitData f h
+
+noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData a) (f : Y ⟶ Y') :
+    YonedaExtension.SplitFactorData (MetrizableLCA.yonedaExtensionPushoutTail f a) :=
+  MetrizableLCA.yonedaExtensionPushoutTailSplitFactorData f h
+
+noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData a) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA)
+        (MetrizableLCA.yonedaExtensionPushoutTail f a) =
+      (0 : YonedaExt (C := MetrizableLCA) X Y' (n + 1)) :=
+  YonedaExt.ofExtension_pushoutTailWith_eq_zero_of_metrizable_rightSplitData h f
+
+noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData a) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA)
+        (MetrizableLCA.yonedaExtensionPushoutTail f a) =
+      (0 : YonedaExt (C := MetrizableLCA) X Y' (n + 1)) :=
+  YonedaExt.ofExtension_pushoutTailWith_eq_zero_of_metrizable_splitFactorData h f
+
+noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData a) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.composeTailHom f a) =
+      (0 : YonedaExt (C := MetrizableLCA) X Y' (n + 1)) :=
+  YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_rightSplitData h f
+
+noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData a) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.composeTailHom f a) =
+      (0 : YonedaExt (C := MetrizableLCA) X Y' (n + 1)) :=
+  YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_splitFactorData h f
+
+noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
     (a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)) (f : Y ⟶ Y') :
     YonedaExt.ofExtension (C := MetrizableLCA)
         (YonedaExtension.composeTailHom f a) =
