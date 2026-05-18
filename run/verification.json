@@ -1,14 +1,10 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v1",
-  "generated_utc": "2026-05-18T17:53:42Z",
-  "source_tree_hash": "92211bdd086047e527c0cc408eb54444371a09ed2bda3f8ad8b6ca120a2ffdf7",
+  "schema": "lean-lca-exact-challenge-verification-v2-product-contract",
+  "generated_utc": "2026-05-18T18:09:51Z",
+  "source_tree_hash": "e8802937bcdef1d5de0b7e5a58309bc3a3da62409499ddb535c135e32e441059",
   "commands": [
     {
       "command": "lake build",
-      "status": "passed"
-    },
-    {
-      "command": "scripts/check_mathlib_survey.sh",
       "status": "passed"
     },
     {
@@ -20,16 +16,14 @@
       "status": "passed"
     },
     {
-      "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
-      "status": "passed"
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "failed",
+      "evidence": "requires assumption-free MetrizableLCA.quillenExactCategory, exact-category YonedaExt, and Dbounded instance"
     },
     {
-      "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "status": "passed"
-    },
-    {
-      "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "status": "passed"
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed",
+      "evidence": "product-facing Lean sources still contain placeholder/source-patch markers and terminal_outcome is not product_success"
     },
     {
       "command": "git diff --check",

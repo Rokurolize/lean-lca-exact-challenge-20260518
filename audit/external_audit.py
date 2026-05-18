@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only audit for the Lean LCA exact-category challenge handoff."""
+"""Read-only product-success audit for the Lean LCA exact-category challenge."""
 
 from __future__ import annotations
 
@@ -22,6 +22,7 @@ PROJECT_REQUIRED = [
     "LeanLCAExactChallenge/Ext/Yoneda.lean",
     "LeanLCAExactChallenge/Derived/Bounded.lean",
     "audit/RequiredDeclarations.lean",
+    "audit/ProductSuccessDeclarations.lean",
     "audit/external_audit.py",
     "docs/research/sources.md",
     "docs/research/reference_route_log.md",
@@ -39,19 +40,18 @@ REQUIRED_COMMANDS = [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "lake env lean audit/RequiredDeclarations.lean",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
     "git diff --check",
 ]
-
-TERMINAL_OUTCOMES = {
-    "product_success",
-    "source_patch_needed_handoff",
-    "mathematically_false_or_misstated",
-    "blocked_external",
-}
 
 FORBIDDEN_LEAN_RE = re.compile(r"\b(sorry|admit|axiom|unsafe)\b")
 HEX64_RE = re.compile(r"\b[0-9a-fA-F]{64}\b")
 JAPANESE_RE = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
+PRODUCT_PLACEHOLDER_RE = re.compile(
+    r"StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|"
+    r"\bsource[- ]patch\b|\bblocker\b|\bfrontier\b|\bgap\b",
+    flags=re.IGNORECASE,
+)
 
 
 def fail(message: str) -> None:
@@ -180,14 +180,27 @@ def check_japanese_deliverables(root: Path, project_root: Path, terminal_outcome
         fail("terminal_outcome.summary must be a string")
     require_japanese_text("terminal_outcome.summary", summary, minimum=12)
     known_gaps = outcome.get("known_gaps")
-    if not isinstance(known_gaps, list) or not known_gaps:
-        fail("terminal_outcome.known_gaps must be a nonempty list")
+    if not isinstance(known_gaps, list):
+        fail("terminal_outcome.known_gaps must be a list")
     for index, gap in enumerate(known_gaps):
         if not isinstance(gap, str):
             fail(f"terminal_outcome.known_gaps[{index}] must be a string")
         require_japanese_text(f"terminal_outcome.known_gaps[{index}]", gap, minimum=4)
     if outcome.get("reference_route_log") != "docs/research/reference_route_log.md":
         fail("terminal_outcome.reference_route_log must point to docs/research/reference_route_log.md")
+
+
+def check_no_product_placeholders(project_root: Path) -> None:
+    hits: list[str] = []
+    for path in sorted((project_root / "LeanLCAExactChallenge").rglob("*.lean")):
+        text = path.read_text(encoding="utf-8")
+        for lineno, line in enumerate(text.splitlines(), start=1):
+            match = PRODUCT_PLACEHOLDER_RE.search(line)
+            if match:
+                rel = path.relative_to(project_root).as_posix()
+                hits.append(f"{rel}:{lineno}:{match.group(0)!r}")
+    if hits:
+        fail("product-facing Lean sources contain placeholder markers: " + ", ".join(hits))
 
 
 def command_status_map(verification: dict[str, Any]) -> dict[str, str]:
@@ -307,18 +320,15 @@ def check_negative_fixture(root: Path) -> None:
 def check_terminal_outcome(root: Path, terminal_outcome_path: Path, packet_mode: bool) -> None:
     outcome = load_json(terminal_outcome_path)
     terminal = outcome.get("outcome")
-    if terminal not in TERMINAL_OUTCOMES:
-        fail(f"nonterminal or invalid outcome: {terminal!r}")
+    if terminal != "product_success":
+        fail(f"terminal_outcome.outcome must be product_success for this Goal, got {terminal!r}")
     product_complete = outcome.get("product_complete")
     update_goal_allowed = outcome.get("update_goal_allowed")
-    if terminal == "product_success":
-        if product_complete is not True or update_goal_allowed is not True:
-            fail("product_success must set product_complete and update_goal_allowed true")
-    else:
-        if product_complete is True:
-            fail("non-product terminal outcome overclaims product_complete")
-        if terminal == "source_patch_needed_handoff" and update_goal_allowed is not True:
-            fail("source_patch_needed_handoff must explicitly allow update_goal")
+    if product_complete is not True or update_goal_allowed is not True:
+        fail("product_success must set product_complete and update_goal_allowed true")
+    known_gaps = outcome.get("known_gaps")
+    if known_gaps != []:
+        fail("product_success must have known_gaps = []")
 
     commands = outcome.get("verified_commands", [])
     if not isinstance(commands, list):
@@ -367,6 +377,7 @@ def main() -> None:
     check_required(root, project_root, terminal_outcome)
     check_forbidden_lean(project_root)
     check_japanese_deliverables(root, project_root, terminal_outcome)
+    check_no_product_placeholders(project_root)
     check_no_internal_zip_sha(root, terminal_outcome)
     check_manifest(root)
     check_verification(root, project_root)

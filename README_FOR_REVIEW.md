@@ -2,7 +2,7 @@
 
 ## 結論
 
-この成果物はproduct successではなく、source-patch-needed handoffである。
+この成果物はproduct successではない。更新後のgoalではsource-patch-needed handoffで完了できないため、このpacketは歴史的な調査証跡と未完了診断として読む。
 
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
@@ -12,7 +12,7 @@
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
-一方、strictなmetrizable LCA列がQuillenのexact-category公理を満たす定理、そのexact category上のYoneda Ext、bounded derived infinity-categoryの構成は、まだmathlibまたはローカルsource patchを必要とする。
+一方、strictなmetrizable LCA列がQuillenのexact-category公理を満たす定理、そのexact category上のYoneda Ext、bounded derived infinity-categoryの構成は、まだローカル実装が必要である。現行goalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
 
 ## 評価文脈
 
@@ -26,11 +26,12 @@
 lake build
 scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge
 lake env lean audit/RequiredDeclarations.lean
+lake env lean audit/ProductSuccessDeclarations.lean
 python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json
 git diff --check
 ```
 
-`run/verification.json`には、このhandoff前に実行したコマンドとsource tree hashを記録している。`audit/external_audit.py`は読み取り専用の監査で、route log、日本語説明、manifest、terminal outcome、negative fixture、packet sidecarを検査する。
+`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`は現時点では失敗する赤いproduct契約であり、`audit/external_audit.py`も`product_success`以外のterminal outcomeを失敗させる。
 
 ## レビューpacket
 
