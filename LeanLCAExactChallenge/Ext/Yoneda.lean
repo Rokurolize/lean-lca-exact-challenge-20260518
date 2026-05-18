@@ -1753,6 +1753,50 @@ theorem leftProductByExtension_baer_sum_ofExtension_eq_of_baerLeft
   dsimp [baer_sum]
   exact (leftProductByExtension_ofExtension_eq_add_of_baerLeft h a).symm
 
+/-- A split one-fold left factor gives the zero homomorphism on right Ext. -/
+theorem leftProductByExtension_eq_zero_of_split
+    (e : ShortExactExtension X Y) (s : e.shortComplex.Splitting) (n : ℕ) :
+    leftProductByExtension (X := X) (Y := Y) (Z := Z) e n = 0 := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro a
+  change leftProductByExtension (X := X) (Y := Y) (Z := Z) e n
+      (ofExtension (X := Y) (Y := Z) (n := n) a) = 0
+  exact leftProductByExtension_ofExtension_eq_zero_of_split e s a
+
+/-- Isomorphic one-fold left factors induce the same homomorphism on right Ext. -/
+theorem leftProductByExtension_eq_of_isoLeft
+    {e e' : ShortExactExtension X Y} (h : ShortExactExtension.Iso e e') (n : ℕ) :
+    leftProductByExtension (X := X) (Y := Y) (Z := Z) e n =
+      leftProductByExtension (X := X) (Y := Y) (Z := Z) e' n := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro a
+  change leftProductByExtension (X := X) (Y := Y) (Z := Z) e n
+      (ofExtension (X := Y) (Y := Z) (n := n) a) =
+    leftProductByExtension (X := X) (Y := Y) (Z := Z) e' n
+      (ofExtension (X := Y) (Y := Z) (n := n) a)
+  exact leftProductByExtension_ofExtension_eq_of_isoLeft h a
+
+/-- A Baer relation in a one-fold left factor is additive as a homomorphism. -/
+theorem leftProductByExtension_eq_add_of_baerLeft
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {e₁ e₂ sum : ShortExactExtension X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum) (n : ℕ) :
+    leftProductByExtension (X := X) (Y := Y) (Z := Z) sum n =
+      leftProductByExtension (X := X) (Y := Y) (Z := Z) e₁ n +
+        leftProductByExtension (X := X) (Y := Y) (Z := Z) e₂ n := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro a
+  change leftProductByExtension (X := X) (Y := Y) (Z := Z) sum n
+      (ofExtension (X := Y) (Y := Z) (n := n) a) =
+    leftProductByExtension (X := X) (Y := Y) (Z := Z) e₁ n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) +
+      leftProductByExtension (X := X) (Y := Y) (Z := Z) e₂ n
+        (ofExtension (X := Y) (Y := Z) (n := n) a)
+  exact leftProductByExtension_ofExtension_eq_add_of_baerLeft h a
+
 /-- Left splicing by a fixed one-fold extension is additive in the right Ext variable. -/
 theorem leftProductByExtension_add (e : ShortExactExtension X Y) (n : ℕ)
     (a b : YonedaExt Y Z (n + 1)) :
@@ -1916,6 +1960,63 @@ theorem leftProductByPositiveChain_cons_baer_sum_ofExtension_eq_of_baerHead
         (ofExtension (X := W) (Y := Z) (n := n) a) := by
   dsimp [baer_sum]
   exact (leftProductByPositiveChain_cons_ofExtension_eq_add_of_baerHead h p a).symm
+
+/-- A fixed positive left chain with a split factor gives the zero homomorphism. -/
+theorem leftProductByPositiveChain_eq_zero_of_splitFactor {m : ℕ}
+    {p : YonedaExtension.PositiveChain X Y m}
+    (h : YonedaExtension.PositiveChain.SplitFactorData p) (n : ℕ) :
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n = 0 := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro a
+  change leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n
+      (ofExtension (X := Y) (Y := Z) (n := n) a) = 0
+  exact leftProductByPositiveChain_ofExtension_eq_zero_of_splitFactor h a
+
+/-- Isomorphic heads of positive left chains induce the same homomorphism on right Ext. -/
+theorem leftProductByPositiveChain_cons_eq_of_isoHead
+    {W : C} {m : ℕ} {e e' : ShortExactExtension X Y}
+    (h : ShortExactExtension.Iso e e') (p : YonedaExtension.PositiveChain Y W m) (n : ℕ) :
+    leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons e p) n =
+      leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons e' p) n := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro a
+  change leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+      (YonedaExtension.PositiveChain.cons e p) n
+      (ofExtension (X := W) (Y := Z) (n := n) a) =
+    leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+      (YonedaExtension.PositiveChain.cons e' p) n
+      (ofExtension (X := W) (Y := Z) (n := n) a)
+  exact leftProductByPositiveChain_cons_ofExtension_eq_of_isoHead h p a
+
+/-- A Baer relation in the head of a positive left chain is additive as a homomorphism. -/
+theorem leftProductByPositiveChain_cons_eq_add_of_baerHead
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {W : C} {m : ℕ} {e₁ e₂ sum : ShortExactExtension X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (p : YonedaExtension.PositiveChain Y W m) (n : ℕ) :
+    leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons sum p) n =
+      leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+          (YonedaExtension.PositiveChain.cons e₁ p) n +
+        leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+          (YonedaExtension.PositiveChain.cons e₂ p) n := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro a
+  change leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+      (YonedaExtension.PositiveChain.cons sum p) n
+      (ofExtension (X := W) (Y := Z) (n := n) a) =
+    leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons e₁ p) n
+        (ofExtension (X := W) (Y := Z) (n := n) a) +
+      leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons e₂ p) n
+        (ofExtension (X := W) (Y := Z) (n := n) a)
+  exact leftProductByPositiveChain_cons_ofExtension_eq_add_of_baerHead h p a
 
 /-- Left splicing by a fixed positive chain is additive in the right Ext variable. -/
 theorem leftProductByPositiveChain_add {m : ℕ}

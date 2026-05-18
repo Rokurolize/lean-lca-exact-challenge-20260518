@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-18T23:38:11Z",
+  "generated_utc": "2026-05-18T23:46:16Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -39,14 +39,20 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Right-variable additivity for fixed left one-fold and positive-chain splice products is exposed; left quotient descent across all left-side relation generators remains incomplete.",
+      "merge_blocker": "Fixed left one-fold/head split, iso, and Baer relations are now homomorphism equalities on the right Ext quotient; left quotient descent across all remaining left-side relation generators remains incomplete.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
       "owned_by_active_process": true,
       "implemented_declarations": [
         "YonedaExt.leftProductByExtension_add",
         "YonedaExt.leftProductByExtension_baer_sum",
+        "YonedaExt.leftProductByExtension_eq_zero_of_split",
+        "YonedaExt.leftProductByExtension_eq_of_isoLeft",
+        "YonedaExt.leftProductByExtension_eq_add_of_baerLeft",
         "YonedaExt.leftProductByPositiveChain_add",
-        "YonedaExt.leftProductByPositiveChain_baer_sum"
+        "YonedaExt.leftProductByPositiveChain_baer_sum",
+        "YonedaExt.leftProductByPositiveChain_eq_zero_of_splitFactor",
+        "YonedaExt.leftProductByPositiveChain_cons_eq_of_isoHead",
+        "YonedaExt.leftProductByPositiveChain_cons_eq_add_of_baerHead"
       ]
     },
     {

@@ -137,6 +137,9 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.leftProductByExtension_ofExtension_eq_of_isoLeft
 #check YonedaExt.leftProductByExtension_ofExtension_eq_add_of_baerLeft
 #check YonedaExt.leftProductByExtension_baer_sum_ofExtension_eq_of_baerLeft
+#check YonedaExt.leftProductByExtension_eq_zero_of_split
+#check YonedaExt.leftProductByExtension_eq_of_isoLeft
+#check YonedaExt.leftProductByExtension_eq_add_of_baerLeft
 #check YonedaExt.leftProductByExtension_add
 #check YonedaExt.leftProductByExtension_baer_sum
 #check YonedaExt.positiveChainLeftFreeHom
@@ -147,6 +150,9 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.leftProductByPositiveChain_cons_ofExtension_eq_of_isoHead
 #check YonedaExt.leftProductByPositiveChain_cons_ofExtension_eq_add_of_baerHead
 #check YonedaExt.leftProductByPositiveChain_cons_baer_sum_ofExtension_eq_of_baerHead
+#check YonedaExt.leftProductByPositiveChain_eq_zero_of_splitFactor
+#check YonedaExt.leftProductByPositiveChain_cons_eq_of_isoHead
+#check YonedaExt.leftProductByPositiveChain_cons_eq_add_of_baerHead
 #check YonedaExt.leftProductByPositiveChain_add
 #check YonedaExt.leftProductByPositiveChain_baer_sum
 

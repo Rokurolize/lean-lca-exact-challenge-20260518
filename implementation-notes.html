@@ -33,6 +33,7 @@
     <p>2026-05-18T23:25:36Z時点で、標準pullbackが一段拡大の同型を保つことを<code>MetrizableLCA.shortExactExtensionPullbackIso</code>で証明し、<code>YonedaExtension.Rel.pullbackHeadWith</code>と<code>YonedaExt.pullbackHeadOfExtension_eq_of_metrizable_rel</code>によりhead pullbackがtermwise relationを保つことをExt等式まで接続した。recursive chain isomorphismやBaer関係の保存はまだ未実装である。</p>
     <p>2026-05-18T23:31:47Z時点で、標準pullbackが一段拡大の<code>IsoBetween</code>も保つことを証明し、<code>YonedaExtension.RelIso.pullbackHeadWith</code>、<code>MetrizableLCA.yonedaExtensionPullbackHeadRelIso</code>、<code>YonedaExt.pullbackHeadOfExtension_eq_of_metrizable_relIso</code>を追加した。head作用のiso系生成関係は局所保存を確認したが、Baer関係とhom-tail関係の互換性は未解決である。</p>
     <p>2026-05-18T23:38:11Z時点で、既に商群へ降りている左splice写像が右Ext変数の加法と<code>baer_sum</code>を保つことを<code>YonedaExt.leftProductByExtension_add</code>、<code>YonedaExt.leftProductByExtension_baer_sum</code>、<code>YonedaExt.leftProductByPositiveChain_add</code>、<code>YonedaExt.leftProductByPositiveChain_baer_sum</code>として公開した。これは右変数側の加法性をAPI化するものであり、左変数側の関係全体への商降下を完成させるものではない。</p>
+    <p>2026-05-18T23:46:16Z時点で、生成元レベルだった左因子split、iso、Baer互換性を、右Ext全体に作用する群準同型の等式へ持ち上げた。追加した主な定理は<code>YonedaExt.leftProductByExtension_eq_zero_of_split</code>、<code>YonedaExt.leftProductByExtension_eq_of_isoLeft</code>、<code>YonedaExt.leftProductByExtension_eq_add_of_baerLeft</code>、および正次数左鎖版の三定理である。これは左側の一段・head Baer関係について商元全体への互換性を強めるが、hom-tailや内部Baerを含む左側全生成関係への商降下はまだ残る。</p>
   </section>
   <section>
     <h2>worker方針</h2>

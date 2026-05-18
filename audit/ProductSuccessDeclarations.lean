@@ -645,6 +645,35 @@ example (X Y Z : MetrizableLCA) {n : ℕ}
 
 example (X Y Z : MetrizableLCA) {n : ℕ}
     (e : ShortExactExtension (C := MetrizableLCA) X Y)
+    (s : e.shortComplex.Splitting) :
+    YonedaExt.leftProductByExtension (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z)
+        e n =
+      0 :=
+  YonedaExt.leftProductByExtension_eq_zero_of_split e s n
+
+example (X Y Z : MetrizableLCA) {n : ℕ}
+    {e e' : ShortExactExtension (C := MetrizableLCA) X Y}
+    (h : ShortExactExtension.Iso e e') :
+    YonedaExt.leftProductByExtension (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z)
+        e n =
+      YonedaExt.leftProductByExtension (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z)
+        e' n :=
+  YonedaExt.leftProductByExtension_eq_of_isoLeft h n
+
+example (X Y Z : MetrizableLCA) {n : ℕ}
+    {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA) X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum) :
+    YonedaExt.leftProductByExtension (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z)
+        sum n =
+      YonedaExt.leftProductByExtension (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z)
+          e₁ n +
+        YonedaExt.leftProductByExtension
+          (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z)
+          e₂ n :=
+  YonedaExt.leftProductByExtension_eq_add_of_baerLeft h n
+
+example (X Y Z : MetrizableLCA) {n : ℕ}
+    (e : ShortExactExtension (C := MetrizableLCA) X Y)
     (a b : YonedaExt (C := MetrizableLCA) Y Z (n + 1)) :
     YonedaExt.leftProductByExtension (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z)
         e n (a + b) =
@@ -744,6 +773,41 @@ example (X Y W Z : MetrizableLCA) {m n : ℕ}
         (YonedaExtension.PositiveChain.cons sum p) n
         (YonedaExt.ofExtension (C := MetrizableLCA) a) :=
   YonedaExt.leftProductByPositiveChain_cons_baer_sum_ofExtension_eq_of_baerHead h p a
+
+example (X Y Z : MetrizableLCA) {m n : ℕ}
+    {p : YonedaExtension.PositiveChain (C := MetrizableLCA) X Y m}
+    (h : YonedaExtension.PositiveChain.SplitFactorData p) :
+    YonedaExt.leftProductByPositiveChain
+        (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z) p n =
+      0 :=
+  YonedaExt.leftProductByPositiveChain_eq_zero_of_splitFactor h n
+
+example (X Y W Z : MetrizableLCA) {m n : ℕ}
+    {e e' : ShortExactExtension (C := MetrizableLCA) X Y}
+    (h : ShortExactExtension.Iso e e')
+    (p : YonedaExtension.PositiveChain (C := MetrizableLCA) Y W m) :
+    YonedaExt.leftProductByPositiveChain
+        (C := MetrizableLCA) (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons e p) n =
+      YonedaExt.leftProductByPositiveChain
+        (C := MetrizableLCA) (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons e' p) n :=
+  YonedaExt.leftProductByPositiveChain_cons_eq_of_isoHead h p n
+
+example (X Y W Z : MetrizableLCA) {m n : ℕ}
+    {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA) X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (p : YonedaExtension.PositiveChain (C := MetrizableLCA) Y W m) :
+    YonedaExt.leftProductByPositiveChain
+        (C := MetrizableLCA) (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons sum p) n =
+      YonedaExt.leftProductByPositiveChain
+          (C := MetrizableLCA) (X := X) (Y := W) (Z := Z)
+          (YonedaExtension.PositiveChain.cons e₁ p) n +
+        YonedaExt.leftProductByPositiveChain
+          (C := MetrizableLCA) (X := X) (Y := W) (Z := Z)
+          (YonedaExtension.PositiveChain.cons e₂ p) n :=
+  YonedaExt.leftProductByPositiveChain_cons_eq_add_of_baerHead h p n
 
 example (X Y Z : MetrizableLCA) {m n : ℕ}
     (p : YonedaExtension.PositiveChain (C := MetrizableLCA) X Y m)
