@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "更新後のgoalはproduct_successのみ完了可能である。Quillen exact-category interface、MetrizableLCAのpreadditive構造、圏同型を連続加法同型として取り出す補助定義、split short complexがstrict short exact sequenceになる証明、strict short exact sequenceの同型不変性、MetrizableLCAの明示的pullback objectとlimit cone、pullback射影の全射性補題、pullback kernel mapの代数的完全性補題、bundleされたcategory/morphism層までは確認済みだが、strict LCA列のpushout安定性、pullbackに沿ったdeflation安定性、exact category上のYoneda Ext、bounded derived infinity-categoryが未完成であるため、goalは未完了である。",
+  "summary": "更新後のgoalはproduct_successのみ完了可能である。Quillen exact-category interface、MetrizableLCAのpreadditive構造、圏同型を連続加法同型として取り出す補助定義、split short complexがstrict short exact sequenceになる証明、strict short exact sequenceの同型不変性、MetrizableLCAの明示的pullback objectとlimit cone、pullback射影の全射性補題、pullback kernel mapの代数的完全性補題と閉埋め込み補題、bundleされたcategory/morphism層までは確認済みだが、strict LCA列のpushout安定性、pullbackに沿ったdeflationの開写像性、exact category上のYoneda Ext、bounded derived infinity-categoryが未完成であるため、goalは未完了である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -31,12 +31,14 @@
     "LeanLCAExactChallenge.MetrizableLCA.algebraic_cokernel_of_strict",
     "LeanLCAExactChallenge.MetrizableLCA.pullbackObj",
     "LeanLCAExactChallenge.MetrizableLCA.pullbackIsLimit",
+    "LeanLCAExactChallenge.MetrizableLCA.isClosedEmbedding_zero_prod",
     "LeanLCAExactChallenge.MetrizableLCA.pullbackFst_surjective_of_snd_surjective",
     "LeanLCAExactChallenge.MetrizableLCA.pullbackSnd_surjective_of_fst_surjective",
     "LeanLCAExactChallenge.MetrizableLCA.pullbackKernelMap",
     "LeanLCAExactChallenge.MetrizableLCA.pullbackKernelMap_fst",
     "LeanLCAExactChallenge.MetrizableLCA.pullbackKernelMap_snd",
     "LeanLCAExactChallenge.MetrizableLCA.pullbackKernelMap_algebraic_exact",
+    "LeanLCAExactChallenge.MetrizableLCA.pullbackKernelMap_closedEmbedding",
     "LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory",
     "LeanLCAExactChallenge.YonedaExt",
     "LeanLCAExactChallenge.YonedaExt.zero_equiv_hom",
@@ -46,7 +48,7 @@
     "LeanLCAExactChallenge.Dbounded"
   ],
   "known_gaps": [
-    "`MetrizableLCA.quillenExactCategory`は`StrictExactQuillenAxioms`引数を要求しており、strict sequence条件からpushout安定性とpullbackに沿ったdeflation安定性を証明できていない。",
+    "`MetrizableLCA.quillenExactCategory`は`StrictExactQuillenAxioms`引数を要求しており、strict sequence条件からpushout安定性とpullbackに沿ったdeflationの開写像性を証明できていない。",
     "`YonedaExt`はmathlibのabelian-category Extを包む境界であり、`MetrizableLCA`のexact category上のYoneda Ext構成ではない。",
     "`Dbounded`は構成interfaceの境界であり、strict LCA exact categoryのbounded derived infinity-category本体ではない。"
   ],

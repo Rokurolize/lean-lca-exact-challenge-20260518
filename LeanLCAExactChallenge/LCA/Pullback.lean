@@ -18,6 +18,7 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+open Topology
 
 namespace MetrizableLCA
 
@@ -45,6 +46,19 @@ def pullbackSubgroup : AddSubgroup (A × B) where
 lemma pullbackSubgroup_isClosed : IsClosed (pullbackSubgroup f g : Set (A × B)) := by
   dsimp [pullbackSubgroup]
   exact isClosed_eq (f.hom.continuous.comp continuous_fst) (g.hom.continuous.comp continuous_snd)
+
+lemma isClosedEmbedding_zero_prod (A B : MetrizableLCA.{u}) :
+    IsClosedEmbedding (fun y : B => ((0 : A), y)) := by
+  refine ⟨isEmbedding_prodMkRight (0 : A), ?_⟩
+  have hrange : Set.range (fun y : B => ((0 : A), y)) = {p : A × B | p.1 = 0} := by
+    ext p
+    constructor
+    · rintro ⟨y, rfl⟩
+      rfl
+    · intro hp
+      exact ⟨p.2, by ext <;> simp [hp.symm]⟩
+  rw [hrange]
+  exact isClosed_singleton.preimage continuous_fst
 
 /-- The explicit pullback object in `MetrizableLCA`. -/
 def pullbackObj : MetrizableLCA.{u} where
@@ -210,6 +224,18 @@ lemma pullbackKernelMap_algebraic_exact {X : MetrizableLCA.{u}} (i : X ⟶ B)
   ext
   · exact hp'.symm
   · exact hx
+
+lemma pullbackKernelMap_closedEmbedding {X : MetrizableLCA.{u}} (i : X ⟶ B)
+    (zero : i ≫ g = 0) (hi : IsClosedEmbedding (i : X → B)) :
+    IsClosedEmbedding (pullbackKernelMap f g i zero : X → pullbackObj f g) := by
+  have hprod : IsClosedEmbedding (fun x : X => ((0 : A), i x)) := by
+    exact (isClosedEmbedding_zero_prod A B).comp hi
+  have hval : IsEmbedding (fun p : pullbackObj f g => (p.1 : A × B)) := by
+    exact Topology.IsEmbedding.subtypeVal
+  have hcomp : IsClosedEmbedding ((fun p : pullbackObj f g => (p.1 : A × B)) ∘
+      (pullbackKernelMap f g i zero : X → pullbackObj f g)) := by
+    simpa [Function.comp_def, pullbackKernelMap] using hprod
+  exact Topology.IsClosedEmbedding.of_comp hval hcomp
 
 end MetrizableLCA
 
