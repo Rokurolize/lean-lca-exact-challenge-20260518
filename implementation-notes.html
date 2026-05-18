@@ -23,6 +23,7 @@
     <h2>現在の判断</h2>
     <p>hom-tail pushout milestoneはcommit <code>346329d</code>で保存済み。次の親プロセス作業として、degree 0のhead側作用を完全な商群上の写像に降ろす前段階を実装している。具体的には<code>ShortExactExtension.PullbackData</code>、<code>MetrizableLCA.shortExactExtensionPullbackData</code>、<code>YonedaExtension.HomHeadData</code>、およびgenerator-levelのhead pullback actionを追加した。</p>
     <p>この作業はproduct truthをまだ満たさない。商関係全体を保つ左変数側の双線形Yoneda積、任意長のhom head/tail互換性、stable infinity-category enhancementは残る。</p>
+    <p>追加で、任意の正次数chainにdegree 0 homを右合成する<code>YonedaExtension.composeTailHom</code>と、最後の一段拡大を再帰的にpushoutする<code>YonedaExtension.pushoutTailWith</code>を実装した。<code>YonedaExtension.pushoutTailWithData</code>により、この二つが<code>HomTailData</code>で同じExt生成元になることを証明している。ただし、これはまだ商群上の右作用のwell-definednessではない。</p>
   </section>
   <section>
     <h2>worker方針</h2>

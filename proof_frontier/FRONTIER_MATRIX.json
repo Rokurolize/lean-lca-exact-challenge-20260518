@@ -51,6 +51,9 @@
         "YonedaExtension.HomHeadData",
         "MetrizableLCA.yonedaExtensionPullbackHead",
         "YonedaExt.pullbackHeadOfExtensionWith",
+        "YonedaExtension.composeTailHom",
+        "YonedaExtension.pushoutTailWith",
+        "YonedaExt.ofExtension_composeTailHom_eq_pushoutTailWith",
         "arbitrary hom-head and hom-tail compatibility"
       ],
       "target_files_or_module": [
@@ -72,7 +75,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Only generator-level head pullback is implemented; quotient descent remains incomplete.",
+      "merge_blocker": "Generator-level head pullback and arbitrary tail pushout are implemented; quotient descent remains incomplete.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true
     },
