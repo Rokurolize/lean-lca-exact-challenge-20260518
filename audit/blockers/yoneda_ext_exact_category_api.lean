@@ -54,6 +54,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.ofExtension_eq_zero_of_split
 #check YonedaExtension.BaerSumData
 #check YonedaExtension.BaerSumData.head
+#check YonedaExtension.Rel.refl
 #check YonedaExtension.RightSplitData
 #check YonedaExtension.SplitFactorData
 #check YonedaExtension.PositiveChain
@@ -77,10 +78,16 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.leftProductByExtension
 #check YonedaExt.leftProductByExtension_ofExtension
 #check YonedaExt.leftProductByExtension_ofExtension_eq_zero_of_split
+#check YonedaExt.leftProductByExtension_ofExtension_eq_of_isoLeft
+#check YonedaExt.leftProductByExtension_ofExtension_eq_add_of_baerLeft
+#check YonedaExt.leftProductByExtension_baer_sum_ofExtension_eq_of_baerLeft
 #check YonedaExt.positiveChainLeftFreeHom
 #check YonedaExt.positiveChainLeft_relationSubgroup_le
 #check YonedaExt.leftProductByPositiveChain
 #check YonedaExt.leftProductByPositiveChain_ofExtension
 #check YonedaExt.leftProductByPositiveChain_ofExtension_eq_zero_of_splitFactor
+#check YonedaExt.leftProductByPositiveChain_cons_ofExtension_eq_of_isoHead
+#check YonedaExt.leftProductByPositiveChain_cons_ofExtension_eq_add_of_baerHead
+#check YonedaExt.leftProductByPositiveChain_cons_baer_sum_ofExtension_eq_of_baerHead
 
 end LeanLCAExactChallenge

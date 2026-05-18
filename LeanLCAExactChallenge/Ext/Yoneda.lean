@@ -381,6 +381,12 @@ inductive Rel :
       (he : ShortExactExtension.Iso e e') (ht : Rel tail tail') :
       Rel (YonedaExtension.cons e tail) (YonedaExtension.cons e' tail')
 
+/-- Reflexivity for the termwise Yoneda-chain relation. -/
+def Rel.refl : {X Y : C} → {n : ℕ} → (a : YonedaExtension X Y n) → Rel a a
+  | _, _, 0, YonedaExtension.ofHom _ => Rel.ofHom rfl
+  | _, _, _ + 1, YonedaExtension.cons e tail =>
+      Rel.cons (ShortExactExtension.Iso.refl e) (Rel.refl tail)
+
 /-- Recursive isomorphism of extension chains, allowing isomorphic intermediate objects. -/
 inductive RelIso :
     {X X' Y : C} → (α : X ≅ X') → {n : ℕ} →
@@ -827,6 +833,50 @@ theorem leftProductByExtension_ofExtension_eq_zero_of_split
   exact ofExtension_eq_zero_of_splitFactorData
     (YonedaExtension.SplitFactorData.head e s a)
 
+/-- Left splicing respects isomorphism of the fixed one-fold left factor. -/
+theorem leftProductByExtension_ofExtension_eq_of_isoLeft
+    {e e' : ShortExactExtension X Y} (h : ShortExactExtension.Iso e e')
+    (a : YonedaExtension Y Z (n + 1)) :
+    leftProductByExtension (X := X) (Y := Y) (Z := Z) e n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) =
+      leftProductByExtension (X := X) (Y := Y) (Z := Z) e' n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) := by
+  rw [leftProductByExtension_ofExtension, leftProductByExtension_ofExtension]
+  exact ofExtension_eq_ofExtension_of_rel
+    (YonedaExtension.Rel.cons h (YonedaExtension.Rel.refl a))
+
+/-- Left splicing respects a Baer relation in the fixed one-fold left factor. -/
+theorem leftProductByExtension_ofExtension_eq_add_of_baerLeft
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {e₁ e₂ sum : ShortExactExtension X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (a : YonedaExtension Y Z (n + 1)) :
+    leftProductByExtension (X := X) (Y := Y) (Z := Z) sum n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) =
+      leftProductByExtension (X := X) (Y := Y) (Z := Z) e₁ n
+          (ofExtension (X := Y) (Y := Z) (n := n) a) +
+        leftProductByExtension (X := X) (Y := Y) (Z := Z) e₂ n
+          (ofExtension (X := Y) (Y := Z) (n := n) a) := by
+  rw [leftProductByExtension_ofExtension, leftProductByExtension_ofExtension,
+    leftProductByExtension_ofExtension]
+  simpa [YonedaExtension.consLeftMap] using ofExtension_eq_add_of_baerHead h a
+
+/-- The public `baer_sum` API agrees with left-product additivity for a Baer left factor. -/
+theorem leftProductByExtension_baer_sum_ofExtension_eq_of_baerLeft
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {e₁ e₂ sum : ShortExactExtension X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (a : YonedaExtension Y Z (n + 1)) :
+    baer_sum
+        (leftProductByExtension (X := X) (Y := Y) (Z := Z) e₁ n
+          (ofExtension (X := Y) (Y := Z) (n := n) a))
+        (leftProductByExtension (X := X) (Y := Y) (Z := Z) e₂ n
+          (ofExtension (X := Y) (Y := Z) (n := n) a)) =
+      leftProductByExtension (X := X) (Y := Y) (Z := Z) sum n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) := by
+  dsimp [baer_sum]
+  exact (leftProductByExtension_ofExtension_eq_add_of_baerLeft h a).symm
+
 /-- The free abelian group map induced by splicing a positive one-fold chain on the left. -/
 def positiveChainLeftFreeHom :
     {X Y Z : C} → {m : ℕ} →
@@ -914,6 +964,64 @@ theorem leftProductByPositiveChain_ofExtension_eq_zero_of_splitFactor {m : ℕ}
       (0 : YonedaExt X Z ((n + (m + 1)) + 1)) := by
   rw [leftProductByPositiveChain_ofExtension]
   exact ofExtension_eq_zero_of_splitFactorData (h.consLeftMap a)
+
+/-- A head isomorphism of positive left chains gives the same spliced class. -/
+theorem leftProductByPositiveChain_cons_ofExtension_eq_of_isoHead
+    {W : C} {m : ℕ} {e e' : ShortExactExtension X Y}
+    (h : ShortExactExtension.Iso e e')
+    (p : YonedaExtension.PositiveChain Y W m)
+    (a : YonedaExtension W Z (n + 1)) :
+    leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons e p) n
+        (ofExtension (X := W) (Y := Z) (n := n) a) =
+      leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons e' p) n
+        (ofExtension (X := W) (Y := Z) (n := n) a) := by
+  rw [leftProductByPositiveChain_ofExtension, leftProductByPositiveChain_ofExtension]
+  exact ofExtension_eq_ofExtension_of_rel
+    (YonedaExtension.Rel.cons h
+      (YonedaExtension.Rel.refl (YonedaExtension.PositiveChain.consLeftMap p a)))
+
+/-- A Baer relation in the head of a positive left chain remains additive after splicing. -/
+theorem leftProductByPositiveChain_cons_ofExtension_eq_add_of_baerHead
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {W : C} {m : ℕ} {e₁ e₂ sum : ShortExactExtension X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (p : YonedaExtension.PositiveChain Y W m)
+    (a : YonedaExtension W Z (n + 1)) :
+    leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons sum p) n
+        (ofExtension (X := W) (Y := Z) (n := n) a) =
+      leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+          (YonedaExtension.PositiveChain.cons e₁ p) n
+          (ofExtension (X := W) (Y := Z) (n := n) a) +
+        leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+          (YonedaExtension.PositiveChain.cons e₂ p) n
+          (ofExtension (X := W) (Y := Z) (n := n) a) := by
+  rw [leftProductByPositiveChain_ofExtension, leftProductByPositiveChain_ofExtension,
+    leftProductByPositiveChain_ofExtension]
+  simpa [YonedaExtension.PositiveChain.consLeftMap, Nat.add_assoc] using
+    ofExtension_eq_add_of_baerHead h (YonedaExtension.PositiveChain.consLeftMap p a)
+
+/-- The public `baer_sum` API agrees with head-Baer additivity for positive left chains. -/
+theorem leftProductByPositiveChain_cons_baer_sum_ofExtension_eq_of_baerHead
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {W : C} {m : ℕ} {e₁ e₂ sum : ShortExactExtension X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (p : YonedaExtension.PositiveChain Y W m)
+    (a : YonedaExtension W Z (n + 1)) :
+    baer_sum
+        (leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+          (YonedaExtension.PositiveChain.cons e₁ p) n
+          (ofExtension (X := W) (Y := Z) (n := n) a))
+        (leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+          (YonedaExtension.PositiveChain.cons e₂ p) n
+          (ofExtension (X := W) (Y := Z) (n := n) a)) =
+      leftProductByPositiveChain (X := X) (Y := W) (Z := Z)
+        (YonedaExtension.PositiveChain.cons sum p) n
+        (ofExtension (X := W) (Y := Z) (n := n) a) := by
+  dsimp [baer_sum]
+  exact (leftProductByPositiveChain_cons_ofExtension_eq_add_of_baerHead h p a).symm
 
 end LeftProduct
 
