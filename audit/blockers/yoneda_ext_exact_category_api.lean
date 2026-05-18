@@ -32,5 +32,6 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.ofExtension_eq_ofExtension_of_relIso
 #check YonedaExt.ofExtension_eq_zero_of_split
 #check YonedaExt.ofExtension_eq_add_of_baer
+#check YonedaExt.baer_sum_ofExtension_eq_of_baer
 
 end LeanLCAExactChallenge

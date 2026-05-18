@@ -264,6 +264,17 @@ theorem ofExtension_eq_add_of_baer [HasBinaryBiproduct X X] [HasBinaryBiproduct 
 noncomputable def baer_sum (a b : YonedaExt X Y n) : YonedaExt X Y n :=
   a + b
 
+/-- A witnessed Baer sum computes the `baer_sum` operation on one-fold extensions. -/
+theorem baer_sum_ofExtension_eq_of_baer [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {e₁ e₂ sum : ShortExactExtension X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum) :
+    baer_sum
+        (ofExtension (X := X) (Y := Y) (n := 0) e₁.toYonedaExtension)
+        (ofExtension (X := X) (Y := Y) (n := 0) e₂.toYonedaExtension) =
+      ofExtension (X := X) (Y := Y) (n := 0) sum.toYonedaExtension := by
+  dsimp [baer_sum]
+  exact (ofExtension_eq_add_of_baer h).symm
+
 end YonedaExt
 
 end LeanLCAExactChallenge

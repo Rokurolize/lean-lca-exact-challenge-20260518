@@ -49,7 +49,7 @@ LeanLCAExactChallenge.MetrizableLCA.instQuillenExactCategory
 
 mathlibはderived category API経由で、abelian categoryに対する`CategoryTheory.Abelian.Ext`を提供している。今回のローカル実装では、これを包むだけの定義をやめ、`QuillenExactCategory.Conflation`から一段拡大`ShortExactExtension`と有限の`YonedaExtension` chainを定義した。`YonedaExt X Y 0`は`X ⟶ Y`の`ULift`であり、正次数はextension chainを生成元とする自由加法可換群を`yonedaRelationSubgroup`で割った群である。これにより、`MetrizableLCA`のexact category instanceだけから`YonedaExt (C := MetrizableLCA)`が使える。
 
-実装済みの商関係は、hom等式、endpointと中間対象の同型をたどるextension鎖の同型、分裂一段拡大を零元にする生成関係、Baer sum witnessから来る生成関係である。さらに、分裂一段拡大がExtの零元になり、Baer sum witnessがある場合に一段Extで`sum = e₁ + e₂`になることを定理として証明した。残る不足は、標準的なYoneda Extで必要な商関係のうち、任意の一段拡大対に対してBaer sum witnessを構成する部分、Yoneda積と長さ方向の関係を完全には実装していない点である。したがって現在の`YonedaExt`は「exact categoryから定義された局所的なYoneda chain商群」であり、通常の意味のYoneda Ext群と同一視するには追加実装が必要である。
+実装済みの商関係は、hom等式、endpointと中間対象の同型をたどるextension鎖の同型、分裂一段拡大を零元にする生成関係、Baer sum witnessから来る生成関係である。さらに、分裂一段拡大がExtの零元になり、Baer sum witnessがある場合に一段Extで`sum = e₁ + e₂`になること、公開APIの`baer_sum`も同じ結果を返すことを定理として証明した。残る不足は、標準的なYoneda Extで必要な商関係のうち、任意の一段拡大対に対してBaer sum witnessを構成する部分、Yoneda積と長さ方向の関係を完全には実装していない点である。したがって現在の`YonedaExt`は「exact categoryから定義された局所的なYoneda chain商群」であり、通常の意味のYoneda Ext群と同一視するには追加実装が必要である。
 
 最小のコンパイル確認済み再現:
 

@@ -64,6 +64,14 @@ example (X Y : MetrizableLCA) {e₁ e₂ sum : ShortExactExtension (C := Metriza
         YonedaExt.ofExtension (C := MetrizableLCA) e₂.toYonedaExtension :=
   YonedaExt.ofExtension_eq_add_of_baer h
 
+example (X Y : MetrizableLCA) {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA) X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum) :
+    YonedaExt.baer_sum
+        (YonedaExt.ofExtension (C := MetrizableLCA) e₁.toYonedaExtension)
+        (YonedaExt.ofExtension (C := MetrizableLCA) e₂.toYonedaExtension) =
+      YonedaExt.ofExtension (C := MetrizableLCA) sum.toYonedaExtension :=
+  YonedaExt.baer_sum_ofExtension_eq_of_baer h
+
 noncomputable example (X Y : MetrizableLCA) :
     AddCommGroup (YonedaExt (C := MetrizableLCA) X Y 1) := by
   infer_instance
