@@ -178,6 +178,15 @@ noncomputable example (X X' Y : MetrizableLCA)
     (MetrizableLCA.shortExactExtensionPullbackSplitting e a s)
 
 noncomputable example (X X' Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : X' ⟶ X)
+    (s : e.shortComplex.Splitting) :
+    YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA) a
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e a)
+        e.toYonedaExtension =
+      (0 : YonedaExt (C := MetrizableLCA) X' Y 1) :=
+  YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_split e s a
+
+noncomputable example (X X' Y : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : X' ⟶ X) :
     YonedaExtension.HomHeadData a e.toYonedaExtension
       (MetrizableLCA.shortExactExtensionPullback e a).toYonedaExtension :=
@@ -245,6 +254,14 @@ noncomputable example (X Y Y' : MetrizableLCA)
   YonedaExt.ofExtension_eq_zero_of_split
     (MetrizableLCA.shortExactExtensionPushout e a)
     (MetrizableLCA.shortExactExtensionPushoutSplitting e a s)
+
+noncomputable example (X Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y')
+    (s : e.shortComplex.Splitting) :
+    YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.composeTailHom a e.toYonedaExtension) =
+      (0 : YonedaExt (C := MetrizableLCA) X Y' 1) :=
+  YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_split e s a
 
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :

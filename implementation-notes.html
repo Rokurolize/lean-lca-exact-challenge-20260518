@@ -26,6 +26,7 @@
     <p>追加で、任意の正次数chainにdegree 0 homを右合成する<code>YonedaExtension.composeTailHom</code>と、最後の一段拡大を再帰的にpushoutする<code>YonedaExtension.pushoutTailWith</code>を実装した。<code>YonedaExtension.pushoutTailWithData</code>により、この二つが<code>HomTailData</code>で同じExt生成元になることを証明している。ただし、これはまだ商群上の右作用のwell-definednessではない。</p>
     <p>2026-05-18T22:50:18Z時点で、分裂一段拡大を標準pushoutしても分裂であることを<code>MetrizableLCA.pushoutSplitting</code>と<code>MetrizableLCA.shortExactExtensionPushoutSplitting</code>で証明した。これにより、tail hom作用を商群上に降ろす際のsplit-zero関係に対する主要な局所障害は除いた。ただし、iso関係、Baer関係、hom-tail関係を含む全relation subgroup保存はまだ未実装である。</p>
     <p>2026-05-18T22:57:02Z時点で、分裂一段拡大を標準pullbackしても分裂であることも<code>MetrizableLCA.pullbackSplitting</code>と<code>MetrizableLCA.shortExactExtensionPullbackSplitting</code>で証明した。degree 0 head作用を商群上に降ろす際のsplit-zero関係についても同じ局所障害を除いたが、全relation subgroup保存はまだ未実装である。</p>
+    <p>2026-05-18T23:00:30Z時点で、上記を<code>YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_split</code>と<code>YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_split</code>としてExtレベルの零元等式に接続した。これらはsplit-zero生成関係の保存に対応する局所事実であり、商群上の完全なhead/tail作用ではない。</p>
   </section>
   <section>
     <h2>worker方針</h2>

@@ -988,6 +988,39 @@ theorem ofExtension_composeTailHom_eq_pushoutTailWith
   ofExtension_eq_ofExtension_of_homTailData
     (YonedaExtension.pushoutTailWithData f push h a)
 
+/-- A tail hom composed after a split one-fold MetrizableLCA extension is zero in Ext. -/
+theorem ofExtension_composeTailHom_eq_zero_of_metrizable_split
+    {X Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y)
+    (s : e.shortComplex.Splitting) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        (YonedaExtension.composeTailHom f e.toYonedaExtension) =
+      (0 : YonedaExt (C := MetrizableLCA.{u}) X Y' 1) := by
+  rw [YonedaExt.ofExtension_composeTailHom_eq_pushoutTailWith f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    e.toYonedaExtension]
+  simpa [ShortExactExtension.toYonedaExtension, YonedaExtension.pushoutTailWith,
+    Category.id_comp] using
+    (YonedaExt.ofExtension_eq_zero_of_split
+      (MetrizableLCA.shortExactExtensionPushout e f)
+      (MetrizableLCA.shortExactExtensionPushoutSplitting e f s))
+
+/-- Pulling back a split one-fold MetrizableLCA extension is zero in Ext. -/
+theorem pullbackHeadOfExtension_eq_zero_of_metrizable_split
+    {X X' Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y)
+    (s : e.shortComplex.Splitting) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA.{u}) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+        e.toYonedaExtension =
+      (0 : YonedaExt (C := MetrizableLCA.{u}) X' Y 1) := by
+  simpa [YonedaExt.pullbackHeadOfExtensionWith, ShortExactExtension.toYonedaExtension,
+    YonedaExtension.pullbackHeadWith] using
+    (YonedaExt.ofExtension_eq_zero_of_split
+      (MetrizableLCA.shortExactExtensionPullback e f)
+      (MetrizableLCA.shortExactExtensionPullbackSplitting e f s))
+
 /-- A positive-degree relation of the form `sum - a - b` gives addition in local Yoneda Ext. -/
 theorem ofExtension_eq_add_of_relation_mem {a b sum : YonedaExtension X Y (n + 1)}
     (h : FreeAbelianGroup.of sum - FreeAbelianGroup.of a - FreeAbelianGroup.of b ∈
