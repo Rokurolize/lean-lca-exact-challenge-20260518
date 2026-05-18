@@ -1,0 +1,39 @@
+{
+  "schema": "lean-lca-exact-challenge-verification-v1",
+  "generated_utc": "2026-05-18T17:38:41.844794Z",
+  "source_tree_hash": "726a66715b83fc56cdce8774693ca58586b06da10fa97a129f33d59fb86ab433",
+  "commands": [
+    {
+      "command": "lake build",
+      "status": "passed"
+    },
+    {
+      "command": "scripts/check_mathlib_survey.sh",
+      "status": "passed"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed"
+    },
+    {
+      "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
+      "status": "passed"
+    },
+    {
+      "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
+      "status": "passed"
+    },
+    {
+      "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
+      "status": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed"
+    }
+  ]
+}

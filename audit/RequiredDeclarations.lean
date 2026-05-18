@@ -1,0 +1,28 @@
+import LeanLCAExactChallenge
+
+set_option autoImplicit false
+
+#check LeanLCAExactChallenge.QuillenExactCategory
+#check LeanLCAExactChallenge.QuillenExactCategory.Conflation
+#check LeanLCAExactChallenge.QuillenExactCategory.inflation
+#check LeanLCAExactChallenge.QuillenExactCategory.deflation
+#check LeanLCAExactChallenge.QuillenExactCategory.split_conflation
+#check LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation
+#check LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation
+
+#check LeanLCAExactChallenge.MetrizableLCA
+#check LeanLCAExactChallenge.MetrizableLCA.Hom
+#check LeanLCAExactChallenge.MetrizableLCA.strictShortExact
+#check LeanLCAExactChallenge.MetrizableLCA.closed_inclusion_of_strict
+#check LeanLCAExactChallenge.MetrizableLCA.open_surjection_of_strict
+#check LeanLCAExactChallenge.MetrizableLCA.algebraic_kernel_of_strict
+#check LeanLCAExactChallenge.MetrizableLCA.algebraic_cokernel_of_strict
+#check LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory
+
+#check LeanLCAExactChallenge.YonedaExt
+#check LeanLCAExactChallenge.YonedaExt.zero_equiv_hom
+#check LeanLCAExactChallenge.YonedaExt.baer_sum
+#check LeanLCAExactChallenge.YonedaExt.instAddCommGroup
+
+#check LeanLCAExactChallenge.BoundedDerivedInfinityCategory
+#check LeanLCAExactChallenge.Dbounded
