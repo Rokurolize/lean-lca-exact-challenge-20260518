@@ -142,6 +142,21 @@ example (X Y Z : MetrizableLCA) {n : ℕ}
       (0 : YonedaExt (C := MetrizableLCA) X Z ((n + 1) + 1)) :=
   YonedaExt.leftProductByExtension_ofExtension_eq_zero_of_split e s a
 
+example (X Y : MetrizableLCA) {m : ℕ}
+    (p : YonedaExtension.PositiveChain (C := MetrizableLCA) X Y m) :
+    YonedaExtension (C := MetrizableLCA) X Y (m + 1) :=
+  p.toYonedaExtension
+
+example (X Y Z : MetrizableLCA) {m n : ℕ}
+    (p : YonedaExtension.PositiveChain (C := MetrizableLCA) X Y m)
+    (a : YonedaExtension (C := MetrizableLCA) Y Z (n + 1)) :
+    YonedaExt.leftProductByPositiveChain
+        (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z) p n
+        (YonedaExt.ofExtension (C := MetrizableLCA) a) =
+      YonedaExt.ofExtension (C := MetrizableLCA)
+        (n := n + (m + 1)) (p.consLeftMap a) :=
+  YonedaExt.leftProductByPositiveChain_ofExtension p a
+
 noncomputable example (X Y : MetrizableLCA) :
     AddCommGroup (YonedaExt (C := MetrizableLCA) X Y 1) := by
   infer_instance

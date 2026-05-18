@@ -34,6 +34,9 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExtension.BaerSumData
 #check YonedaExtension.RightSplitData
 #check YonedaExtension.SplitFactorData
+#check YonedaExtension.PositiveChain
+#check YonedaExtension.PositiveChain.toYonedaExtension
+#check YonedaExtension.PositiveChain.consLeftMap
 #check YonedaExt.ofExtension_eq_add_of_relation_mem
 #check YonedaExt.ofExtension_eq_add_of_baer
 #check YonedaExt.ofExtension_eq_add_of_baerChain
@@ -47,5 +50,9 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.leftProductByExtension
 #check YonedaExt.leftProductByExtension_ofExtension
 #check YonedaExt.leftProductByExtension_ofExtension_eq_zero_of_split
+#check YonedaExt.positiveChainLeftFreeHom
+#check YonedaExt.positiveChainLeft_relationSubgroup_le
+#check YonedaExt.leftProductByPositiveChain
+#check YonedaExt.leftProductByPositiveChain_ofExtension
 
 end LeanLCAExactChallenge
