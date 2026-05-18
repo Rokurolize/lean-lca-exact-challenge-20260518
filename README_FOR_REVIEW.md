@@ -17,12 +17,12 @@
 - strictなmetrizable LCA列をconflationとする`QuillenExactCategory MetrizableLCA` instance
 - `MetrizableLCA`のbinary biproductを積で構成し、mapping coneに必要な`HasBinaryBiproducts MetrizableLCA` instanceと、strict sequenceのbiproduct安定性
 - `MetrizableLCA`の一段拡大2つからcoordinatewise product extensionを作り、明示的な積モデルからmathlibのchosen binary biproduct端点へ移送するLean定理。さらにそのproduct extensionを対角pullbackと余対角pushoutへ通し、任意の一段拡大対に対する標準的な`BaerSumData`をLeanで構成している
-- exact categoryのconflation chainから作るローカル`YonedaExt`型。degree 0はHom、正次数はconflation chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大、split factorを含む鎖、Baer sum witnessから来る生成関係で割った群としてコンパイルする。分裂一段拡大とsplit factorを含む正次数鎖が0になり、Baer sum witnessがある場合に`sum = e₁ + e₂`となり、公開APIの`baer_sum`も同じ結果を返すことをLean定理として確認している。さらに、正次数の関係部分群に`sum - a - b`が入る任意のextension chainについて、`sum = a + b`と`baer_sum a b = sum`を返す汎用補題を追加し、一段拡大を左からspliceする写像が商群`YonedaExt`へ降りること、左からspliceする一段拡大が分裂していれば積の値が0になること、純粋な一段拡大列からなる正次数鎖を固定した左spliceが右側の商群へ降りること、その固定左鎖に分裂因子があれば積が0になること、左端一段拡大の同型関係とBaer和を固定tailの前へ貼っても等式・加法等式・`baer_sum`等式が得られることも確認した
+- exact categoryのconflation chainから作るローカル`YonedaExt`型。degree 0はHom、正次数はconflation chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大、split factorを含む鎖、Baer sum witness、hom tail pushout witnessから来る生成関係で割った群としてコンパイルする。分裂一段拡大とsplit factorを含む正次数鎖が0になり、Baer sum witnessがある場合に`sum = e₁ + e₂`となり、公開APIの`baer_sum`も同じ結果を返すことをLean定理として確認している。さらに、正次数の関係部分群に`sum - a - b`が入る任意のextension chainについて、`sum = a + b`と`baer_sum a b = sum`を返す汎用補題を追加し、一段拡大を左からspliceする写像が商群`YonedaExt`へ降りること、左からspliceする一段拡大が分裂していれば積の値が0になること、純粋な一段拡大列からなる正次数鎖を固定した左spliceが右側の商群へ降りること、その固定左鎖に分裂因子があれば積が0になること、左端一段拡大の同型関係とBaer和を固定tailの前へ貼っても等式・加法等式・`baer_sum`等式が得られること、一段拡大の後ろにdegree 0のhom tailが付く一段ケースをpushout拡大へ落とす等式も確認した
 - bounded cochain complexのfull subcategoryを、mapping coneがexact acyclicである射でlocalizeする`Dbounded`構成
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
-一方、標準的なYoneda Extとして必要な構成のうち、左側の商関係全体にも降りる双線形なYoneda積、degree 0や任意のhom尾部を含む長さ方向の関係を完全に扱う部分は未完成である。また`Dbounded`はordinary categoryのlocalizationとしては構成したが、stable infinity-categoryそのもののモデルではない。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
+一方、標準的なYoneda Extとして必要な構成のうち、左側の商関係全体にも降りる双線形なYoneda積、degree 0のpullback側の作用、任意長のhom tailを含む長さ方向の関係を完全に扱う部分は未完成である。また`Dbounded`はordinary categoryのlocalizationとしては構成したが、stable infinity-categoryそのもののモデルではない。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
 
 ## 評価文脈
 

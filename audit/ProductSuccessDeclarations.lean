@@ -175,6 +175,27 @@ noncomputable example (X Y Y' : MetrizableLCA)
       (MetrizableLCA.shortExactExtensionPushout e a).p = e.p :=
   MetrizableLCA.shortExactExtensionPushout_map_p e a
 
+noncomputable example (X Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
+    ShortExactExtension.PushoutData e a (MetrizableLCA.shortExactExtensionPushout e a) :=
+  MetrizableLCA.shortExactExtensionPushoutData e a
+
+noncomputable example (X Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
+    YonedaExtension.HomTailData
+      (YonedaExtension.cons e (YonedaExtension.ofHom a))
+      (MetrizableLCA.shortExactExtensionPushout e a).toYonedaExtension :=
+  YonedaExtension.HomTailData.one e a (MetrizableLCA.shortExactExtensionPushoutData e a)
+
+noncomputable example (X Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.cons e (YonedaExtension.ofHom a)) =
+      YonedaExt.ofExtension (C := MetrizableLCA)
+        (MetrizableLCA.shortExactExtensionPushout e a).toYonedaExtension :=
+  YonedaExt.ofExtension_cons_ofHom_eq_of_pushoutData e a
+    (MetrizableLCA.shortExactExtensionPushoutData e a)
+
 noncomputable example (X Y : MetrizableLCA)
     (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y) :
     ShortExactExtension (C := MetrizableLCA) X Y :=

@@ -28,6 +28,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaRelGenerator
 #check yonedaRelationSubgroup
 #check ShortExactExtension.BaerSumData
+#check ShortExactExtension.PushoutData
 #check MetrizableLCA.biprodObjIsoBiprod
 #check MetrizableLCA.biprodDiag
 #check MetrizableLCA.biprodCodiag
@@ -47,6 +48,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.shortExactExtensionPushout
 #check MetrizableLCA.shortExactExtensionPushout_i
 #check MetrizableLCA.shortExactExtensionPushout_map_p
+#check MetrizableLCA.shortExactExtensionPushoutData
 #check MetrizableLCA.shortExactExtensionBaerSum
 #check MetrizableLCA.shortExactExtensionBaerSumData
 #check YonedaExt.ofExtension_eq_ofExtension_of_rel
@@ -57,6 +59,9 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExtension.Rel.refl
 #check YonedaExtension.RightSplitData
 #check YonedaExtension.SplitFactorData
+#check YonedaExtension.HomTailData
+#check YonedaExtension.HomTailData.one
+#check YonedaExtension.HomTailData.cons
 #check YonedaExtension.PositiveChain
 #check YonedaExtension.PositiveChain.toYonedaExtension
 #check YonedaExtension.PositiveChain.consLeftMap
@@ -75,6 +80,8 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.ofExtension_cons_eq_zero_of_right_split
 #check YonedaExt.ofExtension_eq_zero_of_rightSplitData
 #check YonedaExt.ofExtension_eq_zero_of_splitFactorData
+#check YonedaExt.ofExtension_eq_ofExtension_of_homTailData
+#check YonedaExt.ofExtension_cons_ofHom_eq_of_pushoutData
 #check YonedaExt.leftProductByExtension
 #check YonedaExt.leftProductByExtension_ofExtension
 #check YonedaExt.leftProductByExtension_ofExtension_eq_zero_of_split

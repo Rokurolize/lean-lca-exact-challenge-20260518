@@ -96,6 +96,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.ShortExactExtension.Iso
 #check LeanLCAExactChallenge.ShortExactExtension.IsoBetween
 #check LeanLCAExactChallenge.ShortExactExtension.BaerSumData
+#check LeanLCAExactChallenge.ShortExactExtension.PushoutData
 #check LeanLCAExactChallenge.ShortExactExtension.toYonedaExtension
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBiprod
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBiprod_i_fst
@@ -113,6 +114,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPushout
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPushout_i
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPushout_map_p
+#check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPushoutData
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBaerSum
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBaerSumData
 #check LeanLCAExactChallenge.YonedaExtension
@@ -124,6 +126,9 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExtension.BaerSumData.head
 #check LeanLCAExactChallenge.YonedaExtension.RightSplitData
 #check LeanLCAExactChallenge.YonedaExtension.SplitFactorData
+#check LeanLCAExactChallenge.YonedaExtension.HomTailData
+#check LeanLCAExactChallenge.YonedaExtension.HomTailData.one
+#check LeanLCAExactChallenge.YonedaExtension.HomTailData.cons
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain.toYonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain.consLeftMap
@@ -142,6 +147,8 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_cons_eq_zero_of_right_split
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_zero_of_rightSplitData
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_zero_of_splitFactorData
+#check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_ofExtension_of_homTailData
+#check LeanLCAExactChallenge.YonedaExt.ofExtension_cons_ofHom_eq_of_pushoutData
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_relation_mem
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_baer
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_baerChain
