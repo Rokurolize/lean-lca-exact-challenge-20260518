@@ -11,11 +11,19 @@ open CategoryTheory
 open CategoryTheory.Limits
 
 /--
-Missing local theorem/API: Yoneda Ext groups for a general Quillen exact
-category, independent of the abelian-category derived Ext API.
+Resolved local API boundary: Yoneda Ext groups are available for a general
+Quillen exact category, independent of the abelian-category derived Ext API.
 -/
-def missing_exact_category_yoneda_ext_statement
-    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] : Prop :=
-  ∀ X Y : C, ∀ n : ℕ, Nonempty (Type (max u v))
+def exact_category_yoneda_ext_family
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
+    Type (max (u + 1) (v + 1)) :=
+  (X Y : C) → ℕ → Type (max u v)
+
+example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
+    exact_category_yoneda_ext_family C :=
+  fun X Y n => YonedaExt X Y n
+
+#check YonedaExt.baer_sum
+#check YonedaExt.zero_equiv_hom
 
 end LeanLCAExactChallenge

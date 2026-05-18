@@ -12,6 +12,8 @@ set_option autoImplicit false
 
 #check LeanLCAExactChallenge.MetrizableLCA
 #check LeanLCAExactChallenge.MetrizableLCA.Hom
+#check LeanLCAExactChallenge.MetrizableLCA.biprodObj
+#check LeanLCAExactChallenge.MetrizableLCA.binaryBiproductData
 #check LeanLCAExactChallenge.MetrizableLCA.strictShortExact
 #check LeanLCAExactChallenge.MetrizableLCA.closed_inclusion_of_strict
 #check LeanLCAExactChallenge.MetrizableLCA.open_surjection_of_strict
@@ -76,9 +78,18 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.instQuillenExactCategory
 
 #check LeanLCAExactChallenge.YonedaExt
+#check LeanLCAExactChallenge.ShortExactExtension
+#check LeanLCAExactChallenge.YonedaExtension
+#check LeanLCAExactChallenge.PositiveYonedaExt
 #check LeanLCAExactChallenge.YonedaExt.zero_equiv_hom
+#check LeanLCAExactChallenge.YonedaExt.ofExtension
 #check LeanLCAExactChallenge.YonedaExt.baer_sum
 #check LeanLCAExactChallenge.YonedaExt.instAddCommGroup
 
+#check LeanLCAExactChallenge.boundedCochainComplex
+#check LeanLCAExactChallenge.exactAcyclic
+#check LeanLCAExactChallenge.boundedExactWeakEquivalence
 #check LeanLCAExactChallenge.BoundedDerivedInfinityCategory
 #check LeanLCAExactChallenge.Dbounded
+#check LeanLCAExactChallenge.Dbounded.localization
+#check LeanLCAExactChallenge.Dbounded.of

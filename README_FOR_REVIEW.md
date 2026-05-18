@@ -14,10 +14,13 @@
 - `MetrizableLCA`のpullbackを積の閉部分群として構成し、strict sequenceのpullback安定性まで進めたLean証明
 - 閉部分群による商`MetrizableLCA`、および`(X₂ × Y) / range (x ↦ (f x, -a x))`としての明示的pushoutを構成し、関係部分群の閉性、標準射`Y ⟶ pushout`の閉埋め込み性、余極限性、余核側の開全射・代数的完全性まで進めたLean証明
 - strictなmetrizable LCA列をconflationとする`QuillenExactCategory MetrizableLCA` instance
+- `MetrizableLCA`のbinary biproductを積で構成し、mapping coneに必要な`HasBinaryBiproducts MetrizableLCA` instance
+- exact categoryのconflation chainから作るローカル`YonedaExt`型。degree 0はHom、正次数はconflation chainを生成元とする加法可換群としてコンパイルする
+- bounded cochain complexのfull subcategoryを、mapping coneがexact acyclicである射でlocalizeする`Dbounded`構成
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
-一方、そのexact category上のYoneda Extとbounded derived infinity-categoryの構成は、まだローカル実装が必要である。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
+一方、標準的なYoneda Extとして必要なextension同値関係、Baer sum関係、長さの異なるYoneda積の関係を商として実装する部分は未完成である。また`Dbounded`はordinary categoryのlocalizationとしては構成したが、stable infinity-categoryそのもののモデルではない。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
 
 ## 評価文脈
 
@@ -36,7 +39,7 @@ python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcom
 git diff --check
 ```
 
-`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`は未完成部分を検出する赤いproduct契約であり、`audit/external_audit.py`も`product_success`以外のterminal outcomeを失敗させる。
+`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`は現在の公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させる。
 
 ## レビューpacket
 

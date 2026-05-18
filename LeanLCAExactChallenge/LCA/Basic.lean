@@ -1,4 +1,5 @@
 import Mathlib.Algebra.Category.Grp.Preadditive
+import Mathlib.CategoryTheory.Limits.Shapes.BinaryBiproducts
 import Mathlib.Topology.Algebra.ContinuousMonoidHom
 import Mathlib.Topology.Algebra.Group.Basic
 import Mathlib.Topology.Category.TopCat.Basic
@@ -143,6 +144,160 @@ instance (A B : MetrizableLCA.{u}) : AddCommGroup (A ⟶ B) :=
     rfl (fun _ _ => rfl) (fun _ => rfl) (fun _ _ => rfl) (fun _ _ => rfl) (fun _ _ => rfl)
 
 instance : Preadditive MetrizableLCA.{u} where
+
+/-- Product object used as the binary biproduct in `MetrizableLCA`. -/
+abbrev biprodObj (A B : MetrizableLCA.{u}) : MetrizableLCA.{u} :=
+  MetrizableLCA.of (A × B)
+
+/-- First projection from the binary biproduct object. -/
+def biprodFst (A B : MetrizableLCA.{u}) : biprodObj A B ⟶ A where
+  hom' :=
+    { toFun := Prod.fst
+      map_zero' := rfl
+      map_add' := by
+        intro x y
+        rfl
+      continuous_toFun := continuous_fst }
+
+/-- Second projection from the binary biproduct object. -/
+def biprodSnd (A B : MetrizableLCA.{u}) : biprodObj A B ⟶ B where
+  hom' :=
+    { toFun := Prod.snd
+      map_zero' := rfl
+      map_add' := by
+        intro x y
+        rfl
+      continuous_toFun := continuous_snd }
+
+/-- First inclusion into the binary biproduct object. -/
+def biprodInl (A B : MetrizableLCA.{u}) : A ⟶ biprodObj A B where
+  hom' :=
+    { toFun := fun a => (a, 0)
+      map_zero' := rfl
+      map_add' := by
+        intro x y
+        ext <;> simp
+      continuous_toFun := continuous_id.prodMk continuous_const }
+
+/-- Second inclusion into the binary biproduct object. -/
+def biprodInr (A B : MetrizableLCA.{u}) : B ⟶ biprodObj A B where
+  hom' :=
+    { toFun := fun b => (0, b)
+      map_zero' := rfl
+      map_add' := by
+        intro x y
+        ext <;> simp
+      continuous_toFun := continuous_const.prodMk continuous_id }
+
+@[simp]
+lemma biprodFst_apply (A B : MetrizableLCA.{u}) (x : A × B) :
+    biprodFst A B x = x.1 := rfl
+
+@[simp]
+lemma biprodSnd_apply (A B : MetrizableLCA.{u}) (x : A × B) :
+    biprodSnd A B x = x.2 := rfl
+
+@[simp]
+lemma biprodInl_apply (A B : MetrizableLCA.{u}) (a : A) :
+    biprodInl A B a = (a, 0) := rfl
+
+@[simp]
+lemma biprodInr_apply (A B : MetrizableLCA.{u}) (b : B) :
+    biprodInr A B b = (0, b) := rfl
+
+/-- Map into the product side of the binary biproduct. -/
+def biprodLift {T A B : MetrizableLCA.{u}} (f : T ⟶ A) (g : T ⟶ B) :
+    T ⟶ biprodObj A B where
+  hom' :=
+    { toFun := fun t => (f t, g t)
+      map_zero' := by simp
+      map_add' := by
+        intro x y
+        ext <;> simp [map_add]
+      continuous_toFun := f.hom.continuous.prodMk g.hom.continuous }
+
+/-- Map out of the coproduct side of the binary biproduct. -/
+def biprodDesc {A B T : MetrizableLCA.{u}} (f : A ⟶ T) (g : B ⟶ T) :
+    biprodObj A B ⟶ T where
+  hom' :=
+    { toFun := fun p => f p.1 + g p.2
+      map_zero' := by simp
+      map_add' := by
+        intro x y
+        simp [map_add, add_assoc, add_left_comm, add_comm]
+      continuous_toFun := (f.hom.continuous.comp continuous_fst).add
+        (g.hom.continuous.comp continuous_snd) }
+
+@[simp]
+lemma biprodLift_fst {T A B : MetrizableLCA.{u}} (f : T ⟶ A) (g : T ⟶ B) :
+    biprodLift f g ≫ biprodFst A B = f := by
+  ext t
+  rfl
+
+@[simp]
+lemma biprodLift_snd {T A B : MetrizableLCA.{u}} (f : T ⟶ A) (g : T ⟶ B) :
+    biprodLift f g ≫ biprodSnd A B = g := by
+  ext t
+  rfl
+
+@[simp]
+lemma biprodInl_desc {A B T : MetrizableLCA.{u}} (f : A ⟶ T) (g : B ⟶ T) :
+    biprodInl A B ≫ biprodDesc f g = f := by
+  ext a
+  change f a + g 0 = f a
+  simp
+
+@[simp]
+lemma biprodInr_desc {A B T : MetrizableLCA.{u}} (f : A ⟶ T) (g : B ⟶ T) :
+    biprodInr A B ≫ biprodDesc f g = g := by
+  ext b
+  change f 0 + g b = g b
+  simp
+
+lemma biprodLift_unique {T A B : MetrizableLCA.{u}} (f : T ⟶ A) (g : T ⟶ B)
+    (m : T ⟶ biprodObj A B) (hfst : m ≫ biprodFst A B = f)
+    (hsnd : m ≫ biprodSnd A B = g) : m = biprodLift f g := by
+  ext t
+  · exact congrArg (fun h : T ⟶ A => h t) hfst
+  · exact congrArg (fun h : T ⟶ B => h t) hsnd
+
+lemma biprodDesc_unique {A B T : MetrizableLCA.{u}} (f : A ⟶ T) (g : B ⟶ T)
+    (m : biprodObj A B ⟶ T) (hfst : biprodInl A B ≫ m = f)
+    (hsnd : biprodInr A B ≫ m = g) : m = biprodDesc f g := by
+  ext p
+  have hp : p = (p.1, 0) + (0, p.2) := by ext <;> simp
+  calc
+    m p = m ((p.1, 0) + (0, p.2)) := congrArg (fun q => m q) hp
+    _ = m (p.1, 0) + m (0, p.2) := map_add m.hom (p.1, 0) (0, p.2)
+    _ = f p.1 + g p.2 := by
+      have hf := congrArg (fun h : A ⟶ T => h p.1) hfst
+      have hg := congrArg (fun h : B ⟶ T => h p.2) hsnd
+      simpa using congrArg₂ (fun x y => x + y) hf hg
+    _ = biprodDesc f g p := rfl
+
+/-- Explicit binary biproduct data for metrizable locally compact abelian groups. -/
+def binaryBiproductData (A B : MetrizableLCA.{u}) :
+    BinaryBiproductData A B where
+  bicone :=
+    { pt := biprodObj A B
+      fst := biprodFst A B
+      snd := biprodSnd A B
+      inl := biprodInl A B
+      inr := biprodInr A B }
+  isBilimit :=
+    { isLimit := BinaryFan.IsLimit.mk _
+        (fun f g => biprodLift f g)
+        (fun f g => biprodLift_fst f g)
+        (fun f g => biprodLift_snd f g)
+        (fun f g m hfst hsnd => biprodLift_unique f g m hfst hsnd)
+      isColimit := BinaryCofan.IsColimit.mk _
+        (fun f g => biprodDesc f g)
+        (fun f g => biprodInl_desc f g)
+        (fun f g => biprodInr_desc f g)
+        (fun f g m hfst hsnd => biprodDesc_unique f g m hfst hsnd) }
+
+instance : HasBinaryBiproducts MetrizableLCA.{u} where
+  has_binary_biproduct A B := HasBinaryBiproduct.mk (binaryBiproductData A B)
 
 /-- A categorical isomorphism of metrizable LCA groups gives a continuous additive equivalence. -/
 noncomputable def isoToContinuousAddEquiv {A B : MetrizableLCA.{u}} (e : A ≅ B) : A ≃ₜ+ B where

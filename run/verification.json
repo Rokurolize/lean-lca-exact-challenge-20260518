@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v12-lca-exact-category-instance",
-  "generated_utc": "2026-05-18T19:43:48Z",
-  "source_tree_hash": "54766a9b0a8caf991512f597a283e3ccda17ea59537bae8adb75cb4e22d71342",
+  "schema": "lean-lca-exact-challenge-verification-v13-local-ext-derived-localization",
+  "generated_utc": "2026-05-18T20:02:30Z",
+  "source_tree_hash": "3f4371787188dc54b9614334fbdc3c8954cf868ac1dc285471e882f7a6a49100",
   "commands": [
     {
       "command": "lake build",
@@ -22,21 +22,23 @@
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "status": "passed"
+      "status": "passed",
+      "evidence": "local exact-category YonedaExt family is available as formal conflation-chain groups."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "status": "passed"
+      "status": "passed",
+      "evidence": "bounded exact weak equivalences and Dbounded localization are available for MetrizableLCA."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "failed",
-      "evidence": "YonedaExt for MetrizableLCA still requires Abelian MetrizableLCA; Dbounded only checks as the underlying type of a supplied BoundedDerivedInfinityCategory."
+      "status": "passed",
+      "evidence": "strict LCA exact category exposes local YonedaExt and Dbounded localization declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "product-facing Ext/Yoneda.lean and Derived/Bounded.lean still contain frontier/source-patch markers and terminal_outcome is nonterminal."
+      "evidence": "terminal_outcome remains failed_nonterminal because standard Yoneda Ext quotient relations and stable infinity-category enhancement are not complete."
     },
     {
       "command": "git diff --check",

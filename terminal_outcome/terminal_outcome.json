@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "更新後のgoalはproduct_successのみ完了可能である。Quillen exact-category interface、MetrizableLCAのpreadditive構造、split short complexがstrict short exact sequenceになる証明、strict short exact sequenceの同型不変性、MetrizableLCAの明示的pullback objectとcategorical pullback安定性、閉部分群商、明示的pushout、pushout関係部分群の閉性、標準射Y ⟶ pushoutの閉埋め込み性、categorical pushout安定性、そしてstrict metrizable LCA列をconflationとするQuillenExactCategory MetrizableLCA instanceまでは確認済みだが、exact category上のYoneda Extとbounded derived infinity-categoryが未完成であるため、goalは未完了である。",
+  "summary": "更新後のgoalはproduct_successのみ完了可能である。Quillen exact-category interface、MetrizableLCAのpreadditive構造、binary biproduct、split short complexがstrict short exact sequenceになる証明、strict short exact sequenceの同型不変性、MetrizableLCAの明示的pullback objectとcategorical pullback安定性、閉部分群商、明示的pushout、pushout関係部分群の閉性、標準射Y ⟶ pushoutの閉埋め込み性、categorical pushout安定性、strict metrizable LCA列をconflationとするQuillenExactCategory MetrizableLCA instance、conflation chainから作るローカルYonedaExt、mapping coneがexact acyclicである射でbounded complexをlocalizeするDboundedまでは確認済みである。ただし、標準的なYoneda Extの商関係とBaer sum図式、stable infinity-categoryとしての構造は未完成であるため、goalは未完了である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -24,6 +24,8 @@
     "LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation",
     "LeanLCAExactChallenge.MetrizableLCA",
     "LeanLCAExactChallenge.MetrizableLCA.Hom",
+    "LeanLCAExactChallenge.MetrizableLCA.biprodObj",
+    "LeanLCAExactChallenge.MetrizableLCA.binaryBiproductData",
     "LeanLCAExactChallenge.MetrizableLCA.strictShortExact",
     "LeanLCAExactChallenge.MetrizableLCA.closed_inclusion_of_strict",
     "LeanLCAExactChallenge.MetrizableLCA.open_surjection_of_strict",
@@ -87,15 +89,24 @@
     "LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory",
     "LeanLCAExactChallenge.MetrizableLCA.instQuillenExactCategory",
     "LeanLCAExactChallenge.YonedaExt",
+    "LeanLCAExactChallenge.ShortExactExtension",
+    "LeanLCAExactChallenge.YonedaExtension",
+    "LeanLCAExactChallenge.PositiveYonedaExt",
     "LeanLCAExactChallenge.YonedaExt.zero_equiv_hom",
+    "LeanLCAExactChallenge.YonedaExt.ofExtension",
     "LeanLCAExactChallenge.YonedaExt.baer_sum",
     "LeanLCAExactChallenge.YonedaExt.instAddCommGroup",
+    "LeanLCAExactChallenge.boundedCochainComplex",
+    "LeanLCAExactChallenge.exactAcyclic",
+    "LeanLCAExactChallenge.boundedExactWeakEquivalence",
     "LeanLCAExactChallenge.BoundedDerivedInfinityCategory",
-    "LeanLCAExactChallenge.Dbounded"
+    "LeanLCAExactChallenge.Dbounded",
+    "LeanLCAExactChallenge.Dbounded.localization",
+    "LeanLCAExactChallenge.Dbounded.of"
   ],
   "known_gaps": [
-    "`YonedaExt`はmathlibのabelian-category Extを包む境界であり、`MetrizableLCA`のexact category上のYoneda Ext構成ではない。",
-    "`Dbounded`は構成interfaceの境界であり、strict LCA exact categoryのbounded derived infinity-category本体ではない。"
+    "`YonedaExt`はexact categoryのconflation chainから作る形式的な加法可換群としては構成済みだが、標準的なYoneda Extで必要なextension同型、Baer sum、分裂拡大、Yoneda積の商関係をまだ実装していない。",
+    "`Dbounded`はbounded cochain complexをexact weak equivalenceでlocalizeするordinary categoryとしては構成済みだが、stable infinity-categoryそのもののモデルやenhancementはまだ実装していない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",

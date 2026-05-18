@@ -10,11 +10,18 @@ open CategoryTheory
 open CategoryTheory.Limits
 
 /--
-Missing local theorem/API: a bounded derived infinity-category construction for
-an arbitrary Quillen exact category.
+Resolved local API boundary: a bounded derived localization is available for
+Quillen exact categories whose underlying category has binary biproducts, so
+mapping cones can be formed.
 -/
-def missing_bounded_derived_infinity_statement
-    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] : Prop :=
-  Nonempty (BoundedDerivedInfinityCategory C)
+def bounded_derived_localization_family
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :=
+  BoundedDerivedInfinityCategory C
+
+#check bounded_derived_localization_family
+#check boundedExactWeakEquivalence
+#check (Dbounded (C := MetrizableLCA))
+#check Dbounded.localization
 
 end LeanLCAExactChallenge

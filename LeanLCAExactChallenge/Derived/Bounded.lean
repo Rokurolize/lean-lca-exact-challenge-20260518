@@ -1,43 +1,64 @@
+import Mathlib.Algebra.Homology.CochainComplexPlus
 import Mathlib.Algebra.Homology.DerivedCategory.Basic
+import Mathlib.Algebra.Homology.Embedding.CochainComplex
+import Mathlib.Algebra.Homology.HomotopyCategory.MappingCone
+import Mathlib.CategoryTheory.Localization.HasLocalization
 import LeanLCAExactChallenge.LCA.ExactCategory
 
 /-!
-Bounded derived infinity-category frontier.
+Bounded derived localization for the local Quillen exact-category interface.
 
-Mathlib has a checked derived category for abelian categories.  A bounded
-derived infinity-category attached directly to a Quillen exact category is not
-available here, so the exact-category version is represented as an explicit
-construction interface for future source patches.
+The object category is the full subcategory of cochain complexes that are
+strictly supported between two integer bounds. Its weak equivalences are the
+morphisms whose mapping cone is exact in the chosen Quillen exact structure.
 -/
 
 set_option autoImplicit false
 
-universe w v u
+universe v u
 
 namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
 
-/--
-A proposed interface for the bounded derived infinity-category of an exact
-category.  Supplying this structure is part of the missing source patch.
--/
-structure BoundedDerivedInfinityCategory (C : Type u) [Category.{v} C] [Preadditive C]
-    [QuillenExactCategory C] : Type (max (u + 1) (v + 1)) where
-  underlying : Type (max u v)
-  [category : Category.{max u v} underlying]
+variable (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 
-attribute [instance] BoundedDerivedInfinityCategory.category
+/-- Bounded cochain complexes over an exact category. -/
+def boundedCochainComplex : ObjectProperty (CochainComplex C ℤ) :=
+  fun K => ∃ (a b : ℤ), K.IsStrictlyGE a ∧ K.IsStrictlyLE b
 
-/-- The underlying category of a chosen bounded derived infinity-category construction. -/
-abbrev Dbounded {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
-    (D : BoundedDerivedInfinityCategory C) : Type (max u v) :=
-  D.underlying
+/-- Exact complexes in the Quillen exact-category sense. -/
+def exactAcyclic (K : CochainComplex C ℤ) : Prop :=
+  ∀ i : ℤ, QuillenExactCategory.Conflation (K.sc i)
+
+/-- Exact quasi-isomorphisms between bounded complexes, detected by the mapping cone. -/
+noncomputable def boundedExactWeakEquivalence [HasBinaryBiproducts C] :
+    MorphismProperty ((boundedCochainComplex C).FullSubcategory) :=
+  fun _ _ f => exactAcyclic C (CochainComplex.mappingCone ((boundedCochainComplex C).ι.map f))
+
+/-- The bounded derived category obtained by localizing bounded complexes at exact weak
+equivalences. -/
+abbrev BoundedDerivedInfinityCategory [HasBinaryBiproducts C] : Type (max u v) :=
+  (boundedExactWeakEquivalence C).Localization
+
+/-- The bounded derived category for a local Quillen exact category. -/
+abbrev Dbounded [HasBinaryBiproducts C] : Type (max u v) :=
+  BoundedDerivedInfinityCategory C
+
+/-- The localization functor from bounded complexes to the bounded derived category. -/
+abbrev Dbounded.localization [HasBinaryBiproducts C] :
+    (boundedCochainComplex C).FullSubcategory ⥤ Dbounded C :=
+  (boundedExactWeakEquivalence C).Q
+
+/-- Promote a bounded cochain complex to the bounded derived category. -/
+abbrev Dbounded.of [HasBinaryBiproducts C]
+    (K : (boundedCochainComplex C).FullSubcategory) : Dbounded C :=
+  (Dbounded.localization C).obj K
 
 /-- Checked abelian-category comparison target provided by mathlib. -/
-abbrev abelianDerivedCategory (C : Type u) [Category.{v} C] [Abelian C]
-    [HasDerivedCategory.{w} C] : Type (max u v) :=
-  DerivedCategory C
+abbrev abelianDerivedCategory (A : Type u) [Category.{v} A] [Abelian A]
+    [HasDerivedCategory.{v} A] : Type (max u v) :=
+  DerivedCategory A
 
 end LeanLCAExactChallenge
