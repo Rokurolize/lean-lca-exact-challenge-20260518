@@ -186,6 +186,34 @@ noncomputable example (X X' Y : MetrizableLCA)
       (0 : YonedaExt (C := MetrizableLCA) X' Y 1) :=
   YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_split e s a
 
+noncomputable example (X X' Y : MetrizableLCA) {n : ℕ}
+    {e : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData e) (a : X' ⟶ X) :
+    YonedaExtension.RightSplitData (MetrizableLCA.yonedaExtensionPullbackHead a e) :=
+  MetrizableLCA.yonedaExtensionPullbackHeadRightSplitData a h
+
+noncomputable example (X X' Y : MetrizableLCA) {n : ℕ}
+    {e : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData e) (a : X' ⟶ X) :
+    YonedaExtension.SplitFactorData (MetrizableLCA.yonedaExtensionPullbackHead a e) :=
+  MetrizableLCA.yonedaExtensionPullbackHeadSplitFactorData a h
+
+noncomputable example (X X' Y : MetrizableLCA) {n : ℕ}
+    {e : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData e) (a : X' ⟶ X) :
+    YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA) a
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e a) e =
+      (0 : YonedaExt (C := MetrizableLCA) X' Y (n + 1)) :=
+  YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_rightSplitData h a
+
+noncomputable example (X X' Y : MetrizableLCA) {n : ℕ}
+    {e : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData e) (a : X' ⟶ X) :
+    YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA) a
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e a) e =
+      (0 : YonedaExt (C := MetrizableLCA) X' Y (n + 1)) :=
+  YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_splitFactorData h a
+
 noncomputable example (X X' Y : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : X' ⟶ X) :
     YonedaExtension.HomHeadData a e.toYonedaExtension

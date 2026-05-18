@@ -702,6 +702,40 @@ def pullbackHeadWithData {X X' Y : C} (f : X' ⟶ X)
       HomHeadData f a (pullbackHeadWith f pull a)
   | _, YonedaExtension.cons e tail => HomHeadData.cons e (h e) tail
 
+/--
+Pulling back the head of a chain preserves the right-split marker, provided
+one-fold pullbacks preserve the chosen splitting.
+-/
+def RightSplitData.pullbackHeadWith {X X' Y : C} (f : X' ⟶ X)
+    (pull : {Z : C} → (e : ShortExactExtension X Z) → ShortExactExtension X' Z)
+    (pullSplit : ∀ {Z : C} (e : ShortExactExtension X Z)
+      (_ : e.shortComplex.Splitting), (pull e).shortComplex.Splitting) :
+    {n : ℕ} → {a : YonedaExtension X Y (n + 1)} →
+      RightSplitData a → RightSplitData (YonedaExtension.pullbackHeadWith f pull a)
+  | 0, _, RightSplitData.one e s => by
+      simpa [ShortExactExtension.toYonedaExtension, YonedaExtension.pullbackHeadWith] using
+        RightSplitData.one (pull e) (pullSplit e s)
+  | n + 1, _, RightSplitData.cons e h => by
+      simpa [YonedaExtension.pullbackHeadWith] using
+        RightSplitData.cons (pull e) h
+
+/--
+Pulling back the head of a chain preserves the existence of a split factor,
+provided one-fold pullbacks preserve the chosen splitting.
+-/
+def SplitFactorData.pullbackHeadWith {X X' Y : C} (f : X' ⟶ X)
+    (pull : {Z : C} → (e : ShortExactExtension X Z) → ShortExactExtension X' Z)
+    (pullSplit : ∀ {Z : C} (e : ShortExactExtension X Z)
+      (_ : e.shortComplex.Splitting), (pull e).shortComplex.Splitting) :
+    {n : ℕ} → {a : YonedaExtension X Y (n + 1)} →
+      SplitFactorData a → SplitFactorData (YonedaExtension.pullbackHeadWith f pull a)
+  | _, _, SplitFactorData.head e s tail => by
+      simpa [YonedaExtension.pullbackHeadWith] using
+        SplitFactorData.head (pull e) (pullSplit e s) tail
+  | _, _, SplitFactorData.cons e h => by
+      simpa [YonedaExtension.pullbackHeadWith] using
+        SplitFactorData.cons (pull e) h
+
 /-- Recursive pushout data identifies tail-hom composition with its pushout normal form. -/
 def pushoutTailWithData {X Y Y' : C} (f : Y ⟶ Y')
     (push : {Z W : C} → (e : ShortExactExtension Z W) → (g : W ⟶ Y') →
@@ -839,6 +873,30 @@ noncomputable def yonedaExtensionPullbackHeadData
     (fun {_} e => shortExactExtensionPullback e f)
     (fun {_} e => shortExactExtensionPullbackData e f)
     a
+
+/-- Canonical MetrizableLCA head pullback preserves a right-split marker. -/
+noncomputable def yonedaExtensionPullbackHeadRightSplitData
+    {X X' Y : MetrizableLCA.{u}} (f : X' ⟶ X) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData (C := MetrizableLCA.{u}) a) :
+    YonedaExtension.RightSplitData (C := MetrizableLCA.{u})
+      (yonedaExtensionPullbackHead f a) :=
+  YonedaExtension.RightSplitData.pullbackHeadWith (C := MetrizableLCA.{u}) f
+    (fun {_} e => shortExactExtensionPullback e f)
+    (fun {_} e s => shortExactExtensionPullbackSplitting e f s)
+    h
+
+/-- Canonical MetrizableLCA head pullback preserves a split-factor marker. -/
+noncomputable def yonedaExtensionPullbackHeadSplitFactorData
+    {X X' Y : MetrizableLCA.{u}} (f : X' ⟶ X) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData (C := MetrizableLCA.{u}) a) :
+    YonedaExtension.SplitFactorData (C := MetrizableLCA.{u})
+      (yonedaExtensionPullbackHead f a) :=
+  YonedaExtension.SplitFactorData.pullbackHeadWith (C := MetrizableLCA.{u}) f
+    (fun {_} e => shortExactExtensionPullback e f)
+    (fun {_} e s => shortExactExtensionPullbackSplitting e f s)
+    h
 
 /-- Push out the tail of a positive Yoneda chain in `MetrizableLCA`. -/
 noncomputable def yonedaExtensionPushoutTail
@@ -1128,6 +1186,32 @@ theorem pullbackHeadOfExtension_eq_zero_of_metrizable_split
     (YonedaExt.ofExtension_eq_zero_of_split
       (MetrizableLCA.shortExactExtensionPullback e f)
       (MetrizableLCA.shortExactExtensionPullbackSplitting e f s))
+
+/-- Head pullback sends a MetrizableLCA right-split chain to zero in Ext. -/
+theorem pullbackHeadOfExtension_eq_zero_of_metrizable_rightSplitData
+    {X X' Y : MetrizableLCA.{u}} {n : ℕ}
+    {a : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData a) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA.{u}) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) a =
+      (0 : YonedaExt (C := MetrizableLCA.{u}) X' Y (n + 1)) :=
+  YonedaExt.ofExtension_eq_zero_of_rightSplitData
+    (YonedaExtension.RightSplitData.pullbackHeadWith f
+      (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+      (fun {_} e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s) h)
+
+/-- Head pullback sends a MetrizableLCA chain with a split factor to zero in Ext. -/
+theorem pullbackHeadOfExtension_eq_zero_of_metrizable_splitFactorData
+    {X X' Y : MetrizableLCA.{u}} {n : ℕ}
+    {a : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData a) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA.{u}) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) a =
+      (0 : YonedaExt (C := MetrizableLCA.{u}) X' Y (n + 1)) :=
+  YonedaExt.ofExtension_eq_zero_of_splitFactorData
+    (YonedaExtension.SplitFactorData.pullbackHeadWith f
+      (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+      (fun {_} e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s) h)
 
 /-- Canonical tail pushout sends a MetrizableLCA right-split chain to zero in Ext. -/
 theorem ofExtension_pushoutTailWith_eq_zero_of_metrizable_rightSplitData
