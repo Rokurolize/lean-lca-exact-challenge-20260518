@@ -1753,6 +1753,24 @@ theorem leftProductByExtension_baer_sum_ofExtension_eq_of_baerLeft
   dsimp [baer_sum]
   exact (leftProductByExtension_ofExtension_eq_add_of_baerLeft h a).symm
 
+/-- Left splicing by a fixed one-fold extension is additive in the right Ext variable. -/
+theorem leftProductByExtension_add (e : ShortExactExtension X Y) (n : ℕ)
+    (a b : YonedaExt Y Z (n + 1)) :
+    leftProductByExtension (X := X) (Y := Y) (Z := Z) e n (a + b) =
+      leftProductByExtension (X := X) (Y := Y) (Z := Z) e n a +
+        leftProductByExtension (X := X) (Y := Y) (Z := Z) e n b :=
+  (leftProductByExtension (X := X) (Y := Y) (Z := Z) e n).map_add a b
+
+/-- The public `baer_sum` API is preserved by left splicing in the right Ext variable. -/
+theorem leftProductByExtension_baer_sum (e : ShortExactExtension X Y) (n : ℕ)
+    (a b : YonedaExt Y Z (n + 1)) :
+    leftProductByExtension (X := X) (Y := Y) (Z := Z) e n (baer_sum a b) =
+      baer_sum
+        (leftProductByExtension (X := X) (Y := Y) (Z := Z) e n a)
+        (leftProductByExtension (X := X) (Y := Y) (Z := Z) e n b) := by
+  dsimp [baer_sum]
+  exact leftProductByExtension_add (X := X) (Y := Y) (Z := Z) e n a b
+
 /-- The free abelian group map induced by splicing a positive one-fold chain on the left. -/
 def positiveChainLeftFreeHom :
     {X Y Z : C} → {m : ℕ} →
@@ -1898,6 +1916,26 @@ theorem leftProductByPositiveChain_cons_baer_sum_ofExtension_eq_of_baerHead
         (ofExtension (X := W) (Y := Z) (n := n) a) := by
   dsimp [baer_sum]
   exact (leftProductByPositiveChain_cons_ofExtension_eq_add_of_baerHead h p a).symm
+
+/-- Left splicing by a fixed positive chain is additive in the right Ext variable. -/
+theorem leftProductByPositiveChain_add {m : ℕ}
+    (p : YonedaExtension.PositiveChain X Y m) (n : ℕ)
+    (a b : YonedaExt Y Z (n + 1)) :
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n (a + b) =
+      leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n a +
+        leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n b :=
+  (leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n).map_add a b
+
+/-- The public `baer_sum` API is preserved by fixed positive-chain left splicing. -/
+theorem leftProductByPositiveChain_baer_sum {m : ℕ}
+    (p : YonedaExtension.PositiveChain X Y m) (n : ℕ)
+    (a b : YonedaExt Y Z (n + 1)) :
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n (baer_sum a b) =
+      baer_sum
+        (leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n a)
+        (leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n b) := by
+  dsimp [baer_sum]
+  exact leftProductByPositiveChain_add (X := X) (Y := Y) (Z := Z) p n a b
 
 end LeftProduct
 

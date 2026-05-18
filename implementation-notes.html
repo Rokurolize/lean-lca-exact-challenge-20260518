@@ -32,6 +32,7 @@
     <p>2026-05-18T23:16:57Z時点で、head側の標準pullbackが<code>RightSplitData</code>と<code>SplitFactorData</code>を保つことを証明し、対応する<code>pullbackHeadOfExtensionWith</code>のExt零元定理を追加した。head作用についてもsplit系生成関係の局所保存は拡張されたが、iso関係、Baer関係、hom-tail関係を含む全商降下はまだ残っている。</p>
     <p>2026-05-18T23:25:36Z時点で、標準pullbackが一段拡大の同型を保つことを<code>MetrizableLCA.shortExactExtensionPullbackIso</code>で証明し、<code>YonedaExtension.Rel.pullbackHeadWith</code>と<code>YonedaExt.pullbackHeadOfExtension_eq_of_metrizable_rel</code>によりhead pullbackがtermwise relationを保つことをExt等式まで接続した。recursive chain isomorphismやBaer関係の保存はまだ未実装である。</p>
     <p>2026-05-18T23:31:47Z時点で、標準pullbackが一段拡大の<code>IsoBetween</code>も保つことを証明し、<code>YonedaExtension.RelIso.pullbackHeadWith</code>、<code>MetrizableLCA.yonedaExtensionPullbackHeadRelIso</code>、<code>YonedaExt.pullbackHeadOfExtension_eq_of_metrizable_relIso</code>を追加した。head作用のiso系生成関係は局所保存を確認したが、Baer関係とhom-tail関係の互換性は未解決である。</p>
+    <p>2026-05-18T23:38:11Z時点で、既に商群へ降りている左splice写像が右Ext変数の加法と<code>baer_sum</code>を保つことを<code>YonedaExt.leftProductByExtension_add</code>、<code>YonedaExt.leftProductByExtension_baer_sum</code>、<code>YonedaExt.leftProductByPositiveChain_add</code>、<code>YonedaExt.leftProductByPositiveChain_baer_sum</code>として公開した。これは右変数側の加法性をAPI化するものであり、左変数側の関係全体への商降下を完成させるものではない。</p>
   </section>
   <section>
     <h2>worker方針</h2>

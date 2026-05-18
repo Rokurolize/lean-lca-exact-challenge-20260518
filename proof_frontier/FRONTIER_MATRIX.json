@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-18T23:31:47Z",
+  "generated_utc": "2026-05-18T23:38:11Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -39,9 +39,15 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Target worktree is dirty and currently owned by the active parent run.",
+      "merge_blocker": "Right-variable additivity for fixed left one-fold and positive-chain splice products is exposed; left quotient descent across all left-side relation generators remains incomplete.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
-      "owned_by_active_process": true
+      "owned_by_active_process": true,
+      "implemented_declarations": [
+        "YonedaExt.leftProductByExtension_add",
+        "YonedaExt.leftProductByExtension_baer_sum",
+        "YonedaExt.leftProductByPositiveChain_add",
+        "YonedaExt.leftProductByPositiveChain_baer_sum"
+      ]
     },
     {
       "frontier_id": "frontier-degree0-hom-tail",
