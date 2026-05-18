@@ -144,6 +144,16 @@ instance (A B : MetrizableLCA.{u}) : AddCommGroup (A ⟶ B) :=
 
 instance : Preadditive MetrizableLCA.{u} where
 
+/-- A categorical isomorphism of metrizable LCA groups gives a continuous additive equivalence. -/
+noncomputable def isoToContinuousAddEquiv {A B : MetrizableLCA.{u}} (e : A ≅ B) : A ≃ₜ+ B where
+  toFun := e.hom
+  invFun := e.inv
+  left_inv x := congrArg (fun f : A ⟶ A => f x) e.hom_inv_id
+  right_inv x := congrArg (fun f : B ⟶ B => f x) e.inv_hom_id
+  map_add' x y := (e.hom.hom : A →+ B).map_add x y
+  continuous_toFun := e.hom.hom.continuous
+  continuous_invFun := e.inv.hom.continuous
+
 /-- Forget the topology while retaining the additive group. -/
 def forgetToAddCommGrpCat : MetrizableLCA.{u} ⥤ AddCommGrpCat.{u} where
   obj A := AddCommGrpCat.of A

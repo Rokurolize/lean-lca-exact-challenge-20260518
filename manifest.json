@@ -1,6 +1,6 @@
 {
-  "schema": "lean-lca-exact-challenge-manifest-v3-preadditive-interface",
-  "generated_utc": "2026-05-18T18:17:07Z",
+  "schema": "lean-lca-exact-challenge-manifest-v4-lca-iso-helper",
+  "generated_utc": "2026-05-18T18:21:11Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -35,8 +35,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/LCA/Basic.lean",
-      "bytes": 5326,
-      "sha256": "e1c70f4f191d6fe427f16817a3c6250690b602fc2e7cda2ad5bc642d2859df23"
+      "bytes": 5830,
+      "sha256": "ee2edbdc3ed0c241927aef6cd552521009d4dacac8bea41ef10b1ab5c22a5ec1"
     },
     {
       "path": "LeanLCAExactChallenge/LCA/ExactCategory.lean",
@@ -120,14 +120,14 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 1523,
-      "sha256": "92b822494ca4e553fffa02133a1906962e1b727b359e81753375c62f79588843"
+      "bytes": 1594,
+      "sha256": "78c81a83416fdd3ca364666d6a87135e8a5328b2a10a44afb94b950a3c57dca2"
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 3061,
-      "sha256": "168135f8fe7979a448c527740b4324422b91066f9553ca256880a1504bfa2e3b"
+      "bytes": 3127,
+      "sha256": "960ac3d303d6aa0a47a3a1ad8748e3fed656e84b452a3eb963e2fd1b027347cd"
     }
   ],
-  "content_hash_tree": "d98c4b6171d2a93ad8804469a10cc208560f26404cec437fc42917150302e11d"
+  "content_hash_tree": "ef4da48bfdb539a9fc1b637fb321e86ecf20abae3e18808bc77017c4050b1a41"
 }
