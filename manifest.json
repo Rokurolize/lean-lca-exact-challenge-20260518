@@ -1,6 +1,6 @@
 {
-  "schema": "lean-lca-exact-challenge-manifest-v25-product-extension-api",
-  "generated_utc": "2026-05-18T21:16:59Z",
+  "schema": "lean-lca-exact-challenge-manifest-v26-chosen-biproduct-product-extension",
+  "generated_utc": "2026-05-18T21:33:29Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -30,13 +30,13 @@
     },
     {
       "path": "LeanLCAExactChallenge/Ext/Yoneda.lean",
-      "bytes": 32506,
-      "sha256": "b765b8cea8c5a8323d8676ec5d42eb896a2b2e3634d7ba3501fb0625b656c8c0"
+      "bytes": 36629,
+      "sha256": "bb5f3d280c0f8b7bf9d1ffc51cd233bca1bd8744e9bc040b96d721cbf3fc78b8"
     },
     {
       "path": "LeanLCAExactChallenge/LCA/Basic.lean",
-      "bytes": 11632,
-      "sha256": "52c49ba01423677865f65629b0a5cca21051ae20331be2931d77f44854faae83"
+      "bytes": 14118,
+      "sha256": "a717902c9ecd87487daa6e872cfc08b980679f7cf134a0f94e50eb63cce42802"
     },
     {
       "path": "LeanLCAExactChallenge/LCA/ExactCategory.lean",
@@ -70,18 +70,18 @@
     },
     {
       "path": "README_FOR_REVIEW.md",
-      "bytes": 5352,
-      "sha256": "c8210ce0550dae0f977f679fcffddfe3510b58f9958478f3cd8f81938c57a154"
+      "bytes": 5538,
+      "sha256": "7c49a7100d5b5a3b36ff76ff3de044643a8117f919b2bd031fbe66a6c7624b57"
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 10862,
-      "sha256": "bff6e96a0ee7ee5aa16acf5a11ae746cb33bbf2a9c6a8513387e70ce3a217cc8"
+      "bytes": 13443,
+      "sha256": "9214fd221eee7cf588f3d459de30667d7ff016425cc55b2b9b3aad659a094243"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
-      "bytes": 9066,
-      "sha256": "cb84f27983fadf2f2b1d0649eafa7cb5bf741924537bab4e502b72e5cdf38e39"
+      "bytes": 10168,
+      "sha256": "8ce48d5decff4023ff99517310f4992ac15bd3ac1cf711180ebf97eef8026eb7"
     },
     {
       "path": "audit/blockers/derived_infinity_exact_category_api.lean",
@@ -95,8 +95,8 @@
     },
     {
       "path": "audit/blockers/yoneda_ext_exact_category_api.lean",
-      "bytes": 2686,
-      "sha256": "b584e4a15c1a8cce549957133c320337a902c7fea4814bbbeec805ae385da850"
+      "bytes": 3096,
+      "sha256": "319f82340237aebed40413bb0529ffa572f37a3eb6afc771bd1cecea7e6c47dc"
     },
     {
       "path": "audit/external_audit.py",
@@ -115,8 +115,8 @@
     },
     {
       "path": "docs/research/mathlib_gap_analysis.md",
-      "bytes": 10181,
-      "sha256": "46c373a4eb39c317614cd4e4aafd51658a20ba88b3ca962daff271a4abdca7cd"
+      "bytes": 11176,
+      "sha256": "c9f4d5a3c061061e46bf178b37edd462253008a7e03911e305b4e05b4e52c356"
     },
     {
       "path": "docs/research/mathlib_initial_survey.md",
@@ -125,24 +125,24 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "bytes": 12016,
-      "sha256": "70a117a782bf993659cc55ffbb631c1ceffc4bd02cac536b717cf0d8d0ecf3e1"
+      "bytes": 12367,
+      "sha256": "db301840aee6f418fc5c7cce0e5cb4da51593182d6b2d3dffa11b83d9b4cd8dd"
     },
     {
       "path": "docs/research/sources.md",
-      "bytes": 6338,
-      "sha256": "5c01fbd11e41619caf6ea484d8e122fabb2f779ffd9fd780decd6c523c32c7af"
+      "bytes": 6630,
+      "sha256": "1e89816c069a2d47178dd47e492c212d0c1ad722ac6f0eab236852a80e0c34d2"
     },
     {
       "path": "run/verification.json",
-      "bytes": 2773,
-      "sha256": "ac91b4cbb870858d5ebea78d09a8b3744b226142470e830c211acc71f1675c4a"
+      "bytes": 3037,
+      "sha256": "bec8d7976942be5a8c36f5e0f7a68d736e329729a8caa8449f76871b88f0edc9"
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 13503,
-      "sha256": "d2d368a00bab2f8878561753a324cc7dc2bf5d3c77fcd2ba484544bdaae30169"
+      "bytes": 14832,
+      "sha256": "c1181785980aba5ac22543b994870348c027f01a2e6e0420fc778c65ff52a23a"
     }
   ],
-  "content_hash_tree": "3184afc1265d333e99d5421800afec072be10017449da2078a9da7f2d514c7de"
+  "content_hash_tree": "7d4a5972b2f21bc0f63e2bb4af200dd3524f0f7042396fdc431b8e4e48d60fda"
 }

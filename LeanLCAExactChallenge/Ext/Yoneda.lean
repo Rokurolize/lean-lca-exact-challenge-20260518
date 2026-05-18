@@ -163,6 +163,85 @@ lemma shortExactExtensionBiprod_p_snd
   ext p
   rfl
 
+/-- Product of one-fold extensions, transported to mathlib's chosen binary biproduct endpoints. -/
+noncomputable def shortExactExtensionBinaryBiproduct
+    {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
+    (e₁ : ShortExactExtension (C := MetrizableLCA.{u}) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X₂ Y₂) :
+    ShortExactExtension (C := MetrizableLCA.{u}) (X₁ ⊞ X₂) (Y₁ ⊞ Y₂) where
+  middle := biprodObj e₁.middle e₂.middle
+  i := (biprodObjIsoBiprod Y₁ Y₂).inv ≫ (shortExactExtensionBiprod e₁ e₂).i
+  p := (shortExactExtensionBiprod e₁ e₂).p ≫ (biprodObjIsoBiprod X₁ X₂).hom
+  zero := by
+    change (biprodObjIsoBiprod Y₁ Y₂).inv ≫
+        ((shortExactExtensionBiprod e₁ e₂).i ≫ (shortExactExtensionBiprod e₁ e₂).p) ≫
+          (biprodObjIsoBiprod X₁ X₂).hom = 0
+    rw [(shortExactExtensionBiprod e₁ e₂).zero]
+    simp
+  conflation := by
+    let prod := shortExactExtensionBiprod e₁ e₂
+    let αY := biprodObjIsoBiprod Y₁ Y₂
+    let αX := biprodObjIsoBiprod X₁ X₂
+    let T : ShortComplex MetrizableLCA.{u} :=
+      ShortComplex.mk (αY.inv ≫ prod.i) (prod.p ≫ αX.hom) (by
+        change αY.inv ≫ (prod.i ≫ prod.p) ≫ αX.hom = 0
+        rw [prod.zero]
+        simp)
+    have hIso : prod.shortComplex ≅ T :=
+      ShortComplex.isoMk αY (Iso.refl prod.middle) αX (by
+        simp [T, ShortExactExtension.shortComplex]) (by
+        simp [T, ShortExactExtension.shortComplex])
+    simpa [prod, T, ShortExactExtension.shortComplex] using
+      strictShortExact_iso hIso prod.conflation
+
+@[simp]
+lemma shortExactExtensionBinaryBiproduct_i_fst
+    {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
+    (e₁ : ShortExactExtension (C := MetrizableLCA.{u}) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X₂ Y₂) :
+    (shortExactExtensionBinaryBiproduct e₁ e₂).i ≫ biprodFst e₁.middle e₂.middle =
+      biprod.fst ≫ e₁.i := by
+  change ((biprodObjIsoBiprod Y₁ Y₂).inv ≫ (shortExactExtensionBiprod e₁ e₂).i) ≫
+      biprodFst e₁.middle e₂.middle = biprod.fst ≫ e₁.i
+  rw [Category.assoc, shortExactExtensionBiprod_i_fst]
+  rw [← Category.assoc, biprodObjIsoBiprod_inv_fst]
+
+@[simp]
+lemma shortExactExtensionBinaryBiproduct_i_snd
+    {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
+    (e₁ : ShortExactExtension (C := MetrizableLCA.{u}) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X₂ Y₂) :
+    (shortExactExtensionBinaryBiproduct e₁ e₂).i ≫ biprodSnd e₁.middle e₂.middle =
+      biprod.snd ≫ e₂.i := by
+  change ((biprodObjIsoBiprod Y₁ Y₂).inv ≫ (shortExactExtensionBiprod e₁ e₂).i) ≫
+      biprodSnd e₁.middle e₂.middle = biprod.snd ≫ e₂.i
+  rw [Category.assoc, shortExactExtensionBiprod_i_snd]
+  rw [← Category.assoc, biprodObjIsoBiprod_inv_snd]
+
+@[simp]
+lemma shortExactExtensionBinaryBiproduct_p_fst
+    {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
+    (e₁ : ShortExactExtension (C := MetrizableLCA.{u}) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X₂ Y₂) :
+    biprodFst e₁.middle e₂.middle ≫ e₁.p =
+      (shortExactExtensionBinaryBiproduct e₁ e₂).p ≫ biprod.fst := by
+  change biprodFst e₁.middle e₂.middle ≫ e₁.p =
+      ((shortExactExtensionBiprod e₁ e₂).p ≫ (biprodObjIsoBiprod X₁ X₂).hom) ≫ biprod.fst
+  rw [Category.assoc, biprodObjIsoBiprod_hom_fst]
+  exact shortExactExtensionBiprod_p_fst e₁ e₂
+
+@[simp]
+lemma shortExactExtensionBinaryBiproduct_p_snd
+    {X₁ Y₁ X₂ Y₂ : MetrizableLCA.{u}}
+    (e₁ : ShortExactExtension (C := MetrizableLCA.{u}) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA.{u}) X₂ Y₂) :
+    biprodSnd e₁.middle e₂.middle ≫ e₂.p =
+      (shortExactExtensionBinaryBiproduct e₁ e₂).p ≫ biprod.snd := by
+  change biprodSnd e₁.middle e₂.middle ≫ e₂.p =
+      ((shortExactExtensionBiprod e₁ e₂).p ≫ (biprodObjIsoBiprod X₁ X₂).hom) ≫ biprod.snd
+  rw [Category.assoc, biprodObjIsoBiprod_hom_snd]
+  exact shortExactExtensionBiprod_p_snd e₁ e₂
+
 end MetrizableLCA
 
 /-- A finite Yoneda extension chain from `X` to `Y`.

@@ -271,6 +271,30 @@ lemma biprodInr_desc {A B T : MetrizableLCA.{u}} (f : A ⟶ T) (g : B ⟶ T) :
   change f 0 + g b = g b
   simp
 
+@[simp]
+lemma biprodInl_fst (A B : MetrizableLCA.{u}) :
+    biprodInl A B ≫ biprodFst A B = 𝟙 A := by
+  ext a
+  rfl
+
+@[simp]
+lemma biprodInl_snd (A B : MetrizableLCA.{u}) :
+    biprodInl A B ≫ biprodSnd A B = 0 := by
+  ext a
+  rfl
+
+@[simp]
+lemma biprodInr_fst (A B : MetrizableLCA.{u}) :
+    biprodInr A B ≫ biprodFst A B = 0 := by
+  ext b
+  rfl
+
+@[simp]
+lemma biprodInr_snd (A B : MetrizableLCA.{u}) :
+    biprodInr A B ≫ biprodSnd A B = 𝟙 B := by
+  ext b
+  rfl
+
 lemma biprodLift_unique {T A B : MetrizableLCA.{u}} (f : T ⟶ A) (g : T ⟶ B)
     (m : T ⟶ biprodObj A B) (hfst : m ≫ biprodFst A B = f)
     (hsnd : m ≫ biprodSnd A B = g) : m = biprodLift f g := by
@@ -315,6 +339,63 @@ def binaryBiproductData (A B : MetrizableLCA.{u}) :
 
 instance : HasBinaryBiproducts MetrizableLCA.{u} where
   has_binary_biproduct A B := HasBinaryBiproduct.mk (binaryBiproductData A B)
+
+/-- The explicit product model is canonically isomorphic to mathlib's chosen binary biproduct. -/
+noncomputable def biprodObjIsoBiprod (A B : MetrizableLCA.{u}) :
+    biprodObj A B ≅ A ⊞ B :=
+  biprod.uniqueUpToIso A B (binaryBiproductData A B).isBilimit
+
+@[simp]
+lemma biprodObjIsoBiprod_hom_fst (A B : MetrizableLCA.{u}) :
+    (biprodObjIsoBiprod A B).hom ≫ biprod.fst = biprodFst A B := by
+  simp [biprodObjIsoBiprod, binaryBiproductData]
+
+@[simp]
+lemma biprodObjIsoBiprod_hom_snd (A B : MetrizableLCA.{u}) :
+    (biprodObjIsoBiprod A B).hom ≫ biprod.snd = biprodSnd A B := by
+  simp [biprodObjIsoBiprod, binaryBiproductData]
+
+@[simp]
+lemma biprodObjIsoBiprod_inv_fst (A B : MetrizableLCA.{u}) :
+    (biprodObjIsoBiprod A B).inv ≫ biprodFst A B = biprod.fst := by
+  apply biprod.hom_ext'
+  · simp [biprodObjIsoBiprod, binaryBiproductData]
+  · simp [biprodObjIsoBiprod, binaryBiproductData]
+
+@[simp]
+lemma biprodObjIsoBiprod_inv_snd (A B : MetrizableLCA.{u}) :
+    (biprodObjIsoBiprod A B).inv ≫ biprodSnd A B = biprod.snd := by
+  apply biprod.hom_ext'
+  · simp [biprodObjIsoBiprod, binaryBiproductData]
+  · simp [biprodObjIsoBiprod, binaryBiproductData]
+
+/-- Diagonal map into the chosen binary biproduct. -/
+noncomputable abbrev biprodDiag (A : MetrizableLCA.{u}) : A ⟶ A ⊞ A :=
+  biprod.lift (𝟙 A) (𝟙 A)
+
+/-- Codiagonal map out of the chosen binary biproduct. -/
+noncomputable abbrev biprodCodiag (A : MetrizableLCA.{u}) : A ⊞ A ⟶ A :=
+  biprod.desc (𝟙 A) (𝟙 A)
+
+@[simp]
+lemma biprodDiag_fst (A : MetrizableLCA.{u}) :
+    biprodDiag A ≫ biprod.fst = 𝟙 A := by
+  simp [biprodDiag]
+
+@[simp]
+lemma biprodDiag_snd (A : MetrizableLCA.{u}) :
+    biprodDiag A ≫ biprod.snd = 𝟙 A := by
+  simp [biprodDiag]
+
+@[simp]
+lemma biprodCodiag_inl (A : MetrizableLCA.{u}) :
+    biprod.inl ≫ biprodCodiag A = 𝟙 A := by
+  simp [biprodCodiag]
+
+@[simp]
+lemma biprodCodiag_inr (A : MetrizableLCA.{u}) :
+    biprod.inr ≫ biprodCodiag A = 𝟙 A := by
+  simp [biprodCodiag]
 
 /-- A categorical isomorphism of metrizable LCA groups gives a continuous additive equivalence. -/
 noncomputable def isoToContinuousAddEquiv {A B : MetrizableLCA.{u}} (e : A ≅ B) : A ≃ₜ+ B where

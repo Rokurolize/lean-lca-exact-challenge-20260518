@@ -25,6 +25,24 @@ example : QuillenExactCategory MetrizableLCA := by
 /-- The strict metrizable LCA category has the biproducts needed for mapping cones. -/
 example : HasBinaryBiproducts MetrizableLCA := by infer_instance
 
+noncomputable example (A B : MetrizableLCA) :
+    MetrizableLCA.biprodObj A B ≅ A ⊞ B :=
+  MetrizableLCA.biprodObjIsoBiprod A B
+
+noncomputable example (A : MetrizableLCA) : A ⟶ A ⊞ A :=
+  MetrizableLCA.biprodDiag A
+
+noncomputable example (A : MetrizableLCA) : A ⊞ A ⟶ A :=
+  MetrizableLCA.biprodCodiag A
+
+noncomputable example (A : MetrizableLCA) :
+    MetrizableLCA.biprodDiag A ≫ biprod.fst = 𝟙 A :=
+  MetrizableLCA.biprodDiag_fst A
+
+noncomputable example (A : MetrizableLCA) :
+    biprod.inl ≫ MetrizableLCA.biprodCodiag A = 𝟙 A :=
+  MetrizableLCA.biprodCodiag_inl A
+
 /--
 Strict short exact sequences in the metrizable LCA model are stable under
 coordinatewise binary biproducts.
@@ -84,6 +102,42 @@ noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
       (MetrizableLCA.shortExactExtensionBiprod e₁ e₂).p ≫
         MetrizableLCA.biprodSnd X₁ X₂ :=
   MetrizableLCA.shortExactExtensionBiprod_p_snd e₁ e₂
+
+noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
+    (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :
+    ShortExactExtension (C := MetrizableLCA) (X₁ ⊞ X₂) (Y₁ ⊞ Y₂) :=
+  MetrizableLCA.shortExactExtensionBinaryBiproduct e₁ e₂
+
+noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
+    (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :
+    (MetrizableLCA.shortExactExtensionBinaryBiproduct e₁ e₂).i ≫
+        MetrizableLCA.biprodFst e₁.middle e₂.middle =
+      biprod.fst ≫ e₁.i :=
+  MetrizableLCA.shortExactExtensionBinaryBiproduct_i_fst e₁ e₂
+
+noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
+    (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :
+    (MetrizableLCA.shortExactExtensionBinaryBiproduct e₁ e₂).i ≫
+        MetrizableLCA.biprodSnd e₁.middle e₂.middle =
+      biprod.snd ≫ e₂.i :=
+  MetrizableLCA.shortExactExtensionBinaryBiproduct_i_snd e₁ e₂
+
+noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
+    (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :
+    MetrizableLCA.biprodFst e₁.middle e₂.middle ≫ e₁.p =
+      (MetrizableLCA.shortExactExtensionBinaryBiproduct e₁ e₂).p ≫ biprod.fst :=
+  MetrizableLCA.shortExactExtensionBinaryBiproduct_p_fst e₁ e₂
+
+noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
+    (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
+    (e₂ : ShortExactExtension (C := MetrizableLCA) X₂ Y₂) :
+    MetrizableLCA.biprodSnd e₁.middle e₂.middle ≫ e₂.p =
+      (MetrizableLCA.shortExactExtensionBinaryBiproduct e₁ e₂).p ≫ biprod.snd :=
+  MetrizableLCA.shortExactExtensionBinaryBiproduct_p_snd e₁ e₂
 
 example (X Y : MetrizableLCA) {n : ℕ}
     {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}

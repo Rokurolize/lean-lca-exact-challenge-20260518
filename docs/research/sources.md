@@ -14,7 +14,7 @@
 - ローカルmathlib `Mathlib/CategoryTheory/Limits/Shapes/Pullback/HasPullback.lean`: Quillen exact-categoryインターフェイスで使うpushout/pullback名と、明示的pushoutをcategorical pushoutへ移す同型の根拠にした。
 - ローカルmathlib `Mathlib/Algebra/Homology/DerivedCategory/Basic.lean`: abelian category側のderived category境界を確認した。
 - ローカルmathlib `Mathlib/Algebra/Homology/DerivedCategory/Ext/Basic.lean`: `CategoryTheory.Abelian.Ext`、degree zeroのHom同値、加法群instance、Extの合成を確認した。
-- ローカルmathlib `Mathlib/CategoryTheory/Limits/Shapes/BinaryBiproducts.lean`: `MetrizableLCA`のbinary biproduct instanceを積で作るために使った。
+- ローカルmathlib `Mathlib/CategoryTheory/Limits/Shapes/BinaryBiproducts.lean`: `MetrizableLCA`のbinary biproduct instanceを積で作ること、明示的な積モデルからmathlibのchosen binary biproductへの同型を作ること、対角・余対角を`biprod.lift`/`biprod.desc`として扱うことに使った。
 - ローカルmathlib `Mathlib/Algebra/Homology/HomotopyCategory/MappingCone.lean`: cochain complexのmapping coneを確認し、exact weak equivalenceをconeのexact acyclicityで定義するために使った。
 - ローカルmathlib `Mathlib/CategoryTheory/Localization/HasLocalization.lean`と`Predicate.lean`: morphism propertyのlocalized categoryとlocalization functorを使って`Dbounded`を構成するために使った。
 - ローカル確認用anchor: `LeanLCAExactChallenge/MathlibSurvey.lean`。
@@ -29,10 +29,10 @@
 ## ローカル形式化成果
 
 - `LeanLCAExactChallenge/ExactCategory/Basic.lean`: Quillen exact categoryのローカルinterfaceをコンパイル確認した。
-- `LeanLCAExactChallenge/LCA/Basic.lean`: metrizable LCA groupsのbundleされた圏、射、preadditive構造、binary biproduct、biproduct間のcoordinatewise mapをコンパイル確認した。
+- `LeanLCAExactChallenge/LCA/Basic.lean`: metrizable LCA groupsのbundleされた圏、射、preadditive構造、binary biproduct、biproduct間のcoordinatewise map、明示的な積モデルとchosen binary biproductの同型、対角、余対角をコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/StrictExact.lean`: strict sequence述語、代数的kernel/cokernel accessor、split strict exactness、同型不変性、coordinatewise binary biproductでのstrict exactnessをコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/Pullback.lean`: `MetrizableLCA`のpullback object、limit cone、strict sequenceのcategorical pullback安定性をコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/Pushout.lean`: 閉部分群商、明示的pushout、関係部分群の閉性、標準射の閉埋め込み性、余核写像の開全射性と代数的完全性、strict sequenceのcategorical pushout安定性をコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/ExactCategory.lean`: strict LCA exact-category instanceを未証明引数なしでコンパイル確認した。
-- `LeanLCAExactChallenge/Ext/Yoneda.lean`: exact categoryのconflation chainから作るローカル`YonedaExt`をコンパイル確認した。degree 0はHom、正次数はextension chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大を零元にする関係、split factorを含む鎖を零元にする関係、Baer sum witnessから来る関係で割った群である。分裂一段拡大とsplit factorを含む正次数鎖が0になり、Baer sum witnessがある場合に一段Extで`sum = e₁ + e₂`になり、`baer_sum`も同じ結果を返す定理も確認した。正次数の関係部分群に`sum - a - b`が入る任意のextension chainから同じ加法等式と`baer_sum`等式を出す汎用補題、一段拡大を左からspliceする写像が商群へ降りること、分裂一段拡大を左からspliceした値が0になること、純粋な一段拡大列からなる正次数鎖を固定した左spliceが右側の商群へ降りること、その固定左鎖に分裂因子があれば積が0になることも確認した。MetrizableLCAでは、一段拡大2つからcoordinatewise product extensionを作り、Baer sum witnessのproduct段階に必要な射影互換性を確認した。
+- `LeanLCAExactChallenge/Ext/Yoneda.lean`: exact categoryのconflation chainから作るローカル`YonedaExt`をコンパイル確認した。degree 0はHom、正次数はextension chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大を零元にする関係、split factorを含む鎖を零元にする関係、Baer sum witnessから来る関係で割った群である。分裂一段拡大とsplit factorを含む正次数鎖が0になり、Baer sum witnessがある場合に一段Extで`sum = e₁ + e₂`になり、`baer_sum`も同じ結果を返す定理も確認した。正次数の関係部分群に`sum - a - b`が入る任意のextension chainから同じ加法等式と`baer_sum`等式を出す汎用補題、一段拡大を左からspliceする写像が商群へ降りること、分裂一段拡大を左からspliceした値が0になること、純粋な一段拡大列からなる正次数鎖を固定した左spliceが右側の商群へ降りること、その固定左鎖に分裂因子があれば積が0になることも確認した。MetrizableLCAでは、一段拡大2つからcoordinatewise product extensionを作り、chosen binary biproduct端点へ移送し、Baer sum witnessのproduct段階に必要な射影互換性を確認した。
 - `LeanLCAExactChallenge/Derived/Bounded.lean`: bounded cochain complexのfull subcategoryを、mapping coneがexact acyclicである射でlocalizeする`Dbounded`をコンパイル確認した。
