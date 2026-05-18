@@ -27,6 +27,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.zero_equiv_hom
 #check YonedaRelGenerator
 #check yonedaRelationSubgroup
+#check ShortExactExtension.BaerSumData
 #check YonedaExt.ofExtension_eq_ofExtension_of_rel
 #check YonedaExt.ofExtension_eq_ofExtension_of_relIso
 

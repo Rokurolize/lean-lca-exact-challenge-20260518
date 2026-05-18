@@ -15,12 +15,12 @@
 - 閉部分群による商`MetrizableLCA`、および`(X₂ × Y) / range (x ↦ (f x, -a x))`としての明示的pushoutを構成し、関係部分群の閉性、標準射`Y ⟶ pushout`の閉埋め込み性、余極限性、余核側の開全射・代数的完全性まで進めたLean証明
 - strictなmetrizable LCA列をconflationとする`QuillenExactCategory MetrizableLCA` instance
 - `MetrizableLCA`のbinary biproductを積で構成し、mapping coneに必要な`HasBinaryBiproducts MetrizableLCA` instance
-- exact categoryのconflation chainから作るローカル`YonedaExt`型。degree 0はHom、正次数はconflation chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大を零元にする生成関係で割った群としてコンパイルする
+- exact categoryのconflation chainから作るローカル`YonedaExt`型。degree 0はHom、正次数はconflation chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大、Baer sum witnessから来る生成関係で割った群としてコンパイルする
 - bounded cochain complexのfull subcategoryを、mapping coneがexact acyclicである射でlocalizeする`Dbounded`構成
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
-一方、標準的なYoneda Extとして必要な商関係のうち、Baer sumを表すpushout/pullback図式、長さの異なるYoneda積の関係を商として実装する部分は未完成である。また`Dbounded`はordinary categoryのlocalizationとしては構成したが、stable infinity-categoryそのもののモデルではない。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
+一方、標準的なYoneda Extとして必要な商関係のうち、任意の一段拡大対に対してBaer sum witnessを構成する部分、長さの異なるYoneda積の関係を商として実装する部分は未完成である。また`Dbounded`はordinary categoryのlocalizationとしては構成したが、stable infinity-categoryそのもののモデルではない。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
 
 ## 評価文脈
 

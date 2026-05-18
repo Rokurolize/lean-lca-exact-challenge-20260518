@@ -34,6 +34,8 @@ generators.
 #check (fun (X Y : MetrizableLCA) => PositiveYonedaExtFree (C := MetrizableLCA) X Y 0)
 #check (fun (X Y : MetrizableLCA) => yonedaRelationSubgroup (C := MetrizableLCA) X Y 0)
 #check (fun (X Y : MetrizableLCA) => YonedaRelGenerator (C := MetrizableLCA) X Y)
+#check (fun (X Y : MetrizableLCA) =>
+  ShortExactExtension.BaerSumData (C := MetrizableLCA) (X := X) (Y := Y))
 
 example (X Y : MetrizableLCA) {n : ℕ}
     {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}

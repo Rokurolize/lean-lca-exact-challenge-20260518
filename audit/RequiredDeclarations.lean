@@ -81,6 +81,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.ShortExactExtension
 #check LeanLCAExactChallenge.ShortExactExtension.Iso
 #check LeanLCAExactChallenge.ShortExactExtension.IsoBetween
+#check LeanLCAExactChallenge.ShortExactExtension.BaerSumData
 #check LeanLCAExactChallenge.ShortExactExtension.toYonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension.Rel
