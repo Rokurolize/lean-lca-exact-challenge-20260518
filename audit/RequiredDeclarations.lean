@@ -79,10 +79,17 @@ set_option autoImplicit false
 
 #check LeanLCAExactChallenge.YonedaExt
 #check LeanLCAExactChallenge.ShortExactExtension
+#check LeanLCAExactChallenge.ShortExactExtension.Iso
+#check LeanLCAExactChallenge.ShortExactExtension.toYonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension
+#check LeanLCAExactChallenge.YonedaExtension.Rel
+#check LeanLCAExactChallenge.PositiveYonedaExtFree
 #check LeanLCAExactChallenge.PositiveYonedaExt
+#check LeanLCAExactChallenge.YonedaRelGenerator
+#check LeanLCAExactChallenge.yonedaRelationSubgroup
 #check LeanLCAExactChallenge.YonedaExt.zero_equiv_hom
 #check LeanLCAExactChallenge.YonedaExt.ofExtension
+#check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_ofExtension_of_rel
 #check LeanLCAExactChallenge.YonedaExt.baer_sum
 #check LeanLCAExactChallenge.YonedaExt.instAddCommGroup
 

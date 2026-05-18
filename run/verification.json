@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v13-local-ext-derived-localization",
-  "generated_utc": "2026-05-18T20:02:30Z",
-  "source_tree_hash": "3f4371787188dc54b9614334fbdc3c8954cf868ac1dc285471e882f7a6a49100",
+  "schema": "lean-lca-exact-challenge-verification-v14-yonequotient-relations",
+  "generated_utc": "2026-05-18T20:11:02Z",
+  "source_tree_hash": "9d17179a972daf86091d90e9aa7e0f1008bd14b29d21a30ebb4a49d28f7a52df",
   "commands": [
     {
       "command": "lake build",
@@ -23,7 +23,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "local exact-category YonedaExt family is available as formal conflation-chain groups."
+      "evidence": "local exact-category YonedaExt is available as quotient groups of formal conflation chains by local relation generators."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -33,12 +33,12 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "strict LCA exact category exposes local YonedaExt and Dbounded localization declarations."
+      "evidence": "strict LCA exact category exposes local YonedaExt quotient relation declarations and Dbounded localization declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "terminal_outcome remains failed_nonterminal because standard Yoneda Ext quotient relations and stable infinity-category enhancement are not complete."
+      "evidence": "terminal_outcome remains failed_nonterminal because full standard Yoneda Ext relations and stable infinity-category enhancement are not complete."
     },
     {
       "command": "git diff --check",

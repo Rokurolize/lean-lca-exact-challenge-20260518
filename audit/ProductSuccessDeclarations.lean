@@ -26,9 +26,21 @@ example : QuillenExactCategory MetrizableLCA := by
 example : HasBinaryBiproducts MetrizableLCA := by infer_instance
 
 /-
-Exact-category Ext is defined directly from the local conflation interface.
+Exact-category Ext is defined directly from the local conflation interface and
+positive degrees are quotient groups of formal Yoneda chains by local relation
+generators.
 -/
 #check (fun (X Y : MetrizableLCA) => YonedaExt (C := MetrizableLCA) X Y 1)
+#check (fun (X Y : MetrizableLCA) => PositiveYonedaExtFree (C := MetrizableLCA) X Y 0)
+#check (fun (X Y : MetrizableLCA) => yonedaRelationSubgroup (C := MetrizableLCA) X Y 0)
+#check (fun (X Y : MetrizableLCA) => YonedaRelGenerator (C := MetrizableLCA) X Y)
+
+example (X Y : MetrizableLCA) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.Rel a b) :
+    YonedaExt.ofExtension (C := MetrizableLCA) a =
+      YonedaExt.ofExtension (C := MetrizableLCA) b :=
+  YonedaExt.ofExtension_eq_ofExtension_of_rel h
 
 noncomputable example (X Y : MetrizableLCA) :
     AddCommGroup (YonedaExt (C := MetrizableLCA) X Y 1) := by
