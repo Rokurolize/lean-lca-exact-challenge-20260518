@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v23-positive-chain-split-zero-api",
-  "generated_utc": "2026-05-18T21:01:20Z",
-  "source_tree_hash": "19e1ab16cf869f36635f11a0eca097eb61be1b99df48a7f447f383cc9cea46ba",
+  "schema": "lean-lca-exact-challenge-verification-v24-strict-biprod-exactness",
+  "generated_utc": "2026-05-18T21:10:25Z",
+  "source_tree_hash": "b3f4a41dfeff414e5af18ff0167870976fa818ef52d57988ecd3dbf21daba99f",
   "commands": [
     {
       "command": "lake build",
@@ -18,7 +18,7 @@
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "strict LCA QuillenExactCategory instance is available locally."
+      "evidence": "strict LCA QuillenExactCategory instance and coordinatewise strict biproduct exactness are available locally."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
@@ -33,7 +33,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "strict LCA exact category exposes local YonedaExt quotient relations, split-zero equality, split-factor zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, left one-fold and fixed positive-chain splice products on the right quotient, split-left-factor and split-positive-chain product zero, baer_sum compatibility, and Dbounded localization declarations."
+      "evidence": "strict LCA exact category exposes coordinatewise strict biproduct exactness, local YonedaExt quotient relations, split-zero equality, split-factor zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, left one-fold and fixed positive-chain splice products on the right quotient, split-left-factor and split-positive-chain product zero, baer_sum compatibility, and Dbounded localization declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",

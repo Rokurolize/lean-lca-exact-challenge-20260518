@@ -6,7 +6,7 @@
 - ローカルmathlib `Mathlib/Algebra/Category/Grp/Basic.lean`と`Preadditive.lean`: `AddCommGrpCat`、bundleされた加法可換群、zero morphismを確認した。
 - ローカルmathlib `Mathlib/Topology/Algebra/ContinuousMonoidHom.lean`: `MetrizableLCA.Hom`で使う連続加法準同型の根拠にした。
 - ローカルmathlib `Mathlib/Topology/Metrizable/Basic.lean`: `TopologicalSpace.MetrizableSpace`の根拠にした。
-- ローカルmathlib `Mathlib/Topology/Constructions/SumProd.lean`: split short complexを積への同型として扱うときの`continuous_fst`、`continuous_snd`、`isOpenMap_snd`、積への埋め込みを確認した。
+- ローカルmathlib `Mathlib/Topology/Constructions/SumProd.lean`: split short complexを積への同型として扱うときの`continuous_fst`、`continuous_snd`、`isOpenMap_snd`、積への埋め込み、`IsClosedEmbedding.prodMap`、`IsOpenMap.prodMap`を確認した。
 - ローカルmathlib `Mathlib/Topology/Maps/Basic.lean`: `IsClosedEmbedding`の合成と同型による移送の根拠にした。
 - ローカルmathlib `Mathlib/Topology/Compactness/LocallyCompact.lean`: pullback objectを閉部分空間として作るとき、local compactnessを継承する根拠にした。
 - ローカルmathlib `Mathlib/CategoryTheory/Limits/Shapes/Pullback/PullbackCone.lean`: `MetrizableLCA`の明示的pullback coneがlimitであることを示すために使った。
@@ -29,8 +29,8 @@
 ## ローカル形式化成果
 
 - `LeanLCAExactChallenge/ExactCategory/Basic.lean`: Quillen exact categoryのローカルinterfaceをコンパイル確認した。
-- `LeanLCAExactChallenge/LCA/Basic.lean`: metrizable LCA groupsのbundleされた圏、射、preadditive構造、binary biproductをコンパイル確認した。
-- `LeanLCAExactChallenge/LCA/StrictExact.lean`: strict sequence述語、代数的kernel/cokernel accessor、split strict exactness、同型不変性をコンパイル確認した。
+- `LeanLCAExactChallenge/LCA/Basic.lean`: metrizable LCA groupsのbundleされた圏、射、preadditive構造、binary biproduct、biproduct間のcoordinatewise mapをコンパイル確認した。
+- `LeanLCAExactChallenge/LCA/StrictExact.lean`: strict sequence述語、代数的kernel/cokernel accessor、split strict exactness、同型不変性、coordinatewise binary biproductでのstrict exactnessをコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/Pullback.lean`: `MetrizableLCA`のpullback object、limit cone、strict sequenceのcategorical pullback安定性をコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/Pushout.lean`: 閉部分群商、明示的pushout、関係部分群の閉性、標準射の閉埋め込み性、余核写像の開全射性と代数的完全性、strict sequenceのcategorical pushout安定性をコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/ExactCategory.lean`: strict LCA exact-category instanceを未証明引数なしでコンパイル確認した。

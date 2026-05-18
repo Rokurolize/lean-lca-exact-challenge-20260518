@@ -57,6 +57,47 @@ lemma algebraic_cokernel_of_strict {S : ShortComplex MetrizableLCA.{u}}
     Function.Surjective (S.g : S.X₂ → S.X₃) :=
   hS.surjective
 
+/-- Coordinatewise product of two short complexes. -/
+def strictShortExactBiprodComplex (S T : ShortComplex MetrizableLCA.{u}) :
+    ShortComplex MetrizableLCA.{u} where
+  X₁ := biprodObj S.X₁ T.X₁
+  X₂ := biprodObj S.X₂ T.X₂
+  X₃ := biprodObj S.X₃ T.X₃
+  f := biprodMap S.f T.f
+  g := biprodMap S.g T.g
+  zero := by
+    ext p
+    · exact congrArg (fun h : S.X₁ ⟶ S.X₃ => h p.1) S.zero
+    · exact congrArg (fun h : T.X₁ ⟶ T.X₃ => h p.2) T.zero
+
+lemma strictShortExact_biprod {S T : ShortComplex MetrizableLCA.{u}}
+    (hS : strictShortExact S) (hT : strictShortExact T) :
+    strictShortExact (strictShortExactBiprodComplex S T) where
+  closed_inclusion := by
+    change IsClosedEmbedding (Prod.map (S.f : S.X₁ → S.X₂) (T.f : T.X₁ → T.X₂))
+    exact hS.closed_inclusion.prodMap hT.closed_inclusion
+  open_map := by
+    change IsOpenMap (Prod.map (S.g : S.X₂ → S.X₃) (T.g : T.X₂ → T.X₃))
+    exact hS.open_map.prodMap hT.open_map
+  surjective := by
+    intro p
+    rcases hS.surjective p.1 with ⟨x, hx⟩
+    rcases hT.surjective p.2 with ⟨y, hy⟩
+    exact ⟨(x, y), by
+      change (S.g x, T.g y) = p
+      exact Prod.ext hx hy⟩
+  algebraic_exact := by
+    intro p hp
+    have hS_zero : S.g p.1 = 0 := by
+      simpa [strictShortExactBiprodComplex] using congrArg Prod.fst hp
+    have hT_zero : T.g p.2 = 0 := by
+      simpa [strictShortExactBiprodComplex] using congrArg Prod.snd hp
+    rcases hS.algebraic_exact p.1 hS_zero with ⟨x, hx⟩
+    rcases hT.algebraic_exact p.2 hT_zero with ⟨y, hy⟩
+    exact ⟨(x, y), by
+      change (S.f x, T.f y) = p
+      exact Prod.ext hx hy⟩
+
 /--
 A splitting of a short complex identifies the middle LCA group with the product
 of the left and right terms.

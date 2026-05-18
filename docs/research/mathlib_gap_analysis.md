@@ -8,6 +8,7 @@
 - `MetrizableLCA`は連続加法準同型を射にしたbundleされた圏としてコンパイルする。
 - strict short exact sequenceは、閉埋め込み、開全射、忘却後の代数的完全性を含む述語としてコンパイルする。
 - split short complexがstrict short exact sequenceになること、strict short exact sequenceが`ShortComplex`の同型で保たれることはLeanで証明済みである。
+- strict short exact sequenceがcoordinatewise binary biproductで保たれることはLeanで証明済みである。
 - `MetrizableLCA`のpullback objectは、積の閉部分群として構成し、そのconeがlimitであること、片側の射が全射なら対応するpullback射影も全射になること、kernel側の代数的完全性と閉埋め込み性をpullbackへ移せること、strict sequenceのpullback安定性をLeanで証明済みである。
 - 閉部分群による商`MetrizableLCA`を構成し、pushoutを`(X₂ × Y) / range (x ↦ (f x, -a x))`としてLeanで構成した。この関係部分群が閉であること、標準射`Y ⟶ pushout`が閉埋め込みであること、pushout余極限であること、元の`S.g`へ降りる余核写像が開写像・全射・代数的に完全であることを証明済みである。
 - 目標のLCA exact-category instanceは、未証明の引数なしで`QuillenExactCategory MetrizableLCA`として利用できる。
@@ -29,9 +30,12 @@
 
 ## strict LCA安定性定理
 
-このprojectは`MetrizableLCA.strictShortExact`を定義している。`LeanLCAExactChallenge/LCA/StrictExact.lean`では、split short complexからstrict short exact sequenceを作る補助定理と、strict short exact sequenceの同型不変性を証明した。`LeanLCAExactChallenge/LCA/Pullback.lean`では、`MetrizableLCA`のpullbackを積の閉部分群として構成し、全射と開写像性をpullback射影へ移す補題、kernel mapの代数的完全性移送、kernel mapの閉埋め込み移送、そしてcategorical pullbackでのstrict short exactnessまで証明した。`LeanLCAExactChallenge/LCA/Quotient.lean`では閉部分群による商が再び`MetrizableLCA`になることを証明した。`LeanLCAExactChallenge/LCA/Pushout.lean`では、明示的pushout、関係部分群`range (x ↦ (f x, -a x))`の閉性、標準射`Y ⟶ pushout`の閉埋め込み性、余極限性、余核写像の開全射性と代数的完全性、そしてcategorical pushoutでのstrict short exactnessまで証明した。これにより、次の宣言は未証明引数なしで利用できる。
+このprojectは`MetrizableLCA.strictShortExact`を定義している。`LeanLCAExactChallenge/LCA/StrictExact.lean`では、split short complexからstrict short exact sequenceを作る補助定理、strict short exact sequenceの同型不変性、coordinatewise binary biproductでのstrict short exactnessを証明した。`LeanLCAExactChallenge/LCA/Basic.lean`では、biproduct間のcoordinatewise map `MetrizableLCA.biprodMap`も追加した。`LeanLCAExactChallenge/LCA/Pullback.lean`では、`MetrizableLCA`のpullbackを積の閉部分群として構成し、全射と開写像性をpullback射影へ移す補題、kernel mapの代数的完全性移送、kernel mapの閉埋め込み移送、そしてcategorical pullbackでのstrict short exactnessまで証明した。`LeanLCAExactChallenge/LCA/Quotient.lean`では閉部分群による商が再び`MetrizableLCA`になることを証明した。`LeanLCAExactChallenge/LCA/Pushout.lean`では、明示的pushout、関係部分群`range (x ↦ (f x, -a x))`の閉性、標準射`Y ⟶ pushout`の閉埋め込み性、余極限性、余核写像の開全射性と代数的完全性、そしてcategorical pushoutでのstrict short exactnessまで証明した。これにより、次の宣言は未証明引数なしで利用できる。
 
 ```lean
+LeanLCAExactChallenge.MetrizableLCA.biprodMap
+LeanLCAExactChallenge.MetrizableLCA.strictShortExactBiprodComplex
+LeanLCAExactChallenge.MetrizableLCA.strictShortExact_biprod
 LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory
 LeanLCAExactChallenge.MetrizableLCA.instQuillenExactCategory
 ```

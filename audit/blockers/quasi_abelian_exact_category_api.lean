@@ -20,5 +20,6 @@ example : strict_lca_quillen_exact_category_statement.{u} :=
   ⟨MetrizableLCA.quillenExactCategory⟩
 
 #check (inferInstance : QuillenExactCategory MetrizableLCA.{u})
+#check MetrizableLCA.strictShortExact_biprod
 
 end LeanLCAExactChallenge

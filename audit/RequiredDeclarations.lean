@@ -13,12 +13,15 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA
 #check LeanLCAExactChallenge.MetrizableLCA.Hom
 #check LeanLCAExactChallenge.MetrizableLCA.biprodObj
+#check LeanLCAExactChallenge.MetrizableLCA.biprodMap
 #check LeanLCAExactChallenge.MetrizableLCA.binaryBiproductData
 #check LeanLCAExactChallenge.MetrizableLCA.strictShortExact
 #check LeanLCAExactChallenge.MetrizableLCA.closed_inclusion_of_strict
 #check LeanLCAExactChallenge.MetrizableLCA.open_surjection_of_strict
 #check LeanLCAExactChallenge.MetrizableLCA.algebraic_kernel_of_strict
 #check LeanLCAExactChallenge.MetrizableLCA.algebraic_cokernel_of_strict
+#check LeanLCAExactChallenge.MetrizableLCA.strictShortExactBiprodComplex
+#check LeanLCAExactChallenge.MetrizableLCA.strictShortExact_biprod
 #check LeanLCAExactChallenge.MetrizableLCA.quotientObj
 #check LeanLCAExactChallenge.MetrizableLCA.quotientMap
 #check LeanLCAExactChallenge.MetrizableLCA.quotientMap_surjective

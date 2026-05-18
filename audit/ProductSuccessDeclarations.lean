@@ -25,6 +25,15 @@ example : QuillenExactCategory MetrizableLCA := by
 /-- The strict metrizable LCA category has the biproducts needed for mapping cones. -/
 example : HasBinaryBiproducts MetrizableLCA := by infer_instance
 
+/--
+Strict short exact sequences in the metrizable LCA model are stable under
+coordinatewise binary biproducts.
+-/
+example {S T : ShortComplex MetrizableLCA}
+    (hS : MetrizableLCA.strictShortExact S) (hT : MetrizableLCA.strictShortExact T) :
+    MetrizableLCA.strictShortExact (MetrizableLCA.strictShortExactBiprodComplex S T) :=
+  MetrizableLCA.strictShortExact_biprod hS hT
+
 /-
 Exact-category Ext is defined directly from the local conflation interface and
 positive degrees are quotient groups of formal Yoneda chains by local relation

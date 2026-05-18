@@ -228,6 +228,23 @@ def biprodDesc {A B T : MetrizableLCA.{u}} (f : A ⟶ T) (g : B ⟶ T) :
       continuous_toFun := (f.hom.continuous.comp continuous_fst).add
         (g.hom.continuous.comp continuous_snd) }
 
+/-- Coordinatewise map between binary biproduct objects. -/
+def biprodMap {A B A' B' : MetrizableLCA.{u}} (f : A ⟶ A') (g : B ⟶ B') :
+    biprodObj A B ⟶ biprodObj A' B' where
+  hom' :=
+    { toFun := fun p => (f p.1, g p.2)
+      map_zero' := by simp
+      map_add' := by
+        intro x y
+        ext <;> simp [map_add]
+      continuous_toFun :=
+        (f.hom.continuous.comp continuous_fst).prodMk
+          (g.hom.continuous.comp continuous_snd) }
+
+@[simp]
+lemma biprodMap_apply {A B A' B' : MetrizableLCA.{u}} (f : A ⟶ A') (g : B ⟶ B')
+    (p : A × B) : biprodMap f g p = (f p.1, g p.2) := rfl
+
 @[simp]
 lemma biprodLift_fst {T A B : MetrizableLCA.{u}} (f : T ⟶ A) (g : T ⟶ B) :
     biprodLift f g ≫ biprodFst A B = f := by

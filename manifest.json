@@ -1,6 +1,6 @@
 {
-  "schema": "lean-lca-exact-challenge-manifest-v23-positive-chain-split-zero-api",
-  "generated_utc": "2026-05-18T21:01:20Z",
+  "schema": "lean-lca-exact-challenge-manifest-v24-strict-biprod-exactness",
+  "generated_utc": "2026-05-18T21:10:25Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -35,8 +35,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/LCA/Basic.lean",
-      "bytes": 11020,
-      "sha256": "411b5d06ffda6f9b384ccc03f88a525cbb4f220b792a65a6cbf0c615301719b5"
+      "bytes": 11632,
+      "sha256": "52c49ba01423677865f65629b0a5cca21051ae20331be2931d77f44854faae83"
     },
     {
       "path": "LeanLCAExactChallenge/LCA/ExactCategory.lean",
@@ -60,8 +60,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/LCA/StrictExact.lean",
-      "bytes": 9402,
-      "sha256": "ab5359844f592e9603157dfdc9be543ae7aef0a6b3fba21398d02f657be157f1"
+      "bytes": 11057,
+      "sha256": "1838dc97973931e624b0004025e000dfc1cd09c92b75dca3dd02835458a46e4e"
     },
     {
       "path": "LeanLCAExactChallenge/MathlibSurvey.lean",
@@ -70,18 +70,18 @@
     },
     {
       "path": "README_FOR_REVIEW.md",
-      "bytes": 4962,
-      "sha256": "f504ed99cb2b2a2adc7431b0b657c4496ccd2fada96696a98252efc239279a61"
+      "bytes": 5102,
+      "sha256": "0d59e692a3ebbfc14c800a5bf03c906a2087283875fbc9b886a5c25717d86f95"
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 8422,
-      "sha256": "31c7e33336820a3e188de1c2efb10dec1d3eb09b906c04b3e30fa69d91c3f434"
+      "bytes": 8801,
+      "sha256": "77d012f6e96f266c2cc294f4b364b06f63f0123161c6a6c40551cb1483759c7b"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
-      "bytes": 8504,
-      "sha256": "3ff080a26341517bcde936c559b619091dbaa007064a80364144988d17a96653"
+      "bytes": 8697,
+      "sha256": "274282c5ebd793d0ae3762e577005666bbca3c7d401881a49cf77d803930821e"
     },
     {
       "path": "audit/blockers/derived_infinity_exact_category_api.lean",
@@ -90,8 +90,8 @@
     },
     {
       "path": "audit/blockers/quasi_abelian_exact_category_api.lean",
-      "bytes": 675,
-      "sha256": "5eeeb957a72d9b651592e90857ad5f3959e008de93f6f6f36e4bfc3b62289e96"
+      "bytes": 720,
+      "sha256": "d6c615831376a094c108a084d4ffb71927e842dc00ffed0394836d6f3bda3631"
     },
     {
       "path": "audit/blockers/yoneda_ext_exact_category_api.lean",
@@ -115,8 +115,8 @@
     },
     {
       "path": "docs/research/mathlib_gap_analysis.md",
-      "bytes": 8726,
-      "sha256": "59341beec81e9560d49d0ccbfd50b45df45149966b7115760e4cb360c42de8f5"
+      "bytes": 9200,
+      "sha256": "3c8858701d0e47e6c89ac7d247b9db8b392eef1c0ef28677848b91772db4a32b"
     },
     {
       "path": "docs/research/mathlib_initial_survey.md",
@@ -125,24 +125,24 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "bytes": 11243,
-      "sha256": "45fe832353cbfe91cc12e2889c0a5bd54403394c768d77b3127f2a61dcbc4561"
+      "bytes": 11668,
+      "sha256": "14dca0fea67c74e3beefebcbf130a4d5c2b05ffb706c757891eba13470ebe0d6"
     },
     {
       "path": "docs/research/sources.md",
-      "bytes": 6029,
-      "sha256": "92dd14ff08036600e328676a445d24d307828c8754b8b3a24538abe9336f4d6c"
+      "bytes": 6173,
+      "sha256": "58eb53d3d59d6cba2a4cddba273cab16d5902a41eafb208f38111177bd5fbab1"
     },
     {
       "path": "run/verification.json",
-      "bytes": 2502,
-      "sha256": "556c02e8a83698bdec5d9d4e45259b222bbac24e25d69b43c773f71ec9c5fa97"
+      "bytes": 2586,
+      "sha256": "21ef446abc5b9b927e9191d1404e05967118d9457299a0f25dba9c90fb1176f9"
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 12542,
-      "sha256": "fb30ff1d6228bcc6dfd364aa8526486b8be0c466f7133581baf62fd17def44e2"
+      "bytes": 12844,
+      "sha256": "006ad9a5f64fee5b0bae80c1038d2bf380d9adcdec1ee9617de37d69fac689d4"
     }
   ],
-  "content_hash_tree": "d7b2104c789cdd0fff4a883ffa96e08d7e223d253c28f1399ea988d2b9b1ebcf"
+  "content_hash_tree": "5a23681441900b0c1918dd03f4a59366a1fc14f831d0bab2710af8dd032f9fd1"
 }
