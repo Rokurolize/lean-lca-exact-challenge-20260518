@@ -169,6 +169,16 @@ noncomputable example (X X' Y : MetrizableLCA)
       (MetrizableLCA.shortExactExtensionPullback e' a) :=
   MetrizableLCA.shortExactExtensionPullbackIso a h
 
+noncomputable example (X X' Y Y' : MetrizableLCA) (β : Y ≅ Y')
+    {e : ShortExactExtension (C := MetrizableLCA) X Y}
+    {e' : ShortExactExtension (C := MetrizableLCA) X Y'}
+    (h : ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X) β e e')
+    (a : X' ⟶ X) :
+    ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X') β
+      (MetrizableLCA.shortExactExtensionPullback e a)
+      (MetrizableLCA.shortExactExtensionPullback e' a) :=
+  MetrizableLCA.shortExactExtensionPullbackIsoBetween a h
+
 noncomputable example (X X' Y : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : X' ⟶ X)
     (s : e.shortComplex.Splitting) :
@@ -251,6 +261,23 @@ noncomputable example (X X' Y : MetrizableLCA) {n : ℕ}
       YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA) a
         (fun {_} e => MetrizableLCA.shortExactExtensionPullback e a) e' :=
   YonedaExt.pullbackHeadOfExtension_eq_of_metrizable_rel h a
+
+noncomputable example (X X' Y : MetrizableLCA) {n : ℕ}
+    {e e' : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) e e') (a : X' ⟶ X) :
+    YonedaExtension.RelIso (CategoryTheory.Iso.refl X')
+      (MetrizableLCA.yonedaExtensionPullbackHead a e)
+      (MetrizableLCA.yonedaExtensionPullbackHead a e') :=
+  MetrizableLCA.yonedaExtensionPullbackHeadRelIso a h
+
+noncomputable example (X X' Y : MetrizableLCA) {n : ℕ}
+    {e e' : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) e e') (a : X' ⟶ X) :
+    YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA) a
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e a) e =
+      YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA) a
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e a) e' :=
+  YonedaExt.pullbackHeadOfExtension_eq_of_metrizable_relIso h a
 
 noncomputable example (X X' Y : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : X' ⟶ X) :

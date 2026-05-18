@@ -372,6 +372,97 @@ noncomputable def shortExactExtensionPullbackIso
               (shortExactExtensionPullback_i_map e' a).symm
   · exact hom_fst
 
+/-- Canonical pullback preserves isomorphism of one-fold extensions over endpoint isomorphisms. -/
+noncomputable def shortExactExtensionPullbackIsoBetween
+    {X X' Y Y' : MetrizableLCA.{u}} {β : Y ≅ Y'}
+    {e : ShortExactExtension (C := MetrizableLCA.{u}) X Y}
+    {e' : ShortExactExtension (C := MetrizableLCA.{u}) X Y'}
+    (a : X' ⟶ X)
+    (h : ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X) β e e') :
+    ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X') β
+      (shortExactExtensionPullback e a) (shortExactExtensionPullback e' a) := by
+  have h_hom_p : h.middleIso.hom ≫ e'.p = e.p := by
+    simpa using h.hom_p
+  let homMap : pullbackObj a e.p ⟶ pullbackObj a e'.p :=
+    pullbackLift a e'.p (pullbackFst a e.p) (pullbackSnd a e.p ≫ h.middleIso.hom) (by
+      rw [Category.assoc, h_hom_p]
+      exact pullback_condition a e.p)
+  have h_inv_p : h.middleIso.inv ≫ e.p = e'.p := by
+    rw [← h_hom_p, ← Category.assoc, h.middleIso.inv_hom_id, Category.id_comp]
+  let invMap : pullbackObj a e'.p ⟶ pullbackObj a e.p :=
+    pullbackLift a e.p (pullbackFst a e'.p) (pullbackSnd a e'.p ≫ h.middleIso.inv) (by
+      rw [Category.assoc, h_inv_p]
+      exact pullback_condition a e'.p)
+  have hom_fst : homMap ≫ pullbackFst a e'.p = pullbackFst a e.p := by
+    dsimp [homMap]
+    rw [pullbackLift_fst]
+  have hom_snd : homMap ≫ pullbackSnd a e'.p = pullbackSnd a e.p ≫ h.middleIso.hom := by
+    dsimp [homMap]
+    rw [pullbackLift_snd]
+  have inv_fst : invMap ≫ pullbackFst a e.p = pullbackFst a e'.p := by
+    dsimp [invMap]
+    rw [pullbackLift_fst]
+  have inv_snd : invMap ≫ pullbackSnd a e.p = pullbackSnd a e'.p ≫ h.middleIso.inv := by
+    dsimp [invMap]
+    rw [pullbackLift_snd]
+  refine
+    { middleIso :=
+        { hom := homMap
+          inv := invMap
+          hom_inv_id := ?_
+          inv_hom_id := ?_ }
+      i_hom := ?_
+      hom_p := ?_ }
+  · apply pullback_hom_ext a e.p
+    · change homMap ≫ (invMap ≫ pullbackFst a e.p) = pullbackFst a e.p
+      rw [inv_fst, hom_fst]
+    · change homMap ≫ (invMap ≫ pullbackSnd a e.p) = pullbackSnd a e.p
+      rw [inv_snd]
+      change (homMap ≫ pullbackSnd a e'.p) ≫ h.middleIso.inv = pullbackSnd a e.p
+      rw [hom_snd]
+      simp [Category.assoc]
+  · apply pullback_hom_ext a e'.p
+    · change invMap ≫ (homMap ≫ pullbackFst a e'.p) = pullbackFst a e'.p
+      rw [hom_fst, inv_fst]
+    · change invMap ≫ (homMap ≫ pullbackSnd a e'.p) = pullbackSnd a e'.p
+      rw [hom_snd]
+      change (invMap ≫ pullbackSnd a e.p) ≫ h.middleIso.hom = pullbackSnd a e'.p
+      rw [inv_snd]
+      simp [Category.assoc]
+  · apply pullback_hom_ext a e'.p
+    · calc
+        ((shortExactExtensionPullback e a).i ≫ homMap) ≫ pullbackFst a e'.p =
+            (shortExactExtensionPullback e a).i ≫ (homMap ≫ pullbackFst a e'.p) :=
+              Category.assoc _ _ _
+        _ = (shortExactExtensionPullback e a).i ≫ pullbackFst a e.p := by
+              exact congrArg (fun k => (shortExactExtensionPullback e a).i ≫ k) hom_fst
+        _ = 0 :=
+              (shortExactExtensionPullback e a).zero
+        _ = β.hom ≫ 0 := by
+              rw [comp_zero]
+        _ = β.hom ≫ ((shortExactExtensionPullback e' a).i ≫ pullbackFst a e'.p) := by
+              exact congrArg (fun k => β.hom ≫ k)
+                ((shortExactExtensionPullback e' a).zero).symm
+        _ = (β.hom ≫ (shortExactExtensionPullback e' a).i) ≫ pullbackFst a e'.p :=
+              (Category.assoc _ _ _).symm
+    · calc
+        ((shortExactExtensionPullback e a).i ≫ homMap) ≫ pullbackSnd a e'.p =
+            (shortExactExtensionPullback e a).i ≫ (homMap ≫ pullbackSnd a e'.p) :=
+              Category.assoc _ _ _
+        _ = (shortExactExtensionPullback e a).i ≫
+              (pullbackSnd a e.p ≫ h.middleIso.hom) := by
+              exact congrArg (fun k => (shortExactExtensionPullback e a).i ≫ k) hom_snd
+        _ = ((shortExactExtensionPullback e a).i ≫ pullbackSnd a e.p) ≫
+              h.middleIso.hom :=
+              (Category.assoc _ _ _).symm
+        _ = e.i ≫ h.middleIso.hom := by
+              exact congrArg (fun k => k ≫ h.middleIso.hom)
+                (shortExactExtensionPullback_i_map e a)
+        _ = β.hom ≫ e'.i := h.i_hom
+        _ = β.hom ≫ ((shortExactExtensionPullback e' a).i ≫ pullbackSnd a e'.p) := by
+              rw [shortExactExtensionPullback_i_map]
+  · simpa using hom_fst
+
 /-- The explicit pullback of a split short complex is split. -/
 noncomputable def pullbackSplitting
     {S : ShortComplex MetrizableLCA.{u}} {Y : MetrizableLCA.{u}}
@@ -718,6 +809,25 @@ def RelIso.composeTailHom {X X' Y Y' : C} {α : X ≅ X'} (f : Y ⟶ Y') :
       RelIso.cons he htail =>
       RelIso.cons he (RelIso.composeTailHom f htail)
 
+/--
+Head pullback preserves recursive chain isomorphisms when one-fold pullback
+preserves `IsoBetween` over identity quotient endpoints.
+-/
+def RelIso.pullbackHeadWith {X X' Y : C} (f : X' ⟶ X)
+    (pull : {Z : C} → (e : ShortExactExtension X Z) → ShortExactExtension X' Z)
+    (pullIsoBetween :
+      ∀ {Z Z' : C} {β : Z ≅ Z'} {e : ShortExactExtension X Z}
+        {e' : ShortExactExtension X Z'},
+        ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X) β e e' →
+          ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X') β (pull e) (pull e')) :
+    {n : ℕ} → {a b : YonedaExtension X Y (n + 1)} →
+      RelIso (CategoryTheory.Iso.refl X) a b →
+        RelIso (CategoryTheory.Iso.refl X')
+          (YonedaExtension.pullbackHeadWith f pull a)
+          (YonedaExtension.pullbackHeadWith f pull b)
+  | _, _, _, RelIso.cons he htail =>
+      RelIso.cons (pullIsoBetween he) htail
+
 /-- Witnessed Baer sums of positive-degree extension chains. -/
 inductive BaerSumData :
     {X Y : C} → {n : ℕ} →
@@ -1001,6 +1111,18 @@ noncomputable def yonedaExtensionPullbackHeadRel
   YonedaExtension.Rel.pullbackHeadWith (C := MetrizableLCA.{u}) f
     (fun {_} e => shortExactExtensionPullback e f)
     (fun {_} {_ _} h => shortExactExtensionPullbackIso f h)
+    h
+
+/-- Canonical MetrizableLCA head pullback preserves recursive chain isomorphisms. -/
+noncomputable def yonedaExtensionPullbackHeadRelIso
+    {X X' Y : MetrizableLCA.{u}} (f : X' ⟶ X) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) :
+    YonedaExtension.RelIso (C := MetrizableLCA.{u}) (CategoryTheory.Iso.refl X')
+      (yonedaExtensionPullbackHead f a) (yonedaExtensionPullbackHead f b) :=
+  YonedaExtension.RelIso.pullbackHeadWith (C := MetrizableLCA.{u}) f
+    (fun {_} e => shortExactExtensionPullback e f)
+    (fun {_ _} {_} {_ _} h => shortExactExtensionPullbackIsoBetween f h)
     h
 
 /-- Push out the tail of a positive Yoneda chain in `MetrizableLCA`. -/
@@ -1303,6 +1425,18 @@ theorem pullbackHeadOfExtension_eq_of_metrizable_rel
         (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) b :=
   YonedaExt.ofExtension_eq_ofExtension_of_rel
     (MetrizableLCA.yonedaExtensionPullbackHeadRel f h)
+
+/-- Head pullback respects recursively isomorphic MetrizableLCA chains in Ext. -/
+theorem pullbackHeadOfExtension_eq_of_metrizable_relIso
+    {X X' Y : MetrizableLCA.{u}} {n : ℕ}
+    {a b : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA.{u}) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) a =
+      YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA.{u}) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) b :=
+  YonedaExt.ofExtension_eq_ofExtension_of_relIso
+    (MetrizableLCA.yonedaExtensionPullbackHeadRelIso f h)
 
 /-- Head pullback sends a MetrizableLCA right-split chain to zero in Ext. -/
 theorem pullbackHeadOfExtension_eq_zero_of_metrizable_rightSplitData
