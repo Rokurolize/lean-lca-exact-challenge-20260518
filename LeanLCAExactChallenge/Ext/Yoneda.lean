@@ -404,6 +404,12 @@ inductive BaerSumData :
       {e₁ e₂ sum : ShortExactExtension X Y}
       (h : ShortExactExtension.BaerSumData e₁ e₂ sum) :
       BaerSumData e₁.toYonedaExtension e₂.toYonedaExtension sum.toYonedaExtension
+  | head {X Y Z : C} {n : ℕ} [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+      {e₁ e₂ sum : ShortExactExtension X Y}
+      (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+      (tail : YonedaExtension Y Z (n + 1)) :
+      BaerSumData (YonedaExtension.cons e₁ tail) (YonedaExtension.cons e₂ tail)
+        (YonedaExtension.cons sum tail)
   | cons {X Y Z : C} {n : ℕ} (e : ShortExactExtension X Z)
       {a b sum : YonedaExtension Z Y (n + 1)}
       (h : BaerSumData a b sum) :
@@ -673,6 +679,17 @@ theorem ofExtension_eq_add_of_baerChain {a b sum : YonedaExtension X Y (n + 1)}
     (sum := sum) <|
     AddSubgroup.subset_closure (YonedaRelGenerator.baerChain (X := X) (Y := Y) h)
 
+/-- A Baer sum in the leftmost one-fold factor remains addition after a fixed positive tail. -/
+theorem ofExtension_eq_add_of_baerHead [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {Z : C} {e₁ e₂ sum : ShortExactExtension X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (tail : YonedaExtension Y Z (n + 1)) :
+    ofExtension (X := X) (Y := Z) (n := n + 1) (YonedaExtension.cons sum tail) =
+      ofExtension (X := X) (Y := Z) (n := n + 1) (YonedaExtension.cons e₁ tail) +
+        ofExtension (X := X) (Y := Z) (n := n + 1) (YonedaExtension.cons e₂ tail) := by
+  exact ofExtension_eq_add_of_baerChain
+    (YonedaExtension.BaerSumData.head h tail)
+
 /-- Baer addition, represented by the additive group operation on the local Ext group. -/
 noncomputable def baer_sum (a b : YonedaExt X Y n) : YonedaExt X Y n :=
   a + b
@@ -709,6 +726,18 @@ theorem baer_sum_ofExtension_eq_of_baerChain
       ofExtension (X := X) (Y := Y) (n := n) sum := by
   dsimp [baer_sum]
   exact (ofExtension_eq_add_of_baerChain h).symm
+
+/-- A Baer sum in the leftmost one-fold factor computes `baer_sum` after a fixed positive tail. -/
+theorem baer_sum_ofExtension_eq_of_baerHead [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {Z : C} {e₁ e₂ sum : ShortExactExtension X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (tail : YonedaExtension Y Z (n + 1)) :
+    baer_sum
+        (ofExtension (X := X) (Y := Z) (n := n + 1) (YonedaExtension.cons e₁ tail))
+        (ofExtension (X := X) (Y := Z) (n := n + 1) (YonedaExtension.cons e₂ tail)) =
+      ofExtension (X := X) (Y := Z) (n := n + 1) (YonedaExtension.cons sum tail) := by
+  dsimp [baer_sum]
+  exact (ofExtension_eq_add_of_baerHead h tail).symm
 
 section LeftProduct
 

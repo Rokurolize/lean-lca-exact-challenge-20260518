@@ -196,6 +196,37 @@ noncomputable example (X Y : MetrizableLCA)
   YonedaExt.baer_sum_ofExtension_eq_of_baer
     (MetrizableLCA.shortExactExtensionBaerSumData e₁ e₂)
 
+noncomputable example (X Y Z : MetrizableLCA) {n : ℕ}
+    (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y)
+    (tail : YonedaExtension (C := MetrizableLCA) Y Z (n + 1)) :
+    YonedaExtension.BaerSumData
+      (YonedaExtension.cons e₁ tail)
+      (YonedaExtension.cons e₂ tail)
+      (YonedaExtension.cons (MetrizableLCA.shortExactExtensionBaerSum e₁ e₂) tail) :=
+  YonedaExtension.BaerSumData.head
+    (MetrizableLCA.shortExactExtensionBaerSumData e₁ e₂) tail
+
+noncomputable example (X Y Z : MetrizableLCA) {n : ℕ}
+    (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y)
+    (tail : YonedaExtension (C := MetrizableLCA) Y Z (n + 1)) :
+    YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.cons (MetrizableLCA.shortExactExtensionBaerSum e₁ e₂) tail) =
+      YonedaExt.ofExtension (C := MetrizableLCA) (YonedaExtension.cons e₁ tail) +
+        YonedaExt.ofExtension (C := MetrizableLCA) (YonedaExtension.cons e₂ tail) :=
+  YonedaExt.ofExtension_eq_add_of_baerHead
+    (MetrizableLCA.shortExactExtensionBaerSumData e₁ e₂) tail
+
+noncomputable example (X Y Z : MetrizableLCA) {n : ℕ}
+    (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y)
+    (tail : YonedaExtension (C := MetrizableLCA) Y Z (n + 1)) :
+    YonedaExt.baer_sum
+        (YonedaExt.ofExtension (C := MetrizableLCA) (YonedaExtension.cons e₁ tail))
+        (YonedaExt.ofExtension (C := MetrizableLCA) (YonedaExtension.cons e₂ tail)) =
+      YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.cons (MetrizableLCA.shortExactExtensionBaerSum e₁ e₂) tail) :=
+  YonedaExt.baer_sum_ofExtension_eq_of_baerHead
+    (MetrizableLCA.shortExactExtensionBaerSumData e₁ e₂) tail
+
 example (X Y : MetrizableLCA) {n : ℕ}
     {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
     (h : YonedaExtension.Rel a b) :

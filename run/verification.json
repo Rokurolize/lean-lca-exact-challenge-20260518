@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v27-canonical-baer-sum-data",
-  "generated_utc": "2026-05-18T21:42:19Z",
-  "source_tree_hash": "61687b39f45baba28bbf6c3f6bff54a72551c6f79baa86d01933b64814363dc9",
+  "schema": "lean-lca-exact-challenge-verification-v28-baer-head-tail",
+  "generated_utc": "2026-05-18T21:51:53Z",
+  "source_tree_hash": "64564075e32360fd5c57631ddcf52133a509302c7b377324ec38009c5b6366fd",
   "commands": [
     {
       "command": "lake build",
@@ -23,7 +23,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "local exact-category YonedaExt quotient exposes relation generators, split-zero, split-factor zero, relation-membership addition, witnessed Baer-chain addition, left one-fold splice product on quotients, split-left-factor product zero, fixed positive-chain left splice on the right quotient, split fixed-positive-chain product zero, baer_sum API compatibility theorems, chosen-biproduct product-extension API, and canonical MetrizableLCA BaerSumData for arbitrary one-fold extension pairs."
+      "evidence": "local exact-category YonedaExt quotient exposes relation generators, split-zero, split-factor zero, relation-membership addition, witnessed Baer-chain addition, left-head Baer addition after a fixed positive tail, left one-fold splice product on quotients, split-left-factor product zero, fixed positive-chain left splice on the right quotient, split fixed-positive-chain product zero, baer_sum API compatibility theorems, chosen-biproduct product-extension API, and canonical MetrizableLCA BaerSumData for arbitrary one-fold extension pairs."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -33,7 +33,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "strict LCA exact category exposes coordinatewise strict biproduct exactness, explicit-to-chosen biproduct bridge, diagonal/codiagonal API, product extensions for pairs of one-fold MetrizableLCA extensions on chosen binary biproduct endpoints, pullback/pushout extension constructors, canonical BaerSumData, local YonedaExt quotient relations, split-zero equality, split-factor zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, left one-fold and fixed positive-chain splice products on the right quotient, split-left-factor and split-positive-chain product zero, baer_sum compatibility, and Dbounded localization declarations."
+      "evidence": "strict LCA exact category exposes coordinatewise strict biproduct exactness, explicit-to-chosen biproduct bridge, diagonal/codiagonal API, product extensions for pairs of one-fold MetrizableLCA extensions on chosen binary biproduct endpoints, pullback/pushout extension constructors, canonical BaerSumData, local YonedaExt quotient relations, split-zero equality, split-factor zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, left-head Baer addition after a fixed positive tail, left one-fold and fixed positive-chain splice products on the right quotient, split-left-factor and split-positive-chain product zero, baer_sum compatibility, and Dbounded localization declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",

@@ -120,6 +120,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExtension.Rel
 #check LeanLCAExactChallenge.YonedaExtension.RelIso
 #check LeanLCAExactChallenge.YonedaExtension.BaerSumData
+#check LeanLCAExactChallenge.YonedaExtension.BaerSumData.head
 #check LeanLCAExactChallenge.YonedaExtension.RightSplitData
 #check LeanLCAExactChallenge.YonedaExtension.SplitFactorData
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain
@@ -143,10 +144,12 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_relation_mem
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_baer
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_baerChain
+#check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_baerHead
 #check LeanLCAExactChallenge.YonedaExt.baer_sum
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_ofExtension_eq_of_relation_mem
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_ofExtension_eq_of_baer
 #check LeanLCAExactChallenge.YonedaExt.baer_sum_ofExtension_eq_of_baerChain
+#check LeanLCAExactChallenge.YonedaExt.baer_sum_ofExtension_eq_of_baerHead
 #check LeanLCAExactChallenge.YonedaExt.consLeftFreeHom
 #check LeanLCAExactChallenge.YonedaExt.consLeft_relationSubgroup_le
 #check LeanLCAExactChallenge.YonedaExt.leftProductByExtension
