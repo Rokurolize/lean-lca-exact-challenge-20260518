@@ -131,6 +131,14 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.ofExtension_pushoutTailWith_eq_zero_of_metrizable_splitFactorData
 #check YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_rightSplitData
 #check YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_splitFactorData
+#check YonedaExt.composeTailHomFreeHom
+#check YonedaExt.composeTailHomFreeHom_of
+#check YonedaExt.composeTailHomFreeHom_rel_mem
+#check YonedaExt.composeTailHomFreeHom_relIso_mem
+#check YonedaExt.pullbackHeadFreeHomWith
+#check YonedaExt.pullbackHeadFreeHomWith_of
+#check YonedaExt.pullbackHeadFreeHomWith_rel_mem
+#check YonedaExt.pullbackHeadFreeHomWith_relIso_mem
 #check YonedaExt.leftProductByExtension
 #check YonedaExt.leftProductByExtension_ofExtension
 #check YonedaExt.leftProductByExtension_ofExtension_eq_zero_of_split

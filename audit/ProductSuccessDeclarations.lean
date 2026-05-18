@@ -288,6 +288,41 @@ noncomputable example (X X' Y : MetrizableLCA)
         (MetrizableLCA.shortExactExtensionPullback e a).toYonedaExtension :=
   rfl
 
+example (X X' Y : MetrizableLCA) {n : ℕ}
+    (a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) n
+        (FreeAbelianGroup.of a) =
+      FreeAbelianGroup.of
+        (YonedaExtension.pullbackHeadWith f
+          (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) a) :=
+  YonedaExt.pullbackHeadFreeHomWith_of f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) a
+
+example (X X' Y : MetrizableLCA) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.Rel a b) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X' Y n :=
+  YonedaExt.pullbackHeadFreeHomWith_rel_mem f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    (fun {_} {_ _} h => MetrizableLCA.shortExactExtensionPullbackIso f h)
+    h
+
+example (X X' Y : MetrizableLCA) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X' Y n :=
+  YonedaExt.pullbackHeadFreeHomWith_relIso_mem f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    (fun {_ _} {_} {_ _} h => MetrizableLCA.shortExactExtensionPullbackIsoBetween f h)
+    h
+
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
     ShortExactExtension (C := MetrizableLCA) X Y' :=
@@ -447,6 +482,29 @@ example (X Y Y' : MetrizableLCA) {n : ℕ}
       YonedaExt.ofExtension (C := MetrizableLCA)
         (YonedaExtension.composeTailHom f b) :=
   YonedaExt.ofExtension_composeTailHom_eq_of_relIso f h
+
+example (X Y Y' : MetrizableLCA) {n : ℕ}
+    (a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)) (f : Y ⟶ Y') :
+    YonedaExt.composeTailHomFreeHom (C := MetrizableLCA) (X := X) f n
+        (FreeAbelianGroup.of a) =
+      FreeAbelianGroup.of (YonedaExtension.composeTailHom f a) :=
+  YonedaExt.composeTailHomFreeHom_of f a
+
+example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.Rel a b) (f : Y ⟶ Y') :
+    YonedaExt.composeTailHomFreeHom (C := MetrizableLCA) (X := X) f n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y' n :=
+  YonedaExt.composeTailHomFreeHom_rel_mem f h
+
+example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) (f : Y ⟶ Y') :
+    YonedaExt.composeTailHomFreeHom (C := MetrizableLCA) (X := X) f n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y' n :=
+  YonedaExt.composeTailHomFreeHom_relIso_mem f h
 
 noncomputable example (X Y : MetrizableLCA)
     (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y) :

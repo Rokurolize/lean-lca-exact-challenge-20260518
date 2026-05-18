@@ -1251,6 +1251,82 @@ noncomputable def pushoutTailOfExtensionWith {X Y Y' : C} (f : Y ⟶ Y')
     {n : ℕ} (a : YonedaExtension X Y (n + 1)) : YonedaExt X Y' (n + 1) :=
   ofExtension (YonedaExtension.pushoutTailWith f push a)
 
+/-- The free abelian group map induced by composing a degree-zero hom on the tail. -/
+def composeTailHomFreeHom {X Y Y' : C} (f : Y ⟶ Y') (n : ℕ) :
+    PositiveYonedaExtFree X Y n →+ PositiveYonedaExtFree X Y' n :=
+  FreeAbelianGroup.map (YonedaExtension.composeTailHom f)
+
+@[simp]
+theorem composeTailHomFreeHom_of {Y' : C} (f : Y ⟶ Y')
+    (a : YonedaExtension X Y (n + 1)) :
+    composeTailHomFreeHom (X := X) f n (FreeAbelianGroup.of a) =
+      FreeAbelianGroup.of (YonedaExtension.composeTailHom f a) :=
+  rfl
+
+theorem composeTailHomFreeHom_rel_mem {Y' : C} (f : Y ⟶ Y')
+    {a b : YonedaExtension X Y (n + 1)} (h : YonedaExtension.Rel a b) :
+    composeTailHomFreeHom (X := X) f n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) ∈
+      yonedaRelationSubgroup X Y' n := by
+  simpa [composeTailHomFreeHom, map_sub] using
+    AddSubgroup.subset_closure
+      (YonedaRelGenerator.iso (X := X) (Y := Y')
+        (YonedaExtension.Rel.composeTailHom f h))
+
+theorem composeTailHomFreeHom_relIso_mem {Y' : C} (f : Y ⟶ Y')
+    {a b : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) :
+    composeTailHomFreeHom (X := X) f n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) ∈
+      yonedaRelationSubgroup X Y' n := by
+  simpa [composeTailHomFreeHom, map_sub] using
+    AddSubgroup.subset_closure
+      (YonedaRelGenerator.chainIso (X := X) (Y := Y')
+        (YonedaExtension.RelIso.composeTailHom f h))
+
+/-- The free abelian group map induced by pulling back the head one-fold extension. -/
+def pullbackHeadFreeHomWith {X X' Y : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z) (n : ℕ) :
+    PositiveYonedaExtFree X Y n →+ PositiveYonedaExtFree X' Y n :=
+  FreeAbelianGroup.map (YonedaExtension.pullbackHeadWith f pull)
+
+@[simp]
+theorem pullbackHeadFreeHomWith_of {X' : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
+    (a : YonedaExtension X Y (n + 1)) :
+    pullbackHeadFreeHomWith (X := X) (Y := Y) f pull n (FreeAbelianGroup.of a) =
+      FreeAbelianGroup.of (YonedaExtension.pullbackHeadWith f pull a) :=
+  rfl
+
+theorem pullbackHeadFreeHomWith_rel_mem {X' : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
+    (pullIso : ∀ {Z : C} {e e' : ShortExactExtension X Z},
+      ShortExactExtension.Iso e e' → ShortExactExtension.Iso (pull e) (pull e'))
+    {a b : YonedaExtension X Y (n + 1)} (h : YonedaExtension.Rel a b) :
+    pullbackHeadFreeHomWith (X := X) (Y := Y) f pull n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) ∈
+      yonedaRelationSubgroup X' Y n := by
+  simpa [pullbackHeadFreeHomWith, map_sub] using
+    AddSubgroup.subset_closure
+      (YonedaRelGenerator.iso (X := X') (Y := Y)
+        (YonedaExtension.Rel.pullbackHeadWith f pull pullIso h))
+
+theorem pullbackHeadFreeHomWith_relIso_mem {X' : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
+    (pullIsoBetween : ∀ {Z Z' : C} {β : Z ≅ Z'} {e : ShortExactExtension X Z}
+        {e' : ShortExactExtension X Z'},
+        ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X) β e e' →
+          ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X') β (pull e) (pull e'))
+    {a b : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) :
+    pullbackHeadFreeHomWith (X := X) (Y := Y) f pull n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) ∈
+      yonedaRelationSubgroup X' Y n := by
+  simpa [pullbackHeadFreeHomWith, map_sub] using
+    AddSubgroup.subset_closure
+      (YonedaRelGenerator.chainIso (X := X') (Y := Y)
+        (YonedaExtension.RelIso.pullbackHeadWith f pull pullIsoBetween h))
+
 /-- The additive group structure on exact-category Yoneda Ext. -/
 noncomputable instance instAddCommGroup : AddCommGroup (YonedaExt X Y n) := by
   cases n with

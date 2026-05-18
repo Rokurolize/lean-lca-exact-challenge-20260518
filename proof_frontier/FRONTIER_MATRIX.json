@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-18T23:46:16Z",
+  "generated_utc": "2026-05-18T23:54:43Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -72,7 +72,10 @@
         "MetrizableLCA.pushoutSplitting",
         "MetrizableLCA.shortExactExtensionPushoutSplitting",
         "YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_split",
-        "YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_split"
+        "YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_split",
+        "YonedaExt.composeTailHomFreeHom",
+        "YonedaExt.pullbackHeadFreeHomWith",
+        "free-group Rel/RelIso relation-subgroup membership lemmas for degree-zero head/tail maps"
       ],
       "target_files_or_module": [
         "LeanLCAExactChallenge/Ext/Yoneda.lean"
@@ -93,7 +96,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Generator-level head pullback, arbitrary tail pushout, split pullback/pushout preservation, split-zero Ext lemmas, tail pushout preservation of right-split/split-factor zero generators, composeTailHom preservation of iso generators, head pullback preservation of right-split/split-factor zero generators, and head pullback preservation of termwise and recursive chain-isomorphism generators are implemented; quotient descent remains incomplete.",
+      "merge_blocker": "Generator-level head pullback, arbitrary tail pushout, split pullback/pushout preservation, split-zero Ext lemmas, tail pushout preservation of right-split/split-factor zero generators, composeTailHom preservation of iso generators, head pullback preservation of right-split/split-factor zero generators, head pullback preservation of termwise and recursive chain-isomorphism generators, and free-group head/tail maps preserving Rel/RelIso differences into the target relation subgroup are implemented; quotient descent remains incomplete.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -122,7 +125,15 @@
         "MetrizableLCA.shortExactExtensionPullbackIsoBetween",
         "YonedaExtension.RelIso.pullbackHeadWith",
         "MetrizableLCA.yonedaExtensionPullbackHeadRelIso",
-        "YonedaExt.pullbackHeadOfExtension_eq_of_metrizable_relIso"
+        "YonedaExt.pullbackHeadOfExtension_eq_of_metrizable_relIso",
+        "YonedaExt.composeTailHomFreeHom",
+        "YonedaExt.composeTailHomFreeHom_of",
+        "YonedaExt.composeTailHomFreeHom_rel_mem",
+        "YonedaExt.composeTailHomFreeHom_relIso_mem",
+        "YonedaExt.pullbackHeadFreeHomWith",
+        "YonedaExt.pullbackHeadFreeHomWith_of",
+        "YonedaExt.pullbackHeadFreeHomWith_rel_mem",
+        "YonedaExt.pullbackHeadFreeHomWith_relIso_mem"
       ]
     },
     {
