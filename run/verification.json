@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v32-arbitrary-tail-pushout",
-  "generated_utc": "2026-05-18T22:33:42Z",
-  "source_tree_hash": "6758a3a54ea7c938c03987b3b3658f294a953470e873e7215339a55d7dfc08cd",
+  "schema": "lean-lca-exact-challenge-verification-v33-split-pushout-preservation",
+  "generated_utc": "2026-05-18T22:50:18Z",
+  "source_tree_hash": "333131ac625e349fafc3e52fd57345d42ab199bd0e6fdca4414de89f34434d91",
   "commands": [
     {
       "command": "lake build",
@@ -23,7 +23,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "local exact-category YonedaExt quotient exposes relation generators, Rel.refl, split-zero, split-factor zero, hom-tail pushout relation data, arbitrary tail hom composition and recursive pushout normalization, head pullback data, generator-level degree-zero head action, relation-membership addition, witnessed Baer-chain addition, left-head Baer addition after a fixed positive tail, left one-fold splice product on quotients, split-left-factor product zero, left-head iso and Baer additivity for one-fold and positive-chain left products, fixed positive-chain left splice on the right quotient, split fixed-positive-chain product zero, baer_sum API compatibility theorems, chosen-biproduct product-extension API, canonical MetrizableLCA BaerSumData, canonical MetrizableLCA pushout data, and canonical MetrizableLCA pullback data."
+      "evidence": "local exact-category YonedaExt quotient exposes relation generators, Rel.refl, split-zero, split-factor zero, hom-tail pushout relation data, arbitrary tail hom composition and recursive pushout normalization, head pullback data, generator-level degree-zero head action, relation-membership addition, witnessed Baer-chain addition, left-head Baer addition after a fixed positive tail, left one-fold splice product on quotients, split-left-factor product zero, left-head iso and Baer additivity for one-fold and positive-chain left products, fixed positive-chain left splice on the right quotient, split fixed-positive-chain product zero, baer_sum API compatibility theorems, chosen-biproduct product-extension API, canonical MetrizableLCA BaerSumData, canonical MetrizableLCA pushout data, split preservation under canonical pushout, and canonical MetrizableLCA pullback data."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -33,7 +33,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "strict LCA exact category exposes coordinatewise strict biproduct exactness, explicit-to-chosen biproduct bridge, diagonal/codiagonal API, product extensions for pairs of one-fold MetrizableLCA extensions on chosen binary biproduct endpoints, pullback/pushout extension constructors, canonical pullback data for one-fold hom heads, canonical pushout data for one-fold and arbitrary-tail hom tails, canonical BaerSumData, local YonedaExt quotient relations, split-zero equality, split-factor zero equality, hom-tail pushout equality, arbitrary tail hom composition equals recursive pushout normal form, generator-level hom-head pullback action, relation-membership addition equality, witnessed Baer-chain addition equality, left-head Baer addition after a fixed positive tail, left one-fold and fixed positive-chain splice products on the right quotient, left-head iso and Baer additivity for those products, split-left-factor and split-positive-chain product zero, baer_sum compatibility, and Dbounded localization declarations."
+      "evidence": "strict LCA exact category exposes coordinatewise strict biproduct exactness, explicit-to-chosen biproduct bridge, diagonal/codiagonal API, product extensions for pairs of one-fold MetrizableLCA extensions on chosen binary biproduct endpoints, pullback/pushout extension constructors, canonical pullback data for one-fold hom heads, canonical pushout data for one-fold and arbitrary-tail hom tails, split preservation under canonical pushout, canonical BaerSumData, local YonedaExt quotient relations, split-zero equality, split-factor zero equality, hom-tail pushout equality, arbitrary tail hom composition equals recursive pushout normal form, generator-level hom-head pullback action, relation-membership addition equality, witnessed Baer-chain addition equality, left-head Baer addition after a fixed positive tail, left one-fold and fixed positive-chain splice products on the right quotient, left-head iso and Baer additivity for those products, split-left-factor and split-positive-chain product zero, baer_sum compatibility, and Dbounded localization declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",

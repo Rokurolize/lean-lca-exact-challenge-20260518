@@ -319,6 +319,14 @@ lemma shortExactExtensionPushout_map_p
         (shortExactExtensionPushout e a).p = e.p :=
   pushoutInl_cokernel (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)
 
+@[simp]
+lemma shortExactExtensionPushout_inr_p
+    {X Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (a : Y ⟶ Y') :
+    pushoutInr (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a) ≫
+        (shortExactExtensionPushout e a).p = 0 :=
+  pushoutInr_cokernel (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)
+
 /-- Diagrammatic witness for the canonical pushout of a one-fold extension. -/
 noncomputable def shortExactExtensionPushoutData
     {X Y Y' : MetrizableLCA.{u}}
@@ -328,6 +336,90 @@ noncomputable def shortExactExtensionPushoutData
     pushoutInl (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)
   i_map := shortExactExtensionPushout_i e a
   map_p := shortExactExtensionPushout_map_p e a
+
+/-- The explicit pushout of a split short complex is split. -/
+noncomputable def pushoutSplitting
+    {S : ShortComplex MetrizableLCA.{u}} {Y : MetrizableLCA.{u}}
+    (a : S.X₁ ⟶ Y) (hN : IsClosed (pushoutSubgroup a : Set (S.X₂ × Y)))
+    (s : S.Splitting) :
+    (ShortComplex.mk (pushoutInr a hN) (pushoutCokernelMap a hN)
+      (pushoutInr_cokernel a hN)).Splitting := by
+  let r : pushoutObj a hN ⟶ Y :=
+    pushoutDesc (S := S) a hN (s.r ≫ a) (𝟙 Y) (by
+      rw [← Category.assoc, s.f_r, Category.id_comp, Category.comp_id])
+  let sec : S.X₃ ⟶ pushoutObj a hN :=
+    s.s ≫ pushoutInl a hN
+  refine
+    { r := r
+      s := sec
+      f_r := ?_
+      s_g := ?_
+      id := ?_ }
+  · dsimp [r]
+    rw [pushoutInr_desc]
+  · dsimp [sec]
+    rw [Category.assoc, pushoutInl_cokernel]
+    exact s.s_g
+  · dsimp [r, sec]
+    apply pushout_hom_ext (S := S) a hN
+    · have hcomp :
+          pushoutInl a hN ≫
+              (pushoutDesc a hN (s.r ≫ a) (𝟙 Y) (by
+                  rw [← Category.assoc, s.f_r, Category.id_comp, Category.comp_id]) ≫
+                pushoutInr a hN +
+                pushoutCokernelMap a hN ≫ s.s ≫ pushoutInl a hN) =
+            pushoutInl a hN ≫
+                (pushoutDesc a hN (s.r ≫ a) (𝟙 Y) (by
+                    rw [← Category.assoc, s.f_r, Category.id_comp, Category.comp_id]) ≫
+                  pushoutInr a hN) +
+              pushoutInl a hN ≫
+                (pushoutCokernelMap a hN ≫ s.s ≫ pushoutInl a hN) :=
+        CategoryTheory.Preadditive.comp_add (C := MetrizableLCA.{u}) S.X₂
+          (pushoutObj a hN) (pushoutObj a hN) (pushoutInl a hN)
+          (pushoutDesc a hN (s.r ≫ a) (𝟙 Y) (by
+            rw [← Category.assoc, s.f_r, Category.id_comp, Category.comp_id]) ≫
+            pushoutInr a hN)
+          (pushoutCokernelMap a hN ≫ s.s ≫ pushoutInl a hN)
+      rw [hcomp]
+      rw [← Category.assoc, pushoutInl_desc]
+      rw [← Category.assoc, pushoutInl_cokernel]
+      rw [Category.assoc, ← pushout_condition]
+      rw [← Category.assoc, ← Category.assoc]
+      rw [← CategoryTheory.Preadditive.add_comp (C := MetrizableLCA.{u}) S.X₂ S.X₂
+        (pushoutObj a hN) (s.r ≫ S.f) (S.g ≫ s.s) (pushoutInl a hN)]
+      rw [s.id]
+      simp
+    · have hcomp :
+          pushoutInr a hN ≫
+              (pushoutDesc a hN (s.r ≫ a) (𝟙 Y) (by
+                  rw [← Category.assoc, s.f_r, Category.id_comp, Category.comp_id]) ≫
+                pushoutInr a hN +
+                pushoutCokernelMap a hN ≫ s.s ≫ pushoutInl a hN) =
+            pushoutInr a hN ≫
+                (pushoutDesc a hN (s.r ≫ a) (𝟙 Y) (by
+                    rw [← Category.assoc, s.f_r, Category.id_comp, Category.comp_id]) ≫
+                  pushoutInr a hN) +
+              pushoutInr a hN ≫
+                (pushoutCokernelMap a hN ≫ s.s ≫ pushoutInl a hN) :=
+        CategoryTheory.Preadditive.comp_add (C := MetrizableLCA.{u}) Y
+          (pushoutObj a hN) (pushoutObj a hN) (pushoutInr a hN)
+          (pushoutDesc a hN (s.r ≫ a) (𝟙 Y) (by
+            rw [← Category.assoc, s.f_r, Category.id_comp, Category.comp_id]) ≫
+            pushoutInr a hN)
+          (pushoutCokernelMap a hN ≫ s.s ≫ pushoutInl a hN)
+      rw [hcomp]
+      rw [← Category.assoc, pushoutInr_desc]
+      rw [← Category.assoc, pushoutInr_cokernel]
+      simp
+
+/-- The canonical pushout of a split one-fold extension is split. -/
+noncomputable def shortExactExtensionPushoutSplitting
+    {X Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (a : Y ⟶ Y')
+    (s : e.shortComplex.Splitting) :
+    (shortExactExtensionPushout e a).shortComplex.Splitting := by
+  simpa [shortExactExtensionPushout, ShortExactExtension.shortComplex] using
+    pushoutSplitting (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a) s
 
 /-- The canonical Baer sum extension built by product, diagonal pullback, and codiagonal pushout. -/
 noncomputable def shortExactExtensionBaerSum

@@ -50,7 +50,10 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.shortExactExtensionPushout
 #check MetrizableLCA.shortExactExtensionPushout_i
 #check MetrizableLCA.shortExactExtensionPushout_map_p
+#check MetrizableLCA.shortExactExtensionPushout_inr_p
 #check MetrizableLCA.shortExactExtensionPushoutData
+#check MetrizableLCA.pushoutSplitting
+#check MetrizableLCA.shortExactExtensionPushoutSplitting
 #check MetrizableLCA.shortExactExtensionBaerSum
 #check MetrizableLCA.shortExactExtensionBaerSumData
 #check YonedaExt.ofExtension_eq_ofExtension_of_rel
