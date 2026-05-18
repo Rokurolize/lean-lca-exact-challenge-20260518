@@ -213,6 +213,41 @@ def consLeftMap :
       simpa [Nat.add_assoc] using
         YonedaExtension.cons e (consLeftMap (m := m) (n := n) tail a)
 
+/-- Positive one-fold chains containing a split factor. -/
+inductive SplitFactorData :
+    {X Y : C} → {n : ℕ} → PositiveChain X Y n → Type (max u v)
+  | one {X Y : C} (e : ShortExactExtension X Y) (s : e.shortComplex.Splitting) :
+      SplitFactorData (one e)
+  | head {X Y Z : C} {n : ℕ} (e : ShortExactExtension X Z)
+      (s : e.shortComplex.Splitting) (tail : PositiveChain Z Y n) :
+      SplitFactorData (cons e tail)
+  | cons {X Y Z : C} {n : ℕ} (e : ShortExactExtension X Z)
+      {tail : PositiveChain Z Y n} (h : SplitFactorData tail) :
+      SplitFactorData (cons e tail)
+
+/-- A split factor in a positive one-fold chain gives a split factor in its Yoneda chain. -/
+def SplitFactorData.toYonedaExtension :
+    {X Y : C} → {n : ℕ} → {p : PositiveChain X Y n} →
+      SplitFactorData p → YonedaExtension.SplitFactorData p.toYonedaExtension
+  | _, _, 0, _, one e s =>
+      YonedaExtension.SplitFactorData.head e s (YonedaExtension.ofHom (𝟙 _))
+  | _, _, _ + 1, _, head e s tail =>
+      YonedaExtension.SplitFactorData.head e s tail.toYonedaExtension
+  | _, _, _ + 1, _, cons e h =>
+      YonedaExtension.SplitFactorData.cons e h.toYonedaExtension
+
+/-- A split factor in a positive one-fold chain remains after left splicing. -/
+def SplitFactorData.consLeftMap :
+    {X Y Z : C} → {m n : ℕ} → {p : PositiveChain X Y m} →
+      SplitFactorData p → (a : YonedaExtension Y Z (n + 1)) →
+        YonedaExtension.SplitFactorData (p.consLeftMap a)
+  | _, _, _, 0, _, _, one e s, a =>
+      YonedaExtension.SplitFactorData.head e s a
+  | _, _, _, _ + 1, _, _, head e s tail, a =>
+      YonedaExtension.SplitFactorData.head e s (tail.consLeftMap a)
+  | _, _, _, _ + 1, _, _, cons e h, a =>
+      YonedaExtension.SplitFactorData.cons e (h.consLeftMap a)
+
 end PositiveChain
 
 end YonedaExtension
@@ -597,6 +632,17 @@ theorem leftProductByPositiveChain_ofExtension {m : ℕ}
           PositiveYonedaExtFree X Z (n + (m + 1))) :
           PositiveYonedaExt X Z (n + (m + 1))) := by
           rw [positiveChainLeftFreeHom_of]
+
+/-- A fixed positive left chain with a split factor gives zero after splicing. -/
+theorem leftProductByPositiveChain_ofExtension_eq_zero_of_splitFactor {m : ℕ}
+    {p : YonedaExtension.PositiveChain X Y m}
+    (h : YonedaExtension.PositiveChain.SplitFactorData p)
+    (a : YonedaExtension Y Z (n + 1)) :
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) =
+      (0 : YonedaExt X Z ((n + (m + 1)) + 1)) := by
+  rw [leftProductByPositiveChain_ofExtension]
+  exact ofExtension_eq_zero_of_splitFactorData (h.consLeftMap a)
 
 end LeftProduct
 

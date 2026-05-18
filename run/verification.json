@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v22-positive-chain-product-api",
-  "generated_utc": "2026-05-18T20:56:08Z",
-  "source_tree_hash": "ae5f41838e18740a7f7c477d5bdcb4e52eabb2384521bb1de61d1a5e08ee6ab5",
+  "schema": "lean-lca-exact-challenge-verification-v23-positive-chain-split-zero-api",
+  "generated_utc": "2026-05-18T21:01:20Z",
+  "source_tree_hash": "19e1ab16cf869f36635f11a0eca097eb61be1b99df48a7f447f383cc9cea46ba",
   "commands": [
     {
       "command": "lake build",
@@ -23,7 +23,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "local exact-category YonedaExt quotient exposes relation generators, split-zero, split-factor zero, relation-membership addition, witnessed Baer-chain addition, left one-fold splice product on quotients, split-left-factor product zero, fixed positive-chain left splice on the right quotient, and baer_sum API compatibility theorems."
+      "evidence": "local exact-category YonedaExt quotient exposes relation generators, split-zero, split-factor zero, relation-membership addition, witnessed Baer-chain addition, left one-fold splice product on quotients, split-left-factor product zero, fixed positive-chain left splice on the right quotient, split fixed-positive-chain product zero, and baer_sum API compatibility theorems."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -33,7 +33,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "strict LCA exact category exposes local YonedaExt quotient relations, split-zero equality, split-factor zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, left one-fold and fixed positive-chain splice products on the right quotient, split-left-factor product zero, baer_sum compatibility, and Dbounded localization declarations."
+      "evidence": "strict LCA exact category exposes local YonedaExt quotient relations, split-zero equality, split-factor zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, left one-fold and fixed positive-chain splice products on the right quotient, split-left-factor and split-positive-chain product zero, baer_sum compatibility, and Dbounded localization declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
