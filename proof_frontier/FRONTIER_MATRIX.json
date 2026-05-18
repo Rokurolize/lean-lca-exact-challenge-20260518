@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-18T23:08:01Z",
+  "generated_utc": "2026-05-18T23:12:39Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -81,7 +81,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Generator-level head pullback, arbitrary tail pushout, split pullback/pushout preservation, split-zero Ext lemmas, and tail pushout preservation of right-split/split-factor zero generators are implemented; quotient descent remains incomplete.",
+      "merge_blocker": "Generator-level head pullback, arbitrary tail pushout, split pullback/pushout preservation, split-zero Ext lemmas, tail pushout preservation of right-split/split-factor zero generators, and composeTailHom preservation of iso generators are implemented; quotient descent remains incomplete.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -92,7 +92,11 @@
         "YonedaExt.ofExtension_pushoutTailWith_eq_zero_of_metrizable_rightSplitData",
         "YonedaExt.ofExtension_pushoutTailWith_eq_zero_of_metrizable_splitFactorData",
         "YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_rightSplitData",
-        "YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_splitFactorData"
+        "YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_splitFactorData",
+        "YonedaExtension.Rel.composeTailHom",
+        "YonedaExtension.RelIso.composeTailHom",
+        "YonedaExt.ofExtension_composeTailHom_eq_of_rel",
+        "YonedaExt.ofExtension_composeTailHom_eq_of_relIso"
       ]
     },
     {

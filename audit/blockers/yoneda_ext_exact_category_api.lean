@@ -100,9 +100,13 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.ofExtension_eq_zero_of_splitFactorData
 #check YonedaExt.ofExtension_eq_ofExtension_of_homTailData
 #check YonedaExt.ofExtension_cons_ofHom_eq_of_pushoutData
+#check YonedaExtension.Rel.composeTailHom
+#check YonedaExtension.RelIso.composeTailHom
 #check YonedaExt.pullbackHeadOfExtensionWith
 #check YonedaExt.pushoutTailOfExtensionWith
 #check YonedaExt.ofExtension_composeTailHom_eq_pushoutTailWith
+#check YonedaExt.ofExtension_composeTailHom_eq_of_rel
+#check YonedaExt.ofExtension_composeTailHom_eq_of_relIso
 #check YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_split
 #check YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_split
 #check YonedaExtension.RightSplitData.pushoutTailWith

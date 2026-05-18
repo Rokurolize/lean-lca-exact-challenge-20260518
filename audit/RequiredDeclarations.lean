@@ -131,7 +131,9 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExtension.pushoutTailWith
 #check LeanLCAExactChallenge.YonedaExtension.Rel
 #check LeanLCAExactChallenge.YonedaExtension.Rel.refl
+#check LeanLCAExactChallenge.YonedaExtension.Rel.composeTailHom
 #check LeanLCAExactChallenge.YonedaExtension.RelIso
+#check LeanLCAExactChallenge.YonedaExtension.RelIso.composeTailHom
 #check LeanLCAExactChallenge.YonedaExtension.BaerSumData
 #check LeanLCAExactChallenge.YonedaExtension.BaerSumData.head
 #check LeanLCAExactChallenge.YonedaExtension.RightSplitData
@@ -174,6 +176,8 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_ofExtension_of_homTailData
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_cons_ofHom_eq_of_pushoutData
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_composeTailHom_eq_pushoutTailWith
+#check LeanLCAExactChallenge.YonedaExt.ofExtension_composeTailHom_eq_of_rel
+#check LeanLCAExactChallenge.YonedaExt.ofExtension_composeTailHom_eq_of_relIso
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_composeTailHom_eq_zero_of_metrizable_split
 #check LeanLCAExactChallenge.YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_split
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_pushoutTailWith_eq_zero_of_metrizable_rightSplitData

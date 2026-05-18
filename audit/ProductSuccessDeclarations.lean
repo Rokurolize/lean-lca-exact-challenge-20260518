@@ -334,6 +334,40 @@ noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
     (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
     a
 
+example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.Rel a b) (f : Y ⟶ Y') :
+    YonedaExtension.Rel
+      (YonedaExtension.composeTailHom f a)
+      (YonedaExtension.composeTailHom f b) :=
+  YonedaExtension.Rel.composeTailHom f h
+
+example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.Rel a b) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.composeTailHom f a) =
+      YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.composeTailHom f b) :=
+  YonedaExt.ofExtension_composeTailHom_eq_of_rel f h
+
+example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) (f : Y ⟶ Y') :
+    YonedaExtension.RelIso (CategoryTheory.Iso.refl X)
+      (YonedaExtension.composeTailHom f a)
+      (YonedaExtension.composeTailHom f b) :=
+  YonedaExtension.RelIso.composeTailHom f h
+
+example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) (f : Y ⟶ Y') :
+    YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.composeTailHom f a) =
+      YonedaExt.ofExtension (C := MetrizableLCA)
+        (YonedaExtension.composeTailHom f b) :=
+  YonedaExt.ofExtension_composeTailHom_eq_of_relIso f h
+
 noncomputable example (X Y : MetrizableLCA)
     (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y) :
     ShortExactExtension (C := MetrizableLCA) X Y :=

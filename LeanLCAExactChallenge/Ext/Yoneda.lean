@@ -585,6 +585,18 @@ def Rel.refl : {X Y : C} → {n : ℕ} → (a : YonedaExtension X Y n) → Rel a
   | _, _, _ + 1, YonedaExtension.cons e tail =>
       Rel.cons (ShortExactExtension.Iso.refl e) (Rel.refl tail)
 
+/-- Tail hom composition preserves termwise relations of positive chains. -/
+def Rel.composeTailHom {X Y Y' : C} (f : Y ⟶ Y') :
+    {n : ℕ} → {a b : YonedaExtension X Y (n + 1)} → Rel a b →
+      Rel (YonedaExtension.composeTailHom f a) (YonedaExtension.composeTailHom f b)
+  | 0, YonedaExtension.cons e (YonedaExtension.ofHom g),
+      YonedaExtension.cons e' (YonedaExtension.ofHom g'), Rel.cons he (Rel.ofHom h) => by
+      refine Rel.cons he (Rel.ofHom ?_)
+      rw [h]
+  | n + 1, YonedaExtension.cons e tail, YonedaExtension.cons e' tail',
+      Rel.cons he htail =>
+      Rel.cons he (Rel.composeTailHom f htail)
+
 /-- Recursive isomorphism of extension chains, allowing isomorphic intermediate objects. -/
 inductive RelIso :
     {X X' Y : C} → (α : X ≅ X') → {n : ℕ} →
@@ -597,6 +609,21 @@ inductive RelIso :
       {tail : YonedaExtension Z Y n} {tail' : YonedaExtension Z' Y n}
       (he : ShortExactExtension.IsoBetween α β e e') (ht : RelIso β tail tail') :
       RelIso α (YonedaExtension.cons e tail) (YonedaExtension.cons e' tail')
+
+/-- Tail hom composition preserves recursive isomorphism of positive chains. -/
+def RelIso.composeTailHom {X X' Y Y' : C} {α : X ≅ X'} (f : Y ⟶ Y') :
+    {n : ℕ} → {a : YonedaExtension X Y (n + 1)} →
+      {b : YonedaExtension X' Y (n + 1)} → RelIso α a b →
+        RelIso α (YonedaExtension.composeTailHom f a) (YonedaExtension.composeTailHom f b)
+  | 0, YonedaExtension.cons e (YonedaExtension.ofHom g),
+      YonedaExtension.cons e' (YonedaExtension.ofHom g'), RelIso.cons he htail => by
+      cases htail with
+      | ofHom β h =>
+          refine RelIso.cons he (RelIso.ofHom _ ?_)
+          rw [h, Category.assoc]
+  | n + 1, YonedaExtension.cons e tail, YonedaExtension.cons e' tail',
+      RelIso.cons he htail =>
+      RelIso.cons he (RelIso.composeTailHom f htail)
 
 /-- Witnessed Baer sums of positive-degree extension chains. -/
 inductive BaerSumData :
@@ -1052,6 +1079,22 @@ theorem ofExtension_composeTailHom_eq_pushoutTailWith
       ofExtension (X := X) (Y := Y') (n := n) (YonedaExtension.pushoutTailWith f push a) :=
   ofExtension_eq_ofExtension_of_homTailData
     (YonedaExtension.pushoutTailWithData f push h a)
+
+/-- Tail hom composition respects termwise related chains in Ext. -/
+theorem ofExtension_composeTailHom_eq_of_rel {Y' : C} (f : Y ⟶ Y')
+    {a b : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.Rel a b) :
+    ofExtension (X := X) (Y := Y') (n := n) (YonedaExtension.composeTailHom f a) =
+      ofExtension (X := X) (Y := Y') (n := n) (YonedaExtension.composeTailHom f b) :=
+  ofExtension_eq_ofExtension_of_rel (YonedaExtension.Rel.composeTailHom f h)
+
+/-- Tail hom composition respects recursively isomorphic chains in Ext. -/
+theorem ofExtension_composeTailHom_eq_of_relIso {Y' : C} (f : Y ⟶ Y')
+    {a b : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) :
+    ofExtension (X := X) (Y := Y') (n := n) (YonedaExtension.composeTailHom f a) =
+      ofExtension (X := X) (Y := Y') (n := n) (YonedaExtension.composeTailHom f b) :=
+  ofExtension_eq_ofExtension_of_relIso (YonedaExtension.RelIso.composeTailHom f h)
 
 /-- A tail hom composed after a split one-fold MetrizableLCA extension is zero in Ext. -/
 theorem ofExtension_composeTailHom_eq_zero_of_metrizable_split
