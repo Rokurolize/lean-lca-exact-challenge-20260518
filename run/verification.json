@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v11-lca-pushout-quotient-candidate",
-  "generated_utc": "2026-05-18T19:24:26Z",
-  "source_tree_hash": "5af1fa92760730e0ce125fce34983fab3b45a651a7d2aa3600883cdf142eacb9",
+  "schema": "lean-lca-exact-challenge-verification-v12-lca-exact-category-instance",
+  "generated_utc": "2026-05-18T19:43:48Z",
+  "source_tree_hash": "54766a9b0a8caf991512f597a283e3ccda17ea59537bae8adb75cb4e22d71342",
   "commands": [
     {
       "command": "lake build",
@@ -17,7 +17,8 @@
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
-      "status": "passed"
+      "status": "passed",
+      "evidence": "strict LCA QuillenExactCategory instance is available locally."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
@@ -30,12 +31,12 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "failed",
-      "evidence": "MetrizableLCA.quillenExactCategory still requires StrictExactQuillenAxioms; MetrizableLCA has no exact-category YonedaExt or QuillenExactCategory instance for Dbounded."
+      "evidence": "YonedaExt for MetrizableLCA still requires Abelian MetrizableLCA; Dbounded only checks as the underlying type of a supplied BoundedDerivedInfinityCategory."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "product-facing Lean sources still contain source-patch/frontier/StrictExactQuillenAxioms markers and terminal_outcome is not product_success."
+      "evidence": "product-facing Ext/Yoneda.lean and Derived/Bounded.lean still contain frontier/source-patch markers and terminal_outcome is nonterminal."
     },
     {
       "command": "git diff --check",

@@ -12,12 +12,12 @@
 - split short complexがstrict short exact sequenceになることのLean証明
 - strict short exact sequenceが`ShortComplex`の同型で保たれることのLean証明
 - `MetrizableLCA`のpullbackを積の閉部分群として構成し、strict sequenceのpullback安定性まで進めたLean証明
-- 閉部分群による商`MetrizableLCA`、および`(X₂ × Y) / range (x ↦ (f x, -a x))`としての明示的pushout候補を構成し、その条件付き余極限性と余核側の開全射・代数的完全性まで進めたLean証明
-- pushout候補の関係部分群の閉性と、標準射`Y ⟶ pushout`の閉埋め込み性を明示的境界として残したexact-category interface
+- 閉部分群による商`MetrizableLCA`、および`(X₂ × Y) / range (x ↦ (f x, -a x))`としての明示的pushoutを構成し、関係部分群の閉性、標準射`Y ⟶ pushout`の閉埋め込み性、余極限性、余核側の開全射・代数的完全性まで進めたLean証明
+- strictなmetrizable LCA列をconflationとする`QuillenExactCategory MetrizableLCA` instance
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
-一方、strictなmetrizable LCA列のpushout安定性を完成させる閉性・閉埋め込み性の証明、そのexact category上のYoneda Ext、bounded derived infinity-categoryの構成は、まだローカル実装が必要である。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
+一方、そのexact category上のYoneda Extとbounded derived infinity-categoryの構成は、まだローカル実装が必要である。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
 
 ## 評価文脈
 

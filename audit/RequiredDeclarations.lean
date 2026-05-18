@@ -23,11 +23,21 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.quotientMap_openMap
 #check LeanLCAExactChallenge.MetrizableLCA.quotientLift
 #check LeanLCAExactChallenge.MetrizableLCA.quotientLift_quotientMap
+#check LeanLCAExactChallenge.MetrizableLCA.isClosedEmbedding_graph_of_continuous
 #check LeanLCAExactChallenge.MetrizableLCA.pushoutRelationMap
 #check LeanLCAExactChallenge.MetrizableLCA.pushoutSubgroup
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutRelationMap_closedEmbedding
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutSubgroup_closed
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutShearHomeomorph
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutRelationCosetMap
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutRelationCosetMap_closedEmbedding
 #check LeanLCAExactChallenge.MetrizableLCA.pushoutObj
 #check LeanLCAExactChallenge.MetrizableLCA.pushoutInl
 #check LeanLCAExactChallenge.MetrizableLCA.pushoutInr
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutQuotientMap_preimage_inr_image
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutInr_isClosedMap
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutInr_injective
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutInr_closedEmbedding
 #check LeanLCAExactChallenge.MetrizableLCA.pushout_condition
 #check LeanLCAExactChallenge.MetrizableLCA.pushoutDesc
 #check LeanLCAExactChallenge.MetrizableLCA.pushout_hom_ext
@@ -41,6 +51,11 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.pushoutCokernelMap_openMap
 #check LeanLCAExactChallenge.MetrizableLCA.pushoutCokernelMap_surjective
 #check LeanLCAExactChallenge.MetrizableLCA.pushoutCokernelMap_algebraic_exact
+#check LeanLCAExactChallenge.MetrizableLCA.strictShortExact_pushout
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutIsoPushoutObj
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutIsoPushoutObj_hom_inl
+#check LeanLCAExactChallenge.MetrizableLCA.pushoutIsoPushoutObj_hom_inr
+#check LeanLCAExactChallenge.MetrizableLCA.strictShortExact_categorical_pushout
 #check LeanLCAExactChallenge.MetrizableLCA.pullbackObj
 #check LeanLCAExactChallenge.MetrizableLCA.pullbackIsLimit
 #check LeanLCAExactChallenge.MetrizableLCA.isClosedEmbedding_zero_prod
@@ -58,6 +73,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.strictShortExact_pullback
 #check LeanLCAExactChallenge.MetrizableLCA.strictShortExact_categorical_pullback
 #check LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory
+#check LeanLCAExactChallenge.MetrizableLCA.instQuillenExactCategory
 
 #check LeanLCAExactChallenge.YonedaExt
 #check LeanLCAExactChallenge.YonedaExt.zero_equiv_hom

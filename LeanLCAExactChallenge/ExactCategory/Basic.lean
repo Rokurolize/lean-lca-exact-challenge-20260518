@@ -4,9 +4,8 @@ import Mathlib.CategoryTheory.Limits.Shapes.Pullback.HasPullback
 /-!
 Compile-checked interface for Quillen-style exact categories.
 
-This is deliberately an interface, not a proof that the metrizable LCA category
-satisfies the axioms.  The LCA instance in this project is exposed only from
-explicit source-patch assumptions recorded in the gap analysis.
+This local interface is instantiated by strict metrizable LCA sequences in
+`LCA.ExactCategory`.
 -/
 
 set_option autoImplicit false
