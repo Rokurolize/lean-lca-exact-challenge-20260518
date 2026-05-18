@@ -30,5 +30,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check ShortExactExtension.BaerSumData
 #check YonedaExt.ofExtension_eq_ofExtension_of_rel
 #check YonedaExt.ofExtension_eq_ofExtension_of_relIso
+#check YonedaExt.ofExtension_eq_zero_of_split
+#check YonedaExt.ofExtension_eq_add_of_baer
 
 end LeanLCAExactChallenge

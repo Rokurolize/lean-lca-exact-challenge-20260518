@@ -200,6 +200,16 @@ noncomputable def zero_equiv_hom : YonedaExt X Y 0 ≃ (X ⟶ Y) :=
 def ofExtension (e : YonedaExtension X Y (n + 1)) : YonedaExt X Y (n + 1) :=
   QuotientAddGroup.mk' (yonedaRelationSubgroup X Y n) (FreeAbelianGroup.of e)
 
+/-- The additive group structure on exact-category Yoneda Ext. -/
+noncomputable instance instAddCommGroup : AddCommGroup (YonedaExt X Y n) := by
+  cases n with
+  | zero =>
+      dsimp [YonedaExt]
+      infer_instance
+  | succ n =>
+      dsimp [YonedaExt, PositiveYonedaExt]
+      infer_instance
+
 /-- Termwise-related extension chains define equal classes in positive-degree Ext. -/
 theorem ofExtension_eq_ofExtension_of_rel {a b : YonedaExtension X Y (n + 1)}
     (h : YonedaExtension.Rel a b) :
@@ -222,15 +232,33 @@ theorem ofExtension_eq_ofExtension_of_relIso {a b : YonedaExtension X Y (n + 1)}
   rw [QuotientAddGroup.eq_iff_sub_mem]
   exact AddSubgroup.subset_closure (YonedaRelGenerator.chainIso (X := X) (Y := Y) h)
 
-/-- The additive group structure on exact-category Yoneda Ext. -/
-noncomputable instance instAddCommGroup : AddCommGroup (YonedaExt X Y n) := by
-  cases n with
-  | zero =>
-      dsimp [YonedaExt]
-      infer_instance
-  | succ n =>
-      dsimp [YonedaExt, PositiveYonedaExt]
-      infer_instance
+/-- A split one-fold extension represents zero in local Yoneda Ext. -/
+theorem ofExtension_eq_zero_of_split (e : ShortExactExtension X Y)
+    (s : e.shortComplex.Splitting) :
+    ofExtension (X := X) (Y := Y) (n := 0) e.toYonedaExtension =
+      (0 : YonedaExt X Y 1) := by
+  dsimp [ofExtension]
+  change ((FreeAbelianGroup.of e.toYonedaExtension : PositiveYonedaExtFree X Y 0) :
+    PositiveYonedaExt X Y 0) = 0
+  rw [QuotientAddGroup.eq_zero_iff]
+  exact AddSubgroup.subset_closure (YonedaRelGenerator.split e s)
+
+/-- A witnessed Baer sum is addition in local one-fold Yoneda Ext. -/
+theorem ofExtension_eq_add_of_baer [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {e₁ e₂ sum : ShortExactExtension X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum) :
+    ofExtension (X := X) (Y := Y) (n := 0) sum.toYonedaExtension =
+      ofExtension (X := X) (Y := Y) (n := 0) e₁.toYonedaExtension +
+        ofExtension (X := X) (Y := Y) (n := 0) e₂.toYonedaExtension := by
+  dsimp [ofExtension]
+  change ((FreeAbelianGroup.of sum.toYonedaExtension : PositiveYonedaExtFree X Y 0) :
+    PositiveYonedaExt X Y 0) =
+      ((FreeAbelianGroup.of e₁.toYonedaExtension +
+        FreeAbelianGroup.of e₂.toYonedaExtension : PositiveYonedaExtFree X Y 0) :
+        PositiveYonedaExt X Y 0)
+  rw [QuotientAddGroup.eq_iff_sub_mem]
+  simpa [yonedaRelationSubgroup, sub_eq_add_neg, add_assoc, add_comm, add_left_comm] using
+    AddSubgroup.subset_closure (YonedaRelGenerator.baer (X := X) (Y := Y) h)
 
 /-- Baer addition, represented by the additive group operation on the local Ext group. -/
 noncomputable def baer_sum (a b : YonedaExt X Y n) : YonedaExt X Y n :=

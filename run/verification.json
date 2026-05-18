@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v16-baer-witness-relations",
-  "generated_utc": "2026-05-18T20:19:29Z",
-  "source_tree_hash": "fa0acaae0750e107c268f6ea73c262b8387d4a5ffd9b27687569baffa530fc6a",
+  "schema": "lean-lca-exact-challenge-verification-v17-baer-split-equalities",
+  "generated_utc": "2026-05-18T20:24:01Z",
+  "source_tree_hash": "ec0200574439bd7e4234b1a5c0c01ea5549972b7cd273e4f0ca2b9ce4ceedaf4",
   "commands": [
     {
       "command": "lake build",
@@ -23,7 +23,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "local exact-category YonedaExt is available as quotient groups of formal conflation chains by local relation generators, including recursive chain-isomorphism and BaerSumData witness relations."
+      "evidence": "local exact-category YonedaExt quotient exposes relation generators plus split-zero and witnessed-Baer-addition equality theorems."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -33,7 +33,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "strict LCA exact category exposes local YonedaExt quotient relation declarations, chain-isomorphism equality, BaerSumData witness shape, and Dbounded localization declarations."
+      "evidence": "strict LCA exact category exposes local YonedaExt quotient relations, split-zero equality, witnessed Baer addition equality, and Dbounded localization declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",

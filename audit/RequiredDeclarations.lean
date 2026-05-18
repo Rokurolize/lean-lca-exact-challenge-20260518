@@ -94,6 +94,8 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.ofExtension
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_ofExtension_of_rel
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_ofExtension_of_relIso
+#check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_zero_of_split
+#check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_add_of_baer
 #check LeanLCAExactChallenge.YonedaExt.baer_sum
 #check LeanLCAExactChallenge.YonedaExt.instAddCommGroup
 
