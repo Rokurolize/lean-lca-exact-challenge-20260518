@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v19-baer-chain-relation-api",
-  "generated_utc": "2026-05-18T20:33:23Z",
-  "source_tree_hash": "29c5160fbc120e24cc910d3bf13aaa5a9512d608aac870ce3d3aaeb120a456c4",
+  "schema": "lean-lca-exact-challenge-verification-v20-left-yone-product-api",
+  "generated_utc": "2026-05-18T20:41:43Z",
+  "source_tree_hash": "a0bca45a2d1c45b8911ee80f6b4ad6cff3b0553eed32fea72d3ba3e078f4c210",
   "commands": [
     {
       "command": "lake build",
@@ -23,7 +23,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "local exact-category YonedaExt quotient exposes relation generators, split-zero, relation-membership addition, witnessed Baer-chain addition, and baer_sum API compatibility theorems."
+      "evidence": "local exact-category YonedaExt quotient exposes relation generators, split-zero, relation-membership addition, witnessed Baer-chain addition, left one-fold splice product on quotients, and baer_sum API compatibility theorems."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -33,12 +33,12 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "strict LCA exact category exposes local YonedaExt quotient relations, split-zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, baer_sum compatibility, and Dbounded localization declarations."
+      "evidence": "strict LCA exact category exposes local YonedaExt quotient relations, split-zero equality, relation-membership addition equality, witnessed Baer-chain addition equality, left one-fold splice product on quotients, baer_sum compatibility, and Dbounded localization declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "terminal_outcome remains failed_nonterminal because arbitrary BaerSumData construction, Yoneda product relations, and stable infinity-category enhancement are not complete."
+      "evidence": "terminal_outcome remains failed_nonterminal because arbitrary BaerSumData construction, arbitrary-degree bilinear Yoneda product relations, and stable infinity-category enhancement are not complete."
     },
     {
       "command": "git diff --check",
