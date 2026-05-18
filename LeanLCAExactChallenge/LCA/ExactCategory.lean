@@ -22,9 +22,6 @@ namespace MetrizableLCA
 
 /-- Source-patch assumptions needed to upgrade strict LCA sequences to a Quillen exact category. -/
 structure StrictExactQuillenAxioms : Prop where
-  iso {S T : ShortComplex MetrizableLCA.{u}} (e : S ≅ T) :
-    strictShortExact S → strictShortExact T
-  split (S : ShortComplex MetrizableLCA.{u}) : S.Splitting → strictShortExact S
   pushout {S : ShortComplex MetrizableLCA.{u}} (hS : strictShortExact S) {Y : MetrizableLCA.{u}}
     (a : S.X₁ ⟶ Y) [HasPushout S.f a] :
     ∃ (Z : MetrizableLCA.{u}) (g : pushout S.f a ⟶ Z)
@@ -44,8 +41,8 @@ stability theorem is supplied.
 def quillenExactCategory (h : StrictExactQuillenAxioms.{u}) :
     QuillenExactCategory MetrizableLCA.{u} where
   Conflation := strictShortExact
-  conflation_iso e hS := h.iso e hS
-  split_conflation S hS := h.split S hS
+  conflation_iso e hS := strictShortExact_iso e hS
+  split_conflation _ hS := split_strictShortExact hS
   pushout_inflation {S} hS {Y} a := h.pushout (S := S) hS (Y := Y) a
   pullback_deflation {S} hS {Y} a := h.pullback (S := S) hS (Y := Y) a
 

@@ -1,6 +1,6 @@
 {
-  "schema": "lean-lca-exact-challenge-manifest-v4-lca-iso-helper",
-  "generated_utc": "2026-05-18T18:21:11Z",
+  "schema": "lean-lca-exact-challenge-manifest-v5-strict-split-iso",
+  "generated_utc": "2026-05-18T18:34:20Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -40,13 +40,13 @@
     },
     {
       "path": "LeanLCAExactChallenge/LCA/ExactCategory.lean",
-      "bytes": 2053,
-      "sha256": "e69eb178305e5ee28115b71b47972833f91cacafcefed675d8af5cadde9938cc"
+      "bytes": 1892,
+      "sha256": "07549affc231414f2c34483f70c9fad69877c456008764b69bf04d2cc5c79d7b"
     },
     {
       "path": "LeanLCAExactChallenge/LCA/StrictExact.lean",
-      "bytes": 2078,
-      "sha256": "344d162bc8ebbd34cf99201afa1245d55c01e1d1a53f032174ed2cd72fd6656a"
+      "bytes": 9402,
+      "sha256": "ab5359844f592e9603157dfdc9be543ae7aef0a6b3fba21398d02f657be157f1"
     },
     {
       "path": "LeanLCAExactChallenge/MathlibSurvey.lean",
@@ -55,8 +55,8 @@
     },
     {
       "path": "README_FOR_REVIEW.md",
-      "bytes": 2707,
-      "sha256": "39dcbe1963cceb3cc94eec5db936691a0f422a0c6473999aee17b98422f0c230"
+      "bytes": 2865,
+      "sha256": "4100ecd9c5074dab8b213dd9c4cea372b753ecd3a68a127e592a9089a586eeeb"
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
@@ -100,8 +100,8 @@
     },
     {
       "path": "docs/research/mathlib_gap_analysis.md",
-      "bytes": 3956,
-      "sha256": "5bf6f4aa7a706a14bac84b691ae208a72cabf0523d98e6b40ab96fcb15d7b971"
+      "bytes": 4364,
+      "sha256": "9a4844e48d30d5f10af5f65ad9dce08682d3b87671f9489c034355b7074a5612"
     },
     {
       "path": "docs/research/mathlib_initial_survey.md",
@@ -110,24 +110,24 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "bytes": 4775,
-      "sha256": "c12501bf5efb01d2e99692c65b284ef90736578c919bfc6f46ed282ee85132ce"
+      "bytes": 5286,
+      "sha256": "f47b21f713d5186c8df45c2ebe582584c86f1546a5bbba4defd2f7f9943c1cb3"
     },
     {
       "path": "docs/research/sources.md",
-      "bytes": 3137,
-      "sha256": "face1b7643f8ddc6b02f05745f2e0032f83a15b0eec31042b48266a19f073980"
+      "bytes": 3572,
+      "sha256": "4b6d6ed844c9136ddae609d206ead1642a38795c4a9a1cdea55e061a3453602e"
     },
     {
       "path": "run/verification.json",
-      "bytes": 1594,
-      "sha256": "78c81a83416fdd3ca364666d6a87135e8a5328b2a10a44afb94b950a3c57dca2"
+      "bytes": 1613,
+      "sha256": "d6456f39654e015d14d4f58842eac8fe50e4ff1fcd0d51b9d251bdd9c7a41dde"
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 3127,
-      "sha256": "960ac3d303d6aa0a47a3a1ad8748e3fed656e84b452a3eb963e2fd1b027347cd"
+      "bytes": 3150,
+      "sha256": "a7e2b53ecaaca49d2c8ceebfdbc37d0bf03f6918847d267d661f7adff9d53fc7"
     }
   ],
-  "content_hash_tree": "ef4da48bfdb539a9fc1b637fb321e86ecf20abae3e18808bc77017c4050b1a41"
+  "content_hash_tree": "ef01d1372c4659f523c6d9c0ee66fece04ba78cf6091eee4cf5e394a734e39ec"
 }

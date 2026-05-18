@@ -9,11 +9,13 @@
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス
 - 連続加法準同型を射にした`MetrizableLCA`の圏
 - 閉埋め込み、開全射、忘却後の代数的kernel/cokernel条件を束ねたstrict short exact sequence述語
-- split short complexをconflationに入れる形へ寄せたexact-category interface
+- split short complexがstrict short exact sequenceになることのLean証明
+- strict short exact sequenceが`ShortComplex`の同型で保たれることのLean証明
+- pushout/pullback安定性だけを明示的境界として残したexact-category interface
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
-一方、strictなmetrizable LCA列がQuillenのexact-category公理を満たす定理、そのexact category上のYoneda Ext、bounded derived infinity-categoryの構成は、まだローカル実装が必要である。現行goalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
+一方、strictなmetrizable LCA列のpushout/pullback安定性、そのexact category上のYoneda Ext、bounded derived infinity-categoryの構成は、まだローカル実装が必要である。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
 
 ## 評価文脈
 
@@ -32,7 +34,7 @@ python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcom
 git diff --check
 ```
 
-`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`は現時点では失敗する赤いproduct契約であり、`audit/external_audit.py`も`product_success`以外のterminal outcomeを失敗させる。
+`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`は未完成部分を検出する赤いproduct契約であり、`audit/external_audit.py`も`product_success`以外のterminal outcomeを失敗させる。
 
 ## レビューpacket
 

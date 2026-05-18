@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.LCA.Basic
+import Mathlib.Topology.Constructions
 
 /-!
 Strict short exact sequences in the local `MetrizableLCA` category.
@@ -55,6 +56,166 @@ lemma algebraic_cokernel_of_strict {S : ShortComplex MetrizableLCA.{u}}
     (hS : strictShortExact S) :
     Function.Surjective (S.g : S.X₂ → S.X₃) :=
   hS.surjective
+
+/--
+A splitting of a short complex identifies the middle LCA group with the product
+of the left and right terms.
+-/
+noncomputable def splittingContinuousAddEquiv {S : ShortComplex MetrizableLCA.{u}}
+    (s : S.Splitting) : S.X₂ ≃ₜ+ (S.X₁ × S.X₃) where
+  toFun x := (s.r x, S.g x)
+  invFun p := S.f p.1 + s.s p.2
+  left_inv x := by
+    have h := congrArg (fun h : S.X₂ ⟶ S.X₂ => h x) s.id
+    simpa using h
+  right_inv p := by
+    ext
+    · have h1 : s.r (S.f p.1) = p.1 := by
+        exact congrArg (fun h : S.X₁ ⟶ S.X₁ => h p.1) s.f_r
+      have h2 : s.r (s.s p.2) = 0 := by
+        exact congrArg (fun h : S.X₃ ⟶ S.X₁ => h p.2) (ShortComplex.Splitting.s_r s)
+      simp [map_add, h1, h2]
+    · have h1 : S.g (S.f p.1) = 0 := by
+        exact congrArg (fun h : S.X₁ ⟶ S.X₃ => h p.1) S.zero
+      have h2 : S.g (s.s p.2) = p.2 := by
+        exact congrArg (fun h : S.X₃ ⟶ S.X₃ => h p.2) s.s_g
+      simp [map_add, h1, h2]
+  map_add' x y := by
+    ext <;> simp [map_add]
+  continuous_toFun := s.r.hom.continuous.prodMk S.g.hom.continuous
+  continuous_invFun :=
+    (S.f.hom.continuous.comp continuous_fst).add (s.s.hom.continuous.comp continuous_snd)
+
+lemma isClosedEmbedding_prod_zero (A B : MetrizableLCA.{u}) :
+    IsClosedEmbedding (fun x : A => (x, (0 : B))) := by
+  refine ⟨isEmbedding_prodMkLeft (0 : B), ?_⟩
+  have hrange : Set.range (fun x : A => (x, (0 : B))) = {p : A × B | p.2 = 0} := by
+    ext p
+    constructor
+    · rintro ⟨x, rfl⟩
+      rfl
+    · intro hp
+      exact ⟨p.1, by ext <;> simp [hp.symm]⟩
+  rw [hrange]
+  exact isClosed_singleton.preimage continuous_snd
+
+lemma split_closedEmbedding_f {S : ShortComplex MetrizableLCA.{u}}
+    (s : S.Splitting) : IsClosedEmbedding (S.f : S.X₁ → S.X₂) := by
+  let e := splittingContinuousAddEquiv s
+  have hfun : (fun x : S.X₁ => e (S.f x)) = (fun x : S.X₁ => (x, (0 : S.X₃))) := by
+    funext x
+    ext
+    · exact congrArg (fun h : S.X₁ ⟶ S.X₁ => h x) s.f_r
+    · exact congrArg (fun h : S.X₁ ⟶ S.X₃ => h x) S.zero
+  have hcomp : IsClosedEmbedding (fun x : S.X₁ => e (S.f x)) := by
+    rw [hfun]
+    exact isClosedEmbedding_prod_zero S.X₁ S.X₃
+  exact e.toHomeomorph.isClosedEmbedding.of_comp_iff.mp hcomp
+
+lemma split_open_map_g {S : ShortComplex MetrizableLCA.{u}}
+    (s : S.Splitting) : IsOpenMap (S.g : S.X₂ → S.X₃) := by
+  let e := splittingContinuousAddEquiv s
+  have h : IsOpenMap (fun x : S.X₂ => (e x).2) :=
+    isOpenMap_snd.comp e.toHomeomorph.isOpenMap
+  simpa [e, splittingContinuousAddEquiv] using h
+
+lemma split_surjective_g {S : ShortComplex MetrizableLCA.{u}}
+    (s : S.Splitting) : Function.Surjective (S.g : S.X₂ → S.X₃) := by
+  intro y
+  refine ⟨s.s y, ?_⟩
+  exact congrArg (fun h : S.X₃ ⟶ S.X₃ => h y) s.s_g
+
+lemma split_algebraic_exact {S : ShortComplex MetrizableLCA.{u}}
+    (s : S.Splitting) : ∀ x₂ : S.X₂, S.g x₂ = 0 → ∃ x₁ : S.X₁, S.f x₁ = x₂ := by
+  intro x₂ hx₂
+  refine ⟨s.r x₂, ?_⟩
+  have h := congrArg (fun h : S.X₂ ⟶ S.X₂ => h x₂) s.id
+  calc
+    S.f (s.r x₂) = S.f (s.r x₂) + s.s (S.g x₂) := by simp [hx₂]
+    _ = x₂ := h
+
+lemma split_strictShortExact {S : ShortComplex MetrizableLCA.{u}}
+    (s : S.Splitting) : strictShortExact S where
+  closed_inclusion := split_closedEmbedding_f s
+  open_map := split_open_map_g s
+  surjective := split_surjective_g s
+  algebraic_exact := split_algebraic_exact s
+
+lemma iso_closedEmbedding_f {S T : ShortComplex MetrizableLCA.{u}} (e : S ≅ T)
+    (hS : strictShortExact S) : IsClosedEmbedding (T.f : T.X₁ → T.X₂) := by
+  let e₁ : T.X₁ ≃ₜ+ S.X₁ := isoToContinuousAddEquiv (asIso e.inv.τ₁)
+  let e₂ : S.X₂ ≃ₜ+ T.X₂ := isoToContinuousAddEquiv (asIso e.hom.τ₂)
+  have hcomp : IsClosedEmbedding (fun x : T.X₁ => e₂ (S.f (e₁ x))) := by
+    exact (e₂.toHomeomorph.isClosedEmbedding.comp hS.closed_inclusion).comp
+      e₁.toHomeomorph.isClosedEmbedding
+  have hmap : e.inv.τ₁ ≫ S.f ≫ e.hom.τ₂ = T.f := by
+    rw [e.inv.comm₁₂_assoc]
+    have h₂ : e.inv.τ₂ ≫ e.hom.τ₂ = 𝟙 T.X₂ := by
+      exact congrArg ShortComplex.Hom.τ₂ e.inv_hom_id
+    rw [h₂, Category.comp_id]
+  have hfun : (fun x : T.X₁ => e₂ (S.f (e₁ x))) = (T.f : T.X₁ → T.X₂) := by
+    funext x
+    exact congrArg (fun h : T.X₁ ⟶ T.X₂ => h x) hmap
+  rwa [hfun] at hcomp
+
+lemma iso_open_map_g {S T : ShortComplex MetrizableLCA.{u}} (e : S ≅ T)
+    (hS : strictShortExact S) : IsOpenMap (T.g : T.X₂ → T.X₃) := by
+  let e₂ : T.X₂ ≃ₜ+ S.X₂ := isoToContinuousAddEquiv (asIso e.inv.τ₂)
+  let e₃ : S.X₃ ≃ₜ+ T.X₃ := isoToContinuousAddEquiv (asIso e.hom.τ₃)
+  have hcomp : IsOpenMap (fun x : T.X₂ => e₃ (S.g (e₂ x))) :=
+    e₃.toHomeomorph.isOpenMap.comp (hS.open_map.comp e₂.toHomeomorph.isOpenMap)
+  have hmap : e.inv.τ₂ ≫ S.g ≫ e.hom.τ₃ = T.g := by
+    rw [e.inv.comm₂₃_assoc]
+    have h₃ : e.inv.τ₃ ≫ e.hom.τ₃ = 𝟙 T.X₃ := by
+      exact congrArg ShortComplex.Hom.τ₃ e.inv_hom_id
+    rw [h₃, Category.comp_id]
+  have hfun : (fun x : T.X₂ => e₃ (S.g (e₂ x))) = (T.g : T.X₂ → T.X₃) := by
+    funext x
+    exact congrArg (fun h : T.X₂ ⟶ T.X₃ => h x) hmap
+  rwa [hfun] at hcomp
+
+lemma iso_surjective_g {S T : ShortComplex MetrizableLCA.{u}} (e : S ≅ T)
+    (hS : strictShortExact S) : Function.Surjective (T.g : T.X₂ → T.X₃) := by
+  intro y
+  rcases hS.surjective (e.inv.τ₃ y) with ⟨x, hx⟩
+  refine ⟨e.hom.τ₂ x, ?_⟩
+  have hcomm : T.g (e.hom.τ₂ x) = e.hom.τ₃ (S.g x) := by
+    exact congrArg (fun h : S.X₂ ⟶ T.X₃ => h x) e.hom.comm₂₃
+  have h₃ : e.inv.τ₃ ≫ e.hom.τ₃ = 𝟙 T.X₃ := by
+    exact congrArg ShortComplex.Hom.τ₃ e.inv_hom_id
+  have hright : e.hom.τ₃ (e.inv.τ₃ y) = y := by
+    exact congrArg (fun h : T.X₃ ⟶ T.X₃ => h y) h₃
+  rw [hx] at hcomm
+  exact hcomm.trans hright
+
+lemma iso_algebraic_exact {S T : ShortComplex MetrizableLCA.{u}} (e : S ≅ T)
+    (hS : strictShortExact S) :
+    ∀ x₂ : T.X₂, T.g x₂ = 0 → ∃ x₁ : T.X₁, T.f x₁ = x₂ := by
+  intro y₂ hy₂
+  have hker : S.g (e.inv.τ₂ y₂) = 0 := by
+    have hcomm : S.g (e.inv.τ₂ y₂) = e.inv.τ₃ (T.g y₂) := by
+      exact congrArg (fun h : T.X₂ ⟶ S.X₃ => h y₂) e.inv.comm₂₃
+    rw [hcomm, hy₂]
+    simp
+  rcases hS.algebraic_exact (e.inv.τ₂ y₂) hker with ⟨x₁, hx₁⟩
+  refine ⟨e.hom.τ₁ x₁, ?_⟩
+  have hcomm : T.f (e.hom.τ₁ x₁) = e.hom.τ₂ (S.f x₁) := by
+    exact congrArg (fun h : S.X₁ ⟶ T.X₂ => h x₁) e.hom.comm₁₂
+  have h₂ : e.inv.τ₂ ≫ e.hom.τ₂ = 𝟙 T.X₂ := by
+    exact congrArg ShortComplex.Hom.τ₂ e.inv_hom_id
+  have hright : e.hom.τ₂ (e.inv.τ₂ y₂) = y₂ := by
+    exact congrArg (fun h : T.X₂ ⟶ T.X₂ => h y₂) h₂
+  rw [hcomm, hx₁]
+  exact hright
+
+lemma strictShortExact_iso {S T : ShortComplex MetrizableLCA.{u}} (e : S ≅ T) :
+    strictShortExact S → strictShortExact T := by
+  intro hS
+  exact
+    { closed_inclusion := iso_closedEmbedding_f e hS
+      open_map := iso_open_map_g e hS
+      surjective := iso_surjective_g e hS
+      algebraic_exact := iso_algebraic_exact e hS }
 
 end MetrizableLCA
 
