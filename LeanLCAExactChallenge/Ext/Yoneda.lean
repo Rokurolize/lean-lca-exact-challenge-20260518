@@ -290,6 +290,88 @@ noncomputable def shortExactExtensionPullbackData
   i_map := shortExactExtensionPullback_i_map e a
   map_p := shortExactExtensionPullback_map_p e a
 
+/-- Canonical pullback preserves isomorphism of one-fold extensions. -/
+noncomputable def shortExactExtensionPullbackIso
+    {X X' Y : MetrizableLCA.{u}}
+    {e e' : ShortExactExtension (C := MetrizableLCA.{u}) X Y}
+    (a : X' ⟶ X) (h : ShortExactExtension.Iso e e') :
+    ShortExactExtension.Iso (shortExactExtensionPullback e a)
+      (shortExactExtensionPullback e' a) := by
+  let homMap : pullbackObj a e.p ⟶ pullbackObj a e'.p :=
+    pullbackLift a e'.p (pullbackFst a e.p) (pullbackSnd a e.p ≫ h.middleIso.hom) (by
+      rw [Category.assoc, h.hom_p]
+      exact pullback_condition a e.p)
+  have h_inv_p : h.middleIso.inv ≫ e.p = e'.p := by
+    rw [← h.hom_p, ← Category.assoc, h.middleIso.inv_hom_id, Category.id_comp]
+  let invMap : pullbackObj a e'.p ⟶ pullbackObj a e.p :=
+    pullbackLift a e.p (pullbackFst a e'.p) (pullbackSnd a e'.p ≫ h.middleIso.inv) (by
+      rw [Category.assoc, h_inv_p]
+      exact pullback_condition a e'.p)
+  have hom_fst : homMap ≫ pullbackFst a e'.p = pullbackFst a e.p := by
+    dsimp [homMap]
+    rw [pullbackLift_fst]
+  have hom_snd : homMap ≫ pullbackSnd a e'.p = pullbackSnd a e.p ≫ h.middleIso.hom := by
+    dsimp [homMap]
+    rw [pullbackLift_snd]
+  have inv_fst : invMap ≫ pullbackFst a e.p = pullbackFst a e'.p := by
+    dsimp [invMap]
+    rw [pullbackLift_fst]
+  have inv_snd : invMap ≫ pullbackSnd a e.p = pullbackSnd a e'.p ≫ h.middleIso.inv := by
+    dsimp [invMap]
+    rw [pullbackLift_snd]
+  refine
+    { middleIso :=
+        { hom := homMap
+          inv := invMap
+          hom_inv_id := ?_
+          inv_hom_id := ?_ }
+      i_hom := ?_
+      hom_p := ?_ }
+  · apply pullback_hom_ext a e.p
+    · change homMap ≫ (invMap ≫ pullbackFst a e.p) = pullbackFst a e.p
+      rw [inv_fst, hom_fst]
+    · change homMap ≫ (invMap ≫ pullbackSnd a e.p) = pullbackSnd a e.p
+      rw [inv_snd]
+      change (homMap ≫ pullbackSnd a e'.p) ≫ h.middleIso.inv = pullbackSnd a e.p
+      rw [hom_snd]
+      simp [Category.assoc]
+  · apply pullback_hom_ext a e'.p
+    · change invMap ≫ (homMap ≫ pullbackFst a e'.p) = pullbackFst a e'.p
+      rw [hom_fst, inv_fst]
+    · change invMap ≫ (homMap ≫ pullbackSnd a e'.p) = pullbackSnd a e'.p
+      rw [hom_snd]
+      change (invMap ≫ pullbackSnd a e.p) ≫ h.middleIso.hom = pullbackSnd a e'.p
+      rw [inv_snd]
+      simp [Category.assoc]
+  · apply pullback_hom_ext a e'.p
+    · calc
+        ((shortExactExtensionPullback e a).i ≫ homMap) ≫ pullbackFst a e'.p =
+            (shortExactExtensionPullback e a).i ≫ (homMap ≫ pullbackFst a e'.p) :=
+              Category.assoc _ _ _
+        _ = (shortExactExtensionPullback e a).i ≫ pullbackFst a e.p := by
+              exact congrArg (fun k => (shortExactExtensionPullback e a).i ≫ k) hom_fst
+        _ = 0 :=
+              (shortExactExtensionPullback e a).zero
+        _ = (shortExactExtensionPullback e' a).i ≫ pullbackFst a e'.p :=
+              ((shortExactExtensionPullback e' a).zero).symm
+    · calc
+        ((shortExactExtensionPullback e a).i ≫ homMap) ≫ pullbackSnd a e'.p =
+            (shortExactExtensionPullback e a).i ≫ (homMap ≫ pullbackSnd a e'.p) :=
+              Category.assoc _ _ _
+        _ = (shortExactExtensionPullback e a).i ≫
+              (pullbackSnd a e.p ≫ h.middleIso.hom) := by
+              exact congrArg (fun k => (shortExactExtensionPullback e a).i ≫ k) hom_snd
+        _ = ((shortExactExtensionPullback e a).i ≫ pullbackSnd a e.p) ≫
+              h.middleIso.hom :=
+              (Category.assoc _ _ _).symm
+        _ = e.i ≫ h.middleIso.hom := by
+              exact congrArg (fun k => k ≫ h.middleIso.hom)
+                (shortExactExtensionPullback_i_map e a)
+        _ = e'.i := h.i_hom
+        _ = (shortExactExtensionPullback e' a).i ≫ pullbackSnd a e'.p :=
+              (shortExactExtensionPullback_i_map e' a).symm
+  · exact hom_fst
+
 /-- The explicit pullback of a split short complex is split. -/
 noncomputable def pullbackSplitting
     {S : ShortComplex MetrizableLCA.{u}} {Y : MetrizableLCA.{u}}
@@ -597,6 +679,17 @@ def Rel.composeTailHom {X Y Y' : C} (f : Y ⟶ Y') :
       Rel.cons he htail =>
       Rel.cons he (Rel.composeTailHom f htail)
 
+/-- Head pullback preserves termwise relations when one-fold pullback preserves isomorphisms. -/
+def Rel.pullbackHeadWith {X X' Y : C} (f : X' ⟶ X)
+    (pull : {Z : C} → (e : ShortExactExtension X Z) → ShortExactExtension X' Z)
+    (pullIso : ∀ {Z : C} {e e' : ShortExactExtension X Z},
+      ShortExactExtension.Iso e e' → ShortExactExtension.Iso (pull e) (pull e')) :
+    {n : ℕ} → {a b : YonedaExtension X Y (n + 1)} → Rel a b →
+      Rel (YonedaExtension.pullbackHeadWith f pull a)
+        (YonedaExtension.pullbackHeadWith f pull b)
+  | _, _, _, Rel.cons he htail =>
+      Rel.cons (pullIso he) htail
+
 /-- Recursive isomorphism of extension chains, allowing isomorphic intermediate objects. -/
 inductive RelIso :
     {X X' Y : C} → (α : X ≅ X') → {n : ℕ} →
@@ -898,6 +991,18 @@ noncomputable def yonedaExtensionPullbackHeadSplitFactorData
     (fun {_} e s => shortExactExtensionPullbackSplitting e f s)
     h
 
+/-- Canonical MetrizableLCA head pullback preserves termwise chain relations. -/
+noncomputable def yonedaExtensionPullbackHeadRel
+    {X X' Y : MetrizableLCA.{u}} (f : X' ⟶ X) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)}
+    (h : YonedaExtension.Rel a b) :
+    YonedaExtension.Rel (C := MetrizableLCA.{u})
+      (yonedaExtensionPullbackHead f a) (yonedaExtensionPullbackHead f b) :=
+  YonedaExtension.Rel.pullbackHeadWith (C := MetrizableLCA.{u}) f
+    (fun {_} e => shortExactExtensionPullback e f)
+    (fun {_} {_ _} h => shortExactExtensionPullbackIso f h)
+    h
+
 /-- Push out the tail of a positive Yoneda chain in `MetrizableLCA`. -/
 noncomputable def yonedaExtensionPushoutTail
     {X Y Y' : MetrizableLCA.{u}} (f : Y ⟶ Y') {n : ℕ} :
@@ -1186,6 +1291,18 @@ theorem pullbackHeadOfExtension_eq_zero_of_metrizable_split
     (YonedaExt.ofExtension_eq_zero_of_split
       (MetrizableLCA.shortExactExtensionPullback e f)
       (MetrizableLCA.shortExactExtensionPullbackSplitting e f s))
+
+/-- Head pullback respects termwise related MetrizableLCA chains in Ext. -/
+theorem pullbackHeadOfExtension_eq_of_metrizable_rel
+    {X X' Y : MetrizableLCA.{u}} {n : ℕ}
+    {a b : YonedaExtension X Y (n + 1)}
+    (h : YonedaExtension.Rel a b) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA.{u}) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) a =
+      YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA.{u}) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) b :=
+  YonedaExt.ofExtension_eq_ofExtension_of_rel
+    (MetrizableLCA.yonedaExtensionPullbackHeadRel f h)
 
 /-- Head pullback sends a MetrizableLCA right-split chain to zero in Ext. -/
 theorem pullbackHeadOfExtension_eq_zero_of_metrizable_rightSplitData
