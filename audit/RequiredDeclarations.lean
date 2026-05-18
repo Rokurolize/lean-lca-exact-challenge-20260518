@@ -96,6 +96,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.ShortExactExtension.Iso
 #check LeanLCAExactChallenge.ShortExactExtension.IsoBetween
 #check LeanLCAExactChallenge.ShortExactExtension.BaerSumData
+#check LeanLCAExactChallenge.ShortExactExtension.PullbackData
 #check LeanLCAExactChallenge.ShortExactExtension.PushoutData
 #check LeanLCAExactChallenge.ShortExactExtension.toYonedaExtension
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBiprod
@@ -111,6 +112,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPullback
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPullback_i_map
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPullback_map_p
+#check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPullbackData
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPushout
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPushout_i
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionPushout_map_p
@@ -119,6 +121,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBaerSumData
 #check LeanLCAExactChallenge.YonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension.consLeftMap
+#check LeanLCAExactChallenge.YonedaExtension.pullbackHeadWith
 #check LeanLCAExactChallenge.YonedaExtension.Rel
 #check LeanLCAExactChallenge.YonedaExtension.Rel.refl
 #check LeanLCAExactChallenge.YonedaExtension.RelIso
@@ -129,6 +132,11 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExtension.HomTailData
 #check LeanLCAExactChallenge.YonedaExtension.HomTailData.one
 #check LeanLCAExactChallenge.YonedaExtension.HomTailData.cons
+#check LeanLCAExactChallenge.YonedaExtension.HomHeadData
+#check LeanLCAExactChallenge.YonedaExtension.HomHeadData.cons
+#check LeanLCAExactChallenge.YonedaExtension.pullbackHeadWithData
+#check LeanLCAExactChallenge.MetrizableLCA.yonedaExtensionPullbackHead
+#check LeanLCAExactChallenge.MetrizableLCA.yonedaExtensionPullbackHeadData
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain.toYonedaExtension
 #check LeanLCAExactChallenge.YonedaExtension.PositiveChain.consLeftMap
@@ -141,6 +149,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.yonedaRelationSubgroup
 #check LeanLCAExactChallenge.YonedaExt.zero_equiv_hom
 #check LeanLCAExactChallenge.YonedaExt.ofExtension
+#check LeanLCAExactChallenge.YonedaExt.pullbackHeadOfExtensionWith
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_ofExtension_of_rel
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_ofExtension_of_relIso
 #check LeanLCAExactChallenge.YonedaExt.ofExtension_eq_zero_of_split

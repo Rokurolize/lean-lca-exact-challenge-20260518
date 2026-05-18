@@ -1,0 +1,174 @@
+{
+  "schema": "lean-lca-exact-proof-frontier-v1",
+  "generated_utc": "2026-05-18T22:25:52Z",
+  "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
+  "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
+  "frontiers": [
+    {
+      "frontier_id": "frontier-left-yoneda-descent",
+      "target_declarations": [
+        "YonedaExt bilinear product descending in the left quotient variable",
+        "YonedaExt compatibility with all left-side relation generators"
+      ],
+      "target_files_or_module": [
+        "LeanLCAExactChallenge/Ext/Yoneda.lean",
+        "optional worker-owned helper module under LeanLCAExactChallenge/Ext/"
+      ],
+      "dependencies": [
+        "YonedaRelationSubgroup",
+        "leftProductByExtension",
+        "leftProductByPositiveChain",
+        "HomHeadData",
+        "HomTailData",
+        "BaerSumData"
+      ],
+      "allowed_writes": [
+        "LeanLCAExactChallenge/Ext/Yoneda.lean",
+        "audit/RequiredDeclarations.lean",
+        "audit/ProductSuccessDeclarations.lean",
+        "audit/blockers/yoneda_ext_exact_category_api.lean",
+        "docs/research/*",
+        "run/verification.json",
+        "terminal_outcome/terminal_outcome.json",
+        "manifest.json"
+      ],
+      "forbidden_writes": [
+        "/home/roku/codex-consultant-20260517",
+        "global Lean or elan configuration",
+        "packets/ authoritative zip hash inside packet"
+      ],
+      "worker_count_allowed": 0,
+      "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
+      "merge_blocker": "Target worktree is dirty and currently owned by the active parent run.",
+      "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
+      "owned_by_active_process": true
+    },
+    {
+      "frontier_id": "frontier-degree0-hom-tail",
+      "target_declarations": [
+        "ShortExactExtension.PullbackData",
+        "MetrizableLCA.shortExactExtensionPullbackData",
+        "YonedaExtension.HomHeadData",
+        "MetrizableLCA.yonedaExtensionPullbackHead",
+        "YonedaExt.pullbackHeadOfExtensionWith",
+        "arbitrary hom-head and hom-tail compatibility"
+      ],
+      "target_files_or_module": [
+        "LeanLCAExactChallenge/Ext/Yoneda.lean"
+      ],
+      "dependencies": [
+        "shortExactExtensionPullback",
+        "shortExactExtensionPushout",
+        "HomTailData"
+      ],
+      "allowed_writes": [
+        "LeanLCAExactChallenge/Ext/Yoneda.lean",
+        "audit/RequiredDeclarations.lean",
+        "audit/ProductSuccessDeclarations.lean",
+        "audit/blockers/yoneda_ext_exact_category_api.lean"
+      ],
+      "forbidden_writes": [
+        "parallel edits to the same large file by workers"
+      ],
+      "worker_count_allowed": 0,
+      "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
+      "merge_blocker": "Only generator-level head pullback is implemented; quotient descent remains incomplete.",
+      "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
+      "owned_by_active_process": true
+    },
+    {
+      "frontier_id": "frontier-dbounded-infinity",
+      "target_declarations": [
+        "BoundedDerivedInfinityCategory",
+        "Dbounded",
+        "stable infinity-category enhancement or product-approved replacement"
+      ],
+      "target_files_or_module": [
+        "LeanLCAExactChallenge/Derived/Bounded.lean"
+      ],
+      "dependencies": [
+        "QuillenExactCategory",
+        "bounded cochain complexes",
+        "exact weak equivalences",
+        "mathlib localization APIs"
+      ],
+      "allowed_writes": [
+        "LeanLCAExactChallenge/Derived/Bounded.lean",
+        "audit/ProductSuccessDeclarations.lean",
+        "audit/external_audit.py"
+      ],
+      "forbidden_writes": [
+        "ordinary localization mislabeled as stable infinity-category"
+      ],
+      "worker_count_allowed": 0,
+      "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
+      "merge_blocker": "No current stable infinity-category model in local implementation.",
+      "product_success_contribution": "Required for the fourth product objective.",
+      "owned_by_active_process": false
+    },
+    {
+      "frontier_id": "frontier-audit-hardening",
+      "target_declarations": [
+        "audit/external_audit.py",
+        "audit/ProductSuccessDeclarations.lean"
+      ],
+      "target_files_or_module": [
+        "audit/external_audit.py",
+        "audit/ProductSuccessDeclarations.lean"
+      ],
+      "dependencies": [
+        "terminal_outcome/terminal_outcome.json",
+        "manifest.json",
+        "run/verification.json"
+      ],
+      "allowed_writes": [
+        "audit/external_audit.py",
+        "audit/ProductSuccessDeclarations.lean",
+        "audit/negative_fixtures/*"
+      ],
+      "forbidden_writes": [
+        "weakening product-success truth gates"
+      ],
+      "worker_count_allowed": 0,
+      "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "merge_blocker": "External audit correctly rejects non-product terminal state.",
+      "product_success_contribution": "Prevents placeholder or stale product claims.",
+      "owned_by_active_process": false
+    },
+    {
+      "frontier_id": "frontier-route-log",
+      "target_declarations": [
+        "Japanese route documentation",
+        "review packet consistency"
+      ],
+      "target_files_or_module": [
+        "README_FOR_REVIEW.md",
+        "docs/research/reference_route_log.md",
+        "docs/research/mathlib_gap_analysis.md",
+        "docs/research/sources.md",
+        "packets/lean_lca_exact_category_challenge/"
+      ],
+      "dependencies": [
+        "current Lean frontier",
+        "manifest.json",
+        "terminal_outcome/terminal_outcome.json"
+      ],
+      "allowed_writes": [
+        "README_FOR_REVIEW.md",
+        "docs/research/*",
+        "packets/*",
+        "manifest.json",
+        "run/verification.json",
+        "terminal_outcome/terminal_outcome.json"
+      ],
+      "forbidden_writes": [
+        "authoritative final zip SHA256 inside packet"
+      ],
+      "worker_count_allowed": 0,
+      "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "merge_blocker": "Must be refreshed after each proof frontier change.",
+      "product_success_contribution": "Required for Japanese reviewability and packet audit.",
+      "owned_by_active_process": true
+    }
+  ]
+}

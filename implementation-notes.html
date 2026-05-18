@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Lean LCA exact challenge implementation notes</title>
+</head>
+<body>
+  <h1>実装ノート</h1>
+  <section>
+    <h2>ゴール解釈</h2>
+    <p>2026-05-19のgovernor goalは、本来は既存のactive threadが停止、完了、意図的に中断、または同じproduct gapで反復停滞した後に使うものとして書かれている。現在のthreadは<code>019e3c1e-ce8e-7190-9df0-18452cc5e187</code>で、target worktreeにはこのthread自身の未コミット差分がある。そのため、governor goalのworker fan-outは起動せず、現threadをparent/current runとして扱う。</p>
+    <p>元のproduct specはそのまま保持する。すなわち、Quillen exact category、strict metrizable LCA exact category、exact-category Yoneda Ext、bounded derived infinity-categoryの四部構成がproduct success条件であり、部分的なfrontier到達やnonterminal auditは完了ではない。</p>
+  </section>
+  <section>
+    <h2>第一バリア</h2>
+    <ul>
+      <li>target state: <code>git status --short --branch</code>で<code>LeanLCAExactChallenge/Ext/Yoneda.lean</code>、audit 3ファイル、staleな<code>packets/</code>を確認した。未コミット差分はこのactive runのdegree-zero pullback-head作業に属する。</li>
+      <li>process state: <code>pgrep -a 'codex|codex-patched|node|python|docker|containerd'</code>で同じtarget cwdの<code>codex-patched</code> processを確認した。これは現active runであり、別workerは起動しない。</li>
+      <li>baseline: <code>lake build</code>、forbidden-token audit、<code>RequiredDeclarations</code>、<code>ProductSuccessDeclarations</code>、Yoneda blocker audit、<code>git diff --check</code>は通過した。<code>external_audit.py</code>は未コミット差分によりmanifest hash mismatchで失敗しており、証拠更新後もproduct_success gateで失敗する見込みである。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>現在の判断</h2>
+    <p>hom-tail pushout milestoneはcommit <code>346329d</code>で保存済み。次の親プロセス作業として、degree 0のhead側作用を完全な商群上の写像に降ろす前段階を実装している。具体的には<code>ShortExactExtension.PullbackData</code>、<code>MetrizableLCA.shortExactExtensionPullbackData</code>、<code>YonedaExtension.HomHeadData</code>、およびgenerator-levelのhead pullback actionを追加した。</p>
+    <p>この作業はproduct truthをまだ満たさない。商関係全体を保つ左変数側の双線形Yoneda積、任意長のhom head/tail互換性、stable infinity-category enhancementは残る。</p>
+  </section>
+  <section>
+    <h2>worker方針</h2>
+    <p>dirty target worktreeと現active processのため、現時点ではworkerを起動しない。並列化する場合は、worker-owned helper moduleを新規作成し、parentが<code>LeanLCAExactChallenge/Ext/Yoneda.lean</code>への統合を所有する。</p>
+  </section>
+</body>
+</html>
