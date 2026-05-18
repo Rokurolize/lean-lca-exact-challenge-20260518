@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v1",
-  "generated_utc": "2026-05-18T17:39:06.900168Z",
+  "generated_utc": "2026-05-18T17:44:09.016410Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -64,11 +64,6 @@
       "sha256": "f14487649c500317f67df79c38cddc4458434c713a640d06822ee0205b89779a"
     },
     {
-      "path": "audit/__pycache__/external_audit.cpython-312.pyc",
-      "bytes": 16436,
-      "sha256": "89640fb9cc45243b3063440bb2b808210725a06e7fccd76fdaada6fe421c07a6"
-    },
-    {
       "path": "audit/blockers/derived_infinity_exact_category_api.lean",
       "bytes": 506,
       "sha256": "1b2d56febfb586b45d99a0875f0137b889811df06427534ff79f287b81a702ba"
@@ -85,8 +80,8 @@
     },
     {
       "path": "audit/external_audit.py",
-      "bytes": 11466,
-      "sha256": "8505d8d235fa15617078701c720e1b0afa95a30706cf0c1ec9e0f0b6798f010b"
+      "bytes": 11608,
+      "sha256": "a8d6937c7898c897498d499ea019e03d6fbefb3a23fdcee8154a7d0a903a7447"
     },
     {
       "path": "audit/negative_fixtures/self_referential_zip_sha_authoritative/manifest.json",
@@ -116,13 +111,13 @@
     {
       "path": "run/verification.json",
       "bytes": 1054,
-      "sha256": "182b7302827fe7c277f140d36d4c7234ed4e09928695ea74f98a53217b1cb375"
+      "sha256": "ade10b56fa773bfa48805b0e166e79a48377b6050e2631d9c0a528bcfdcccaa7"
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 2875,
-      "sha256": "3005ca061c61dedd292c1dfe8c28f65ed3ab8660a51c59bb8f93ab529a77840e"
+      "bytes": 3028,
+      "sha256": "3f150694b618157025440155517f5fd469803b297841a72f7a4336f8b75fddad"
     }
   ],
-  "content_hash_tree": "4291cc3b4a50662f7681d3e5c159d2826cc7bc59dff20d0a0cc74de4b3ae0b28"
+  "content_hash_tree": "7fa736f2eac067ebaf38f8a4f1630cd8a789487a2e18bd41d9c130d1b624ab23"
 }

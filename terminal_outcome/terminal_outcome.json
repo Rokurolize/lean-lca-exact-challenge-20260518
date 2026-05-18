@@ -11,6 +11,7 @@
     "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
     "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
     "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
     "git diff --check"
   ],
   "required_declarations_checked": [
@@ -44,5 +45,5 @@
   ],
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": ""
+  "git_commit": "eda5fe5b7ee0394d4b6f1253e49d29726db2cbce"
 }

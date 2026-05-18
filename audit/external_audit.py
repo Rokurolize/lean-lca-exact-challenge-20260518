@@ -92,7 +92,12 @@ def iter_project_source_files(project_root: Path) -> list[Path]:
         if not base.exists():
             continue
         for path in base.rglob("*"):
-            if path.is_file() and ".lake" not in path.parts:
+            if (
+                path.is_file()
+                and ".lake" not in path.parts
+                and "__pycache__" not in path.parts
+                and path.suffix != ".pyc"
+            ):
                 files.append(path)
     return sorted(files)
 
