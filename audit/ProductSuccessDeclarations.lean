@@ -42,6 +42,13 @@ example (X Y : MetrizableLCA) {n : ℕ}
       YonedaExt.ofExtension (C := MetrizableLCA) b :=
   YonedaExt.ofExtension_eq_ofExtension_of_rel h
 
+example (X Y : MetrizableLCA) {n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RelIso (CategoryTheory.Iso.refl X) a b) :
+    YonedaExt.ofExtension (C := MetrizableLCA) a =
+      YonedaExt.ofExtension (C := MetrizableLCA) b :=
+  YonedaExt.ofExtension_eq_ofExtension_of_relIso h
+
 noncomputable example (X Y : MetrizableLCA) :
     AddCommGroup (YonedaExt (C := MetrizableLCA) X Y 1) := by
   infer_instance

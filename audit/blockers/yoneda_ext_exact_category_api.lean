@@ -28,5 +28,6 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaRelGenerator
 #check yonedaRelationSubgroup
 #check YonedaExt.ofExtension_eq_ofExtension_of_rel
+#check YonedaExt.ofExtension_eq_ofExtension_of_relIso
 
 end LeanLCAExactChallenge
