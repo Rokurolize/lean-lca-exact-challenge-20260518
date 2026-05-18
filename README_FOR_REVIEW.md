@@ -9,6 +9,7 @@
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス
 - 連続加法準同型を射にした`MetrizableLCA`の圏
 - 閉埋め込み、開全射、忘却後の代数的kernel/cokernel条件を束ねたstrict short exact sequence述語
+- split short complexをconflationに入れる形へ寄せたexact-category interface
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 

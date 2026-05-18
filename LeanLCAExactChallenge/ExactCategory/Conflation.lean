@@ -17,7 +17,7 @@ open CategoryTheory.Limits
 
 namespace QuillenExactCategory
 
-variable (C : Type u) [Category.{v} C] [HasZeroMorphisms C] [QuillenExactCategory C]
+variable (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 
 /-- A conflation together with its short complex. -/
 structure ConflationData where

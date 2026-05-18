@@ -18,15 +18,15 @@ namespace LeanLCAExactChallenge
 open CategoryTheory
 open CategoryTheory.Limits
 
-/-- A local Quillen exact-category interface over a category with zero morphisms. -/
-class QuillenExactCategory (C : Type u) [Category.{v} C] [HasZeroMorphisms C] where
+/-- A local Quillen exact-category interface over a preadditive category. -/
+class QuillenExactCategory (C : Type u) [Category.{v} C] [Preadditive C] where
   /-- The distinguished kernel-cokernel pairs, represented as short complexes. -/
   Conflation : ShortComplex C → Prop
   /-- Conflations are invariant under isomorphism of short complexes. -/
   conflation_iso {S T : ShortComplex C} (e : S ≅ T) :
     Conflation S → Conflation T
-  /-- Every short exact complex is a conflation in the local interface. -/
-  split_conflation (S : ShortComplex C) : S.ShortExact → Conflation S
+  /-- Every split short complex is a conflation in the local interface. -/
+  split_conflation (S : ShortComplex C) : S.Splitting → Conflation S
   /-- Pushouts of inflations remain inflations. -/
   pushout_inflation {S : ShortComplex C} (hS : Conflation S) {Y : C}
     (a : S.X₁ ⟶ Y) [HasPushout S.f a] :
@@ -40,7 +40,7 @@ class QuillenExactCategory (C : Type u) [Category.{v} C] [HasZeroMorphisms C] wh
 
 namespace QuillenExactCategory
 
-variable {C : Type u} [Category.{v} C] [HasZeroMorphisms C] [QuillenExactCategory C]
+variable {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 
 /-- An inflation is the first map of a conflation. -/
 def inflation {X Y : C} (i : X ⟶ Y) : Prop :=

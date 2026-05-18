@@ -1,6 +1,6 @@
 {
-  "schema": "lean-lca-exact-challenge-manifest-v2-product-contract",
-  "generated_utc": "2026-05-18T18:10:35Z",
+  "schema": "lean-lca-exact-challenge-manifest-v3-preadditive-interface",
+  "generated_utc": "2026-05-18T18:17:07Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -15,18 +15,18 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/Bounded.lean",
-      "bytes": 1514,
-      "sha256": "4416d22b3df12204eab29ee2d151344f9ef709390f49b54fe10fa7bda03bf6ba"
+      "bytes": 1504,
+      "sha256": "63dceb1c8ce79ee3dc42839d8425592a0eb0622a861aec3733ddacf0e8cc3030"
     },
     {
       "path": "LeanLCAExactChallenge/ExactCategory/Basic.lean",
-      "bytes": 2361,
-      "sha256": "27a802a787d1768551ad40c1536f3cd59b6b3396d6d8ef373492d45a52ea7260"
+      "bytes": 2342,
+      "sha256": "aefac68152ee8410e39c443410c1250b41c14eaea0b6aafc9caedad8ca6e47ef"
     },
     {
       "path": "LeanLCAExactChallenge/ExactCategory/Conflation.lean",
-      "bytes": 685,
-      "sha256": "f836c8a6b2ad1036521bd923ffa2f79abffcf688b7c20e577518add2dd36a5a4"
+      "bytes": 680,
+      "sha256": "b3610db9955ebb987d72c90e039fc453d20557c5deecbea3e0937769e29e72f7"
     },
     {
       "path": "LeanLCAExactChallenge/Ext/Yoneda.lean",
@@ -35,13 +35,13 @@
     },
     {
       "path": "LeanLCAExactChallenge/LCA/Basic.lean",
-      "bytes": 4208,
-      "sha256": "16f83a37f2df8586f598e9a0f548bc65465dadfc510326270eb070c16e80be45"
+      "bytes": 5326,
+      "sha256": "e1c70f4f191d6fe427f16817a3c6250690b602fc2e7cda2ad5bc642d2859df23"
     },
     {
       "path": "LeanLCAExactChallenge/LCA/ExactCategory.lean",
-      "bytes": 2054,
-      "sha256": "157fed8056d47107c62af5479daa42ad646a0c9ebc8f0a78f9764f291566c87f"
+      "bytes": 2053,
+      "sha256": "e69eb178305e5ee28115b71b47972833f91cacafcefed675d8af5cadde9938cc"
     },
     {
       "path": "LeanLCAExactChallenge/LCA/StrictExact.lean",
@@ -55,8 +55,8 @@
     },
     {
       "path": "README_FOR_REVIEW.md",
-      "bytes": 2621,
-      "sha256": "799bd4910d8c351077281aae7efe1af9582653e88afc82c38c7dc9c526c91c94"
+      "bytes": 2707,
+      "sha256": "39dcbe1963cceb3cc94eec5db936691a0f422a0c6473999aee17b98422f0c230"
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
@@ -70,8 +70,8 @@
     },
     {
       "path": "audit/blockers/derived_infinity_exact_category_api.lean",
-      "bytes": 506,
-      "sha256": "1b2d56febfb586b45d99a0875f0137b889811df06427534ff79f287b81a702ba"
+      "bytes": 501,
+      "sha256": "05fa7bc388b37657d3cc61547a329f72cc91163fa3edf484de8cebdae4d71315"
     },
     {
       "path": "audit/blockers/quasi_abelian_exact_category_api.lean",
@@ -80,8 +80,8 @@
     },
     {
       "path": "audit/blockers/yoneda_ext_exact_category_api.lean",
-      "bytes": 569,
-      "sha256": "2d773b9da2c0f3334fc9462cec6634dffe95d6f49d6bd1f6e729e96a6c5c8615"
+      "bytes": 564,
+      "sha256": "09769b8ceb6a1f68b815819cac73c2ce92cf41152cd15aeaae0de784bd73cec8"
     },
     {
       "path": "audit/external_audit.py",
@@ -100,8 +100,8 @@
     },
     {
       "path": "docs/research/mathlib_gap_analysis.md",
-      "bytes": 3906,
-      "sha256": "1f49f78b16334ea17dbe0595ae42751c41cfe411adc016c46735b308ac28ca7e"
+      "bytes": 3956,
+      "sha256": "5bf6f4aa7a706a14bac84b691ae208a72cabf0523d98e6b40ab96fcb15d7b971"
     },
     {
       "path": "docs/research/mathlib_initial_survey.md",
@@ -120,14 +120,14 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 1143,
-      "sha256": "a6e9f0543382b9be40253156a941c0a9d8856de72d779e77bd5008737795cb88"
+      "bytes": 1523,
+      "sha256": "92b822494ca4e553fffa02133a1906962e1b727b359e81753375c62f79588843"
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 3324,
-      "sha256": "ee2d9ab605ee8b7ec41db11c328b7c68b396215bdd181dbe0c8f9f674f0a7f84"
+      "bytes": 3061,
+      "sha256": "168135f8fe7979a448c527740b4324422b91066f9553ca256880a1504bfa2e3b"
     }
   ],
-  "content_hash_tree": "6fc1076eed0781af7eac689f5d10d2f0367942dd1b835f30ab8a9dd5967fcc53"
+  "content_hash_tree": "d98c4b6171d2a93ad8804469a10cc208560f26404cec437fc42917150302e11d"
 }

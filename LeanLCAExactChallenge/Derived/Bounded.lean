@@ -23,7 +23,7 @@ open CategoryTheory.Limits
 A proposed interface for the bounded derived infinity-category of an exact
 category.  Supplying this structure is part of the missing source patch.
 -/
-structure BoundedDerivedInfinityCategory (C : Type u) [Category.{v} C] [HasZeroMorphisms C]
+structure BoundedDerivedInfinityCategory (C : Type u) [Category.{v} C] [Preadditive C]
     [QuillenExactCategory C] : Type (max (u + 1) (v + 1)) where
   underlying : Type (max u v)
   [category : Category.{max u v} underlying]
@@ -31,7 +31,7 @@ structure BoundedDerivedInfinityCategory (C : Type u) [Category.{v} C] [HasZeroM
 attribute [instance] BoundedDerivedInfinityCategory.category
 
 /-- The underlying category of a chosen bounded derived infinity-category construction. -/
-abbrev Dbounded {C : Type u} [Category.{v} C] [HasZeroMorphisms C] [QuillenExactCategory C]
+abbrev Dbounded {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     (D : BoundedDerivedInfinityCategory C) : Type (max u v) :=
   D.underlying
 

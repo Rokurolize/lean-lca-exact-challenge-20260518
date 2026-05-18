@@ -24,7 +24,7 @@ namespace MetrizableLCA
 structure StrictExactQuillenAxioms : Prop where
   iso {S T : ShortComplex MetrizableLCA.{u}} (e : S ≅ T) :
     strictShortExact S → strictShortExact T
-  split (S : ShortComplex MetrizableLCA.{u}) : S.ShortExact → strictShortExact S
+  split (S : ShortComplex MetrizableLCA.{u}) : S.Splitting → strictShortExact S
   pushout {S : ShortComplex MetrizableLCA.{u}} (hS : strictShortExact S) {Y : MetrizableLCA.{u}}
     (a : S.X₁ ⟶ Y) [HasPushout S.f a] :
     ∃ (Z : MetrizableLCA.{u}) (g : pushout S.f a ⟶ Z)

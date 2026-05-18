@@ -16,6 +16,7 @@
 
 - conflationをshort complexとして持つ。
 - inflationとdeflationをconflationの第一射、第二射として取り出す。
+- split short complexをconflationに入れる。
 - inflationがpushoutで安定であることを要求する。
 - deflationがpullbackで安定であることを要求する。
 

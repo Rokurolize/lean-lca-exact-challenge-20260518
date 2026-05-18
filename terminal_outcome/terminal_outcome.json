@@ -2,21 +2,17 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "更新後のgoalはproduct_successのみ完了可能である。現時点ではQuillen exact-category interface、bundleされたmetrizable LCA category/morphism層、strict short exact sequence述語までは確認済みだが、strict LCA exact-category定理、exact category上のYoneda Ext、bounded derived infinity-categoryが未完成であるため、goalは未完了である。",
+  "summary": "更新後のgoalはproduct_successのみ完了可能である。現時点ではQuillen exact-category interfaceをpreadditive category上のsplit short complex axiomへ寄せ、MetrizableLCAのpreadditive構造、bundleされたcategory/morphism層、strict short exact sequence述語までは確認済みだが、strict LCA exact-category定理、exact category上のYoneda Ext、bounded derived infinity-categoryが未完成であるため、goalは未完了である。",
   "verified_commands": [
     "lake build",
-    "scripts/check_mathlib_survey.sh",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "lake env lean audit/RequiredDeclarations.lean",
-    "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
     "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
     "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-    "git diff --check",
-    "python3 external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json (from packets/lean_lca_exact_category_challenge)",
-    "sha256sum -c lean_lca_exact_category_challenge.zip.sha256 (from packets)",
-    "clean extraction audit of packets/lean_lca_exact_category_challenge.zip"
+    "git diff --check"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",

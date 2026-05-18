@@ -101,15 +101,48 @@ instance {A B : MetrizableLCA.{u}} : Zero (A ⟶ B) where
 @[simp]
 lemma zero_apply {A B : MetrizableLCA.{u}} (a : A) : (0 : A ⟶ B) a = 0 := rfl
 
-instance : HasZeroMorphisms MetrizableLCA.{u} where
-  comp_zero := by
-    intro X Y f Z
-    ext x
-    rfl
-  zero_comp := by
-    intro X Y Z f
-    ext x
-    simp
+instance {A B : MetrizableLCA.{u}} : Add (A ⟶ B) where
+  add f g := ⟨f.hom + g.hom⟩
+
+@[simp]
+lemma hom_add {A B : MetrizableLCA.{u}} (f g : A ⟶ B) :
+    (f + g).hom = f.hom + g.hom := rfl
+
+instance {A B : MetrizableLCA.{u}} : SMul ℕ (A ⟶ B) where
+  smul n f := ⟨n • f.hom⟩
+
+@[simp]
+lemma hom_nsmul {A B : MetrizableLCA.{u}} (n : ℕ) (f : A ⟶ B) :
+    (n • f).hom = n • f.hom := rfl
+
+instance {A B : MetrizableLCA.{u}} : Neg (A ⟶ B) where
+  neg f := ⟨-f.hom⟩
+
+@[simp]
+lemma hom_neg {A B : MetrizableLCA.{u}} (f : A ⟶ B) :
+    (-f).hom = -f.hom := rfl
+
+instance {A B : MetrizableLCA.{u}} : Sub (A ⟶ B) where
+  sub f g := ⟨f.hom - g.hom⟩
+
+@[simp]
+lemma hom_sub {A B : MetrizableLCA.{u}} (f g : A ⟶ B) :
+    (f - g).hom = f.hom - g.hom := rfl
+
+instance {A B : MetrizableLCA.{u}} : SMul ℤ (A ⟶ B) where
+  smul n f := ⟨n • f.hom⟩
+
+@[simp]
+lemma hom_zsmul {A B : MetrizableLCA.{u}} (n : ℤ) (f : A ⟶ B) :
+    (n • f).hom = n • f.hom := rfl
+
+instance (A B : MetrizableLCA.{u}) : AddCommGroup (A ⟶ B) :=
+  Function.Injective.addCommGroup (Hom.hom) (by
+    intro f g h
+    exact Hom.ext h)
+    rfl (fun _ _ => rfl) (fun _ => rfl) (fun _ _ => rfl) (fun _ _ => rfl) (fun _ _ => rfl)
+
+instance : Preadditive MetrizableLCA.{u} where
 
 /-- Forget the topology while retaining the additive group. -/
 def forgetToAddCommGrpCat : MetrizableLCA.{u} ⥤ AddCommGrpCat.{u} where
