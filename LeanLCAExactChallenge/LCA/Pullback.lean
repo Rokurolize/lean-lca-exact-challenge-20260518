@@ -1,4 +1,4 @@
-import LeanLCAExactChallenge.LCA.Basic
+import LeanLCAExactChallenge.LCA.StrictExact
 import Mathlib.CategoryTheory.Limits.Shapes.Pullback.PullbackCone
 import Mathlib.Topology.Compactness.LocallyCompact
 import Mathlib.Topology.Constructions
@@ -152,11 +152,64 @@ noncomputable def pullbackIsLimit : IsLimit (pullbackCone f g) :=
 noncomputable instance hasPullback : HasPullback f g where
   exists_limit := ⟨⟨pullbackCone f g, pullbackIsLimit f g⟩⟩
 
+noncomputable def pullbackIsoPullbackObj : pullback f g ≅ pullbackObj f g :=
+  limit.isoLimitCone ⟨pullbackCone f g, pullbackIsLimit f g⟩
+
+lemma pullbackIsoPullbackObj_hom_fst :
+    (pullbackIsoPullbackObj f g).hom ≫ pullbackFst f g = pullback.fst f g := by
+  simpa [pullbackIsoPullbackObj, pullbackCone] using
+    (limit.isoLimitCone_hom_π (F := cospan f g)
+      ⟨pullbackCone f g, pullbackIsLimit f g⟩ WalkingCospan.left)
+
+lemma pullbackIsoPullbackObj_hom_snd :
+    (pullbackIsoPullbackObj f g).hom ≫ pullbackSnd f g = pullback.snd f g := by
+  simpa [pullbackIsoPullbackObj, pullbackCone] using
+    (limit.isoLimitCone_hom_π (F := cospan f g)
+      ⟨pullbackCone f g, pullbackIsLimit f g⟩ WalkingCospan.right)
+
+lemma pullbackIsoPullbackObj_inv_fst :
+    (pullbackIsoPullbackObj f g).inv ≫ pullback.fst f g = pullbackFst f g := by
+  simpa [pullbackIsoPullbackObj, pullbackCone] using
+    (limit.isoLimitCone_inv_π (F := cospan f g)
+      ⟨pullbackCone f g, pullbackIsLimit f g⟩ WalkingCospan.left)
+
+lemma pullbackIsoPullbackObj_inv_snd :
+    (pullbackIsoPullbackObj f g).inv ≫ pullback.snd f g = pullbackSnd f g := by
+  simpa [pullbackIsoPullbackObj, pullbackCone] using
+    (limit.isoLimitCone_inv_π (F := cospan f g)
+      ⟨pullbackCone f g, pullbackIsLimit f g⟩ WalkingCospan.right)
+
 lemma pullbackFst_surjective_of_snd_surjective (hg : Function.Surjective (g : B → C)) :
     Function.Surjective (pullbackFst f g : pullbackObj f g → A) := by
   intro x
   rcases hg (f x) with ⟨y, hy⟩
   refine ⟨⟨(x, y), hy.symm⟩, rfl⟩
+
+lemma pullbackFst_openMap_of_snd_openMap (hg : IsOpenMap (g : B → C)) :
+    IsOpenMap (pullbackFst f g : pullbackObj f g → A) := by
+  intro U hU
+  rw [isOpen_iff_mem_nhds]
+  rintro a ⟨p, hpU, hpa⟩
+  rw [← hpa]
+  have hUnhds : U ∈ 𝓝 p := hU.mem_nhds hpU
+  rcases (mem_nhds_subtype (pullbackSubgroup f g : Set (A × B)) p U).1 hUnhds with
+    ⟨W, hWnhds, hWsubU⟩
+  rcases mem_nhds_prod_iff'.1 hWnhds with
+    ⟨V, N, hVopen, hpV, hNopen, hpN, hVNsubW⟩
+  let T : Set A := V ∩ f ⁻¹' (g '' N)
+  have hTopen : IsOpen T := by
+    exact hVopen.inter ((hg N hNopen).preimage f.hom.continuous)
+  have hpT : (pullbackFst f g) p ∈ T := by
+    refine ⟨hpV, ?_⟩
+    exact ⟨p.1.2, hpN, p.2.symm⟩
+  have hTsub : T ⊆ (pullbackFst f g : pullbackObj f g → A) '' U := by
+    intro x hx
+    rcases hx.2 with ⟨y, hyN, hgy⟩
+    let q : pullbackObj f g := ⟨(x, y), hgy.symm⟩
+    refine ⟨q, ?_, rfl⟩
+    apply hWsubU
+    exact hVNsubW ⟨hx.1, hyN⟩
+  exact Filter.mem_of_superset (hTopen.mem_nhds hpT) hTsub
 
 lemma pullbackSnd_surjective_of_fst_surjective (hf : Function.Surjective (f : A → C)) :
     Function.Surjective (pullbackSnd f g : pullbackObj f g → B) := by
@@ -236,6 +289,79 @@ lemma pullbackKernelMap_closedEmbedding {X : MetrizableLCA.{u}} (i : X ⟶ B)
       (pullbackKernelMap f g i zero : X → pullbackObj f g)) := by
     simpa [Function.comp_def, pullbackKernelMap] using hprod
   exact Topology.IsClosedEmbedding.of_comp hval hcomp
+
+lemma strictShortExact_pullback {S : ShortComplex MetrizableLCA.{u}} (hS : strictShortExact S)
+    {Y : MetrizableLCA.{u}} (a : Y ⟶ S.X₃) :
+    strictShortExact (ShortComplex.mk (pullbackKernelMap a S.g S.f S.zero)
+      (pullbackFst a S.g) (pullbackKernelMap_fst a S.g S.f S.zero)) where
+  closed_inclusion := pullbackKernelMap_closedEmbedding a S.g S.f S.zero hS.closed_inclusion
+  open_map := pullbackFst_openMap_of_snd_openMap a S.g hS.open_map
+  surjective := pullbackFst_surjective_of_snd_surjective a S.g hS.surjective
+  algebraic_exact := pullbackKernelMap_algebraic_exact a S.g S.f S.zero hS.algebraic_exact
+
+lemma strictShortExact_categorical_pullback {S : ShortComplex MetrizableLCA.{u}}
+    (hS : strictShortExact S) {Y : MetrizableLCA.{u}} (a : Y ⟶ S.X₃) :
+    ∃ (X : MetrizableLCA.{u}) (i : X ⟶ pullback a S.g)
+      (zero : i ≫ pullback.fst a S.g = 0),
+      strictShortExact (ShortComplex.mk i (pullback.fst a S.g) zero) := by
+  let e := pullbackIsoPullbackObj a S.g
+  let k₀ := pullbackKernelMap a S.g S.f S.zero
+  let k : S.X₁ ⟶ pullback a S.g := k₀ ≫ e.inv
+  have zero : k ≫ pullback.fst a S.g = 0 := by
+    dsimp [k]
+    rw [Category.assoc, pullbackIsoPullbackObj_inv_fst]
+    exact pullbackKernelMap_fst a S.g S.f S.zero
+  refine ⟨S.X₁, k, zero, ?_⟩
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · let e₂ : pullbackObj a S.g ≃ₜ+ (pullback a S.g : MetrizableLCA.{u}) :=
+      isoToContinuousAddEquiv e.symm
+    have hk₀ : IsClosedEmbedding (k₀ : S.X₁ → pullbackObj a S.g) :=
+      pullbackKernelMap_closedEmbedding a S.g S.f S.zero hS.closed_inclusion
+    have hcomp : IsClosedEmbedding (fun x : S.X₁ => e₂ (k₀ x)) :=
+      e₂.toHomeomorph.isClosedEmbedding.comp hk₀
+    have hfun : (fun x : S.X₁ => e₂ (k₀ x)) =
+        (k : S.X₁ → ((pullback a S.g : MetrizableLCA.{u}) : Type u)) := by
+      funext x
+      rfl
+    rwa [hfun] at hcomp
+  · let e₂ : (pullback a S.g : MetrizableLCA.{u}) ≃ₜ+ pullbackObj a S.g :=
+      isoToContinuousAddEquiv e
+    have hopen₀ : IsOpenMap (pullbackFst a S.g : pullbackObj a S.g → Y) :=
+      pullbackFst_openMap_of_snd_openMap a S.g hS.open_map
+    have hcomp : IsOpenMap (fun z : ((pullback a S.g : MetrizableLCA.{u}) : Type u) =>
+        pullbackFst a S.g (e₂ z)) :=
+      hopen₀.comp e₂.toHomeomorph.isOpenMap
+    have hfun : (fun z : ((pullback a S.g : MetrizableLCA.{u}) : Type u) =>
+        pullbackFst a S.g (e₂ z)) =
+        (pullback.fst a S.g : ((pullback a S.g : MetrizableLCA.{u}) : Type u) → Y) := by
+      funext z
+      exact congrArg (fun h : pullback a S.g ⟶ Y => h z)
+        (pullbackIsoPullbackObj_hom_fst a S.g)
+    rwa [hfun] at hcomp
+  · intro y
+    rcases pullbackFst_surjective_of_snd_surjective a S.g hS.surjective y with ⟨p, hp⟩
+    refine ⟨e.inv p, ?_⟩
+    change (pullback.fst a S.g) (e.inv p) = y
+    have h : (pullback.fst a S.g) (e.inv p) = (pullbackFst a S.g) p := by
+      exact congrArg (fun h : pullbackObj a S.g ⟶ Y => h p)
+        (pullbackIsoPullbackObj_inv_fst a S.g)
+    rw [h, hp]
+  · intro z hz
+    change (pullback.fst a S.g) z = 0 at hz
+    have hp : pullbackFst a S.g (e.hom z) = 0 := by
+      have h : pullbackFst a S.g (e.hom z) = (pullback.fst a S.g) z := by
+        exact congrArg (fun h : pullback a S.g ⟶ Y => h z)
+          (pullbackIsoPullbackObj_hom_fst a S.g)
+      rw [h, hz]
+    rcases pullbackKernelMap_algebraic_exact a S.g S.f S.zero hS.algebraic_exact
+        (e.hom z) hp with ⟨x, hx⟩
+    refine ⟨x, ?_⟩
+    dsimp [k]
+    calc
+      (k₀ ≫ e.inv) x = e.inv (k₀ x) := rfl
+      _ = e.inv (e.hom z) := by rw [hx]
+      _ = z := by
+        exact congrArg (fun h : pullback a S.g ⟶ pullback a S.g => h z) e.hom_inv_id
 
 end MetrizableLCA
 

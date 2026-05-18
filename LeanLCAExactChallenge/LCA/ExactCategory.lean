@@ -1,12 +1,10 @@
-import LeanLCAExactChallenge.LCA.StrictExact
+import LeanLCAExactChallenge.LCA.Pullback
 
 /-!
 The intended exact-category structure on strict metrizable LCA sequences.
 
-The construction below is intentionally parameterized by explicit source-patch
-assumptions.  Current mathlib provides the underlying categorical and
-topological anchors used here, but not the quasi-abelian/exact-category theorem
-needed to prove the strict LCA axioms internally.
+The construction below is still parameterized by the remaining pushout
+stability theorem. Pullback stability is proved locally in `LCA.Pullback`.
 -/
 
 set_option autoImplicit false
@@ -20,18 +18,16 @@ open CategoryTheory.Limits
 
 namespace MetrizableLCA
 
-/-- Source-patch assumptions needed to upgrade strict LCA sequences to a Quillen exact category. -/
+/--
+Remaining source-patch assumption needed to upgrade strict LCA sequences to a
+Quillen exact category.
+-/
 structure StrictExactQuillenAxioms : Prop where
   pushout {S : ShortComplex MetrizableLCA.{u}} (hS : strictShortExact S) {Y : MetrizableLCA.{u}}
     (a : S.X₁ ⟶ Y) [HasPushout S.f a] :
     ∃ (Z : MetrizableLCA.{u}) (g : pushout S.f a ⟶ Z)
       (zero : pushout.inr S.f a ≫ g = 0),
       strictShortExact (ShortComplex.mk (pushout.inr S.f a) g zero)
-  pullback {S : ShortComplex MetrizableLCA.{u}} (hS : strictShortExact S) {Y : MetrizableLCA.{u}}
-    (a : Y ⟶ S.X₃) [HasPullback a S.g] :
-    ∃ (X : MetrizableLCA.{u}) (f : X ⟶ pullback a S.g)
-      (zero : f ≫ pullback.fst a S.g = 0),
-      strictShortExact (ShortComplex.mk f (pullback.fst a S.g) zero)
 
 /--
 The Quillen exact-category structure obtained once the missing strict LCA
@@ -44,7 +40,8 @@ def quillenExactCategory (h : StrictExactQuillenAxioms.{u}) :
   conflation_iso e hS := strictShortExact_iso e hS
   split_conflation _ hS := split_strictShortExact hS
   pushout_inflation {S} hS {Y} a := h.pushout (S := S) hS (Y := Y) a
-  pullback_deflation {S} hS {Y} a := h.pullback (S := S) hS (Y := Y) a
+  pullback_deflation {S} hS {Y} a :=
+    strictShortExact_categorical_pullback (S := S) hS (Y := Y) a
 
 end MetrizableLCA
 

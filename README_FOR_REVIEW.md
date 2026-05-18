@@ -11,12 +11,12 @@
 - 閉埋め込み、開全射、忘却後の代数的kernel/cokernel条件を束ねたstrict short exact sequence述語
 - split short complexがstrict short exact sequenceになることのLean証明
 - strict short exact sequenceが`ShortComplex`の同型で保たれることのLean証明
-- `MetrizableLCA`のpullbackを積の閉部分群として構成し、射影の全射性、代数的kernel移送、kernel mapの閉埋め込み移送まで進めたLean証明
-- pushout/pullback安定性だけを明示的境界として残したexact-category interface
+- `MetrizableLCA`のpullbackを積の閉部分群として構成し、strict sequenceのpullback安定性まで進めたLean証明
+- pushout安定性だけを明示的境界として残したexact-category interface
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
-一方、strictなmetrizable LCA列のpushout安定性と、構成済みpullbackに沿ったdeflation安定性、そのexact category上のYoneda Ext、bounded derived infinity-categoryの構成は、まだローカル実装が必要である。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
+一方、strictなmetrizable LCA列のpushout安定性、そのexact category上のYoneda Ext、bounded derived infinity-categoryの構成は、まだローカル実装が必要である。このgoalでは、これらを残したまま`update_goal(status="complete")`を呼んではならない。
 
 ## 評価文脈
 

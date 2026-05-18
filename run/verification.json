@@ -1,7 +1,7 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v9-lca-pullback-kernel-closed",
-  "generated_utc": "2026-05-18T18:56:17Z",
-  "source_tree_hash": "ed27f2cba53825186c4a6e829fb7d868826ca9d84c71363366f56fb306fbe077",
+  "schema": "lean-lca-exact-challenge-verification-v10-lca-pullback-stability",
+  "generated_utc": "2026-05-18T19:06:35Z",
+  "source_tree_hash": "b3f48dd0a11d27be27294bf231b880f56ed1d45577deeec387bd1f02cd2447ec",
   "commands": [
     {
       "command": "lake build",
