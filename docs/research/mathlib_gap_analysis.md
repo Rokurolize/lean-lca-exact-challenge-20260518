@@ -1,69 +1,69 @@
-# Mathlib Gap Analysis
+# mathlib gap analysis
 
-## Terminal Assessment
+## 終端評価
 
-The full four-part theorem is not completed. The strongest checked frontier in this repository is a source-patch-needed handoff:
+四部構成の定理全体は完成していない。このリポジトリでコンパイル確認できた最も強い境界はsource-patch-needed handoffである。
 
-- a local `QuillenExactCategory` interface compiles;
-- `MetrizableLCA` compiles as a bundled category with continuous additive homomorphisms;
-- strict short exact sequences compile as closed inclusions, open surjections, and algebraic exactness after forgetting topology;
-- the intended exact-category instance is exposed only from explicit `StrictExactQuillenAxioms`;
-- Ext and derived-category declarations are checked only at the abelian-category or construction-interface frontier.
+- ローカルの`QuillenExactCategory`インターフェイスはコンパイルする。
+- `MetrizableLCA`は連続加法準同型を射にしたbundleされた圏としてコンパイルする。
+- strict short exact sequenceは、閉埋め込み、開全射、忘却後の代数的完全性を含む述語としてコンパイルする。
+- 目標のexact-category instanceは、明示的な`StrictExactQuillenAxioms`からだけ構成される。
+- Extとderived categoryの宣言は、abelian category側の既存APIまたは構成interfaceの境界までしか確認していない。
 
-## Missing Exact-Category API
+## exact-category APIの不足
 
-Local source search found no mathlib module named `ExactCategory` and no existing Quillen exact-category class. The local interface in `LeanLCAExactChallenge/ExactCategory/Basic.lean` therefore records the needed shape:
+ローカルsource searchでは、mathlib内に`ExactCategory`というmodule名やQuillen exact category classは見つからなかった。そのため、`LeanLCAExactChallenge/ExactCategory/Basic.lean`に次の形をローカルinterfaceとして記録した。
 
-- conflations as short complexes;
-- inflations and deflations as the first and second maps of conflations;
-- stability of inflations under pushout;
-- stability of deflations under pullback.
+- conflationをshort complexとして持つ。
+- inflationとdeflationをconflationの第一射、第二射として取り出す。
+- inflationがpushoutで安定であることを要求する。
+- deflationがpullbackで安定であることを要求する。
 
-Minimal checked reproduction:
+最小のコンパイル確認済み再現:
 
 - `audit/blockers/quasi_abelian_exact_category_api.lean`
 
-## Missing Strict LCA Stability Theorem
+## strict LCA安定性定理の不足
 
-The project defines `MetrizableLCA.strictShortExact`, but the theorem that these strict sequences satisfy the Quillen exact-category axioms is not available from current mathlib. The handoff boundary is:
+このprojectは`MetrizableLCA.strictShortExact`を定義している。しかし、これらのstrict sequenceがQuillen exact-category公理を満たすという定理は、確認したmathlib APIからは利用できなかった。handoff境界は次の宣言である。
 
 ```lean
 LeanLCAExactChallenge.MetrizableLCA.StrictExactQuillenAxioms
 LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory
 ```
 
-The latter requires the former as an explicit argument, so it does not package an unproved product theorem as a completed instance.
+後者は前者を明示的な引数として要求するため、未証明のproduct theoremを完成済みinstanceとして包んでいない。
 
-Local evidence:
+ローカル証拠:
 
 - `LeanLCAExactChallenge/LCA/Basic.lean`
 - `LeanLCAExactChallenge/LCA/StrictExact.lean`
 - `LeanLCAExactChallenge/LCA/ExactCategory.lean`
 
-## Missing Yoneda Ext for Exact Categories
+## exact category上のYoneda Extの不足
 
-Mathlib provides `CategoryTheory.Abelian.Ext` for abelian categories through the derived category API. This repository exposes that checked frontier as `LeanLCAExactChallenge.YonedaExt`.
+mathlibはderived category API経由で、abelian categoryに対する`CategoryTheory.Abelian.Ext`を提供している。このリポジトリでは、そのコンパイル確認済み境界を`LeanLCAExactChallenge.YonedaExt`として露出した。
 
-What remains missing is a Yoneda Ext construction for a general Quillen exact category, specialized to strict metrizable LCA conflations.
+不足しているのは、一般のQuillen exact category上のYoneda Ext構成と、それをstrict metrizable LCA conflationへ特殊化するAPIである。
 
-Minimal checked reproduction:
+最小のコンパイル確認済み再現:
 
 - `audit/blockers/yoneda_ext_exact_category_api.lean`
 
-## Missing Bounded Derived Infinity-Category
+## bounded derived infinity-categoryの不足
 
-Mathlib provides `DerivedCategory C` for abelian categories. The requested bounded derived infinity-category `D^b(C,E)` for an exact category is not available as a direct construction in the checked local API.
+mathlibはabelian categoryに対して`DerivedCategory C`を提供している。要求されたexact categoryのbounded derived infinity-category `D^b(C,E)`は、確認したローカルAPIでは直接の構成として利用できなかった。
 
-This repository exposes:
+このリポジトリで露出しているのは次の境界である。
 
 - `LeanLCAExactChallenge.BoundedDerivedInfinityCategory`, a construction interface requiring an exact category;
 - `LeanLCAExactChallenge.Dbounded`, the underlying type of a chosen construction;
-- `LeanLCAExactChallenge.abelianDerivedCategory`, the checked abelian-category comparison target.
+- `LeanLCAExactChallenge.abelianDerivedCategory`, 確認済みのabelian-category比較対象。
 
-Minimal checked reproduction:
+最小のコンパイル確認済み再現:
 
 - `audit/blockers/derived_infinity_exact_category_api.lean`
 
-## Product-Completion Boundary
+## product completionの境界
 
-`terminal_outcome/terminal_outcome.json` must keep `product_complete=false`. A later product-success goal would need to replace the explicit LCA source-patch assumptions with proved Lean declarations and then build exact-category Yoneda Ext and bounded derived infinity-category APIs over that exact category.
+`terminal_outcome/terminal_outcome.json`は`product_complete=false`を保つ必要がある。後続のproduct-success goalでは、明示的なLCA source-patch仮定をLeanで証明済みの宣言に置き換え、そのexact category上にYoneda Extとbounded derived infinity-categoryのAPIを構築する必要がある。

@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v1",
-  "generated_utc": "2026-05-18T17:44:09.016410Z",
+  "generated_utc": "2026-05-18T17:53:42Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -55,8 +55,8 @@
     },
     {
       "path": "README_FOR_REVIEW.md",
-      "bytes": 1394,
-      "sha256": "85bb562841a7a8240d017417a8aaea105252620c59f0fb0cc998f5055162c70a"
+      "bytes": 2368,
+      "sha256": "059ed2c71ab049d6f5366e3a13397ddaa86aa19377704784594c4274f2185810"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -80,8 +80,8 @@
     },
     {
       "path": "audit/external_audit.py",
-      "bytes": 11608,
-      "sha256": "a8d6937c7898c897498d499ea019e03d6fbefb3a23fdcee8154a7d0a903a7447"
+      "bytes": 14250,
+      "sha256": "c3f04eef6fec3404877f79a81b7b4904224330290c2a9b61c6928697645a25b7"
     },
     {
       "path": "audit/negative_fixtures/self_referential_zip_sha_authoritative/manifest.json",
@@ -95,8 +95,8 @@
     },
     {
       "path": "docs/research/mathlib_gap_analysis.md",
-      "bytes": 3329,
-      "sha256": "43792de5e1c58416ae3c8706bca197e055f6bb99c070578ff5c07e1f57cdfacc"
+      "bytes": 3906,
+      "sha256": "1f49f78b16334ea17dbe0595ae42751c41cfe411adc016c46735b308ac28ca7e"
     },
     {
       "path": "docs/research/mathlib_initial_survey.md",
@@ -104,20 +104,25 @@
       "sha256": "57a5b9bf05437d13bb6c62c160045a050621b4ea7bf742290ef5f301dcabc7dd"
     },
     {
+      "path": "docs/research/reference_route_log.md",
+      "bytes": 4775,
+      "sha256": "c12501bf5efb01d2e99692c65b284ef90736578c919bfc6f46ed282ee85132ce"
+    },
+    {
       "path": "docs/research/sources.md",
-      "bytes": 2854,
-      "sha256": "d6852561b994555b5aef8665d0d9234e6c4dc21a5edaf67dde6162a7f4c70b11"
+      "bytes": 3137,
+      "sha256": "face1b7643f8ddc6b02f05745f2e0032f83a15b0eec31042b48266a19f073980"
     },
     {
       "path": "run/verification.json",
-      "bytes": 1054,
-      "sha256": "ade10b56fa773bfa48805b0e166e79a48377b6050e2631d9c0a528bcfdcccaa7"
+      "bytes": 1047,
+      "sha256": "7bd5dd26b4f4b5fde75070ca338ccfd3305d151bfe4f024e21475b22eb47bc54"
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 3028,
-      "sha256": "3f150694b618157025440155517f5fd469803b297841a72f7a4336f8b75fddad"
+      "bytes": 3191,
+      "sha256": "dd50aaa10b9d1ef8a87f1d5cc763ee474d19d593301c4ac1e9d07029c471f432"
     }
   ],
-  "content_hash_tree": "7fa736f2eac067ebaf38f8a4f1630cd8a789487a2e18bd41d9c130d1b624ab23"
+  "content_hash_tree": "7c7ad188ff52159217422c815be05d1e3410a2dd2631145886fc012696e6c164"
 }

@@ -24,6 +24,7 @@ PROJECT_REQUIRED = [
     "audit/RequiredDeclarations.lean",
     "audit/external_audit.py",
     "docs/research/sources.md",
+    "docs/research/reference_route_log.md",
     "docs/research/mathlib_gap_analysis.md",
 ]
 
@@ -50,6 +51,7 @@ TERMINAL_OUTCOMES = {
 
 FORBIDDEN_LEAN_RE = re.compile(r"\b(sorry|admit|axiom|unsafe)\b")
 HEX64_RE = re.compile(r"\b[0-9a-fA-F]{64}\b")
+JAPANESE_RE = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
 
 
 def fail(message: str) -> None:
@@ -135,6 +137,57 @@ def check_forbidden_lean(project_root: Path) -> None:
         match = FORBIDDEN_LEAN_RE.search(text)
         if match:
             fail(f"forbidden Lean token {match.group(1)!r} in {path}")
+
+
+def japanese_char_count(text: str) -> int:
+    return len(JAPANESE_RE.findall(text))
+
+
+def require_japanese_text(label: str, text: str, minimum: int = 20) -> None:
+    if japanese_char_count(text) < minimum:
+        fail(f"{label} must contain substantive Japanese prose")
+
+
+def check_reference_route_log(project_root: Path) -> None:
+    path = project_root / "docs" / "research" / "reference_route_log.md"
+    text = path.read_text(encoding="utf-8")
+    require_japanese_text("docs/research/reference_route_log.md", text, minimum=80)
+    required_patterns = {
+        "references": r"B[üu]hler|Hoffmann|Spitzweck|Schneiders|文献|参照",
+        "source_searches": r"rg|source search|検索",
+        "library_apis": r"mathlib|API|ShortComplex|Abelian\.Ext|DerivedCategory",
+        "shortcut": r"近道|shortcut|楽にした",
+        "local_vs_adapted": r"ローカル|既存API|自作|適応",
+        "false_leads": r"失敗|false lead|見つからなかった",
+    }
+    for label, pattern in required_patterns.items():
+        if not re.search(pattern, text, flags=re.IGNORECASE):
+            fail(f"reference_route_log.md does not explain required route-log item: {label}")
+
+
+def check_japanese_deliverables(root: Path, project_root: Path, terminal_outcome_path: Path) -> None:
+    for rel, base in [
+        ("README_FOR_REVIEW.md", root),
+        ("docs/research/sources.md", project_root),
+        ("docs/research/mathlib_gap_analysis.md", project_root),
+    ]:
+        require_japanese_text(rel, (base / rel).read_text(encoding="utf-8"), minimum=40)
+    check_reference_route_log(project_root)
+
+    outcome = load_json(terminal_outcome_path)
+    summary = outcome.get("summary")
+    if not isinstance(summary, str):
+        fail("terminal_outcome.summary must be a string")
+    require_japanese_text("terminal_outcome.summary", summary, minimum=12)
+    known_gaps = outcome.get("known_gaps")
+    if not isinstance(known_gaps, list) or not known_gaps:
+        fail("terminal_outcome.known_gaps must be a nonempty list")
+    for index, gap in enumerate(known_gaps):
+        if not isinstance(gap, str):
+            fail(f"terminal_outcome.known_gaps[{index}] must be a string")
+        require_japanese_text(f"terminal_outcome.known_gaps[{index}]", gap, minimum=4)
+    if outcome.get("reference_route_log") != "docs/research/reference_route_log.md":
+        fail("terminal_outcome.reference_route_log must point to docs/research/reference_route_log.md")
 
 
 def command_status_map(verification: dict[str, Any]) -> dict[str, str]:
@@ -313,6 +366,7 @@ def main() -> None:
     packet_mode = project_root != root
     check_required(root, project_root, terminal_outcome)
     check_forbidden_lean(project_root)
+    check_japanese_deliverables(root, project_root, terminal_outcome)
     check_no_internal_zip_sha(root, terminal_outcome)
     check_manifest(root)
     check_verification(root, project_root)
