@@ -455,3 +455,9 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 2026-05-20T01:05:00Z時点で確認した`w116`と`w117`は、v140-v142で製品側へ入れた具体tail refutationを別のconsumer名で再確認する内容だった。`QuillenExactCategory IntModuleCat`は合成されないが、bare `HomotopyEquiv` strict boundedness transportを否定するconsumerはそのinstanceを必要としない。したがってこの結果は、具体反例がLCA本体のexact-category構造に依存せず、strict boundedness transport方針そのものを否定しているという分類証拠として扱う。
 
 `w118`はselected cochain payloadを監査側で整理する内容だったが、v143でその入力形を`Derived.Bounded`へ移したため、残る不足はさらに明確である。監査側のpayload名ではなく製品側の`boundedTrianglehIso13CochainIsoPayload`または`boundedTrianglehIso13CochainDataStrictification`を構成すれば、bounded strict-realization inputへ進める。未解決なのは、そのpayloadを任意のbounded endpoint distinguished triangleから作る代表選択定理である。
+
+### v145: strict-boundedness audit consumer sync
+
+2026-05-20T01:18:00Z時点で、v143の製品側payload昇格後に残った監査側の同名再宣言を取り除いた。`audit/blockers/strict_boundedness_cochain_data_from_strictification.lean`は、製品側の`boundedTrianglehIso13CochainDataStrictification`と`boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data`を直接消費する互換probeへ変わった。
+
+この修正は数学的な新証明ではないが、今後のfrontier検証に重要である。strict-boundedness frontierの診断は、監査ファイル内のローカル複製ではなく製品側APIを実際に参照するため、残る不足が「製品側payloadを構成する定理」に正しく集約される。

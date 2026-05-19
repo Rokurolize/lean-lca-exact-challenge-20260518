@@ -12,44 +12,12 @@ open CategoryTheory.Limits
 variable (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 
 omit [QuillenExactCategory C] in
-/-- The extra cochain-level boundedness data a triangle strictification theorem must return
-to discharge the bounded route.
-
-The existing endpoint hypotheses say only that `T.obj₁` and `T.obj₃` are bounded after
-passing to the homotopy category. For `boundedHomotopyObjectTrianglehIso13Realization`, the
-chosen strict mapping-cone representative itself must have a bounded source and bounded
-mapping cone. This payload records the missing bridge: strict bounded representatives
-`Ksrc` and `Kcone`, plus cochain-level isomorphisms from them to the selected source `K`
-and selected `CochainComplex.mappingCone f`. -/
-abbrev boundedTrianglehIso13CochainDataStrictification
-    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
-  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
-    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
-    boundedHomotopyObject C T.obj₁ →
-    boundedHomotopyObject C T.obj₃ →
-    ∃ (Ksrc Kcone K L : CochainComplex C ℤ) (f : K ⟶ L)
-      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
-      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
-      (_eK : Ksrc ≅ K) (_eCone : Kcone ≅ CochainComplex.mappingCone f),
-        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
-            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
-          e₃.hom ≫ T.mor₃ ∧
-        boundedCochainComplex C Ksrc ∧
-        boundedCochainComplex C Kcone
-
-omit [QuillenExactCategory C] in
-/-- Cochain-level boundedness transport from a strengthened strictification payload is
-enough to supply the bounded strict-realization input already used by `Bounded.lean`. -/
+/-- Backward-compatible audit name for the product-side cochain-data consumer. -/
 theorem boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data_strictification
     [HasZeroObject C] [HasBinaryBiproducts C]
     (strictify : boundedTrianglehIso13CochainDataStrictification C) :
-    boundedHomotopyObjectTrianglehIso13Realization C := by
-  intro T hT h₁ h₃
-  rcases strictify hT h₁ h₃ with
-    ⟨Ksrc, Kcone, K, L, f, e₁, e₃, eK, eCone, comm, hKsrc, hKcone⟩
-  exact ⟨K, L, f, e₁, e₃, comm,
-    (boundedCochainComplex C).prop_of_iso eK hKsrc,
-    (boundedCochainComplex C).prop_of_iso eCone hKcone⟩
+    boundedHomotopyObjectTrianglehIso13Realization C :=
+  boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data C strictify
 
 /-- The exact-acyclic and bounded routes need different strictification outputs.
 

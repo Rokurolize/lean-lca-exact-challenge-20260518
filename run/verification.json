@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v144-support-results-classified",
-  "generated_utc": "2026-05-20T01:05:00Z",
-  "source_tree_hash": "1e143b48194bf30cd332d58aa8873c5039632687ea3f07fb4a2adc551dbb0906",
-  "summary": "v144 classifies w116-w118 support results as covered by v140-v143 product-side work; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v145-strict-boundedness-audit-sync",
+  "generated_utc": "2026-05-20T01:18:00Z",
+  "source_tree_hash": "8d16e4410148ce39f4c31aeb9cb5820a9537baef0e37368e71e4ed37ef35c024",
+  "summary": "v145 repairs the strict-boundedness cochain-data audit after moving the payload into Derived.Bounded; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full build completed successfully after v143 selected cochain payload move."
+      "evidence": "Fresh first-barrier build passed before the v145 audit sync; rerun not required for audit-only wrapper change but full build remains recorded as passing for this checkpoint."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after v143."
+      "evidence": "Forbidden-token audit passed in the first barrier."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit completed successfully after v143."
+      "evidence": "Required declaration audit passed in the first barrier."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit completed successfully after v143; it remains a declaration audit, not product_success acceptance."
+      "evidence": "Product declaration audit passed in the first barrier."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -57,12 +57,17 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v143 artifact updates."
+      "evidence": "Whitespace diff check will be rerun after manifest refresh."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
       "status": "passed",
       "evidence": "Focused module build passed after adding selected cochain payload declarations to Derived.Bounded."
+    },
+    {
+      "command": "lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean",
+      "status": "passed",
+      "evidence": "Focused audit failed before the fix due to duplicate local payload name, then passed after converting to a product-side API consumer."
     }
   ],
   "implemented_declarations_checked": [
