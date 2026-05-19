@@ -628,6 +628,15 @@ noncomputable example (X X' Y Y' : MetrizableLCA)
         (MetrizableLCA.shortExactExtensionPullback e f) g).p :=
   MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_p e f g
 
+noncomputable example (X X' Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) (g : Y ⟶ Y')
+    [IsIso (MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap e f g)] :
+    ShortExactExtension.PushoutData
+      (MetrizableLCA.shortExactExtensionPullback e f) g
+      (MetrizableLCA.shortExactExtensionPullback
+        (MetrizableLCA.shortExactExtensionPushout e g) f) :=
+  MetrizableLCA.shortExactExtensionPullbackPushoutDataOfIsIsoComparison e f g
+
 noncomputable example (X Y Y' : MetrizableLCA)
     {e e' : ShortExactExtension (C := MetrizableLCA) X Y}
     (a : Y ⟶ Y') (h : ShortExactExtension.Iso e e') :

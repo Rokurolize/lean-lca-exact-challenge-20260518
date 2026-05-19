@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T03:50:06Z",
+  "generated_utc": "2026-05-19T03:59:56Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -42,7 +42,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Fixed one-fold, positive-chain, and arbitrary fixed-left YonedaExtension actions now descend in the right variable under available head-pullback compatibility data. Arbitrary fixed-left termwise YonedaExtension.Rel invariance, split-factor zero descent, Baer additivity, HomTail descent conditional on the base splice exchange premise, identity head pullback normalization, identity tail pushout normalization, identity pullback-after-tail-pushout normalization, output-side pullback/pushout data iso transport, the canonical pullback-after-tail-pushout middle comparison, and the canonical pushout-of-pullback to pullback-of-pushout comparison map with inl/inr/i/p laws are implemented; the unconditional base exchange and standard exchange IsPushout or inverse proof remain incomplete.",
+      "merge_blocker": "Fixed one-fold, positive-chain, and arbitrary fixed-left YonedaExtension actions now descend in the right variable under available head-pullback compatibility data. Arbitrary fixed-left termwise YonedaExtension.Rel invariance, split-factor zero descent, Baer additivity, HomTail descent conditional on the base splice exchange premise, identity head pullback normalization, identity tail pushout normalization, identity pullback-after-tail-pushout normalization, output-side pullback/pushout data iso transport, the canonical pullback-after-tail-pushout middle comparison, the canonical pushout-of-pullback to pullback-of-pushout comparison map with inl/inr/i/p laws, and the conditional IsIso-to-PushoutData bridge are implemented; the unconditional base exchange and standard exchange IsPushout or inverse proof remain incomplete.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -113,7 +113,9 @@
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_inl",
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_inr",
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_i",
-        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_p"
+        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_p",
+        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonIsoOfIsIso",
+        "MetrizableLCA.shortExactExtensionPullbackPushoutDataOfIsIsoComparison"
       ]
     },
     {
@@ -177,7 +179,9 @@
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_inl",
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_inr",
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_i",
-        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_p"
+        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_p",
+        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonIsoOfIsIso",
+        "MetrizableLCA.shortExactExtensionPullbackPushoutDataOfIsIsoComparison"
       ],
       "target_files_or_module": [
         "LeanLCAExactChallenge/Ext/Yoneda.lean"
@@ -198,7 +202,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Generator-level and quotient-level degree-zero tail maps are unconditional on the canonical MetrizableLCA side; head pullback maps and arbitrary fixed-left YonedaExtension splicing remain conditional on standard MetrizableLCA pullback-pushout exchange data. Identity head pullback normalization, identity tail pushout normalization, identity pullback-after-tail-pushout normalization, output-side pullback/pushout data iso transport, the canonical pullback-after-tail-pushout middle comparison, and the canonical pushout-of-pullback to pullback-of-pushout comparison map with endpoint laws are implemented, but the nontrivial standard exchange square still lacks an inverse or the IsPushout/universal-property proof.",
+      "merge_blocker": "Generator-level and quotient-level degree-zero tail maps are unconditional on the canonical MetrizableLCA side; head pullback maps and arbitrary fixed-left YonedaExtension splicing remain conditional on standard MetrizableLCA pullback-pushout exchange data. Identity head pullback normalization, identity tail pushout normalization, identity pullback-after-tail-pushout normalization, output-side pullback/pushout data iso transport, the canonical pullback-after-tail-pushout middle comparison, the canonical pushout-of-pullback to pullback-of-pushout comparison map with endpoint laws, and the conditional comparison-isomorphism bridge to PushoutData are implemented, but the nontrivial standard exchange square still lacks an unconditional inverse or the IsPushout/universal-property proof.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -301,7 +305,9 @@
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_inl",
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_inr",
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_i",
-        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_p"
+        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_p",
+        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonIsoOfIsIso",
+        "MetrizableLCA.shortExactExtensionPullbackPushoutDataOfIsIsoComparison"
       ]
     },
     {

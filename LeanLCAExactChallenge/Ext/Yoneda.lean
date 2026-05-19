@@ -1031,6 +1031,34 @@ lemma shortExactExtensionPullbackPushoutComparisonMap_p
       (shortExactExtensionPushout_inr_p (shortExactExtensionPullback e f) g).symm
     exact hassoc.trans (hinr.trans (hp.trans hpush))
 
+/-- If the canonical comparison map is an isomorphism, it identifies the two
+candidate one-fold extensions. -/
+noncomputable def shortExactExtensionPullbackPushoutComparisonIsoOfIsIso
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y')
+    [IsIso (shortExactExtensionPullbackPushoutComparisonMap e f g)] :
+    ShortExactExtension.Iso
+      (shortExactExtensionPushout (shortExactExtensionPullback e f) g)
+      (shortExactExtensionPullback (shortExactExtensionPushout e g) f) where
+  middleIso := asIso (shortExactExtensionPullbackPushoutComparisonMap e f g)
+  i_hom := by
+    simp
+  hom_p := by
+    simp
+
+/-- If the canonical comparison map is an isomorphism, the pulled-back pushout
+is the expected pushout extension. -/
+noncomputable def shortExactExtensionPullbackPushoutDataOfIsIsoComparison
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y')
+    [IsIso (shortExactExtensionPullbackPushoutComparisonMap e f g)] :
+    ShortExactExtension.PushoutData
+      (shortExactExtensionPullback e f) g
+      (shortExactExtensionPullback (shortExactExtensionPushout e g) f) :=
+  ShortExactExtension.PushoutData.isoOut
+    (shortExactExtensionPushoutData (shortExactExtensionPullback e f) g)
+    (shortExactExtensionPullbackPushoutComparisonIsoOfIsIso e f g)
+
 /-- Canonical pushout of one-fold extensions preserves isomorphism of the input extension. -/
 noncomputable def shortExactExtensionPushoutIso
     {X Y Y' : MetrizableLCA.{u}} (a : Y ⟶ Y')
