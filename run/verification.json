@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v149-endpoint-strictification-boundary",
-  "generated_utc": "2026-05-20T02:15:00Z",
-  "source_tree_hash": "b3cc11499bd0a099bd486716de62af562c15a6f415372f3aeb6a133bbdd21d71",
-  "summary": "v149 formalizes that unrestricted endpoint strictification would imply the refuted strict-boundedness transport principle; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v150-bounded-strict-realization-frontier-minimizer",
+  "generated_utc": "2026-05-20T02:30:00Z",
+  "source_tree_hash": "06bcea5b97e896dc2573b8b7dae6b3aacccbf5cf35e1690c17f3343730b75c5d",
+  "summary": "v150 adds a focused audit minimizer for the remaining bounded strict-realization theorem; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v149 endpoint strictification boundary implementation."
+      "evidence": "Full lake build passed after adding the v150 bounded strict-realization frontier minimizer audit."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,7 +27,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v149 implementation."
+      "evidence": "Forbidden-token audit passed after adding the v150 audit."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate reproduced after v149; product remains failed_nonterminal."
+      "evidence": "Expected external audit product gate reproduced after v150; product remains failed_nonterminal."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v149 implementation/docs changes."
+      "evidence": "Whitespace diff check passed after the v150 audit/docs changes."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -68,6 +68,11 @@
       "command": "lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean",
       "status": "passed",
       "evidence": "Focused strict-boundedness consumer passed after moving endpoint strictification into product API."
+    },
+    {
+      "command": "lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
+      "status": "passed",
+      "evidence": "Focused minimizer audit passed after parent reimplementation of the w123 generated audit."
     }
   ],
   "implemented_declarations_checked": [
@@ -97,11 +102,17 @@
     "homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished",
     "endpointHomotopyEquivToSelectedCochainIsoStrictification",
     "strictBoundednessTransport_of_endpointHomotopyEquivToSelectedCochainIsoStrictification",
-    "AlternatingTailExtendTransport.not_endpointHomotopyEquivToSelectedCochainIsoStrictification_intModuleCat"
+    "AlternatingTailExtendTransport.not_endpointHomotopyEquivToSelectedCochainIsoStrictification_intModuleCat",
+    "boundedWeakEndpointPayloadToCochainDataStrictification",
+    "boundedHomotopyObjectTrianglehIso13Realization_of_weakEndpoint_frontier",
+    "boundedHomotopyObject_isTriangulatedClosed2_of_weakEndpoint_frontier",
+    "boundedHomotopyCategory_pretriangulated_of_weakEndpoint_frontier",
+    "boundedHomotopyCategory_isTriangulated_of_weakEndpoint_frontier",
+    "exactAcyclicIsoClosure_and_boundedHomotopyObject_closed2_of_exactRealize_and_weakEndpoint_frontier"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Unrestricted endpoint strictification is refuted; a product-faithful proof of boundedHomotopyObjectTrianglehIso13Realization must use additional distinguished-triangle structure or a different model.",
+    "boundedWeakEndpointPayloadToCochainDataStrictification is now isolated as the remaining bounded positive theorem but remains unproved.",
     "No stable infinity-category certificate for D^b(LCA) has been proved.",
     "No final clean review packet, oracle pass, or fresh claim review has accepted product_success=true."
   ]
