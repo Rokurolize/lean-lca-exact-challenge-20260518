@@ -366,3 +366,9 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 したがって、現時点の不足は「mathlibにtriangulated localization APIがない」ではなく、次の二つに分かれる。まず、bounded homotopy categoryの射を選ばれたstrict bounded complex射へ持ち上げる代表選択と可換性復元が必要である。次に、そのうえでdirect bounded exact weak equivalenceのleft/right calculusとtriangulated compatibilityを無条件化し、`Dbounded`へordinary三角構造を移した後、goalが要求するstable infinity-category構造（有限極限、有限余極限、suspension/loop equivalence、pushout/pullback互換性、または同等の局所モデル）を実装する必要がある。
 
 また、`w73-stable-certificate-negative-fixture`由来の監査強化により、`StableBoundedDerivedInfinityCategory`や`StableInfinityAudit.CertificateShape`という名前だけではproduct success証拠にならない。具体的field evidenceなしのstable certificate名は外部監査で拒否されるため、今後の完了主張では、Lean側の実構造と監査側のfield確認を対応させる必要がある。
+
+## v125で確認した危険な近道
+
+`w76-bounded-homotopy-transport-counterexample`の監査により、`boundedCochainComplex`を`HomotopyEquiv`だけで輸送する近道は採用しない。strict boundednessは選ばれたcochain representativeの支持範囲に関する性質なので、contractible tailを足したunbounded representativeはhomotopy categoryでは消えても、`boundedCochainComplex`上では消えない。したがって、bounded homotopy objectのendpointからstrict representativeへ戻すには、bare homotopy equivalenceではなく、cochain-level isomorphism、または選択されたsupportを直接制御するstrictification theoremが必要である。
+
+`w77-stable-certificate-projection-audit-shape`の監査により、stable certificateの将来の合格条件は、名前や一つのopaque certificateではなく、有限極限、有限余極限、suspension/loop equivalence、pushout/pullback互換性のprojectionを個別に取り出せる形に寄せる。現時点でこのprojectionを満たす`Dbounded`用certificateは構成していないため、product gapは残る。
