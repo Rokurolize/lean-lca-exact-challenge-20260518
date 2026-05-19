@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v51-pushout-iso-transport",
-  "generated_utc": "2026-05-19T01:04:51Z",
+  "generated_utc": "2026-05-19T01:07:27Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -155,8 +155,8 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 8070,
-      "sha256": "89280b85c88270885519a7ad4b8b7e6a558740e3d26b0d7cfb5c06ef78dee4e9"
+      "bytes": 8294,
+      "sha256": "b4f7e5b8517f5bffd6d505386487a6584ebbf7de8e7002dd86b8e27c93f8bad6"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
@@ -184,5 +184,5 @@
       "sha256": "c0419bdb16f1e66cde150e2a409e3e65481e0e98eb40ced057efa46e617e7b2b"
     }
   ],
-  "content_hash_tree": "fa3c91379cfab9128586a5d58a8df5d4b6823a57a999d621aa313de6efb36c9f"
+  "content_hash_tree": "3c49981b23645de6b48d8fc567c5a45d0c2e490577e0b72678d1dd10bb4daaae"
 }
