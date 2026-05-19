@@ -394,3 +394,8 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 ### v131: stable product review gate map
 
 2026-05-19T21:43:00Z時点で、stable product successの検査責任を整理した。`audit/external_audit.py`はordinary nerveや名前だけのstable certificateを拒否するnegative gateであり、positive gateは将来`audit/ProductSuccessDeclarations.lean`がreal stable certificate APIから4つのstable projectionを取り出す時点に置く。`StableProductReviewGateMap.currentOrdinaryNerveReviewDecision`は現在の`Dbounded.infinityNerve_quasicategory`をrejection branchへ写すため、現状のordinary quasicategory evidenceはproduct successではない。
+
+
+### v132: pushout wrapper audit
+
+2026-05-19T21:58:00Z時点で、pushout cokernelの核・像補題を`ShortExactExtension`のpushout APIへ持ち上げるwrapperを追加した。これにより、Yoneda extensionの下流証明は低水準のpushout quotient実装に依存せず、`shortExactExtensionPushout_kernel_iff_range_i`を直接参照できる。これは既存のLCA pushout exactness証明を再利用するもので、bounded derived categoryのtriangulated transferやstable infinity-category証明は依然として未解決である。

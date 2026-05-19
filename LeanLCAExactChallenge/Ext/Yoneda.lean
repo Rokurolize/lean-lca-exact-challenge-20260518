@@ -858,6 +858,20 @@ lemma shortExactExtensionPushout_inr_p
         (shortExactExtensionPushout e a).p = 0 :=
   pushoutInr_cokernel (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)
 
+/-- The pushed-out one-fold extension has kernel of `p` equal to range of `i`. -/
+theorem shortExactExtensionPushout_kernel_iff_range_i
+    {X Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (a : Y ⟶ Y')
+    (q : (shortExactExtensionPushout e a).middle) :
+    (shortExactExtensionPushout e a).p q = 0 ↔
+      ∃ y : Y', (shortExactExtensionPushout e a).i y = q := by
+  change
+    pushoutCokernelMap (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a) q = 0 ↔
+      ∃ y : Y',
+        pushoutInr (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a) y = q
+  exact pushoutCokernelMap_kernel_iff_range_inr (S := e.shortComplex) e.conflation a
+    (pushoutSubgroup_closed e.conflation a) q
+
 /-- Diagrammatic witness for the canonical pushout of a one-fold extension. -/
 noncomputable def shortExactExtensionPushoutData
     {X Y Y' : MetrizableLCA.{u}}

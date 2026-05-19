@@ -40,6 +40,7 @@ example : HasZeroObject MetrizableLCA := by infer_instance
 #check MetrizableLCA.zeroObj_isZero
 #check MetrizableLCA.pushoutCokernelMap_open_surjection
 #check MetrizableLCA.pushoutCokernelMap_kernel_iff_range_inr
+#check MetrizableLCA.shortExactExtensionPushout_kernel_iff_range_i
 #check MetrizableLCA.strictShortExact_pushout
 
 noncomputable example (A B : MetrizableLCA) :

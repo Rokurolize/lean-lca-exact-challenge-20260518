@@ -24,14 +24,10 @@ example {X Y Y' : MetrizableLCA.{u}}
     (q : (shortExactExtensionPushout e a).middle) :
     (shortExactExtensionPushout e a).p q = 0 ↔
       ∃ y : Y', (shortExactExtensionPushout e a).i y = q := by
-  change
-    pushoutCokernelMap (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a) q = 0 ↔
-      ∃ y : Y',
-        pushoutInr (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a) y = q
-  exact pushoutCokernelMap_kernel_iff_range_inr (S := e.shortComplex) e.conflation a
-    (pushoutSubgroup_closed e.conflation a) q
+  exact shortExactExtensionPushout_kernel_iff_range_i e a q
 
 #check shortExactExtensionPushout
+#check shortExactExtensionPushout_kernel_iff_range_i
 #check pushoutCokernelMap_kernel_iff_range_inr
 
 end MetrizableLCA
