@@ -1,12 +1,12 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v60-identity-pullback-normalization",
-  "generated_utc": "2026-05-19T02:36:50Z",
-  "source_tree_hash": "4a2b84586bb4ec05b64c00c95738f090e1654c310c7a47a1de6b2d5b0868ab74",
+  "schema": "lean-lca-exact-challenge-verification-v61-output-iso-data-transport",
+  "generated_utc": "2026-05-19T02:54:34Z",
+  "source_tree_hash": "eb373c8005fbe5a0c5781beb2f8c58bc43b9012bbd3cf4d03ec0a8a97908bf76",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "rebuilt LeanLCAExactChallenge after adding identity pullback normalization APIs."
+      "evidence": "rebuilt LeanLCAExactChallenge after adding output-side pullback/pushout data iso transport."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -16,12 +16,12 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the identity pullback data/iso, chain Rel, and Ext equality."
+      "evidence": "Required declaration audit sees PullbackData.isoOut and PushoutData.isoOut."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product audit sees identity pullback normalization examples while preserving non-product gaps."
+      "evidence": "Product audit sees output-side pullback/pushout data iso transport while preserving non-product gaps."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
@@ -31,7 +31,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit sees the identity pullback normalization declarations."
+      "evidence": "Yoneda blocker audit sees PullbackData.isoOut and PushoutData.isoOut."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",

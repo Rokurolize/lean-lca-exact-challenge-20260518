@@ -31,9 +31,11 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check ShortExactExtension.BaerSumData.isoSum
 #check ShortExactExtension.PullbackData
 #check ShortExactExtension.PullbackData.isPullback
+#check ShortExactExtension.PullbackData.isoOut
 #check ShortExactExtension.PushoutData
 #check ShortExactExtension.PushoutData.isPushout
 #check ShortExactExtension.PushoutData.iso
+#check ShortExactExtension.PushoutData.isoOut
 #check MetrizableLCA.biprodObjIsoBiprod
 #check MetrizableLCA.biprodDiag
 #check MetrizableLCA.biprodCodiag

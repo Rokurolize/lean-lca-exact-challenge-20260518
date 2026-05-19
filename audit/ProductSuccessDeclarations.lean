@@ -65,8 +65,10 @@ generators.
   ShortExactExtension.BaerSumData (C := MetrizableLCA) (X := X) (Y := Y))
 #check (ShortExactExtension.BaerSumData.isoSum (C := MetrizableLCA))
 #check (ShortExactExtension.PullbackData.isPullback (C := MetrizableLCA))
+#check (ShortExactExtension.PullbackData.isoOut (C := MetrizableLCA))
 #check (ShortExactExtension.PushoutData.isPushout (C := MetrizableLCA))
 #check (ShortExactExtension.PushoutData.iso (C := MetrizableLCA))
+#check (ShortExactExtension.PushoutData.isoOut (C := MetrizableLCA))
 
 noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
     (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)

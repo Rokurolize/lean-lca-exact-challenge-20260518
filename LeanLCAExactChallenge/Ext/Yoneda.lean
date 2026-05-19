@@ -216,6 +216,33 @@ noncomputable def iso {X X' Y : C} {e e' : ShortExactExtension X Y}
     · rw [Category.assoc, hom_fst, ← Category.assoc, d.i_map, h.i_hom, d'.i_map]
     · rw [Category.assoc, hom_snd, out.zero, out'.zero]
 
+/-- Pullback data transports an isomorphism of output one-fold extensions. -/
+noncomputable def isoOut {X X' Y : C} {e : ShortExactExtension X Y}
+    {a : X' ⟶ X} {out out' : ShortExactExtension X' Y}
+    (d : PullbackData e a out) (h : Iso out out') : PullbackData e a out' where
+  middleMap := h.middleIso.inv ≫ d.middleMap
+  i_map := by
+    have hi : out'.i ≫ h.middleIso.inv = out.i := by
+      rw [← h.i_hom, Category.assoc, h.middleIso.hom_inv_id, Category.comp_id]
+    calc
+      out'.i ≫ (h.middleIso.inv ≫ d.middleMap) =
+          (out'.i ≫ h.middleIso.inv) ≫ d.middleMap := by rw [Category.assoc]
+      _ = out.i ≫ d.middleMap := by rw [hi]
+      _ = e.i := d.i_map
+  map_p := by
+    have hp : h.middleIso.inv ≫ out.p = out'.p := by
+      rw [← h.hom_p, ← Category.assoc, h.middleIso.inv_hom_id, Category.id_comp]
+    rw [Category.assoc, d.map_p, ← Category.assoc, hp]
+  isPullback := by
+    refine d.isPullback.of_iso' h.middleIso.symm (CategoryTheory.Iso.refl _)
+      (CategoryTheory.Iso.refl _) (CategoryTheory.Iso.refl _) ?_ ?_ ?_ ?_
+    · simp
+    · have hp : h.middleIso.inv ≫ out.p = out'.p := by
+        rw [← h.hom_p, ← Category.assoc, h.middleIso.inv_hom_id, Category.id_comp]
+      simpa using hp
+    · simp
+    · simp
+
 end PullbackData
 
 /-- Diagrammatic data identifying an extension pushed out along a kernel-endpoint map. -/
@@ -283,6 +310,27 @@ noncomputable def iso {X Y Y' : C} {e e' : ShortExactExtension X Y}
   · apply d.isPushout.hom_ext
     · rw [← Category.assoc, hom_inl, Category.assoc, d'.map_p, h.hom_p, d.map_p]
     · rw [← Category.assoc, hom_inr, out'.zero, out.zero]
+
+/-- Pushout data transports an isomorphism of output one-fold extensions. -/
+noncomputable def isoOut {X Y Y' : C} {e : ShortExactExtension X Y}
+    {a : Y ⟶ Y'} {out out' : ShortExactExtension X Y'}
+    (d : PushoutData e a out) (h : Iso out out') : PushoutData e a out' where
+  middleMap := d.middleMap ≫ h.middleIso.hom
+  i_map := by
+    calc
+      a ≫ out'.i = a ≫ (out.i ≫ h.middleIso.hom) := by rw [h.i_hom]
+      _ = (a ≫ out.i) ≫ h.middleIso.hom := by rw [Category.assoc]
+      _ = (e.i ≫ d.middleMap) ≫ h.middleIso.hom := by rw [d.i_map]
+      _ = e.i ≫ d.middleMap ≫ h.middleIso.hom := by rw [Category.assoc]
+  map_p := by
+    rw [Category.assoc, h.hom_p, d.map_p]
+  isPushout := by
+    refine d.isPushout.of_iso (CategoryTheory.Iso.refl _) (CategoryTheory.Iso.refl _)
+      (CategoryTheory.Iso.refl _) h.middleIso ?_ ?_ ?_ ?_
+    · simp
+    · simp
+    · simp
+    · simpa using h.i_hom
 
 end PushoutData
 

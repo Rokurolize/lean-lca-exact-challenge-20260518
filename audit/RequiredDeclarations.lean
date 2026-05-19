@@ -97,7 +97,9 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.ShortExactExtension.IsoBetween
 #check LeanLCAExactChallenge.ShortExactExtension.BaerSumData
 #check LeanLCAExactChallenge.ShortExactExtension.PullbackData
+#check LeanLCAExactChallenge.ShortExactExtension.PullbackData.isoOut
 #check LeanLCAExactChallenge.ShortExactExtension.PushoutData
+#check LeanLCAExactChallenge.ShortExactExtension.PushoutData.isoOut
 #check LeanLCAExactChallenge.ShortExactExtension.toYonedaExtension
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBiprod
 #check LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBiprod_i_fst
