@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T11:12:29Z",
+  "generated_utc": "2026-05-19T11:29:20Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v85 edits stay in the parent process.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v86 edits stay in the parent process.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -454,7 +454,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v85 adds boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed, its localized-equivalence instance, and Dbounded.homotopyComparisonEquivalenceOfIsoClosed. This conditionally identifies the direct bounded localization with the homotopy/Verdier pullback localization as ordinary categories under exact-acyclic homotopy iso-invariance. The iso-invariance hypothesis or iso-closure IsTriangulatedClosed₂ proof itself, transfer of ordinary triangulated structure to Dbounded, and stable infinity-category structure remain nonproduct.",
+      "merge_blocker": "v86 adds exactAcyclic_of_splittings plus boundedExactWeakEquivalence_of_mappingCone_splittings and boundedHomotopyExactWeakEquivalence_of_mappingCone_splittings. This handles explicit split mapping-cone cases in both the direct and homotopy/Verdier pullback weak-equivalence classes, but does not prove exact-acyclic homotopy iso-invariance, the iso-closure IsTriangulatedClosed₂ condition, transfer of ordinary triangulated structure to Dbounded, or stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -473,6 +473,7 @@
         "boundedCochainComplex_containsZero",
         "boundedComplexCategory_hasZeroObject",
         "exactAcyclic_of_iso",
+        "exactAcyclic_of_splittings",
         "exactAcyclic_shift",
         "exactAcyclic_shift_iff",
         "exactAcyclic_zero",
@@ -503,6 +504,7 @@
         "exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2",
         "boundedHomotopyExactWeakEquivalence",
         "boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence",
+        "boundedHomotopyExactWeakEquivalence_of_mappingCone_splittings",
         "boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed",
         "boundedHomotopyExactWeakEquivalence_isCompatibleWithShift",
         "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence",
@@ -534,7 +536,12 @@
         "boundedHomotopyObject_mappingCone",
         "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed",
         "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed_localizedEquivalence",
-        "Dbounded.homotopyComparisonEquivalenceOfIsoClosed"
+        "Dbounded.homotopyComparisonEquivalenceOfIsoClosed",
+        "boundedExactWeakEquivalence_of_mappingCone_splittings"
+      ],
+      "technical_context": [
+        "split short complexes",
+        "split mapping cone weak-equivalence criteria"
       ]
     },
     {
@@ -601,7 +608,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v85 evidence records the conditional direct-to-homotopy localized equivalence while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v86 evidence records the split cone weak-equivalence criterion while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

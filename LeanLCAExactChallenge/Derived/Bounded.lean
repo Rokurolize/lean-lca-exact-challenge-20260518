@@ -113,6 +113,12 @@ theorem exactAcyclic_of_iso {K L : CochainComplex C ℤ} (e : K ≅ L)
   exact QuillenExactCategory.conflation_iso
     ((HomologicalComplex.shortComplexFunctor C (ComplexShape.up ℤ) i).mapIso e) (hK i)
 
+/-- A cochain complex whose degreewise short complexes are split is exact acyclic. -/
+theorem exactAcyclic_of_splittings {K : CochainComplex C ℤ}
+    (hK : ∀ i : ℤ, (K.sc i).Splitting) : exactAcyclic C K := by
+  intro i
+  exact QuillenExactCategory.split_conflation (K.sc i) (hK i)
+
 /-- Exact acyclicity is stable under cochain shifts. -/
 theorem exactAcyclic_shift (K : CochainComplex C ℤ) (n : ℤ)
     (hK : exactAcyclic C K) : exactAcyclic C (K⟦n⟧) := by
@@ -401,6 +407,25 @@ theorem boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence
   dsimp [boundedHomotopyExactWeakEquivalence]
   rw [exactAcyclicHomotopyIsoClosure_trW C]
   exact boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage C f hf
+
+/-- A bounded morphism whose mapping cone is degreewise split is a direct exact weak
+equivalence. -/
+theorem boundedExactWeakEquivalence_of_mappingCone_splittings
+    [HasBinaryBiproducts C] {K L : BoundedComplexCategory C} (f : K ⟶ L)
+    (hf : ∀ i : ℤ,
+      ((CochainComplex.mappingCone ((BoundedComplexCategory.ι C).map f)).sc i).Splitting) :
+    boundedExactWeakEquivalence C f :=
+  exactAcyclic_of_splittings C hf
+
+/-- A bounded morphism whose mapping cone is degreewise split maps to the homotopy/Verdier
+pullback weak-equivalence class. -/
+theorem boundedHomotopyExactWeakEquivalence_of_mappingCone_splittings
+    [HasZeroObject C] [HasBinaryBiproducts C] {K L : BoundedComplexCategory C} (f : K ⟶ L)
+    (hf : ∀ i : ℤ,
+      ((CochainComplex.mappingCone ((BoundedComplexCategory.ι C).map f)).sc i).Splitting) :
+    boundedHomotopyExactWeakEquivalence C f :=
+  boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence C f
+    (boundedExactWeakEquivalence_of_mappingCone_splittings C f hf)
 
 /-- If exact acyclicity is homotopy-category isomorphism invariant, the direct bounded weak
 equivalences coincide with the homotopy/Verdier pullback weak equivalences. -/
