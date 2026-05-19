@@ -1,4 +1,5 @@
 import Mathlib.CategoryTheory.Limits.Shapes.Pullback.Pasting
+import Mathlib.CategoryTheory.Limits.Shapes.Pullback.IsPullback.Basic
 import Mathlib.GroupTheory.FreeAbelianGroup
 import Mathlib.GroupTheory.QuotientGroup.Basic
 import LeanLCAExactChallenge.LCA.ExactCategory
@@ -459,6 +460,27 @@ noncomputable def shortExactExtensionPullbackData
   i_map := shortExactExtensionPullback_i_map e a
   map_p := shortExactExtensionPullback_map_p e a
   isPullback := (IsPullback.of_isLimit (pullbackIsLimit a e.p)).flip
+
+/-- The identity pullback square of a one-fold extension. -/
+noncomputable def shortExactExtensionPullbackIdData
+    {X Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) :
+    ShortExactExtension.PullbackData e (𝟙 X) e where
+  middleMap := 𝟙 e.middle
+  i_map := by simp
+  map_p := by simp
+  isPullback := by
+    simpa using (IsPullback.of_id_fst (f := e.p))
+
+/-- Canonical pullback along the identity is isomorphic to the original one-fold extension. -/
+noncomputable def shortExactExtensionPullbackIdIso
+    {X Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) :
+    ShortExactExtension.Iso (shortExactExtensionPullback e (𝟙 X)) e :=
+  ShortExactExtension.PullbackData.iso
+    (shortExactExtensionPullbackData e (𝟙 X))
+    (shortExactExtensionPullbackIdData e)
+    (ShortExactExtension.Iso.refl e)
 
 /-- Canonical pullback preserves isomorphism of one-fold extensions. -/
 noncomputable def shortExactExtensionPullbackIso
@@ -2084,6 +2106,18 @@ noncomputable def yonedaExtensionPullbackHeadRelIso
     (fun {_ _} {_} {_ _} h => shortExactExtensionPullbackIsoBetween f h)
     h
 
+/-- Pulling back a positive MetrizableLCA chain along the identity is termwise related to it. -/
+noncomputable def yonedaExtensionPullbackHeadIdRel
+    {X Y : MetrizableLCA.{u}} :
+    {n : ℕ} → (a : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)) →
+      YonedaExtension.Rel (C := MetrizableLCA.{u})
+        (YonedaExtension.pullbackHeadWith (C := MetrizableLCA.{u}) (𝟙 X)
+          (fun {_} e => shortExactExtensionPullback e (𝟙 X)) a)
+        a
+  | _, YonedaExtension.cons e tail =>
+      YonedaExtension.Rel.cons (shortExactExtensionPullbackIdIso e)
+        (YonedaExtension.Rel.refl tail)
+
 /-- Push out the tail of a positive Yoneda chain in `MetrizableLCA`. -/
 noncomputable def yonedaExtensionPushoutTail
     {X Y Y' : MetrizableLCA.{u}} (f : Y ⟶ Y') {n : ℕ} :
@@ -2990,6 +3024,17 @@ theorem pullbackHeadOfExtension_eq_of_metrizable_relIso
         (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) b :=
   YonedaExt.ofExtension_eq_ofExtension_of_relIso
     (MetrizableLCA.yonedaExtensionPullbackHeadRelIso f h)
+
+/-- Pulling back along the identity does not change the Ext class of a MetrizableLCA chain. -/
+theorem ofExtension_pullbackHeadId_eq
+    {X Y : MetrizableLCA.{u}} {n : ℕ}
+    (a : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)) :
+    YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        (YonedaExtension.pullbackHeadWith (C := MetrizableLCA.{u}) (𝟙 X)
+          (fun {_} e => MetrizableLCA.shortExactExtensionPullback e (𝟙 X)) a) =
+      YonedaExt.ofExtension (C := MetrizableLCA.{u}) a :=
+  YonedaExt.ofExtension_eq_ofExtension_of_rel
+    (MetrizableLCA.yonedaExtensionPullbackHeadIdRel a)
 
 /-- Head pullback sends a MetrizableLCA right-split chain to zero in Ext. -/
 theorem pullbackHeadOfExtension_eq_zero_of_metrizable_rightSplitData
