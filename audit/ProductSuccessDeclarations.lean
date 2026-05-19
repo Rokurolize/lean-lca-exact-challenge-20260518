@@ -1517,6 +1517,9 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
   (C := MetrizableLCA))
 #check (exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
   (C := MetrizableLCA))
+#check (exactAcyclicHomotopyIsoClosureTrianglehIso13Realization (C := MetrizableLCA))
+#check (exactAcyclicHomotopyIsoClosure_isTriangulated_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_shift_iff (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
 #check (BoundedComplexCategory.homotopyQuotient (C := MetrizableLCA))
@@ -1590,6 +1593,12 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2
 #check exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homotopyObjectClosed2
+#check (exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
 #check (ExactAcyclicHomotopyVerdierCategory (C := MetrizableLCA))
 #check (ExactAcyclicHomotopyVerdierQuasicategory (C := MetrizableLCA))
 #check (ExactAcyclicHomotopyVerdierQuasicategory.homotopyCategoryIso (C := MetrizableLCA))
@@ -1609,6 +1618,22 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_homotopyObjectClosed2
 #check exactAcyclicHomotopyVerdierCategory_pretriangulated_of_homotopyObjectClosed2
 #check exactAcyclicHomotopyVerdierCategory_isTriangulated_of_homotopyObjectClosed2
+#check (exactAcyclicHomotopyVerdierCategory_preadditive_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyVerdierCategory_localization_additive_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyVerdierCategory_hasZeroObject_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyVerdierCategory_hasShift_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyVerdierCategory_localization_commShift_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyVerdierCategory_pretriangulated_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyVerdierCategory_isTriangulated_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
 #check Dbounded.preadditiveOfHasLeftCalculusOfFractions
 #check Dbounded.localization_additiveOfHasLeftCalculusOfFractions
 #check Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions

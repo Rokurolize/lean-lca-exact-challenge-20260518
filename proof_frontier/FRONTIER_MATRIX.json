@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T16:30:42Z",
+  "generated_utc": "2026-05-19T16:45:54Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v106 edits stay in the parent process. The parent did not launch or resume any worker for the exact-acyclic closed2 criterion frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v107 edits stay in the parent process. The parent did not launch or resume any worker for the exact-acyclic realization-to-Verdier API frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -491,7 +491,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v106 adds strict-realization closed₂ criteria for `exactAcyclicHomotopyObject C` and `exactAcyclicHomotopyIsoClosure C`, connecting v105 endpoint transfer lemmas to mathlib's `ObjectProperty.IsTriangulatedClosed₂`. Together with v102-v105 and v93-v101 this aligns more of the conditional Verdier route, but it does not construct strict bounded or exact-acyclic realizations from arbitrary endpoints, prove exact-acyclic homotopy object homotopy-invariance unconditionally, prove the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v107 names the exact-acyclic isoClosure strict-realization input and connects it to `IsTriangulated`, `trW` left/right calculus, triangulation compatibility, and ordinary homotopy Verdier quotient structures. Together with v102-v106 and v93-v101 this aligns more of the conditional Verdier route, but it does not construct strict bounded or exact-acyclic realizations from arbitrary endpoints, prove exact-acyclic homotopy object homotopy-invariance unconditionally, prove the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -662,7 +662,20 @@
         "exactAcyclicHomotopyObject_distinguished_ext2_of_triangleh_iso13",
         "exactAcyclicHomotopyObject_distinguished_ext1_of_triangleh_iso23",
         "exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization",
-        "exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization"
+        "exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyIsoClosureTrianglehIso13Realization",
+        "exactAcyclicHomotopyIsoClosure_isTriangulated_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyVerdierCategory_preadditive_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyVerdierCategory_localization_additive_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyVerdierCategory_hasZeroObject_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyVerdierCategory_hasShift_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyVerdierCategory_localization_commShift_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyVerdierCategory_pretriangulated_of_triangleh_iso13_realization",
+        "exactAcyclicHomotopyVerdierCategory_isTriangulated_of_triangleh_iso13_realization"
       ],
       "technical_context": [
         "split short complexes",
@@ -696,7 +709,8 @@
         "exact acyclic homotopy object closure remains nonterminal",
         "exact acyclic homotopy object strict-realization closed2 criterion",
         "exact acyclic isoClosure strict-realization closed2 criterion",
-        "strict exact-acyclic realization remains nonterminal"
+        "strict exact-acyclic realization remains nonterminal",
+        "realization-conditioned exact-acyclic isoClosure triangulated/trW/Verdier wrappers"
       ]
     },
     {
@@ -763,7 +777,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v106 evidence records exact acyclic closed2 criteria while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v107 evidence records realization-conditioned Verdier wrappers while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

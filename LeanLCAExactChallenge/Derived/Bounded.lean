@@ -585,6 +585,22 @@ theorem exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_
   exact exactAcyclicHomotopyObject_distinguished_ext2_of_triangleh_iso13 C
     hT f e₁ e₃ comm hL
 
+/-- The strict-realization input needed to make the isomorphism closure of exact-acyclic
+homotopy objects closed under distinguished triangles. -/
+abbrev exactAcyclicHomotopyIsoClosureTrianglehIso13Realization
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    exactAcyclicHomotopyIsoClosure C T.obj₁ →
+    exactAcyclicHomotopyIsoClosure C T.obj₃ →
+    ∃ (K L : CochainComplex C ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        exactAcyclic C L
+
 /-- Exact quasi-isomorphisms between bounded complexes, detected by the mapping cone. -/
 noncomputable def boundedExactWeakEquivalence [HasBinaryBiproducts C] :
     MorphismProperty (BoundedComplexCategory C) :=
@@ -1466,6 +1482,52 @@ theorem exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homo
     exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
   exact exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2 C
 
+/-- The strict-realization criterion from mapping-cone endpoint data is enough to make the
+isomorphism closure of exact-acyclic homotopy objects triangulated. -/
+theorem exactAcyclicHomotopyIsoClosure_isTriangulated_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    (exactAcyclicHomotopyIsoClosure C).IsTriangulated := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  exact exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+
+/-- The same strict-realization criterion supplies the Verdier left calculus of fractions
+for the isomorphism-closed exact-acyclic homotopy weak equivalences. -/
+theorem exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    (exactAcyclicHomotopyIsoClosure C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  exact exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2 C
+
+/-- The same strict-realization criterion supplies the Verdier right calculus of fractions
+for the isomorphism-closed exact-acyclic homotopy weak equivalences. -/
+theorem
+    exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    (exactAcyclicHomotopyIsoClosure C).trW.HasRightCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  exact exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2 C
+
+/-- The same strict-realization criterion makes the isomorphism-closed exact-acyclic
+homotopy weak equivalences compatible with the homotopy-category triangulation. -/
+theorem
+    exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    (exactAcyclicHomotopyIsoClosure C).trW.IsCompatibleWithTriangulation := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  exact exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2 C
+
 /-- The ordinary Verdier localization of the homotopy category at the `trW` class attached to
 the isomorphism closure of exact acyclic homotopy objects. -/
 abbrev ExactAcyclicHomotopyVerdierCategory [HasZeroObject C] [HasBinaryBiproducts C] :
@@ -1718,6 +1780,120 @@ noncomputable abbrev exactAcyclicHomotopyVerdierCategory_isTriangulated_of_homot
   haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
     exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
   infer_instance
+
+/-- The strict-realization criterion supplies preadditivity of the ordinary homotopy Verdier
+localization. -/
+noncomputable abbrev exactAcyclicHomotopyVerdierCategory_preadditive_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    Preadditive (ExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  exact exactAcyclicHomotopyVerdierCategory_preadditive_of_isTriangulatedClosed2 C
+
+/-- The strict-realization criterion makes the ordinary homotopy Verdier localization
+functor additive. -/
+noncomputable abbrev
+    exactAcyclicHomotopyVerdierCategory_localization_additive_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    letI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+      exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C realize
+    ((exactAcyclicHomotopyIsoClosure C).trW.Q).Additive := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  change ((exactAcyclicHomotopyIsoClosure C).trW.Q).Additive
+  exact exactAcyclicHomotopyVerdierCategory_localization_additive_of_isTriangulatedClosed2 C
+
+/-- The strict-realization criterion supplies a zero object for the ordinary homotopy
+Verdier localization. -/
+noncomputable abbrev
+    exactAcyclicHomotopyVerdierCategory_hasZeroObject_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    HasZeroObject (ExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  exact exactAcyclicHomotopyVerdierCategory_hasZeroObject_of_isTriangulatedClosed2 C
+
+/-- The strict-realization criterion supplies integer shifts for the ordinary homotopy
+Verdier localization. -/
+noncomputable abbrev exactAcyclicHomotopyVerdierCategory_hasShift_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    HasShift (ExactAcyclicHomotopyVerdierCategory C) ℤ := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  exact exactAcyclicHomotopyVerdierCategory_hasShift_of_isTriangulatedClosed2 C
+
+/-- The strict-realization criterion makes the ordinary homotopy Verdier localization
+functor commute with integer shifts. -/
+noncomputable abbrev
+    exactAcyclicHomotopyVerdierCategory_localization_commShift_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    letI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+      exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C realize
+    ((exactAcyclicHomotopyIsoClosure C).trW.Q).CommShift ℤ := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  change ((exactAcyclicHomotopyIsoClosure C).trW.Q).CommShift ℤ
+  exact exactAcyclicHomotopyVerdierCategory_localization_commShift_of_isTriangulatedClosed2 C
+
+/-- The strict-realization criterion makes localized shifts additive in the ordinary
+homotopy Verdier localization. -/
+noncomputable abbrev
+    exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) (n : ℤ) :
+    letI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+      exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C realize
+    (shiftFunctor (ExactAcyclicHomotopyVerdierCategory C) n).Additive := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  change (shiftFunctor (ExactAcyclicHomotopyVerdierCategory C) n).Additive
+  exact exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_isTriangulatedClosed2 C n
+
+/-- The strict-realization criterion supplies the ordinary pretriangulated structure on the
+homotopy Verdier localization. -/
+noncomputable abbrev
+    exactAcyclicHomotopyVerdierCategory_pretriangulated_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    letI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+      exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C realize
+    Pretriangulated (ExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  change Pretriangulated (ExactAcyclicHomotopyVerdierCategory C)
+  exact exactAcyclicHomotopyVerdierCategory_pretriangulated_of_isTriangulatedClosed2 C
+
+/-- The strict-realization criterion supplies the ordinary triangulated structure on the
+homotopy Verdier localization. -/
+noncomputable abbrev
+    exactAcyclicHomotopyVerdierCategory_isTriangulated_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    letI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+      exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C realize
+    IsTriangulated (ExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C realize
+  change IsTriangulated (ExactAcyclicHomotopyVerdierCategory C)
+  exact exactAcyclicHomotopyVerdierCategory_isTriangulated_of_isTriangulatedClosed2 C
 
 /-- Exact weak equivalences of bounded complexes are invariant under cochain shifts. -/
 theorem boundedExactWeakEquivalence_shift_iff [HasBinaryBiproducts C]

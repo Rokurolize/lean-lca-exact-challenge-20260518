@@ -146,6 +146,8 @@ noncomputable def bounded_derived_quasicategory_family
 #check exactAcyclicHomotopyObject_distinguished_ext1_of_triangleh_iso23
 #check exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
 #check exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyIsoClosureTrianglehIso13Realization
+#check exactAcyclicHomotopyIsoClosure_isTriangulated_of_triangleh_iso13_realization
 #check boundedExactWeakEquivalence_shift_iff
 #check boundedExactWeakEquivalence_isCompatibleWithShift
 #check BoundedComplexCategory.homotopyQuotient
@@ -200,6 +202,9 @@ noncomputable def bounded_derived_quasicategory_family
 #check exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2
 #check exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_triangleh_iso13_realization
 #check ExactAcyclicHomotopyVerdierCategory
 #check ExactAcyclicHomotopyVerdierQuasicategory
 #check ExactAcyclicHomotopyVerdierQuasicategory.homotopyCategoryIso
@@ -219,6 +224,14 @@ noncomputable def bounded_derived_quasicategory_family
 #check exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_homotopyObjectClosed2
 #check exactAcyclicHomotopyVerdierCategory_pretriangulated_of_homotopyObjectClosed2
 #check exactAcyclicHomotopyVerdierCategory_isTriangulated_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyVerdierCategory_preadditive_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyVerdierCategory_localization_additive_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyVerdierCategory_hasZeroObject_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyVerdierCategory_hasShift_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyVerdierCategory_localization_commShift_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyVerdierCategory_pretriangulated_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyVerdierCategory_isTriangulated_of_triangleh_iso13_realization
 #check BoundedHomotopyDerivedCategory
 #check BoundedHomotopyDerivedQuasicategory
 #check BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso
@@ -348,6 +361,25 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
   exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization C
     realize
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+  exactAcyclicHomotopyIsoClosure_isTriangulated_of_triangleh_iso13_realization C realize
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    (exactAcyclicHomotopyIsoClosure C).trW.HasRightCalculusOfFractions :=
+  exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_triangleh_iso13_realization
+    C realize
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C) :
+    Preadditive (ExactAcyclicHomotopyVerdierCategory C) :=
+  exactAcyclicHomotopyVerdierCategory_preadditive_of_triangleh_iso13_realization C realize
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasBinaryBiproducts C] {K L : CochainComplex C ℤ} (f : K ⟶ L)
