@@ -92,6 +92,21 @@ theorem boundedHomotopyObjectTrianglehIso13Realization_of_distinguishedEndpointS
     (boundedTrianglehIso13CochainIsoPayload_of_distinguishedEndpointSelectedCochainIso
       C strictify)
 
+omit [QuillenExactCategory C] in
+/-- The direct homotopy-category endpoint provider is still strong enough to imply the
+known-false unconditional homotopy-equivalence strictification bridge. -/
+theorem endpointHomotopyEquivToSelectedCochainIsoStrictification_of_weakEndpointSelectedCochainIso
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (strictify : weakEndpointHomotopyCategoryIsoToSelectedCochainIso C) :
+    endpointHomotopyEquivToSelectedCochainIsoStrictification C := by
+  intro Ksrc Kcone K L f hKsrc hKcone hK hCone
+  rcases strictify (Ksrc := Ksrc) (Kcone := Kcone) (K := K) (L := L) (f := f)
+      hKsrc hKcone
+      ⟨HomotopyCategory.isoOfHomotopyEquiv hK⟩
+      ⟨HomotopyCategory.isoOfHomotopyEquiv hCone⟩ with
+    ⟨hKiso, hConeIso⟩
+  exact ⟨hKiso.some, hConeIso.some, trivial⟩
+
 /-- The direct provider must not be replaced by the known-false unconditional
 homotopy-equivalence strictification bridge. -/
 theorem reject_unconditional_endpointHomotopyEquiv_provider_w127
@@ -100,6 +115,18 @@ theorem reject_unconditional_endpointHomotopyEquiv_provider_w127
     ¬ endpointHomotopyEquivToSelectedCochainIsoStrictification
         AlternatingTailExtendTransport.IntModuleCat :=
   AlternatingTailExtendTransport.not_endpointHomotopyEquivToSelectedCochainIsoStrictification_intModuleCat
+
+/-- Therefore the direct homotopy-category endpoint provider also cannot hold without
+additional hypotheses controlling the selected cochain representatives. -/
+theorem reject_unconditional_weakEndpointSelectedCochainIso_provider_w127
+    [HasZeroObject AlternatingTailExtendTransport.IntModuleCat]
+    [HasBinaryBiproducts AlternatingTailExtendTransport.IntModuleCat] :
+    ¬ weakEndpointHomotopyCategoryIsoToSelectedCochainIso
+        AlternatingTailExtendTransport.IntModuleCat := by
+  intro strictify
+  exact reject_unconditional_endpointHomotopyEquiv_provider_w127
+    (endpointHomotopyEquivToSelectedCochainIsoStrictification_of_weakEndpointSelectedCochainIso
+      AlternatingTailExtendTransport.IntModuleCat strictify)
 
 section Checks
 
@@ -111,7 +138,9 @@ variable [HasZeroObject C] [HasBinaryBiproducts C]
 #check boundedTrianglehIso13CochainIsoPayload_of_distinguishedEndpointSelectedCochainIso
 #check boundedTrianglehIso13CochainDataStrictification_of_distinguishedEndpointSelectedCochainIso
 #check boundedHomotopyObjectTrianglehIso13Realization_of_distinguishedEndpointSelectedCochainIso
+#check endpointHomotopyEquivToSelectedCochainIsoStrictification_of_weakEndpointSelectedCochainIso
 #check reject_unconditional_endpointHomotopyEquiv_provider_w127
+#check reject_unconditional_weakEndpointSelectedCochainIso_provider_w127
 
 end Checks
 

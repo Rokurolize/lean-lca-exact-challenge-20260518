@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T04:45:00Z",
+  "generated_utc": "2026-05-20T05:05:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. The parent reimplemented useful no-result consultant worktree diffs from w127 and w126 as v157-v158 audit probes.",
   "frontiers": [
@@ -570,7 +570,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
-      "merge_blocker": "v158 separates current ordinary Dbounded context from the missing single-certificate stable provider route and records currentProviderRouteSearchState.stableRoute = none. v157 isolates the bounded weak-endpoint route to a cochain-level endpoint iso provider. Both the stable provider route and bounded endpoint provider remain unproved as product facts.",
+      "merge_blocker": "v159 proves weakEndpointHomotopyCategoryIsoToSelectedCochainIso implies the known-false endpointHomotopyEquiv strictification bridge, and refutes the unconditional weak endpoint provider over IntModuleCat. The remaining bounded route must find narrower hypotheses tied to distinguished mapping-cone endpoints; the stable provider route remains missing.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -911,7 +911,9 @@
         "StableDboundedCertificateProviderRouteW126.currentOrdinaryContext",
         "StableDboundedCertificateProviderRouteW126.StableDboundedProviderRoute.ready_of_route",
         "StableDboundedCertificateProviderRouteW126.currentOrdinaryContext_allCandidatesAreOrdinaryContext",
-        "StableDboundedCertificateProviderRouteW126.currentProviderRoute_not_supplied"
+        "StableDboundedCertificateProviderRouteW126.currentProviderRoute_not_supplied",
+        "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_weakEndpointSelectedCochainIso",
+        "reject_unconditional_weakEndpointSelectedCochainIso_provider_w127"
       ],
       "technical_context": [
         "split short complexes",

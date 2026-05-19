@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v158時点では、Dbounded.infinityCategoryについて現行のordinary contextと、productに必要なsingle-certificate stable provider routeを分離した。現在の検索状態ではstable routeはnoneであり、ordinary contextをstable provider routeへ昇格するAPIが未構成である。bounded側のendpoint providerとstable infinity-category certificateはいずれも未完成であり、product_successではない。",
+  "summary": "v159時点では、weakEndpointHomotopyCategoryIsoToSelectedCochainIsoが無条件には成り立たないことをIntModuleCat反例で確認した。bounded側には、任意のhomotopy equivalenceではなくdistinguished mapping-cone triangle由来のendpoint同型へ絞った正しいstrictification命題が必要である。stable provider routeも未構成であり、product_successではない。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -646,6 +646,7 @@
   ],
   "known_gaps": [
     "弱endpoint payloadからselected cochain payload、compact cochain-isomorphism payload、expanded cochain-data payloadへ上げる3つのprovider surfaceはbounded strict-realization本体と同値であり、その本体が未証明である。",
+    "weakEndpointHomotopyCategoryIsoToSelectedCochainIsoは無条件には反例があり、bounded側にはより弱い正しいstrictification命題が必要である。",
     "このproviderを無条件のhomotopy equivalence strictificationで代用する道は、IntModuleCat上の反例で拒否されている。",
     "弱endpoint routeには、homotopy category上のendpoint同型をcochain-complex同型へ上げるproviderがまだ必要である。",
     "D^b(LCA)をstable infinity-categoryとして認証するfinite limitsとfinite colimitsのproviderが欠落している。",
