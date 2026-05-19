@@ -663,6 +663,39 @@ example (X Y Y' : MetrizableLCA) {n : ℕ}
     (fun {_ _} e g s => MetrizableLCA.shortExactExtensionPushoutSplitting e g s)
     h
 
+example (X Y Y' : MetrizableLCA)
+    {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA) X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum) (f : Y ⟶ Y')
+    (pushBaer : ShortExactExtension.BaerSumData
+      (MetrizableLCA.shortExactExtensionPushout e₁ f)
+      (MetrizableLCA.shortExactExtensionPushout e₂ f)
+      (MetrizableLCA.shortExactExtensionPushout sum f)) :
+    YonedaExt.composeTailHomFreeHom (C := MetrizableLCA) (X := X) f 0
+        (FreeAbelianGroup.of sum.toYonedaExtension -
+          FreeAbelianGroup.of e₁.toYonedaExtension -
+          FreeAbelianGroup.of e₂.toYonedaExtension) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y' 0 :=
+  YonedaExt.composeTailHomFreeHom_baer_mem f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    h pushBaer
+
+example (X Y Y' Z : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Z) (g : Z ⟶ Y)
+    {out : ShortExactExtension (C := MetrizableLCA) X Y}
+    (h : ShortExactExtension.PushoutData e g out) (f : Y ⟶ Y')
+    (pushAssocIso : ShortExactExtension.Iso
+      (MetrizableLCA.shortExactExtensionPushout e (g ≫ f))
+      (MetrizableLCA.shortExactExtensionPushout out f)) :
+    YonedaExt.composeTailHomFreeHom (C := MetrizableLCA) (X := X) f 0
+        (FreeAbelianGroup.of (YonedaExtension.cons e (YonedaExtension.ofHom g)) -
+          FreeAbelianGroup.of out.toYonedaExtension) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y' 0 :=
+  YonedaExt.composeTailHomFreeHom_homTail_one_mem f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    e g h pushAssocIso
+
 example (X Y Y' Z : MetrizableLCA) {n : ℕ}
     {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA) X Z}
     (h : ShortExactExtension.BaerSumData e₁ e₂ sum)

@@ -38,6 +38,7 @@
     <p>2026-05-19T00:00:57Z時点で、同じ自由アーベル群上のdegree 0作用写像がsplit、leftSplit、rightSplit、splitFactorの零元系生成関係も関係部分群へ送ることを追加した。tail側はpushout normal formとsplit保存を使い、head側はpullback後のsplit保存を直接使う。残る主要障害はBaer生成関係とhom-tail生成関係のhead/tail作用との互換性であり、ここを越えない限り商群上の完全なdegree 0作用写像とは言えない。</p>
     <p>2026-05-19T00:09:12Z時点で、degree 0作用の未処理生成関係のうち、既存APIだけで通る再帰ケースを追加した。<code>YonedaExt.composeTailHomFreeHom_baerChain_head_mem</code>はtail合成がhead Baer生成関係を保つことを示し、<code>YonedaExt.pullbackHeadFreeHomWith_baerChain_cons_mem</code>と<code>YonedaExt.pullbackHeadFreeHomWith_homTail_cons_mem</code>はhead pullbackが一段consで持ち上がったBaerおよびhom-tail生成関係を保つことを示す。one-fold Baerとbase hom-tailのhead/tail互換性は、pushout/pullbackとBaer・pushoutの交換を要するため未完了である。</p>
     <p>2026-05-19T00:17:12Z時点で、head pullback側のone-fold Baer生成関係とbase hom-tail生成関係について、必要なBaer保存データまたはpullback-pushout交換データを前提にした関係部分群membership補題を追加した。追加した<code>YonedaExt.pullbackHeadFreeHomWith_baer_mem</code>と<code>YonedaExt.pullbackHeadFreeHomWith_homTail_one_mem</code>は自由アーベル群上の局所補題であり、標準MetrizableLCA pullbackがそれらのデータを常に持つことやtail側の対応を証明したものではない。したがって、degree 0作用の完全な商降下はまだ未完了である。</p>
+    <p>2026-05-19T00:23:38Z時点で、tail合成側にも条件付きのone-fold Baer生成関係とbase hom-tail生成関係のmembership補題を追加した。<code>YonedaExt.composeTailHomFreeHom_baer_mem</code>はpushout後のBaer保存データを前提にし、<code>YonedaExt.composeTailHomFreeHom_homTail_one_mem</code>は二段pushoutと一段pushoutの同型データを前提にする。これでhead/tail両側のbase生成関係は条件付き補題として分離できたが、標準MetrizableLCA構成でその条件を常に満たす証明はまだ残っている。</p>
   </section>
   <section>
     <h2>worker方針</h2>

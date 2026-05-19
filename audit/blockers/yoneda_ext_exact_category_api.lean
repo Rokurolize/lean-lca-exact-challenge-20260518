@@ -139,6 +139,8 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.composeTailHomFreeHom_split_mem
 #check YonedaExt.composeTailHomFreeHom_leftSplit_mem
 #check YonedaExt.composeTailHomFreeHom_splitFactor_mem
+#check YonedaExt.composeTailHomFreeHom_baer_mem
+#check YonedaExt.composeTailHomFreeHom_homTail_one_mem
 #check YonedaExt.composeTailHomFreeHom_baerChain_head_mem
 #check YonedaExt.pullbackHeadFreeHomWith
 #check YonedaExt.pullbackHeadFreeHomWith_of

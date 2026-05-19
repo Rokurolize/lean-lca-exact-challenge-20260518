@@ -1362,6 +1362,88 @@ theorem composeTailHomFreeHom_splitFactor_mem {Y' : C} (f : Y ⟶ Y')
   have hsum := (yonedaRelationSubgroup X Y' n).add_mem hdiff hpushed
   simpa [composeTailHomFreeHom, pushed, sub_eq_add_neg, add_assoc] using hsum
 
+theorem composeTailHomFreeHom_baer_mem {Y' : C} (f : Y ⟶ Y')
+    (push : {Z W : C} → (e : ShortExactExtension Z W) → (g : W ⟶ Y') →
+      ShortExactExtension Z Y')
+    (pushData : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y'),
+      ShortExactExtension.PushoutData e g (push e g))
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y] [HasBinaryBiproduct Y' Y']
+    {e₁ e₂ sum : ShortExactExtension X Y}
+    (_h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (pushBaer : ShortExactExtension.BaerSumData (push e₁ f) (push e₂ f) (push sum f)) :
+    composeTailHomFreeHom (X := X) f 0
+        (FreeAbelianGroup.of sum.toYonedaExtension -
+          FreeAbelianGroup.of e₁.toYonedaExtension -
+          FreeAbelianGroup.of e₂.toYonedaExtension) ∈
+      yonedaRelationSubgroup X Y' 0 := by
+  let R := yonedaRelationSubgroup X Y' 0
+  have hsum :
+      FreeAbelianGroup.of (YonedaExtension.cons sum (YonedaExtension.ofHom f)) -
+          FreeAbelianGroup.of (push sum f).toYonedaExtension ∈ R := by
+    exact AddSubgroup.subset_closure
+      (YonedaRelGenerator.homTail (X := X) (Y := Y')
+        (YonedaExtension.HomTailData.one sum f (pushData sum f)))
+  have he₁ :
+      FreeAbelianGroup.of (YonedaExtension.cons e₁ (YonedaExtension.ofHom f)) -
+          FreeAbelianGroup.of (push e₁ f).toYonedaExtension ∈ R := by
+    exact AddSubgroup.subset_closure
+      (YonedaRelGenerator.homTail (X := X) (Y := Y')
+        (YonedaExtension.HomTailData.one e₁ f (pushData e₁ f)))
+  have he₂ :
+      FreeAbelianGroup.of (YonedaExtension.cons e₂ (YonedaExtension.ofHom f)) -
+          FreeAbelianGroup.of (push e₂ f).toYonedaExtension ∈ R := by
+    exact AddSubgroup.subset_closure
+      (YonedaRelGenerator.homTail (X := X) (Y := Y')
+        (YonedaExtension.HomTailData.one e₂ f (pushData e₂ f)))
+  have hbaer :
+      FreeAbelianGroup.of (push sum f).toYonedaExtension -
+          FreeAbelianGroup.of (push e₁ f).toYonedaExtension -
+          FreeAbelianGroup.of (push e₂ f).toYonedaExtension ∈ R := by
+    exact AddSubgroup.subset_closure
+      (YonedaRelGenerator.baer (X := X) (Y := Y') pushBaer)
+  have htotal := R.sub_mem (R.sub_mem (R.add_mem hsum hbaer) he₁) he₂
+  simpa [R, composeTailHomFreeHom, ShortExactExtension.toYonedaExtension,
+    YonedaExtension.composeTailHom, map_sub, Category.id_comp, sub_eq_add_neg,
+    add_assoc, add_comm, add_left_comm] using htotal
+
+theorem composeTailHomFreeHom_homTail_one_mem {Y' Z : C} (f : Y ⟶ Y')
+    (push : {Z W : C} → (e : ShortExactExtension Z W) → (g : W ⟶ Y') →
+      ShortExactExtension Z Y')
+    (pushData : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y'),
+      ShortExactExtension.PushoutData e g (push e g))
+    (e : ShortExactExtension X Z) (g : Z ⟶ Y)
+    {out : ShortExactExtension X Y}
+    (_h : ShortExactExtension.PushoutData e g out)
+    (pushAssocIso : ShortExactExtension.Iso (push e (g ≫ f)) (push out f)) :
+    composeTailHomFreeHom (X := X) f 0
+        (FreeAbelianGroup.of (YonedaExtension.cons e (YonedaExtension.ofHom g)) -
+          FreeAbelianGroup.of out.toYonedaExtension) ∈
+      yonedaRelationSubgroup X Y' 0 := by
+  let R := yonedaRelationSubgroup X Y' 0
+  have hleft :
+      FreeAbelianGroup.of (YonedaExtension.cons e (YonedaExtension.ofHom (g ≫ f))) -
+          FreeAbelianGroup.of (push e (g ≫ f)).toYonedaExtension ∈ R := by
+    exact AddSubgroup.subset_closure
+      (YonedaRelGenerator.homTail (X := X) (Y := Y')
+        (YonedaExtension.HomTailData.one e (g ≫ f) (pushData e (g ≫ f))))
+  have hright :
+      FreeAbelianGroup.of (YonedaExtension.cons out (YonedaExtension.ofHom f)) -
+          FreeAbelianGroup.of (push out f).toYonedaExtension ∈ R := by
+    exact AddSubgroup.subset_closure
+      (YonedaRelGenerator.homTail (X := X) (Y := Y')
+        (YonedaExtension.HomTailData.one out f (pushData out f)))
+  have hiso :
+      FreeAbelianGroup.of (push e (g ≫ f)).toYonedaExtension -
+          FreeAbelianGroup.of (push out f).toYonedaExtension ∈ R := by
+    simpa [R, ShortExactExtension.toYonedaExtension, map_sub] using
+      AddSubgroup.subset_closure
+        (YonedaRelGenerator.iso (X := X) (Y := Y')
+          (YonedaExtension.Rel.cons pushAssocIso (YonedaExtension.Rel.ofHom rfl)))
+  have htotal := R.sub_mem (R.add_mem hleft hiso) hright
+  simpa [R, composeTailHomFreeHom, ShortExactExtension.toYonedaExtension,
+    YonedaExtension.composeTailHom, map_sub, Category.id_comp, sub_eq_add_neg,
+    add_assoc, add_comm, add_left_comm] using htotal
+
 theorem composeTailHomFreeHom_baerChain_head_mem {Y' Z : C} (f : Y ⟶ Y')
     [HasBinaryBiproduct X X] [HasBinaryBiproduct Z Z]
     {e₁ e₂ sum : ShortExactExtension X Z}
