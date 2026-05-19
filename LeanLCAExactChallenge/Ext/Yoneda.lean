@@ -933,6 +933,104 @@ lemma shortExactExtensionPullbackPushoutMiddleMap_i
             pullbackSnd f (shortExactExtensionPushout e g).p :=
         (Category.assoc _ _ _).symm
 
+/-- The induced map from the canonical pushout of the pulled-back extension
+to the pullback of the canonical pushout. -/
+noncomputable def shortExactExtensionPullbackPushoutComparisonMap
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    (shortExactExtensionPushout (shortExactExtensionPullback e f) g).middle ⟶
+      (shortExactExtensionPullback (shortExactExtensionPushout e g) f).middle :=
+  pushoutDesc (S := (shortExactExtensionPullback e f).shortComplex) g
+    (pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g)
+    (shortExactExtensionPullbackPushoutMiddleMap e f g)
+    (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i
+    (shortExactExtensionPullbackPushoutMiddleMap_i e f g).symm
+
+@[simp]
+lemma shortExactExtensionPullbackPushoutComparisonMap_inl
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    pushoutInl (S := (shortExactExtensionPullback e f).shortComplex) g
+        (pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g) ≫
+        shortExactExtensionPullbackPushoutComparisonMap e f g =
+      shortExactExtensionPullbackPushoutMiddleMap e f g := by
+  dsimp [shortExactExtensionPullbackPushoutComparisonMap]
+  exact pushoutInl_desc (S := (shortExactExtensionPullback e f).shortComplex) g
+    (pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g)
+    (shortExactExtensionPullbackPushoutMiddleMap e f g)
+    (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i _
+
+@[simp]
+lemma shortExactExtensionPullbackPushoutComparisonMap_inr
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    pushoutInr (S := (shortExactExtensionPullback e f).shortComplex) g
+        (pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g) ≫
+        shortExactExtensionPullbackPushoutComparisonMap e f g =
+      (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i := by
+  dsimp [shortExactExtensionPullbackPushoutComparisonMap]
+  exact pushoutInr_desc (S := (shortExactExtensionPullback e f).shortComplex) g
+    (pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g)
+    (shortExactExtensionPullbackPushoutMiddleMap e f g)
+    (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i _
+
+@[simp]
+lemma shortExactExtensionPullbackPushoutComparisonMap_i
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    (shortExactExtensionPushout (shortExactExtensionPullback e f) g).i ≫
+        shortExactExtensionPullbackPushoutComparisonMap e f g =
+      (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i :=
+  shortExactExtensionPullbackPushoutComparisonMap_inr e f g
+
+@[simp]
+lemma shortExactExtensionPullbackPushoutComparisonMap_p
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    shortExactExtensionPullbackPushoutComparisonMap e f g ≫
+        (shortExactExtensionPullback (shortExactExtensionPushout e g) f).p =
+      (shortExactExtensionPushout (shortExactExtensionPullback e f) g).p := by
+  apply pushout_hom_ext (S := (shortExactExtensionPullback e f).shortComplex) g
+    (pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g)
+  · let inl := pushoutInl (S := (shortExactExtensionPullback e f).shortComplex) g
+      (pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g)
+    let cmp := shortExactExtensionPullbackPushoutComparisonMap e f g
+    let tp := (shortExactExtensionPullback (shortExactExtensionPushout e g) f).p
+    have hassoc : inl ≫ (cmp ≫ tp) = (inl ≫ cmp) ≫ tp :=
+      (Category.assoc inl cmp tp).symm
+    have hinl : (inl ≫ cmp) ≫ tp =
+        shortExactExtensionPullbackPushoutMiddleMap e f g ≫ tp := by
+      exact congrArg (fun k => k ≫ tp)
+        (shortExactExtensionPullbackPushoutComparisonMap_inl e f g)
+    have hp : shortExactExtensionPullbackPushoutMiddleMap e f g ≫ tp =
+        (shortExactExtensionPullback e f).p :=
+      shortExactExtensionPullbackPushoutMiddleMap_p e f g
+    have hpush : (shortExactExtensionPullback e f).p =
+        pushoutInl (S := (shortExactExtensionPullback e f).shortComplex) g
+          (pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g) ≫
+        (shortExactExtensionPushout (shortExactExtensionPullback e f) g).p :=
+      (shortExactExtensionPushout_map_p (shortExactExtensionPullback e f) g).symm
+    exact hassoc.trans (hinl.trans (hp.trans hpush))
+  · let inr := pushoutInr (S := (shortExactExtensionPullback e f).shortComplex) g
+      (pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g)
+    let cmp := shortExactExtensionPullbackPushoutComparisonMap e f g
+    let tp := (shortExactExtensionPullback (shortExactExtensionPushout e g) f).p
+    have hassoc : inr ≫ (cmp ≫ tp) = (inr ≫ cmp) ≫ tp :=
+      (Category.assoc inr cmp tp).symm
+    have hinr : (inr ≫ cmp) ≫ tp =
+        (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫ tp := by
+      exact congrArg (fun k => k ≫ tp)
+        (shortExactExtensionPullbackPushoutComparisonMap_inr e f g)
+    have hp : (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫
+        tp = 0 :=
+      (shortExactExtensionPullback (shortExactExtensionPushout e g) f).zero
+    have hpush : 0 =
+        pushoutInr (S := (shortExactExtensionPullback e f).shortComplex) g
+          (pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g) ≫
+        (shortExactExtensionPushout (shortExactExtensionPullback e f) g).p :=
+      (shortExactExtensionPushout_inr_p (shortExactExtensionPullback e f) g).symm
+    exact hassoc.trans (hinr.trans (hp.trans hpush))
+
 /-- Canonical pushout of one-fold extensions preserves isomorphism of the input extension. -/
 noncomputable def shortExactExtensionPushoutIso
     {X Y Y' : MetrizableLCA.{u}} (a : Y ⟶ Y')

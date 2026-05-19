@@ -602,6 +602,32 @@ noncomputable example (X X' Y Y' : MetrizableLCA)
         MetrizableLCA.shortExactExtensionPullbackPushoutMiddleMap e f g :=
   MetrizableLCA.shortExactExtensionPullbackPushoutMiddleMap_i e f g
 
+noncomputable example (X X' Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    (MetrizableLCA.shortExactExtensionPushout
+        (MetrizableLCA.shortExactExtensionPullback e f) g).middle ⟶
+      (MetrizableLCA.shortExactExtensionPullback
+        (MetrizableLCA.shortExactExtensionPushout e g) f).middle :=
+  MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap e f g
+
+noncomputable example (X X' Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    (MetrizableLCA.shortExactExtensionPushout
+        (MetrizableLCA.shortExactExtensionPullback e f) g).i ≫
+        MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap e f g =
+      (MetrizableLCA.shortExactExtensionPullback
+        (MetrizableLCA.shortExactExtensionPushout e g) f).i :=
+  MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_i e f g
+
+noncomputable example (X X' Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap e f g ≫
+        (MetrizableLCA.shortExactExtensionPullback
+          (MetrizableLCA.shortExactExtensionPushout e g) f).p =
+      (MetrizableLCA.shortExactExtensionPushout
+        (MetrizableLCA.shortExactExtensionPullback e f) g).p :=
+  MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_p e f g
+
 noncomputable example (X Y Y' : MetrizableLCA)
     {e e' : ShortExactExtension (C := MetrizableLCA) X Y}
     (a : Y ⟶ Y') (h : ShortExactExtension.Iso e e') :

@@ -1,12 +1,12 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v64-canonical-pullback-pushout-square",
-  "generated_utc": "2026-05-19T03:37:55Z",
-  "source_tree_hash": "0cbbd0a7fd7f8255e70c6baa5b52a99bf6d8a253c0249326d35348fb81a7b996",
+  "schema": "lean-lca-exact-challenge-verification-v65-canonical-pushout-to-pullback-pushout-map",
+  "generated_utc": "2026-05-19T03:50:06Z",
+  "source_tree_hash": "69be239355cfab6adfc81eebe8845a6888d85275e98745f61e547643477f1d0e",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "rebuilt LeanLCAExactChallenge after adding the canonical pullback-after-tail-pushout comparison map and endpoint laws."
+      "evidence": "rebuilt LeanLCAExactChallenge after adding the canonical pushout-of-pullback to pullback-of-pushout comparison map and endpoint laws."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -16,12 +16,12 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the canonical pullback-after-tail-pushout comparison map and projection/endpoint laws."
+      "evidence": "Required declaration audit sees the canonical pushout-of-pullback to pullback-of-pushout comparison map and inl/inr/i/p laws."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product audit checks the comparison map type plus p and i endpoint laws while preserving non-product terminal state."
+      "evidence": "Product audit checks the comparison map type plus i and p endpoint laws while preserving non-product terminal state."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
@@ -31,7 +31,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit sees the canonical pullback-after-tail-pushout comparison map and endpoint laws."
+      "evidence": "Yoneda blocker audit sees the canonical pushout-of-pullback to pullback-of-pushout comparison map and laws."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -41,7 +41,7 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "Expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because standard head pullback-pushout exchange still lacks the IsPushout universal-property proof, left quotient bilinearity is incomplete, and stable infinity-category enhancement remains incomplete."
+      "evidence": "Expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because standard head pullback-pushout exchange still lacks an inverse or the IsPushout universal-property proof, left quotient bilinearity is incomplete, and stable infinity-category enhancement remains incomplete."
     },
     {
       "command": "git diff --check",

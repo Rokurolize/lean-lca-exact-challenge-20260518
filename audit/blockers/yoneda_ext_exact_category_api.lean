@@ -72,6 +72,11 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.shortExactExtensionPullbackPushoutMiddleMap_snd
 #check MetrizableLCA.shortExactExtensionPullbackPushoutMiddleMap_p
 #check MetrizableLCA.shortExactExtensionPullbackPushoutMiddleMap_i
+#check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap
+#check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_inl
+#check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_inr
+#check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_i
+#check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_p
 #check MetrizableLCA.shortExactExtensionPushoutIso
 #check MetrizableLCA.shortExactExtensionPushoutAssocIso
 #check MetrizableLCA.pushoutSplitting
