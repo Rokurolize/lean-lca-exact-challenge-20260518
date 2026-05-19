@@ -1494,6 +1494,10 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2
 #check (exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone
   (C := MetrizableLCA))
+#check exactAcyclicHomotopyObject_trW_quotient_map_iff_exactAcyclic_mappingCone
+#check (exactAcyclicHomotopyIsoClosure_trW_quotient_map_of_exactAcyclic_mappingCone
+  (C := MetrizableLCA))
+#check exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mappingCone
 #check (boundedExactWeakEquivalence_shift_iff (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
 #check (BoundedComplexCategory.homotopyQuotient (C := MetrizableLCA))
@@ -1511,6 +1515,8 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
 #check (boundedHomotopyExactWeakEquivalence (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence
+  (C := MetrizableLCA))
+#check (boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone
   (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_of_mappingCone_splittings (C := MetrizableLCA))
 #check (boundedHomotopyExactWeakEquivalence_of_mappingCone_splittings (C := MetrizableLCA))

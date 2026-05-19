@@ -327,6 +327,47 @@ theorem exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone
       ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).map f) := by
   exact ⟨_, _, _, HomotopyCategory.mappingCone_triangleh_distinguished f, hf⟩
 
+/-- If exact acyclicity is homotopy-category isomorphism invariant, the `trW` condition on
+the quotient of a cochain map is exactly exact acyclicity of its mapping cone. -/
+theorem exactAcyclicHomotopyObject_trW_quotient_map_iff_exactAcyclic_mappingCone
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L) :
+    (exactAcyclicHomotopyObject C).trW
+        ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).map f) ↔
+      exactAcyclic C (CochainComplex.mappingCone f) := by
+  constructor
+  · intro hf
+    exact ((exactAcyclicHomotopyObject C).trW_iff_of_distinguished
+      (CochainComplex.mappingCone.triangleh f)
+      (HomotopyCategory.mappingCone_triangleh_distinguished f)).1 hf
+  · intro hf
+    exact exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone C f hf
+
+/-- Exact acyclic mapping cones also give `trW` morphisms for the isomorphism closure of
+exact acyclic homotopy objects. -/
+theorem exactAcyclicHomotopyIsoClosure_trW_quotient_map_of_exactAcyclic_mappingCone
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hf : exactAcyclic C (CochainComplex.mappingCone f)) :
+    (exactAcyclicHomotopyIsoClosure C).trW
+      ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).map f) := by
+  rw [exactAcyclicHomotopyIsoClosure_trW C]
+  exact exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone C f hf
+
+/-- Under homotopy-category isomorphism invariance, the isomorphism-closed `trW` condition
+on the quotient of a cochain map is still equivalent to exact acyclicity of its mapping
+cone. -/
+theorem exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mappingCone
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L) :
+    (exactAcyclicHomotopyIsoClosure C).trW
+        ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).map f) ↔
+      exactAcyclic C (CochainComplex.mappingCone f) := by
+  rw [exactAcyclicHomotopyIsoClosure_trW C]
+  exact exactAcyclicHomotopyObject_trW_quotient_map_iff_exactAcyclic_mappingCone C f
+
 /-- Exact quasi-isomorphisms between bounded complexes, detected by the mapping cone. -/
 noncomputable def boundedExactWeakEquivalence [HasBinaryBiproducts C] :
     MorphismProperty (BoundedComplexCategory C) :=
@@ -465,6 +506,15 @@ theorem boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence
   dsimp [boundedHomotopyExactWeakEquivalence]
   rw [exactAcyclicHomotopyIsoClosure_trW C]
   exact boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage C f hf
+
+/-- A bounded morphism with exact acyclic mapping cone is a homotopy/Verdier pullback weak
+equivalence. -/
+theorem boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone
+    [HasZeroObject C] [HasBinaryBiproducts C] {K L : BoundedComplexCategory C} (f : K ⟶ L)
+    (hf : exactAcyclic C
+      (CochainComplex.mappingCone ((BoundedComplexCategory.ι C).map f))) :
+    boundedHomotopyExactWeakEquivalence C f :=
+  boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence C f hf
 
 /-- A bounded morphism whose mapping cone is degreewise split is a direct exact weak
 equivalence. -/

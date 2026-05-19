@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T12:25:00Z",
+  "generated_utc": "2026-05-19T12:45:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v87 edits stay in the parent process.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v88 edits stay in the parent process.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -441,7 +441,8 @@
         "bounded homotopy object",
         "bounded mapping cone closure",
         "localized equivalence under exact-acyclic homotopy iso-invariance",
-        "bounded mapping cone component extraction"
+        "bounded mapping cone component extraction",
+        "exact cone trW criterion"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -455,7 +456,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v87 adds boundedCochainComplex_of_mappingCone_right/left plus boundedHomotopyObject_of_mappingCone_right/left. If a mapping cone is bounded, then both source and target complexes, and their quotient homotopy-category objects, are bounded. This strengthens the bounded ambient cone facts but does not prove exact-acyclic homotopy iso-invariance, the iso-closure IsTriangulatedClosed₂ condition, transfer of ordinary triangulated structure to Dbounded, or stable infinity-category structure.",
+      "merge_blocker": "v88 adds exactAcyclicHomotopyObject_trW_quotient_map_iff_exactAcyclic_mappingCone, exactAcyclicHomotopyIsoClosure_trW_quotient_map_of_exactAcyclic_mappingCone, exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mappingCone, and boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone. Under exact-acyclic homotopy-object iso-closedness, a cochain map quotient is in trW iff its mapping cone is exact acyclic; exact acyclic cones also give the iso-closure trW condition and bounded homotopy/Verdier weak equivalences. This sharpens cone detection but does not prove exact-acyclic homotopy iso-invariance, the iso-closure IsTriangulatedClosed₂ condition, transfer of ordinary triangulated structure to Dbounded, or stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -542,12 +543,17 @@
         "boundedCochainComplex_of_mappingCone_right",
         "boundedCochainComplex_of_mappingCone_left",
         "boundedHomotopyObject_of_mappingCone_right",
-        "boundedHomotopyObject_of_mappingCone_left"
+        "boundedHomotopyObject_of_mappingCone_left",
+        "exactAcyclicHomotopyObject_trW_quotient_map_iff_exactAcyclic_mappingCone",
+        "exactAcyclicHomotopyIsoClosure_trW_quotient_map_of_exactAcyclic_mappingCone",
+        "exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mappingCone",
+        "boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone"
       ],
       "technical_context": [
         "split short complexes",
         "split mapping cone weak-equivalence criteria",
-        "bounded mapping cone component extraction"
+        "bounded mapping cone component extraction",
+        "exact cone trW criterion"
       ]
     },
     {
@@ -614,7 +620,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v86 evidence records the split cone weak-equivalence criterion while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v88 evidence records the exact-cone/trW criteria while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []
