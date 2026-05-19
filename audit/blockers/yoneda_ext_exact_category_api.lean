@@ -56,6 +56,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.shortExactExtensionPushout_map_p
 #check MetrizableLCA.shortExactExtensionPushout_inr_p
 #check MetrizableLCA.shortExactExtensionPushoutData
+#check MetrizableLCA.shortExactExtensionPushoutAssocIso
 #check MetrizableLCA.pushoutSplitting
 #check MetrizableLCA.shortExactExtensionPushoutSplitting
 #check MetrizableLCA.shortExactExtensionBaerSum
@@ -146,6 +147,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.composeTailHomFreeHom_baerChain_head_mem
 #check YonedaExt.composeTailHomFreeHom_baerChain_mem
 #check YonedaExt.composeTailHomFreeHom_homTail_mem
+#check YonedaExt.composeTailHomFreeHom_homTail_mem_metrizable
 #check YonedaExt.pullbackHeadFreeHomWith
 #check YonedaExt.pullbackHeadFreeHomWith_of
 #check YonedaExt.pullbackHeadFreeHomWith_rel_mem

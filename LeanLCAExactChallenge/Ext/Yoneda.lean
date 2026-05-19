@@ -1,3 +1,4 @@
+import Mathlib.CategoryTheory.Limits.Shapes.Pullback.Pasting
 import Mathlib.GroupTheory.FreeAbelianGroup
 import Mathlib.GroupTheory.QuotientGroup.Basic
 import LeanLCAExactChallenge.LCA.ExactCategory
@@ -565,6 +566,48 @@ noncomputable def shortExactExtensionPushoutData
     IsPushout.of_isColimit
       (pushoutIsColimit (S := e.shortComplex) a
         (pushoutSubgroup_closed e.conflation a))
+
+/-- Successive pushouts of a one-fold extension agree with the direct pushout. -/
+noncomputable def shortExactExtensionPushoutAssocIso
+    {X Y Y' Y'' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y)
+    (g : Y ⟶ Y') (f : Y' ⟶ Y'')
+    {out : ShortExactExtension (C := MetrizableLCA.{u}) X Y'}
+    (h : ShortExactExtension.PushoutData e g out) :
+    ShortExactExtension.Iso (shortExactExtensionPushout e (g ≫ f))
+      (shortExactExtensionPushout out f) := by
+  let direct := shortExactExtensionPushoutData e (g ≫ f)
+  let second := shortExactExtensionPushoutData out f
+  let pastedCocone := h.isPushout.cocone.pasteHoriz second.isPushout.cocone rfl
+  have hpasted : IsColimit pastedCocone := by
+    dsimp [pastedCocone]
+    exact pasteHorizIsPushout rfl h.isPushout.isColimit second.isPushout.isColimit
+  let middleIso :
+      (shortExactExtensionPushout e (g ≫ f)).middle ≅
+        (shortExactExtensionPushout out f).middle :=
+    IsColimit.coconePointUniqueUpToIso direct.isPushout.isColimit hpasted
+  refine
+    { middleIso := middleIso
+      i_hom := ?_
+      hom_p := ?_ }
+  · simpa [middleIso, direct, pastedCocone] using
+      IsColimit.comp_coconePointUniqueUpToIso_hom direct.isPushout.isColimit
+        hpasted WalkingSpan.right
+  · apply direct.isPushout.hom_ext
+    · have hinl :
+          direct.middleMap ≫ middleIso.hom = h.middleMap ≫ second.middleMap := by
+        simpa [middleIso, direct, pastedCocone] using
+          IsColimit.comp_coconePointUniqueUpToIso_hom direct.isPushout.isColimit
+            hpasted WalkingSpan.left
+      rw [← Category.assoc, hinl, Category.assoc, second.map_p, h.map_p, direct.map_p]
+    · have hinr :
+          (shortExactExtensionPushout e (g ≫ f)).i ≫ middleIso.hom =
+            (shortExactExtensionPushout out f).i := by
+        simpa [middleIso, direct, pastedCocone] using
+          IsColimit.comp_coconePointUniqueUpToIso_hom direct.isPushout.isColimit
+            hpasted WalkingSpan.right
+      rw [← Category.assoc, hinr, (shortExactExtensionPushout out f).zero,
+        (shortExactExtensionPushout e (g ≫ f)).zero]
 
 /-- The explicit pushout of a split short complex is split. -/
 noncomputable def pushoutSplitting
@@ -2141,6 +2184,23 @@ theorem composeTailHomFreeHom_homTail_mem {Y' : C} (f : Y ⟶ Y')
       have hlift := consLeft_relationSubgroup_le (Z := Y') e _ htail
       simpa [composeTailHomFreeHom, consLeftFreeHom, YonedaExtension.consLeftMap,
         YonedaExtension.composeTailHom, map_sub] using hlift
+
+/--
+For the canonical MetrizableLCA pushout model, tail composition sends every
+hom-tail relation generator to the target relation subgroup.
+-/
+theorem composeTailHomFreeHom_homTail_mem_metrizable
+    {X Y Y' : MetrizableLCA.{u}} {n : ℕ} (f : Y ⟶ Y')
+    {a b : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)}
+    (h : YonedaExtension.HomTailData (C := MetrizableLCA.{u}) a b) :
+    composeTailHomFreeHom (C := MetrizableLCA.{u}) (X := X) f n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y' n :=
+  composeTailHomFreeHom_homTail_mem (C := MetrizableLCA.{u}) (X := X) (Y := Y) f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    (fun {_ _} e g {_} h => MetrizableLCA.shortExactExtensionPushoutAssocIso e g f h)
+    h
 
 /-- Left Yoneda product by a fixed one-fold extension, descended to the quotient group. -/
 noncomputable def leftProductByExtension (e : ShortExactExtension X Y) (n : ℕ) :

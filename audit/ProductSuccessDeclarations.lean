@@ -435,6 +435,8 @@ example (X X' Y Z : MetrizableLCA) {n : ℕ}
 
 #check (YonedaExt.pullbackHeadFreeHomWith_baerChain_mem (C := MetrizableLCA))
 #check (YonedaExt.pullbackHeadFreeHomWith_homTail_mem (C := MetrizableLCA))
+#check MetrizableLCA.shortExactExtensionPushoutAssocIso
+#check (YonedaExt.composeTailHomFreeHom_homTail_mem_metrizable)
 
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
