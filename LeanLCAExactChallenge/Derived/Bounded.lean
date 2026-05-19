@@ -898,6 +898,29 @@ theorem boundedHomotopyObject_distinguished_ext1_of_triangleh_iso23
     (boundedHomotopyObject_triangleh_ext1 C f hL hCone)
 
 omit [QuillenExactCategory C] in
+/-- The strict-realization input needed to make bounded homotopy objects closed under the
+middle term of distinguished triangles.
+
+This is the bounded-object analogue of
+`exactAcyclicHomotopyIsoClosureTrianglehIso13Realization`: a distinguished triangle with
+bounded first and third objects must be represented, on those endpoints, by a standard
+mapping-cone triangle whose source and cone are strict bounded cochain complexes. -/
+abbrev boundedHomotopyObjectTrianglehIso13Realization
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    boundedHomotopyObject C T.obj₁ →
+    boundedHomotopyObject C T.obj₃ →
+    ∃ (K L : CochainComplex C ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        boundedCochainComplex C K ∧
+        boundedCochainComplex C (CochainComplex.mappingCone f)
+
+omit [QuillenExactCategory C] in
 /-- A strict-realization criterion for the middle-object distinguished-triangle closure of
 bounded homotopy objects.
 
@@ -906,24 +929,27 @@ those endpoints to a standard mapping-cone triangle whose source and cone are st
 bounded, then the bounded homotopy object property is closed in the middle term. -/
 theorem boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
     [HasZeroObject C] [HasBinaryBiproducts C]
-    (realize :
-      ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
-        T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
-        boundedHomotopyObject C T.obj₁ →
-        boundedHomotopyObject C T.obj₃ →
-        ∃ (K L : CochainComplex C ℤ) (f : K ⟶ L)
-          (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
-          (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
-            (CochainComplex.mappingCone.triangleh f).mor₃ ≫
-                (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
-              e₃.hom ≫ T.mor₃ ∧
-            boundedCochainComplex C K ∧
-            boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    (realize : boundedHomotopyObjectTrianglehIso13Realization C) :
     (boundedHomotopyObject C).IsTriangulatedClosed₂ := by
   apply ObjectProperty.IsTriangulatedClosed₂.mk'
   intro T hT h₁ h₃
   rcases realize hT h₁ h₃ with ⟨K, L, f, e₁, e₃, comm, hK, hCone⟩
   exact boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13 C hT f e₁ e₃ comm hK hCone
+
+/-- Supplying both strict-realization inputs gives the two `Closed₂` classes needed by the
+ordinary bounded homotopy Verdier route. The theorem deliberately keeps the realization
+inputs explicit; it does not prove them. -/
+theorem exactAcyclicIsoClosure_and_boundedHomotopyObject_closed2_of_triangleh_iso13_realizations
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (exactRealize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C)
+    (boundedRealize : boundedHomotopyObjectTrianglehIso13Realization C) :
+    (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ ∧
+      (boundedHomotopyObject C).IsTriangulatedClosed₂ := by
+  exact
+    ⟨exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C exactRealize,
+      boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C boundedRealize⟩
 
 omit [QuillenExactCategory C] in
 /-- It is enough to prove two-out-of-three distinguished-triangle closure for bounded
@@ -958,6 +984,32 @@ noncomputable abbrev boundedHomotopyCategory_isTriangulated_of_isTriangulatedClo
   haveI : (boundedHomotopyObject C).IsTriangulated :=
     boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
   infer_instance
+
+omit [QuillenExactCategory C] in
+/-- The bounded strict-realization input supplies the ordinary pretriangulated structure on
+the bounded homotopy category. -/
+noncomputable abbrev boundedHomotopyCategory_pretriangulated_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : boundedHomotopyObjectTrianglehIso13Realization C) :
+    Pretriangulated (BoundedHomotopyCategory C) := by
+  haveI : (boundedHomotopyObject C).IsTriangulatedClosed₂ :=
+    boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization C realize
+  exact boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+
+omit [QuillenExactCategory C] in
+/-- The bounded strict-realization input supplies the ordinary triangulated structure on the
+bounded homotopy category. -/
+noncomputable abbrev boundedHomotopyCategory_isTriangulated_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : boundedHomotopyObjectTrianglehIso13Realization C) :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_triangleh_iso13_realization C realize
+    IsTriangulated (BoundedHomotopyCategory C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_triangleh_iso13_realization C realize
+  haveI : (boundedHomotopyObject C).IsTriangulatedClosed₂ :=
+    boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization C realize
+  exact boundedHomotopyCategory_isTriangulated_of_isTriangulatedClosed2 C
 
 omit [QuillenExactCategory C] in
 /-- Exact-acyclic bounded homotopy objects, expressed inside the bounded homotopy
@@ -1220,6 +1272,79 @@ instance boundedExactAcyclicHomotopyVerdierCategory_isTriangulated_of_closed2
     Triangulated.Localization.isTriangulated_functor W.Q W
   change IsTriangulated W.Localization
   exact Triangulated.Localization.isTriangulated W.Q W
+
+/-- The two strict-realization inputs supply preadditivity of the ordinary bounded homotopy
+Verdier quotient. -/
+noncomputable abbrev
+    boundedExactAcyclicHomotopyVerdierCategory_preadditive_of_triangleh_iso13_realizations
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (exactRealize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C)
+    (boundedRealize : boundedHomotopyObjectTrianglehIso13Realization C) :
+    letI : (boundedHomotopyObject C).IsTriangulatedClosed₂ :=
+      boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C boundedRealize
+    letI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+      exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C exactRealize
+    Preadditive (BoundedExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (boundedHomotopyObject C).IsTriangulatedClosed₂ :=
+    boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C boundedRealize
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C exactRealize
+  exact boundedExactAcyclicHomotopyVerdierCategory_preadditive_of_closed2 C
+
+/-- The two strict-realization inputs supply the ordinary pretriangulated structure on the
+bounded homotopy Verdier quotient. -/
+noncomputable abbrev
+    boundedExactAcyclicHomotopyVerdierCategory_pretriangulated_of_triangleh_iso13_realizations
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (exactRealize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C)
+    (boundedRealize : boundedHomotopyObjectTrianglehIso13Realization C) :
+    letI : (boundedHomotopyObject C).IsTriangulatedClosed₂ :=
+      boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C boundedRealize
+    letI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+      exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C exactRealize
+    Pretriangulated (BoundedExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (boundedHomotopyObject C).IsTriangulatedClosed₂ :=
+    boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C boundedRealize
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C exactRealize
+  exact boundedExactAcyclicHomotopyVerdierCategory_pretriangulated_of_closed2 C
+
+/-- The two strict-realization inputs supply the ordinary triangulated structure on the
+bounded homotopy Verdier quotient. This is still not a stable infinity-category
+certificate. -/
+noncomputable abbrev
+    boundedExactAcyclicHomotopyVerdierCategory_isTriangulated_of_triangleh_iso13_realizations
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (exactRealize : exactAcyclicHomotopyIsoClosureTrianglehIso13Realization C)
+    (boundedRealize : boundedHomotopyObjectTrianglehIso13Realization C) :
+    letI : (boundedHomotopyObject C).IsTriangulatedClosed₂ :=
+      boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C boundedRealize
+    letI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+      exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+        C exactRealize
+    letI : Pretriangulated (BoundedExactAcyclicHomotopyVerdierCategory C) :=
+      boundedExactAcyclicHomotopyVerdierCategory_pretriangulated_of_triangleh_iso13_realizations
+        C exactRealize boundedRealize
+    IsTriangulated (BoundedExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (boundedHomotopyObject C).IsTriangulatedClosed₂ :=
+    boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C boundedRealize
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+      C exactRealize
+  letI : Pretriangulated (BoundedExactAcyclicHomotopyVerdierCategory C) :=
+    boundedExactAcyclicHomotopyVerdierCategory_pretriangulated_of_triangleh_iso13_realizations
+      C exactRealize boundedRealize
+  exact boundedExactAcyclicHomotopyVerdierCategory_isTriangulated_of_closed2 C
 
 /-- The direct mapping-cone weak equivalences on bounded complexes map into the
 homotopy-category `trW` class of exact-acyclic objects. -/

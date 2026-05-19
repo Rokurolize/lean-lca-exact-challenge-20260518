@@ -1542,11 +1542,15 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (boundedHomotopyObject_distinguished_ext3_of_triangleh_iso12 (C := MetrizableLCA))
 #check (boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13 (C := MetrizableLCA))
 #check (boundedHomotopyObject_distinguished_ext1_of_triangleh_iso23 (C := MetrizableLCA))
+#check boundedHomotopyObjectTrianglehIso13Realization
 #check (boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
   (C := MetrizableLCA))
+#check exactAcyclicIsoClosure_and_boundedHomotopyObject_closed2_of_triangleh_iso13_realizations
 #check boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2
 #check boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2
 #check boundedHomotopyCategory_isTriangulated_of_isTriangulatedClosed2
+#check boundedHomotopyCategory_pretriangulated_of_triangleh_iso13_realization
+#check boundedHomotopyCategory_isTriangulated_of_triangleh_iso13_realization
 #check boundedExactAcyclicHomotopyObject
 #check boundedExactAcyclicHomotopyObject_isClosedUnderIsomorphisms
 #check boundedExactAcyclicHomotopyObject_containsZero
@@ -1566,6 +1570,9 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check boundedExactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_closed2
 #check boundedExactAcyclicHomotopyVerdierCategory_pretriangulated_of_closed2
 #check boundedExactAcyclicHomotopyVerdierCategory_isTriangulated_of_closed2
+#check boundedExactAcyclicHomotopyVerdierCategory_preadditive_of_triangleh_iso13_realizations
+#check boundedExactAcyclicHomotopyVerdierCategory_pretriangulated_of_triangleh_iso13_realizations
+#check boundedExactAcyclicHomotopyVerdierCategory_isTriangulated_of_triangleh_iso13_realizations
 #check (BoundedHomotopyCategory (C := MetrizableLCA))
 #check (BoundedHomotopyCategory.ι (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage

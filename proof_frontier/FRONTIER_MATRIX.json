@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T18:17:00Z",
+  "generated_utc": "2026-05-19T18:31:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening was manually ported by the parent after reading the external support notice; the parent did not launch or resume any worker from this worktree.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening and v114 bounded realization wrappers were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -480,7 +480,11 @@
         "exact acyclic isoClosure strict-realization closed2 criterion",
         "bounded-to-ambient Verdier localizer morphism",
         "bounded-to-ambient Verdier comparison functor",
-        "CatCommSq bounded-to-ambient localization iso"
+        "CatCommSq bounded-to-ambient localization iso",
+        "bounded homotopy object strict-realization closed2 criterion",
+        "combined exact/bounded strict-realization closed2 wrapper",
+        "bounded homotopy category realization-conditioned triangulated wrapper",
+        "bounded exact-acyclic homotopy Verdier realization-conditioned wrappers"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -494,7 +498,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v112 adds named closure APIs for `exactAcyclicHomotopyIsoClosure` and `boundedExactAcyclicHomotopyObject`: isomorphism closure, zero containment, and bounded-side shift stability. The v111 weak-equivalence inverse-image equalities remain in place. Still no unconditional bounded/exact-acyclic closed2, no direct bounded left/right calculus or triangulated transfer to `Dbounded`, and no stable infinity-category.",
+      "merge_blocker": "v114 adds `boundedHomotopyObjectTrianglehIso13Realization`, combines exact and bounded strict-realization inputs into exact/bounded `Closed₂`, and exposes realization-conditioned ordinary pretriangulated/triangulated wrappers for bounded homotopy and bounded exact-acyclic homotopy Verdier quotients. Still no proof of the realization inputs, no unconditional direct bounded left/right calculus or triangulated transfer to `Dbounded`, and no stable infinity-category.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -702,7 +706,14 @@
         "Dbounded.boundedVerdierComparisonDirect",
         "Dbounded.boundedVerdierComparisonDirectLocalizationIso",
         "Dbounded.boundedVerdierComparisonDirectIso",
-        "Dbounded.boundedVerdierComparison_comp_ambientIso"
+        "Dbounded.boundedVerdierComparison_comp_ambientIso",
+        "boundedHomotopyObjectTrianglehIso13Realization",
+        "exactAcyclicIsoClosure_and_boundedHomotopyObject_closed2_of_triangleh_iso13_realizations",
+        "boundedHomotopyCategory_pretriangulated_of_triangleh_iso13_realization",
+        "boundedHomotopyCategory_isTriangulated_of_triangleh_iso13_realization",
+        "boundedExactAcyclicHomotopyVerdierCategory_preadditive_of_triangleh_iso13_realizations",
+        "boundedExactAcyclicHomotopyVerdierCategory_pretriangulated_of_triangleh_iso13_realizations",
+        "boundedExactAcyclicHomotopyVerdierCategory_isTriangulated_of_triangleh_iso13_realizations"
       ],
       "technical_context": [
         "split short complexes",
@@ -751,7 +762,12 @@
         "Arrow.isoOfNatIso comparison for lifted bounded homotopy quotient",
         "exact acyclic homotopy isoClosure isomorphism closure and zero containment",
         "bounded exact-acyclic homotopy object isomorphism closure and zero containment",
-        "bounded exact-acyclic homotopy object shift stability under bounded-object closed2"
+        "bounded exact-acyclic homotopy object shift stability under bounded-object closed2",
+        "bounded homotopy strict-realization named input",
+        "combined exact/bounded closed2 wrapper under strict-realization inputs",
+        "realization-conditioned bounded homotopy category ordinary triangulated wrappers",
+        "realization-conditioned bounded exact-acyclic homotopy Verdier ordinary wrappers",
+        "strict realization inputs remain nonterminal"
       ]
     },
     {
@@ -822,7 +838,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "v113 route log records the external support notice, manual parent port of w07 audit hardening, unresolved-status fixture, and product-success failed_expected fixture while preserving the stable-infinity blocker as nonterminal.",
+      "merge_blocker": "v114 route log records the w04 realization-wrapper port and keeps the v113 audit-hardening evidence while preserving the stable-infinity blocker as nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []
