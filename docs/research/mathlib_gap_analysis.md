@@ -386,3 +386,7 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 ### v129: unsuffixed positive Yoneda cast API
 
 2026-05-19T21:22:04Z時点で、positive degreeのYonedaExt商群に対するdegree cast APIを公開した。`positiveYonedaExtCast`は`positiveYonedaExtFreeCast_relationSubgroup_mem`を使って商群へ降りる。MetrizableLCA固有の`positiveYonedaExtCast_spliceLeftWith_assoc`と`yonedaProduct_ofExtension_assoc_cast`により、三重Yoneda積のgenerator associativityはdegree equalityによるcast後に直接使える。これはYoneda側の下流証明を簡略化する正方向APIだが、bounded derived stable infinity-categoryの残る構成問題を解くものではない。
+
+### v130: stable certificate checker and concrete tail scout
+
+2026-05-19T21:25:57Z時点で、stable infinity-category側のproduct declaration境界を`StableInfinityAudit.DboundedStableCertificate`のblocker skeletonとして明示した。これはproduct-facing APIではなく、将来`ProductSuccessDeclarations`へ移すべき検査形の模型である。ordinary `Dbounded.infinityNerve_quasicategory`だけではこの検査を満たさない。加えて、contractible tail具体例については`AddCommGrpCat.of ℤ`と`ModuleCat.of ℤ ℤ`が非零であり、可算product/coproductも使えることを確認した。したがって残る実装課題は、具体的な`ℤ`添字cochain complexの微分、`d_comp_d`、およびcontracting homotopyの`Homotopy.comm`証明である。
