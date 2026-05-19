@@ -1,88 +1,88 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v108-bounded-to-ambient-verdier-comparison",
-  "generated_utc": "2026-05-19T17:11:00Z",
-  "source_tree_hash": "73cd1304a4c608090cbff0d166ef4bcef96c2f415b31a31837ead72303bc20c1",
-  "summary": "v108 adds `BoundedExactAcyclicHomotopyVerdierQuasicategory.homotopyCategoryIso` and a bounded-to-ambient ordinary Verdier comparison via `boundedExactAcyclicHomotopyObjectToIsoClosure_trW`, `boundedExactAcyclicHomotopyVerdierComparison`, and `boundedExactAcyclicHomotopyVerdierComparisonLocalizationIso`. Product remains nonterminal because closed2 hypotheses are not proved unconditionally, homotopy/direct left-right calculus is not unconditional, ordinary triangulated structure is not transferred to `Dbounded`, and no stable infinity-category structure is constructed.",
+  "schema": "lean-lca-exact-challenge-verification-v109-bounded-verdier-factorization",
+  "generated_utc": "2026-05-19T17:27:31Z",
+  "source_tree_hash": "29419dbd947bc4c7d26de5d09f60e045022d90ae93120d1b5d1b4ed03c204401",
+  "summary": "v109 adds `BoundedComplexCategory.homotopyQuotientBounded`, `boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW`, `BoundedHomotopyDerivedCategory.boundedVerdierComparison`, `BoundedHomotopyDerivedCategory.boundedVerdierComparisonLocalizationIso`, and `BoundedHomotopyDerivedCategory.boundedVerdierComparison_comp_ambientIso`. The homotopy/Verdier pullback localization now factors through the bounded homotopy Verdier quotient, and composing that comparison with the bounded-to-ambient comparison recovers the existing ambient ordinary Verdier comparison. Product remains nonterminal because closed2 hypotheses are not proved unconditionally, homotopy/direct left-right calculus is not unconditional, ordinary triangulated structure is not transferred to `Dbounded`, and no stable infinity-category structure is constructed.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
       "status": "passed",
-      "evidence": "Focused derived build passed after adding the v108 bounded-to-ambient ordinary Verdier comparison layer."
+      "evidence": "Focused derived build passed after adding the v109 bounded homotopy Verdier factorization layer."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Ext.Yoneda",
       "status": "passed",
-      "evidence": "Yoneda focused build remains green after the derived-side v108 update."
+      "evidence": "Yoneda focused build remains green from the v108 baseline; v109 touches only the bounded-derived frontier."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after the v108 bounded-to-ambient Verdier comparison update while preserving the nonterminal stable-infinity boundary."
+      "evidence": "Full project build passed after the v109 bounded homotopy Verdier factorization update while preserving the nonterminal stable-infinity boundary."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v108 update."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v109 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit remains green after the v108 bounded-to-ambient ordinary Verdier comparison update."
+      "evidence": "Required declaration audit remains green after the v109 bounded homotopy Verdier factorization update."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles with MetrizableLCA checks for the v108 bounded-to-ambient ordinary Verdier comparison while retaining the nonterminal stable-infinity contract."
+      "evidence": "Product declaration audit compiles with MetrizableLCA checks for the v109 bounded homotopy Verdier factorization while retaining the nonterminal stable-infinity contract."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v108 derived-side update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v109 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v108 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v109 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms the v108 bounded-to-ambient ordinary Verdier comparison checks and still records the unresolved stable-infinity product condition."
+      "evidence": "Derived blocker audit confirms the v109 bounded homotopy Verdier factorization checks and still records the unresolved stable-infinity product condition."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v108 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v109 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v108 frontier update."
+      "evidence": "Proof frontier JSON syntax checked after the v109 frontier update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after regenerating the v108 verification record."
+      "evidence": "Verification JSON syntax checked after regenerating the v109 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked after regenerating the v108 manifest."
+      "evidence": "Manifest JSON syntax checked after regenerating the v109 manifest."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v108 update."
+      "evidence": "External audit Python syntax check still passes after the v109 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v108 proof, audit, documentation, frontier, terminal outcome, and evidence update."
+      "evidence": "Whitespace check passed after the v109 proof, audit, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because v108 records only conditional ordinary Verdier comparison evidence and does not prove unconditional closed2, unconditional left/right calculus, transfer to Dbounded triangulated/stable infinity, or stable infinity-category structure."
+      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because v109 records only ordinary bounded Verdier factorization evidence and does not prove unconditional closed2, unconditional left/right calculus, transfer to Dbounded triangulated/stable infinity, or stable infinity-category structure."
     }
   ]
 }

@@ -1872,6 +1872,12 @@ noncomputable example : Category (Dbounded (C := MetrizableLCA)) := by infer_ins
   (C := MetrizableLCA))
 #check (BoundedHomotopyDerivedCategory.verdierComparison (C := MetrizableLCA))
 #check (BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso (C := MetrizableLCA))
+#check BoundedComplexCategory.homotopyQuotientBounded
+#check BoundedComplexCategory.homotopyQuotientBounded_comp_ι_iso
+#check boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW
+#check BoundedHomotopyDerivedCategory.boundedVerdierComparison
+#check BoundedHomotopyDerivedCategory.boundedVerdierComparisonLocalizationIso
+#check BoundedHomotopyDerivedCategory.boundedVerdierComparison_comp_ambientIso
 #check (Dbounded.homotopyComparison (C := MetrizableLCA))
 #check (Dbounded.homotopyComparisonLocalizationIso (C := MetrizableLCA))
 #check (Dbounded.verdierComparison (C := MetrizableLCA))
@@ -1907,6 +1913,40 @@ noncomputable example :
     Dbounded.verdierComparison (C := MetrizableLCA) ≅
       Dbounded.verdierComparisonDirect (C := MetrizableLCA) :=
   Dbounded.verdierComparisonDirectIso (C := MetrizableLCA)
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    LocalizerMorphism (boundedHomotopyExactWeakEquivalence C)
+      (boundedExactAcyclicHomotopyObject C).trW :=
+  boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    BoundedHomotopyDerivedCategory C ⥤ BoundedExactAcyclicHomotopyVerdierCategory C :=
+  BoundedHomotopyDerivedCategory.boundedVerdierComparison C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    BoundedComplexCategory.homotopyQuotientBounded C ⋙
+        (boundedExactAcyclicHomotopyObject C).trW.Q ≅
+      (boundedHomotopyExactWeakEquivalence C).Q ⋙
+        BoundedHomotopyDerivedCategory.boundedVerdierComparison C :=
+  BoundedHomotopyDerivedCategory.boundedVerdierComparisonLocalizationIso C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    BoundedHomotopyDerivedCategory.boundedVerdierComparison C ⋙
+        boundedExactAcyclicHomotopyVerdierComparison C ≅
+      BoundedHomotopyDerivedCategory.verdierComparison C :=
+  BoundedHomotopyDerivedCategory.boundedVerdierComparison_comp_ambientIso C
 
 /-
 The bounded derived infinity-category is exposed as a quasicategory, and its homotopy category

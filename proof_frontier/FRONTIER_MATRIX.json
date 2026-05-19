@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T17:09:00Z",
+  "generated_utc": "2026-05-19T17:24:08Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v108 edits stay in the parent process. The parent did not launch or resume any worker for the bounded-to-ambient ordinary Verdier comparison frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v109 edits stay in the parent process. The parent did not launch or resume any worker for the bounded homotopy Verdier factorization frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -494,7 +494,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v108 adds the bounded homotopy Verdier quotient homotopyCategoryIso and comparison to the ambient homotopy Verdier quotient via `boundedExactAcyclicHomotopyObjectToIsoClosure_trW`, `boundedExactAcyclicHomotopyVerdierComparison`, and `boundedExactAcyclicHomotopyVerdierComparisonLocalizationIso`; still no unconditional bounded/exact-acyclic closed2, no direct bounded left/right calculus or triangulated transfer to `Dbounded`, and no stable infinity-category.",
+      "merge_blocker": "v109 adds `BoundedComplexCategory.homotopyQuotientBounded`, `BoundedComplexCategory.homotopyQuotientBounded_comp_ι_iso`, `boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW`, `BoundedHomotopyDerivedCategory.boundedVerdierComparison`, `BoundedHomotopyDerivedCategory.boundedVerdierComparisonLocalizationIso`, and `BoundedHomotopyDerivedCategory.boundedVerdierComparison_comp_ambientIso`; the homotopy/Verdier pullback localization now factors through the bounded homotopy Verdier quotient, and composing that factorization with the bounded-to-ambient comparison recovers the existing ambient ordinary Verdier comparison. Still no unconditional bounded/exact-acyclic closed2, no direct bounded left/right calculus or triangulated transfer to `Dbounded`, and no stable infinity-category.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -682,7 +682,13 @@
         "BoundedExactAcyclicHomotopyVerdierQuasicategory.homotopyCategoryIso",
         "boundedExactAcyclicHomotopyObjectToIsoClosure_trW",
         "boundedExactAcyclicHomotopyVerdierComparison",
-        "boundedExactAcyclicHomotopyVerdierComparisonLocalizationIso"
+        "boundedExactAcyclicHomotopyVerdierComparisonLocalizationIso",
+        "BoundedComplexCategory.homotopyQuotientBounded",
+        "BoundedComplexCategory.homotopyQuotientBounded_comp_ι_iso",
+        "boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW",
+        "BoundedHomotopyDerivedCategory.boundedVerdierComparison",
+        "BoundedHomotopyDerivedCategory.boundedVerdierComparisonLocalizationIso",
+        "BoundedHomotopyDerivedCategory.boundedVerdierComparison_comp_ambientIso"
       ],
       "technical_context": [
         "split short complexes",
@@ -721,7 +727,12 @@
         "bounded homotopy Verdier quotient homotopy category comparison",
         "bounded-to-ambient ordinary Verdier localizer morphism",
         "bounded-to-ambient ordinary Verdier comparison functor",
-        "bounded-to-ambient CatCommSq localization commutation witness"
+        "bounded-to-ambient CatCommSq localization commutation witness",
+        "bounded complex homotopy quotient lift into BoundedHomotopyCategory",
+        "homotopy/Verdier pullback weak equivalence maps to bounded exact-acyclic homotopy trW",
+        "bounded homotopy Verdier comparison functor from BoundedHomotopyDerivedCategory",
+        "bounded homotopy Verdier localization commutation witness",
+        "bounded Verdier comparison composed with bounded-to-ambient comparison equals ambient comparison"
       ]
     },
     {
@@ -788,7 +799,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v108 evidence records bounded-to-ambient ordinary Verdier comparison while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v109 evidence records the bounded homotopy Verdier factorization and ambient comparison agreement while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

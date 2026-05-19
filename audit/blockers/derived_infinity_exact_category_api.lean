@@ -671,6 +671,12 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 #check boundedExactAcyclicHomotopyObjectToIsoClosure_trW
 #check boundedExactAcyclicHomotopyVerdierComparison
 #check boundedExactAcyclicHomotopyVerdierComparisonLocalizationIso
+#check BoundedComplexCategory.homotopyQuotientBounded
+#check BoundedComplexCategory.homotopyQuotientBounded_comp_ι_iso
+#check boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW
+#check BoundedHomotopyDerivedCategory.boundedVerdierComparison
+#check BoundedHomotopyDerivedCategory.boundedVerdierComparisonLocalizationIso
+#check BoundedHomotopyDerivedCategory.boundedVerdierComparison_comp_ambientIso
 #check boundedExactAcyclicHomotopyVerdierCategory_preadditive_of_closed2
 #check boundedExactAcyclicHomotopyVerdierCategory_localization_additive_of_closed2
 #check boundedExactAcyclicHomotopyVerdierCategory_hasZeroObject_of_closed2
@@ -717,5 +723,28 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
     IsTriangulated (BoundedExactAcyclicHomotopyVerdierCategory C) :=
   boundedExactAcyclicHomotopyVerdierCategory_isTriangulated_of_closed2 (C := C)
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    LocalizerMorphism (boundedHomotopyExactWeakEquivalence C)
+      (boundedExactAcyclicHomotopyObject C).trW :=
+  boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    BoundedHomotopyDerivedCategory C ⥤ BoundedExactAcyclicHomotopyVerdierCategory C :=
+  BoundedHomotopyDerivedCategory.boundedVerdierComparison C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    BoundedHomotopyDerivedCategory.boundedVerdierComparison C ⋙
+        boundedExactAcyclicHomotopyVerdierComparison C ≅
+      BoundedHomotopyDerivedCategory.verdierComparison C :=
+  BoundedHomotopyDerivedCategory.boundedVerdierComparison_comp_ambientIso C
 
 end LeanLCAExactChallenge
