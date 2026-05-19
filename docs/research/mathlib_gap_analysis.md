@@ -390,3 +390,7 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 ### v130: stable certificate checker and concrete tail scout
 
 2026-05-19T21:25:57Z時点で、stable infinity-category側のproduct declaration境界を`StableInfinityAudit.DboundedStableCertificate`のblocker skeletonとして明示した。これはproduct-facing APIではなく、将来`ProductSuccessDeclarations`へ移すべき検査形の模型である。ordinary `Dbounded.infinityNerve_quasicategory`だけではこの検査を満たさない。加えて、contractible tail具体例については`AddCommGrpCat.of ℤ`と`ModuleCat.of ℤ ℤ`が非零であり、可算product/coproductも使えることを確認した。したがって残る実装課題は、具体的な`ℤ`添字cochain complexの微分、`d_comp_d`、およびcontracting homotopyの`Homotopy.comm`証明である。
+
+### v131: stable product review gate map
+
+2026-05-19T21:43:00Z時点で、stable product successの検査責任を整理した。`audit/external_audit.py`はordinary nerveや名前だけのstable certificateを拒否するnegative gateであり、positive gateは将来`audit/ProductSuccessDeclarations.lean`がreal stable certificate APIから4つのstable projectionを取り出す時点に置く。`StableProductReviewGateMap.currentOrdinaryNerveReviewDecision`は現在の`Dbounded.infinityNerve_quasicategory`をrejection branchへ写すため、現状のordinary quasicategory evidenceはproduct successではない。
