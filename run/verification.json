@@ -1,173 +1,168 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v133-conflation-iso-transport-wrapper",
-  "generated_utc": "2026-05-19T22:09:00Z",
-  "source_tree_hash": "a02106d503d251fabbb333fb542399cf615a626be9cc80e82a1327c22dd12a85",
-  "summary": "v133 integrates w99 conflation iso transport wrapper and migrates exact acyclicity transport call sites; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v134-stable-positive-audit-fixture",
+  "generated_utc": "2026-05-19T22:18:00Z",
+  "source_tree_hash": "7080ab81c97890cae12b20c2f6332918c3d86a1f9fecb7dc032c53f13725c9b2",
+  "summary": "v134 integrates w100 non-production stable positive audit fixture; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.ExactCategory.Basic LeanLCAExactChallenge.Derived.Bounded",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
-      "command": "rg -n 'QuillenExactCategory\\.conflation_iso($|[^_])' LeanLCAExactChallenge/Derived/Bounded.lean",
-      "status": "failed_expected",
-      "evidence": "No downstream raw QuillenExactCategory.conflation_iso field call remains in Derived/Bounded; ripgrep no-match is expected."
+      "command": "lake env lean audit/blockers/stable_positive_audit_fixture_w100.lean",
+      "status": "passed",
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/pushout_wrapper_consumer_probe.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/stable_product_declaration_frontier_w90.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/contractible_tail_concrete_instance_scout.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "lake env lean audit/blockers/stable_product_review_gate_map_w93.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v133 verification refresh."
+      "evidence": "Command completed successfully during the v134 verification refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after the v133 refresh: pre-terminal checks reach the terminal outcome gate, then failed_nonterminal/product_complete=false is rejected because product success is not yet true."
+      "evidence": "Expected non-product gate after the v134 refresh: pre-terminal checks reach the terminal outcome gate, then failed_nonterminal/product_complete=false is rejected because product success is not yet true."
     }
   ]
 }

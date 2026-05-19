@@ -404,3 +404,8 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 ### v133: conflation iso transport wrapper
 
 2026-05-19T22:07:00Z時点で、短複体同型に沿ってconflationを輸送する公開wrapper `QuillenExactCategory.conflation_iso_transport`を追加した。これにより`Derived/Bounded.lean`内のexact acyclic性の同型・shift輸送はclass fieldを直接参照しない。数学的内容は既存fieldの再公開に留まるため、bounded homotopy/Verdier側のleft calculus、triangulated transfer、stable infinity-category certificateは未解決である。
+
+
+### v134: stable positive audit fixture
+
+2026-05-19T22:16:00Z時点で、stable certificateの将来のpositive gateをfixtureとして具体化した。合格形は名前やordinary nerveではなく、1つのcertificate objectから4つのprojectionを取り出せることである。現時点ではこのcertificate API自体を構成していないため、`Dbounded.infinityNerve_quasicategory`は引き続きordinary nerve evidenceに留まり、product successには届かない。
