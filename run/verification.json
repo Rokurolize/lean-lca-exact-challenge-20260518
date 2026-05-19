@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v150-bounded-strict-realization-frontier-minimizer",
-  "generated_utc": "2026-05-20T02:30:00Z",
-  "source_tree_hash": "06bcea5b97e896dc2573b8b7dae6b3aacccbf5cf35e1690c17f3343730b75c5d",
-  "summary": "v150 adds a focused audit minimizer for the remaining bounded strict-realization theorem; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v151-stable-projection-gap-map",
+  "generated_utc": "2026-05-20T02:50:00Z",
+  "source_tree_hash": "32939bd9c93b937f396cd65bbe8bd8a681d79ee8f8817d6583414f881aed3559",
+  "summary": "v151 integrates the w122 stable certificate gap scout into the parent-owned stable projection audit; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after adding the v150 bounded strict-realization frontier minimizer audit."
+      "evidence": "Full lake build passed after the v151 stable projection audit integration."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,7 +27,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after adding the v150 audit."
+      "evidence": "Forbidden-token audit passed after the v151 audit integration."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
@@ -37,7 +37,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess audit passed and checks the endpoint strictification boundary declarations."
+      "evidence": "ProductSuccess audit still passes; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate reproduced after v150; product remains failed_nonterminal."
+      "evidence": "Expected external audit product gate reproduced after v151; terminal_outcome remains failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v150 audit/docs changes."
+      "evidence": "Whitespace diff check passed after v151 code/docs updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -73,6 +73,11 @@
       "command": "lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
       "status": "passed",
       "evidence": "Focused minimizer audit passed after parent reimplementation of the w123 generated audit."
+    },
+    {
+      "command": "lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean",
+      "status": "passed",
+      "evidence": "Focused stable projection audit passed after adding ordinary Dbounded evidence and currentStableProjectionGapMap."
     }
   ],
   "implemented_declarations_checked": [
@@ -108,12 +113,18 @@
     "boundedHomotopyObject_isTriangulatedClosed2_of_weakEndpoint_frontier",
     "boundedHomotopyCategory_pretriangulated_of_weakEndpoint_frontier",
     "boundedHomotopyCategory_isTriangulated_of_weakEndpoint_frontier",
-    "exactAcyclicIsoClosure_and_boundedHomotopyObject_closed2_of_exactRealize_and_weakEndpoint_frontier"
+    "exactAcyclicIsoClosure_and_boundedHomotopyObject_closed2_of_exactRealize_and_weakEndpoint_frontier",
+    "StableInfinityAudit.OrdinaryDboundedEvidence",
+    "StableInfinityAudit.currentOrdinaryDboundedEvidence",
+    "StableInfinityAudit.DboundedStableProjectionGapMap",
+    "StableInfinityAudit.currentStableProjectionGapMap"
   ],
   "product_complete": false,
   "known_gaps": [
     "boundedWeakEndpointPayloadToCochainDataStrictification is now isolated as the remaining bounded positive theorem but remains unproved.",
     "No stable infinity-category certificate for D^b(LCA) has been proved.",
-    "No final clean review packet, oracle pass, or fresh claim review has accepted product_success=true."
+    "No final clean review packet, oracle pass, or fresh claim review has accepted product_success=true.",
+    "Stable infinity-category certificate still lacks concrete finite-limit, finite-colimit, suspension/loop, and pushout/pullback projections.",
+    "boundedWeakEndpointPayloadToCochainDataStrictification remains unproved."
   ]
 }

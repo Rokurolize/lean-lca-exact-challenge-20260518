@@ -12,6 +12,27 @@ open CategoryTheory.Limits
 namespace StableInfinityAudit
 
 /--
+Current bounded-derived infinity-category evidence exposed by `Dbounded`.
+
+This is deliberately ordinary evidence: a quasicategory witness for the nerve and the
+ordinary homotopy-category comparison. It does not include stable finite-limit,
+finite-colimit, suspension/loop, or pushout/pullback projections.
+-/
+structure OrdinaryDboundedEvidence
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type (max u v) where
+  quasicategory : SSet.Quasicategory (Dbounded.infinityNerve C)
+  homotopyCategoryIso : SSet.hoFunctor.obj (Dbounded.infinityNerve C) ≅ Cat.of (Dbounded C)
+
+/-- The currently available ordinary evidence for `Dbounded C`. -/
+noncomputable def currentOrdinaryDboundedEvidence
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    OrdinaryDboundedEvidence C where
+  quasicategory := Dbounded.infinityNerve_quasicategory (C := C)
+  homotopyCategoryIso := Dbounded.homotopyCategoryIso (C := C)
+
+/--
 Focused audit shape for the next stricter stable-certificate check.
 
 The shape is intentionally projection-oriented: a future product-facing stable
@@ -58,10 +79,42 @@ theorem DboundedProjectionAuditInput.projections_available
   exact ⟨input.finiteLimits, input.finiteColimits, input.suspensionLoopEquivalence,
     input.pushoutPullbackCompatibility⟩
 
+/--
+Compact map for the stable certificate frontier: the project currently has ordinary
+`Dbounded` evidence, while the future stable audit gate consumes the four-projection
+input above.
+-/
+structure DboundedStableProjectionGapMap
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type (max (max u v) 2) where
+  current : OrdinaryDboundedEvidence C
+  futureReadyPredicate : DboundedProjectionAuditInput C → Prop
+  futureReadyPredicate_eq :
+    futureReadyPredicate = fun input =>
+      input.shape.finiteLimitsProjection input.certificate ∧
+        input.shape.finiteColimitsProjection input.certificate ∧
+        input.shape.suspensionLoopProjection input.certificate ∧
+        input.shape.pushoutPullbackProjection input.certificate
+
+/-- The current stable projection gap map, specialized to the available ordinary evidence. -/
+noncomputable def currentStableProjectionGapMap
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    DboundedStableProjectionGapMap C where
+  current := currentOrdinaryDboundedEvidence C
+  futureReadyPredicate := fun input =>
+    input.shape.finiteLimitsProjection input.certificate ∧
+      input.shape.finiteColimitsProjection input.certificate ∧
+      input.shape.suspensionLoopProjection input.certificate ∧
+      input.shape.pushoutPullbackProjection input.certificate
+  futureReadyPredicate_eq := rfl
+
 end StableInfinityAudit
 
 section Checks
 
+#check StableInfinityAudit.OrdinaryDboundedEvidence
+#check StableInfinityAudit.currentOrdinaryDboundedEvidence
 #check StableInfinityAudit.ProjectionAuditShape
 #check StableInfinityAudit.DboundedProjectionAuditInput
 #check StableInfinityAudit.DboundedProjectionAuditInput.finiteLimits
@@ -69,7 +122,14 @@ section Checks
 #check StableInfinityAudit.DboundedProjectionAuditInput.suspensionLoopEquivalence
 #check StableInfinityAudit.DboundedProjectionAuditInput.pushoutPullbackCompatibility
 #check StableInfinityAudit.DboundedProjectionAuditInput.projections_available
+#check StableInfinityAudit.DboundedStableProjectionGapMap
+#check StableInfinityAudit.currentStableProjectionGapMap
 #check Dbounded.infinityCategory
+#check Dbounded.infinityNerve
+#check Dbounded.infinityNerve_quasicategory
+#check Dbounded.homotopyCategoryIso
+#check (StableInfinityAudit.currentOrdinaryDboundedEvidence (C := MetrizableLCA))
+#check (StableInfinityAudit.currentStableProjectionGapMap (C := MetrizableLCA))
 
 end Checks
 
