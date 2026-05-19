@@ -1,12 +1,12 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v66-comparison-isiso-bridge",
-  "generated_utc": "2026-05-19T03:59:56Z",
-  "source_tree_hash": "0bd85b26c67872fa7257108da0b0e7e9f76ea68f1c15cb91c66d2e3af44c3b7d",
+  "schema": "lean-lca-exact-challenge-verification-v67-comparison-surjectivity",
+  "generated_utc": "2026-05-19T04:24:42Z",
+  "source_tree_hash": "c0d6f672c2352ded726dc91229945bb1873e5935aa8e1fa21932d935d97789f2",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "rebuilt LeanLCAExactChallenge after adding the conditional IsIso-to-PushoutData bridge for the canonical pullback-pushout comparison map."
+      "evidence": "rebuilt the project after adding carrier-level surjectivity of the canonical pullback-pushout comparison map and refreshing route/frontier artifacts."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -16,12 +16,12 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the comparison iso bridge and conditional PushoutData constructor."
+      "evidence": "Required declaration audit sees shortExactExtensionPullbackPushoutComparisonMap_surjective."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product audit checks that IsIso of the comparison map yields the expected PushoutData while preserving non-product terminal state."
+      "evidence": "Product audit checks the comparison-map surjectivity theorem while preserving non-product terminal state."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
@@ -31,7 +31,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit sees the comparison iso bridge and conditional PushoutData constructor."
+      "evidence": "Yoneda blocker audit sees the comparison-map surjectivity theorem."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -41,7 +41,7 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "Expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because the comparison map IsIso/IsPushout proof remains conditional, left quotient bilinearity is incomplete, and stable infinity-category enhancement remains incomplete."
+      "evidence": "Expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because the comparison map still lacks an unconditional inverse/IsPushout proof, left quotient bilinearity is incomplete, and stable infinity-category enhancement remains incomplete."
     },
     {
       "command": "git diff --check",

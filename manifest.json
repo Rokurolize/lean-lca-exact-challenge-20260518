@@ -1,6 +1,6 @@
 {
-  "schema": "lean-lca-exact-challenge-manifest-v66-comparison-isiso-bridge",
-  "generated_utc": "2026-05-19T04:01:58Z",
+  "schema": "lean-lca-exact-challenge-manifest-v67-comparison-surjectivity",
+  "generated_utc": "2026-05-19T04:25:29Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -30,8 +30,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Ext/Yoneda.lean",
-      "bytes": 254995,
-      "sha256": "685b7b744fe7abf6684f532ab0688764abfb5666d7cd2684e9ae8dfb351e3b89"
+      "bytes": 260471,
+      "sha256": "88d18218e87ebbb839991c9de672ac21aeaec4fee0581c99e32d48fb8f96c6c1"
     },
     {
       "path": "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -75,13 +75,13 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 67696,
-      "sha256": "341198671d09dab2cade8cd483b68841f3a28f716f7e5a9e71edc39cd8b13831"
+      "bytes": 68260,
+      "sha256": "8b8ae20d02fe1b53e03d375025633d4e151a8ed739460d5ebda5cb17bb80f065"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
-      "bytes": 20493,
-      "sha256": "1ee43072f469e3088cc91a64a3b5174dd28c5effa8a512cc21df372b67126d64"
+      "bytes": 20595,
+      "sha256": "ca50b288ae96087cfe18338f1f4dc755544765c57f892fdeb8f8bc7f6b9cb314"
     },
     {
       "path": "audit/blockers/derived_infinity_exact_category_api.lean",
@@ -95,8 +95,8 @@
     },
     {
       "path": "audit/blockers/yoneda_ext_exact_category_api.lean",
-      "bytes": 14133,
-      "sha256": "bb0cb088dd34793d53fc40d7c76cdb475beff6430674cefb12b0d4c45c84a610"
+      "bytes": 14213,
+      "sha256": "6afa9052f58ff673bfb83930b1239f402247684661134840f955acec7cf63cb1"
     },
     {
       "path": "audit/external_audit.py",
@@ -125,8 +125,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "bytes": 19630,
-      "sha256": "a434c7a75c6f4b85019f1b3d50b1e554e8e90cf678e94bc578ce5add305855c7"
+      "bytes": 20527,
+      "sha256": "9f4481b780f9d173fa52499e14ba4719f95f194f28978c33ea24c137130f0444"
     },
     {
       "path": "docs/research/sources.md",
@@ -135,13 +135,13 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 2435,
-      "sha256": "aeb38f46f9d8107173287d431599d936785c491612e1f3ab40fe25a6c9936f51"
+      "bytes": 2400,
+      "sha256": "ee7255199c578f82f499a1a3d65493ce43541154af42d223141b2586fb337639"
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 41877,
-      "sha256": "a29d0892287e42f653596fd01d9725535c026f43b0bce412c49218f49995e6f5"
+      "bytes": 42790,
+      "sha256": "8f49f4e9613fa306f1ed71f531b07bafb12c7034143f17eac55e53b15f187394"
     },
     {
       "path": "GOAL_IDENTITY.json",
@@ -150,23 +150,23 @@
     },
     {
       "path": "implementation-notes.html",
-      "bytes": 25419,
-      "sha256": "41618b7c390fa8f1c3e5ab9f736a86b636cc6298cf2238f20ad2e0a3e4790cd5"
+      "bytes": 26051,
+      "sha256": "181024f563c249473a1c0dbfe0ca460b732ba88cddb176cabca2ce8db31dc152"
     },
     {
       "path": "progress.tsv",
-      "bytes": 19964,
-      "sha256": "456b37a55bd66b2bea3deef9327ef1c72be79aa868e677d4b2160ec8779ffaad"
+      "bytes": 20585,
+      "sha256": "0bff230d7aed046750a06726144d516ac412577294c102c1734a80543b373de2"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 22738,
-      "sha256": "cd5f27509d62f6fcef578bd867e8ddc731210a933604efbf38438dbea083b3a6"
+      "bytes": 23822,
+      "sha256": "e0898a631a1a1860808272bf3f4f4026f0fba160e410bafe02c20bca13f52703"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "bytes": 4516,
-      "sha256": "72b1311cc8ab9aae4ff772a6435979038895d2456cca4c646648ae6be2256353"
+      "bytes": 4609,
+      "sha256": "9ac20a57126504510a6d899d0c6c7adc1a08f454bce2a98a137c129435d48d7e"
     },
     {
       "path": "workers/README.md",
@@ -184,5 +184,5 @@
       "sha256": "c0419bdb16f1e66cde150e2a409e3e65481e0e98eb40ced057efa46e617e7b2b"
     }
   ],
-  "content_hash_tree": "0b6428593a07c0e6afa10b3a9fad1d7441c8191620cbf60a0b43f9fcdc2f12d3"
+  "content_hash_tree": "e705c99ddff4c98e613fd0ba79a33ed11b29b812718abb8ed515193804abaa59"
 }
