@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T06:22:44Z",
+  "generated_utc": "2026-05-19T07:10:35Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -49,7 +49,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Fixed one-fold, positive-chain, arbitrary fixed-left actions, standard MetrizableLCA pullback-pushout exchange data, unconditional pullbackHead/leftProduct APIs, HomTail-left base splice premise removal, and the free left-variable product map with zero-on-generator lemmas for Rel/RelIso/split/rightSplit/splitFactor/Baer/leftSplit/HomTail generators are implemented. The remaining left-variable quotient descent blocker is proving that the free left product kills the nested YonedaRelGenerator.homTailLeft generator, whose statement quantifies over an arbitrary pullback function, then packaging the result as a quotient-wide bilinear Yoneda product with additivity/API support.",
+      "merge_blocker": "Resolved in v73. The free left-variable product map kills Rel/RelIso/split/rightSplit/splitFactor/Baer/BaerChain/leftSplit/HomTail/homTailLeft generators, including the nested YonedaRelGenerator.homTailLeft case quantified over an arbitrary pullback function. The quotient-wide positive-degree Yoneda product and additivity/API support are implemented. Product success is still blocked by the stable infinity-category enhancement, not by left-variable quotient descent.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -171,7 +171,17 @@
         "YonedaExt.yonedaProductLeftFreeHom_baer_eq_zero",
         "YonedaExt.yonedaProductLeftFreeHom_baerChain_eq_zero",
         "YonedaExt.yonedaProductLeftFreeHom_leftSplit_eq_zero",
-        "YonedaExt.yonedaProductLeftFreeHom_homTail_eq_zero"
+        "YonedaExt.yonedaProductLeftFreeHom_homTail_eq_zero",
+        "YonedaExtension.spliceLeftWith_assoc_heq",
+        "YonedaExt.positiveYonedaExtFreeCast",
+        "YonedaExt.positiveYonedaExtFreeCast_relationSubgroup_mem",
+        "YonedaExt.yonedaProductLeftFreeHom_homTailLeft_eq_zero",
+        "YonedaExt.yonedaProductLeft_relationSubgroup_le",
+        "YonedaExt.yonedaProduct",
+        "YonedaExt.yonedaProduct_ofExtension",
+        "YonedaExt.yonedaProduct_ofExtension_ofExtension",
+        "YonedaExt.yonedaProduct_add_left",
+        "YonedaExt.yonedaProduct_add_right"
       ]
     },
     {
@@ -266,7 +276,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Standard pullback-pushout exchange, comparison-map open proof, comparison-map IsIso, unconditional head pullback map, arbitrary fixed-left MetrizableLCA map, HomTail-left congruence under right splice, and free-left product zero lemmas are implemented; the remaining product blocker is the nested homTailLeft generator for left quotient descent, quotient-wide bilinear Yoneda product packaging, and stable infinity-category enhancement.",
+      "merge_blocker": "Standard pullback-pushout exchange, comparison-map open proof, comparison-map IsIso, unconditional head pullback map, tail composition map, arbitrary fixed-left MetrizableLCA map, HomTail-left congruence under right splice, free-left product zero lemmas, nested homTailLeft quotient descent, and quotient-wide positive-degree Yoneda product packaging are implemented. The remaining product blocker is stable infinity-category enhancement.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -498,7 +508,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v72 evidence records the free-left product checkpoint and known nonterminal quotient-descent blocker.",
+      "merge_blocker": "Refresh after each proof frontier change; v73 evidence records the quotient-wide Yoneda product checkpoint and known nonterminal stable-infinity blocker.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

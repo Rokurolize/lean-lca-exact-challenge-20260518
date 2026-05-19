@@ -1,32 +1,32 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v72-free-left-product",
-  "generated_utc": "2026-05-19T06:22:44Z",
-  "source_tree_hash": "5a3e332ac9a2b7a68f2574cf5736fff73941bea6f05c35112c1a08f851489890",
+  "schema": "lean-lca-exact-challenge-verification-v73-quotient-yoneda-product",
+  "generated_utc": "2026-05-19T07:15:50Z",
+  "source_tree_hash": "4ee30195b618bb6d17e17fd2c029ec1b2064b7c015bd3de7f11efc477ca5e5a7",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.Ext.Yoneda",
       "status": "passed",
-      "evidence": "Refreshed the Yoneda module olean after adding pullback-domain IsoBetween, RelIso splice preservation, and free-left product zero lemmas."
+      "evidence": "Refreshed the Yoneda module olean after adding spliceLeftWith_assoc_heq, degree-cast relation transport, homTailLeft free-left-product descent, and quotient-wide product declarations."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project rebuild passed after v72 free-left Yoneda product checkpoint edits."
+      "evidence": "Full project rebuild passed after v73 quotient Yoneda product checkpoint edits."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after v72 edits."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after v73 edits."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the v72 pullback-domain IsoBetween, RelIso splice preservation, free-left product map, and zero-on-generator lemmas."
+      "evidence": "Required declaration audit sees v73 homTailLeft descent, quotient product, representative calculation, and additivity declarations."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product audit checks v72 declarations and a regression example using yonedaProductLeftFreeHom_relIso_eq_zero."
+      "evidence": "Product audit checks v73 Yoneda product declarations and regression examples while stable infinity-category completion remains outside this checkpoint."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
@@ -36,7 +36,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit sees homTailLeft, standard pullback-pushout exchange, arbitrary fixed-left product APIs, and v72 free-left product checkpoint declarations."
+      "evidence": "Yoneda blocker audit sees homTailLeft, standard pullback-pushout exchange, arbitrary fixed-left product APIs, free-left product kernel lemmas, and quotient-wide Yoneda product declarations."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -46,17 +46,17 @@
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after v72 nonterminal refresh."
+      "evidence": "Terminal outcome JSON syntax checked after v73 nonterminal refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after v72 free-left product frontier update."
+      "evidence": "Proof frontier JSON syntax checked after v73 quotient product frontier update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after v72 evidence refresh."
+      "evidence": "Verification JSON syntax checked after v73 evidence refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
@@ -71,7 +71,7 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "Expected non-product gate after v72 artifact refresh: terminal_outcome remains failed_nonterminal/product_complete=false because nested homTailLeft left-quotient descent, quotient-wide bilinear product packaging, and stable infinity-category enhancement remain incomplete."
+      "evidence": "Expected non-product gate after v73 artifact refresh: terminal_outcome remains failed_nonterminal/product_complete=false because stable infinity-category enhancement remains incomplete."
     }
   ]
 }

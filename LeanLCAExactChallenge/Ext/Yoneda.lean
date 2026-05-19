@@ -2,6 +2,7 @@ import Mathlib.CategoryTheory.Limits.Shapes.Pullback.Pasting
 import Mathlib.CategoryTheory.Limits.Shapes.Pullback.IsPullback.Basic
 import Mathlib.GroupTheory.FreeAbelianGroup
 import Mathlib.GroupTheory.QuotientGroup.Basic
+import Mathlib.Tactic.DepRewrite
 import LeanLCAExactChallenge.LCA.ExactCategory
 
 /-!
@@ -2944,6 +2945,30 @@ theorem composeTailHom_spliceLeftWith
   | cons e tail ih =>
       simp [YonedaExtension.composeTailHom, ih]
 
+/-- Two successive left splices are heterogeneously equal after reassociating their degree. -/
+theorem spliceLeftWith_assoc_heq
+    (pull₁ pull₂ : {A B W : C} → (f : A ⟶ B) → ShortExactExtension B W →
+      ShortExactExtension A W)
+    {X W Y Z : C} {m n l : ℕ}
+    (a : YonedaExtension X W (m + 1))
+    (b : YonedaExtension W Y (n + 1))
+    (c : YonedaExtension Y Z (l + 1)) :
+    HEq
+      (YonedaExtension.spliceLeftWith pull₂
+        (YonedaExtension.spliceLeftWith pull₁ a b) c)
+      (YonedaExtension.spliceLeftWith pull₁ a
+        (YonedaExtension.spliceLeftWith pull₂ b c)) := by
+  cases a with
+  | cons e tail =>
+      induction tail generalizing X with
+      | ofHom f =>
+          simp [YonedaExtension.spliceLeftWith]
+      | cons e' tail' ih =>
+          simp only [spliceLeftWith_cons]
+          congr! 1
+          · omega
+          · exact ih (X := _) b e'
+
 /-- Termwise-related arbitrary left chains remain related after splicing. -/
 def Rel.spliceLeftWith
     (pull : {A B W : C} → (f : A ⟶ B) → ShortExactExtension B W →
@@ -3256,6 +3281,21 @@ noncomputable def zero_equiv_hom : YonedaExt X Y 0 ≃ (X ⟶ Y) :=
 /-- The generator associated to a positive-degree extension chain. -/
 def ofExtension (e : YonedaExtension X Y (n + 1)) : YonedaExt X Y (n + 1) :=
   QuotientAddGroup.mk' (yonedaRelationSubgroup X Y n) (FreeAbelianGroup.of e)
+
+/-- Transport formal positive-degree generators across propositionally equal degrees. -/
+def positiveYonedaExtFreeCast {X Y : C} {n n' : ℕ} (h : n = n') :
+    PositiveYonedaExtFree X Y n →+ PositiveYonedaExtFree X Y n' :=
+  FreeAbelianGroup.map (fun a => cast (by rw [h]) a)
+
+/-- The local relation subgroup is stable under degree transports. -/
+theorem positiveYonedaExtFreeCast_relationSubgroup_mem {X Y : C} {n n' : ℕ}
+    (h : n = n') {x : PositiveYonedaExtFree X Y n}
+    (hx : x ∈ yonedaRelationSubgroup X Y n) :
+    positiveYonedaExtFreeCast (C := C) (X := X) (Y := Y) h x ∈
+      yonedaRelationSubgroup X Y n' := by
+  cases h
+  change (FreeAbelianGroup.map id) x ∈ yonedaRelationSubgroup X Y n
+  simpa [FreeAbelianGroup.map_id_apply] using hx
 
 /-- Generator-level pullback action by a degree-zero head hom, before quotient descent. -/
 noncomputable def pullbackHeadOfExtensionWith {X X' Y : C} (f : X' ⟶ X)
@@ -5646,6 +5686,154 @@ theorem yonedaProductLeftFreeHom_homTail_eq_zero
   rw [map_sub, yonedaProductLeftFreeHom_of, yonedaProductLeftFreeHom_of, sub_eq_zero]
   exact leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain
     (X := X) (Y := Y) (Z := Z) h n
+
+/-- A spliced hom-tail left relation maps to zero in the free-left product target. -/
+theorem yonedaProductLeftFreeHom_homTailLeft_eq_zero
+    {X Y W Z : MetrizableLCA.{u}} {m n k : ℕ}
+    (pull : {A B V : MetrizableLCA.{u}} → (f : A ⟶ B) →
+      ShortExactExtension (C := MetrizableLCA.{u}) B V →
+        ShortExactExtension (C := MetrizableLCA.{u}) A V)
+    {a b : YonedaExtension (C := MetrizableLCA.{u}) X W (m + 1)}
+    (h : YonedaExtension.HomTailData (C := MetrizableLCA.{u}) a b)
+    (c : YonedaExtension (C := MetrizableLCA.{u}) W Y (n + 1)) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) (n + (m + 1)) k
+        (FreeAbelianGroup.of (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u}) pull a c) -
+          FreeAbelianGroup.of (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u}) pull b c)) =
+      0 := by
+  rw [map_sub, yonedaProductLeftFreeHom_of, yonedaProductLeftFreeHom_of, sub_eq_zero]
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro r
+  change leftProductByYonedaExtension_metrizable
+      (X := X) (Y := Y) (Z := Z)
+      (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u}) pull a c) k
+      (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := k) r) =
+    leftProductByYonedaExtension_metrizable
+      (X := X) (Y := Y) (Z := Z)
+      (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u}) pull b c) k
+      (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := k) r)
+  rw [leftProductByYonedaExtension_metrizable_ofExtension,
+    leftProductByYonedaExtension_metrizable_ofExtension]
+  dsimp [ofExtension]
+  change ((FreeAbelianGroup.of (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+      (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+      (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u}) pull a c) r) :
+      PositiveYonedaExtFree (C := MetrizableLCA.{u}) X Z (k + (n + (m + 1) + 1))) :
+      PositiveYonedaExt (C := MetrizableLCA.{u}) X Z (k + (n + (m + 1) + 1))) =
+    ((FreeAbelianGroup.of (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+      (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+      (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u}) pull b c) r) :
+      PositiveYonedaExtFree (C := MetrizableLCA.{u}) X Z (k + (n + (m + 1) + 1))) :
+      PositiveYonedaExt (C := MetrizableLCA.{u}) X Z (k + (n + (m + 1) + 1)))
+  rw [QuotientAddGroup.eq_iff_sub_mem]
+  have ha := YonedaExtension.spliceLeftWith_assoc_heq pull
+    (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a c r
+  have hb := YonedaExtension.spliceLeftWith_assoc_heq pull
+    (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) b c r
+  have gen := AddSubgroup.subset_closure
+    (YonedaRelGenerator.homTailLeft (C := MetrizableLCA.{u}) (X := X) (Y := Z) pull h
+      (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+        (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) c r))
+  rw! [ha, hb]
+  have hdeg : k + (n + 1) + (m + 1) = k + (n + (m + 1) + 1) := by omega
+  have hcast := positiveYonedaExtFreeCast_relationSubgroup_mem
+    (C := MetrizableLCA.{u}) (X := X) (Y := Z) hdeg gen
+  simpa [positiveYonedaExtFreeCast, map_sub] using hcast
+
+/-- The free-left product kills the full left-variable relation subgroup. -/
+theorem yonedaProductLeft_relationSubgroup_le
+    {X Y Z : MetrizableLCA.{u}} (m n : ℕ) :
+    yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y m ≤
+      (yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n).ker := by
+  rw [yonedaRelationSubgroup]
+  refine (AddSubgroup.closure_le _).mpr ?_
+  intro z hz
+  change yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n z = 0
+  cases hz with
+  | iso h =>
+      exact yonedaProductLeftFreeHom_rel_eq_zero (X := X) (Y := Y) (Z := Z) h
+  | chainIso h =>
+      exact yonedaProductLeftFreeHom_relIso_eq_zero (X := X) (Y := Y) (Z := Z) h
+  | split e s =>
+      exact yonedaProductLeftFreeHom_split_eq_zero (X := X) (Y := Y) (Z := Z) e s
+  | baer h =>
+      exact yonedaProductLeftFreeHom_baer_eq_zero (X := X) (Y := Y) (Z := Z) h
+  | baerChain h =>
+      exact yonedaProductLeftFreeHom_baerChain_eq_zero (X := X) (Y := Y) (Z := Z) h
+  | leftSplit e f s =>
+      exact yonedaProductLeftFreeHom_leftSplit_eq_zero (X := X) (Y := Y) (Z := Z) e f s
+  | rightSplit h =>
+      exact yonedaProductLeftFreeHom_rightSplit_eq_zero (X := X) (Y := Y) (Z := Z) h
+  | splitFactor h =>
+      exact yonedaProductLeftFreeHom_splitFactor_eq_zero (X := X) (Y := Y) (Z := Z) h
+  | homTail h =>
+      exact yonedaProductLeftFreeHom_homTail_eq_zero (X := X) (Y := Y) (Z := Z) h
+  | homTailLeft pull h c =>
+      exact yonedaProductLeftFreeHom_homTailLeft_eq_zero
+        (X := X) (Y := Y) (Z := Z) pull h c
+
+/-- Quotient-wide positive-degree Yoneda product, additive in both variables. -/
+noncomputable def yonedaProduct
+    {X Y Z : MetrizableLCA.{u}} (m n : ℕ) :
+    YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1) →+
+      (YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1) →+
+        YonedaExt (C := MetrizableLCA.{u}) X Z ((n + (m + 1)) + 1)) :=
+  QuotientAddGroup.lift (yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y m)
+    (yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n)
+    (yonedaProductLeft_relationSubgroup_le (X := X) (Y := Y) (Z := Z) m n)
+
+@[simp]
+theorem yonedaProduct_ofExtension
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (n := m) a) =
+      leftProductByYonedaExtension_metrizable (X := X) (Y := Y) (Z := Z) a n := by
+  dsimp [yonedaProduct, ofExtension]
+  calc
+    (QuotientAddGroup.lift (yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y m)
+        (yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n)
+        (yonedaProductLeft_relationSubgroup_le (X := X) (Y := Y) (Z := Z) m n))
+        ((FreeAbelianGroup.of a :
+          PositiveYonedaExtFree (C := MetrizableLCA.{u}) X Y m) :
+          PositiveYonedaExt (C := MetrizableLCA.{u}) X Y m) =
+      yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n (FreeAbelianGroup.of a) := by
+        exact QuotientAddGroup.lift_mk (yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y m)
+          (yonedaProductLeft_relationSubgroup_le (X := X) (Y := Y) (Z := Z) m n)
+          (FreeAbelianGroup.of a)
+    _ = leftProductByYonedaExtension_metrizable (X := X) (Y := Y) (Z := Z) a n := by
+        exact yonedaProductLeftFreeHom_of (X := X) (Y := Y) (Z := Z) a
+
+@[simp]
+theorem yonedaProduct_ofExtension_ofExtension
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1))
+    (b : YonedaExtension (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n
+        (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (n := m) a)
+        (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n) b) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := n + (m + 1))
+        (YonedaExtension.spliceLeftWith
+          (C := MetrizableLCA.{u})
+          (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a b) := by
+  rw [yonedaProduct_ofExtension, leftProductByYonedaExtension_metrizable_ofExtension]
+
+theorem yonedaProduct_add_left
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a b : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n (a + b) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n a +
+        yonedaProduct (X := X) (Y := Y) (Z := Z) m n b :=
+  map_add (yonedaProduct (X := X) (Y := Y) (Z := Z) m n) a b
+
+theorem yonedaProduct_add_right
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExt (C := MetrizableLCA.{u}) X Y (m + 1))
+    (b c : YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    yonedaProduct (X := X) (Y := Y) (Z := Z) m n a (b + c) =
+      yonedaProduct (X := X) (Y := Y) (Z := Z) m n a b +
+        yonedaProduct (X := X) (Y := Y) (Z := Z) m n a c :=
+  map_add (yonedaProduct (X := X) (Y := Y) (Z := Z) m n a) b c
 
 /-- The free abelian group map induced by splicing a positive one-fold chain on the left. -/
 def positiveChainLeftFreeHom :

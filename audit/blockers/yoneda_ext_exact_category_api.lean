@@ -271,6 +271,13 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.yonedaProductLeftFreeHom_baerChain_eq_zero
 #check YonedaExt.yonedaProductLeftFreeHom_leftSplit_eq_zero
 #check YonedaExt.yonedaProductLeftFreeHom_homTail_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_homTailLeft_eq_zero
+#check YonedaExt.yonedaProductLeft_relationSubgroup_le
+#check YonedaExt.yonedaProduct
+#check YonedaExt.yonedaProduct_ofExtension
+#check YonedaExt.yonedaProduct_ofExtension_ofExtension
+#check YonedaExt.yonedaProduct_add_left
+#check YonedaExt.yonedaProduct_add_right
 
 noncomputable example {X Y Z : MetrizableLCA} {m n : ℕ}
     {a b : YonedaExtension (C := MetrizableLCA) X Y (m + 1)}
