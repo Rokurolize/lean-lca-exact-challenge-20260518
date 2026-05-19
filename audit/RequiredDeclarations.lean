@@ -11,6 +11,7 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.QuillenExactCategory.conflation_of_splitting
 #check LeanLCAExactChallenge.QuillenExactCategory.inflation_of_splitting
 #check LeanLCAExactChallenge.QuillenExactCategory.deflation_of_splitting
+#check LeanLCAExactChallenge.QuillenExactCategory.conflation_iso_transport
 #check LeanLCAExactChallenge.QuillenExactCategory.split_conflation
 #check LeanLCAExactChallenge.QuillenExactCategory.pushout_inflation
 #check LeanLCAExactChallenge.QuillenExactCategory.pullback_deflation

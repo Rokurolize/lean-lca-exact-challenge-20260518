@@ -22,6 +22,7 @@ open CategoryTheory.Limits
 #check LeanLCAExactChallenge.QuillenExactCategory.conflation_of_splitting
 #check LeanLCAExactChallenge.QuillenExactCategory.inflation_of_splitting
 #check LeanLCAExactChallenge.QuillenExactCategory.deflation_of_splitting
+#check LeanLCAExactChallenge.QuillenExactCategory.conflation_iso_transport
 
 /--
 The strict metrizable LCA exact-category structure is now available without

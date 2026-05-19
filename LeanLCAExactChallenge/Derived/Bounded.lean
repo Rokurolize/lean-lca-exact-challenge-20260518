@@ -152,7 +152,7 @@ def exactAcyclic (K : CochainComplex C ℤ) : Prop :=
 theorem exactAcyclic_of_iso {K L : CochainComplex C ℤ} (e : K ≅ L)
     (hK : exactAcyclic C K) : exactAcyclic C L := by
   intro i
-  exact QuillenExactCategory.conflation_iso
+  exact QuillenExactCategory.conflation_iso_transport
     ((HomologicalComplex.shortComplexFunctor C (ComplexShape.up ℤ) i).mapIso e) (hK i)
 
 /-- A cochain complex whose degreewise short complexes are split is exact acyclic. -/
@@ -165,7 +165,7 @@ theorem exactAcyclic_of_splittings {K : CochainComplex C ℤ}
 theorem exactAcyclic_shift (K : CochainComplex C ℤ) (n : ℤ)
     (hK : exactAcyclic C K) : exactAcyclic C (K⟦n⟧) := by
   intro i
-  exact QuillenExactCategory.conflation_iso
+  exact QuillenExactCategory.conflation_iso_transport
     ((CochainComplex.shiftShortComplexFunctorIso C n i (n + i) rfl).app K).symm
     (hK (n + i))
 
@@ -174,7 +174,7 @@ theorem exactAcyclic_shift_iff (K : CochainComplex C ℤ) (n : ℤ) :
     exactAcyclic C (K⟦n⟧) ↔ exactAcyclic C K := by
   constructor
   · intro hK i
-    exact QuillenExactCategory.conflation_iso
+    exact QuillenExactCategory.conflation_iso_transport
       ((CochainComplex.shiftShortComplexFunctorIso C n (i - n) i (by omega)).app K)
       (hK (i - n))
   · exact exactAcyclic_shift C K n

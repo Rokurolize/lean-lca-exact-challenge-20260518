@@ -399,3 +399,8 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 ### v132: pushout wrapper audit
 
 2026-05-19T21:58:00Z時点で、pushout cokernelの核・像補題を`ShortExactExtension`のpushout APIへ持ち上げるwrapperを追加した。これにより、Yoneda extensionの下流証明は低水準のpushout quotient実装に依存せず、`shortExactExtensionPushout_kernel_iff_range_i`を直接参照できる。これは既存のLCA pushout exactness証明を再利用するもので、bounded derived categoryのtriangulated transferやstable infinity-category証明は依然として未解決である。
+
+
+### v133: conflation iso transport wrapper
+
+2026-05-19T22:07:00Z時点で、短複体同型に沿ってconflationを輸送する公開wrapper `QuillenExactCategory.conflation_iso_transport`を追加した。これにより`Derived/Bounded.lean`内のexact acyclic性の同型・shift輸送はclass fieldを直接参照しない。数学的内容は既存fieldの再公開に留まるため、bounded homotopy/Verdier側のleft calculus、triangulated transfer、stable infinity-category certificateは未解決である。

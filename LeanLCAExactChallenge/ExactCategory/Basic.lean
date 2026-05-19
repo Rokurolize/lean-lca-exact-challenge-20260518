@@ -41,6 +41,12 @@ namespace QuillenExactCategory
 
 variable {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 
+/-- Transport a conflation across an isomorphism of short complexes. -/
+theorem conflation_iso_transport {S T : ShortComplex C} (e : S ≅ T)
+    (hS : QuillenExactCategory.Conflation S) :
+    QuillenExactCategory.Conflation T :=
+  QuillenExactCategory.conflation_iso e hS
+
 /-- An inflation is the first map of a conflation. -/
 def inflation {X Y : C} (i : X ⟶ Y) : Prop :=
   ∃ (Z : C) (g : Y ⟶ Z) (zero : i ≫ g = 0),

@@ -563,7 +563,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/stable_product_declaration_frontier_w90.lean && lake env lean audit/blockers/contractible_tail_concrete_instance_scout.lean && lake env lean audit/blockers/stable_product_review_gate_map_w93.lean",
-      "merge_blocker": "v131 records that current ordinary Dbounded.infinityNerve_quasicategory evidence maps to an ordinary-nerve rejection branch. Future product success must pass through ProductSuccessDeclarations consuming FourStableProjectionEvidence for finite limits, finite colimits, suspension-loop equivalence, and pushout/pullback compatibility.",
+      "merge_blocker": "v133 removes downstream raw conflation_iso field use from Derived/Bounded by routing exact acyclicity transport through QuillenExactCategory.conflation_iso_transport. The remaining blocker is still unconditional triangulated transfer and stable infinity-category structure.",
       "product_success_contribution": "Clarifies the direct ordinary IsTriangulated route for Dbounded while preserving nonterminal product truth.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -810,7 +810,8 @@
         "StableProductReviewGateMap.firstStableProductGateOwner",
         "StableProductReviewGateMap.FourStableProjectionEvidence",
         "StableProductReviewGateMap.acceptFourStableProjections_has_fields",
-        "StableProductReviewGateMap.currentOrdinaryNerveReviewDecision"
+        "StableProductReviewGateMap.currentOrdinaryNerveReviewDecision",
+        "QuillenExactCategory.conflation_iso_transport"
       ],
       "technical_context": [
         "split short complexes",
@@ -869,7 +870,8 @@
         "localizedFunctor IsTriangulated transfer from CatCommSq and shift coherence",
         "direct bounded triangulation compatibility remains nonterminal",
         "direct Dbounded localization IsTriangulated wrapper under explicit hypotheses",
-        "BoundedComplexCategory ordinary triangulated package remains nonterminal"
+        "BoundedComplexCategory ordinary triangulated package remains nonterminal",
+        "v133 manually ported w99 conflation iso transport wrapper and migrated three Derived/Bounded call sites."
       ]
     },
     {
