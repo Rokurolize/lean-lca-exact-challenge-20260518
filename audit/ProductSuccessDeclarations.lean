@@ -1793,8 +1793,22 @@ noncomputable example : Category (Dbounded (C := MetrizableLCA)) := by infer_ins
 #check (BoundedHomotopyDerivedCategory (C := MetrizableLCA))
 #check (BoundedHomotopyDerivedQuasicategory (C := MetrizableLCA))
 #check (BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso (C := MetrizableLCA))
+#check (boundedHomotopyExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW
+  (C := MetrizableLCA))
+#check (BoundedHomotopyDerivedCategory.verdierComparison (C := MetrizableLCA))
 #check (Dbounded.homotopyComparison (C := MetrizableLCA))
+#check (Dbounded.verdierComparison (C := MetrizableLCA))
 #check Dbounded.homotopyComparisonEquivalenceOfIsoClosed
+
+noncomputable example :
+    (BoundedHomotopyDerivedCategory (C := MetrizableLCA)) ⥤
+      ExactAcyclicHomotopyVerdierCategory (C := MetrizableLCA) :=
+  BoundedHomotopyDerivedCategory.verdierComparison (C := MetrizableLCA)
+
+noncomputable example :
+    (Dbounded (C := MetrizableLCA)) ⥤
+      ExactAcyclicHomotopyVerdierCategory (C := MetrizableLCA) :=
+  Dbounded.verdierComparison (C := MetrizableLCA)
 
 /-
 The bounded derived infinity-category is exposed as a quasicategory, and its homotopy category

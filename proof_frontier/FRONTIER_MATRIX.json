@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T13:42:00Z",
+  "generated_utc": "2026-05-19T13:57:17Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v94 edits stay in the parent process. The parent did not launch or resume any worker for the right-calculus wrapper frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v95 edits stay in the parent process. The parent did not launch or resume any worker for the homotopy Verdier comparison frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -450,7 +450,9 @@
         "iso-closure trW left calculus from homotopy object closed2",
         "iso-closure trW triangulation compatibility from homotopy object closed2",
         "right calculus of fractions for trW",
-        "right calculus transfer via LocalizerMorphism.ofEq"
+        "right calculus transfer via LocalizerMorphism.ofEq",
+        "bounded homotopy-to-Verdier localizer morphism",
+        "ordinary homotopy Verdier comparison functors"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -464,7 +466,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v94 adds right-calculus analogues for exact-acyclic homotopy `trW` and iso-closure `trW`, plus an iso-closed transfer from homotopy/Verdier pullback right calculus to direct `boundedExactWeakEquivalence C`. Together with v93 this aligns the conditional left/right calculus wrappers, but it does not prove the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v95 adds a bounded homotopy-to-Verdier localizer morphism and comparison functors from `BoundedHomotopyDerivedCategory` and `Dbounded` to the ordinary homotopy Verdier quotient. Together with v93-v94 this aligns the conditional Verdier route, but it does not prove the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -521,6 +523,9 @@
         "BoundedHomotopyDerivedCategory",
         "BoundedHomotopyDerivedQuasicategory",
         "BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso",
+        "boundedHomotopyExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW",
+        "BoundedHomotopyDerivedCategory.verdierComparison",
+        "Dbounded.verdierComparison",
         "Dbounded.homotopyComparison",
         "exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2",
         "exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2",
@@ -599,7 +604,9 @@
         "homotopy-object closed2 implies iso-closure closed2",
         "homotopy-object closed2 implies iso-closure localization compatibility",
         "right calculus wrappers for exact-acyclic homotopy trW",
-        "right calculus transfer to bounded exact weak equivalences"
+        "right calculus transfer to bounded exact weak equivalences",
+        "comparison from bounded homotopy localization to ordinary homotopy Verdier quotient",
+        "composed comparison from Dbounded to ordinary homotopy Verdier quotient"
       ]
     },
     {
@@ -666,7 +673,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v94 evidence records right-calculus declarations while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v95 evidence records ordinary homotopy Verdier comparison declarations while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

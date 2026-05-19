@@ -75,6 +75,11 @@ Incremental v87 progress: if a mapping cone is bounded, then both its source
 and target complexes are bounded, and the corresponding homotopy-category
 objects are bounded. This helps expose the bounded ambient part of cone
 triangles but does not prove the exact-acyclic closure is triangulated.
+Incremental v95 progress: the bounded homotopy/Verdier pullback localization
+now has a comparison functor into the ordinary homotopy Verdier quotient, and
+`Dbounded` has the composed comparison. This aligns the localization route but
+does not transfer the conditional triangulated Verdier structure back to
+`Dbounded`, nor produce a stable infinity-category enhancement.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -184,7 +189,10 @@ noncomputable def bounded_derived_quasicategory_family
 #check BoundedHomotopyDerivedCategory
 #check BoundedHomotopyDerivedQuasicategory
 #check BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso
+#check boundedHomotopyExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW
+#check BoundedHomotopyDerivedCategory.verdierComparison
 #check Dbounded.homotopyComparison
+#check Dbounded.verdierComparison
 #check Dbounded.preadditiveOfHasLeftCalculusOfFractions
 #check Dbounded.localization_additiveOfHasLeftCalculusOfFractions
 #check Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions
@@ -230,6 +238,16 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     [HasZeroObject C] [HasBinaryBiproducts C] :
     HasShift (BoundedHomotopyDerivedCategory C) ℤ := by
   infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    BoundedHomotopyDerivedCategory C ⥤ ExactAcyclicHomotopyVerdierCategory C :=
+  BoundedHomotopyDerivedCategory.verdierComparison C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    Dbounded C ⥤ ExactAcyclicHomotopyVerdierCategory C :=
+  Dbounded.verdierComparison C
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]

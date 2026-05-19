@@ -23,12 +23,13 @@
 - v92では同じ仮定から、ordinary homotopy Verdier quotient側のpreadditive、localization additive、zero object、shift、commShift、shift additive、pretriangulated、triangulated構造を直接取り出すwrapper APIを追加した。これはv83の同型閉包側仮定付き構造をv91の還元で再利用しやすくするもので、`Dbounded`側の無条件三角構造やstable infinity-category構造を完成させるものではない
 - v93ではhomotopy/Verdier pullback弱同値類にleft calculus of fractionsを仮定した場合の`BoundedHomotopyDerivedCategory`のpreadditive、localization additive、zero object、shift additive APIを追加した。また、exact acyclic homotopy objectの同型閉性のもとで、そのhomotopy側left calculusをdirect bounded exact弱同値類のleft calculusへ等式移送し、`Dbounded`のpreadditive、localization additive、zero object、shift additive構造へ接続するwrapperを追加した。これはdirect bounded側left calculusの証明責務をhomotopy/Verdier pullback側へ明確に移すが、そのleft calculus自体やstable infinity-category構造を無条件に構成するものではない
 - v94ではmathlibが`P.trW`にleftだけでなくright calculusも与えることを、exact acyclic homotopy objectとその同型閉包の条件付きAPIとして公開した。さらにhomotopy/Verdier pullback側のright calculusを、同型閉性の下でdirect bounded exact弱同値類へ等式移送するwrapperを追加した。これは二側分数の足場を揃えるが、三角閉性・無条件left/right calculus・stable infinity-category構造を証明するものではない
+- v95では`boundedHomotopyExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW`により、bounded homotopy/Verdier pullback弱同値類からordinary homotopy Verdier quotientの弱同値類への`LocalizerMorphism`を公開した。そこから`BoundedHomotopyDerivedCategory.verdierComparison`と`Dbounded.verdierComparison`を追加し、bounded homotopy localizationとdirect bounded localizationからordinary homotopy Verdier quotientへ向かう比較functorを確認した。これはVerdier経路の接続を明示するが、ordinary三角構造の`Dbounded`への無条件転送やstable infinity-category構造を証明するものではない
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
 一方、`BoundedDerivedInfinityCategory`は`Dbounded`のnerveとしてquasicategory性とhomotopy category比較までは構成したが、exact acyclic homotopy objectの同型閉包が`IsTriangulatedClosed₂`を満たすこと、そこから得るdirect bounded exact weak equivalenceのleft/right calculus of fractions、`Dbounded`への三角構造転送、stable infinity-categoryとしての有限極限・有限余極限・suspension equivalenceなどの構造はまだ証明していない。v83で追加した`ExactAcyclicHomotopyVerdierCategory`のordinary triangulated構造は、この未証明仮定の下にあるhomotopy Verdier quotient側の条件付き構造であり、v84の`BoundedHomotopyCategory`もbounded ambient subcategoryの足場であってproduct successではない。v85の`Dbounded.homotopyComparisonEquivalenceOfIsoClosed`も同型閉性仮定下の普通の圏同値であり、v86のsplit cone criteriaも具体的なsplit mapping coneに対する十分条件であってstable infinity-category完成ではない。v87のmapping coneからsource/targetのboundednessを取り出す補題も、cone三角形のbounded ambient条件を整える補助事実であって、exact acyclic側の三角閉性を証明するものではない。v88のexact coneと`trW`の条件付き同値、v89のbounded morphismごとの弱同値同値API、およびv90の同型閉包membership判定APIも、同型閉包側の`IsTriangulatedClosed₂`やstable enhancementを証明するものではない。このgoalでは、この不足を残したまま`update_goal(status="complete")`を呼んではならない。`audit/external_audit.py`にも、ordinary localizationのnerveをstable bounded derived infinity-categoryとしてproduct success主張する負例を拒否する検査を追加した。
 
-v91からv94のhomotopyObjectClosed2還元APIとleft/right-calculus移送APIも、残条件の位置を明確にするための足場であってproduct successではない。`exactAcyclicHomotopyObject C`自体の`IsTriangulatedClosed₂`、homotopy/Verdier pullback側およびdirect bounded weak equivalence自身の無条件left/right calculus、`Dbounded`への三角構造転送、stable infinity-category構造は未実装のままである。
+v91からv95のhomotopyObjectClosed2還元API、left/right-calculus移送API、ordinary homotopy Verdier quotientへの比較functorも、残条件の位置を明確にするための足場であってproduct successではない。`exactAcyclicHomotopyObject C`自体の`IsTriangulatedClosed₂`、homotopy/Verdier pullback側およびdirect bounded weak equivalence自身の無条件left/right calculus、`Dbounded`への三角構造転送、stable infinity-category構造は未実装のままである。
 
 ## 評価文脈
 
@@ -47,7 +48,7 @@ python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcom
 git diff --check
 ```
 
-`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv94までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、さらにordinary nerve経路をstable infinity-category完成として扱う主張も失敗させる。
+`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv95までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、さらにordinary nerve経路をstable infinity-category完成として扱う主張も失敗させる。
 
 ## レビューpacket
 

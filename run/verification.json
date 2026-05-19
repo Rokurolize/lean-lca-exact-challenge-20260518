@@ -1,77 +1,77 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v94-right-calculus-wrappers",
-  "generated_utc": "2026-05-19T13:49:07Z",
-  "source_tree_hash": "fe2971b4255f96edacf9097782c4cf778366323d28bf1fa3515562bfd322d576",
+  "schema": "lean-lca-exact-challenge-verification-v95-verdier-comparison",
+  "generated_utc": "2026-05-19T14:06:37Z",
+  "source_tree_hash": "c5349282e7c03186d9d83b34e9001937d90371a591328005061b249b50da1f8f",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after v94 added right-calculus analogues for exactAcyclic homotopy trW and bounded direct/homotopy transfer."
+      "evidence": "Full project build passed after v95 added the bounded homotopy-to-Verdier localizer morphism and comparison functors."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v94 update."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v95 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the seven v94 right-calculus declarations."
+      "evidence": "Required declaration audit sees the v95 Verdier comparison declarations."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles with the seven v94 right-calculus declarations while preserving the nonterminal stable-infinity contract."
+      "evidence": "Product declaration audit compiles with the v95 comparison declarations while preserving the nonterminal stable-infinity contract."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v94 derived-side update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v95 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v94 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v95 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms the seven v94 right-calculus declarations and still records the unresolved stable-infinity product condition."
+      "evidence": "Derived blocker audit confirms the v95 comparison declarations and still records the unresolved stable-infinity product condition."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v94 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v95 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v94 frontier update."
+      "evidence": "Proof frontier JSON syntax checked after the v95 frontier update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax is checked after regenerating this v94 verification record and before final manifest refresh."
+      "evidence": "Verification JSON syntax is checked after regenerating this v95 verification record and before final manifest refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax is checked after regenerating the v94 manifest."
+      "evidence": "Manifest JSON syntax is checked after regenerating the v95 manifest."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v94 update."
+      "evidence": "External audit Python syntax check still passes after the v95 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v94 proof, audit, documentation, frontier, terminal outcome, and evidence update."
+      "evidence": "Whitespace check passed after the v95 proof, audit, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because exact acyclic homotopy object IsTriangulatedClosed₂, homotopy/Verdier pullback left/right calculus, direct bounded left/right calculus, transfer to Dbounded triangulated/stable infinity, and stable infinity-category structure remain incomplete; v94 only adds conditional right-calculus wrappers."
+      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because exact acyclic homotopy object IsTriangulatedClosed₂, unconditional left/right calculus, transfer to Dbounded triangulated/stable infinity, and stable infinity-category structure remain incomplete; v95 only adds comparison functors into the Verdier quotient."
     }
   ]
 }
