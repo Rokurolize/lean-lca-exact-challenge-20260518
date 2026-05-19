@@ -1362,6 +1362,21 @@ theorem composeTailHomFreeHom_splitFactor_mem {Y' : C} (f : Y ⟶ Y')
   have hsum := (yonedaRelationSubgroup X Y' n).add_mem hdiff hpushed
   simpa [composeTailHomFreeHom, pushed, sub_eq_add_neg, add_assoc] using hsum
 
+theorem composeTailHomFreeHom_baerChain_head_mem {Y' Z : C} (f : Y ⟶ Y')
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Z Z]
+    {e₁ e₂ sum : ShortExactExtension X Z}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (tail : YonedaExtension Z Y (n + 1)) :
+    composeTailHomFreeHom (X := X) f (n + 1)
+        (FreeAbelianGroup.of (YonedaExtension.cons sum tail) -
+          FreeAbelianGroup.of (YonedaExtension.cons e₁ tail) -
+          FreeAbelianGroup.of (YonedaExtension.cons e₂ tail)) ∈
+      yonedaRelationSubgroup X Y' (n + 1) := by
+  simpa [composeTailHomFreeHom, YonedaExtension.composeTailHom, map_sub] using
+    AddSubgroup.subset_closure
+      (YonedaRelGenerator.baerChain (X := X) (Y := Y')
+        (YonedaExtension.BaerSumData.head h (YonedaExtension.composeTailHom f tail)))
+
 /-- The free abelian group map induced by pulling back the head one-fold extension. -/
 def pullbackHeadFreeHomWith {X X' Y : C} (f : X' ⟶ X)
     (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z) (n : ℕ) :
@@ -1452,6 +1467,35 @@ theorem pullbackHeadFreeHomWith_splitFactor_mem {X' : C} (f : X' ⟶ X)
     AddSubgroup.subset_closure
       (YonedaRelGenerator.splitFactor (X := X') (Y := Y)
         (YonedaExtension.SplitFactorData.pullbackHeadWith f pull pullSplit h))
+
+theorem pullbackHeadFreeHomWith_baerChain_cons_mem {X' Z : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
+    (e : ShortExactExtension X Z)
+    {a b sum : YonedaExtension Z Y (n + 1)}
+    (h : YonedaExtension.BaerSumData a b sum) :
+    pullbackHeadFreeHomWith (X := X) (Y := Y) f pull (n + 1)
+        (FreeAbelianGroup.of (YonedaExtension.cons e sum) -
+          FreeAbelianGroup.of (YonedaExtension.cons e a) -
+          FreeAbelianGroup.of (YonedaExtension.cons e b)) ∈
+      yonedaRelationSubgroup X' Y (n + 1) := by
+  simpa [pullbackHeadFreeHomWith, YonedaExtension.pullbackHeadWith, map_sub] using
+    AddSubgroup.subset_closure
+      (YonedaRelGenerator.baerChain (X := X') (Y := Y)
+        (YonedaExtension.BaerSumData.cons (pull e) h))
+
+theorem pullbackHeadFreeHomWith_homTail_cons_mem {X' Z : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
+    (e : ShortExactExtension X Z)
+    {tail tail' : YonedaExtension Z Y (n + 1)}
+    (h : YonedaExtension.HomTailData tail tail') :
+    pullbackHeadFreeHomWith (X := X) (Y := Y) f pull (n + 1)
+        (FreeAbelianGroup.of (YonedaExtension.cons e tail) -
+          FreeAbelianGroup.of (YonedaExtension.cons e tail')) ∈
+      yonedaRelationSubgroup X' Y (n + 1) := by
+  simpa [pullbackHeadFreeHomWith, YonedaExtension.pullbackHeadWith, map_sub] using
+    AddSubgroup.subset_closure
+      (YonedaRelGenerator.homTail (X := X') (Y := Y)
+        (YonedaExtension.HomTailData.cons (pull e) h))
 
 /-- The additive group structure on exact-category Yoneda Ext. -/
 noncomputable instance instAddCommGroup : AddCommGroup (YonedaExt X Y n) := by

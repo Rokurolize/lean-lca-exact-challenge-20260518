@@ -371,6 +371,33 @@ example (X X' Y : MetrizableLCA) {n : ℕ}
     (fun {_} e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s)
     h
 
+example (X X' Y Z : MetrizableLCA) {n : ℕ}
+    (e : ShortExactExtension (C := MetrizableLCA) X Z)
+    {a b sum : YonedaExtension (C := MetrizableLCA) Z Y (n + 1)}
+    (h : YonedaExtension.BaerSumData a b sum) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) (n + 1)
+        (FreeAbelianGroup.of (YonedaExtension.cons e sum) -
+          FreeAbelianGroup.of (YonedaExtension.cons e a) -
+          FreeAbelianGroup.of (YonedaExtension.cons e b)) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X' Y (n + 1) :=
+  YonedaExt.pullbackHeadFreeHomWith_baerChain_cons_mem f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    e h
+
+example (X X' Y Z : MetrizableLCA) {n : ℕ}
+    (e : ShortExactExtension (C := MetrizableLCA) X Z)
+    {tail tail' : YonedaExtension (C := MetrizableLCA) Z Y (n + 1)}
+    (h : YonedaExtension.HomTailData tail tail') (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) (n + 1)
+        (FreeAbelianGroup.of (YonedaExtension.cons e tail) -
+          FreeAbelianGroup.of (YonedaExtension.cons e tail')) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X' Y (n + 1) :=
+  YonedaExt.pullbackHeadFreeHomWith_homTail_cons_mem f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    e h
+
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
     ShortExactExtension (C := MetrizableLCA) X Y' :=
@@ -602,6 +629,17 @@ example (X Y Y' : MetrizableLCA) {n : ℕ}
     (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
     (fun {_ _} e g s => MetrizableLCA.shortExactExtensionPushoutSplitting e g s)
     h
+
+example (X Y Y' Z : MetrizableLCA) {n : ℕ}
+    {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA) X Z}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (tail : YonedaExtension (C := MetrizableLCA) Z Y (n + 1)) (f : Y ⟶ Y') :
+    YonedaExt.composeTailHomFreeHom (C := MetrizableLCA) (X := X) f (n + 1)
+        (FreeAbelianGroup.of (YonedaExtension.cons sum tail) -
+          FreeAbelianGroup.of (YonedaExtension.cons e₁ tail) -
+          FreeAbelianGroup.of (YonedaExtension.cons e₂ tail)) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y' (n + 1) :=
+  YonedaExt.composeTailHomFreeHom_baerChain_head_mem f h tail
 
 noncomputable example (X Y : MetrizableLCA)
     (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y) :
