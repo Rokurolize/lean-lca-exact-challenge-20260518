@@ -76,7 +76,7 @@ python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcom
 git diff --check
 ```
 
-`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv115までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、ordinary nerve経路をstable infinity-category完成として扱う主張を失敗させ、コメントや文字列だけのstable marker、未解決またはproduct success時の期待失敗検証entryも失敗させる。
+`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv124までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、ordinary nerve経路をstable infinity-category完成として扱う主張を失敗させ、コメントや文字列だけのstable marker、stable certificate名だけで具体的field evidenceがない主張、未解決またはproduct success時の期待失敗検証entryも失敗させる。
 
 ## レビューpacket
 

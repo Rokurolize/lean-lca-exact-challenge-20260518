@@ -69,6 +69,22 @@ DERIVED_STABLE_MARKER_RE = re.compile(
     flags=re.IGNORECASE,
 )
 
+STABLE_CERTIFICATE_PLACEHOLDER_RE = re.compile(
+    r"StableBoundedDerivedInfinityCategory|StableInfinityAudit\.CertificateShape|"
+    r"StableInfinityAudit\.DboundedCertificateInput|DboundedCertificateInput",
+    flags=re.IGNORECASE,
+)
+
+STABLE_CERTIFICATE_FIELD_EVIDENCE_RE = re.compile(
+    r"finiteLimitObligation|finiteColimitObligation|"
+    r"suspensionLoopEquivalenceObligation|pushoutPullbackCompatibilityObligation|"
+    r"\bfiniteLimits\b|\bfiniteColimits\b|"
+    r"\bsuspensionLoopEquivalence\b|\bpushoutPullbackCompatibility\b|"
+    r"\bsuspensionEquivalence\b|\bloopSuspensionEquivalence\b|"
+    r"\bpushoutPullbackSquare\b",
+    flags=re.IGNORECASE,
+)
+
 ORDINARY_NERVE_RE = re.compile(
     r"BoundedDerivedInfinityCategory[\s\S]{0,500}"
     r"CategoryTheory\.nerve\s*\(\s*BoundedDerivedCategory\s+C\s*\)",
@@ -321,6 +337,7 @@ def check_derived_infinity_product_contract(
     product_audit = project_root / "audit" / "ProductSuccessDeclarations.lean"
     derived_text = strip_lean_comments_and_strings(derived.read_text(encoding="utf-8"))
     audit_text = strip_lean_comments_and_strings(product_audit.read_text(encoding="utf-8"))
+    stable_text = derived_text + "\n" + audit_text
 
     if ORDINARY_NERVE_RE.search(derived_text):
         fail(
@@ -339,6 +356,15 @@ def check_derived_infinity_product_contract(
         fail(
             "ProductSuccessDeclarations.lean does not check any stable infinity-category "
             "certificate for Dbounded"
+        )
+
+    if STABLE_CERTIFICATE_PLACEHOLDER_RE.search(stable_text) and not (
+        STABLE_CERTIFICATE_FIELD_EVIDENCE_RE.search(stable_text)
+    ):
+        fail(
+            "stable bounded derived infinity-category product success cites a certificate "
+            "name without concrete finite-limit, finite-colimit, suspension/loop, or "
+            "pushout/pullback field evidence"
         )
 
 
@@ -522,6 +548,10 @@ def check_negative_fixture(root: Path) -> None:
         "failed_expected_product_success",
         "failed_expected product-success verification failure",
     )
+    run_fixture(
+        "stable_certificate_name_without_field_evidence",
+        "stable certificate placeholder without field evidence failure",
+    )
 
 
 def check_terminal_outcome(root: Path, terminal_outcome_path: Path, packet_mode: bool) -> None:
@@ -565,7 +595,7 @@ def check_terminal_outcome(root: Path, terminal_outcome_path: Path, packet_mode:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", required=True)
-    parser.add_argument("--terminal-outcome", required=True)
+    parser.add_argument("--terminal-outcome", default="terminal_outcome/terminal_outcome.json")
     parser.add_argument("--self-check-only", action="store_true")
     args = parser.parse_args()
 
