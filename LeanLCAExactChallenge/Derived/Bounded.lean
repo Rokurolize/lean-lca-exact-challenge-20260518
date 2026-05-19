@@ -240,6 +240,18 @@ theorem exactAcyclic_mappingCone_congr_iff [HasBinaryBiproducts C]
   · exact exactAcyclic_of_iso C (mappingConeIsoOfCommIso C eK eL comm)
   · exact exactAcyclic_of_iso C (mappingConeIsoOfCommIso C eK eL comm).symm
 
+omit [QuillenExactCategory C] in
+/-- Boundedness of mapping cones is invariant under isomorphic commutative squares. -/
+theorem boundedCochainComplex_mappingCone_congr_iff [HasBinaryBiproducts C]
+    {K₁ L₁ K₂ L₂ : CochainComplex C ℤ} {φ₁ : K₁ ⟶ L₁} {φ₂ : K₂ ⟶ L₂}
+    (eK : K₁ ≅ K₂) (eL : L₁ ≅ L₂)
+    (comm : φ₁ ≫ eL.hom = eK.hom ≫ φ₂) :
+    boundedCochainComplex C (CochainComplex.mappingCone φ₁) ↔
+      boundedCochainComplex C (CochainComplex.mappingCone φ₂) := by
+  constructor
+  · exact (boundedCochainComplex C).prop_of_iso (mappingConeIsoOfCommIso C eK eL comm)
+  · exact (boundedCochainComplex C).prop_of_iso (mappingConeIsoOfCommIso C eK eL comm).symm
+
 /-- Exact acyclic complexes as an object predicate on the homotopy category.
 
 This predicate records the exact-category analogue of mathlib's abelian
@@ -468,6 +480,25 @@ theorem boundedHomotopyObject_mappingCone [HasBinaryBiproducts C]
     boundedHomotopyObject C
       ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj (CochainComplex.mappingCone f)) :=
   boundedHomotopyObject_quotient_obj C (boundedCochainComplex_mappingCone C f hK hL)
+
+omit [QuillenExactCategory C] in
+/-- Bounded homotopy-object membership of mapping cones is invariant under strict
+isomorphic commutative squares. -/
+theorem boundedHomotopyObject_mappingCone_congr_iff [HasBinaryBiproducts C]
+    {K₁ L₁ K₂ L₂ : CochainComplex C ℤ} {φ₁ : K₁ ⟶ L₁} {φ₂ : K₂ ⟶ L₂}
+    (eK : K₁ ≅ K₂) (eL : L₁ ≅ L₂)
+    (comm : φ₁ ≫ eL.hom = eK.hom ≫ φ₂) :
+    boundedHomotopyObject C
+        ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj
+          (CochainComplex.mappingCone φ₁)) ↔
+      boundedHomotopyObject C
+        ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj
+          (CochainComplex.mappingCone φ₂)) := by
+  let eCone := (HomotopyCategory.quotient C (ComplexShape.up ℤ)).mapIso
+    (mappingConeIsoOfCommIso C eK eL comm)
+  constructor
+  · exact (boundedHomotopyObject C).prop_of_iso eCone
+  · exact (boundedHomotopyObject C).prop_of_iso eCone.symm
 
 omit [QuillenExactCategory C] in
 /-- A bounded mapping cone represents a bounded target object in the homotopy category. -/

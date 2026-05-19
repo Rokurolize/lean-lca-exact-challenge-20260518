@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T15:12:46Z",
+  "generated_utc": "2026-05-19T15:21:51Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v100 edits stay in the parent process. The parent did not launch or resume any worker for the triangle-isomorphism transfer frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v101 edits stay in the parent process. The parent did not launch or resume any worker for the strict cochain-isomorphism mapping cone boundedness transport frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -478,7 +478,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v100 adds explicit triangle-isomorphism transfer lemmas for the three strict `CochainComplex.mappingCone.triangleh` boundedness faces. Together with v93-v99 this aligns the conditional Verdier route, but it does not prove bounded object or exact-acyclic homotopy object closure at the homotopy-category isomorphism level, the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v101 adds strict cochain-isomorphism transport for mapping cone boundedness through `boundedCochainComplex_mappingCone_congr_iff` and `boundedHomotopyObject_mappingCone_congr_iff`. Together with v93-v100 this aligns the conditional Verdier route, but it does not prove bounded object or exact-acyclic homotopy object closure at the homotopy-category isomorphism level, the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -553,6 +553,7 @@
         "exactAcyclicHomotopyVerdierCategory_pretriangulated_of_isTriangulatedClosed2",
         "exactAcyclicHomotopyVerdierCategory_isTriangulated_of_isTriangulatedClosed2",
         "boundedCochainComplex_mappingCone",
+        "boundedCochainComplex_mappingCone_congr_iff",
         "boundedHomotopyObject",
         "boundedHomotopyObject_quotient_obj",
         "boundedHomotopyObject_isClosedUnderIsomorphisms",
@@ -561,6 +562,7 @@
         "BoundedHomotopyCategory",
         "BoundedHomotopyCategory.ι",
         "boundedHomotopyObject_mappingCone",
+        "boundedHomotopyObject_mappingCone_congr_iff",
         "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed",
         "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed_localizedEquivalence",
         "Dbounded.homotopyComparisonEquivalenceOfIsoClosed",
@@ -726,7 +728,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v100 evidence records explicit triangle-isomorphism transfer for the strict mapping-cone boundedness lemmas while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v101 evidence records strict cochain-isomorphism mapping cone boundedness transport while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

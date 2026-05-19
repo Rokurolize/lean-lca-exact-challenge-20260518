@@ -119,6 +119,7 @@ noncomputable def bounded_derived_quasicategory_family
 #check exactAcyclic_mappingCone_shift_iff
 #check mappingConeIsoOfCommIso
 #check exactAcyclic_mappingCone_congr_iff
+#check boundedCochainComplex_mappingCone_congr_iff
 #check exactAcyclicHomotopyObject
 #check exactAcyclicHomotopyObject_quotient_obj_iff
 #check exactAcyclicHomotopyObject_containsZero
@@ -142,6 +143,7 @@ noncomputable def bounded_derived_quasicategory_family
 #check LeanLCAExactChallenge.boundedCochainComplex_of_mappingCone_right
 #check LeanLCAExactChallenge.boundedCochainComplex_of_mappingCone_left
 #check boundedHomotopyObject_mappingCone
+#check boundedHomotopyObject_mappingCone_congr_iff
 #check LeanLCAExactChallenge.boundedHomotopyObject_of_mappingCone_right
 #check LeanLCAExactChallenge.boundedHomotopyObject_of_mappingCone_left
 #check boundedHomotopyObject_triangleh_ext3
@@ -264,6 +266,28 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     [HasZeroObject C] [HasBinaryBiproducts C] :
     Dbounded C ⥤ ExactAcyclicHomotopyVerdierCategory C :=
   Dbounded.verdierComparison C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C]
+    {K₁ L₁ K₂ L₂ : CochainComplex C ℤ} {φ₁ : K₁ ⟶ L₁} {φ₂ : K₂ ⟶ L₂}
+    (eK : K₁ ≅ K₂) (eL : L₁ ≅ L₂)
+    (comm : φ₁ ≫ eL.hom = eK.hom ≫ φ₂) :
+    boundedCochainComplex C (CochainComplex.mappingCone φ₁) ↔
+      boundedCochainComplex C (CochainComplex.mappingCone φ₂) :=
+  boundedCochainComplex_mappingCone_congr_iff C eK eL comm
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C]
+    {K₁ L₁ K₂ L₂ : CochainComplex C ℤ} {φ₁ : K₁ ⟶ L₁} {φ₂ : K₂ ⟶ L₂}
+    (eK : K₁ ≅ K₂) (eL : L₁ ≅ L₂)
+    (comm : φ₁ ≫ eL.hom = eK.hom ≫ φ₂) :
+    boundedHomotopyObject C
+        ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj
+          (CochainComplex.mappingCone φ₁)) ↔
+      boundedHomotopyObject C
+        ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj
+          (CochainComplex.mappingCone φ₂)) :=
+  boundedHomotopyObject_mappingCone_congr_iff C eK eL comm
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasBinaryBiproducts C] {K L : CochainComplex C ℤ} (f : K ⟶ L)
