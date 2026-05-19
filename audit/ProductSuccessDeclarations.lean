@@ -2034,6 +2034,29 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
         (BoundedComplexCategory.homotopyQuotientBounded C) :=
   boundedExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage_of_isoClosed C
 
+#check BoundedTrianglehIso13SelectedCochainPayload
+#check boundedTrianglehIso13SelectedCochainStrictification
+#check boundedTrianglehIso13CochainIsoPayload
+#check boundedTrianglehIso13CochainDataStrictification
+#check boundedTrianglehIso13CochainIsoPayload_iff_cochain_data
+#check boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload
+#check boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data
+
+example (C : Type u) [Category.{v} C] [Preadditive C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (strictify : boundedTrianglehIso13CochainDataStrictification C) :
+    boundedHomotopyObjectTrianglehIso13Realization C :=
+  boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data C strictify
+
+#check RightUnboundedContractibleComplex
+#check StrictBoundednessTransportOfHomotopyEquiv
+#check not_strictBoundednessTransport_of_rightUnboundedContractibleComplex
+#check AlternatingTailExtendTransport.intAlternatingTailGERightUnboundedContractible
+#check AlternatingTailExtendTransport.not_strictBoundednessTransport_intAlternatingTailGE
+
+example : ¬ StrictBoundednessTransportOfHomotopyEquiv IntModuleCat :=
+  AlternatingTailExtendTransport.not_strictBoundednessTransport_intAlternatingTailGE 0
+
 example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
     (boundedExactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms := by
   infer_instance

@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T01:18:00Z",
+  "generated_utc": "2026-05-20T01:30:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results w108-w118, inspected incomplete w119 smoke evidence, and repaired the stale strict-boundedness audit consumer after the v143 product-side payload move.",
+  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results w108-w118, inspected incomplete w119 smoke evidence, repaired the stale strict-boundedness audit consumer after the v143 product-side payload move, and in v146 strengthened ProductSuccessDeclarations so selected cochain payload APIs and the concrete strict-boundedness transport refutation are product-facing audit checks.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -570,7 +570,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean",
-      "merge_blocker": "v145 syncs strict_boundedness_cochain_data_from_strictification with the product-side selected cochain payload API. The audit now consumes Derived.Bounded declarations directly instead of redeclaring boundedTrianglehIso13CochainDataStrictification. Product success remains blocked by constructing the cochain-level payload generally and by the stable infinity-category certificate.",
+      "merge_blocker": "v146 syncs ProductSuccessDeclarations with the product-side selected cochain payload API and checks the concrete HomotopyEquiv strict-boundedness transport refutation. Product success remains blocked by constructing selected cochain isomorphism payloads generally for arbitrary bounded endpoint distinguished triangles and by proving the stable infinity-category certificate for the strict metrizable LCA exact category.",
       "product_success_contribution": "Clarifies the direct ordinary IsTriangulated route for Dbounded while preserving nonterminal product truth.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -858,7 +858,9 @@
         "boundedTrianglehIso13CochainIsoPayload_of_cochain_data",
         "boundedTrianglehIso13CochainDataStrictification_of_cochain_iso_payload",
         "boundedTrianglehIso13CochainIsoPayload_iff_cochain_data",
-        "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data"
+        "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data",
+        "StrictBoundednessTransportOfHomotopyEquiv",
+        "AlternatingTailExtendTransport.not_strictBoundednessTransport_intAlternatingTailGE"
       ],
       "technical_context": [
         "split short complexes",

@@ -461,3 +461,9 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 2026-05-20T01:18:00Z時点で、v143の製品側payload昇格後に残った監査側の同名再宣言を取り除いた。`audit/blockers/strict_boundedness_cochain_data_from_strictification.lean`は、製品側の`boundedTrianglehIso13CochainDataStrictification`と`boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data`を直接消費する互換probeへ変わった。
 
 この修正は数学的な新証明ではないが、今後のfrontier検証に重要である。strict-boundedness frontierの診断は、監査ファイル内のローカル複製ではなく製品側APIを実際に参照するため、残る不足が「製品側payloadを構成する定理」に正しく集約される。
+
+### v146: ProductSuccess audit boundary for selected payload
+
+2026-05-20T01:30:00Z時点で、ProductSuccess監査はselected cochain payloadとstrict boundedness transport反例を直接確認する。これにより、`boundedTrianglehIso13CochainDataStrictification`が製品側に存在すること、その入力からbounded strict-realization inputへ進めること、そしてbare `HomotopyEquiv` transportは具体tailで否定されることが、最終監査の一部になった。
+
+mathlib探索では、現行のquasicategory APIはordinary categoryのnerveを`SSet.QCat`へ入れる範囲に留まる。stable infinity-categoryの有限極限、有限余極限、suspension/loop equivalence、pushout/pullback互換性を与える既製APIは見つからないため、残るproduct作業はローカルcertificate APIとその実証明を構成する方向に残る。
