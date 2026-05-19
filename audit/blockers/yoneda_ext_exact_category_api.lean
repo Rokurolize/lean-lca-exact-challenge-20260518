@@ -179,6 +179,14 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.pullbackHead_relationSubgroup_le_metrizableWithPushoutData
 #check YonedaExt.pullbackHeadMap_metrizableWithPushoutData
 #check YonedaExt.pullbackHeadMap_metrizableWithPushoutData_ofExtension
+#check YonedaExtension.spliceLeftWith
+#check YonedaExt.leftProductByYonedaExtensionFreeHomWith
+#check YonedaExt.leftProductByYonedaExtensionFreeHomWith_of
+#check YonedaExt.leftProductByYonedaExtension_relationSubgroup_leWith
+#check YonedaExt.leftProductByYonedaExtensionWith
+#check YonedaExt.leftProductByYonedaExtensionWith_ofExtension
+#check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData
+#check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_ofExtension
 #check YonedaExt.leftProductByExtension
 #check YonedaExt.leftProductByExtension_ofExtension
 #check YonedaExt.leftProductByExtension_ofExtension_eq_zero_of_split

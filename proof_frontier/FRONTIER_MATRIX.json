@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T01:45:41Z",
+  "generated_utc": "2026-05-19T01:57:49Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -20,7 +20,10 @@
         "leftProductByPositiveChain",
         "HomHeadData",
         "HomTailData",
-        "BaerSumData"
+        "BaerSumData",
+        "YonedaExtension.spliceLeftWith",
+        "pullbackHeadMapWith",
+        "pullbackHeadMap_metrizableWithPushoutData"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/Ext/Yoneda.lean",
@@ -39,7 +42,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Fixed one-fold and positive-chain left actions now respect split, termwise iso, recursive PositiveChain.Rel, head Baer, and recursive PositiveChain.BaerSumData as homomorphism equalities on the right Ext quotient; full left quotient descent for arbitrary left Ext classes, especially terminal degree-zero hom tails requiring head pullback, remains incomplete.",
+      "merge_blocker": "Fixed one-fold, positive-chain, and arbitrary fixed-left YonedaExtension actions now descend in the right variable under available head-pullback compatibility data; full left quotient descent for arbitrary left Ext classes and unconditional standard MetrizableLCA head pullback-pushout exchange remain incomplete.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -63,7 +66,17 @@
         "YonedaExt.leftProductByPositiveChain_ofExtension_eq_add_of_baerLeftChain",
         "YonedaExt.leftProductByPositiveChain_baer_sum_ofExtension_eq_of_baerLeftChain",
         "YonedaExt.leftProductByPositiveChain_eq_of_rel",
-        "YonedaExt.leftProductByPositiveChain_eq_add_of_baerLeftChain"
+        "YonedaExt.leftProductByPositiveChain_eq_add_of_baerLeftChain",
+        "YonedaExtension.spliceLeftWith",
+        "YonedaExtension.spliceLeftWith_ofHom",
+        "YonedaExtension.spliceLeftWith_cons",
+        "YonedaExt.leftProductByYonedaExtensionFreeHomWith",
+        "YonedaExt.leftProductByYonedaExtensionFreeHomWith_of",
+        "YonedaExt.leftProductByYonedaExtension_relationSubgroup_leWith",
+        "YonedaExt.leftProductByYonedaExtensionWith",
+        "YonedaExt.leftProductByYonedaExtensionWith_ofExtension",
+        "YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData",
+        "YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_ofExtension"
       ]
     },
     {
@@ -129,7 +142,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Generator-level head/tail maps, recursive all-Baer/all-HomTail wrappers, universal-property fields, standard pushout associativity, pushout/pullback Baer preservation, unconditional canonical tail composeTailHomMap_metrizable, and head pullback map conditional only on pullback-pushout exchange are implemented; the remaining product blocker here is the standard MetrizableLCA head pullback-pushout exchange data needed to remove the last head-side premise.",
+      "merge_blocker": "Generator-level and quotient-level degree-zero tail maps are unconditional on the canonical MetrizableLCA side; head pullback maps and arbitrary fixed-left YonedaExtension splicing remain conditional on standard MetrizableLCA pullback-pushout exchange data.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
