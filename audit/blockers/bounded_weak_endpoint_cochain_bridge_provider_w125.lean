@@ -104,6 +104,46 @@ theorem boundedWeakEndpointToCochainIso_iff_cochainDataProvider
   · exact boundedWeakEndpointToCochainDataProvider_of_cochainIso C
   · exact boundedWeakEndpointToCochainIso_of_cochainDataProvider C
 
+omit [QuillenExactCategory C] in
+/-- A selected-provider surface is equivalent to bounded strict realization itself. -/
+theorem boundedWeakEndpointToSelected_iff_realization
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    boundedWeakEndpointToSelectedCochainStrictification C ↔
+      boundedHomotopyObjectTrianglehIso13Realization C := by
+  constructor
+  · intro provider
+    exact boundedHomotopyObjectTrianglehIso13Realization_of_selected_cochain C
+      (provider (homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished C))
+  · intro realize _weak
+    exact boundedTrianglehIso13SelectedCochainStrictification_of_realization C realize
+
+omit [QuillenExactCategory C] in
+/-- A compact cochain-isomorphism provider surface is also equivalent to bounded strict
+realization itself. -/
+theorem boundedWeakEndpointToCochainIso_iff_realization
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    boundedWeakEndpointToCochainIsoPayload C ↔
+      boundedHomotopyObjectTrianglehIso13Realization C := by
+  constructor
+  · intro provider
+    exact boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload C
+      (provider (homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished C))
+  · intro realize _weak
+    exact boundedTrianglehIso13CochainIsoPayload_of_realization C realize
+
+omit [QuillenExactCategory C] in
+/-- The expanded cochain-data provider surface is exactly bounded strict realization. -/
+theorem boundedWeakEndpointToCochainDataProvider_iff_realization
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    boundedWeakEndpointToCochainDataProvider C ↔
+      boundedHomotopyObjectTrianglehIso13Realization C := by
+  constructor
+  · intro provider
+    exact boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data C
+      (provider (homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished C))
+  · intro realize _weak
+    exact boundedTrianglehIso13CochainDataStrictification_of_realization C realize
+
 /-- The provider cannot be supplied by the unconditional homotopy-equivalence
 strictification bridge; the concrete alternating tail refutes that bridge. -/
 theorem reject_unconditional_endpointHomotopyEquiv_provider_w125
@@ -126,6 +166,9 @@ variable [HasZeroObject C] [HasBinaryBiproducts C]
 #check boundedWeakEndpointToCochainDataProvider
 #check boundedWeakEndpointToSelected_iff_cochainDataProvider
 #check boundedWeakEndpointToCochainIso_iff_cochainDataProvider
+#check boundedWeakEndpointToSelected_iff_realization
+#check boundedWeakEndpointToCochainIso_iff_realization
+#check boundedWeakEndpointToCochainDataProvider_iff_realization
 #check reject_unconditional_endpointHomotopyEquiv_provider_w125
 
 end Checks
