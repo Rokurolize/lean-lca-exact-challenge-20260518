@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T18:31:00Z",
+  "generated_utc": "2026-05-19T19:56:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening and v114 bounded realization wrappers were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening, v114 bounded realization wrappers, and v115 exact-category packaging lemmas were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -771,6 +771,59 @@
       ]
     },
     {
+      "frontier_id": "frontier-exact-category-api",
+      "target_declarations": [
+        "QuillenExactCategory.inflation_of_conflation",
+        "QuillenExactCategory.deflation_of_conflation",
+        "QuillenExactCategory.conflation_of_splitting",
+        "QuillenExactCategory.inflation_of_splitting",
+        "QuillenExactCategory.deflation_of_splitting"
+      ],
+      "target_files_or_module": [
+        "LeanLCAExactChallenge/ExactCategory/Basic.lean",
+        "audit/RequiredDeclarations.lean",
+        "audit/ProductSuccessDeclarations.lean"
+      ],
+      "dependencies": [
+        "QuillenExactCategory.Conflation",
+        "QuillenExactCategory.inflation",
+        "QuillenExactCategory.deflation",
+        "QuillenExactCategory.split_conflation",
+        "ShortComplex.Splitting"
+      ],
+      "allowed_writes": [
+        "LeanLCAExactChallenge/ExactCategory/Basic.lean",
+        "audit/RequiredDeclarations.lean",
+        "audit/ProductSuccessDeclarations.lean",
+        "docs/research/*",
+        "README_FOR_REVIEW.md",
+        "implementation-notes.html",
+        "run/verification.json",
+        "terminal_outcome/terminal_outcome.json",
+        "manifest.json"
+      ],
+      "forbidden_writes": [
+        "/home/roku/codex-consultant-20260517",
+        "global Lean or elan configuration",
+        "packets/ authoritative zip hash inside packet"
+      ],
+      "worker_count_allowed": 0,
+      "verification_command": "lake build LeanLCAExactChallenge.ExactCategory.Basic LeanLCAExactChallenge.ExactCategory.Conflation && lake env lean audit/RequiredDeclarations.lean && lake env lean audit/ProductSuccessDeclarations.lean",
+      "merge_blocker": "v115 exposes checked packaging lemmas for existing conflation and split-conflation fields. This improves downstream proof ergonomics but does not prove new pushout/pullback stability, Dbounded triangulated transfer, or stable infinity-category structure.",
+      "product_success_contribution": "Supports exact-category API ergonomics and future local proofs that consume inflations and deflations.",
+      "owned_by_active_process": true,
+      "implemented_declarations": [
+        "QuillenExactCategory.inflation_of_conflation",
+        "QuillenExactCategory.deflation_of_conflation",
+        "QuillenExactCategory.conflation_of_splitting",
+        "QuillenExactCategory.inflation_of_splitting",
+        "QuillenExactCategory.deflation_of_splitting"
+      ],
+      "technical_context": [
+        "Manually ported from external support worker w01 after reading result.json and diff. Focused ExactCategory build and Required/Product declaration audits passed in parent worktree."
+      ]
+    },
+    {
       "frontier_id": "frontier-audit-hardening",
       "target_declarations": [
         "audit/external_audit.py",
@@ -838,7 +891,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "v114 route log records the w04 realization-wrapper port and keeps the v113 audit-hardening evidence while preserving the stable-infinity blocker as nonterminal.",
+      "merge_blocker": "v115 route log records the w01 exact-category API port in addition to the w04 realization-wrapper port and the v113 audit-hardening evidence while preserving the stable-infinity blocker as nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

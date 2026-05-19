@@ -51,6 +51,31 @@ def deflation {X Y : C} (p : X ⟶ Y) : Prop :=
   ∃ (W : C) (f : W ⟶ X) (zero : f ≫ p = 0),
     QuillenExactCategory.Conflation (ShortComplex.mk f p zero)
 
+/-- The first map of a conflation is an inflation. -/
+theorem inflation_of_conflation {S : ShortComplex C}
+    (hS : QuillenExactCategory.Conflation S) : inflation S.f :=
+  ⟨S.X₃, S.g, S.zero, hS⟩
+
+/-- The second map of a conflation is a deflation. -/
+theorem deflation_of_conflation {S : ShortComplex C}
+    (hS : QuillenExactCategory.Conflation S) : deflation S.g :=
+  ⟨S.X₁, S.f, S.zero, hS⟩
+
+/-- Split short complexes are conflations. -/
+theorem conflation_of_splitting (S : ShortComplex C) (hS : S.Splitting) :
+    QuillenExactCategory.Conflation S :=
+  QuillenExactCategory.split_conflation S hS
+
+/-- The first map of a split short complex is an inflation. -/
+theorem inflation_of_splitting (S : ShortComplex C) (hS : S.Splitting) :
+    inflation S.f :=
+  inflation_of_conflation (conflation_of_splitting S hS)
+
+/-- The second map of a split short complex is a deflation. -/
+theorem deflation_of_splitting (S : ShortComplex C) (hS : S.Splitting) :
+    deflation S.g :=
+  deflation_of_conflation (conflation_of_splitting S hS)
+
 end QuillenExactCategory
 
 end LeanLCAExactChallenge

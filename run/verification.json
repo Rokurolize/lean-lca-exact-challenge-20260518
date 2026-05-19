@@ -1,43 +1,48 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v114-bounded-realization-wrappers",
-  "generated_utc": "2026-05-19T19:44:18Z",
-  "source_tree_hash": "a6238f25594d10a1ab07d309fb9d2acbf3ea33ac8b82ea29d279fe5a654c3acf",
-  "summary": "v114 manually ports external support worker w04 bounded strict-realization wrapper ideas in the parent worktree: a named bounded homotopy object triangle realization input, combined exact/bounded Closed₂ wrapper, and ordinary pretriangulated/triangulated wrappers for BoundedHomotopyCategory and BoundedExactAcyclicHomotopyVerdierCategory. Product remains nonterminal because the strict-realization input proof, direct bounded calculus, Dbounded transfer, and stable infinity-category certificate remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-v115-exact-category-packaging",
+  "generated_utc": "2026-05-19T19:55:01Z",
+  "source_tree_hash": "99e2cbe7548f0838376c7c288fc074834bd7ed9df2b6a697bb17b8996043a5cf",
+  "summary": "v115 manually ports external support worker w01 exact-category API packaging in the parent worktree: conflation-to-inflation/deflation and split-to-conflation/inflation/deflation lemmas are exposed and checked. Product remains nonterminal because the strict-realization input proof, direct bounded calculus, Dbounded triangulated transfer, and stable infinity-category certificate remain unproved.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after the v114 bounded realization-wrapper declarations and evidence refresh."
+      "evidence": "Full project build passed after the v115 ExactCategory packaging declarations and evidence refresh."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after v114."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after v115."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.ExactCategory.Basic LeanLCAExactChallenge.ExactCategory.Conflation",
+      "status": "passed",
+      "evidence": "Focused ExactCategory build passed after adding the v115 conflation/splitting packaging lemmas."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit remains green after the v114 bounded realization-wrapper checkpoint."
+      "evidence": "Required declaration audit compiles and checks the v115 QuillenExactCategory packaging declarations."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles after adding v114 #checks for the realization-conditioned bounded wrappers while preserving the nonterminal stable-infinity contract."
+      "evidence": "Product declaration audit compiles and checks the v115 packaging declarations while preserving the nonterminal stable-infinity contract."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after v114."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after v115."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after v114."
+      "evidence": "Yoneda blocker audit still compiles after v115."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit compiles and checks the v114 bounded realization wrapper declarations while still recording the unresolved product blockers."
+      "evidence": "Derived blocker audit still compiles after v115 and continues to record the unresolved product blockers."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -57,22 +62,22 @@
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v114 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v115 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v114 bounded realization-wrapper refresh."
+      "evidence": "Proof frontier JSON syntax checked after the v115 exact-category API refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after regenerating the v114 verification record."
+      "evidence": "Verification JSON syntax checked after regenerating the v115 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked after regenerating the v114 manifest."
+      "evidence": "Manifest JSON syntax checked after regenerating the v115 manifest."
     },
     {
       "command": "python3 -m json.tool audit/negative_fixtures/pending_verification_evidence/run/verification.json >/dev/null",
@@ -97,12 +102,12 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v114 source, audit, documentation, frontier, terminal outcome, and evidence update."
+      "evidence": "Whitespace check passed after the v115 source, audit, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: pre-terminal audit checks pass, including v113 hardening and v114 declaration evidence, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because the stable infinity-category product proof remains incomplete."
+      "evidence": "Expected non-product gate after manifest refresh: pre-terminal audit checks pass, including v113 hardening and v115 declaration evidence, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because the stable infinity-category product proof remains incomplete."
     }
   ]
 }

@@ -17,6 +17,12 @@ namespace LeanLCAExactChallenge
 open CategoryTheory
 open CategoryTheory.Limits
 
+#check LeanLCAExactChallenge.QuillenExactCategory.inflation_of_conflation
+#check LeanLCAExactChallenge.QuillenExactCategory.deflation_of_conflation
+#check LeanLCAExactChallenge.QuillenExactCategory.conflation_of_splitting
+#check LeanLCAExactChallenge.QuillenExactCategory.inflation_of_splitting
+#check LeanLCAExactChallenge.QuillenExactCategory.deflation_of_splitting
+
 /--
 The strict metrizable LCA exact-category structure is now available without
 an extra premise argument.

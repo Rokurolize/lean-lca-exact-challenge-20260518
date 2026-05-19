@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v1",
-  "generated_utc": "2026-05-19T19:45:59Z",
+  "generated_utc": "2026-05-19T19:55:50Z",
   "file_count": 54,
-  "content_hash_tree": "067fe17a029da21308b30574771a67fe8365476e08db72472f2b47564dd6764b",
+  "content_hash_tree": "a5eb258b4f8194792f9b7e109b2fd9eb62cd78fcab1e6d8203a46b119c08e9bf",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -46,8 +46,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/ExactCategory/Basic.lean",
-      "bytes": 2217,
-      "sha256": "191235ed4f5cc4cc7bf25194347535c3b3a19a5876a7630234b985d33ef67ecd"
+      "bytes": 3262,
+      "sha256": "165cba02215e31dc943104d26771565cff09a8c96a03da38a77700c3e963d1a6"
     },
     {
       "path": "LeanLCAExactChallenge/ExactCategory/Conflation.lean",
@@ -101,8 +101,8 @@
     },
     {
       "path": "README_FOR_REVIEW.md",
-      "bytes": 28916,
-      "sha256": "b7cd8195fef3958f9eb16b48e19f9054a2d97450d7bf14a9d75aaa8f33557887"
+      "bytes": 29454,
+      "sha256": "33e4dc1913348c2fad30339a98eb9e359579b5ca8ebe013dd85f642d48186155"
     },
     {
       "path": "WORKER_HANDOFF.md",
@@ -111,13 +111,13 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 110174,
-      "sha256": "2b211877d5ba1211e8f84a7fb3a4516f4549357e8bb4f971c5e704c62b95de09"
+      "bytes": 110543,
+      "sha256": "da883cc5d8cffd5a7ab5dc1ee19ca7f59e494b13245d32a25d3834c2861dd1bb"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
-      "bytes": 40826,
-      "sha256": "250b37ceffdb27f30b0d34c84106d66ca327ae7772981cfa11b9d47ea48a32e0"
+      "bytes": 41194,
+      "sha256": "fe352656814f0c441bd35d52af85f99c577a42a1cc1118b8246854fe19917404"
     },
     {
       "path": "audit/blockers/derived_infinity_exact_category_api.lean",
@@ -186,8 +186,8 @@
     },
     {
       "path": "docs/research/mathlib_gap_analysis.md",
-      "bytes": 57991,
-      "sha256": "ec6debae0101ac38dd6d348e884111b752adf4f327e89309fdf404157a9c3345"
+      "bytes": 58469,
+      "sha256": "195066db29e65a7e10d8ee33a15747628c3bdb2437faf0d7ca5c614d9b639062"
     },
     {
       "path": "docs/research/mathlib_initial_survey.md",
@@ -196,8 +196,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "bytes": 60747,
-      "sha256": "6b0190ede424cfb0f5de4abff659b4b05066262ce37e235d2044e81eb25a38d0"
+      "bytes": 61343,
+      "sha256": "f3dcdc9c507a9bbdde0500f506dd3f2f77d4db599a7872d8a7570fb2b6f6f9ae"
     },
     {
       "path": "docs/research/sources.md",
@@ -206,8 +206,8 @@
     },
     {
       "path": "implementation-notes.html",
-      "bytes": 73100,
-      "sha256": "60edb213e117dd065773b7627e3ed8609eddc8c5eca334b85094e4ea916ebbe3"
+      "bytes": 73806,
+      "sha256": "74b05f5d7decf17e0e120e31359bd0f60bb0615123ab1121a7ccc75c09af0d1f"
     },
     {
       "path": "lake-manifest.json",
@@ -231,18 +231,18 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 94855,
-      "sha256": "6a29fe68219e3fe79b11b76722a947b6d5d6e57d57ff4b62309f8d5c267ab432"
+      "bytes": 96153,
+      "sha256": "cd7500daa129db4e8f344fbfb7a87509619a5cc1628961e8bd48a5abfadddbd5"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 52235,
-      "sha256": "65d164781baf74f844948ca3b449ce81127bb5231e2f97ddc50f105c34593ffd"
+      "bytes": 54988,
+      "sha256": "c7c37974dd81e9c2ccbb6c7e39b3941c76f2c91d3ab2445c64c95028eb140fdc"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "bytes": 3529,
-      "sha256": "8151d8d91432053faef97b0052f333f6288fafa1d5f0224f97cdd6eca9f4579b"
+      "bytes": 4102,
+      "sha256": "b3a2ea3110cc346cfc4b7694b89b62bcd98faee850a9eef0fcd5a3e7d1adbd99"
     },
     {
       "path": "reviews/README.md",
@@ -251,8 +251,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 6013,
-      "sha256": "6e777c43cb49a862e16803eaeca2a0df01c7dd3c659bb310fbe3f3175aaae676"
+      "bytes": 6084,
+      "sha256": "2dead5653e39dca50bcdb89c9b76b9649a366d9c325b8a94fa1e9ae8294751a0"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -266,8 +266,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 80080,
-      "sha256": "90332e0c244193ae5c1ae7aea67683b16e7a180e6f7b478524138626a5718649"
+      "bytes": 81245,
+      "sha256": "12824066b724e6aa817bd609a8c56c88052e69918a3ddebb33d276f66c2123a6"
     },
     {
       "path": "workers/README.md",
