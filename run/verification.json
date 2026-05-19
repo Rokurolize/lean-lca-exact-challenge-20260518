@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v156-stable-provider-map-rejection",
-  "generated_utc": "2026-05-20T04:05:00Z",
-  "source_tree_hash": "c8213d95ad43cb6ab284bff31e65fceab2c6fa0cd380d29443c3dfdd6ba71126",
-  "summary": "v156 proves the current stable certificate provider map cannot supply all four required stable fields; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v157-mapping-cone-selected-provider-probe",
+  "generated_utc": "2026-05-20T04:25:00Z",
+  "source_tree_hash": "bb34d45c8547ca7aaeca707d8981f02892ac549744df4277cf0b19f4fd57e034",
+  "summary": "v157 adds a mapping-cone selected-provider probe isolating the exact cochain-level endpoint isomorphism provider still needed on the bounded route; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v156 stable-provider rejection audit."
+      "evidence": "Full lake build passed after the v157 mapping-cone selected-provider probe."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v156 audit edit."
+      "evidence": "Forbidden-token audit passed after the v157 audit-file addition."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v147 Derived.Bounded changes."
+      "evidence": "Required declaration audit passed after the v157 audit-file addition."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess audit passed after the v156 audit edit; no product-success claim was added."
+      "evidence": "ProductSuccess audit passed after the v157 audit-file addition; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -57,7 +57,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v156 audit/docs changes."
+      "evidence": "Whitespace diff check passed after the v157 docs/artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -88,6 +88,11 @@
       "command": "lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean",
       "status": "passed",
       "evidence": "Focused w125 provider audit passed after adding selected/cochain-iso/cochain-data iff realization theorems."
+    },
+    {
+      "command": "lake env lean audit/blockers/mapping_cone_selected_provider_probe_w127.lean",
+      "status": "passed",
+      "evidence": "Focused w127 mapping-cone selected-provider probe passed in the parent target."
     }
   ],
   "implemented_declarations_checked": [
@@ -149,7 +154,13 @@
     "StableCertificateFieldProviderScoutW124.finiteLimits_not_supplied_status",
     "StableCertificateFieldProviderScoutW124.finiteColimits_not_supplied_status",
     "StableCertificateFieldProviderScoutW124.suspensionLoop_not_supplied_status",
-    "StableCertificateFieldProviderScoutW124.pushoutPullback_not_supplied_status"
+    "StableCertificateFieldProviderScoutW124.pushoutPullback_not_supplied_status",
+    "weakEndpointHomotopyCategoryIsoToSelectedCochainIso",
+    "boundedTrianglehIso13CochainIsoPayload_of_weakEndpointSelectedCochainIso",
+    "boundedTrianglehIso13CochainIsoPayload_of_distinguishedEndpointSelectedCochainIso",
+    "boundedTrianglehIso13CochainDataStrictification_of_distinguishedEndpointSelectedCochainIso",
+    "boundedHomotopyObjectTrianglehIso13Realization_of_distinguishedEndpointSelectedCochainIso",
+    "reject_unconditional_endpointHomotopyEquiv_provider_w127"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -160,6 +171,7 @@
     "boundedWeakEndpointPayloadToCochainDataStrictification remains unproved.",
     "The weak-endpoint minimizer is now equivalent to bounded strict realization, so proving the minimizer still requires the bounded strict-realization theorem itself.",
     "Stable certificate provider map now records finite limits and finite colimits as missing, and suspension-loop plus pushout-pullback as ordinary-only.",
-    "The current stable certificate provider map now formally rejects all-fields-supplied status and each required field remains not supplied."
+    "The current stable certificate provider map now formally rejects all-fields-supplied status and each required field remains not supplied.",
+    "bounded側の弱endpoint routeは、homotopy category上のendpoint同型をcochain-complex同型へ上げるprovider weakEndpointHomotopyCategoryIsoToSelectedCochainIso まで絞られたが、そのprovider自体は未証明である。"
   ]
 }
