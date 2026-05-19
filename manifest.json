@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v54-positive-chain-left-relations",
-  "generated_utc": "2026-05-19T01:46:58Z",
+  "generated_utc": "2026-05-19T01:47:46Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -155,8 +155,8 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 10211,
-      "sha256": "ed53efe3228e93c3d33624df7ac1192331b4a172eb85e177dd4de9b4af7f0c47"
+      "bytes": 10455,
+      "sha256": "f12214e7a68f1d16824b0b1d32d1049eaf8cc6eb63e33f5e6ad938da17dc4778"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
@@ -184,5 +184,5 @@
       "sha256": "c0419bdb16f1e66cde150e2a409e3e65481e0e98eb40ced057efa46e617e7b2b"
     }
   ],
-  "content_hash_tree": "309c63d494fdb778e8fddaf8bb4179360607f5a00a99d373a5713224850472b4"
+  "content_hash_tree": "5c42b2e03efdd68c76bcece75ec88c4f220c44d4587afeb267e2b2adc808f2a7"
 }
