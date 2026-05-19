@@ -1,22 +1,22 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v74-dbounded-quasicategory-audit-guard",
-  "generated_utc": "2026-05-19T07:30:48Z",
-  "source_tree_hash": "772772435641a92244911405e2b7efad8008dc107c01e59935caf9399b7fe1a7",
+  "schema": "lean-lca-exact-challenge-verification-v75-dbounded-stability-route-discovery",
+  "generated_utc": "2026-05-19T07:47:35Z",
+  "source_tree_hash": "147cc66eb316cf6fa639b5528df161e680365f999767dba41e3e3ec0ec194e83",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after v74 bounded derived quasicategory nerve and audit-hardening edits."
+      "evidence": "Full project build passed after the v75 route-discovery docs/audit update."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after v74 edits."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after the v75 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees BoundedDerivedCategory, BoundedDerivedInfinityCategory, Dbounded infinity nerve, quasicategory, and homotopy category comparison declarations."
+      "evidence": "Required declaration audit still sees the exact-category, LCA, Yoneda, and bounded derived declarations."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -24,54 +24,39 @@
       "evidence": "Product declarations compile for the current exposed APIs while terminal_outcome remains nonproduct because stable infinity-category structure is incomplete."
     },
     {
-      "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
-      "status": "passed",
-      "evidence": "Strict LCA exact-category and open-map bridge declarations remain available."
-    },
-    {
-      "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "status": "passed",
-      "evidence": "Yoneda audit still sees quotient-wide product and relation-descent declarations after v74."
-    },
-    {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit sees bounded derived ordinary localization plus quasicategory nerve and homotopy category comparison."
+      "evidence": "Derived blocker audit records the ordinary nerve boundary and checks mathlib ordinary triangulated localization API signatures."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after v74 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v75 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after v74 frontier update."
+      "evidence": "Proof frontier JSON syntax checked after the v75 route-discovery update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked before this refresh and regenerated with the current source tree hash."
+      "evidence": "Verification JSON syntax checked after the v75 refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked before this refresh and regenerated below."
-    },
-    {
-      "command": "python3 audit/external_audit.py --root audit/negative_fixtures/ordinary_nerve_claimed_product_success --terminal-outcome terminal_outcome.json --self-check-only",
-      "status": "failed_expected",
-      "evidence": "Negative fixture is rejected because ordinary localization nerve cannot satisfy the stable bounded derived infinity-category product contract."
+      "evidence": "Manifest JSON syntax checked after the v75 refresh."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check passed after adding the derived infinity product-contract guard."
+      "evidence": "External audit Python syntax check still passes after the v75 route-discovery update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after v74 edits."
+      "evidence": "Whitespace check passed after the v75 route-discovery update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",

@@ -20,6 +20,8 @@
 - ローカルmathlib `Mathlib/AlgebraicTopology/SimplicialSet/Nerve.lean`と`Mathlib/AlgebraicTopology/Quasicategory/Nerve.lean`: ordinary categoryのnerveがsimplicial setでありquasicategoryになることを確認し、`BoundedDerivedInfinityCategory`を`Dbounded`のnerveとして公開するために使った。
 - ローカルmathlib `Mathlib/AlgebraicTopology/Quasicategory/StrictBicategory.lean`: quasicategoryのfull subcategory `SSet.QCat`を確認し、bounded derived quasicategoryをproduct-facingな対象として返すために使った。
 - ローカルmathlib `Mathlib/AlgebraicTopology/SimplicialSet/NerveAdjunction.lean`: nerveとhomotopy category functorの随伴、および`nerveFunctorCompHoFunctorIso`を確認し、`Dbounded.infinityNerve`のhomotopy categoryが`Dbounded`へ戻ることを示すために使った。
+- ローカルmathlib `Mathlib/CategoryTheory/Localization/Triangulated.lean`: ordinary pretriangulated/triangulated structureをlocalizationへ移すAPIを確認した。これはstable infinity-categoryそのものではないが、exact acyclic complexesをhomotopy category側で扱う次の経路の基礎になる。
+- ローカルmathlib `Mathlib/Algebra/Homology/HomotopyCategory/Triangulated.lean`: additive category上のcochain complexのhomotopy categoryがtriangulatedになる経路を確認した。現在の`Dbounded`はまだこのhomotopy-category経路へ接続していない。
 - 監査上の注意: このnerve経路はstable infinity-categoryの有限極限・有限余極限・suspension equivalenceを与えない。そのため外部監査には、ordinary nerveをproduct successとして主張する負例を拒否する検査を追加した。
 - ローカル確認用anchor: `LeanLCAExactChallenge/MathlibSurvey.lean`。
 
