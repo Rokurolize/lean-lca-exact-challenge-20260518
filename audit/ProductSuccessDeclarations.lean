@@ -1459,7 +1459,19 @@ noncomputable example (X Y : MetrizableLCA) :
 /-
 Exact weak equivalences are the morphisms whose mapping cone is exact.
 -/
+#check (BoundedComplexCategory (C := MetrizableLCA))
+#check (BoundedComplexCategory.ι (C := MetrizableLCA))
+#check (boundedCochainComplex_isClosedUnderIsomorphisms (C := MetrizableLCA))
+#check (boundedCochainComplex_isStableUnderShift (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence (C := MetrizableLCA))
+#check (exactAcyclic_of_iso (C := MetrizableLCA))
+
+noncomputable example : HasShift (BoundedComplexCategory (C := MetrizableLCA)) ℤ := by
+  infer_instance
+
+noncomputable example :
+    (shiftFunctor (BoundedComplexCategory (C := MetrizableLCA)) (1 : ℤ)).Additive := by
+  infer_instance
 
 /-
 The bounded derived category is the localization at those exact weak equivalences.

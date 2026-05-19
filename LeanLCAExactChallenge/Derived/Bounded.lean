@@ -6,6 +6,7 @@ import Mathlib.AlgebraicTopology.Quasicategory.Nerve
 import Mathlib.AlgebraicTopology.Quasicategory.StrictBicategory
 import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
 import Mathlib.CategoryTheory.Localization.HasLocalization
+import Mathlib.CategoryTheory.ObjectProperty.ShiftAdditive
 import LeanLCAExactChallenge.LCA.ExactCategory
 
 /-!
@@ -31,13 +32,49 @@ variable (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 def boundedCochainComplex : ObjectProperty (CochainComplex C ℤ) :=
   fun K => ∃ (a b : ℤ), K.IsStrictlyGE a ∧ K.IsStrictlyLE b
 
+/-- Boundedness is invariant under isomorphism of cochain complexes. -/
+instance boundedCochainComplex_isClosedUnderIsomorphisms :
+    (boundedCochainComplex C).IsClosedUnderIsomorphisms where
+  of_iso := by
+    rintro K L e ⟨a, b, hge, hle⟩
+    letI : K.IsStrictlyGE a := hge
+    letI : K.IsStrictlyLE b := hle
+    exact ⟨a, b, CochainComplex.isStrictlyGE_of_iso e a,
+      CochainComplex.isStrictlyLE_of_iso e b⟩
+
+/-- Bounded cochain complexes are closed under the cochain shift. -/
+instance boundedCochainComplex_isStableUnderShift :
+    (boundedCochainComplex C).IsStableUnderShift ℤ where
+  isStableUnderShiftBy n := by
+    refine ⟨?_⟩
+    rintro K ⟨a, b, hge, hle⟩
+    letI : K.IsStrictlyGE a := hge
+    letI : K.IsStrictlyLE b := hle
+    exact ⟨a - n, b - n, K.isStrictlyGE_shift a n (a - n) (by omega),
+      K.isStrictlyLE_shift b n (b - n) (by omega)⟩
+
+/-- The full category of bounded cochain complexes before localization. -/
+abbrev BoundedComplexCategory : Type (max u v) :=
+  (boundedCochainComplex C).FullSubcategory
+
+/-- The inclusion of bounded complexes into all cochain complexes. -/
+abbrev BoundedComplexCategory.ι : BoundedComplexCategory C ⥤ CochainComplex C ℤ :=
+  (boundedCochainComplex C).ι
+
 /-- Exact complexes in the Quillen exact-category sense. -/
 def exactAcyclic (K : CochainComplex C ℤ) : Prop :=
   ∀ i : ℤ, QuillenExactCategory.Conflation (K.sc i)
 
+/-- Exact acyclicity is invariant under isomorphism of cochain complexes. -/
+theorem exactAcyclic_of_iso {K L : CochainComplex C ℤ} (e : K ≅ L)
+    (hK : exactAcyclic C K) : exactAcyclic C L := by
+  intro i
+  exact QuillenExactCategory.conflation_iso
+    ((HomologicalComplex.shortComplexFunctor C (ComplexShape.up ℤ) i).mapIso e) (hK i)
+
 /-- Exact quasi-isomorphisms between bounded complexes, detected by the mapping cone. -/
 noncomputable def boundedExactWeakEquivalence [HasBinaryBiproducts C] :
-    MorphismProperty ((boundedCochainComplex C).FullSubcategory) :=
+    MorphismProperty (BoundedComplexCategory C) :=
   fun _ _ f => exactAcyclic C (CochainComplex.mappingCone ((boundedCochainComplex C).ι.map f))
 
 /-- The bounded derived ordinary category obtained by localizing bounded complexes at exact weak

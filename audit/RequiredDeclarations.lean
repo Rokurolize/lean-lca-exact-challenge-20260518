@@ -345,7 +345,12 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.YonedaExt.instAddCommGroup
 
 #check LeanLCAExactChallenge.boundedCochainComplex
+#check LeanLCAExactChallenge.BoundedComplexCategory
+#check LeanLCAExactChallenge.BoundedComplexCategory.ι
+#check LeanLCAExactChallenge.boundedCochainComplex_isClosedUnderIsomorphisms
+#check LeanLCAExactChallenge.boundedCochainComplex_isStableUnderShift
 #check LeanLCAExactChallenge.exactAcyclic
+#check LeanLCAExactChallenge.exactAcyclic_of_iso
 #check LeanLCAExactChallenge.boundedExactWeakEquivalence
 #check LeanLCAExactChallenge.BoundedDerivedCategory
 #check LeanLCAExactChallenge.BoundedDerivedInfinityCategory

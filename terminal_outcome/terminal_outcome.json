@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "更新後のgoalはproduct_successのみ完了可能である。Quillen exact-category interface、MetrizableLCAのpreadditive構造、binary biproduct、strict short exact sequenceの同型不変性・biproduct安定性、pullback/pushout安定性、閉部分群商、strict metrizable LCA列をconflationとするQuillenExactCategory MetrizableLCA instanceは確認済みである。Yoneda側ではconflation chainから作るローカルYonedaExt、正次数関係、Baer sum witness、degree 0 head/tail作用の商写像、標準pullback-pushout交換、任意固定左代表作用、右spliceに対する左HomTail合同、自由左変数作用、YonedaExt.yonedaProductLeft_relationSubgroup_le、正次数同士の商レベル積YonedaExt.yonedaProduct、代表計算補題、左右加法性補題まで確認済みである。v73では入れ子のYonedaRelGenerator.homTailLeft生成元も自由左作用の核に入ることをYonedaExt.yonedaProductLeftFreeHom_homTailLeft_eq_zeroで証明し、依存型添字のずれはYonedaExtension.spliceLeftWith_assoc_heqとYonedaExt.positiveYonedaExtFreeCast_relationSubgroup_memで処理した。v74ではDboundedのordinary localizationとそのnerveをSSet.QCatとして公開し、homotopy category比較も確認した。さらに外部監査を強化し、このordinary nerve経路をstable bounded derived infinity-categoryとしてproduct success主張する負例を拒否するようにした。v75ではmathlibのordinary triangulated localization経路を再調査し、現在のBoundedDerivedCategoryにはPreadditive、HasZeroObject、HasShift、Pretriangulated、IsTriangulatedのinstanceがまだなく、stable infinity-category APIもローカルmathlibに見つからないことを確認した。ただしDboundedはbounded cochain complexをexact weak equivalenceでlocalizeするordinary categoryとしての構成であり、goalが要求するstable infinity-categoryそのもののモデルやenhancementは未完成である。したがってoutcomeはfailed_nonterminal、product_complete=false、update_goal_allowed=falseを保つ。",
+  "summary": "更新後のgoalはproduct_successのみ完了可能である。Quillen exact-category interface、MetrizableLCAのpreadditive構造、binary biproduct、strict short exact sequenceの同型不変性・biproduct安定性、pullback/pushout安定性、閉部分群商、strict metrizable LCA列をconflationとするQuillenExactCategory MetrizableLCA instanceは確認済みである。Yoneda側ではconflation chainから作るローカルYonedaExt、正次数関係、Baer sum witness、degree 0 head/tail作用の商写像、標準pullback-pushout交換、任意固定左代表作用、右spliceに対する左HomTail合同、自由左変数作用、YonedaExt.yonedaProductLeft_relationSubgroup_le、正次数同士の商レベル積YonedaExt.yonedaProduct、代表計算補題、左右加法性補題まで確認済みである。v73では入れ子のYonedaRelGenerator.homTailLeft生成元も自由左作用の核に入ることをYonedaExt.yonedaProductLeftFreeHom_homTailLeft_eq_zeroで証明し、依存型添字のずれはYonedaExtension.spliceLeftWith_assoc_heqとYonedaExt.positiveYonedaExtFreeCast_relationSubgroup_memで処理した。v74ではDboundedのordinary localizationとそのnerveをSSet.QCatとして公開し、homotopy category比較も確認した。さらに外部監査を強化し、このordinary nerve経路をstable bounded derived infinity-categoryとしてproduct success主張する負例を拒否するようにした。v75ではmathlibのordinary triangulated localization経路を再調査し、stable infinity-category APIがローカルmathlibに見つからないことを確認した。v76ではbounded cochain complexのfull subcategoryについて同型閉性、cochain shift閉性、BoundedComplexCategory、BoundedComplexCategory.ι、exact acyclicityの同型不変性を追加し、localization前のbounded complex categoryでHasShiftとadditive shift functorが合成できることを監査した。ただしDboundedはbounded cochain complexをexact weak equivalenceでlocalizeするordinary categoryとしての構成であり、exact weak equivalenceのshift互換性、homotopy-category/Verdier quotient、ordinary triangulated quotient、goalが要求するstable infinity-categoryそのもののモデルやenhancementは未完成である。したがってoutcomeはfailed_nonterminal、product_complete=false、update_goal_allowed=falseを保つ。",
   "verified_commands": [
     "lake build LeanLCAExactChallenge.Ext.Yoneda",
     "lake build",
@@ -280,7 +280,12 @@
     "LeanLCAExactChallenge.YonedaExt.baer_sum",
     "LeanLCAExactChallenge.YonedaExt.instAddCommGroup",
     "LeanLCAExactChallenge.boundedCochainComplex",
+    "LeanLCAExactChallenge.BoundedComplexCategory",
+    "LeanLCAExactChallenge.BoundedComplexCategory.ι",
+    "LeanLCAExactChallenge.boundedCochainComplex_isClosedUnderIsomorphisms",
+    "LeanLCAExactChallenge.boundedCochainComplex_isStableUnderShift",
     "LeanLCAExactChallenge.exactAcyclic",
+    "LeanLCAExactChallenge.exactAcyclic_of_iso",
     "LeanLCAExactChallenge.boundedExactWeakEquivalence",
     "LeanLCAExactChallenge.BoundedDerivedInfinityCategory",
     "LeanLCAExactChallenge.Dbounded",
@@ -399,7 +404,7 @@
     "LeanLCAExactChallenge.YonedaExt.yonedaProductLeftFreeHom_homTail_eq_zero"
   ],
   "known_gaps": [
-    "Dboundedはbounded cochain complexをexact weak equivalenceでlocalizeするordinary categoryとしては構成済みで、そのnerveのquasicategory性とhomotopy category比較も確認したが、stable infinity-categoryそのものの有限極限・有限余極限・suspension equivalenceなどの構造はまだ実装していない。追加調査では現在のBoundedDerivedCategoryからPreadditive、HasZeroObject、HasShift、Pretriangulated、IsTriangulatedも合成できず、次の境界はhomotopy category上のexact acyclic complexesとVerdier quotient経路の構成である。"
+    "Dboundedはbounded cochain complexをexact weak equivalenceでlocalizeするordinary categoryとしては構成済みで、そのnerveのquasicategory性とhomotopy category比較も確認した。v76ではlocalization前のBoundedComplexCategoryに同型閉性、shift閉性、HasShift、additive shift functorを追加した。しかしstable infinity-categoryそのものの有限極限・有限余極限・suspension equivalenceなどの構造、exact weak equivalenceのshift互換性、homotopy-category/Verdier quotient、ordinary triangulated quotientはまだ実装していない。次の境界はexact acyclic complexesをhomotopy category側で扱い、Verdier quotient経路とstable enhancementを構成することである。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",

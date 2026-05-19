@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T07:46:30Z",
+  "generated_utc": "2026-05-19T07:57:04Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -442,7 +442,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "The current implementation exposes the ordinary localized category and its nerve as a quasicategory, with homotopy category comparison. v75 route discovery confirmed mathlib has ordinary triangulated localization APIs, but current BoundedDerivedCategory lacks Preadditive, HasZeroObject, HasShift, Pretriangulated, and IsTriangulated instances; no stable infinity-category API was found locally. This remains a nonproduct frontier requiring a homotopy-category/Verdier quotient route or equivalent stable local model.",
+      "merge_blocker": "v76 adds bounded cochain-complex full-subcategory iso closure, shift closure, BoundedComplexCategory, additive shift functors, and exact acyclicity iso invariance. This prepares the homotopy-category/Verdier route, but exact weak equivalence shift compatibility, a homotopy quotient/Verdier construction, ordinary triangulated quotient structure, and stable infinity-category structure remain nonproduct.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -451,7 +451,12 @@
         "Dbounded.infinityCategory",
         "Dbounded.infinityNerve",
         "Dbounded.infinityNerve_quasicategory",
-        "Dbounded.homotopyCategoryIso"
+        "Dbounded.homotopyCategoryIso",
+        "boundedCochainComplex_isClosedUnderIsomorphisms",
+        "boundedCochainComplex_isStableUnderShift",
+        "BoundedComplexCategory",
+        "BoundedComplexCategory.ι",
+        "exactAcyclic_of_iso"
       ]
     },
     {
@@ -518,7 +523,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v74 evidence records the quasicategory nerve checkpoint, ordinary-nerve audit guard, and known nonterminal stable-infinity blocker.",
+      "merge_blocker": "Refresh after each proof frontier change; v76 evidence records bounded complex shift prerequisites and keeps the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []
