@@ -602,6 +602,17 @@ theorem boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed
   rw [boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed C]
   infer_instance
 
+/-- Once exact acyclicity is invariant under homotopy-category isomorphism, a right calculus
+for the homotopy/Verdier pullback weak equivalences transfers to the direct bounded exact
+weak equivalences by equality of localizers. -/
+theorem boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_isoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasRightCalculusOfFractions] :
+    (boundedExactWeakEquivalence C).HasRightCalculusOfFractions := by
+  rw [boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed C]
+  infer_instance
+
 /-- Under homotopy-category isomorphism invariance of exact acyclicity, the
 homotopy/Verdier bounded weak-equivalence predicate is exactly the mapping-cone exact
 acyclicity condition. -/
@@ -688,6 +699,14 @@ theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangula
     (exactAcyclicHomotopyObject C).trW.HasLeftCalculusOfFractions := by
   infer_instance
 
+/-- Once the exact-acyclic homotopy-object predicate is triangulated, mathlib also supplies
+the right calculus of fractions for its Verdier-style weak equivalences. -/
+theorem exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulated
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulated] :
+    (exactAcyclicHomotopyObject C).trW.HasRightCalculusOfFractions := by
+  infer_instance
+
 /-- A sharper conditional form: after isomorphism invariance and distinguished-triangle closure,
 mathlib supplies the Verdier left calculus of fractions. -/
 theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
@@ -699,11 +718,33 @@ theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangula
     exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
   exact exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated C
 
+/-- A sharper conditional form: after isomorphism invariance and distinguished-triangle closure,
+mathlib supplies the Verdier right calculus of fractions. -/
+theorem exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyObject C).trW.HasRightCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyObject C).IsTriangulated :=
+    exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
+  exact exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulated C
+
 /-- It is enough to triangulate the isomorphism closure, because its `trW` is the same. -/
 theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
     [HasZeroObject C] [HasBinaryBiproducts C]
     [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
     (exactAcyclicHomotopyObject C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  rw [← exactAcyclicHomotopyIsoClosure_trW C]
+  infer_instance
+
+/-- It is enough to triangulate the isomorphism closure to get the right calculus as well,
+because its `trW` is the same. -/
+theorem exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isoClosureClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyObject C).trW.HasRightCalculusOfFractions := by
   haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
     exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
   rw [← exactAcyclicHomotopyIsoClosure_trW C]
@@ -720,12 +761,32 @@ theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObj
     exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
   exact exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2 C
 
+/-- The same non-closed distinguished-triangle closure proof also supplies the original
+`trW` right calculus via the isomorphism closure. -/
+theorem exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyObject C).trW.HasRightCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  exact exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isoClosureClosed2 C
+
 /-- Once the isomorphism closure is triangulated, mathlib supplies the Verdier left calculus
 directly for the isomorphism-closed homotopy-category `trW` class. -/
 theorem exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
     [HasZeroObject C] [HasBinaryBiproducts C]
     [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
     (exactAcyclicHomotopyIsoClosure C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  infer_instance
+
+/-- Once the isomorphism closure is triangulated, mathlib supplies the Verdier right calculus
+directly for the isomorphism-closed homotopy-category `trW` class. -/
+theorem exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyIsoClosure C).trW.HasRightCalculusOfFractions := by
   haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
     exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
   infer_instance
@@ -740,6 +801,17 @@ theorem exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_homotop
   haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
     exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
   exact exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2 C
+
+/-- The same reduction as
+`exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2`,
+but stated for the isomorphism-closed predicate itself. -/
+theorem exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyIsoClosure C).trW.HasRightCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  exact exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2 C
 
 /-- Once the isomorphism closure is triangulated, its Verdier weak equivalences are compatible
 with the homotopy-category triangulation. -/

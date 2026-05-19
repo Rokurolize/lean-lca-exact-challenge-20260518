@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T13:22:36Z",
+  "generated_utc": "2026-05-19T13:42:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v93 edits stay in the parent process. The parent did not launch or resume any worker for the homotopy-left-calculus transfer frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v94 edits stay in the parent process. The parent did not launch or resume any worker for the right-calculus wrapper frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -448,7 +448,9 @@
         "homotopy-object IsTriangulatedClosed₂ reduction",
         "iso-closure closed2 transported from homotopy object closed2",
         "iso-closure trW left calculus from homotopy object closed2",
-        "iso-closure trW triangulation compatibility from homotopy object closed2"
+        "iso-closure trW triangulation compatibility from homotopy object closed2",
+        "right calculus of fractions for trW",
+        "right calculus transfer via LocalizerMorphism.ofEq"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -462,7 +464,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v93 adds homotopy/Verdier pullback left-calculus wrappers: if `boundedHomotopyExactWeakEquivalence C` has left calculus, `BoundedHomotopyDerivedCategory C` gets preadditive, zero, localization additive, and shift additive structure; under exact-acyclic homotopy-object iso-closedness this left calculus transfers to direct `boundedExactWeakEquivalence C` and then to `Dbounded`. This does not prove the homotopy pullback left calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v94 adds right-calculus analogues for exact-acyclic homotopy `trW` and iso-closure `trW`, plus an iso-closed transfer from homotopy/Verdier pullback right calculus to direct `boundedExactWeakEquivalence C`. Together with v93 this aligns the conditional left/right calculus wrappers, but it does not prove the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -578,7 +580,14 @@
         "Dbounded.preadditiveOfHomotopyLeftCalculusOfIsoClosed",
         "Dbounded.localization_additiveOfHomotopyLeftCalculusOfIsoClosed",
         "Dbounded.hasZeroObjectOfHomotopyLeftCalculusOfIsoClosed",
-        "Dbounded.shiftFunctor_additiveOfHomotopyLeftCalculusOfIsoClosed"
+        "Dbounded.shiftFunctor_additiveOfHomotopyLeftCalculusOfIsoClosed",
+        "boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_isoClosed",
+        "exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulated",
+        "exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2",
+        "exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isoClosureClosed2",
+        "exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2",
+        "exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2"
       ],
       "technical_context": [
         "split short complexes",
@@ -588,7 +597,9 @@
         "iso-closure cone-membership criterion",
         "bounded homotopy weak equivalence cone-membership iff",
         "homotopy-object closed2 implies iso-closure closed2",
-        "homotopy-object closed2 implies iso-closure localization compatibility"
+        "homotopy-object closed2 implies iso-closure localization compatibility",
+        "right calculus wrappers for exact-acyclic homotopy trW",
+        "right calculus transfer to bounded exact weak equivalences"
       ]
     },
     {
@@ -655,7 +666,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v93 evidence records homotopy-left-calculus transfer declarations while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v94 evidence records right-calculus declarations while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

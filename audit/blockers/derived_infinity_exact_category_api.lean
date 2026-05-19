@@ -142,17 +142,24 @@ noncomputable def bounded_derived_quasicategory_family
 #check boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed
 #check boundedExactWeakEquivalence_iff_boundedHomotopyExactWeakEquivalence_of_isoClosed
 #check boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed
+#check boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_isoClosed
 #check boundedHomotopyExactWeakEquivalence_iff_exactAcyclic_mappingCone_of_isoClosed
 #check boundedHomotopyExactWeakEquivalence_isCompatibleWithShift
 #check boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence
 #check boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed
 #check boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed_localizedEquivalence
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
+#check exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulated
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
+#check exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isoClosureClosed2
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2
 #check exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2
 #check exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homotopyObjectClosed2
 #check ExactAcyclicHomotopyVerdierCategory
@@ -335,6 +342,19 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
     (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions :=
   boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasRightCalculusOfFractions] :
+    (boundedExactWeakEquivalence C).HasRightCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_isoClosed C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyIsoClosure C).trW.HasRightCalculusOfFractions :=
+  exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2 C
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]
