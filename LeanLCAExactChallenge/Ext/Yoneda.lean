@@ -824,6 +824,26 @@ noncomputable def shortExactExtensionPushoutIdIso
     (shortExactExtensionPushoutIdData e)
     (ShortExactExtension.Iso.refl e)
 
+/-- Pullback preserves the canonical identity-tail pushout up to the existing input isomorphism. -/
+noncomputable def shortExactExtensionPullbackPushoutIdIso
+    {X X' Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) :
+    ShortExactExtension.Iso
+      (shortExactExtensionPullback (shortExactExtensionPushout e (𝟙 Y)) f)
+      (shortExactExtensionPullback e f) :=
+  shortExactExtensionPullbackIso f (shortExactExtensionPushoutIdIso e)
+
+/-- Pulling back an identity-tail pushout supplies the expected identity pushout data. -/
+noncomputable def shortExactExtensionPullbackPushoutIdData
+    {X X' Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) :
+    ShortExactExtension.PushoutData
+      (shortExactExtensionPullback e f) (𝟙 Y)
+      (shortExactExtensionPullback (shortExactExtensionPushout e (𝟙 Y)) f) :=
+  ShortExactExtension.PushoutData.isoOut
+    (shortExactExtensionPushoutIdData (shortExactExtensionPullback e f))
+    (shortExactExtensionPullbackPushoutIdIso e f).symm
+
 /-- Canonical pushout of one-fold extensions preserves isomorphism of the input extension. -/
 noncomputable def shortExactExtensionPushoutIso
     {X Y Y' : MetrizableLCA.{u}} (a : Y ⟶ Y')
@@ -2215,6 +2235,16 @@ noncomputable def yonedaExtensionPushoutTailIdRel
   YonedaExtension.Rel.cons (shortExactExtensionPushoutIdIso e)
     (YonedaExtension.Rel.ofHom rfl)
 
+/-- Pulling back an identity-tail pushout does not change the pulled-back one-fold chain. -/
+noncomputable def yonedaExtensionPullbackPushoutTailIdRel
+    {X X' Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) :
+    YonedaExtension.Rel (C := MetrizableLCA.{u})
+      (shortExactExtensionPullback (shortExactExtensionPushout e (𝟙 Y)) f).toYonedaExtension
+      (shortExactExtensionPullback e f).toYonedaExtension :=
+  YonedaExtension.Rel.cons (shortExactExtensionPullbackPushoutIdIso e f)
+    (YonedaExtension.Rel.ofHom rfl)
+
 /-- Canonical MetrizableLCA tail pushout preserves a right-split marker. -/
 noncomputable def yonedaExtensionPushoutTailRightSplitData
     {X Y Y' : MetrizableLCA.{u}} (f : Y ⟶ Y') {n : ℕ}
@@ -3123,6 +3153,18 @@ theorem ofExtension_pushoutTailId_eq
       YonedaExt.ofExtension (C := MetrizableLCA.{u}) e.toYonedaExtension :=
   YonedaExt.ofExtension_eq_ofExtension_of_rel
     (MetrizableLCA.yonedaExtensionPushoutTailIdRel e)
+
+/-- Pulling back an identity-tail pushout preserves the pulled-back Ext generator. -/
+theorem ofExtension_pullbackPushoutTailId_eq
+    {X X' Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) :
+    YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        (MetrizableLCA.shortExactExtensionPullback
+          (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)) f).toYonedaExtension =
+      YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        (MetrizableLCA.shortExactExtensionPullback e f).toYonedaExtension :=
+  YonedaExt.ofExtension_eq_ofExtension_of_rel
+    (MetrizableLCA.yonedaExtensionPullbackPushoutTailIdRel e f)
 
 /-- Head pullback sends a MetrizableLCA right-split chain to zero in Ext. -/
 theorem pullbackHeadOfExtension_eq_zero_of_metrizable_rightSplitData

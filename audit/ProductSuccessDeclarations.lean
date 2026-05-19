@@ -320,6 +320,14 @@ noncomputable example (X Y : MetrizableLCA)
   YonedaExt.ofExtension_pushoutTailId_eq e
 
 noncomputable example (X X' Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) :
+    YonedaExt.ofExtension
+        (MetrizableLCA.shortExactExtensionPullback
+          (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)) f).toYonedaExtension =
+      YonedaExt.ofExtension (MetrizableLCA.shortExactExtensionPullback e f).toYonedaExtension :=
+  YonedaExt.ofExtension_pullbackPushoutTailId_eq e f
+
+noncomputable example (X X' Y : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : X' ⟶ X) :
     YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA) a
         (fun {_} e => MetrizableLCA.shortExactExtensionPullback e a)
@@ -555,6 +563,22 @@ noncomputable example (X Y : MetrizableLCA)
     ShortExactExtension.Iso (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)) e :=
   MetrizableLCA.shortExactExtensionPushoutIdIso e
 
+noncomputable example (X X' Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) :
+    ShortExactExtension.Iso
+      (MetrizableLCA.shortExactExtensionPullback
+        (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)) f)
+      (MetrizableLCA.shortExactExtensionPullback e f) :=
+  MetrizableLCA.shortExactExtensionPullbackPushoutIdIso e f
+
+noncomputable example (X X' Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) :
+    ShortExactExtension.PushoutData
+      (MetrizableLCA.shortExactExtensionPullback e f) (𝟙 Y)
+      (MetrizableLCA.shortExactExtensionPullback
+        (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)) f) :=
+  MetrizableLCA.shortExactExtensionPullbackPushoutIdData e f
+
 noncomputable example (X Y Y' : MetrizableLCA)
     {e e' : ShortExactExtension (C := MetrizableLCA) X Y}
     (a : Y ⟶ Y') (h : ShortExactExtension.Iso e e') :
@@ -616,6 +640,14 @@ noncomputable example (X Y : MetrizableLCA)
       (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)).toYonedaExtension
       e.toYonedaExtension :=
   MetrizableLCA.yonedaExtensionPushoutTailIdRel e
+
+noncomputable example (X X' Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) :
+    YonedaExtension.Rel
+      (MetrizableLCA.shortExactExtensionPullback
+        (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)) f).toYonedaExtension
+      (MetrizableLCA.shortExactExtensionPullback e f).toYonedaExtension :=
+  MetrizableLCA.yonedaExtensionPullbackPushoutTailIdRel e f
 
 noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
     {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}

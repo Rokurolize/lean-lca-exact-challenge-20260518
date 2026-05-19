@@ -65,6 +65,8 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.shortExactExtensionPushoutData
 #check MetrizableLCA.shortExactExtensionPushoutIdData
 #check MetrizableLCA.shortExactExtensionPushoutIdIso
+#check MetrizableLCA.shortExactExtensionPullbackPushoutIdIso
+#check MetrizableLCA.shortExactExtensionPullbackPushoutIdData
 #check MetrizableLCA.shortExactExtensionPushoutIso
 #check MetrizableLCA.shortExactExtensionPushoutAssocIso
 #check MetrizableLCA.pushoutSplitting
@@ -133,12 +135,14 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.yonedaExtensionPullbackHeadRelIso
 #check MetrizableLCA.yonedaExtensionPullbackHeadIdRel
 #check MetrizableLCA.yonedaExtensionPushoutTailIdRel
+#check MetrizableLCA.yonedaExtensionPullbackPushoutTailIdRel
 #check MetrizableLCA.yonedaExtensionPullbackHeadRightSplitData
 #check MetrizableLCA.yonedaExtensionPullbackHeadSplitFactorData
 #check YonedaExt.pullbackHeadOfExtension_eq_of_metrizable_rel
 #check YonedaExt.pullbackHeadOfExtension_eq_of_metrizable_relIso
 #check YonedaExt.ofExtension_pullbackHeadId_eq
 #check YonedaExt.ofExtension_pushoutTailId_eq
+#check YonedaExt.ofExtension_pullbackPushoutTailId_eq
 #check YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_rightSplitData
 #check YonedaExt.pullbackHeadOfExtension_eq_zero_of_metrizable_splitFactorData
 #check YonedaExtension.RightSplitData.pushoutTailWith
