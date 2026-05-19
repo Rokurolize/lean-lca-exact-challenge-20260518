@@ -404,6 +404,130 @@ theorem exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mapping
   rw [exactAcyclicHomotopyIsoClosure_trW C]
   exact exactAcyclicHomotopyObject_trW_quotient_map_iff_exactAcyclic_mappingCone C f
 
+/-- In a standard mapping-cone triangle, exact acyclicity of the cone complex is the
+exact-acyclic homotopy-object conclusion for the third object. -/
+theorem exactAcyclicHomotopyObject_triangleh_ext3 [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hCone : exactAcyclic C (CochainComplex.mappingCone f)) :
+    exactAcyclicHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₃ :=
+  hCone
+
+/-- In a standard mapping-cone triangle, exact acyclicity of the target complex is the
+exact-acyclic homotopy-object conclusion for the second object. -/
+theorem exactAcyclicHomotopyObject_triangleh_ext2 [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hL : exactAcyclic C L) :
+    exactAcyclicHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₂ :=
+  hL
+
+/-- In a standard mapping-cone triangle, exact acyclicity of the source complex is the
+exact-acyclic homotopy-object conclusion for the first object. -/
+theorem exactAcyclicHomotopyObject_triangleh_ext1 [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hK : exactAcyclic C K) :
+    exactAcyclicHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₁ :=
+  hK
+
+/-- The cone-object exact-acyclic conclusion for a strict mapping-cone triangle transfers
+to the isomorphism closure across an explicit triangle isomorphism. -/
+theorem exactAcyclicHomotopyObject_triangleh_iso_ext3 [HasBinaryBiproducts C]
+    {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e : T ≅ CochainComplex.mappingCone.triangleh f)
+    (hCone : exactAcyclic C (CochainComplex.mappingCone f)) :
+    exactAcyclicHomotopyIsoClosure C T.obj₃ :=
+  ⟨_, exactAcyclicHomotopyObject_triangleh_ext3 C f hCone,
+    ⟨Pretriangulated.Triangle.π₃.mapIso e⟩⟩
+
+/-- The target-object exact-acyclic conclusion for a strict mapping-cone triangle transfers
+to the isomorphism closure across an explicit triangle isomorphism. -/
+theorem exactAcyclicHomotopyObject_triangleh_iso_ext2 [HasBinaryBiproducts C]
+    {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e : T ≅ CochainComplex.mappingCone.triangleh f)
+    (hL : exactAcyclic C L) :
+    exactAcyclicHomotopyIsoClosure C T.obj₂ :=
+  ⟨_, exactAcyclicHomotopyObject_triangleh_ext2 C f hL,
+    ⟨Pretriangulated.Triangle.π₂.mapIso e⟩⟩
+
+/-- The source-object exact-acyclic conclusion for a strict mapping-cone triangle transfers
+to the isomorphism closure across an explicit triangle isomorphism. -/
+theorem exactAcyclicHomotopyObject_triangleh_iso_ext1 [HasBinaryBiproducts C]
+    {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e : T ≅ CochainComplex.mappingCone.triangleh f)
+    (hK : exactAcyclic C K) :
+    exactAcyclicHomotopyIsoClosure C T.obj₁ :=
+  ⟨_, exactAcyclicHomotopyObject_triangleh_ext1 C f hK,
+    ⟨Pretriangulated.Triangle.π₁.mapIso e⟩⟩
+
+/-- In a distinguished triangle, compatible isomorphisms on the first two objects identify
+it with a strict mapping-cone triangle enough to transfer exact acyclicity of the cone
+object into the exact-acyclic homotopy-object isomorphism closure. -/
+theorem exactAcyclicHomotopyObject_distinguished_ext3_of_triangleh_iso12
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    (hT : T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)))
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+    (e₂ : (CochainComplex.mappingCone.triangleh f).obj₂ ≅ T.obj₂)
+    (comm : (CochainComplex.mappingCone.triangleh f).mor₁ ≫ e₂.hom =
+      e₁.hom ≫ T.mor₁)
+    (hCone : exactAcyclic C (CochainComplex.mappingCone f)) :
+    exactAcyclicHomotopyIsoClosure C T.obj₃ := by
+  let e : CochainComplex.mappingCone.triangleh f ≅ T :=
+    Pretriangulated.isoTriangleOfIso₁₂ (CochainComplex.mappingCone.triangleh f) T
+      (HomotopyCategory.mappingCone_triangleh_distinguished f) hT e₁ e₂ comm
+  exact ⟨_, exactAcyclicHomotopyObject_triangleh_ext3 C f hCone,
+    ⟨(Pretriangulated.Triangle.π₃.mapIso e).symm⟩⟩
+
+/-- In a distinguished triangle, compatible isomorphisms on the first and third objects
+identify it with a strict mapping-cone triangle enough to transfer exact acyclicity of the
+middle object into the exact-acyclic homotopy-object isomorphism closure. -/
+theorem exactAcyclicHomotopyObject_distinguished_ext2_of_triangleh_iso13
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    (hT : T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)))
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+    (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+    (comm : (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+        (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+      e₃.hom ≫ T.mor₃)
+    (hL : exactAcyclic C L) :
+    exactAcyclicHomotopyIsoClosure C T.obj₂ := by
+  let e : CochainComplex.mappingCone.triangleh f ≅ T :=
+    Pretriangulated.isoTriangleOfIso₁₃ (CochainComplex.mappingCone.triangleh f) T
+      (HomotopyCategory.mappingCone_triangleh_distinguished f) hT e₁ e₃ comm
+  exact ⟨_, exactAcyclicHomotopyObject_triangleh_ext2 C f hL,
+    ⟨(Pretriangulated.Triangle.π₂.mapIso e).symm⟩⟩
+
+/-- In a distinguished triangle, compatible isomorphisms on the second and third objects
+identify it with a strict mapping-cone triangle enough to transfer exact acyclicity of the
+first object into the exact-acyclic homotopy-object isomorphism closure. -/
+theorem exactAcyclicHomotopyObject_distinguished_ext1_of_triangleh_iso23
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    (hT : T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)))
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e₂ : (CochainComplex.mappingCone.triangleh f).obj₂ ≅ T.obj₂)
+    (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+    (comm : (CochainComplex.mappingCone.triangleh f).mor₂ ≫ e₃.hom =
+      e₂.hom ≫ T.mor₂)
+    (hK : exactAcyclic C K) :
+    exactAcyclicHomotopyIsoClosure C T.obj₁ := by
+  let eRot : (CochainComplex.mappingCone.triangleh f).rotate ≅ T.rotate :=
+    Pretriangulated.isoTriangleOfIso₁₂ (CochainComplex.mappingCone.triangleh f).rotate
+      T.rotate
+      (Pretriangulated.rot_of_distTriang _ (HomotopyCategory.mappingCone_triangleh_distinguished f))
+      (Pretriangulated.rot_of_distTriang _ hT) e₂ e₃ comm
+  let e : CochainComplex.mappingCone.triangleh f ≅ T :=
+    (Pretriangulated.rotCompInvRot.app (CochainComplex.mappingCone.triangleh f)) ≪≫
+      (Pretriangulated.invRotate (HomotopyCategory C (ComplexShape.up ℤ))).mapIso eRot ≪≫
+      (Pretriangulated.rotCompInvRot.app T).symm
+  exact ⟨_, exactAcyclicHomotopyObject_triangleh_ext1 C f hK,
+    ⟨(Pretriangulated.Triangle.π₁.mapIso e).symm⟩⟩
+
 /-- Exact quasi-isomorphisms between bounded complexes, detected by the mapping cone. -/
 noncomputable def boundedExactWeakEquivalence [HasBinaryBiproducts C] :
     MorphismProperty (BoundedComplexCategory C) :=

@@ -1501,6 +1501,18 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
   (C := MetrizableLCA))
 #check exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_mappingCone
 #check exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mappingCone
+#check (exactAcyclicHomotopyObject_triangleh_ext3 (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_triangleh_ext2 (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_triangleh_ext1 (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_triangleh_iso_ext3 (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_triangleh_iso_ext2 (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_triangleh_iso_ext1 (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_distinguished_ext3_of_triangleh_iso12
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_distinguished_ext2_of_triangleh_iso13
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_distinguished_ext1_of_triangleh_iso23
+  (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_shift_iff (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
 #check (BoundedComplexCategory.homotopyQuotient (C := MetrizableLCA))

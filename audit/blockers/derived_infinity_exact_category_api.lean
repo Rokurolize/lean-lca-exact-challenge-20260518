@@ -135,6 +135,15 @@ noncomputable def bounded_derived_quasicategory_family
 #check exactAcyclicHomotopyIsoClosure_trW_quotient_map_of_exactAcyclic_mappingCone
 #check exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_mappingCone
 #check exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mappingCone
+#check exactAcyclicHomotopyObject_triangleh_ext3
+#check exactAcyclicHomotopyObject_triangleh_ext2
+#check exactAcyclicHomotopyObject_triangleh_ext1
+#check exactAcyclicHomotopyObject_triangleh_iso_ext3
+#check exactAcyclicHomotopyObject_triangleh_iso_ext2
+#check exactAcyclicHomotopyObject_triangleh_iso_ext1
+#check exactAcyclicHomotopyObject_distinguished_ext3_of_triangleh_iso12
+#check exactAcyclicHomotopyObject_distinguished_ext2_of_triangleh_iso13
+#check exactAcyclicHomotopyObject_distinguished_ext1_of_triangleh_iso23
 #check boundedExactWeakEquivalence_shift_iff
 #check boundedExactWeakEquivalence_isCompatibleWithShift
 #check BoundedComplexCategory.homotopyQuotient
@@ -292,6 +301,33 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
         ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj
           (CochainComplex.mappingCone φ₂)) :=
   boundedHomotopyObject_mappingCone_congr_iff C eK eL comm
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hCone : exactAcyclic C (CochainComplex.mappingCone f)) :
+    exactAcyclicHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₃ :=
+  exactAcyclicHomotopyObject_triangleh_ext3 C f hCone
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e : T ≅ CochainComplex.mappingCone.triangleh f)
+    (hL : exactAcyclic C L) :
+    exactAcyclicHomotopyIsoClosure C T.obj₂ :=
+  exactAcyclicHomotopyObject_triangleh_iso_ext2 C f e hL
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    (hT : T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)))
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e₂ : (CochainComplex.mappingCone.triangleh f).obj₂ ≅ T.obj₂)
+    (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+    (comm : (CochainComplex.mappingCone.triangleh f).mor₂ ≫ e₃.hom =
+      e₂.hom ≫ T.mor₂)
+    (hK : exactAcyclic C K) :
+    exactAcyclicHomotopyIsoClosure C T.obj₁ :=
+  exactAcyclicHomotopyObject_distinguished_ext1_of_triangleh_iso23 C hT f e₂ e₃ comm hK
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasBinaryBiproducts C] {K L : CochainComplex C ℤ} (f : K ⟶ L)
