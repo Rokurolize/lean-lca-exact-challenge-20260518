@@ -1,6 +1,6 @@
 {
-  "schema": "lean-lca-exact-challenge-manifest-v67-comparison-surjectivity",
-  "generated_utc": "2026-05-19T04:25:29Z",
+  "schema": "lean-lca-exact-challenge-manifest-v68-comparison-bijectivity",
+  "generated_utc": "2026-05-19T04:49:53Z",
   "root_kind": "workdir",
   "files": [
     {
@@ -30,8 +30,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Ext/Yoneda.lean",
-      "bytes": 260471,
-      "sha256": "88d18218e87ebbb839991c9de672ac21aeaec4fee0581c99e32d48fb8f96c6c1"
+      "bytes": 271511,
+      "sha256": "def6f50bc3e958f580dc83a167daeea8aa6cb39bc0ad188fceb63a1654153873"
     },
     {
       "path": "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -75,13 +75,13 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 68260,
-      "sha256": "8b8ae20d02fe1b53e03d375025633d4e151a8ed739460d5ebda5cb17bb80f065"
+      "bytes": 69384,
+      "sha256": "e95db4d20efb9a9afcfa92cc491389d6aaa689103be02459b5a73351ea30cc8c"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
-      "bytes": 20595,
-      "sha256": "ca50b288ae96087cfe18338f1f4dc755544765c57f892fdeb8f8bc7f6b9cb314"
+      "bytes": 20797,
+      "sha256": "d3ef1b98c5848766229eab214d4fa63705cd7aa3807f0aab6c250cddf8f6bbcd"
     },
     {
       "path": "audit/blockers/derived_infinity_exact_category_api.lean",
@@ -95,8 +95,8 @@
     },
     {
       "path": "audit/blockers/yoneda_ext_exact_category_api.lean",
-      "bytes": 14213,
-      "sha256": "6afa9052f58ff673bfb83930b1239f402247684661134840f955acec7cf63cb1"
+      "bytes": 14371,
+      "sha256": "b8fb74332e2136e06bcd414f0f11ece0d35606b264f36bd40a0bd09c9642ea0a"
     },
     {
       "path": "audit/external_audit.py",
@@ -125,8 +125,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "bytes": 20527,
-      "sha256": "9f4481b780f9d173fa52499e14ba4719f95f194f28978c33ea24c137130f0444"
+      "bytes": 20728,
+      "sha256": "fea4afe86bd601d20f645e35eb7f600c7a57e57c5361e44138eef730e8cdcea0"
     },
     {
       "path": "docs/research/sources.md",
@@ -135,13 +135,13 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 2400,
-      "sha256": "ee7255199c578f82f499a1a3d65493ce43541154af42d223141b2586fb337639"
+      "bytes": 2506,
+      "sha256": "3121d7a8c6304899e064852f8b971384b3bcddc263ba6c23e19aee5dac406281"
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 42790,
-      "sha256": "8f49f4e9613fa306f1ed71f531b07bafb12c7034143f17eac55e53b15f187394"
+      "bytes": 43961,
+      "sha256": "cdc1e98ea06aa62524add19feb7d747286aa0e50f0ee12653c7c6ccae761f3d3"
     },
     {
       "path": "GOAL_IDENTITY.json",
@@ -150,23 +150,23 @@
     },
     {
       "path": "implementation-notes.html",
-      "bytes": 26051,
-      "sha256": "181024f563c249473a1c0dbfe0ca460b732ba88cddb176cabca2ce8db31dc152"
+      "bytes": 26750,
+      "sha256": "d366cb8cb0cc1fedff9e94ddb794255e347ede2b6a22bc9283a7e7e1d82af2fa"
     },
     {
       "path": "progress.tsv",
-      "bytes": 20585,
-      "sha256": "0bff230d7aed046750a06726144d516ac412577294c102c1734a80543b373de2"
+      "bytes": 21288,
+      "sha256": "19f829b18c831f463060e430e93f2cf77e2986f012d084b7f83e83b1dc9ec5c2"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 23822,
-      "sha256": "e0898a631a1a1860808272bf3f4f4026f0fba160e410bafe02c20bca13f52703"
+      "bytes": 24127,
+      "sha256": "c0765c846b765c9f7fb1e5af0be0da58abd56152fbe374499e9424545217a2fd"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "bytes": 4609,
-      "sha256": "9ac20a57126504510a6d899d0c6c7adc1a08f454bce2a98a137c129435d48d7e"
+      "bytes": 4582,
+      "sha256": "eb2a09565e3ff2d2cab2e3af289e320ba698259b0dffe57e1f58859aac933400"
     },
     {
       "path": "workers/README.md",
@@ -184,5 +184,5 @@
       "sha256": "c0419bdb16f1e66cde150e2a409e3e65481e0e98eb40ced057efa46e617e7b2b"
     }
   ],
-  "content_hash_tree": "e705c99ddff4c98e613fd0ba79a33ed11b29b812718abb8ed515193804abaa59"
+  "content_hash_tree": "5e83ff1ebf5243c4ab6d3be05eb8fc7c8929298c4b9fc8ad3c48f437604e69d1"
 }

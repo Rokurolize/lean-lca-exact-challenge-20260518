@@ -1128,6 +1128,181 @@ theorem shortExactExtensionPullbackPushoutComparisonMap_surjective
       pushoutQuotientMap (S := e.shortComplex) g hNg p
     rw [pushoutQuotientMap_eq_inl_add_inr]
 
+/-- The canonical comparison map is injective on the underlying carrier.  This
+uses equality in the target pushout quotient to show that the source
+representatives differ by the pulled-back pushout relation. -/
+theorem shortExactExtensionPullbackPushoutComparisonMap_injective
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    Function.Injective
+      (shortExactExtensionPullbackPushoutComparisonMap e f g :
+        (shortExactExtensionPushout (shortExactExtensionPullback e f) g).middle →
+          (shortExactExtensionPullback (shortExactExtensionPushout e g) f).middle) := by
+  intro s t h
+  let hNsrc := pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g
+  let hNg := pushoutSubgroup_closed e.conflation g
+  haveI hNsrcNormal :
+      (pushoutSubgroup (S := (shortExactExtensionPullback e f).shortComplex) g).Normal :=
+    AddSubgroup.normal_of_isAddCommutative _
+  haveI hNgNormal : (pushoutSubgroup (S := e.shortComplex) g).Normal :=
+    AddSubgroup.normal_of_isAddCommutative _
+  rcases quotientMap_surjective
+      (pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y')
+      (pushoutSubgroup (S := (shortExactExtensionPullback e f).shortComplex) g)
+      hNsrc s with ⟨p, rfl⟩
+  rcases quotientMap_surjective
+      (pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y')
+      (pushoutSubgroup (S := (shortExactExtensionPullback e f).shortComplex) g)
+      hNsrc t with ⟨q, rfl⟩
+  have hdesc :
+        pushoutQuotientMap (S := (shortExactExtensionPullback e f).shortComplex)
+            g hNsrc ≫ shortExactExtensionPullbackPushoutComparisonMap e f g =
+          pushoutProductDesc (S := (shortExactExtensionPullback e f).shortComplex)
+            (shortExactExtensionPullbackPushoutMiddleMap e f g)
+            (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i := by
+      dsimp [shortExactExtensionPullbackPushoutComparisonMap, pushoutDesc,
+        pushoutQuotientMap]
+      exact quotientLift_quotientMap
+          (pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y')
+          (pushoutSubgroup (S := (shortExactExtensionPullback e f).shortComplex) g)
+          hNsrc
+          (pushoutProductDesc (S := (shortExactExtensionPullback e f).shortComplex)
+            (shortExactExtensionPullbackPushoutMiddleMap e f g)
+            (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i)
+          (pushoutProductDesc_relation_le_ker
+            (S := (shortExactExtensionPullback e f).shortComplex)
+            g (shortExactExtensionPullbackPushoutMiddleMap_i e f g).symm)
+  change ((pushoutQuotientMap (S := (shortExactExtensionPullback e f).shortComplex)
+      g hNsrc ≫ shortExactExtensionPullbackPushoutComparisonMap e f g) p) =
+    ((pushoutQuotientMap (S := (shortExactExtensionPullback e f).shortComplex)
+      g hNsrc ≫ shortExactExtensionPullbackPushoutComparisonMap e f g) q) at h
+  rw [hdesc] at h
+  have hfst0 := congrArg (fun z => pullbackFst f (shortExactExtensionPushout e g).p z) h
+  change (Hom.hom (pullbackFst f (shortExactExtensionPushout e g).p))
+      ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) p.1 +
+        (Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) p.2) =
+    (Hom.hom (pullbackFst f (shortExactExtensionPushout e g).p))
+      ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) q.1 +
+        (Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) q.2) at hfst0
+  have hpadd : (Hom.hom (pullbackFst f (shortExactExtensionPushout e g).p))
+      ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) p.1 +
+        (Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) p.2) =
+      (Hom.hom (pullbackFst f (shortExactExtensionPushout e g).p))
+        ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) p.1) +
+      (Hom.hom (pullbackFst f (shortExactExtensionPushout e g).p))
+        ((Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) p.2) := by
+    exact map_add (Hom.hom (pullbackFst f (shortExactExtensionPushout e g).p)) _ _
+  have hqadd : (Hom.hom (pullbackFst f (shortExactExtensionPushout e g).p))
+      ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) q.1 +
+        (Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) q.2) =
+      (Hom.hom (pullbackFst f (shortExactExtensionPushout e g).p))
+        ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) q.1) +
+      (Hom.hom (pullbackFst f (shortExactExtensionPushout e g).p))
+        ((Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) q.2) := by
+    exact map_add (Hom.hom (pullbackFst f (shortExactExtensionPushout e g).p)) _ _
+  rw [hpadd, hqadd] at hfst0
+  have hfst : (shortExactExtensionPullback e f).p p.1 =
+      (shortExactExtensionPullback e f).p q.1 := by
+    change ((shortExactExtensionPullbackPushoutMiddleMap e f g ≫
+          pullbackFst f (shortExactExtensionPushout e g).p) p.1 +
+        (((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫
+          pullbackFst f (shortExactExtensionPushout e g).p) p.2)) =
+      ((shortExactExtensionPullbackPushoutMiddleMap e f g ≫
+          pullbackFst f (shortExactExtensionPushout e g).p) q.1 +
+        (((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫
+          pullbackFst f (shortExactExtensionPushout e g).p) q.2)) at hfst0
+    have hizero : (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫
+        pullbackFst f (shortExactExtensionPushout e g).p = 0 := by
+      exact (shortExactExtensionPullback (shortExactExtensionPushout e g) f).zero
+    rw [shortExactExtensionPullbackPushoutMiddleMap_fst, hizero] at hfst0
+    simpa using hfst0
+  have hsnd0 := congrArg (fun z => pullbackSnd f (shortExactExtensionPushout e g).p z) h
+  change (Hom.hom (pullbackSnd f (shortExactExtensionPushout e g).p))
+      ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) p.1 +
+        (Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) p.2) =
+    (Hom.hom (pullbackSnd f (shortExactExtensionPushout e g).p))
+      ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) q.1 +
+        (Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) q.2) at hsnd0
+  have hpadd' : (Hom.hom (pullbackSnd f (shortExactExtensionPushout e g).p))
+      ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) p.1 +
+        (Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) p.2) =
+      (Hom.hom (pullbackSnd f (shortExactExtensionPushout e g).p))
+        ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) p.1) +
+      (Hom.hom (pullbackSnd f (shortExactExtensionPushout e g).p))
+        ((Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) p.2) := by
+    exact map_add (Hom.hom (pullbackSnd f (shortExactExtensionPushout e g).p)) _ _
+  have hqadd' : (Hom.hom (pullbackSnd f (shortExactExtensionPushout e g).p))
+      ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) q.1 +
+        (Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) q.2) =
+      (Hom.hom (pullbackSnd f (shortExactExtensionPushout e g).p))
+        ((Hom.hom (shortExactExtensionPullbackPushoutMiddleMap e f g)) q.1) +
+      (Hom.hom (pullbackSnd f (shortExactExtensionPushout e g).p))
+        ((Hom.hom (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) q.2) := by
+    exact map_add (Hom.hom (pullbackSnd f (shortExactExtensionPushout e g).p)) _ _
+  rw [hpadd', hqadd'] at hsnd0
+  have hsnd :
+      pushoutInl (S := e.shortComplex) g hNg (pullbackSnd f e.p p.1) +
+        pushoutInr (S := e.shortComplex) g hNg p.2 =
+      pushoutInl (S := e.shortComplex) g hNg (pullbackSnd f e.p q.1) +
+        pushoutInr (S := e.shortComplex) g hNg q.2 := by
+    change ((shortExactExtensionPullbackPushoutMiddleMap e f g ≫
+          pullbackSnd f (shortExactExtensionPushout e g).p) p.1 +
+        (((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫
+          pullbackSnd f (shortExactExtensionPushout e g).p) p.2)) =
+      ((shortExactExtensionPullbackPushoutMiddleMap e f g ≫
+          pullbackSnd f (shortExactExtensionPushout e g).p) q.1 +
+        (((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫
+          pullbackSnd f (shortExactExtensionPushout e g).p) q.2)) at hsnd0
+    rw [shortExactExtensionPullbackPushoutMiddleMap_snd,
+      shortExactExtensionPullback_i_map] at hsnd0
+    simpa using hsnd0
+  have hquot : pushoutQuotientMap (S := e.shortComplex) g hNg
+        (pullbackSnd f e.p p.1, p.2) =
+      pushoutQuotientMap (S := e.shortComplex) g hNg
+        (pullbackSnd f e.p q.1, q.2) := by
+    rw [pushoutQuotientMap_eq_inl_add_inr, pushoutQuotientMap_eq_inl_add_inr]
+    exact hsnd
+  have hrel : (((pullbackSnd f e.p p.1, p.2) : e.middle × Y') -
+      ((pullbackSnd f e.p q.1, q.2) : e.middle × Y')) ∈
+      pushoutSubgroup (S := e.shortComplex) g := by
+    exact (QuotientAddGroup.eq_iff_sub_mem (N := pushoutSubgroup (S := e.shortComplex) g)).mp (by
+      change pushoutQuotientMap (S := e.shortComplex) g hNg
+          (pullbackSnd f e.p p.1, p.2) =
+        pushoutQuotientMap (S := e.shortComplex) g hNg
+          (pullbackSnd f e.p q.1, q.2)
+      exact hquot)
+  rcases hrel with ⟨y, hy⟩
+  change (p : (pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y').carrier ⧸
+      pushoutSubgroup (S := (shortExactExtensionPullback e f).shortComplex) g) = q
+  apply (QuotientAddGroup.eq_iff_sub_mem
+    (N := pushoutSubgroup (S := (shortExactExtensionPullback e f).shortComplex) g)).mpr
+  change (p - q) ∈ pushoutSubgroup (S := (shortExactExtensionPullback e f).shortComplex) g
+  refine ⟨y, ?_⟩
+  ext
+  · apply Subtype.ext
+    ext
+    · change (0 : X') = (shortExactExtensionPullback e f).p p.1 -
+        (shortExactExtensionPullback e f).p q.1
+      rw [hfst]
+      simp
+    · have hyfst := congrArg Prod.fst hy
+      simpa using hyfst
+  · have hysnd := congrArg Prod.snd hy
+    simpa using hysnd
+
+/-- The canonical comparison map is bijective on the underlying carrier.  This
+is still weaker than an isomorphism in `MetrizableLCA`, because the continuous
+inverse has not yet been constructed. -/
+theorem shortExactExtensionPullbackPushoutComparisonMap_bijective
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    Function.Bijective
+      (shortExactExtensionPullbackPushoutComparisonMap e f g :
+        (shortExactExtensionPushout (shortExactExtensionPullback e f) g).middle →
+          (shortExactExtensionPullback (shortExactExtensionPushout e g) f).middle) :=
+  ⟨shortExactExtensionPullbackPushoutComparisonMap_injective e f g,
+    shortExactExtensionPullbackPushoutComparisonMap_surjective e f g⟩
+
 /-- If the canonical comparison map is an isomorphism, it identifies the two
 candidate one-fold extensions. -/
 noncomputable def shortExactExtensionPullbackPushoutComparisonIsoOfIsIso

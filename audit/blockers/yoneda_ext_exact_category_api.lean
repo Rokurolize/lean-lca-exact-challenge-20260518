@@ -78,6 +78,8 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_i
 #check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_p
 #check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_surjective
+#check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_injective
+#check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_bijective
 #check MetrizableLCA.shortExactExtensionPullbackPushoutComparisonIsoOfIsIso
 #check MetrizableLCA.shortExactExtensionPullbackPushoutDataOfIsIsoComparison
 #check MetrizableLCA.shortExactExtensionPushoutIso
