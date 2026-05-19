@@ -1688,6 +1688,48 @@ noncomputable abbrev boundedExactWeakEquivalenceToBoundedExactAcyclicHomotopy_tr
   exact (boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence C).comp
     (boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW C)
 
+/-- The homotopy/Verdier pullback weak equivalences on bounded complexes are exactly the
+inverse image of the bounded homotopy Verdier weak equivalences under the lifted bounded
+homotopy quotient. -/
+theorem boundedHomotopyExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    boundedHomotopyExactWeakEquivalence C =
+      (boundedExactAcyclicHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotientBounded C) := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  haveI : (boundedHomotopyObject C).IsTriangulated :=
+    boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
+  ext K L f
+  change (exactAcyclicHomotopyIsoClosure C).trW
+        ((BoundedComplexCategory.homotopyQuotient C).map f) ↔
+      ((exactAcyclicHomotopyIsoClosure C).inverseImage (BoundedHomotopyCategory.ι C)).trW
+        ((BoundedComplexCategory.homotopyQuotientBounded C).map f)
+  rw [ObjectProperty.inverseImage_trW_iff]
+  let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    (exactAcyclicHomotopyIsoClosure C).trW
+  let e := Arrow.isoOfNatIso (BoundedComplexCategory.homotopyQuotientBounded_comp_ι_iso C)
+    (Arrow.mk f)
+  exact (W.arrow_mk_iso_iff e).symm
+
+/-- If exact acyclicity is homotopy-category isomorphism invariant, then the direct bounded
+mapping-cone weak equivalences are exactly the inverse image of the bounded homotopy
+Verdier weak equivalences. -/
+theorem boundedExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage_of_isoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    boundedExactWeakEquivalence C =
+      (boundedExactAcyclicHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotientBounded C) := by
+  rw [boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed C]
+  exact boundedHomotopyExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage C
+
 /-- The exact-acyclic homotopy Verdier localization is preadditive once the
 isomorphism-closed exact-acyclic objects form a triangulated subcategory. -/
 noncomputable instance exactAcyclicHomotopyVerdierCategory_preadditive_of_isTriangulatedClosed2

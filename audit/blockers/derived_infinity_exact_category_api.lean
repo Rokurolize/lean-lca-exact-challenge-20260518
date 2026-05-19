@@ -680,6 +680,8 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 #check BoundedComplexCategory.homotopyQuotientBounded
 #check BoundedComplexCategory.homotopyQuotientBounded_comp_ι_iso
 #check boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW
+#check boundedHomotopyExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage
+#check boundedExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage_of_isoClosed
 #check BoundedHomotopyDerivedCategory.boundedVerdierComparison
 #check BoundedHomotopyDerivedCategory.boundedVerdierComparisonLocalizationIso
 #check BoundedHomotopyDerivedCategory.boundedVerdierComparison_comp_ambientIso
@@ -739,6 +741,27 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
         boundedExactAcyclicHomotopyVerdierComparison C ≅
       Dbounded.verdierComparison C :=
   Dbounded.boundedVerdierComparison_comp_ambientIso C
+
+example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    boundedHomotopyExactWeakEquivalence C =
+      (boundedExactAcyclicHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotientBounded C) :=
+  boundedHomotopyExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage C
+
+example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    boundedExactWeakEquivalence C =
+      (boundedExactAcyclicHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotientBounded C) :=
+  boundedExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage_of_isoClosed C
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]

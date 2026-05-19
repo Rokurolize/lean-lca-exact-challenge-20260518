@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T17:38:24Z",
+  "generated_utc": "2026-05-19T18:06:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v110 edits stay in the parent process. The parent did not launch or resume any worker for the Dbounded bounded-Verdier comparison frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v111 edits stay in the parent process. The parent did not launch or resume any worker for the bounded Verdier weak-equivalence equality frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -494,7 +494,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v110 adds `boundedExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW`, `Dbounded.boundedVerdierComparison`, `Dbounded.boundedVerdierComparisonLocalizationIso`, `Dbounded.boundedVerdierComparisonDirect`, `Dbounded.boundedVerdierComparisonDirectLocalizationIso`, `Dbounded.boundedVerdierComparisonDirectIso`, and `Dbounded.boundedVerdierComparison_comp_ambientIso`. The direct bounded localization now has ordinary routed and direct comparisons to the bounded homotopy Verdier quotient, and composing with the bounded-to-ambient comparison recovers the existing ambient ordinary Verdier comparison. Still no unconditional bounded/exact-acyclic closed2, no direct bounded left/right calculus or triangulated transfer to `Dbounded`, and no stable infinity-category.",
+      "merge_blocker": "v111 adds `boundedHomotopyExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage` and `boundedExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage_of_isoClosed`; the homotopy/Verdier pullback weak equivalences are now aligned, up to the bounded quotient lift iso, with the bounded homotopy Verdier `trW` inverse image, and under exact-acyclic iso-closedness the direct bounded weak equivalences align with the same bounded Verdier inverse image. Still no unconditional bounded/exact-acyclic closed2, no direct bounded left/right calculus or triangulated transfer to `Dbounded`, and no stable infinity-category.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -686,6 +686,8 @@
         "BoundedComplexCategory.homotopyQuotientBounded",
         "BoundedComplexCategory.homotopyQuotientBounded_comp_ι_iso",
         "boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW",
+        "boundedHomotopyExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage",
+        "boundedExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage_of_isoClosed",
         "BoundedHomotopyDerivedCategory.boundedVerdierComparison",
         "BoundedHomotopyDerivedCategory.boundedVerdierComparisonLocalizationIso",
         "BoundedHomotopyDerivedCategory.boundedVerdierComparison_comp_ambientIso",
@@ -739,7 +741,9 @@
         "homotopy/Verdier pullback weak equivalence maps to bounded exact-acyclic homotopy trW",
         "bounded homotopy Verdier comparison functor from BoundedHomotopyDerivedCategory",
         "bounded homotopy Verdier localization commutation witness",
-        "bounded Verdier comparison composed with bounded-to-ambient comparison equals ambient comparison"
+        "bounded Verdier comparison composed with bounded-to-ambient comparison equals ambient comparison",
+        "bounded homotopy Verdier trW inverse-image equality",
+        "Arrow.isoOfNatIso comparison for lifted bounded homotopy quotient"
       ]
     },
     {
@@ -806,7 +810,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "refresh after proof changes; v110 evidence records the Dbounded bounded-homotopy-Verdier comparison, direct comparison, route iso, and ambient comparison agreement while keeping the stable-infinity blocker nonterminal",
+      "merge_blocker": "refresh after proof changes; v111 evidence records bounded homotopy Verdier trW inverse-image equality for homotopy/Verdier pullback weak equivalences and, under exact-acyclic iso-closedness, direct bounded weak equivalences while keeping the stable-infinity blocker nonterminal",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []
