@@ -86,6 +86,10 @@ direct comparison functor, and canonical `CatCommSq` witnesses that the bounded
 localization functors commute with these comparison routes. This still does not
 prove the required calculus of fractions or stable infinity-category
 enhancement.
+Incremental v97 progress: the homotopy-route and direct-route comparisons from
+`Dbounded` to the ordinary homotopy Verdier quotient are now connected by a
+canonical localization uniqueness isomorphism. This removes a comparison-route
+ambiguity but still does not construct the stable infinity-category structure.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -421,9 +425,12 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 #check BoundedHomotopyDerivedCategory.verdierComparison
 #check BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso
 #check Dbounded.homotopyComparison
+#check Dbounded.homotopyComparisonLocalizationIso
 #check Dbounded.verdierComparison
+#check Dbounded.verdierComparisonLocalizationIso
 #check Dbounded.verdierComparisonDirect
 #check Dbounded.verdierComparisonDirectLocalizationIso
+#check Dbounded.verdierComparisonDirectIso
 #check Dbounded.homotopyComparisonEquivalenceOfIsoClosed
 #check Dbounded.infinityCategory
 #check Dbounded.infinityNerve
@@ -444,5 +451,10 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
         (exactAcyclicHomotopyIsoClosure C).trW.Q ≅
       Dbounded.localization C ⋙ Dbounded.verdierComparisonDirect C :=
   Dbounded.verdierComparisonDirectLocalizationIso C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    Dbounded.verdierComparison C ≅ Dbounded.verdierComparisonDirect C :=
+  Dbounded.verdierComparisonDirectIso C
 
 end LeanLCAExactChallenge

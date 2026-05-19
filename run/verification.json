@@ -1,77 +1,77 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v96-direct-verdier-comparison",
-  "generated_utc": "2026-05-19T14:19:28Z",
-  "source_tree_hash": "4b769f246553ce791ab80cc517fa68a7505f613b6909e890461406e343bd34ea",
+  "schema": "lean-lca-exact-challenge-verification-v97-comparison-route-iso",
+  "generated_utc": "2026-05-19T14:29:15Z",
+  "source_tree_hash": "bbfe6e2fc3f9bbbedf39fb2792ff57db7b565fafd1c0b9aad53302fda8e8c787",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after v96 added the direct bounded-to-Verdier localizer morphism, direct comparison functor, and CatCommSq localization isomorphisms."
+      "evidence": "Full project build passed after v97 added homotopy-route localization commutation, routed Verdier comparison commutation, and the canonical iso between routed and direct Dbounded Verdier comparison functors."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v96 update."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v97 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the v96 direct bounded-to-Verdier comparison and localization commutation declarations."
+      "evidence": "Required declaration audit sees the v97 homotopy comparison localization iso, routed Verdier comparison localization iso, and homotopy/direct comparison functor iso."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles with the v96 comparison declarations for MetrizableLCA while preserving the nonterminal stable-infinity contract."
+      "evidence": "Product declaration audit compiles with the v97 comparison route declarations for MetrizableLCA while preserving the nonterminal stable-infinity contract."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v96 derived-side update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v97 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v96 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v97 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms the v96 direct comparison declarations and still records the unresolved stable-infinity product condition."
+      "evidence": "Derived blocker audit confirms the v97 comparison-route isomorphism declarations and still records the unresolved stable-infinity product condition."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v96 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v97 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v96 frontier update."
+      "evidence": "Proof frontier JSON syntax checked after the v97 frontier update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after regenerating the v96 verification record."
+      "evidence": "Verification JSON syntax checked after regenerating the v97 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked after regenerating the v96 manifest."
+      "evidence": "Manifest JSON syntax checked after regenerating the v97 manifest."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v96 update."
+      "evidence": "External audit Python syntax check still passes after the v97 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v96 proof, audit, documentation, frontier, terminal outcome, and evidence update."
+      "evidence": "Whitespace check passed after the v97 proof, audit, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because exact acyclic homotopy object IsTriangulatedClosed₂, unconditional left/right calculus, transfer to Dbounded triangulated/stable infinity, and stable infinity-category structure remain incomplete; v96 only adds direct comparison and localization commutation declarations into the ordinary Verdier quotient route."
+      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because exact acyclic homotopy object IsTriangulatedClosed₂, unconditional left/right calculus, transfer to Dbounded triangulated/stable infinity, and stable infinity-category structure remain incomplete; v97 only adds homotopy/direct comparison route uniqueness declarations into the ordinary Verdier quotient route."
     }
   ]
 }

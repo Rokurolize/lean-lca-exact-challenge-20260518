@@ -1800,9 +1800,12 @@ noncomputable example : Category (Dbounded (C := MetrizableLCA)) := by infer_ins
 #check (BoundedHomotopyDerivedCategory.verdierComparison (C := MetrizableLCA))
 #check (BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso (C := MetrizableLCA))
 #check (Dbounded.homotopyComparison (C := MetrizableLCA))
+#check (Dbounded.homotopyComparisonLocalizationIso (C := MetrizableLCA))
 #check (Dbounded.verdierComparison (C := MetrizableLCA))
+#check (Dbounded.verdierComparisonLocalizationIso (C := MetrizableLCA))
 #check (Dbounded.verdierComparisonDirect (C := MetrizableLCA))
 #check (Dbounded.verdierComparisonDirectLocalizationIso (C := MetrizableLCA))
+#check (Dbounded.verdierComparisonDirectIso (C := MetrizableLCA))
 #check Dbounded.homotopyComparisonEquivalenceOfIsoClosed
 
 noncomputable example :
@@ -1826,6 +1829,11 @@ noncomputable example :
       Dbounded.localization (C := MetrizableLCA) ⋙
         Dbounded.verdierComparisonDirect (C := MetrizableLCA) :=
   Dbounded.verdierComparisonDirectLocalizationIso (C := MetrizableLCA)
+
+noncomputable example :
+    Dbounded.verdierComparison (C := MetrizableLCA) ≅
+      Dbounded.verdierComparisonDirect (C := MetrizableLCA) :=
+  Dbounded.verdierComparisonDirectIso (C := MetrizableLCA)
 
 /-
 The bounded derived infinity-category is exposed as a quasicategory, and its homotopy category

@@ -1218,11 +1218,45 @@ noncomputable abbrev homotopyComparison [HasZeroObject C] [HasBinaryBiproducts C
   (boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence C).localizedFunctor
     (Dbounded.localization C) (boundedHomotopyExactWeakEquivalence C).Q
 
+/-- The comparison from the direct bounded localization to the homotopy/Verdier pullback
+localization is induced by the identity localizer morphism, so it commutes with the
+localization functors by the canonical `CatCommSq` isomorphism. -/
+noncomputable def homotopyComparisonLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    (boundedHomotopyExactWeakEquivalence C).Q ≅
+      Dbounded.localization C ⋙ Dbounded.homotopyComparison C :=
+  let Φ := boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence C
+  letI : CatCommSq Φ.functor (Dbounded.localization C)
+      (boundedHomotopyExactWeakEquivalence C).Q
+      (Φ.localizedFunctor (Dbounded.localization C)
+        (boundedHomotopyExactWeakEquivalence C).Q) :=
+    Φ.catCommSq (Dbounded.localization C)
+      (boundedHomotopyExactWeakEquivalence C).Q
+  by
+    simpa [boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence,
+      Dbounded.homotopyComparison] using
+      CatCommSq.iso Φ.functor (Dbounded.localization C)
+        (boundedHomotopyExactWeakEquivalence C).Q
+        (Φ.localizedFunctor (Dbounded.localization C)
+          (boundedHomotopyExactWeakEquivalence C).Q)
+
 /-- The comparison from the direct bounded exact localization to the ordinary homotopy
 Verdier quotient, routed through the homotopy/Verdier pullback localization. -/
 noncomputable abbrev verdierComparison [HasZeroObject C] [HasBinaryBiproducts C] :
     Dbounded C ⥤ ExactAcyclicHomotopyVerdierCategory C :=
   Dbounded.homotopyComparison C ⋙ BoundedHomotopyDerivedCategory.verdierComparison C
+
+/-- The routed bounded-to-Verdier comparison also commutes with the direct bounded
+localization and the homotopy Verdier localization. -/
+noncomputable def verdierComparisonLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    BoundedComplexCategory.homotopyQuotient C ⋙
+        (exactAcyclicHomotopyIsoClosure C).trW.Q ≅
+      Dbounded.localization C ⋙ Dbounded.verdierComparison C :=
+  BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso C ≪≫
+    Functor.isoWhiskerRight (Dbounded.homotopyComparisonLocalizationIso C)
+      (BoundedHomotopyDerivedCategory.verdierComparison C) ≪≫
+    Functor.associator _ _ _
 
 /-- The comparison from the direct bounded exact localization to the ordinary homotopy
 Verdier quotient, induced directly by the composite localizer morphism. -/
@@ -1249,6 +1283,25 @@ noncomputable def verdierComparisonDirectLocalizationIso
     (exactAcyclicHomotopyIsoClosure C).trW.Q
     (Φ.localizedFunctor (Dbounded.localization C)
       (exactAcyclicHomotopyIsoClosure C).trW.Q)
+
+/-- The routed and direct comparisons from `Dbounded` to the ordinary homotopy Verdier
+quotient are canonically isomorphic because they lift the same functor out of the direct
+bounded localization. -/
+noncomputable def verdierComparisonDirectIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    Dbounded.verdierComparison C ≅ Dbounded.verdierComparisonDirect C :=
+  let source : BoundedComplexCategory C ⥤ ExactAcyclicHomotopyVerdierCategory C :=
+    BoundedComplexCategory.homotopyQuotient C ⋙
+      (exactAcyclicHomotopyIsoClosure C).trW.Q
+  haveI : Localization.Lifting (Dbounded.localization C) (boundedExactWeakEquivalence C)
+      source (Dbounded.verdierComparison C) :=
+    ⟨(Dbounded.verdierComparisonLocalizationIso C).symm⟩
+  haveI : Localization.Lifting (Dbounded.localization C) (boundedExactWeakEquivalence C)
+      source (Dbounded.verdierComparisonDirect C) :=
+    ⟨(Dbounded.verdierComparisonDirectLocalizationIso C).symm⟩
+  Localization.liftNatIso (Dbounded.localization C) (boundedExactWeakEquivalence C)
+    source source (Dbounded.verdierComparison C) (Dbounded.verdierComparisonDirect C)
+    (Iso.refl source)
 
 /-- If exact acyclicity is invariant under homotopy-category isomorphism, the direct bounded
 localization and the homotopy/Verdier pullback localization are equivalent. -/
