@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v1",
-  "generated_utc": "2026-05-20T03:20:00Z",
+  "generated_utc": "2026-05-20T03:25:00Z",
   "file_count": 104,
-  "content_hash_tree": "26c51d01f76ccec77a5af8c738d60e1e8d9edd8c575bda6de951646942b9048a",
+  "content_hash_tree": "95714605397eb7ee4d9d6080ae0410e7b81188078f20fe6ab687859640e951a6",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -456,8 +456,8 @@
     },
     {
       "path": "implementation-notes.html",
-      "bytes": 105490,
-      "sha256": "545a8a442f0bc461dfc5e8fa61d7e81453daf18a8417d23b24a015209b272600"
+      "bytes": 106063,
+      "sha256": "81e6f07a73e22d8109075ba6c32b86fb6f097e53e369682cb757ab2b294780fd"
     },
     {
       "path": "lake-manifest.json",
@@ -481,8 +481,8 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 126758,
-      "sha256": "21391c578ab346dde08892bd0c9535e6ee2129becad6b57fb034ba75d5aba888"
+      "bytes": 127065,
+      "sha256": "2ca419fe99d54256dab0b22667f41818a6883c3798642a041a1ebee0d1c55966"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
