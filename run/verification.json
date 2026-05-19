@@ -1,118 +1,123 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v121-selected-cochain-boundary-guard",
-  "generated_utc": "2026-05-19T20:55:00Z",
-  "source_tree_hash": "378f1e60723037bef29c8f1142f13e86a99c8bbfb899b8207f2544bb8f62a686",
-  "summary": "v121 integrates the selected-cochain strictification boundary from support worker w63 into the parent strictification audit. Product remains nonterminal because the weak homotopy-endpoint payload is only recorded as insufficient; the needed cochain-level strictification theorem is not yet proved.",
+  "schema": "lean-lca-exact-challenge-verification-v122-stable-certificate-interface-shape",
+  "generated_utc": "2026-05-19T21:12:00Z",
+  "source_tree_hash": "a93aebfee581a187b0d242cdb815b653f6b65baf5534f70f5aeb9f867a5cef46",
+  "summary": "v122 manually ports and verifies support worker w65 stable infinity certificate interface shape. Product remains nonterminal because CertificateShape only records stable obligations beyond ordinary quasicategory evidence; finite limits, finite colimits, suspension/loop equivalence, and pushout/pullback compatibility are not proved.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
+    },
+    {
+      "command": "lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean",
+      "status": "passed",
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "python3 audit/external_audit.py --root audit/negative_fixtures/ordinary_nerve_claimed_product_success --terminal-outcome terminal_outcome.json --self-check-only",
       "status": "failed_expected",
-      "evidence": "Negative fixture was rejected as expected during the v121 oracle rerun."
+      "evidence": "Negative fixture was rejected as expected during the v122 oracle rerun."
     },
     {
       "command": "python3 audit/external_audit.py --root audit/negative_fixtures/comment_only_stable_marker_claimed_product_success --terminal-outcome terminal_outcome.json --self-check-only",
       "status": "failed_expected",
-      "evidence": "Negative fixture was rejected as expected during the v121 oracle rerun."
+      "evidence": "Negative fixture was rejected as expected during the v122 oracle rerun."
     },
     {
       "command": "python3 audit/external_audit.py --root audit/negative_fixtures/string_literal_only_stable_marker_claimed_product_success --terminal-outcome terminal_outcome.json --self-check-only",
       "status": "failed_expected",
-      "evidence": "Negative fixture was rejected as expected during the v121 oracle rerun."
+      "evidence": "Negative fixture was rejected as expected during the v122 oracle rerun."
     },
     {
       "command": "python3 audit/external_audit.py --root audit/negative_fixtures/pending_verification_evidence --terminal-outcome terminal_outcome.json --self-check-only",
       "status": "failed_expected",
-      "evidence": "Negative fixture was rejected as expected during the v121 oracle rerun."
+      "evidence": "Negative fixture was rejected as expected during the v122 oracle rerun."
     },
     {
       "command": "python3 audit/external_audit.py --root audit/negative_fixtures/failed_expected_product_success --terminal-outcome terminal_outcome.json --self-check-only",
       "status": "failed_expected",
-      "evidence": "Negative fixture was rejected as expected during the v121 oracle rerun."
+      "evidence": "Negative fixture was rejected as expected during the v122 oracle rerun."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Command completed successfully during the v121 oracle rerun."
+      "evidence": "Command completed successfully during the v122 oracle rerun."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after the v121 refresh: pre-terminal checks reach the terminal outcome gate, then failed_nonterminal/product_complete=false is rejected because product success is not yet true."
+      "evidence": "Expected non-product gate after the v122 refresh: pre-terminal checks reach the terminal outcome gate, then failed_nonterminal/product_complete=false is rejected because product success is not yet true."
     }
   ]
 }

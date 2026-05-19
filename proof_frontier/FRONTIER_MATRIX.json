@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T20:48:00Z",
+  "generated_utc": "2026-05-19T21:04:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening, v114 bounded realization wrappers, v115 exact-category packaging lemmas, v116 stable-marker comment/string audit hardening, v117 pushout kernel/range wrappers, v118 Dbounded ordinary triangulated transfer audit probes, v119 direct Dbounded localization triangulated package audit, v120 strictification/source-triangulation audit probes, and v121 selected-cochain boundary guard were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening, v114 bounded realization wrappers, v115 exact-category packaging lemmas, v116 stable-marker comment/string audit hardening, v117 pushout kernel/range wrappers, v118 Dbounded ordinary triangulated transfer audit probes, v119 direct Dbounded localization triangulated package audit, v120 strictification/source-triangulation audit probes, v121 selected-cochain boundary guard, and v122 stable certificate interface shape were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -555,8 +555,8 @@
         "ordinary localization mislabeled as stable infinity-category"
       ],
       "worker_count_allowed": 0,
-      "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean",
-      "merge_blocker": "v121 adds a selected-cochain boundary guard. It shows the weak homotopy-endpoint payload is not the same as the cochain-level strictification payload needed for boundedness transport. The ordinary triangulated source structure, direct bounded IsCompatibleWithTriangulation, left calculus, and stable infinity-category certificate remain unproved.",
+      "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean",
+      "merge_blocker": "v122 adds a stable certificate interface shape separating finite limits, finite colimits, suspension/loop equivalence, and pushout/pullback compatibility from ordinary quasicategory evidence. These obligations remain unproved, as do the ordinary triangulated source structure, direct bounded IsCompatibleWithTriangulation, and left calculus.",
       "product_success_contribution": "Clarifies the direct ordinary IsTriangulated route for Dbounded while preserving nonterminal product truth.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -780,7 +780,10 @@
         "exactAcyclicIsoClosure_and_boundedHomotopyObject_closed2_of_exact_realization_and_cochain_data",
         "boundedExactWeakEquivalence_isCompatibleWithTriangulation_of_triangle_completion",
         "Dbounded.isTriangulatedOfBoundedComplexSourcePackage",
-        "homotopyEndpointPayloadWithoutSelectedCochainIso"
+        "homotopyEndpointPayloadWithoutSelectedCochainIso",
+        "StableInfinityAudit.CertificateShape",
+        "StableInfinityAudit.DboundedCertificateInput",
+        "StableInfinityAudit.DboundedCertificateInput.ordinary_only"
       ],
       "technical_context": [
         "split short complexes",
@@ -969,7 +972,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "v121 route log records the w63 selected-cochain boundary guard while preserving the stable-infinity blocker as nonterminal.",
+      "merge_blocker": "v122 route log records the w65 stable certificate interface shape while preserving the stable-infinity blocker as nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []
