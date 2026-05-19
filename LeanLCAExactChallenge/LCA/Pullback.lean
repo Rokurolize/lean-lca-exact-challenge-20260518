@@ -211,6 +211,84 @@ lemma pullbackFst_openMap_of_snd_openMap (hg : IsOpenMap (g : B → C)) :
     exact hVNsubW ⟨hx.1, hyN⟩
   exact Filter.mem_of_superset (hTopen.mem_nhds hpT) hTsub
 
+/-- Pull a morphism in the second coordinate through explicit pullbacks. -/
+noncomputable def pullbackMapSnd {A B C D : MetrizableLCA.{u}} (f : A ⟶ C)
+    (q : B ⟶ D) (h : D ⟶ C) : pullbackObj f (q ≫ h) ⟶ pullbackObj f h where
+  hom' :=
+    { toFun := fun p => ⟨(p.1.1, q p.1.2), by
+        change f p.1.1 = h (q p.1.2)
+        exact p.2⟩
+      map_zero' := by
+        apply Subtype.ext
+        change (((0 : A), q (0 : B)) : A × D) = 0
+        ext <;> simp
+      map_add' := by
+        intro x y
+        apply Subtype.ext
+        change (((x + y).1.1, q ((x + y).1.2)) : A × D) =
+          (((x.1.1, q x.1.2)) + ((y.1.1, q y.1.2)) : A × D)
+        have hxy := AddSubgroup.coe_add (pullbackSubgroup f (q ≫ h)) x y
+        ext
+        · change (x + y).1.1 = ((x.1 : A × B) + (y.1 : A × B)).1
+          exact congrArg (fun p : A × B => p.1) hxy
+        · have hsnd : (x + y).1.2 = ((x.1 : A × B) + (y.1 : A × B)).2 := by
+            exact congrArg (fun p : A × B => p.2) hxy
+          change q ((x + y).1.2) = q x.1.2 + q y.1.2
+          rw [hsnd]
+          exact map_add q.hom x.1.2 y.1.2
+      continuous_toFun := by
+        apply Continuous.subtype_mk
+        exact continuous_subtype_val.fst.prodMk
+          (q.hom.continuous.comp continuous_subtype_val.snd) }
+
+@[simp]
+lemma pullbackMapSnd_fst {A B C D : MetrizableLCA.{u}} (f : A ⟶ C) (q : B ⟶ D)
+    (h : D ⟶ C) : pullbackMapSnd f q h ≫ pullbackFst f h = pullbackFst f (q ≫ h) := by
+  ext p
+  rfl
+
+@[simp]
+lemma pullbackMapSnd_snd {A B C D : MetrizableLCA.{u}} (f : A ⟶ C) (q : B ⟶ D)
+    (h : D ⟶ C) : pullbackMapSnd f q h ≫ pullbackSnd f h =
+      pullbackSnd f (q ≫ h) ≫ q := by
+  ext p
+  rfl
+
+lemma pullbackMapSnd_openMap_of_openMap {A B C D : MetrizableLCA.{u}} (f : A ⟶ C)
+    (q : B ⟶ D) (h : D ⟶ C) (hq : IsOpenMap (q : B → D)) :
+    IsOpenMap (pullbackMapSnd f q h : pullbackObj f (q ≫ h) → pullbackObj f h) := by
+  intro U hU
+  rw [isOpen_iff_mem_nhds]
+  rintro z ⟨p, hpU, hpz⟩
+  rw [← hpz]
+  have hUnhds : U ∈ 𝓝 p := hU.mem_nhds hpU
+  rcases (mem_nhds_subtype (pullbackSubgroup f (q ≫ h) : Set (A × B)) p U).1 hUnhds with
+    ⟨W, hWnhds, hWsubU⟩
+  rcases mem_nhds_prod_iff'.1 hWnhds with
+    ⟨V, N, hVopen, hpV, hNopen, hpN, hVNsubW⟩
+  let T : Set (pullbackObj f h) := { z | z.1.1 ∈ V ∧ z.1.2 ∈ (q : B → D) '' N }
+  have hTopen : IsOpen T := by
+    dsimp [T]
+    exact (hVopen.preimage continuous_subtype_val.fst).inter
+      ((hq N hNopen).preimage continuous_subtype_val.snd)
+  have hpT : pullbackMapSnd f q h p ∈ T := by
+    exact ⟨hpV, ⟨p.1.2, hpN, rfl⟩⟩
+  have hTsub : T ⊆ (pullbackMapSnd f q h : pullbackObj f (q ≫ h) → pullbackObj f h) '' U := by
+    intro z hz
+    rcases hz.2 with ⟨b, hbN, hbz⟩
+    let r : pullbackObj f (q ≫ h) := ⟨(z.1.1, b), by
+      change f z.1.1 = h (q b)
+      rw [hbz]
+      exact z.2⟩
+    refine ⟨r, ?_, ?_⟩
+    · apply hWsubU
+      exact hVNsubW ⟨hz.1, hbN⟩
+    · apply Subtype.ext
+      ext
+      · rfl
+      · exact hbz
+  exact Filter.mem_of_superset (hTopen.mem_nhds hpT) hTsub
+
 lemma pullbackSnd_surjective_of_fst_surjective (hf : Function.Surjective (f : A → C)) :
     Function.Surjective (pullbackSnd f g : pullbackObj f g → B) := by
   intro y

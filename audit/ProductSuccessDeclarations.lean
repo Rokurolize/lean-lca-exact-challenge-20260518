@@ -55,6 +55,11 @@ example {A B : MetrizableLCA} (f : A ⟶ B)
     (hbij : Function.Bijective (f : A → B)) (hopen : IsOpenMap (f : A → B)) : IsIso f :=
   MetrizableLCA.isIso_of_bijective_openMap f hbij hopen
 
+example {A B C : MetrizableLCA} (q : A ⟶ B) (f : B ⟶ C)
+    (hqs : Function.Surjective (q : A → B))
+    (hcomp : IsOpenMap ((q ≫ f : A ⟶ C) : A → C)) : IsOpenMap (f : B → C) :=
+  MetrizableLCA.isOpenMap_of_comp_surjective q f hqs hcomp
+
 /--
 Strict short exact sequences in the metrizable LCA model are stable under
 coordinatewise binary biproducts.
@@ -504,6 +509,9 @@ example (X X' Y Z : MetrizableLCA) {n : ℕ}
 #check YonedaExt.pullbackHead_relationSubgroup_le_metrizableWithPushoutData
 #check YonedaExt.pullbackHeadMap_metrizableWithPushoutData
 #check YonedaExt.pullbackHeadMap_metrizableWithPushoutData_ofExtension
+#check YonedaExt.pullbackHead_relationSubgroup_le_metrizable
+#check YonedaExt.pullbackHeadMap_metrizable
+#check YonedaExt.pullbackHeadMap_metrizable_ofExtension
 #check (YonedaExt.composeTailHom_relationSubgroup_le (C := MetrizableLCA))
 #check (YonedaExt.composeTailHomMapWith (C := MetrizableLCA))
 #check (YonedaExt.composeTailHomMapWith_ofExtension (C := MetrizableLCA))
@@ -540,6 +548,12 @@ example (X X' Y Z : MetrizableLCA) {n : ℕ}
 #check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_zero_of_splitFactor
 #check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_add_of_baerLeftChain
 #check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_of_homTailLeftChain
+#check YonedaExt.leftProductByYonedaExtension_metrizable
+#check YonedaExt.leftProductByYonedaExtension_metrizable_ofExtension
+#check YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_rel
+#check YonedaExt.leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor
+#check YonedaExt.leftProductByYonedaExtension_metrizable_eq_add_of_baerLeftChain
+#check YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain
 
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
@@ -671,6 +685,21 @@ noncomputable example (X X' Y Y' : MetrizableLCA)
   MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_bijective e f g
 
 noncomputable example (X X' Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    IsOpenMap
+      (MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap e f g :
+        (MetrizableLCA.shortExactExtensionPushout
+          (MetrizableLCA.shortExactExtensionPullback e f) g).middle →
+        (MetrizableLCA.shortExactExtensionPullback
+          (MetrizableLCA.shortExactExtensionPushout e g) f).middle) :=
+  MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_openMap e f g
+
+noncomputable example (X X' Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    IsIso (MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap e f g) :=
+  MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_isIso e f g
+
+noncomputable example (X X' Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) (g : Y ⟶ Y')
     [IsIso (MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap e f g)] :
     ShortExactExtension.PushoutData
@@ -678,6 +707,23 @@ noncomputable example (X X' Y Y' : MetrizableLCA)
       (MetrizableLCA.shortExactExtensionPullback
         (MetrizableLCA.shortExactExtensionPushout e g) f) :=
   MetrizableLCA.shortExactExtensionPullbackPushoutDataOfIsIsoComparison e f g
+
+noncomputable example (X X' Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    ShortExactExtension.PushoutData
+      (MetrizableLCA.shortExactExtensionPullback e f) g
+      (MetrizableLCA.shortExactExtensionPullback
+        (MetrizableLCA.shortExactExtensionPushout e g) f) :=
+  MetrizableLCA.shortExactExtensionPullbackPushoutData e f g
+
+noncomputable example (X X' Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) (f : X' ⟶ X) (g : Y ⟶ Y')
+    {out : ShortExactExtension (C := MetrizableLCA) X Y'}
+    (h : ShortExactExtension.PushoutData e g out) :
+    ShortExactExtension.PushoutData
+      (MetrizableLCA.shortExactExtensionPullback e f) g
+      (MetrizableLCA.shortExactExtensionPullback out f) :=
+  MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h
 
 noncomputable example (X Y Y' : MetrizableLCA)
     {e e' : ShortExactExtension (C := MetrizableLCA) X Y}

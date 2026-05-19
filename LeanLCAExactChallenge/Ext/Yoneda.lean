@@ -933,6 +933,58 @@ lemma shortExactExtensionPullbackPushoutMiddleMap_i
             pullbackSnd f (shortExactExtensionPushout e g).p :=
         (Category.assoc _ _ _).symm
 
+/-- Reassociate the product of a pulled-back middle term with the pullback of
+the pushout quotient product map. -/
+noncomputable def shortExactExtensionPullbackPushoutProductHomeomorph
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y' ≃ₜ
+      pullbackObj f
+        (pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g) ≫
+          pushoutCokernelMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)) where
+  toEquiv :=
+    { toFun := fun p => ⟨(p.1.1.1, (p.1.1.2, p.2)), by
+        change f p.1.1.1 =
+          (pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g) ≫
+            pushoutCokernelMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g))
+              (p.1.1.2, p.2)
+        rw [pushoutQuotientMap_cokernel]
+        change f p.1.1.1 = e.p p.1.1.2
+        exact p.1.2⟩
+      invFun := fun z => (⟨(z.1.1, z.1.2.1), by
+        change f z.1.1 = e.p z.1.2.1
+        rw [z.2]
+        change (pushoutProductToCokernel e.shortComplex Y') z.1.2 = e.p z.1.2.1
+        rfl⟩, z.1.2.2)
+      left_inv := by
+        intro p
+        apply Prod.ext
+        · apply Subtype.ext
+          apply Prod.ext <;> rfl
+        · rfl
+      right_inv := by
+        intro z
+        apply Subtype.ext
+        apply Prod.ext
+        · rfl
+        · apply Prod.ext <;> rfl }
+  continuous_toFun := by
+    apply Continuous.subtype_mk
+    exact ((pullbackFst f e.p).hom.continuous.comp continuous_fst).prodMk
+      (((pullbackSnd f e.p).hom.continuous.comp continuous_fst).prodMk continuous_snd)
+  continuous_invFun := by
+    have hfirst : Continuous (fun z : pullbackObj f
+        (pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g) ≫
+          pushoutCokernelMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)) =>
+        (⟨(z.1.1, z.1.2.1), by
+          change f z.1.1 = e.p z.1.2.1
+          rw [z.2]
+          change (pushoutProductToCokernel e.shortComplex Y') z.1.2 = e.p z.1.2.1
+          rfl⟩ : pullbackObj f e.p)) := by
+      apply Continuous.subtype_mk
+      exact continuous_subtype_val.fst.prodMk (continuous_fst.comp continuous_subtype_val.snd)
+    exact hfirst.prodMk (continuous_snd.comp continuous_subtype_val.snd)
+
 /-- The induced map from the canonical pushout of the pulled-back extension
 to the pullback of the canonical pushout. -/
 noncomputable def shortExactExtensionPullbackPushoutComparisonMap
@@ -1030,6 +1082,153 @@ lemma shortExactExtensionPullbackPushoutComparisonMap_p
         (shortExactExtensionPushout (shortExactExtensionPullback e f) g).p :=
       (shortExactExtensionPushout_inr_p (shortExactExtensionPullback e f) g).symm
     exact hassoc.trans (hinr.trans (hp.trans hpush))
+
+/-- The product map inducing the comparison map is open. -/
+lemma shortExactExtensionPullbackPushoutProductDesc_openMap
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    IsOpenMap
+      (pushoutProductDesc (S := (shortExactExtensionPullback e f).shortComplex)
+        (shortExactExtensionPullbackPushoutMiddleMap e f g)
+        (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i :
+          pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y' →
+            (shortExactExtensionPullback (shortExactExtensionPushout e g) f).middle) := by
+  have hqopen : IsOpenMap
+      (pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g) :
+        pushoutProductObj e.shortComplex Y' → (shortExactExtensionPushout e g).middle) := by
+    exact quotientMap_openMap (pushoutProductObj e.shortComplex Y')
+      (pushoutSubgroup (S := e.shortComplex) g) (pushoutSubgroup_closed e.conflation g)
+  have hpb : IsOpenMap
+      (pullbackMapSnd f
+        (pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g))
+        (pushoutCokernelMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)) :
+          pullbackObj f
+            (pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g) ≫
+              pushoutCokernelMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)) →
+            pullbackObj f
+              (pushoutCokernelMap (S := e.shortComplex) g
+                (pushoutSubgroup_closed e.conflation g))) :=
+    pullbackMapSnd_openMap_of_openMap f
+      (pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g))
+      (pushoutCokernelMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g))
+      hqopen
+  have hcomp : IsOpenMap (fun p : pushoutProductObj
+        (shortExactExtensionPullback e f).shortComplex Y' =>
+      (pullbackMapSnd f
+        (pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g))
+        (pushoutCokernelMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)))
+        ((shortExactExtensionPullbackPushoutProductHomeomorph e f g) p)) := by
+    simpa [Function.comp_def] using
+      hpb.comp (shortExactExtensionPullbackPushoutProductHomeomorph e f g).isOpenMap
+  have hfun :
+      (fun p : pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y' =>
+        (pullbackMapSnd f
+          (pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g))
+          (pushoutCokernelMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)))
+          ((shortExactExtensionPullbackPushoutProductHomeomorph e f g) p)) =
+      (fun p : pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y' =>
+        (pushoutProductDesc (S := (shortExactExtensionPullback e f).shortComplex)
+          (shortExactExtensionPullbackPushoutMiddleMap e f g)
+          (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) p) := by
+    funext p
+    apply Subtype.ext
+    apply Prod.ext
+    · change p.1.1.1 =
+        (pullbackFst f (shortExactExtensionPushout e g).p)
+          ((shortExactExtensionPullbackPushoutMiddleMap e f g) p.1 +
+            (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i p.2)
+      have hfstadd := map_add (pullbackFst f (shortExactExtensionPushout e g).p).hom
+        ((shortExactExtensionPullbackPushoutMiddleMap e f g) p.1)
+        ((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i p.2)
+      have hsum : p.1.1.1 =
+          (pullbackFst f (shortExactExtensionPushout e g).p)
+              ((shortExactExtensionPullbackPushoutMiddleMap e f g) p.1) +
+            (pullbackFst f (shortExactExtensionPushout e g).p)
+              ((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i p.2) := by
+        change p.1.1.1 =
+          ((shortExactExtensionPullbackPushoutMiddleMap e f g ≫
+              pullbackFst f (shortExactExtensionPushout e g).p) p.1) +
+            (((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫
+              pullbackFst f (shortExactExtensionPushout e g).p) p.2)
+        have hizero : (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫
+            pullbackFst f (shortExactExtensionPushout e g).p = 0 :=
+          (shortExactExtensionPullback (shortExactExtensionPushout e g) f).zero
+        rw [shortExactExtensionPullbackPushoutMiddleMap_fst, hizero]
+        change p.1.1.1 = (pullbackFst f e.p) p.1 + (0 : X')
+        rw [add_zero]
+        rfl
+      exact hsum.trans hfstadd.symm
+    · change pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)
+          (p.1.1.2, p.2) =
+        (pullbackSnd f (shortExactExtensionPushout e g).p)
+          ((shortExactExtensionPullbackPushoutMiddleMap e f g) p.1 +
+            (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i p.2)
+      have hsndadd := map_add (pullbackSnd f (shortExactExtensionPushout e g).p).hom
+        ((shortExactExtensionPullbackPushoutMiddleMap e f g) p.1)
+        ((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i p.2)
+      have hsum : pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)
+            (p.1.1.2, p.2) =
+          (pullbackSnd f (shortExactExtensionPushout e g).p)
+              ((shortExactExtensionPullbackPushoutMiddleMap e f g) p.1) +
+            (pullbackSnd f (shortExactExtensionPushout e g).p)
+              ((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i p.2) := by
+        change pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)
+            (p.1.1.2, p.2) =
+          ((shortExactExtensionPullbackPushoutMiddleMap e f g ≫
+              pullbackSnd f (shortExactExtensionPushout e g).p) p.1) +
+            (((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫
+              pullbackSnd f (shortExactExtensionPushout e g).p) p.2)
+        rw [shortExactExtensionPullbackPushoutMiddleMap_snd, shortExactExtensionPullback_i_map]
+        change pushoutQuotientMap (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)
+            (p.1.1.2, p.2) =
+          pushoutInl (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g) p.1.1.2 +
+            pushoutInr (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g) p.2
+        rw [pushoutQuotientMap_eq_inl_add_inr]
+      exact hsum.trans hsndadd.symm
+  rw [hfun] at hcomp
+  simpa using hcomp
+
+/-- The canonical comparison map is open on the underlying carrier. -/
+theorem shortExactExtensionPullbackPushoutComparisonMap_openMap
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    IsOpenMap
+      (shortExactExtensionPullbackPushoutComparisonMap e f g :
+        (shortExactExtensionPushout (shortExactExtensionPullback e f) g).middle →
+          (shortExactExtensionPullback (shortExactExtensionPushout e g) f).middle) := by
+  let hNsrc := pushoutSubgroup_closed (shortExactExtensionPullback e f).conflation g
+  let qsrc : pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y' ⟶
+      (shortExactExtensionPushout (shortExactExtensionPullback e f) g).middle :=
+    pushoutQuotientMap (S := (shortExactExtensionPullback e f).shortComplex) g hNsrc
+  let cmp := shortExactExtensionPullbackPushoutComparisonMap e f g
+  refine isOpenMap_of_comp_surjective qsrc cmp ?_ ?_
+  · dsimp [qsrc]
+    exact quotientMap_surjective
+      (pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y')
+      (pushoutSubgroup (S := (shortExactExtensionPullback e f).shortComplex) g) hNsrc
+  · have hdesc : qsrc ≫ cmp =
+        pushoutProductDesc (S := (shortExactExtensionPullback e f).shortComplex)
+          (shortExactExtensionPullbackPushoutMiddleMap e f g)
+          (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i := by
+      dsimp [qsrc, cmp, shortExactExtensionPullbackPushoutComparisonMap, pushoutDesc,
+        pushoutQuotientMap]
+      exact quotientLift_quotientMap
+          (pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y')
+          (pushoutSubgroup (S := (shortExactExtensionPullback e f).shortComplex) g)
+          hNsrc
+          (pushoutProductDesc (S := (shortExactExtensionPullback e f).shortComplex)
+            (shortExactExtensionPullbackPushoutMiddleMap e f g)
+            (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i)
+          (pushoutProductDesc_relation_le_ker
+            (S := (shortExactExtensionPullback e f).shortComplex)
+            g (shortExactExtensionPullbackPushoutMiddleMap_i e f g).symm)
+    change IsOpenMap ((qsrc ≫ cmp : pushoutProductObj
+      (shortExactExtensionPullback e f).shortComplex Y' ⟶
+        (shortExactExtensionPullback (shortExactExtensionPushout e g) f).middle) :
+          pushoutProductObj (shortExactExtensionPullback e f).shortComplex Y' →
+            (shortExactExtensionPullback (shortExactExtensionPushout e g) f).middle)
+    rw [hdesc]
+    exact shortExactExtensionPullbackPushoutProductDesc_openMap e f g
 
 /-- The canonical comparison map is surjective on the underlying carrier.  This
 is the representative-lifting half of the eventual inverse construction. -/
@@ -1303,6 +1502,15 @@ theorem shortExactExtensionPullbackPushoutComparisonMap_bijective
   ⟨shortExactExtensionPullbackPushoutComparisonMap_injective e f g,
     shortExactExtensionPullbackPushoutComparisonMap_surjective e f g⟩
 
+/-- The canonical comparison map is an isomorphism in `MetrizableLCA`. -/
+theorem shortExactExtensionPullbackPushoutComparisonMap_isIso
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    IsIso (shortExactExtensionPullbackPushoutComparisonMap e f g) :=
+  isIso_of_bijective_openMap (shortExactExtensionPullbackPushoutComparisonMap e f g)
+    (shortExactExtensionPullbackPushoutComparisonMap_bijective e f g)
+    (shortExactExtensionPullbackPushoutComparisonMap_openMap e f g)
+
 /-- If the canonical comparison map is an isomorphism, it identifies the two
 candidate one-fold extensions. -/
 noncomputable def shortExactExtensionPullbackPushoutComparisonIsoOfIsIso
@@ -1330,6 +1538,33 @@ noncomputable def shortExactExtensionPullbackPushoutDataOfIsIsoComparison
   ShortExactExtension.PushoutData.isoOut
     (shortExactExtensionPushoutData (shortExactExtensionPullback e f) g)
     (shortExactExtensionPullbackPushoutComparisonIsoOfIsIso e f g)
+
+/-- The pullback of a canonical pushout is the expected pushout of the pulled-back extension. -/
+noncomputable def shortExactExtensionPullbackPushoutData
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    ShortExactExtension.PushoutData
+      (shortExactExtensionPullback e f) g
+      (shortExactExtensionPullback (shortExactExtensionPushout e g) f) := by
+  haveI : IsIso (shortExactExtensionPullbackPushoutComparisonMap e f g) :=
+    shortExactExtensionPullbackPushoutComparisonMap_isIso e f g
+  exact shortExactExtensionPullbackPushoutDataOfIsIsoComparison e f g
+
+/-- Pullback preserves any pushout square of one-fold extensions, by comparing
+the chosen output with the canonical pushout. -/
+noncomputable def shortExactExtensionPullbackPushoutDataOfPushoutData
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y')
+    {out : ShortExactExtension (C := MetrizableLCA.{u}) X Y'}
+    (h : ShortExactExtension.PushoutData e g out) :
+    ShortExactExtension.PushoutData
+      (shortExactExtensionPullback e f) g
+      (shortExactExtensionPullback out f) :=
+  ShortExactExtension.PushoutData.isoOut
+    (shortExactExtensionPullbackPushoutData e f g)
+    (shortExactExtensionPullbackIso f
+      (ShortExactExtension.PushoutData.iso (shortExactExtensionPushoutData e g) h
+        (ShortExactExtension.Iso.refl e)))
 
 /-- Canonical pushout of one-fold extensions preserves isomorphism of the input extension. -/
 noncomputable def shortExactExtensionPushoutIso
@@ -3443,6 +3678,43 @@ theorem pullbackHeadMap_metrizableWithPushoutData_ofExtension
           (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) a) :=
   rfl
 
+/-- Canonical MetrizableLCA head pullback preserves positive-degree Yoneda relations. -/
+theorem pullbackHead_relationSubgroup_le_metrizable
+    {X X' Y : MetrizableLCA.{u}} (f : X' ⟶ X) (n : ℕ)
+    [HasBinaryBiproduct X' X'] :
+    yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y n ≤
+      (yonedaRelationSubgroup (C := MetrizableLCA.{u}) X' Y n).comap
+        (pullbackHeadFreeHomWith (C := MetrizableLCA.{u}) (X := X) (Y := Y) f
+          (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) n) :=
+  pullbackHead_relationSubgroup_le_metrizableWithPushoutData (X := X) (Y := Y) f n
+    (fun {_ _} e g {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
+
+/-- Canonical MetrizableLCA head pullback on positive-degree Yoneda Ext. -/
+noncomputable def pullbackHeadMap_metrizable
+    {X X' Y : MetrizableLCA.{u}} (f : X' ⟶ X) (n : ℕ)
+    [HasBinaryBiproduct X' X'] :
+    YonedaExt (C := MetrizableLCA.{u}) X Y (n + 1) →+
+      YonedaExt (C := MetrizableLCA.{u}) X' Y (n + 1) :=
+  pullbackHeadMap_metrizableWithPushoutData (X := X) (Y := Y) f n
+    (fun {_ _} e g {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
+
+@[simp]
+theorem pullbackHeadMap_metrizable_ofExtension
+    {X X' Y : MetrizableLCA.{u}} (f : X' ⟶ X) (n : ℕ)
+    [HasBinaryBiproduct X' X']
+    (a : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)) :
+    pullbackHeadMap_metrizable (X := X) f n
+        (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (n := n) a) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X') (Y := Y) (n := n)
+        (YonedaExtension.pullbackHeadWith f
+          (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) a) :=
+  pullbackHeadMap_metrizableWithPushoutData_ofExtension (X := X) (Y := Y) f n
+    (fun {_ _} e g {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
+    a
+
 /-- Termwise-related extension chains define equal classes in positive-degree Ext. -/
 theorem ofExtension_eq_ofExtension_of_rel {a b : YonedaExtension X Y (n + 1)}
     (h : YonedaExtension.Rel a b) :
@@ -4456,6 +4728,75 @@ theorem leftProductByYonedaExtension_metrizableWithPushoutData_eq_add_of_baerLef
     (fun {_ _ _ _} f e g {_} h => pullPushoutData f e g h)
     h n
 
+/-- A fixed arbitrary left MetrizableLCA chain acts on positive-degree right Ext. -/
+noncomputable def leftProductByYonedaExtension_metrizable
+    {X Y Z : MetrizableLCA.{u}} {m : ℕ}
+    (a : YonedaExtension (C := MetrizableLCA.{u}) X Y m) (n : ℕ) :
+    YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1) →+
+      YonedaExt (C := MetrizableLCA.{u}) X Z ((n + m) + 1) :=
+  leftProductByYonedaExtension_metrizableWithPushoutData (X := X) (Y := Y) (Z := Z) a n
+    (fun {_ _ _ _} f e g {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
+
+@[simp]
+theorem leftProductByYonedaExtension_metrizable_ofExtension
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExtension (C := MetrizableLCA.{u}) X Y m)
+    (b : YonedaExtension (C := MetrizableLCA.{u}) Y Z (n + 1)) :
+    leftProductByYonedaExtension_metrizable (X := X) (Y := Y) (Z := Z) a n
+        (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n) b) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := n + m)
+        (YonedaExtension.spliceLeftWith
+          (C := MetrizableLCA.{u})
+          (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a b) :=
+  leftProductByYonedaExtension_metrizableWithPushoutData_ofExtension
+    (X := X) (Y := Y) (Z := Z) a
+    (fun {_ _ _ _} f e g {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
+    b
+
+/-- Termwise-related arbitrary left MetrizableLCA chains induce the same map. -/
+theorem leftProductByYonedaExtension_metrizable_eq_of_rel
+    {X Y Z : MetrizableLCA.{u}} {m : ℕ}
+    {a a' : YonedaExtension (C := MetrizableLCA.{u}) X Y m}
+    (h : YonedaExtension.Rel a a') (n : ℕ) :
+    leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) a n =
+      leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) a' n :=
+  leftProductByYonedaExtension_metrizableWithPushoutData_eq_of_rel
+    (X := X) (Y := Y) (Z := Z) h n
+    (fun {_ _ _ _} f e g {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
+
+/-- A fixed arbitrary left MetrizableLCA chain with a split factor acts by zero. -/
+theorem leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor
+    {X Y Z : MetrizableLCA.{u}} {m : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.SplitFactorData a) (n : ℕ) :
+    leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) a n = 0 :=
+  leftProductByYonedaExtension_metrizableWithPushoutData_eq_zero_of_splitFactor
+    (X := X) (Y := Y) (Z := Z) h n
+    (fun {_ _ _ _} f e g {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
+
+/-- Fixed arbitrary left MetrizableLCA Baer relations give additive maps. -/
+theorem leftProductByYonedaExtension_metrizable_eq_add_of_baerLeftChain
+    {X Y Z : MetrizableLCA.{u}} {m : ℕ}
+    {a b sum : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.BaerSumData a b sum) (n : ℕ) :
+    leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) sum n =
+      leftProductByYonedaExtension_metrizable
+          (X := X) (Y := Y) (Z := Z) a n +
+        leftProductByYonedaExtension_metrizable
+          (X := X) (Y := Y) (Z := Z) b n :=
+  leftProductByYonedaExtension_metrizableWithPushoutData_eq_add_of_baerLeftChain
+    (X := X) (Y := Y) (Z := Z) h n
+    (fun {_ _ _ _} f e g {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
+
 theorem composeTailHomFreeHom_baerChain_mem {Y' : C} (f : Y ⟶ Y')
     (push : {Z W : C} → (e : ShortExactExtension Z W) → (g : W ⟶ Y') →
       ShortExactExtension Z Y')
@@ -4949,6 +5290,40 @@ theorem leftProductByYonedaExtension_metrizableWithPushoutData_eq_of_homTailLeft
       MetrizableLCA.shortExactExtensionPullbackBaerSumData f h)
     (fun {_ _ _ _} f e g {_} h => pullPushoutData f e g h)
     homTailBase h n
+
+/--
+MetrizableLCA HomTail left descent for arbitrary fixed-left maps, still
+assuming the base one-fold hom-tail compatibility.
+-/
+theorem leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain
+    {X Y Z : MetrizableLCA.{u}} {m : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.HomTailData (C := MetrizableLCA.{u}) a b) (n : ℕ)
+    (homTailBase :
+      ∀ {X Y Y' Z : MetrizableLCA.{u}}
+        (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : Y ⟶ Y')
+        {out : ShortExactExtension (C := MetrizableLCA.{u}) X Y'}
+        (_h : ShortExactExtension.PushoutData e f out)
+        {n : ℕ} (c : YonedaExtension (C := MetrizableLCA.{u}) Y' Z (n + 1)),
+        ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := n + 1)
+            (YonedaExtension.spliceLeftWith
+              (C := MetrizableLCA.{u})
+              (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+              (YonedaExtension.cons e (YonedaExtension.ofHom f)) c) =
+          ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := n + 1)
+            (YonedaExtension.spliceLeftWith
+              (C := MetrizableLCA.{u})
+              (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+              out.toYonedaExtension c)) :
+    leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) a n =
+      leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) b n :=
+  leftProductByYonedaExtension_metrizableWithPushoutData_eq_of_homTailLeftChain
+    (X := X) (Y := Y) (Z := Z) h n
+    (fun {_ _ _ _} f e g {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
+    homTailBase
 
 /-- The free abelian group map induced by splicing a positive one-fold chain on the left. -/
 def positiveChainLeftFreeHom :

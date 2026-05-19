@@ -446,6 +446,31 @@ theorem isIso_of_bijective_openMap {A B : MetrizableLCA.{u}} (f : A ⟶ B)
     (hbij : Function.Bijective (f : A → B)) (hopen : IsOpenMap (f : A → B)) : IsIso f :=
   (isoOfBijectiveOpenMap f hbij hopen).isIso_hom
 
+/-- If `q` is surjective and `q ≫ f` is open, then `f` is open. -/
+theorem isOpenMap_of_comp_surjective {A B C : MetrizableLCA.{u}} (q : A ⟶ B) (f : B ⟶ C)
+    (hqs : Function.Surjective (q : A → B))
+    (hcomp : IsOpenMap ((q ≫ f : A ⟶ C) : A → C)) :
+    IsOpenMap (f : B → C) := by
+  intro U hU
+  have hpre : IsOpen ((q : A → B) ⁻¹' U) :=
+    q.hom.continuous.isOpen_preimage U hU
+  have himage : (f : B → C) '' U =
+      ((q ≫ f : A ⟶ C) : A → C) '' ((q : A → B) ⁻¹' U) := by
+    ext z
+    constructor
+    · rintro ⟨u, huU, rfl⟩
+      rcases hqs u with ⟨a, ha⟩
+      refine ⟨a, ?_, ?_⟩
+      · change q a ∈ U
+        rw [ha]
+        exact huU
+      · change f (q a) = f u
+        rw [ha]
+    · rintro ⟨a, haU, haz⟩
+      exact ⟨q a, haU, haz⟩
+  rw [himage]
+  exact hcomp _ hpre
+
 /-- Forget the topology while retaining the additive group. -/
 def forgetToAddCommGrpCat : MetrizableLCA.{u} ⥤ AddCommGrpCat.{u} where
   obj A := AddCommGrpCat.of A
