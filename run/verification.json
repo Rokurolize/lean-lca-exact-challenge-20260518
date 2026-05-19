@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v152-weak-endpoint-frontier-equivalence",
-  "generated_utc": "2026-05-20T03:05:00Z",
-  "source_tree_hash": "ddccbe27f4cde0ab57139b99ac4b1c68a1a23e368e49cf499446264e5820bafb",
-  "summary": "v152 proves the audit minimizer boundedWeakEndpointPayloadToCochainDataStrictification is equivalent to bounded strict realization; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v153-stable-certificate-field-provider-map",
+  "generated_utc": "2026-05-20T03:20:00Z",
+  "source_tree_hash": "e42caa7ad03b5d12f772959643a77fb2bd6b7b6cf2f5c819717811070bbd3952",
+  "summary": "v153 ports the w124 stable certificate field-provider map; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v152 minimizer equivalence audit."
+      "evidence": "Full lake build passed after adding the v153 stable certificate field-provider map."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,7 +27,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v152 audit edit."
+      "evidence": "Forbidden-token audit passed after the v153 audit addition."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
@@ -57,7 +57,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v152 audit/docs updates."
+      "evidence": "Whitespace diff check passed after the v153 audit/docs changes."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -78,6 +78,11 @@
       "command": "lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean",
       "status": "passed",
       "evidence": "Focused stable projection audit passed after adding ordinary Dbounded evidence and currentStableProjectionGapMap."
+    },
+    {
+      "command": "lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean",
+      "status": "passed",
+      "evidence": "Focused w124 field-provider audit passed in the parent target."
     }
   ],
   "implemented_declarations_checked": [
@@ -119,7 +124,12 @@
     "StableInfinityAudit.DboundedStableProjectionGapMap",
     "StableInfinityAudit.currentStableProjectionGapMap",
     "boundedWeakEndpointPayloadToCochainDataStrictification_of_realization",
-    "boundedWeakEndpointPayloadToCochainDataStrictification_iff_realization"
+    "boundedWeakEndpointPayloadToCochainDataStrictification_iff_realization",
+    "StableCertificateFieldProviderScoutW124.currentProviderMap",
+    "StableCertificateFieldProviderScoutW124.finiteLimits_not_supplied",
+    "StableCertificateFieldProviderScoutW124.finiteColimits_not_supplied",
+    "StableCertificateFieldProviderScoutW124.suspensionLoop_only_ordinary",
+    "StableCertificateFieldProviderScoutW124.pushoutPullback_only_ordinary"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -128,6 +138,7 @@
     "No final clean review packet, oracle pass, or fresh claim review has accepted product_success=true.",
     "Stable infinity-category certificate still lacks concrete finite-limit, finite-colimit, suspension/loop, and pushout/pullback projections.",
     "boundedWeakEndpointPayloadToCochainDataStrictification remains unproved.",
-    "The weak-endpoint minimizer is now equivalent to bounded strict realization, so proving the minimizer still requires the bounded strict-realization theorem itself."
+    "The weak-endpoint minimizer is now equivalent to bounded strict realization, so proving the minimizer still requires the bounded strict-realization theorem itself.",
+    "Stable certificate provider map now records finite limits and finite colimits as missing, and suspension-loop plus pushout-pullback as ordinary-only."
   ]
 }
