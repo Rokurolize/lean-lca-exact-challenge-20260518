@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T11:29:20Z",
+  "generated_utc": "2026-05-19T12:25:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v86 edits stay in the parent process.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v87 edits stay in the parent process.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -440,7 +440,8 @@
         "Triangulated.Localization.isTriangulated",
         "bounded homotopy object",
         "bounded mapping cone closure",
-        "localized equivalence under exact-acyclic homotopy iso-invariance"
+        "localized equivalence under exact-acyclic homotopy iso-invariance",
+        "bounded mapping cone component extraction"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -454,7 +455,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v86 adds exactAcyclic_of_splittings plus boundedExactWeakEquivalence_of_mappingCone_splittings and boundedHomotopyExactWeakEquivalence_of_mappingCone_splittings. This handles explicit split mapping-cone cases in both the direct and homotopy/Verdier pullback weak-equivalence classes, but does not prove exact-acyclic homotopy iso-invariance, the iso-closure IsTriangulatedClosed₂ condition, transfer of ordinary triangulated structure to Dbounded, or stable infinity-category structure.",
+      "merge_blocker": "v87 adds boundedCochainComplex_of_mappingCone_right/left plus boundedHomotopyObject_of_mappingCone_right/left. If a mapping cone is bounded, then both source and target complexes, and their quotient homotopy-category objects, are bounded. This strengthens the bounded ambient cone facts but does not prove exact-acyclic homotopy iso-invariance, the iso-closure IsTriangulatedClosed₂ condition, transfer of ordinary triangulated structure to Dbounded, or stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -537,11 +538,16 @@
         "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed",
         "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed_localizedEquivalence",
         "Dbounded.homotopyComparisonEquivalenceOfIsoClosed",
-        "boundedExactWeakEquivalence_of_mappingCone_splittings"
+        "boundedExactWeakEquivalence_of_mappingCone_splittings",
+        "boundedCochainComplex_of_mappingCone_right",
+        "boundedCochainComplex_of_mappingCone_left",
+        "boundedHomotopyObject_of_mappingCone_right",
+        "boundedHomotopyObject_of_mappingCone_left"
       ],
       "technical_context": [
         "split short complexes",
-        "split mapping cone weak-equivalence criteria"
+        "split mapping cone weak-equivalence criteria",
+        "bounded mapping cone component extraction"
       ]
     },
     {

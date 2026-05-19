@@ -1499,7 +1499,11 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (BoundedComplexCategory.homotopyQuotient (C := MetrizableLCA))
 #check (boundedHomotopyObject (C := MetrizableLCA))
 #check (boundedHomotopyObject_quotient_obj (C := MetrizableLCA))
+#check (boundedCochainComplex_of_mappingCone_right (C := MetrizableLCA))
+#check (boundedCochainComplex_of_mappingCone_left (C := MetrizableLCA))
 #check (boundedHomotopyObject_mappingCone (C := MetrizableLCA))
+#check (boundedHomotopyObject_of_mappingCone_right (C := MetrizableLCA))
+#check (boundedHomotopyObject_of_mappingCone_left (C := MetrizableLCA))
 #check (BoundedHomotopyCategory (C := MetrizableLCA))
 #check (BoundedHomotopyCategory.ι (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage

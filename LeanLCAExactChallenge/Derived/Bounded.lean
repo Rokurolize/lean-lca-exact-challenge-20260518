@@ -89,6 +89,48 @@ theorem boundedCochainComplex_mappingCone [HasBinaryBiproducts C]
     · exact K.isZero_of_isStrictlyLE bK (i + 1) (by omega)
     · exact L.isZero_of_isStrictlyLE bL i (by omega)
 
+omit [QuillenExactCategory C] in
+/-- If a mapping cone is bounded, then its target complex is bounded. -/
+theorem boundedCochainComplex_of_mappingCone_right [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedCochainComplex C L := by
+  obtain ⟨a, b, hge, hle⟩ := hCone
+  letI : (CochainComplex.mappingCone f).IsStrictlyGE a := hge
+  letI : (CochainComplex.mappingCone f).IsStrictlyLE b := hle
+  refine ⟨a, b, ?_, ?_⟩
+  · rw [CochainComplex.isStrictlyGE_iff]
+    intro i hi
+    exact ((CochainComplex.mappingCone.isZero_X_iff f i).1
+      ((CochainComplex.mappingCone f).isZero_of_isStrictlyGE a i hi)).2
+  · rw [CochainComplex.isStrictlyLE_iff]
+    intro i hi
+    exact ((CochainComplex.mappingCone.isZero_X_iff f i).1
+      ((CochainComplex.mappingCone f).isZero_of_isStrictlyLE b i hi)).2
+
+omit [QuillenExactCategory C] in
+/-- If a mapping cone is bounded, then its source complex is bounded. -/
+theorem boundedCochainComplex_of_mappingCone_left [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedCochainComplex C K := by
+  obtain ⟨a, b, hge, hle⟩ := hCone
+  letI : (CochainComplex.mappingCone f).IsStrictlyGE a := hge
+  letI : (CochainComplex.mappingCone f).IsStrictlyLE b := hle
+  refine ⟨a + 1, b + 1, ?_, ?_⟩
+  · rw [CochainComplex.isStrictlyGE_iff]
+    intro i hi
+    have hConeZero : IsZero ((CochainComplex.mappingCone f).X (i - 1)) :=
+      (CochainComplex.mappingCone f).isZero_of_isStrictlyGE a (i - 1) (by omega)
+    have hK := ((CochainComplex.mappingCone.isZero_X_iff f (i - 1)).1 hConeZero).1
+    simpa using hK
+  · rw [CochainComplex.isStrictlyLE_iff]
+    intro i hi
+    have hConeZero : IsZero ((CochainComplex.mappingCone f).X (i - 1)) :=
+      (CochainComplex.mappingCone f).isZero_of_isStrictlyLE b (i - 1) (by omega)
+    have hK := ((CochainComplex.mappingCone.isZero_X_iff f (i - 1)).1 hConeZero).1
+    simpa using hK
+
 /-- The full category of bounded cochain complexes before localization. -/
 abbrev BoundedComplexCategory : Type (max u v) :=
   (boundedCochainComplex C).FullSubcategory
@@ -361,6 +403,22 @@ theorem boundedHomotopyObject_mappingCone [HasBinaryBiproducts C]
     boundedHomotopyObject C
       ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj (CochainComplex.mappingCone f)) :=
   boundedHomotopyObject_quotient_obj C (boundedCochainComplex_mappingCone C f hK hL)
+
+omit [QuillenExactCategory C] in
+/-- A bounded mapping cone represents a bounded target object in the homotopy category. -/
+theorem boundedHomotopyObject_of_mappingCone_right [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedHomotopyObject C ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj L) :=
+  boundedHomotopyObject_quotient_obj C (boundedCochainComplex_of_mappingCone_right C f hCone)
+
+omit [QuillenExactCategory C] in
+/-- A bounded mapping cone represents a bounded source object in the homotopy category. -/
+theorem boundedHomotopyObject_of_mappingCone_left [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedHomotopyObject C ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj K) :=
+  boundedHomotopyObject_quotient_obj C (boundedCochainComplex_of_mappingCone_left C f hCone)
 
 /-- The direct mapping-cone weak equivalences on bounded complexes map into the
 homotopy-category `trW` class of exact-acyclic objects. -/

@@ -67,6 +67,14 @@ equivalences to homotopy/Verdier pullback weak equivalences is now a localized
 equivalence, yielding an ordinary categorical equivalence from `Dbounded` to the
 homotopy/Verdier pullback localization. This still depends on the isomorphism
 invariance hypothesis and is not yet a stable infinity-category enhancement.
+Incremental v86 progress: complexes whose every degreewise short complex
+splits are exact acyclic, so bounded morphisms with degreewise split mapping
+cones are weak equivalences for both the direct and homotopy/Verdier pullback
+classes.
+Incremental v87 progress: if a mapping cone is bounded, then both its source
+and target complexes are bounded, and the corresponding homotopy-category
+objects are bounded. This helps expose the bounded ambient part of cone
+triangles but does not prove the exact-acyclic closure is triangulated.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -111,7 +119,11 @@ noncomputable def bounded_derived_quasicategory_family
 #check BoundedComplexCategory.homotopyQuotient
 #check boundedHomotopyObject
 #check boundedHomotopyObject_quotient_obj
+#check LeanLCAExactChallenge.boundedCochainComplex_of_mappingCone_right
+#check LeanLCAExactChallenge.boundedCochainComplex_of_mappingCone_left
 #check boundedHomotopyObject_mappingCone
+#check LeanLCAExactChallenge.boundedHomotopyObject_of_mappingCone_right
+#check LeanLCAExactChallenge.boundedHomotopyObject_of_mappingCone_left
 #check BoundedHomotopyCategory
 #check BoundedHomotopyCategory.ι
 #check boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
