@@ -431,3 +431,9 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 2026-05-19T23:20:00Z時点で、contractible tail具体例については大きく前進した。`HomologicalComplex.alternatingConst`から作ったNat添字tailの収縮を`Homotopy.extend`で`ComplexShape.embeddingUpIntGE p`に沿って`ℤ`添字tailへ移し、`intAlternatingTailGEContractingHomotopy : Homotopy (𝟙 (intAlternatingTailGE p)) 0`を得た。さらに零複体との`HomotopyEquiv`である`intAlternatingTailGEHomotopyEquivZero`と、任意の上界より右に非零項があることを示す`intAlternatingTailGE_hasUpperUnboundedNonzeroTerms`も証明した。
 
 これで、従来の「具体的な`ℤ`添字cochain complexの微分、`d_comp_d`、contracting homotopy、右非有界非零支持が未構成」というgapは、少なくとも`ModuleCat ℤ`上では解消した。ただしproduct successのgapは残る。このtailは、bareな`HomotopyEquiv`によるstrict boundedness transportが危険であることを示す反例境界を強めるものであり、bounded derived infinity-categoryのstable certificateや、任意のhomotopy-category selected representativeを安全にstrict bounded cochain dataへ戻す定理を与えるものではない。次のgapは、この具体例を`UnboundedContractibleTailInstance`型の既存監査境界へ整理して、選択代表strictification戦略でどの補助条件が必要かをさらに狭めることである。
+
+### v140: strict boundedness transportの具体反例化
+
+2026-05-20T00:18:00Z時点で、`LeanLCAExactChallenge/Derived/ContractibleTail.lean`を追加し、右非有界非零支持と零複体への`HomotopyEquiv`をもつselected complexを`RightUnboundedContractibleComplex`としてライブラリ化した。`not_strictBoundednessTransport_of_rightUnboundedContractibleComplex`は、零複体がstrictly boundedであることと、右非有界非零支持がstrict boundednessに反することだけから、bare `HomotopyEquiv`に沿うstrict boundedness transportを否定する。
+
+さらに`intAlternatingTailGERightUnboundedContractible`により、v139の`intAlternatingTailGE p`がこの構造の具体例であることを確認した。したがって「具体的な右非有界contractible selected complexが本当にあるか」という境界は、`ModuleCat ℤ`上では閉じた。残るproduct上の問題は逆向きで、homotopy categoryやlocalizationで同じ対象を表す代表を選ぶときに、どの追加構造があればstrict bounded representativeへ戻せるか、またその構造を`Dbounded`のstable infinity-category certificateへどう反映するかである。

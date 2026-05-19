@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T23:20:00Z",
+  "generated_utc": "2026-05-20T00:18:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results w108-w111; w111 was manually integrated, w109/w110 were already covered by parent v136/v137 work, and w108 was recorded as a strictification payload boundary rather than immediately ported.",
+  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results w108-w113; w113 overlapped v139 for the contracting homotopy but was used to guide the concrete strict-boundedness transport refutation; w109/w110 were already covered by parent v136/v137 work, and w108 remains a strictification payload boundary.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -492,7 +492,8 @@
         "LeanLCAExactChallenge/Derived/Bounded.lean",
         "audit/blockers/dbounded_pretriangulated_wrapper.lean",
         "audit/blockers/localized_functor_is_triangulated_transfer.lean",
-        "audit/blockers/dbounded_direct_localization_triangulated_package.lean"
+        "audit/blockers/dbounded_direct_localization_triangulated_package.lean",
+        "LeanLCAExactChallenge/Derived/ContractibleTail.lean"
       ],
       "dependencies": [
         "QuillenExactCategory",
@@ -568,8 +569,8 @@
         "ordinary localization mislabeled as stable infinity-category"
       ],
       "worker_count_allowed": 0,
-      "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/stable_product_declaration_frontier_w90.lean && lake env lean audit/blockers/contractible_tail_concrete_instance_scout.lean && lake env lean audit/blockers/stable_product_review_gate_map_w93.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean",
-      "merge_blocker": "v139 integrates mathlib Homotopy.extend for embeddingUpIntGE and proves intAlternatingTailGEContractingHomotopy, intAlternatingTailGEHomotopyEquivZero, and intAlternatingTailGE_hasUpperUnboundedNonzeroTerms over ModuleCat Z. The concrete unbounded contractible tail frontier is now closed for this model category, but product success remains blocked by strictification/selected representative control and the stable infinity-category certificate for the strict metrizable LCA exact category.",
+      "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean",
+      "merge_blocker": "v140 packages the ModuleCat ℤ tail as intAlternatingTailGERightUnboundedContractible and proves not_strictBoundednessTransport_intAlternatingTailGE, so bare homotopy-equivalence transport of strict boundedness is mechanically refuted by a concrete selected complex. Product success remains blocked by positive strictification/selected representative control and the stable infinity-category certificate for the strict metrizable LCA exact category.",
       "product_success_contribution": "Clarifies the direct ordinary IsTriangulated route for Dbounded while preserving nonterminal product truth.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -835,7 +836,14 @@
         "AlternatingTailExtendTransport.intAlternatingTailGEContractingHomotopy",
         "AlternatingTailExtendTransport.transportedNatTailHomotopy_hom_eq",
         "AlternatingTailExtendTransport.intAlternatingTailGEHomotopyEquivZero",
-        "AlternatingTailExtendTransport.intAlternatingTailGE_hasUpperUnboundedNonzeroTerms"
+        "AlternatingTailExtendTransport.intAlternatingTailGE_hasUpperUnboundedNonzeroTerms",
+        "RightUnboundedNonzeroTerms",
+        "not_boundedCochainComplex_of_rightUnboundedNonzeroTerms",
+        "boundedCochainComplex_zero",
+        "RightUnboundedContractibleComplex",
+        "not_strictBoundednessTransport_of_rightUnboundedContractibleComplex",
+        "intAlternatingTailGERightUnboundedContractible",
+        "not_strictBoundednessTransport_intAlternatingTailGE"
       ],
       "technical_context": [
         "split short complexes",

@@ -1,38 +1,38 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v139-z-tail-homotopy-and-unbounded-support",
-  "generated_utc": "2026-05-19T22:18:08Z",
-  "source_tree_hash": "b69efea6b1d85928a73c15abec9c24aabaee3f5e7a26c5a8f7ed3c8acd24c5e0",
-  "summary": "v139 integrates mathlib Homotopy.extend for the alternating tail, proves a Z-indexed tail contraction, packages its homotopy equivalence to zero, and proves upper-unbounded nonzero support; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v140-concrete-strict-boundedness-transport-refutation",
+  "generated_utc": "2026-05-20T00:18:00Z",
+  "source_tree_hash": "681d1185fe3dbec231032e07bc5874ddf455575dfdeb211ed6d56bd2e1d3e0b1",
+  "summary": "v140 packages the concrete Z-indexed alternating tail as a right-unbounded contractible selected complex and proves it refutes bare strict-boundedness transport; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full build completed successfully after v139 alternating-tail extend transport changes."
+      "evidence": "Full build completed successfully after importing LeanLCAExactChallenge.Derived.ContractibleTail from the root module."
     },
     {
-      "command": "lake build LeanLCAExactChallenge.AlternatingTailExtendTransport",
+      "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
       "status": "passed",
-      "evidence": "Focused module build completed successfully and printed the v139 Z-tail contraction, homotopy equivalence, support, and component formula declarations."
+      "evidence": "Focused module build printed intAlternatingTailGERightUnboundedContractible and not_strictBoundednessTransport_intAlternatingTailGE."
+    },
+    {
+      "command": "lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean",
+      "status": "passed",
+      "evidence": "Probe printed RightUnboundedContractibleComplex, the strict-boundedness transport refutation theorem, and the concrete intAlternatingTailGE witness."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after removing prohibited wording from new comments."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit completed successfully."
+      "evidence": "Required declaration audit completed successfully after v140 changes."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit completed successfully while preserving nonterminal product truth."
-    },
-    {
-      "command": "lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean",
-      "status": "passed",
-      "evidence": "Probe printed transportedNatTailHomotopy, intAlternatingTailGEContractingHomotopy, intAlternatingTailGEHomotopyEquivZero, intAlternatingTailGE_hasUpperUnboundedNonzeroTerms, and transportedNatTailHomotopy_hom_eq."
+      "evidence": "Product declaration audit completed successfully while preserving nonterminal product truth after v140 changes."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -47,25 +47,26 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected to fail at terminal_outcome because the product is explicitly nonterminal until strictification/selected representative control and a stable infinity certificate are completed."
+      "evidence": "Expected to fail at terminal_outcome because product remains failed_nonterminal pending positive strictification/selected representative control and a stable infinity certificate."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed for tracked modifications."
+      "evidence": "Whitespace diff check passed after v140 changes."
     }
   ],
   "implemented_declarations_checked": [
-    "natAlternatingTailContractingHomotopy",
-    "intAlternatingTailGEContractingHomotopy",
-    "intAlternatingTailGEHomotopyEquivZero",
-    "intAlternatingTailGE_hasUpperUnboundedNonzeroTerms",
-    "transportedNatTailHomotopy",
-    "transportedNatTailHomotopy_hom_eq"
+    "RightUnboundedNonzeroTerms",
+    "not_boundedCochainComplex_of_rightUnboundedNonzeroTerms",
+    "boundedCochainComplex_zero",
+    "RightUnboundedContractibleComplex",
+    "not_strictBoundednessTransport_of_rightUnboundedContractibleComplex",
+    "intAlternatingTailGERightUnboundedContractible",
+    "not_strictBoundednessTransport_intAlternatingTailGE"
   ],
   "product_complete": false,
   "known_gaps": [
-    "The concrete unbounded contractible tail is not yet connected to the selected representative strictification/quotient obstruction payload.",
+    "Positive strictification/selected representative support control remains unproved.",
     "No stable infinity-category certificate for D^b(LCA) has been proved.",
     "No final clean review packet, oracle pass, or fresh claim review has accepted product_success=true."
   ]
