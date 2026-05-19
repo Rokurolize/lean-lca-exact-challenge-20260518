@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T09:28:45Z",
+  "generated_utc": "2026-05-19T09:51:03Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v81 edits stay in the parent process.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -449,7 +449,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v80 adds exact-acyclic zero, exactAcyclicHomotopyObject.ContainsZero, shift stability under homotopy-object isomorphism closure, IsTriangulated from isomorphism closure plus IsTriangulatedClosed₂, and the resulting conditional trW left calculus. Homotopy-object isomorphism closure, IsTriangulatedClosed₂, bounded exact weak-equivalence left calculus, ordinary pretriangulated/triangulated quotient structure, and stable infinity-category structure remain nonproduct.",
+      "merge_blocker": "v81 adds exactAcyclicHomotopyIsoClosure, proves its shift stability, proves that its trW equals exactAcyclicHomotopyObject.trW, and obtains the original trW left calculus from the iso-closure IsTriangulatedClosed₂ condition. The iso-closure distinguished-triangle closure, bounded exact weak-equivalence left calculus, ordinary pretriangulated/triangulated quotient structure, and stable infinity-category structure remain nonproduct.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -490,7 +490,12 @@
         "Dbounded.preadditiveOfHasLeftCalculusOfFractions",
         "Dbounded.localization_additiveOfHasLeftCalculusOfFractions",
         "Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions",
-        "Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions"
+        "Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions",
+        "exactAcyclicHomotopyIsoClosure",
+        "exactAcyclicHomotopyIsoClosure_isStableUnderShift",
+        "exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2",
+        "exactAcyclicHomotopyIsoClosure_trW",
+        "exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2"
       ]
     },
     {
@@ -557,7 +562,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v80 evidence narrows the exact-acyclic homotopy-object triangulated-subcategory gap while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v81 evidence records the iso-closure trW route and keeps the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

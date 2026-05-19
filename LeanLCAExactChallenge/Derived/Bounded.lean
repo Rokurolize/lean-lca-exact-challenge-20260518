@@ -192,6 +192,35 @@ instance exactAcyclicHomotopyObject_containsZero [HasZeroObject C] :
         (isZero_zero (CochainComplex C ℤ) : IsZero (0 : CochainComplex C ℤ))
     · exact exactAcyclic_zero C
 
+/-- The isomorphism closure of exact acyclic homotopy objects. -/
+abbrev exactAcyclicHomotopyIsoClosure :
+    ObjectProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+  (exactAcyclicHomotopyObject C).isoClosure
+
+/-- The isomorphism closure of exact acyclic homotopy objects is stable under cochain shifts. -/
+noncomputable instance exactAcyclicHomotopyIsoClosure_isStableUnderShift :
+    (exactAcyclicHomotopyIsoClosure C).IsStableUnderShift ℤ where
+  isStableUnderShiftBy n := by
+    refine ⟨?_⟩
+    rintro K ⟨K', hK', ⟨e⟩⟩
+    obtain ⟨K₀, rfl⟩ := HomotopyCategory.quotient_obj_surjective K'
+    refine ⟨(HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj (K₀⟦n⟧),
+      exactAcyclic_shift C K₀ n hK', ?_⟩
+    exact ⟨(shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) n).mapIso e ≪≫
+      (((HomotopyCategory.quotient C (ComplexShape.up ℤ)).commShiftIso n).app K₀).symm⟩
+
+/-- The isomorphism closure is triangulated once the distinguished-triangle closure is supplied. -/
+theorem exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyIsoClosure C).IsTriangulated where
+
+/-- Closing exact acyclic homotopy objects under isomorphism does not change `trW`. -/
+theorem exactAcyclicHomotopyIsoClosure_trW [HasZeroObject C] [HasBinaryBiproducts C] :
+    (exactAcyclicHomotopyIsoClosure C).trW =
+      (exactAcyclicHomotopyObject C).trW := by
+  exact ObjectProperty.trW_isoClosure (exactAcyclicHomotopyObject C)
+
 /-- If exact acyclicity is homotopy-category isomorphism invariant, then the exact-acyclic
 homotopy-object predicate is stable under the homotopy-category shift. -/
 noncomputable instance exactAcyclicHomotopyObject_isStableUnderShift_of_isClosedUnderIsomorphisms
@@ -280,6 +309,16 @@ theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangula
   haveI : (exactAcyclicHomotopyObject C).IsTriangulated :=
     exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
   exact exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated C
+
+/-- It is enough to triangulate the isomorphism closure, because its `trW` is the same. -/
+theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyObject C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  rw [← exactAcyclicHomotopyIsoClosure_trW C]
+  infer_instance
 
 /-- Exact weak equivalences of bounded complexes are invariant under cochain shifts. -/
 theorem boundedExactWeakEquivalence_shift_iff [HasBinaryBiproducts C]
