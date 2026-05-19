@@ -659,6 +659,12 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 #check Dbounded.verdierComparisonDirect
 #check Dbounded.verdierComparisonDirectLocalizationIso
 #check Dbounded.verdierComparisonDirectIso
+#check Dbounded.boundedVerdierComparison
+#check Dbounded.boundedVerdierComparisonLocalizationIso
+#check Dbounded.boundedVerdierComparisonDirect
+#check Dbounded.boundedVerdierComparisonDirectLocalizationIso
+#check Dbounded.boundedVerdierComparisonDirectIso
+#check Dbounded.boundedVerdierComparison_comp_ambientIso
 #check Dbounded.homotopyComparisonEquivalenceOfIsoClosed
 #check boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2
 #check boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2
@@ -709,6 +715,30 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     [HasZeroObject C] [HasBinaryBiproducts C] :
     Dbounded.verdierComparison C ≅ Dbounded.verdierComparisonDirect C :=
   Dbounded.verdierComparisonDirectIso C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    Dbounded C ⥤ BoundedExactAcyclicHomotopyVerdierCategory C :=
+  Dbounded.boundedVerdierComparison C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    BoundedComplexCategory.homotopyQuotientBounded C ⋙
+        (boundedExactAcyclicHomotopyObject C).trW.Q ≅
+      Dbounded.localization C ⋙ Dbounded.boundedVerdierComparison C :=
+  Dbounded.boundedVerdierComparisonLocalizationIso C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    Dbounded.boundedVerdierComparison C ⋙
+        boundedExactAcyclicHomotopyVerdierComparison C ≅
+      Dbounded.verdierComparison C :=
+  Dbounded.boundedVerdierComparison_comp_ambientIso C
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]
