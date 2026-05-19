@@ -104,6 +104,22 @@ theorem exactAcyclic_shift_iff (K : CochainComplex C ℤ) (n : ℤ) :
       (hK (i - n))
   · exact exactAcyclic_shift C K n
 
+/-- The zero complex is exact acyclic in any local Quillen exact category. -/
+theorem exactAcyclic_zero [HasZeroObject C] :
+    exactAcyclic C (0 : CochainComplex C ℤ) := by
+  intro i
+  apply QuillenExactCategory.split_conflation
+  refine { r := 0, s := 0, f_r := ?_, s_g := ?_, id := ?_ }
+  · apply (Functor.map_isZero
+      (HomologicalComplex.eval C (ComplexShape.up ℤ) ((ComplexShape.up ℤ).prev i))
+      (isZero_zero (CochainComplex C ℤ) : IsZero (0 : CochainComplex C ℤ))).eq_of_src
+  · apply (Functor.map_isZero
+      (HomologicalComplex.eval C (ComplexShape.up ℤ) ((ComplexShape.up ℤ).next i))
+      (isZero_zero (CochainComplex C ℤ) : IsZero (0 : CochainComplex C ℤ))).eq_of_src
+  · apply (Functor.map_isZero
+      (HomologicalComplex.eval C (ComplexShape.up ℤ) i)
+      (isZero_zero (CochainComplex C ℤ) : IsZero (0 : CochainComplex C ℤ))).eq_of_src
+
 /-- Exact acyclicity of mapping cones is invariant under cochain shifts. -/
 theorem exactAcyclic_mappingCone_shift_iff [HasBinaryBiproducts C]
     {K L : CochainComplex C ℤ} (f : K ⟶ L) (n : ℤ) :
@@ -166,6 +182,37 @@ theorem exactAcyclicHomotopyObject_quotient_obj_iff (K : CochainComplex C ℤ) :
       exactAcyclic C K := by
   rfl
 
+/-- Exact acyclic homotopy objects contain a zero object. -/
+instance exactAcyclicHomotopyObject_containsZero [HasZeroObject C] :
+    (exactAcyclicHomotopyObject C).ContainsZero where
+  exists_zero := by
+    refine ⟨(HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj (0 : CochainComplex C ℤ),
+      ?_, ?_⟩
+    · exact Functor.map_isZero (HomotopyCategory.quotient C (ComplexShape.up ℤ))
+        (isZero_zero (CochainComplex C ℤ) : IsZero (0 : CochainComplex C ℤ))
+    · exact exactAcyclic_zero C
+
+/-- If exact acyclicity is homotopy-category isomorphism invariant, then the exact-acyclic
+homotopy-object predicate is stable under the homotopy-category shift. -/
+noncomputable instance exactAcyclicHomotopyObject_isStableUnderShift_of_isClosedUnderIsomorphisms
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    (exactAcyclicHomotopyObject C).IsStableUnderShift ℤ where
+  isStableUnderShiftBy n := by
+    refine ⟨?_⟩
+    intro K hK
+    obtain ⟨K₀, rfl⟩ := HomotopyCategory.quotient_obj_surjective K
+    exact (exactAcyclicHomotopyObject C).prop_of_iso
+      (((HomotopyCategory.quotient C (ComplexShape.up ℤ)).commShiftIso n).app K₀)
+      (exactAcyclic_shift C K₀ n hK)
+
+/-- With homotopy-category isomorphism invariance, the remaining triangulated-subcategory
+obligation is the two-out-of-three distinguished-triangle closure. -/
+theorem exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyObject C).IsTriangulated where
+
 /-- A morphism of complexes whose mapping cone is exact acyclic lies in the Verdier-style
 `trW` class for the exact-acyclic homotopy-object predicate. -/
 theorem exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone
@@ -222,6 +269,17 @@ theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangula
     [(exactAcyclicHomotopyObject C).IsTriangulated] :
     (exactAcyclicHomotopyObject C).trW.HasLeftCalculusOfFractions := by
   infer_instance
+
+/-- A sharper conditional form: after isomorphism invariance and distinguished-triangle closure,
+mathlib supplies the Verdier left calculus of fractions. -/
+theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyObject C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyObject C).IsTriangulated :=
+    exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2 C
+  exact exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated C
 
 /-- Exact weak equivalences of bounded complexes are invariant under cochain shifts. -/
 theorem boundedExactWeakEquivalence_shift_iff [HasBinaryBiproducts C]

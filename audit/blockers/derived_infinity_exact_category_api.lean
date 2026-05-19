@@ -35,6 +35,11 @@ left calculus of fractions for the exact weak equivalences would make mathlib
 provide preadditivity, additivity of the localization functor, zero objects, and
 additive localized shifts. The missing left-calculus/Verdier work is still a
 product blocker.
+Incremental v80 progress: exact acyclic homotopy objects now contain a zero
+object, and their shift stability follows once homotopy-category isomorphism
+invariance is proved. Thus the remaining path to `IsTriangulated` is narrowed to
+isomorphism invariance plus distinguished-triangle closure, after which mathlib
+supplies the Verdier left calculus of fractions for `trW`.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -58,11 +63,15 @@ noncomputable def bounded_derived_quasicategory_family
 #check exactAcyclic_of_iso
 #check exactAcyclic_shift
 #check exactAcyclic_shift_iff
+#check exactAcyclic_zero
 #check exactAcyclic_mappingCone_shift_iff
 #check mappingConeIsoOfCommIso
 #check exactAcyclic_mappingCone_congr_iff
 #check exactAcyclicHomotopyObject
 #check exactAcyclicHomotopyObject_quotient_obj_iff
+#check exactAcyclicHomotopyObject_containsZero
+#check exactAcyclicHomotopyObject_isStableUnderShift_of_isClosedUnderIsomorphisms
+#check exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone
 #check boundedExactWeakEquivalence_shift_iff
 #check boundedExactWeakEquivalence_isCompatibleWithShift
@@ -70,6 +79,7 @@ noncomputable def bounded_derived_quasicategory_family
 #check boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
 #check boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
+#check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
 #check Dbounded.preadditiveOfHasLeftCalculusOfFractions
 #check Dbounded.localization_additiveOfHasLeftCalculusOfFractions
 #check Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions

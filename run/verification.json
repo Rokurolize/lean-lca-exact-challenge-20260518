@@ -1,82 +1,77 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v79-homotopy-trw-frontier",
-  "generated_utc": "2026-05-19T09:14:06Z",
-  "source_tree_hash": "766005af1c1bfa136cb4e376ba8757dbbd7279c07da5550bb0bfabba4ac5c168",
+  "schema": "lean-lca-exact-challenge-verification-v80-exact-acyclic-homotopy-frontier",
+  "generated_utc": "2026-05-19T09:38:10Z",
+  "source_tree_hash": "5917105f0bd19ad2000acd1d0352b20bf0718bd7b8fc17d0436c88d87f756f06",
   "commands": [
-    {
-      "command": "lake build LeanLCAExactChallenge.Ext.Yoneda",
-      "status": "passed",
-      "evidence": "Yoneda module build still passes after the v79 derived-frontier update."
-    },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after adding exactAcyclicHomotopyObject, bounded homotopy quotient, trW inclusion, and conditional left-calculus declarations."
+      "evidence": "Full project build passed after v80 exact-acyclic zero, homotopy-object zero/shift, conditional IsTriangulated, conditional trW left-calculus declarations, and placeholder-word cleanup."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean placeholder or trust-expanding tokens found under LeanLCAExactChallenge after the v79 update."
+      "evidence": "No forbidden Lean placeholder or trust-expanding tokens found under LeanLCAExactChallenge after the v80 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the v79 homotopy-object, homotopyQuotient, trW inclusion, conditional equality, and conditional left-calculus declarations."
+      "evidence": "Required declaration audit sees exactAcyclic_zero, exactAcyclicHomotopyObject.ContainsZero, conditional shift stability, conditional IsTriangulated, and conditional trW left calculus."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles with concrete MetrizableLCA trW inclusion checks and generic checks for conditional closed-under-isomorphism and triangulated-subcategory declarations."
+      "evidence": "Product declaration audit compiles with concrete MetrizableLCA checks and generic conditional exact-acyclic homotopy-object triangulated-prerequisite declarations."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v79 derived-side update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v80 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v79 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v80 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms the homotopy-category trW inclusion and conditional left-calculus frontier while preserving the stable-infinity blocker."
+      "evidence": "Derived blocker audit confirms the v80 exact-acyclic homotopy-object zero/shift/triangulated-prerequisite declarations while preserving the stable-infinity blocker."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v79 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v80 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v79 homotopy-category trW update."
+      "evidence": "Proof frontier JSON syntax checked after the v80 homotopy-object triangulated-prerequisite update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax will be checked again after this v79 refresh."
+      "evidence": "Verification JSON syntax checked before regenerating this v80 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked before regenerating the v79 manifest; it will be checked again after regeneration."
+      "evidence": "Manifest JSON syntax checked before regenerating the v80 manifest."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v79 update."
+      "evidence": "External audit Python syntax check still passes after the v80 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v79 proof and documentation update."
+      "evidence": "Whitespace check passed after the v80 proof, audit, and documentation update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate: terminal_outcome remains failed_nonterminal/product_complete=false because exact-acyclic homotopy invariance, triangulated-subcategory closure, bounded left calculus, Verdier quotient, and stable infinity-category structure remain incomplete."
+      "evidence": "Expected non-product gate: manifest and verification checks reached the terminal outcome gate, which rejected failed_nonterminal/product_complete=false because exact-acyclic homotopy-object isomorphism closure, IsTriangulatedClosed₂, bounded left calculus, Verdier quotient, and stable infinity-category structure remain incomplete."
     }
   ]
 }

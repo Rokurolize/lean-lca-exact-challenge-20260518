@@ -1477,11 +1477,15 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (exactAcyclic_of_iso (C := MetrizableLCA))
 #check (exactAcyclic_shift (C := MetrizableLCA))
 #check (exactAcyclic_shift_iff (C := MetrizableLCA))
+#check (exactAcyclic_zero (C := MetrizableLCA))
 #check (exactAcyclic_mappingCone_shift_iff (C := MetrizableLCA))
 #check (mappingConeIsoOfCommIso (C := MetrizableLCA))
 #check (exactAcyclic_mappingCone_congr_iff (C := MetrizableLCA))
 #check (exactAcyclicHomotopyObject (C := MetrizableLCA))
 #check (exactAcyclicHomotopyObject_quotient_obj_iff (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_containsZero (C := MetrizableLCA))
+#check exactAcyclicHomotopyObject_isStableUnderShift_of_isClosedUnderIsomorphisms
+#check exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2
 #check (exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone
   (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_shift_iff (C := MetrizableLCA))
@@ -1491,6 +1495,7 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
   (C := MetrizableLCA))
 #check boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
+#check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
 #check Dbounded.preadditiveOfHasLeftCalculusOfFractions
 #check Dbounded.localization_additiveOfHasLeftCalculusOfFractions
 #check Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions
