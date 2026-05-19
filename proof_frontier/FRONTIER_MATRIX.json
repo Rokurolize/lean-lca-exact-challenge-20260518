@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T13:08:00Z",
+  "generated_utc": "2026-05-19T13:22:36Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v92 edits stay in the parent process. The parent did not launch or resume any worker for the homotopyObjectClosed2 Verdier wrapper frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v93 edits stay in the parent process. The parent did not launch or resume any worker for the homotopy-left-calculus transfer frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -462,7 +462,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v92 connects the v91 homotopy-object-closed2 reduction to ordinary homotopy Verdier quotient wrappers: `(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂` now suffices to directly obtain preadditive, localization additive, zero object, shift, commShift, additive shift, pretriangulated, and triangulated structure on `ExactAcyclicHomotopyVerdierCategory C`. This does not prove the homotopy object closed2 condition, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v93 adds homotopy/Verdier pullback left-calculus wrappers: if `boundedHomotopyExactWeakEquivalence C` has left calculus, `BoundedHomotopyDerivedCategory C` gets preadditive, zero, localization additive, and shift additive structure; under exact-acyclic homotopy-object iso-closedness this left calculus transfers to direct `boundedExactWeakEquivalence C` and then to `Dbounded`. This does not prove the homotopy pullback left calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -569,7 +569,16 @@
         "exactAcyclicHomotopyVerdierCategory_localization_commShift_of_homotopyObjectClosed2",
         "exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_homotopyObjectClosed2",
         "exactAcyclicHomotopyVerdierCategory_pretriangulated_of_homotopyObjectClosed2",
-        "exactAcyclicHomotopyVerdierCategory_isTriangulated_of_homotopyObjectClosed2"
+        "exactAcyclicHomotopyVerdierCategory_isTriangulated_of_homotopyObjectClosed2",
+        "boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed",
+        "BoundedHomotopyDerivedCategory.preadditiveOfHasLeftCalculusOfFractions",
+        "BoundedHomotopyDerivedCategory.localization_additiveOfHasLeftCalculusOfFractions",
+        "BoundedHomotopyDerivedCategory.hasZeroObjectOfHasLeftCalculusOfFractions",
+        "BoundedHomotopyDerivedCategory.shiftFunctor_additiveOfHasLeftCalculusOfFractions",
+        "Dbounded.preadditiveOfHomotopyLeftCalculusOfIsoClosed",
+        "Dbounded.localization_additiveOfHomotopyLeftCalculusOfIsoClosed",
+        "Dbounded.hasZeroObjectOfHomotopyLeftCalculusOfIsoClosed",
+        "Dbounded.shiftFunctor_additiveOfHomotopyLeftCalculusOfIsoClosed"
       ],
       "technical_context": [
         "split short complexes",
@@ -646,7 +655,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v91 evidence records homotopyObjectClosed2 reduction declarations while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v93 evidence records homotopy-left-calculus transfer declarations while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

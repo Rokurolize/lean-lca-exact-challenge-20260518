@@ -591,6 +591,17 @@ theorem boundedExactWeakEquivalence_iff_boundedHomotopyExactWeakEquivalence_of_i
     boundedExactWeakEquivalence C f ↔ boundedHomotopyExactWeakEquivalence C f := by
   rw [← boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed C]
 
+/-- Once exact acyclicity is invariant under homotopy-category isomorphism, a left calculus
+for the homotopy/Verdier pullback weak equivalences transfers to the direct bounded exact
+weak equivalences by equality of localizers. -/
+theorem boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions := by
+  rw [boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed C]
+  infer_instance
+
 /-- Under homotopy-category isomorphism invariance of exact acyclicity, the
 homotopy/Verdier bounded weak-equivalence predicate is exactly the mapping-cone exact
 acyclicity condition. -/
@@ -1038,6 +1049,44 @@ noncomputable def BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso
       Cat.of (BoundedHomotopyDerivedCategory C) :=
   CategoryTheory.nerveFunctorCompHoFunctorIso.app (Cat.of (BoundedHomotopyDerivedCategory C))
 
+namespace BoundedHomotopyDerivedCategory
+
+/-- If the homotopy/Verdier pullback weak equivalences have a left calculus of fractions,
+mathlib's localization API equips their bounded localization with a preadditive structure. -/
+noncomputable abbrev preadditiveOfHasLeftCalculusOfFractions
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    Preadditive (BoundedHomotopyDerivedCategory C) := by
+  infer_instance
+
+/-- Under the same left-calculus hypothesis, the homotopy/Verdier pullback localization
+functor is additive. -/
+theorem localization_additiveOfHasLeftCalculusOfFractions
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    ((boundedHomotopyExactWeakEquivalence C).Q).Additive := by
+  infer_instance
+
+/-- Under the homotopy/Verdier pullback left-calculus hypothesis, the bounded homotopy
+localization has a zero object. -/
+theorem hasZeroObjectOfHasLeftCalculusOfFractions
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    HasZeroObject (BoundedHomotopyDerivedCategory C) := by
+  infer_instance
+
+/-- Under the homotopy/Verdier pullback left-calculus hypothesis, localized shifts are
+additive on the bounded homotopy derived category. -/
+theorem shiftFunctor_additiveOfHasLeftCalculusOfFractions
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] (n : ℤ) :
+    (shiftFunctor (BoundedHomotopyDerivedCategory C) n).Additive := by
+  rw [Localization.functor_additive_iff (boundedHomotopyExactWeakEquivalence C).Q
+    (boundedHomotopyExactWeakEquivalence C) (shiftFunctor (BoundedHomotopyDerivedCategory C) n)]
+  exact Functor.additive_of_iso (((boundedHomotopyExactWeakEquivalence C).Q).commShiftIso n)
+
+end BoundedHomotopyDerivedCategory
+
 namespace Dbounded
 
 /-- The comparison from the direct bounded exact localization to the homotopy/Verdier pullback
@@ -1083,6 +1132,57 @@ theorem shiftFunctor_additiveOfHasLeftCalculusOfFractions [HasBinaryBiproducts C
   rw [Localization.functor_additive_iff (Dbounded.localization C) (boundedExactWeakEquivalence C)
     (shiftFunctor (Dbounded C) n)]
   exact Functor.additive_of_iso ((Dbounded.localization C).commShiftIso n)
+
+/-- If exact acyclicity is homotopy-isomorphism closed, a left calculus for the
+homotopy/Verdier pullback localizer gives the direct bounded localization a preadditive
+structure. -/
+noncomputable abbrev preadditiveOfHomotopyLeftCalculusOfIsoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    Preadditive (Dbounded C) := by
+  haveI : (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+  exact Dbounded.preadditiveOfHasLeftCalculusOfFractions C
+
+/-- Under the same iso-closed and homotopy-left-calculus hypotheses, the direct bounded
+localization functor is additive. -/
+theorem localization_additiveOfHomotopyLeftCalculusOfIsoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    letI : (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+      boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+    (Dbounded.localization C).Additive := by
+  letI : (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+  change (Dbounded.localization C).Additive
+  exact Dbounded.localization_additiveOfHasLeftCalculusOfFractions C
+
+/-- Under the same iso-closed and homotopy-left-calculus hypotheses, `Dbounded` has a zero
+object. -/
+theorem hasZeroObjectOfHomotopyLeftCalculusOfIsoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    HasZeroObject (Dbounded C) := by
+  haveI : (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+  exact Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions C
+
+/-- Under the same iso-closed and homotopy-left-calculus hypotheses, localized shifts on
+`Dbounded` are additive. -/
+theorem shiftFunctor_additiveOfHomotopyLeftCalculusOfIsoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] (n : ℤ) :
+    letI : (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+      boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+    (shiftFunctor (Dbounded C) n).Additive := by
+  letI : (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+  change (shiftFunctor (Dbounded C) n).Additive
+  exact Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions C n
 
 end Dbounded
 

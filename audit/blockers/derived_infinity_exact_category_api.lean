@@ -141,6 +141,7 @@ noncomputable def bounded_derived_quasicategory_family
 #check boundedHomotopyExactWeakEquivalence_of_mappingCone_splittings
 #check boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed
 #check boundedExactWeakEquivalence_iff_boundedHomotopyExactWeakEquivalence_of_isoClosed
+#check boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed
 #check boundedHomotopyExactWeakEquivalence_iff_exactAcyclic_mappingCone_of_isoClosed
 #check boundedHomotopyExactWeakEquivalence_isCompatibleWithShift
 #check boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence
@@ -181,6 +182,14 @@ noncomputable def bounded_derived_quasicategory_family
 #check Dbounded.localization_additiveOfHasLeftCalculusOfFractions
 #check Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions
 #check Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions
+#check BoundedHomotopyDerivedCategory.preadditiveOfHasLeftCalculusOfFractions
+#check BoundedHomotopyDerivedCategory.localization_additiveOfHasLeftCalculusOfFractions
+#check BoundedHomotopyDerivedCategory.hasZeroObjectOfHasLeftCalculusOfFractions
+#check BoundedHomotopyDerivedCategory.shiftFunctor_additiveOfHasLeftCalculusOfFractions
+#check Dbounded.preadditiveOfHomotopyLeftCalculusOfIsoClosed
+#check Dbounded.localization_additiveOfHomotopyLeftCalculusOfIsoClosed
+#check Dbounded.hasZeroObjectOfHomotopyLeftCalculusOfIsoClosed
+#check Dbounded.shiftFunctor_additiveOfHomotopyLeftCalculusOfIsoClosed
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
     HasShift (BoundedComplexCategory C) ℤ := by
@@ -295,6 +304,69 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     [HasBinaryBiproducts C] [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
     (shiftFunctor (Dbounded C) (1 : ℤ)).Additive :=
   Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions C 1
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    Preadditive (BoundedHomotopyDerivedCategory C) :=
+  BoundedHomotopyDerivedCategory.preadditiveOfHasLeftCalculusOfFractions C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    ((boundedHomotopyExactWeakEquivalence C).Q).Additive :=
+  BoundedHomotopyDerivedCategory.localization_additiveOfHasLeftCalculusOfFractions C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    HasZeroObject (BoundedHomotopyDerivedCategory C) :=
+  BoundedHomotopyDerivedCategory.hasZeroObjectOfHasLeftCalculusOfFractions C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    (shiftFunctor (BoundedHomotopyDerivedCategory C) (1 : ℤ)).Additive :=
+  BoundedHomotopyDerivedCategory.shiftFunctor_additiveOfHasLeftCalculusOfFractions C 1
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    Preadditive (Dbounded C) :=
+  Dbounded.preadditiveOfHomotopyLeftCalculusOfIsoClosed C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    letI : (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+      boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+    (Dbounded.localization C).Additive :=
+  Dbounded.localization_additiveOfHomotopyLeftCalculusOfIsoClosed C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    HasZeroObject (Dbounded C) :=
+  Dbounded.hasZeroObjectOfHomotopyLeftCalculusOfIsoClosed C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    letI : (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+      boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
+    (shiftFunctor (Dbounded C) (1 : ℤ)).Additive :=
+  Dbounded.shiftFunctor_additiveOfHomotopyLeftCalculusOfIsoClosed C 1
 
 #check (Dbounded (C := MetrizableLCA))
 #check Dbounded.localization
