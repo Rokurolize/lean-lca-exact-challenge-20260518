@@ -844,6 +844,95 @@ noncomputable def shortExactExtensionPullbackPushoutIdData
     (shortExactExtensionPushoutIdData (shortExactExtensionPullback e f))
     (shortExactExtensionPullbackPushoutIdIso e f).symm
 
+/-- The canonical comparison map from pulling back before a tail pushout
+to pulling back after it. -/
+noncomputable def shortExactExtensionPullbackPushoutMiddleMap
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    (shortExactExtensionPullback e f).middle ⟶
+      (shortExactExtensionPullback (shortExactExtensionPushout e g) f).middle :=
+  let q : e.middle ⟶ (shortExactExtensionPushout e g).middle :=
+    pushoutInl (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)
+  pullbackLift f (shortExactExtensionPushout e g).p
+    (pullbackFst f e.p)
+    (pullbackSnd f e.p ≫ q)
+    (by
+      have hp : q ≫ (shortExactExtensionPushout e g).p = e.p :=
+        shortExactExtensionPushout_map_p e g
+      exact (pullback_condition f e.p).trans
+        ((congrArg (fun k => pullbackSnd f e.p ≫ k) hp.symm).trans
+          (Category.assoc (pullbackSnd f e.p) q (shortExactExtensionPushout e g).p).symm))
+
+@[simp]
+lemma shortExactExtensionPullbackPushoutMiddleMap_fst
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    shortExactExtensionPullbackPushoutMiddleMap e f g ≫
+        pullbackFst f (shortExactExtensionPushout e g).p =
+      pullbackFst f e.p := by
+  dsimp [shortExactExtensionPullbackPushoutMiddleMap]
+  exact pullbackLift_fst f (shortExactExtensionPushout e g).p (pullbackFst f e.p)
+    (pullbackSnd f e.p ≫ pushoutInl (S := e.shortComplex) g
+      (pushoutSubgroup_closed e.conflation g)) _
+
+@[simp]
+lemma shortExactExtensionPullbackPushoutMiddleMap_snd
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    shortExactExtensionPullbackPushoutMiddleMap e f g ≫
+        pullbackSnd f (shortExactExtensionPushout e g).p =
+      pullbackSnd f e.p ≫
+        pushoutInl (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g) := by
+  dsimp [shortExactExtensionPullbackPushoutMiddleMap]
+  exact pullbackLift_snd f (shortExactExtensionPushout e g).p (pullbackFst f e.p)
+    (pullbackSnd f e.p ≫ pushoutInl (S := e.shortComplex) g
+      (pushoutSubgroup_closed e.conflation g)) _
+
+@[simp]
+lemma shortExactExtensionPullbackPushoutMiddleMap_p
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    shortExactExtensionPullbackPushoutMiddleMap e f g ≫
+        (shortExactExtensionPullback (shortExactExtensionPushout e g) f).p =
+      (shortExactExtensionPullback e f).p := by
+  exact shortExactExtensionPullbackPushoutMiddleMap_fst e f g
+
+@[simp]
+lemma shortExactExtensionPullbackPushoutMiddleMap_i
+    {X X' Y Y' : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : X' ⟶ X) (g : Y ⟶ Y') :
+    g ≫ (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i =
+      (shortExactExtensionPullback e f).i ≫
+        shortExactExtensionPullbackPushoutMiddleMap e f g := by
+  apply pullback_hom_ext f (shortExactExtensionPushout e g).p
+  · ext y
+    rfl
+  · let q : e.middle ⟶ (shortExactExtensionPushout e g).middle :=
+      pushoutInl (S := e.shortComplex) g (pushoutSubgroup_closed e.conflation g)
+    calc
+      (g ≫ (shortExactExtensionPullback (shortExactExtensionPushout e g) f).i) ≫
+          pullbackSnd f (shortExactExtensionPushout e g).p =
+          g ≫ ((shortExactExtensionPullback (shortExactExtensionPushout e g) f).i ≫
+            pullbackSnd f (shortExactExtensionPushout e g).p) :=
+        Category.assoc _ _ _
+      _ = g ≫ (shortExactExtensionPushout e g).i := by
+        exact congrArg (fun k => g ≫ k)
+          (shortExactExtensionPullback_i_map (shortExactExtensionPushout e g) f)
+      _ = e.i ≫ q := shortExactExtensionPushout_i e g
+      _ = ((shortExactExtensionPullback e f).i ≫ pullbackSnd f e.p) ≫ q := by
+        exact congrArg (fun k => k ≫ q) (shortExactExtensionPullback_i_map e f).symm
+      _ = (shortExactExtensionPullback e f).i ≫ (pullbackSnd f e.p ≫ q) :=
+        Category.assoc _ _ _
+      _ = (shortExactExtensionPullback e f).i ≫
+            (shortExactExtensionPullbackPushoutMiddleMap e f g ≫
+              pullbackSnd f (shortExactExtensionPushout e g).p) := by
+        exact congrArg (fun k => (shortExactExtensionPullback e f).i ≫ k)
+          (shortExactExtensionPullbackPushoutMiddleMap_snd e f g).symm
+      _ = ((shortExactExtensionPullback e f).i ≫
+              shortExactExtensionPullbackPushoutMiddleMap e f g) ≫
+            pullbackSnd f (shortExactExtensionPushout e g).p :=
+        (Category.assoc _ _ _).symm
+
 /-- Canonical pushout of one-fold extensions preserves isomorphism of the input extension. -/
 noncomputable def shortExactExtensionPushoutIso
     {X Y Y' : MetrizableLCA.{u}} (a : Y ⟶ Y')

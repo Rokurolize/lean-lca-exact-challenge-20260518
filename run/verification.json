@@ -1,12 +1,12 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v63-identity-pullback-pushout-exchange",
-  "generated_utc": "2026-05-19T03:15:18Z",
-  "source_tree_hash": "40b9339298e11379892febfaa67d5895301fd297b128c9d86cb07c179a16970a",
+  "schema": "lean-lca-exact-challenge-verification-v64-canonical-pullback-pushout-square",
+  "generated_utc": "2026-05-19T03:37:55Z",
+  "source_tree_hash": "0cbbd0a7fd7f8255e70c6baa5b52a99bf6d8a253c0249326d35348fb81a7b996",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "rebuilt LeanLCAExactChallenge after adding identity pullback-after-tail-pushout exchange normalization."
+      "evidence": "rebuilt LeanLCAExactChallenge after adding the canonical pullback-after-tail-pushout comparison map and endpoint laws."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -16,32 +16,32 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the identity pullback-after-tail-pushout iso, pushout data, Rel, and Ext equality."
+      "evidence": "Required declaration audit sees the canonical pullback-after-tail-pushout comparison map and projection/endpoint laws."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product audit sees identity pullback-after-tail-pushout normalization while preserving non-product gaps."
+      "evidence": "Product audit checks the comparison map type plus p and i endpoint laws while preserving non-product terminal state."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "strict LCA QuillenExactCategory and biproduct exactness APIs remain available."
+      "evidence": "Strict LCA QuillenExactCategory and biproduct exactness APIs remain available."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit sees the identity pullback-after-tail-pushout normalization declarations."
+      "evidence": "Yoneda blocker audit sees the canonical pullback-after-tail-pushout comparison map and endpoint laws."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "bounded exact weak equivalences and Dbounded localization remain available for MetrizableLCA."
+      "evidence": "Bounded exact weak equivalences and Dbounded localization remain available for MetrizableLCA."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because standard head pullback-pushout exchange, full left quotient bilinearity, and stable infinity-category enhancement remain incomplete."
+      "evidence": "Expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because standard head pullback-pushout exchange still lacks the IsPushout universal-property proof, left quotient bilinearity is incomplete, and stable infinity-category enhancement remains incomplete."
     },
     {
       "command": "git diff --check",
