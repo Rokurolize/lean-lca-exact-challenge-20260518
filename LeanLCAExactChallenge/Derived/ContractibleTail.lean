@@ -47,7 +47,28 @@ structure RightUnboundedContractibleComplex [HasZeroObject C] where
   rightUnbounded : RightUnboundedNonzeroTerms C complex
   equivalentZero : Nonempty (HomotopyEquiv complex (0 : CochainComplex C ℤ))
 
-/-- The over-strong statement that strict boundedness transports along arbitrary homotopy equivalence. -/
+/-- A contracting homotopy from the identity to zero gives a homotopy equivalence to zero. -/
+noncomputable def homotopyEquivZeroOfContractingHomotopy {ι : Type*} {C : Type*}
+    [Category C] [Preadditive C] [HasZeroObject C]
+    {c : ComplexShape ι} (K : HomologicalComplex C c)
+    (h : Homotopy (𝟙 K) (0 : K ⟶ K)) :
+    HomotopyEquiv K (0 : HomologicalComplex C c) where
+  hom := 0
+  inv := 0
+  homotopyHomInvId := by
+    simpa using h.symm
+  homotopyInvHomId := Homotopy.ofEq (by simp)
+
+/-- Nonempty wrapper for consumers that only need existence of a zero equivalence. -/
+theorem nonemptyHomotopyEquivZeroOfContractingHomotopy {ι : Type*} {C : Type*}
+    [Category C] [Preadditive C] [HasZeroObject C]
+    {c : ComplexShape ι} (K : HomologicalComplex C c)
+    (h : Homotopy (𝟙 K) (0 : K ⟶ K)) :
+    Nonempty (HomotopyEquiv K (0 : HomologicalComplex C c)) :=
+  ⟨homotopyEquivZeroOfContractingHomotopy K h⟩
+
+/-- The over-strong statement that strict boundedness transports along arbitrary
+homotopy equivalence. -/
 abbrev StrictBoundednessTransportOfHomotopyEquiv : Prop :=
   ∀ {K L : CochainComplex C ℤ},
     boundedCochainComplex C K →
@@ -70,7 +91,9 @@ noncomputable def intAlternatingTailGERightUnboundedContractible (p : ℤ) :
     RightUnboundedContractibleComplex IntModuleCat where
   complex := intAlternatingTailGE p
   rightUnbounded := intAlternatingTailGE_hasUpperUnboundedNonzeroTerms p
-  equivalentZero := ⟨intAlternatingTailGEHomotopyEquivZero p⟩
+  equivalentZero :=
+    nonemptyHomotopyEquivZeroOfContractingHomotopy (intAlternatingTailGE p)
+      (intAlternatingTailGEContractingHomotopy p)
 
 /-- The concrete transported alternating tail refutes over-strong strict-support transport. -/
 theorem not_strictBoundednessTransport_intAlternatingTailGE (p : ℤ) :
@@ -80,6 +103,8 @@ theorem not_strictBoundednessTransport_intAlternatingTailGE (p : ℤ) :
 
 #check intAlternatingTailGERightUnboundedContractible
 #check not_strictBoundednessTransport_intAlternatingTailGE
+#check homotopyEquivZeroOfContractingHomotopy
+#check nonemptyHomotopyEquivZeroOfContractingHomotopy
 
 end AlternatingTailExtendTransport
 

@@ -437,3 +437,9 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 2026-05-20T00:18:00Z時点で、`LeanLCAExactChallenge/Derived/ContractibleTail.lean`を追加し、右非有界非零支持と零複体への`HomotopyEquiv`をもつselected complexを`RightUnboundedContractibleComplex`としてライブラリ化した。`not_strictBoundednessTransport_of_rightUnboundedContractibleComplex`は、零複体がstrictly boundedであることと、右非有界非零支持がstrict boundednessに反することだけから、bare `HomotopyEquiv`に沿うstrict boundedness transportを否定する。
 
 さらに`intAlternatingTailGERightUnboundedContractible`により、v139の`intAlternatingTailGE p`がこの構造の具体例であることを確認した。したがって「具体的な右非有界contractible selected complexが本当にあるか」という境界は、`ModuleCat ℤ`上では閉じた。残るproduct上の問題は逆向きで、homotopy categoryやlocalizationで同じ対象を表す代表を選ぶときに、どの追加構造があればstrict bounded representativeへ戻せるか、またその構造を`Dbounded`のstable infinity-category certificateへどう反映するかである。
+
+### v141-v142: HomotopyEquiv bridge and restricted strictification payload
+
+2026-05-20T00:34:00Z時点で、contracting homotopyから零複体とのhomotopy equivalenceを作る一般補題を`homotopyEquivZeroOfContractingHomotopy`として追加した。これはcontractible tail系のconsumerが`Nonempty (HomotopyEquiv K 0)`を要求する場合に、毎回zero mapsと`h.symm`を組み立て直さずに済ませるための小さなAPIである。
+
+一方、positiveなstrictification側では`audit/blockers/selected_cochain_restricted_iso_payload_w114.lean`を追加した。このguardは、boundedなendpoint代表からselected sourceとselected mapping coneへ実cochain同型が与えられれば、`boundedHomotopyObjectTrianglehIso13Realization`が従うことを示す。したがって、bare `HomotopyEquiv`やhomotopy-category endpoint同型では足りないという反例境界と、実cochain同型なら足りるという十分条件の両側がLeanで揃った。残る問題は、その実cochain同型を一般に構成するstrictification theoremであり、まだproduct successではない。
