@@ -63,8 +63,10 @@ generators.
 #check (fun (X Y : MetrizableLCA) => YonedaRelGenerator (C := MetrizableLCA) X Y)
 #check (fun (X Y : MetrizableLCA) =>
   ShortExactExtension.BaerSumData (C := MetrizableLCA) (X := X) (Y := Y))
+#check (ShortExactExtension.BaerSumData.isoSum (C := MetrizableLCA))
 #check (ShortExactExtension.PullbackData.isPullback (C := MetrizableLCA))
 #check (ShortExactExtension.PushoutData.isPushout (C := MetrizableLCA))
+#check (ShortExactExtension.PushoutData.iso (C := MetrizableLCA))
 
 noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
     (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
@@ -435,6 +437,7 @@ example (X X' Y Z : MetrizableLCA) {n : ℕ}
 
 #check (YonedaExt.pullbackHeadFreeHomWith_baerChain_mem (C := MetrizableLCA))
 #check (YonedaExt.pullbackHeadFreeHomWith_homTail_mem (C := MetrizableLCA))
+#check MetrizableLCA.shortExactExtensionPushoutIso
 #check MetrizableLCA.shortExactExtensionPushoutAssocIso
 #check (YonedaExt.composeTailHomFreeHom_homTail_mem_metrizable)
 
@@ -461,6 +464,14 @@ noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
     ShortExactExtension.PushoutData e a (MetrizableLCA.shortExactExtensionPushout e a) :=
   MetrizableLCA.shortExactExtensionPushoutData e a
+
+noncomputable example (X Y Y' : MetrizableLCA)
+    {e e' : ShortExactExtension (C := MetrizableLCA) X Y}
+    (a : Y ⟶ Y') (h : ShortExactExtension.Iso e e') :
+    ShortExactExtension.Iso
+      (MetrizableLCA.shortExactExtensionPushout e a)
+      (MetrizableLCA.shortExactExtensionPushout e' a) :=
+  MetrizableLCA.shortExactExtensionPushoutIso a h
 
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :

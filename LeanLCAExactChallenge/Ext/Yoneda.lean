@@ -55,6 +55,26 @@ def refl {X Y : C} (e : ShortExactExtension X Y) : Iso e e where
   i_hom := by simp
   hom_p := by simp
 
+/-- Symmetry for isomorphism of one-fold extensions. -/
+def symm {X Y : C} {e e' : ShortExactExtension X Y} (h : Iso e e') : Iso e' e where
+  middleIso := h.middleIso.symm
+  i_hom := by
+    rw [← h.i_hom]
+    simp [Category.assoc]
+  hom_p := by
+    rw [← h.hom_p]
+    simp
+
+/-- Transitivity for isomorphism of one-fold extensions. -/
+def trans {X Y : C} {e₁ e₂ e₃ : ShortExactExtension X Y}
+    (h₁₂ : Iso e₁ e₂) (h₂₃ : Iso e₂ e₃) : Iso e₁ e₃ where
+  middleIso := h₁₂.middleIso.trans h₂₃.middleIso
+  i_hom := by
+    change e₁.i ≫ h₁₂.middleIso.hom ≫ h₂₃.middleIso.hom = e₃.i
+    rw [← Category.assoc, h₁₂.i_hom, h₂₃.i_hom]
+  hom_p := by
+    simp [CategoryTheory.Iso.trans_hom, h₂₃.hom_p, h₁₂.hom_p]
+
 end Iso
 
 /-- An isomorphism of one-fold extensions over chosen endpoint isomorphisms. -/
@@ -103,6 +123,32 @@ structure BaerSumData {X Y : C} [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y
   pushout_p : pushoutMap ≫ pushoutExtension.p = pullbackExtension.p
   sumIso : Iso pushoutExtension sum
 
+namespace BaerSumData
+
+/-- Replace the chosen representative of a Baer sum by an isomorphic extension. -/
+def isoSum {X Y : C} [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {e₁ e₂ sum sum' : ShortExactExtension X Y}
+    (h : BaerSumData e₁ e₂ sum) (hsum : Iso sum sum') :
+    BaerSumData e₁ e₂ sum' where
+  productExtension := h.productExtension
+  productFst := h.productFst
+  productSnd := h.productSnd
+  product_i_fst := h.product_i_fst
+  product_i_snd := h.product_i_snd
+  product_p_fst := h.product_p_fst
+  product_p_snd := h.product_p_snd
+  pullbackExtension := h.pullbackExtension
+  pullbackMap := h.pullbackMap
+  pullback_i := h.pullback_i
+  pullback_p := h.pullback_p
+  pushoutExtension := h.pushoutExtension
+  pushoutMap := h.pushoutMap
+  pushout_i := h.pushout_i
+  pushout_p := h.pushout_p
+  sumIso := h.sumIso.trans hsum
+
+end BaerSumData
+
 /-- Diagrammatic data identifying an extension pulled back along a quotient-endpoint map. -/
 structure PullbackData {X X' Y : C}
     (e : ShortExactExtension X Y) (a : X' ⟶ X) (out : ShortExactExtension X' Y) where
@@ -118,6 +164,66 @@ structure PushoutData {X Y Y' : C}
   i_map : a ≫ out.i = e.i ≫ middleMap
   map_p : middleMap ≫ out.p = e.p
   isPushout : IsPushout e.i a middleMap out.i
+
+namespace PushoutData
+
+/-- Pushout data transports an isomorphism of input one-fold extensions. -/
+noncomputable def iso {X Y Y' : C} {e e' : ShortExactExtension X Y}
+    {a : Y ⟶ Y'} {out out' : ShortExactExtension X Y'}
+    (d : PushoutData e a out) (d' : PushoutData e' a out') (h : Iso e e') :
+    Iso out out' := by
+  have h_hom_comm : e.i ≫ h.middleIso.hom ≫ d'.middleMap = a ≫ out'.i := by
+    rw [← Category.assoc, h.i_hom, ← d'.i_map]
+  have h_inv_i : e'.i ≫ h.middleIso.inv = e.i := by
+    rw [← h.i_hom]
+    simp [Category.assoc]
+  have h_inv_comm : e'.i ≫ h.middleIso.inv ≫ d.middleMap = a ≫ out.i := by
+    rw [← Category.assoc, h_inv_i, ← d.i_map]
+  let homMap : out.middle ⟶ out'.middle :=
+    d.isPushout.desc (h.middleIso.hom ≫ d'.middleMap) out'.i h_hom_comm
+  let invMap : out'.middle ⟶ out.middle :=
+    d'.isPushout.desc (h.middleIso.inv ≫ d.middleMap) out.i h_inv_comm
+  have hom_inl : d.middleMap ≫ homMap = h.middleIso.hom ≫ d'.middleMap := by
+    change d.middleMap ≫
+        d.isPushout.desc (h.middleIso.hom ≫ d'.middleMap) out'.i h_hom_comm =
+      h.middleIso.hom ≫ d'.middleMap
+    exact d.isPushout.inl_desc (h.middleIso.hom ≫ d'.middleMap) out'.i h_hom_comm
+  have hom_inr : out.i ≫ homMap = out'.i := by
+    change out.i ≫
+        d.isPushout.desc (h.middleIso.hom ≫ d'.middleMap) out'.i h_hom_comm =
+      out'.i
+    exact d.isPushout.inr_desc (h.middleIso.hom ≫ d'.middleMap) out'.i h_hom_comm
+  have inv_inl : d'.middleMap ≫ invMap = h.middleIso.inv ≫ d.middleMap := by
+    change d'.middleMap ≫
+        d'.isPushout.desc (h.middleIso.inv ≫ d.middleMap) out.i h_inv_comm =
+      h.middleIso.inv ≫ d.middleMap
+    exact d'.isPushout.inl_desc (h.middleIso.inv ≫ d.middleMap) out.i h_inv_comm
+  have inv_inr : out'.i ≫ invMap = out.i := by
+    change out'.i ≫
+        d'.isPushout.desc (h.middleIso.inv ≫ d.middleMap) out.i h_inv_comm =
+      out.i
+    exact d'.isPushout.inr_desc (h.middleIso.inv ≫ d.middleMap) out.i h_inv_comm
+  refine
+    { middleIso :=
+        { hom := homMap
+          inv := invMap
+          hom_inv_id := ?_
+          inv_hom_id := ?_ }
+      i_hom := hom_inr
+      hom_p := ?_ }
+  · apply d.isPushout.hom_ext
+    · rw [Category.comp_id, ← Category.assoc, hom_inl, Category.assoc, inv_inl,
+        ← Category.assoc, h.middleIso.hom_inv_id, Category.id_comp]
+    · rw [Category.comp_id, ← Category.assoc, hom_inr, inv_inr]
+  · apply d'.isPushout.hom_ext
+    · rw [Category.comp_id, ← Category.assoc, inv_inl, Category.assoc, hom_inl,
+        ← Category.assoc, h.middleIso.inv_hom_id, Category.id_comp]
+    · rw [Category.comp_id, ← Category.assoc, inv_inr, hom_inr]
+  · apply d.isPushout.hom_ext
+    · rw [← Category.assoc, hom_inl, Category.assoc, d'.map_p, h.hom_p, d.map_p]
+    · rw [← Category.assoc, hom_inr, out'.zero, out.zero]
+
+end PushoutData
 
 end ShortExactExtension
 
@@ -566,6 +672,16 @@ noncomputable def shortExactExtensionPushoutData
     IsPushout.of_isColimit
       (pushoutIsColimit (S := e.shortComplex) a
         (pushoutSubgroup_closed e.conflation a))
+
+/-- Canonical pushout of one-fold extensions preserves isomorphism of the input extension. -/
+noncomputable def shortExactExtensionPushoutIso
+    {X Y Y' : MetrizableLCA.{u}} (a : Y ⟶ Y')
+    {e e' : ShortExactExtension (C := MetrizableLCA.{u}) X Y}
+    (h : ShortExactExtension.Iso e e') :
+    ShortExactExtension.Iso
+      (shortExactExtensionPushout e a) (shortExactExtensionPushout e' a) :=
+  ShortExactExtension.PushoutData.iso
+    (shortExactExtensionPushoutData e a) (shortExactExtensionPushoutData e' a) h
 
 /-- Successive pushouts of a one-fold extension agree with the direct pushout. -/
 noncomputable def shortExactExtensionPushoutAssocIso
