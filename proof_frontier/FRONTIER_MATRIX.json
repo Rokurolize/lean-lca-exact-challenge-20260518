@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T02:50:00Z",
+  "generated_utc": "2026-05-20T03:05:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results w108-w122, classified w119/w120 as covered, used w121 for the endpoint strictification boundary, manually reimplemented the w123 minimizer, and integrated w122 into the stable projection audit map.",
+  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results w108-w122, rejected the in-progress w124 result as not mergeable, and added a parent-owned equivalence showing the weak-endpoint minimizer is exactly the bounded strict-realization theorem.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -569,9 +569,9 @@
         "ordinary localization mislabeled as stable infinity-category"
       ],
       "worker_count_allowed": 0,
-      "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean",
-      "merge_blocker": "v151 strengthens the stable certificate audit map: current Dbounded evidence is explicitly ordinary evidence, consisting of Dbounded.infinityNerve_quasicategory plus Dbounded.homotopyCategoryIso, while the future stable gate still requires finite limits, finite colimits, suspension/loop equivalence, and pushout/pullback compatibility from one certificate. v150 also isolates boundedWeakEndpointPayloadToCochainDataStrictification as the remaining bounded positive theorem. Both remain unproved as product facts; product success is still blocked.",
-      "product_success_contribution": "Clarifies the direct ordinary evidence versus future stable certificate boundary while preserving nonterminal product truth.",
+      "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
+      "merge_blocker": "v152 proves boundedWeakEndpointPayloadToCochainDataStrictification is equivalent to boundedHomotopyObjectTrianglehIso13Realization, using the unconditional weak endpoint payload and the cochain-data equivalence. This removes the possibility that the weak-endpoint upgrade is a genuinely easier remaining theorem. The bounded strict-realization theorem and stable certificate fields remain unproved as product facts.",
+      "product_success_contribution": "Narrows the bounded route to the actual bounded strict-realization theorem while preserving nonterminal product truth.",
       "owned_by_active_process": true,
       "implemented_declarations": [
         "BoundedDerivedCategory",
@@ -879,7 +879,9 @@
         "StableInfinityAudit.OrdinaryDboundedEvidence",
         "StableInfinityAudit.currentOrdinaryDboundedEvidence",
         "StableInfinityAudit.DboundedStableProjectionGapMap",
-        "StableInfinityAudit.currentStableProjectionGapMap"
+        "StableInfinityAudit.currentStableProjectionGapMap",
+        "boundedWeakEndpointPayloadToCochainDataStrictification_of_realization",
+        "boundedWeakEndpointPayloadToCochainDataStrictification_iff_realization"
       ],
       "technical_context": [
         "split short complexes",
@@ -944,7 +946,8 @@
         "v135 manually ported w102 alternating tail Homotopy.comm probe; typed homotopy family and Z-indexed transport remain open.",
         "v136 ports w104 and parent-extends it to a Nat-indexed contracting homotopy; Z-indexed transport remains open.",
         "current Dbounded ordinary evidence includes quasicategory and homotopy-category comparison only",
-        "stable projection gap map requires four future certificate projections from one certificate"
+        "stable projection gap map requires four future certificate projections from one certificate",
+        "weak endpoint minimizer is equivalent to bounded strict realization, not a weaker proof obligation"
       ]
     },
     {

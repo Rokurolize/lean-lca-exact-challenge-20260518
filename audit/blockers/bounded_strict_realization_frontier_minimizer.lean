@@ -49,6 +49,28 @@ theorem boundedHomotopyObjectTrianglehIso13Realization_of_weakEndpoint_frontier
     (strictify (homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished C))
 
 omit [QuillenExactCategory C] in
+/-- Bounded strict realization is enough to fill the weak-endpoint upgrade shape, because
+the cochain-data payload is equivalent to bounded strict realization and the weak endpoint
+argument can be ignored. This shows the minimizer is not weaker than the remaining bounded
+positive theorem. -/
+theorem boundedWeakEndpointPayloadToCochainDataStrictification_of_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : boundedHomotopyObjectTrianglehIso13Realization C) :
+    boundedWeakEndpointPayloadToCochainDataStrictification C := fun _weak =>
+  boundedTrianglehIso13CochainDataStrictification_of_realization C realize
+
+omit [QuillenExactCategory C] in
+/-- Since the weak endpoint payload is already available from distinguished triangles,
+the minimizer is equivalent to the bounded strict-realization input itself. -/
+theorem boundedWeakEndpointPayloadToCochainDataStrictification_iff_realization
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    boundedWeakEndpointPayloadToCochainDataStrictification C ↔
+      boundedHomotopyObjectTrianglehIso13Realization C := by
+  constructor
+  · exact boundedHomotopyObjectTrianglehIso13Realization_of_weakEndpoint_frontier C
+  · exact boundedWeakEndpointPayloadToCochainDataStrictification_of_realization C
+
+omit [QuillenExactCategory C] in
 /-- Once the frontier theorem is supplied, bounded homotopy objects satisfy the middle-term
 distinguished-triangle closure already implemented in `Derived.Bounded`. -/
 theorem boundedHomotopyObject_isTriangulatedClosed2_of_weakEndpoint_frontier
@@ -111,6 +133,8 @@ variable [HasZeroObject C] [HasBinaryBiproducts C]
 #check boundedTrianglehIso13CochainDataStrictification
 #check boundedWeakEndpointPayloadToCochainDataStrictification
 #check boundedHomotopyObjectTrianglehIso13Realization_of_weakEndpoint_frontier
+#check boundedWeakEndpointPayloadToCochainDataStrictification_of_realization
+#check boundedWeakEndpointPayloadToCochainDataStrictification_iff_realization
 #check boundedHomotopyObject_isTriangulatedClosed2_of_weakEndpoint_frontier
 #check boundedHomotopyCategory_pretriangulated_of_weakEndpoint_frontier
 #check boundedHomotopyCategory_isTriangulated_of_weakEndpoint_frontier
