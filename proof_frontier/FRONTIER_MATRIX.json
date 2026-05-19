@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T15:55:32Z",
+  "generated_utc": "2026-05-19T16:04:32Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v103 edits stay in the parent process. The parent did not launch or resume any worker for the rotated endpoint-isomorphism distinguished-triangle boundedness frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v104 edits stay in the parent process. The parent did not launch or resume any worker for the strict-realization closed2 frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -471,7 +471,8 @@
         "endpoint-isomorphism completion of distinguished triangle isomorphisms",
         "Pretriangulated.rot_of_distTriang",
         "Pretriangulated.invRotate",
-        "Pretriangulated.rotCompInvRot"
+        "Pretriangulated.rotCompInvRot",
+        "ObjectProperty.IsTriangulatedClosed₂.mk'"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -485,7 +486,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v103 adds the third endpoint-pair distinguished-triangle boundedness reduction through `boundedHomotopyObject_distinguished_ext1_of_triangleh_iso23`, using rotation, `Pretriangulated.isoTriangleOfIso₁₂`, and `Pretriangulated.rotCompInvRot` because mathlib has no direct `isoTriangleOfIso₂₃`. Together with v102 and v93-v101 this aligns the conditional Verdier route, but it does not prove bounded object or exact-acyclic homotopy object closure from arbitrary homotopy-category bounded endpoints, the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v104 adds `boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization`, a criterion saying compatible strict bounded source/cone mapping-cone realizations of distinguished triangles imply `boundedHomotopyObject C` is `IsTriangulatedClosed₂`. Together with v102-v103 and v93-v101 this aligns the conditional Verdier route, but it does not construct those strict realizations from arbitrary bounded homotopy endpoints, prove exact-acyclic homotopy object closure, prove the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -644,7 +645,8 @@
         "boundedHomotopyObject_triangleh_iso_ext1",
         "boundedHomotopyObject_distinguished_ext3_of_triangleh_iso12",
         "boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13",
-        "boundedHomotopyObject_distinguished_ext1_of_triangleh_iso23"
+        "boundedHomotopyObject_distinguished_ext1_of_triangleh_iso23",
+        "boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization"
       ],
       "technical_context": [
         "split short complexes",
@@ -738,7 +740,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v103 evidence records the rotated endpoint-isomorphism distinguished-triangle boundedness reduction while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v104 evidence records the strict-realization closed2 criterion while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

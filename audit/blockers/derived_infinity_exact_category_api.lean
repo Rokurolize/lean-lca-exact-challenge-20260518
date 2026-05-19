@@ -155,6 +155,7 @@ noncomputable def bounded_derived_quasicategory_family
 #check boundedHomotopyObject_distinguished_ext3_of_triangleh_iso12
 #check boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13
 #check boundedHomotopyObject_distinguished_ext1_of_triangleh_iso23
+#check boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
 #check BoundedHomotopyCategory
 #check BoundedHomotopyCategory.ι
 #check boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
@@ -379,6 +380,24 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
     boundedHomotopyObject C T.obj₁ :=
   boundedHomotopyObject_distinguished_ext1_of_triangleh_iso23 C hT f e₂ e₃ comm hL hCone
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize :
+      ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+        T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+        boundedHomotopyObject C T.obj₁ →
+        boundedHomotopyObject C T.obj₃ →
+        ∃ (K L : CochainComplex C ℤ) (f : K ⟶ L)
+          (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+          (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+            (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+                (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+              e₃.hom ≫ T.mor₃ ∧
+            boundedCochainComplex C K ∧
+            boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    (boundedHomotopyObject C).IsTriangulatedClosed₂ :=
+  boundedHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization C realize
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]
