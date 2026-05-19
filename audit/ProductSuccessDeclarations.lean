@@ -1498,6 +1498,12 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
   (C := MetrizableLCA))
 #check boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
+#check (boundedHomotopyExactWeakEquivalence (C := MetrizableLCA))
+#check (boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence
+  (C := MetrizableLCA))
+#check boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed
+#check (boundedHomotopyExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
+#check (boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence (C := MetrizableLCA))
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
@@ -1520,6 +1526,17 @@ noncomputable example : HasShift (Dbounded (C := MetrizableLCA)) ℤ := by
   infer_instance
 
 noncomputable example : (Dbounded.localization (C := MetrizableLCA)).CommShift ℤ := by
+  infer_instance
+
+noncomputable example :
+    (boundedHomotopyExactWeakEquivalence (C := MetrizableLCA)).IsCompatibleWithShift ℤ := by
+  infer_instance
+
+noncomputable example : HasShift (BoundedHomotopyDerivedCategory (C := MetrizableLCA)) ℤ := by
+  infer_instance
+
+noncomputable example :
+    ((boundedHomotopyExactWeakEquivalence (C := MetrizableLCA)).Q).CommShift ℤ := by
   infer_instance
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -1552,6 +1569,10 @@ The bounded derived category is the localization at those exact weak equivalence
 noncomputable example : Category (Dbounded (C := MetrizableLCA)) := by infer_instance
 
 #check (Dbounded.localization (C := MetrizableLCA))
+#check (BoundedHomotopyDerivedCategory (C := MetrizableLCA))
+#check (BoundedHomotopyDerivedQuasicategory (C := MetrizableLCA))
+#check (BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso (C := MetrizableLCA))
+#check (Dbounded.homotopyComparison (C := MetrizableLCA))
 
 /-
 The bounded derived infinity-category is exposed as a quasicategory, and its homotopy category

@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T09:51:03Z",
+  "generated_utc": "2026-05-19T10:10:48Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v81 edits stay in the parent process.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v82 edits stay in the parent process.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -449,7 +449,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v81 adds exactAcyclicHomotopyIsoClosure, proves its shift stability, proves that its trW equals exactAcyclicHomotopyObject.trW, and obtains the original trW left calculus from the iso-closure IsTriangulatedClosed₂ condition. The iso-closure distinguished-triangle closure, bounded exact weak-equivalence left calculus, ordinary pretriangulated/triangulated quotient structure, and stable infinity-category structure remain nonproduct.",
+      "merge_blocker": "v82 adds boundedHomotopyExactWeakEquivalence, proves direct bounded exact weak equivalences map into the homotopy/Verdier pullback class, proves conditional equality under iso-closed exact acyclicity, proves shift compatibility, and exposes the homotopy/Verdier ordinary localization, quasicategory nerve, homotopy-category comparison, and Dbounded.homotopyComparison. The iso-closure distinguished-triangle closure, direct bounded exact weak-equivalence left calculus, ordinary pretriangulated/triangulated quotient structure, and stable infinity-category structure remain nonproduct.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -495,7 +495,16 @@
         "exactAcyclicHomotopyIsoClosure_isStableUnderShift",
         "exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2",
         "exactAcyclicHomotopyIsoClosure_trW",
-        "exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2"
+        "exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2",
+        "boundedHomotopyExactWeakEquivalence",
+        "boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence",
+        "boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed",
+        "boundedHomotopyExactWeakEquivalence_isCompatibleWithShift",
+        "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence",
+        "BoundedHomotopyDerivedCategory",
+        "BoundedHomotopyDerivedQuasicategory",
+        "BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso",
+        "Dbounded.homotopyComparison"
       ]
     },
     {
@@ -562,7 +571,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v81 evidence records the iso-closure trW route and keeps the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v82 evidence records the homotopy/Verdier pullback comparison route and keeps the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

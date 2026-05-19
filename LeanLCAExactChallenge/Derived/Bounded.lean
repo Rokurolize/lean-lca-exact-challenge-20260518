@@ -291,6 +291,67 @@ theorem boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
       (HomotopyCategory.mappingCone_triangleh_distinguished
         ((BoundedComplexCategory.ι C).map f))).1 hf
 
+/-- Bounded morphisms whose image in the homotopy category lies in the Verdier-style weak
+equivalence class attached to the isomorphism closure of exact acyclic homotopy objects. -/
+abbrev boundedHomotopyExactWeakEquivalence [HasZeroObject C] [HasBinaryBiproducts C] :
+    MorphismProperty (BoundedComplexCategory C) :=
+  (exactAcyclicHomotopyIsoClosure C).trW.inverseImage
+    (BoundedComplexCategory.homotopyQuotient C)
+
+/-- Direct mapping-cone exact weak equivalences are homotopy/Verdier weak equivalences after
+passing to the homotopy category and closing exact acyclic objects under isomorphism. -/
+theorem boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    boundedExactWeakEquivalence C ≤ boundedHomotopyExactWeakEquivalence C := by
+  intro K L f hf
+  dsimp [boundedHomotopyExactWeakEquivalence]
+  rw [exactAcyclicHomotopyIsoClosure_trW C]
+  exact boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage C f hf
+
+/-- If exact acyclicity is homotopy-category isomorphism invariant, the direct bounded weak
+equivalences coincide with the homotopy/Verdier pullback weak equivalences. -/
+theorem boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    boundedExactWeakEquivalence C = boundedHomotopyExactWeakEquivalence C := by
+  dsimp [boundedHomotopyExactWeakEquivalence]
+  rw [exactAcyclicHomotopyIsoClosure_trW C]
+  exact boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage C
+
+/-- The homotopy/Verdier pullback weak equivalences on bounded complexes are compatible with
+cochain shifts. -/
+noncomputable instance boundedHomotopyExactWeakEquivalence_isCompatibleWithShift
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    (boundedHomotopyExactWeakEquivalence C).IsCompatibleWithShift ℤ where
+  condition n := by
+    ext K L f
+    let F : BoundedComplexCategory C ⥤ HomotopyCategory C (ComplexShape.up ℤ) :=
+      BoundedComplexCategory.homotopyQuotient C
+    let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+      (exactAcyclicHomotopyIsoClosure C).trW
+    change W (F.map (f⟦n⟧')) ↔ W (F.map f)
+    have hArrow : Arrow.mk (F.map (f⟦n⟧')) ≅ Arrow.mk ((F.map f)⟦n⟧') :=
+      Arrow.isoOfNatIso (F.commShiftIso n) (Arrow.mk f)
+    constructor
+    · intro hf
+      have hf' : W ((F.map f)⟦n⟧') := (W.arrow_mk_iso_iff hArrow).1 hf
+      exact (MorphismProperty.IsCompatibleWithShift.iff W (F.map f) n).1 hf'
+    · intro hf
+      have hf' : W ((F.map f)⟦n⟧') :=
+        (MorphismProperty.IsCompatibleWithShift.iff W (F.map f) n).2 hf
+      exact (W.arrow_mk_iso_iff hArrow).2 hf'
+
+/-- The identity functor sends direct bounded exact weak equivalences to the
+homotopy/Verdier pullback weak equivalences. -/
+abbrev boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    LocalizerMorphism (boundedExactWeakEquivalence C)
+      (boundedHomotopyExactWeakEquivalence C) where
+  functor := 𝟭 _
+  map := by
+    intro K L f hf
+    exact boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence C f hf
+
 /-- Once the exact-acyclic homotopy-object predicate is triangulated, mathlib supplies the
 left calculus of fractions for its Verdier-style weak equivalences. -/
 theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
@@ -358,7 +419,32 @@ abbrev Dbounded.localization [HasBinaryBiproducts C] :
     (boundedCochainComplex C).FullSubcategory ⥤ Dbounded C :=
   (boundedExactWeakEquivalence C).Q
 
+/-- The ordinary localization at the homotopy/Verdier pullback weak equivalences. -/
+abbrev BoundedHomotopyDerivedCategory [HasZeroObject C] [HasBinaryBiproducts C] :
+    Type (max u v) :=
+  (boundedHomotopyExactWeakEquivalence C).Localization
+
+/-- The ordinary nerve of the homotopy/Verdier pullback localization. -/
+noncomputable abbrev BoundedHomotopyDerivedQuasicategory
+    [HasZeroObject C] [HasBinaryBiproducts C] : SSet.QCat :=
+  ⟨CategoryTheory.nerve (BoundedHomotopyDerivedCategory C), inferInstance⟩
+
+/-- The ordinary homotopy category of the homotopy/Verdier pullback nerve recovers its
+localized category. -/
+noncomputable def BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    SSet.hoFunctor.obj (BoundedHomotopyDerivedQuasicategory C).1 ≅
+      Cat.of (BoundedHomotopyDerivedCategory C) :=
+  CategoryTheory.nerveFunctorCompHoFunctorIso.app (Cat.of (BoundedHomotopyDerivedCategory C))
+
 namespace Dbounded
+
+/-- The comparison from the direct bounded exact localization to the homotopy/Verdier pullback
+localization induced by the inclusion of weak-equivalence classes. -/
+noncomputable abbrev homotopyComparison [HasZeroObject C] [HasBinaryBiproducts C] :
+    Dbounded C ⥤ BoundedHomotopyDerivedCategory C :=
+  (boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence C).localizedFunctor
+    (Dbounded.localization C) (boundedHomotopyExactWeakEquivalence C).Q
 
 /-- If the exact weak equivalences have a left calculus of fractions, mathlib's localization
 API equips `Dbounded` with a preadditive structure. -/

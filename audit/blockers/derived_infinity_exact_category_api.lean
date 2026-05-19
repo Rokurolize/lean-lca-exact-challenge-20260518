@@ -40,6 +40,13 @@ object, and their shift stability follows once homotopy-category isomorphism
 invariance is proved. Thus the remaining path to `IsTriangulated` is narrowed to
 isomorphism invariance plus distinguished-triangle closure, after which mathlib
 supplies the Verdier left calculus of fractions for `trW`.
+Incremental v82 progress: the direct bounded weak-equivalence class now maps by
+the identity functor to the bounded pullback of the homotopy/Verdier `trW` class
+for the isomorphism closure of exact acyclic homotopy objects. This pullback
+class is shift-compatible and has its own ordinary localization, quasicategory
+nerve, and comparison functor from `Dbounded`. This is still not a proof that the
+direct weak-equivalence class has left calculus of fractions or that the
+ordinary nerve is a stable infinity-category.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -82,9 +89,18 @@ noncomputable def bounded_derived_quasicategory_family
 #check BoundedComplexCategory.homotopyQuotient
 #check boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
 #check boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
+#check boundedHomotopyExactWeakEquivalence
+#check boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence
+#check boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed
+#check boundedHomotopyExactWeakEquivalence_isCompatibleWithShift
+#check boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
+#check BoundedHomotopyDerivedCategory
+#check BoundedHomotopyDerivedQuasicategory
+#check BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso
+#check Dbounded.homotopyComparison
 #check Dbounded.preadditiveOfHasLeftCalculusOfFractions
 #check Dbounded.localization_additiveOfHasLeftCalculusOfFractions
 #check Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions
@@ -114,6 +130,16 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
   infer_instance
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    (boundedHomotopyExactWeakEquivalence C).IsCompatibleWithShift ℤ := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    HasShift (BoundedHomotopyDerivedCategory C) ℤ := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasBinaryBiproducts C] [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
     Preadditive (Dbounded C) :=
   Dbounded.preadditiveOfHasLeftCalculusOfFractions C
@@ -136,6 +162,10 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 
 #check (Dbounded (C := MetrizableLCA))
 #check Dbounded.localization
+#check BoundedHomotopyDerivedCategory
+#check BoundedHomotopyDerivedQuasicategory
+#check BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso
+#check Dbounded.homotopyComparison
 #check Dbounded.infinityCategory
 #check Dbounded.infinityNerve
 #check Dbounded.infinityNerve_quasicategory
