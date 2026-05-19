@@ -323,6 +323,54 @@ example (X X' Y : MetrizableLCA) {n : ℕ}
     (fun {_ _} {_} {_ _} h => MetrizableLCA.shortExactExtensionPullbackIsoBetween f h)
     h
 
+example (X X' Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y)
+    (s : e.shortComplex.Splitting) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) 0
+        (FreeAbelianGroup.of e.toYonedaExtension) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X' Y 0 :=
+  YonedaExt.pullbackHeadFreeHomWith_split_mem f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    (fun {_} e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s)
+    e s
+
+example (X X' Y Z : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Z)
+    (g : ShortExactExtension (C := MetrizableLCA) Z Y)
+    (s : g.shortComplex.Splitting) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) 1
+        (FreeAbelianGroup.of (YonedaExtension.cons e g.toYonedaExtension)) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X' Y 1 :=
+  YonedaExt.pullbackHeadFreeHomWith_leftSplit_mem f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    e g s
+
+example (X X' Y : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData a) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) n
+        (FreeAbelianGroup.of a) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X' Y n :=
+  YonedaExt.pullbackHeadFreeHomWith_rightSplit_mem f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    (fun {_} e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s)
+    h
+
+example (X X' Y : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData a) (f : X' ⟶ X) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) n
+        (FreeAbelianGroup.of a) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X' Y n :=
+  YonedaExt.pullbackHeadFreeHomWith_splitFactor_mem f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    (fun {_} e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s)
+    h
+
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
     ShortExactExtension (C := MetrizableLCA) X Y' :=
@@ -505,6 +553,55 @@ example (X Y Y' : MetrizableLCA) {n : ℕ}
         (FreeAbelianGroup.of a - FreeAbelianGroup.of b) ∈
       yonedaRelationSubgroup (C := MetrizableLCA) X Y' n :=
   YonedaExt.composeTailHomFreeHom_relIso_mem f h
+
+example (X Y Y' : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y)
+    (s : e.shortComplex.Splitting) (f : Y ⟶ Y') :
+    YonedaExt.composeTailHomFreeHom (C := MetrizableLCA) (X := X) f 0
+        (FreeAbelianGroup.of e.toYonedaExtension) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y' 0 :=
+  YonedaExt.composeTailHomFreeHom_split_mem f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    (fun {_ _} e g s => MetrizableLCA.shortExactExtensionPushoutSplitting e g s)
+    e s
+
+example (X Y Y' Z : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Z)
+    (g : ShortExactExtension (C := MetrizableLCA) Z Y)
+    (s : g.shortComplex.Splitting) (f : Y ⟶ Y') :
+    YonedaExt.composeTailHomFreeHom (C := MetrizableLCA) (X := X) f 1
+        (FreeAbelianGroup.of (YonedaExtension.cons e g.toYonedaExtension)) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y' 1 :=
+  YonedaExt.composeTailHomFreeHom_leftSplit_mem f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    (fun {_ _} e g s => MetrizableLCA.shortExactExtensionPushoutSplitting e g s)
+    e g s
+
+example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.RightSplitData a) (f : Y ⟶ Y') :
+    YonedaExt.composeTailHomFreeHom (C := MetrizableLCA) (X := X) f n
+        (FreeAbelianGroup.of a) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y' n :=
+  YonedaExt.composeTailHomFreeHom_rightSplit_mem f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    (fun {_ _} e g s => MetrizableLCA.shortExactExtensionPushoutSplitting e g s)
+    h
+
+example (X Y Y' : MetrizableLCA) {n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
+    (h : YonedaExtension.SplitFactorData a) (f : Y ⟶ Y') :
+    YonedaExt.composeTailHomFreeHom (C := MetrizableLCA) (X := X) f n
+        (FreeAbelianGroup.of a) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X Y' n :=
+  YonedaExt.composeTailHomFreeHom_splitFactor_mem f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    (fun {_ _} e g s => MetrizableLCA.shortExactExtensionPushoutSplitting e g s)
+    h
 
 noncomputable example (X Y : MetrizableLCA)
     (e₁ e₂ : ShortExactExtension (C := MetrizableLCA) X Y) :

@@ -35,6 +35,7 @@
     <p>2026-05-18T23:38:11Z時点で、既に商群へ降りている左splice写像が右Ext変数の加法と<code>baer_sum</code>を保つことを<code>YonedaExt.leftProductByExtension_add</code>、<code>YonedaExt.leftProductByExtension_baer_sum</code>、<code>YonedaExt.leftProductByPositiveChain_add</code>、<code>YonedaExt.leftProductByPositiveChain_baer_sum</code>として公開した。これは右変数側の加法性をAPI化するものであり、左変数側の関係全体への商降下を完成させるものではない。</p>
     <p>2026-05-18T23:46:16Z時点で、生成元レベルだった左因子split、iso、Baer互換性を、右Ext全体に作用する群準同型の等式へ持ち上げた。追加した主な定理は<code>YonedaExt.leftProductByExtension_eq_zero_of_split</code>、<code>YonedaExt.leftProductByExtension_eq_of_isoLeft</code>、<code>YonedaExt.leftProductByExtension_eq_add_of_baerLeft</code>、および正次数左鎖版の三定理である。これは左側の一段・head Baer関係について商元全体への互換性を強めるが、hom-tailや内部Baerを含む左側全生成関係への商降下はまだ残る。</p>
     <p>2026-05-18T23:54:43Z時点で、degree 0のtail合成とhead pullbackについて、生成元上の写像を自由アーベル群の準同型として公開した。<code>YonedaExt.composeTailHomFreeHom</code>と<code>YonedaExt.pullbackHeadFreeHomWith</code>に加え、termwise relationとrecursive chain-isomorphism relationの差が写像後も関係部分群に入ることを示すmembership補題を追加した。これは商群上の写像を作る直前の関係保存APIであり、Baer関係やhom-tail関係を含む全関係部分群保存はまだ未完了である。</p>
+    <p>2026-05-19T00:00:57Z時点で、同じ自由アーベル群上のdegree 0作用写像がsplit、leftSplit、rightSplit、splitFactorの零元系生成関係も関係部分群へ送ることを追加した。tail側はpushout normal formとsplit保存を使い、head側はpullback後のsplit保存を直接使う。残る主要障害はBaer生成関係とhom-tail生成関係のhead/tail作用との互換性であり、ここを越えない限り商群上の完全なdegree 0作用写像とは言えない。</p>
   </section>
   <section>
     <h2>worker方針</h2>
