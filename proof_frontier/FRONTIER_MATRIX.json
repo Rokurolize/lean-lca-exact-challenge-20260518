@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T00:34:00Z",
+  "generated_utc": "2026-05-20T00:52:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results w108-w115; w112 was already covered by v139-v140, w114 was ported as a restricted selected-cochain payload guard, and w115 supplied a generic contracting-homotopy-to-zero-equivalence bridge.",
+  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results w108-w115; w112 was already covered by v139-v140, w114 was promoted from an audit guard into Derived.Bounded as product-side selected-cochain payload API, and w115 supplied a generic contracting-homotopy-to-zero-equivalence bridge.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -570,7 +570,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean",
-      "merge_blocker": "v141-v142 adds homotopyEquivZeroOfContractingHomotopy and the w114 restricted selected-cochain payload guard. The negative and positive boundaries now align: bare HomotopyEquiv does not transport strict boundedness, while actual cochain-complex isomorphisms into the selected source/cone are sufficient for the existing bounded strict-realization consumer. Product success remains blocked by constructing those strictification isomorphisms generally and by the stable infinity-category certificate for the strict metrizable LCA exact category.",
+      "merge_blocker": "v143 moves the selected-cochain sufficient condition into Derived.Bounded: boundedTrianglehIso13CochainIsoPayload and boundedTrianglehIso13CochainDataStrictification now feed boundedHomotopyObjectTrianglehIso13Realization directly. The negative and positive boundaries now align in product code: bare HomotopyEquiv does not transport strict boundedness, while actual cochain-complex isomorphisms into the selected source/cone are sufficient for the existing bounded strict-realization consumer. Product success remains blocked by constructing those strictification isomorphisms generally and by the stable infinity-category certificate for the strict metrizable LCA exact category.",
       "product_success_contribution": "Clarifies the direct ordinary IsTriangulated route for Dbounded while preserving nonterminal product truth.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -850,7 +850,15 @@
         "boundedTrianglehIso13SelectedCochainStrictification",
         "boundedTrianglehIso13RestrictedEndpointCochainIsoPayload",
         "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos",
-        "boundedTrianglehIso13RestrictedEndpointCochainIsoPayload_iff_cochain_data_w114"
+        "boundedTrianglehIso13RestrictedEndpointCochainIsoPayload_iff_cochain_data_w114",
+        "boundedTrianglehIso13CochainIsoPayload",
+        "boundedTrianglehIso13SelectedCochainStrictification_of_cochain_iso_payload",
+        "boundedHomotopyObjectTrianglehIso13Realization_of_selected_cochain",
+        "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload",
+        "boundedTrianglehIso13CochainIsoPayload_of_cochain_data",
+        "boundedTrianglehIso13CochainDataStrictification_of_cochain_iso_payload",
+        "boundedTrianglehIso13CochainIsoPayload_iff_cochain_data",
+        "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data"
       ],
       "technical_context": [
         "split short complexes",

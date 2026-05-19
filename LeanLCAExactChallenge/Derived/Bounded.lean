@@ -921,6 +921,166 @@ abbrev boundedHomotopyObjectTrianglehIso13Realization
         boundedCochainComplex C (CochainComplex.mappingCone f)
 
 omit [QuillenExactCategory C] in
+/-- Cochain-level data for a chosen mapping-cone presentation of one distinguished
+triangle. -/
+structure BoundedTrianglehIso13SelectedCochainPayload
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))) where
+  sourceRepresentative : CochainComplex C ℤ
+  coneRepresentative : CochainComplex C ℤ
+  selectedSource : CochainComplex C ℤ
+  selectedTarget : CochainComplex C ℤ
+  selectedMap : selectedSource ⟶ selectedTarget
+  triangleSourceIso :
+    (CochainComplex.mappingCone.triangleh selectedMap).obj₁ ≅ T.obj₁
+  triangleConeIso :
+    (CochainComplex.mappingCone.triangleh selectedMap).obj₃ ≅ T.obj₃
+  sourceIso : sourceRepresentative ≅ selectedSource
+  coneIso : coneRepresentative ≅ CochainComplex.mappingCone selectedMap
+  triangleComm :
+    (CochainComplex.mappingCone.triangleh selectedMap).mor₃ ≫
+        (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map
+          triangleSourceIso.hom =
+      triangleConeIso.hom ≫ T.mor₃
+  sourceBounded : boundedCochainComplex C sourceRepresentative
+  coneBounded : boundedCochainComplex C coneRepresentative
+
+omit [QuillenExactCategory C] in
+/-- A per-triangle cochain-level selection principle. -/
+abbrev boundedTrianglehIso13SelectedCochainStrictification
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    boundedHomotopyObject C T.obj₁ →
+    boundedHomotopyObject C T.obj₃ →
+    Nonempty (BoundedTrianglehIso13SelectedCochainPayload C T)
+
+omit [QuillenExactCategory C] in
+/-- A compact cochain-isomorphism formulation for the selected bounded route. -/
+abbrev boundedTrianglehIso13CochainIsoPayload
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    boundedHomotopyObject C T.obj₁ →
+    boundedHomotopyObject C T.obj₃ →
+    ∃ (Ksrc Kcone K L : CochainComplex C ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        boundedCochainComplex C Ksrc ∧
+        boundedCochainComplex C Kcone ∧
+        Nonempty (Ksrc ≅ K) ∧
+        Nonempty (Kcone ≅ CochainComplex.mappingCone f)
+
+omit [QuillenExactCategory C] in
+/-- The cochain-isomorphism formulation constructs the selected cochain payload. -/
+theorem boundedTrianglehIso13SelectedCochainStrictification_of_cochain_iso_payload
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (strictify : boundedTrianglehIso13CochainIsoPayload C) :
+    boundedTrianglehIso13SelectedCochainStrictification C := by
+  intro T hT h₁ h₃
+  rcases strictify hT h₁ h₃ with
+    ⟨Ksrc, Kcone, K, L, f, e₁, e₃, comm, hKsrc, hKcone, hK, hCone⟩
+  exact ⟨{
+    sourceRepresentative := Ksrc
+    coneRepresentative := Kcone
+    selectedSource := K
+    selectedTarget := L
+    selectedMap := f
+    triangleSourceIso := e₁
+    triangleConeIso := e₃
+    sourceIso := hK.some
+    coneIso := hCone.some
+    triangleComm := comm
+    sourceBounded := hKsrc
+    coneBounded := hKcone }⟩
+
+omit [QuillenExactCategory C] in
+/-- The selected cochain payload supplies the bounded strict-realization input. -/
+theorem boundedHomotopyObjectTrianglehIso13Realization_of_selected_cochain
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (strictify : boundedTrianglehIso13SelectedCochainStrictification C) :
+    boundedHomotopyObjectTrianglehIso13Realization C := by
+  intro T hT h₁ h₃
+  rcases strictify hT h₁ h₃ with ⟨payload⟩
+  exact
+    ⟨payload.selectedSource, payload.selectedTarget, payload.selectedMap,
+      payload.triangleSourceIso, payload.triangleConeIso, payload.triangleComm,
+      (boundedCochainComplex C).prop_of_iso payload.sourceIso payload.sourceBounded,
+      (boundedCochainComplex C).prop_of_iso payload.coneIso payload.coneBounded⟩
+
+omit [QuillenExactCategory C] in
+/-- Direct cochain-isomorphism route to the bounded strict-realization input. -/
+theorem boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (strictify : boundedTrianglehIso13CochainIsoPayload C) :
+    boundedHomotopyObjectTrianglehIso13Realization C :=
+  boundedHomotopyObjectTrianglehIso13Realization_of_selected_cochain C
+    (boundedTrianglehIso13SelectedCochainStrictification_of_cochain_iso_payload
+      C strictify)
+
+omit [QuillenExactCategory C] in
+/-- The expanded cochain-data formulation records the actual isomorphisms explicitly. -/
+abbrev boundedTrianglehIso13CochainDataStrictification
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    boundedHomotopyObject C T.obj₁ →
+    boundedHomotopyObject C T.obj₃ →
+    ∃ (Ksrc Kcone K L : CochainComplex C ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+      (_eK : Ksrc ≅ K) (_eCone : Kcone ≅ CochainComplex.mappingCone f),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        boundedCochainComplex C Ksrc ∧
+        boundedCochainComplex C Kcone
+
+omit [QuillenExactCategory C] in
+/-- Expanded cochain data gives the compact cochain-isomorphism payload. -/
+theorem boundedTrianglehIso13CochainIsoPayload_of_cochain_data
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (strictify : boundedTrianglehIso13CochainDataStrictification C) :
+    boundedTrianglehIso13CochainIsoPayload C := by
+  intro T hT h₁ h₃
+  rcases strictify hT h₁ h₃ with
+    ⟨Ksrc, Kcone, K, L, f, e₁, e₃, eK, eCone, comm, hKsrc, hKcone⟩
+  exact ⟨Ksrc, Kcone, K, L, f, e₁, e₃, comm, hKsrc, hKcone, ⟨eK⟩, ⟨eCone⟩⟩
+
+omit [QuillenExactCategory C] in
+/-- The compact cochain-isomorphism payload gives expanded cochain data. -/
+theorem boundedTrianglehIso13CochainDataStrictification_of_cochain_iso_payload
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (strictify : boundedTrianglehIso13CochainIsoPayload C) :
+    boundedTrianglehIso13CochainDataStrictification C := by
+  intro T hT h₁ h₃
+  rcases strictify hT h₁ h₃ with
+    ⟨Ksrc, Kcone, K, L, f, e₁, e₃, comm, hKsrc, hKcone, hK, hCone⟩
+  exact ⟨Ksrc, Kcone, K, L, f, e₁, e₃, hK.some, hCone.some, comm, hKsrc, hKcone⟩
+
+omit [QuillenExactCategory C] in
+/-- The compact and expanded cochain-level formulations are equivalent. -/
+theorem boundedTrianglehIso13CochainIsoPayload_iff_cochain_data
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    boundedTrianglehIso13CochainIsoPayload C ↔
+      boundedTrianglehIso13CochainDataStrictification C := by
+  constructor
+  · exact boundedTrianglehIso13CochainDataStrictification_of_cochain_iso_payload C
+  · exact boundedTrianglehIso13CochainIsoPayload_of_cochain_data C
+
+omit [QuillenExactCategory C] in
+/-- Expanded cochain data supplies the bounded strict-realization input. -/
+theorem boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (strictify : boundedTrianglehIso13CochainDataStrictification C) :
+    boundedHomotopyObjectTrianglehIso13Realization C :=
+  boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload C
+    (boundedTrianglehIso13CochainIsoPayload_of_cochain_data C strictify)
+
+omit [QuillenExactCategory C] in
 /-- A strict-realization criterion for the middle-object distinguished-triangle closure of
 bounded homotopy objects.
 

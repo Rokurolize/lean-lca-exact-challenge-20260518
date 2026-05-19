@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v142-homotopy-equiv-bridge-and-restricted-strictification-payload",
-  "generated_utc": "2026-05-20T00:34:00Z",
-  "source_tree_hash": "9387468aba1ead4bfca9efa9072cd02f2adc8f81dfb9c22df8e4304985304e26",
-  "summary": "v141-v142 adds a generic contracting-homotopy-to-zero-equivalence bridge and a restricted selected-cochain payload guard; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v143-product-selected-cochain-payload",
+  "generated_utc": "2026-05-20T00:52:00Z",
+  "source_tree_hash": "f166f4e0348c7b600b79e22707e91b9013a18ee980857ab9e9095e068ae5d3e0",
+  "summary": "v143 moves the selected cochain isomorphism payload into Derived.Bounded product API; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full build will be rerun after artifact refresh; focused ContractibleTail build passed after v141 change."
+      "evidence": "Full build completed successfully after v143 selected cochain payload move."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -22,22 +22,22 @@
     {
       "command": "lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean",
       "status": "passed",
-      "evidence": "w114 guard printed restricted endpoint cochain-isomorphism payload and the bounded strict-realization consumer route."
+      "evidence": "w114 compatibility probe now aliases product-side declarations and passed."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after v143."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit will be rerun in the final oracle for this checkpoint."
+      "evidence": "Required declaration audit completed successfully after v143."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit will be rerun in the final oracle for this checkpoint."
+      "evidence": "Product declaration audit completed successfully after v143; it remains a declaration audit, not product_success acceptance."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -57,7 +57,12 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed for current v141-v142 changes."
+      "evidence": "Whitespace diff check passed after v143 artifact updates."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "Focused module build passed after adding selected cochain payload declarations to Derived.Bounded."
     }
   ],
   "implemented_declarations_checked": [
@@ -65,11 +70,17 @@
     "nonemptyHomotopyEquivZeroOfContractingHomotopy",
     "boundedTrianglehIso13RestrictedEndpointCochainIsoPayload",
     "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos",
-    "boundedTrianglehIso13RestrictedEndpointCochainIsoPayload_iff_cochain_data_w114"
+    "boundedTrianglehIso13RestrictedEndpointCochainIsoPayload_iff_cochain_data_w114",
+    "BoundedTrianglehIso13SelectedCochainPayload",
+    "boundedTrianglehIso13CochainIsoPayload",
+    "boundedTrianglehIso13CochainDataStrictification",
+    "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload",
+    "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data"
   ],
   "product_complete": false,
   "known_gaps": [
     "General strictification from homotopy-category endpoint isomorphisms to cochain-complex isomorphisms remains unproved.",
+    "The selected cochain payload is now product-side API, but no theorem constructs it for arbitrary bounded endpoint distinguished triangles.",
     "No stable infinity-category certificate for D^b(LCA) has been proved.",
     "No final clean review packet, oracle pass, or fresh claim review has accepted product_success=true."
   ]
