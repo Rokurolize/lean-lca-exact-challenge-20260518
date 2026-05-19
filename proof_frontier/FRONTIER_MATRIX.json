@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T14:38:00Z",
+  "generated_utc": "2026-05-19T14:51:21Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v98 edits stay in the parent process. The parent did not launch or resume any worker for the bounded homotopy Verdier quotient frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v99 edits stay in the parent process. The parent did not launch or resume any worker for the strict mapping-cone triangle boundedness frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -459,7 +459,9 @@
         "homotopy-route and direct-route Verdier comparison iso",
         "ObjectProperty.FullSubcategory bounded homotopy category API",
         "bounded homotopy category conditional triangulated wrapper",
-        "bounded exact-acyclic homotopy Verdier quotient wrapper"
+        "bounded exact-acyclic homotopy Verdier quotient wrapper",
+        "standard mapping cone triangle boundedness ext1/ext2/ext3",
+        "strict representative boundary for boundedHomotopyObject IsTriangulatedClosed₂"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -473,7 +475,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v98 adds conditional ordinary pretriangulated/triangulated wrappers for `BoundedHomotopyCategory` and the bounded exact-acyclic homotopy Verdier quotient. Together with v93-v97 this aligns the conditional Verdier route, but it does not prove bounded object or exact-acyclic homotopy object closure, the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v99 adds strict-representative boundedness lemmas for the three faces of a standard `CochainComplex.mappingCone.triangleh` triangle. Together with v93-v98 this aligns the conditional Verdier route, but it does not prove bounded object or exact-acyclic homotopy object closure at the homotopy-category isomorphism level, the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -621,7 +623,10 @@
         "boundedExactAcyclicHomotopyVerdierCategory_localization_commShift_of_closed2",
         "boundedExactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_closed2",
         "boundedExactAcyclicHomotopyVerdierCategory_pretriangulated_of_closed2",
-        "boundedExactAcyclicHomotopyVerdierCategory_isTriangulated_of_closed2"
+        "boundedExactAcyclicHomotopyVerdierCategory_isTriangulated_of_closed2",
+        "boundedHomotopyObject_triangleh_ext3",
+        "boundedHomotopyObject_triangleh_ext2",
+        "boundedHomotopyObject_triangleh_ext1"
       ],
       "technical_context": [
         "split short complexes",
@@ -644,7 +649,9 @@
         "canonical iso between routed and direct Verdier comparison functors",
         "conditional bounded homotopy category triangulated structure",
         "bounded exact-acyclic homotopy Verdier quotient wrappers",
-        "ordinary nerve of bounded homotopy Verdier quotient remains non-stable evidence"
+        "ordinary nerve of bounded homotopy Verdier quotient remains non-stable evidence",
+        "standard mapping cone triangle strict boundedness faces",
+        "strict representative boundary does not prove iso-closure IsTriangulatedClosed₂"
       ]
     },
     {
@@ -711,7 +718,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v98 evidence records conditional bounded homotopy Verdier quotient wrappers while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v99 evidence records strict mapping-cone triangle boundedness ext lemmas while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

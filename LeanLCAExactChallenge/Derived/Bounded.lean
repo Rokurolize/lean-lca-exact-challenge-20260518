@@ -486,6 +486,38 @@ theorem boundedHomotopyObject_of_mappingCone_left [HasBinaryBiproducts C]
   boundedHomotopyObject_quotient_obj C (boundedCochainComplex_of_mappingCone_left C f hCone)
 
 omit [QuillenExactCategory C] in
+/-- In a standard mapping-cone triangle with strict bounded source and target, the cone
+object is bounded. This is a strict-representative triangle lemma, not the full
+isomorphism-closure statement required for `IsTriangulatedClosed₂`. -/
+theorem boundedHomotopyObject_triangleh_ext3 [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hK : boundedCochainComplex C K) (hL : boundedCochainComplex C L) :
+    boundedHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₃ :=
+  boundedHomotopyObject_mappingCone C f hK hL
+
+omit [QuillenExactCategory C] in
+/-- In a standard mapping-cone triangle with strict bounded source and cone, the target
+object is bounded. This records the strict-representative part of the middle-object
+two-out-of-three condition. -/
+theorem boundedHomotopyObject_triangleh_ext2 [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (_hK : boundedCochainComplex C K)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₂ :=
+  boundedHomotopyObject_of_mappingCone_right C f hCone
+
+omit [QuillenExactCategory C] in
+/-- In a standard mapping-cone triangle with strict bounded target and cone, the source
+object is bounded. This records the strict-representative part of the first-object
+two-out-of-three condition. -/
+theorem boundedHomotopyObject_triangleh_ext1 [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (_hL : boundedCochainComplex C L)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₁ :=
+  boundedHomotopyObject_of_mappingCone_left C f hCone
+
+omit [QuillenExactCategory C] in
 /-- It is enough to prove two-out-of-three distinguished-triangle closure for bounded
 homotopy objects to make them a triangulated object property. -/
 theorem boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2

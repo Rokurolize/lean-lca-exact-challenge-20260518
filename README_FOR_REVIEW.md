@@ -27,12 +27,13 @@
 - v96ではdirect bounded exact弱同値類からordinary homotopy Verdier quotientの弱同値類へ向かう`boundedExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW`を追加した。さらに`BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso`、`Dbounded.verdierComparisonDirect`、`Dbounded.verdierComparisonDirectLocalizationIso`により、比較functorが局所化functorと可換であることをLeanで確認した。これは比較経路の可換性を明示するが、無条件left/right calculusやstable infinity-category構造を証明するものではない
 - v97では`Dbounded.homotopyComparisonLocalizationIso`、`Dbounded.verdierComparisonLocalizationIso`、`Dbounded.verdierComparisonDirectIso`を追加し、homotopy経由とdirect経路のordinary Verdier比較functorが同じ局所化functorをliftしており、互いにcanonically isomorphicであることを確認した。これは比較経路の曖昧さを消すが、無条件left/right calculusやstable infinity-category構造を証明するものではない
 - v98では`boundedHomotopyObject C`の`IsTriangulatedClosed₂`を仮定すれば`BoundedHomotopyCategory C`がordinary pretriangulated/triangulated categoryになることを確認した。さらに`exactAcyclicHomotopyIsoClosure C`側の`IsTriangulatedClosed₂`も仮定して、bounded homotopy category内のexact acyclic object property、`BoundedExactAcyclicHomotopyVerdierCategory`、そのordinary nerve、preadditive/zero/shift/pretriangulated/triangulated wrapperまで接続した。これはbounded homotopy Verdier quotient側の条件付き足場であり、仮定そのものやstable infinity-category構造を証明するものではない
+- v99では標準mapping cone三角形`CochainComplex.mappingCone.triangleh f`について、source/targetがstrict boundedならcone objectがbounded、source/coneがstrict boundedならtarget objectがbounded、target/coneがstrict boundedならsource objectがbounded、という三つのstrict代表補題`boundedHomotopyObject_triangleh_ext3`、`boundedHomotopyObject_triangleh_ext2`、`boundedHomotopyObject_triangleh_ext1`を追加した。これはmathlibのdistinguished triangleがmapping cone triangleと同型なものとして定義されていることに対応する境界確認であり、endpointが「boundedなcomplexと同型」なだけの場合を処理する`boundedHomotopyObject C`全体の`IsTriangulatedClosed₂`を証明するものではない
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
 一方、`BoundedDerivedInfinityCategory`は`Dbounded`のnerveとしてquasicategory性とhomotopy category比較までは構成したが、exact acyclic homotopy objectの同型閉包が`IsTriangulatedClosed₂`を満たすこと、そこから得るdirect bounded exact weak equivalenceのleft/right calculus of fractions、`Dbounded`への三角構造転送、stable infinity-categoryとしての有限極限・有限余極限・suspension equivalenceなどの構造はまだ証明していない。v83で追加した`ExactAcyclicHomotopyVerdierCategory`のordinary triangulated構造は、この未証明仮定の下にあるhomotopy Verdier quotient側の条件付き構造であり、v84の`BoundedHomotopyCategory`もbounded ambient subcategoryの足場であってproduct successではない。v85の`Dbounded.homotopyComparisonEquivalenceOfIsoClosed`も同型閉性仮定下の普通の圏同値であり、v86のsplit cone criteriaも具体的なsplit mapping coneに対する十分条件であってstable infinity-category完成ではない。v87のmapping coneからsource/targetのboundednessを取り出す補題も、cone三角形のbounded ambient条件を整える補助事実であって、exact acyclic側の三角閉性を証明するものではない。v88のexact coneと`trW`の条件付き同値、v89のbounded morphismごとの弱同値同値API、およびv90の同型閉包membership判定APIも、同型閉包側の`IsTriangulatedClosed₂`やstable enhancementを証明するものではない。このgoalでは、この不足を残したまま`update_goal(status="complete")`を呼んではならない。`audit/external_audit.py`にも、ordinary localizationのnerveをstable bounded derived infinity-categoryとしてproduct success主張する負例を拒否する検査を追加した。
 
-v91からv98のhomotopyObjectClosed2還元API、left/right-calculus移送API、ordinary homotopy Verdier quotientへの比較functor、局所化可換性証明、比較経路同型、bounded homotopy Verdier quotient wrapperも、残条件の位置を明確にするための足場であってproduct successではない。`exactAcyclicHomotopyObject C`自体の`IsTriangulatedClosed₂`、homotopy/Verdier pullback側およびdirect bounded weak equivalence自身の無条件left/right calculus、`Dbounded`への三角構造転送、stable infinity-category構造は未実装のままである。
+v91からv99のhomotopyObjectClosed2還元API、left/right-calculus移送API、ordinary homotopy Verdier quotientへの比較functor、局所化可換性証明、比較経路同型、bounded homotopy Verdier quotient wrapper、標準mapping cone三角形のstrict代表補題も、残条件の位置を明確にするための足場であってproduct successではない。`boundedHomotopyObject C`と`exactAcyclicHomotopyObject C`自体の`IsTriangulatedClosed₂`、homotopy/Verdier pullback側およびdirect bounded weak equivalence自身の無条件left/right calculus、`Dbounded`への三角構造転送、stable infinity-category構造は未実装のままである。
 
 ## 評価文脈
 
@@ -51,7 +52,7 @@ python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcom
 git diff --check
 ```
 
-`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv98までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、さらにordinary nerve経路をstable infinity-category完成として扱う主張も失敗させる。
+`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv99までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、さらにordinary nerve経路をstable infinity-category完成として扱う主張も失敗させる。
 
 ## レビューpacket
 

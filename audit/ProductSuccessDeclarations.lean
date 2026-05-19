@@ -1510,6 +1510,9 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (boundedHomotopyObject_mappingCone (C := MetrizableLCA))
 #check (boundedHomotopyObject_of_mappingCone_right (C := MetrizableLCA))
 #check (boundedHomotopyObject_of_mappingCone_left (C := MetrizableLCA))
+#check (boundedHomotopyObject_triangleh_ext3 (C := MetrizableLCA))
+#check (boundedHomotopyObject_triangleh_ext2 (C := MetrizableLCA))
+#check (boundedHomotopyObject_triangleh_ext1 (C := MetrizableLCA))
 #check boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2
 #check boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2
 #check boundedHomotopyCategory_isTriangulated_of_isTriangulatedClosed2

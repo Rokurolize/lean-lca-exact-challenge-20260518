@@ -144,6 +144,9 @@ noncomputable def bounded_derived_quasicategory_family
 #check boundedHomotopyObject_mappingCone
 #check LeanLCAExactChallenge.boundedHomotopyObject_of_mappingCone_right
 #check LeanLCAExactChallenge.boundedHomotopyObject_of_mappingCone_left
+#check boundedHomotopyObject_triangleh_ext3
+#check boundedHomotopyObject_triangleh_ext2
+#check boundedHomotopyObject_triangleh_ext1
 #check BoundedHomotopyCategory
 #check BoundedHomotopyCategory.ι
 #check boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
@@ -258,6 +261,26 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     [HasZeroObject C] [HasBinaryBiproducts C] :
     Dbounded C ⥤ ExactAcyclicHomotopyVerdierCategory C :=
   Dbounded.verdierComparison C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hK : boundedCochainComplex C K) (hL : boundedCochainComplex C L) :
+    boundedHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₃ :=
+  boundedHomotopyObject_triangleh_ext3 C f hK hL
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hK : boundedCochainComplex C K)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₂ :=
+  boundedHomotopyObject_triangleh_ext2 C f hK hCone
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hL : boundedCochainComplex C L)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₁ :=
+  boundedHomotopyObject_triangleh_ext1 C f hL hCone
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]
