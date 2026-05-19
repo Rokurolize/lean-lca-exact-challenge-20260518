@@ -1,63 +1,58 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v117-pushout-kernel-range",
-  "generated_utc": "2026-05-19T20:13:05Z",
-  "source_tree_hash": "dd5083f9b7f1f17235d4b1cf9bb45bfa666a7389ae40f1ccc4823e8bc95fc321",
-  "summary": "v117 manually ports external support worker w02/w29/w43 pushout kernel/range wrapper evidence in the parent worktree: pushoutCokernelMap_open_surjection and pushoutCokernelMap_kernel_iff_range_inr expose the open-surjective cokernel map and identify its kernel with the pushoutInr range, with a Yoneda-facing consumer probe. Product remains nonterminal because bounded strict-realization, direct bounded calculus, Dbounded triangulated transfer, and stable infinity-category certificate blockers remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-v118-dbounded-triangulated-transfer-audits",
+  "generated_utc": "2026-05-19T20:20:00Z",
+  "source_tree_hash": "cf158c651c37f00d12bc72a6ffea776ff451f6603ae8b21f1fed76df2e444a65",
+  "summary": "v118 manually ports external support worker w52/w53 Dbounded ordinary triangulated-transfer audit probes in the parent worktree: one file records the hypotheses needed to apply Triangulated.Localization.pretriangulated to Dbounded.localization, and one proves a conditional LocalizerMorphism.localizedFunctor IsTriangulated transfer using CatCommSq and shift coherence. Product remains nonterminal because direct bounded triangulation compatibility, Dbounded localization triangulated inputs, and a genuine stable infinity-category certificate remain unproved.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after v117 pushout kernel/range wrapper port."
+      "evidence": "Full project build passed after v118 Dbounded ordinary triangulated-transfer audit probes."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after v117."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.LCA.Pushout LeanLCAExactChallenge.Ext.Yoneda",
-      "status": "passed",
-      "evidence": "Focused pushout and Yoneda build passed after clearing only regenerable /tmp pip/onnxruntime temporary files when the first run hit ENOSPC."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after v118."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit compiles and checks the new pushoutCokernelMap_open_surjection and pushoutCokernelMap_kernel_iff_range_inr names."
+      "evidence": "Required declaration audit remains green after the v118 audit-only Dbounded transfer checkpoint."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles after adding the v117 pushout wrappers and strictShortExact_pushout check."
+      "evidence": "Product declaration audit remains green after v118 and still preserves failed_nonterminal product truth."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after v117."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after v118."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after v117."
+      "evidence": "Yoneda blocker audit still compiles after v118."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit still compiles after v117 and continues to record unresolved product blockers."
+      "evidence": "Derived blocker audit still compiles after v118 and continues to record unresolved stable infinity-category product blockers."
     },
     {
-      "command": "lake env lean audit/blockers/pushout_kernel_range_api.lean",
+      "command": "lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean",
       "status": "passed",
-      "evidence": "New pushout kernel/range audit compiles and #checks pushoutCokernelMap_open_surjection, pushoutCokernelMap_kernel_iff_range_inr, and strictShortExact_pushout."
+      "evidence": "New v118 Dbounded pretriangulated wrapper audit compiles and checks the exact hypotheses needed to apply Triangulated.Localization.pretriangulated to Dbounded.localization."
     },
     {
-      "command": "lake env lean audit/blockers/pushout_wrapper_consumer_probe.lean",
+      "command": "lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean",
       "status": "passed",
-      "evidence": "New Yoneda-facing consumer probe compiles and proves the shortExactExtensionPushout cokernel kernel/range form via pushoutCokernelMap_kernel_iff_range_inr."
+      "evidence": "New v118 localized functor transfer audit compiles and proves the conditional IsTriangulated transfer from CatCommSq and shift coherence."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check passes after v117."
+      "evidence": "External audit Python syntax check passes after v118."
     },
     {
       "command": "python3 audit/external_audit.py --root audit/negative_fixtures/ordinary_nerve_claimed_product_success --terminal-outcome terminal_outcome.json --self-check-only",
@@ -87,32 +82,32 @@
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v117 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v118 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v117 frontier refresh."
+      "evidence": "Proof frontier JSON syntax checked after the v118 Dbounded transfer frontier refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after regenerating the v117 verification record."
+      "evidence": "Verification JSON syntax checked after regenerating the v118 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked after regenerating the v117 manifest."
+      "evidence": "Manifest JSON syntax checked after regenerating the v118 manifest."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v117 Lean, audit, documentation, frontier, terminal outcome, and evidence update."
+      "evidence": "Whitespace check passed after the v118 audit, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: pre-terminal audit checks pass, including v117 pushout wrapper declarations, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because the stable infinity-category product proof remains incomplete."
+      "evidence": "Expected non-product gate after manifest refresh: pre-terminal audit checks pass, including v118 Dbounded transfer audit files, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because the stable infinity-category product proof remains incomplete."
     }
   ]
 }
