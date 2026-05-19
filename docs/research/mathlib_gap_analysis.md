@@ -424,3 +424,10 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 ### v137: pullback wrapper consumer probe
 
 2026-05-19T22:50:00Z時点で、strict short exact pullbackの既存wrapperを下流コードが消費できることを監査ファイルで確認した。これによりLCA/Yoneda側のbase-change APIはpushout/pullbackの両側でconsumer guardを持つ。ただし、これは既存APIの利用面を守るもので、strict realization、triangulated transfer、stable infinity-category証明は未解決である。
+
+
+### v138-v139: concrete unbounded contractible tail
+
+2026-05-19T23:20:00Z時点で、contractible tail具体例については大きく前進した。`HomologicalComplex.alternatingConst`から作ったNat添字tailの収縮を`Homotopy.extend`で`ComplexShape.embeddingUpIntGE p`に沿って`ℤ`添字tailへ移し、`intAlternatingTailGEContractingHomotopy : Homotopy (𝟙 (intAlternatingTailGE p)) 0`を得た。さらに零複体との`HomotopyEquiv`である`intAlternatingTailGEHomotopyEquivZero`と、任意の上界より右に非零項があることを示す`intAlternatingTailGE_hasUpperUnboundedNonzeroTerms`も証明した。
+
+これで、従来の「具体的な`ℤ`添字cochain complexの微分、`d_comp_d`、contracting homotopy、右非有界非零支持が未構成」というgapは、少なくとも`ModuleCat ℤ`上では解消した。ただしproduct successのgapは残る。このtailは、bareな`HomotopyEquiv`によるstrict boundedness transportが危険であることを示す反例境界を強めるものであり、bounded derived infinity-categoryのstable certificateや、任意のhomotopy-category selected representativeを安全にstrict bounded cochain dataへ戻す定理を与えるものではない。次のgapは、この具体例を`UnboundedContractibleTailInstance`型の既存監査境界へ整理して、選択代表strictification戦略でどの補助条件が必要かをさらに狭めることである。

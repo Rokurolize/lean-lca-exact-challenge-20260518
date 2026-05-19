@@ -12,6 +12,11 @@ open AlternatingTailExtendTransport
 #check intAlternatingTailGE
 #check intAlternatingTailGE_extendMap_id
 #check intAlternatingTailGE_extendMap_zero
+#check transportedNatTailHomotopy
+#check intAlternatingTailGEContractingHomotopy
+#check intAlternatingTailGEHomotopyEquivZero
+#check intAlternatingTailGE_hasUpperUnboundedNonzeroTerms
+#check transportedNatTailHomotopy_hom_eq
 
 end AlternatingTailExtendTransportProbe
 

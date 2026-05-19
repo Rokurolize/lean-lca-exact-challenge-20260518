@@ -1,8 +1,7 @@
 import LeanLCAExactChallenge.Derived.Bounded
 import Mathlib.Algebra.Category.ModuleCat.Basic
 import Mathlib.Algebra.Homology.AlternatingConst
-import Mathlib.Algebra.Homology.Embedding.Extend
-import Mathlib.Algebra.Homology.Homotopy
+import Mathlib.Algebra.Homology.Embedding.ExtendHomotopy
 
 set_option autoImplicit false
 
@@ -11,6 +10,7 @@ namespace LeanLCAExactChallenge
 open CategoryTheory
 open HomologicalComplex
 open ComplexShape
+open scoped ZeroObject
 
 namespace AlternatingTailExtendTransport
 
@@ -19,6 +19,14 @@ abbrev IntModuleCat := ModuleCat.{0} ℤ
 
 /-- The constant object used in the alternating tail. -/
 noncomputable abbrev moduleInt : IntModuleCat := ModuleCat.of ℤ ℤ
+
+/-- The constant object used in the tail is not a zero object. -/
+lemma moduleInt_not_isZero : ¬ CategoryTheory.Limits.IsZero moduleInt := by
+  intro h
+  have hid_zero : (𝟙 moduleInt : moduleInt ⟶ moduleInt) = 0 :=
+    h.eq_of_src _ _
+  have h_apply := congrArg (fun f : moduleInt ⟶ moduleInt => f (1 : ℤ)) hid_zero
+  norm_num at h_apply
 
 /-- The Nat-indexed alternating cochain complex with differentials `id, 0, id, 0, ...`. -/
 noncomputable def natAlternatingTail : CochainComplex IntModuleCat ℕ :=
@@ -173,10 +181,72 @@ lemma intAlternatingTailGE_extendMap_zero (p : ℤ) :
       (0 : intAlternatingTailGE p ⟶ intAlternatingTailGE p) := by
   simp
 
+/-- Any Nat-indexed contracting homotopy transports across `embeddingUpIntGE p`. -/
+noncomputable def transportedNatTailHomotopy (p : ℤ)
+    (h : Homotopy (𝟙 natAlternatingTail)
+      (0 : natAlternatingTail ⟶ natAlternatingTail)) :
+    Homotopy
+      (HomologicalComplex.extendMap (𝟙 natAlternatingTail) (embeddingUpIntGE p))
+      (HomologicalComplex.extendMap (0 : natAlternatingTail ⟶ natAlternatingTail)
+        (embeddingUpIntGE p)) :=
+  h.extend (embeddingUpIntGE p)
+
+/-- The `ℤ`-indexed right tail has a contracting homotopy. -/
+noncomputable def intAlternatingTailGEContractingHomotopy (p : ℤ) :
+    Homotopy (𝟙 (intAlternatingTailGE p))
+      (0 : intAlternatingTailGE p ⟶ intAlternatingTailGE p) := by
+  simpa [intAlternatingTailGE] using
+    transportedNatTailHomotopy p natAlternatingTailContractingHomotopy
+
+/-- The `ℤ`-indexed right tail is homotopy equivalent to the zero complex. -/
+noncomputable def intAlternatingTailGEHomotopyEquivZero (p : ℤ) :
+    HomotopyEquiv (intAlternatingTailGE p) (0 : CochainComplex IntModuleCat ℤ) where
+  hom := 0
+  inv := 0
+  homotopyHomInvId := by
+    simpa using (intAlternatingTailGEContractingHomotopy p).symm
+  homotopyInvHomId := Homotopy.ofEq (by simp)
+
+/-- Degreewise evidence that a cochain representative has nonzero terms arbitrarily far
+to the right. -/
+abbrev HasUpperUnboundedNonzeroTerms (K : CochainComplex IntModuleCat ℤ) : Prop :=
+  ∀ b : ℤ, ∃ i : ℤ, b < i ∧ ¬ CategoryTheory.Limits.IsZero (K.X i)
+
+/-- The transported `ℤ`-indexed alternating tail has nonzero terms arbitrarily far to the right. -/
+theorem intAlternatingTailGE_hasUpperUnboundedNonzeroTerms (p : ℤ) :
+    HasUpperUnboundedNonzeroTerms (intAlternatingTailGE p) := by
+  intro b
+  let n : ℕ := (b - p + 1).natAbs
+  refine ⟨p + n, by omega, ?_⟩
+  intro hzero
+  have hnat :
+      CategoryTheory.Limits.IsZero ((natAlternatingTail).X n) :=
+    ((natAlternatingTail.extendXIso (embeddingUpIntGE p) (i := n) rfl).isZero_iff).1 hzero
+  exact moduleInt_not_isZero (by
+    simpa [natAlternatingTail, HomologicalComplex.alternatingConst] using hnat)
+
+/-- Component formula for the transported `ℤ`-tail homotopy on degrees in the image. -/
+lemma transportedNatTailHomotopy_hom_eq (p : ℤ)
+    (h : Homotopy (𝟙 natAlternatingTail)
+      (0 : natAlternatingTail ⟶ natAlternatingTail))
+    {i' j' : ℤ} {i j : ℕ}
+    (hi : (embeddingUpIntGE p).f i = i')
+    (hj : (embeddingUpIntGE p).f j = j') :
+    (transportedNatTailHomotopy p h).hom i' j' =
+      (natAlternatingTail.extendXIso (embeddingUpIntGE p) hi).hom ≫
+        h.hom i j ≫
+          (natAlternatingTail.extendXIso (embeddingUpIntGE p) hj).inv := by
+  exact h.extend_hom_eq (embeddingUpIntGE p) hi hj
+
 #check natAlternatingTailContractingHomotopy
 #check intAlternatingTailGE
 #check intAlternatingTailGE_extendMap_id
 #check intAlternatingTailGE_extendMap_zero
+#check transportedNatTailHomotopy
+#check intAlternatingTailGEContractingHomotopy
+#check intAlternatingTailGEHomotopyEquivZero
+#check intAlternatingTailGE_hasUpperUnboundedNonzeroTerms
+#check transportedNatTailHomotopy_hom_eq
 
 end AlternatingTailExtendTransport
 
