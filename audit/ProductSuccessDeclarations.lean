@@ -1510,6 +1510,8 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed
 #check (boundedHomotopyExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
 #check (boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence (C := MetrizableLCA))
+#check boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed
+#check boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed_localizedEquivalence
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
@@ -1563,6 +1565,19 @@ noncomputable example : HasShift (BoundedHomotopyDerivedCategory (C := Metrizabl
 noncomputable example :
     ((boundedHomotopyExactWeakEquivalence (C := MetrizableLCA)).Q).CommShift ℤ := by
   infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    (boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed
+      C).IsLocalizedEquivalence := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    Dbounded C ≌ BoundedHomotopyDerivedCategory C :=
+  Dbounded.homotopyComparisonEquivalenceOfIsoClosed C
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]
@@ -1646,6 +1661,7 @@ noncomputable example : Category (Dbounded (C := MetrizableLCA)) := by infer_ins
 #check (BoundedHomotopyDerivedQuasicategory (C := MetrizableLCA))
 #check (BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso (C := MetrizableLCA))
 #check (Dbounded.homotopyComparison (C := MetrizableLCA))
+#check Dbounded.homotopyComparisonEquivalenceOfIsoClosed
 
 /-
 The bounded derived infinity-category is exposed as a quasicategory, and its homotopy category

@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T10:52:26Z",
+  "generated_utc": "2026-05-19T11:12:29Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v84 edits stay in the parent process.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v85 edits stay in the parent process.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -439,7 +439,8 @@
         "Triangulated.Localization.pretriangulated",
         "Triangulated.Localization.isTriangulated",
         "bounded homotopy object",
-        "bounded mapping cone closure"
+        "bounded mapping cone closure",
+        "localized equivalence under exact-acyclic homotopy iso-invariance"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -453,7 +454,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v84 adds boundedCochainComplex_mappingCone, boundedHomotopyObject, BoundedHomotopyCategory, zero/shift closure for bounded homotopy objects, and boundedHomotopyObject_mappingCone on top of the v83 conditional homotopy Verdier triangulated quotient route. The iso-closure IsTriangulatedClosed₂ proof itself, direct bounded exact weak-equivalence left calculus/equality transfer to Dbounded, and stable infinity-category structure remain nonproduct.",
+      "merge_blocker": "v85 adds boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed, its localized-equivalence instance, and Dbounded.homotopyComparisonEquivalenceOfIsoClosed. This conditionally identifies the direct bounded localization with the homotopy/Verdier pullback localization as ordinary categories under exact-acyclic homotopy iso-invariance. The iso-invariance hypothesis or iso-closure IsTriangulatedClosed₂ proof itself, transfer of ordinary triangulated structure to Dbounded, and stable infinity-category structure remain nonproduct.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -530,7 +531,10 @@
         "boundedHomotopyObject_isStableUnderShift",
         "BoundedHomotopyCategory",
         "BoundedHomotopyCategory.ι",
-        "boundedHomotopyObject_mappingCone"
+        "boundedHomotopyObject_mappingCone",
+        "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed",
+        "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed_localizedEquivalence",
+        "Dbounded.homotopyComparisonEquivalenceOfIsoClosed"
       ]
     },
     {
@@ -597,7 +601,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v84 evidence records bounded homotopy object/mapping-cone closure while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v85 evidence records the conditional direct-to-homotopy localized equivalence while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

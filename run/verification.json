@@ -1,77 +1,77 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v84-bounded-homotopy-frontier",
-  "generated_utc": "2026-05-19T10:58:19Z",
-  "source_tree_hash": "96855f256cfa291b45e79b27c17ea2101509e93d9f65f867e7d1d42c92ca0562",
+  "schema": "lean-lca-exact-challenge-verification-v85-direct-homotopy-transfer",
+  "generated_utc": "2026-05-19T11:18:16Z",
+  "source_tree_hash": "bc1fb5e54701412871c0ccee93801e964920952da074fea8dc824c456ffb5176",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after v84 added bounded mapping-cone closure and bounded homotopy object/category infrastructure."
+      "evidence": "Full project build passed after v85 added the conditional direct-to-homotopy localized equivalence."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v84 update."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v85 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees boundedCochainComplex_mappingCone, boundedHomotopyObject, BoundedHomotopyCategory, and boundedHomotopyObject_mappingCone."
+      "evidence": "Required declaration audit sees boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed, its localized equivalence instance, and Dbounded.homotopyComparisonEquivalenceOfIsoClosed."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles with concrete MetrizableLCA checks for the v84 bounded homotopy object infrastructure while preserving the nonterminal stable-infinity contract."
+      "evidence": "Product declaration audit compiles with v85 generic checks for the conditional localized equivalence and ordinary categorical equivalence while preserving the nonterminal stable-infinity contract."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v84 derived-side update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v85 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v84 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v85 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms the v84 bounded homotopy object/mapping-cone frontier and still records the unresolved stable-infinity product condition."
+      "evidence": "Derived blocker audit confirms the v85 conditional direct-to-homotopy localized equivalence and still records the unresolved stable-infinity product condition."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v84 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v85 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v84 bounded homotopy frontier update."
+      "evidence": "Proof frontier JSON syntax checked after the v85 direct-to-homotopy frontier update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked before regenerating this v84 verification record."
+      "evidence": "Verification JSON syntax checked before regenerating this v85 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked before regenerating the v84 manifest."
+      "evidence": "Manifest JSON syntax checked before regenerating the v85 manifest."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v84 update."
+      "evidence": "External audit Python syntax check still passes after the v85 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v84 proof, audit, and documentation update."
+      "evidence": "Whitespace check passed after the v85 proof, audit, and documentation update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because iso-closure IsTriangulatedClosed₂, direct bounded weak-equivalence left calculus/equality transfer to Dbounded, and stable infinity-category structure remain incomplete."
+      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because exact-acyclic homotopy iso-invariance, iso-closure IsTriangulatedClosed₂, ordinary triangulated transfer to Dbounded, and stable infinity-category structure remain incomplete."
     }
   ]
 }

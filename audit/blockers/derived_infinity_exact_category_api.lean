@@ -61,6 +61,12 @@ containing, shift-stable full subcategory of the homotopy category. This makes
 the Verdier route's bounded ambient category more explicit, but it still does
 not prove the exact-acyclic isomorphism closure is `IsTriangulatedClosed₂` or
 produce a stable infinity-category enhancement.
+Incremental v85 progress: under homotopy-category isomorphism invariance of
+exact acyclicity, the identity localizer morphism from direct bounded exact weak
+equivalences to homotopy/Verdier pullback weak equivalences is now a localized
+equivalence, yielding an ordinary categorical equivalence from `Dbounded` to the
+homotopy/Verdier pullback localization. This still depends on the isomorphism
+invariance hypothesis and is not yet a stable infinity-category enhancement.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -114,6 +120,8 @@ noncomputable def bounded_derived_quasicategory_family
 #check boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed
 #check boundedHomotopyExactWeakEquivalence_isCompatibleWithShift
 #check boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence
+#check boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed
+#check boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed_localizedEquivalence
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
@@ -247,6 +255,7 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 #check BoundedHomotopyDerivedQuasicategory
 #check BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso
 #check Dbounded.homotopyComparison
+#check Dbounded.homotopyComparisonEquivalenceOfIsoClosed
 #check Dbounded.infinityCategory
 #check Dbounded.infinityNerve
 #check Dbounded.infinityNerve_quasicategory

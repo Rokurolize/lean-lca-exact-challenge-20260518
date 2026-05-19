@@ -446,6 +446,38 @@ abbrev boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence
     intro K L f hf
     exact boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence C f hf
 
+/-- If exact acyclicity is invariant under homotopy-category isomorphism, the identity
+localizer morphism from direct bounded exact weak equivalences to homotopy/Verdier pullback
+weak equivalences is a morphism induced by equality of the two weak-equivalence classes. -/
+abbrev boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    LocalizerMorphism (boundedExactWeakEquivalence C)
+      (boundedHomotopyExactWeakEquivalence C) :=
+  LocalizerMorphism.ofEq (F := 𝟭 (BoundedComplexCategory C)) (by
+    ext K L f
+    simp only [MorphismProperty.inverseImage, Functor.id_map]
+    rw [boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed C]
+    rfl)
+
+instance boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed_localizedEquivalence
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    (boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed
+      C).IsLocalizedEquivalence := by
+  haveI :
+      (boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed
+        C).functor.IsEquivalence := by
+    dsimp [boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed]
+    infer_instance
+  apply LocalizerMorphism.IsLocalizedEquivalence.of_equivalence
+  intro K L f hf
+  refine ⟨K, L, f, ?_, ?_⟩
+  · rw [boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed C]
+    exact hf
+  · simpa [boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed]
+      using (Nonempty.intro (Iso.refl (Arrow.mk f)))
+
 /-- Once the exact-acyclic homotopy-object predicate is triangulated, mathlib supplies the
 left calculus of fractions for its Verdier-style weak equivalences. -/
 theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
@@ -707,6 +739,15 @@ noncomputable abbrev homotopyComparison [HasZeroObject C] [HasBinaryBiproducts C
     Dbounded C ⥤ BoundedHomotopyDerivedCategory C :=
   (boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence C).localizedFunctor
     (Dbounded.localization C) (boundedHomotopyExactWeakEquivalence C).Q
+
+/-- If exact acyclicity is invariant under homotopy-category isomorphism, the direct bounded
+localization and the homotopy/Verdier pullback localization are equivalent. -/
+noncomputable def homotopyComparisonEquivalenceOfIsoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    Dbounded C ≌ BoundedHomotopyDerivedCategory C :=
+  ((boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed C).localizedFunctor
+    (Dbounded.localization C) (boundedHomotopyExactWeakEquivalence C).Q).asEquivalence
 
 /-- If the exact weak equivalences have a left calculus of fractions, mathlib's localization
 API equips `Dbounded` with a preadditive structure. -/
