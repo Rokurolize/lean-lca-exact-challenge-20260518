@@ -371,6 +371,39 @@ example (X X' Y : MetrizableLCA) {n : ℕ}
     (fun {_} e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s)
     h
 
+example (X X' Y : MetrizableLCA)
+    {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA) X Y}
+    (h : ShortExactExtension.BaerSumData e₁ e₂ sum) (f : X' ⟶ X)
+    (pullBaer : ShortExactExtension.BaerSumData
+      (MetrizableLCA.shortExactExtensionPullback e₁ f)
+      (MetrizableLCA.shortExactExtensionPullback e₂ f)
+      (MetrizableLCA.shortExactExtensionPullback sum f)) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) 0
+        (FreeAbelianGroup.of sum.toYonedaExtension -
+          FreeAbelianGroup.of e₁.toYonedaExtension -
+          FreeAbelianGroup.of e₂.toYonedaExtension) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X' Y 0 :=
+  YonedaExt.pullbackHeadFreeHomWith_baer_mem f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    h pullBaer
+
+example (X X' Y Z : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Z) (g : Z ⟶ Y)
+    {out : ShortExactExtension (C := MetrizableLCA) X Y}
+    (h : ShortExactExtension.PushoutData e g out) (f : X' ⟶ X)
+    (pullPushoutData : ShortExactExtension.PushoutData
+      (MetrizableLCA.shortExactExtensionPullback e f) g
+      (MetrizableLCA.shortExactExtensionPullback out f)) :
+    YonedaExt.pullbackHeadFreeHomWith (C := MetrizableLCA) (X := X) (Y := Y) f
+        (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) 0
+        (FreeAbelianGroup.of (YonedaExtension.cons e (YonedaExtension.ofHom g)) -
+          FreeAbelianGroup.of out.toYonedaExtension) ∈
+      yonedaRelationSubgroup (C := MetrizableLCA) X' Y 0 :=
+  YonedaExt.pullbackHeadFreeHomWith_homTail_one_mem f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    e g h pullPushoutData
+
 example (X X' Y Z : MetrizableLCA) {n : ℕ}
     (e : ShortExactExtension (C := MetrizableLCA) X Z)
     {a b sum : YonedaExtension (C := MetrizableLCA) Z Y (n + 1)}

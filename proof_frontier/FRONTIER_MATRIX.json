@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T00:09:12Z",
+  "generated_utc": "2026-05-19T00:17:12Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -77,7 +77,8 @@
         "YonedaExt.pullbackHeadFreeHomWith",
         "free-group Rel/RelIso relation-subgroup membership lemmas for degree-zero head/tail maps",
         "free-group split/leftSplit/rightSplit/splitFactor generator membership lemmas for degree-zero head/tail maps",
-        "recursive Baer/hom-tail generator membership lemmas for degree-zero head/tail maps"
+        "recursive Baer/hom-tail generator membership lemmas for degree-zero head/tail maps",
+        "conditional head-pullback one-fold Baer and base hom-tail generator membership lemmas"
       ],
       "target_files_or_module": [
         "LeanLCAExactChallenge/Ext/Yoneda.lean"
@@ -98,7 +99,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Generator-level head pullback, arbitrary tail pushout, split pullback/pushout preservation, split-zero Ext lemmas, tail pushout preservation of right-split/split-factor zero generators, composeTailHom preservation of iso generators, head pullback preservation of right-split/split-factor zero generators, head pullback preservation of termwise and recursive chain-isomorphism generators, free-group head/tail maps preserving Rel/RelIso differences and split/leftSplit/rightSplit/splitFactor generators, tail composition preservation of head Baer generators, and head pullback preservation of cons-lifted Baer/hom-tail generators into the target relation subgroup are implemented; one-fold Baer and base hom-tail compatibility remain incomplete.",
+      "merge_blocker": "Generator-level head pullback, arbitrary tail pushout, split pullback/pushout preservation, split-zero Ext lemmas, tail pushout preservation of right-split/split-factor zero generators, composeTailHom preservation of iso generators, head pullback preservation of right-split/split-factor zero generators, head pullback preservation of termwise and recursive chain-isomorphism generators, free-group head/tail maps preserving Rel/RelIso differences and split/leftSplit/rightSplit/splitFactor generators, tail composition preservation of head Baer generators, head pullback preservation of cons-lifted Baer/hom-tail generators, and conditional head pullback preservation of one-fold Baer/base hom-tail generators into the target relation subgroup are implemented; canonical exchange data and tail-side one-fold Baer/base hom-tail compatibility remain incomplete.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -145,6 +146,8 @@
         "YonedaExt.pullbackHeadFreeHomWith_rightSplit_mem",
         "YonedaExt.pullbackHeadFreeHomWith_splitFactor_mem",
         "YonedaExt.composeTailHomFreeHom_baerChain_head_mem",
+        "YonedaExt.pullbackHeadFreeHomWith_baer_mem",
+        "YonedaExt.pullbackHeadFreeHomWith_homTail_one_mem",
         "YonedaExt.pullbackHeadFreeHomWith_baerChain_cons_mem",
         "YonedaExt.pullbackHeadFreeHomWith_homTail_cons_mem"
       ]

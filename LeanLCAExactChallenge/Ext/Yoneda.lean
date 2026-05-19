@@ -1468,6 +1468,38 @@ theorem pullbackHeadFreeHomWith_splitFactor_mem {X' : C} (f : X' ⟶ X)
       (YonedaRelGenerator.splitFactor (X := X') (Y := Y)
         (YonedaExtension.SplitFactorData.pullbackHeadWith f pull pullSplit h))
 
+theorem pullbackHeadFreeHomWith_baer_mem {X' : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct X' X'] [HasBinaryBiproduct Y Y]
+    {e₁ e₂ sum : ShortExactExtension X Y}
+    (_h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+    (pullBaer : ShortExactExtension.BaerSumData (pull e₁) (pull e₂) (pull sum)) :
+    pullbackHeadFreeHomWith (X := X) (Y := Y) f pull 0
+        (FreeAbelianGroup.of sum.toYonedaExtension -
+          FreeAbelianGroup.of e₁.toYonedaExtension -
+          FreeAbelianGroup.of e₂.toYonedaExtension) ∈
+      yonedaRelationSubgroup X' Y 0 := by
+  simpa [pullbackHeadFreeHomWith, ShortExactExtension.toYonedaExtension,
+    YonedaExtension.pullbackHeadWith, map_sub] using
+    AddSubgroup.subset_closure
+      (YonedaRelGenerator.baer (X := X') (Y := Y) pullBaer)
+
+theorem pullbackHeadFreeHomWith_homTail_one_mem {X' Z : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
+    (e : ShortExactExtension X Z) (g : Z ⟶ Y)
+    {out : ShortExactExtension X Y}
+    (_h : ShortExactExtension.PushoutData e g out)
+    (pullPushoutData : ShortExactExtension.PushoutData (pull e) g (pull out)) :
+    pullbackHeadFreeHomWith (X := X) (Y := Y) f pull 0
+        (FreeAbelianGroup.of (YonedaExtension.cons e (YonedaExtension.ofHom g)) -
+          FreeAbelianGroup.of out.toYonedaExtension) ∈
+      yonedaRelationSubgroup X' Y 0 := by
+  simpa [pullbackHeadFreeHomWith, ShortExactExtension.toYonedaExtension,
+    YonedaExtension.pullbackHeadWith, map_sub] using
+    AddSubgroup.subset_closure
+      (YonedaRelGenerator.homTail (X := X') (Y := Y)
+        (YonedaExtension.HomTailData.one (pull e) g pullPushoutData))
+
 theorem pullbackHeadFreeHomWith_baerChain_cons_mem {X' Z : C} (f : X' ⟶ X)
     (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
     (e : ShortExactExtension X Z)
