@@ -53,6 +53,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.shortExactExtensionPullbackData
 #check MetrizableLCA.pullbackSplitting
 #check MetrizableLCA.shortExactExtensionPullbackSplitting
+#check MetrizableLCA.shortExactExtensionPullbackBaerSumData
 #check MetrizableLCA.shortExactExtensionPushout
 #check MetrizableLCA.shortExactExtensionPushout_i
 #check MetrizableLCA.shortExactExtensionPushout_map_p
@@ -64,6 +65,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.shortExactExtensionPushoutSplitting
 #check MetrizableLCA.shortExactExtensionBaerSum
 #check MetrizableLCA.shortExactExtensionBaerSumData
+#check MetrizableLCA.shortExactExtensionPushoutBaerSumData
 #check YonedaExt.ofExtension_eq_ofExtension_of_rel
 #check YonedaExt.ofExtension_eq_ofExtension_of_relIso
 #check YonedaExt.ofExtension_eq_zero_of_split
@@ -151,6 +153,12 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.composeTailHomFreeHom_baerChain_mem
 #check YonedaExt.composeTailHomFreeHom_homTail_mem
 #check YonedaExt.composeTailHomFreeHom_homTail_mem_metrizable
+#check YonedaExt.composeTailHom_relationSubgroup_le
+#check YonedaExt.composeTailHomMapWith
+#check YonedaExt.composeTailHomMapWith_ofExtension
+#check YonedaExt.composeTailHom_relationSubgroup_le_metrizable
+#check YonedaExt.composeTailHomMap_metrizable
+#check YonedaExt.composeTailHomMap_metrizable_ofExtension
 #check YonedaExt.pullbackHeadFreeHomWith
 #check YonedaExt.pullbackHeadFreeHomWith_of
 #check YonedaExt.pullbackHeadFreeHomWith_rel_mem
@@ -165,6 +173,12 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.pullbackHeadFreeHomWith_homTail_cons_mem
 #check YonedaExt.pullbackHeadFreeHomWith_baerChain_mem
 #check YonedaExt.pullbackHeadFreeHomWith_homTail_mem
+#check YonedaExt.pullbackHead_relationSubgroup_le
+#check YonedaExt.pullbackHeadMapWith
+#check YonedaExt.pullbackHeadMapWith_ofExtension
+#check YonedaExt.pullbackHead_relationSubgroup_le_metrizableWithPushoutData
+#check YonedaExt.pullbackHeadMap_metrizableWithPushoutData
+#check YonedaExt.pullbackHeadMap_metrizableWithPushoutData_ofExtension
 #check YonedaExt.leftProductByExtension
 #check YonedaExt.leftProductByExtension_ofExtension
 #check YonedaExt.leftProductByExtension_ofExtension_eq_zero_of_split

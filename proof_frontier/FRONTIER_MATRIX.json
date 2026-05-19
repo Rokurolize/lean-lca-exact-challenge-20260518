@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T01:04:51Z",
+  "generated_utc": "2026-05-19T01:36:18Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -87,7 +87,17 @@
         "ShortExactExtension.PullbackData.isPullback",
         "ShortExactExtension.PushoutData.isPushout",
         "MetrizableLCA.shortExactExtensionPushoutAssocIso",
-        "YonedaExt.composeTailHomFreeHom_homTail_mem_metrizable"
+        "YonedaExt.composeTailHomFreeHom_homTail_mem_metrizable",
+        "YonedaExt.pullbackHead_relationSubgroup_le",
+        "YonedaExt.pullbackHeadMapWith",
+        "YonedaExt.composeTailHom_relationSubgroup_le",
+        "YonedaExt.composeTailHomMapWith",
+        "MetrizableLCA.shortExactExtensionPushoutBaerSumData",
+        "YonedaExt.composeTailHom_relationSubgroup_le_metrizable",
+        "YonedaExt.composeTailHomMap_metrizable",
+        "MetrizableLCA.shortExactExtensionPullbackBaerSumData",
+        "YonedaExt.pullbackHead_relationSubgroup_le_metrizableWithPushoutData",
+        "YonedaExt.pullbackHeadMap_metrizableWithPushoutData"
       ],
       "target_files_or_module": [
         "LeanLCAExactChallenge/Ext/Yoneda.lean"
@@ -108,7 +118,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Generator-level head/tail maps, split/iso/zero-generator preservation, recursive head/tail Baer and hom-tail membership wrappers, conditional all-Baer/all-HomTail free-map membership into the target relation subgroup, pullback/pushout universal-property fields, standard pushout associativity for tail hom-tail generators, and pushout/Baer representative isomorphism transport helpers are implemented; Baer-preservation and head pullback-pushout exchange data needed to remove remaining conditional premises remain incomplete.",
+      "merge_blocker": "Generator-level head/tail maps, recursive all-Baer/all-HomTail wrappers, universal-property fields, standard pushout associativity, pushout/pullback Baer preservation, unconditional canonical tail composeTailHomMap_metrizable, and head pullback map conditional only on pullback-pushout exchange are implemented; the remaining product blocker here is the standard MetrizableLCA head pullback-pushout exchange data needed to remove the last head-side premise.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -173,7 +183,21 @@
         "ShortExactExtension.Iso.trans",
         "ShortExactExtension.PushoutData.iso",
         "ShortExactExtension.BaerSumData.isoSum",
-        "MetrizableLCA.shortExactExtensionPushoutIso"
+        "MetrizableLCA.shortExactExtensionPushoutIso",
+        "YonedaExt.pullbackHead_relationSubgroup_le",
+        "YonedaExt.pullbackHeadMapWith",
+        "YonedaExt.pullbackHeadMapWith_ofExtension",
+        "YonedaExt.composeTailHom_relationSubgroup_le",
+        "YonedaExt.composeTailHomMapWith",
+        "YonedaExt.composeTailHomMapWith_ofExtension",
+        "MetrizableLCA.shortExactExtensionPushoutBaerSumData",
+        "YonedaExt.composeTailHom_relationSubgroup_le_metrizable",
+        "YonedaExt.composeTailHomMap_metrizable",
+        "YonedaExt.composeTailHomMap_metrizable_ofExtension",
+        "MetrizableLCA.shortExactExtensionPullbackBaerSumData",
+        "YonedaExt.pullbackHead_relationSubgroup_le_metrizableWithPushoutData",
+        "YonedaExt.pullbackHeadMap_metrizableWithPushoutData",
+        "YonedaExt.pullbackHeadMap_metrizableWithPushoutData_ofExtension"
       ]
     },
     {

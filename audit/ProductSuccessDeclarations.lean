@@ -437,9 +437,23 @@ example (X X' Y Z : MetrizableLCA) {n : ℕ}
 
 #check (YonedaExt.pullbackHeadFreeHomWith_baerChain_mem (C := MetrizableLCA))
 #check (YonedaExt.pullbackHeadFreeHomWith_homTail_mem (C := MetrizableLCA))
+#check MetrizableLCA.shortExactExtensionPullbackBaerSumData
 #check MetrizableLCA.shortExactExtensionPushoutIso
 #check MetrizableLCA.shortExactExtensionPushoutAssocIso
+#check MetrizableLCA.shortExactExtensionPushoutBaerSumData
 #check (YonedaExt.composeTailHomFreeHom_homTail_mem_metrizable)
+#check (YonedaExt.pullbackHead_relationSubgroup_le (C := MetrizableLCA))
+#check (YonedaExt.pullbackHeadMapWith (C := MetrizableLCA))
+#check (YonedaExt.pullbackHeadMapWith_ofExtension (C := MetrizableLCA))
+#check YonedaExt.pullbackHead_relationSubgroup_le_metrizableWithPushoutData
+#check YonedaExt.pullbackHeadMap_metrizableWithPushoutData
+#check YonedaExt.pullbackHeadMap_metrizableWithPushoutData_ofExtension
+#check (YonedaExt.composeTailHom_relationSubgroup_le (C := MetrizableLCA))
+#check (YonedaExt.composeTailHomMapWith (C := MetrizableLCA))
+#check (YonedaExt.composeTailHomMapWith_ofExtension (C := MetrizableLCA))
+#check YonedaExt.composeTailHom_relationSubgroup_le_metrizable
+#check YonedaExt.composeTailHomMap_metrizable
+#check YonedaExt.composeTailHomMap_metrizable_ofExtension
 
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :

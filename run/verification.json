@@ -1,20 +1,22 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v51-pushout-iso-transport",
-  "generated_utc": "2026-05-19T01:04:51Z",
-  "source_tree_hash": "b143189067567e1728ca4c5abff90dac62347d83c6eeeb41dfc094ffe4fac92a",
+  "schema": "lean-lca-exact-challenge-verification-v53-canonical-baer-degree0-maps",
+  "generated_utc": "2026-05-19T01:36:18Z",
+  "source_tree_hash": "702c777ebf5287eff4466802fd3e44835407e73345337198f5eb2704e121a1fa",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "rebuilt LeanLCAExactChallenge after adding isomorphism transport helpers for pushout and Baer-sum representatives."
+      "evidence": "rebuilt LeanLCAExactChallenge after adding canonical pushout/pullback Baer preservation and updated head/tail degree-zero quotient APIs."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed"
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed"
+      "status": "passed",
+      "evidence": "Required declaration audit passed after the Yoneda API additions."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
@@ -24,7 +26,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit sees PushoutData.iso, BaerSumData.isoSum, and MetrizableLCA.shortExactExtensionPushoutIso."
+      "evidence": "Yoneda blocker audit sees canonical pullback/pushout Baer preservation, unconditional tail map, and head map conditional only on exchange data."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -34,16 +36,17 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product audit sees the new pushout isomorphism transport helpers alongside existing strict LCA/Yoneda/Dbounded declarations."
+      "evidence": "Product audit sees the new Baer preservation declarations and degree-zero head/tail quotient APIs."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because full bilinear Yoneda product descent, canonical Baer compatibility, head pullback exchange, and stable infinity-category enhancement remain incomplete."
+      "evidence": "expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because left quotient Yoneda product descent, head pullback-pushout exchange, and stable infinity-category enhancement remain incomplete."
     },
     {
       "command": "git diff --check",
-      "status": "passed"
+      "status": "passed",
+      "evidence": "passed"
     }
   ]
 }

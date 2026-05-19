@@ -157,6 +157,66 @@ structure PullbackData {X X' Y : C}
   map_p : middleMap ≫ e.p = out.p ≫ a
   isPullback : IsPullback middleMap out.p e.p a
 
+namespace PullbackData
+
+/-- Pullback data transports an isomorphism of input one-fold extensions. -/
+noncomputable def iso {X X' Y : C} {e e' : ShortExactExtension X Y}
+    {a : X' ⟶ X} {out out' : ShortExactExtension X' Y}
+    (d : PullbackData e a out) (d' : PullbackData e' a out') (h : Iso e e') :
+    Iso out out' := by
+  have h_hom_comm : (d.middleMap ≫ h.middleIso.hom) ≫ e'.p = out.p ≫ a := by
+    rw [Category.assoc, h.hom_p, d.map_p]
+  have h_inv_p : h.middleIso.inv ≫ e.p = e'.p := by
+    rw [← h.hom_p]
+    simp
+  have h_inv_comm : (d'.middleMap ≫ h.middleIso.inv) ≫ e.p = out'.p ≫ a := by
+    rw [Category.assoc, h_inv_p, d'.map_p]
+  let homMap : out.middle ⟶ out'.middle :=
+    d'.isPullback.lift (d.middleMap ≫ h.middleIso.hom) out.p h_hom_comm
+  let invMap : out'.middle ⟶ out.middle :=
+    d.isPullback.lift (d'.middleMap ≫ h.middleIso.inv) out'.p h_inv_comm
+  have hom_fst : homMap ≫ d'.middleMap = d.middleMap ≫ h.middleIso.hom := by
+    change d'.isPullback.lift (d.middleMap ≫ h.middleIso.hom) out.p h_hom_comm ≫
+        d'.middleMap =
+      d.middleMap ≫ h.middleIso.hom
+    exact d'.isPullback.lift_fst (d.middleMap ≫ h.middleIso.hom) out.p h_hom_comm
+  have hom_snd : homMap ≫ out'.p = out.p := by
+    change d'.isPullback.lift (d.middleMap ≫ h.middleIso.hom) out.p h_hom_comm ≫
+        out'.p =
+      out.p
+    exact d'.isPullback.lift_snd (d.middleMap ≫ h.middleIso.hom) out.p h_hom_comm
+  have inv_fst : invMap ≫ d.middleMap = d'.middleMap ≫ h.middleIso.inv := by
+    change d.isPullback.lift (d'.middleMap ≫ h.middleIso.inv) out'.p h_inv_comm ≫
+        d.middleMap =
+      d'.middleMap ≫ h.middleIso.inv
+    exact d.isPullback.lift_fst (d'.middleMap ≫ h.middleIso.inv) out'.p h_inv_comm
+  have inv_snd : invMap ≫ out.p = out'.p := by
+    change d.isPullback.lift (d'.middleMap ≫ h.middleIso.inv) out'.p h_inv_comm ≫
+        out.p =
+      out'.p
+    exact d.isPullback.lift_snd (d'.middleMap ≫ h.middleIso.inv) out'.p h_inv_comm
+  refine
+    { middleIso :=
+        { hom := homMap
+          inv := invMap
+          hom_inv_id := ?_
+          inv_hom_id := ?_ }
+      i_hom := ?_
+      hom_p := hom_snd }
+  · apply d.isPullback.hom_ext
+    · rw [Category.assoc, inv_fst, ← Category.assoc, hom_fst, Category.assoc,
+        h.middleIso.hom_inv_id, Category.comp_id, Category.id_comp]
+    · rw [Category.assoc, inv_snd, hom_snd, Category.id_comp]
+  · apply d'.isPullback.hom_ext
+    · rw [Category.assoc, hom_fst, ← Category.assoc, inv_fst, Category.assoc,
+        h.middleIso.inv_hom_id, Category.comp_id, Category.id_comp]
+    · rw [Category.assoc, hom_snd, inv_snd, Category.id_comp]
+  · apply d'.isPullback.hom_ext
+    · rw [Category.assoc, hom_fst, ← Category.assoc, d.i_map, h.i_hom, d'.i_map]
+    · rw [Category.assoc, hom_snd, out.zero, out'.zero]
+
+end PullbackData
+
 /-- Diagrammatic data identifying an extension pushed out along a kernel-endpoint map. -/
 structure PushoutData {X Y Y' : C}
     (e : ShortExactExtension X Y) (a : Y ⟶ Y') (out : ShortExactExtension X Y') where
@@ -856,6 +916,567 @@ noncomputable def shortExactExtensionBaerSumData
       (shortExactExtensionPullback (shortExactExtensionBinaryBiproduct e₁ e₂) (biprodDiag X))
       (biprodCodiag Y)
   sumIso := ShortExactExtension.Iso.refl (shortExactExtensionBaerSum e₁ e₂)
+
+/-- Pushing out a one-fold Baer-sum diagram preserves the Baer-sum diagram. -/
+noncomputable def shortExactExtensionPushoutBaerSumData
+    {X Y Y' : MetrizableLCA.{u}}
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y] [HasBinaryBiproduct Y' Y']
+    {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA.{u}) X Y}
+    (f : Y ⟶ Y') (h : ShortExactExtension.BaerSumData e₁ e₂ sum) :
+    ShortExactExtension.BaerSumData
+      (shortExactExtensionPushout e₁ f)
+      (shortExactExtensionPushout e₂ f)
+      (shortExactExtensionPushout sum f) := by
+  let ff : Y ⊞ Y ⟶ Y' ⊞ Y' := biprod.map f f
+  let productPush := shortExactExtensionPushout h.productExtension ff
+  let productPushData := shortExactExtensionPushoutData h.productExtension ff
+  let e₁PushData := shortExactExtensionPushoutData e₁ f
+  let e₂PushData := shortExactExtensionPushoutData e₂ f
+  let pullPush := shortExactExtensionPushout h.pullbackExtension ff
+  let pullPushData := shortExactExtensionPushoutData h.pullbackExtension ff
+  let finalPush := shortExactExtensionPushout h.pushoutExtension f
+  let finalPushData := shortExactExtensionPushoutData h.pushoutExtension f
+  have h_codiag_map : ff ≫ biprodCodiag Y' = biprodCodiag Y ≫ f := by
+    apply biprod.hom_ext'
+    · simp [ff, biprodCodiag]
+    · simp [ff, biprodCodiag]
+  have productFst_condition :
+      h.productExtension.i ≫ (h.productFst ≫ e₁PushData.middleMap) =
+        ff ≫ (biprod.fst ≫ (shortExactExtensionPushout e₁ f).i) := by
+    calc
+      h.productExtension.i ≫ (h.productFst ≫ e₁PushData.middleMap) =
+          (h.productExtension.i ≫ h.productFst) ≫ e₁PushData.middleMap := by
+            rw [Category.assoc]
+      _ = (biprod.fst ≫ e₁.i) ≫ e₁PushData.middleMap := by
+            rw [h.product_i_fst]
+      _ = biprod.fst ≫ (e₁.i ≫ e₁PushData.middleMap) := by
+            rw [Category.assoc]
+      _ = biprod.fst ≫ (f ≫ (shortExactExtensionPushout e₁ f).i) := by
+            rw [← e₁PushData.i_map]
+      _ = (biprod.fst ≫ f) ≫ (shortExactExtensionPushout e₁ f).i := by
+            rw [Category.assoc]
+      _ = (ff ≫ biprod.fst) ≫ (shortExactExtensionPushout e₁ f).i := by
+            rw [biprod.map_fst]
+      _ = ff ≫ (biprod.fst ≫ (shortExactExtensionPushout e₁ f).i) := by
+            rw [Category.assoc]
+  have productSnd_condition :
+      h.productExtension.i ≫ (h.productSnd ≫ e₂PushData.middleMap) =
+        ff ≫ (biprod.snd ≫ (shortExactExtensionPushout e₂ f).i) := by
+    calc
+      h.productExtension.i ≫ (h.productSnd ≫ e₂PushData.middleMap) =
+          (h.productExtension.i ≫ h.productSnd) ≫ e₂PushData.middleMap := by
+            rw [Category.assoc]
+      _ = (biprod.snd ≫ e₂.i) ≫ e₂PushData.middleMap := by
+            rw [h.product_i_snd]
+      _ = biprod.snd ≫ (e₂.i ≫ e₂PushData.middleMap) := by
+            rw [Category.assoc]
+      _ = biprod.snd ≫ (f ≫ (shortExactExtensionPushout e₂ f).i) := by
+            rw [← e₂PushData.i_map]
+      _ = (biprod.snd ≫ f) ≫ (shortExactExtensionPushout e₂ f).i := by
+            rw [Category.assoc]
+      _ = (ff ≫ biprod.snd) ≫ (shortExactExtensionPushout e₂ f).i := by
+            rw [biprod.map_snd]
+      _ = ff ≫ (biprod.snd ≫ (shortExactExtensionPushout e₂ f).i) := by
+            rw [Category.assoc]
+  let productFst : productPush.middle ⟶ (shortExactExtensionPushout e₁ f).middle :=
+    productPushData.isPushout.desc
+      (h.productFst ≫ e₁PushData.middleMap)
+      (biprod.fst ≫ (shortExactExtensionPushout e₁ f).i)
+      productFst_condition
+  let productSnd : productPush.middle ⟶ (shortExactExtensionPushout e₂ f).middle :=
+    productPushData.isPushout.desc
+      (h.productSnd ≫ e₂PushData.middleMap)
+      (biprod.snd ≫ (shortExactExtensionPushout e₂ f).i)
+      productSnd_condition
+  have productFst_inl :
+      productPushData.middleMap ≫ productFst =
+        h.productFst ≫ e₁PushData.middleMap := by
+    simp [productFst]
+  have productFst_inr :
+      productPush.i ≫ productFst =
+        biprod.fst ≫ (shortExactExtensionPushout e₁ f).i := by
+    simp [productFst]
+  have productSnd_inl :
+      productPushData.middleMap ≫ productSnd =
+        h.productSnd ≫ e₂PushData.middleMap := by
+    simp [productSnd]
+  have productSnd_inr :
+      productPush.i ≫ productSnd =
+        biprod.snd ≫ (shortExactExtensionPushout e₂ f).i := by
+    simp [productSnd]
+  have pullbackMap_condition :
+      h.pullbackExtension.i ≫ (h.pullbackMap ≫ productPushData.middleMap) =
+        ff ≫ productPush.i := by
+    rw [← Category.assoc, h.pullback_i, ← productPushData.i_map]
+  let pullbackMap : pullPush.middle ⟶ productPush.middle :=
+    pullPushData.isPushout.desc
+      (h.pullbackMap ≫ productPushData.middleMap)
+      productPush.i
+      pullbackMap_condition
+  have pullbackMap_inl :
+      pullPushData.middleMap ≫ pullbackMap =
+        h.pullbackMap ≫ productPushData.middleMap := by
+    simp [pullbackMap]
+  have pullbackMap_inr : pullPush.i ≫ pullbackMap = productPush.i := by
+    simp [pullbackMap]
+  have pushoutMap_condition :
+      h.pullbackExtension.i ≫ (h.pushoutMap ≫ finalPushData.middleMap) =
+        ff ≫ (biprodCodiag Y' ≫ finalPush.i) := by
+    calc
+      h.pullbackExtension.i ≫ (h.pushoutMap ≫ finalPushData.middleMap) =
+          (h.pullbackExtension.i ≫ h.pushoutMap) ≫ finalPushData.middleMap := by
+            rw [Category.assoc]
+      _ = (biprodCodiag Y ≫ h.pushoutExtension.i) ≫
+            finalPushData.middleMap := by
+            rw [← h.pushout_i]
+      _ = biprodCodiag Y ≫
+            (h.pushoutExtension.i ≫ finalPushData.middleMap) := by
+            rw [Category.assoc]
+      _ = biprodCodiag Y ≫ (f ≫ finalPush.i) := by
+            rw [← finalPushData.i_map]
+      _ = (biprodCodiag Y ≫ f) ≫ finalPush.i := by
+            rw [Category.assoc]
+      _ = (ff ≫ biprodCodiag Y') ≫ finalPush.i := by
+            rw [h_codiag_map]
+      _ = ff ≫ (biprodCodiag Y' ≫ finalPush.i) := by
+            rw [Category.assoc]
+  let pushoutMap : pullPush.middle ⟶ finalPush.middle :=
+    pullPushData.isPushout.desc
+      (h.pushoutMap ≫ finalPushData.middleMap)
+      (biprodCodiag Y' ≫ finalPush.i)
+      pushoutMap_condition
+  have pushoutMap_inl :
+      pullPushData.middleMap ≫ pushoutMap =
+        h.pushoutMap ≫ finalPushData.middleMap := by
+    simp [pushoutMap]
+  have pushoutMap_inr : pullPush.i ≫ pushoutMap = biprodCodiag Y' ≫ finalPush.i := by
+    simp [pushoutMap]
+  refine
+    { productExtension := productPush
+      productFst := productFst
+      productSnd := productSnd
+      product_i_fst := productFst_inr
+      product_i_snd := productSnd_inr
+      product_p_fst := ?_
+      product_p_snd := ?_
+      pullbackExtension := pullPush
+      pullbackMap := pullbackMap
+      pullback_i := pullbackMap_inr
+      pullback_p := ?_
+      pushoutExtension := finalPush
+      pushoutMap := pushoutMap
+      pushout_i := pushoutMap_inr.symm
+      pushout_p := ?_
+      sumIso := shortExactExtensionPushoutIso f h.sumIso }
+  · apply productPushData.isPushout.hom_ext
+    · calc
+        productPushData.middleMap ≫
+            (productFst ≫ (shortExactExtensionPushout e₁ f).p) =
+            (productPushData.middleMap ≫ productFst) ≫
+              (shortExactExtensionPushout e₁ f).p := by
+              rw [Category.assoc]
+        _ = (h.productFst ≫ e₁PushData.middleMap) ≫
+              (shortExactExtensionPushout e₁ f).p := by
+              rw [productFst_inl]
+        _ = h.productFst ≫
+              (e₁PushData.middleMap ≫ (shortExactExtensionPushout e₁ f).p) := by
+              rw [Category.assoc]
+        _ = h.productFst ≫ e₁.p := by
+              rw [e₁PushData.map_p]
+        _ = h.productExtension.p ≫ biprod.fst := h.product_p_fst
+        _ = (productPushData.middleMap ≫ productPush.p) ≫ biprod.fst := by
+              rw [productPushData.map_p]
+        _ = productPushData.middleMap ≫ (productPush.p ≫ biprod.fst) := by
+              rw [Category.assoc]
+    · calc
+        productPush.i ≫ (productFst ≫ (shortExactExtensionPushout e₁ f).p) =
+            (productPush.i ≫ productFst) ≫
+              (shortExactExtensionPushout e₁ f).p := by
+              rw [Category.assoc]
+        _ = (biprod.fst ≫ (shortExactExtensionPushout e₁ f).i) ≫
+              (shortExactExtensionPushout e₁ f).p := by
+              rw [productFst_inr]
+        _ = biprod.fst ≫
+              ((shortExactExtensionPushout e₁ f).i ≫
+                (shortExactExtensionPushout e₁ f).p) := by
+              rw [Category.assoc]
+        _ = 0 := by
+              rw [(shortExactExtensionPushout e₁ f).zero, comp_zero]
+        _ = productPush.i ≫ (productPush.p ≫ biprod.fst) := by
+              rw [← Category.assoc, productPush.zero, zero_comp]
+  · apply productPushData.isPushout.hom_ext
+    · calc
+        productPushData.middleMap ≫
+            (productSnd ≫ (shortExactExtensionPushout e₂ f).p) =
+            (productPushData.middleMap ≫ productSnd) ≫
+              (shortExactExtensionPushout e₂ f).p := by
+              rw [Category.assoc]
+        _ = (h.productSnd ≫ e₂PushData.middleMap) ≫
+              (shortExactExtensionPushout e₂ f).p := by
+              rw [productSnd_inl]
+        _ = h.productSnd ≫
+              (e₂PushData.middleMap ≫ (shortExactExtensionPushout e₂ f).p) := by
+              rw [Category.assoc]
+        _ = h.productSnd ≫ e₂.p := by
+              rw [e₂PushData.map_p]
+        _ = h.productExtension.p ≫ biprod.snd := h.product_p_snd
+        _ = (productPushData.middleMap ≫ productPush.p) ≫ biprod.snd := by
+              rw [productPushData.map_p]
+        _ = productPushData.middleMap ≫ (productPush.p ≫ biprod.snd) := by
+              rw [Category.assoc]
+    · calc
+        productPush.i ≫ (productSnd ≫ (shortExactExtensionPushout e₂ f).p) =
+            (productPush.i ≫ productSnd) ≫
+              (shortExactExtensionPushout e₂ f).p := by
+              rw [Category.assoc]
+        _ = (biprod.snd ≫ (shortExactExtensionPushout e₂ f).i) ≫
+              (shortExactExtensionPushout e₂ f).p := by
+              rw [productSnd_inr]
+        _ = biprod.snd ≫
+              ((shortExactExtensionPushout e₂ f).i ≫
+                (shortExactExtensionPushout e₂ f).p) := by
+              rw [Category.assoc]
+        _ = 0 := by
+              rw [(shortExactExtensionPushout e₂ f).zero, comp_zero]
+        _ = productPush.i ≫ (productPush.p ≫ biprod.snd) := by
+              rw [← Category.assoc, productPush.zero, zero_comp]
+  · apply pullPushData.isPushout.hom_ext
+    · calc
+        pullPushData.middleMap ≫ (pullbackMap ≫ productPush.p) =
+            (pullPushData.middleMap ≫ pullbackMap) ≫ productPush.p := by
+              rw [Category.assoc]
+        _ = (h.pullbackMap ≫ productPushData.middleMap) ≫ productPush.p := by
+              rw [pullbackMap_inl]
+        _ = h.pullbackMap ≫ (productPushData.middleMap ≫ productPush.p) := by
+              rw [Category.assoc]
+        _ = h.pullbackMap ≫ h.productExtension.p := by
+              rw [productPushData.map_p]
+        _ = h.pullbackExtension.p ≫ biprodDiag X := h.pullback_p
+        _ = (pullPushData.middleMap ≫ pullPush.p) ≫ biprodDiag X := by
+              rw [pullPushData.map_p]
+        _ = pullPushData.middleMap ≫ (pullPush.p ≫ biprodDiag X) := by
+              rw [Category.assoc]
+    · calc
+        pullPush.i ≫ (pullbackMap ≫ productPush.p) =
+            (pullPush.i ≫ pullbackMap) ≫ productPush.p := by
+              rw [Category.assoc]
+        _ = productPush.i ≫ productPush.p := by
+              rw [pullbackMap_inr]
+        _ = 0 := productPush.zero
+        _ = pullPush.i ≫ (pullPush.p ≫ biprodDiag X) := by
+              rw [← Category.assoc, pullPush.zero, zero_comp]
+  · apply pullPushData.isPushout.hom_ext
+    · calc
+        pullPushData.middleMap ≫ (pushoutMap ≫ finalPush.p) =
+            (pullPushData.middleMap ≫ pushoutMap) ≫ finalPush.p := by
+              rw [Category.assoc]
+        _ = (h.pushoutMap ≫ finalPushData.middleMap) ≫ finalPush.p := by
+              rw [pushoutMap_inl]
+        _ = h.pushoutMap ≫ (finalPushData.middleMap ≫ finalPush.p) := by
+              rw [Category.assoc]
+        _ = h.pushoutMap ≫ h.pushoutExtension.p := by
+              rw [finalPushData.map_p]
+        _ = h.pullbackExtension.p := h.pushout_p
+        _ = pullPushData.middleMap ≫ pullPush.p := by
+              rw [pullPushData.map_p]
+    · calc
+        pullPush.i ≫ (pushoutMap ≫ finalPush.p) =
+            (pullPush.i ≫ pushoutMap) ≫ finalPush.p := by
+              rw [Category.assoc]
+        _ = (biprodCodiag Y' ≫ finalPush.i) ≫ finalPush.p := by
+              rw [pushoutMap_inr]
+        _ = biprodCodiag Y' ≫ (finalPush.i ≫ finalPush.p) := by
+              rw [Category.assoc]
+        _ = 0 := by
+              rw [finalPush.zero, comp_zero]
+        _ = pullPush.i ≫ pullPush.p := by
+              rw [pullPush.zero]
+
+/-- Pulling back a one-fold Baer-sum diagram preserves the Baer-sum diagram. -/
+noncomputable def shortExactExtensionPullbackBaerSumData
+    {X X' Y : MetrizableLCA.{u}}
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct X' X'] [HasBinaryBiproduct Y Y]
+    {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA.{u}) X Y}
+    (f : X' ⟶ X) (h : ShortExactExtension.BaerSumData e₁ e₂ sum) :
+    ShortExactExtension.BaerSumData
+      (shortExactExtensionPullback e₁ f)
+      (shortExactExtensionPullback e₂ f)
+      (shortExactExtensionPullback sum f) := by
+  let ff : X' ⊞ X' ⟶ X ⊞ X := biprod.map f f
+  let productPull := shortExactExtensionPullback h.productExtension ff
+  let productPullData := shortExactExtensionPullbackData h.productExtension ff
+  let e₁PullData := shortExactExtensionPullbackData e₁ f
+  let e₂PullData := shortExactExtensionPullbackData e₂ f
+  let stagePull := shortExactExtensionPullback h.pullbackExtension f
+  let stagePullData := shortExactExtensionPullbackData h.pullbackExtension f
+  let finalPull := shortExactExtensionPullback h.pushoutExtension f
+  let finalPullData := shortExactExtensionPullbackData h.pushoutExtension f
+  have h_diag_map : biprodDiag X' ≫ ff = f ≫ biprodDiag X := by
+    apply biprod.hom_ext
+    · simp [ff, biprodDiag, Category.assoc]
+    · simp [ff, biprodDiag, Category.assoc]
+  have productFst_condition :
+      (productPullData.middleMap ≫ h.productFst) ≫ e₁.p =
+        (productPull.p ≫ biprod.fst) ≫ f := by
+    calc
+      (productPullData.middleMap ≫ h.productFst) ≫ e₁.p =
+          productPullData.middleMap ≫ (h.productFst ≫ e₁.p) := by
+            rw [Category.assoc]
+      _ = productPullData.middleMap ≫ (h.productExtension.p ≫ biprod.fst) := by
+            rw [h.product_p_fst]
+      _ = (productPullData.middleMap ≫ h.productExtension.p) ≫ biprod.fst := by
+            rw [Category.assoc]
+      _ = (productPull.p ≫ ff) ≫ biprod.fst := by
+            rw [productPullData.map_p]
+      _ = productPull.p ≫ (ff ≫ biprod.fst) := by
+            rw [Category.assoc]
+      _ = productPull.p ≫ (biprod.fst ≫ f) := by
+            rw [biprod.map_fst]
+      _ = (productPull.p ≫ biprod.fst) ≫ f := by
+            rw [Category.assoc]
+  have productSnd_condition :
+      (productPullData.middleMap ≫ h.productSnd) ≫ e₂.p =
+        (productPull.p ≫ biprod.snd) ≫ f := by
+    calc
+      (productPullData.middleMap ≫ h.productSnd) ≫ e₂.p =
+          productPullData.middleMap ≫ (h.productSnd ≫ e₂.p) := by
+            rw [Category.assoc]
+      _ = productPullData.middleMap ≫ (h.productExtension.p ≫ biprod.snd) := by
+            rw [h.product_p_snd]
+      _ = (productPullData.middleMap ≫ h.productExtension.p) ≫ biprod.snd := by
+            rw [Category.assoc]
+      _ = (productPull.p ≫ ff) ≫ biprod.snd := by
+            rw [productPullData.map_p]
+      _ = productPull.p ≫ (ff ≫ biprod.snd) := by
+            rw [Category.assoc]
+      _ = productPull.p ≫ (biprod.snd ≫ f) := by
+            rw [biprod.map_snd]
+      _ = (productPull.p ≫ biprod.snd) ≫ f := by
+            rw [Category.assoc]
+  let productFst : productPull.middle ⟶ (shortExactExtensionPullback e₁ f).middle :=
+    e₁PullData.isPullback.lift
+      (productPullData.middleMap ≫ h.productFst)
+      (productPull.p ≫ biprod.fst)
+      productFst_condition
+  let productSnd : productPull.middle ⟶ (shortExactExtensionPullback e₂ f).middle :=
+    e₂PullData.isPullback.lift
+      (productPullData.middleMap ≫ h.productSnd)
+      (productPull.p ≫ biprod.snd)
+      productSnd_condition
+  have productFst_middle :
+      productFst ≫ e₁PullData.middleMap =
+        productPullData.middleMap ≫ h.productFst := by
+    simp [productFst]
+  have productFst_p :
+      productFst ≫ (shortExactExtensionPullback e₁ f).p =
+        productPull.p ≫ biprod.fst := by
+    simp [productFst]
+  have productSnd_middle :
+      productSnd ≫ e₂PullData.middleMap =
+        productPullData.middleMap ≫ h.productSnd := by
+    simp [productSnd]
+  have productSnd_p :
+      productSnd ≫ (shortExactExtensionPullback e₂ f).p =
+        productPull.p ≫ biprod.snd := by
+    simp [productSnd]
+  have productFst_i :
+      productPull.i ≫ productFst =
+        biprod.fst ≫ (shortExactExtensionPullback e₁ f).i := by
+    apply e₁PullData.isPullback.hom_ext
+    · calc
+        (productPull.i ≫ productFst) ≫ e₁PullData.middleMap =
+            productPull.i ≫ (productFst ≫ e₁PullData.middleMap) := by
+              rw [Category.assoc]
+        _ = productPull.i ≫ (productPullData.middleMap ≫ h.productFst) := by
+              rw [productFst_middle]
+        _ = (productPull.i ≫ productPullData.middleMap) ≫ h.productFst := by
+              rw [Category.assoc]
+        _ = h.productExtension.i ≫ h.productFst := by
+              rw [productPullData.i_map]
+        _ = biprod.fst ≫ e₁.i := h.product_i_fst
+        _ = biprod.fst ≫
+              ((shortExactExtensionPullback e₁ f).i ≫ e₁PullData.middleMap) := by
+              rw [← e₁PullData.i_map]
+        _ = (biprod.fst ≫ (shortExactExtensionPullback e₁ f).i) ≫
+              e₁PullData.middleMap := by
+              rw [Category.assoc]
+    · calc
+        (productPull.i ≫ productFst) ≫ (shortExactExtensionPullback e₁ f).p =
+            productPull.i ≫
+              (productFst ≫ (shortExactExtensionPullback e₁ f).p) := by
+              rw [Category.assoc]
+        _ = productPull.i ≫ (productPull.p ≫ biprod.fst) := by
+              rw [productFst_p]
+        _ = 0 := by
+              rw [← Category.assoc, productPull.zero, zero_comp]
+        _ = (biprod.fst ≫ (shortExactExtensionPullback e₁ f).i) ≫
+              (shortExactExtensionPullback e₁ f).p := by
+              rw [Category.assoc, (shortExactExtensionPullback e₁ f).zero, comp_zero]
+  have productSnd_i :
+      productPull.i ≫ productSnd =
+        biprod.snd ≫ (shortExactExtensionPullback e₂ f).i := by
+    apply e₂PullData.isPullback.hom_ext
+    · calc
+        (productPull.i ≫ productSnd) ≫ e₂PullData.middleMap =
+            productPull.i ≫ (productSnd ≫ e₂PullData.middleMap) := by
+              rw [Category.assoc]
+        _ = productPull.i ≫ (productPullData.middleMap ≫ h.productSnd) := by
+              rw [productSnd_middle]
+        _ = (productPull.i ≫ productPullData.middleMap) ≫ h.productSnd := by
+              rw [Category.assoc]
+        _ = h.productExtension.i ≫ h.productSnd := by
+              rw [productPullData.i_map]
+        _ = biprod.snd ≫ e₂.i := h.product_i_snd
+        _ = biprod.snd ≫
+              ((shortExactExtensionPullback e₂ f).i ≫ e₂PullData.middleMap) := by
+              rw [← e₂PullData.i_map]
+        _ = (biprod.snd ≫ (shortExactExtensionPullback e₂ f).i) ≫
+              e₂PullData.middleMap := by
+              rw [Category.assoc]
+    · calc
+        (productPull.i ≫ productSnd) ≫ (shortExactExtensionPullback e₂ f).p =
+            productPull.i ≫
+              (productSnd ≫ (shortExactExtensionPullback e₂ f).p) := by
+              rw [Category.assoc]
+        _ = productPull.i ≫ (productPull.p ≫ biprod.snd) := by
+              rw [productSnd_p]
+        _ = 0 := by
+              rw [← Category.assoc, productPull.zero, zero_comp]
+        _ = (biprod.snd ≫ (shortExactExtensionPullback e₂ f).i) ≫
+              (shortExactExtensionPullback e₂ f).p := by
+              rw [Category.assoc, (shortExactExtensionPullback e₂ f).zero, comp_zero]
+  have pullbackMap_condition :
+      (stagePullData.middleMap ≫ h.pullbackMap) ≫ h.productExtension.p =
+        (stagePull.p ≫ biprodDiag X') ≫ ff := by
+    calc
+      (stagePullData.middleMap ≫ h.pullbackMap) ≫ h.productExtension.p =
+          stagePullData.middleMap ≫ (h.pullbackMap ≫ h.productExtension.p) := by
+            rw [Category.assoc]
+      _ = stagePullData.middleMap ≫ (h.pullbackExtension.p ≫ biprodDiag X) := by
+            rw [h.pullback_p]
+      _ = (stagePullData.middleMap ≫ h.pullbackExtension.p) ≫ biprodDiag X := by
+            rw [Category.assoc]
+      _ = (stagePull.p ≫ f) ≫ biprodDiag X := by
+            rw [stagePullData.map_p]
+      _ = stagePull.p ≫ (f ≫ biprodDiag X) := by
+            rw [Category.assoc]
+      _ = stagePull.p ≫ (biprodDiag X' ≫ ff) := by
+            rw [h_diag_map]
+      _ = (stagePull.p ≫ biprodDiag X') ≫ ff := by
+            rw [Category.assoc]
+  let pullbackMap : stagePull.middle ⟶ productPull.middle :=
+    productPullData.isPullback.lift
+      (stagePullData.middleMap ≫ h.pullbackMap)
+      (stagePull.p ≫ biprodDiag X')
+      pullbackMap_condition
+  have pullbackMap_middle :
+      pullbackMap ≫ productPullData.middleMap =
+        stagePullData.middleMap ≫ h.pullbackMap := by
+    simp [pullbackMap]
+  have pullbackMap_p :
+      pullbackMap ≫ productPull.p = stagePull.p ≫ biprodDiag X' := by
+    change productPullData.isPullback.lift
+        (stagePullData.middleMap ≫ h.pullbackMap)
+        (stagePull.p ≫ biprodDiag X') pullbackMap_condition ≫
+        productPull.p =
+      stagePull.p ≫ biprodDiag X'
+    exact productPullData.isPullback.lift_snd
+      (stagePullData.middleMap ≫ h.pullbackMap)
+      (stagePull.p ≫ biprodDiag X') pullbackMap_condition
+  have pullbackMap_i : stagePull.i ≫ pullbackMap = productPull.i := by
+    apply productPullData.isPullback.hom_ext
+    · calc
+        (stagePull.i ≫ pullbackMap) ≫ productPullData.middleMap =
+            stagePull.i ≫ (pullbackMap ≫ productPullData.middleMap) := by
+              rw [Category.assoc]
+        _ = stagePull.i ≫ (stagePullData.middleMap ≫ h.pullbackMap) := by
+              rw [pullbackMap_middle]
+        _ = (stagePull.i ≫ stagePullData.middleMap) ≫ h.pullbackMap := by
+              rw [Category.assoc]
+        _ = h.pullbackExtension.i ≫ h.pullbackMap := by
+              rw [stagePullData.i_map]
+        _ = h.productExtension.i := h.pullback_i
+        _ = productPull.i ≫ productPullData.middleMap := by
+              rw [productPullData.i_map]
+    · calc
+        (stagePull.i ≫ pullbackMap) ≫ productPull.p =
+            stagePull.i ≫ (pullbackMap ≫ productPull.p) := by
+              rw [Category.assoc]
+        _ = stagePull.i ≫ (stagePull.p ≫ biprodDiag X') := by
+              rw [pullbackMap_p]
+        _ = 0 := by
+              rw [← Category.assoc, stagePull.zero, zero_comp]
+        _ = productPull.i ≫ productPull.p := productPull.zero.symm
+  have pushoutMap_condition :
+      (stagePullData.middleMap ≫ h.pushoutMap) ≫ h.pushoutExtension.p =
+        stagePull.p ≫ f := by
+    calc
+      (stagePullData.middleMap ≫ h.pushoutMap) ≫ h.pushoutExtension.p =
+          stagePullData.middleMap ≫ (h.pushoutMap ≫ h.pushoutExtension.p) := by
+            rw [Category.assoc]
+      _ = stagePullData.middleMap ≫ h.pullbackExtension.p := by
+            rw [h.pushout_p]
+      _ = stagePull.p ≫ f := stagePullData.map_p
+  let pushoutMap : stagePull.middle ⟶ finalPull.middle :=
+    finalPullData.isPullback.lift
+      (stagePullData.middleMap ≫ h.pushoutMap)
+      stagePull.p
+      pushoutMap_condition
+  have pushoutMap_middle :
+      pushoutMap ≫ finalPullData.middleMap =
+        stagePullData.middleMap ≫ h.pushoutMap := by
+    simp [pushoutMap]
+  have pushoutMap_p : pushoutMap ≫ finalPull.p = stagePull.p := by
+    change finalPullData.isPullback.lift
+        (stagePullData.middleMap ≫ h.pushoutMap)
+        stagePull.p pushoutMap_condition ≫ finalPull.p =
+      stagePull.p
+    exact finalPullData.isPullback.lift_snd
+      (stagePullData.middleMap ≫ h.pushoutMap)
+      stagePull.p pushoutMap_condition
+  have pushoutMap_i : biprodCodiag Y ≫ finalPull.i = stagePull.i ≫ pushoutMap := by
+    apply finalPullData.isPullback.hom_ext
+    · calc
+        (biprodCodiag Y ≫ finalPull.i) ≫ finalPullData.middleMap =
+            biprodCodiag Y ≫ (finalPull.i ≫ finalPullData.middleMap) := by
+              rw [Category.assoc]
+        _ = biprodCodiag Y ≫ h.pushoutExtension.i := by
+              rw [finalPullData.i_map]
+        _ = h.pullbackExtension.i ≫ h.pushoutMap := h.pushout_i
+        _ = (stagePull.i ≫ stagePullData.middleMap) ≫ h.pushoutMap := by
+              rw [stagePullData.i_map]
+        _ = stagePull.i ≫ (stagePullData.middleMap ≫ h.pushoutMap) := by
+              rw [Category.assoc]
+        _ = stagePull.i ≫ (pushoutMap ≫ finalPullData.middleMap) := by
+              rw [pushoutMap_middle]
+        _ = (stagePull.i ≫ pushoutMap) ≫ finalPullData.middleMap := by
+              rw [Category.assoc]
+    · calc
+        (biprodCodiag Y ≫ finalPull.i) ≫ finalPull.p =
+            biprodCodiag Y ≫ (finalPull.i ≫ finalPull.p) := by
+              rw [Category.assoc]
+        _ = 0 := by
+              rw [finalPull.zero, comp_zero]
+        _ = stagePull.i ≫ stagePull.p := stagePull.zero.symm
+        _ = (stagePull.i ≫ pushoutMap) ≫ finalPull.p := by
+              rw [Category.assoc, pushoutMap_p]
+  refine
+    { productExtension := productPull
+      productFst := productFst
+      productSnd := productSnd
+      product_i_fst := productFst_i
+      product_i_snd := productSnd_i
+      product_p_fst := productFst_p
+      product_p_snd := productSnd_p
+      pullbackExtension := stagePull
+      pullbackMap := pullbackMap
+      pullback_i := pullbackMap_i
+      pullback_p := pullbackMap_p
+      pushoutExtension := finalPull
+      pushoutMap := pushoutMap
+      pushout_i := pushoutMap_i
+      pushout_p := pushoutMap_p
+      sumIso := shortExactExtensionPullbackIso f h.sumIso }
 
 end MetrizableLCA
 
@@ -1820,6 +2441,61 @@ theorem pullbackHeadFreeHomWith_homTail_mem {X' : C} (f : X' ⟶ X)
   | cons e h =>
       exact pullbackHeadFreeHomWith_homTail_cons_mem (X := X) (Y := Y) f pull e h
 
+/--
+Under the expected pullback compatibility data, pulling back the head one-fold
+extension preserves every positive-degree Yoneda relation generator.
+-/
+theorem pullbackHead_relationSubgroup_le {X' : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
+    (pullIso : ∀ {Z : C} {e e' : ShortExactExtension X Z},
+      ShortExactExtension.Iso e e' → ShortExactExtension.Iso (pull e) (pull e'))
+    (pullIsoBetween : ∀ {Z Z' : C} {β : Z ≅ Z'} {e : ShortExactExtension X Z}
+        {e' : ShortExactExtension X Z'},
+        ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X) β e e' →
+          ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X') β (pull e) (pull e'))
+    (pullSplit : ∀ {Z : C} (e : ShortExactExtension X Z)
+      (_ : e.shortComplex.Splitting), (pull e).shortComplex.Splitting)
+    [HasBinaryBiproduct X' X']
+    (pullBaer :
+      ∀ {Z : C} [HasBinaryBiproduct X X] [HasBinaryBiproduct X' X']
+        [HasBinaryBiproduct Z Z] {e₁ e₂ sum : ShortExactExtension X Z},
+        ShortExactExtension.BaerSumData e₁ e₂ sum →
+          ShortExactExtension.BaerSumData (pull e₁) (pull e₂) (pull sum))
+    (pullPushoutData :
+      ∀ {Z W : C} (e : ShortExactExtension X Z) (g : Z ⟶ W)
+        {out : ShortExactExtension X W},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData (pull e) g (pull out)) :
+    yonedaRelationSubgroup X Y n ≤
+      (yonedaRelationSubgroup X' Y n).comap
+        (pullbackHeadFreeHomWith (X := X) (Y := Y) f pull n) := by
+  rw [yonedaRelationSubgroup]
+  refine (AddSubgroup.closure_le _).mpr ?_
+  intro z hz
+  change pullbackHeadFreeHomWith (X := X) (Y := Y) f pull n z ∈
+    yonedaRelationSubgroup X' Y n
+  cases hz with
+  | iso h =>
+      exact pullbackHeadFreeHomWith_rel_mem (X := X) (Y := Y) f pull pullIso h
+  | chainIso h =>
+      exact pullbackHeadFreeHomWith_relIso_mem (X := X) (Y := Y) f pull
+        pullIsoBetween h
+  | split e s =>
+      exact pullbackHeadFreeHomWith_split_mem (X := X) (Y := Y) f pull pullSplit e s
+  | baer h =>
+      exact pullbackHeadFreeHomWith_baer_mem (X := X) (Y := Y) f pull h (pullBaer h)
+  | baerChain h =>
+      exact pullbackHeadFreeHomWith_baerChain_mem (X := X) (Y := Y) f pull pullBaer h
+  | leftSplit e g s =>
+      exact pullbackHeadFreeHomWith_leftSplit_mem (X := X) (Y := Y) f pull e g s
+  | rightSplit h =>
+      exact pullbackHeadFreeHomWith_rightSplit_mem (X := X) (Y := Y) f pull pullSplit h
+  | splitFactor h =>
+      exact pullbackHeadFreeHomWith_splitFactor_mem (X := X) (Y := Y) f pull pullSplit h
+  | homTail h =>
+      exact pullbackHeadFreeHomWith_homTail_mem (X := X) (Y := Y) f pull
+        pullPushoutData h
+
 /-- The additive group structure on exact-category Yoneda Ext. -/
 noncomputable instance instAddCommGroup : AddCommGroup (YonedaExt X Y n) := by
   cases n with
@@ -1829,6 +2505,142 @@ noncomputable instance instAddCommGroup : AddCommGroup (YonedaExt X Y n) := by
   | succ n =>
       dsimp [YonedaExt, PositiveYonedaExt]
       infer_instance
+
+/--
+Positive-degree head pullback, descended from formal chains to the local
+Yoneda Ext quotient under the same compatibility data.
+-/
+noncomputable def pullbackHeadMapWith {X' : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
+    (pullIso : ∀ {Z : C} {e e' : ShortExactExtension X Z},
+      ShortExactExtension.Iso e e' → ShortExactExtension.Iso (pull e) (pull e'))
+    (pullIsoBetween : ∀ {Z Z' : C} {β : Z ≅ Z'} {e : ShortExactExtension X Z}
+        {e' : ShortExactExtension X Z'},
+        ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X) β e e' →
+          ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X') β (pull e) (pull e'))
+    (pullSplit : ∀ {Z : C} (e : ShortExactExtension X Z)
+      (_ : e.shortComplex.Splitting), (pull e).shortComplex.Splitting)
+    [HasBinaryBiproduct X' X']
+    (pullBaer :
+      ∀ {Z : C} [HasBinaryBiproduct X X] [HasBinaryBiproduct X' X']
+        [HasBinaryBiproduct Z Z] {e₁ e₂ sum : ShortExactExtension X Z},
+        ShortExactExtension.BaerSumData e₁ e₂ sum →
+          ShortExactExtension.BaerSumData (pull e₁) (pull e₂) (pull sum))
+    (pullPushoutData :
+      ∀ {Z W : C} (e : ShortExactExtension X Z) (g : Z ⟶ W)
+        {out : ShortExactExtension X W},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData (pull e) g (pull out)) :
+    YonedaExt X Y (n + 1) →+ YonedaExt X' Y (n + 1) :=
+  QuotientAddGroup.map (yonedaRelationSubgroup X Y n) (yonedaRelationSubgroup X' Y n)
+    (pullbackHeadFreeHomWith (X := X) (Y := Y) f pull n)
+    (pullbackHead_relationSubgroup_le (X := X) (Y := Y) f pull pullIso
+      pullIsoBetween pullSplit pullBaer pullPushoutData)
+
+@[simp]
+theorem pullbackHeadMapWith_ofExtension {X' : C} (f : X' ⟶ X)
+    (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
+    (pullIso : ∀ {Z : C} {e e' : ShortExactExtension X Z},
+      ShortExactExtension.Iso e e' → ShortExactExtension.Iso (pull e) (pull e'))
+    (pullIsoBetween : ∀ {Z Z' : C} {β : Z ≅ Z'} {e : ShortExactExtension X Z}
+        {e' : ShortExactExtension X Z'},
+        ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X) β e e' →
+          ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl X') β (pull e) (pull e'))
+    (pullSplit : ∀ {Z : C} (e : ShortExactExtension X Z)
+      (_ : e.shortComplex.Splitting), (pull e).shortComplex.Splitting)
+    [HasBinaryBiproduct X' X']
+    (pullBaer :
+      ∀ {Z : C} [HasBinaryBiproduct X X] [HasBinaryBiproduct X' X']
+        [HasBinaryBiproduct Z Z] {e₁ e₂ sum : ShortExactExtension X Z},
+        ShortExactExtension.BaerSumData e₁ e₂ sum →
+          ShortExactExtension.BaerSumData (pull e₁) (pull e₂) (pull sum))
+    (pullPushoutData :
+      ∀ {Z W : C} (e : ShortExactExtension X Z) (g : Z ⟶ W)
+        {out : ShortExactExtension X W},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData (pull e) g (pull out))
+    (a : YonedaExtension X Y (n + 1)) :
+    pullbackHeadMapWith f pull pullIso pullIsoBetween pullSplit pullBaer pullPushoutData
+        (ofExtension (X := X) (Y := Y) (n := n) a) =
+      ofExtension (X := X') (Y := Y) (n := n)
+        (YonedaExtension.pullbackHeadWith f pull a) :=
+  rfl
+
+/--
+For canonical MetrizableLCA pullbacks, head pullback preserves positive-degree
+Yoneda relations once the remaining pullback-pushout exchange data is supplied.
+-/
+theorem pullbackHead_relationSubgroup_le_metrizableWithPushoutData
+    {X X' Y : MetrizableLCA.{u}} (f : X' ⟶ X) (n : ℕ)
+    [HasBinaryBiproduct X' X']
+    (pullPushoutData :
+      ∀ {Z W : MetrizableLCA.{u}}
+        (e : ShortExactExtension (C := MetrizableLCA.{u}) X Z) (g : Z ⟶ W)
+        {out : ShortExactExtension (C := MetrizableLCA.{u}) X W},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData
+            (MetrizableLCA.shortExactExtensionPullback e f) g
+            (MetrizableLCA.shortExactExtensionPullback out f)) :
+    yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y n ≤
+      (yonedaRelationSubgroup (C := MetrizableLCA.{u}) X' Y n).comap
+        (pullbackHeadFreeHomWith (C := MetrizableLCA.{u}) (X := X) (Y := Y) f
+          (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) n) :=
+  pullbackHead_relationSubgroup_le (C := MetrizableLCA.{u}) (X := X) (Y := Y) f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    (fun {_} {_ _} h => MetrizableLCA.shortExactExtensionPullbackIso f h)
+    (fun {_ _} {_} {_} {_} h => MetrizableLCA.shortExactExtensionPullbackIsoBetween f h)
+    (fun {_} e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s)
+    (fun {Z} [HasBinaryBiproduct X X] [HasBinaryBiproduct X' X']
+        [HasBinaryBiproduct Z Z] {_ _ _} h =>
+      MetrizableLCA.shortExactExtensionPullbackBaerSumData f h)
+    (fun {_ _} e g {_} h => pullPushoutData e g h)
+
+/--
+Canonical MetrizableLCA head pullback on positive-degree Yoneda Ext, conditional
+only on the pullback-pushout exchange data.
+-/
+noncomputable def pullbackHeadMap_metrizableWithPushoutData
+    {X X' Y : MetrizableLCA.{u}} (f : X' ⟶ X) (n : ℕ)
+    [HasBinaryBiproduct X' X']
+    (pullPushoutData :
+      ∀ {Z W : MetrizableLCA.{u}}
+        (e : ShortExactExtension (C := MetrizableLCA.{u}) X Z) (g : Z ⟶ W)
+        {out : ShortExactExtension (C := MetrizableLCA.{u}) X W},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData
+            (MetrizableLCA.shortExactExtensionPullback e f) g
+            (MetrizableLCA.shortExactExtensionPullback out f)) :
+    YonedaExt (C := MetrizableLCA.{u}) X Y (n + 1) →+
+      YonedaExt (C := MetrizableLCA.{u}) X' Y (n + 1) :=
+  pullbackHeadMapWith (C := MetrizableLCA.{u}) (X := X) (Y := Y) f
+    (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f)
+    (fun {_} {_ _} h => MetrizableLCA.shortExactExtensionPullbackIso f h)
+    (fun {_ _} {_} {_} {_} h => MetrizableLCA.shortExactExtensionPullbackIsoBetween f h)
+    (fun {_} e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s)
+    (fun {Z} [HasBinaryBiproduct X X] [HasBinaryBiproduct X' X']
+        [HasBinaryBiproduct Z Z] {_ _ _} h =>
+      MetrizableLCA.shortExactExtensionPullbackBaerSumData f h)
+    (fun {_ _} e g {_} h => pullPushoutData e g h)
+
+@[simp]
+theorem pullbackHeadMap_metrizableWithPushoutData_ofExtension
+    {X X' Y : MetrizableLCA.{u}} (f : X' ⟶ X) (n : ℕ)
+    [HasBinaryBiproduct X' X']
+    (pullPushoutData :
+      ∀ {Z W : MetrizableLCA.{u}}
+        (e : ShortExactExtension (C := MetrizableLCA.{u}) X Z) (g : Z ⟶ W)
+        {out : ShortExactExtension (C := MetrizableLCA.{u}) X W},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData
+            (MetrizableLCA.shortExactExtensionPullback e f) g
+            (MetrizableLCA.shortExactExtensionPullback out f))
+    (a : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)) :
+    pullbackHeadMap_metrizableWithPushoutData (X := X) f n pullPushoutData
+        (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (n := n) a) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X') (Y := Y) (n := n)
+        (YonedaExtension.pullbackHeadWith f
+          (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) a) :=
+  rfl
 
 /-- Termwise-related extension chains define equal classes in positive-degree Ext. -/
 theorem ofExtension_eq_ofExtension_of_rel {a b : YonedaExtension X Y (n + 1)}
@@ -2317,6 +3129,143 @@ theorem composeTailHomFreeHom_homTail_mem_metrizable
     (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
     (fun {_ _} e g {_} h => MetrizableLCA.shortExactExtensionPushoutAssocIso e g f h)
     h
+
+/--
+Under the expected pushout compatibility data, composing a hom on the tail
+preserves every positive-degree Yoneda relation generator.
+-/
+theorem composeTailHom_relationSubgroup_le {Y' : C} (f : Y ⟶ Y')
+    (push : {Z W : C} → (e : ShortExactExtension Z W) → (g : W ⟶ Y') →
+      ShortExactExtension Z Y')
+    (pushData : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y'),
+      ShortExactExtension.PushoutData e g (push e g))
+    (pushSplit : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y')
+      (_ : e.shortComplex.Splitting), (push e g).shortComplex.Splitting)
+    [HasBinaryBiproduct Y' Y']
+    (pushBaer : ∀ {Z : C} [HasBinaryBiproduct Z Z] [HasBinaryBiproduct Y Y]
+      [HasBinaryBiproduct Y' Y'] {e₁ e₂ sum : ShortExactExtension Z Y},
+      ShortExactExtension.BaerSumData e₁ e₂ sum →
+        ShortExactExtension.BaerSumData (push e₁ f) (push e₂ f) (push sum f))
+    (pushAssocIso : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y)
+      {out : ShortExactExtension Z Y},
+      ShortExactExtension.PushoutData e g out →
+        ShortExactExtension.Iso (push e (g ≫ f)) (push out f)) :
+    yonedaRelationSubgroup X Y n ≤
+      (yonedaRelationSubgroup X Y' n).comap
+        (composeTailHomFreeHom (X := X) f n) := by
+  rw [yonedaRelationSubgroup]
+  refine (AddSubgroup.closure_le _).mpr ?_
+  intro z hz
+  change composeTailHomFreeHom (X := X) f n z ∈ yonedaRelationSubgroup X Y' n
+  cases hz with
+  | iso h =>
+      exact composeTailHomFreeHom_rel_mem (X := X) f h
+  | chainIso h =>
+      exact composeTailHomFreeHom_relIso_mem (X := X) f h
+  | split e s =>
+      exact composeTailHomFreeHom_split_mem (X := X) f push pushData pushSplit e s
+  | baer h =>
+      exact composeTailHomFreeHom_baer_mem (X := X) f push pushData h (pushBaer h)
+  | baerChain h =>
+      exact composeTailHomFreeHom_baerChain_mem (X := X) f push pushData pushBaer h
+  | leftSplit e g s =>
+      exact composeTailHomFreeHom_leftSplit_mem (X := X) f push pushData pushSplit e g s
+  | rightSplit h =>
+      exact composeTailHomFreeHom_rightSplit_mem (X := X) f push pushData pushSplit h
+  | splitFactor h =>
+      exact composeTailHomFreeHom_splitFactor_mem (X := X) f push pushData pushSplit h
+  | homTail h =>
+      exact composeTailHomFreeHom_homTail_mem (X := X) f push pushData pushAssocIso h
+
+/--
+Positive-degree tail hom composition, descended from formal chains to the
+local Yoneda Ext quotient under the same compatibility data.
+-/
+noncomputable def composeTailHomMapWith {Y' : C} (f : Y ⟶ Y')
+    (push : {Z W : C} → (e : ShortExactExtension Z W) → (g : W ⟶ Y') →
+      ShortExactExtension Z Y')
+    (pushData : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y'),
+      ShortExactExtension.PushoutData e g (push e g))
+    (pushSplit : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y')
+      (_ : e.shortComplex.Splitting), (push e g).shortComplex.Splitting)
+    [HasBinaryBiproduct Y' Y']
+    (pushBaer : ∀ {Z : C} [HasBinaryBiproduct Z Z] [HasBinaryBiproduct Y Y]
+      [HasBinaryBiproduct Y' Y'] {e₁ e₂ sum : ShortExactExtension Z Y},
+      ShortExactExtension.BaerSumData e₁ e₂ sum →
+        ShortExactExtension.BaerSumData (push e₁ f) (push e₂ f) (push sum f))
+    (pushAssocIso : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y)
+      {out : ShortExactExtension Z Y},
+      ShortExactExtension.PushoutData e g out →
+        ShortExactExtension.Iso (push e (g ≫ f)) (push out f)) :
+    YonedaExt X Y (n + 1) →+ YonedaExt X Y' (n + 1) :=
+  QuotientAddGroup.map (yonedaRelationSubgroup X Y n) (yonedaRelationSubgroup X Y' n)
+    (composeTailHomFreeHom (X := X) f n)
+    (composeTailHom_relationSubgroup_le (X := X) (Y := Y) f push pushData pushSplit
+      pushBaer pushAssocIso)
+
+@[simp]
+theorem composeTailHomMapWith_ofExtension {Y' : C} (f : Y ⟶ Y')
+    (push : {Z W : C} → (e : ShortExactExtension Z W) → (g : W ⟶ Y') →
+      ShortExactExtension Z Y')
+    (pushData : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y'),
+      ShortExactExtension.PushoutData e g (push e g))
+    (pushSplit : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y')
+      (_ : e.shortComplex.Splitting), (push e g).shortComplex.Splitting)
+    [HasBinaryBiproduct Y' Y']
+    (pushBaer : ∀ {Z : C} [HasBinaryBiproduct Z Z] [HasBinaryBiproduct Y Y]
+      [HasBinaryBiproduct Y' Y'] {e₁ e₂ sum : ShortExactExtension Z Y},
+      ShortExactExtension.BaerSumData e₁ e₂ sum →
+        ShortExactExtension.BaerSumData (push e₁ f) (push e₂ f) (push sum f))
+    (pushAssocIso : ∀ {Z W : C} (e : ShortExactExtension Z W) (g : W ⟶ Y)
+      {out : ShortExactExtension Z Y},
+      ShortExactExtension.PushoutData e g out →
+        ShortExactExtension.Iso (push e (g ≫ f)) (push out f))
+    (a : YonedaExtension X Y (n + 1)) :
+    composeTailHomMapWith f push pushData pushSplit pushBaer pushAssocIso
+        (ofExtension (X := X) (Y := Y) (n := n) a) =
+      ofExtension (X := X) (Y := Y') (n := n) (YonedaExtension.composeTailHom f a) :=
+  rfl
+
+/--
+For the canonical MetrizableLCA pushout model, tail composition sends every
+positive-degree Yoneda relation into the target relation subgroup.
+-/
+theorem composeTailHom_relationSubgroup_le_metrizable
+    {X Y Y' : MetrizableLCA.{u}} (f : Y ⟶ Y') (n : ℕ)
+    [HasBinaryBiproduct Y' Y'] :
+    yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y n ≤
+      (yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y' n).comap
+        (composeTailHomFreeHom (C := MetrizableLCA.{u}) (X := X) f n) :=
+  composeTailHom_relationSubgroup_le (C := MetrizableLCA.{u}) (X := X) (Y := Y) f
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushout e g)
+    (fun {_ _} e g => MetrizableLCA.shortExactExtensionPushoutData e g)
+    (fun {_ _} e g s => MetrizableLCA.shortExactExtensionPushoutSplitting e g s)
+    (fun {Z} [HasBinaryBiproduct Z Z] [HasBinaryBiproduct Y Y]
+        [HasBinaryBiproduct Y' Y'] {_ _ _} h =>
+      MetrizableLCA.shortExactExtensionPushoutBaerSumData f h)
+    (fun {_ _} e g {_} h => MetrizableLCA.shortExactExtensionPushoutAssocIso e g f h)
+
+/-- Positive-degree tail composition for canonical MetrizableLCA pushouts. -/
+noncomputable def composeTailHomMap_metrizable
+    {X Y Y' : MetrizableLCA.{u}} (f : Y ⟶ Y') (n : ℕ)
+    [HasBinaryBiproduct Y' Y'] :
+    YonedaExt (C := MetrizableLCA.{u}) X Y (n + 1) →+
+      YonedaExt (C := MetrizableLCA.{u}) X Y' (n + 1) :=
+  QuotientAddGroup.map
+    (yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y n)
+    (yonedaRelationSubgroup (C := MetrizableLCA.{u}) X Y' n)
+    (composeTailHomFreeHom (C := MetrizableLCA.{u}) (X := X) f n)
+    (composeTailHom_relationSubgroup_le_metrizable (X := X) f n)
+
+@[simp]
+theorem composeTailHomMap_metrizable_ofExtension
+    {X Y Y' : MetrizableLCA.{u}} (f : Y ⟶ Y') (n : ℕ)
+    [HasBinaryBiproduct Y' Y'] (a : YonedaExtension (C := MetrizableLCA.{u}) X Y (n + 1)) :
+    composeTailHomMap_metrizable (X := X) f n
+        (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y) (n := n) a) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Y') (n := n)
+        (YonedaExtension.composeTailHom f a) :=
+  rfl
 
 /-- Left Yoneda product by a fixed one-fold extension, descended to the quotient group. -/
 noncomputable def leftProductByExtension (e : ShortExactExtension X Y) (n : ℕ) :
