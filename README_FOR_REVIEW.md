@@ -41,6 +41,7 @@
 - v110では、v109のbounded homotopy Verdier quotient因数分解を`Dbounded`側へ合成し、`Dbounded.boundedVerdierComparison`、`Dbounded.boundedVerdierComparisonDirect`、それぞれの局所化可換性iso、両経路の同型、さらにambient ordinary Verdier比較へ合成すると既存の`Dbounded.verdierComparison`に一致するisoを追加した。これはdirect bounded localizationから有界homotopy Verdier商へのordinaryな比較経路を整理するものであり、無条件closed₂、direct bounded側のleft/right calculus、`Dbounded`への三角構造転送、stable infinity-category構造を構成するものではない
 - v111では、`boundedHomotopyExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage`と`boundedExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage_of_isoClosed`を追加し、homotopy/Verdier pullback弱同値類がbounded homotopy category内のexact-acyclic `trW`の逆像と一致すること、およびexact acyclicityのhomotopy同型閉性仮定下でdirect bounded弱同値類も同じ逆像に一致することを確認した。これはbounded homotopy Verdier quotientへの局所化条件を等式として固定するordinaryな整理であり、無条件closed₂、direct bounded側のleft/right calculus、`Dbounded`への三角構造転送、stable infinity-category構造を構成するものではない
 - v112では、`exactAcyclicHomotopyIsoClosure_isClosedUnderIsomorphisms`、`exactAcyclicHomotopyIsoClosure_containsZero`、`boundedExactAcyclicHomotopyObject_isClosedUnderIsomorphisms`、`boundedExactAcyclicHomotopyObject_containsZero`、`boundedExactAcyclicHomotopyObject_isStableUnderShift`を追加し、exact acyclic同型閉包とbounded homotopy category内のexact-acyclic object propertyについて、同型閉性、zero包含、bounded側のshift安定性を名前付きAPIとして固定した。これはbounded homotopy Verdier object propertyの基本閉性を参照しやすくする整理であり、無条件closed₂、direct bounded側のleft/right calculus、`Dbounded`への三角構造転送、stable infinity-category構造を構成するものではない
+- v113では外部支援worker `w07-audit-negative-fixture-hardening`の候補を親側で再実装し、`run/verification.json`の全コマンドentryについて未解決statusや空のevidenceを拒否する検査を`audit/external_audit.py`に追加した。さらにproduct successを主張するterminal outcomeでは`failed_expected`も拒否するようにし、`pending_verification_evidence`と`failed_expected_product_success`の負例fixtureを追加した。これはreview packetの過大主張を防ぐ監査強化であり、Lean上のproduct proofを進めるものではない
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
@@ -65,7 +66,7 @@ python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcom
 git diff --check
 ```
 
-`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv112までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、さらにordinary nerve経路をstable infinity-category完成として扱う主張も失敗させる。
+`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv112までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、ordinary nerve経路をstable infinity-category完成として扱う主張を失敗させ、未解決またはproduct success時の期待失敗検証entryも失敗させる。
 
 ## レビューpacket
 

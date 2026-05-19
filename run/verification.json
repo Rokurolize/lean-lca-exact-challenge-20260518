@@ -1,83 +1,108 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v112-bounded-exact-acyclic-object-property-closure",
-  "generated_utc": "2026-05-19T18:10:00Z",
-  "source_tree_hash": "7f7636eac5302ac24e671565857bed93ee8ca0daf9f480cff32b006f710e4a1e",
-  "summary": "v112 adds named object-property closure APIs for exactAcyclicHomotopyIsoClosure and boundedExactAcyclicHomotopyObject: isomorphism closure, zero containment, and bounded-side shift stability. Product remains nonterminal because bounded/exact-acyclic closed2 is not unconditional, direct bounded left/right calculus and triangulated transfer to Dbounded are not proved, and no stable infinity-category structure is constructed.",
+  "schema": "lean-lca-exact-challenge-verification-v113-audit-negative-fixture-hardening",
+  "generated_utc": "2026-05-19T18:20:00Z",
+  "source_tree_hash": "f4b9607ccbec388061b52a42f30dc2e88a35c758fedd726d5ae60ee760b02645",
+  "summary": "v113 manually ports external support worker w07 audit hardening in the parent worktree: run/verification.json entries must have nonempty command/status/evidence, unresolved statuses are rejected, product_success cannot rely on failed_expected verification entries, and negative fixtures cover pending verification evidence plus product-success expected-failure evidence. Product remains nonterminal because the stable infinity-category proof gap is unchanged.",
   "commands": [
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
-      "status": "passed",
-      "evidence": "Focused derived build passed after adding the v112 object-property closure declarations."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "Product declaration audit checks the v112 exact-acyclic isoClosure and bounded exact-acyclic object-property closure declarations while retaining the nonterminal stable-infinity contract."
-    },
-    {
-      "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "status": "passed",
-      "evidence": "Derived blocker audit checks the v112 object-property closure declarations and still records the unresolved stable-infinity product condition."
-    },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after the v112 bounded exact-acyclic object-property closure update."
+      "evidence": "Full project build passed after the v113 external-audit negative-fixture hardening update."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v112 update."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v113 audit-only update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit remains green after the v112 bounded-derived update."
+      "evidence": "Required declaration audit remains green after the v113 audit-only update."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit remains green and still records the nonterminal stable-infinity contract; no Lean product-success declaration was weakened."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v112 derived-side update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v113 audit-only update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v112 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v113 audit-only update."
     },
     {
-      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v112 nonterminal summary refresh."
-    },
-    {
-      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
-      "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v112 frontier refresh."
-    },
-    {
-      "command": "python3 -m json.tool run/verification.json >/dev/null",
-      "status": "passed",
-      "evidence": "Verification JSON syntax checked after regenerating the v112 verification record."
-    },
-    {
-      "command": "python3 -m json.tool manifest.json >/dev/null",
-      "status": "passed",
-      "evidence": "Manifest JSON syntax checked after regenerating the v112 manifest."
+      "evidence": "Derived blocker audit still compiles and still records the unresolved stable-infinity product condition after the v113 audit-only update."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v112 update."
+      "evidence": "External audit Python syntax check passes after adding verification-entry status/evidence validation and new negative fixtures."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root audit/negative_fixtures/pending_verification_evidence --terminal-outcome terminal_outcome.json --self-check-only",
+      "status": "failed_expected",
+      "evidence": "Negative fixture was rejected as expected: unresolved status 'pending' in run/verification.json cannot support product completion."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root audit/negative_fixtures/failed_expected_product_success --terminal-outcome terminal_outcome.json --self-check-only",
+      "status": "failed_expected",
+      "evidence": "Negative fixture was rejected as expected: product_success evidence cannot contain a failed_expected verification entry."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "Terminal outcome JSON syntax checked after the v113 nonterminal audit-hardening summary refresh."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "Proof frontier JSON syntax checked after the v113 audit-hardening frontier refresh."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "Verification JSON syntax checked after regenerating the v113 verification record."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "Manifest JSON syntax checked after regenerating the v113 manifest."
+    },
+    {
+      "command": "python3 -m json.tool audit/negative_fixtures/pending_verification_evidence/run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "Pending-status negative fixture verification JSON syntax checked."
+    },
+    {
+      "command": "python3 -m json.tool audit/negative_fixtures/pending_verification_evidence/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "Pending-status negative fixture terminal outcome JSON syntax checked."
+    },
+    {
+      "command": "python3 -m json.tool audit/negative_fixtures/failed_expected_product_success/run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "Product-success failed_expected negative fixture verification JSON syntax checked."
+    },
+    {
+      "command": "python3 -m json.tool audit/negative_fixtures/failed_expected_product_success/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "Product-success failed_expected negative fixture terminal outcome JSON syntax checked."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v112 proof, audit, documentation, frontier, terminal outcome, and evidence update."
+      "evidence": "Whitespace check passed after the v113 audit, fixture, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because v112 records object-property closure evidence and does not prove unconditional closed2, unconditional left/right calculus, transfer to Dbounded triangulated/stable infinity, or stable infinity-category structure."
+      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal audit checks pass, including v113 verification-entry validation and negative fixtures, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because stable infinity-category product proof remains incomplete."
     }
   ]
 }

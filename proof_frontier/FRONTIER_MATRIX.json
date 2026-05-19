@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T18:10:00Z",
+  "generated_utc": "2026-05-19T18:17:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v112 edits stay in the parent process. The parent did not launch or resume any worker for the bounded exact-acyclic object-property closure frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening was manually ported by the parent after reading the external support notice; the parent did not launch or resume any worker from this worktree.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -779,12 +779,16 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "External audit rejects non-product terminal state and now also rejects a product-success claim that only provides the ordinary localized category nerve as the bounded derived infinity-category.",
+      "merge_blocker": "v113 external audit validates every run/verification.json command entry, rejects unresolved statuses, requires nonempty evidence, and rejects failed_expected status when terminal_outcome claims product_success. Negative fixtures cover pending verification evidence, product-success expected-failure evidence, ordinary nerve product overclaims, and self-referential zip SHA claims.",
       "product_success_contribution": "Prevents placeholder or stale product claims.",
       "owned_by_active_process": true,
       "implemented_declarations": [
         "check_derived_infinity_product_contract",
-        "audit/negative_fixtures/ordinary_nerve_claimed_product_success"
+        "check_verification_entries_resolved",
+        "check_verification_fixture_resolved",
+        "audit/negative_fixtures/ordinary_nerve_claimed_product_success",
+        "audit/negative_fixtures/pending_verification_evidence",
+        "audit/negative_fixtures/failed_expected_product_success"
       ]
     },
     {
@@ -818,7 +822,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "refresh after proof changes; v112 evidence records bounded exact-acyclic object-property closure facts while keeping the v111 inverse-image equalities and the stable-infinity blocker nonterminal",
+      "merge_blocker": "v113 route log records the external support notice, manual parent port of w07 audit hardening, unresolved-status fixture, and product-success failed_expected fixture while preserving the stable-infinity blocker as nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

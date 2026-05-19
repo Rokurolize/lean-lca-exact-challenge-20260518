@@ -44,6 +44,16 @@ REQUIRED_COMMANDS = [
     "git diff --check",
 ]
 
+ALLOWED_VERIFICATION_STATUSES = {"passed", "failed_expected"}
+UNRESOLVED_VERIFICATION_STATUSES = {
+    "pending",
+    "queued",
+    "running",
+    "not_run",
+    "todo",
+    "unknown",
+}
+
 FORBIDDEN_LEAN_RE = re.compile(r"\b(sorry|admit|axiom|unsafe)\b")
 HEX64_RE = re.compile(r"\b[0-9a-fA-F]{64}\b")
 JAPANESE_RE = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
@@ -262,12 +272,54 @@ def command_status_map(verification: dict[str, Any]) -> dict[str, str]:
             cmd = item.get("command")
             status = item.get("status")
             if isinstance(cmd, str) and isinstance(status, str):
-                out[cmd] = status
+                out[cmd] = status.strip().lower()
     return out
 
 
-def check_verification(root: Path, project_root: Path) -> None:
+def check_verification_entries_resolved(
+    verification: dict[str, Any], *, product_success: bool = False
+) -> None:
+    commands = verification.get("commands")
+    if not isinstance(commands, list):
+        fail("run/verification.json commands must be a list")
+    for index, item in enumerate(commands):
+        if not isinstance(item, dict):
+            fail(f"run/verification.json commands[{index}] must be an object")
+        command = item.get("command")
+        status = item.get("status")
+        evidence = item.get("evidence")
+        if not isinstance(command, str) or not command.strip():
+            fail(f"run/verification.json commands[{index}].command must be a nonempty string")
+        if not isinstance(status, str):
+            fail(f"run/verification.json command {command!r} status must be a string")
+        normalized = status.strip().lower()
+        if normalized in UNRESOLVED_VERIFICATION_STATUSES:
+            fail(f"run/verification.json command {command!r} has unresolved status {status!r}")
+        if normalized not in ALLOWED_VERIFICATION_STATUSES:
+            fail(f"run/verification.json command {command!r} has unsupported status {status!r}")
+        if product_success and normalized == "failed_expected":
+            fail(
+                f"run/verification.json command {command!r} has failed_expected status "
+                "inside product_success evidence"
+            )
+        if not isinstance(evidence, str) or not evidence.strip():
+            fail(f"run/verification.json command {command!r} must include nonempty evidence")
+
+
+def check_verification_fixture_resolved(root: Path, terminal_outcome: Path) -> None:
+    verification_path = root / "run" / "verification.json"
+    if verification_path.exists():
+        check_verification_entries_resolved(
+            load_json(verification_path),
+            product_success=terminal_claims_product_success(terminal_outcome),
+        )
+
+
+def check_verification(root: Path, project_root: Path, terminal_outcome: Path) -> None:
     verification = load_json(root / "run" / "verification.json")
+    check_verification_entries_resolved(
+        verification, product_success=terminal_claims_product_success(terminal_outcome)
+    )
     statuses = command_status_map(verification)
     for cmd in REQUIRED_COMMANDS:
         if statuses.get(cmd) != "passed":
@@ -347,47 +399,44 @@ def check_no_internal_zip_sha(root: Path, terminal_outcome: Path) -> None:
 
 
 def check_negative_fixture(root: Path) -> None:
-    fixture = root / "audit" / "negative_fixtures" / "self_referential_zip_sha_authoritative"
-    if not fixture.exists():
-        fail(f"missing negative fixture: {fixture}")
-    proc = subprocess.run(
-        [
-            sys.executable,
-            str(Path(__file__).resolve()),
-            "--root",
-            str(fixture),
-            "--terminal-outcome",
-            str(fixture / "terminal_outcome.json"),
-            "--self-check-only",
-        ],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        check=False,
-    )
-    if proc.returncode == 0:
-        fail("negative fixture was accepted; expected self-referential zip SHA failure")
+    def run_fixture(rel: str, expected_failure: str) -> None:
+        fixture = root / "audit" / "negative_fixtures" / rel
+        if not fixture.exists():
+            fail(f"missing negative fixture: {fixture}")
+        proc = subprocess.run(
+            [
+                sys.executable,
+                str(Path(__file__).resolve()),
+                "--root",
+                str(fixture),
+                "--terminal-outcome",
+                str(fixture / "terminal_outcome.json"),
+                "--self-check-only",
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=False,
+        )
+        if proc.returncode == 0:
+            fail(f"{rel} negative fixture was accepted; expected {expected_failure}")
 
-    fixture = root / "audit" / "negative_fixtures" / "ordinary_nerve_claimed_product_success"
-    if not fixture.exists():
-        fail(f"missing negative fixture: {fixture}")
-    proc = subprocess.run(
-        [
-            sys.executable,
-            str(Path(__file__).resolve()),
-            "--root",
-            str(fixture),
-            "--terminal-outcome",
-            str(fixture / "terminal_outcome.json"),
-            "--self-check-only",
-        ],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        check=False,
+    run_fixture(
+        "self_referential_zip_sha_authoritative",
+        "self-referential zip SHA failure",
     )
-    if proc.returncode == 0:
-        fail("ordinary-nerve negative fixture was accepted; expected derived infinity contract failure")
+    run_fixture(
+        "ordinary_nerve_claimed_product_success",
+        "derived infinity contract failure",
+    )
+    run_fixture(
+        "pending_verification_evidence",
+        "unresolved verification status failure",
+    )
+    run_fixture(
+        "failed_expected_product_success",
+        "failed_expected product-success verification failure",
+    )
 
 
 def check_terminal_outcome(root: Path, terminal_outcome_path: Path, packet_mode: bool) -> None:
@@ -442,6 +491,7 @@ def main() -> None:
 
     if args.self_check_only:
         check_no_internal_zip_sha(root, terminal_outcome)
+        check_verification_fixture_resolved(root, terminal_outcome)
         project_root = project_root_for(root)
         check_derived_infinity_product_contract(
             project_root, terminal_outcome, terminal_claims_product_success(terminal_outcome)
@@ -460,7 +510,7 @@ def main() -> None:
     )
     check_no_internal_zip_sha(root, terminal_outcome)
     check_manifest(root)
-    check_verification(root, project_root)
+    check_verification(root, project_root, terminal_outcome)
     check_negative_fixture(root)
     check_terminal_outcome(root, terminal_outcome, packet_mode)
     print("external_audit: passed")
