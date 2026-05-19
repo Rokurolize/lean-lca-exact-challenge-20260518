@@ -409,3 +409,8 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 ### v134: stable positive audit fixture
 
 2026-05-19T22:16:00Z時点で、stable certificateの将来のpositive gateをfixtureとして具体化した。合格形は名前やordinary nerveではなく、1つのcertificate objectから4つのprojectionを取り出せることである。現時点ではこのcertificate API自体を構成していないため、`Dbounded.infinityNerve_quasicategory`は引き続きordinary nerve evidenceに留まり、product successには届かない。
+
+
+### v135: alternating tail homotopy comm probe
+
+2026-05-19T22:27:00Z時点で、右非有界contractible tail具体例へ向けたhomotopy APIの局所境界を確認した。`Homotopy.comm`の目標形は`dNext i s + prevD i s + 0`であり、identity/zero alternating complexではactive componentを「奇数sourceから直前degreeへ」と置く方針が算術的に整合する。残る実装は、このsupport predicateを実際のtyped morphism familyに落とし、`dNext_eq`/`prevD_eq`で各次数を閉じ、`extendXIso`で`ℤ`添字のtailへ移すことである。

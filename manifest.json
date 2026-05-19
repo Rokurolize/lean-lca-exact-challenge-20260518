@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v1",
-  "generated_utc": "2026-05-19T22:20:00Z",
-  "file_count": 92,
-  "content_hash_tree": "34db6dc98eee9b12af990e9ca190c6251511f95377413d8dde4cd76f554a021b",
+  "generated_utc": "2026-05-19T22:32:00Z",
+  "file_count": 94,
+  "content_hash_tree": "1832f299b04087e869e2d68d5e4283bbb79d7e3165a65ed9043d44e35fdda15e",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -123,6 +123,11 @@
       "path": "audit/YonedaUnsuffixedPortSmokeW84.lean",
       "bytes": 2040,
       "sha256": "3d0d4054e296e358c7ea3e5c93f6326c22108fa6c43c2e47774d26e3f24fc7be"
+    },
+    {
+      "path": "audit/blockers/alternating_tail_homotopy_comm_probe_w102.lean",
+      "bytes": 3989,
+      "sha256": "8c6d7a9646b26373a97e3270a95a0ef84685369540bcc0ee5fb7bbe466c54000"
     },
     {
       "path": "audit/blockers/bounded_complex_source_triangulated_package.lean",
@@ -340,6 +345,11 @@
       "sha256": "35b59974e76cc246ca0a0727d9bb6ce0a51575d6a51fbdf6d31866293f08646a"
     },
     {
+      "path": "docs/research/alternating_tail_homotopy_comm_probe_w102.md",
+      "bytes": 1019,
+      "sha256": "d5db017b0e37523aaef8f216931862514cd72ad63de7d000fea1832fa0a88a4c"
+    },
+    {
       "path": "docs/research/bounded_homotopy_transport_counterexample.md",
       "bytes": 1713,
       "sha256": "f80f27234a89f22471523685fecbea1c2049f1c7fa07b67843bcbe1e802a1f26"
@@ -356,8 +366,8 @@
     },
     {
       "path": "docs/research/mathlib_gap_analysis.md",
-      "bytes": 72264,
-      "sha256": "dc395abfb4691c5fe54382d3e321487d21dc9a8d762c29b3fa5aa37e65ab2657"
+      "bytes": 72847,
+      "sha256": "d37e5b171bfc50c634d087230e5fdb42c56f7f752ef5afc78eb745aa1774ff6d"
     },
     {
       "path": "docs/research/mathlib_initial_survey.md",
@@ -366,8 +376,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "bytes": 77324,
-      "sha256": "0d6d71c9894cfb8652385494b18f33f9806c9f3b90ad64280a1859b5fc03e9c7"
+      "bytes": 78114,
+      "sha256": "29d98f82cd9cca4980c27577e186b0589fd1828b9d79826b5a2aad85f8d1354f"
     },
     {
       "path": "docs/research/sources.md",
@@ -396,8 +406,8 @@
     },
     {
       "path": "implementation-notes.html",
-      "bytes": 90868,
-      "sha256": "785f92e0ac2ad7564c32078e71ddf54ec3f3dd29bb51d27a71c1c059c307e7b1"
+      "bytes": 91292,
+      "sha256": "7899cb36b91fdb92311afc3660e2d376158990b6842ab3c43f09f729baf0be0f"
     },
     {
       "path": "lake-manifest.json",
@@ -421,18 +431,18 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 115365,
-      "sha256": "3b7aa6392daf22c7f0b7e241f909fe384cf65dbfe3bfcb4153f7f8cd6fc51268"
+      "bytes": 116426,
+      "sha256": "97b4192e7ff038531d8bd2f3d52a1cd18255c11726955e2158cdb715a10040a8"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 64443,
-      "sha256": "4e13479967d1b7dec333e0d6e8d58cbda949e8ba12ad60bcea19cbac1ce0e38d"
+      "bytes": 64769,
+      "sha256": "1272881b4f956ea55c098325c76fb7e95fb79813caa4f535550fecf1ff1cf280"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "bytes": 7437,
-      "sha256": "548a0bb94f619a9253c34bb43aac696a5446e07059b25798537645ca57e1f812"
+      "bytes": 7484,
+      "sha256": "f8bcff861f75afb1f1799598e9a1f48e4778ea3c9d55fde1fee9de3b94a580dc"
     },
     {
       "path": "reviews/README.md",
@@ -441,8 +451,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 7405,
-      "sha256": "c2a38ace47673826944bad02ffc32224ab06b5d823f3b9f450361b325ebd3081"
+      "bytes": 7628,
+      "sha256": "2d2044da90b516bafb8c45b1031aad0fcb937a2a8af62a8dee83f569a3333260"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -456,8 +466,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 91654,
-      "sha256": "c8195e4c9eadfe60b6ad0b299044f191ab5b3e4604f47e7febf5a25f562cfd6d"
+      "bytes": 91898,
+      "sha256": "ed9da774f4893388cbd964e2177d2a61dcabd18d9ca7dbdacbf657c79a921f2f"
     },
     {
       "path": "workers/README.md",
