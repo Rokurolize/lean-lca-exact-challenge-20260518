@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T12:45:00Z",
+  "generated_utc": "2026-05-19T13:08:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v88 edits stay in the parent process.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v89 edits stay in the parent process. A separate old w03-iso-closure-triangle-extension worker is visible in another worktree with no result file and WebSocket 403 reconnect evidence, so the parent did not duplicate that frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -456,7 +456,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v88 adds exactAcyclicHomotopyObject_trW_quotient_map_iff_exactAcyclic_mappingCone, exactAcyclicHomotopyIsoClosure_trW_quotient_map_of_exactAcyclic_mappingCone, exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mappingCone, and boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone. Under exact-acyclic homotopy-object iso-closedness, a cochain map quotient is in trW iff its mapping cone is exact acyclic; exact acyclic cones also give the iso-closure trW condition and bounded homotopy/Verdier weak equivalences. This sharpens cone detection but does not prove exact-acyclic homotopy iso-invariance, the iso-closure IsTriangulatedClosed₂ condition, transfer of ordinary triangulated structure to Dbounded, or stable infinity-category structure.",
+      "merge_blocker": "v89 adds boundedExactWeakEquivalence_iff_boundedHomotopyExactWeakEquivalence_of_isoClosed and boundedHomotopyExactWeakEquivalence_iff_exactAcyclic_mappingCone_of_isoClosed. Under exact-acyclic homotopy-object iso-closedness, each bounded morphism is a direct bounded weak equivalence iff it is a homotopy/Verdier bounded weak equivalence, and the homotopy/Verdier weak-equivalence predicate is iff to mapping-cone exact acyclicity. This makes the v88 cone-detection API directly usable on bounded morphisms but does not prove exact-acyclic homotopy iso-invariance, the iso-closure IsTriangulatedClosed₂ condition, transfer of ordinary triangulated structure to Dbounded, or stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -547,7 +547,9 @@
         "exactAcyclicHomotopyObject_trW_quotient_map_iff_exactAcyclic_mappingCone",
         "exactAcyclicHomotopyIsoClosure_trW_quotient_map_of_exactAcyclic_mappingCone",
         "exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mappingCone",
-        "boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone"
+        "boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone",
+        "boundedExactWeakEquivalence_iff_boundedHomotopyExactWeakEquivalence_of_isoClosed",
+        "boundedHomotopyExactWeakEquivalence_iff_exactAcyclic_mappingCone_of_isoClosed"
       ],
       "technical_context": [
         "split short complexes",
@@ -620,7 +622,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v88 evidence records the exact-cone/trW criteria while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v89 evidence records bounded direct/homotopy/cone iff wrappers while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

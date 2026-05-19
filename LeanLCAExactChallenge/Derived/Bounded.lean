@@ -545,6 +545,27 @@ theorem boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_is
   rw [exactAcyclicHomotopyIsoClosure_trW C]
   exact boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage C
 
+/-- Under homotopy-category isomorphism invariance of exact acyclicity, the direct and
+homotopy/Verdier bounded weak-equivalence predicates agree on each morphism. -/
+theorem boundedExactWeakEquivalence_iff_boundedHomotopyExactWeakEquivalence_of_isoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    {K L : BoundedComplexCategory C} (f : K ⟶ L) :
+    boundedExactWeakEquivalence C f ↔ boundedHomotopyExactWeakEquivalence C f := by
+  rw [← boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed C]
+
+/-- Under homotopy-category isomorphism invariance of exact acyclicity, the
+homotopy/Verdier bounded weak-equivalence predicate is exactly the mapping-cone exact
+acyclicity condition. -/
+theorem boundedHomotopyExactWeakEquivalence_iff_exactAcyclic_mappingCone_of_isoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    {K L : BoundedComplexCategory C} (f : K ⟶ L) :
+    boundedHomotopyExactWeakEquivalence C f ↔
+      exactAcyclic C (CochainComplex.mappingCone ((BoundedComplexCategory.ι C).map f)) := by
+  rw [← boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed C]
+  rfl
+
 /-- The homotopy/Verdier pullback weak equivalences on bounded complexes are compatible with
 cochain shifts. -/
 noncomputable instance boundedHomotopyExactWeakEquivalence_isCompatibleWithShift
