@@ -639,6 +639,38 @@ theorem boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13
     (boundedHomotopyObject_triangleh_ext2 C f hK hCone)
 
 omit [QuillenExactCategory C] in
+/-- In a distinguished triangle, compatible isomorphisms on the second and third objects
+identify it with a strict mapping-cone triangle enough to transfer the first-object
+boundedness conclusion.
+
+Mathlib does not expose a separate `isoTriangleOfIso₂₃`, so this rotates both
+triangles, applies `isoTriangleOfIso₁₂`, and rotates back. The strict boundedness
+assumptions still live on the chosen target and cone representatives. -/
+theorem boundedHomotopyObject_distinguished_ext1_of_triangleh_iso23
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    (hT : T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)))
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e₂ : (CochainComplex.mappingCone.triangleh f).obj₂ ≅ T.obj₂)
+    (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+    (comm : (CochainComplex.mappingCone.triangleh f).mor₂ ≫ e₃.hom =
+      e₂.hom ≫ T.mor₂)
+    (hL : boundedCochainComplex C L)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedHomotopyObject C T.obj₁ := by
+  let eRot : (CochainComplex.mappingCone.triangleh f).rotate ≅ T.rotate :=
+    Pretriangulated.isoTriangleOfIso₁₂ (CochainComplex.mappingCone.triangleh f).rotate
+      T.rotate
+      (Pretriangulated.rot_of_distTriang _ (HomotopyCategory.mappingCone_triangleh_distinguished f))
+      (Pretriangulated.rot_of_distTriang _ hT) e₂ e₃ comm
+  let e : CochainComplex.mappingCone.triangleh f ≅ T :=
+    (Pretriangulated.rotCompInvRot.app (CochainComplex.mappingCone.triangleh f)) ≪≫
+      (Pretriangulated.invRotate (HomotopyCategory C (ComplexShape.up ℤ))).mapIso eRot ≪≫
+      (Pretriangulated.rotCompInvRot.app T).symm
+  exact (boundedHomotopyObject C).prop_of_iso (Pretriangulated.Triangle.π₁.mapIso e)
+    (boundedHomotopyObject_triangleh_ext1 C f hL hCone)
+
+omit [QuillenExactCategory C] in
 /-- It is enough to prove two-out-of-three distinguished-triangle closure for bounded
 homotopy objects to make them a triangulated object property. -/
 theorem boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2

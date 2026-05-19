@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T15:34:57Z",
+  "generated_utc": "2026-05-19T15:55:32Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v102 edits stay in the parent process. The parent did not launch or resume any worker for the endpoint-isomorphism distinguished-triangle boundedness frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v103 edits stay in the parent process. The parent did not launch or resume any worker for the rotated endpoint-isomorphism distinguished-triangle boundedness frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -468,7 +468,10 @@
         "strict cochain-isomorphism mapping cone boundedness transport",
         "Pretriangulated.isoTriangleOfIso₁₂",
         "Pretriangulated.isoTriangleOfIso₁₃",
-        "endpoint-isomorphism completion of distinguished triangle isomorphisms"
+        "endpoint-isomorphism completion of distinguished triangle isomorphisms",
+        "Pretriangulated.rot_of_distTriang",
+        "Pretriangulated.invRotate",
+        "Pretriangulated.rotCompInvRot"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -482,7 +485,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v102 adds endpoint-isomorphism distinguished-triangle boundedness reductions through `boundedHomotopyObject_distinguished_ext3_of_triangleh_iso12` and `boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13`, using `Pretriangulated.isoTriangleOfIso₁₂/₁₃` to complete triangle isomorphisms. Together with v93-v101 this aligns the conditional Verdier route, but it does not prove bounded object or exact-acyclic homotopy object closure from arbitrary homotopy-category bounded endpoints, the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v103 adds the third endpoint-pair distinguished-triangle boundedness reduction through `boundedHomotopyObject_distinguished_ext1_of_triangleh_iso23`, using rotation, `Pretriangulated.isoTriangleOfIso₁₂`, and `Pretriangulated.rotCompInvRot` because mathlib has no direct `isoTriangleOfIso₂₃`. Together with v102 and v93-v101 this aligns the conditional Verdier route, but it does not prove bounded object or exact-acyclic homotopy object closure from arbitrary homotopy-category bounded endpoints, the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -640,7 +643,8 @@
         "boundedHomotopyObject_triangleh_iso_ext2",
         "boundedHomotopyObject_triangleh_iso_ext1",
         "boundedHomotopyObject_distinguished_ext3_of_triangleh_iso12",
-        "boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13"
+        "boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13",
+        "boundedHomotopyObject_distinguished_ext1_of_triangleh_iso23"
       ],
       "technical_context": [
         "split short complexes",
@@ -734,7 +738,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v102 evidence records endpoint-isomorphism distinguished-triangle boundedness reductions while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v103 evidence records the rotated endpoint-isomorphism distinguished-triangle boundedness reduction while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []
