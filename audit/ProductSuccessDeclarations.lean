@@ -1465,12 +1465,25 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (boundedCochainComplex_isStableUnderShift (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence (C := MetrizableLCA))
 #check (exactAcyclic_of_iso (C := MetrizableLCA))
+#check (exactAcyclic_shift (C := MetrizableLCA))
+#check (exactAcyclic_shift_iff (C := MetrizableLCA))
+#check (exactAcyclic_mappingCone_shift_iff (C := MetrizableLCA))
+#check (mappingConeIsoOfCommIso (C := MetrizableLCA))
+#check (exactAcyclic_mappingCone_congr_iff (C := MetrizableLCA))
+#check (boundedExactWeakEquivalence_shift_iff (C := MetrizableLCA))
+#check (boundedExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
 
 noncomputable example : HasShift (BoundedComplexCategory (C := MetrizableLCA)) ℤ := by
   infer_instance
 
 noncomputable example :
     (shiftFunctor (BoundedComplexCategory (C := MetrizableLCA)) (1 : ℤ)).Additive := by
+  infer_instance
+
+noncomputable example : HasShift (Dbounded (C := MetrizableLCA)) ℤ := by
+  infer_instance
+
+noncomputable example : (Dbounded.localization (C := MetrizableLCA)).CommShift ℤ := by
   infer_instance
 
 /-

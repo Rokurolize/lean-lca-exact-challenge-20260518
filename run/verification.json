@@ -1,62 +1,72 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v76-bounded-complex-shift-prereqs",
-  "generated_utc": "2026-05-19T08:01:32Z",
-  "source_tree_hash": "16240e832e27921187e747ed19c80cfb8cb236bb91c1a85f29a8db21c3a5f461",
+  "schema": "lean-lca-exact-challenge-verification-v77-derived-shift-compat",
+  "generated_utc": "2026-05-19T08:25:08Z",
+  "source_tree_hash": "a4f9f2b704f059d3ae7e24a90831903dab9a2e6aa4d1da158189d0b70373440b",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after v76 bounded complex iso/shift closure and artifact refresh."
+      "evidence": "Full project build passed after v77 exact-acyclic shift invariance and bounded exact weak-equivalence shift compatibility."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after the v76 update."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after the v77 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees BoundedComplexCategory, bounded cochain complex iso/shift closure, exactAcyclic_of_iso, and existing product-surface declarations."
+      "evidence": "Required declaration audit sees the v77 exactAcyclic shift lemmas, mapping-cone congruence, and boundedExactWeakEquivalence shift compatibility."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declarations compile for the current exposed APIs, including bounded complex shift prerequisites; terminal_outcome remains nonproduct because stable infinity-category structure is incomplete."
+      "evidence": "Product declarations compile for the current exposed APIs, including Dbounded HasShift and Dbounded.localization CommShift inference; terminal_outcome remains nonproduct because stable infinity-category structure is incomplete."
+    },
+    {
+      "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
+      "status": "passed",
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the derived-side v77 update."
+    },
+    {
+      "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
+      "status": "passed",
+      "evidence": "Yoneda blocker audit still compiles after the derived-side v77 update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms BoundedComplexCategory has HasShift and additive shift functors while recording that stable infinity-category structure remains incomplete."
+      "evidence": "Derived blocker audit confirms exact acyclicity and bounded exact weak equivalences are shift-compatible and that Dbounded has ordinary localization shift structure, while recording the remaining stable-infinity gap."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v76 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v77 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v76 bounded complex shift prerequisite update."
+      "evidence": "Proof frontier JSON syntax checked after the v77 derived shift compatibility update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after the v76 refresh."
+      "evidence": "Verification JSON syntax checked after the v77 refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax will be checked after regenerating the v76 manifest."
+      "evidence": "Manifest JSON syntax checked after regenerating the v77 manifest."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v76 update."
+      "evidence": "External audit Python syntax check still passes after the v77 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v76 bounded complex shift prerequisite update."
+      "evidence": "Whitespace check passed after the v77 derived shift compatibility update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",

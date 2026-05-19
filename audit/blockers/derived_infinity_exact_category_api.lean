@@ -17,7 +17,7 @@ be read as a quasicategory.
 
 Current product boundary: mathlib also has ordinary triangulated-localization
 machinery, but the local `Dbounded` construction has not supplied the
-preadditive, zero-object, shift, pretriangulated, and triangulated structures
+preadditive, zero-object, pretriangulated, and triangulated structures
 needed to use that machinery, and mathlib does not provide a stable
 infinity-category API that would turn this ordinary nerve into a stable
 enhancement.
@@ -25,7 +25,10 @@ enhancement.
 Incremental v76 progress: the bounded cochain-complex full subcategory is now
 closed under isomorphism and cochain shift, so it has the shift and additive
 shift functors needed as prerequisites for a homotopy-category/Verdier route.
-This is only groundwork; it is not yet a stable infinity-category certificate.
+Incremental v77 progress: exact acyclicity, exact cone weak equivalences, and
+the bounded exact weak-equivalence class are now invariant under cochain shifts,
+so the ordinary localized category inherits the shift from mathlib's
+localization API. This is still not a stable infinity-category certificate.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -45,6 +48,13 @@ noncomputable def bounded_derived_quasicategory_family
 #check boundedCochainComplex_isStableUnderShift
 #check boundedExactWeakEquivalence
 #check exactAcyclic_of_iso
+#check exactAcyclic_shift
+#check exactAcyclic_shift_iff
+#check exactAcyclic_mappingCone_shift_iff
+#check mappingConeIsoOfCommIso
+#check exactAcyclic_mappingCone_congr_iff
+#check boundedExactWeakEquivalence_shift_iff
+#check boundedExactWeakEquivalence_isCompatibleWithShift
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
     HasShift (BoundedComplexCategory C) ℤ := by
@@ -52,6 +62,16 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
     (shiftFunctor (BoundedComplexCategory C) (1 : ℤ)).Additive := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    HasShift (Dbounded C) ℤ := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    (Dbounded.localization C).CommShift ℤ := by
   infer_instance
 
 #check (Dbounded (C := MetrizableLCA))
