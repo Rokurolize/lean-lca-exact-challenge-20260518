@@ -864,6 +864,16 @@ abbrev boundedHomotopyExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW
     intro K L f hf
     exact hf
 
+/-- The direct bounded exact weak equivalences also map to the ordinary homotopy Verdier
+weak equivalences; this is the composite of the direct-to-homotopy comparison and the
+homotopy-to-Verdier localizer morphism. -/
+abbrev boundedExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    LocalizerMorphism (boundedExactWeakEquivalence C)
+      (exactAcyclicHomotopyIsoClosure C).trW :=
+  (boundedExactWeakEquivalenceToHomotopyExactWeakEquivalence C).comp
+    (boundedHomotopyExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW C)
+
 /-- The exact-acyclic homotopy Verdier localization is preadditive once the
 isomorphism-closed exact-acyclic objects form a triangulated subcategory. -/
 noncomputable instance exactAcyclicHomotopyVerdierCategory_preadditive_of_isTriangulatedClosed2
@@ -1176,6 +1186,27 @@ noncomputable abbrev verdierComparison [HasZeroObject C] [HasBinaryBiproducts C]
     (boundedHomotopyExactWeakEquivalence C).Q
     (exactAcyclicHomotopyIsoClosure C).trW.Q
 
+/-- The bounded homotopy comparison functor is the functor induced by the Verdier localizer
+morphism, so it commutes with the two localization functors up to the canonical
+`CatCommSq` isomorphism. -/
+noncomputable def verdierComparisonLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    BoundedComplexCategory.homotopyQuotient C ⋙
+        (exactAcyclicHomotopyIsoClosure C).trW.Q ≅
+      (boundedHomotopyExactWeakEquivalence C).Q ⋙
+        BoundedHomotopyDerivedCategory.verdierComparison C :=
+  let Φ := boundedHomotopyExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW C
+  letI : CatCommSq Φ.functor (boundedHomotopyExactWeakEquivalence C).Q
+      (exactAcyclicHomotopyIsoClosure C).trW.Q
+      (Φ.localizedFunctor (boundedHomotopyExactWeakEquivalence C).Q
+        (exactAcyclicHomotopyIsoClosure C).trW.Q) :=
+    Φ.catCommSq (boundedHomotopyExactWeakEquivalence C).Q
+      (exactAcyclicHomotopyIsoClosure C).trW.Q
+  CatCommSq.iso Φ.functor (boundedHomotopyExactWeakEquivalence C).Q
+    (exactAcyclicHomotopyIsoClosure C).trW.Q
+    (Φ.localizedFunctor (boundedHomotopyExactWeakEquivalence C).Q
+      (exactAcyclicHomotopyIsoClosure C).trW.Q)
+
 end BoundedHomotopyDerivedCategory
 
 namespace Dbounded
@@ -1192,6 +1223,32 @@ Verdier quotient, routed through the homotopy/Verdier pullback localization. -/
 noncomputable abbrev verdierComparison [HasZeroObject C] [HasBinaryBiproducts C] :
     Dbounded C ⥤ ExactAcyclicHomotopyVerdierCategory C :=
   Dbounded.homotopyComparison C ⋙ BoundedHomotopyDerivedCategory.verdierComparison C
+
+/-- The comparison from the direct bounded exact localization to the ordinary homotopy
+Verdier quotient, induced directly by the composite localizer morphism. -/
+noncomputable abbrev verdierComparisonDirect [HasZeroObject C] [HasBinaryBiproducts C] :
+    Dbounded C ⥤ ExactAcyclicHomotopyVerdierCategory C :=
+  (boundedExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW C).localizedFunctor
+    (Dbounded.localization C) (exactAcyclicHomotopyIsoClosure C).trW.Q
+
+/-- The direct bounded-to-Verdier comparison commutes with the direct bounded localization
+and the homotopy Verdier localization by the canonical `CatCommSq` isomorphism. -/
+noncomputable def verdierComparisonDirectLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    BoundedComplexCategory.homotopyQuotient C ⋙
+        (exactAcyclicHomotopyIsoClosure C).trW.Q ≅
+      Dbounded.localization C ⋙ Dbounded.verdierComparisonDirect C :=
+  let Φ := boundedExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW C
+  letI : CatCommSq Φ.functor (Dbounded.localization C)
+      (exactAcyclicHomotopyIsoClosure C).trW.Q
+      (Φ.localizedFunctor (Dbounded.localization C)
+        (exactAcyclicHomotopyIsoClosure C).trW.Q) :=
+    Φ.catCommSq (Dbounded.localization C)
+      (exactAcyclicHomotopyIsoClosure C).trW.Q
+  CatCommSq.iso Φ.functor (Dbounded.localization C)
+    (exactAcyclicHomotopyIsoClosure C).trW.Q
+    (Φ.localizedFunctor (Dbounded.localization C)
+      (exactAcyclicHomotopyIsoClosure C).trW.Q)
 
 /-- If exact acyclicity is invariant under homotopy-category isomorphism, the direct bounded
 localization and the homotopy/Verdier pullback localization are equivalent. -/

@@ -80,6 +80,12 @@ now has a comparison functor into the ordinary homotopy Verdier quotient, and
 `Dbounded` has the composed comparison. This aligns the localization route but
 does not transfer the conditional triangulated Verdier structure back to
 `Dbounded`, nor produce a stable infinity-category enhancement.
+Incremental v96 progress: the direct bounded exact weak-equivalence class now
+has its own localizer morphism to the ordinary homotopy Verdier quotient, a
+direct comparison functor, and canonical `CatCommSq` witnesses that the bounded
+localization functors commute with these comparison routes. This still does not
+prove the required calculus of fractions or stable infinity-category
+enhancement.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -411,7 +417,13 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 #check BoundedHomotopyDerivedCategory
 #check BoundedHomotopyDerivedQuasicategory
 #check BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso
+#check boundedExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW
+#check BoundedHomotopyDerivedCategory.verdierComparison
+#check BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso
 #check Dbounded.homotopyComparison
+#check Dbounded.verdierComparison
+#check Dbounded.verdierComparisonDirect
+#check Dbounded.verdierComparisonDirectLocalizationIso
 #check Dbounded.homotopyComparisonEquivalenceOfIsoClosed
 #check Dbounded.infinityCategory
 #check Dbounded.infinityNerve
@@ -419,5 +431,18 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 #check Dbounded.homotopyCategoryIso
 #check CategoryTheory.Triangulated.Localization.pretriangulated
 #check CategoryTheory.Triangulated.Localization.isTriangulated
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    LocalizerMorphism (boundedExactWeakEquivalence C)
+      (exactAcyclicHomotopyIsoClosure C).trW :=
+  boundedExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    BoundedComplexCategory.homotopyQuotient C ⋙
+        (exactAcyclicHomotopyIsoClosure C).trW.Q ≅
+      Dbounded.localization C ⋙ Dbounded.verdierComparisonDirect C :=
+  Dbounded.verdierComparisonDirectLocalizationIso C
 
 end LeanLCAExactChallenge

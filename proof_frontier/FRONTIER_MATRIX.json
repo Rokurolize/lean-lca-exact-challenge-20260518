@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T13:57:17Z",
+  "generated_utc": "2026-05-19T14:18:02Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v95 edits stay in the parent process. The parent did not launch or resume any worker for the homotopy Verdier comparison frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v96 edits stay in the parent process. The parent did not launch or resume any worker for the direct bounded-to-Verdier comparison frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -452,7 +452,9 @@
         "right calculus of fractions for trW",
         "right calculus transfer via LocalizerMorphism.ofEq",
         "bounded homotopy-to-Verdier localizer morphism",
-        "ordinary homotopy Verdier comparison functors"
+        "ordinary homotopy Verdier comparison functors",
+        "direct bounded-to-Verdier localizer morphism",
+        "CatCommSq localization commutation isomorphisms"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -466,7 +468,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v95 adds a bounded homotopy-to-Verdier localizer morphism and comparison functors from `BoundedHomotopyDerivedCategory` and `Dbounded` to the ordinary homotopy Verdier quotient. Together with v93-v94 this aligns the conditional Verdier route, but it does not prove the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v96 adds a direct bounded-to-Verdier localizer morphism, a direct comparison functor from `Dbounded`, and canonical `CatCommSq` localization isomorphisms for the homotopy and direct comparison routes. Together with v93-v95 this aligns the conditional Verdier route, but it does not prove the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -592,7 +594,11 @@
         "exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_isoClosureClosed2",
         "exactAcyclicHomotopyObject_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2",
         "exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2",
-        "exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2"
+        "exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2",
+        "boundedExactWeakEquivalenceToExactAcyclicHomotopyIsoClosure_trW",
+        "BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso",
+        "Dbounded.verdierComparisonDirect",
+        "Dbounded.verdierComparisonDirectLocalizationIso"
       ],
       "technical_context": [
         "split short complexes",
@@ -606,7 +612,10 @@
         "right calculus wrappers for exact-acyclic homotopy trW",
         "right calculus transfer to bounded exact weak equivalences",
         "comparison from bounded homotopy localization to ordinary homotopy Verdier quotient",
-        "composed comparison from Dbounded to ordinary homotopy Verdier quotient"
+        "composed comparison from Dbounded to ordinary homotopy Verdier quotient",
+        "direct bounded-to-Verdier localizer morphism",
+        "direct comparison from Dbounded to ordinary homotopy Verdier quotient",
+        "CatCommSq localization commutation witnesses"
       ]
     },
     {
@@ -673,7 +682,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v95 evidence records ordinary homotopy Verdier comparison declarations while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v96 evidence records direct bounded-to-Verdier comparison and localization commutation declarations while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []
