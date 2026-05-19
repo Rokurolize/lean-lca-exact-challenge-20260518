@@ -1,77 +1,77 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v91-homotopy-object-closed2-reduction",
-  "generated_utc": "2026-05-19T14:55:00Z",
-  "source_tree_hash": "1e21a251bb02cccb7bf436dff6216e2b0cdb1f7d8338de7f1851aeb53491af1b",
+  "schema": "lean-lca-exact-challenge-verification-v92-homotopy-object-closed2-verdier-wrappers",
+  "generated_utc": "2026-05-19T13:10:00Z",
+  "source_tree_hash": "43defcf5d584e93dad23b53912b2aadfcfc33cb8e3eef83e3685645a99c4d443",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after v91 added homotopyObjectClosed2 reduction wrappers for iso-closure closed2 and localization compatibility."
+      "evidence": "Full project build passed after v92 added homotopyObjectClosed2 wrappers for ordinary homotopy Verdier quotient structure."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v91 update."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v92 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the four v91 homotopyObjectClosed2 reduction declarations."
+      "evidence": "Required declaration audit sees the eight v92 homotopyObjectClosed2 Verdier wrapper declarations."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles with the v91 MetrizableLCA homotopyObjectClosed2 reduction checks while preserving the nonterminal stable-infinity contract."
+      "evidence": "Product declaration audit compiles with the v92 wrapper checks while preserving the nonterminal stable-infinity contract."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v91 derived-side update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v92 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v91 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v92 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms the v91 homotopyObjectClosed2 reduction declarations and still records the unresolved stable-infinity product condition."
+      "evidence": "Derived blocker audit confirms the v92 homotopyObjectClosed2 Verdier wrapper declarations and still records the unresolved stable-infinity product condition."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v91 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v92 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v91 homotopyObjectClosed2 frontier update."
+      "evidence": "Proof frontier JSON syntax checked after the v92 frontier update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax is checked after regenerating this v91 verification record and before final manifest refresh."
+      "evidence": "Verification JSON syntax is checked after regenerating this v92 verification record and before final manifest refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax is checked after regenerating the v91 manifest."
+      "evidence": "Manifest JSON syntax is checked after regenerating the v92 manifest."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v91 update."
+      "evidence": "External audit Python syntax check still passes after the v92 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v91 proof, audit, documentation, and evidence update."
+      "evidence": "Whitespace check passed after the v92 proof, audit, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because exact acyclic homotopy object IsTriangulatedClosed₂, direct bounded left calculus, triangulated transfer to Dbounded, and stable infinity-category structure remain incomplete; v91 only adds reduction wrappers from homotopyObjectClosed2."
+      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because exact acyclic homotopy object IsTriangulatedClosed₂, direct bounded left calculus, transfer to Dbounded, and stable infinity-category structure remain incomplete; v92 only adds Verdier wrappers under the homotopyObjectClosed2 hypothesis."
     }
   ]
 }

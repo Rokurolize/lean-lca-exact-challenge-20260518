@@ -898,6 +898,90 @@ instance exactAcyclicHomotopyVerdierCategory_isTriangulated_of_isTriangulatedClo
   change IsTriangulated W.Localization
   exact Triangulated.Localization.isTriangulated W.Q W
 
+/-- It is enough to prove distinguished-triangle closure for `exactAcyclicHomotopyObject` to
+obtain preadditivity of the ordinary homotopy Verdier localization: the closure is first
+transported to the isomorphism closure. -/
+noncomputable abbrev exactAcyclicHomotopyVerdierCategory_preadditive_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    Preadditive (ExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  infer_instance
+
+/-- The localization functor for the homotopy Verdier quotient is additive under the same
+homotopy-object distinguished-triangle closure hypothesis. -/
+noncomputable abbrev
+    exactAcyclicHomotopyVerdierCategory_localization_additive_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    ((exactAcyclicHomotopyIsoClosure C).trW.Q).Additive := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  infer_instance
+
+/-- The homotopy Verdier quotient has a zero object once exact acyclic homotopy objects are
+closed under distinguished triangles. -/
+noncomputable abbrev exactAcyclicHomotopyVerdierCategory_hasZeroObject_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    HasZeroObject (ExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  infer_instance
+
+/-- The homotopy Verdier quotient inherits shifts once exact acyclic homotopy objects are
+closed under distinguished triangles. -/
+noncomputable abbrev exactAcyclicHomotopyVerdierCategory_hasShift_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    HasShift (ExactAcyclicHomotopyVerdierCategory C) ℤ := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  infer_instance
+
+/-- The homotopy Verdier localization functor commutes with shifts under the homotopy-object
+distinguished-triangle closure hypothesis. -/
+noncomputable abbrev
+    exactAcyclicHomotopyVerdierCategory_localization_commShift_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    ((exactAcyclicHomotopyIsoClosure C).trW.Q).CommShift ℤ := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  infer_instance
+
+/-- Localized shifts are additive under the homotopy-object distinguished-triangle closure
+hypothesis. -/
+noncomputable abbrev
+    exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] (n : ℤ) :
+    (shiftFunctor (ExactAcyclicHomotopyVerdierCategory C) n).Additive := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  infer_instance
+
+/-- The ordinary homotopy Verdier quotient is pretriangulated under the homotopy-object
+distinguished-triangle closure hypothesis. -/
+noncomputable abbrev exactAcyclicHomotopyVerdierCategory_pretriangulated_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    Pretriangulated (ExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  infer_instance
+
+/-- The ordinary homotopy Verdier quotient is triangulated under the homotopy-object
+distinguished-triangle closure hypothesis. -/
+noncomputable abbrev exactAcyclicHomotopyVerdierCategory_isTriangulated_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    IsTriangulated (ExactAcyclicHomotopyVerdierCategory C) := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  infer_instance
+
 /-- Exact weak equivalences of bounded complexes are invariant under cochain shifts. -/
 theorem boundedExactWeakEquivalence_shift_iff [HasBinaryBiproducts C]
     {K L : BoundedComplexCategory C} (f : K ⟶ L) (n : ℤ) :

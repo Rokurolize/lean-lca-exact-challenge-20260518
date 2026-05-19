@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T14:33:00Z",
+  "generated_utc": "2026-05-19T13:08:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v91 edits stay in the parent process. The parent did not launch or resume any worker for the homotopyObjectClosed2 reduction frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v92 edits stay in the parent process. The parent did not launch or resume any worker for the homotopyObjectClosed2 Verdier wrapper frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -462,7 +462,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v91 adds exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject, exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2, exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2, and exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homotopyObjectClosed2. Thus a proof that exactAcyclicHomotopyObject is IsTriangulatedClosed₂ now suffices for iso-closure closed2, left calculus, and triangulation compatibility. This does not prove the homotopy-object closed2 condition itself, transfer ordinary triangulated structure to Dbounded, or construct stable infinity-category structure.",
+      "merge_blocker": "v92 connects the v91 homotopy-object-closed2 reduction to ordinary homotopy Verdier quotient wrappers: `(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂` now suffices to directly obtain preadditive, localization additive, zero object, shift, commShift, additive shift, pretriangulated, and triangulated structure on `ExactAcyclicHomotopyVerdierCategory C`. This does not prove the homotopy object closed2 condition, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -561,7 +561,15 @@
         "exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject",
         "exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2",
         "exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2",
-        "exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homotopyObjectClosed2"
+        "exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyVerdierCategory_preadditive_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyVerdierCategory_localization_additive_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyVerdierCategory_hasZeroObject_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyVerdierCategory_hasShift_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyVerdierCategory_localization_commShift_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyVerdierCategory_pretriangulated_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyVerdierCategory_isTriangulated_of_homotopyObjectClosed2"
       ],
       "technical_context": [
         "split short complexes",

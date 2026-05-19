@@ -1549,6 +1549,14 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyVerdierCategory_pretriangulated_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyVerdierCategory_isTriangulated_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyVerdierCategory_preadditive_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyVerdierCategory_localization_additive_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyVerdierCategory_hasZeroObject_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyVerdierCategory_hasShift_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyVerdierCategory_localization_commShift_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyVerdierCategory_pretriangulated_of_homotopyObjectClosed2
+#check exactAcyclicHomotopyVerdierCategory_isTriangulated_of_homotopyObjectClosed2
 #check Dbounded.preadditiveOfHasLeftCalculusOfFractions
 #check Dbounded.localization_additiveOfHasLeftCalculusOfFractions
 #check Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions
@@ -1647,6 +1655,18 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
     IsTriangulated (ExactAcyclicHomotopyVerdierCategory C) := by
   infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    Preadditive (ExactAcyclicHomotopyVerdierCategory C) :=
+  exactAcyclicHomotopyVerdierCategory_preadditive_of_homotopyObjectClosed2 C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    IsTriangulated (ExactAcyclicHomotopyVerdierCategory C) :=
+  exactAcyclicHomotopyVerdierCategory_isTriangulated_of_homotopyObjectClosed2 C
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasBinaryBiproducts C] [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
