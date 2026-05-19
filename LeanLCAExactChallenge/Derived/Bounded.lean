@@ -284,6 +284,19 @@ abbrev exactAcyclicHomotopyIsoClosure :
     ObjectProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
   (exactAcyclicHomotopyObject C).isoClosure
 
+/-- The isomorphism closure is, by construction, closed under homotopy-category
+isomorphisms. -/
+instance exactAcyclicHomotopyIsoClosure_isClosedUnderIsomorphisms :
+    (exactAcyclicHomotopyIsoClosure C).IsClosedUnderIsomorphisms := by
+  dsimp [exactAcyclicHomotopyIsoClosure]
+  infer_instance
+
+/-- The isomorphism closure still contains a zero object. -/
+instance exactAcyclicHomotopyIsoClosure_containsZero [HasZeroObject C] :
+    (exactAcyclicHomotopyIsoClosure C).ContainsZero := by
+  dsimp [exactAcyclicHomotopyIsoClosure]
+  infer_instance
+
 /-- The isomorphism closure of exact acyclic homotopy objects is stable under cochain shifts. -/
 noncomputable instance exactAcyclicHomotopyIsoClosure_isStableUnderShift :
     (exactAcyclicHomotopyIsoClosure C).IsStableUnderShift ℤ where
@@ -952,6 +965,32 @@ subcategory. -/
 abbrev boundedExactAcyclicHomotopyObject :
     ObjectProperty (BoundedHomotopyCategory C) :=
   (exactAcyclicHomotopyIsoClosure C).inverseImage (BoundedHomotopyCategory.ι C)
+
+/-- Exact-acyclic bounded homotopy objects are closed under isomorphisms in the bounded
+homotopy category. -/
+instance boundedExactAcyclicHomotopyObject_isClosedUnderIsomorphisms :
+    (boundedExactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms := by
+  dsimp [boundedExactAcyclicHomotopyObject]
+  infer_instance
+
+/-- Exact-acyclic bounded homotopy objects contain a zero object. -/
+instance boundedExactAcyclicHomotopyObject_containsZero [HasZeroObject C] :
+    (boundedExactAcyclicHomotopyObject C).ContainsZero := by
+  dsimp [boundedExactAcyclicHomotopyObject]
+  infer_instance
+
+/-- Under the bounded-object closure hypothesis, exact-acyclic bounded homotopy objects are
+stable under shifts in the bounded homotopy category. -/
+noncomputable instance boundedExactAcyclicHomotopyObject_isStableUnderShift
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    (boundedExactAcyclicHomotopyObject C).IsStableUnderShift ℤ := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  dsimp [boundedExactAcyclicHomotopyObject]
+  infer_instance
 
 /-- If bounded homotopy objects form a triangulated subcategory and exact-acyclic homotopy
 objects are triangulated closed in the ambient homotopy category, then the exact-acyclic

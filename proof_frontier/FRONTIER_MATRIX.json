@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T18:06:00Z",
+  "generated_utc": "2026-05-19T18:10:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v111 edits stay in the parent process. The parent did not launch or resume any worker for the bounded Verdier weak-equivalence equality frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v112 edits stay in the parent process. The parent did not launch or resume any worker for the bounded exact-acyclic object-property closure frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -494,7 +494,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v111 adds `boundedHomotopyExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage` and `boundedExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage_of_isoClosed`; the homotopy/Verdier pullback weak equivalences are now aligned, up to the bounded quotient lift iso, with the bounded homotopy Verdier `trW` inverse image, and under exact-acyclic iso-closedness the direct bounded weak equivalences align with the same bounded Verdier inverse image. Still no unconditional bounded/exact-acyclic closed2, no direct bounded left/right calculus or triangulated transfer to `Dbounded`, and no stable infinity-category.",
+      "merge_blocker": "v112 adds named closure APIs for `exactAcyclicHomotopyIsoClosure` and `boundedExactAcyclicHomotopyObject`: isomorphism closure, zero containment, and bounded-side shift stability. The v111 weak-equivalence inverse-image equalities remain in place. Still no unconditional bounded/exact-acyclic closed2, no direct bounded left/right calculus or triangulated transfer to `Dbounded`, and no stable infinity-category.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -538,6 +538,8 @@
         "Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions",
         "Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions",
         "exactAcyclicHomotopyIsoClosure",
+        "exactAcyclicHomotopyIsoClosure_isClosedUnderIsomorphisms",
+        "exactAcyclicHomotopyIsoClosure_containsZero",
         "exactAcyclicHomotopyIsoClosure_isStableUnderShift",
         "exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2",
         "exactAcyclicHomotopyIsoClosure_trW",
@@ -634,6 +636,9 @@
         "boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2",
         "boundedHomotopyCategory_isTriangulated_of_isTriangulatedClosed2",
         "boundedExactAcyclicHomotopyObject",
+        "boundedExactAcyclicHomotopyObject_isClosedUnderIsomorphisms",
+        "boundedExactAcyclicHomotopyObject_containsZero",
+        "boundedExactAcyclicHomotopyObject_isStableUnderShift",
         "boundedExactAcyclicHomotopyObject_isTriangulated_of_closed2",
         "BoundedExactAcyclicHomotopyVerdierCategory",
         "BoundedExactAcyclicHomotopyVerdierQuasicategory",
@@ -743,7 +748,10 @@
         "bounded homotopy Verdier localization commutation witness",
         "bounded Verdier comparison composed with bounded-to-ambient comparison equals ambient comparison",
         "bounded homotopy Verdier trW inverse-image equality",
-        "Arrow.isoOfNatIso comparison for lifted bounded homotopy quotient"
+        "Arrow.isoOfNatIso comparison for lifted bounded homotopy quotient",
+        "exact acyclic homotopy isoClosure isomorphism closure and zero containment",
+        "bounded exact-acyclic homotopy object isomorphism closure and zero containment",
+        "bounded exact-acyclic homotopy object shift stability under bounded-object closed2"
       ]
     },
     {
@@ -810,7 +818,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "refresh after proof changes; v111 evidence records bounded homotopy Verdier trW inverse-image equality for homotopy/Verdier pullback weak equivalences and, under exact-acyclic iso-closedness, direct bounded weak equivalences while keeping the stable-infinity blocker nonterminal",
+      "merge_blocker": "refresh after proof changes; v112 evidence records bounded exact-acyclic object-property closure facts while keeping the v111 inverse-image equalities and the stable-infinity blocker nonterminal",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

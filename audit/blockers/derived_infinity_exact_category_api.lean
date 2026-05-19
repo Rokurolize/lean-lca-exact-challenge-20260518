@@ -124,6 +124,8 @@ noncomputable def bounded_derived_quasicategory_family
 #check exactAcyclicHomotopyObject_quotient_obj_iff
 #check exactAcyclicHomotopyObject_containsZero
 #check exactAcyclicHomotopyIsoClosure
+#check exactAcyclicHomotopyIsoClosure_isClosedUnderIsomorphisms
+#check exactAcyclicHomotopyIsoClosure_containsZero
 #check exactAcyclicHomotopyIsoClosure_isStableUnderShift
 #check exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject
@@ -612,6 +614,15 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     (exactAcyclicHomotopyIsoClosure C).trW.HasRightCalculusOfFractions :=
   exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_homotopyObjectClosed2 C
 
+example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
+    (exactAcyclicHomotopyIsoClosure C).IsClosedUnderIsomorphisms := by
+  infer_instance
+
+example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] :
+    (exactAcyclicHomotopyIsoClosure C).ContainsZero := by
+  infer_instance
+
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]
     [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
@@ -670,6 +681,9 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 #check boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2
 #check boundedHomotopyCategory_isTriangulated_of_isTriangulatedClosed2
 #check boundedExactAcyclicHomotopyObject
+#check boundedExactAcyclicHomotopyObject_isClosedUnderIsomorphisms
+#check boundedExactAcyclicHomotopyObject_containsZero
+#check boundedExactAcyclicHomotopyObject_isStableUnderShift
 #check boundedExactAcyclicHomotopyObject_isTriangulated_of_closed2
 #check BoundedExactAcyclicHomotopyVerdierCategory
 #check BoundedExactAcyclicHomotopyVerdierQuasicategory
@@ -762,6 +776,23 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
       (boundedExactAcyclicHomotopyObject C).trW.inverseImage
         (BoundedComplexCategory.homotopyQuotientBounded C) :=
   boundedExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage_of_isoClosed C
+
+example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
+    (boundedExactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms := by
+  infer_instance
+
+example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] :
+    (boundedExactAcyclicHomotopyObject C).ContainsZero := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    (boundedExactAcyclicHomotopyObject C).IsStableUnderShift ℤ :=
+  boundedExactAcyclicHomotopyObject_isStableUnderShift C
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]
