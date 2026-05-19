@@ -4131,6 +4131,163 @@ theorem leftProductByExtension_baer_sum (e : ShortExactExtension X Y) (n : ℕ)
   dsimp [baer_sum]
   exact leftProductByExtension_add (X := X) (Y := Y) (Z := Z) e n a b
 
+/--
+Arbitrary fixed-left hom-tail relations induce equal maps once the base
+pushout/pullback exchange for a one-fold hom tail is supplied.
+-/
+theorem leftProductByYonedaExtensionWith_ofExtension_eq_of_homTailLeftChain
+    [HasBinaryBiproducts C]
+    (pull : {A B W : C} → (f : A ⟶ B) → ShortExactExtension B W →
+      ShortExactExtension A W)
+    (pullIso : ∀ {A B W : C} (f : A ⟶ B)
+      {e e' : ShortExactExtension B W},
+      ShortExactExtension.Iso e e' → ShortExactExtension.Iso (pull f e) (pull f e'))
+    (pullIsoBetween : ∀ {A B W W' : C} (f : A ⟶ B) {β : W ≅ W'}
+        {e : ShortExactExtension B W} {e' : ShortExactExtension B W'},
+        ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl B) β e e' →
+          ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl A) β (pull f e) (pull f e'))
+    (pullSplit : ∀ {A B W : C} (f : A ⟶ B) (e : ShortExactExtension B W)
+      (_ : e.shortComplex.Splitting), (pull f e).shortComplex.Splitting)
+    (pullBaer :
+      ∀ {A B W : C} (f : A ⟶ B) [HasBinaryBiproduct B B]
+        [HasBinaryBiproduct A A] [HasBinaryBiproduct W W]
+        {e₁ e₂ sum : ShortExactExtension B W},
+        ShortExactExtension.BaerSumData e₁ e₂ sum →
+          ShortExactExtension.BaerSumData (pull f e₁) (pull f e₂) (pull f sum))
+    (pullPushoutData :
+      ∀ {A B W V : C} (f : A ⟶ B) (e : ShortExactExtension B W) (g : W ⟶ V)
+        {out : ShortExactExtension B V},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData (pull f e) g (pull f out))
+    (homTailBase :
+      ∀ {X Y Y' Z : C} (e : ShortExactExtension X Y) (f : Y ⟶ Y')
+        {out : ShortExactExtension X Y'} (_h : ShortExactExtension.PushoutData e f out)
+        {n : ℕ} (c : YonedaExtension Y' Z (n + 1)),
+        ofExtension (X := X) (Y := Z) (n := n + 1)
+            (YonedaExtension.spliceLeftWith pull
+              (YonedaExtension.cons e (YonedaExtension.ofHom f)) c) =
+          ofExtension (X := X) (Y := Z) (n := n + 1)
+            (YonedaExtension.spliceLeftWith pull out.toYonedaExtension c))
+    {m : ℕ} {a b : YonedaExtension X Y (m + 1)}
+    (h : YonedaExtension.HomTailData a b) (c : YonedaExtension Y Z (n + 1)) :
+    leftProductByYonedaExtensionWith (Z := Z) pull pullIso pullIsoBetween pullSplit
+        pullBaer pullPushoutData a n
+        (ofExtension (X := Y) (Y := Z) (n := n) c) =
+      leftProductByYonedaExtensionWith (Z := Z) pull pullIso pullIsoBetween pullSplit
+        pullBaer pullPushoutData b n
+        (ofExtension (X := Y) (Y := Z) (n := n) c) := by
+  rw [leftProductByYonedaExtensionWith_ofExtension,
+    leftProductByYonedaExtensionWith_ofExtension]
+  induction h generalizing Z n with
+  | one e f h =>
+      exact homTailBase e f h c
+  | cons e h ih =>
+      have htail := ih (Z := Z) (n := n) c
+      have hcongr :=
+        congrArg
+          (fun x => leftProductByExtension (X := _) (Y := _) (Z := Z) e _ x)
+          htail
+      simpa [leftProductByExtension_ofExtension, YonedaExtension.spliceLeftWith,
+        Nat.add_assoc] using hcongr
+
+/-- Conditional HomTail left descent gives equality of arbitrary fixed-left maps. -/
+theorem leftProductByYonedaExtensionWith_eq_of_homTailLeftChain
+    [HasBinaryBiproducts C]
+    (pull : {A B W : C} → (f : A ⟶ B) → ShortExactExtension B W →
+      ShortExactExtension A W)
+    (pullIso : ∀ {A B W : C} (f : A ⟶ B)
+      {e e' : ShortExactExtension B W},
+      ShortExactExtension.Iso e e' → ShortExactExtension.Iso (pull f e) (pull f e'))
+    (pullIsoBetween : ∀ {A B W W' : C} (f : A ⟶ B) {β : W ≅ W'}
+        {e : ShortExactExtension B W} {e' : ShortExactExtension B W'},
+        ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl B) β e e' →
+          ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl A) β (pull f e) (pull f e'))
+    (pullSplit : ∀ {A B W : C} (f : A ⟶ B) (e : ShortExactExtension B W)
+      (_ : e.shortComplex.Splitting), (pull f e).shortComplex.Splitting)
+    (pullBaer :
+      ∀ {A B W : C} (f : A ⟶ B) [HasBinaryBiproduct B B]
+        [HasBinaryBiproduct A A] [HasBinaryBiproduct W W]
+        {e₁ e₂ sum : ShortExactExtension B W},
+        ShortExactExtension.BaerSumData e₁ e₂ sum →
+          ShortExactExtension.BaerSumData (pull f e₁) (pull f e₂) (pull f sum))
+    (pullPushoutData :
+      ∀ {A B W V : C} (f : A ⟶ B) (e : ShortExactExtension B W) (g : W ⟶ V)
+        {out : ShortExactExtension B V},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData (pull f e) g (pull f out))
+    (homTailBase :
+      ∀ {X Y Y' Z : C} (e : ShortExactExtension X Y) (f : Y ⟶ Y')
+        {out : ShortExactExtension X Y'} (_h : ShortExactExtension.PushoutData e f out)
+        {n : ℕ} (c : YonedaExtension Y' Z (n + 1)),
+        ofExtension (X := X) (Y := Z) (n := n + 1)
+            (YonedaExtension.spliceLeftWith pull
+              (YonedaExtension.cons e (YonedaExtension.ofHom f)) c) =
+          ofExtension (X := X) (Y := Z) (n := n + 1)
+            (YonedaExtension.spliceLeftWith pull out.toYonedaExtension c))
+    {m : ℕ} {a b : YonedaExtension X Y (m + 1)}
+    (h : YonedaExtension.HomTailData a b) (n : ℕ) :
+    leftProductByYonedaExtensionWith (Z := Z) pull pullIso pullIsoBetween pullSplit
+        pullBaer pullPushoutData a n =
+      leftProductByYonedaExtensionWith (Z := Z) pull pullIso pullIsoBetween pullSplit
+        pullBaer pullPushoutData b n := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro c
+  change leftProductByYonedaExtensionWith (Z := Z) pull pullIso pullIsoBetween pullSplit
+      pullBaer pullPushoutData a n
+      (ofExtension (X := Y) (Y := Z) (n := n) c) =
+    leftProductByYonedaExtensionWith (Z := Z) pull pullIso pullIsoBetween pullSplit
+      pullBaer pullPushoutData b n
+      (ofExtension (X := Y) (Y := Z) (n := n) c)
+  exact leftProductByYonedaExtensionWith_ofExtension_eq_of_homTailLeftChain
+    pull pullIso pullIsoBetween pullSplit pullBaer pullPushoutData homTailBase h c
+
+/-- Conditional MetrizableLCA HomTail left descent for arbitrary fixed-left maps. -/
+theorem leftProductByYonedaExtension_metrizableWithPushoutData_eq_of_homTailLeftChain
+    {X Y Z : MetrizableLCA.{u}} {m : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.HomTailData (C := MetrizableLCA.{u}) a b) (n : ℕ)
+    (pullPushoutData :
+      ∀ {A B W V : MetrizableLCA.{u}} (f : A ⟶ B)
+        (e : ShortExactExtension (C := MetrizableLCA.{u}) B W) (g : W ⟶ V)
+        {out : ShortExactExtension (C := MetrizableLCA.{u}) B V},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData
+            (MetrizableLCA.shortExactExtensionPullback e f) g
+            (MetrizableLCA.shortExactExtensionPullback out f))
+    (homTailBase :
+      ∀ {X Y Y' Z : MetrizableLCA.{u}}
+        (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) (f : Y ⟶ Y')
+        {out : ShortExactExtension (C := MetrizableLCA.{u}) X Y'}
+        (_h : ShortExactExtension.PushoutData e f out)
+        {n : ℕ} (c : YonedaExtension (C := MetrizableLCA.{u}) Y' Z (n + 1)),
+        ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := n + 1)
+            (YonedaExtension.spliceLeftWith
+              (C := MetrizableLCA.{u})
+              (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+              (YonedaExtension.cons e (YonedaExtension.ofHom f)) c) =
+          ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z) (n := n + 1)
+            (YonedaExtension.spliceLeftWith
+              (C := MetrizableLCA.{u})
+              (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+              out.toYonedaExtension c)) :
+    leftProductByYonedaExtension_metrizableWithPushoutData
+        (X := X) (Y := Y) (Z := Z) a n pullPushoutData =
+      leftProductByYonedaExtension_metrizableWithPushoutData
+        (X := X) (Y := Y) (Z := Z) b n pullPushoutData :=
+  leftProductByYonedaExtensionWith_eq_of_homTailLeftChain
+    (C := MetrizableLCA.{u}) (X := X) (Y := Y) (Z := Z)
+    (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+    (fun {_ _ _} f {_ _} h => MetrizableLCA.shortExactExtensionPullbackIso f h)
+    (fun {_ _ _ _} f {_} {_} {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackIsoBetween f h)
+    (fun {_ _ _} f e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s)
+    (fun {_ _ W} f [HasBinaryBiproduct _ _] [HasBinaryBiproduct _ _]
+        [HasBinaryBiproduct W W] {_ _ _} h =>
+      MetrizableLCA.shortExactExtensionPullbackBaerSumData f h)
+    (fun {_ _ _ _} f e g {_} h => pullPushoutData f e g h)
+    homTailBase h n
+
 /-- The free abelian group map induced by splicing a positive one-fold chain on the left. -/
 def positiveChainLeftFreeHom :
     {X Y Z : C} → {m : ℕ} →

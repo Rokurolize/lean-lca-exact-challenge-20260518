@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T02:18:58Z",
+  "generated_utc": "2026-05-19T02:28:03Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -42,7 +42,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Fixed one-fold, positive-chain, and arbitrary fixed-left YonedaExtension actions now descend in the right variable under available head-pullback compatibility data. Arbitrary fixed-left termwise YonedaExtension.Rel invariance, split-factor zero descent, and Baer additivity are implemented; hom-tail left relation descent and unconditional standard MetrizableLCA head pullback-pushout exchange remain incomplete.",
+      "merge_blocker": "Fixed one-fold, positive-chain, and arbitrary fixed-left YonedaExtension actions now descend in the right variable under available head-pullback compatibility data. Arbitrary fixed-left termwise YonedaExtension.Rel invariance, split-factor zero descent, Baer additivity, and HomTail descent conditional on the base splice exchange premise are implemented; the unconditional base exchange and standard MetrizableLCA head pullback-pushout exchange remain incomplete.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -88,7 +88,10 @@
         "YonedaExtension.BaerSumData.spliceLeftWith",
         "YonedaExt.leftProductByYonedaExtensionWith_ofExtension_eq_add_of_baerLeftChain",
         "YonedaExt.leftProductByYonedaExtensionWith_eq_add_of_baerLeftChain",
-        "YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_add_of_baerLeftChain"
+        "YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_add_of_baerLeftChain",
+        "YonedaExt.leftProductByYonedaExtensionWith_ofExtension_eq_of_homTailLeftChain",
+        "YonedaExt.leftProductByYonedaExtensionWith_eq_of_homTailLeftChain",
+        "YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_of_homTailLeftChain"
       ]
     },
     {
