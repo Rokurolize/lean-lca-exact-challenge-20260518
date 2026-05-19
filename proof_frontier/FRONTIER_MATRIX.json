@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T00:52:00Z",
+  "generated_utc": "2026-05-20T01:05:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results w108-w115; w112 was already covered by v139-v140, w114 was promoted from an audit guard into Derived.Bounded as product-side selected-cochain payload API, and w115 supplied a generic contracting-homotopy-to-zero-equivalence bridge.",
+  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results w108-w118; w116/w117 were already covered by the v140-v142 ContractibleTail implementation, and w118 was already covered by the v143 product-side selected cochain payload API.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",

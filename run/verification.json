@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v143-product-selected-cochain-payload",
-  "generated_utc": "2026-05-20T00:52:00Z",
-  "source_tree_hash": "f166f4e0348c7b600b79e22707e91b9013a18ee980857ab9e9095e068ae5d3e0",
-  "summary": "v143 moves the selected cochain isomorphism payload into Derived.Bounded product API; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v144-support-results-classified",
+  "generated_utc": "2026-05-20T01:05:00Z",
+  "source_tree_hash": "1e143b48194bf30cd332d58aa8873c5039632687ea3f07fb4a2adc551dbb0906",
+  "summary": "v144 classifies w116-w118 support results as covered by v140-v143 product-side work; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
