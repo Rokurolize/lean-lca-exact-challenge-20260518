@@ -419,3 +419,8 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 ### v136: Nat alternating tail contracting homotopy
 
 2026-05-19T22:40:00Z時点で、`HomologicalComplex.alternatingConst`から作ったNat添字のidentity/zero alternating complexについて、実際のcontracting homotopyを構成した。これにより、contractible tail反例の残る技術課題は、Nat添字から`ℤ`添字の右非有界tailへのtransportと、各degreeの非零性・右非有界支持を既存の`UnboundedContractibleTailInstance`境界へ接続する部分に絞られた。
+
+
+### v137: pullback wrapper consumer probe
+
+2026-05-19T22:50:00Z時点で、strict short exact pullbackの既存wrapperを下流コードが消費できることを監査ファイルで確認した。これによりLCA/Yoneda側のbase-change APIはpushout/pullbackの両側でconsumer guardを持つ。ただし、これは既存APIの利用面を守るもので、strict realization、triangulated transfer、stable infinity-category証明は未解決である。

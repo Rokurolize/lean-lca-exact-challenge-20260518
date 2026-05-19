@@ -281,7 +281,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Standard pullback-pushout exchange, comparison-map open proof, comparison-map IsIso, unconditional head pullback map, tail composition map, arbitrary fixed-left MetrizableLCA map, HomTail-left congruence under right splice, free-left product zero lemmas, nested homTailLeft quotient descent, and quotient-wide positive-degree Yoneda product packaging are implemented. The remaining product blocker is stable infinity-category enhancement.",
+      "merge_blocker": "v137 confirms the pullback wrapper can be consumed through ShortExactExtension.PullbackData and endpoint equations; remaining product blocker is still bounded derived infinity-category enhancement.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -418,7 +418,13 @@
         "YonedaExtension.composeTailHom_pullbackHeadWith",
         "YonedaExtension.composeTailHom_spliceLeftWith",
         "YonedaRelGenerator.homTailLeft",
-        "YonedaExt.ofExtension_eq_ofExtension_of_homTailLeftWith"
+        "YonedaExt.ofExtension_eq_ofExtension_of_homTailLeftWith",
+        "MetrizableLCA.shortExactExtensionPullbackData",
+        "MetrizableLCA.shortExactExtensionPullback_i_map",
+        "MetrizableLCA.shortExactExtensionPullback_map_p"
+      ],
+      "technical_context": [
+        "v137 added pullback wrapper consumer probe matching the v132 pushout consumer guard."
       ]
     },
     {
