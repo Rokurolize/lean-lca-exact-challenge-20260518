@@ -1012,6 +1012,39 @@ theorem boundedHomotopyObjectTrianglehIso13Realization_of_selected_cochain
       (boundedCochainComplex C).prop_of_iso payload.coneIso payload.coneBounded⟩
 
 omit [QuillenExactCategory C] in
+/-- The bounded strict-realization input itself supplies the selected cochain payload:
+choose the source and cone representatives to be the selected source and mapping cone. -/
+theorem boundedTrianglehIso13SelectedCochainStrictification_of_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : boundedHomotopyObjectTrianglehIso13Realization C) :
+    boundedTrianglehIso13SelectedCochainStrictification C := by
+  intro T hT h₁ h₃
+  rcases realize hT h₁ h₃ with ⟨K, L, f, e₁, e₃, comm, hK, hCone⟩
+  exact ⟨{
+    sourceRepresentative := K
+    coneRepresentative := CochainComplex.mappingCone f
+    selectedSource := K
+    selectedTarget := L
+    selectedMap := f
+    triangleSourceIso := e₁
+    triangleConeIso := e₃
+    sourceIso := Iso.refl K
+    coneIso := Iso.refl (CochainComplex.mappingCone f)
+    triangleComm := comm
+    sourceBounded := hK
+    coneBounded := hCone }⟩
+
+omit [QuillenExactCategory C] in
+/-- The selected cochain payload formulation is equivalent to bounded strict realization. -/
+theorem boundedTrianglehIso13SelectedCochainStrictification_iff_realization
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    boundedTrianglehIso13SelectedCochainStrictification C ↔
+      boundedHomotopyObjectTrianglehIso13Realization C := by
+  constructor
+  · exact boundedHomotopyObjectTrianglehIso13Realization_of_selected_cochain C
+  · exact boundedTrianglehIso13SelectedCochainStrictification_of_realization C
+
+omit [QuillenExactCategory C] in
 /-- Direct cochain-isomorphism route to the bounded strict-realization input. -/
 theorem boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload
     [HasZeroObject C] [HasBinaryBiproducts C]
@@ -1051,6 +1084,28 @@ theorem boundedTrianglehIso13CochainIsoPayload_of_cochain_data
   exact ⟨Ksrc, Kcone, K, L, f, e₁, e₃, comm, hKsrc, hKcone, ⟨eK⟩, ⟨eCone⟩⟩
 
 omit [QuillenExactCategory C] in
+/-- Bounded strict realization supplies the compact cochain-isomorphism payload. -/
+theorem boundedTrianglehIso13CochainIsoPayload_of_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : boundedHomotopyObjectTrianglehIso13Realization C) :
+    boundedTrianglehIso13CochainIsoPayload C := by
+  intro T hT h₁ h₃
+  rcases realize hT h₁ h₃ with ⟨K, L, f, e₁, e₃, comm, hK, hCone⟩
+  exact
+    ⟨K, CochainComplex.mappingCone f, K, L, f, e₁, e₃, comm, hK, hCone,
+      ⟨Iso.refl K⟩, ⟨Iso.refl (CochainComplex.mappingCone f)⟩⟩
+
+omit [QuillenExactCategory C] in
+/-- The compact cochain-isomorphism payload is equivalent to bounded strict realization. -/
+theorem boundedTrianglehIso13CochainIsoPayload_iff_realization
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    boundedTrianglehIso13CochainIsoPayload C ↔
+      boundedHomotopyObjectTrianglehIso13Realization C := by
+  constructor
+  · exact boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload C
+  · exact boundedTrianglehIso13CochainIsoPayload_of_realization C
+
+omit [QuillenExactCategory C] in
 /-- The compact cochain-isomorphism payload gives expanded cochain data. -/
 theorem boundedTrianglehIso13CochainDataStrictification_of_cochain_iso_payload
     [HasZeroObject C] [HasBinaryBiproducts C]
@@ -1062,6 +1117,15 @@ theorem boundedTrianglehIso13CochainDataStrictification_of_cochain_iso_payload
   exact ⟨Ksrc, Kcone, K, L, f, e₁, e₃, hK.some, hCone.some, comm, hKsrc, hKcone⟩
 
 omit [QuillenExactCategory C] in
+/-- Bounded strict realization supplies the expanded cochain-data formulation. -/
+theorem boundedTrianglehIso13CochainDataStrictification_of_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : boundedHomotopyObjectTrianglehIso13Realization C) :
+    boundedTrianglehIso13CochainDataStrictification C :=
+  boundedTrianglehIso13CochainDataStrictification_of_cochain_iso_payload C
+    (boundedTrianglehIso13CochainIsoPayload_of_realization C realize)
+
+omit [QuillenExactCategory C] in
 /-- The compact and expanded cochain-level formulations are equivalent. -/
 theorem boundedTrianglehIso13CochainIsoPayload_iff_cochain_data
     [HasZeroObject C] [HasBinaryBiproducts C] :
@@ -1070,6 +1134,18 @@ theorem boundedTrianglehIso13CochainIsoPayload_iff_cochain_data
   constructor
   · exact boundedTrianglehIso13CochainDataStrictification_of_cochain_iso_payload C
   · exact boundedTrianglehIso13CochainIsoPayload_of_cochain_data C
+
+omit [QuillenExactCategory C] in
+/-- The expanded cochain-data formulation is equivalent to bounded strict realization. -/
+theorem boundedTrianglehIso13CochainDataStrictification_iff_realization
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    boundedTrianglehIso13CochainDataStrictification C ↔
+      boundedHomotopyObjectTrianglehIso13Realization C := by
+  constructor
+  · intro strictify
+    exact boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload C
+      (boundedTrianglehIso13CochainIsoPayload_of_cochain_data C strictify)
+  · exact boundedTrianglehIso13CochainDataStrictification_of_realization C
 
 omit [QuillenExactCategory C] in
 /-- Expanded cochain data supplies the bounded strict-realization input. -/

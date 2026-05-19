@@ -2041,6 +2041,12 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 #check boundedTrianglehIso13CochainIsoPayload_iff_cochain_data
 #check boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload
 #check boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data
+#check boundedTrianglehIso13SelectedCochainStrictification_of_realization
+#check boundedTrianglehIso13SelectedCochainStrictification_iff_realization
+#check boundedTrianglehIso13CochainIsoPayload_of_realization
+#check boundedTrianglehIso13CochainIsoPayload_iff_realization
+#check boundedTrianglehIso13CochainDataStrictification_of_realization
+#check boundedTrianglehIso13CochainDataStrictification_iff_realization
 
 example (C : Type u) [Category.{v} C] [Preadditive C]
     [HasZeroObject C] [HasBinaryBiproducts C]

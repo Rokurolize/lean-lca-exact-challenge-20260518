@@ -467,3 +467,9 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 2026-05-20T01:30:00Z時点で、ProductSuccess監査はselected cochain payloadとstrict boundedness transport反例を直接確認する。これにより、`boundedTrianglehIso13CochainDataStrictification`が製品側に存在すること、その入力からbounded strict-realization inputへ進めること、そしてbare `HomotopyEquiv` transportは具体tailで否定されることが、最終監査の一部になった。
 
 mathlib探索では、現行のquasicategory APIはordinary categoryのnerveを`SSet.QCat`へ入れる範囲に留まる。stable infinity-categoryの有限極限、有限余極限、suspension/loop equivalence、pushout/pullback互換性を与える既製APIは見つからないため、残るproduct作業はローカルcertificate APIとその実証明を構成する方向に残る。
+
+### v147: selected payload is equivalent to bounded strict-realization
+
+2026-05-20T01:45:00Z時点で、`BoundedTrianglehIso13SelectedCochainPayload`、compactな`boundedTrianglehIso13CochainIsoPayload`、expandedな`boundedTrianglehIso13CochainDataStrictification`が、いずれも`boundedHomotopyObjectTrianglehIso13Realization`と同値であることを製品側APIとして追加した。strict-realizationがあれば、source representativeを選んだsourceそのもの、cone representativeをmapping coneそのものに取り、恒等同型でpayloadを構成できる。
+
+これで「selected cochain payloadを別途構成する」という見かけのfrontierは消えた。残るbounded側の本体は、任意のdistinguished triangleでboundedな両端からmapping-cone表示を選び、そのsourceとconeがstrict boundedであることを証明する`boundedHomotopyObjectTrianglehIso13Realization`自体である。

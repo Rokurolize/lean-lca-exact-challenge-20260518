@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v146-product-success-selected-payload-boundary",
-  "generated_utc": "2026-05-20T01:30:00Z",
-  "source_tree_hash": "e3dafc334f11afbc0fe29f655cac96b7c110148a82f16b7d2d18e5bb72717849",
-  "summary": "v146 strengthens ProductSuccessDeclarations so the selected cochain payload boundary and the concrete strict-boundedness transport refutation are product-facing audit evidence; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v147-selected-payload-equivalence",
+  "generated_utc": "2026-05-20T01:45:00Z",
+  "source_tree_hash": "0f4a878c8918976883a4ddea7ffb9eb85a9b56a60e1a3b5a79008d63d9d8ae57",
+  "summary": "v147 proves that the selected payload, compact cochain-isomorphism payload, and expanded cochain-data payload formulations are equivalent to bounded strict-realization; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Fresh first-barrier build passed before the v145 audit sync; rerun not required for audit-only wrapper change but full build remains recorded as passing for this checkpoint."
+      "evidence": "Full lake build passed after the v147 selected/cochain payload equivalence implementation."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v146 ProductSuccess audit additions."
+      "evidence": "Forbidden-token audit passed after the v147 implementation."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed in the first barrier."
+      "evidence": "Required declaration audit passed after the v147 Derived.Bounded changes."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess audit passed after adding selected cochain payload checks and the concrete HomotopyEquiv strict-boundedness transport refutation."
+      "evidence": "ProductSuccess audit passed and now checks the selected/cochain payload equivalence APIs."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,22 +52,22 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected to fail at terminal_outcome because product remains failed_nonterminal pending general strictification payload construction and stable infinity certificate."
+      "evidence": "Expected external audit product gate reproduced after v147; product remains failed_nonterminal."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v146 audit/docs changes."
+      "evidence": "Whitespace diff check passed after the v147 implementation/docs changes."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
       "status": "passed",
-      "evidence": "Focused module build passed after adding selected cochain payload declarations to Derived.Bounded."
+      "evidence": "Focused Derived.Bounded build passed after adding selected/cochain payload equivalence APIs."
     },
     {
       "command": "lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean",
       "status": "passed",
-      "evidence": "Focused strict-boundedness cochain-data audit passed as a consumer of product-side payload declarations."
+      "evidence": "Focused strict-boundedness consumer passed after the v147 equivalence API changes."
     }
   ],
   "implemented_declarations_checked": [
@@ -86,12 +86,17 @@
     "RightUnboundedContractibleComplex",
     "StrictBoundednessTransportOfHomotopyEquiv",
     "not_strictBoundednessTransport_of_rightUnboundedContractibleComplex",
-    "AlternatingTailExtendTransport.not_strictBoundednessTransport_intAlternatingTailGE"
+    "AlternatingTailExtendTransport.not_strictBoundednessTransport_intAlternatingTailGE",
+    "boundedTrianglehIso13SelectedCochainStrictification_of_realization",
+    "boundedTrianglehIso13SelectedCochainStrictification_iff_realization",
+    "boundedTrianglehIso13CochainIsoPayload_of_realization",
+    "boundedTrianglehIso13CochainIsoPayload_iff_realization",
+    "boundedTrianglehIso13CochainDataStrictification_of_realization",
+    "boundedTrianglehIso13CochainDataStrictification_iff_realization"
   ],
   "product_complete": false,
   "known_gaps": [
-    "General strictification from homotopy-category endpoint isomorphisms to selected cochain-complex isomorphism payloads remains unproved.",
-    "The selected cochain payload is product-side API and product-facing audit evidence, but no theorem constructs it for arbitrary bounded endpoint distinguished triangles.",
+    "The selected/cochain payload frontier is collapsed to bounded strict-realization, but boundedHomotopyObjectTrianglehIso13Realization itself remains unproved for arbitrary bounded endpoint distinguished triangles.",
     "No stable infinity-category certificate for D^b(LCA) has been proved.",
     "No final clean review packet, oracle pass, or fresh claim review has accepted product_success=true."
   ]
