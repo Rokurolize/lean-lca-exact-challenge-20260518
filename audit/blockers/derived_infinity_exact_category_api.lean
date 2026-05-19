@@ -47,6 +47,14 @@ class is shift-compatible and has its own ordinary localization, quasicategory
 nerve, and comparison functor from `Dbounded`. This is still not a proof that the
 direct weak-equivalence class has left calculus of fractions or that the
 ordinary nerve is a stable infinity-category.
+Incremental v83 progress: under the precise hypothesis that the isomorphism
+closure of exact acyclic homotopy objects is `IsTriangulatedClosed₂`, mathlib's
+Verdier localization API now supplies left calculus of fractions, triangulation
+compatibility, preadditivity, a zero object, shifts, additive localized shifts,
+and an ordinary triangulated category structure on the homotopy-category Verdier
+quotient. This still does not prove that the direct bounded weak-equivalence
+class has left calculus of fractions, nor does it produce a stable
+infinity-category enhancement.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -97,6 +105,19 @@ noncomputable def bounded_derived_quasicategory_family
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
+#check exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2
+#check ExactAcyclicHomotopyVerdierCategory
+#check ExactAcyclicHomotopyVerdierQuasicategory
+#check ExactAcyclicHomotopyVerdierQuasicategory.homotopyCategoryIso
+#check exactAcyclicHomotopyVerdierCategory_preadditive_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyVerdierCategory_localization_additive_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyVerdierCategory_hasZeroObject_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyVerdierCategory_hasShift_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyVerdierCategory_localization_commShift_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyVerdierCategory_pretriangulated_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyVerdierCategory_isTriangulated_of_isTriangulatedClosed2
 #check BoundedHomotopyDerivedCategory
 #check BoundedHomotopyDerivedQuasicategory
 #check BoundedHomotopyDerivedQuasicategory.homotopyCategoryIso
@@ -137,6 +158,54 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C] :
     HasShift (BoundedHomotopyDerivedCategory C) ℤ := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    Preadditive (ExactAcyclicHomotopyVerdierCategory C) := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    ((exactAcyclicHomotopyIsoClosure C).trW.Q).Additive := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    HasZeroObject (ExactAcyclicHomotopyVerdierCategory C) := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    HasShift (ExactAcyclicHomotopyVerdierCategory C) ℤ := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    ((exactAcyclicHomotopyIsoClosure C).trW.Q).CommShift ℤ := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (shiftFunctor (ExactAcyclicHomotopyVerdierCategory C) (1 : ℤ)).Additive := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    Pretriangulated (ExactAcyclicHomotopyVerdierCategory C) := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    IsTriangulated (ExactAcyclicHomotopyVerdierCategory C) := by
   infer_instance
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]

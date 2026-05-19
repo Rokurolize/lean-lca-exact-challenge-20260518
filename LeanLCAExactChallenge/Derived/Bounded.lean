@@ -7,6 +7,7 @@ import Mathlib.AlgebraicTopology.Quasicategory.StrictBicategory
 import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
 import Mathlib.CategoryTheory.Localization.CalculusOfFractions.Preadditive
 import Mathlib.CategoryTheory.Localization.HasLocalization
+import Mathlib.CategoryTheory.Localization.Triangulated
 import Mathlib.CategoryTheory.ObjectProperty.ContainsZero
 import Mathlib.CategoryTheory.ObjectProperty.ShiftAdditive
 import LeanLCAExactChallenge.LCA.ExactCategory
@@ -380,6 +381,174 @@ theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureC
     exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
   rw [← exactAcyclicHomotopyIsoClosure_trW C]
   infer_instance
+
+/-- Once the isomorphism closure is triangulated, mathlib supplies the Verdier left calculus
+directly for the isomorphism-closed homotopy-category `trW` class. -/
+theorem exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyIsoClosure C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  infer_instance
+
+/-- Once the isomorphism closure is triangulated, its Verdier weak equivalences are compatible
+with the homotopy-category triangulation. -/
+theorem exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyIsoClosure C).trW.IsCompatibleWithTriangulation := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  infer_instance
+
+/-- The ordinary Verdier localization of the homotopy category at the `trW` class attached to
+the isomorphism closure of exact acyclic homotopy objects. -/
+abbrev ExactAcyclicHomotopyVerdierCategory [HasZeroObject C] [HasBinaryBiproducts C] :
+    Type (max u v) :=
+  (exactAcyclicHomotopyIsoClosure C).trW.Localization
+
+/-- The ordinary nerve of the exact-acyclic homotopy Verdier localization. -/
+noncomputable abbrev ExactAcyclicHomotopyVerdierQuasicategory
+    [HasZeroObject C] [HasBinaryBiproducts C] : SSet.QCat :=
+  ⟨CategoryTheory.nerve (ExactAcyclicHomotopyVerdierCategory C), inferInstance⟩
+
+/-- The homotopy category of the ordinary nerve of the homotopy Verdier localization recovers
+the localized category. -/
+noncomputable def ExactAcyclicHomotopyVerdierQuasicategory.homotopyCategoryIso
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    SSet.hoFunctor.obj (ExactAcyclicHomotopyVerdierQuasicategory C).1 ≅
+      Cat.of (ExactAcyclicHomotopyVerdierCategory C) :=
+  CategoryTheory.nerveFunctorCompHoFunctorIso.app
+    (Cat.of (ExactAcyclicHomotopyVerdierCategory C))
+
+/-- The exact-acyclic homotopy Verdier localization is preadditive once the
+isomorphism-closed exact-acyclic objects form a triangulated subcategory. -/
+noncomputable instance exactAcyclicHomotopyVerdierCategory_preadditive_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    Preadditive (ExactAcyclicHomotopyVerdierCategory C) := by
+  let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    (exactAcyclicHomotopyIsoClosure C).trW
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  haveI : W.HasLeftCalculusOfFractions := by
+    dsimp [W]
+    infer_instance
+  exact Localization.preadditive W.Q W
+
+/-- Under the same triangulated-closure hypothesis, the homotopy Verdier localization functor
+is additive. -/
+instance exactAcyclicHomotopyVerdierCategory_localization_additive_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    ((exactAcyclicHomotopyIsoClosure C).trW.Q).Additive := by
+  let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    (exactAcyclicHomotopyIsoClosure C).trW
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  haveI : W.HasLeftCalculusOfFractions := by
+    dsimp [W]
+    infer_instance
+  exact Localization.functor_additive W.Q W
+
+/-- Under the same triangulated-closure hypothesis, the homotopy Verdier localization has a
+zero object. -/
+instance exactAcyclicHomotopyVerdierCategory_hasZeroObject_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    HasZeroObject (ExactAcyclicHomotopyVerdierCategory C) := by
+  let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    (exactAcyclicHomotopyIsoClosure C).trW
+  change HasZeroObject W.Localization
+  exact W.Q.hasZeroObject_of_additive
+
+/-- Under the same triangulated-closure hypothesis, the homotopy Verdier localization inherits
+the integer shift. -/
+noncomputable instance exactAcyclicHomotopyVerdierCategory_hasShift_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    HasShift (ExactAcyclicHomotopyVerdierCategory C) ℤ := by
+  let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    (exactAcyclicHomotopyIsoClosure C).trW
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  haveI : W.IsCompatibleWithShift ℤ := by
+    dsimp [W]
+    infer_instance
+  exact HasShift.localized W.Q W ℤ
+
+/-- Under the same triangulated-closure hypothesis, the homotopy Verdier localization functor
+commutes with shifts. -/
+noncomputable instance
+    exactAcyclicHomotopyVerdierCategory_localization_commShift_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    ((exactAcyclicHomotopyIsoClosure C).trW.Q).CommShift ℤ := by
+  let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    (exactAcyclicHomotopyIsoClosure C).trW
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  haveI : W.IsCompatibleWithShift ℤ := by
+    dsimp [W]
+    infer_instance
+  exact Functor.CommShift.localized W.Q W ℤ
+
+/-- Under the same triangulated-closure hypothesis, localized shifts are additive. -/
+instance exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] (n : ℤ) :
+    (shiftFunctor (ExactAcyclicHomotopyVerdierCategory C) n).Additive := by
+  let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    (exactAcyclicHomotopyIsoClosure C).trW
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  haveI : W.HasLeftCalculusOfFractions := by
+    dsimp [W]
+    infer_instance
+  change (shiftFunctor W.Localization n).Additive
+  rw [Localization.functor_additive_iff W.Q W]
+  exact Functor.additive_of_iso (W.Q.commShiftIso n)
+
+/-- Under the same triangulated-closure hypothesis, the homotopy Verdier localization is
+pretriangulated by mathlib's localization theorem. -/
+noncomputable instance
+    exactAcyclicHomotopyVerdierCategory_pretriangulated_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    Pretriangulated (ExactAcyclicHomotopyVerdierCategory C) := by
+  let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    (exactAcyclicHomotopyIsoClosure C).trW
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  haveI : W.HasLeftCalculusOfFractions := by
+    dsimp [W]
+    infer_instance
+  haveI : W.IsCompatibleWithTriangulation := by
+    dsimp [W]
+    infer_instance
+  exact Triangulated.Localization.pretriangulated W.Q W
+
+/-- Under the same triangulated-closure hypothesis, the homotopy Verdier localization is an
+ordinary triangulated category. -/
+instance exactAcyclicHomotopyVerdierCategory_isTriangulated_of_isTriangulatedClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
+    IsTriangulated (ExactAcyclicHomotopyVerdierCategory C) := by
+  let W : MorphismProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    (exactAcyclicHomotopyIsoClosure C).trW
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
+    exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
+  haveI : W.HasLeftCalculusOfFractions := by
+    dsimp [W]
+    infer_instance
+  haveI : W.IsCompatibleWithTriangulation := by
+    dsimp [W]
+    infer_instance
+  haveI : W.Q.IsTriangulated :=
+    Triangulated.Localization.isTriangulated_functor W.Q W
+  change IsTriangulated W.Localization
+  exact Triangulated.Localization.isTriangulated W.Q W
 
 /-- Exact weak equivalences of bounded complexes are invariant under cochain shifts. -/
 theorem boundedExactWeakEquivalence_shift_iff [HasBinaryBiproducts C]
