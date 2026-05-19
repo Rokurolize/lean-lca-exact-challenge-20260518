@@ -63,6 +63,32 @@ instance boundedCochainComplex_isStableUnderShift :
     exact ⟨a - n, b - n, K.isStrictlyGE_shift a n (a - n) (by omega),
       K.isStrictlyLE_shift b n (b - n) (by omega)⟩
 
+omit [QuillenExactCategory C] in
+/-- Mapping cones of morphisms between bounded cochain complexes are bounded. -/
+theorem boundedCochainComplex_mappingCone [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hK : boundedCochainComplex C K) (hL : boundedCochainComplex C L) :
+    boundedCochainComplex C (CochainComplex.mappingCone f) := by
+  obtain ⟨aK, bK, hKge, hKle⟩ := hK
+  obtain ⟨aL, bL, hLge, hLle⟩ := hL
+  letI : K.IsStrictlyGE aK := hKge
+  letI : K.IsStrictlyLE bK := hKle
+  letI : L.IsStrictlyGE aL := hLge
+  letI : L.IsStrictlyLE bL := hLle
+  refine ⟨min (aK - 1) aL, max (bK - 1) bL, ?_, ?_⟩
+  · rw [CochainComplex.isStrictlyGE_iff]
+    intro i hi
+    rw [CochainComplex.mappingCone.isZero_X_iff]
+    constructor
+    · exact K.isZero_of_isStrictlyGE aK (i + 1) (by omega)
+    · exact L.isZero_of_isStrictlyGE aL i (by omega)
+  · rw [CochainComplex.isStrictlyLE_iff]
+    intro i hi
+    rw [CochainComplex.mappingCone.isZero_X_iff]
+    constructor
+    · exact K.isZero_of_isStrictlyLE bK (i + 1) (by omega)
+    · exact L.isZero_of_isStrictlyLE bL i (by omega)
+
 /-- The full category of bounded cochain complexes before localization. -/
 abbrev BoundedComplexCategory : Type (max u v) :=
   (boundedCochainComplex C).FullSubcategory
@@ -262,6 +288,73 @@ noncomputable def boundedExactWeakEquivalence [HasBinaryBiproducts C] :
 abbrev BoundedComplexCategory.homotopyQuotient [HasBinaryBiproducts C] :
     BoundedComplexCategory C ⥤ HomotopyCategory C (ComplexShape.up ℤ) :=
   BoundedComplexCategory.ι C ⋙ HomotopyCategory.quotient C (ComplexShape.up ℤ)
+
+omit [QuillenExactCategory C] in
+/-- Bounded objects in the homotopy category, understood up to homotopy-category
+isomorphism from a strictly bounded cochain complex. -/
+def boundedHomotopyObject : ObjectProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+  fun K => ∃ K₀ : CochainComplex C ℤ, boundedCochainComplex C K₀ ∧
+    Nonempty ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj K₀ ≅ K)
+
+omit [QuillenExactCategory C] in
+/-- A strictly bounded cochain complex defines a bounded homotopy object. -/
+theorem boundedHomotopyObject_quotient_obj {K : CochainComplex C ℤ}
+    (hK : boundedCochainComplex C K) :
+    boundedHomotopyObject C ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj K) :=
+  ⟨K, hK, ⟨Iso.refl _⟩⟩
+
+omit [QuillenExactCategory C] in
+/-- Bounded homotopy objects are closed under isomorphism by definition. -/
+instance boundedHomotopyObject_isClosedUnderIsomorphisms :
+    (boundedHomotopyObject C).IsClosedUnderIsomorphisms where
+  of_iso := by
+    rintro K L e ⟨K₀, hK₀, ⟨e₀⟩⟩
+    exact ⟨K₀, hK₀, ⟨e₀ ≪≫ e⟩⟩
+
+omit [QuillenExactCategory C] in
+/-- Bounded homotopy objects contain a zero object. -/
+instance boundedHomotopyObject_containsZero [HasZeroObject C] :
+    (boundedHomotopyObject C).ContainsZero where
+  exists_zero := by
+    refine ⟨(HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj (0 : CochainComplex C ℤ),
+      ?_, ?_⟩
+    · exact Functor.map_isZero (HomotopyCategory.quotient C (ComplexShape.up ℤ))
+        (isZero_zero (CochainComplex C ℤ) : IsZero (0 : CochainComplex C ℤ))
+    · exact boundedHomotopyObject_quotient_obj C (by
+        exact ⟨0, 0, inferInstance, inferInstance⟩)
+
+omit [QuillenExactCategory C] in
+/-- Bounded homotopy objects are stable under the homotopy-category shift. -/
+noncomputable instance boundedHomotopyObject_isStableUnderShift :
+    (boundedHomotopyObject C).IsStableUnderShift ℤ where
+  isStableUnderShiftBy n := by
+    refine ⟨?_⟩
+    rintro K ⟨K₀, hK₀, ⟨e⟩⟩
+    refine ⟨K₀⟦n⟧, ?_, ?_⟩
+    · exact (boundedCochainComplex C).le_shift n K₀ hK₀
+    · exact ⟨((HomotopyCategory.quotient C (ComplexShape.up ℤ)).commShiftIso n).app K₀ ≪≫
+        (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) n).mapIso e⟩
+
+omit [QuillenExactCategory C] in
+/-- The full homotopy-category subcategory of bounded objects. -/
+abbrev BoundedHomotopyCategory : Type (max u v) :=
+  (boundedHomotopyObject C).FullSubcategory
+
+omit [QuillenExactCategory C] in
+/-- The inclusion of bounded homotopy objects into the full homotopy category. -/
+abbrev BoundedHomotopyCategory.ι :
+    BoundedHomotopyCategory C ⥤ HomotopyCategory C (ComplexShape.up ℤ) :=
+  (boundedHomotopyObject C).ι
+
+omit [QuillenExactCategory C] in
+/-- The homotopy object represented by the mapping cone of a map between bounded complexes is
+bounded. -/
+theorem boundedHomotopyObject_mappingCone [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hK : boundedCochainComplex C K) (hL : boundedCochainComplex C L) :
+    boundedHomotopyObject C
+      ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj (CochainComplex.mappingCone f)) :=
+  boundedHomotopyObject_quotient_obj C (boundedCochainComplex_mappingCone C f hK hL)
 
 /-- The direct mapping-cone weak equivalences on bounded complexes map into the
 homotopy-category `trW` class of exact-acyclic objects. -/

@@ -1472,6 +1472,7 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (boundedCochainComplex_containsZero (C := MetrizableLCA))
 #check (boundedCochainComplex_isClosedUnderIsomorphisms (C := MetrizableLCA))
 #check (boundedCochainComplex_isStableUnderShift (C := MetrizableLCA))
+#check (boundedCochainComplex_mappingCone (C := MetrizableLCA))
 #check (boundedComplexCategory_hasZeroObject (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence (C := MetrizableLCA))
 #check (exactAcyclic_of_iso (C := MetrizableLCA))
@@ -1495,6 +1496,11 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (boundedExactWeakEquivalence_shift_iff (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
 #check (BoundedComplexCategory.homotopyQuotient (C := MetrizableLCA))
+#check (boundedHomotopyObject (C := MetrizableLCA))
+#check (boundedHomotopyObject_quotient_obj (C := MetrizableLCA))
+#check (boundedHomotopyObject_mappingCone (C := MetrizableLCA))
+#check (BoundedHomotopyCategory (C := MetrizableLCA))
+#check (BoundedHomotopyCategory.ι (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
   (C := MetrizableLCA))
 #check boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
@@ -1531,8 +1537,14 @@ noncomputable example : HasShift (BoundedComplexCategory (C := MetrizableLCA)) �
 noncomputable example : HasZeroObject (BoundedComplexCategory (C := MetrizableLCA)) := by
   infer_instance
 
+noncomputable example : HasZeroObject (BoundedHomotopyCategory (C := MetrizableLCA)) := by
+  infer_instance
+
 noncomputable example :
     (shiftFunctor (BoundedComplexCategory (C := MetrizableLCA)) (1 : ℤ)).Additive := by
+  infer_instance
+
+noncomputable example : HasShift (BoundedHomotopyCategory (C := MetrizableLCA)) ℤ := by
   infer_instance
 
 noncomputable example : HasShift (Dbounded (C := MetrizableLCA)) ℤ := by

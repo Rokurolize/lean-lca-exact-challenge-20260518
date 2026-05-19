@@ -1,72 +1,72 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v83-homotopy-verdier-triangulated-quotient",
-  "generated_utc": "2026-05-19T10:37:07Z",
-  "source_tree_hash": "7bfa52b2ae34b76c7070a1169d644c6d73fa8ace921367de197b4ec7f741059a",
+  "schema": "lean-lca-exact-challenge-verification-v84-bounded-homotopy-frontier",
+  "generated_utc": "2026-05-19T10:58:19Z",
+  "source_tree_hash": "96855f256cfa291b45e79b27c17ea2101509e93d9f65f867e7d1d42c92ca0562",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after v83 added conditional exact-acyclic homotopy Verdier category/quasicategory structures and refreshed docs/evidence."
+      "evidence": "Full project build passed after v84 added bounded mapping-cone closure and bounded homotopy object/category infrastructure."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v83 update."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v84 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the v83 exact-acyclic homotopy Verdier quotient declarations and conditional triangulated structure APIs."
+      "evidence": "Required declaration audit sees boundedCochainComplex_mappingCone, boundedHomotopyObject, BoundedHomotopyCategory, and boundedHomotopyObject_mappingCone."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles with concrete MetrizableLCA checks for the v83 conditional homotopy Verdier quotient route while preserving the nonterminal stable-infinity contract."
+      "evidence": "Product declaration audit compiles with concrete MetrizableLCA checks for the v84 bounded homotopy object infrastructure while preserving the nonterminal stable-infinity contract."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v83 derived-side update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v84 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v83 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v84 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms the v83 conditional homotopy Verdier quotient route and still records the unresolved stable-infinity product condition."
+      "evidence": "Derived blocker audit confirms the v84 bounded homotopy object/mapping-cone frontier and still records the unresolved stable-infinity product condition."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v83 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v84 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v83 homotopy Verdier quotient update."
+      "evidence": "Proof frontier JSON syntax checked after the v84 bounded homotopy frontier update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked before regenerating this v83 verification record."
+      "evidence": "Verification JSON syntax checked before regenerating this v84 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked before regenerating the v83 manifest."
+      "evidence": "Manifest JSON syntax checked before regenerating the v84 manifest."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v83 update."
+      "evidence": "External audit Python syntax check still passes after the v84 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v83 proof, audit, and documentation update."
+      "evidence": "Whitespace check passed after the v84 proof, audit, and documentation update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",

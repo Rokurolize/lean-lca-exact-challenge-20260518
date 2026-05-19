@@ -55,6 +55,12 @@ and an ordinary triangulated category structure on the homotopy-category Verdier
 quotient. This still does not prove that the direct bounded weak-equivalence
 class has left calculus of fractions, nor does it produce a stable
 infinity-category enhancement.
+Incremental v84 progress: bounded cochain complexes are now closed under
+mapping cones, and bounded objects are exposed as an isomorphism-closed, zero-
+containing, shift-stable full subcategory of the homotopy category. This makes
+the Verdier route's bounded ambient category more explicit, but it still does
+not prove the exact-acyclic isomorphism closure is `IsTriangulatedClosed₂` or
+produce a stable infinity-category enhancement.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -73,6 +79,7 @@ noncomputable def bounded_derived_quasicategory_family
 #check boundedCochainComplex_isClosedUnderIsomorphisms
 #check boundedCochainComplex_isStableUnderShift
 #check boundedCochainComplex_containsZero
+#check boundedCochainComplex_mappingCone
 #check boundedComplexCategory_hasZeroObject
 #check boundedExactWeakEquivalence
 #check exactAcyclic_of_iso
@@ -95,6 +102,11 @@ noncomputable def bounded_derived_quasicategory_family
 #check boundedExactWeakEquivalence_shift_iff
 #check boundedExactWeakEquivalence_isCompatibleWithShift
 #check BoundedComplexCategory.homotopyQuotient
+#check boundedHomotopyObject
+#check boundedHomotopyObject_quotient_obj
+#check boundedHomotopyObject_mappingCone
+#check BoundedHomotopyCategory
+#check BoundedHomotopyCategory.ι
 #check boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
 #check boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
 #check boundedHomotopyExactWeakEquivalence
