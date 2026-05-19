@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T21:13:06Z",
+  "generated_utc": "2026-05-19T21:17:09Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening, v114 bounded realization wrappers, v115 exact-category packaging lemmas, v116 stable-marker comment/string audit hardening, v117 pushout kernel/range wrappers, v118 Dbounded ordinary triangulated transfer audit probes, v119 direct Dbounded localization triangulated package audit, v120 strictification/source-triangulation audit probes, v121 selected-cochain boundary guard, v122 stable certificate interface shape, v123 strictification/triangle-completion transport audits, and v124 stable-certificate placeholder guard plus triangle-lift completion frontier audit, and v125 HomotopyEquiv boundedness-transport counterexample plus stable-certificate projection audit, v126 contractible-tail support obstruction plus stable projection review note, and v127 bounded homotopy strict-representative frontier were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening, v114 bounded realization wrappers, v115 exact-category packaging lemmas, v116 stable-marker comment/string audit hardening, v117 pushout kernel/range wrappers, v118 Dbounded ordinary triangulated transfer audit probes, v119 direct Dbounded localization triangulated package audit, v120 strictification/source-triangulation audit probes, v121 selected-cochain boundary guard, v122 stable certificate interface shape, v123 strictification/triangle-completion transport audits, and v124 stable-certificate placeholder guard plus triangle-lift completion frontier audit, and v125 HomotopyEquiv boundedness-transport counterexample plus stable-certificate projection audit, v126 contractible-tail support obstruction plus stable projection review note, and v127 bounded homotopy strict-representative frontier, and v128 contractible-tail instance frontier were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -556,7 +556,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean",
-      "merge_blocker": "v127 narrows the w74 lift/reflection frontier: homotopyQuotientBounded is full, so target homotopy-category morphisms between bounded complexes have strict bounded-complex representatives, but target-side triangle equations only transport to mapped equalities after applying homotopyQuotientBounded. The product proof still lacks a source-side strict equation or a bridge from mapped equality/homotopy to strict source commutativity; stable certificate obligations also remain unproved.",
+      "merge_blocker": "v128 narrows the contractible-tail obstruction: because the zero cochain complex is strictly bounded, one right-unbounded selected complex homotopy equivalent to zero already refutes bare HomotopyEquiv transport of strict boundedness. The remaining constructive gap is a concrete right-unbounded contractible cochain complex with nonzero support and contracting homotopy, plus the separate stable certificate obligations.",
       "product_success_contribution": "Clarifies the direct ordinary IsTriangulated route for Dbounded while preserving nonterminal product truth.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -790,7 +790,11 @@
         "closed2_pair_of_homotopyEndpointPayload_and_selectedCochainIsoStrictification",
         "boundedExactWeakEquivalence_isCompatibleWithTriangulation_of_homotopy_transport_lift",
         "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
-        "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped"
+        "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
+        "LeanLCAExactChallenge.boundedCochainComplex_zero",
+        "LeanLCAExactChallenge.UnboundedContractibleTailInstance",
+        "LeanLCAExactChallenge.not_strictBoundednessTransport_of_unboundedContractibleTailInstance",
+        "LeanLCAExactChallenge.ContractibleTailAttachmentAPI.unboundedTailInstance"
       ],
       "technical_context": [
         "split short complexes",

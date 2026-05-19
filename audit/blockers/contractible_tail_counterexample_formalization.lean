@@ -38,6 +38,31 @@ abbrev StrictBoundednessTransportOfHomotopyEquiv : Prop :=
     HomotopyEquiv K L →
     boundedCochainComplex C L
 
+omit [QuillenExactCategory C] in
+/-- The zero cochain complex is strictly bounded. This gives the bounded representative
+for the smaller w86 counterexample shape. -/
+theorem boundedCochainComplex_zero [HasZeroObject C] :
+    boundedCochainComplex C (0 : CochainComplex C ℤ) :=
+  ⟨0, 0, inferInstance, inferInstance⟩
+
+/-- Minimal tail instance needed to refute bare strict-boundedness transport along
+`HomotopyEquiv`: a single right-unbounded selected complex homotopy equivalent to zero. -/
+structure UnboundedContractibleTailInstance [HasZeroObject C] where
+  tail : CochainComplex C ℤ
+  tail_upper_unbounded : HasUpperUnboundedNonzeroTerms C tail
+  tail_contractible : Nonempty (HomotopyEquiv tail (0 : CochainComplex C ℤ))
+
+omit [QuillenExactCategory C] in
+/-- A single unbounded contractible selected tail already refutes bare strict-boundedness
+transport along homotopy equivalence, using the zero complex as the bounded source. -/
+theorem not_strictBoundednessTransport_of_unboundedContractibleTailInstance
+    [HasZeroObject C] (T : UnboundedContractibleTailInstance C) :
+    ¬ StrictBoundednessTransportOfHomotopyEquiv C := by
+  intro transport
+  rcases T.tail_contractible with ⟨e⟩
+  exact not_boundedCochainComplex_of_hasUpperUnboundedNonzeroTerms C
+    T.tail_upper_unbounded (transport (boundedCochainComplex_zero C) e.symm)
+
 /-- Formal data required from a concrete contractible-tail construction.
 
 The intended example takes `modelWithTail` to be a bounded representative with an attached
@@ -108,14 +133,34 @@ def ContractibleTailAttachmentAPI.counterexampleData
   boundedRepresentative_homotopy_equiv :=
     A.attach_contractible_equiv hTailContractible
 
+omit [QuillenExactCategory C] in
+/-- The general attachment API specializes to the minimal w86 tail instance by attaching
+an unbounded contractible tail to the zero complex. -/
+noncomputable def ContractibleTailAttachmentAPI.unboundedTailInstance
+    [HasZeroObject C] (A : ContractibleTailAttachmentAPI C)
+    {Tail : CochainComplex C ℤ}
+    (hTailUnbounded : HasUpperUnboundedNonzeroTerms C Tail)
+    (hTailContractible : Nonempty (HomotopyEquiv Tail (0 : CochainComplex C ℤ))) :
+    UnboundedContractibleTailInstance C where
+  tail := A.attach (0 : CochainComplex C ℤ) Tail
+  tail_upper_unbounded := A.attach_upper_unbounded hTailUnbounded
+  tail_contractible := by
+    rcases A.attach_contractible_equiv (K := (0 : CochainComplex C ℤ)) hTailContractible with ⟨e⟩
+    exact ⟨e.symm⟩
+
 #check HasUpperUnboundedNonzeroTerms
 #check not_boundedCochainComplex_of_hasUpperUnboundedNonzeroTerms
 #check StrictBoundednessTransportOfHomotopyEquiv
+#check boundedCochainComplex_zero
+#check UnboundedContractibleTailInstance
+#check not_strictBoundednessTransport_of_unboundedContractibleTailInstance
 #check ContractibleTailCounterexampleData
 #check ContractibleTailCounterexampleData.modelWithTail_not_bounded
 #check not_strictBoundednessTransport_of_contractibleTailCounterexampleData
 #check ContractibleTailAttachmentAPI
 #check ContractibleTailAttachmentAPI.counterexampleData
+#check ContractibleTailAttachmentAPI.unboundedTailInstance
 #check HomotopyEquiv
+#check HomotopyEquiv.symm
 
 end LeanLCAExactChallenge
