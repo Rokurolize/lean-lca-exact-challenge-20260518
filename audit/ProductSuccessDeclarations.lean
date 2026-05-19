@@ -1417,6 +1417,30 @@ example (X Y Z : MetrizableLCA) {m n : ℕ}
 #check (YonedaExt.leftProductByPositiveChain_eq_of_rel (C := MetrizableLCA))
 #check (YonedaExt.leftProductByPositiveChain_eq_add_of_baerLeftChain (C := MetrizableLCA))
 
+#check MetrizableLCA.shortExactExtensionPullbackDomainIsoBetween
+#check YonedaExtension.RelIso.refl
+#check YonedaExtension.RightSplitData.toSplitFactorData
+#check YonedaExtension.RelIso.pullbackHeadDomain_metrizable
+#check YonedaExtension.RelIso.spliceLeftWith_metrizable
+#check YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_relIso
+#check YonedaExt.yonedaProductLeftFreeHom
+#check YonedaExt.yonedaProductLeftFreeHom_rel_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_relIso_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_split_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_rightSplit_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_splitFactor_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_baer_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_baerChain_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_leftSplit_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_homTail_eq_zero
+
+noncomputable example (X Y Z : MetrizableLCA) {m n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (m + 1)}
+    (h : YonedaExtension.RelIso (C := MetrizableLCA) (CategoryTheory.Iso.refl X) a b) :
+    YonedaExt.yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) = 0 :=
+  YonedaExt.yonedaProductLeftFreeHom_relIso_eq_zero h
+
 noncomputable example (X Y : MetrizableLCA) :
     AddCommGroup (YonedaExt (C := MetrizableLCA) X Y 1) := by
   infer_instance

@@ -251,9 +251,26 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.leftProductByYonedaExtension_metrizable
 #check YonedaExt.leftProductByYonedaExtension_metrizable_ofExtension
 #check YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_rel
+#check YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_relIso
 #check YonedaExt.leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor
 #check YonedaExt.leftProductByYonedaExtension_metrizable_eq_add_of_baerLeftChain
 #check YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain
+#check MetrizableLCA.shortExactExtensionPullbackDomainIsoBetween
+#check YonedaExtension.RelIso.refl
+#check YonedaExtension.RightSplitData.toSplitFactorData
+#check YonedaExtension.RelIso.pullbackHeadDomain_metrizable
+#check YonedaExtension.RelIso.spliceLeftWith_metrizable
+#check YonedaExt.yonedaProductLeftFreeHom
+#check YonedaExt.yonedaProductLeftFreeHom_of
+#check YonedaExt.yonedaProductLeftFreeHom_rel_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_relIso_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_split_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_rightSplit_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_splitFactor_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_baer_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_baerChain_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_leftSplit_eq_zero
+#check YonedaExt.yonedaProductLeftFreeHom_homTail_eq_zero
 
 noncomputable example {X Y Z : MetrizableLCA} {m n : ℕ}
     {a b : YonedaExtension (C := MetrizableLCA) X Y (m + 1)}

@@ -703,6 +703,74 @@ noncomputable def shortExactExtensionPullbackIsoBetween
               rw [shortExactExtensionPullback_i_map]
   · simpa using hom_fst
 
+/--
+Canonical pullbacks along maps related by a quotient-endpoint isomorphism are
+isomorphic over that endpoint isomorphism.
+-/
+noncomputable def shortExactExtensionPullbackDomainIsoBetween
+    {X X' Y W : MetrizableLCA.{u}} (α : X ≅ X')
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) Y W)
+    (f : X ⟶ Y) (g : X' ⟶ Y) (hfg : f = α.hom ≫ g) :
+    ShortExactExtension.IsoBetween α (CategoryTheory.Iso.refl W)
+      (shortExactExtensionPullback e f) (shortExactExtensionPullback e g) := by
+  have hgf : α.inv ≫ f = g := by
+    rw [hfg]
+    simp
+  let homMap : pullbackObj f e.p ⟶ pullbackObj g e.p :=
+    pullbackLift g e.p (pullbackFst f e.p ≫ α.hom) (pullbackSnd f e.p) (by
+      rw [Category.assoc, ← hfg]
+      exact pullback_condition f e.p)
+  let invMap : pullbackObj g e.p ⟶ pullbackObj f e.p :=
+    pullbackLift f e.p (pullbackFst g e.p ≫ α.inv) (pullbackSnd g e.p) (by
+      rw [Category.assoc, hgf]
+      exact pullback_condition g e.p)
+  have hom_fst : homMap ≫ pullbackFst g e.p = pullbackFst f e.p ≫ α.hom := by
+    dsimp [homMap]
+    rw [pullbackLift_fst]
+  have hom_snd : homMap ≫ pullbackSnd g e.p = pullbackSnd f e.p := by
+    dsimp [homMap]
+    rw [pullbackLift_snd]
+  have inv_fst : invMap ≫ pullbackFst f e.p = pullbackFst g e.p ≫ α.inv := by
+    dsimp [invMap]
+    rw [pullbackLift_fst]
+  have inv_snd : invMap ≫ pullbackSnd f e.p = pullbackSnd g e.p := by
+    dsimp [invMap]
+    rw [pullbackLift_snd]
+  refine
+    { middleIso :=
+        { hom := homMap
+          inv := invMap
+          hom_inv_id := ?_
+          inv_hom_id := ?_ }
+      i_hom := ?_
+      hom_p := ?_ }
+  · apply pullback_hom_ext f e.p
+    · change homMap ≫ (invMap ≫ pullbackFst f e.p) = pullbackFst f e.p
+      rw [inv_fst]
+      simpa [Category.assoc] using congrArg (fun q => q ≫ α.inv) hom_fst
+    · change homMap ≫ (invMap ≫ pullbackSnd f e.p) = pullbackSnd f e.p
+      rw [inv_snd, hom_snd]
+  · apply pullback_hom_ext g e.p
+    · change invMap ≫ (homMap ≫ pullbackFst g e.p) = pullbackFst g e.p
+      rw [hom_fst]
+      simpa [Category.assoc] using congrArg (fun q => q ≫ α.hom) inv_fst
+    · change invMap ≫ (homMap ≫ pullbackSnd g e.p) = pullbackSnd g e.p
+      rw [hom_snd, inv_snd]
+  · apply pullback_hom_ext g e.p
+    · simpa [Category.assoc, hom_fst, shortExactExtensionPullback] using
+        congrArg (fun q => q ≫ α.hom) (shortExactExtensionPullback e f).zero
+    · calc
+        ((shortExactExtensionPullback e f).i ≫ homMap) ≫ pullbackSnd g e.p =
+            (shortExactExtensionPullback e f).i ≫ pullbackSnd f e.p := by
+              simpa [Category.assoc] using
+                congrArg (fun q => (shortExactExtensionPullback e f).i ≫ q) hom_snd
+        _ = e.i := shortExactExtensionPullback_i_map e f
+        _ = (shortExactExtensionPullback e g).i ≫ pullbackSnd g e.p :=
+              (shortExactExtensionPullback_i_map e g).symm
+        _ = ((CategoryTheory.Iso.refl W).hom ≫ (shortExactExtensionPullback e g).i) ≫
+              pullbackSnd g e.p := by simp
+  · exact hom_fst
+
 /-- The explicit pullback of a split short complex is split. -/
 noncomputable def pullbackSplitting
     {S : ShortComplex MetrizableLCA.{u}} {Y : MetrizableLCA.{u}}
@@ -2414,6 +2482,13 @@ inductive RelIso :
       (he : ShortExactExtension.IsoBetween α β e e') (ht : RelIso β tail tail') :
       RelIso α (YonedaExtension.cons e tail) (YonedaExtension.cons e' tail')
 
+/-- Reflexivity for recursive chain isomorphism. -/
+def RelIso.refl : {X Y : C} → {n : ℕ} → (a : YonedaExtension X Y n) →
+    RelIso (CategoryTheory.Iso.refl X) a a
+  | _, _, 0, YonedaExtension.ofHom _ => RelIso.ofHom _ (by simp)
+  | _, _, _ + 1, YonedaExtension.cons e tail =>
+      RelIso.cons (ShortExactExtension.IsoBetween.refl e) (RelIso.refl tail)
+
 /-- Tail hom composition preserves recursive isomorphism of positive chains. -/
 def RelIso.composeTailHom {X X' Y Y' : C} {α : X ≅ X'} (f : Y ⟶ Y') :
     {n : ℕ} → {a : YonedaExtension X Y (n + 1)} →
@@ -2490,6 +2565,15 @@ inductive SplitFactorData :
       {tail : YonedaExtension Z Y (n + 1)}
       (h : SplitFactorData tail) :
       SplitFactorData (YonedaExtension.cons e tail)
+
+/-- A chain whose rightmost factor is split also contains a split factor. -/
+def RightSplitData.toSplitFactorData :
+    {X Y : C} → {n : ℕ} → {a : YonedaExtension X Y (n + 1)} →
+      RightSplitData a → SplitFactorData a
+  | _, _, 0, _, RightSplitData.one e s =>
+      SplitFactorData.head e s (YonedaExtension.ofHom (𝟙 _))
+  | _, _, _ + 1, _, RightSplitData.cons e h =>
+      SplitFactorData.cons e h.toSplitFactorData
 
 /-- Data reducing a degree-zero hom tail by pushing out the preceding extension. -/
 inductive HomTailData :
@@ -3054,6 +3138,47 @@ noncomputable def yonedaExtensionPushoutTailSplitFactorData
     h
 
 end MetrizableLCA
+
+namespace YonedaExtension
+
+/--
+Canonical MetrizableLCA head pullbacks along isomorphic quotient-endpoint maps
+produce recursively isomorphic pulled-back chains.
+-/
+noncomputable def RelIso.pullbackHeadDomain_metrizable
+    {X X' Y Z : MetrizableLCA.{u}} {α : X ≅ X'}
+    {f : X ⟶ Y} {g : X' ⟶ Y} (hfg : f = α.hom ≫ g) :
+    {n : ℕ} → (right : YonedaExtension (C := MetrizableLCA.{u}) Y Z (n + 1)) →
+      RelIso (C := MetrizableLCA.{u}) α
+        (YonedaExtension.pullbackHeadWith (C := MetrizableLCA.{u}) f
+          (fun {_} e => MetrizableLCA.shortExactExtensionPullback e f) right)
+        (YonedaExtension.pullbackHeadWith (C := MetrizableLCA.{u}) g
+          (fun {_} e => MetrizableLCA.shortExactExtensionPullback e g) right)
+  | _, YonedaExtension.cons e tail =>
+      RelIso.cons
+        (MetrizableLCA.shortExactExtensionPullbackDomainIsoBetween α e f g hfg)
+        (RelIso.refl tail)
+
+/-- MetrizableLCA left splicing preserves recursive chain isomorphisms. -/
+noncomputable def RelIso.spliceLeftWith_metrizable :
+    {X X' Y Z : MetrizableLCA.{u}} → {α : X ≅ X'} → {m n : ℕ} →
+      {a : YonedaExtension (C := MetrizableLCA.{u}) X Y m} →
+      {b : YonedaExtension (C := MetrizableLCA.{u}) X' Y m} →
+      RelIso (C := MetrizableLCA.{u}) α a b →
+      (right : YonedaExtension (C := MetrizableLCA.{u}) Y Z (n + 1)) →
+        RelIso (C := MetrizableLCA.{u}) α
+          (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+            (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a right)
+          (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+            (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) b right)
+  | _, _, _, _, _, 0, _, YonedaExtension.ofHom f, YonedaExtension.ofHom g,
+      RelIso.ofHom α hfg, right =>
+      RelIso.pullbackHeadDomain_metrizable hfg right
+  | _, _, _, _, _, _ + 1, _, _, _, RelIso.cons he htail, right => by
+      simpa [YonedaExtension.spliceLeftWith, Nat.add_assoc] using
+        RelIso.cons he (RelIso.spliceLeftWith_metrizable htail right)
+
+end YonedaExtension
 
 /-- The positive-degree free abelian group generated by `n + 1`-fold Yoneda extensions. -/
 abbrev PositiveYonedaExtFree (X Y : C) (n : ℕ) : Type (max u v) :=
@@ -4870,6 +4995,30 @@ theorem leftProductByYonedaExtension_metrizable_eq_of_rel
     (fun {_ _ _ _} f e g {_} h =>
       MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
 
+/-- Recursively isomorphic arbitrary left MetrizableLCA chains induce the same map. -/
+theorem leftProductByYonedaExtension_metrizable_eq_of_relIso
+    {X Y Z : MetrizableLCA.{u}} {m : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA.{u}) X Y m}
+    (h : YonedaExtension.RelIso (C := MetrizableLCA.{u}) (CategoryTheory.Iso.refl X) a b)
+    (n : ℕ) :
+    leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) a n =
+      leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) b n := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro c
+  change leftProductByYonedaExtension_metrizable
+      (X := X) (Y := Y) (Z := Z) a n
+      (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n) c) =
+    leftProductByYonedaExtension_metrizable
+      (X := X) (Y := Y) (Z := Z) b n
+      (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := n) c)
+  rw [leftProductByYonedaExtension_metrizable_ofExtension,
+    leftProductByYonedaExtension_metrizable_ofExtension]
+  exact ofExtension_eq_ofExtension_of_relIso
+    (YonedaExtension.RelIso.spliceLeftWith_metrizable h c)
+
 /-- A fixed arbitrary left MetrizableLCA chain with a split factor acts by zero. -/
 theorem leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor
     {X Y Z : MetrizableLCA.{u}} {m : ℕ}
@@ -5363,6 +5512,140 @@ theorem leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain
     (X := X) (Y := Y) (Z := Z) h n
     (fun {_ _ _ _} f e g {_} h =>
       MetrizableLCA.shortExactExtensionPullbackPushoutDataOfPushoutData e f g h)
+
+/--
+Free left-variable Yoneda product: a formal left extension chain is sent to the
+homomorphism that splices it with the right Ext quotient.
+-/
+noncomputable def yonedaProductLeftFreeHom
+    {X Y Z : MetrizableLCA.{u}} (m n : ℕ) :
+    PositiveYonedaExtFree (C := MetrizableLCA.{u}) X Y m →+
+      (YonedaExt (C := MetrizableLCA.{u}) Y Z (n + 1) →+
+        YonedaExt (C := MetrizableLCA.{u}) X Z ((n + (m + 1)) + 1)) :=
+  FreeAbelianGroup.lift
+    (fun a => leftProductByYonedaExtension_metrizable
+      (X := X) (Y := Y) (Z := Z) a n)
+
+@[simp]
+theorem yonedaProductLeftFreeHom_of
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    (a : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n
+        (FreeAbelianGroup.of a) =
+      leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) a n :=
+  FreeAbelianGroup.lift_apply_of
+    (fun a => leftProductByYonedaExtension_metrizable
+      (X := X) (Y := Y) (Z := Z) a n) a
+
+/-- Termwise-related left representatives map to zero in the free-left product target. -/
+theorem yonedaProductLeftFreeHom_rel_eq_zero
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.Rel (C := MetrizableLCA.{u}) a b) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) = 0 := by
+  rw [map_sub, yonedaProductLeftFreeHom_of, yonedaProductLeftFreeHom_of, sub_eq_zero]
+  exact leftProductByYonedaExtension_metrizable_eq_of_rel (X := X) (Y := Y) (Z := Z) h n
+
+/-- Recursively isomorphic left representatives map to zero in the free-left product target. -/
+theorem yonedaProductLeftFreeHom_relIso_eq_zero
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.RelIso (C := MetrizableLCA.{u}) (CategoryTheory.Iso.refl X) a b) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) = 0 := by
+  rw [map_sub, yonedaProductLeftFreeHom_of, yonedaProductLeftFreeHom_of, sub_eq_zero]
+  exact leftProductByYonedaExtension_metrizable_eq_of_relIso
+    (X := X) (Y := Y) (Z := Z) h n
+
+/-- A split one-fold left representative maps to zero in the free-left product target. -/
+theorem yonedaProductLeftFreeHom_split_eq_zero
+    {X Y Z : MetrizableLCA.{u}} {n : ℕ}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y)
+    (s : e.shortComplex.Splitting) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) 0 n
+        (FreeAbelianGroup.of e.toYonedaExtension) = 0 := by
+  rw [yonedaProductLeftFreeHom_of]
+  exact leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor
+    (X := X) (Y := Y) (Z := Z)
+    (YonedaExtension.SplitFactorData.head e s (YonedaExtension.ofHom (𝟙 Y))) n
+
+/-- A right-split left representative maps to zero in the free-left product target. -/
+theorem yonedaProductLeftFreeHom_rightSplit_eq_zero
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.RightSplitData (C := MetrizableLCA.{u}) a) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n
+        (FreeAbelianGroup.of a) = 0 := by
+  rw [yonedaProductLeftFreeHom_of]
+  exact leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor
+    (X := X) (Y := Y) (Z := Z) h.toSplitFactorData n
+
+/-- A split-factor left representative maps to zero in the free-left product target. -/
+theorem yonedaProductLeftFreeHom_splitFactor_eq_zero
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.SplitFactorData (C := MetrizableLCA.{u}) a) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n
+        (FreeAbelianGroup.of a) = 0 := by
+  rw [yonedaProductLeftFreeHom_of]
+  exact leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor
+    (X := X) (Y := Y) (Z := Z) h n
+
+/-- A one-fold Baer left relation maps to zero in the free-left product target. -/
+theorem yonedaProductLeftFreeHom_baer_eq_zero
+    {X Y Z : MetrizableLCA.{u}} {n : ℕ}
+    [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+    {e₁ e₂ sum : ShortExactExtension (C := MetrizableLCA.{u}) X Y}
+    (h : ShortExactExtension.BaerSumData (C := MetrizableLCA.{u}) e₁ e₂ sum) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) 0 n
+        (FreeAbelianGroup.of sum.toYonedaExtension -
+          FreeAbelianGroup.of e₁.toYonedaExtension -
+          FreeAbelianGroup.of e₂.toYonedaExtension) = 0 := by
+  rw [map_sub, map_sub, yonedaProductLeftFreeHom_of, yonedaProductLeftFreeHom_of,
+    yonedaProductLeftFreeHom_of]
+  rw [leftProductByYonedaExtension_metrizable_eq_add_of_baerLeftChain
+    (X := X) (Y := Y) (Z := Z) (YonedaExtension.BaerSumData.one h) n]
+  abel
+
+/-- A positive-chain Baer left relation maps to zero in the free-left product target. -/
+theorem yonedaProductLeftFreeHom_baerChain_eq_zero
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    {a b sum : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.BaerSumData (C := MetrizableLCA.{u}) a b sum) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n
+        (FreeAbelianGroup.of sum - FreeAbelianGroup.of a - FreeAbelianGroup.of b) = 0 := by
+  rw [map_sub, map_sub, yonedaProductLeftFreeHom_of, yonedaProductLeftFreeHom_of,
+    yonedaProductLeftFreeHom_of]
+  rw [leftProductByYonedaExtension_metrizable_eq_add_of_baerLeftChain
+    (X := X) (Y := Y) (Z := Z) h n]
+  abel
+
+/-- A left-split two-fold representative maps to zero in the free-left product target. -/
+theorem yonedaProductLeftFreeHom_leftSplit_eq_zero
+    {X Y W Z : MetrizableLCA.{u}} {n : ℕ}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X W)
+    (f : ShortExactExtension (C := MetrizableLCA.{u}) W Y)
+    (s : f.shortComplex.Splitting) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) 1 n
+        (FreeAbelianGroup.of (YonedaExtension.cons e f.toYonedaExtension)) = 0 := by
+  rw [yonedaProductLeftFreeHom_of]
+  exact leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor
+    (X := X) (Y := Y) (Z := Z)
+    (YonedaExtension.SplitFactorData.cons e
+      (YonedaExtension.SplitFactorData.head f s (YonedaExtension.ofHom (𝟙 Y)))) n
+
+/-- A hom-tail left relation maps to zero in the free-left product target. -/
+theorem yonedaProductLeftFreeHom_homTail_eq_zero
+    {X Y Z : MetrizableLCA.{u}} {m n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.HomTailData (C := MetrizableLCA.{u}) a b) :
+    yonedaProductLeftFreeHom (X := X) (Y := Y) (Z := Z) m n
+        (FreeAbelianGroup.of a - FreeAbelianGroup.of b) = 0 := by
+  rw [map_sub, yonedaProductLeftFreeHom_of, yonedaProductLeftFreeHom_of, sub_eq_zero]
+  exact leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain
+    (X := X) (Y := Y) (Z := Z) h n
 
 /-- The free abelian group map induced by splicing a positive one-fold chain on the left. -/
 def positiveChainLeftFreeHom :
