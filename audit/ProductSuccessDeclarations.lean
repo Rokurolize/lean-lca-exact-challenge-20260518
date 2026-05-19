@@ -43,6 +43,18 @@ noncomputable example (A : MetrizableLCA) :
     biprod.inl ≫ MetrizableLCA.biprodCodiag A = 𝟙 A :=
   MetrizableLCA.biprodCodiag_inl A
 
+noncomputable example {A B : MetrizableLCA} (f : A ⟶ B)
+    (hbij : Function.Bijective (f : A → B)) (hopen : IsOpenMap (f : A → B)) : A ≃ₜ+ B :=
+  MetrizableLCA.continuousAddEquivOfBijectiveOpenMap f hbij hopen
+
+noncomputable example {A B : MetrizableLCA} (f : A ⟶ B)
+    (hbij : Function.Bijective (f : A → B)) (hopen : IsOpenMap (f : A → B)) : A ≅ B :=
+  MetrizableLCA.isoOfBijectiveOpenMap f hbij hopen
+
+example {A B : MetrizableLCA} (f : A ⟶ B)
+    (hbij : Function.Bijective (f : A → B)) (hopen : IsOpenMap (f : A → B)) : IsIso f :=
+  MetrizableLCA.isIso_of_bijective_openMap f hbij hopen
+
 /--
 Strict short exact sequences in the metrizable LCA model are stable under
 coordinatewise binary biproducts.

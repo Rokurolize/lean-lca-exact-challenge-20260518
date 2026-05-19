@@ -407,6 +407,45 @@ noncomputable def isoToContinuousAddEquiv {A B : MetrizableLCA.{u}} (e : A ≅ B
   continuous_toFun := e.hom.hom.continuous
   continuous_invFun := e.inv.hom.continuous
 
+/-- A bijective open morphism of metrizable LCA groups is a continuous additive equivalence. -/
+noncomputable def continuousAddEquivOfBijectiveOpenMap {A B : MetrizableLCA.{u}} (f : A ⟶ B)
+    (hbij : Function.Bijective (f : A → B)) (hopen : IsOpenMap (f : A → B)) : A ≃ₜ+ B := by
+  let e : A ≃ B := Equiv.ofBijective (f : A → B) hbij
+  let hhomeo : A ≃ₜ B := e.toHomeomorphOfContinuousOpen f.hom.continuous hopen
+  refine
+    { toFun := hhomeo
+      invFun := hhomeo.symm
+      left_inv := hhomeo.left_inv
+      right_inv := hhomeo.right_inv
+      map_add' := ?_
+      continuous_toFun := hhomeo.continuous_toFun
+      continuous_invFun := hhomeo.continuous_invFun }
+  intro x y
+  exact (f.hom : A →+ B).map_add x y
+
+/-- A bijective open morphism of metrizable LCA groups is a categorical isomorphism. -/
+noncomputable def isoOfBijectiveOpenMap {A B : MetrizableLCA.{u}} (f : A ⟶ B)
+    (hbij : Function.Bijective (f : A → B)) (hopen : IsOpenMap (f : A → B)) : A ≅ B := by
+  let e := continuousAddEquivOfBijectiveOpenMap f hbij hopen
+  refine
+    { hom := f
+      inv := ⟨{
+        toFun := e.symm
+        map_zero' := e.symm.map_zero
+        map_add' := e.symm.map_add
+        continuous_toFun := e.symm.continuous }
+      ⟩
+      hom_inv_id := ?_
+      inv_hom_id := ?_ }
+  · ext x
+    exact e.symm_apply_apply x
+  · ext y
+    exact e.apply_symm_apply y
+
+theorem isIso_of_bijective_openMap {A B : MetrizableLCA.{u}} (f : A ⟶ B)
+    (hbij : Function.Bijective (f : A → B)) (hopen : IsOpenMap (f : A → B)) : IsIso f :=
+  (isoOfBijectiveOpenMap f hbij hopen).isIso_hom
+
 /-- Forget the topology while retaining the additive group. -/
 def forgetToAddCommGrpCat : MetrizableLCA.{u} ⥤ AddCommGrpCat.{u} where
   obj A := AddCommGrpCat.of A

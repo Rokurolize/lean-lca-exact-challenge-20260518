@@ -39,6 +39,8 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check MetrizableLCA.biprodObjIsoBiprod
 #check MetrizableLCA.biprodDiag
 #check MetrizableLCA.biprodCodiag
+#check MetrizableLCA.isoOfBijectiveOpenMap
+#check MetrizableLCA.isIso_of_bijective_openMap
 #check MetrizableLCA.shortExactExtensionBiprod
 #check MetrizableLCA.shortExactExtensionBiprod_i_fst
 #check MetrizableLCA.shortExactExtensionBiprod_i_snd

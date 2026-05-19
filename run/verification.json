@@ -1,12 +1,12 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v68-comparison-bijectivity",
-  "generated_utc": "2026-05-19T04:48:00Z",
-  "source_tree_hash": "5db18eb82c2226ea89377b1ef36b4727159eb162712889ace028ebe487074341",
+  "schema": "lean-lca-exact-challenge-verification-v69-bijective-open-iso-bridge",
+  "generated_utc": "2026-05-19T04:58:48Z",
+  "source_tree_hash": "faad57fac7538a41199bd371df71193a0f22e66cab781efa97f75a21676be177",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "rebuilt the project after adding carrier-level injectivity and bijectivity of the canonical pullback-pushout comparison map and refreshing route/frontier artifacts."
+      "evidence": "rebuilt the project after adding the MetrizableLCA bijective-open-map to continuous additive equivalence/category isomorphism bridge."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -16,22 +16,22 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees shortExactExtensionPullbackPushoutComparisonMap_surjective, _injective, and _bijective."
+      "evidence": "Required declaration audit sees continuousAddEquivOfBijectiveOpenMap, isoOfBijectiveOpenMap, and isIso_of_bijective_openMap in addition to the comparison-map bijectivity declarations."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product audit checks Function.Injective and Function.Bijective examples for the comparison map while preserving non-product terminal state."
+      "evidence": "Product audit checks the bijective-open-map bridge as a reusable non-product step toward comparison-map IsIso."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Strict LCA QuillenExactCategory and biproduct exactness APIs remain available."
+      "evidence": "Strict LCA QuillenExactCategory APIs and the bijective-open-map isomorphism bridge remain available."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit sees the comparison-map surjectivity, injectivity, and bijectivity theorems."
+      "evidence": "Yoneda blocker audit sees the comparison-map bijectivity and the generic bijective-open-map bridge."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -41,7 +41,7 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "Expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because the comparison map still lacks a continuous inverse or IsPushout proof, left quotient bilinearity is incomplete, and stable infinity-category enhancement remains incomplete."
+      "evidence": "Expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because the comparison map still lacks an open-map proof or direct IsPushout proof, left quotient bilinearity is incomplete, and stable infinity-category enhancement remains incomplete."
     },
     {
       "command": "git diff --check",

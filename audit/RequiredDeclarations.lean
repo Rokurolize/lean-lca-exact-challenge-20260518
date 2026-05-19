@@ -33,6 +33,9 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.biprodDiag_snd
 #check LeanLCAExactChallenge.MetrizableLCA.biprodCodiag_inl
 #check LeanLCAExactChallenge.MetrizableLCA.biprodCodiag_inr
+#check LeanLCAExactChallenge.MetrizableLCA.continuousAddEquivOfBijectiveOpenMap
+#check LeanLCAExactChallenge.MetrizableLCA.isoOfBijectiveOpenMap
+#check LeanLCAExactChallenge.MetrizableLCA.isIso_of_bijective_openMap
 #check LeanLCAExactChallenge.MetrizableLCA.quotientObj
 #check LeanLCAExactChallenge.MetrizableLCA.quotientMap
 #check LeanLCAExactChallenge.MetrizableLCA.quotientMap_surjective

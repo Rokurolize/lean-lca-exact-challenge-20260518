@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T04:45:04Z",
+  "generated_utc": "2026-05-19T04:56:09Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -42,7 +42,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Fixed one-fold, positive-chain, and arbitrary fixed-left YonedaExtension actions now descend in the right variable under available head-pullback compatibility data. Arbitrary fixed-left termwise YonedaExtension.Rel invariance, split-factor zero descent, Baer additivity, HomTail descent conditional on the base splice exchange premise, identity head pullback normalization, identity tail pushout normalization, identity pullback-after-tail-pushout normalization, output-side pullback/pushout data iso transport, the canonical pullback-after-tail-pushout middle comparison, the canonical pushout-of-pullback to pullback-of-pushout comparison map with inl/inr/i/p laws, the conditional IsIso-to-PushoutData bridge, and carrier-level bijectivity of the comparison map are implemented; the continuous inverse or standard exchange IsPushout proof remains incomplete.",
+      "merge_blocker": "Fixed one-fold, positive-chain, and arbitrary fixed-left YonedaExtension actions now descend in the right variable under available head-pullback compatibility data. Arbitrary fixed-left termwise YonedaExtension.Rel invariance, split-factor zero descent, Baer additivity, HomTail descent conditional on the base splice exchange premise, identity head pullback normalization, identity tail pushout normalization, identity pullback-after-tail-pushout normalization, output-side pullback/pushout data iso transport, the canonical pullback-after-tail-pushout middle comparison, the canonical pushout-of-pullback to pullback-of-pushout comparison map with inl/inr/i/p laws, the conditional IsIso-to-PushoutData bridge, carrier-level bijectivity of the comparison map, and the generic bijective-open-map to categorical-isomorphism bridge are implemented; the comparison map still needs an open-map proof or a direct standard exchange IsPushout proof.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -118,7 +118,10 @@
         "MetrizableLCA.shortExactExtensionPullbackPushoutDataOfIsIsoComparison",
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_surjective",
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_injective",
-        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_bijective"
+        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_bijective",
+        "MetrizableLCA.continuousAddEquivOfBijectiveOpenMap",
+        "MetrizableLCA.isoOfBijectiveOpenMap",
+        "MetrizableLCA.isIso_of_bijective_openMap"
       ]
     },
     {
@@ -205,7 +208,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Generator-level head pullback, arbitrary tail pushout, split pullback/pushout preservation, split-zero Ext lemmas, tail pushout preservation of right-split/split-factor zero generators, composeTailHom preservation of iso generators, head pullback preservation of right-split/split-factor zero generators, head pullback preservation of termwise and recursive chain-isomorphism generators, free-group head/tail maps preserving Rel/RelIso differences and split/leftSplit/rightSplit/splitFactor generators, tail composition preservation of head Baer generators, head pullback preservation of cons-lifted Baer/hom-tail generators, conditional head/tail preservation of one-fold Baer/base hom-tail generators, recursive all-Baer/all-HomTail wrappers, IsPullback/IsPushout witnesses, standard pushout associativity removing the tail hom-tail associativity premise, pushout/Baer representative isomorphism transport helpers, output-side pullback/pushout data iso transport, canonical pushout/pullback Baer preservation, unconditional canonical tail quotient map, head quotient map conditional only on pullback-pushout exchange, identity head pullback normalization, identity tail pushout normalization, identity pullback-after-tail-pushout normalization, canonical pullback-after-tail-pushout middle comparison, canonical pushout-of-pullback to pullback-of-pushout comparison map, the conditional comparison-isomorphism bridge to PushoutData, and carrier-level comparison-map bijectivity are implemented; the remaining product blocker is a continuous inverse or IsPushout/universal-property proof for standard MetrizableLCA head pullback-pushout exchange data.",
+      "merge_blocker": "Generator-level head pullback, arbitrary tail pushout, split pullback/pushout preservation, split-zero Ext lemmas, tail pushout preservation of right-split/split-factor zero generators, composeTailHom preservation of iso generators, head pullback preservation of right-split/split-factor zero generators, termwise and recursive chain-isomorphism generators, free-group head/tail maps preserving Rel/RelIso differences and split/leftSplit/rightSplit/splitFactor generators, tail composition preservation of head Baer generators, head pullback preservation of cons-lifted Baer/hom-tail generators, conditional head/tail preservation of one-fold Baer/base hom-tail generators, recursive all-Baer/all-HomTail wrappers, IsPullback/IsPushout witnesses, standard pushout associativity removing the tail hom-tail associativity premise, pushout/Baer representative isomorphism transport helpers, output-side pullback/pushout data iso transport, canonical pushout/pullback Baer preservation, unconditional canonical tail quotient map, head quotient map conditional only on pullback-pushout exchange, identity head pullback normalization, identity tail pushout normalization, identity pullback-after-tail-pushout normalization, canonical pullback-after-tail-pushout middle comparison, canonical pushout-of-pullback to pullback-of-pushout comparison map, the conditional comparison-isomorphism bridge to PushoutData, carrier-level comparison-map bijectivity, and the bijective-open-map iso bridge are implemented; the remaining product blocker is an open-map proof for that comparison map or a direct IsPushout/universal-property proof for standard MetrizableLCA head pullback-pushout exchange data.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -313,7 +316,10 @@
         "MetrizableLCA.shortExactExtensionPullbackPushoutDataOfIsIsoComparison",
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_surjective",
         "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_injective",
-        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_bijective"
+        "MetrizableLCA.shortExactExtensionPullbackPushoutComparisonMap_bijective",
+        "MetrizableLCA.continuousAddEquivOfBijectiveOpenMap",
+        "MetrizableLCA.isoOfBijectiveOpenMap",
+        "MetrizableLCA.isIso_of_bijective_openMap"
       ]
     },
     {
