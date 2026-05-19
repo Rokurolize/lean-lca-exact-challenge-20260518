@@ -26,6 +26,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.baer_sum
 #check YonedaExt.zero_equiv_hom
 #check YonedaRelGenerator
+#check YonedaRelGenerator.homTailLeft
 #check yonedaRelationSubgroup
 #check ShortExactExtension.BaerSumData
 #check ShortExactExtension.BaerSumData.isoSum
@@ -108,12 +109,16 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExtension.HomTailData
 #check YonedaExtension.HomTailData.one
 #check YonedaExtension.HomTailData.cons
+#check YonedaExtension.HomTailData.pullbackHeadWith
 #check YonedaExtension.HomHeadData
 #check YonedaExtension.HomHeadData.cons
 #check YonedaExtension.pullbackHeadWith
 #check YonedaExtension.composeTailHom
 #check YonedaExtension.pushoutTailWith
 #check YonedaExtension.pullbackHeadWithData
+#check YonedaExtension.pullbackHeadWith_spliceLeftWith
+#check YonedaExtension.composeTailHom_pullbackHeadWith
+#check YonedaExtension.composeTailHom_spliceLeftWith
 #check YonedaExtension.pushoutTailWithData
 #check MetrizableLCA.yonedaExtensionPullbackHead
 #check MetrizableLCA.yonedaExtensionPullbackHeadData
@@ -138,6 +143,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.ofExtension_eq_zero_of_rightSplitData
 #check YonedaExt.ofExtension_eq_zero_of_splitFactorData
 #check YonedaExt.ofExtension_eq_ofExtension_of_homTailData
+#check YonedaExt.ofExtension_eq_ofExtension_of_homTailLeftWith
 #check YonedaExt.ofExtension_cons_ofHom_eq_of_pushoutData
 #check YonedaExtension.Rel.composeTailHom
 #check YonedaExtension.RelIso.composeTailHom
@@ -248,6 +254,16 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor
 #check YonedaExt.leftProductByYonedaExtension_metrizable_eq_add_of_baerLeftChain
 #check YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain
+
+noncomputable example {X Y Z : MetrizableLCA} {m n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (m + 1)}
+    (h : YonedaExtension.HomTailData (C := MetrizableLCA) a b) :
+    YonedaExt.leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) a n =
+      YonedaExt.leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) b n :=
+  YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain h n
+
 #check YonedaExt.leftProductByExtension
 #check YonedaExt.leftProductByExtension_ofExtension
 #check YonedaExt.leftProductByExtension_ofExtension_eq_zero_of_split

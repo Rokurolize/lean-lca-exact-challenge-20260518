@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T05:43:25Z",
+  "generated_utc": "2026-05-19T05:59:04Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -46,7 +46,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Fixed one-fold, positive-chain, arbitrary fixed-left actions, standard MetrizableLCA pullback-pushout exchange data, and unconditional pullbackHead/leftProduct APIs are implemented; the remaining left-variable quotient descent blocker is the base splice exchange premise for HomTail left relations (identifying splicing cons e (ofHom f) with splicing an arbitrary pushout representative after pullback), plus packaging a quotient-wide bilinear Yoneda product.",
+      "merge_blocker": "Fixed one-fold, positive-chain, arbitrary fixed-left actions, standard MetrizableLCA pullback-pushout exchange data, unconditional pullbackHead/leftProduct APIs, and HomTail-left base splice premise removal are implemented. The remaining left-variable quotient descent blocker is packaging these representative-level compatibilities as a quotient-wide bilinear Yoneda product with additivity/API support.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -145,7 +145,13 @@
         "YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_rel",
         "YonedaExt.leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor",
         "YonedaExt.leftProductByYonedaExtension_metrizable_eq_add_of_baerLeftChain",
-        "YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain"
+        "YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain",
+        "YonedaExtension.HomTailData.pullbackHeadWith",
+        "YonedaExtension.pullbackHeadWith_spliceLeftWith",
+        "YonedaExtension.composeTailHom_pullbackHeadWith",
+        "YonedaExtension.composeTailHom_spliceLeftWith",
+        "YonedaRelGenerator.homTailLeft",
+        "YonedaExt.ofExtension_eq_ofExtension_of_homTailLeftWith"
       ]
     },
     {
@@ -240,7 +246,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Standard pullback-pushout exchange, comparison-map open proof, comparison-map IsIso, unconditional head pullback map, and arbitrary fixed-left MetrizableLCA map are implemented; the remaining product blocker is the left HomTail base splice exchange needed for left-variable quotient descent and the quotient-wide bilinear product.",
+      "merge_blocker": "Standard pullback-pushout exchange, comparison-map open proof, comparison-map IsIso, unconditional head pullback map, arbitrary fixed-left MetrizableLCA map, and HomTail-left congruence under right splice are implemented; the remaining product blocker is the quotient-wide bilinear Yoneda product packaging and stable infinity-category enhancement.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -371,7 +377,13 @@
         "YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_rel",
         "YonedaExt.leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor",
         "YonedaExt.leftProductByYonedaExtension_metrizable_eq_add_of_baerLeftChain",
-        "YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain"
+        "YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain",
+        "YonedaExtension.HomTailData.pullbackHeadWith",
+        "YonedaExtension.pullbackHeadWith_spliceLeftWith",
+        "YonedaExtension.composeTailHom_pullbackHeadWith",
+        "YonedaExtension.composeTailHom_spliceLeftWith",
+        "YonedaRelGenerator.homTailLeft",
+        "YonedaExt.ofExtension_eq_ofExtension_of_homTailLeftWith"
       ]
     },
     {
@@ -402,7 +414,8 @@
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "merge_blocker": "No current stable infinity-category model in local implementation.",
       "product_success_contribution": "Required for the fourth product objective.",
-      "owned_by_active_process": false
+      "owned_by_active_process": false,
+      "implemented_declarations": []
     },
     {
       "frontier_id": "frontier-audit-hardening",
@@ -431,7 +444,8 @@
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "merge_blocker": "External audit correctly rejects non-product terminal state.",
       "product_success_contribution": "Prevents placeholder or stale product claims.",
-      "owned_by_active_process": false
+      "owned_by_active_process": false,
+      "implemented_declarations": []
     },
     {
       "frontier_id": "frontier-route-log",
@@ -466,7 +480,8 @@
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "merge_blocker": "Must be refreshed after each proof frontier change.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
-      "owned_by_active_process": true
+      "owned_by_active_process": true,
+      "implemented_declarations": []
     }
   ]
 }

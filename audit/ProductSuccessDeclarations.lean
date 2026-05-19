@@ -78,6 +78,7 @@ generators.
 #check (fun (X Y : MetrizableLCA) => PositiveYonedaExtFree (C := MetrizableLCA) X Y 0)
 #check (fun (X Y : MetrizableLCA) => yonedaRelationSubgroup (C := MetrizableLCA) X Y 0)
 #check (fun (X Y : MetrizableLCA) => YonedaRelGenerator (C := MetrizableLCA) X Y)
+#check (YonedaRelGenerator.homTailLeft (C := MetrizableLCA))
 #check (fun (X Y : MetrizableLCA) =>
   ShortExactExtension.BaerSumData (C := MetrizableLCA) (X := X) (Y := Y))
 #check (ShortExactExtension.BaerSumData.isoSum (C := MetrizableLCA))
@@ -498,6 +499,11 @@ example (X X' Y Z : MetrizableLCA) {n : ℕ}
 
 #check (YonedaExt.pullbackHeadFreeHomWith_baerChain_mem (C := MetrizableLCA))
 #check (YonedaExt.pullbackHeadFreeHomWith_homTail_mem (C := MetrizableLCA))
+#check (YonedaExtension.HomTailData.pullbackHeadWith (C := MetrizableLCA))
+#check (YonedaExtension.pullbackHeadWith_spliceLeftWith (C := MetrizableLCA))
+#check (YonedaExtension.composeTailHom_pullbackHeadWith (C := MetrizableLCA))
+#check (YonedaExtension.composeTailHom_spliceLeftWith (C := MetrizableLCA))
+#check (YonedaExt.ofExtension_eq_ofExtension_of_homTailLeftWith (C := MetrizableLCA))
 #check MetrizableLCA.shortExactExtensionPullbackBaerSumData
 #check MetrizableLCA.shortExactExtensionPushoutIso
 #check MetrizableLCA.shortExactExtensionPushoutAssocIso
@@ -554,6 +560,15 @@ example (X X' Y Z : MetrizableLCA) {n : ℕ}
 #check YonedaExt.leftProductByYonedaExtension_metrizable_eq_zero_of_splitFactor
 #check YonedaExt.leftProductByYonedaExtension_metrizable_eq_add_of_baerLeftChain
 #check YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain
+
+noncomputable example {X Y Z : MetrizableLCA} {m n : ℕ}
+    {a b : YonedaExtension (C := MetrizableLCA) X Y (m + 1)}
+    (h : YonedaExtension.HomTailData (C := MetrizableLCA) a b) :
+    YonedaExt.leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) a n =
+      YonedaExt.leftProductByYonedaExtension_metrizable
+        (X := X) (Y := Y) (Z := Z) b n :=
+  YonedaExt.leftProductByYonedaExtension_metrizable_eq_of_homTailLeftChain h n
 
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
