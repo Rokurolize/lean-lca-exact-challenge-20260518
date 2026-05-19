@@ -1,183 +1,78 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v137-pullback-wrapper-consumer-probe",
-  "generated_utc": "2026-05-19T22:53:00Z",
-  "source_tree_hash": "567bf7b33811964ec4eb8040cf871f372d7b002d9a0f18fe499ea37fd70f67da",
-  "summary": "v137 adds a pullback wrapper consumer probe; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v138-alternating-tail-extend-transport",
+  "generated_utc": "2026-05-19T23:02:00Z",
+  "source_tree_hash": "5f2a3bc6fb1a8003cfa460116f597f005c055167b39dcf2486cadd01e3900240",
+  "summary": "v138 packages Nat alternating-tail contraction and proves Z-tail endpoint extendMap transport; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "Build completed successfully after importing LeanLCAExactChallenge.AlternatingTailExtendTransport from the root module."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.AlternatingTailExtendTransport",
+      "status": "passed",
+      "evidence": "Focused module build completed successfully and printed the Nat contraction plus Z-tail endpoint transport declarations."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "Required declaration audit completed successfully."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "Product declaration audit completed successfully while preserving nonterminal product truth."
     },
     {
-      "command": "lake env lean audit/blockers/pullback_wrapper_consumer_probe_w107.lean",
+      "command": "lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "Probe printed natAlternatingTailContractingHomotopy, intAlternatingTailGE, intAlternatingTailGE_extendMap_id, and intAlternatingTailGE_extendMap_zero."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "Python bytecode compilation completed successfully."
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "external_audit self-check passed."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "terminal_outcome JSON parsed successfully."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "frontier matrix JSON parsed successfully."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "run/verification JSON parsed successfully after refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "manifest JSON parsed successfully after refresh."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/alternating_tail_typed_homotopy_family_w104.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/alternating_tail_homotopy_comm_probe_w102.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/stable_positive_audit_fixture_w100.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/pushout_wrapper_consumer_probe.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/stable_product_declaration_frontier_w90.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/contractible_tail_concrete_instance_scout.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
-    },
-    {
-      "command": "lake env lean audit/blockers/stable_product_review_gate_map_w93.lean",
-      "status": "passed",
-      "evidence": "Command completed successfully during the v137 verification refresh."
+      "evidence": "No whitespace errors were reported."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after the v137 refresh: pre-terminal checks reach the terminal outcome gate, then failed_nonterminal/product_complete=false is rejected because product success is not yet true."
+      "evidence": "Expected non-product gate: pre-terminal checks pass, then failed_nonterminal/product_complete=false is rejected because product success is not yet true."
     }
   ]
 }

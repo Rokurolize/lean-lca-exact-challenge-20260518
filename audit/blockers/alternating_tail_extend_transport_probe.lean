@@ -1,0 +1,18 @@
+import LeanLCAExactChallenge.AlternatingTailExtendTransport
+
+set_option autoImplicit false
+
+namespace LeanLCAExactChallenge
+
+namespace AlternatingTailExtendTransportProbe
+
+open AlternatingTailExtendTransport
+
+#check natAlternatingTailContractingHomotopy
+#check intAlternatingTailGE
+#check intAlternatingTailGE_extendMap_id
+#check intAlternatingTailGE_extendMap_zero
+
+end AlternatingTailExtendTransportProbe
+
+end LeanLCAExactChallenge
