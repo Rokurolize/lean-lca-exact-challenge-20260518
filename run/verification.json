@@ -1,77 +1,82 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v78-dbounded-additive-zero-prereqs",
-  "generated_utc": "2026-05-19T08:51:01Z",
-  "source_tree_hash": "78ac9ec4e36b326c93ed83596212baa3543dccf540c28eb97b5a81a6fb708321",
+  "schema": "lean-lca-exact-challenge-verification-v79-homotopy-trw-frontier",
+  "generated_utc": "2026-05-19T09:14:06Z",
+  "source_tree_hash": "766005af1c1bfa136cb4e376ba8757dbbd7279c07da5550bb0bfabba4ac5c168",
   "commands": [
+    {
+      "command": "lake build LeanLCAExactChallenge.Ext.Yoneda",
+      "status": "passed",
+      "evidence": "Yoneda module build still passes after the v79 derived-frontier update."
+    },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after v78 MetrizableLCA zero object, bounded-complex zero object, and conditional Dbounded additive/zero prerequisites."
+      "evidence": "Full project build passed after adding exactAcyclicHomotopyObject, bounded homotopy quotient, trW inclusion, and conditional left-calculus declarations."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean placeholder or trust-expanding tokens found under LeanLCAExactChallenge after the v78 update."
+      "evidence": "No forbidden Lean placeholder or trust-expanding tokens found under LeanLCAExactChallenge after the v79 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees MetrizableLCA.zeroObj, bounded complex ContainsZero/HasZeroObject, and conditional Dbounded left-calculus additive/zero declarations."
+      "evidence": "Required declaration audit sees the v79 homotopy-object, homotopyQuotient, trW inclusion, conditional equality, and conditional left-calculus declarations."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles with the v78 conditional Dbounded declarations while keeping the missing left-calculus and stable-infinity boundary explicit."
+      "evidence": "Product declaration audit compiles with concrete MetrizableLCA trW inclusion checks and generic checks for conditional closed-under-isomorphism and triangulated-subcategory declarations."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v78 update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v79 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v78 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v79 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms zero-object scaffolding and conditional Dbounded preadditive/additive/zero/additive-shift declarations under HasLeftCalculusOfFractions."
+      "evidence": "Derived blocker audit confirms the homotopy-category trW inclusion and conditional left-calculus frontier while preserving the stable-infinity blocker."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v78 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v79 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v78 Dbounded additive/zero prerequisite update."
+      "evidence": "Proof frontier JSON syntax checked after the v79 homotopy-category trW update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after the v78 refresh."
+      "evidence": "Verification JSON syntax will be checked again after this v79 refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked after regenerating the v78 manifest."
+      "evidence": "Manifest JSON syntax checked before regenerating the v79 manifest; it will be checked again after regeneration."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v78 update."
+      "evidence": "External audit Python syntax check still passes after the v79 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v78 Dbounded additive/zero prerequisite update."
+      "evidence": "Whitespace check passed after the v79 proof and documentation update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate: terminal_outcome remains failed_nonterminal/product_complete=false because left calculus of fractions, Verdier quotient, triangulated quotient, and stable infinity-category structure remain incomplete."
+      "evidence": "Expected non-product gate: terminal_outcome remains failed_nonterminal/product_complete=false because exact-acyclic homotopy invariance, triangulated-subcategory closure, bounded left calculus, Verdier quotient, and stable infinity-category structure remain incomplete."
     }
   ]
 }

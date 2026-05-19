@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T08:25:08Z",
+  "generated_utc": "2026-05-19T09:12:41Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -432,7 +432,10 @@
         "exact weak equivalences",
         "mapping cone shift isomorphism",
         "mathlib localization shift APIs",
-        "left calculus of fractions localization preadditive APIs"
+        "left calculus of fractions localization preadditive APIs",
+        "homotopy-category quotient",
+        "ObjectProperty.trW",
+        "triangulated subcategory left-calculus API"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -446,7 +449,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v78 adds MetrizableLCA and bounded-complex zero objects plus conditional Dbounded preadditive/localization-additive/zero/additive-shift API under HasLeftCalculusOfFractions. This prepares the homotopy-category/Verdier route, but the left-calculus proof itself, ordinary pretriangulated/triangulated quotient structure, and stable infinity-category structure remain nonproduct.",
+      "merge_blocker": "v79 adds exactAcyclicHomotopyObject, BoundedComplexCategory.homotopyQuotient, bounded weak-equivalence inclusion into homotopy-category trW, conditional inverse-image equality under homotopy-object isomorphism closure, and conditional trW left calculus under triangulated-subcategory hypotheses. The hypotheses themselves, bounded exact weak-equivalence left calculus, ordinary pretriangulated/triangulated quotient structure, and stable infinity-category structure remain nonproduct.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -472,6 +475,13 @@
         "exactAcyclic_mappingCone_congr_iff",
         "boundedExactWeakEquivalence_shift_iff",
         "boundedExactWeakEquivalence_isCompatibleWithShift",
+        "exactAcyclicHomotopyObject",
+        "exactAcyclicHomotopyObject_quotient_obj_iff",
+        "exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone",
+        "BoundedComplexCategory.homotopyQuotient",
+        "boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage",
+        "boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage",
+        "exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated",
         "Dbounded.preadditiveOfHasLeftCalculusOfFractions",
         "Dbounded.localization_additiveOfHasLeftCalculusOfFractions",
         "Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions",
@@ -542,7 +552,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v78 evidence records conditional Dbounded additive/zero prerequisites and keeps the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v79 evidence records the homotopy-category trW inclusion and conditional left-calculus route while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

@@ -149,10 +149,79 @@ theorem exactAcyclic_mappingCone_congr_iff [HasBinaryBiproducts C]
   · exact exactAcyclic_of_iso C (mappingConeIsoOfCommIso C eK eL comm)
   · exact exactAcyclic_of_iso C (mappingConeIsoOfCommIso C eK eL comm).symm
 
+/-- Exact acyclic complexes as an object predicate on the homotopy category.
+
+This predicate records the exact-category analogue of mathlib's abelian
+`HomotopyCategory.subcategoryAcyclic`. It is intentionally not marked as triangulated here:
+that homotopy-invariance and closure result is the remaining Verdier-route proof obligation. -/
+def exactAcyclicHomotopyObject :
+    ObjectProperty (HomotopyCategory C (ComplexShape.up ℤ)) :=
+  fun K => exactAcyclic C K.as
+
+/-- On quotient objects, the homotopy-category exact-acyclic predicate is the original
+degreewise exact-acyclic predicate. -/
+theorem exactAcyclicHomotopyObject_quotient_obj_iff (K : CochainComplex C ℤ) :
+    exactAcyclicHomotopyObject C
+        ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj K) ↔
+      exactAcyclic C K := by
+  rfl
+
+/-- A morphism of complexes whose mapping cone is exact acyclic lies in the Verdier-style
+`trW` class for the exact-acyclic homotopy-object predicate. -/
+theorem exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (hf : exactAcyclic C (CochainComplex.mappingCone f)) :
+    (exactAcyclicHomotopyObject C).trW
+      ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).map f) := by
+  exact ⟨_, _, _, HomotopyCategory.mappingCone_triangleh_distinguished f, hf⟩
+
 /-- Exact quasi-isomorphisms between bounded complexes, detected by the mapping cone. -/
 noncomputable def boundedExactWeakEquivalence [HasBinaryBiproducts C] :
     MorphismProperty (BoundedComplexCategory C) :=
   fun _ _ f => exactAcyclic C (CochainComplex.mappingCone ((boundedCochainComplex C).ι.map f))
+
+/-- The bounded-complex inclusion followed by the homotopy-category quotient. -/
+abbrev BoundedComplexCategory.homotopyQuotient [HasBinaryBiproducts C] :
+    BoundedComplexCategory C ⥤ HomotopyCategory C (ComplexShape.up ℤ) :=
+  BoundedComplexCategory.ι C ⋙ HomotopyCategory.quotient C (ComplexShape.up ℤ)
+
+/-- The direct mapping-cone weak equivalences on bounded complexes map into the
+homotopy-category `trW` class of exact-acyclic objects. -/
+theorem boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    boundedExactWeakEquivalence C ≤
+      (exactAcyclicHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotient C) := by
+  intro K L f hf
+  exact exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone C _ hf
+
+/-- If exact acyclicity is invariant under isomorphisms in the homotopy category, then the
+direct bounded mapping-cone weak equivalences are exactly the inverse image of the
+Verdier-style `trW` class. -/
+theorem boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    boundedExactWeakEquivalence C =
+      (exactAcyclicHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotient C) := by
+  ext K L f
+  constructor
+  · intro hf
+    exact boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage C f hf
+  · intro hf
+    exact ((exactAcyclicHomotopyObject C).trW_iff_of_distinguished
+      (CochainComplex.mappingCone.triangleh ((BoundedComplexCategory.ι C).map f))
+      (HomotopyCategory.mappingCone_triangleh_distinguished
+        ((BoundedComplexCategory.ι C).map f))).1 hf
+
+/-- Once the exact-acyclic homotopy-object predicate is triangulated, mathlib supplies the
+left calculus of fractions for its Verdier-style weak equivalences. -/
+theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulated] :
+    (exactAcyclicHomotopyObject C).trW.HasLeftCalculusOfFractions := by
+  infer_instance
 
 /-- Exact weak equivalences of bounded complexes are invariant under cochain shifts. -/
 theorem boundedExactWeakEquivalence_shift_iff [HasBinaryBiproducts C]

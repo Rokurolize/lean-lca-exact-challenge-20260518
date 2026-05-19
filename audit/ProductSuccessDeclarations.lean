@@ -1480,8 +1480,17 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (exactAcyclic_mappingCone_shift_iff (C := MetrizableLCA))
 #check (mappingConeIsoOfCommIso (C := MetrizableLCA))
 #check (exactAcyclic_mappingCone_congr_iff (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_quotient_obj_iff (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone
+  (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_shift_iff (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
+#check (BoundedComplexCategory.homotopyQuotient (C := MetrizableLCA))
+#check (boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
+  (C := MetrizableLCA))
+#check boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
+#check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
 #check Dbounded.preadditiveOfHasLeftCalculusOfFractions
 #check Dbounded.localization_additiveOfHasLeftCalculusOfFractions
 #check Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions
