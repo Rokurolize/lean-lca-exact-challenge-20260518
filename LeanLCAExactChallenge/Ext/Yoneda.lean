@@ -1979,6 +1979,20 @@ def Rel.spliceLeftWith
       simpa [spliceLeftWith, Nat.add_assoc] using
         Rel.cons he (Rel.spliceLeftWith pull ht right)
 
+/-- Arbitrary left chains with a split factor still have one after splicing. -/
+def SplitFactorData.spliceLeftWith
+    (pull : {A B W : C} → (f : A ⟶ B) → ShortExactExtension B W →
+      ShortExactExtension A W) :
+    {X Y Z : C} → {m n : ℕ} → {a : YonedaExtension X Y (m + 1)} →
+      SplitFactorData a → (right : YonedaExtension Y Z (n + 1)) →
+        SplitFactorData (spliceLeftWith pull a right)
+  | _, _, _, _, _, _, SplitFactorData.head e s tail, right => by
+      simpa [YonedaExtension.spliceLeftWith, Nat.add_assoc] using
+        SplitFactorData.head e s (YonedaExtension.spliceLeftWith pull tail right)
+  | _, _, _, _, _, _, SplitFactorData.cons e h, right => by
+      simpa [YonedaExtension.spliceLeftWith, Nat.add_assoc] using
+        SplitFactorData.cons e (SplitFactorData.spliceLeftWith pull h right)
+
 end YonedaExtension
 
 namespace MetrizableLCA
@@ -3446,6 +3460,78 @@ theorem leftProductByYonedaExtensionWith_eq_of_rel
   exact leftProductByYonedaExtensionWith_ofExtension_eq_of_rel
     pull pullIso pullIsoBetween pullSplit pullBaer pullPushoutData h b
 
+/-- An arbitrary fixed left chain with a split factor acts by zero on generators. -/
+theorem leftProductByYonedaExtensionWith_ofExtension_eq_zero_of_splitFactor
+    [HasBinaryBiproducts C]
+    (pull : {A B W : C} → (f : A ⟶ B) → ShortExactExtension B W →
+      ShortExactExtension A W)
+    (pullIso : ∀ {A B W : C} (f : A ⟶ B)
+      {e e' : ShortExactExtension B W},
+      ShortExactExtension.Iso e e' → ShortExactExtension.Iso (pull f e) (pull f e'))
+    (pullIsoBetween : ∀ {A B W W' : C} (f : A ⟶ B) {β : W ≅ W'}
+        {e : ShortExactExtension B W} {e' : ShortExactExtension B W'},
+        ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl B) β e e' →
+          ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl A) β (pull f e) (pull f e'))
+    (pullSplit : ∀ {A B W : C} (f : A ⟶ B) (e : ShortExactExtension B W)
+      (_ : e.shortComplex.Splitting), (pull f e).shortComplex.Splitting)
+    (pullBaer :
+      ∀ {A B W : C} (f : A ⟶ B) [HasBinaryBiproduct B B]
+        [HasBinaryBiproduct A A] [HasBinaryBiproduct W W]
+        {e₁ e₂ sum : ShortExactExtension B W},
+        ShortExactExtension.BaerSumData e₁ e₂ sum →
+          ShortExactExtension.BaerSumData (pull f e₁) (pull f e₂) (pull f sum))
+    (pullPushoutData :
+      ∀ {A B W V : C} (f : A ⟶ B) (e : ShortExactExtension B W) (g : W ⟶ V)
+        {out : ShortExactExtension B V},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData (pull f e) g (pull f out))
+    {m : ℕ} {a : YonedaExtension X Y (m + 1)}
+    (h : YonedaExtension.SplitFactorData a) (b : YonedaExtension Y Z (n + 1)) :
+    leftProductByYonedaExtensionWith (Z := Z) pull pullIso pullIsoBetween pullSplit
+        pullBaer pullPushoutData a n
+        (ofExtension (X := Y) (Y := Z) (n := n) b) =
+      (0 : YonedaExt X Z ((n + (m + 1)) + 1)) := by
+  rw [leftProductByYonedaExtensionWith_ofExtension]
+  exact ofExtension_eq_zero_of_splitFactorData (h.spliceLeftWith pull b)
+
+/-- An arbitrary fixed left chain with a split factor induces the zero homomorphism. -/
+theorem leftProductByYonedaExtensionWith_eq_zero_of_splitFactor
+    [HasBinaryBiproducts C]
+    (pull : {A B W : C} → (f : A ⟶ B) → ShortExactExtension B W →
+      ShortExactExtension A W)
+    (pullIso : ∀ {A B W : C} (f : A ⟶ B)
+      {e e' : ShortExactExtension B W},
+      ShortExactExtension.Iso e e' → ShortExactExtension.Iso (pull f e) (pull f e'))
+    (pullIsoBetween : ∀ {A B W W' : C} (f : A ⟶ B) {β : W ≅ W'}
+        {e : ShortExactExtension B W} {e' : ShortExactExtension B W'},
+        ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl B) β e e' →
+          ShortExactExtension.IsoBetween (CategoryTheory.Iso.refl A) β (pull f e) (pull f e'))
+    (pullSplit : ∀ {A B W : C} (f : A ⟶ B) (e : ShortExactExtension B W)
+      (_ : e.shortComplex.Splitting), (pull f e).shortComplex.Splitting)
+    (pullBaer :
+      ∀ {A B W : C} (f : A ⟶ B) [HasBinaryBiproduct B B]
+        [HasBinaryBiproduct A A] [HasBinaryBiproduct W W]
+        {e₁ e₂ sum : ShortExactExtension B W},
+        ShortExactExtension.BaerSumData e₁ e₂ sum →
+          ShortExactExtension.BaerSumData (pull f e₁) (pull f e₂) (pull f sum))
+    (pullPushoutData :
+      ∀ {A B W V : C} (f : A ⟶ B) (e : ShortExactExtension B W) (g : W ⟶ V)
+        {out : ShortExactExtension B V},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData (pull f e) g (pull f out))
+    {m : ℕ} {a : YonedaExtension X Y (m + 1)}
+    (h : YonedaExtension.SplitFactorData a) (n : ℕ) :
+    leftProductByYonedaExtensionWith (Z := Z) pull pullIso pullIsoBetween pullSplit
+        pullBaer pullPushoutData a n = 0 := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro b
+  change leftProductByYonedaExtensionWith (Z := Z) pull pullIso pullIsoBetween pullSplit
+      pullBaer pullPushoutData a n
+      (ofExtension (X := Y) (Y := Z) (n := n) b) = 0
+  exact leftProductByYonedaExtensionWith_ofExtension_eq_zero_of_splitFactor
+    pull pullIso pullIsoBetween pullSplit pullBaer pullPushoutData h b
+
 /--
 For canonical MetrizableLCA pullbacks, a fixed arbitrary left Yoneda extension
 acts on the right Ext quotient once the remaining pullback-pushout exchange data
@@ -3527,6 +3613,34 @@ theorem leftProductByYonedaExtension_metrizableWithPushoutData_eq_of_rel
       leftProductByYonedaExtension_metrizableWithPushoutData
         (X := X) (Y := Y) (Z := Z) a' n pullPushoutData :=
   leftProductByYonedaExtensionWith_eq_of_rel
+    (C := MetrizableLCA.{u}) (X := X) (Y := Y) (Z := Z)
+    (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+    (fun {_ _ _} f {_ _} h => MetrizableLCA.shortExactExtensionPullbackIso f h)
+    (fun {_ _ _ _} f {_} {_} {_} h =>
+      MetrizableLCA.shortExactExtensionPullbackIsoBetween f h)
+    (fun {_ _ _} f e s => MetrizableLCA.shortExactExtensionPullbackSplitting e f s)
+    (fun {_ _ W} f [HasBinaryBiproduct _ _] [HasBinaryBiproduct _ _]
+        [HasBinaryBiproduct W W] {_ _ _} h =>
+      MetrizableLCA.shortExactExtensionPullbackBaerSumData f h)
+    (fun {_ _ _ _} f e g {_} h => pullPushoutData f e g h)
+    h n
+
+/-- A fixed arbitrary left MetrizableLCA chain with a split factor acts by zero. -/
+theorem leftProductByYonedaExtension_metrizableWithPushoutData_eq_zero_of_splitFactor
+    {X Y Z : MetrizableLCA.{u}} {m : ℕ}
+    {a : YonedaExtension (C := MetrizableLCA.{u}) X Y (m + 1)}
+    (h : YonedaExtension.SplitFactorData a) (n : ℕ)
+    (pullPushoutData :
+      ∀ {A B W V : MetrizableLCA.{u}} (f : A ⟶ B)
+        (e : ShortExactExtension (C := MetrizableLCA.{u}) B W) (g : W ⟶ V)
+        {out : ShortExactExtension (C := MetrizableLCA.{u}) B V},
+        ShortExactExtension.PushoutData e g out →
+          ShortExactExtension.PushoutData
+            (MetrizableLCA.shortExactExtensionPullback e f) g
+            (MetrizableLCA.shortExactExtensionPullback out f)) :
+    leftProductByYonedaExtension_metrizableWithPushoutData
+        (X := X) (Y := Y) (Z := Z) a n pullPushoutData = 0 :=
+  leftProductByYonedaExtensionWith_eq_zero_of_splitFactor
     (C := MetrizableLCA.{u}) (X := X) (Y := Y) (Z := Z)
     (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
     (fun {_ _ _} f {_ _} h => MetrizableLCA.shortExactExtensionPullbackIso f h)
