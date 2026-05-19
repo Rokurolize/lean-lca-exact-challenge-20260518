@@ -414,3 +414,8 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 ### v135: alternating tail homotopy comm probe
 
 2026-05-19T22:27:00Z時点で、右非有界contractible tail具体例へ向けたhomotopy APIの局所境界を確認した。`Homotopy.comm`の目標形は`dNext i s + prevD i s + 0`であり、identity/zero alternating complexではactive componentを「奇数sourceから直前degreeへ」と置く方針が算術的に整合する。残る実装は、このsupport predicateを実際のtyped morphism familyに落とし、`dNext_eq`/`prevD_eq`で各次数を閉じ、`extendXIso`で`ℤ`添字のtailへ移すことである。
+
+
+### v136: Nat alternating tail contracting homotopy
+
+2026-05-19T22:40:00Z時点で、`HomologicalComplex.alternatingConst`から作ったNat添字のidentity/zero alternating complexについて、実際のcontracting homotopyを構成した。これにより、contractible tail反例の残る技術課題は、Nat添字から`ℤ`添字の右非有界tailへのtransportと、各degreeの非零性・右非有界支持を既存の`UnboundedContractibleTailInstance`境界へ接続する部分に絞られた。
