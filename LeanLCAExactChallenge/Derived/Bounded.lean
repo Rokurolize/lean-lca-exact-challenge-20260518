@@ -588,6 +588,57 @@ theorem boundedHomotopyObject_triangleh_iso_ext1 [HasBinaryBiproducts C]
     (boundedHomotopyObject_triangleh_ext1 C f hL hCone)
 
 omit [QuillenExactCategory C] in
+/-- In a distinguished triangle, if the first two endpoints have been identified with a
+strict mapping-cone triangle by compatible isomorphisms, strict boundedness of those
+endpoints transfers the boundedness conclusion to the third object.
+
+This exposes the `isoTriangleOfIso₁₂` reduction needed before the full
+`IsTriangulatedClosed₂` problem can be attacked from homotopy-object representatives. -/
+theorem boundedHomotopyObject_distinguished_ext3_of_triangleh_iso12
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    (hT : T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)))
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+    (e₂ : (CochainComplex.mappingCone.triangleh f).obj₂ ≅ T.obj₂)
+    (comm : (CochainComplex.mappingCone.triangleh f).mor₁ ≫ e₂.hom =
+      e₁.hom ≫ T.mor₁)
+    (hK : boundedCochainComplex C K) (hL : boundedCochainComplex C L) :
+    boundedHomotopyObject C T.obj₃ := by
+  let e : CochainComplex.mappingCone.triangleh f ≅ T :=
+    Pretriangulated.isoTriangleOfIso₁₂ (CochainComplex.mappingCone.triangleh f) T
+      (HomotopyCategory.mappingCone_triangleh_distinguished f) hT e₁ e₂ comm
+  exact (boundedHomotopyObject C).prop_of_iso (Pretriangulated.Triangle.π₃.mapIso e)
+    (boundedHomotopyObject_triangleh_ext3 C f hK hL)
+
+omit [QuillenExactCategory C] in
+/-- In a distinguished triangle, compatible isomorphisms on the first and third objects
+identify it with a strict mapping-cone triangle enough to transfer the middle-object
+boundedness conclusion.
+
+This is the endpoint-isomorphism form of the middle-object closure step for
+`boundedHomotopyObject`; it still assumes strict bounded representatives for the source
+and cone. -/
+theorem boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    (hT : T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)))
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+    (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+    (comm : (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+        (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+      e₃.hom ≫ T.mor₃)
+    (hK : boundedCochainComplex C K)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedHomotopyObject C T.obj₂ := by
+  let e : CochainComplex.mappingCone.triangleh f ≅ T :=
+    Pretriangulated.isoTriangleOfIso₁₃ (CochainComplex.mappingCone.triangleh f) T
+      (HomotopyCategory.mappingCone_triangleh_distinguished f) hT e₁ e₃ comm
+  exact (boundedHomotopyObject C).prop_of_iso (Pretriangulated.Triangle.π₂.mapIso e)
+    (boundedHomotopyObject_triangleh_ext2 C f hK hCone)
+
+omit [QuillenExactCategory C] in
 /-- It is enough to prove two-out-of-three distinguished-triangle closure for bounded
 homotopy objects to make them a triangulated object property. -/
 theorem boundedHomotopyObject_isTriangulated_of_isTriangulatedClosed2

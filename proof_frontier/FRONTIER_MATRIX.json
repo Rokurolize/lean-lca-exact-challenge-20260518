@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T15:21:51Z",
+  "generated_utc": "2026-05-19T15:34:57Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v101 edits stay in the parent process. The parent did not launch or resume any worker for the strict cochain-isomorphism mapping cone boundedness transport frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v102 edits stay in the parent process. The parent did not launch or resume any worker for the endpoint-isomorphism distinguished-triangle boundedness frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -464,7 +464,11 @@
         "strict representative boundary for boundedHomotopyObject IsTriangulatedClosed₂",
         "Pretriangulated.Triangle projection isomorphism transfer",
         "ObjectProperty.prop_of_iso transfer for triangle projections",
-        "explicit triangle isomorphism transfer for strict mapping-cone boundedness"
+        "explicit triangle isomorphism transfer for strict mapping-cone boundedness",
+        "strict cochain-isomorphism mapping cone boundedness transport",
+        "Pretriangulated.isoTriangleOfIso₁₂",
+        "Pretriangulated.isoTriangleOfIso₁₃",
+        "endpoint-isomorphism completion of distinguished triangle isomorphisms"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -478,7 +482,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v101 adds strict cochain-isomorphism transport for mapping cone boundedness through `boundedCochainComplex_mappingCone_congr_iff` and `boundedHomotopyObject_mappingCone_congr_iff`. Together with v93-v100 this aligns the conditional Verdier route, but it does not prove bounded object or exact-acyclic homotopy object closure at the homotopy-category isomorphism level, the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v102 adds endpoint-isomorphism distinguished-triangle boundedness reductions through `boundedHomotopyObject_distinguished_ext3_of_triangleh_iso12` and `boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13`, using `Pretriangulated.isoTriangleOfIso₁₂/₁₃` to complete triangle isomorphisms. Together with v93-v101 this aligns the conditional Verdier route, but it does not prove bounded object or exact-acyclic homotopy object closure from arbitrary homotopy-category bounded endpoints, the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -634,7 +638,9 @@
         "boundedHomotopyObject_triangleh_ext1",
         "boundedHomotopyObject_triangleh_iso_ext3",
         "boundedHomotopyObject_triangleh_iso_ext2",
-        "boundedHomotopyObject_triangleh_iso_ext1"
+        "boundedHomotopyObject_triangleh_iso_ext1",
+        "boundedHomotopyObject_distinguished_ext3_of_triangleh_iso12",
+        "boundedHomotopyObject_distinguished_ext2_of_triangleh_iso13"
       ],
       "technical_context": [
         "split short complexes",
@@ -728,7 +734,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v101 evidence records strict cochain-isomorphism mapping cone boundedness transport while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v102 evidence records endpoint-isomorphism distinguished-triangle boundedness reductions while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []
