@@ -1464,10 +1464,28 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 /-
 The bounded derived category is the localization at those exact weak equivalences.
 -/
+#check (BoundedDerivedCategory (C := MetrizableLCA))
 #check (Dbounded (C := MetrizableLCA))
 
 noncomputable example : Category (Dbounded (C := MetrizableLCA)) := by infer_instance
 
 #check (Dbounded.localization (C := MetrizableLCA))
+
+/-
+The bounded derived infinity-category is exposed as a quasicategory, and its homotopy category
+recovers the localized ordinary category.
+-/
+#check (BoundedDerivedInfinityCategory (C := MetrizableLCA))
+#check (Dbounded.infinityCategory (C := MetrizableLCA))
+#check (Dbounded.infinityNerve (C := MetrizableLCA))
+#check (Dbounded.infinityNerve_quasicategory (C := MetrizableLCA))
+#check (Dbounded.homotopyCategoryIso (C := MetrizableLCA))
+
+noncomputable example : SSet.QCat :=
+  BoundedDerivedInfinityCategory (C := MetrizableLCA)
+
+noncomputable example :
+    SSet.Quasicategory (Dbounded.infinityNerve (C := MetrizableLCA)) :=
+  Dbounded.infinityNerve_quasicategory (C := MetrizableLCA)
 
 end LeanLCAExactChallenge

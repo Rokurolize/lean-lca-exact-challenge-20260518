@@ -17,6 +17,10 @@
 - ローカルmathlib `Mathlib/CategoryTheory/Limits/Shapes/BinaryBiproducts.lean`: `MetrizableLCA`のbinary biproduct instanceを積で作ること、明示的な積モデルからmathlibのchosen binary biproductへの同型を作ること、対角・余対角を`biprod.lift`/`biprod.desc`として扱うことに使った。
 - ローカルmathlib `Mathlib/Algebra/Homology/HomotopyCategory/MappingCone.lean`: cochain complexのmapping coneを確認し、exact weak equivalenceをconeのexact acyclicityで定義するために使った。
 - ローカルmathlib `Mathlib/CategoryTheory/Localization/HasLocalization.lean`と`Predicate.lean`: morphism propertyのlocalized categoryとlocalization functorを使って`Dbounded`を構成するために使った。
+- ローカルmathlib `Mathlib/AlgebraicTopology/SimplicialSet/Nerve.lean`と`Mathlib/AlgebraicTopology/Quasicategory/Nerve.lean`: ordinary categoryのnerveがsimplicial setでありquasicategoryになることを確認し、`BoundedDerivedInfinityCategory`を`Dbounded`のnerveとして公開するために使った。
+- ローカルmathlib `Mathlib/AlgebraicTopology/Quasicategory/StrictBicategory.lean`: quasicategoryのfull subcategory `SSet.QCat`を確認し、bounded derived quasicategoryをproduct-facingな対象として返すために使った。
+- ローカルmathlib `Mathlib/AlgebraicTopology/SimplicialSet/NerveAdjunction.lean`: nerveとhomotopy category functorの随伴、および`nerveFunctorCompHoFunctorIso`を確認し、`Dbounded.infinityNerve`のhomotopy categoryが`Dbounded`へ戻ることを示すために使った。
+- 監査上の注意: このnerve経路はstable infinity-categoryの有限極限・有限余極限・suspension equivalenceを与えない。そのため外部監査には、ordinary nerveをproduct successとして主張する負例を拒否する検査を追加した。
 - ローカル確認用anchor: `LeanLCAExactChallenge/MathlibSurvey.lean`。
 
 ## 数学文献
@@ -35,4 +39,4 @@
 - `LeanLCAExactChallenge/LCA/Pushout.lean`: 閉部分群商、明示的pushout、関係部分群の閉性、標準射の閉埋め込み性、余核写像の開全射性と代数的完全性、strict sequenceのcategorical pushout安定性をコンパイル確認した。
 - `LeanLCAExactChallenge/LCA/ExactCategory.lean`: strict LCA exact-category instanceを未証明引数なしでコンパイル確認した。
 - `LeanLCAExactChallenge/Ext/Yoneda.lean`: exact categoryのconflation chainから作るローカル`YonedaExt`をコンパイル確認した。degree 0はHom、正次数はextension chainを生成元とする自由加法可換群を、extension鎖の同型、hom等式、分裂一段拡大を零元にする関係、split factorを含む鎖を零元にする関係、Baer sum witnessから来る関係、hom tail pushout witnessから来る関係で割った群である。分裂一段拡大とsplit factorを含む正次数鎖が0になり、Baer sum witnessがある場合に一段Extで`sum = e₁ + e₂`になり、`baer_sum`も同じ結果を返す定理も確認した。正次数の関係部分群に`sum - a - b`が入る任意のextension chainから同じ加法等式と`baer_sum`等式を出す汎用補題、一段拡大を左からspliceする写像が商群へ降りること、分裂一段拡大を左からspliceした値が0になること、純粋な一段拡大列からなる正次数鎖を固定した左spliceが右側の商群へ降りること、その固定左鎖に分裂因子があれば積が0になること、左端一段拡大の同型関係とBaer和を固定tailの前へ貼っても等式・加法等式・`baer_sum`等式が得られること、一段拡大の後ろにdegree 0のhom tailが付く一段ケースをpushout拡大へ落とす等式、任意正次数chainのdegree 0 tail合成を再帰的pushout normal formへ落とす等式、degree 0のhomが一段拡大の前に付くhead側をpullback拡大へ置き換えるgenerator-level作用も確認した。MetrizableLCAでは、一段拡大2つからcoordinatewise product extensionを作り、chosen binary biproduct端点へ移送し、さらに対角pullbackと余対角pushoutを使って任意の一段拡大対に対する標準的なBaer sum witnessを構成した。
-- `LeanLCAExactChallenge/Derived/Bounded.lean`: bounded cochain complexのfull subcategoryを、mapping coneがexact acyclicである射でlocalizeする`Dbounded`をコンパイル確認した。
+- `LeanLCAExactChallenge/Derived/Bounded.lean`: bounded cochain complexのfull subcategoryを、mapping coneがexact acyclicである射でlocalizeする`Dbounded`をコンパイル確認した。さらに`BoundedDerivedInfinityCategory`を`Dbounded`のnerveが定める`SSet.QCat`として公開し、`Dbounded.infinityNerve_quasicategory`と`Dbounded.homotopyCategoryIso`でquasicategory性とhomotopy category比較を確認した。

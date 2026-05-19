@@ -53,6 +53,18 @@ PRODUCT_PLACEHOLDER_RE = re.compile(
     flags=re.IGNORECASE,
 )
 
+DERIVED_STABLE_MARKER_RE = re.compile(
+    r"StableBoundedDerivedInfinityCategory|stableInfinity|finiteLimits|finiteColimits|"
+    r"suspensionEquivalence|loopSuspensionEquivalence|pushoutPullbackSquare",
+    flags=re.IGNORECASE,
+)
+
+ORDINARY_NERVE_RE = re.compile(
+    r"BoundedDerivedInfinityCategory[\s\S]{0,500}"
+    r"CategoryTheory\.nerve\s*\(\s*BoundedDerivedCategory\s+C\s*\)",
+    flags=re.MULTILINE,
+)
+
 
 def fail(message: str) -> None:
     print(f"external_audit: FAIL: {message}", file=sys.stderr)
@@ -203,6 +215,46 @@ def check_no_product_placeholders(project_root: Path) -> None:
         fail("product-facing Lean sources contain placeholder markers: " + ", ".join(hits))
 
 
+def terminal_claims_product_success(terminal_outcome_path: Path) -> bool:
+    if not terminal_outcome_path.exists():
+        return False
+    outcome = load_json(terminal_outcome_path)
+    return outcome.get("outcome") == "product_success" or outcome.get("product_complete") is True
+
+
+def check_derived_infinity_product_contract(
+    project_root: Path, terminal_outcome_path: Path, require_product_contract: bool
+) -> None:
+    """Reject a product-success claim that only exposes an ordinary localization nerve."""
+
+    if not require_product_contract:
+        return
+
+    derived = project_root / "LeanLCAExactChallenge" / "Derived" / "Bounded.lean"
+    product_audit = project_root / "audit" / "ProductSuccessDeclarations.lean"
+    derived_text = derived.read_text(encoding="utf-8")
+    audit_text = product_audit.read_text(encoding="utf-8")
+
+    if ORDINARY_NERVE_RE.search(derived_text):
+        fail(
+            "BoundedDerivedInfinityCategory is still the nerve of the ordinary localized "
+            "category; this cannot satisfy the stable bounded derived infinity-category "
+            "product contract"
+        )
+
+    if not DERIVED_STABLE_MARKER_RE.search(derived_text):
+        fail(
+            "Derived/Bounded.lean lacks a stable infinity-category certificate marker "
+            "(finite limits, finite colimits, suspension equivalence, or equivalent local API)"
+        )
+
+    if not DERIVED_STABLE_MARKER_RE.search(audit_text):
+        fail(
+            "ProductSuccessDeclarations.lean does not check any stable infinity-category "
+            "certificate for Dbounded"
+        )
+
+
 def command_status_map(verification: dict[str, Any]) -> dict[str, str]:
     out: dict[str, str] = {}
     for item in verification.get("commands", []):
@@ -316,6 +368,27 @@ def check_negative_fixture(root: Path) -> None:
     if proc.returncode == 0:
         fail("negative fixture was accepted; expected self-referential zip SHA failure")
 
+    fixture = root / "audit" / "negative_fixtures" / "ordinary_nerve_claimed_product_success"
+    if not fixture.exists():
+        fail(f"missing negative fixture: {fixture}")
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(Path(__file__).resolve()),
+            "--root",
+            str(fixture),
+            "--terminal-outcome",
+            str(fixture / "terminal_outcome.json"),
+            "--self-check-only",
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if proc.returncode == 0:
+        fail("ordinary-nerve negative fixture was accepted; expected derived infinity contract failure")
+
 
 def check_terminal_outcome(root: Path, terminal_outcome_path: Path, packet_mode: bool) -> None:
     outcome = load_json(terminal_outcome_path)
@@ -369,6 +442,10 @@ def main() -> None:
 
     if args.self_check_only:
         check_no_internal_zip_sha(root, terminal_outcome)
+        project_root = project_root_for(root)
+        check_derived_infinity_product_contract(
+            project_root, terminal_outcome, terminal_claims_product_success(terminal_outcome)
+        )
         print("external_audit: self-check passed")
         return
 
@@ -378,6 +455,9 @@ def main() -> None:
     check_forbidden_lean(project_root)
     check_japanese_deliverables(root, project_root, terminal_outcome)
     check_no_product_placeholders(project_root)
+    check_derived_infinity_product_contract(
+        project_root, terminal_outcome, terminal_claims_product_success(terminal_outcome)
+    )
     check_no_internal_zip_sha(root, terminal_outcome)
     check_manifest(root)
     check_verification(root, project_root)

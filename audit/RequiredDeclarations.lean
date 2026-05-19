@@ -347,7 +347,12 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.boundedCochainComplex
 #check LeanLCAExactChallenge.exactAcyclic
 #check LeanLCAExactChallenge.boundedExactWeakEquivalence
+#check LeanLCAExactChallenge.BoundedDerivedCategory
 #check LeanLCAExactChallenge.BoundedDerivedInfinityCategory
 #check LeanLCAExactChallenge.Dbounded
 #check LeanLCAExactChallenge.Dbounded.localization
 #check LeanLCAExactChallenge.Dbounded.of
+#check LeanLCAExactChallenge.Dbounded.infinityCategory
+#check LeanLCAExactChallenge.Dbounded.infinityNerve
+#check LeanLCAExactChallenge.Dbounded.infinityNerve_quasicategory
+#check LeanLCAExactChallenge.Dbounded.homotopyCategoryIso
