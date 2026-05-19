@@ -973,6 +973,37 @@ noncomputable abbrev BoundedExactAcyclicHomotopyVerdierQuasicategory
     [(boundedHomotopyObject C).IsTriangulatedClosed₂] : SSet.QCat :=
   ⟨CategoryTheory.nerve (BoundedExactAcyclicHomotopyVerdierCategory C), inferInstance⟩
 
+/-- The ordinary homotopy category of the bounded homotopy Verdier quotient nerve recovers
+its localized category. -/
+noncomputable def BoundedExactAcyclicHomotopyVerdierQuasicategory.homotopyCategoryIso
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    SSet.hoFunctor.obj (BoundedExactAcyclicHomotopyVerdierQuasicategory C).1 ≅
+      Cat.of (BoundedExactAcyclicHomotopyVerdierCategory C) :=
+  CategoryTheory.nerveFunctorCompHoFunctorIso.app
+    (Cat.of (BoundedExactAcyclicHomotopyVerdierCategory C))
+
+/-- The bounded homotopy Verdier weak equivalences map to the ambient exact-acyclic
+homotopy Verdier weak equivalences under the bounded-object inclusion. -/
+abbrev boundedExactAcyclicHomotopyObjectToIsoClosure_trW
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    LocalizerMorphism (boundedExactAcyclicHomotopyObject C).trW
+      (exactAcyclicHomotopyIsoClosure C).trW := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  refine
+    { functor := BoundedHomotopyCategory.ι C
+      map := ?_ }
+  intro X Y f hf
+  rcases hf with ⟨Z, g, h, hT, hZ⟩
+  refine ⟨(BoundedHomotopyCategory.ι C).obj Z, (BoundedHomotopyCategory.ι C).map g,
+    (BoundedHomotopyCategory.ι C).map h ≫
+      ((BoundedHomotopyCategory.ι C).commShiftIso (1 : ℤ)).hom.app X, ?_, hZ⟩
+  exact (BoundedHomotopyCategory.ι C).map_distinguished _ hT
+
 /-- Under the bounded and exact-acyclic closure hypotheses, the bounded homotopy Verdier
 quotient is preadditive. -/
 noncomputable instance boundedExactAcyclicHomotopyVerdierCategory_preadditive_of_closed2
@@ -1547,6 +1578,42 @@ noncomputable def ExactAcyclicHomotopyVerdierQuasicategory.homotopyCategoryIso
       Cat.of (ExactAcyclicHomotopyVerdierCategory C) :=
   CategoryTheory.nerveFunctorCompHoFunctorIso.app
     (Cat.of (ExactAcyclicHomotopyVerdierCategory C))
+
+/-- The comparison functor from the bounded homotopy Verdier quotient to the ambient
+homotopy Verdier quotient induced by inclusion of bounded homotopy objects. -/
+noncomputable abbrev boundedExactAcyclicHomotopyVerdierComparison
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    BoundedExactAcyclicHomotopyVerdierCategory C ⥤ ExactAcyclicHomotopyVerdierCategory C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  exact (boundedExactAcyclicHomotopyObjectToIsoClosure_trW C).localizedFunctor
+    (boundedExactAcyclicHomotopyObject C).trW.Q
+    (exactAcyclicHomotopyIsoClosure C).trW.Q
+
+/-- The bounded-to-ambient Verdier comparison commutes with the two Verdier localization
+functors by the canonical `CatCommSq` isomorphism. -/
+noncomputable def boundedExactAcyclicHomotopyVerdierComparisonLocalizationIso
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(boundedHomotopyObject C).IsTriangulatedClosed₂] :
+    letI : Pretriangulated (BoundedHomotopyCategory C) :=
+      boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+    BoundedHomotopyCategory.ι C ⋙ (exactAcyclicHomotopyIsoClosure C).trW.Q ≅
+      (boundedExactAcyclicHomotopyObject C).trW.Q ⋙
+        boundedExactAcyclicHomotopyVerdierComparison C := by
+  letI : Pretriangulated (BoundedHomotopyCategory C) :=
+    boundedHomotopyCategory_pretriangulated_of_isTriangulatedClosed2 C
+  let Φ := boundedExactAcyclicHomotopyObjectToIsoClosure_trW C
+  letI : CatCommSq Φ.functor (boundedExactAcyclicHomotopyObject C).trW.Q
+      (exactAcyclicHomotopyIsoClosure C).trW.Q
+      (Φ.localizedFunctor (boundedExactAcyclicHomotopyObject C).trW.Q
+        (exactAcyclicHomotopyIsoClosure C).trW.Q) :=
+    Φ.catCommSq (boundedExactAcyclicHomotopyObject C).trW.Q
+      (exactAcyclicHomotopyIsoClosure C).trW.Q
+  exact CatCommSq.iso Φ.functor (boundedExactAcyclicHomotopyObject C).trW.Q
+    (exactAcyclicHomotopyIsoClosure C).trW.Q
+    (Φ.localizedFunctor (boundedExactAcyclicHomotopyObject C).trW.Q
+      (exactAcyclicHomotopyIsoClosure C).trW.Q)
 
 /-- The bounded homotopy/Verdier weak equivalences are the inverse image of the
 exact-acyclic homotopy Verdier weak equivalences under the bounded homotopy quotient. -/

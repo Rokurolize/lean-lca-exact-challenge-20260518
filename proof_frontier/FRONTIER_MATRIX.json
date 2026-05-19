@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T16:45:54Z",
+  "generated_utc": "2026-05-19T17:09:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v107 edits stay in the parent process. The parent did not launch or resume any worker for the exact-acyclic realization-to-Verdier API frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v108 edits stay in the parent process. The parent did not launch or resume any worker for the bounded-to-ambient ordinary Verdier comparison frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -477,7 +477,10 @@
         "exact acyclic homotopy object explicit triangle isomorphism transfer",
         "exact acyclic endpoint-pair distinguished triangle transfer into isoClosure",
         "exact acyclic homotopy object strict-realization closed2 criterion",
-        "exact acyclic isoClosure strict-realization closed2 criterion"
+        "exact acyclic isoClosure strict-realization closed2 criterion",
+        "bounded-to-ambient Verdier localizer morphism",
+        "bounded-to-ambient Verdier comparison functor",
+        "CatCommSq bounded-to-ambient localization iso"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -491,7 +494,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v107 names the exact-acyclic isoClosure strict-realization input and connects it to `IsTriangulated`, `trW` left/right calculus, triangulation compatibility, and ordinary homotopy Verdier quotient structures. Together with v102-v106 and v93-v101 this aligns more of the conditional Verdier route, but it does not construct strict bounded or exact-acyclic realizations from arbitrary endpoints, prove exact-acyclic homotopy object homotopy-invariance unconditionally, prove the homotopy pullback left/right calculus, transfer ordinary triangulated structure to `Dbounded`, or construct stable infinity-category structure.",
+      "merge_blocker": "v108 adds the bounded homotopy Verdier quotient homotopyCategoryIso and comparison to the ambient homotopy Verdier quotient via `boundedExactAcyclicHomotopyObjectToIsoClosure_trW`, `boundedExactAcyclicHomotopyVerdierComparison`, and `boundedExactAcyclicHomotopyVerdierComparisonLocalizationIso`; still no unconditional bounded/exact-acyclic closed2, no direct bounded left/right calculus or triangulated transfer to `Dbounded`, and no stable infinity-category.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -675,7 +678,11 @@
         "exactAcyclicHomotopyVerdierCategory_localization_commShift_of_triangleh_iso13_realization",
         "exactAcyclicHomotopyVerdierCategory_shiftFunctor_additive_of_triangleh_iso13_realization",
         "exactAcyclicHomotopyVerdierCategory_pretriangulated_of_triangleh_iso13_realization",
-        "exactAcyclicHomotopyVerdierCategory_isTriangulated_of_triangleh_iso13_realization"
+        "exactAcyclicHomotopyVerdierCategory_isTriangulated_of_triangleh_iso13_realization",
+        "BoundedExactAcyclicHomotopyVerdierQuasicategory.homotopyCategoryIso",
+        "boundedExactAcyclicHomotopyObjectToIsoClosure_trW",
+        "boundedExactAcyclicHomotopyVerdierComparison",
+        "boundedExactAcyclicHomotopyVerdierComparisonLocalizationIso"
       ],
       "technical_context": [
         "split short complexes",
@@ -710,7 +717,11 @@
         "exact acyclic homotopy object strict-realization closed2 criterion",
         "exact acyclic isoClosure strict-realization closed2 criterion",
         "strict exact-acyclic realization remains nonterminal",
-        "realization-conditioned exact-acyclic isoClosure triangulated/trW/Verdier wrappers"
+        "realization-conditioned exact-acyclic isoClosure triangulated/trW/Verdier wrappers",
+        "bounded homotopy Verdier quotient homotopy category comparison",
+        "bounded-to-ambient ordinary Verdier localizer morphism",
+        "bounded-to-ambient ordinary Verdier comparison functor",
+        "bounded-to-ambient CatCommSq localization commutation witness"
       ]
     },
     {
@@ -777,7 +788,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v107 evidence records realization-conditioned Verdier wrappers while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v108 evidence records bounded-to-ambient ordinary Verdier comparison while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []
