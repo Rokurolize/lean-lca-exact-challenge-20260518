@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v153-stable-certificate-field-provider-map",
-  "generated_utc": "2026-05-20T03:20:00Z",
-  "source_tree_hash": "e42caa7ad03b5d12f772959643a77fb2bd6b7b6cf2f5c819717811070bbd3952",
-  "summary": "v153 ports the w124 stable certificate field-provider map; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v154-bounded-weak-endpoint-provider-surfaces",
+  "generated_utc": "2026-05-20T03:35:00Z",
+  "source_tree_hash": "4204ab97f42c49e1b6ee0605f63e067347678d4da1b9476259acbeab0a530b5d",
+  "summary": "v154 ports the w125 weak-endpoint selected/cochain provider surface equivalences; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after adding the v153 stable certificate field-provider map."
+      "evidence": "Full lake build passed after adding the v154 weak-endpoint provider surface audit."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,7 +27,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v153 audit addition."
+      "evidence": "Forbidden-token audit passed after the v154 audit addition."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
@@ -57,7 +57,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v153 audit/docs changes."
+      "evidence": "Whitespace diff check passed after the v154 audit/docs changes."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -83,6 +83,11 @@
       "command": "lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean",
       "status": "passed",
       "evidence": "Focused w124 field-provider audit passed in the parent target."
+    },
+    {
+      "command": "lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean",
+      "status": "passed",
+      "evidence": "Focused w125 weak-endpoint provider surface audit passed in the parent target."
     }
   ],
   "implemented_declarations_checked": [
@@ -129,7 +134,13 @@
     "StableCertificateFieldProviderScoutW124.finiteLimits_not_supplied",
     "StableCertificateFieldProviderScoutW124.finiteColimits_not_supplied",
     "StableCertificateFieldProviderScoutW124.suspensionLoop_only_ordinary",
-    "StableCertificateFieldProviderScoutW124.pushoutPullback_only_ordinary"
+    "StableCertificateFieldProviderScoutW124.pushoutPullback_only_ordinary",
+    "boundedWeakEndpointToSelectedCochainStrictification",
+    "boundedWeakEndpointToCochainIsoPayload",
+    "boundedWeakEndpointToCochainDataProvider",
+    "boundedWeakEndpointToSelected_iff_cochainDataProvider",
+    "boundedWeakEndpointToCochainIso_iff_cochainDataProvider",
+    "reject_unconditional_endpointHomotopyEquiv_provider_w125"
   ],
   "product_complete": false,
   "known_gaps": [

@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T03:20:00Z",
+  "generated_utc": "2026-05-20T03:35:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results through w124 and reimplemented the w124 stable certificate field-provider map in the parent target.",
+  "worker_policy": "No workers were launched from the target worktree. The parent consumed completed consultant-owned support results through w125 and reimplemented the w125 weak-endpoint provider surface equivalences in the parent target.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -569,9 +569,9 @@
         "ordinary localization mislabeled as stable infinity-category"
       ],
       "worker_count_allowed": 0,
-      "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
-      "merge_blocker": "v153 adds a field-provider map for the stable certificate: finite limits and finite colimits are marked missing, while suspension/loop and pushout/pullback candidates are ordinary-only. v152 proves boundedWeakEndpointPayloadToCochainDataStrictification is equivalent to boundedHomotopyObjectTrianglehIso13Realization. The bounded realization theorem and stable certificate fields remain unproved as product facts.",
-      "product_success_contribution": "Classifies the four missing stable certificate projections without weakening product truth.",
+      "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
+      "merge_blocker": "v154 adds equivalent weak-endpoint provider surfaces for selected cochain payload, compact cochain-isomorphism payload, and expanded cochain-data payload. v153 maps the missing stable certificate fields. v152 proves boundedWeakEndpointPayloadToCochainDataStrictification is equivalent to boundedHomotopyObjectTrianglehIso13Realization. The bounded realization theorem and stable certificate fields remain unproved as product facts.",
+      "product_success_contribution": "Shows the selected/cochain provider entry points are equivalent so future work can choose the most convenient bounded strict-realization route.",
       "owned_by_active_process": true,
       "implemented_declarations": [
         "BoundedDerivedCategory",
@@ -886,7 +886,13 @@
         "StableCertificateFieldProviderScoutW124.finiteLimits_not_supplied",
         "StableCertificateFieldProviderScoutW124.finiteColimits_not_supplied",
         "StableCertificateFieldProviderScoutW124.suspensionLoop_only_ordinary",
-        "StableCertificateFieldProviderScoutW124.pushoutPullback_only_ordinary"
+        "StableCertificateFieldProviderScoutW124.pushoutPullback_only_ordinary",
+        "boundedWeakEndpointToSelectedCochainStrictification",
+        "boundedWeakEndpointToCochainIsoPayload",
+        "boundedWeakEndpointToCochainDataProvider",
+        "boundedWeakEndpointToSelected_iff_cochainDataProvider",
+        "boundedWeakEndpointToCochainIso_iff_cochainDataProvider",
+        "reject_unconditional_endpointHomotopyEquiv_provider_w125"
       ],
       "technical_context": [
         "split short complexes",
@@ -953,7 +959,8 @@
         "current Dbounded ordinary evidence includes quasicategory and homotopy-category comparison only",
         "stable projection gap map requires four future certificate projections from one certificate",
         "weak endpoint minimizer is equivalent to bounded strict realization, not a weaker proof obligation",
-        "stable certificate provider map marks finite limits/colimits missing and suspension-loop/pushout-pullback ordinary-only"
+        "stable certificate provider map marks finite limits/colimits missing and suspension-loop/pushout-pullback ordinary-only",
+        "weak endpoint selected/cochain provider surfaces are equivalent to the expanded cochain-data provider"
       ]
     },
     {

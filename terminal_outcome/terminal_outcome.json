@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v153時点では、stable certificateの4フィールドについてprovider mapを追加し、finite limitsとfinite colimitsは欠落、suspension/loopとpushout/pullbackはordinary-onlyであることをLean監査で確認した。これは欠落分類であり、stable infinity-category certificateの構成ではない。bounded strict-realization本体も未証明である。product_successではない。",
+  "summary": "v154時点では、弱endpoint payloadからselected cochain payload、compact cochain-isomorphism payload、expanded cochain-data payloadへ上げる3つのprovider surfaceを監査ファイルで整理し、それらが同じcochain-data provider問題へ戻ることをLean確認した。これは入口の整理であり、bounded strict-realization本体やstable infinity-category certificateは未完成である。product_successではない。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -28,7 +28,8 @@
     "lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean",
     "lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean",
     "lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
-    "lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean"
+    "lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean",
+    "lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
