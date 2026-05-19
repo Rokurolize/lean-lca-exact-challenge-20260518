@@ -37,35 +37,6 @@ theorem exactAcyclicIsoClosure_and_boundedHomotopyObject_closed2_of_exact_realiz
       C boundedStrictify)
 
 omit [QuillenExactCategory C] in
-/-- A weaker endpoint-representability payload that is not enough for the current bounded
-route.
-
-This records the obstruction isolated by the selected-cochain strictification probes:
-bounded strict representatives merely isomorphic in the homotopy category do not let us
-transport `boundedCochainComplex C` to the selected source `K` or to the selected
-`CochainComplex.mappingCone f`. The route above deliberately asks for strict
-cochain-complex isomorphisms instead. -/
-abbrev homotopyEndpointPayloadWithoutSelectedCochainIso
-    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
-  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
-    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
-    boundedHomotopyObject C T.obj₁ →
-    boundedHomotopyObject C T.obj₃ →
-    ∃ (Ksrc Kcone K L : CochainComplex C ℤ) (f : K ⟶ L)
-      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
-      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
-        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
-            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
-          e₃.hom ≫ T.mor₃ ∧
-        boundedCochainComplex C Ksrc ∧
-        boundedCochainComplex C Kcone ∧
-        Nonempty ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj Ksrc ≅
-          (HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj K) ∧
-        Nonempty ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj Kcone ≅
-          (HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj
-            (CochainComplex.mappingCone f))
-
-omit [QuillenExactCategory C] in
 /-- The local consequence of a weak endpoint payload: mathlib extracts homotopy
 equivalences from homotopy-category isomorphisms, not strict cochain isomorphisms. -/
 theorem homotopyEndpointPayload_extracts_homotopyEquivData

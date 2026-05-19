@@ -1148,6 +1148,49 @@ theorem boundedTrianglehIso13CochainDataStrictification_iff_realization
   · exact boundedTrianglehIso13CochainDataStrictification_of_realization C
 
 omit [QuillenExactCategory C] in
+/-- The endpoint information that mathlib's homotopy-category distinguished-triangle
+definition supplies from bounded homotopy objects: the selected source and cone are only
+isomorphic to bounded representatives in the homotopy category, not as cochain complexes. -/
+abbrev homotopyEndpointPayloadWithoutSelectedCochainIso
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    boundedHomotopyObject C T.obj₁ →
+    boundedHomotopyObject C T.obj₃ →
+    ∃ (Ksrc Kcone K L : CochainComplex C ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        boundedCochainComplex C Ksrc ∧
+        boundedCochainComplex C Kcone ∧
+        Nonempty ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj Ksrc ≅
+          (HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj K) ∧
+        Nonempty ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj Kcone ≅
+          (HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj
+            (CochainComplex.mappingCone f))
+
+omit [QuillenExactCategory C] in
+/-- The weak endpoint payload is available unconditionally from the definition of
+distinguished triangles and bounded homotopy objects. The missing step is upgrading these
+homotopy-category endpoint isomorphisms to strict cochain-complex isomorphisms. -/
+theorem homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    homotopyEndpointPayloadWithoutSelectedCochainIso C := by
+  intro T hT h₁ h₃
+  rcases hT with ⟨K, L, f, ⟨e⟩⟩
+  rcases h₁ with ⟨Ksrc, hKsrc, ⟨eKsrc⟩⟩
+  rcases h₃ with ⟨Kcone, hKcone, ⟨eKcone⟩⟩
+  exact ⟨Ksrc, Kcone, K, L, f,
+    (Pretriangulated.Triangle.π₁.mapIso e).symm,
+    (Pretriangulated.Triangle.π₃.mapIso e).symm,
+    by simpa using e.inv.comm₃,
+    hKsrc, hKcone,
+    ⟨eKsrc ≪≫ Pretriangulated.Triangle.π₁.mapIso e⟩,
+    ⟨eKcone ≪≫ Pretriangulated.Triangle.π₃.mapIso e⟩⟩
+
+omit [QuillenExactCategory C] in
 /-- Expanded cochain data supplies the bounded strict-realization input. -/
 theorem boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data
     [HasZeroObject C] [HasBinaryBiproducts C]

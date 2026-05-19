@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v147-selected-payload-equivalence",
-  "generated_utc": "2026-05-20T01:45:00Z",
-  "source_tree_hash": "0f4a878c8918976883a4ddea7ffb9eb85a9b56a60e1a3b5a79008d63d9d8ae57",
-  "summary": "v147 proves that the selected payload, compact cochain-isomorphism payload, and expanded cochain-data payload formulations are equivalent to bounded strict-realization; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v148-weak-homotopy-endpoint-payload",
+  "generated_utc": "2026-05-20T02:00:00Z",
+  "source_tree_hash": "df9be2db218f3aa55c80559169640531e86b234a8627fe374ae5f171f4d6bf52",
+  "summary": "v148 moves the weak homotopy endpoint payload into product API and proves it unconditionally from distinguished triangles and bounded homotopy endpoints; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v147 selected/cochain payload equivalence implementation."
+      "evidence": "Full lake build passed after the v148 weak endpoint payload product API move."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,7 +27,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v147 implementation."
+      "evidence": "Forbidden-token audit passed after the v148 implementation."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
@@ -37,7 +37,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess audit passed and now checks the selected/cochain payload equivalence APIs."
+      "evidence": "ProductSuccess audit passed and checks the weak endpoint payload API."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,22 +52,22 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate reproduced after v147; product remains failed_nonterminal."
+      "evidence": "Expected external audit product gate reproduced after v148; product remains failed_nonterminal."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v147 implementation/docs changes."
+      "evidence": "Whitespace diff check passed after the v148 implementation/docs changes."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
       "status": "passed",
-      "evidence": "Focused Derived.Bounded build passed after adding selected/cochain payload equivalence APIs."
+      "evidence": "Focused Derived.Bounded build passed after moving the weak endpoint payload into product API."
     },
     {
       "command": "lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean",
       "status": "passed",
-      "evidence": "Focused strict-boundedness consumer passed after the v147 equivalence API changes."
+      "evidence": "Focused strict-boundedness consumer passed after removing the local duplicate weak payload definition."
     }
   ],
   "implemented_declarations_checked": [
@@ -92,11 +92,13 @@
     "boundedTrianglehIso13CochainIsoPayload_of_realization",
     "boundedTrianglehIso13CochainIsoPayload_iff_realization",
     "boundedTrianglehIso13CochainDataStrictification_of_realization",
-    "boundedTrianglehIso13CochainDataStrictification_iff_realization"
+    "boundedTrianglehIso13CochainDataStrictification_iff_realization",
+    "homotopyEndpointPayloadWithoutSelectedCochainIso",
+    "homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished"
   ],
   "product_complete": false,
   "known_gaps": [
-    "The selected/cochain payload frontier is collapsed to bounded strict-realization, but boundedHomotopyObjectTrianglehIso13Realization itself remains unproved for arbitrary bounded endpoint distinguished triangles.",
+    "Weak endpoint payload is unconditional, but homotopy-category endpoint isomorphisms have not been strictified to cochain-complex isomorphisms and boundedHomotopyObjectTrianglehIso13Realization remains unproved.",
     "No stable infinity-category certificate for D^b(LCA) has been proved.",
     "No final clean review packet, oracle pass, or fresh claim review has accepted product_success=true."
   ]

@@ -2047,6 +2047,8 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 #check boundedTrianglehIso13CochainIsoPayload_iff_realization
 #check boundedTrianglehIso13CochainDataStrictification_of_realization
 #check boundedTrianglehIso13CochainDataStrictification_iff_realization
+#check homotopyEndpointPayloadWithoutSelectedCochainIso
+#check homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished
 
 example (C : Type u) [Category.{v} C] [Preadditive C]
     [HasZeroObject C] [HasBinaryBiproducts C]
