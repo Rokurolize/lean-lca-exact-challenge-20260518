@@ -3297,6 +3297,40 @@ theorem positiveYonedaExtFreeCast_relationSubgroup_mem {X Y : C} {n n' : ℕ}
   change (FreeAbelianGroup.map id) x ∈ yonedaRelationSubgroup X Y n
   simpa [FreeAbelianGroup.map_id_apply] using hx
 
+/-- Quotient-level positive-degree Yoneda Ext cast induced by a degree equality. -/
+noncomputable def positiveYonedaExtCast {X Y : C} {n n' : ℕ} (h : n = n') :
+    PositiveYonedaExt X Y n →+ PositiveYonedaExt X Y n' :=
+  QuotientAddGroup.map (yonedaRelationSubgroup X Y n) (yonedaRelationSubgroup X Y n')
+    (positiveYonedaExtFreeCast (C := C) (X := X) (Y := Y) h)
+    (by
+      intro x hx
+      exact positiveYonedaExtFreeCast_relationSubgroup_mem
+        (C := C) (X := X) (Y := Y) h hx)
+
+@[simp]
+theorem positiveYonedaExtCast_mk {X Y : C} {n n' : ℕ} (h : n = n')
+    (x : PositiveYonedaExtFree X Y n) :
+    positiveYonedaExtCast (C := C) (X := X) (Y := Y) h
+        ((x : PositiveYonedaExtFree X Y n) : PositiveYonedaExt X Y n) =
+      ((positiveYonedaExtFreeCast (C := C) (X := X) (Y := Y) h x :
+        PositiveYonedaExtFree X Y n') : PositiveYonedaExt X Y n') := by
+  exact QuotientAddGroup.map_mk (yonedaRelationSubgroup X Y n)
+    (yonedaRelationSubgroup X Y n')
+    (positiveYonedaExtFreeCast (C := C) (X := X) (Y := Y) h)
+    (by
+      intro y hy
+      exact positiveYonedaExtFreeCast_relationSubgroup_mem
+        (C := C) (X := X) (Y := Y) h hy)
+    x
+
+@[simp]
+theorem positiveYonedaExtCast_ofExtension {X Y : C} {n n' : ℕ} (h : n = n')
+    (a : YonedaExtension X Y (n + 1)) :
+    positiveYonedaExtCast (C := C) (X := X) (Y := Y) h
+        (ofExtension (C := C) (X := X) (Y := Y) (n := n) a) =
+      ofExtension (C := C) (X := X) (Y := Y) (n := n') (cast (by rw [h]) a) := by
+  exact positiveYonedaExtCast_mk (C := C) (X := X) (Y := Y) h (FreeAbelianGroup.of a)
+
 /-- Generator-level pullback action by a degree-zero head hom, before quotient descent. -/
 noncomputable def pullbackHeadOfExtensionWith {X X' Y : C} (f : X' ⟶ X)
     (pull : {Z : C} → ShortExactExtension X Z → ShortExactExtension X' Z)
@@ -5817,6 +5851,77 @@ theorem yonedaProduct_ofExtension_ofExtension
           (C := MetrizableLCA.{u})
           (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a b) := by
   rw [yonedaProduct_ofExtension, leftProductByYonedaExtension_metrizable_ofExtension]
+
+/-- The quotient cast bridges the two parenthesizations of a triple splice. -/
+theorem positiveYonedaExtCast_spliceLeftWith_assoc
+    {X W Y Z : MetrizableLCA.{u}} {m n l : ℕ}
+    (a : YonedaExtension (C := MetrizableLCA.{u}) X W (m + 1))
+    (b : YonedaExtension (C := MetrizableLCA.{u}) W Y (n + 1))
+    (c : YonedaExtension (C := MetrizableLCA.{u}) Y Z (l + 1))
+    (hdeg : l + (n + (m + 1) + 1) = (l + (n + 1)) + (m + 1)) :
+    positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) hdeg
+        (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z)
+          (n := l + (n + (m + 1) + 1))
+          (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+            (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+            (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+              (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a b) c)) =
+      ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := Z)
+        (n := (l + (n + 1)) + (m + 1))
+        (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+          (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a
+          (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+            (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) b c)) := by
+  dsimp [positiveYonedaExtCast, ofExtension]
+  rw [QuotientAddGroup.eq_iff_sub_mem]
+  have hfree :
+      positiveYonedaExtFreeCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) hdeg
+          (FreeAbelianGroup.of
+            (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+              (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+              (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+                (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a b) c) :
+            PositiveYonedaExtFree (C := MetrizableLCA.{u}) X Z
+              (l + (n + (m + 1) + 1))) =
+        (FreeAbelianGroup.of
+          (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+            (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a
+            (YonedaExtension.spliceLeftWith (C := MetrizableLCA.{u})
+              (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) b c)) :
+          PositiveYonedaExtFree (C := MetrizableLCA.{u}) X Z
+            ((l + (n + 1)) + (m + 1))) := by
+    dsimp [positiveYonedaExtFreeCast]
+    rw! [YonedaExtension.spliceLeftWith_assoc_heq
+      (C := MetrizableLCA.{u})
+      (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f)
+      (fun {_ _ _} f e => MetrizableLCA.shortExactExtensionPullback e f) a b c]
+    simp
+  rw [hfree, sub_self]
+  exact AddSubgroup.zero_mem _
+
+/-- Product-level associativity on generators after casting the target degree. -/
+theorem yonedaProduct_ofExtension_assoc_cast
+    {X W Y Z : MetrizableLCA.{u}} {m n l : ℕ}
+    (a : YonedaExtension (C := MetrizableLCA.{u}) X W (m + 1))
+    (b : YonedaExtension (C := MetrizableLCA.{u}) W Y (n + 1))
+    (c : YonedaExtension (C := MetrizableLCA.{u}) Y Z (l + 1))
+    (hdeg : l + (n + (m + 1) + 1) = (l + (n + 1)) + (m + 1)) :
+    positiveYonedaExtCast (C := MetrizableLCA.{u}) (X := X) (Y := Z) hdeg
+        (yonedaProduct (X := X) (Y := Y) (Z := Z) (n + (m + 1)) l
+          (yonedaProduct (X := X) (Y := W) (Z := Y) m n
+            (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := W) (n := m) a)
+            (ofExtension (C := MetrizableLCA.{u}) (X := W) (Y := Y) (n := n) b))
+          (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := l) c)) =
+      yonedaProduct (X := X) (Y := W) (Z := Z) m (l + (n + 1))
+        (ofExtension (C := MetrizableLCA.{u}) (X := X) (Y := W) (n := m) a)
+        (yonedaProduct (X := W) (Y := Y) (Z := Z) n l
+          (ofExtension (C := MetrizableLCA.{u}) (X := W) (Y := Y) (n := n) b)
+          (ofExtension (C := MetrizableLCA.{u}) (X := Y) (Y := Z) (n := l) c)) := by
+  rw [yonedaProduct_ofExtension_ofExtension,
+    yonedaProduct_ofExtension_ofExtension,
+    yonedaProduct_ofExtension_ofExtension,
+    yonedaProduct_ofExtension_ofExtension]
+  exact positiveYonedaExtCast_spliceLeftWith_assoc (a := a) (b := b) (c := c) (hdeg := hdeg)
 
 theorem yonedaProduct_add_left
     {X Y Z : MetrizableLCA.{u}} {m n : ℕ}

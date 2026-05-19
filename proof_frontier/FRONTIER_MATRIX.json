@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T21:17:09Z",
+  "generated_utc": "2026-05-19T21:22:04Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening, v114 bounded realization wrappers, v115 exact-category packaging lemmas, v116 stable-marker comment/string audit hardening, v117 pushout kernel/range wrappers, v118 Dbounded ordinary triangulated transfer audit probes, v119 direct Dbounded localization triangulated package audit, v120 strictification/source-triangulation audit probes, v121 selected-cochain boundary guard, v122 stable certificate interface shape, v123 strictification/triangle-completion transport audits, and v124 stable-certificate placeholder guard plus triangle-lift completion frontier audit, and v125 HomotopyEquiv boundedness-transport counterexample plus stable-certificate projection audit, v126 contractible-tail support obstruction plus stable projection review note, and v127 bounded homotopy strict-representative frontier, and v128 contractible-tail instance frontier were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening, v114 bounded realization wrappers, v115 exact-category packaging lemmas, v116 stable-marker comment/string audit hardening, v117 pushout kernel/range wrappers, v118 Dbounded ordinary triangulated transfer audit probes, v119 direct Dbounded localization triangulated package audit, v120 strictification/source-triangulation audit probes, v121 selected-cochain boundary guard, v122 stable certificate interface shape, v123 strictification/triangle-completion transport audits, and v124 stable-certificate placeholder guard plus triangle-lift completion frontier audit, and v125 HomotopyEquiv boundedness-transport counterexample plus stable-certificate projection audit, v126 contractible-tail support obstruction plus stable projection review note, and v127 bounded homotopy strict-representative frontier, and v128 contractible-tail instance frontier, and v129 unsuffixed Yoneda cast API were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -49,7 +49,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Resolved in v73. The free left-variable product map kills Rel/RelIso/split/rightSplit/splitFactor/Baer/BaerChain/leftSplit/HomTail/homTailLeft generators, including the nested YonedaRelGenerator.homTailLeft case quantified over an arbitrary pullback function. The quotient-wide positive-degree Yoneda product and additivity/API support are implemented. Product success is still blocked by the stable infinity-category enhancement, not by left-variable quotient descent.",
+      "merge_blocker": "Resolved in v73 for quotient descent; v129 adds public positive-degree cast and generator associativity-after-cast APIs so downstream Yoneda bridge proofs can consume YonedaExt.yonedaProduct_ofExtension_assoc_cast directly. Product success is still blocked by the stable infinity-category enhancement, not by left-variable quotient descent.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -181,7 +181,12 @@
         "YonedaExt.yonedaProduct_ofExtension",
         "YonedaExt.yonedaProduct_ofExtension_ofExtension",
         "YonedaExt.yonedaProduct_add_left",
-        "YonedaExt.yonedaProduct_add_right"
+        "YonedaExt.yonedaProduct_add_right",
+        "YonedaExt.positiveYonedaExtCast",
+        "YonedaExt.positiveYonedaExtCast_mk",
+        "YonedaExt.positiveYonedaExtCast_ofExtension",
+        "YonedaExt.positiveYonedaExtCast_spliceLeftWith_assoc",
+        "YonedaExt.yonedaProduct_ofExtension_assoc_cast"
       ]
     },
     {

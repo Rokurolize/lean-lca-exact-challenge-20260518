@@ -382,3 +382,7 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 ### v128: contractible tail instance frontier
 
 2026-05-19T21:17:09Z時点で、右非有界contractible tailの反例境界をさらに縮小した。`boundedCochainComplex_zero`により零複体はstrictly boundedなので、`UnboundedContractibleTailInstance`、すなわち`HasUpperUnboundedNonzeroTerms C tail`と`Nonempty (HomotopyEquiv tail 0)`を満たすtailがあれば、`not_strictBoundednessTransport_of_unboundedContractibleTailInstance`でbare `HomotopyEquiv` transportは否定される。したがって残るmathlib/local実装課題は、一般のtail attachment機構より先に、具体的な`ℤ`添字cochain complexとして右非有界かつcontractibleな例を構成し、その非零支持とcontracting homotopyを証明することである。これはproduct successへの正方向の証明ではなく、誤った代表選択戦略を排除するための監査境界である。
+
+### v129: unsuffixed positive Yoneda cast API
+
+2026-05-19T21:22:04Z時点で、positive degreeのYonedaExt商群に対するdegree cast APIを公開した。`positiveYonedaExtCast`は`positiveYonedaExtFreeCast_relationSubgroup_mem`を使って商群へ降りる。MetrizableLCA固有の`positiveYonedaExtCast_spliceLeftWith_assoc`と`yonedaProduct_ofExtension_assoc_cast`により、三重Yoneda積のgenerator associativityはdegree equalityによるcast後に直接使える。これはYoneda側の下流証明を簡略化する正方向APIだが、bounded derived stable infinity-categoryの残る構成問題を解くものではない。

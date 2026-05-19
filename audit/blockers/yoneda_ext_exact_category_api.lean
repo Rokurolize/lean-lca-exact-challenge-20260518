@@ -276,6 +276,10 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check YonedaExt.yonedaProduct
 #check YonedaExt.yonedaProduct_ofExtension
 #check YonedaExt.yonedaProduct_ofExtension_ofExtension
+#check YonedaExt.positiveYonedaExtCast
+#check YonedaExt.positiveYonedaExtCast_ofExtension
+#check YonedaExt.positiveYonedaExtCast_spliceLeftWith_assoc
+#check YonedaExt.yonedaProduct_ofExtension_assoc_cast
 #check YonedaExt.yonedaProduct_add_left
 #check YonedaExt.yonedaProduct_add_right
 
