@@ -372,3 +372,9 @@ v123では、二つの残り入力をさらに具体化した。第一に、homo
 `w76-bounded-homotopy-transport-counterexample`の監査により、`boundedCochainComplex`を`HomotopyEquiv`だけで輸送する近道は採用しない。strict boundednessは選ばれたcochain representativeの支持範囲に関する性質なので、contractible tailを足したunbounded representativeはhomotopy categoryでは消えても、`boundedCochainComplex`上では消えない。したがって、bounded homotopy objectのendpointからstrict representativeへ戻すには、bare homotopy equivalenceではなく、cochain-level isomorphism、または選択されたsupportを直接制御するstrictification theoremが必要である。
 
 `w77-stable-certificate-projection-audit-shape`の監査により、stable certificateの将来の合格条件は、名前や一つのopaque certificateではなく、有限極限、有限余極限、suspension/loop equivalence、pushout/pullback互換性のprojectionを個別に取り出せる形に寄せる。現時点でこのprojectionを満たす`Dbounded`用certificateは構成していないため、product gapは残る。
+
+## v126でさらに明確になったstrict boundedness境界
+
+`w81-contractible-tail-counterexample-formalization`の監査により、右側に任意に高い次数の非零項を持つselected cochain complexは、`boundedCochainComplex`ではないことをLeanで直接確認した。これにより、contractible tailがhomotopy categoryでは消えるとしても、選ばれたcochain representativeのstrict boundednessには残る、という直観がLeanで使える形になった。
+
+残るAPIは、実際のunbounded contractible tailを構成してbounded representativeへ付ける部分である。この部分は`ContractibleTailAttachmentAPI`として分離した。したがって、Dbounded側のpositive proofを進めるなら、bare `HomotopyEquiv`を経由せず、cochain-level isomorphism付きstrictification、またはselected supportを直接制御するrepresentative selection theoremを作る必要がある。

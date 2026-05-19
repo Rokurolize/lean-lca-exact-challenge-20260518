@@ -118,3 +118,9 @@ w74は、bounded homotopy category側の三角補完からdirect bounded exact w
 2026-05-19T21:53Zに外部支援worker `w76-bounded-homotopy-transport-counterexample`と`w77-stable-certificate-projection-audit-shape`を読んだ。w76からは、`HomotopyEquiv`だけでstrict boundednessを移す定理形は安全でないという境界を取り込んだ。親worktreeでは既存の`bounded_homotopy_equivalence_transport_frontier.lean`との名前衝突を避けるため、直接輸送定理形を`boundedCochainComplex_transportOfHomotopyEquivUnsafe`として`audit/blockers/bounded_homotopy_transport_counterexample.lean`に置いた。boundedな`K`とunboundedな`L`がhomotopy equivalentなら、このunsafe輸送定理は否定される。これはcochain-level isomorphismまたはsupportを制御するstrictificationが必要だというw68/w72の判断を補強する。
 
 w77からは、stable certificateを将来Lean-backedに監査するための投影形を取り込んだ。`audit/blockers/stable_certificate_projection_audit_shape.lean`では、同じcertificate objectから有限極限、有限余極限、suspension/loop equivalence、pushout/pullback互換性の四つのprojectionを取り出す`StableInfinityAudit.DboundedProjectionAuditInput`を定義し、`projections_available`でそれらを同時に参照できることを確認した。これはordinary quasicategory witnessだけをstable証拠と誤認しないための次段の監査形であり、projectionを満たす実証明はまだない。
+
+## v126 support結果の反映
+
+2026-05-19T22:00Zに外部支援worker `w81-contractible-tail-counterexample-formalization`と`w82-stable-projection-audit-cli-frontier`を読んだ。w81はw76の反例形をより直接的なsupport obstructionへ進め、`HasUpperUnboundedNonzeroTerms C K`から`¬ boundedCochainComplex C K`を証明した。さらに、bounded representative、contractible tail、右に非零項が無限に残るselected model、homotopy equivalenceをまとめる`ContractibleTailCounterexampleData`があれば、bare `StrictBoundednessTransportOfHomotopyEquiv`を否定できることを確認した。残る構成要素は、実際にunbounded contractible tailを付ける`ContractibleTailAttachmentAPI`として切り出した。
+
+w82は、外部監査CLIの`--self-check-only`既定値とstable projection監査の役割分担を説明するノートである。親worktreeではすでに`--terminal-outcome`を省略できるようにしており、w82の価値は「syntactic marker rejection」と「Lean側projection field確認」を別レイヤーとして扱うレビュー方針の明文化にある。これもproduct success証拠ではない。
