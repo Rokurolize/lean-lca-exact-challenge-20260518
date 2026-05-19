@@ -31,7 +31,7 @@
 
 ## strict LCA安定性定理
 
-このprojectは`MetrizableLCA.strictShortExact`を定義している。`LeanLCAExactChallenge/LCA/StrictExact.lean`では、split short complexからstrict short exact sequenceを作る補助定理、strict short exact sequenceの同型不変性、coordinatewise binary biproductでのstrict short exactnessを証明した。`LeanLCAExactChallenge/LCA/Basic.lean`では、biproduct間のcoordinatewise map `MetrizableLCA.biprodMap`、明示的な積モデルとmathlibのchosen binary biproductを結ぶ`MetrizableLCA.biprodObjIsoBiprod`、対角`MetrizableLCA.biprodDiag`、余対角`MetrizableLCA.biprodCodiag`も追加した。`LeanLCAExactChallenge/Ext/Yoneda.lean`では、`MetrizableLCA.shortExactExtensionBiprod`により一段拡大2つのproduct extensionを作り、さらに`MetrizableLCA.shortExactExtensionBinaryBiproduct`でchosen binary biproduct端点へ移送して、左右の射影がkernel側とcokernel側で元の一段拡大へ通うことを示した。そこから`MetrizableLCA.shortExactExtensionPullback`、`MetrizableLCA.shortExactExtensionPushout`、`MetrizableLCA.shortExactExtensionBaerSumData`により、任意の一段拡大対に対する標準的なBaer sum witnessも構成した。`LeanLCAExactChallenge/LCA/Pullback.lean`では、`MetrizableLCA`のpullbackを積の閉部分群として構成し、全射と開写像性をpullback射影へ移す補題、kernel mapの代数的完全性移送、kernel mapの閉埋め込み移送、そしてcategorical pullbackでのstrict short exactnessまで証明した。`LeanLCAExactChallenge/LCA/Quotient.lean`では閉部分群による商が再び`MetrizableLCA`になることを証明した。`LeanLCAExactChallenge/LCA/Pushout.lean`では、明示的pushout、関係部分群`range (x ↦ (f x, -a x))`の閉性、標準射`Y ⟶ pushout`の閉埋め込み性、余極限性、余核写像の開全射性と代数的完全性、そしてcategorical pushoutでのstrict short exactnessまで証明した。これにより、次の宣言は未証明引数なしで利用できる。
+このprojectは`MetrizableLCA.strictShortExact`を定義している。`LeanLCAExactChallenge/LCA/StrictExact.lean`では、split short complexからstrict short exact sequenceを作る補助定理、strict short exact sequenceの同型不変性、coordinatewise binary biproductでのstrict short exactnessを証明した。`LeanLCAExactChallenge/LCA/Basic.lean`では、biproduct間のcoordinatewise map `MetrizableLCA.biprodMap`、明示的な積モデルとmathlibのchosen binary biproductを結ぶ`MetrizableLCA.biprodObjIsoBiprod`、対角`MetrizableLCA.biprodDiag`、余対角`MetrizableLCA.biprodCodiag`も追加した。`LeanLCAExactChallenge/Ext/Yoneda.lean`では、`MetrizableLCA.shortExactExtensionBiprod`により一段拡大2つのproduct extensionを作り、さらに`MetrizableLCA.shortExactExtensionBinaryBiproduct`でchosen binary biproduct端点へ移送して、左右の射影がkernel側とcokernel側で元の一段拡大へ通うことを示した。そこから`MetrizableLCA.shortExactExtensionPullback`、`MetrizableLCA.shortExactExtensionPushout`、`MetrizableLCA.shortExactExtensionBaerSumData`により、任意の一段拡大対に対する標準的なBaer sum witnessも構成した。`LeanLCAExactChallenge/LCA/Pullback.lean`では、`MetrizableLCA`のpullbackを積の閉部分群として構成し、全射と開写像性をpullback射影へ移す補題、kernel mapの代数的完全性移送、kernel mapの閉埋め込み移送、そしてcategorical pullbackでのstrict short exactnessまで証明した。`LeanLCAExactChallenge/LCA/Quotient.lean`では閉部分群による商が再び`MetrizableLCA`になることを証明した。`LeanLCAExactChallenge/LCA/Pushout.lean`では、明示的pushout、関係部分群`range (x ↦ (f x, -a x))`の閉性、標準射`Y ⟶ pushout`の閉埋め込み性、余極限性、余核写像の開全射性と代数的完全性、kernel/range同値wrapper、そしてcategorical pushoutでのstrict short exactnessまで証明した。これにより、次の宣言は未証明引数なしで利用できる。
 
 ```lean
 LeanLCAExactChallenge.MetrizableLCA.biprodMap
@@ -68,6 +68,8 @@ LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBaerSum
 LeanLCAExactChallenge.MetrizableLCA.shortExactExtensionBaerSumData
 LeanLCAExactChallenge.MetrizableLCA.quillenExactCategory
 LeanLCAExactChallenge.MetrizableLCA.instQuillenExactCategory
+LeanLCAExactChallenge.MetrizableLCA.pushoutCokernelMap_open_surjection
+LeanLCAExactChallenge.MetrizableLCA.pushoutCokernelMap_kernel_iff_range_inr
 LeanLCAExactChallenge.QuillenExactCategory.inflation_of_conflation
 LeanLCAExactChallenge.QuillenExactCategory.deflation_of_conflation
 LeanLCAExactChallenge.QuillenExactCategory.conflation_of_splitting

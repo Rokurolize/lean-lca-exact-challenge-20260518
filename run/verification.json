@@ -1,48 +1,63 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v116-stable-marker-string-fixture",
-  "generated_utc": "2026-05-19T20:01:56Z",
-  "source_tree_hash": "2336b53438dde349260cf5eb7dc9df86cabe486825e8a81236bfc808d4baa20f",
-  "summary": "v116 manually ports external support worker w36 audit hardening in the parent worktree: stable infinity-category markers are scanned only after removing Lean comments and string literals, and negative fixtures reject comment-only and string-literal-only product-success marker claims. Product remains nonterminal because the strict-realization input proof, direct bounded calculus, Dbounded triangulated transfer, and stable infinity-category certificate remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-v117-pushout-kernel-range",
+  "generated_utc": "2026-05-19T20:13:05Z",
+  "source_tree_hash": "dd5083f9b7f1f17235d4b1cf9bb45bfa666a7389ae40f1ccc4823e8bc95fc321",
+  "summary": "v117 manually ports external support worker w02/w29/w43 pushout kernel/range wrapper evidence in the parent worktree: pushoutCokernelMap_open_surjection and pushoutCokernelMap_kernel_iff_range_inr expose the open-surjective cokernel map and identify its kernel with the pushoutInr range, with a Yoneda-facing consumer probe. Product remains nonterminal because bounded strict-realization, direct bounded calculus, Dbounded triangulated transfer, and stable infinity-category certificate blockers remain unproved.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after the v116 external-audit stable-marker comment/string stripping update."
+      "evidence": "Full project build passed after v117 pushout kernel/range wrapper port."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after v116."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after v117."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.LCA.Pushout LeanLCAExactChallenge.Ext.Yoneda",
+      "status": "passed",
+      "evidence": "Focused pushout and Yoneda build passed after clearing only regenerable /tmp pip/onnxruntime temporary files when the first run hit ENOSPC."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit remains green after the v116 audit-only checkpoint."
+      "evidence": "Required declaration audit compiles and checks the new pushoutCokernelMap_open_surjection and pushoutCokernelMap_kernel_iff_range_inr names."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit remains green after the v116 audit-only checkpoint."
+      "evidence": "Product declaration audit compiles after adding the v117 pushout wrappers and strictShortExact_pushout check."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after v116."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after v117."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after v116."
+      "evidence": "Yoneda blocker audit still compiles after v117."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit still compiles after v116 and continues to record the unresolved product blockers."
+      "evidence": "Derived blocker audit still compiles after v117 and continues to record unresolved product blockers."
+    },
+    {
+      "command": "lake env lean audit/blockers/pushout_kernel_range_api.lean",
+      "status": "passed",
+      "evidence": "New pushout kernel/range audit compiles and #checks pushoutCokernelMap_open_surjection, pushoutCokernelMap_kernel_iff_range_inr, and strictShortExact_pushout."
+    },
+    {
+      "command": "lake env lean audit/blockers/pushout_wrapper_consumer_probe.lean",
+      "status": "passed",
+      "evidence": "New Yoneda-facing consumer probe compiles and proves the shortExactExtensionPushout cokernel kernel/range form via pushoutCokernelMap_kernel_iff_range_inr."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check passes after adding Lean comment/string stripping."
+      "evidence": "External audit Python syntax check passes after v117."
     },
     {
       "command": "python3 audit/external_audit.py --root audit/negative_fixtures/ordinary_nerve_claimed_product_success --terminal-outcome terminal_outcome.json --self-check-only",
@@ -70,49 +85,34 @@
       "evidence": "Negative fixture was rejected as expected: product_success evidence cannot contain a failed_expected verification entry."
     },
     {
-      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json --self-check-only",
-      "status": "passed",
-      "evidence": "External audit self-check mode passes on the nonterminal target tree after v116 fixture hardening."
-    },
-    {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v116 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v117 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v116 audit-hardening refresh."
-    },
-    {
-      "command": "python3 -m json.tool audit/negative_fixtures/comment_only_stable_marker_claimed_product_success/terminal_outcome.json >/dev/null",
-      "status": "passed",
-      "evidence": "Comment-only stable marker negative fixture terminal outcome JSON syntax checked."
-    },
-    {
-      "command": "python3 -m json.tool audit/negative_fixtures/string_literal_only_stable_marker_claimed_product_success/terminal_outcome.json >/dev/null",
-      "status": "passed",
-      "evidence": "String-literal-only stable marker negative fixture terminal outcome JSON syntax checked."
+      "evidence": "Proof frontier JSON syntax checked after the v117 frontier refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after regenerating the v116 verification record."
+      "evidence": "Verification JSON syntax checked after regenerating the v117 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked after regenerating the v116 manifest."
+      "evidence": "Manifest JSON syntax checked after regenerating the v117 manifest."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v116 audit, fixture, documentation, frontier, terminal outcome, and evidence update."
+      "evidence": "Whitespace check passed after the v117 Lean, audit, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: pre-terminal audit checks pass, including v116 marker stripping fixtures, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because the stable infinity-category product proof remains incomplete."
+      "evidence": "Expected non-product gate after manifest refresh: pre-terminal audit checks pass, including v117 pushout wrapper declarations, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because the stable infinity-category product proof remains incomplete."
     }
   ]
 }

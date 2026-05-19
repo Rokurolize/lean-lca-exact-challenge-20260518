@@ -485,6 +485,22 @@ lemma pushoutCokernelMap_algebraic_exact (hS : strictShortExact S) (a : S.X₁ �
   rw [hdiff]
   exact AddSubgroup.neg_mem _ ⟨x, rfl⟩
 
+lemma pushoutCokernelMap_open_surjection (hS : strictShortExact S) (a : S.X₁ ⟶ Y)
+    (hN : IsClosed (pushoutSubgroup a : Set (S.X₂ × Y))) :
+    IsOpenMap (pushoutCokernelMap a hN : pushoutObj a hN → S.X₃) ∧
+      Function.Surjective (pushoutCokernelMap a hN : pushoutObj a hN → S.X₃) :=
+  ⟨pushoutCokernelMap_openMap hS a hN, pushoutCokernelMap_surjective hS a hN⟩
+
+lemma pushoutCokernelMap_kernel_iff_range_inr (hS : strictShortExact S) (a : S.X₁ ⟶ Y)
+    (hN : IsClosed (pushoutSubgroup a : Set (S.X₂ × Y))) (q : pushoutObj a hN) :
+    pushoutCokernelMap a hN q = 0 ↔ ∃ y : Y, pushoutInr a hN y = q := by
+  constructor
+  · exact pushoutCokernelMap_algebraic_exact hS a hN q
+  · rintro ⟨y, rfl⟩
+    change (pushoutInr a hN ≫ pushoutCokernelMap a hN) y = 0
+    rw [pushoutInr_cokernel]
+    rfl
+
 lemma strictShortExact_pushout (hS : strictShortExact S) (a : S.X₁ ⟶ Y) :
     strictShortExact
       (ShortComplex.mk
@@ -494,7 +510,9 @@ lemma strictShortExact_pushout (hS : strictShortExact S) (a : S.X₁ ⟶ Y) :
   closed_inclusion := pushoutInr_closedEmbedding hS a (pushoutSubgroup_closed hS a)
   open_map := pushoutCokernelMap_openMap hS a (pushoutSubgroup_closed hS a)
   surjective := pushoutCokernelMap_surjective hS a (pushoutSubgroup_closed hS a)
-  algebraic_exact := pushoutCokernelMap_algebraic_exact hS a (pushoutSubgroup_closed hS a)
+  algebraic_exact := by
+    intro q hq
+    exact (pushoutCokernelMap_kernel_iff_range_inr hS a (pushoutSubgroup_closed hS a) q).mp hq
 
 noncomputable def pushoutIsoPushoutObj (hS : strictShortExact S) (a : S.X₁ ⟶ Y)
     [HasPushout S.f a] :
