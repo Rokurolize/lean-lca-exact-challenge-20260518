@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v155-provider-surfaces-iff-realization",
-  "generated_utc": "2026-05-20T03:45:00Z",
-  "source_tree_hash": "70f29358ce0a0c1e0ce8c5e0fcf8e9fa779b5a82c9b7c990369d5ab07bc0c3c8",
-  "summary": "v155 proves all three weak-endpoint provider surfaces are equivalent to bounded strict realization; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v156-stable-provider-map-rejection",
+  "generated_utc": "2026-05-20T04:05:00Z",
+  "source_tree_hash": "c8213d95ad43cb6ab284bff31e65fceab2c6fa0cd380d29443c3dfdd6ba71126",
+  "summary": "v156 proves the current stable certificate provider map cannot supply all four required stable fields; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v155 provider-realization equivalence audit."
+      "evidence": "Full lake build passed after the v156 stable-provider rejection audit."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,7 +27,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v155 audit edit."
+      "evidence": "Forbidden-token audit passed after the v156 audit edit."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
@@ -37,7 +37,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess audit still passes; no product-success claim was added."
+      "evidence": "ProductSuccess audit passed after the v156 audit edit; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -57,7 +57,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v155 audit/docs changes."
+      "evidence": "Whitespace diff check passed after the v156 audit/docs changes."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -82,7 +82,7 @@
     {
       "command": "lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean",
       "status": "passed",
-      "evidence": "Focused w124 field-provider audit passed in the parent target."
+      "evidence": "Focused w124 field-provider audit passed after adding allFieldsSupplied rejection and per-field not-supplied status theorems."
     },
     {
       "command": "lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean",
@@ -143,7 +143,13 @@
     "reject_unconditional_endpointHomotopyEquiv_provider_w125",
     "boundedWeakEndpointToSelected_iff_realization",
     "boundedWeakEndpointToCochainIso_iff_realization",
-    "boundedWeakEndpointToCochainDataProvider_iff_realization"
+    "boundedWeakEndpointToCochainDataProvider_iff_realization",
+    "StableCertificateFieldProviderScoutW124.allFieldsSupplied",
+    "StableCertificateFieldProviderScoutW124.currentProviderMap_not_allFieldsSupplied",
+    "StableCertificateFieldProviderScoutW124.finiteLimits_not_supplied_status",
+    "StableCertificateFieldProviderScoutW124.finiteColimits_not_supplied_status",
+    "StableCertificateFieldProviderScoutW124.suspensionLoop_not_supplied_status",
+    "StableCertificateFieldProviderScoutW124.pushoutPullback_not_supplied_status"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -153,6 +159,7 @@
     "Stable infinity-category certificate still lacks concrete finite-limit, finite-colimit, suspension/loop, and pushout/pullback projections.",
     "boundedWeakEndpointPayloadToCochainDataStrictification remains unproved.",
     "The weak-endpoint minimizer is now equivalent to bounded strict realization, so proving the minimizer still requires the bounded strict-realization theorem itself.",
-    "Stable certificate provider map now records finite limits and finite colimits as missing, and suspension-loop plus pushout-pullback as ordinary-only."
+    "Stable certificate provider map now records finite limits and finite colimits as missing, and suspension-loop plus pushout-pullback as ordinary-only.",
+    "The current stable certificate provider map now formally rejects all-fields-supplied status and each required field remains not supplied."
   ]
 }

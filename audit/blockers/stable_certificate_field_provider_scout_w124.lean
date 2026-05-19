@@ -97,6 +97,43 @@ theorem suspensionLoop_only_ordinary :
 theorem pushoutPullback_only_ordinary :
     currentProviderMap.pushoutPullbackCompatibility.status = ProviderStatus.ordinaryOnly := rfl
 
+/-- A provider map has all four stable certificate fields only when every row is supplied. -/
+def allFieldsSupplied (m : StableFieldProviderMap) : Prop :=
+  m.finiteLimits.status = ProviderStatus.supplied ∧
+    m.finiteColimits.status = ProviderStatus.supplied ∧
+    m.suspensionLoopEquivalence.status = ProviderStatus.supplied ∧
+    m.pushoutPullbackCompatibility.status = ProviderStatus.supplied
+
+/-- The current map is not a stable certificate provider: finite limits are still missing. -/
+theorem currentProviderMap_not_allFieldsSupplied :
+    ¬ allFieldsSupplied currentProviderMap := by
+  intro h
+  cases h.1
+
+/-- The current finite-limit row is not a supplied stable certificate field. -/
+theorem finiteLimits_not_supplied_status :
+    currentProviderMap.finiteLimits.status ≠ ProviderStatus.supplied := by
+  intro h
+  cases h
+
+/-- The current finite-colimit row is not a supplied stable certificate field. -/
+theorem finiteColimits_not_supplied_status :
+    currentProviderMap.finiteColimits.status ≠ ProviderStatus.supplied := by
+  intro h
+  cases h
+
+/-- The current suspension/loop row is ordinary-only, not a supplied stable field. -/
+theorem suspensionLoop_not_supplied_status :
+    currentProviderMap.suspensionLoopEquivalence.status ≠ ProviderStatus.supplied := by
+  intro h
+  cases h
+
+/-- The current pushout/pullback row is ordinary-only, not a supplied stable field. -/
+theorem pushoutPullback_not_supplied_status :
+    currentProviderMap.pushoutPullbackCompatibility.status ≠ ProviderStatus.supplied := by
+  intro h
+  cases h
+
 section Checks
 
 #check Dbounded.infinityCategory
@@ -117,6 +154,12 @@ section Checks
 #check finiteColimits_not_supplied
 #check suspensionLoop_only_ordinary
 #check pushoutPullback_only_ordinary
+#check allFieldsSupplied
+#check currentProviderMap_not_allFieldsSupplied
+#check finiteLimits_not_supplied_status
+#check finiteColimits_not_supplied_status
+#check suspensionLoop_not_supplied_status
+#check pushoutPullback_not_supplied_status
 
 end Checks
 
