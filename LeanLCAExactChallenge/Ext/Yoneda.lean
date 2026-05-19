@@ -803,6 +803,27 @@ noncomputable def shortExactExtensionPushoutData
       (pushoutIsColimit (S := e.shortComplex) a
         (pushoutSubgroup_closed e.conflation a))
 
+/-- Canonical pushout along the identity is the original one-fold extension. -/
+noncomputable def shortExactExtensionPushoutIdData
+    {X Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) :
+    ShortExactExtension.PushoutData e (𝟙 Y) e where
+  middleMap := 𝟙 e.middle
+  i_map := by simp
+  map_p := by simp
+  isPushout := by
+    simpa using (IsPushout.of_id_snd (f := e.i))
+
+/-- Canonical pushout along the identity is isomorphic to the original one-fold extension. -/
+noncomputable def shortExactExtensionPushoutIdIso
+    {X Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) :
+    ShortExactExtension.Iso (shortExactExtensionPushout e (𝟙 Y)) e :=
+  ShortExactExtension.PushoutData.iso
+    (shortExactExtensionPushoutData e (𝟙 Y))
+    (shortExactExtensionPushoutIdData e)
+    (ShortExactExtension.Iso.refl e)
+
 /-- Canonical pushout of one-fold extensions preserves isomorphism of the input extension. -/
 noncomputable def shortExactExtensionPushoutIso
     {X Y Y' : MetrizableLCA.{u}} (a : Y ⟶ Y')
@@ -2185,6 +2206,15 @@ noncomputable def yonedaExtensionPushoutTailData
     (fun {_ _} e g => shortExactExtensionPushoutData e g)
     a
 
+/-- Pushing out a one-fold MetrizableLCA extension along the identity does not change it. -/
+noncomputable def yonedaExtensionPushoutTailIdRel
+    {X Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) :
+    YonedaExtension.Rel (C := MetrizableLCA.{u})
+      (shortExactExtensionPushout e (𝟙 Y)).toYonedaExtension e.toYonedaExtension :=
+  YonedaExtension.Rel.cons (shortExactExtensionPushoutIdIso e)
+    (YonedaExtension.Rel.ofHom rfl)
+
 /-- Canonical MetrizableLCA tail pushout preserves a right-split marker. -/
 noncomputable def yonedaExtensionPushoutTailRightSplitData
     {X Y Y' : MetrizableLCA.{u}} (f : Y ⟶ Y') {n : ℕ}
@@ -3083,6 +3113,16 @@ theorem ofExtension_pullbackHeadId_eq
       YonedaExt.ofExtension (C := MetrizableLCA.{u}) a :=
   YonedaExt.ofExtension_eq_ofExtension_of_rel
     (MetrizableLCA.yonedaExtensionPullbackHeadIdRel a)
+
+/-- Pushing out a one-fold MetrizableLCA extension along the identity preserves its Ext class. -/
+theorem ofExtension_pushoutTailId_eq
+    {X Y : MetrizableLCA.{u}}
+    (e : ShortExactExtension (C := MetrizableLCA.{u}) X Y) :
+    YonedaExt.ofExtension (C := MetrizableLCA.{u})
+        (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)).toYonedaExtension =
+      YonedaExt.ofExtension (C := MetrizableLCA.{u}) e.toYonedaExtension :=
+  YonedaExt.ofExtension_eq_ofExtension_of_rel
+    (MetrizableLCA.yonedaExtensionPushoutTailIdRel e)
 
 /-- Head pullback sends a MetrizableLCA right-split chain to zero in Ext. -/
 theorem pullbackHeadOfExtension_eq_zero_of_metrizable_rightSplitData

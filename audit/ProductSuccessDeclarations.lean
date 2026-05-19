@@ -312,6 +312,13 @@ noncomputable example (X Y : MetrizableLCA) {n : ℕ}
       YonedaExt.ofExtension (C := MetrizableLCA) e :=
   YonedaExt.ofExtension_pullbackHeadId_eq e
 
+noncomputable example (X Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) :
+    YonedaExt.ofExtension
+        (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)).toYonedaExtension =
+      YonedaExt.ofExtension e.toYonedaExtension :=
+  YonedaExt.ofExtension_pushoutTailId_eq e
+
 noncomputable example (X X' Y : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : X' ⟶ X) :
     YonedaExt.pullbackHeadOfExtensionWith (C := MetrizableLCA) a
@@ -538,6 +545,16 @@ noncomputable example (X Y Y' : MetrizableLCA)
     ShortExactExtension.PushoutData e a (MetrizableLCA.shortExactExtensionPushout e a) :=
   MetrizableLCA.shortExactExtensionPushoutData e a
 
+noncomputable example (X Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) :
+    ShortExactExtension.PushoutData e (𝟙 Y) e :=
+  MetrizableLCA.shortExactExtensionPushoutIdData e
+
+noncomputable example (X Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) :
+    ShortExactExtension.Iso (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)) e :=
+  MetrizableLCA.shortExactExtensionPushoutIdIso e
+
 noncomputable example (X Y Y' : MetrizableLCA)
     {e e' : ShortExactExtension (C := MetrizableLCA) X Y}
     (a : Y ⟶ Y') (h : ShortExactExtension.Iso e e') :
@@ -592,6 +609,13 @@ noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
       (YonedaExtension.composeTailHom f a)
       (MetrizableLCA.yonedaExtensionPushoutTail f a) :=
   MetrizableLCA.yonedaExtensionPushoutTailData f a
+
+noncomputable example (X Y : MetrizableLCA)
+    (e : ShortExactExtension (C := MetrizableLCA) X Y) :
+    YonedaExtension.Rel
+      (MetrizableLCA.shortExactExtensionPushout e (𝟙 Y)).toYonedaExtension
+      e.toYonedaExtension :=
+  MetrizableLCA.yonedaExtensionPushoutTailIdRel e
 
 noncomputable example (X Y Y' : MetrizableLCA) {n : ℕ}
     {a : YonedaExtension (C := MetrizableLCA) X Y (n + 1)}
