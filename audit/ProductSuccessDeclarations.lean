@@ -469,10 +469,16 @@ example (X X' Y Z : MetrizableLCA) {n : ℕ}
   (C := MetrizableLCA))
 #check (YonedaExt.leftProductByYonedaExtensionWith_eq_zero_of_splitFactor
   (C := MetrizableLCA))
+#check (YonedaExtension.BaerSumData.spliceLeftWith (C := MetrizableLCA))
+#check (YonedaExt.leftProductByYonedaExtensionWith_ofExtension_eq_add_of_baerLeftChain
+  (C := MetrizableLCA))
+#check (YonedaExt.leftProductByYonedaExtensionWith_eq_add_of_baerLeftChain
+  (C := MetrizableLCA))
 #check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData
 #check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_ofExtension
 #check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_of_rel
 #check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_zero_of_splitFactor
+#check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_add_of_baerLeftChain
 
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :
