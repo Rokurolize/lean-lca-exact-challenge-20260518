@@ -1497,6 +1497,7 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check exactAcyclicHomotopyObject_trW_quotient_map_iff_exactAcyclic_mappingCone
 #check (exactAcyclicHomotopyIsoClosure_trW_quotient_map_of_exactAcyclic_mappingCone
   (C := MetrizableLCA))
+#check exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_mappingCone
 #check exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mappingCone
 #check (boundedExactWeakEquivalence_shift_iff (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
@@ -1518,6 +1519,7 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
   (C := MetrizableLCA))
 #check (boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone
   (C := MetrizableLCA))
+#check boundedHomotopyExactWeakEquivalence_iff_mappingCone_isoClosure
 #check (boundedExactWeakEquivalence_of_mappingCone_splittings (C := MetrizableLCA))
 #check (boundedHomotopyExactWeakEquivalence_of_mappingCone_splittings (C := MetrizableLCA))
 #check boundedExactWeakEquivalence_eq_boundedHomotopyExactWeakEquivalence_of_isoClosed

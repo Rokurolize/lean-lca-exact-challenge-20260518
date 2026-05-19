@@ -355,6 +355,21 @@ theorem exactAcyclicHomotopyIsoClosure_trW_quotient_map_of_exactAcyclic_mappingC
   rw [exactAcyclicHomotopyIsoClosure_trW C]
   exact exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone C f hf
 
+/-- For the isomorphism-closed exact-acyclic predicate, the `trW` condition on a quotient
+map is equivalent to the mapping cone object lying in that isomorphism closure. This does
+not require exact acyclicity itself to be homotopy-category isomorphism invariant. -/
+theorem exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_mappingCone
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {K L : CochainComplex C ℤ} (f : K ⟶ L) :
+    (exactAcyclicHomotopyIsoClosure C).trW
+        ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).map f) ↔
+      exactAcyclicHomotopyIsoClosure C
+        ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj
+          (CochainComplex.mappingCone f)) := by
+  exact ((exactAcyclicHomotopyIsoClosure C).trW_iff_of_distinguished
+    (CochainComplex.mappingCone.triangleh f)
+    (HomotopyCategory.mappingCone_triangleh_distinguished f))
+
 /-- Under homotopy-category isomorphism invariance, the isomorphism-closed `trW` condition
 on the quotient of a cochain map is still equivalent to exact acyclicity of its mapping
 cone. -/
@@ -515,6 +530,19 @@ theorem boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone
       (CochainComplex.mappingCone ((BoundedComplexCategory.ι C).map f))) :
     boundedHomotopyExactWeakEquivalence C f :=
   boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence C f hf
+
+/-- A bounded morphism is a homotopy/Verdier weak equivalence exactly when its mapping cone,
+viewed in the homotopy category, lies in the isomorphism closure of the exact-acyclic
+objects. -/
+theorem boundedHomotopyExactWeakEquivalence_iff_mappingCone_isoClosure
+    [HasZeroObject C] [HasBinaryBiproducts C] {K L : BoundedComplexCategory C} (f : K ⟶ L) :
+    boundedHomotopyExactWeakEquivalence C f ↔
+      exactAcyclicHomotopyIsoClosure C
+        ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj
+          (CochainComplex.mappingCone ((BoundedComplexCategory.ι C).map f))) := by
+  dsimp [boundedHomotopyExactWeakEquivalence, BoundedComplexCategory.homotopyQuotient]
+  exact exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_mappingCone C
+    ((BoundedComplexCategory.ι C).map f)
 
 /-- A bounded morphism whose mapping cone is degreewise split is a direct exact weak
 equivalence. -/

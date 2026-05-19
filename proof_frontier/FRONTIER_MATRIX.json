@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T13:08:00Z",
+  "generated_utc": "2026-05-19T13:42:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v89 edits stay in the parent process. A separate old w03-iso-closure-triangle-extension worker is visible in another worktree with no result file and WebSocket 403 reconnect evidence, so the parent did not duplicate that frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v90 edits stay in the parent process. A separate old w05-iso-closure-localizer-witness worker is visible in another worktree with no result file and WebSocket 403 reconnect evidence, so the parent did not duplicate that frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -442,7 +442,9 @@
         "bounded mapping cone closure",
         "localized equivalence under exact-acyclic homotopy iso-invariance",
         "bounded mapping cone component extraction",
-        "exact cone trW criterion"
+        "exact cone trW criterion",
+        "iso-closure cone-membership criterion",
+        "homotopy weak equivalence iff cone object in exactAcyclicHomotopyIsoClosure"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -456,7 +458,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v89 adds boundedExactWeakEquivalence_iff_boundedHomotopyExactWeakEquivalence_of_isoClosed and boundedHomotopyExactWeakEquivalence_iff_exactAcyclic_mappingCone_of_isoClosed. Under exact-acyclic homotopy-object iso-closedness, each bounded morphism is a direct bounded weak equivalence iff it is a homotopy/Verdier bounded weak equivalence, and the homotopy/Verdier weak-equivalence predicate is iff to mapping-cone exact acyclicity. This makes the v88 cone-detection API directly usable on bounded morphisms but does not prove exact-acyclic homotopy iso-invariance, the iso-closure IsTriangulatedClosed₂ condition, transfer of ordinary triangulated structure to Dbounded, or stable infinity-category structure.",
+      "merge_blocker": "v90 adds exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_mappingCone and boundedHomotopyExactWeakEquivalence_iff_mappingCone_isoClosure. A homotopy/Verdier bounded weak equivalence is now iff to its mapping cone object lying in exactAcyclicHomotopyIsoClosure, without assuming exactAcyclicHomotopyObject is iso-closed. This sharpens the frontier to the iso-closure IsTriangulatedClosed₂ condition, transfer of ordinary triangulated structure to Dbounded, and stable infinity-category structure; it does not prove those remaining pieces.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -546,8 +548,10 @@
         "boundedHomotopyObject_of_mappingCone_left",
         "exactAcyclicHomotopyObject_trW_quotient_map_iff_exactAcyclic_mappingCone",
         "exactAcyclicHomotopyIsoClosure_trW_quotient_map_of_exactAcyclic_mappingCone",
+        "exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_mappingCone",
         "exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_exactAcyclic_mappingCone",
         "boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone",
+        "boundedHomotopyExactWeakEquivalence_iff_mappingCone_isoClosure",
         "boundedExactWeakEquivalence_iff_boundedHomotopyExactWeakEquivalence_of_isoClosed",
         "boundedHomotopyExactWeakEquivalence_iff_exactAcyclic_mappingCone_of_isoClosed"
       ],
@@ -555,7 +559,9 @@
         "split short complexes",
         "split mapping cone weak-equivalence criteria",
         "bounded mapping cone component extraction",
-        "exact cone trW criterion"
+        "exact cone trW criterion",
+        "iso-closure cone-membership criterion",
+        "bounded homotopy weak equivalence cone-membership iff"
       ]
     },
     {
@@ -622,7 +628,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v89 evidence records bounded direct/homotopy/cone iff wrappers while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v90 evidence records iso-closure cone-membership iff wrappers while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []
