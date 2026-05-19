@@ -1839,6 +1839,92 @@ def SplitFactorData.consLeftMap :
   | _, _, _, _ + 1, _, _, cons e h, a =>
       YonedaExtension.SplitFactorData.cons e (h.consLeftMap a)
 
+/-- Termwise isomorphism relation for positive chains. -/
+inductive Rel :
+    {X Y : C} → {n : ℕ} → PositiveChain X Y n → PositiveChain X Y n → Prop
+  | one {X Y : C} {e e' : ShortExactExtension X Y}
+      (h : ShortExactExtension.Iso e e') :
+      Rel (one e) (one e')
+  | cons {X Y Z : C} {n : ℕ} {e e' : ShortExactExtension X Z}
+      {tail tail' : PositiveChain Z Y n}
+      (he : ShortExactExtension.Iso e e') (ht : Rel tail tail') :
+      Rel (cons e tail) (cons e' tail')
+
+/-- Termwise-related positive chains give termwise-related Yoneda chains. -/
+def Rel.toYonedaExtension :
+    {X Y : C} → {n : ℕ} → {p q : PositiveChain X Y n} →
+      Rel p q → YonedaExtension.Rel p.toYonedaExtension q.toYonedaExtension
+  | _, _, 0, _, _, Rel.one h => by
+      simpa [PositiveChain.toYonedaExtension, ShortExactExtension.toYonedaExtension] using
+        YonedaExtension.Rel.cons h (YonedaExtension.Rel.ofHom rfl)
+  | _, _, _ + 1, _, _, Rel.cons he ht => by
+      simpa [PositiveChain.toYonedaExtension] using
+        YonedaExtension.Rel.cons he ht.toYonedaExtension
+
+/-- Termwise-related positive chains remain related after left splicing. -/
+def Rel.consLeftMap :
+    {X Y Z : C} → {m n : ℕ} → {p q : PositiveChain X Y m} →
+      Rel p q → (a : YonedaExtension Y Z (n + 1)) →
+        YonedaExtension.Rel (p.consLeftMap a) (q.consLeftMap a)
+  | _, _, _, 0, _, _, _, Rel.one h, a => by
+      simpa [PositiveChain.consLeftMap] using
+        YonedaExtension.Rel.cons h (YonedaExtension.Rel.refl a)
+  | _, _, _, _ + 1, _, _, _, Rel.cons he ht, a => by
+      simpa [PositiveChain.consLeftMap, Nat.add_assoc] using
+        YonedaExtension.Rel.cons he (ht.consLeftMap a)
+
+/-- Witnessed Baer sums of positive chains. -/
+inductive BaerSumData :
+    {X Y : C} → {n : ℕ} →
+      PositiveChain X Y n →
+      PositiveChain X Y n →
+      PositiveChain X Y n → Type (max u v)
+  | one {X Y : C} [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+      {e₁ e₂ sum : ShortExactExtension X Y}
+      (h : ShortExactExtension.BaerSumData e₁ e₂ sum) :
+      BaerSumData (one e₁) (one e₂) (one sum)
+  | head {X Y Z : C} {n : ℕ} [HasBinaryBiproduct X X] [HasBinaryBiproduct Y Y]
+      {e₁ e₂ sum : ShortExactExtension X Y}
+      (h : ShortExactExtension.BaerSumData e₁ e₂ sum)
+      (tail : PositiveChain Y Z n) :
+      BaerSumData (cons e₁ tail) (cons e₂ tail) (cons sum tail)
+  | cons {X Y Z : C} {n : ℕ} (e : ShortExactExtension X Z)
+      {a b sum : PositiveChain Z Y n}
+      (h : BaerSumData a b sum) :
+      BaerSumData (cons e a) (cons e b) (cons e sum)
+
+/-- Positive-chain Baer sums give Yoneda-chain Baer sums. -/
+def BaerSumData.toYonedaExtension :
+    {X Y : C} → {n : ℕ} → {a b sum : PositiveChain X Y n} →
+      BaerSumData a b sum →
+        YonedaExtension.BaerSumData a.toYonedaExtension b.toYonedaExtension
+          sum.toYonedaExtension
+  | _, _, _, _, _, _, BaerSumData.one h => by
+      simpa [PositiveChain.toYonedaExtension, ShortExactExtension.toYonedaExtension] using
+        YonedaExtension.BaerSumData.one h
+  | _, _, _, _, _, _, BaerSumData.head h tail => by
+      simpa [PositiveChain.toYonedaExtension] using
+        YonedaExtension.BaerSumData.head h tail.toYonedaExtension
+  | _, _, _, _, _, _, BaerSumData.cons e h => by
+      simpa [PositiveChain.toYonedaExtension] using
+        YonedaExtension.BaerSumData.cons e h.toYonedaExtension
+
+/-- Positive-chain Baer sums remain Baer sums after left splicing. -/
+def BaerSumData.consLeftMap :
+    {X Y Z : C} → {m n : ℕ} → {a b sum : PositiveChain X Y m} →
+      BaerSumData a b sum → (tail : YonedaExtension Y Z (n + 1)) →
+        YonedaExtension.BaerSumData (a.consLeftMap tail) (b.consLeftMap tail)
+          (sum.consLeftMap tail)
+  | _, _, _, 0, _, _, _, _, BaerSumData.one h, tail => by
+      simpa [PositiveChain.consLeftMap] using
+        YonedaExtension.BaerSumData.head h tail
+  | _, _, _, _ + 1, _, _, _, _, BaerSumData.head h p, tail => by
+      simpa [PositiveChain.consLeftMap, Nat.add_assoc] using
+        YonedaExtension.BaerSumData.head h (p.consLeftMap tail)
+  | _, _, _, _ + 1, _, _, _, _, BaerSumData.cons e h, tail => by
+      simpa [PositiveChain.consLeftMap, Nat.add_assoc] using
+        YonedaExtension.BaerSumData.cons e (h.consLeftMap tail)
+
 end PositiveChain
 
 end YonedaExtension
@@ -3477,6 +3563,48 @@ theorem leftProductByPositiveChain_ofExtension {m : ℕ}
           PositiveYonedaExt X Z (n + (m + 1))) := by
           rw [positiveChainLeftFreeHom_of]
 
+/-- Termwise-related positive left chains give the same spliced class on generators. -/
+theorem leftProductByPositiveChain_ofExtension_eq_of_rel {m : ℕ}
+    {p q : YonedaExtension.PositiveChain X Y m}
+    (h : YonedaExtension.PositiveChain.Rel p q)
+    (a : YonedaExtension Y Z (n + 1)) :
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) =
+      leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) q n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) := by
+  rw [leftProductByPositiveChain_ofExtension, leftProductByPositiveChain_ofExtension]
+  exact ofExtension_eq_ofExtension_of_rel (h.consLeftMap a)
+
+/-- A positive-chain Baer sum in the left factor is additive after splicing a generator. -/
+theorem leftProductByPositiveChain_ofExtension_eq_add_of_baerLeftChain {m : ℕ}
+    {p₁ p₂ sum : YonedaExtension.PositiveChain X Y m}
+    (h : YonedaExtension.PositiveChain.BaerSumData p₁ p₂ sum)
+    (a : YonedaExtension Y Z (n + 1)) :
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) sum n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) =
+      leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p₁ n
+          (ofExtension (X := Y) (Y := Z) (n := n) a) +
+        leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p₂ n
+          (ofExtension (X := Y) (Y := Z) (n := n) a) := by
+  rw [leftProductByPositiveChain_ofExtension, leftProductByPositiveChain_ofExtension,
+    leftProductByPositiveChain_ofExtension]
+  exact ofExtension_eq_add_of_baerChain (h.consLeftMap a)
+
+/-- The public `baer_sum` API agrees with positive-chain left-factor additivity. -/
+theorem leftProductByPositiveChain_baer_sum_ofExtension_eq_of_baerLeftChain {m : ℕ}
+    {p₁ p₂ sum : YonedaExtension.PositiveChain X Y m}
+    (h : YonedaExtension.PositiveChain.BaerSumData p₁ p₂ sum)
+    (a : YonedaExtension Y Z (n + 1)) :
+    baer_sum
+        (leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p₁ n
+          (ofExtension (X := Y) (Y := Z) (n := n) a))
+        (leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p₂ n
+          (ofExtension (X := Y) (Y := Z) (n := n) a)) =
+      leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) sum n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) := by
+  dsimp [baer_sum]
+  exact (leftProductByPositiveChain_ofExtension_eq_add_of_baerLeftChain h a).symm
+
 /-- A fixed positive left chain with a split factor gives zero after splicing. -/
 theorem leftProductByPositiveChain_ofExtension_eq_zero_of_splitFactor {m : ℕ}
     {p : YonedaExtension.PositiveChain X Y m}
@@ -3558,6 +3686,21 @@ theorem leftProductByPositiveChain_eq_zero_of_splitFactor {m : ℕ}
       (ofExtension (X := Y) (Y := Z) (n := n) a) = 0
   exact leftProductByPositiveChain_ofExtension_eq_zero_of_splitFactor h a
 
+/-- Termwise-related positive left chains induce the same homomorphism. -/
+theorem leftProductByPositiveChain_eq_of_rel {m : ℕ}
+    {p q : YonedaExtension.PositiveChain X Y m}
+    (h : YonedaExtension.PositiveChain.Rel p q) (n : ℕ) :
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n =
+      leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) q n := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro a
+  change leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p n
+      (ofExtension (X := Y) (Y := Z) (n := n) a) =
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) q n
+      (ofExtension (X := Y) (Y := Z) (n := n) a)
+  exact leftProductByPositiveChain_ofExtension_eq_of_rel h a
+
 /-- Isomorphic heads of positive left chains induce the same homomorphism on right Ext. -/
 theorem leftProductByPositiveChain_cons_eq_of_isoHead
     {W : C} {m : ℕ} {e e' : ShortExactExtension X Y}
@@ -3576,6 +3719,24 @@ theorem leftProductByPositiveChain_cons_eq_of_isoHead
       (YonedaExtension.PositiveChain.cons e' p) n
       (ofExtension (X := W) (Y := Z) (n := n) a)
   exact leftProductByPositiveChain_cons_ofExtension_eq_of_isoHead h p a
+
+/-- A positive-chain Baer sum in the left factor is additive as a homomorphism. -/
+theorem leftProductByPositiveChain_eq_add_of_baerLeftChain {m : ℕ}
+    {p₁ p₂ sum : YonedaExtension.PositiveChain X Y m}
+    (h : YonedaExtension.PositiveChain.BaerSumData p₁ p₂ sum) (n : ℕ) :
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) sum n =
+      leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p₁ n +
+        leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p₂ n := by
+  apply QuotientAddGroup.addMonoidHom_ext
+  apply FreeAbelianGroup.lift_ext
+  intro a
+  change leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) sum n
+      (ofExtension (X := Y) (Y := Z) (n := n) a) =
+    leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p₁ n
+        (ofExtension (X := Y) (Y := Z) (n := n) a) +
+      leftProductByPositiveChain (X := X) (Y := Y) (Z := Z) p₂ n
+        (ofExtension (X := Y) (Y := Z) (n := n) a)
+  exact leftProductByPositiveChain_ofExtension_eq_add_of_baerLeftChain h a
 
 /-- A Baer relation in the head of a positive left chain is additive as a homomorphism. -/
 theorem leftProductByPositiveChain_cons_eq_add_of_baerHead

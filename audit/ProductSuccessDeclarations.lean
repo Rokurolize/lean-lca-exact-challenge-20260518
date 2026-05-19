@@ -1127,6 +1127,20 @@ example (X Y Z : MetrizableLCA) {m n : ℕ}
           (C := MetrizableLCA) (X := X) (Y := Y) (Z := Z) p n b) :=
   YonedaExt.leftProductByPositiveChain_baer_sum p n a b
 
+#check (YonedaExtension.PositiveChain.Rel (C := MetrizableLCA))
+#check (YonedaExtension.PositiveChain.Rel.toYonedaExtension (C := MetrizableLCA))
+#check (YonedaExtension.PositiveChain.Rel.consLeftMap (C := MetrizableLCA))
+#check (YonedaExtension.PositiveChain.BaerSumData (C := MetrizableLCA))
+#check (YonedaExtension.PositiveChain.BaerSumData.toYonedaExtension (C := MetrizableLCA))
+#check (YonedaExtension.PositiveChain.BaerSumData.consLeftMap (C := MetrizableLCA))
+#check (YonedaExt.leftProductByPositiveChain_ofExtension_eq_of_rel (C := MetrizableLCA))
+#check (YonedaExt.leftProductByPositiveChain_ofExtension_eq_add_of_baerLeftChain
+  (C := MetrizableLCA))
+#check (YonedaExt.leftProductByPositiveChain_baer_sum_ofExtension_eq_of_baerLeftChain
+  (C := MetrizableLCA))
+#check (YonedaExt.leftProductByPositiveChain_eq_of_rel (C := MetrizableLCA))
+#check (YonedaExt.leftProductByPositiveChain_eq_add_of_baerLeftChain (C := MetrizableLCA))
+
 noncomputable example (X Y : MetrizableLCA) :
     AddCommGroup (YonedaExt (C := MetrizableLCA) X Y 1) := by
   infer_instance

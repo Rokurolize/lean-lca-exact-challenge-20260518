@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T01:36:18Z",
+  "generated_utc": "2026-05-19T01:45:41Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -39,7 +39,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Fixed left one-fold/head split, iso, and Baer relations are now homomorphism equalities on the right Ext quotient; left quotient descent across all remaining left-side relation generators remains incomplete.",
+      "merge_blocker": "Fixed one-fold and positive-chain left actions now respect split, termwise iso, recursive PositiveChain.Rel, head Baer, and recursive PositiveChain.BaerSumData as homomorphism equalities on the right Ext quotient; full left quotient descent for arbitrary left Ext classes, especially terminal degree-zero hom tails requiring head pullback, remains incomplete.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -52,7 +52,18 @@
         "YonedaExt.leftProductByPositiveChain_baer_sum",
         "YonedaExt.leftProductByPositiveChain_eq_zero_of_splitFactor",
         "YonedaExt.leftProductByPositiveChain_cons_eq_of_isoHead",
-        "YonedaExt.leftProductByPositiveChain_cons_eq_add_of_baerHead"
+        "YonedaExt.leftProductByPositiveChain_cons_eq_add_of_baerHead",
+        "YonedaExtension.PositiveChain.Rel",
+        "YonedaExtension.PositiveChain.Rel.toYonedaExtension",
+        "YonedaExtension.PositiveChain.Rel.consLeftMap",
+        "YonedaExtension.PositiveChain.BaerSumData",
+        "YonedaExtension.PositiveChain.BaerSumData.toYonedaExtension",
+        "YonedaExtension.PositiveChain.BaerSumData.consLeftMap",
+        "YonedaExt.leftProductByPositiveChain_ofExtension_eq_of_rel",
+        "YonedaExt.leftProductByPositiveChain_ofExtension_eq_add_of_baerLeftChain",
+        "YonedaExt.leftProductByPositiveChain_baer_sum_ofExtension_eq_of_baerLeftChain",
+        "YonedaExt.leftProductByPositiveChain_eq_of_rel",
+        "YonedaExt.leftProductByPositiveChain_eq_add_of_baerLeftChain"
       ]
     },
     {
