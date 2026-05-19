@@ -12,6 +12,8 @@ set_option autoImplicit false
 
 #check LeanLCAExactChallenge.MetrizableLCA
 #check LeanLCAExactChallenge.MetrizableLCA.Hom
+#check LeanLCAExactChallenge.MetrizableLCA.zeroObj
+#check LeanLCAExactChallenge.MetrizableLCA.zeroObj_isZero
 #check LeanLCAExactChallenge.MetrizableLCA.biprodObj
 #check LeanLCAExactChallenge.MetrizableLCA.biprodMap
 #check LeanLCAExactChallenge.MetrizableLCA.binaryBiproductData
@@ -347,8 +349,10 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.boundedCochainComplex
 #check LeanLCAExactChallenge.BoundedComplexCategory
 #check LeanLCAExactChallenge.BoundedComplexCategory.ι
+#check LeanLCAExactChallenge.boundedCochainComplex_containsZero
 #check LeanLCAExactChallenge.boundedCochainComplex_isClosedUnderIsomorphisms
 #check LeanLCAExactChallenge.boundedCochainComplex_isStableUnderShift
+#check LeanLCAExactChallenge.boundedComplexCategory_hasZeroObject
 #check LeanLCAExactChallenge.exactAcyclic
 #check LeanLCAExactChallenge.exactAcyclic_of_iso
 #check LeanLCAExactChallenge.exactAcyclic_shift
@@ -363,6 +367,10 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.BoundedDerivedInfinityCategory
 #check LeanLCAExactChallenge.Dbounded
 #check LeanLCAExactChallenge.Dbounded.localization
+#check LeanLCAExactChallenge.Dbounded.preadditiveOfHasLeftCalculusOfFractions
+#check LeanLCAExactChallenge.Dbounded.localization_additiveOfHasLeftCalculusOfFractions
+#check LeanLCAExactChallenge.Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions
+#check LeanLCAExactChallenge.Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions
 #check LeanLCAExactChallenge.Dbounded.of
 #check LeanLCAExactChallenge.Dbounded.infinityCategory
 #check LeanLCAExactChallenge.Dbounded.infinityNerve

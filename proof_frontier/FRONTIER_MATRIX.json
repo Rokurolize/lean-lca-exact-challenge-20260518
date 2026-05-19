@@ -431,10 +431,13 @@
         "bounded cochain complexes",
         "exact weak equivalences",
         "mapping cone shift isomorphism",
-        "mathlib localization shift APIs"
+        "mathlib localization shift APIs",
+        "left calculus of fractions localization preadditive APIs"
       ],
       "allowed_writes": [
+        "LeanLCAExactChallenge/LCA/Basic.lean",
         "LeanLCAExactChallenge/Derived/Bounded.lean",
+        "audit/RequiredDeclarations.lean",
         "audit/ProductSuccessDeclarations.lean",
         "audit/external_audit.py"
       ],
@@ -443,7 +446,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v77 adds exact acyclicity under cochain shifts, mapping-cone congruence for isomorphic commutative squares, bounded exact weak-equivalence shift compatibility, and the localization shift/CommShift inference for Dbounded. This prepares the homotopy-category/Verdier route, but Preadditive, HasZeroObject, ordinary pretriangulated/triangulated quotient structure, and stable infinity-category structure remain nonproduct.",
+      "merge_blocker": "v78 adds MetrizableLCA and bounded-complex zero objects plus conditional Dbounded preadditive/localization-additive/zero/additive-shift API under HasLeftCalculusOfFractions. This prepares the homotopy-category/Verdier route, but the left-calculus proof itself, ordinary pretriangulated/triangulated quotient structure, and stable infinity-category structure remain nonproduct.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -457,6 +460,10 @@
         "boundedCochainComplex_isStableUnderShift",
         "BoundedComplexCategory",
         "BoundedComplexCategory.ι",
+        "MetrizableLCA.zeroObj",
+        "MetrizableLCA.zeroObj_isZero",
+        "boundedCochainComplex_containsZero",
+        "boundedComplexCategory_hasZeroObject",
         "exactAcyclic_of_iso",
         "exactAcyclic_shift",
         "exactAcyclic_shift_iff",
@@ -464,7 +471,11 @@
         "mappingConeIsoOfCommIso",
         "exactAcyclic_mappingCone_congr_iff",
         "boundedExactWeakEquivalence_shift_iff",
-        "boundedExactWeakEquivalence_isCompatibleWithShift"
+        "boundedExactWeakEquivalence_isCompatibleWithShift",
+        "Dbounded.preadditiveOfHasLeftCalculusOfFractions",
+        "Dbounded.localization_additiveOfHasLeftCalculusOfFractions",
+        "Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions",
+        "Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions"
       ]
     },
     {
@@ -531,7 +542,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v77 evidence records bounded exact weak-equivalence shift compatibility and keeps the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v78 evidence records conditional Dbounded additive/zero prerequisites and keeps the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

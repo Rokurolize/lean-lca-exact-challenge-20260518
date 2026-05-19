@@ -10,6 +10,8 @@ through abelian-category Ext or an externally supplied derived construction.
 
 set_option autoImplicit false
 
+universe v u
+
 namespace LeanLCAExactChallenge
 
 open CategoryTheory
@@ -24,6 +26,12 @@ example : QuillenExactCategory MetrizableLCA := by
 
 /-- The strict metrizable LCA category has the biproducts needed for mapping cones. -/
 example : HasBinaryBiproducts MetrizableLCA := by infer_instance
+
+/-- The strict metrizable LCA category has a genuine zero object. -/
+example : HasZeroObject MetrizableLCA := by infer_instance
+
+#check MetrizableLCA.zeroObj
+#check MetrizableLCA.zeroObj_isZero
 
 noncomputable example (A B : MetrizableLCA) :
     MetrizableLCA.biprodObj A B ≅ A ⊞ B :=
@@ -1461,8 +1469,10 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 -/
 #check (BoundedComplexCategory (C := MetrizableLCA))
 #check (BoundedComplexCategory.ι (C := MetrizableLCA))
+#check (boundedCochainComplex_containsZero (C := MetrizableLCA))
 #check (boundedCochainComplex_isClosedUnderIsomorphisms (C := MetrizableLCA))
 #check (boundedCochainComplex_isStableUnderShift (C := MetrizableLCA))
+#check (boundedComplexCategory_hasZeroObject (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence (C := MetrizableLCA))
 #check (exactAcyclic_of_iso (C := MetrizableLCA))
 #check (exactAcyclic_shift (C := MetrizableLCA))
@@ -1472,8 +1482,15 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (exactAcyclic_mappingCone_congr_iff (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_shift_iff (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
+#check Dbounded.preadditiveOfHasLeftCalculusOfFractions
+#check Dbounded.localization_additiveOfHasLeftCalculusOfFractions
+#check Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions
+#check Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions
 
 noncomputable example : HasShift (BoundedComplexCategory (C := MetrizableLCA)) ℤ := by
+  infer_instance
+
+noncomputable example : HasZeroObject (BoundedComplexCategory (C := MetrizableLCA)) := by
   infer_instance
 
 noncomputable example :
@@ -1485,6 +1502,27 @@ noncomputable example : HasShift (Dbounded (C := MetrizableLCA)) ℤ := by
 
 noncomputable example : (Dbounded.localization (C := MetrizableLCA)).CommShift ℤ := by
   infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    Preadditive (Dbounded C) :=
+  Dbounded.preadditiveOfHasLeftCalculusOfFractions C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    (Dbounded.localization C).Additive :=
+  Dbounded.localization_additiveOfHasLeftCalculusOfFractions C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] [HasZeroObject C]
+    [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    HasZeroObject (Dbounded C) :=
+  Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    (shiftFunctor (Dbounded C) (1 : ℤ)).Additive :=
+  Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions C 1
 
 /-
 The bounded derived category is the localization at those exact weak equivalences.

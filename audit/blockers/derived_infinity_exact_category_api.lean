@@ -29,6 +29,12 @@ Incremental v77 progress: exact acyclicity, exact cone weak equivalences, and
 the bounded exact weak-equivalence class are now invariant under cochain shifts,
 so the ordinary localized category inherits the shift from mathlib's
 localization API. This is still not a stable infinity-category certificate.
+Incremental v78 progress: `MetrizableLCA` and the bounded complex full
+subcategory now expose zero objects, and the derived file records that a real
+left calculus of fractions for the exact weak equivalences would make mathlib
+provide preadditivity, additivity of the localization functor, zero objects, and
+additive localized shifts. The missing left-calculus/Verdier work is still a
+product blocker.
 -/
 def bounded_derived_localization_family
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -46,6 +52,8 @@ noncomputable def bounded_derived_quasicategory_family
 #check BoundedComplexCategory.ι
 #check boundedCochainComplex_isClosedUnderIsomorphisms
 #check boundedCochainComplex_isStableUnderShift
+#check boundedCochainComplex_containsZero
+#check boundedComplexCategory_hasZeroObject
 #check boundedExactWeakEquivalence
 #check exactAcyclic_of_iso
 #check exactAcyclic_shift
@@ -55,9 +63,18 @@ noncomputable def bounded_derived_quasicategory_family
 #check exactAcyclic_mappingCone_congr_iff
 #check boundedExactWeakEquivalence_shift_iff
 #check boundedExactWeakEquivalence_isCompatibleWithShift
+#check Dbounded.preadditiveOfHasLeftCalculusOfFractions
+#check Dbounded.localization_additiveOfHasLeftCalculusOfFractions
+#check Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions
+#check Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
     HasShift (BoundedComplexCategory C) ℤ := by
+  infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] :
+    HasZeroObject (BoundedComplexCategory C) := by
   infer_instance
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
@@ -73,6 +90,27 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     [HasBinaryBiproducts C] :
     (Dbounded.localization C).CommShift ℤ := by
   infer_instance
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    Preadditive (Dbounded C) :=
+  Dbounded.preadditiveOfHasLeftCalculusOfFractions C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    (Dbounded.localization C).Additive :=
+  Dbounded.localization_additiveOfHasLeftCalculusOfFractions C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] [HasZeroObject C]
+    [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    HasZeroObject (Dbounded C) :=
+  Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    (shiftFunctor (Dbounded C) (1 : ℤ)).Additive :=
+  Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions C 1
 
 #check (Dbounded (C := MetrizableLCA))
 #check Dbounded.localization

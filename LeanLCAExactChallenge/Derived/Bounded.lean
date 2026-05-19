@@ -5,7 +5,9 @@ import Mathlib.Algebra.Homology.HomotopyCategory.MappingCone
 import Mathlib.AlgebraicTopology.Quasicategory.Nerve
 import Mathlib.AlgebraicTopology.Quasicategory.StrictBicategory
 import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
+import Mathlib.CategoryTheory.Localization.CalculusOfFractions.Preadditive
 import Mathlib.CategoryTheory.Localization.HasLocalization
+import Mathlib.CategoryTheory.ObjectProperty.ContainsZero
 import Mathlib.CategoryTheory.ObjectProperty.ShiftAdditive
 import LeanLCAExactChallenge.LCA.ExactCategory
 
@@ -25,12 +27,19 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+open scoped ZeroObject
 
 variable (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 
 /-- Bounded cochain complexes over an exact category. -/
 def boundedCochainComplex : ObjectProperty (CochainComplex C ℤ) :=
   fun K => ∃ (a b : ℤ), K.IsStrictlyGE a ∧ K.IsStrictlyLE b
+
+/-- The zero cochain complex is bounded. -/
+instance boundedCochainComplex_containsZero [HasZeroObject C] :
+    (boundedCochainComplex C).ContainsZero where
+  exists_zero := ⟨(0 : CochainComplex C ℤ), isZero_zero _, by
+    exact ⟨0, 0, inferInstance, inferInstance⟩⟩
 
 /-- Boundedness is invariant under isomorphism of cochain complexes. -/
 instance boundedCochainComplex_isClosedUnderIsomorphisms :
@@ -60,6 +69,11 @@ abbrev BoundedComplexCategory : Type (max u v) :=
 /-- The inclusion of bounded complexes into all cochain complexes. -/
 abbrev BoundedComplexCategory.ι : BoundedComplexCategory C ⥤ CochainComplex C ℤ :=
   (boundedCochainComplex C).ι
+
+/-- The category of bounded complexes has a zero object when the base category does. -/
+instance boundedComplexCategory_hasZeroObject [HasZeroObject C] :
+    HasZeroObject (BoundedComplexCategory C) := by
+  infer_instance
 
 /-- Exact complexes in the Quillen exact-category sense. -/
 def exactAcyclic (K : CochainComplex C ℤ) : Prop :=
@@ -177,6 +191,38 @@ abbrev Dbounded [HasBinaryBiproducts C] : Type (max u v) :=
 abbrev Dbounded.localization [HasBinaryBiproducts C] :
     (boundedCochainComplex C).FullSubcategory ⥤ Dbounded C :=
   (boundedExactWeakEquivalence C).Q
+
+namespace Dbounded
+
+/-- If the exact weak equivalences have a left calculus of fractions, mathlib's localization
+API equips `Dbounded` with a preadditive structure. -/
+noncomputable abbrev preadditiveOfHasLeftCalculusOfFractions [HasBinaryBiproducts C]
+    [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    Preadditive (Dbounded C) := by
+  infer_instance
+
+/-- Under the same left-calculus hypothesis, the localization functor is additive. -/
+theorem localization_additiveOfHasLeftCalculusOfFractions [HasBinaryBiproducts C]
+    [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    (Dbounded.localization C).Additive := by
+  infer_instance
+
+/-- Under a left-calculus hypothesis, the localized bounded derived category has a zero object
+whenever the base category has one. -/
+theorem hasZeroObjectOfHasLeftCalculusOfFractions [HasBinaryBiproducts C] [HasZeroObject C]
+    [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] :
+    HasZeroObject (Dbounded C) := by
+  infer_instance
+
+/-- Under a left-calculus hypothesis, the localized shifts are additive. -/
+theorem shiftFunctor_additiveOfHasLeftCalculusOfFractions [HasBinaryBiproducts C]
+    [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions] (n : ℤ) :
+    (shiftFunctor (Dbounded C) n).Additive := by
+  rw [Localization.functor_additive_iff (Dbounded.localization C) (boundedExactWeakEquivalence C)
+    (shiftFunctor (Dbounded C) n)]
+  exact Functor.additive_of_iso ((Dbounded.localization C).commShiftIso n)
+
+end Dbounded
 
 /-- Promote a bounded cochain complex to the bounded derived category. -/
 abbrev Dbounded.of [HasBinaryBiproducts C]

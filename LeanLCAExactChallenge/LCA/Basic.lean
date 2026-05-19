@@ -145,6 +145,28 @@ instance (A B : MetrizableLCA.{u}) : AddCommGroup (A ⟶ B) :=
 
 instance : Preadditive MetrizableLCA.{u} where
 
+/-- The trivial metrizable locally compact abelian group. -/
+abbrev zeroObj : MetrizableLCA.{u} :=
+  MetrizableLCA.of PUnit
+
+/-- The trivial metrizable LCA group is a zero object. -/
+lemma zeroObj_isZero : IsZero (zeroObj : MetrizableLCA.{u}) where
+  unique_to Y := ⟨{
+    default := 0
+    uniq := by
+      intro f
+      ext x
+      cases x
+      exact map_zero f.hom }⟩
+  unique_from Y := ⟨{
+    default := 0
+    uniq := by
+      intro f
+      ext x }⟩
+
+instance instHasZeroObject : HasZeroObject MetrizableLCA.{u} :=
+  zeroObj_isZero.hasZeroObject
+
 /-- Product object used as the binary biproduct in `MetrizableLCA`. -/
 abbrev biprodObj (A B : MetrizableLCA.{u}) : MetrizableLCA.{u} :=
   MetrizableLCA.of (A × B)
