@@ -64,19 +64,6 @@ theorem homotopyEndpointPayload_extracts_homotopyEquivData
     comm, hKsrc, hKcone⟩
 
 omit [QuillenExactCategory C] in
-/-- Minimal missing theorem shape for the selected bounded route: homotopy equivalences
-between the endpoint representatives and the selected complexes must be strictified to
-cochain-complex isomorphisms. -/
-abbrev endpointHomotopyEquivToSelectedCochainIsoStrictification
-    [HasBinaryBiproducts C] : Prop :=
-  ∀ {Ksrc Kcone K L : CochainComplex C ℤ} {f : K ⟶ L},
-    boundedCochainComplex C Ksrc →
-    boundedCochainComplex C Kcone →
-    HomotopyEquiv Ksrc K →
-    HomotopyEquiv Kcone (CochainComplex.mappingCone f) →
-    ∃ (_eK : Ksrc ≅ K) (_eCone : Kcone ≅ CochainComplex.mappingCone f), True
-
-omit [QuillenExactCategory C] in
 /-- With a separate strictification theorem from homotopy equivalences to cochain
 isomorphisms, the weak endpoint payload upgrades to the cochain-level payload consumed
 above. -/

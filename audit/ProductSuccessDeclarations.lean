@@ -2049,6 +2049,9 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
 #check boundedTrianglehIso13CochainDataStrictification_iff_realization
 #check homotopyEndpointPayloadWithoutSelectedCochainIso
 #check homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished
+#check endpointHomotopyEquivToSelectedCochainIsoStrictification
+#check strictBoundednessTransport_of_endpointHomotopyEquivToSelectedCochainIsoStrictification
+#check AlternatingTailExtendTransport.not_endpointHomotopyEquivToSelectedCochainIsoStrictification_intModuleCat
 
 example (C : Type u) [Category.{v} C] [Preadditive C]
     [HasZeroObject C] [HasBinaryBiproducts C]

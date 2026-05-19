@@ -84,6 +84,23 @@ theorem not_strictBoundednessTransport_of_rightUnboundedContractibleComplex
   exact not_boundedCochainComplex_of_rightUnboundedNonzeroTerms C T.rightUnbounded
     (transport (boundedCochainComplex_zero C) e.symm)
 
+variable [HasZeroObject C] [HasBinaryBiproducts C]
+
+/-- An unrestricted endpoint strictification principle would imply the already-refuted
+transport of strict boundedness along arbitrary homotopy equivalences. -/
+theorem strictBoundednessTransport_of_endpointHomotopyEquivToSelectedCochainIsoStrictification
+    (strictify : endpointHomotopyEquivToSelectedCochainIsoStrictification C) :
+    StrictBoundednessTransportOfHomotopyEquiv C := by
+  intro K L hK η
+  let coneEquiv :
+      HomotopyEquiv (0 : CochainComplex C ℤ) (CochainComplex.mappingCone (𝟙 L)) :=
+    (homotopyEquivZeroOfContractingHomotopy (CochainComplex.mappingCone (𝟙 L))
+      (CochainComplex.mappingCone.homotopyToZeroOfId L)).symm
+  rcases strictify (Ksrc := K) (Kcone := (0 : CochainComplex C ℤ))
+      (K := L) (L := L) (f := 𝟙 L) hK (boundedCochainComplex_zero C) η coneEquiv with
+    ⟨eK, _eCone, _⟩
+  exact (boundedCochainComplex C).prop_of_iso eK hK
+
 namespace AlternatingTailExtendTransport
 
 /-- The transported alternating tail is a concrete right-unbounded contractible complex. -/
@@ -101,8 +118,19 @@ theorem not_strictBoundednessTransport_intAlternatingTailGE (p : ℤ) :
   not_strictBoundednessTransport_of_rightUnboundedContractibleComplex IntModuleCat
     (intAlternatingTailGERightUnboundedContractible p)
 
+/-- The endpoint strictification bridge cannot hold without extra hypotheses. -/
+theorem not_endpointHomotopyEquivToSelectedCochainIsoStrictification_intModuleCat
+    [HasZeroObject IntModuleCat] [HasBinaryBiproducts IntModuleCat] :
+    ¬ endpointHomotopyEquivToSelectedCochainIsoStrictification IntModuleCat := by
+  intro strictify
+  exact not_strictBoundednessTransport_intAlternatingTailGE 0
+    (strictBoundednessTransport_of_endpointHomotopyEquivToSelectedCochainIsoStrictification
+      IntModuleCat strictify)
+
 #check intAlternatingTailGERightUnboundedContractible
 #check not_strictBoundednessTransport_intAlternatingTailGE
+#check strictBoundednessTransport_of_endpointHomotopyEquivToSelectedCochainIsoStrictification
+#check not_endpointHomotopyEquivToSelectedCochainIsoStrictification_intModuleCat
 #check homotopyEquivZeroOfContractingHomotopy
 #check nonemptyHomotopyEquivZeroOfContractingHomotopy
 

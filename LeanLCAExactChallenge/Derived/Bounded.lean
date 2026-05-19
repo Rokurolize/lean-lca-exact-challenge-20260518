@@ -1191,6 +1191,20 @@ theorem homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished
     ⟨eKcone ≪≫ Pretriangulated.Triangle.π₃.mapIso e⟩⟩
 
 omit [QuillenExactCategory C] in
+/-- Minimal missing theorem shape for the selected bounded route: homotopy equivalences
+between the endpoint representatives and the selected complexes must be strictified to
+cochain-complex isomorphisms. The unrestricted form is too strong; see the concrete
+contractible-tail refutation in `Derived.ContractibleTail`. -/
+abbrev endpointHomotopyEquivToSelectedCochainIsoStrictification
+    [HasBinaryBiproducts C] : Prop :=
+  ∀ {Ksrc Kcone K L : CochainComplex C ℤ} {f : K ⟶ L},
+    boundedCochainComplex C Ksrc →
+    boundedCochainComplex C Kcone →
+    HomotopyEquiv Ksrc K →
+    HomotopyEquiv Kcone (CochainComplex.mappingCone f) →
+    ∃ (_eK : Ksrc ≅ K) (_eCone : Kcone ≅ CochainComplex.mappingCone f), True
+
+omit [QuillenExactCategory C] in
 /-- Expanded cochain data supplies the bounded strict-realization input. -/
 theorem boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data
     [HasZeroObject C] [HasBinaryBiproducts C]
