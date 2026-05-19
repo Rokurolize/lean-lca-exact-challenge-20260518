@@ -1,12 +1,12 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v55-arbitrary-left-extension-product-with-head-pullback",
-  "generated_utc": "2026-05-19T01:57:49Z",
-  "source_tree_hash": "555a45677a098055da3495583e15a290ca948944a2fb2c4ee15db8fb0d1c9439",
+  "schema": "lean-lca-exact-challenge-verification-v56-arbitrary-left-termwise-rel",
+  "generated_utc": "2026-05-19T02:08:43Z",
+  "source_tree_hash": "6ae28854875693aa299a710a6c44f9125293233b0e83009bb00f63efaa5246b4",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "rebuilt LeanLCAExactChallenge after adding spliceLeftWith and arbitrary fixed-left YonedaExtension quotient-action APIs."
+      "evidence": "rebuilt LeanLCAExactChallenge after adding Rel.spliceLeftWith and arbitrary fixed-left termwise relation invariance APIs."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -16,7 +16,7 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the arbitrary fixed-left YonedaExtension additions."
+      "evidence": "Required declaration audit passed after the arbitrary fixed-left relation-invariance additions."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
@@ -26,7 +26,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit sees spliceLeftWith, leftProductByYonedaExtensionWith, and the MetrizableLCA conditional specialization, alongside v54 positive-chain APIs."
+      "evidence": "Yoneda blocker audit sees Rel.spliceLeftWith and arbitrary fixed-left conditional map invariance under YonedaExtension.Rel, alongside v55 fixed-left APIs."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -36,12 +36,12 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product audit sees the arbitrary fixed-left YonedaExtension map/descent declarations and the MetrizableLCA conditional API."
+      "evidence": "Product audit sees Rel.spliceLeftWith, fixed-left equality on generators, fixed-left homomorphism equality, and the MetrizableLCA conditional equality API."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because full left quotient Yoneda product descent, head pullback-pushout exchange, and stable infinity-category enhancement remain incomplete."
+      "evidence": "expected non-product gate after manifest refresh: terminal_outcome remains failed_nonterminal/product_complete=false because split/Baer/hom-tail left quotient descent, head pullback-pushout exchange, and stable infinity-category enhancement remain incomplete."
     },
     {
       "command": "git diff --check",

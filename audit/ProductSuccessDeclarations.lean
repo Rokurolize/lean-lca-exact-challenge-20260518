@@ -460,8 +460,13 @@ example (X X' Y Z : MetrizableLCA) {n : ℕ}
 #check (YonedaExt.leftProductByYonedaExtension_relationSubgroup_leWith (C := MetrizableLCA))
 #check (YonedaExt.leftProductByYonedaExtensionWith (C := MetrizableLCA))
 #check (YonedaExt.leftProductByYonedaExtensionWith_ofExtension (C := MetrizableLCA))
+#check (YonedaExtension.Rel.spliceLeftWith (C := MetrizableLCA))
+#check (YonedaExt.leftProductByYonedaExtensionWith_ofExtension_eq_of_rel
+  (C := MetrizableLCA))
+#check (YonedaExt.leftProductByYonedaExtensionWith_eq_of_rel (C := MetrizableLCA))
 #check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData
 #check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_ofExtension
+#check YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_of_rel
 
 noncomputable example (X Y Y' : MetrizableLCA)
     (e : ShortExactExtension (C := MetrizableLCA) X Y) (a : Y ⟶ Y') :

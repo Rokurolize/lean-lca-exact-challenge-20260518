@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T01:57:49Z",
+  "generated_utc": "2026-05-19T02:08:43Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -42,7 +42,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
-      "merge_blocker": "Fixed one-fold, positive-chain, and arbitrary fixed-left YonedaExtension actions now descend in the right variable under available head-pullback compatibility data; full left quotient descent for arbitrary left Ext classes and unconditional standard MetrizableLCA head pullback-pushout exchange remain incomplete.",
+      "merge_blocker": "Fixed one-fold, positive-chain, and arbitrary fixed-left YonedaExtension actions now descend in the right variable under available head-pullback compatibility data. Arbitrary fixed-left termwise YonedaExtension.Rel invariance is implemented; split/Baer/hom-tail left relation descent and unconditional standard MetrizableLCA head pullback-pushout exchange remain incomplete.",
       "product_success_contribution": "Required for standard Yoneda product on quotient Ext groups.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -76,7 +76,11 @@
         "YonedaExt.leftProductByYonedaExtensionWith",
         "YonedaExt.leftProductByYonedaExtensionWith_ofExtension",
         "YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData",
-        "YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_ofExtension"
+        "YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_ofExtension",
+        "YonedaExtension.Rel.spliceLeftWith",
+        "YonedaExt.leftProductByYonedaExtensionWith_ofExtension_eq_of_rel",
+        "YonedaExt.leftProductByYonedaExtensionWith_eq_of_rel",
+        "YonedaExt.leftProductByYonedaExtension_metrizableWithPushoutData_eq_of_rel"
       ]
     },
     {
