@@ -1,53 +1,63 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v115-exact-category-packaging",
-  "generated_utc": "2026-05-19T19:55:01Z",
-  "source_tree_hash": "99e2cbe7548f0838376c7c288fc074834bd7ed9df2b6a697bb17b8996043a5cf",
-  "summary": "v115 manually ports external support worker w01 exact-category API packaging in the parent worktree: conflation-to-inflation/deflation and split-to-conflation/inflation/deflation lemmas are exposed and checked. Product remains nonterminal because the strict-realization input proof, direct bounded calculus, Dbounded triangulated transfer, and stable infinity-category certificate remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-v116-stable-marker-string-fixture",
+  "generated_utc": "2026-05-19T20:01:56Z",
+  "source_tree_hash": "2336b53438dde349260cf5eb7dc9df86cabe486825e8a81236bfc808d4baa20f",
+  "summary": "v116 manually ports external support worker w36 audit hardening in the parent worktree: stable infinity-category markers are scanned only after removing Lean comments and string literals, and negative fixtures reject comment-only and string-literal-only product-success marker claims. Product remains nonterminal because the strict-realization input proof, direct bounded calculus, Dbounded triangulated transfer, and stable infinity-category certificate remain unproved.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after the v115 ExactCategory packaging declarations and evidence refresh."
+      "evidence": "Full project build passed after the v116 external-audit stable-marker comment/string stripping update."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after v115."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.ExactCategory.Basic LeanLCAExactChallenge.ExactCategory.Conflation",
-      "status": "passed",
-      "evidence": "Focused ExactCategory build passed after adding the v115 conflation/splitting packaging lemmas."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after v116."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit compiles and checks the v115 QuillenExactCategory packaging declarations."
+      "evidence": "Required declaration audit remains green after the v116 audit-only checkpoint."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles and checks the v115 packaging declarations while preserving the nonterminal stable-infinity contract."
+      "evidence": "Product declaration audit remains green after the v116 audit-only checkpoint."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after v115."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after v116."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after v115."
+      "evidence": "Yoneda blocker audit still compiles after v116."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit still compiles after v115 and continues to record the unresolved product blockers."
+      "evidence": "Derived blocker audit still compiles after v116 and continues to record the unresolved product blockers."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check passes after retaining the v113 verification-entry hardening."
+      "evidence": "External audit Python syntax check passes after adding Lean comment/string stripping."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root audit/negative_fixtures/ordinary_nerve_claimed_product_success --terminal-outcome terminal_outcome.json --self-check-only",
+      "status": "failed_expected",
+      "evidence": "Negative fixture was rejected as expected: ordinary localization nerve cannot satisfy the stable bounded derived infinity-category product contract."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root audit/negative_fixtures/comment_only_stable_marker_claimed_product_success --terminal-outcome terminal_outcome.json --self-check-only",
+      "status": "failed_expected",
+      "evidence": "Negative fixture was rejected as expected: stable markers present only in Lean comments are stripped before product marker scanning."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root audit/negative_fixtures/string_literal_only_stable_marker_claimed_product_success --terminal-outcome terminal_outcome.json --self-check-only",
+      "status": "failed_expected",
+      "evidence": "Negative fixture was rejected as expected: stable markers present only in Lean string literals are stripped before product marker scanning."
     },
     {
       "command": "python3 audit/external_audit.py --root audit/negative_fixtures/pending_verification_evidence --terminal-outcome terminal_outcome.json --self-check-only",
@@ -60,54 +70,49 @@
       "evidence": "Negative fixture was rejected as expected: product_success evidence cannot contain a failed_expected verification entry."
     },
     {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check mode passes on the nonterminal target tree after v116 fixture hardening."
+    },
+    {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v115 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v116 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v115 exact-category API refresh."
+      "evidence": "Proof frontier JSON syntax checked after the v116 audit-hardening refresh."
+    },
+    {
+      "command": "python3 -m json.tool audit/negative_fixtures/comment_only_stable_marker_claimed_product_success/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "Comment-only stable marker negative fixture terminal outcome JSON syntax checked."
+    },
+    {
+      "command": "python3 -m json.tool audit/negative_fixtures/string_literal_only_stable_marker_claimed_product_success/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "String-literal-only stable marker negative fixture terminal outcome JSON syntax checked."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after regenerating the v115 verification record."
+      "evidence": "Verification JSON syntax checked after regenerating the v116 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked after regenerating the v115 manifest."
-    },
-    {
-      "command": "python3 -m json.tool audit/negative_fixtures/pending_verification_evidence/run/verification.json >/dev/null",
-      "status": "passed",
-      "evidence": "Pending-status negative fixture verification JSON syntax checked."
-    },
-    {
-      "command": "python3 -m json.tool audit/negative_fixtures/pending_verification_evidence/terminal_outcome.json >/dev/null",
-      "status": "passed",
-      "evidence": "Pending-status negative fixture terminal outcome JSON syntax checked."
-    },
-    {
-      "command": "python3 -m json.tool audit/negative_fixtures/failed_expected_product_success/run/verification.json >/dev/null",
-      "status": "passed",
-      "evidence": "Product-success failed_expected negative fixture verification JSON syntax checked."
-    },
-    {
-      "command": "python3 -m json.tool audit/negative_fixtures/failed_expected_product_success/terminal_outcome.json >/dev/null",
-      "status": "passed",
-      "evidence": "Product-success failed_expected negative fixture terminal outcome JSON syntax checked."
+      "evidence": "Manifest JSON syntax checked after regenerating the v116 manifest."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v115 source, audit, documentation, frontier, terminal outcome, and evidence update."
+      "evidence": "Whitespace check passed after the v116 audit, fixture, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: pre-terminal audit checks pass, including v113 hardening and v115 declaration evidence, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because the stable infinity-category product proof remains incomplete."
+      "evidence": "Expected non-product gate after manifest refresh: pre-terminal audit checks pass, including v116 marker stripping fixtures, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because the stable infinity-category product proof remains incomplete."
     }
   ]
 }

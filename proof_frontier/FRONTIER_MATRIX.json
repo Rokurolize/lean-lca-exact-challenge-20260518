@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T19:56:00Z",
+  "generated_utc": "2026-05-19T20:04:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening, v114 bounded realization wrappers, and v115 exact-category packaging lemmas were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree. The v113 audit hardening, v114 bounded realization wrappers, v115 exact-category packaging lemmas, and v116 stable-marker comment/string audit hardening were manually ported by the parent after reading external support results; the parent did not launch or resume any worker from this worktree.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -848,7 +848,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "v113 external audit validates every run/verification.json command entry, rejects unresolved statuses, requires nonempty evidence, and rejects failed_expected status when terminal_outcome claims product_success. Negative fixtures cover pending verification evidence, product-success expected-failure evidence, ordinary nerve product overclaims, and self-referential zip SHA claims.",
+      "merge_blocker": "v116 validates every run/verification.json command entry, rejects unresolved statuses, requires evidence, rejects failed_expected inside product-success evidence, rejects ordinary-nerve product claims, and strips Lean comments/string contents before accepting stable markers. Negative fixtures cover pending verification, product-success expected-failure ledgers, ordinary nerve, comment-only stable markers, and string-literal-only stable markers.",
       "product_success_contribution": "Prevents placeholder or stale product claims.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -857,7 +857,13 @@
         "check_verification_fixture_resolved",
         "audit/negative_fixtures/ordinary_nerve_claimed_product_success",
         "audit/negative_fixtures/pending_verification_evidence",
-        "audit/negative_fixtures/failed_expected_product_success"
+        "audit/negative_fixtures/failed_expected_product_success",
+        "strip_lean_comments_and_strings",
+        "comment_only_stable_marker_claimed_product_success",
+        "string_literal_only_stable_marker_claimed_product_success"
+      ],
+      "technical_context": [
+        "v116 manually ported w36 audit hardening so stable marker evidence is scanned after removing Lean comments and string literals."
       ]
     },
     {
@@ -891,7 +897,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "v115 route log records the w01 exact-category API port in addition to the w04 realization-wrapper port and the v113 audit-hardening evidence while preserving the stable-infinity blocker as nonterminal.",
+      "merge_blocker": "v116 route log records the w36 marker-stripping audit hardening in addition to the w01 exact-category API port, w04 realization-wrapper port, and v113 audit-hardening evidence while preserving the stable-infinity blocker as nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

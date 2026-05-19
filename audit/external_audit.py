@@ -76,6 +76,83 @@ ORDINARY_NERVE_RE = re.compile(
 )
 
 
+def strip_lean_comments_and_strings(text: str) -> str:
+    """Remove Lean comments and string contents before marker-only regex scans."""
+
+    out: list[str] = []
+    i = 0
+    n = len(text)
+    block_depth = 0
+    in_line_comment = False
+    in_string = False
+
+    while i < n:
+        ch = text[i]
+        nxt = text[i + 1] if i + 1 < n else ""
+
+        if in_line_comment:
+            if ch == "\n":
+                in_line_comment = False
+                out.append(ch)
+            else:
+                out.append(" ")
+            i += 1
+            continue
+
+        if block_depth:
+            if ch == "/" and nxt == "-":
+                block_depth += 1
+                out.extend("  ")
+                i += 2
+                continue
+            if ch == "-" and nxt == "/":
+                block_depth -= 1
+                out.extend("  ")
+                i += 2
+                continue
+            out.append("\n" if ch == "\n" else " ")
+            i += 1
+            continue
+
+        if in_string:
+            if ch == "\\":
+                out.append(" ")
+                if i + 1 < n:
+                    out.append("\n" if nxt == "\n" else " ")
+                    i += 2
+                else:
+                    i += 1
+                continue
+            if ch == '"':
+                in_string = False
+                out.append(" ")
+            else:
+                out.append("\n" if ch == "\n" else " ")
+            i += 1
+            continue
+
+        if ch == "-" and nxt == "-":
+            in_line_comment = True
+            out.extend("  ")
+            i += 2
+            continue
+        if ch == "/" and nxt == "-":
+            block_depth = 1
+            out.extend("  ")
+            i += 2
+            continue
+        if ch == '"':
+            in_string = True
+            out.append(" ")
+            i += 1
+            continue
+
+        out.append(ch)
+        i += 1
+
+    return "".join(out)
+
+
 def fail(message: str) -> None:
     print(f"external_audit: FAIL: {message}", file=sys.stderr)
     raise SystemExit(1)
@@ -242,8 +319,8 @@ def check_derived_infinity_product_contract(
 
     derived = project_root / "LeanLCAExactChallenge" / "Derived" / "Bounded.lean"
     product_audit = project_root / "audit" / "ProductSuccessDeclarations.lean"
-    derived_text = derived.read_text(encoding="utf-8")
-    audit_text = product_audit.read_text(encoding="utf-8")
+    derived_text = strip_lean_comments_and_strings(derived.read_text(encoding="utf-8"))
+    audit_text = strip_lean_comments_and_strings(product_audit.read_text(encoding="utf-8"))
 
     if ORDINARY_NERVE_RE.search(derived_text):
         fail(
@@ -428,6 +505,14 @@ def check_negative_fixture(root: Path) -> None:
     run_fixture(
         "ordinary_nerve_claimed_product_success",
         "derived infinity contract failure",
+    )
+    run_fixture(
+        "comment_only_stable_marker_claimed_product_success",
+        "comment-only stable marker failure",
+    )
+    run_fixture(
+        "string_literal_only_stable_marker_claimed_product_success",
+        "string-literal-only stable marker failure",
     )
     run_fixture(
         "pending_verification_evidence",

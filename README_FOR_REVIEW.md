@@ -44,6 +44,7 @@
 - v113では外部支援worker `w07-audit-negative-fixture-hardening`の候補を親側で再実装し、`run/verification.json`の全コマンドentryについて未解決statusや空のevidenceを拒否する検査を`audit/external_audit.py`に追加した。さらにproduct successを主張するterminal outcomeでは`failed_expected`も拒否するようにし、`pending_verification_evidence`と`failed_expected_product_success`の負例fixtureを追加した。これはreview packetの過大主張を防ぐ監査強化であり、Lean上のproduct proofを進めるものではない
 - v114では外部支援worker `w04-dbounded-closed2-realization`の有用部分を親側で読み、`LeanLCAExactChallenge/Derived/Bounded.lean`へ手でportした。`boundedHomotopyObjectTrianglehIso13Realization`を名前付き入力として切り出し、`exactAcyclicIsoClosure_and_boundedHomotopyObject_closed2_of_triangleh_iso13_realizations`でexact acyclic同型閉包側とbounded homotopy object側の`Closed₂`を同時に得るwrapperを追加した。さらにその入力から`BoundedHomotopyCategory`と`BoundedExactAcyclicHomotopyVerdierCategory`のordinary pretriangulated/triangulated wrapperへ進むAPIも追加した。これは実現入力が与えられた後の接続を明確にするものであり、realization入力そのものやstable infinity-category構造を証明するものではない
 - v115では外部支援worker `w01-exact-category-api-survey`の小さなAPI候補を親側で確認し、`QuillenExactCategory.inflation_of_conflation`、`deflation_of_conflation`、`conflation_of_splitting`、`inflation_of_splitting`、`deflation_of_splitting`を追加した。これは既存のconflation fieldとsplit fieldを使いやすくする包装補題であり、新しいpushout/pullback安定性やstable infinity-category構造を証明するものではない
+- v116では外部支援worker `w36-stable-marker-string-fixture`の監査強化を親側でportした。`audit/external_audit.py`はstable infinity-category markerを探す前にLeanコメントと文字列内容を除去するため、コメントや文字列リテラルだけに`stableInfinity`、`finiteLimits`などがあるpacketをproduct successとして扱わない。`comment_only_stable_marker_claimed_product_success`と`string_literal_only_stable_marker_claimed_product_success`の負例fixtureも追加した。これは過大主張防止であり、Lean上のstable構造を証明するものではない
 - `audit/RequiredDeclarations.lean`による公開宣言の検査
 - `audit/blockers/`に置いた最小再現ファイル
 
@@ -68,7 +69,7 @@ python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcom
 git diff --check
 ```
 
-`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv115までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、ordinary nerve経路をstable infinity-category完成として扱う主張を失敗させ、未解決またはproduct success時の期待失敗検証entryも失敗させる。
+`run/verification.json`には、実行したコマンドとsource tree hashを記録している。`audit/ProductSuccessDeclarations.lean`はv115までの公開APIがstrict LCA exact categoryから使えることを確認する。`audit/external_audit.py`はgoalの完了条件どおり、`product_success`以外のterminal outcomeを失敗させ、ordinary nerve経路をstable infinity-category完成として扱う主張を失敗させ、コメントや文字列だけのstable marker、未解決またはproduct success時の期待失敗検証entryも失敗させる。
 
 ## レビューpacket
 
