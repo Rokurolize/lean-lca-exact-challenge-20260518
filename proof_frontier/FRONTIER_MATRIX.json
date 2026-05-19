@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T13:42:00Z",
+  "generated_utc": "2026-05-19T14:33:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v90 edits stay in the parent process. A separate old w05-iso-closure-localizer-witness worker is visible in another worktree with no result file and WebSocket 403 reconnect evidence, so the parent did not duplicate that frontier.",
+  "worker_policy": "No workers launched while the active parent thread owns the target worktree; v91 edits stay in the parent process. The parent did not launch or resume any worker for the homotopyObjectClosed2 reduction frontier.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -444,7 +444,11 @@
         "bounded mapping cone component extraction",
         "exact cone trW criterion",
         "iso-closure cone-membership criterion",
-        "homotopy weak equivalence iff cone object in exactAcyclicHomotopyIsoClosure"
+        "homotopy weak equivalence iff cone object in exactAcyclicHomotopyIsoClosure",
+        "homotopy-object IsTriangulatedClosed₂ reduction",
+        "iso-closure closed2 transported from homotopy object closed2",
+        "iso-closure trW left calculus from homotopy object closed2",
+        "iso-closure trW triangulation compatibility from homotopy object closed2"
       ],
       "allowed_writes": [
         "LeanLCAExactChallenge/LCA/Basic.lean",
@@ -458,7 +462,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
-      "merge_blocker": "v90 adds exactAcyclicHomotopyIsoClosure_trW_quotient_map_iff_mappingCone and boundedHomotopyExactWeakEquivalence_iff_mappingCone_isoClosure. A homotopy/Verdier bounded weak equivalence is now iff to its mapping cone object lying in exactAcyclicHomotopyIsoClosure, without assuming exactAcyclicHomotopyObject is iso-closed. This sharpens the frontier to the iso-closure IsTriangulatedClosed₂ condition, transfer of ordinary triangulated structure to Dbounded, and stable infinity-category structure; it does not prove those remaining pieces.",
+      "merge_blocker": "v91 adds exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject, exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2, exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2, and exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homotopyObjectClosed2. Thus a proof that exactAcyclicHomotopyObject is IsTriangulatedClosed₂ now suffices for iso-closure closed2, left calculus, and triangulation compatibility. This does not prove the homotopy-object closed2 condition itself, transfer ordinary triangulated structure to Dbounded, or construct stable infinity-category structure.",
       "product_success_contribution": "Required for the fourth product objective.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -553,7 +557,11 @@
         "boundedHomotopyExactWeakEquivalence_of_exactAcyclic_mappingCone",
         "boundedHomotopyExactWeakEquivalence_iff_mappingCone_isoClosure",
         "boundedExactWeakEquivalence_iff_boundedHomotopyExactWeakEquivalence_of_isoClosed",
-        "boundedHomotopyExactWeakEquivalence_iff_exactAcyclic_mappingCone_of_isoClosed"
+        "boundedHomotopyExactWeakEquivalence_iff_exactAcyclic_mappingCone_of_isoClosed",
+        "exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject",
+        "exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2",
+        "exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homotopyObjectClosed2"
       ],
       "technical_context": [
         "split short complexes",
@@ -561,7 +569,9 @@
         "bounded mapping cone component extraction",
         "exact cone trW criterion",
         "iso-closure cone-membership criterion",
-        "bounded homotopy weak equivalence cone-membership iff"
+        "bounded homotopy weak equivalence cone-membership iff",
+        "homotopy-object closed2 implies iso-closure closed2",
+        "homotopy-object closed2 implies iso-closure localization compatibility"
       ]
     },
     {
@@ -628,7 +638,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "merge_blocker": "Refresh after each proof frontier change; v90 evidence records iso-closure cone-membership iff wrappers while keeping the stable-infinity blocker nonterminal.",
+      "merge_blocker": "Refresh after each proof frontier change; v91 evidence records homotopyObjectClosed2 reduction declarations while keeping the stable-infinity blocker nonterminal.",
       "product_success_contribution": "Required for Japanese reviewability and packet audit.",
       "owned_by_active_process": true,
       "implemented_declarations": []

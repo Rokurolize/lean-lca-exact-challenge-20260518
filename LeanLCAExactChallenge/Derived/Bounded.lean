@@ -290,6 +290,15 @@ theorem exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2
     [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂] :
     (exactAcyclicHomotopyIsoClosure C).IsTriangulated where
 
+/-- It is enough to prove distinguished-triangle closure for the underlying exact-acyclic
+homotopy-object predicate: mathlib then transports that closure to its isomorphism
+closure. -/
+theorem exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ := by
+  infer_instance
+
 /-- Closing exact acyclic homotopy objects under isomorphism does not change `trW`. -/
 theorem exactAcyclicHomotopyIsoClosure_trW [HasZeroObject C] [HasBinaryBiproducts C] :
     (exactAcyclicHomotopyIsoClosure C).trW =
@@ -689,6 +698,17 @@ theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureC
   rw [← exactAcyclicHomotopyIsoClosure_trW C]
   infer_instance
 
+/-- A non-closed distinguished-triangle closure proof for exact acyclic homotopy objects is
+already enough for the original `trW`, because the `trW` class is unchanged by taking the
+isomorphism closure. -/
+theorem exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyObject C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  exact exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2 C
+
 /-- Once the isomorphism closure is triangulated, mathlib supplies the Verdier left calculus
 directly for the isomorphism-closed homotopy-category `trW` class. -/
 theorem exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
@@ -699,6 +719,17 @@ theorem exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTrian
     exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
   infer_instance
 
+/-- The same reduction as
+`exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2`,
+but stated for the isomorphism-closed predicate itself. -/
+theorem exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyIsoClosure C).trW.HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  exact exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2 C
+
 /-- Once the isomorphism closure is triangulated, its Verdier weak equivalences are compatible
 with the homotopy-category triangulation. -/
 theorem exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2
@@ -708,6 +739,16 @@ theorem exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTr
   haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
     exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
   infer_instance
+
+/-- A distinguished-triangle closure proof for exact acyclic homotopy objects also gives
+triangulation compatibility for the isomorphism-closed Verdier weak equivalences. -/
+theorem exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homotopyObjectClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
+    (exactAcyclicHomotopyIsoClosure C).trW.IsCompatibleWithTriangulation := by
+  haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+    exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject C
+  exact exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2 C
 
 /-- The ordinary Verdier localization of the homotopy category at the `trW` class attached to
 the isomorphism closure of exact acyclic homotopy objects. -/

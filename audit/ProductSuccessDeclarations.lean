@@ -1489,6 +1489,7 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (exactAcyclicHomotopyIsoClosure (C := MetrizableLCA))
 #check (exactAcyclicHomotopyIsoClosure_isStableUnderShift (C := MetrizableLCA))
 #check exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject
 #check (exactAcyclicHomotopyIsoClosure_trW (C := MetrizableLCA))
 #check exactAcyclicHomotopyObject_isStableUnderShift_of_isClosedUnderIsomorphisms
 #check exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2
@@ -1532,8 +1533,11 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulated
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
 #check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_isoClosureClosed2
+#check exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2
 #check exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2
 #check exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_isTriangulatedClosed2
+#check exactAcyclicHomotopyIsoClosure_trW_isCompatibleWithTriangulation_of_homotopyObjectClosed2
 #check (ExactAcyclicHomotopyVerdierCategory (C := MetrizableLCA))
 #check (ExactAcyclicHomotopyVerdierQuasicategory (C := MetrizableLCA))
 #check (ExactAcyclicHomotopyVerdierQuasicategory.homotopyCategoryIso (C := MetrizableLCA))
