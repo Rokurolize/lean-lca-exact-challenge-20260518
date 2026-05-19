@@ -528,6 +528,63 @@ theorem exactAcyclicHomotopyObject_distinguished_ext1_of_triangleh_iso23
   exact ⟨_, exactAcyclicHomotopyObject_triangleh_ext1 C f hK,
     ⟨(Pretriangulated.Triangle.π₁.mapIso e).symm⟩⟩
 
+/-- A strict-realization criterion for the middle-object distinguished-triangle closure of
+exact-acyclic homotopy objects.
+
+If every distinguished triangle whose first and third objects are exact-acyclic homotopy
+objects can be matched on those endpoints to a standard mapping-cone triangle whose target
+complex is strictly exact acyclic, then `exactAcyclicHomotopyObject` is closed in the
+middle-object sense. The conclusion is the mathlib `IsTriangulatedClosed₂` class, whose
+output is the isomorphism closure of the exact-acyclic object predicate. -/
+theorem exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize :
+      ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+        T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+        exactAcyclicHomotopyObject C T.obj₁ →
+        exactAcyclicHomotopyObject C T.obj₃ →
+        ∃ (K L : CochainComplex C ℤ) (f : K ⟶ L)
+          (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+          (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+            (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+                (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+              e₃.hom ≫ T.mor₃ ∧
+            exactAcyclic C L) :
+    (exactAcyclicHomotopyObject C).IsTriangulatedClosed₂ where
+  ext₂' := by
+    intro T hT h₁ h₃
+    rcases realize hT h₁ h₃ with ⟨K, L, f, e₁, e₃, comm, hL⟩
+    exact exactAcyclicHomotopyObject_distinguished_ext2_of_triangleh_iso13 C
+      hT f e₁ e₃ comm hL
+
+/-- A strict-realization criterion for the middle-object distinguished-triangle closure of
+the isomorphism closure of exact-acyclic homotopy objects.
+
+This version allows the endpoints themselves to be known only up to the existing
+`exactAcyclicHomotopyIsoClosure`. It still does not prove the required strict realization;
+it records the precise remaining input needed to obtain the closed₂ class for the
+isomorphism-closed Verdier route. -/
+theorem exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize :
+      ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+        T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+        exactAcyclicHomotopyIsoClosure C T.obj₁ →
+        exactAcyclicHomotopyIsoClosure C T.obj₃ →
+        ∃ (K L : CochainComplex C ℤ) (f : K ⟶ L)
+          (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+          (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+            (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+                (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+              e₃.hom ≫ T.mor₃ ∧
+            exactAcyclic C L) :
+    (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ := by
+  apply ObjectProperty.IsTriangulatedClosed₂.mk'
+  intro T hT h₁ h₃
+  rcases realize hT h₁ h₃ with ⟨K, L, f, e₁, e₃, comm, hL⟩
+  exact exactAcyclicHomotopyObject_distinguished_ext2_of_triangleh_iso13 C
+    hT f e₁ e₃ comm hL
+
 /-- Exact quasi-isomorphisms between bounded complexes, detected by the mapping cone. -/
 noncomputable def boundedExactWeakEquivalence [HasBinaryBiproducts C] :
     MorphismProperty (BoundedComplexCategory C) :=

@@ -1513,6 +1513,10 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
   (C := MetrizableLCA))
 #check (exactAcyclicHomotopyObject_distinguished_ext1_of_triangleh_iso23
   (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+  (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_shift_iff (C := MetrizableLCA))
 #check (boundedExactWeakEquivalence_isCompatibleWithShift (C := MetrizableLCA))
 #check (BoundedComplexCategory.homotopyQuotient (C := MetrizableLCA))

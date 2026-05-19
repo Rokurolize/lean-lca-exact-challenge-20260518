@@ -144,6 +144,8 @@ noncomputable def bounded_derived_quasicategory_family
 #check exactAcyclicHomotopyObject_distinguished_ext3_of_triangleh_iso12
 #check exactAcyclicHomotopyObject_distinguished_ext2_of_triangleh_iso13
 #check exactAcyclicHomotopyObject_distinguished_ext1_of_triangleh_iso23
+#check exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
+#check exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
 #check boundedExactWeakEquivalence_shift_iff
 #check boundedExactWeakEquivalence_isCompatibleWithShift
 #check BoundedComplexCategory.homotopyQuotient
@@ -328,6 +330,24 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     (hK : exactAcyclic C K) :
     exactAcyclicHomotopyIsoClosure C T.obj₁ :=
   exactAcyclicHomotopyObject_distinguished_ext1_of_triangleh_iso23 C hT f e₂ e₃ comm hK
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize :
+      ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+        T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+        exactAcyclicHomotopyIsoClosure C T.obj₁ →
+        exactAcyclicHomotopyIsoClosure C T.obj₃ →
+        ∃ (K L : CochainComplex C ℤ) (f : K ⟶ L)
+          (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+          (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+            (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+                (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+              e₃.hom ≫ T.mor₃ ∧
+            exactAcyclic C L) :
+    (exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂ :=
+  exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization C
+    realize
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasBinaryBiproducts C] {K L : CochainComplex C ℤ} (f : K ⟶ L)

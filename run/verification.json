@@ -1,88 +1,88 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v105-exact-acyclic-triangle-transfer",
-  "generated_utc": "2026-05-19T16:16:38Z",
-  "source_tree_hash": "a2e7dd93bd029e48697ef3164128af5a354332ae32da073a9e08d3d0c28bd954",
-  "summary": "v105 added exact acyclic homotopy object triangleh, explicit triangle-isomorphism, and endpoint-pair distinguished triangle transfer lemmas into `exactAcyclicHomotopyIsoClosure C`. Product remains nonterminal because exact acyclicity is not proved homotopy-category iso-invariant, exactAcyclicHomotopyObject and boundedHomotopyObject are not proved `IsTriangulatedClosed₂` unconditionally, left/right calculus is not unconditional, ordinary triangulated structure is not transferred to `Dbounded`, and no stable infinity-category structure is constructed.",
+  "schema": "lean-lca-exact-challenge-verification-v106-exact-acyclic-closed2-criterion",
+  "generated_utc": "2026-05-19T16:30:42Z",
+  "source_tree_hash": "8c8cb28cf8034bb9d80229c14cf8bf330cf33cdb1ddc1c3fadcaaa72e2c05971",
+  "summary": "v106 added strict-realization closed₂ criteria for `exactAcyclicHomotopyObject C` and `exactAcyclicHomotopyIsoClosure C`, connecting the v105 exact-acyclic endpoint transfer lemmas to mathlib `ObjectProperty.IsTriangulatedClosed₂`. Product remains nonterminal because the strict exact-acyclic realization is not constructed from arbitrary endpoints, boundedHomotopyObject closure is not proved unconditionally, left/right calculus is not unconditional, ordinary triangulated structure is not transferred to `Dbounded`, and no stable infinity-category structure is constructed.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
       "status": "passed",
-      "evidence": "Focused derived build passed after adding the v105 exact-acyclic triangle transfer lemmas."
+      "evidence": "Focused derived build passed after adding the v106 exact-acyclic closed₂ realization criteria."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Ext.Yoneda",
       "status": "passed",
-      "evidence": "Yoneda focused build remains green after the derived-side v105 update."
+      "evidence": "Yoneda focused build remains green after the derived-side v106 update."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after the v105 exact-acyclic triangle transfer while preserving the nonterminal stable-infinity boundary."
+      "evidence": "Full project build passed after the v106 exact-acyclic closed₂ criteria while preserving the nonterminal stable-infinity boundary."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v105 update."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v106 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the nine v105 exactAcyclicHomotopyObject transfer declarations."
+      "evidence": "Required declaration audit sees the v106 exactAcyclicHomotopyObject and exactAcyclicHomotopyIsoClosure closed₂ realization criteria."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles with MetrizableLCA checks for the v105 exact-acyclic transfer layer while retaining the nonterminal stable-infinity contract."
+      "evidence": "Product declaration audit compiles with MetrizableLCA checks for the v106 exact-acyclic closed₂ criteria while retaining the nonterminal stable-infinity contract."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v105 derived-side update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v106 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v105 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v106 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms representative strict, triangle-isomorphism, and endpoint-pair exact-acyclic transfer examples and still records the unresolved IsTriangulatedClosed₂/stable-infinity product condition."
+      "evidence": "Derived blocker audit confirms the v106 isoClosure closed₂ realization criterion example and still records the unresolved stable-infinity product condition."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v105 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v106 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v105 frontier update."
+      "evidence": "Proof frontier JSON syntax checked after the v106 frontier update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after regenerating the v105 verification record."
+      "evidence": "Verification JSON syntax checked after regenerating the v106 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked after regenerating the v105 manifest."
+      "evidence": "Manifest JSON syntax checked after regenerating the v106 manifest."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v105 update."
+      "evidence": "External audit Python syntax check still passes after the v106 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v105 proof, audit, documentation, frontier, terminal outcome, and evidence update."
+      "evidence": "Whitespace check passed after the v106 proof, audit, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because v105 only records exact-acyclic transfer into isoClosure and does not prove exactAcyclicHomotopyObject or boundedHomotopyObject IsTriangulatedClosed₂ unconditionally, unconditional left/right calculus, transfer to Dbounded triangulated/stable infinity, or stable infinity-category structure."
+      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because v106 only records strict-realization closed₂ criteria and does not prove the strict realization unconditionally, unconditional left/right calculus, transfer to Dbounded triangulated/stable infinity, or stable infinity-category structure."
     }
   ]
 }
