@@ -108,6 +108,7 @@ structure PullbackData {X X' Y : C}
   middleMap : out.middle ⟶ e.middle
   i_map : out.i ≫ middleMap = e.i
   map_p : middleMap ≫ e.p = out.p ≫ a
+  isPullback : IsPullback middleMap out.p e.p a
 
 /-- Diagrammatic data identifying an extension pushed out along a kernel-endpoint map. -/
 structure PushoutData {X Y Y' : C}
@@ -115,6 +116,7 @@ structure PushoutData {X Y Y' : C}
   middleMap : e.middle ⟶ out.middle
   i_map : a ≫ out.i = e.i ≫ middleMap
   map_p : middleMap ≫ out.p = e.p
+  isPushout : IsPushout e.i a middleMap out.i
 
 end ShortExactExtension
 
@@ -289,6 +291,7 @@ noncomputable def shortExactExtensionPullbackData
   middleMap := pullbackSnd a e.p
   i_map := shortExactExtensionPullback_i_map e a
   map_p := shortExactExtensionPullback_map_p e a
+  isPullback := (IsPullback.of_isLimit (pullbackIsLimit a e.p)).flip
 
 /-- Canonical pullback preserves isomorphism of one-fold extensions. -/
 noncomputable def shortExactExtensionPullbackIso
@@ -558,6 +561,10 @@ noncomputable def shortExactExtensionPushoutData
     pushoutInl (S := e.shortComplex) a (pushoutSubgroup_closed e.conflation a)
   i_map := shortExactExtensionPushout_i e a
   map_p := shortExactExtensionPushout_map_p e a
+  isPushout :=
+    IsPushout.of_isColimit
+      (pushoutIsColimit (S := e.shortComplex) a
+        (pushoutSubgroup_closed e.conflation a))
 
 /-- The explicit pushout of a split short complex is split. -/
 noncomputable def pushoutSplitting

@@ -1,12 +1,12 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v48-recursive-degree0-membership-wrappers",
-  "generated_utc": "2026-05-19T00:34:39Z",
-  "source_tree_hash": "b727a7b59409282d457304b53b8aadc551829350badb77b53d9236d2e9d9cf3c",
+  "schema": "lean-lca-exact-challenge-verification-v49-pullback-pushout-universal-data",
+  "generated_utc": "2026-05-19T00:41:51Z",
+  "source_tree_hash": "1b0b0acb1d3c7ae5c601311b3031dfdba81f06cd57f4e6fe717d4c19ba75d64f",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "rebuilt LeanLCAExactChallenge after recursive degree-zero membership wrappers"
+      "evidence": "rebuilt LeanLCAExactChallenge after adding universal-property witnesses to ShortExactExtension pullback/pushout data"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -24,7 +24,7 @@
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "degree-zero head/tail free maps now expose recursive all-Baer/all-HomTail relation-subgroup membership wrappers in addition to base conditional one-fold Baer and hom-tail membership lemmas."
+      "evidence": "Yoneda blocker audit sees ShortExactExtension.PullbackData.isPullback and PushoutData.isPushout in addition to the recursive all-Baer/all-HomTail membership wrappers."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
@@ -34,12 +34,12 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product audit sees the new recursive all-Baer/all-HomTail head/tail membership wrappers and existing strict LCA/Yoneda/Dbounded declarations."
+      "evidence": "Product audit sees the pullback/pushout universal-property projections and existing strict LCA/Yoneda/Dbounded declarations."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed",
-      "evidence": "expected non-product gate: terminal_outcome remains failed_nonterminal/product_complete=false because quotient-level degree-zero actions, full bilinear Yoneda product descent, canonical exchange/Baer compatibility without conditional premises, and stable infinity-category enhancement remain incomplete."
+      "evidence": "expected non-product gate: terminal_outcome remains failed_nonterminal/product_complete=false because quotient-level degree-zero actions, full bilinear Yoneda product descent, canonical exchange/Baer compatibility, and stable infinity-category enhancement remain incomplete."
     },
     {
       "command": "git diff --check",

@@ -29,7 +29,9 @@ example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :
 #check yonedaRelationSubgroup
 #check ShortExactExtension.BaerSumData
 #check ShortExactExtension.PullbackData
+#check ShortExactExtension.PullbackData.isPullback
 #check ShortExactExtension.PushoutData
+#check ShortExactExtension.PushoutData.isPushout
 #check MetrizableLCA.biprodObjIsoBiprod
 #check MetrizableLCA.biprodDiag
 #check MetrizableLCA.biprodCodiag

@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-19T00:34:39Z",
+  "generated_utc": "2026-05-19T00:41:51Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers launched while the active parent thread owns a dirty target worktree.",
   "frontiers": [
@@ -83,7 +83,9 @@
         "YonedaExt.pullbackHeadFreeHomWith_baerChain_mem",
         "YonedaExt.pullbackHeadFreeHomWith_homTail_mem",
         "YonedaExt.composeTailHomFreeHom_baerChain_mem",
-        "YonedaExt.composeTailHomFreeHom_homTail_mem"
+        "YonedaExt.composeTailHomFreeHom_homTail_mem",
+        "ShortExactExtension.PullbackData.isPullback",
+        "ShortExactExtension.PushoutData.isPushout"
       ],
       "target_files_or_module": [
         "LeanLCAExactChallenge/Ext/Yoneda.lean"
@@ -104,7 +106,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake build && lake env lean audit/ProductSuccessDeclarations.lean",
-      "merge_blocker": "Generator-level head/tail maps, split/iso/zero-generator preservation, recursive head/tail Baer and hom-tail membership wrappers, and conditional all-Baer/all-HomTail free-map membership into the target relation subgroup are implemented; canonical exchange and Baer-preservation data needed to remove conditional premises remain incomplete.",
+      "merge_blocker": "Generator-level head/tail maps, split/iso/zero-generator preservation, recursive head/tail Baer and hom-tail membership wrappers, conditional all-Baer/all-HomTail free-map membership into the target relation subgroup, and pullback/pushout universal-property fields are implemented; canonical exchange and Baer-preservation data needed to remove conditional premises remain incomplete.",
       "product_success_contribution": "Needed for degree-zero Yoneda composition compatibility.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -160,7 +162,9 @@
         "YonedaExt.pullbackHeadFreeHomWith_baerChain_mem",
         "YonedaExt.pullbackHeadFreeHomWith_homTail_mem",
         "YonedaExt.composeTailHomFreeHom_baerChain_mem",
-        "YonedaExt.composeTailHomFreeHom_homTail_mem"
+        "YonedaExt.composeTailHomFreeHom_homTail_mem",
+        "ShortExactExtension.PullbackData.isPullback",
+        "ShortExactExtension.PushoutData.isPushout"
       ]
     },
     {

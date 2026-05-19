@@ -63,6 +63,8 @@ generators.
 #check (fun (X Y : MetrizableLCA) => YonedaRelGenerator (C := MetrizableLCA) X Y)
 #check (fun (X Y : MetrizableLCA) =>
   ShortExactExtension.BaerSumData (C := MetrizableLCA) (X := X) (Y := Y))
+#check (ShortExactExtension.PullbackData.isPullback (C := MetrizableLCA))
+#check (ShortExactExtension.PushoutData.isPushout (C := MetrizableLCA))
 
 noncomputable example (X₁ Y₁ X₂ Y₂ : MetrizableLCA)
     (e₁ : ShortExactExtension (C := MetrizableLCA) X₁ Y₁)
