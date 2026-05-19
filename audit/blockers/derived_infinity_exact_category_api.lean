@@ -147,6 +147,9 @@ noncomputable def bounded_derived_quasicategory_family
 #check boundedHomotopyObject_triangleh_ext3
 #check boundedHomotopyObject_triangleh_ext2
 #check boundedHomotopyObject_triangleh_ext1
+#check boundedHomotopyObject_triangleh_iso_ext3
+#check boundedHomotopyObject_triangleh_iso_ext2
+#check boundedHomotopyObject_triangleh_iso_ext1
 #check BoundedHomotopyCategory
 #check BoundedHomotopyCategory.ι
 #check boundedExactWeakEquivalence_le_exactAcyclicHomotopy_trW_inverseImage
@@ -281,6 +284,32 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
     boundedHomotopyObject C (CochainComplex.mappingCone.triangleh f).obj₁ :=
   boundedHomotopyObject_triangleh_ext1 C f hL hCone
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e : T ≅ CochainComplex.mappingCone.triangleh f)
+    (hK : boundedCochainComplex C K) (hL : boundedCochainComplex C L) :
+    boundedHomotopyObject C T.obj₃ :=
+  boundedHomotopyObject_triangleh_iso_ext3 C f e hK hL
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e : T ≅ CochainComplex.mappingCone.triangleh f)
+    (hK : boundedCochainComplex C K)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedHomotopyObject C T.obj₂ :=
+  boundedHomotopyObject_triangleh_iso_ext2 C f e hK hCone
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))}
+    {K L : CochainComplex C ℤ} (f : K ⟶ L)
+    (e : T ≅ CochainComplex.mappingCone.triangleh f)
+    (hL : boundedCochainComplex C L)
+    (hCone : boundedCochainComplex C (CochainComplex.mappingCone f)) :
+    boundedHomotopyObject C T.obj₁ :=
+  boundedHomotopyObject_triangleh_iso_ext1 C f e hL hCone
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]

@@ -1,82 +1,82 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v99-bounded-triangleh-frontier",
-  "generated_utc": "2026-05-19T14:58:42Z",
-  "source_tree_hash": "9a978e7cd90fa6b7142c6f1a4c6683436394f2db271fca30ad488d650d6280e8",
+  "schema": "lean-lca-exact-challenge-verification-v100-triangleh-iso-transfer",
+  "generated_utc": "2026-05-19T15:14:28Z",
+  "source_tree_hash": "667bb2cd125fa106c528affd3d57e80a7b5192b8767185935a81b3ee8e8f9ab0",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
       "status": "passed",
-      "evidence": "Focused derived build passed after v99 added strict mapping-cone triangleh boundedHomotopyObject ext1/ext2/ext3 lemmas."
+      "evidence": "Focused derived build passed after v100 added explicit triangle-isomorphism transfer for strict mapping-cone triangleh boundedHomotopyObject ext1/ext2/ext3 conclusions."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full project build passed after v99 added strict-representative boundedness lemmas for CochainComplex.mappingCone.triangleh while preserving the nonterminal stable-infinity boundary."
+      "evidence": "Full project build passed after v100 added triangle-isomorphism transfer lemmas while preserving the nonterminal stable-infinity boundary."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v99 update."
+      "evidence": "No forbidden Lean trust-expanding or placeholder tokens found under LeanLCAExactChallenge after the v100 update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit sees the v99 boundedHomotopyObject_triangleh_ext3/ext2/ext1 declarations."
+      "evidence": "Required declaration audit sees the v100 boundedHomotopyObject_triangleh_iso_ext3/ext2/ext1 declarations."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit compiles with the v99 strict triangleh boundedness declarations while retaining the nonterminal stable-infinity contract."
+      "evidence": "Product declaration audit compiles with the v100 triangle-isomorphism transfer declarations while retaining the nonterminal stable-infinity contract."
     },
     {
       "command": "lake env lean audit/blockers/quasi_abelian_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v99 derived-side update."
+      "evidence": "Quillen/MetrizableLCA exact-category blocker audit still compiles after the v100 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/yoneda_ext_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Yoneda blocker audit still compiles after the v99 derived-side update."
+      "evidence": "Yoneda blocker audit still compiles after the v100 derived-side update."
     },
     {
       "command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean",
       "status": "passed",
-      "evidence": "Derived blocker audit confirms the v99 strict mapping-cone triangleh boundedness examples and still records the unresolved IsTriangulatedClosed₂/stable-infinity product condition."
+      "evidence": "Derived blocker audit confirms the v100 explicit triangle-isomorphism transfer examples and still records the unresolved IsTriangulatedClosed₂/stable-infinity product condition."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "Terminal outcome JSON syntax checked after the v99 nonterminal summary refresh."
+      "evidence": "Terminal outcome JSON syntax checked after the v100 nonterminal summary refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "Proof frontier JSON syntax checked after the v99 frontier update."
+      "evidence": "Proof frontier JSON syntax checked after the v100 frontier update."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "Verification JSON syntax checked after regenerating the v99 verification record."
+      "evidence": "Verification JSON syntax checked after regenerating the v100 verification record."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "Manifest JSON syntax checked after regenerating the v99 manifest."
+      "evidence": "Manifest JSON syntax checked after regenerating the v100 manifest."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
       "status": "passed",
-      "evidence": "External audit Python syntax check still passes after the v99 update."
+      "evidence": "External audit Python syntax check still passes after the v100 update."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after the v99 proof, audit, documentation, frontier, terminal outcome, and evidence update."
+      "evidence": "Whitespace check passed after the v100 proof, audit, documentation, frontier, terminal outcome, and evidence update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because v99 only proves strict-representative mapping-cone triangleh boundedness and does not prove boundedHomotopyObject IsTriangulatedClosed₂, exact acyclic homotopy object IsTriangulatedClosed₂, unconditional left/right calculus, transfer to Dbounded triangulated/stable infinity, or stable infinity-category structure."
+      "evidence": "Expected non-product gate after manifest refresh: all pre-terminal checks pass, then terminal_outcome.failed_nonterminal/product_complete=false is rejected because v100 only transfers strict-representative mapping-cone triangleh boundedness across explicit triangle isomorphisms and does not prove boundedHomotopyObject IsTriangulatedClosed₂, exact acyclic homotopy object IsTriangulatedClosed₂, unconditional left/right calculus, transfer to Dbounded triangulated/stable infinity, or stable infinity-category structure."
     }
   ]
 }
