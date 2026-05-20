@@ -285,3 +285,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v299 Update
 
 2026-05-20T15:55:37Z: `audit/blockers/wpp_op_exact_acyclic_colimit_closure_w299.lean` reduces W271's exact-acyclic WPP-op colimit-closure input to two smaller facts: degreewise short-complex functor preservation of the WPP-op cochain-complex colimit cocone, and WPP-op colimit closure of `QuillenExactCategory.Conflation` in `ShortComplex MetrizableLCA`. This follows directly from the product definition `exactAcyclic C K := ∀ i, Conflation (K.sc i)`. Both lower inputs remain open, so product success remains nonterminal.
+
+## v300 Update
+
+2026-05-20T16:00:53Z: `audit/blockers/wpp_op_short_complex_colimit_comparison_w300.lean` proves the first W299 lower input, `walkingParallelPairOp_shortComplex_colimitComparison`. The proof explicitly combines `HomologicalComplex.eval` colimit preservation in degrees `prev i`, `i`, and `next i` with `ShortComplex.isColimitOfIsColimitπ`; direct instance synthesis for `PreservesColimit K (degreeShortComplexFunctor i)` was not available. The remaining W299 lower input is WPP-op colimit closure of strict `Conflation` in `ShortComplex MetrizableLCA`, so product success remains nonterminal.
