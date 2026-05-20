@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T01:07:00Z",
+  "generated_utc": "2026-05-21T01:10:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -3868,6 +3868,31 @@
       "元のhcs : IsColimit csを供給する。",
       "HasColimitsOfShape WalkingParallelPairᵒᵖ MetrizableLCAを供給する。",
       "PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat)を供給する。"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w423": {
+    "timestamp_utc": "2026-05-21T01:10:00Z",
+    "status": "verified_focused",
+    "summary": "W423 proves W399 descended fields from W407 reverse membership plus W420 certificate package or W380/W389/W386 certificates.",
+    "touched_files": [
+      "audit/blockers/wpp_op_w399_inputs_from_reverse_membership_and_certificates_v370_support_w423.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "ordinaryDescendedOfOrdinaryMapW417_eq_W418",
+      "relationPullbackDescendedFieldsInputsW399_of_reverseMembership_and_certificateRelationFieldsW395",
+      "relationPullbackDescendedFieldsInputsW399_of_reverseMembership_and_w380_w389_w386"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_w399_inputs_from_reverse_membership_and_certificates_v370_support_w423.lean",
+      "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/wpp_op_w399_inputs_from_reverse_membership_and_certificates_v370_support_w423.lean (expected no matches)",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "実際のWPP-op morphismについてW407 reverse closed-range membershipを供給する。",
+      "W420 certificate packageまたはW380/W389/W386 certificatesを供給する。",
+      "standalone audit blocksをimportable Lean modulesへ昇格する。",
+      "W399からW393/W390/W384 transported field routeへ接続する。"
     ],
     "product_success_claimed": false
   }
