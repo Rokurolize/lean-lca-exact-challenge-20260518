@@ -289,3 +289,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v300 Update
 
 2026-05-20T16:00:53Z: `audit/blockers/wpp_op_short_complex_colimit_comparison_w300.lean` proves the first W299 lower input, `walkingParallelPairOp_shortComplex_colimitComparison`. The proof explicitly combines `HomologicalComplex.eval` colimit preservation in degrees `prev i`, `i`, and `next i` with `ShortComplex.isColimitOfIsColimitπ`; direct instance synthesis for `PreservesColimit K (degreeShortComplexFunctor i)` was not available. The remaining W299 lower input is WPP-op colimit closure of strict `Conflation` in `ShortComplex MetrizableLCA`, so product success remains nonterminal.
+
+## v301 Update
+
+2026-05-20T16:07:02Z: `audit/blockers/wpp_op_strict_short_exact_colimit_fields_w301.lean` reduces the remaining W299/W300 `ShortComplex MetrizableLCA` `Conflation` colimit-closure input to the actual four fields of `MetrizableLCA.strictShortExact`: left closed embedding, right open map, right surjectivity, and algebraic exactness at the colimit point. This uses the product exact-category definition `MetrizableLCA.quillenExactCategory` with `Conflation := strictShortExact`. All four field-closure inputs remain open, so product success remains nonterminal.
