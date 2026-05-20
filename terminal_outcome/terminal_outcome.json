@@ -2,8 +2,10 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v233時点で、LeanLCAExactChallenge.Derived.BoundedFiniteProducts を追加し、BoundedComplexCategory.ι が有限product mapをcochain-complex側の有限product mapへ運ぶ可換四角形を証明した。これにより default universe の MetrizableLCA について finiteProductMappingConeInput_metrizableLCA が成立し、boundedExactWeakEquivalence の有限product安定性に必要なmapping-cone入力は閉じた。監査境界ではこの入力から IsStableUnderFiniteProducts と条件付き Dbounded finite-products API まで接続した。ただし Dbounded の無条件有限product/有限limitには HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer が残り、有限colimit、三角構造、stable infinity-category構造も未完了である。",
+  "summary": "v234時点で、既存の明示的pullback coneから MetrizableLCA.instHasPullbacks を公開し、terminal object と pullback による標準構成で MetrizableLCA.instHasFiniteLimits を追加した。ProductSuccessDeclarations は HasPullbacks MetrizableLCA と HasFiniteLimits MetrizableLCA を確認し、bounded exact weak equivalence finite-products境界の Dbounded finite-products API から HasFiniteLimits MetrizableLCA の外部仮定を外した。ただし Dbounded の無条件有限product/有限limitには left calculus of fractions と pullback/equalizer localization transfer が残り、有限colimit、三角構造、stable infinity-category構造も未完了である。",
   "verified_commands": [
+    "lake env lean LeanLCAExactChallenge/LCA/Pullback.lean",
+    "lake build LeanLCAExactChallenge.LCA.Pullback",
     "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
     "lake env lean audit/blockers/bounded_exact_weak_equivalence_finite_products_boundary.lean",
     "lake build",
@@ -648,9 +650,9 @@
     "MappingConeOptionProductStepW146.optionMappingConeComparisonStepMissingInputs_count"
   ],
   "known_gaps": [
-    "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
+    "Dboundedの無条件有限product/有限limitには、left calculus of fractions と pullback/equalizer localization transfer の接続が残る。HasFiniteLimits MetrizableLCA はv234で閉じた。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
-    "bounded finite-product transferはdefault-universe MetrizableLCAで閉じたが、最終product successには抽出レビューpacketとfresh claim reviewがまだ必要である。"
+    "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",
@@ -841,7 +843,7 @@
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.isStableUnderFiniteProducts_metrizableLCA",
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA"
   ],
-  "generated_utc": "2026-05-20T10:09:29Z",
+  "generated_utc": "2026-05-20T10:18:40Z",
   "support_result_classification": "w184 resultはv226時点で未到着。w182/w183はv223-v224で既に親側実装済みとして分類済み。",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",

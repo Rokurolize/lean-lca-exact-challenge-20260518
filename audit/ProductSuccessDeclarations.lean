@@ -40,8 +40,16 @@ example : HasZeroObject MetrizableLCA := by infer_instance
 /-- The strict metrizable LCA category has finite products from zero and binary products. -/
 example : HasFiniteProducts MetrizableLCA := by infer_instance
 
+/-- The strict metrizable LCA category has pullbacks from the explicit subgroup model. -/
+example : HasPullbacks MetrizableLCA := by infer_instance
+
+/-- The strict metrizable LCA category has finite limits from terminal objects and pullbacks. -/
+example : HasFiniteLimits MetrizableLCA := by infer_instance
+
 #check MetrizableLCA.zeroObj
 #check MetrizableLCA.zeroObj_isZero
+#check MetrizableLCA.instHasPullbacks
+#check MetrizableLCA.instHasFiniteLimits
 #check MetrizableLCA.pushoutCokernelMap_open_surjection
 #check MetrizableLCA.pushoutCokernelMap_kernel_iff_range_inr
 #check MetrizableLCA.shortExactExtensionPushout_kernel_iff_range_i

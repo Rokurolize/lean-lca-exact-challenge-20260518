@@ -176,7 +176,6 @@ theorem isStableUnderFiniteProducts_metrizableLCA :
 
 /-- Finite products in `Dbounded MetrizableLCA` after the v232 bounded transfer. -/
 noncomputable abbrev dboundedHasFiniteProducts_metrizableLCA
-    [HasFiniteLimits MetrizableLCA.{0}]
     [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
     HasFiniteProducts (Dbounded MetrizableLCA.{0}) := by
   haveI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteProducts :=

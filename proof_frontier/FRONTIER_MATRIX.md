@@ -135,3 +135,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ### Parent update v231 - tail finite mapping cone comparison
 2026-05-20T10:04:39Z: W146 now proves `piMap_reindex_hom_naturality`, `mappingConeProductComparisonIso_of_equiv`, and `tailFiniteMappingConeComparisonInput_direct`. This closes the audit-local finite mapping-cone/product comparison frontier. Remaining work is promotion/connection to Derived and Dbounded transfer, then finite colimits, triangulated structure, and stable infinity-category obligations.
+
+## v234 Update
+
+2026-05-20T10:18:40Z: MetrizableLCA now exposes `MetrizableLCA.instHasPullbacks` from the explicit pullback cone and `MetrizableLCA.instHasFiniteLimits` from terminal objects plus pullbacks. `audit/ProductSuccessDeclarations.lean` checks both instances, and `audit/blockers/bounded_exact_weak_equivalence_finite_products_boundary.lean` no longer requires an explicit `HasFiniteLimits MetrizableLCA` premise for its conditional Dbounded finite-products API. Product success remains nonterminal because Dbounded localization transfer, finite colimits, triangulated structure, and stable infinity-category obligations remain open.

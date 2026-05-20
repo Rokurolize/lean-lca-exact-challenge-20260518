@@ -1,23 +1,33 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v233-bounded-finite-products-transfer",
-  "generated_utc": "2026-05-20T10:09:29Z",
-  "source_tree_hash": "86b0c9cd15d4bd415c54476bff7f94d1d983aa04762350495350104a9558284e",
-  "summary": "v233時点で、LeanLCAExactChallenge.Derived.BoundedFiniteProducts を追加し、BoundedComplexCategory.ι が有限product mapをcochain-complex側の有限product mapへ運ぶ可換四角形を証明した。これにより default universe の MetrizableLCA について finiteProductMappingConeInput_metrizableLCA が成立し、boundedExactWeakEquivalence の有限product安定性に必要なmapping-cone入力は閉じた。監査境界ではこの入力から IsStableUnderFiniteProducts と条件付き Dbounded finite-products API まで接続した。ただし Dbounded の無条件有限product/有限limitには HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer が残り、有限colimit、三角構造、stable infinity-category構造も未完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v234-metrizable-lca-finite-limits",
+  "generated_utc": "2026-05-20T10:18:40Z",
+  "source_tree_hash": "d6d2dd177907a478ccaa4a0e09ebedfe57ad51de287b715302dd92d5a9e4260d",
+  "summary": "v234時点で、既存の明示的pullback coneから MetrizableLCA.instHasPullbacks を公開し、terminal object と pullback による標準構成で MetrizableLCA.instHasFiniteLimits を追加した。ProductSuccessDeclarations は HasPullbacks MetrizableLCA と HasFiniteLimits MetrizableLCA を確認し、bounded exact weak equivalence finite-products境界の Dbounded finite-products API から HasFiniteLimits MetrizableLCA の外部仮定を外した。ただし Dbounded の無条件有限product/有限limitには left calculus of fractions と pullback/equalizer localization transfer が残り、有限colimit、三角構造、stable infinity-category構造も未完了である。",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/LCA/Pullback.lean",
+      "status": "passed",
+      "evidence": "Focused LCA pullback source check passed after adding HasPullbacks and HasFiniteLimits instances."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.LCA.Pullback",
+      "status": "passed",
+      "evidence": "Changed module built so downstream imports see MetrizableLCA.instHasPullbacks and instHasFiniteLimits."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
       "status": "passed",
-      "evidence": "Focused promoted bounded finite-products module check passed."
+      "evidence": "Focused bounded finite-products module check passed after source finite-limit instance addition."
     },
     {
       "command": "lake env lean audit/blockers/bounded_exact_weak_equivalence_finite_products_boundary.lean",
       "status": "passed",
-      "evidence": "Boundary audit passed; it now checks included product transport, finiteProductMappingConeInput_metrizableLCA, IsStableUnderFiniteProducts, and conditional Dbounded finite products."
+      "evidence": "Boundary audit passed; dboundedHasFiniteProducts_metrizableLCA no longer has an explicit HasFiniteLimits MetrizableLCA premise."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after v233 bounded finite-products transfer; existing warnings only."
+      "evidence": "Full lake build passed after v234 source-category finite-limit transfer; existing warnings only."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -27,42 +37,42 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after v233 changes."
+      "evidence": "Required declaration audit passed after v234 changes."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed and checks BoundedFiniteProducts declarations; product_success remains unclaimed."
+      "evidence": "ProductSuccessDeclarations passed and now checks HasPullbacks MetrizableLCA and HasFiniteLimits MetrizableLCA."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v233 patch and artifact refresh."
+      "evidence": "Whitespace diff check passed after v234 patch and artifact refresh."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "terminal_outcome JSON parsed after v233 refresh."
+      "evidence": "terminal_outcome JSON parsed after v234 refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "proof_frontier JSON parsed after v233 refresh."
+      "evidence": "proof_frontier JSON parsed after v234 refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "verification JSON parsed after v233 refresh."
+      "evidence": "verification JSON parsed after v234 refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "manifest JSON parsed after v233 refresh."
+      "evidence": "manifest JSON parsed after v234 refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v233 artifact refresh."
+      "evidence": "External audit self-check passed after v234 artifact refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -365,13 +375,15 @@
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.exactAcyclic_mappingCone_cochain_piMap_of_v232",
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.finiteProductMappingConeInput_metrizableLCA",
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.isStableUnderFiniteProducts_metrizableLCA",
-    "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA"
+    "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA",
+    "MetrizableLCA.instHasPullbacks",
+    "MetrizableLCA.instHasFiniteLimits"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
+    "Dboundedの無条件有限product/有限limitには、left calculus of fractions と pullback/equalizer localization transfer の接続が残る。HasFiniteLimits MetrizableLCA はv234で閉じた。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
-    "bounded finite-product transferはdefault-universe MetrizableLCAで閉じたが、最終product successには抽出レビューpacketとfresh claim reviewがまだ必要である。"
+    "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
   "support_result_classification": "w184 resultはv226時点で未到着。w182/w183はv223-v224で既に親側実装済みとして分類済み。"
 }

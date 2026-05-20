@@ -1,4 +1,6 @@
 import LeanLCAExactChallenge.LCA.StrictExact
+import Mathlib.CategoryTheory.Limits.Constructions.LimitsOfProductsAndEqualizers
+import Mathlib.CategoryTheory.Limits.Constructions.Pullbacks
 import Mathlib.CategoryTheory.Limits.Shapes.Pullback.PullbackCone
 import Mathlib.Topology.Compactness.LocallyCompact
 import Mathlib.Topology.Constructions
@@ -151,6 +153,12 @@ noncomputable def pullbackIsLimit : IsLimit (pullbackCone f g) :=
 
 noncomputable instance hasPullback : HasPullback f g where
   exists_limit := ⟨⟨pullbackCone f g, pullbackIsLimit f g⟩⟩
+
+noncomputable instance instHasPullbacks : HasPullbacks MetrizableLCA.{u} :=
+  hasPullbacks_of_hasLimit_cospan MetrizableLCA.{u}
+
+noncomputable instance instHasFiniteLimits : HasFiniteLimits MetrizableLCA.{u} :=
+  hasFiniteLimits_of_hasTerminal_and_pullbacks
 
 noncomputable def pullbackIsoPullbackObj : pullback f g ≅ pullbackObj f g :=
   limit.isoLimitCone ⟨pullbackCone f g, pullbackIsLimit f g⟩
