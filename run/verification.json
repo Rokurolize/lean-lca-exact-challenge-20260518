@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T17:18:00Z",
-  "source_tree_hash": "d9893749865a58c790c0f7669376d371cd7b5042dc23d2784a7e15428c20ff3b",
-  "summary": "v308-v314で固定mappingConeCocone mediatorのbounded right-target lift境界、WPP-op右射epi、rightOpenMap/cover縮約、strictShortExact colimit closureのexact/topology入力への縮約、さらにexactAcyclic WPP-op colimit closureへの接続を追加した。product_completeはfalseのまま。",
+  "generated_utc": "2026-05-20T16:53:09Z",
+  "source_tree_hash": "c671b81b3565cac3ae1099d00f0292d1fe796c1acf406e84e263c2cb933fc6ec",
+  "summary": "v315-v316でW286/W287/W315/W316を親側検証し、右open map、algebraic exactness、HasHomology、忘却PreservesHomology入力をそれぞれ小さい標準API境界へ縮約した。product_completeはfalseのまま。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -848,6 +848,46 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_exact_acyclic_from_exact_topology_w314.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W314 audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
+      "status": "passed",
+      "evidence": "Focused W286 right-open-map component-colimit boundary passed after parent verification."
+    },
+    {
+      "command": "lake env lean audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean",
+      "status": "passed",
+      "evidence": "Focused W287 algebraic-exactness from ShortComplex.Exact boundary passed after parent verification."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/right_open_map_wpp_op_colimit_w286.lean audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W286/W287 audit files."
+    },
+    {
+      "command": "lake env lean audit/blockers/metrizable_lca_category_with_homology_w315.lean",
+      "status": "passed",
+      "evidence": "Focused W315 category-with-homology boundary passed."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_lca_category_with_homology_w315.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W315."
+    },
+    {
+      "command": "lake env lean audit/blockers/metrizable_lca_forget_preserves_homology_w316.lean",
+      "status": "passed",
+      "evidence": "Focused W316 forgetful-preserves-homology boundary passed."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_lca_forget_preserves_homology_w316.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W316."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_lca_category_with_homology_w315.lean audit/blockers/metrizable_lca_forget_preserves_homology_w316.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W315/W316 audit files."
     }
   ],
   "implemented_declarations_checked": [

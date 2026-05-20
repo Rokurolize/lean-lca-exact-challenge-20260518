@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v308-v314で固定mappingConeCocone mediatorのbounded right-target lift境界、WPP-op右射epi、rightOpenMap/cover縮約、strictShortExact colimit closureのexact/topology入力への縮約、さらにexactAcyclic WPP-op colimit closureへの接続を追加した。product_completeはfalseのまま。",
+  "summary": "v315-v316でW286/W287/W315/W316を親側検証し、右open map、algebraic exactness、HasHomology、忘却PreservesHomology入力をそれぞれ小さい標準API境界へ縮約した。product_completeはfalseのまま。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -153,7 +153,15 @@
     "lake env lean audit/blockers/wpp_op_strict_short_exact_from_exact_topology_w313.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_strict_short_exact_from_exact_topology_w313.lean",
     "lake env lean audit/blockers/wpp_op_exact_acyclic_from_exact_topology_w314.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_exact_acyclic_from_exact_topology_w314.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_exact_acyclic_from_exact_topology_w314.lean",
+    "lake env lean audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
+    "lake env lean audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/right_open_map_wpp_op_colimit_w286.lean audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean",
+    "lake env lean audit/blockers/metrizable_lca_category_with_homology_w315.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_lca_category_with_homology_w315.lean",
+    "lake env lean audit/blockers/metrizable_lca_forget_preserves_homology_w316.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_lca_forget_preserves_homology_w316.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_lca_category_with_homology_w315.lean audit/blockers/metrizable_lca_forget_preserves_homology_w316.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -848,9 +856,22 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.rightMapEpi_walkingParallelPairOp_colimitClosure_direct",
     "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_topology",
     "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_topology",
-    "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.currentWppOpExactAcyclicFromExactTopologyState"
+    "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.currentWppOpExactAcyclicFromExactTopologyState",
+    "LeanLCAExactChallenge.MetrizableLCACategoryWithHomologyW315.hasHomology_walkingParallelPairOp_colimitClosure",
+    "LeanLCAExactChallenge.MetrizableLCACategoryWithHomologyW315.hasHomology_walkingParallelPairOp_colimitClosure_of_categoryWithHomology",
+    "LeanLCAExactChallenge.MetrizableLCACategoryWithHomologyW315.currentMetrizableLCACategoryWithHomologyState",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetLCAAddCommGrp",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetPreservesHomologyInput",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetPreservesHomology_of_preservesFiniteLimitsColimits",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.ForgetPreservesHomologyInputs",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetPreservesHomology_of_inputs",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.currentMetrizableLCAForgetPreservesHomologyState"
   ],
   "known_gaps": [
+    "W315でcolimit点HasHomology入力はCategoryWithHomology MetrizableLCAへ縮約されたが、このcategory-level homology instanceはまだ未供給である。",
+    "W316で忘却関手PreservesHomology入力はforget₂ MetrizableLCA AddCommGrpCatの有限limit保存と有限colimit保存へ縮約されたが、特に有限colimit保存は閉包像cokernelと代数的cokernelの差があるため未供給である。",
+    "W286で右open map入力はX₂/X₃ component colimit間の誘導写像がopenであるという位相LCA APIへ縮約されたが、このcomponent colimit open-map theoremはまだ未供給である。",
+    "W287でalgebraic exactness入力はShortComplex.Exact、HasHomology、忘却関手のPreservesHomologyへ縮約されたが、WPP-op colimit点のShortComplex.Exact closure theoremはまだ未供給である。",
     "W314でW271のexactAcyclic WPP-op colimit closureはW313と同じ五つのexact/topology入力へ接続されたが、HasHomology、忘却関手のPreservesHomology、colimit短複体のExact、左closed embedding、右open mapはまだ未供給である。",
     "W313でWPP-op strictShortExact colimit closureはHasHomology、忘却関手のPreservesHomology、colimit短複体のExact、左closed embedding、右open mapへ縮約され、右全射性はcategorical epiとopen mapから得られると分かったが、この五つの入力はまだ未供給である。",
     "W312でW311のRightOpenMapColimitCoverはcolimit点がstrict short exactならidentity coverで構成できると分かったが、そのcolimit点のstrict short exactness、または具体的な商表示cover dataはまだ未供給である。",
@@ -898,12 +919,13 @@
     "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。",
     "direct identity containmentのiso-closed入力はW273でMetrizableLCAExactAcyclicTransportOfHomotopyEquivへ縮約されたが、exactAcyclicをHomotopyEquivで輸送する本体、特にShortComplex.QuasiIsoによるQuillenExactCategory.Conflation輸送はまだ未証明である。",
     "W313でWPP-op strictShortExact余極限閉性は、余極限点のHasHomology、forgetful PreservesHomology、ShortComplex.Exact、左射のclosed embedding、右射のopen mapへ縮約されたが、これらはまだsource theoremとして未証明である。",
-    "W314でW271 exactAcyclic WPP-op colimit closureはW313と同じHasHomology、forgetful PreservesHomology、ShortComplex.Exact、左射closed embedding、右射open mapへ接続されたが、これらの入力はまだsource theoremとして未証明である。"
+    "W314でW271 exactAcyclic WPP-op colimit closureはW313と同じHasHomology、forgetful PreservesHomology、ShortComplex.Exact、左射closed embedding、右射open mapへ接続されたが、これらの入力はまだsource theoremとして未証明である。",
+    "W315/W316でW314のhomology側入力は、CategoryWithHomology MetrizableLCA、forget₂のPreservesFiniteLimits、forget₂のPreservesFiniteColimitsへ分解されたが、これらはまだsource theoremとして未証明である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "uncommitted-v314",
+  "git_commit": "uncommitted-v316",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W272によりopposite functor-category localizationはblueprint + diagram/model fac/uniq義務へ縮約。direct WPPᵒᵖ colimit stability、direct identity containmentまたはhomotopy-class assembly、bounded-derived infinity product obligationsは残る。 v300でW299のdegreewise short-complex colimit比較入力は閉じた。 v301で支援W277の有用部分を親側で再実装し、strictShortExactの4フィールド閉性へ縮約した。 v302で支援W278の有用部分を親側で再実装し、mappingConeCoconeのcolimit証明へ縮約した。 v303で支援W281の有用部分を親側で再実装し、固定mappingConeCoconeのcolimit入力をdesc/fac/uniq普遍性データへ縮約した。 v304で支援W282の有用部分を親側で再実装し、HomotopyEquiv輸送のsource exactness入力をexactAcyclic MetrizableLCA Kへ戻した。 v304-v308でHomotopyEquiv輸送、mapping-cone unique mediator、strict field split、opposite fixed-target境界を追加整理した。",
   "claim_review_result": "未実施。v293はproduct_success claimではなく、root/clean extraction external auditはいずれも想定どおりfailed_nonterminal product gateで停止した。",
@@ -950,9 +972,10 @@
     "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。",
     "direct identity containmentのiso-closed入力はW273でMetrizableLCAExactAcyclicTransportOfHomotopyEquivへ縮約されたが、exactAcyclicをHomotopyEquivで輸送する本体、特にShortComplex.QuasiIsoによるQuillenExactCategory.Conflation輸送はまだ未証明である。",
     "W313でWPP-op strictShortExact余極限閉性は、余極限点のHasHomology、forgetful PreservesHomology、ShortComplex.Exact、左射のclosed embedding、右射のopen mapへ縮約されたが、これらはまだsource theoremとして未証明である。",
-    "W314でW271 exactAcyclic WPP-op colimit closureはW313と同じHasHomology、forgetful PreservesHomology、ShortComplex.Exact、左射closed embedding、右射open mapへ接続されたが、これらの入力はまだsource theoremとして未証明である。"
+    "W314でW271 exactAcyclic WPP-op colimit closureはW313と同じHasHomology、forgetful PreservesHomology、ShortComplex.Exact、左射closed embedding、右射open mapへ接続されたが、これらの入力はまだsource theoremとして未証明である。",
+    "W315/W316でW314のhomology側入力は、CategoryWithHomology MetrizableLCA、forget₂のPreservesFiniteLimits、forget₂のPreservesFiniteColimitsへ分解されたが、これらはまだsource theoremとして未証明である。"
   ],
-  "next_recommended_goal": "次はW314/W313の共通残入力であるWPP-op colimit pointのShortComplex.Exact、left closed embedding、right open map、HasHomology/PreservesHomologyを閉じる。別経路ではmapping-cone側のbounded right-target liftとmappingCone.desc等式を閉じる。",
+  "next_recommended_goal": "次はW315のCategoryWithHomology MetrizableLCAを構成するか、W316のforgetful finite-limit/finite-colimit preservationを証明する。ただしLCA cokernelは閉包商なので、global forgetful PreservesHomologyを避ける直接algebraic-kernel bridgeも有力である。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -1350,9 +1373,18 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.rightMapEpi_walkingParallelPairOp_colimitClosure_direct",
     "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_topology",
     "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_topology",
-    "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.currentWppOpExactAcyclicFromExactTopologyState"
+    "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.currentWppOpExactAcyclicFromExactTopologyState",
+    "LeanLCAExactChallenge.MetrizableLCACategoryWithHomologyW315.hasHomology_walkingParallelPairOp_colimitClosure",
+    "LeanLCAExactChallenge.MetrizableLCACategoryWithHomologyW315.hasHomology_walkingParallelPairOp_colimitClosure_of_categoryWithHomology",
+    "LeanLCAExactChallenge.MetrizableLCACategoryWithHomologyW315.currentMetrizableLCACategoryWithHomologyState",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetLCAAddCommGrp",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetPreservesHomologyInput",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetPreservesHomology_of_preservesFiniteLimitsColimits",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.ForgetPreservesHomologyInputs",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetPreservesHomology_of_inputs",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.currentMetrizableLCAForgetPreservesHomologyState"
   ],
-  "generated_utc": "2026-05-20T17:18:00Z",
+  "generated_utc": "2026-05-20T17:35:00Z",
   "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -1843,7 +1875,16 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.rightMapEpi_walkingParallelPairOp_colimitClosure_direct",
     "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_topology",
     "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_topology",
-    "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.currentWppOpExactAcyclicFromExactTopologyState"
+    "LeanLCAExactChallenge.WppOpExactAcyclicFromExactTopologyW314.currentWppOpExactAcyclicFromExactTopologyState",
+    "LeanLCAExactChallenge.MetrizableLCACategoryWithHomologyW315.hasHomology_walkingParallelPairOp_colimitClosure",
+    "LeanLCAExactChallenge.MetrizableLCACategoryWithHomologyW315.hasHomology_walkingParallelPairOp_colimitClosure_of_categoryWithHomology",
+    "LeanLCAExactChallenge.MetrizableLCACategoryWithHomologyW315.currentMetrizableLCACategoryWithHomologyState",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetLCAAddCommGrp",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetPreservesHomologyInput",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetPreservesHomology_of_preservesFiniteLimitsColimits",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.ForgetPreservesHomologyInputs",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.forgetPreservesHomology_of_inputs",
+    "LeanLCAExactChallenge.MetrizableLCAForgetPreservesHomologyW316.currentMetrizableLCAForgetPreservesHomologyState"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"

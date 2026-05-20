@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T17:18:00Z",
+  "generated_utc": "2026-05-20T16:53:09Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent. W308/W309 external worker outputs were inspected after their processes ended; W310/W311 were accepted only after parent-side focused verification.",
   "frontiers": [
@@ -1647,6 +1647,10 @@
     "Coherent opposite WalkingParallelPair strict-representative blueprint and the four W272 fixed-target fac/uniq obligations remain open."
   ],
   "open_blockers": [
+    "W315でcolimit点HasHomology入力はCategoryWithHomology MetrizableLCAへ縮約されたが、このcategory-level homology instanceはまだ未供給である。",
+    "W316で忘却関手PreservesHomology入力はforget₂ MetrizableLCA AddCommGrpCatの有限limit保存と有限colimit保存へ縮約されたが、特に有限colimit保存は閉包像cokernelと代数的cokernelの差があるため未供給である。",
+    "W286で右open map入力はX₂/X₃ component colimit間の誘導写像がopenであるという位相LCA APIへ縮約されたが、このcomponent colimit open-map theoremはまだ未供給である。",
+    "W287でalgebraic exactness入力はShortComplex.Exact、HasHomology、忘却関手のPreservesHomologyへ縮約されたが、WPP-op colimit点のShortComplex.Exact closure theoremはまだ未供給である。",
     "W314でW271のexactAcyclic WPP-op colimit closureはW313と同じ五つのexact/topology入力へ接続されたが、HasHomology、忘却関手のPreservesHomology、colimit短複体のExact、左closed embedding、右open mapはまだ未供給である。",
     "W313でWPP-op strictShortExact colimit closureはHasHomology、忘却関手のPreservesHomology、colimit短複体のExact、左closed embedding、右open mapへ縮約され、右全射性はcategorical epiとopen mapから得られると分かったが、この五つの入力はまだ未供給である。",
     "W312でW311のRightOpenMapColimitCoverはcolimit点がstrict short exactならidentity coverで構成できると分かったが、そのcolimit点のstrict short exactness、または具体的な商表示cover dataはまだ未供給である。",
@@ -1742,9 +1746,29 @@
     {
       "artifact": "audit/blockers/wpp_op_exact_acyclic_from_exact_topology_w314.lean",
       "result": "W314 connects W271 exactAcyclic WPP-op colimit closure to the W313 exact/topology inputs using the W300 degreewise short-complex colimit comparison; not product success."
+    },
+    {
+      "artifact": "audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
+      "result": "W286 reduces rightOpenMap WPP-op colimit closure to component X₂/X₃ colimit open-map preservation; not product success."
+    },
+    {
+      "artifact": "audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean",
+      "result": "W287 reduces algebraic exactness at the WPP-op colimit point to ShortComplex.Exact plus HasHomology and forgetful PreservesHomology; not product success."
+    },
+    {
+      "artifact": "audit/blockers/metrizable_lca_category_with_homology_w315.lean",
+      "result": "W315 reduces colimit-point HasHomology input to CategoryWithHomology MetrizableLCA; not product success."
+    },
+    {
+      "artifact": "audit/blockers/metrizable_lca_forget_preserves_homology_w316.lean",
+      "result": "W316 reduces forgetful PreservesHomology to PreservesFiniteLimits and PreservesFiniteColimits for forget₂ MetrizableLCA AddCommGrpCat; not product success."
     }
   ],
   "known_gaps": [
+    "W315でcolimit点HasHomology入力はCategoryWithHomology MetrizableLCAへ縮約されたが、このcategory-level homology instanceはまだ未供給である。",
+    "W316で忘却関手PreservesHomology入力はforget₂ MetrizableLCA AddCommGrpCatの有限limit保存と有限colimit保存へ縮約されたが、特に有限colimit保存は閉包像cokernelと代数的cokernelの差があるため未供給である。",
+    "W286で右open map入力はX₂/X₃ component colimit間の誘導写像がopenであるという位相LCA APIへ縮約されたが、このcomponent colimit open-map theoremはまだ未供給である。",
+    "W287でalgebraic exactness入力はShortComplex.Exact、HasHomology、忘却関手のPreservesHomologyへ縮約されたが、WPP-op colimit点のShortComplex.Exact closure theoremはまだ未供給である。",
     "W314でW271のexactAcyclic WPP-op colimit closureはW313と同じ五つのexact/topology入力へ接続されたが、HasHomology、忘却関手のPreservesHomology、colimit短複体のExact、左closed embedding、右open mapはまだ未供給である。",
     "W313でWPP-op strictShortExact colimit closureはHasHomology、忘却関手のPreservesHomology、colimit短複体のExact、左closed embedding、右open mapへ縮約され、右全射性はcategorical epiとopen mapから得られると分かったが、この五つの入力はまだ未供給である。",
     "W312でW311のRightOpenMapColimitCoverはcolimit点がstrict short exactならidentity coverで構成できると分かったが、そのcolimit点のstrict short exactness、または具体的な商表示cover dataはまだ未供給である。",
