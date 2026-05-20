@@ -64,6 +64,41 @@ theorem quotientMap_saturated_of_subgroup_translation_stableW360
   rw [hy_eq]
   exact hstable x hxS (y - x) hdiff
 
+/--
+For any quotient map, closed saturated sets have closed images.  This discharges
+the target-side quotient-topology input that W360 previously kept abstract.
+-/
+theorem image_closed_of_isQuotientMap_and_saturatedW360
+    {α β : Type _} [TopologicalSpace α] [TopologicalSpace β]
+    {q : α → β} (hq : IsQuotientMap q) {S : Set α}
+    (hS : IsClosed S) (hsaturated : IsSaturatedForW360 q S) :
+    IsClosed (q '' S) := by
+  have hpre_eq : q ⁻¹' (q '' S) = S := by
+    apply le_antisymm hsaturated
+    intro x hx
+    exact ⟨x, hx, rfl⟩
+  have hpre_closed : IsClosed (q ⁻¹' (q '' S)) := by
+    simpa [hpre_eq] using hS
+  exact hq.1.isClosed_preimage.mp hpre_closed
+
+/-- The local quotient projection is a topological quotient map. -/
+theorem quotientMap_isQuotientMapW360
+    (X : MetrizableLCA.{u}) (N : AddSubgroup X) (hN : IsClosed (N : Set X)) :
+    IsQuotientMap (quotientMap X N hN : X → quotientObj X N hN) := by
+  change IsQuotientMap (QuotientAddGroup.mk' N : X → X ⧸ N)
+  exact QuotientAddGroup.isQuotientMap_mk N
+
+/-- The local quotient projection closes closed saturated sets. -/
+theorem quotientMap_image_closed_of_closed_saturatedW360
+    (X : MetrizableLCA.{u}) (N : AddSubgroup X) (hN : IsClosed (N : Set X))
+    {S : Set X} (hS : IsClosed S)
+    (hsaturated :
+      IsSaturatedForW360
+        (quotientMap X N hN : X → quotientObj X N hN) S) :
+    IsClosed ((quotientMap X N hN : X → quotientObj X N hN) '' S) := by
+  exact image_closed_of_isQuotientMap_and_saturatedW360
+    (quotientMap_isQuotientMapW360 X N hN) hS hsaturated
+
 /-- Source-target relation pullback equality for the descended component `iB`. -/
 abbrev relationPreimagePullbackConditionW360
     {A B A' B' : MetrizableLCA.{u}} (f g : A ⟶ B) (f' g' : A' ⟶ B')
@@ -168,6 +203,14 @@ structure TargetQuotientClosedOnSaturatedSetsW360
     ∀ S : Set B', IsClosed S →
       IsSaturatedForW360 (quotientMap B' N' hN' : B' → quotientObj B' N' hN') S →
         IsClosed ((quotientMap B' N' hN' : B' → quotientObj B' N' hN') '' S)
+
+/-- The checked quotient-topology theorem supplies W360's named target package. -/
+theorem targetQuotientClosedOnSaturatedSetsW360
+    (B' : MetrizableLCA.{u}) (N' : AddSubgroup B') (hN' : IsClosed (N' : Set B')) :
+    TargetQuotientClosedOnSaturatedSetsW360 B' N' hN' where
+  closed_image := by
+    intro S hS hsaturated
+    exact quotientMap_image_closed_of_closed_saturatedW360 B' N' hN' hS hsaturated
 
 /--
 Representative-image closedness condition from W355/W358, copied locally so the
