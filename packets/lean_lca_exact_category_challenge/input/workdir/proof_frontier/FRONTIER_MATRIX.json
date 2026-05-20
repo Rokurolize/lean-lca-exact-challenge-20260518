@@ -3553,5 +3553,35 @@
       "W408 representative-image closedness certificateとtarget relation lift certificateを証明する。"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w411": {
+    "timestamp_utc": "2026-05-21T00:37:00Z",
+    "status": "verified_focused",
+    "summary": "W411 reduces W408 representative-image closedness to component closed-map/closed-embedding plus target representative-image saturation.",
+    "touched_files": [
+      "audit/blockers/wpp_op_left_lca_representative_image_closedness_v370_support_w411.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "IsSaturatedForW411",
+      "image_closed_of_isQuotientMap_and_saturatedW411",
+      "quotientMap_isQuotientMapW411",
+      "quotientMap_image_closed_of_closed_saturatedW411",
+      "ordinaryDescendedRepresentativeImageClosedConditionW411",
+      "ordinaryDescendedRepresentativeImageSaturatedConditionW411",
+      "ordinaryDescendedRepresentativeImageClosed_of_componentClosed_targetSaturatedW411",
+      "ordinaryDescendedRepresentativeImageClosed_of_componentClosedEmbedding_targetSaturatedW411",
+      "ordinaryDescendedClosedMap_consumer_of_componentClosed_targetSaturatedW411"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_left_lca_representative_image_closedness_v370_support_w411.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_representative_image_closedness_v370_support_w411.lean",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "ordinary codomain component closed-map or closed-embedding fieldを証明する。",
+      "closed source quotient setごとのtarget representative-image saturationを証明する。",
+      "W410 mapped-cocone colimit、W409/W407 closed-range証明、target relation lift certificateを証明する。"
+    ],
+    "product_success_claimed": false
   }
 }
