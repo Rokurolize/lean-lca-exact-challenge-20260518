@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v168-w130-classified",
-  "generated_utc": "2026-05-20T07:25:00Z",
-  "source_tree_hash": "66b4e93bdb7267e85fc27e4c08ac1fc8f811ed0dc6e35063f9034c85b75d5401",
-  "summary": "v168 classifies completed support result w130 as superseded by parent v164-v165: provider-side trivial eligibility construction was already integrated and the corresponding always/trivial upgrade was further refuted over IntModuleCat; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v169-stable-extracted-providers-ready",
+  "generated_utc": "2026-05-20T07:40:00Z",
+  "source_tree_hash": "e65578e0d41ddac637011d1e3220e4f6d00039cf2c83e7ba25a37dd865f485a8",
+  "summary": "v169 adds a readiness predicate for the four extracted Dbounded stable projection providers and proves a full four-projection certificate satisfies it; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v167 stable four-projection extractor audit."
+      "evidence": "Full lake build passed after the v169 stable extracted-provider readiness audit."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v167 stable four-projection extractor audit."
+      "evidence": "Forbidden-token audit passed after the v169 stable extracted-provider readiness audit."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v167 stable four-projection extractor audit."
+      "evidence": "Required declaration audit passed after the v169 stable extracted-provider readiness audit."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess declaration audit passed after the v167 stable four-projection extractor audit; no product-success claim was added."
+      "evidence": "ProductSuccess declaration audit passed after the v169 stable extracted-provider readiness audit; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -57,7 +57,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v167 artifact updates."
+      "evidence": "Whitespace diff check passed after the v169 artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -137,7 +137,7 @@
     {
       "command": "lake env lean audit/blockers/stable_certificate_four_projection_constructor_w131.lean",
       "status": "passed",
-      "evidence": "Focused v167 w131 stable four-projection audit passed after extracting all four Dbounded projection providers from a full single certificate."
+      "evidence": "Focused v169 w131 stable four-projection audit passed after adding the extracted-provider readiness predicate and theorem."
     }
   ],
   "implemented_declarations_checked": [
@@ -266,12 +266,14 @@
     "StableCertificateFourProjectionConstructorW131.DboundedPushoutPullbackProjectionProvider",
     "StableCertificateFourProjectionConstructorW131.DboundedExtractedFourProjectionProviders",
     "StableCertificateFourProjectionConstructorW131.dboundedExtractedFourProjectionProvidersOfFourProjectionProvider",
-    "StableCertificateFourProjectionConstructorW131.OrdinaryContextToDboundedFourProjectionProvider"
+    "StableCertificateFourProjectionConstructorW131.OrdinaryContextToDboundedFourProjectionProvider",
+    "StableCertificateFourProjectionConstructorW131.DboundedExtractedFourProjectionProviders.ready",
+    "StableCertificateFourProjectionConstructorW131.dboundedExtractedFourProjectionProviders_ready_of_fourProjectionProvider"
   ],
   "product_complete": false,
   "known_gaps": [
     "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため、arbitrary weak endpoint witnessを除外する非自明なeligibility predicateと、そのeligible witnessだけをcochain同型へ上げるupgradeが必要です。",
-    "stable側は、full single certificateから4つのprojection providerを取り出す監査constructorは通ったが、ordinary Dbounded contextからfull stable four-projection certificateを構成する実装が未完成です。",
+    "stable側は、full single certificateから4つのprojection providerを取り出してreadyにする監査constructorは通ったが、ordinary Dbounded contextからfull stable four-projection certificateを構成する実装が未完成です。",
     "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
   ],
   "support_result_classification": {

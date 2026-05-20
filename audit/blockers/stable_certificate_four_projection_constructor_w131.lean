@@ -185,6 +185,18 @@ structure DboundedExtractedFourProjectionProviders
   suspensionLoop : DboundedSuspensionLoopProjectionProvider C
   pushoutPullback : DboundedPushoutPullbackProjectionProvider C
 
+/-- Readiness predicate for all four extracted `Dbounded` stable projection providers. -/
+def DboundedExtractedFourProjectionProviders.ready
+    {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (providers : DboundedExtractedFourProjectionProviders C) :
+    Prop :=
+  providers.finiteLimits.finiteLimits providers.finiteLimits.certificate ∧
+    providers.finiteColimits.finiteColimits providers.finiteColimits.certificate ∧
+    providers.suspensionLoop.suspensionLoopEquivalence
+      providers.suspensionLoop.certificate ∧
+    providers.pushoutPullback.pushoutPullbackCompatibility
+      providers.pushoutPullback.certificate
+
 /-- The full four-projection provider required specifically for `Dbounded.infinityCategory C`. -/
 abbrev DboundedFourProjectionProvider
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -232,6 +244,15 @@ noncomputable def dboundedExtractedFourProjectionProvidersOfFourProjectionProvid
   suspensionLoop := dboundedSuspensionLoopProjectionOfFourProjectionProvider C cert
   pushoutPullback := dboundedPushoutPullbackProjectionOfFourProjectionProvider C cert
 
+/-- Extracted projection providers from a full certificate satisfy the four-field readiness
+predicate. -/
+theorem dboundedExtractedFourProjectionProviders_ready_of_fourProjectionProvider
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (cert : DboundedFourProjectionProvider C) :
+    (dboundedExtractedFourProjectionProvidersOfFourProjectionProvider C cert).ready := by
+  exact ⟨cert.finiteLimits_ready, cert.finiteColimits_ready,
+    cert.suspensionLoopEquivalence_ready, cert.pushoutPullbackCompatibility_ready⟩
+
 /--
 Exact missing field signature after these constructors: the current ordinary `Dbounded`
 context would need to produce the full semantic four-projection certificate for
@@ -274,12 +295,14 @@ section Checks
 #check DboundedSuspensionLoopProjectionProvider
 #check DboundedPushoutPullbackProjectionProvider
 #check DboundedExtractedFourProjectionProviders
+#check DboundedExtractedFourProjectionProviders.ready
 #check DboundedFourProjectionProvider
 #check dboundedFiniteLimitsProjectionOfFourProjectionProvider
 #check dboundedFiniteColimitsProjectionOfFourProjectionProvider
 #check dboundedSuspensionLoopProjectionOfFourProjectionProvider
 #check dboundedPushoutPullbackProjectionOfFourProjectionProvider
 #check dboundedExtractedFourProjectionProvidersOfFourProjectionProvider
+#check dboundedExtractedFourProjectionProviders_ready_of_fourProjectionProvider
 #check OrdinaryContextToDboundedFourProjectionProvider
 #check nearestOrdinaryStableProjectionCandidates
 #check missingFourProjectionProviderSignature
