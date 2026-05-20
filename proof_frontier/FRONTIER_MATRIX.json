@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T10:43:46Z",
+  "generated_utc": "2026-05-20T10:49:32Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1282,10 +1282,11 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "support w213 was parent-reimplemented as a generic localization limit-transfer boundary; support w212 remains obstruction evidence for left calculus and is not merged as product proof.",
-  "latest_parent_update": "v238-equalizer-localization-transfer-boundary",
-  "summary": "v238時点で、support w213 の有用部分を親側で再実装し、audit/blockers/equalizer_localization_transfer_boundary.lean を追加した。局所化で極限を転送する一般補題 CategoryTheory.Localization.hasLimitsOfShape が、J形functor-category局所化を仮定すれば通ることを証明した。WalkingParallelPairへ特殊化すると、Dbounded C のequalizer、さらに既存の有限product routeと合わせた有限limitが条件付きで得られる。残り入力は非離散shape WalkingParallelPair のfunctor-category localizationとparallel-pair安定性などであり、product successはまだ非完了である。",
+  "support_result_classification": "support w216/w217 were parent-reimplemented as left-calculus input boundaries; support w219 overlaps v238 conditional evidence and w220 is still running externally.",
+  "latest_parent_update": "v239-left-calculus-input-boundaries",
+  "summary": "v239時点で、support w216/w217 の有用部分を親側で再実装し、audit/blockers/exact_acyclic_homotopy_iso_closure_w216.lean と audit/blockers/bounded_homotopy_left_calculus_w217.lean を追加した。direct bounded left-calculus route は、exactAcyclicHomotopyIsoClosure C を exactAcyclicHomotopyObject C へ戻す iso-closure collapse と、BoundedComplexCategory.homotopyQuotient C に沿う inverse-image へ Verdier left calculus を移す transfer に分解された。これは有限product routeの残り入力を明確にするが、product successはまだ非完了である。",
   "remaining_frontier": [
+    "Dbounded finite products: direct left calculus is reduced to exact-acyclic iso-closure collapse plus bounded homotopy inverse-image calculus transfer.",
     "Dbounded finite limits: equalizer consumer is formalized; remaining first API is WalkingParallelPair functor-category localization plus parallel-pair weak-equivalence stability.",
     "Dbounded finite colimits: reduced to HasFiniteLimits (boundedExactWeakEquivalence C).op.Localization; still needs opposite-side finite-product stability plus equalizer/pullback localization transfer.",
     "Dbounded finite products: remaining left calculus of fractions for boundedExactWeakEquivalence MetrizableLCA.",

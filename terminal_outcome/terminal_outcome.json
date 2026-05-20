@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v238時点で、support w213 の有用部分を親側で再実装し、audit/blockers/equalizer_localization_transfer_boundary.lean を追加した。局所化で極限を転送する一般補題 CategoryTheory.Localization.hasLimitsOfShape が、J形functor-category局所化を仮定すれば通ることを証明した。WalkingParallelPairへ特殊化すると、Dbounded C のequalizer、さらに既存の有限product routeと合わせた有限limitが条件付きで得られる。残り入力は非離散shape WalkingParallelPair のfunctor-category localizationとparallel-pair安定性などであり、product successはまだ非完了である。",
+  "summary": "v239時点で、support w216/w217 の有用部分を親側で再実装し、audit/blockers/exact_acyclic_homotopy_iso_closure_w216.lean と audit/blockers/bounded_homotopy_left_calculus_w217.lean を追加した。direct bounded left-calculus route は、exactAcyclicHomotopyIsoClosure C を exactAcyclicHomotopyObject C へ戻す iso-closure collapse と、BoundedComplexCategory.homotopyQuotient C に沿う inverse-image へ Verdier left calculus を移す transfer に分解された。これは有限product routeの残り入力を明確にするが、product successはまだ非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -17,7 +17,9 @@
     "python3 -m json.tool run/verification.json >/dev/null",
     "python3 -m json.tool manifest.json >/dev/null",
     "python3 audit/external_audit.py --root . --self-check-only",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate)",
+    "lake env lean audit/blockers/exact_acyclic_homotopy_iso_closure_w216.lean",
+    "lake env lean audit/blockers/bounded_homotopy_left_calculus_w217.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -670,6 +672,7 @@
   ],
   "known_gaps": [
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
+    "direct bounded left calculus は iso-closure collapse と bounded homotopy inverse-image calculus transfer に分解されたが、どちらも無条件には未供給である。",
     "Dbounded有限limitのequalizer consumerは形式化されたが、WalkingParallelPair functor-category localization とparallel-pair安定性がまだ未供給である。",
     "反対圏有限colimitルートは (boundedExactWeakEquivalence C).op.Localization の有限limitへ縮約されたが、その有限limit証明はまだ未供給である。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
@@ -680,10 +683,11 @@
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v238 parent-reimplemented support w213; equalizer localization transfer is formal conditional on WalkingParallelPair functor-category localization. w212 remains obstruction evidence.",
+  "worker_frontier_summary": "v239 parent-reimplemented support w216/w217; direct bounded left calculus is split into iso-closure collapse and bounded homotopy inverse-image calculus transfer. w219 overlaps the v238 conditional functor-category localization boundary; w220 is external support in progress.",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
     "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
+    "direct bounded left calculus は iso-closure collapse と bounded homotopy inverse-image calculus transfer に分解されたが、どちらも無条件には未供給である。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "bounded finite-product transferはdefault-universe MetrizableLCAで閉じたが、最終product successには抽出レビューpacketとfresh claim reviewがまだ必要である。",
     "反対圏有限colimitルートでは、(Dbounded C)^op の有限limitをまだ構成していない。",
@@ -888,10 +892,20 @@
     "EqualizerLocalizationTransferBoundary.dboundedHasWalkingParallelPairLimits_of_functorCategoryLocalization",
     "EqualizerLocalizationTransferBoundary.dboundedHasEqualizers_of_functorCategoryLocalization",
     "EqualizerLocalizationTransferBoundary.dboundedHasFiniteLimits_of_equalizerLocalizationTransfer",
-    "EqualizerLocalizationTransferBoundary.currentEqualizerLocalizationTransferState"
+    "EqualizerLocalizationTransferBoundary.currentEqualizerLocalizationTransferState",
+    "ExactAcyclicHomotopyIsoClosureW216.ExactAcyclicIsoClosureCollapse",
+    "ExactAcyclicHomotopyIsoClosureW216.exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_isoClosureCollapse",
+    "ExactAcyclicHomotopyIsoClosureW216.ExactAcyclicStrictRealizationBoundary",
+    "ExactAcyclicHomotopyIsoClosureW216.boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_package",
+    "ExactAcyclicHomotopyIsoClosureW216.dboundedFiniteProducts_metrizableLCA_of_package",
+    "BoundedHomotopyLeftCalculusW217.PullbackLeftCalculusTransfer",
+    "BoundedHomotopyLeftCalculusW217.ambientVerdierLeftCalculus_of_isoClosureClosed2",
+    "BoundedHomotopyLeftCalculusW217.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_transfer",
+    "BoundedHomotopyLeftCalculusW217.BoundedHomotopyLeftCalculusSufficientPackage",
+    "BoundedHomotopyLeftCalculusW217.metrizableLCABoundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_package"
   ],
-  "generated_utc": "2026-05-20T10:43:46Z",
-  "support_result_classification": "support w213 was parent-reimplemented as a generic localization limit-transfer boundary; support w212 remains obstruction evidence for left calculus and is not merged as product proof.",
+  "generated_utc": "2026-05-20T10:49:32Z",
+  "support_result_classification": "support w216/w217 were parent-reimplemented as left-calculus input boundaries; support w219 overlaps v238 and is classified as conditional evidence, while support w220 is still running externally.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1225,7 +1239,17 @@
     "EqualizerLocalizationTransferBoundary.dboundedHasWalkingParallelPairLimits_of_functorCategoryLocalization",
     "EqualizerLocalizationTransferBoundary.dboundedHasEqualizers_of_functorCategoryLocalization",
     "EqualizerLocalizationTransferBoundary.dboundedHasFiniteLimits_of_equalizerLocalizationTransfer",
-    "EqualizerLocalizationTransferBoundary.currentEqualizerLocalizationTransferState"
+    "EqualizerLocalizationTransferBoundary.currentEqualizerLocalizationTransferState",
+    "ExactAcyclicHomotopyIsoClosureW216.ExactAcyclicIsoClosureCollapse",
+    "ExactAcyclicHomotopyIsoClosureW216.exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_isoClosureCollapse",
+    "ExactAcyclicHomotopyIsoClosureW216.ExactAcyclicStrictRealizationBoundary",
+    "ExactAcyclicHomotopyIsoClosureW216.boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_package",
+    "ExactAcyclicHomotopyIsoClosureW216.dboundedFiniteProducts_metrizableLCA_of_package",
+    "BoundedHomotopyLeftCalculusW217.PullbackLeftCalculusTransfer",
+    "BoundedHomotopyLeftCalculusW217.ambientVerdierLeftCalculus_of_isoClosureClosed2",
+    "BoundedHomotopyLeftCalculusW217.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_transfer",
+    "BoundedHomotopyLeftCalculusW217.BoundedHomotopyLeftCalculusSufficientPackage",
+    "BoundedHomotopyLeftCalculusW217.metrizableLCABoundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_package"
   ],
   "product_success": false
 }
