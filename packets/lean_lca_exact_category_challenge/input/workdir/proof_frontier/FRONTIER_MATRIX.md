@@ -626,6 +626,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W397 Relation Fields From W371/W377
 2026-05-20T23:59:00Z: Worker support `w397-wpp-op-relation-fields-from-w371-v370` was verified in the target worktree. It extracts W395 relation fields, W389 relation-pullback certificates, and W386/W392 target relation lift certificates from W371/W377 relation input packages. Product success remains false because the concrete W371/W377 callers still need component closed-map, relation-pullback equality, and target relation lifting.
 
+## W399 Ordinary Descended Topology Fields
+2026-05-21T00:02:00Z: Worker support `w399-left-lca-ordinary-descended-topology-fields-v370` was ported as `audit/blockers/wpp_op_left_lca_ordinary_descended_topology_fields_v370_support_w399.lean` and focused-verified. It proves that a W352-style relation-pullback input package for the ordinary quotient map gives injectivity, `IsClosedEmbedding`, `IsInducing`, and closed range for the descended quotient map, then repackages those fields as the ordinary WPP-op topology certificate. Product success remains false because the actual ordinary descended quotient map still needs the concrete W352 input package: square equations, relation-pullback equality or reverse preimage, quotient compatibility, and `IsClosedMap`.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
