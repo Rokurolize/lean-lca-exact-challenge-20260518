@@ -61,20 +61,41 @@ theorem mappingCone_map_desc_fac_of_left_right
         simpa [HomComplex.Cochain.ofHom_comp] using hleft.symm
   · simpa [Category.assoc, mappingCone.map] using congrArg (fun q => q.f p) hright.symm
 
+/--
+Uniqueness of maps out of a mapping cone also splits into the same two
+components.  This is the local extensionality tool needed after W308 supplies
+the right-leg equality by colimit uniqueness.
+-/
+theorem mappingCone_hom_ext_of_left_right
+    (m n : mappingCone φ₁ ⟶ T)
+    (hleft :
+      (mappingCone.inl φ₁).comp (HomComplex.Cochain.ofHom m) (add_zero (-1)) =
+        (mappingCone.inl φ₁).comp (HomComplex.Cochain.ofHom n) (add_zero (-1)))
+    (hright : mappingCone.inr φ₁ ≫ m = mappingCone.inr φ₁ ≫ n) :
+    m = n := by
+  apply HomologicalComplex.hom_ext
+  intro p
+  apply mappingCone.ext_from φ₁ (p + 1) p rfl
+  · replace hleft := HomComplex.Cochain.congr_v hleft (p + 1) p (by omega)
+    simpa using hleft
+  · simpa using congrArg (fun q => q.f p) hright
+
 /-- Machine-readable W327 boundary state. -/
 structure WppOpMappingConeFacSplitState : Type where
   checkedLemma : String
+  uniquenessLemma : String
   remainingInputs : List String
   productSuccessClaimed : Bool
 
 /-- Reproducible W327 state. -/
 def currentWppOpMappingConeFacSplitState : WppOpMappingConeFacSplitState where
   checkedLemma := "mappingCone_map_desc_fac_of_left_right"
+  uniquenessLemma := "mappingCone_hom_ext_of_left_right"
   remainingInputs :=
     ["construct the left degree -1 cochain for each test cocone",
       "prove left-cochain compatibility against every fixed cocone leg",
       "prove the mappingCone.desc compatibility equation",
-      "prove uniqueness after splitting into left/right mapping-cone components"]
+      "prove left/right component equality for uniqueness using c₁ and c₂ colimit uniqueness"]
   productSuccessClaimed := false
 
 theorem currentWppOpMappingConeFacSplitState_productSuccess :
@@ -83,6 +104,7 @@ theorem currentWppOpMappingConeFacSplitState_productSuccess :
 section Checks
 
 #check mappingCone_map_desc_fac_of_left_right
+#check mappingCone_hom_ext_of_left_right
 #check currentWppOpMappingConeFacSplitState
 #check currentWppOpMappingConeFacSplitState_productSuccess
 #check CochainComplex.mappingCone.ext_from
