@@ -674,6 +674,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W416 Forgotten Short Complex Preservation
 2026-05-21T00:52:00Z: Worker support `w416-addcommgrp-forgotten-short-complex-preservation-v370` was parent-verified as `audit/blockers/addcommgrp_forgotten_short_complex_preservation_v370_support_w416.lean`. It reduces W413's individual `PreservesColimit S forgottenShortComplexFunctor` input to the shape-level assumption `[PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor]`. Product success remains false because that shape-level preservation instance still has to be proved or instantiated and then connected through W410/W406/W403/W398.
 
+## W417 Closed Map From Relation Fields
+2026-05-21T00:55:00Z: Worker support `w417-left-lca-closed-map-from-relation-fields-v370` was parent-verified as `audit/blockers/wpp_op_left_lca_closed_map_from_relation_fields_v370_support_w417.lean`. It composes the W414 representative-image saturation and W411/W408 closed-map consumers, while also reconstructing the ordinary descended quotient map and quotient compatibility, to produce a W408/W402-shaped concrete input package from component closed-map, relation-pullback, and target-relation lifting. Product success remains false because those three concrete fields still need proofs for the actual WPP-op morphism.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 

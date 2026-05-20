@@ -3710,5 +3710,33 @@
       "W415/W414側のrelation statementとtarget relation lift certificateを証明する。"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w417": {
+    "timestamp_utc": "2026-05-21T00:55:00Z",
+    "status": "verified_focused",
+    "summary": "W417 composes W414 saturation with W411/W408 closed-map consumers and quotient compatibility to produce W408/W402-shaped ordinary concrete inputs from relation fields.",
+    "touched_files": [
+      "audit/blockers/wpp_op_left_lca_closed_map_from_relation_fields_v370_support_w417.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "ClosedMapRelationFieldsW417",
+      "ordinaryDescendedRepresentativeImageClosed_of_relationFieldsW417",
+      "OrdinaryDescendedClosedMapCertificateW417.of_relationFields",
+      "ordinaryDescendedOfOrdinaryMap_quotient_compatW417",
+      "ordinaryDescendedOfOrdinaryMap_isClosedMap_of_relationFieldsW417",
+      "ordinaryConcreteInputsW417_of_relationFields"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_left_lca_closed_map_from_relation_fields_v370_support_w417.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_closed_map_from_relation_fields_v370_support_w417.lean",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "実際のWPP-op morphismについてcomponent_closedMapを証明する。",
+      "実際のWPP-op morphismについてrelation_pullbackを証明する。",
+      "実際のWPP-op morphismについてtarget_relation_liftsを証明する。",
+      "W416 shape-level preservation instanceと四部構成全体の統合を完了する。"
+    ],
+    "product_success_claimed": false
   }
 }
