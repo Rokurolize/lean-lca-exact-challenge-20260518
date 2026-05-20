@@ -1072,3 +1072,9 @@
 <p><time>2026-05-21T06:19:00Z</time>: The parent consumed <code>w364-shortcomplex-pi-mapcofork-colimits-v369</code> by adding and verifying <code>audit/blockers/shortcomplex_pi_mapcofork_colimits_v369_support_w364.lean</code>. Direct definitional equality between the component coforks and <code>ShortComplex.πᵢ.mapCocone (CokernelCofork.ofπ qT wT)</code> was blocked, so the support file names exactly the required three component cocone transport boundaries and proves that they are sufficient to recover the short-complex cokernel cofork via <code>ShortComplex.isColimitOfIsColimitπ</code>.</p>
 <p>This does not finish the AddCommGrp branch. It narrows the next concrete task to constructing the three component cocone isomorphisms/transport proofs between the component cokernel coforks and the mapped short-complex coforks.</p>
 </section>
+
+<section id="w365-quotient-closed-map-composer">
+<h2>W365 closed-map composer</h2>
+<p><time>2026-05-21T06:22:00Z</time>: The parent consumed <code>w365-quotient-closed-map-composer-v369</code> by adding and verifying <code>audit/blockers/wpp_op_quotient_closed_map_composer_v369_support_w365.lean</code>. This file composes the W355 representative-image closed-map criterion, the W363 quotient closed-on-saturated theorem, and W358/W360-style saturation input into a single <code>QuotientClosedMapComposerInputsW365.descended_closedMap</code> projection for the descended quotient morphism.</p>
+<p>The target quotient closed-on-saturated theorem is now an internal checked input of the composer. Remaining work is to instantiate the composer for the concrete WPP-op quotient/coequalizer descended map, in particular the quotient compatibility equation and the target representative-image saturation or relation-lifting condition.</p>
+</section>

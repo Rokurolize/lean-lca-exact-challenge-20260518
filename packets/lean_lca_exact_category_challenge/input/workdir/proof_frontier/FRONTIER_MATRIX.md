@@ -533,6 +533,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W364 ShortComplex π-map Cofork Colimits
 2026-05-20T22:19:00Z: Worker support `w364-shortcomplex-pi-mapcofork-colimits-v369` was ported as `audit/blockers/shortcomplex_pi_mapcofork_colimits_v369_support_w364.lean`. Direct definitional equality between component cokernel coforks and `ShortComplex.πᵢ.mapCocone (CokernelCofork.ofπ qT wT)` is blocked, so W364 records the three required component cocone transport boundaries and proves that they suffice for W361/W359 short-complex cokernel colimit assembly. Product success remains false because those three component cocone transports are still missing.
 
+## W365 Quotient Closed-Map Composer
+2026-05-20T22:22:00Z: Worker support `w365-quotient-closed-map-composer-v369` was ported as `audit/blockers/wpp_op_quotient_closed_map_composer_v369_support_w365.lean`. It composes the W355 representative-image criterion, W363 quotient closed-on-saturated theorem, and W358/W360-style saturation input into a checked `IsClosedMap` projection for the descended quotient map. Product success remains false because the concrete WPP-op quotient compatibility, relation pullback, and target representative-image saturation/relation-lifting inputs are still missing.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
