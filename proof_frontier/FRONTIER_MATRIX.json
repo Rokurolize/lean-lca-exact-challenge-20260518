@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T04:55:29Z",
+  "generated_utc": "2026-05-20T05:04:07Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v200 consumes completed support result w153 directly into the parent v189 mapping-cone probe, proving the backward right-component snd target equation; this is frontier progress, not product completion.",
+  "worker_policy": "No workers were launched from the target worktree. v201 extends the parent v189 mapping-cone probe by proving the backward right-component fst target equation; together with v200 snd, the right-component target equations are closed, but this is frontier progress, not product completion.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -573,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean && lake env lean audit/blockers/nontrivial_distinguished_eligibility_predicate_w132.lean && lake env lean audit/blockers/dbounded_four_projection_provider_route_w133.lean && lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean && lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean && lake env lean audit/blockers/dbounded_finite_products_boundary.lean && lake build LeanLCAExactChallenge.Derived.Bounded && lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean && lake env lean audit/blockers/mapping_cone_finite_product_comparison_w142.lean && lake env lean audit/blockers/dbounded_pullback_localization_transfer_w143.lean && lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean && lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
-      "merge_blocker": "v192 records complete degreewise inverse compatibility for the binary comparison: coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX, biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX, and binaryMappingConeBiprodInverseCompatibility are proved. BinaryMappingConeBiprodComparisonInput still needs differential compatibility for both candidate map families. At finite Limits.Pi.map level, FiniteMappingConeProductComparisonInput and FiniteExactAcyclicProductClosure are both still inputs, so FiniteProductMappingConeInput C remains unproved. For finite limits, the equalizer route needs EqualizerConeInput C plus EqualizerLocalizationTransferTheorem C, while the pullback route needs PullbackConeInput C plus PullbackLocalizationTransferTheorem C. Still missing afterward are finite colimits, pretriangulated structure, and triangulated structure on Dbounded C. Product success is still blocked. v194 reduces the forward differential square to left/right biproduct projection equations; the projection rewrite proofs and backward differential compatibility remain open.",
+      "merge_blocker": "v201 proves both backward right-component target equations in the binary mapping-cone/biproduct comparison: rightComponentDifferentialSquareFstEquation_proof and rightComponentDifferentialSquareSndEquation_proof. BinaryMappingConeBiprodComparisonInput still needs the remaining differential compatibility equations for the left/backward side and the forward projection side. FiniteProductMappingConeInput C remains unproved because finite Limits.Pi.map comparison and finite exact-acyclic product closure still require Option product decomposition assembly, and Dbounded finite-limit transfer/stable structures remain open.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -995,7 +995,9 @@
         "MappingConeProductApiScoutW145.FiniteExactAcyclicProductClosure",
         "MappingConeProductApiScoutW145.exactAcyclic_mappingCone_piMap_of_comparison",
         "MappingConeProductApiScoutW145.currentFiniteProductApiLayerState_comparison_missing",
-        "MappingConeProductApiScoutW145.currentFiniteProductApiLayerState_closure_missing"
+        "MappingConeProductApiScoutW145.currentFiniteProductApiLayerState_closure_missing",
+        "MappingConeBiprodComparisonProbeV189.rightComponentDifferentialSquareFstEquation_proof",
+        "MappingConeBiprodComparisonProbeV189.rightComponentDifferentialSquareSndEquation_proof"
       ],
       "technical_context": [
         "split short complexes",

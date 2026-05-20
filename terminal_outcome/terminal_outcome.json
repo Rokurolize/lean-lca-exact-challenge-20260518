@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v200時点で、binary mapping cone/biproduct比較について、逆向き右成分squareのsnd target equationをrightComponentDifferentialSquareSndEquation_proofとして親側v189監査へ統合した。Option product分解routeではnone側singleton縮約と補集合側の表示reindex同型も確認済みである。ただし、逆向き右成分のfst target equation、前向き左右射影等式、完全なbinary mapping-cone differential compatibility、Option product decomposition本体、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
+  "summary": "v201時点で、binary mapping cone/biproduct比較について、逆向き右成分squareの残りfst target equationをrightComponentDifferentialSquareFstEquation_proofとして親側v189監査へ統合した。v200のsnd target equationと合わせて、rightComponentDifferentialSquare_ext_to_iffが要求する右成分target equationsは両方閉じた。ただし、左成分側、前向き射影等式、完全なbinary mapping-cone differential compatibility、Option product decomposition本体、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",

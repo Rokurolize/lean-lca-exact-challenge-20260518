@@ -280,6 +280,14 @@ theorem rightComponentToConeBiprodMap_fst (n : ℤ) :
           (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f (n + 1) := by
   simp [rightComponentToConeBiprodMap, Category.assoc]
 
+theorem rightComponentToConeBiprodMap_fst_of_eq (n j : ℤ) (h : n + 1 = j) :
+    rightComponentToConeBiprodMap f₁ f₂ n ≫
+      (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v n j h =
+        (CochainComplex.mappingCone.fst f₂).1.v n j h ≫
+          (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f j := by
+  subst j
+  simpa using rightComponentToConeBiprodMap_fst f₁ f₂ n
+
 theorem rightComponentToConeBiprodMap_snd (n : ℤ) :
     rightComponentToConeBiprodMap f₁ f₂ n ≫
       (CochainComplex.mappingCone.snd (biprod.map f₁ f₂)).v n n (add_zero n) =
@@ -296,6 +304,64 @@ theorem biprodCone_d_right_component (n : ℤ) :
     (biprod.inr : L₂ ⟶ L₁ ⊞ L₂).f n ≫ (L₁ ⊞ L₂).d n (n + 1) =
       L₂.d n (n + 1) ≫ (biprod.inr : L₂ ⟶ L₁ ⊞ L₂).f (n + 1) := by
   exact (biprod.inr : L₂ ⟶ L₁ ⊞ L₂).comm n (n + 1)
+
+theorem biprodCone_d_right_source_component (n : ℤ) :
+    (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f n ≫ (K₁ ⊞ K₂).d n (n + 1) =
+      K₂.d n (n + 1) ≫ (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f (n + 1) := by
+  exact (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).comm n (n + 1)
+
+theorem rightComponentDifferentialSquareFstEquation_proof (n : ℤ) :
+    rightComponentDifferentialSquareFstEquation f₁ f₂ n := by
+  dsimp [rightComponentDifferentialSquareFstEquation]
+  calc
+    (rightComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1)) ≫
+        (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v (n + 1) (n + 2)
+          (by omega) =
+      rightComponentToConeBiprodMap f₁ f₂ n ≫
+        ((coneBiprodMap f₁ f₂).d n (n + 1) ≫
+          (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v (n + 1) (n + 2)
+            (by omega)) := by
+        rw [Category.assoc]
+    _ = rightComponentToConeBiprodMap f₁ f₂ n ≫
+        (-(CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v n (n + 1) rfl ≫
+          (K₁ ⊞ K₂).d (n + 1) (n + 2)) := by
+        rw [CochainComplex.mappingCone.d_fst_v (biprod.map f₁ f₂) n (n + 1) (n + 2) rfl (by omega)]
+    _ = -((rightComponentToConeBiprodMap f₁ f₂ n ≫
+          (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v n (n + 1) rfl) ≫
+        (K₁ ⊞ K₂).d (n + 1) (n + 2)) := by
+        simp [Category.assoc]
+    _ = -(((CochainComplex.mappingCone.fst f₂).1.v n (n + 1) rfl ≫
+          (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f (n + 1)) ≫
+        (K₁ ⊞ K₂).d (n + 1) (n + 2)) := by
+        rw [rightComponentToConeBiprodMap_fst]
+    _ = -(((CochainComplex.mappingCone.fst f₂).1.v n (n + 1) rfl ≫
+          K₂.d (n + 1) (n + 2)) ≫
+        (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f (n + 2)) := by
+        have hsrc :
+            ((CochainComplex.mappingCone.fst f₂).1.v n (n + 1) rfl ≫
+                (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f (n + 1)) ≫
+              (K₁ ⊞ K₂).d (n + 1) (n + 2) =
+                ((CochainComplex.mappingCone.fst f₂).1.v n (n + 1) rfl ≫
+                  K₂.d (n + 1) (n + 2)) ≫
+                    (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f (n + 2) := by
+          simpa [Category.assoc] using
+            congrArg
+              (fun q =>
+                (CochainComplex.mappingCone.fst f₂).1.v n (n + 1) rfl ≫ q)
+              (biprodCone_d_right_source_component (K₁ := K₁) (K₂ := K₂) (n + 1))
+        simpa [hsrc]
+    _ = ((CochainComplex.mappingCone f₂).d n (n + 1) ≫
+          (CochainComplex.mappingCone.fst f₂).1.v (n + 1) (n + 2) (by omega)) ≫
+        (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f (n + 2) := by
+        rw [CochainComplex.mappingCone.d_fst_v f₂ n (n + 1) (n + 2) rfl (by omega)]
+        simp [Category.assoc]
+    _ = ((CochainComplex.mappingCone f₂).d n (n + 1) ≫
+          rightComponentToConeBiprodMap f₁ f₂ (n + 1)) ≫
+        (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v (n + 1) (n + 2)
+          (by omega) := by
+        symm
+        rw [Category.assoc, rightComponentToConeBiprodMap_fst_of_eq]
+        rw [Category.assoc]
 
 theorem rightComponentDifferentialSquareSndEquation_proof (n : ℤ) :
     rightComponentDifferentialSquareSndEquation f₁ f₂ n := by
@@ -401,6 +467,8 @@ section Checks
 #check rightComponentToConeBiprodMap_snd
 #check biprodMap_inr_f
 #check biprodCone_d_right_component
+#check biprodCone_d_right_source_component
+#check rightComponentDifferentialSquareFstEquation_proof
 #check rightComponentDifferentialSquareSndEquation_proof
 #check rightComponentDifferentialSquare_ext_to_iff
 #check BinaryMappingConeBiprodDifferentialCompatibility

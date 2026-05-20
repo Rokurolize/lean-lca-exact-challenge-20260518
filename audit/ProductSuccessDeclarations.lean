@@ -2082,7 +2082,7 @@ example (C : Type u) [Category.{v} C] [Preadditive C]
 #check AlternatingTailExtendTransport.intAlternatingTailGERightUnboundedContractible
 #check AlternatingTailExtendTransport.not_strictBoundednessTransport_intAlternatingTailGE
 
-example : ¬ StrictBoundednessTransportOfHomotopyEquiv IntModuleCat :=
+example : ¬ StrictBoundednessTransportOfHomotopyEquiv AlternatingTailExtendTransport.IntModuleCat :=
   AlternatingTailExtendTransport.not_strictBoundednessTransport_intAlternatingTailGE 0
 
 example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C] :

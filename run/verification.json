@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v200-backward-right-snd-target-equation",
-  "generated_utc": "2026-05-20T04:55:29Z",
-  "source_tree_hash": "443014933c0229b084a5565b32b894a59f776830ea64d51b7f9a647650f4bab3",
-  "summary": "v200 consumes W153 by integrating rightComponentDifferentialSquareSndEquation_proof into mapping_cone_biprod_comparison_probe_v189.lean. The backward right route now has only the fst target equation remaining; product success remains blocked by full differential compatibility, Option product assembly, Dbounded transfer, and stable structures.",
+  "schema": "lean-lca-exact-challenge-verification-v201-backward-right-fst-target-equation",
+  "generated_utc": "2026-05-20T05:04:07Z",
+  "source_tree_hash": "f9bf6a8b7c09aef44025a9139c3e547350a7435b58c4e089e800f0967ede47e0",
+  "summary": "v201 adds rightComponentDifferentialSquareFstEquation_proof to mapping_cone_biprod_comparison_probe_v189.lean. Together with the v200 snd proof, the backward right-component target equations are closed; product success remains blocked by remaining differential compatibility, Option product assembly, Dbounded transfer, and stable structures.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed during v200 baseline; existing Derived.Bounded warnings remain nonblocking."
+      "evidence": "Full lake build passed for v201 after the mapping-cone fst proof and ProductSuccessDeclarations name-qualification fix; existing informational #check output remains nonblocking."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed before v200 artifact refresh; no forbidden source tokens were introduced."
+      "evidence": "Forbidden-token audit passed for v201."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed before v200 artifact refresh."
+      "evidence": "RequiredDeclarations passed for v201; command output was logged because #check output is large."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed before v200 artifact refresh; product success remains unclaimed."
+      "evidence": "ProductSuccessDeclarations passed for v201 after qualifying the IntModuleCat audit example through AlternatingTailExtendTransport.IntModuleCat; product success remains unclaimed."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v200: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v201: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v200 source and artifact updates."
+      "evidence": "Whitespace diff check passed after v201 source and artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -207,7 +207,7 @@
     {
       "command": "lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean",
       "status": "passed",
-      "evidence": "Focused v200 v189 mapping-cone probe passed after integrating rightComponentDifferentialSquareSndEquation_proof and projection lemmas from W153."
+      "evidence": "Focused v201 v189 mapping-cone probe passed after adding rightComponentDifferentialSquareFstEquation_proof; Lean reported only existing unnecessarySimpa linter suggestions."
     },
     {
       "command": "lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
@@ -233,6 +233,26 @@
       "command": "lake env lean audit/blockers/option_product_reindex_packaging_w152.lean",
       "status": "passed",
       "evidence": "Focused v199 W152 singleton none-subproduct audit passed after parent port."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "terminal_outcome JSON parsed after v201 refresh."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "proof frontier JSON parsed after v201 refresh."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "verification JSON parsed after v201 refresh."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "manifest JSON parsed after v201 refresh."
     }
   ],
   "implemented_declarations_checked": [
