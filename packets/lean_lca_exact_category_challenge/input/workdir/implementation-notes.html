@@ -987,3 +987,21 @@
 <p><time>2026-05-21T05:47:00Z</time>: The parent consumed <code>w352-relation-pullback-descended-fields-v369</code> by adding and verifying <code>audit/blockers/wpp_op_relation_pullback_descended_fields_v369_support_w352.lean</code>. The file combines W349-style relation pullback equivalences with W340/W342-style descended field packaging: relation-preimage exactness plus quotient compatibility gives injectivity of the descended quotient map, and injectivity plus an <code>IsClosedMap</code> input gives a closed embedding and the descended fields needed by W348/W351 consumers.</p>
 <p>The remaining proof work is now explicit at the concrete quotient level: quotient compatibility, relation-pullback equality or equivalent reverse-preimage/closed-range preimage equality, and closedness of the descended quotient map.</p>
 </section>
+
+<section id="w353-w355-cokernel-row-closed-map-support">
+<h2>W353/W355 cokernel row and closed-map support</h2>
+<p><time>2026-05-21T05:52:00Z</time>: The parent consumed <code>w353-addcommgrp-cokernel-row-colimit-iso-v369</code> and <code>w355-descended-quotient-closed-map-v369</code> by adding and verifying <code>audit/blockers/addcommgrp_cokernel_row_colimit_iso_v369_support_w353.lean</code> and <code>audit/blockers/wpp_op_descended_quotient_closed_map_v369_support_w355.lean</code>. W353 shows that a target cokernel row presentation for the same difference map gives the row isomorphism needed by the W350 difference-Snake package. W355 shows that the descended quotient closed-map input follows from representative-image closedness, or from component closed-map plus target quotient projection closedness on those representative images.</p>
+<p>The remaining proof work is concrete: target cokernel presentation, quotient compatibility, representative-image closedness, relation-pullback equality, and difference kernel/cokernel row data.</p>
+</section>
+
+<section id="w353-addcommgrp-cokernel-row-colimit-iso">
+<h2>W353 cokernel-row colimit iso</h2>
+<p><time>2026-05-21T05:50:00Z</time>: The parent consumed <code>w353-addcommgrp-cokernel-row-colimit-iso-v369</code> by adding and verifying <code>audit/blockers/addcommgrp_cokernel_row_colimit_iso_v369_support_w353.lean</code>. The support file packages a target cokernel-row presentation for the same parallel-pair difference <code>u - v</code>, transports the cokernel cofork colimit proof across an isomorphism, and then supplies <code>DifferenceSnakeBoundaryInputs</code>, <code>AddCommGrpStrictSnakeCokernelData</code>, and <code>AddCommGrpKernelExact</code>.</p>
+<p>This tightens the AddCommGrp route without closing it. The concrete work remains to construct the difference kernel row, the difference cokernel row, and a target cokernel presentation identifying that row with the WPP-op colimit short complex.</p>
+</section>
+
+<section id="w355-descended-quotient-closed-map">
+<h2>W355 descended closed map</h2>
+<p><time>2026-05-21T05:51:00Z</time>: The parent consumed <code>w355-descended-quotient-closed-map-v369</code> by adding and verifying <code>audit/blockers/wpp_op_descended_quotient_closed_map_v369_support_w355.lean</code>. It isolates a representative-image closedness condition that proves <code>IsClosedMap</code> for the descended quotient map, and records a component-closed-map plus target-projection-closed-on-representative-images sufficient condition.</p>
+<p>This is the missing closed-map supplier expected by W352, but it is still conditional. Product success still needs the concrete representative-image closedness proof, or the corresponding component closed-map and target quotient projection closedness theorem, together with W352's relation pullback and quotient compatibility inputs.</p>
+</section>
