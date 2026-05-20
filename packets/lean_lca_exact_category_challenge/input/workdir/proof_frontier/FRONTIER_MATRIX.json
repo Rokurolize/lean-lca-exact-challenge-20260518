@@ -3467,5 +3467,38 @@
       "concrete W352 ordinary descended quotient input package"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w408": {
+    "timestamp_utc": "2026-05-21T00:28:00Z",
+    "status": "verified_focused",
+    "summary": "W408 reconstructs the ordinary descended quotient map and quotient compatibility, and reduces IsClosedMap to a representative-image closedness certificate over closed source quotient subsets.",
+    "touched_files": [
+      "audit/blockers/wpp_op_left_lca_ordinary_descended_closed_map_v370_support_w408.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "ordinaryDescendedOfOrdinaryMapW408",
+      "ordinaryDescendedOfOrdinaryMap_quotient_compatW408",
+      "ordinaryDescendedRepresentativeImageClosedConditionW408",
+      "ordinaryDescendedOfOrdinaryMap_isClosedMap_of_representative_image_closedW408",
+      "OrdinaryDescendedClosedMapCertificateW408.closedMap",
+      "OrdinaryDescendedConcreteInputsAfterClosedMapW408",
+      "OrdinaryDescendedConcreteInputsW408",
+      "ordinaryConcreteInputsW408_of_closedMapCertificate",
+      "remainingOrdinaryDescendedInputsAfterClosedMapW408_count",
+      "currentWppOpLeftLcaOrdinaryDescendedClosedMapV370StateW408_productSuccess"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_left_lca_ordinary_descended_closed_map_v370_support_w408.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_closed_map_v370_support_w408.lean",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "concrete relation-pullback equality, or W407 closed-range membership/equality certificate",
+      "representative-image closedness certificate for closed source quotient subsets",
+      "selected ordinary cofork IsColimit proof for W406",
+      "target relation lift certificate",
+      "broader four-part product theorem integration"
+    ],
+    "product_success_claimed": false
   }
 }

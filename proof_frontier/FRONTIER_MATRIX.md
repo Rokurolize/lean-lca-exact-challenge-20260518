@@ -647,6 +647,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W406 Selected Target Cofork Colimit
 2026-05-21T00:24:00Z: Worker support `w406-addcommgrp-selected-target-cofork-colimit-v370` was parent-verified as `audit/blockers/addcommgrp_selected_target_cofork_colimit_v370_support_w406.lean`. It converts an `IsColimit` proof for the selected ordinary `Cofork` into the selected target `CokernelCofork` colimit and then into W403/W398-shaped inputs. Product success remains false because the selected ordinary cofork still needs its actual colimit proof, usually by preserving and transporting the WPP-op colimit through the forgetful short-complex functor and `walkingParallelPairOpEquiv.functor`.
 
+## W408 Ordinary Descended Closed Map
+2026-05-21T00:28:00Z: Worker support `w408-left-lca-ordinary-descended-closed-map-v370` was parent-verified as `audit/blockers/wpp_op_left_lca_ordinary_descended_closed_map_v370_support_w408.lean`. It reconstructs the ordinary descended quotient map and quotient compatibility, then reduces `IsClosedMap` to a representative-image closedness certificate for closed source quotient subsets. Product success remains false because this is still a reducer: the concrete relation-pullback equality or W407 closed-range certificate, and the representative-image closedness certificate, remain open.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 

@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W406でselected ordinary CoforkのIsColimitからselected target CokernelCoforkのIsColimitを得てW403/W398入力へ渡す経路を検証した。残る作業はselected ordinary cofork colimit、W407のclosed-range relation statement、ordinary IsClosedMap、target-lift certificateであり、product successはまだ主張しない。",
+  "summary": "W408でordinary descended quotient mapのquotient compatibilityを再構成し、IsClosedMapをrepresentative-image closedness certificateへ縮約した。残る作業はrelation-pullback/closed-range certificate、representative-image closedness、selected ordinary cofork colimit、target-lift certificateであり、product successはまだ主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -554,7 +554,9 @@
     "lake env lean audit/blockers/wpp_op_relation_reverse_preimage_v370_support_w407.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_relation_reverse_preimage_v370_support_w407.lean",
     "lake env lean audit/blockers/addcommgrp_selected_target_cofork_colimit_v370_support_w406.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_target_cofork_colimit_v370_support_w406.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_target_cofork_colimit_v370_support_w406.lean",
+    "lake env lean audit/blockers/wpp_op_left_lca_ordinary_descended_closed_map_v370_support_w408.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_closed_map_v370_support_w408.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1573,11 +1575,11 @@
     "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess"
   ],
   "known_gaps": [
-    "W406後もselected ordinary CoforkのIsColimit証明が必要である。これは通常、WPP-op colimitをforgetful short-complex functorとwalkingParallelPairOpEquiv.functorで保存・transportする証明である。",
-    "W407後も具体WPP-op morphismについてunfolded closed-range membership、またはより強いclosed-range preimage equalityの証明が必要である。",
-    "W405後もordinary descended quotient mapのIsClosedMap証明が必要である。",
-    "W401/W404 route後もtarget-relation lift certificate、すなわちW392/W386の具体証明が必要である。",
-    "四部構成のproduct theorem、特に厳密MetrizableLCA exact categoryからYoneda-Extとbounded derived infinity-categoryまでの最終product-success接続はまだ完了していない。"
+    "W407で縮約したconcrete relation-pullback equality、またはclosed-range membership/equality certificateを具体WPP-op morphismについて証明する必要がある。",
+    "W408が要求するrepresentative-image closedness certificate、すなわちclosed source quotient setの代表元像がtarget quotientで閉じていることを証明する必要がある。",
+    "W406の入力であるselected ordinary CoforkのIsColimitを、WPP-op colimitの保存とtransportから構成する必要がある。",
+    "W392/W386系のtarget relation lift certificateを具体的に構成し、W371/W377/W401/W395のrelation-field routeへ渡す必要がある。",
+    "Quillen exact category、metrizable LCA strict exact category、Yoneda-Ext、bounded derived infinity categoryの四部構成をproduct theoremとして統合する作業はまだ完了していない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
@@ -3314,5 +3316,5 @@
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
-  "remaining_work": "Complete pointwise conjugacy, ordinary W352 fields, relation-pullback equality, W385 targetIso/presentation equality, and final integration."
+  "remaining_work": "W407のclosed-range certificate、W408のrepresentative-image closedness、W406のselected ordinary cofork colimit、target relation lift certificateを証明する。"
 }
