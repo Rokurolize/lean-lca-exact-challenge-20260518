@@ -3500,5 +3500,34 @@
       "broader four-part product theorem integration"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w409": {
+    "timestamp_utc": "2026-05-21T00:31:00Z",
+    "status": "verified_focused",
+    "summary": "W409 packages closed-range preimage equality as a stronger input implying W407 membership, W404/W389 certificates, and W401 relation fields.",
+    "touched_files": [
+      "audit/blockers/wpp_op_closed_range_membership_v370_support_w409.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "ConcreteMetrizableLCA.relationClosedRangePreimageEqualityW409",
+      "ConcreteMetrizableLCA.relationClosedRangePreimageEquality_to_w407_membership",
+      "ConcreteMetrizableLCA.relationClosedRangePreimageEquality_to_w404_w389_certificate",
+      "ConcreteMetrizableLCA.relationClosedRangePreimageEquality_iff_w404_closedRange",
+      "WppOpRelationClosedRangePreimageEqualityW409.to_w407_membership",
+      "WppOpRelationClosedRangePreimageEqualityW409.to_w404_w389_certificate",
+      "WppOpRelationClosedRangePreimageEqualityW409.to_w401_relation_fields"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_closed_range_membership_v370_support_w409.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_closed_range_membership_v370_support_w409.lean",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "具体WPP-op morphismについてWppOpRelationClosedRangePreimageEqualityW409を証明する。",
+      "またはW407 membership statementを直接証明する。",
+      "W408 representative-image closedness certificateを証明する。",
+      "W406 selected ordinary cofork IsColimitとtarget relation lift certificateを証明する。"
+    ],
+    "product_success_claimed": false
   }
 }

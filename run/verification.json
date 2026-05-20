@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-21T00:28:00Z",
-  "source_tree_hash": "88163e9e354e59b89967bd67448349163936f67bec0d7a13f9ec26edc2050a01",
-  "summary": "W408でordinary descended quotient mapのquotient compatibilityを再構成し、IsClosedMapをrepresentative-image closedness certificateへ縮約した。残る作業はrelation-pullback/closed-range certificate、representative-image closedness、selected ordinary cofork colimit、target-lift certificateであり、product successはまだ主張しない。",
+  "generated_utc": "2026-05-21T00:31:00Z",
+  "source_tree_hash": "169d9d2d147c7d83302cfeadf7343e77610575e6e4720ef08c700f5544e50350",
+  "summary": "W409でclosed-range preimage equalityからW407 membership、W404/W389 certificate、W401 relation fieldsへ渡す経路を検証した。残る作業は具体WPP-op morphismでのclosed-range equalityまたはmembership、W408 representative-image closedness、W406 selected cofork colimit、target-lift certificateであり、product successはまだ主張しない。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -2633,6 +2633,21 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "git diff --check produced no output after W408 support import."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_closed_range_membership_v370_support_w409.lean",
+      "status": "passed",
+      "evidence": "Focused W409 support file checked successfully in parent target."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_closed_range_membership_v370_support_w409.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W409 support file."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "git diff --check produced no output after W409 support import."
     }
   ],
   "implemented_declarations_checked": [
@@ -3652,7 +3667,7 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "W407で縮約したconcrete relation-pullback equality、またはclosed-range membership/equality certificateを具体WPP-op morphismについて証明する必要がある。",
+    "W409で整理したclosed-range preimage equality、またはW407 membership statementを具体WPP-op morphismについて証明する必要がある。",
     "W408が要求するrepresentative-image closedness certificate、すなわちclosed source quotient setの代表元像がtarget quotientで閉じていることを証明する必要がある。",
     "W406の入力であるselected ordinary CoforkのIsColimitを、WPP-op colimitの保存とtransportから構成する必要がある。",
     "W392/W386系のtarget relation lift certificateを具体的に構成し、W371/W377/W401/W395のrelation-field routeへ渡す必要がある。",
@@ -3660,6 +3675,6 @@
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success. w377: parent-verified WPP-op closed-map remaining-fields support; target quotient closed-on-saturated theorem and W374/W371 packaging now yield descended closed-map from component closed-map, relation pullback equality, and target relation lifting. Product success remains false. w378: parent-verified partial transported relation-fields support; W375/W354 transported fields are fixed as injective, inducing, and closed-range data with a consumer adapter. Product success remains false. w379: parent-verified AddCommGrp degreewise cokernel data support; canonical componentwise cokernel short complex supplies concrete degreewise cofork data, component colimits, W376 target presentation, and difference Snake consumers. Product success remains false. w380: parent-verified component closed-map support; objectwise closed embedding supplies the W377 ordinary codomain component closed-map input, leaving relation-pullback equality and target relation lifting. Product success remains false. w381: parent-verified partial ordinary-to-transported relation-field support; ordinary W352-style fields can feed W378/W375 once point identifications, descended-map conjugacy, and injective/inducing/closed-range transports are proved. Product success remains false. w384: parent-verified iso field-transport support; injective, IsInducing, and closed-range fields now transport across source/target isomorphisms under descended-map conjugacy. Product success remains false. w382/w383/w384: parent-verified target-row bridge, relation pullback/target-lift boundary, iso field transport, and transported point package support. Product success remains false. w385/w386: parent-verified nonterminal reductions for AddCommGrp targetIso and WPP-op target relation lifting. Product success remains false. w387: parent-verified transported quotient point-isomorphism support; source/target point isomorphisms are available, leaving pointwise conjugacy and ordinary W352 fields. Product success remains false. w388: parent-verified C-identification support; W376 presentation equality branch for W385 is closed, but direct targetIso remains open. Product success remains false. w389/w390: parent-verified reducers; product success remains false. w391/w392: parent-verified final input reducers; product success remains false. w393: parent-verified ordinary descended fields adapter; product success remains false. parent-w352-to-w393: checked adapter; product success remains false. w394/w395: parent-verified composers; product success remains false. w396: parent-verified W352-to-W390 consumer; product success remains false. w398: parent-verified forgotten target cofork input shape; product success remains false. w397/w398: parent-verified input adapters; product success remains false. W399 checked partial support consumed; not product success. W400/W401 checked partial support consumed; not product success.",
   "product_success": false,
-  "remaining_work": "W407のclosed-range certificate、W408のrepresentative-image closedness、W406のselected ordinary cofork colimit、target relation lift certificateを証明する。",
+  "remaining_work": "W409/W407のclosed-range証明、W408のrepresentative-image closedness、W406のselected ordinary cofork colimit、target relation lift certificateを証明する。",
   "summary_log_tail": " W408 checked partial support consumed; ordinary descended IsClosedMap is reduced to representative-image closedness, not product success."
 }

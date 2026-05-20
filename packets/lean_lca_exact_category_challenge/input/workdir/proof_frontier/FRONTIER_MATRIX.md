@@ -650,6 +650,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W408 Ordinary Descended Closed Map
 2026-05-21T00:28:00Z: Worker support `w408-left-lca-ordinary-descended-closed-map-v370` was parent-verified as `audit/blockers/wpp_op_left_lca_ordinary_descended_closed_map_v370_support_w408.lean`. It reconstructs the ordinary descended quotient map and quotient compatibility, then reduces `IsClosedMap` to a representative-image closedness certificate for closed source quotient subsets. Product success remains false because this is still a reducer: the concrete relation-pullback equality or W407 closed-range certificate, and the representative-image closedness certificate, remain open.
 
+## W409 Closed Range Membership
+2026-05-21T00:31:00Z: Worker support `w409-wpp-op-closed-range-membership-v370` was parent-verified as `audit/blockers/wpp_op_closed_range_membership_v370_support_w409.lean`. It packages closed-range preimage equality as the stronger input that implies W407 membership, W404/W389 relation-pullback certificates, and W401 relation fields. Product success remains false because the equality itself still has to be proved for the concrete WPP-op morphism, or W407 membership must be proved directly.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
