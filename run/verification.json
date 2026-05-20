@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T14:34:46Z",
-  "source_tree_hash": "682083e19b1138c67eb2a9449d7849dfe217cfc21c8e9cfa73e5a72b32bdaa7d",
-  "summary": "v285 proves finite-product stability of (boundedExactWeakEquivalence MetrizableLCA).op in source; remaining opposite finite-limit stability gap is WalkingParallelPairᵒᵖ colimit stability and downstream localization inputs.",
+  "generated_utc": "2026-05-20T14:38:36Z",
+  "source_tree_hash": "7afb8e8b06e6340d524c53a74c584277023b8b6d93eb8d2bb0985ca38ccae523",
+  "summary": "v286 adds a ShortComplex right-homology/cokernel bridge audit: ShortExact gives right cokernel endpoints, while right-homology zero needs an explicit cokernel comparison and does not imply Epi in general.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -493,6 +493,21 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in BoundedFiniteProducts after v285."
+    },
+    {
+      "command": "lake env lean audit/blockers/shortcomplex_right_homology_cokernel_bridge_w262.lean",
+      "status": "passed",
+      "evidence": "Focused W262 ShortComplex right-homology/cokernel bridge audit passed in the parent target worktree."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_right_homology_cokernel_bridge_w262.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W262 audit file."
+    },
+    {
+      "command": "clean extraction: python3 audit/external_audit.py --root extracted/lean_lca_exact_category_challenge --terminal-outcome extracted/lean_lca_exact_category_challenge/terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Clean extraction external audit reached the expected failed_nonterminal product gate after packet regeneration."
     }
   ],
   "implemented_declarations_checked": [
@@ -1037,8 +1052,10 @@
     "Dbounded有限limitのequalizer consumerは形式化されたが、WalkingParallelPair functor-category localization とparallel-pair安定性がまだ未供給である。",
     "反対圏有限colimitルートは (boundedExactWeakEquivalence C).op.Localization の有限limitへ縮約されたが、その有限limit証明はまだ未供給である。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
-    "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
+    "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。",
+    "RightHomologyCokernelObjComparison T is only packaged as an input; it is not yet constructed from the current ShortComplex/derived route.",
+    "ShortComplex right-homology zero does not imply Epi T.g in general, as witnessed by the W262 ZMod2 exact endpoint."
   ],
-  "support_result_classification": "v269 consumed support w253; no product-success claim.",
+  "support_result_classification": "w262 manually ported as focused nonterminal frontier evidence; product success remains false.",
   "product_success": false
 }

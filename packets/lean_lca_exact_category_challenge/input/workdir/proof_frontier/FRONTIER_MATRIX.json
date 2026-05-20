@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T14:34:46Z",
+  "generated_utc": "2026-05-20T14:38:36Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v285 is parent-side source progress on opposite finite-product stability for boundedExactWeakEquivalence MetrizableLCA.",
+  "worker_policy": "No workers were launched from the target worktree. v286 is parent-side audit progress on the ShortComplex right-homology/cokernel endpoint.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1329,9 +1329,9 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "v285 promotes the W281 formal transport into source and combines it with v284; product success remains false.",
-  "latest_parent_update": "v285: proved finite-product stability of (boundedExactWeakEquivalence MetrizableLCA).op in source.",
-  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。 v263 narrows the MetrizableLCA exactness bridge to forgetful homology preservation or a local cycles/opcycles model. v277 isolates the opposite finite-product stability gap: direct product stability is available, but the opposite route needs finite-coproduct stability and op transport. v278 extends the opposite stability frontier to WalkingParallelPair limits as well as finite products. v279 connects ShortComplex.Exact kernel extraction to v270 cokernel/epi strict-exactness consumers. v280 rules out deriving Epi T.g from ShortComplex.Exact alone or from quasi-isomorphism-transported exactness. v281 closes the finite-product formal op-transport lemma; direct finite-coproduct stability remains open. v283 closes the WalkingParallelPair formal op-transport lemma directly; direct WalkingParallelPairᵒᵖ colimit stability remains open. v284 proves the direct finite-coproduct stability input for boundedExactWeakEquivalence MetrizableLCA; the opposite finite-product branch can now use W281 plus this source theorem, while WalkingParallelPairᵒᵖ colimit stability remains open. v285 proves opposite finite-product stability in source as BoundedFiniteProducts.isStableUnderFiniteProducts_op_metrizableLCA; WalkingParallelPairᵒᵖ colimit stability remains open.",
+  "support_result_classification": "w262 was manually ported as a focused frontier audit. It supplies ShortExact-to-cokernel endpoints and refutes a generic rightHomologyZero-to-Epi principle; it is not product success.",
+  "latest_parent_update": "v286 added audit/blockers/shortcomplex_right_homology_cokernel_bridge_w262.lean and verified it with focused Lean plus forbidden-token audit.",
+  "summary": "v286 narrows the ShortComplex right endpoint: ShortExact gives epi/cokernel-zero/top endpoints, and right-homology zero can feed strict exactness only with an explicit cokernel-object comparison. Product success remains false.",
   "remaining_frontier": [
     "Finite-product op transport is solved by W281; remaining opposite finite-product input is direct finite-coproduct stability of boundedExactWeakEquivalence MetrizableLCA.",
     "Exactness-to-Epi is formally refuted by W256; the right endpoint must be supplied by a real right-homology or cokernel-zero/top bridge.",
@@ -1362,7 +1362,8 @@
     "Dbounded finite colimits: reduced to HasFiniteLimits (boundedExactWeakEquivalence C).op.Localization; still needs opposite-side finite-product stability plus equalizer/pullback localization transfer.",
     "Dbounded finite products: remaining left calculus of fractions for boundedExactWeakEquivalence MetrizableLCA.",
     "Dbounded finite colimits and dual transfer route.",
-    "Triangulated structure and stable infinity-category structure."
+    "Triangulated structure and stable infinity-category structure.",
+    "ShortComplex right-homology zero does not by itself imply target epi; W262 shows it needs an explicit RightHomologyCokernelObjComparison plus topology/kernel fields."
   ],
   "support_classification": [
     {
@@ -1496,6 +1497,12 @@
       "classification": "parent_proof_progress",
       "artifact": "audit/blockers/opposite_finite_product_transport_w281.lean",
       "result": "Generic finite-coproduct stability of W now transports to finite-product stability of W.op. Direct finite-coproduct stability remains open; product success remains false."
+    },
+    {
+      "id": "w262",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/shortcomplex_right_homology_cokernel_bridge_w262.lean",
+      "result": "ShortExact supplies Epi and cokernel-zero/top endpoints; right-homology zero requires a comparison to local cokernelObj, and a generic rightHomologyZero-to-Epi principle is refuted by the ZMod2 endpoint."
     }
   ],
   "remaining_blockers": [
@@ -1507,11 +1514,13 @@
     "Opposite finite-limit transfer now has explicit source-fact and transfer-input structures; missing inputs are opposite WalkingParallelPair functor-category localization, opposite finite-product stability, and opposite WalkingParallelPair stability.",
     "Verdier comparison route now has checked calculus consumers from RightRouteInput/LeftRouteInput; missing declarations are the factorized right/left adjunctions and factorized unit/counit membership for the comparison route.",
     "Opposite bounded localization finite limits now have a conditional equalizer/finite-limit constructor; missing inputs are opposite WalkingParallelPair stability, opposite functor-category localization, finite-product stability, and identities for the opposite localizer.",
-    "MetrizableLCA right-exactness now has direct surjectivity, cokernel-subgroup-top, cokernelπ=0, Epi, and zero cokernel object interfaces; upstream derived/homology/localization extraction of these plus kernel/topology fields remains missing."
+    "MetrizableLCA right-exactness now has direct surjectivity, cokernel-subgroup-top, cokernelπ=0, Epi, and zero cokernel object interfaces; upstream derived/homology/localization extraction of these plus kernel/topology fields remains missing.",
+    "RightHomologyCokernelObjComparison T is still a hypothesis, not constructed from the current derived/localization route; topology fields remain separate."
   ],
   "open_blockers": [
     "WalkingParallelPair op transport is solved directly by W283; remaining opposite WalkingParallelPair input is direct WalkingParallelPairᵒᵖ colimit stability of boundedExactWeakEquivalence MetrizableLCA.",
-    "Opposite finite-product stability is solved in source by BoundedFiniteProducts.isStableUnderFiniteProducts_op_metrizableLCA; remaining opposite finite-limit stability input is WalkingParallelPairᵒᵖ colimit stability of boundedExactWeakEquivalence MetrizableLCA."
+    "Opposite finite-product stability is solved in source by BoundedFiniteProducts.isStableUnderFiniteProducts_op_metrizableLCA; remaining opposite finite-limit stability input is WalkingParallelPairᵒᵖ colimit stability of boundedExactWeakEquivalence MetrizableLCA.",
+    "ShortComplex right endpoint is reduced to real ShortExact/Epi/cokernel-zero/top data or an explicit right-homology-to-cokernel comparison; generic rightHomologyZero-to-Epi is false."
   ],
   "consumed_support_results": [
     {
@@ -1525,6 +1534,10 @@
     {
       "artifact": "LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
       "result": "Added source-level finite-coproduct-to-opposite-finite-product transport and concrete isStableUnderFiniteProducts_op_metrizableLCA. Opposite finite-product stability is no longer an open input."
+    },
+    {
+      "artifact": "audit/blockers/shortcomplex_right_homology_cokernel_bridge_w262.lean",
+      "result": "ShortExact supplies Epi and cokernel-zero/top endpoints; right-homology zero requires a comparison to local cokernelObj, and a generic rightHomologyZero-to-Epi principle is refuted by the ZMod2 endpoint."
     }
   ]
 }
