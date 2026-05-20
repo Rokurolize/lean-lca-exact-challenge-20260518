@@ -560,6 +560,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W373 ShortComplex π₂/π₃ Cocone Iso
 2026-05-20T22:42:00Z: Parent support `audit/blockers/shortcomplex_pi23_nat_cocone_iso_v370_support_w373.lean` was added and verified. It constructs the remaining `π₂` and `π₃` parallel-pair diagram isomorphisms and mapped cofork cocone isomorphisms, then combines all three component colimit proofs into the W359 short-complex cokernel consumer. Product success remains false because concrete degreewise cokernel cofork data, component-row isomorphisms to the forgotten WPP-op colimit row, and compatibility squares remain open.
 
+## W374 WPP-op Square Equations
+2026-05-20T22:46:00Z: Worker support `w374-wpp-op-square-equations-v370` was ported as `audit/blockers/wpp_op_square_equations_v370_support_w374.lean`. It proves the left and right square equations required by W371 from naturality of a WPP-op natural transformation, so the W371 closed-map input package no longer needs those equations as independent fields. Product success remains false because component closed-map, relation pullback equality, target relation lifting, and W354/W351 integration remain open.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
