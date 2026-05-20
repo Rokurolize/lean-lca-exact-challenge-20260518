@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T10:23:57Z",
+  "generated_utc": "2026-05-20T10:30:32Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1282,10 +1282,11 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "support worker w192-tail-finite-mapping-cone-comparison is active in the consultant-owned tree. Parent did not launch duplicate workers and will inspect result.json when it appears.",
-  "latest_parent_update": "v235-dbounded-finite-products-product-api",
-  "summary": "v235時点で、LeanLCAExactChallenge.Derived.BoundedFiniteProducts に boundedExactWeakEquivalence MetrizableLCA の有限product安定性 isStableUnderFiniteProducts_metrizableLCA と、left calculus of fractions だけを残す条件付き Dbounded finite-products constructor dboundedHasFiniteProducts_metrizableLCA を追加した。v234の HasFiniteLimits MetrizableLCA と v233のmapping-cone有限product転送により、D̂bounded finite-products側のsource finite limitsとweak-equivalence finite-product stabilityはproduct module内で供給される。ただし left calculus of fractions、pullback/equalizer localization transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
+  "support_result_classification": "Completed support summaries w209/w210 informed the opposite-localization route, but no usable worker branch/file was present in the target tree; parent added a fresh named audit boundary instead.",
+  "latest_parent_update": "v236-opposite-localization-finite-colimits-boundary",
+  "summary": "v236時点で、audit/blockers/opposite_localization_finite_colimits_boundary.lean に反対圏局所化の有限colimitルート境界を追加した。既存の Dbounded.localization C のop関手が (boundedExactWeakEquivalence C).op の局所化であること、(Dbounded C)^op の有限limitがあれば Dbounded C の有限colimitが得られること、さらに反対側の有限product安定性仮定の下で局所化有限product定理を適用できることを名前付き宣言として記録した。ただし反対側有限limitを与えるequalizer/pullback局所化転送、left calculus of fractions、三角構造、stable infinity-category構造は未完了である。",
   "remaining_frontier": [
+    "Dbounded finite colimits: opposite localization bridge is formalized, but finite limits on (Dbounded C)^op still require opposite-side finite-product stability plus equalizer/pullback localization transfer.",
     "Dbounded finite products: remaining left calculus of fractions for boundedExactWeakEquivalence MetrizableLCA.",
     "Dbounded finite limits: pullback/equalizer weak-equivalence and localization transfer.",
     "Dbounded finite colimits and dual transfer route.",

@@ -2,8 +2,9 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v235時点で、LeanLCAExactChallenge.Derived.BoundedFiniteProducts に boundedExactWeakEquivalence MetrizableLCA の有限product安定性 isStableUnderFiniteProducts_metrizableLCA と、left calculus of fractions だけを残す条件付き Dbounded finite-products constructor dboundedHasFiniteProducts_metrizableLCA を追加した。v234の HasFiniteLimits MetrizableLCA と v233のmapping-cone有限product転送により、D̂bounded finite-products側のsource finite limitsとweak-equivalence finite-product stabilityはproduct module内で供給される。ただし left calculus of fractions、pullback/equalizer localization transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
+  "summary": "v236時点で、audit/blockers/opposite_localization_finite_colimits_boundary.lean に反対圏局所化の有限colimitルート境界を追加した。既存の Dbounded.localization C のop関手が (boundedExactWeakEquivalence C).op の局所化であること、(Dbounded C)^op の有限limitがあれば Dbounded C の有限colimitが得られること、さらに反対側の有限product安定性仮定の下で局所化有限product定理を適用できることを名前付き宣言として記録した。ただし反対側有限limitを与えるequalizer/pullback局所化転送、left calculus of fractions、三角構造、stable infinity-category構造は未完了である。",
   "verified_commands": [
+    "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
     "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake build",
@@ -644,27 +645,34 @@
     "MappingConeOptionProductStepW146.OptionProductMapNaturalityInput",
     "MappingConeOptionProductStepW146.TailFiniteMappingConeComparisonInput",
     "MappingConeOptionProductStepW146.exactAcyclic_optionPiMap_of_naturality_and_tailComparison",
-    "MappingConeOptionProductStepW146.optionMappingConeComparisonStepMissingInputs_count"
+    "MappingConeOptionProductStepW146.optionMappingConeComparisonStepMissingInputs_count",
+    "OppositeLocalizationFiniteColimitsBoundary.dboundedLocalization_op_isLocalization",
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_op_hasFiniteLimits",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeLocalizationHasFiniteProducts_of_stableFiniteProducts"
   ],
   "known_gaps": [
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
     "Dboundedの無条件有限limitには、left calculus of fractions と pullback/equalizer localization transfer の接続が残る。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
-    "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
+    "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。",
+    "反対圏有限colimitルートでは、(Dbounded C)^op の有限limitを与える証明がまだ未供給である。",
+    "stable infinity-category構造を与えるproduct-facing証明はまだ未供給である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "w199の境界分析を親側で検証し、製品側BoundedFiniteProductsとして再実装した。w200は有限limit/pullback transferの次境界として分類し、今回のmerge対象にはしない。",
-  "claim_review_result": "非終端self-auditのみ。BoundedFiniteProducts、bounded finite-products boundary、lake build、Required/Product audits は通過したが、product_successは主張していない。",
+  "worker_frontier_summary": "v236 parent-owned audit formalized the opposite-localization finite-colimits bridge; no duplicate worker launched.",
+  "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
     "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
-    "bounded finite-product transferはdefault-universe MetrizableLCAで閉じたが、最終product successには抽出レビューpacketとfresh claim reviewがまだ必要である。"
+    "bounded finite-product transferはdefault-universe MetrizableLCAで閉じたが、最終product successには抽出レビューpacketとfresh claim reviewがまだ必要である。",
+    "反対圏有限colimitルートでは、(Dbounded C)^op の有限limitをまだ構成していない。",
+    "Dbounded のequalizer/pullback局所化転送、三角構造、stable infinity-category構造は未完了。"
   ],
-  "next_recommended_goal": "Dbounded有限limitへ進む。まず HasFiniteLimits MetrizableLCA の製品側APIを確認し、不足があればpullback/equalizer実装を製品側へ昇格する。次に w200 が示した PullbackConePointWeakEquivalenceInput と PullbackLocalizationTransferTheorem を、boundedExactWeakEquivalence有限product安定性を使う形で閉じる。",
+  "next_recommended_goal": "Prove finite limits on (Dbounded MetrizableLCA)^op via opposite-side finite-product stability plus equalizer or pullback localization transfer, then reconnect finite colimits to the stable semantic input.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -839,10 +847,13 @@
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.exactAcyclic_mappingCone_cochain_piMap_of_v232",
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.finiteProductMappingConeInput_metrizableLCA",
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.isStableUnderFiniteProducts_metrizableLCA",
-    "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA"
+    "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA",
+    "OppositeLocalizationFiniteColimitsBoundary.dboundedLocalization_op_isLocalization",
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_op_hasFiniteLimits",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeLocalizationHasFiniteProducts_of_stableFiniteProducts"
   ],
-  "generated_utc": "2026-05-20T10:23:57Z",
-  "support_result_classification": "w184 resultはv226時点で未到着。w182/w183はv223-v224で既に親側実装済みとして分類済み。",
+  "generated_utc": "2026-05-20T10:30:32Z",
+  "support_result_classification": "Completed support summaries w209/w210 informed the opposite-localization route, but no usable worker branch/file was present in the target tree; parent added a fresh named audit boundary instead.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1156,7 +1167,10 @@
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.exactAcyclic_mappingCone_cochain_piMap_of_v232",
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.finiteProductMappingConeInput_metrizableLCA",
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.isStableUnderFiniteProducts_metrizableLCA",
-    "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA"
+    "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA",
+    "OppositeLocalizationFiniteColimitsBoundary.dboundedLocalization_op_isLocalization",
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_op_hasFiniteLimits",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeLocalizationHasFiniteProducts_of_stableFiniteProducts"
   ],
   "product_success": false
 }
