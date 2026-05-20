@@ -1,9 +1,24 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v248-opposite-source-finite-limits",
-  "generated_utc": "2026-05-20T11:25:22Z",
-  "source_tree_hash": "0f2b3a04289a11570d0660a3a150219721bd5a9111aba8c31258c5c5ad362ee8",
-  "summary": "v248時点で、反対圏有限余極限ルートのソース側有限極限入力をLeanで固定した。audit/blockers/opposite_source_finite_limits_w234.lean は、HasFiniteColimits C から HasFiniteLimits (BoundedComplexCategory C)^op、および必要な HasFiniteProducts/HasEqualizers を導く。具体的な残入力は HasFiniteColimits MetrizableLCA の包装であり、product success はまだ非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v249-support-boundaries",
+  "generated_utc": "2026-05-20T11:30:31Z",
+  "source_tree_hash": "b06d763704e0f0a67df3f1e430b1e37aef1100f0b91a9dcfc014263318477124",
+  "summary": "v249時点で、支援w231-w233の結果を親ツリーへ取り込んだ。WalkingParallelPair固定対象liftはcoherent strict-preimage blueprintへ、ShortComplex quasi-iso経路はConflation transport橋へ、bounded homotopy left calculusは局所化随伴入力へ、それぞれ縮約された。いずれも条件付きfrontier縮約であり、product success はまだ非完了である。",
   "commands": [
+    {
+      "command": "lake env lean audit/blockers/walking_parallel_pair_lift_fields_w231.lean",
+      "status": "passed",
+      "evidence": "Focused support-boundary audit check passed after parent import."
+    },
+    {
+      "command": "lake env lean audit/blockers/shortcomplex_quasiiso_conflation_w232.lean",
+      "status": "passed",
+      "evidence": "Focused support-boundary audit check passed after parent import."
+    },
+    {
+      "command": "lake env lean audit/blockers/bounded_homotopy_localized_adjunction_w233.lean",
+      "status": "passed",
+      "evidence": "Focused support-boundary audit check passed after parent import."
+    },
     {
       "command": "lake env lean audit/blockers/opposite_source_finite_limits_w234.lean",
       "status": "passed",
@@ -502,7 +517,13 @@
     "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.boundedComplexOp_hasEqualizers_of_sourceFiniteColimits",
     "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.SourceFiniteColimitInput",
     "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.sourceFiniteColimitInput_of_initial_and_pushouts",
-    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.currentOppositeSourceFiniteLimitState"
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.currentOppositeSourceFiniteLimitState",
+    "LeanLCAExactChallenge.WalkingParallelPairLiftFieldsW231.WalkingParallelPairDboundedLiftBlueprint",
+    "LeanLCAExactChallenge.WalkingParallelPairLiftFieldsW231.candidateLiftFromBlueprint",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationW232.ShortComplexQuasiIsoConflationTransport",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationW232.exactAcyclicTransportOfHomotopyEquiv_of_shortComplexQuasiIso",
+    "LeanLCAExactChallenge.BoundedHomotopyLocalizedAdjunctionW233.BoundedHomotopyLocalizedAdjunctionInput",
+    "LeanLCAExactChallenge.BoundedHomotopyLocalizedAdjunctionW233.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedAdjunction"
   ],
   "product_complete": false,
   "known_gaps": [

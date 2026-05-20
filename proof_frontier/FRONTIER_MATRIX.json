@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T11:25:22Z",
+  "generated_utc": "2026-05-20T11:30:31Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1283,9 +1283,12 @@
     }
   ],
   "support_result_classification": "v247 updated Japanese reference-route and mathlib-gap docs for v245-v246 support consumption; no new product-success claim.",
-  "latest_parent_update": "v248-opposite-source-finite-limits",
-  "summary": "v248時点で、反対圏有限余極限ルートのソース側有限極限入力をLeanで固定した。audit/blockers/opposite_source_finite_limits_w234.lean は、HasFiniteColimits C から HasFiniteLimits (BoundedComplexCategory C)^op、および必要な HasFiniteProducts/HasEqualizers を導く。具体的な残入力は HasFiniteColimits MetrizableLCA の包装であり、product success はまだ非完了である。",
+  "latest_parent_update": "v249-w231-w233-support-boundaries",
+  "summary": "v249時点で、支援w231-w233の結果を親ツリーへ取り込んだ。WalkingParallelPair固定対象liftはcoherent strict-preimage blueprintへ、ShortComplex quasi-iso経路はConflation transport橋へ、bounded homotopy left calculusは局所化随伴入力へ、それぞれ縮約された。いずれも条件付きfrontier縮約であり、product success はまだ非完了である。",
   "remaining_frontier": [
+    "Right adjoint and unit membership for the bounded homotopy localized composite.",
+    "ShortComplexQuasiIsoConflationTransport or concrete MetrizableLCA strictShortExact transport from homology-isomorphism data.",
+    "WalkingParallelPair coherent strict-preimage blueprint existence plus fac and uniq fields.",
     "Right-calculus transfer for boundedExactWeakEquivalence C or PullbackRightCalculusTransfer C.",
     "Opposite WalkingParallelPair functor-category localization fixed-target fields.",
     "HasFiniteColimits MetrizableLCA source package for the opposite finite-limit route.",
@@ -1312,6 +1315,24 @@
       "classification": "source_hypothesis_reduction",
       "artifact": "audit/blockers/opposite_source_finite_limits_w234.lean",
       "result": "HasFiniteColimits C now supplies the opposite source HasFiniteLimits/HasFiniteProducts/HasEqualizers inputs conditionally; product success remains false."
+    },
+    {
+      "id": "w231",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/walking_parallel_pair_lift_fields_w231.lean",
+      "result": "Strict-preimage blueprint builds candidate fixed-target lift; existence, fac, and uniq remain open."
+    },
+    {
+      "id": "w232",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/shortcomplex_quasiiso_conflation_w232.lean",
+      "result": "HomotopyEquiv-to-ShortComplex.QuasiIso route reduces exactAcyclic transport to ShortComplexQuasiIsoConflationTransport."
+    },
+    {
+      "id": "w233",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/bounded_homotopy_localized_adjunction_w233.lean",
+      "result": "Localized-adjunction input implies boundedHomotopyExactWeakEquivalence left calculus conditionally."
     }
   ]
 }
