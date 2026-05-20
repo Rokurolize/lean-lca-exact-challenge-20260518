@@ -116,3 +116,7 @@ v222 closes the remaining W151 finite Option call-site instance packaging under 
 ## v223 Update
 
 v223 promotes the W151 Option-product decomposition proof body into LeanLCAExactChallenge.Derived.OptionProductDecomposition and connects it to W149 via finiteProductOptionDecompositionInput_of_w151. The Option-product object comparison is now available from a product module and supplies W149's Option-step input. The remaining finite-product blocker is the general finite-family exact-acyclic product closure from the empty case plus the Option step, followed by mapping-cone finite-product stability and Dbounded transfer. Product success remains nonterminal.
+
+## v227 Update
+
+v227 sharpens the W146 Option mapping-cone product step. The promoted Option-product biproduct isomorphism now has checked projection lemmas `optionProductIsoBiprod_finiteProducts_hom_fst` and `optionProductIsoBiprod_finiteProducts_hom_snd`, removing the cone-point uniqueness wrapper from the naturality problem. W146 also adds `OptionTransportedFanMapProjectionNaturalityInput` and proves `optionProductMapNaturalityInput_of_projectionNaturality`, so the previous opaque `OptionProductMapNaturalityInput` is reduced to two concrete transported-fan projection naturality equations plus the existing recursive tail comparison. Product success remains nonterminal.

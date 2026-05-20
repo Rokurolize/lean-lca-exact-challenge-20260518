@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v226時点で、Option添字のmapping-cone finite-product routeを一段進め、Option積分解がLimits.Pi.mapと可換である自然性入力と、tail側の有限mapping-cone比較入力があれば、binary mapping-cone biprod comparisonとv224の有限exact-acyclic product closureからmappingCone (Limits.Pi.map f)のexact acyclicityが従うことをW146監査で証明した。これによりOption stepの上段exactness消費は閉じ、残る下段入力はOption product map naturalityとtail比較の実構成である。product_successに必要なmapping cone finite-product comparison、boundedExactWeakEquivalence/Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
+  "summary": "v227時点で、W146のOption product map naturalityを、promoted Option-product biproduct isoの左右射影補題 optionProductIsoBiprod_finiteProducts_hom_fst/snd と、transported fanの二つのprojection naturality入力へ還元した。optionProductMapNaturalityInput_of_projectionNaturality により、従来の不透明なOptionProductMapNaturalityInputは、none側fst projectionとtail側snd projectionの具体的可換性に分解された。product_successに必要なmapping cone finite-product comparison全体、recursive tail comparison、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/mapping_cone_option_product_step_w146.lean",
     "lake build",
@@ -647,9 +647,11 @@
     "MappingConeOptionProductStepW146.optionMappingConeComparisonStepMissingInputs_count"
   ],
   "known_gaps": [
-    "Option stepのexactness消費者はW146で証明済みだが、OptionProductMapNaturalityInput、すなわちpromoted Option-product decompositionがLimits.Pi.mapをhead/tailのbiprod.mapへ運ぶ自然性は未証明である。",
-    "TailFiniteMappingConeComparisonInputの実構成、つまりfinite inductionでmappingCone (Limits.Pi.map f)とcomponent mapping coneの有限productを比較するisoは未完了である。",
-    "boundedExactWeakEquivalenceの有限積安定性、Dbounded側の有限積・有限極限transfer、有限colimit、三角構造、stable infinity-category構造は依然としてproduct_successに必要な未完了項目である。"
+    "Option積分解のnone側射影について、transported fanとLimits.Pi.mapが可換であることをまだ証明していない。",
+    "Option積分解のtail側射影について、補集合reindexとtail productを通したtransported fanの可換性をまだ証明していない。",
+    "tail添字型に対する再帰的な有限mapping-cone比較入力TailFiniteMappingConeComparisonInputがまだ構成されていない。",
+    "有限mapping-cone product比較をDboundedの有限productおよび有限limit transferへ接続する証明がまだ未完了である。",
+    "bounded derived targetに必要な有限余極限、三角構造、stable infinity-category構造がまだ未完了である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",
@@ -1098,5 +1100,6 @@
     "MappingConeOptionProductStepW146.TailFiniteMappingConeComparisonInput",
     "MappingConeOptionProductStepW146.exactAcyclic_optionPiMap_of_naturality_and_tailComparison",
     "MappingConeOptionProductStepW146.optionMappingConeComparisonStepMissingInputs_count"
-  ]
+  ],
+  "product_success": false
 }
