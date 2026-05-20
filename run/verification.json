@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v187-exact-acyclic-biproduct-product-api",
-  "generated_utc": "2026-05-20T03:30:31Z",
-  "source_tree_hash": "5e11160257cd2da37faa92a40efec74758864ed519d7f8acc7398554f0e82abb",
-  "summary": "v187 promotes the v185 short-complex biproduct transport result into Derived.Bounded. MetrizableLCA.exactAcyclicBiprodTransportIso compares the explicit strict short-exact biproduct complex with (K ⊞ L).sc i, and MetrizableLCA.exactAcyclic_biprod gives product-source binary biproduct closure for exact-acyclic metrizable complexes. Product success remains blocked by FiniteProductMappingConeInput C, equalizer localization transfer, finite colimits, and triangulated/stable structure.",
+  "schema": "lean-lca-exact-challenge-verification-v188-w142-w143-frontier-audits",
+  "generated_utc": "2026-05-20T03:52:00Z",
+  "source_tree_hash": "c6701fcf577fbb3d5ab234d6e3edc9446256ccaae17f5bf24f80269b14a68041",
+  "summary": "v188 ports support w142/w143 into parent-owned frontier audits. W142 isolates BinaryMappingConeBiprodComparisonInput as the lower binary mapping-cone/product comparison needed after MetrizableLCA.exactAcyclic_biprod. W143 isolates the pullback route for Dbounded finite limits as PullbackConeInput C plus PullbackLocalizationTransferTheorem C. Product success remains blocked by these residuals plus finite colimits and triangulated/stable structure.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after promoting exact-acyclic binary biproduct closure into Derived.Bounded product API."
+      "evidence": "Full lake build passed after adding the v188 W142/W143 frontier audit files."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after v187 product API promotion."
+      "evidence": "Forbidden-token audit passed after adding the v188 W142/W143 frontier audit files."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed after adding checks for MetrizableLCA.exactAcyclicBiprodTransportIso and MetrizableLCA.exactAcyclic_biprod."
+      "evidence": "RequiredDeclarations passed after v188; no product API changes were needed for the new frontier audits."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed after adding consumer examples for exact-acyclic binary biproduct closure."
+      "evidence": "ProductSuccessDeclarations passed after v188; new W142/W143 files remain under audit/blockers and do not claim product success."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -47,17 +47,17 @@
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v187 state refresh and negative fixtures remain active."
+      "evidence": "External audit self-check passed after v188 state refresh and negative fixtures remain active."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v187: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v188: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v187 source and evidence updates."
+      "evidence": "Whitespace diff check passed after v188 source and evidence updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -193,6 +193,16 @@
       "command": "lake env lean audit/blockers/dbounded_equalizer_pullback_transfer_w141.lean",
       "status": "passed",
       "evidence": "Focused v186 W141 equalizer-transfer audit passed in the parent worktree."
+    },
+    {
+      "command": "lake env lean audit/blockers/mapping_cone_finite_product_comparison_w142.lean",
+      "status": "passed",
+      "evidence": "Focused v188 W142 mapping-cone finite-product comparison frontier audit passed in the parent worktree."
+    },
+    {
+      "command": "lake env lean audit/blockers/dbounded_pullback_localization_transfer_w143.lean",
+      "status": "passed",
+      "evidence": "Focused v188 W143 Dbounded pullback localization-transfer frontier audit passed in the parent worktree."
     }
   ],
   "implemented_declarations_checked": [
@@ -404,7 +414,12 @@
     "DboundedEqualizerPullbackTransferW141.EqualizerLocalizationTransferTheorem",
     "DboundedEqualizerPullbackTransferW141.dboundedHasFiniteLimitsOfEqualizerTransfer",
     "MetrizableLCA.exactAcyclicBiprodTransportIso",
-    "MetrizableLCA.exactAcyclic_biprod"
+    "MetrizableLCA.exactAcyclic_biprod",
+    "MappingConeFiniteProductComparisonW142.BinaryMappingConeBiprodComparisonInput",
+    "MappingConeFiniteProductComparisonW142.exactAcyclic_mappingCone_biprodMap_of_v187_comparison",
+    "DboundedPullbackLocalizationTransferW143.PullbackConeInput",
+    "DboundedPullbackLocalizationTransferW143.PullbackLocalizationTransferTheorem",
+    "DboundedPullbackLocalizationTransferW143.dboundedHasFiniteLimitsOfPullbackTransfer"
   ],
   "product_complete": false,
   "known_gaps": [
