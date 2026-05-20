@@ -237,3 +237,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v278 Update
 
 2026-05-20T16:08:00Z: Support result w259 was reimplemented as `audit/blockers/opposite_weak_equivalence_stability_w259.lean`. It extends the v277 finite-product bridge isolation to the full W255 stability package: finite products and `WalkingParallelPair` limits for `((boundedExactWeakEquivalence MetrizableLCA).op)`. The remaining direct closure inputs are finite-coproduct stability and `WalkingParallelPairᵒᵖ` colimit stability of the original weak equivalences, plus the corresponding opposite-transport lemmas. Product success remains nonterminal.
+
+## v279 Update
+
+2026-05-20T16:24:00Z: Support result w258 was reimplemented as `audit/blockers/shortcomplex_right_exactness_extraction_w258.lean`. The audit proves that `ShortComplex.Exact`, with `HasHomology` and forgetful `PreservesHomology`, gives the concrete target kernel equality. It then feeds the v270 cokernel-top API to construct `MetrizableLCA.strictShortExact` from topology plus any of `cokernelSubgroup = ⊤`, `cokernelπ = 0`, `[Epi T.g]`, or `IsZero (cokernelObj T.g)`. The right-end extraction from right-homology-zero to cokernel-zero or epi remains missing, so product success remains nonterminal.

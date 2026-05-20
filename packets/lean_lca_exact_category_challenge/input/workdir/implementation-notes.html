@@ -524,3 +524,9 @@
 <p><time>2026-05-20T16:08:00Z</time>: The parent consumed support result <code>w259-opposite-weak-equivalence-stability-v270</code> by adding <code>audit/blockers/opposite_weak_equivalence_stability_w259.lean</code>. The audit packages the two stability fields needed by the W255 opposite finite-limit transfer: finite-product stability and <code>WalkingParallelPair</code> limit stability for <code>((boundedExactWeakEquivalence MetrizableLCA).op)</code>.</p>
 <p>The file records that direct finite-product stability is already available but is not the opposite input. The remaining route is now split into direct finite-coproduct stability, direct <code>WalkingParallelPairᵒᵖ</code> colimit stability, and two formal opposite-transport lemmas. This sharpens the finite-limit localization frontier but does not supply the missing closure constructors, so product success remains false.</p>
 </section>
+
+<section id="v279-shortcomplex-right-exactness-extraction">
+<h2>v279 ShortComplex right-exactness extraction</h2>
+<p><time>2026-05-20T16:24:00Z</time>: The parent consumed support result <code>w258-shortcomplex-right-exactness-extraction-v270</code> by adding <code>audit/blockers/shortcomplex_right_exactness_extraction_w258.lean</code>. The audit shows that categorical <code>ShortComplex.Exact</code>, together with <code>HasHomology</code> and forgetful <code>PreservesHomology</code>, supplies the element-level kernel equality consumed by local strict exactness.</p>
+<p>The right end is now tied to the promoted v270 cokernel API: topology plus <code>cokernelSubgroup T.g = ⊤</code>, <code>cokernelπ T.g = 0</code>, <code>[Epi T.g]</code>, or <code>IsZero (cokernelObj T.g)</code> gives <code>MetrizableLCA.strictShortExact T</code>. The audit preserves the W246 boundary: exactness alone is not a source of right surjectivity, and a theorem from right-homology-zero to cokernel-zero or epi is still missing.</p>
+</section>

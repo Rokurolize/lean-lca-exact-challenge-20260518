@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T16:08:00Z",
-  "source_tree_hash": "93623c26c2f6288faaaba71f9fb7a111134a6d38167692cc1ab808856d1f25d7",
-  "summary": "v278 consumes support w259: opposite weak-equivalence finite-product and WalkingParallelPair stability fields are isolated and reduced to direct coproduct/coequalizer closure plus op transport.",
+  "generated_utc": "2026-05-20T16:24:00Z",
+  "source_tree_hash": "04589de50fe30a3ed9ceb4b12c3278dde7b60af8892e196747ca7316cfaae561",
+  "summary": "v279 consumes support w258: ShortComplex.Exact supplies kernel equality under homology/forgetful-preservation inputs, while v270 cokernel/epi right inputs feed strictShortExact.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -438,6 +438,16 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_weak_equivalence_stability_w259.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W259 opposite weak-equivalence stability audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/shortcomplex_right_exactness_extraction_w258.lean",
+      "status": "passed",
+      "evidence": "Focused W258 ShortComplex right-exactness extraction audit passed; it packages kernel equality extraction and v270 cokernel/epi strictShortExact consumers."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_right_exactness_extraction_w258.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W258 right-exactness extraction audit file."
     }
   ],
   "implemented_declarations_checked": [
