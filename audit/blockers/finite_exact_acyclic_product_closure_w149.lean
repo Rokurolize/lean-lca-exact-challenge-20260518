@@ -17,6 +17,7 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+open scoped ZeroObject
 
 namespace FiniteExactAcyclicProductClosureW149
 
@@ -43,6 +44,50 @@ abbrev FiniteExactAcyclicProductClosure : Prop :=
   ∀ {J : Type u} [Finite J]
     (K : J → CochainComplex MetrizableLCA.{u} ℤ) [HasProduct K],
       (∀ j, exactAcyclic MetrizableLCA (K j)) → exactAcyclic MetrizableLCA (∏ᶜ K)
+
+/-- Empty products of cochain complexes are canonically the zero complex. -/
+noncomputable def emptyProductIsoZero
+    {J : Type u} [IsEmpty J]
+    (K : J → CochainComplex MetrizableLCA.{u} ℤ) [HasProduct K] :
+    ∏ᶜ K ≅ (0 : CochainComplex MetrizableLCA.{u} ℤ) := by
+  refine IsTerminal.uniqueUpToIso ?h
+    ((isZero_zero (CochainComplex MetrizableLCA.{u} ℤ) :
+      IsZero (0 : CochainComplex MetrizableLCA.{u} ℤ)).isTerminal)
+  refine IsTerminal.ofUniqueHom (fun X => Pi.lift (fun j => False.elim (isEmptyElim j))) ?_
+  intro X f
+  apply Pi.hom_ext
+  intro j
+  exact False.elim (isEmptyElim j)
+
+/-- The finite-product base case follows from the selected empty product being zero. -/
+theorem exactAcyclic_emptyProduct
+    {J : Type u} [IsEmpty J]
+    (K : J → CochainComplex MetrizableLCA.{u} ℤ) [HasProduct K] :
+    exactAcyclic MetrizableLCA (∏ᶜ K) :=
+  exactAcyclic_of_iso MetrizableLCA (emptyProductIsoZero K).symm
+    (exactAcyclic_zero MetrizableLCA)
+
+/--
+After v208, the product-decomposition input no longer needs an empty-product exactness field:
+the base case is supplied by `exactAcyclic_emptyProduct`.
+-/
+structure FiniteProductOptionDecompositionInput : Type (u + 1) where
+  optionProductIsoBiprod :
+    ∀ {J : Type u} [Finite J]
+      (K : Option J → CochainComplex MetrizableLCA.{u} ℤ)
+      [HasProduct K] [HasProduct (fun j : J => K (some j))],
+        ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j : J => K (some j))
+
+/-- Package the original W149 input from the now-proved empty base case plus the Option step. -/
+def finiteProductDecompositionInput_of_optionProductIsoBiprod
+    (input : FiniteProductOptionDecompositionInput.{u}) :
+    FiniteProductDecompositionInput.{u} where
+  emptyProductExact := by
+    intro J _ K _
+    exact exactAcyclic_emptyProduct K
+  optionProductIsoBiprod := by
+    intro J _ K _ _
+    exact input.optionProductIsoBiprod K
 
 /--
 Base case once the empty-product comparison is supplied.
@@ -82,9 +127,9 @@ def earliestMissingTheorem : String :=
 
 /-- Why this is the first obstruction after the binary exactness theorem. -/
 def obstructionRouteMap : List String :=
-  ["exactAcyclic_zero proves the empty product after an empty-product/zero comparison",
+  ["emptyProductIsoZero and exactAcyclic_zero prove the empty product base case",
     "MetrizableLCA.exactAcyclic_biprod proves the Option induction step after product decomposition",
-    "the remaining missing input is the product-object comparison, not exactness of biproducts"]
+    "the remaining missing input is the Option product-object comparison, not empty-product exactness or exactness of biproducts"]
 
 theorem obstructionRouteMap_count :
     obstructionRouteMap.length = 3 := rfl
@@ -93,6 +138,10 @@ section Checks
 
 #check FiniteProductDecompositionInput
 #check FiniteExactAcyclicProductClosure
+#check emptyProductIsoZero
+#check exactAcyclic_emptyProduct
+#check FiniteProductOptionDecompositionInput
+#check finiteProductDecompositionInput_of_optionProductIsoBiprod
 #check exactAcyclic_emptyProduct_of_decomposition
 #check exactAcyclic_optionProduct_of_decomposition
 #check earliestMissingTheorem

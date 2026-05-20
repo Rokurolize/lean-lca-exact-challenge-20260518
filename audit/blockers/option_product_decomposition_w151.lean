@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Derived.Bounded
 import Mathlib.CategoryTheory.Limits.Shapes.PiProd
+import Mathlib.CategoryTheory.Limits.Preserves.Shapes.Products
 
 /-!
 W151 audit: Option product decomposition for cochain-complex products.
@@ -305,6 +306,53 @@ noncomputable def optionProductDegreeTransportedBinaryFanIsLimit {J : Type w}
     · exact hm₂base.trans hfac₂.symm
 
 /--
+Evaluation of the selected tail product complex is canonically the selected product of the
+evaluated tail family.
+-/
+noncomputable def evalTailProductPointIso {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)] :
+    ((∏ᶜ (optionTail C K)).X n) ≅ ∏ᶜ (optionTailDegree C K n) := by
+  letI :
+      HasProduct
+        (fun j : J => (HomologicalComplex.eval C (ComplexShape.up ℤ) n).obj
+          ((optionTail C K) j)) := by
+    simpa [optionTailDegree, optionTail]
+      using (inferInstance : HasProduct (optionTailDegree C K n))
+  letI :
+      ∀ m : ℤ,
+        HasLimit ((Discrete.functor (optionTail C K)) ⋙
+          HomologicalComplex.eval C (ComplexShape.up ℤ) m) := by
+    intro m
+    let e : Discrete.functor (optionTailDegree C K m) ≅
+        (Discrete.functor (optionTail C K)) ⋙
+          HomologicalComplex.eval C (ComplexShape.up ℤ) m :=
+      Discrete.natIso (fun _ => Iso.refl _)
+    exact hasLimit_of_iso e
+  change (HomologicalComplex.eval C (ComplexShape.up ℤ) n).obj (∏ᶜ (optionTail C K)) ≅
+    ∏ᶜ (fun j : J => (HomologicalComplex.eval C (ComplexShape.up ℤ) n).obj
+      ((optionTail C K) j))
+  exact PreservesProduct.iso (HomologicalComplex.eval C (ComplexShape.up ℤ) n) (optionTail C K)
+
+@[reassoc]
+theorem evalTailProductPointIso_hom_π {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)] (j : J) :
+    (evalTailProductPointIso C K n).hom ≫ Pi.π (optionTailDegree C K n) j =
+      (Pi.π (optionTail C K) j).f n := by
+  letI :
+      HasProduct
+        (fun j : J => (HomologicalComplex.eval C (ComplexShape.up ℤ) n).obj
+          ((optionTail C K) j)) := by
+    simpa [optionTailDegree, optionTail]
+      using (inferInstance : HasProduct (optionTailDegree C K n))
+  dsimp [evalTailProductPointIso]
+  simpa [optionTailDegree, optionTail] using
+    (piComparison_comp_π (HomologicalComplex.eval C (ComplexShape.up ℤ) n) (optionTail C K) j)
+
+/--
 API state for the selected degreewise route.
 
 The first three fields are available in mathlib/local imports; the final field is the missing
@@ -320,6 +368,7 @@ structure DegreewiseProductApiState : Type where
   complexTransportedFan : String
   degreewiseTransportedFan : String
   degreewiseTransportedFanIsLimit : String
+  evalTailProductPointIso : String
   missingComplexIsoConstructor : Option String
 
 /-- W151's current API frontier for the selected route. -/
@@ -332,12 +381,13 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   complexTransportedFan := "optionProductComplexTransportedBinaryFan"
   degreewiseTransportedFan := "optionProductDegreeTransportedBinaryFan"
   degreewiseTransportedFanIsLimit := "optionProductDegreeTransportedBinaryFanIsLimit"
+  evalTailProductPointIso := "evalTailProductPointIso"
   missingComplexIsoConstructor :=
-    some "Prove the transported complex fan is limiting via evaluated degreewise cones and convert the binary product limit to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))"
+    some "Compare the evaluated transported complex fan with the degreewise transported fan, then convert the binary product limit to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))"
 
 theorem currentDegreewiseProductApiState_missing :
     currentDegreewiseProductApiState.missingComplexIsoConstructor =
-      some "Prove the transported complex fan is limiting via evaluated degreewise cones and convert the binary product limit to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))" :=
+      some "Compare the evaluated transported complex fan with the degreewise transported fan, then convert the binary product limit to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))" :=
   rfl
 
 /-- Compact checklist of the next proof obligations after this API guard. -/
@@ -346,12 +396,13 @@ def optionProductDecompositionNextObligations : List String :=
     "split that degreewise product with Pi.binaryFanOfProp at predicate x = none",
     "identify the none subproduct with (K none).X n using productUniqueIso",
     "reindex the complement subproduct along optionSomeComplementEquiv to the J-tail using Pi.reindex",
+    "compare the evaluated tail product point with the degreewise tail product using evalTailProductPointIso",
     "show the evaluated transported complex fan matches the transported degreewise fan",
     "assemble the degreewise limiting fans into a complex-level limiting fan using isLimitOfEval",
     "convert the binary-product limit into the biproduct-shaped OptionProductIsoBiprod"]
 
 theorem optionProductDecompositionNextObligations_count :
-    optionProductDecompositionNextObligations.length = 7 :=
+    optionProductDecompositionNextObligations.length = 8 :=
   rfl
 
 section Checks
@@ -379,6 +430,8 @@ section Checks
 #check optionProductDegreeTransportedBinaryFan_fst
 #check optionProductDegreeTransportedBinaryFan_snd
 #check optionProductDegreeTransportedBinaryFanIsLimit
+#check evalTailProductPointIso
+#check evalTailProductPointIso_hom_π
 #check DegreewiseProductApiState
 #check currentDegreewiseProductApiState
 #check currentDegreewiseProductApiState_missing
