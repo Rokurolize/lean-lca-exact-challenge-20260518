@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T05:55:00Z",
+  "generated_utc": "2026-05-20T04:31:23Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v194 consumes support w147 by reimplementing the forward differential square projection reduction against parent definitions; this is frontier progress, not product completion.",
+  "worker_policy": "No workers were launched from the target worktree. v195 consumes support w148/w149: the parent proved the w148 source-map rewrites and reduced the right backward component square to fst/snd target equations; w149 is classified as useful but delayed finite-product decomposition evidence. This is frontier progress, not product completion.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",

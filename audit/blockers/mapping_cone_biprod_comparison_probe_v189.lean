@@ -220,6 +220,79 @@ theorem forwardDifferentialSquare_reduction_iff (n : ℤ) :
     · simpa [Category.assoc] using hleft
     · simpa [Category.assoc] using hright
 
+theorem biprod_inr_f_comp_biprodConeToConeBiprodMapX (n : ℤ) :
+    (biprod.inr :
+        CochainComplex.mappingCone f₂ ⟶ biprodCone f₁ f₂).f n ≫
+      biprodConeToConeBiprodMapX f₁ f₂ n =
+        rightComponentToConeBiprodMap f₁ f₂ n := by
+  rw [show (biprod.inr :
+        CochainComplex.mappingCone f₂ ⟶ biprodCone f₁ f₂).f n =
+      biprod.inr ≫
+        (HomologicalComplex.biprodXIso
+          (CochainComplex.mappingCone f₁) (CochainComplex.mappingCone f₂) n).inv by
+    rw [HomologicalComplex.inr_biprodXIso_inv]]
+  simp only [biprodConeToConeBiprodMapX, Category.assoc]
+  rw [Iso.inv_hom_id_assoc]
+  simp
+
+theorem biprod_inl_f_comp_biprodConeToConeBiprodMapX (n : ℤ) :
+    (biprod.inl :
+        CochainComplex.mappingCone f₁ ⟶ biprodCone f₁ f₂).f n ≫
+      biprodConeToConeBiprodMapX f₁ f₂ n =
+        leftComponentToConeBiprodMap f₁ f₂ n := by
+  rw [show (biprod.inl :
+        CochainComplex.mappingCone f₁ ⟶ biprodCone f₁ f₂).f n =
+      biprod.inl ≫
+        (HomologicalComplex.biprodXIso
+          (CochainComplex.mappingCone f₁) (CochainComplex.mappingCone f₂) n).inv by
+    rw [HomologicalComplex.inl_biprodXIso_inv]]
+  simp only [biprodConeToConeBiprodMapX, Category.assoc]
+  rw [Iso.inv_hom_id_assoc]
+  simp
+
+def rightComponentDifferentialSquare (n : ℤ) : Prop :=
+  rightComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1) =
+    (CochainComplex.mappingCone f₂).d n (n + 1) ≫
+      rightComponentToConeBiprodMap f₁ f₂ (n + 1)
+
+def rightComponentDifferentialSquareFstEquation (n : ℤ) : Prop :=
+  (rightComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1)) ≫
+      (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v (n + 1) (n + 2)
+        (by omega) =
+    ((CochainComplex.mappingCone f₂).d n (n + 1) ≫
+      rightComponentToConeBiprodMap f₁ f₂ (n + 1)) ≫
+        (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v (n + 1) (n + 2)
+          (by omega)
+
+def rightComponentDifferentialSquareSndEquation (n : ℤ) : Prop :=
+  (rightComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1)) ≫
+      (CochainComplex.mappingCone.snd (biprod.map f₁ f₂)).v (n + 1) (n + 1)
+        (add_zero (n + 1)) =
+    ((CochainComplex.mappingCone f₂).d n (n + 1) ≫
+      rightComponentToConeBiprodMap f₁ f₂ (n + 1)) ≫
+        (CochainComplex.mappingCone.snd (biprod.map f₁ f₂)).v (n + 1) (n + 1)
+          (add_zero (n + 1))
+
+theorem rightComponentDifferentialSquare_ext_to_iff (n : ℤ) :
+    rightComponentDifferentialSquare f₁ f₂ n ↔
+      rightComponentDifferentialSquareFstEquation f₁ f₂ n ∧
+        rightComponentDifferentialSquareSndEquation f₁ f₂ n := by
+  constructor
+  · intro h
+    constructor
+    · dsimp [rightComponentDifferentialSquareFstEquation,
+        rightComponentDifferentialSquare] at h ⊢
+      rw [h]
+    · dsimp [rightComponentDifferentialSquareSndEquation,
+        rightComponentDifferentialSquare] at h ⊢
+      rw [h]
+  · rintro ⟨hfst, hsnd⟩
+    dsimp [rightComponentDifferentialSquareFstEquation,
+      rightComponentDifferentialSquareSndEquation, rightComponentDifferentialSquare] at hfst hsnd ⊢
+    apply CochainComplex.mappingCone.ext_to (biprod.map f₁ f₂) (n + 1) (n + 2) (by omega)
+    · simpa [Category.assoc] using hfst
+    · simpa [Category.assoc] using hsnd
+
 structure BinaryMappingConeBiprodDifferentialCompatibility : Prop where
   left_to_right :
     ∀ (n : ℤ),
@@ -277,6 +350,12 @@ section Checks
 #check forwardDifferentialSquareLeftProjection
 #check forwardDifferentialSquareRightProjection
 #check forwardDifferentialSquare_reduction_iff
+#check biprod_inr_f_comp_biprodConeToConeBiprodMapX
+#check biprod_inl_f_comp_biprodConeToConeBiprodMapX
+#check rightComponentDifferentialSquare
+#check rightComponentDifferentialSquareFstEquation
+#check rightComponentDifferentialSquareSndEquation
+#check rightComponentDifferentialSquare_ext_to_iff
 #check BinaryMappingConeBiprodDifferentialCompatibility
 #check BinaryMappingConeBiprodInverseCompatibility
 #check binaryMappingConeBiprodInverseCompatibility
