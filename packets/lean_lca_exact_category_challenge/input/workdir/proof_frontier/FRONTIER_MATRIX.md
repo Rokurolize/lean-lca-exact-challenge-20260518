@@ -659,6 +659,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W411 Representative Image Closedness
 2026-05-21T00:37:00Z: Worker support `w411-left-lca-representative-image-closedness-v370` was parent-verified as `audit/blockers/wpp_op_left_lca_representative_image_closedness_v370_support_w411.lean`. It reduces W408's representative-image closedness certificate to an ordinary codomain component closed-map or closed-embedding field plus target representative-image saturation for closed source quotient subsets. Product success remains false because those two concrete topological inputs still need proofs for the actual WPP-op morphism.
 
+## W412 Closed Range Preimage Equality
+2026-05-21T00:40:00Z: Worker support `w412-wpp-op-closed-range-preimage-equality-v370` was parent-verified as `audit/blockers/wpp_op_closed_range_preimage_equality_v370_support_w412.lean`. It proves that W409 closed-range preimage equality and W407 reverse closed-range membership are equivalent for a WPP-op morphism, using the naturality square direction for the forward inclusion. Product success remains false because one of these equivalent concrete relation statements still has to be proved for the actual morphism.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
