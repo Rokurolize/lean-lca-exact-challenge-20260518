@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v293ではW272を親側へ移植し、opposite WalkingParallelPair functor-category localizationをcoherent strict-representative blueprintとdiagram/model fixed-targetのfac/uniq義務へ縮約した。これはW269の境界を鋭くするが、義務自体は未証明なのでproduct successではない。",
+  "summary": "v294でW271を親側監査ファイルとして取り込み、direct WalkingParallelPairᵒᵖ colimit stabilityをmapping-cone比較とexact-acyclic colimit closureの二入力へ縮約した。product_completeはfalseのまま。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -115,7 +115,9 @@
     "lake env lean audit/blockers/homotopy_weq_contains_identities_w292.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/homotopy_weq_contains_identities_w292.lean",
     "lake env lean audit/blockers/opposite_fixed_target_fac_uniq_w272.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_fixed_target_fac_uniq_w272.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_fixed_target_fac_uniq_w272.lean",
+    "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/direct_wpp_op_colimit_closure_w271.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -833,12 +835,13 @@
     "direct WalkingParallelPairᵒᵖ colimit stabilityとW269 functor-category localization fac/uniq fieldsは未完了。",
     "homotopy/Verdier classのidentity containmentは解決したが、direct boundedExactWeakEquivalenceのW266 identity inputは未完了。",
     "W272のcoherent strict-representative blueprintとdiagram/model fixed-target fac/uniq義務は未証明。",
-    "direct WalkingParallelPairᵒᵖ colimit stabilityとbounded-derived infinity product obligationsは未完了。"
+    "direct WalkingParallelPairᵒᵖ colimit stabilityとbounded-derived infinity product obligationsは未完了。",
+    "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "uncommitted-v293",
+  "git_commit": "uncommitted-v294",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W272によりopposite functor-category localizationはblueprint + diagram/model fac/uniq義務へ縮約。direct WPPᵒᵖ colimit stability、direct identity containmentまたはhomotopy-class assembly、bounded-derived infinity product obligationsは残る。",
   "claim_review_result": "未実施。v293はproduct_success claimではなく、root/clean extraction external auditはいずれも想定どおりfailed_nonterminal product gateで停止した。",
@@ -894,7 +897,8 @@
     "direct WalkingParallelPairᵒᵖ colimit stabilityとW269 functor-category localization fac/uniq fieldsは未完了。",
     "homotopy/Verdier classのidentity containmentは解決したが、direct boundedExactWeakEquivalenceのW266 identity inputは未完了。",
     "W272のcoherent strict-representative blueprintとdiagram/model fixed-target fac/uniq義務は未証明。",
-    "direct WalkingParallelPairᵒᵖ colimit stabilityとbounded-derived infinity product obligationsは未完了。"
+    "direct WalkingParallelPairᵒᵖ colimit stabilityとbounded-derived infinity product obligationsは未完了。",
+    "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。"
   ],
   "next_recommended_goal": "次はW272のcoherent strict-representative blueprintと4つのfac/uniq義務を構成するか、direct WalkingParallelPairᵒᵖ colimit stabilityへ戻る。",
   "implemented_declarations": [
@@ -1242,10 +1246,16 @@
     "boundedHomotopyExactWeakEquivalence_containsIdentities",
     "HomotopyWeqContainsIdentitiesW292.metrizableLCA_homotopyWeq_op_containsIdentities",
     "OppositeFixedTargetFacUniqW272.metrizableLCA_oppositeFunctorCategoryLocalization_of_blueprint_fac_uniq",
-    "OppositeFixedTargetFacUniqW272.oppositeLiftFieldFromBlueprint"
+    "OppositeFixedTargetFacUniqW272.oppositeLiftFieldFromBlueprint",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.exactAcyclic_mappingCone_of_walkingParallelPairOp_comparison_and_closure",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closure",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.currentDirectWalkingParallelPairOpColimitClosureState"
   ],
-  "generated_utc": "2026-05-20T15:20:37Z",
-  "support_result_classification": "support W272 manually ported and parent-verified; no product success claim.",
+  "generated_utc": "2026-05-20T15:28:44Z",
+  "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1683,7 +1693,13 @@
     "boundedHomotopyExactWeakEquivalence_containsIdentities",
     "HomotopyWeqContainsIdentitiesW292.metrizableLCA_homotopyWeq_op_containsIdentities",
     "OppositeFixedTargetFacUniqW272.metrizableLCA_oppositeFunctorCategoryLocalization_of_blueprint_fac_uniq",
-    "OppositeFixedTargetFacUniqW272.oppositeLiftFieldFromBlueprint"
+    "OppositeFixedTargetFacUniqW272.oppositeLiftFieldFromBlueprint",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.exactAcyclic_mappingCone_of_walkingParallelPairOp_comparison_and_closure",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closure",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.currentDirectWalkingParallelPairOpColimitClosureState"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"
