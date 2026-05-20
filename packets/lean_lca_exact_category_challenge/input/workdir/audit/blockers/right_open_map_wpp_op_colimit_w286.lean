@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.LCA.ExactCategory
 import Mathlib.Algebra.Homology.ShortComplex.Limits
+import Mathlib.CategoryTheory.Limits.Shapes.Opposites.Equalizers
 
 /-!
 W286: right open-map WPP-op colimit boundary.
@@ -353,6 +354,100 @@ theorem parallelPair_canonical_colimit_leg_surjective_open
   ⟨MetrizableLCA.coequalizerπ_surjective f g,
     MetrizableLCA.coequalizerπ_openMap f g⟩
 
+/--
+For a `WalkingParallelPairᵒᵖ` diagram, the canonical `op zero` colimit leg is
+identified, through `walkingParallelPairOpEquiv`, with the `one` coequalizer leg
+of the corresponding ordinary `WalkingParallelPair` diagram.  Hence it is
+surjective and open in `MetrizableLCA`.
+-/
+theorem wppOp_canonical_colimit_leg_opZero_surjective_open
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+    Function.Surjective
+        ((colimit.ι X (Opposite.op WalkingParallelPair.zero) :
+          X.obj (Opposite.op WalkingParallelPair.zero) ⟶
+            (colimit X : MetrizableLCA.{0})) :
+          X.obj (Opposite.op WalkingParallelPair.zero) →
+            (colimit X : MetrizableLCA.{0})) ∧
+      IsOpenMap
+        ((colimit.ι X (Opposite.op WalkingParallelPair.zero) :
+          X.obj (Opposite.op WalkingParallelPair.zero) ⟶
+            (colimit X : MetrizableLCA.{0})) :
+          X.obj (Opposite.op WalkingParallelPair.zero) →
+            (colimit X : MetrizableLCA.{0})) := by
+  let F : WalkingParallelPair ⥤ MetrizableLCA.{0} := walkingParallelPairOpEquiv.functor ⋙ X
+  let pp : WalkingParallelPair ⥤ MetrizableLCA.{0} :=
+    parallelPair (F.map WalkingParallelPairHom.left) (F.map WalkingParallelPairHom.right)
+  let iFp : colimit F ≅ colimit pp :=
+    HasColimit.isoOfNatIso (diagramIsoParallelPair F)
+  have hpp : Function.Surjective
+        ((colimit.ι pp WalkingParallelPair.one :
+          pp.obj WalkingParallelPair.one ⟶ (colimit pp : MetrizableLCA.{0})) :
+          pp.obj WalkingParallelPair.one → (colimit pp : MetrizableLCA.{0})) ∧
+      IsOpenMap
+        ((colimit.ι pp WalkingParallelPair.one :
+          pp.obj WalkingParallelPair.one ⟶ (colimit pp : MetrizableLCA.{0})) :
+          pp.obj WalkingParallelPair.one → (colimit pp : MetrizableLCA.{0})) :=
+    parallelPair_canonical_colimit_leg_surjective_open
+      (F.map WalkingParallelPairHom.left) (F.map WalkingParallelPairHom.right)
+  have hF_surj : Function.Surjective
+        ((colimit.ι F WalkingParallelPair.one :
+          F.obj WalkingParallelPair.one ⟶ (colimit F : MetrizableLCA.{0})) :
+          F.obj WalkingParallelPair.one → (colimit F : MetrizableLCA.{0})) := by
+    have hcomp : Function.Surjective
+        ((colimit.ι pp WalkingParallelPair.one ≫ iFp.inv :
+          pp.obj WalkingParallelPair.one ⟶ (colimit F : MetrizableLCA.{0})) :
+          pp.obj WalkingParallelPair.one → (colimit F : MetrizableLCA.{0})) := by
+      exact surjective_comp_of_surjective_iso (colimit.ι pp WalkingParallelPair.one)
+        iFp.symm hpp.1
+    have hfac : colimit.ι pp WalkingParallelPair.one ≫ iFp.inv =
+        colimit.ι F WalkingParallelPair.one := by
+      simpa [iFp, pp] using
+        (HasColimit.isoOfNatIso_ι_inv (diagramIsoParallelPair F) WalkingParallelPair.one)
+    rw [hfac] at hcomp
+    simpa [F, pp] using hcomp
+  have hF_open : IsOpenMap
+        ((colimit.ι F WalkingParallelPair.one :
+          F.obj WalkingParallelPair.one ⟶ (colimit F : MetrizableLCA.{0})) :
+          F.obj WalkingParallelPair.one → (colimit F : MetrizableLCA.{0})) := by
+    have hcomp : IsOpenMap
+        ((colimit.ι pp WalkingParallelPair.one ≫ iFp.inv :
+          pp.obj WalkingParallelPair.one ⟶ (colimit F : MetrizableLCA.{0})) :
+          pp.obj WalkingParallelPair.one → (colimit F : MetrizableLCA.{0})) := by
+      exact (metrizableLCA_iso_hom_openMap iFp.symm).comp hpp.2
+    have hfac : colimit.ι pp WalkingParallelPair.one ≫ iFp.inv =
+        colimit.ι F WalkingParallelPair.one := by
+      simpa [iFp, pp] using
+        (HasColimit.isoOfNatIso_ι_inv (diagramIsoParallelPair F) WalkingParallelPair.one)
+    rw [hfac] at hcomp
+    simpa [F, pp] using hcomp
+  let iFX : colimit F ≅ colimit X :=
+    HasColimit.isoOfEquivalence walkingParallelPairOpEquiv (Iso.refl F)
+  have hX_surj_comp : Function.Surjective
+        ((colimit.ι F WalkingParallelPair.one ≫ iFX.hom :
+          F.obj WalkingParallelPair.one ⟶ (colimit X : MetrizableLCA.{0})) :
+          F.obj WalkingParallelPair.one → (colimit X : MetrizableLCA.{0})) :=
+    surjective_comp_of_surjective_iso (colimit.ι F WalkingParallelPair.one) iFX hF_surj
+  have hX_open_comp : IsOpenMap
+        ((colimit.ι F WalkingParallelPair.one ≫ iFX.hom :
+          F.obj WalkingParallelPair.one ⟶ (colimit X : MetrizableLCA.{0})) :
+          F.obj WalkingParallelPair.one → (colimit X : MetrizableLCA.{0})) :=
+    (metrizableLCA_iso_hom_openMap iFX).comp hF_open
+  have hfacX : colimit.ι F WalkingParallelPair.one ≫ iFX.hom =
+      colimit.ι X (Opposite.op WalkingParallelPair.zero) := by
+    simpa [F, iFX] using
+      (HasColimit.isoOfEquivalence_hom_π walkingParallelPairOpEquiv (Iso.refl F)
+        WalkingParallelPair.one)
+  rw [hfacX] at hX_surj_comp hX_open_comp
+  exact ⟨by simpa [F] using hX_surj_comp, by simpa [F] using hX_open_comp⟩
+
+/-- The pure WPP-op LCA right-open boundary is now closed by the canonical `op zero` leg. -/
+theorem wppOp_lca_colimitMap_preserves_openMap_of_canonical_opZero_leg :
+    wppOp_lca_colimitMap_preserves_openMap :=
+  wppOp_lca_colimitMap_preserves_openMap_of_canonical_leg_certificates
+    (Opposite.op WalkingParallelPair.zero)
+    (fun X => (wppOp_canonical_colimit_leg_opZero_surjective_open X).1)
+    (fun Y => (wppOp_canonical_colimit_leg_opZero_surjective_open Y).2)
+
 /-- Pure cover construction is enough for the pure component-level LCA boundary. -/
 theorem wppOp_lca_colimitMap_preserves_openMap_of_cover
     (hcover :
@@ -455,10 +550,10 @@ def currentRightOpenMapWppOpColimitState :
   provedConsumer :=
     "rightOpenMap_walkingParallelPairOp_colimitClosure_of_colimitMapBoundary"
   remainingInputs :=
-    ["pure LCA API: wppOp_lca_colimitMap_preserves_openMap",
-      "or construct WppOpLcaColimitMapOpenCover for the induced component map",
-      "or prove the fixed canonical WPP-op colimit leg is source-surjective/open",
-      "ordinary parallelPair coequalizer leg is now source-surjective/open; WPP-op reindexing remains",
+    ["right-open pure LCA API closed by wppOp_lca_colimitMap_preserves_openMap_of_canonical_opZero_leg",
+      "construct WppOpLcaColimitMapOpenCover remains as an alternate audit route",
+      "fixed canonical WPP-op op-zero colimit leg is now source-surjective/open",
+      "ordinary parallelPair coequalizer leg is transported through walkingParallelPairOpEquiv",
       "degreewise source and target cocones are supplied by ShortComplex.π₂/π₃ colimit preservation"]
   productSuccessClaimed := false
 
@@ -485,6 +580,8 @@ def rightOpenMapWppOpColimitDeclarationNames : List String :=
     "wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates",
     "wppOp_lca_colimitMap_preserves_openMap_of_canonical_leg_certificates",
     "parallelPair_canonical_colimit_leg_surjective_open",
+    "wppOp_canonical_colimit_leg_opZero_surjective_open",
+    "wppOp_lca_colimitMap_preserves_openMap_of_canonical_opZero_leg",
     "wppOp_lca_colimitMap_preserves_openMap_of_cover",
     "wppOp_lca_colimitMap_preserves_openMap_of_quotientBoundary",
     "wppOp_lca_colimitMap_preserves_openMap_of_closedQuotientCoverBoundary",
@@ -493,7 +590,7 @@ def rightOpenMapWppOpColimitDeclarationNames : List String :=
     "currentRightOpenMapWppOpColimitState"]
 
 theorem rightOpenMapWppOpColimitDeclarationNames_count :
-    rightOpenMapWppOpColimitDeclarationNames.length = 24 := rfl
+    rightOpenMapWppOpColimitDeclarationNames.length = 26 := rfl
 
 section Checks
 
@@ -515,6 +612,8 @@ section Checks
 #check wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates
 #check wppOp_lca_colimitMap_preserves_openMap_of_canonical_leg_certificates
 #check parallelPair_canonical_colimit_leg_surjective_open
+#check wppOp_canonical_colimit_leg_opZero_surjective_open
+#check wppOp_lca_colimitMap_preserves_openMap_of_canonical_opZero_leg
 #check MetrizableLCA.coequalizerπ_surjective
 #check MetrizableLCA.coequalizerπ_openMap
 #check wppOp_lca_colimitMap_preserves_openMap_of_cover

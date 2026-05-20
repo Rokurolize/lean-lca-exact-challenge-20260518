@@ -1,6 +1,7 @@
 import LeanLCAExactChallenge.Derived.Bounded
 import Mathlib.CategoryTheory.Abelian.GrothendieckAxioms.Colim
 import Mathlib.Algebra.Homology.ShortComplex.Limits
+import Mathlib.CategoryTheory.Limits.Shapes.Opposites.Equalizers
 
 /-!
 W318: consolidated WPP-op exact-acyclic reduction after W286/W287/W289/W317.
@@ -465,6 +466,169 @@ theorem wppOp_lca_colimitMap_preserves_openMap_of_canonical_leg_certificates
         (IsColimit.comp_coconePointUniqueUpToIso_hom (colimit.isColimit Y) hcy j₀)
     simpa [hfac] using hcomp
 
+/-- Surjectivity can be recovered after composing on the right with an isomorphism. -/
+lemma surjective_of_comp_iso {A B C : MetrizableLCA.{0}} (q : A ⟶ B)
+    (e : B ≅ C)
+    (hqe : Function.Surjective ((q ≫ e.hom : A ⟶ C) : A → C)) :
+    Function.Surjective (q : A → B) := by
+  intro b
+  rcases hqe (e.hom b) with ⟨a, ha⟩
+  refine ⟨a, ?_⟩
+  change q a = b
+  have h := congrArg (fun x => e.inv x) ha
+  simpa using h
+
+/-- Openness can be recovered after composing on the right with an isomorphism. -/
+lemma openMap_of_comp_iso {A B C : MetrizableLCA.{0}} (q : A ⟶ B)
+    (e : B ≅ C)
+    (hqe : IsOpenMap ((q ≫ e.hom : A ⟶ C) : A → C)) :
+    IsOpenMap (q : A → B) := by
+  have hcomp : IsOpenMap (((q ≫ e.hom) ≫ e.inv : A ⟶ B) : A → B) :=
+    (metrizableLCA_iso_hom_openMap e.symm).comp hqe
+  simpa [Category.assoc] using hcomp
+
+/--
+For any ordinary walking parallel-pair diagram, the `one` colimit leg is
+surjective.  The proof identifies the diagram with its `parallelPair`
+presentation and reuses the concrete coequalizer quotient theorem.
+-/
+theorem walkingParallelPair_colimit_ι_one_surjective
+    (F : WalkingParallelPair ⥤ MetrizableLCA.{0}) :
+    Function.Surjective
+      ((colimit.ι F WalkingParallelPair.one : F.obj WalkingParallelPair.one ⟶
+        (colimit F : MetrizableLCA.{0})) :
+        F.obj WalkingParallelPair.one → (colimit F : MetrizableLCA.{0})) := by
+  let η : F ≅ parallelPair (F.map WalkingParallelPairHom.left)
+      (F.map WalkingParallelPairHom.right) :=
+    diagramIsoParallelPair F
+  let e : colimit F ≅ colimit (parallelPair (F.map WalkingParallelPairHom.left)
+      (F.map WalkingParallelPairHom.right)) :=
+    HasColimit.isoOfNatIso η
+  have hbase : Function.Surjective
+      ((colimit.ι (parallelPair (F.map WalkingParallelPairHom.left)
+          (F.map WalkingParallelPairHom.right)) WalkingParallelPair.one :
+        (parallelPair (F.map WalkingParallelPairHom.left)
+          (F.map WalkingParallelPairHom.right)).obj WalkingParallelPair.one ⟶
+          (colimit (parallelPair (F.map WalkingParallelPairHom.left)
+            (F.map WalkingParallelPairHom.right)) : MetrizableLCA.{0})) :
+        (parallelPair (F.map WalkingParallelPairHom.left)
+          (F.map WalkingParallelPairHom.right)).obj WalkingParallelPair.one → _) :=
+    MetrizableLCA.coequalizerπ_surjective
+      (F.map WalkingParallelPairHom.left) (F.map WalkingParallelPairHom.right)
+  have hcomp : Function.Surjective
+      (((colimit.ι F WalkingParallelPair.one) ≫ e.hom :
+        F.obj WalkingParallelPair.one ⟶
+          (colimit (parallelPair (F.map WalkingParallelPairHom.left)
+            (F.map WalkingParallelPairHom.right)) : MetrizableLCA.{0})) :
+        F.obj WalkingParallelPair.one → _) := by
+    simpa [e, η] using hbase
+  exact surjective_of_comp_iso (colimit.ι F WalkingParallelPair.one) e hcomp
+
+/--
+For any ordinary walking parallel-pair diagram, the `one` colimit leg is open.
+The proof identifies the diagram with its `parallelPair` presentation and
+reuses the concrete coequalizer quotient theorem.
+-/
+theorem walkingParallelPair_colimit_ι_one_openMap
+    (F : WalkingParallelPair ⥤ MetrizableLCA.{0}) :
+    IsOpenMap
+      ((colimit.ι F WalkingParallelPair.one : F.obj WalkingParallelPair.one ⟶
+        (colimit F : MetrizableLCA.{0})) :
+        F.obj WalkingParallelPair.one → (colimit F : MetrizableLCA.{0})) := by
+  let η : F ≅ parallelPair (F.map WalkingParallelPairHom.left)
+      (F.map WalkingParallelPairHom.right) :=
+    diagramIsoParallelPair F
+  let e : colimit F ≅ colimit (parallelPair (F.map WalkingParallelPairHom.left)
+      (F.map WalkingParallelPairHom.right)) :=
+    HasColimit.isoOfNatIso η
+  have hbase : IsOpenMap
+      ((colimit.ι (parallelPair (F.map WalkingParallelPairHom.left)
+          (F.map WalkingParallelPairHom.right)) WalkingParallelPair.one :
+        (parallelPair (F.map WalkingParallelPairHom.left)
+          (F.map WalkingParallelPairHom.right)).obj WalkingParallelPair.one ⟶
+          (colimit (parallelPair (F.map WalkingParallelPairHom.left)
+            (F.map WalkingParallelPairHom.right)) : MetrizableLCA.{0})) :
+        (parallelPair (F.map WalkingParallelPairHom.left)
+          (F.map WalkingParallelPairHom.right)).obj WalkingParallelPair.one → _) :=
+    MetrizableLCA.coequalizerπ_openMap
+      (F.map WalkingParallelPairHom.left) (F.map WalkingParallelPairHom.right)
+  have hcomp : IsOpenMap
+      (((colimit.ι F WalkingParallelPair.one) ≫ e.hom :
+        F.obj WalkingParallelPair.one ⟶
+          (colimit (parallelPair (F.map WalkingParallelPairHom.left)
+            (F.map WalkingParallelPairHom.right)) : MetrizableLCA.{0})) :
+        F.obj WalkingParallelPair.one → _) := by
+    simpa [e, η] using hbase
+  exact openMap_of_comp_iso (colimit.ι F WalkingParallelPair.one) e hcomp
+
+/--
+The canonical WPP-op colimit leg at `op zero` is surjective.  This transports
+the ordinary walking parallel-pair `one` leg across the
+`walkingParallelPairOp` final equivalence.
+-/
+theorem walkingParallelPairOp_colimit_ι_opZero_surjective
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+    Function.Surjective
+      ((colimit.ι X (Opposite.op WalkingParallelPair.zero) :
+        X.obj (Opposite.op WalkingParallelPair.zero) ⟶
+          (colimit X : MetrizableLCA.{0})) :
+        X.obj (Opposite.op WalkingParallelPair.zero) →
+          (colimit X : MetrizableLCA.{0})) := by
+  haveI : CategoryTheory.Functor.IsEquivalence walkingParallelPairOp :=
+    walkingParallelPairOpEquiv.isEquivalence_functor
+  haveI : CategoryTheory.Functor.Final walkingParallelPairOp := by infer_instance
+  let F : WalkingParallelPair ⥤ MetrizableLCA.{0} := walkingParallelPairOp ⋙ X
+  let e : colimit F ≅ colimit X := asIso (colimit.pre X walkingParallelPairOp)
+  have hbase := walkingParallelPair_colimit_ι_one_surjective F
+  have hcomp : Function.Surjective
+      (((colimit.ι F WalkingParallelPair.one) ≫ e.hom :
+        F.obj WalkingParallelPair.one ⟶ (colimit X : MetrizableLCA.{0})) :
+        F.obj WalkingParallelPair.one → (colimit X : MetrizableLCA.{0})) :=
+    surjective_comp_of_surjective_iso (colimit.ι F WalkingParallelPair.one) e hbase
+  have hfac : (colimit.ι F WalkingParallelPair.one) ≫ e.hom =
+      (colimit.ι X (Opposite.op WalkingParallelPair.zero) :
+        X.obj (Opposite.op WalkingParallelPair.zero) ⟶ _) := by
+    simpa [F, e] using colimit.ι_pre X walkingParallelPairOp WalkingParallelPair.one
+  exact hfac ▸ hcomp
+
+/--
+The canonical WPP-op colimit leg at `op zero` is open.  This transports the
+ordinary walking parallel-pair `one` leg across the `walkingParallelPairOp`
+final equivalence.
+-/
+theorem walkingParallelPairOp_colimit_ι_opZero_openMap
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+    IsOpenMap
+      ((colimit.ι X (Opposite.op WalkingParallelPair.zero) :
+        X.obj (Opposite.op WalkingParallelPair.zero) ⟶
+          (colimit X : MetrizableLCA.{0})) :
+        X.obj (Opposite.op WalkingParallelPair.zero) →
+          (colimit X : MetrizableLCA.{0})) := by
+  haveI : CategoryTheory.Functor.IsEquivalence walkingParallelPairOp :=
+    walkingParallelPairOpEquiv.isEquivalence_functor
+  haveI : CategoryTheory.Functor.Final walkingParallelPairOp := by infer_instance
+  let F : WalkingParallelPair ⥤ MetrizableLCA.{0} := walkingParallelPairOp ⋙ X
+  let e : colimit F ≅ colimit X := asIso (colimit.pre X walkingParallelPairOp)
+  have hbase := walkingParallelPair_colimit_ι_one_openMap F
+  have hcomp : IsOpenMap
+      (((colimit.ι F WalkingParallelPair.one) ≫ e.hom :
+        F.obj WalkingParallelPair.one ⟶ (colimit X : MetrizableLCA.{0})) :
+        F.obj WalkingParallelPair.one → (colimit X : MetrizableLCA.{0})) :=
+    (metrizableLCA_iso_hom_openMap e).comp hbase
+  have hfac : (colimit.ι F WalkingParallelPair.one) ≫ e.hom =
+      (colimit.ι X (Opposite.op WalkingParallelPair.zero) :
+        X.obj (Opposite.op WalkingParallelPair.zero) ⟶ _) := by
+    simpa [F, e] using colimit.ι_pre X walkingParallelPairOp WalkingParallelPair.one
+  exact hfac ▸ hcomp
+
+/-- The WPP-op fixed-leg theorem closes the pure right-open LCA input. -/
+theorem wppOp_lca_colimitMap_preserves_openMap_of_wppOp_fixed_leg :
+    wppOp_lca_colimitMap_preserves_openMap :=
+  wppOp_lca_colimitMap_preserves_openMap_of_canonical_leg_certificates
+    (Opposite.op WalkingParallelPair.zero)
+    walkingParallelPairOp_colimit_ι_opZero_surjective
+    walkingParallelPairOp_colimit_ι_opZero_openMap
+
 /-- The colimit right map is categorically epi, by componentwise strict exactness. -/
 theorem rightMapEpi_walkingParallelPairOp_colimitClosure_direct
     (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
@@ -623,6 +787,18 @@ theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_fr
     hclosed hopen
     (additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact halg)
 
+/--
+The right-open input is now supplied internally by the fixed WPP-op colimit leg.
+The exact-acyclic closure therefore only needs the left topological certificate
+and the AddCommGrpCat kernel-exactness preservation input.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrp
+    (hclosed : wppOp_lca_colimitMap_injective_inducing_closedImage)
+    (halg : addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_frontier
+    hclosed wppOp_lca_colimitMap_preserves_openMap_of_wppOp_fixed_leg halg
+
 /-- Machine-readable W318 reduction state. -/
 structure WppOpExactAcyclicFrontierConsolidatedState : Type where
   seed : String
@@ -635,10 +811,9 @@ def currentWppOpExactAcyclicFrontierConsolidatedState :
     WppOpExactAcyclicFrontierConsolidatedState where
   seed := "w318-parent-20260521T0310Z"
   provedConsumer :=
-    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_consolidated_frontier"
+    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrp"
   remainingInputs :=
     ["wppOp_lca_colimitMap_injective_inducing_closedImage",
-      "wppOp_lca_colimitMap_preserves_openMap via canonical fixed-leg source/open certificate",
       "addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable"]
   productSuccessClaimed := false
 
