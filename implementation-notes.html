@@ -253,3 +253,7 @@
 <h2>v217 right leg consumer</h2>
 <p><time>2026-05-20T06:30:53Z</time>: W151 now has <code>evaluatedDegreeFanComparison_of_right</code>. Because <code>evaluatedDegreeFanComparisonLeft_direct</code> proves the left leg, this wrapper makes the remaining comparison boundary exactly <code>EvaluatedDegreeFanComparisonRight</code>. Active support worker w167 owns that right-leg calculation, so the parent did not duplicate it.</p>
 </section>
+<section id="v218-right-leg-direct">
+<h2>v218 right leg direct</h2>
+<p><time>2026-05-20T07:50:28Z</time>: W151 now proves <code>evaluatedDegreeFanComparisonRight_direct</code> and exposes <code>evaluatedDegreeFanComparison_direct</code>. The proof composes the right leg with <code>evalTailProductPointIso.hom</code>, compares each tail projection using <code>Pi.reindex_inv_π</code> and <code>Pi.map'_comp_π</code>, then cancels the isomorphism. The remaining Option-product route is no longer either fan-comparison leg; it is the IsLimit transport from the degreewise transported fan to the evaluated complex fan.</p>
+</section>

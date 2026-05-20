@@ -85,3 +85,7 @@ v216 consumes support worker w166 by promoting evaluatedDegreeFanComparisonLeft_
 ## v217 Update
 
 v217 adds evaluatedDegreeFanComparison_of_right to W151. Since v216 proved the left leg, the full evaluated fan comparison now requires only EvaluatedDegreeFanComparisonRight; once the right leg is supplied, evaluatedDegreeFanComparison_of_right feeds the existing downstream Option-product IsLimit and biproduct conversion path. Product success remains nonterminal.
+
+## v218 Update
+
+v218 proves EvaluatedDegreeFanComparisonRight directly in W151 and adds evaluatedDegreeFanComparison_direct. The right leg is reduced by postcomposing with evalTailProductPointIso.hom and checking tail projections through Pi.reindex_inv_π, Pi.map'_comp_π, and evalProductPointIso_hom_π. The remaining Option-product boundary is the IsLimit transport from optionProductDegreeTransportedBinaryFanIsLimit across evaluatedDegreeFanComparison_direct into the evaluated complex fan required by optionProductComplexTransportedBinaryFanIsLimit_of_eval. Product success remains nonterminal.

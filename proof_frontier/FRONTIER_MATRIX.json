@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T06:30:53Z",
+  "generated_utc": "2026-05-20T07:50:28Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v217 is parent-owned consumer work and avoids duplicating active support w167 on the right-leg naturality calculation.",
+  "worker_policy": "No workers were launched from the target worktree. v218 closes the right-leg comparison in parent-owned W151 work; active support worker outputs remain read-only context only.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1242,107 +1242,11 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": {
-    "w156-option-binaryfan-compose": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave88_20260520T050500Z/workers/w156-option-binaryfan-compose/result.json",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/option_binaryfan_compose_w156.lean"
-      ],
-      "classification": "manual_integration_parent_v207",
-      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
-      "parent_declarations_covering_result": [
-        "OptionProductDecompositionW151.optionTailDegree",
-        "OptionProductDecompositionW151.noneSubproductDegreeIso",
-        "OptionProductDecompositionW151.complementSubproductDegreeReindexIso",
-        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan",
-        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_pt",
-        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_fst",
-        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_snd",
-        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFanIsLimit"
-      ],
-      "product_effect": "no_product_success_claim; fixed-degree transported Option binary fan and IsLimit proof are now integrated into W151, leaving evaluated complex-fan comparison and OptionProductIsoBiprod conversion open"
-    },
-    "w157-option-complex-cone-assembly": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave89_20260520T052000Z/workers/w157-option-complex-cone-assembly/result.json",
-      "classification": "manual_integration_parent_v206",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/option_complex_cone_assembly_w157.lean"
-      ],
-      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
-      "parent_declarations_covering_result": [
-        "OptionProductDecompositionW151.noneSubproductIso",
-        "OptionProductDecompositionW151.complementSubproductReindexIso",
-        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan",
-        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_pt",
-        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_fst",
-        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_snd",
-        "OptionProductDecompositionW151.optionProductSplitPair"
-      ],
-      "product_effect": "no_product_success_claim; names the complex-level transported Option binary fan but leaves its limit proof and biproduct conversion open"
-    },
-    "w158-empty-product-exactness": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave90_20260520T053000Z/workers/w158-empty-product-exactness/result.json",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/finite_empty_product_exactness_w158.lean"
-      ],
-      "classification": "manual_integration_parent_v208_via_w149",
-      "parent_file": "audit/blockers/finite_exact_acyclic_product_closure_w149.lean",
-      "parent_declarations_covering_result": [
-        "FiniteExactAcyclicProductClosureW149.exactAcyclic_emptyProduct",
-        "FiniteExactAcyclicProductClosureW149.finiteProductDecompositionInput_of_optionProductIsoBiprod"
-      ],
-      "product_effect": "no_product_success_claim; W158 bridge consumed and strengthened by proving the empty-product base case in W149"
-    },
-    "w159-option-eval-cone-comparison": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave91_20260520T053200Z/workers/w159-option-eval-cone-comparison/result.json",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/option_eval_cone_comparison_w159.lean"
-      ],
-      "classification": "manual_integration_parent_v208_partial",
-      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
-      "parent_declarations_covering_result": [
-        "OptionProductDecompositionW151.evalTailProductPointIso",
-        "OptionProductDecompositionW151.evalTailProductPointIso_hom_π"
-      ],
-      "product_effect": "no_product_success_claim; evaluated tail product point comparison is proved, leaving BinaryFan/Cone comparison and IsLimit transport open"
-    },
-    "w160-empty-product-zero-comparison": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave92_20260520T054000Z/workers/w160-empty-product-zero-comparison/result.json",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/empty_product_zero_comparison_w160.lean"
-      ],
-      "classification": "manual_integration_parent_v208_via_w149",
-      "parent_file": "audit/blockers/finite_exact_acyclic_product_closure_w149.lean",
-      "parent_declarations_covering_result": [
-        "FiniteExactAcyclicProductClosureW149.emptyProductIsoZero",
-        "FiniteExactAcyclicProductClosureW149.exactAcyclic_emptyProduct"
-      ],
-      "product_effect": "no_product_success_claim; empty product zero comparison proved directly in W149, removing separate empty-product exactness residual"
-    },
-    "w161-eval-tail-product-point-iso": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave93_20260520T054400Z/workers/w161-eval-tail-product-point-iso/result.json",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/eval_tail_product_point_iso_w161.lean"
-      ],
-      "classification": "covered_by_parent_v208_no_new_port_v209",
-      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
-      "parent_declarations_covering_result": [
-        "OptionProductDecompositionW151.evalTailProductPointIso",
-        "OptionProductDecompositionW151.evalTailProductPointIso_hom_π"
-      ],
-      "product_effect": "no_product_success_claim; useful confirmation of the eval-tail product point-iso route, already integrated by parent v208"
-    }
-  },
+  "support_result_classification": "w167 completed with reusable right-leg component normal forms; w168 completed as left-leg replay evidence; w169 completed with a canonical W151 right-leg/direct-comparison proof. Parent v218 has already integrated the right-leg/direct-comparison conclusion.",
   "latest_parent_update": {
-    "version": "v217",
-    "timestamp_utc": "2026-05-20T06:30:53Z",
-    "summary": "v217 adds evaluatedDegreeFanComparison_of_right to W151. Since v216 proved the left leg, the full evaluated fan comparison now requires only EvaluatedDegreeFanComparisonRight; once the right leg is supplied, evaluatedDegreeFanComparison_of_right feeds the existing downstream Option-product IsLimit and biproduct conversion path.",
-    "remaining_next_step": "prove or consume EvaluatedDegreeFanComparisonRight, then apply evaluatedDegreeFanComparison_of_right and the downstream IsLimit/biproduct conversion path."
+    "version": "v218",
+    "timestamp_utc": "2026-05-20T07:50:28Z",
+    "summary": "v218 proves evaluatedDegreeFanComparisonRight_direct and evaluatedDegreeFanComparison_direct in W151, matching the now-completed w169 right-leg repair result and closing both evaluated fan comparison legs.",
+    "remaining_next_step": "transport optionProductDegreeTransportedBinaryFanIsLimit across evaluatedDegreeFanComparison_direct into the evaluated complex fan IsLimit family."
   }
 }

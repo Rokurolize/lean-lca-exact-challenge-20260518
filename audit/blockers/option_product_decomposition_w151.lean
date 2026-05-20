@@ -547,6 +547,231 @@ abbrev EvaluatedDegreeFanComparisonRight {J : Type w}
   (evaluatedOptionProductComplexBinaryFan C K n).snd =
     (optionProductDegreeFanWithEvaluatedTargets C K n).snd
 
+/--
+After composing the degreewise/evaluated-target right leg with the comparison isomorphism back to
+the evaluated tail product, the trailing `evalTailProductPointIso.inv` cancels.
+-/
+theorem optionProductDegreeFanWithEvaluatedTargets_snd_evalTail_hom_π
+    {J : Type w} (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)] (j : J) :
+    (optionProductDegreeFanWithEvaluatedTargets C K n).snd ≫
+        (evalTailProductPointIso C K n).hom ≫ Pi.π (optionTailDegree C K n) j =
+      (evalProductPointIso C K n).hom ≫
+        (optionProductDegreeTransportedBinaryFan C K n).snd ≫
+          Pi.π (optionTailDegree C K n) j := by
+  simp [optionProductDegreeFanWithEvaluatedTargets, Category.assoc]
+
+/--
+The degree-side right leg projected to a tail component is the underlying `Pi.binaryFanOfProp`
+right leg projected to the corresponding complement component.
+-/
+@[reassoc]
+theorem optionProductDegreeTransportedBinaryFan_snd_π
+    {J : Type w} (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun i : Option J => (K i).X n)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTailDegree C K n)] (j : J) :
+    (optionProductDegreeTransportedBinaryFan C K n).snd ≫
+        Pi.π (optionTailDegree C K n) j =
+      (optionProductDegreeBinaryFan C K n).snd ≫
+        Pi.π (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
+          ((optionSomeComplementEquiv J).symm j) := by
+  dsimp [optionProductDegreeTransportedBinaryFan, complementSubproductDegreeReindexIso]
+  letI : HasProduct
+      ((fun i : {x : Option J // ¬ x = none} => (K i.val).X n) ∘
+        ⇑(optionSomeComplementEquiv J).symm) := by
+    simpa [Function.comp, optionTailDegree, optionTail, optionSomeComplementEquiv]
+      using (inferInstance : HasProduct (optionTailDegree C K n))
+  have hπ :
+      (Pi.reindex (optionSomeComplementEquiv J).symm
+          (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)).inv ≫
+          Pi.π (optionTailDegree C K n) j =
+        Pi.π (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
+          ((optionSomeComplementEquiv J).symm j) := by
+    simpa [optionTailDegree, optionTail, optionSomeComplementEquiv] using
+      (Pi.reindex_inv_π (optionSomeComplementEquiv J).symm
+        (fun i : {x : Option J // ¬ x = none} => (K i.val).X n) j)
+  simpa [Category.assoc] using
+    congrArg (fun q => (optionProductDegreeBinaryFan C K n).snd ≫ q) hπ
+
+/--
+The complex-side right leg projected through evaluation and the tail comparison reduces to the
+matching complex product projection at the complement index.
+-/
+theorem complementSubproductReindexIso_hom_evalTail_hom_π
+    {J : Type w} (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)] (j : J) :
+    ((complementSubproductReindexIso C K).hom.f n) ≫
+        (evalTailProductPointIso C K n).hom ≫ Pi.π (optionTailDegree C K n) j =
+      (Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+        ((optionSomeComplementEquiv J).symm j)).f n := by
+  simp only [complementSubproductReindexIso, evalTailProductPointIso_hom_π]
+  letI : HasProduct
+      ((fun i : {x : Option J // ¬ x = none} => K i.val) ∘
+        ⇑(optionSomeComplementEquiv J).symm) := by
+    simpa [Function.comp, optionTail, optionSomeComplementEquiv]
+      using (inferInstance : HasProduct (optionTail C K))
+  have hπ :
+      (Pi.reindex (optionSomeComplementEquiv J).symm
+          (fun i : {x : Option J // ¬ x = none} => K i.val)).inv ≫
+          Pi.π (optionTail C K) j =
+        Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+          ((optionSomeComplementEquiv J).symm j) := by
+    simpa [optionTail, optionSomeComplementEquiv] using
+      (Pi.reindex_inv_π (optionSomeComplementEquiv J).symm
+        (fun i : {x : Option J // ¬ x = none} => K i.val) j)
+  simpa [HomologicalComplex.comp_f] using congrArg (fun q => q.f n) hπ
+
+/--
+The complex-side evaluated right leg has the same tail-component normal form as the complex
+product split projected at the corresponding complement index.
+-/
+theorem evaluatedOptionProductComplexBinaryFan_snd_evalTail_hom_π
+    {J : Type w} (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)] (j : J) :
+    (evaluatedOptionProductComplexBinaryFan C K n).snd ≫
+        (evalTailProductPointIso C K n).hom ≫ Pi.π (optionTailDegree C K n) j =
+      (optionProductBinaryFan C K).snd.f n ≫
+        (Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+          ((optionSomeComplementEquiv J).symm j)).f n := by
+  dsimp [evaluatedOptionProductComplexBinaryFan, optionProductComplexTransportedBinaryFan]
+  simpa [Category.assoc] using
+    congrArg
+      (fun q => (optionProductBinaryFan C K).snd.f n ≫ q)
+      (complementSubproductReindexIso_hom_evalTail_hom_π C K n j)
+
+/-- The right leg of the evaluated-degree fan comparison. -/
+theorem evaluatedDegreeFanComparisonRight_direct {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)] :
+    EvaluatedDegreeFanComparisonRight C K n := by
+  apply (cancel_mono (evalTailProductPointIso C K n).hom).mp
+  apply Pi.hom_ext
+  intro j
+  have hright_complex :
+      (Pi.binaryFanOfProp K (fun x : Option J => x = none)).snd ≫
+          Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+            ((optionSomeComplementEquiv J).symm j) =
+        Pi.π K ((optionSomeComplementEquiv J).symm j).val := by
+    simpa [Pi.binaryFanOfProp] using
+      (Pi.map'_comp_π
+        (f := K)
+        (g := fun i : {x : Option J // ¬ x = none} => K i.val)
+        (p := Subtype.val)
+        (q := fun _ => 𝟙 _)
+        (b := (optionSomeComplementEquiv J).symm j))
+  have hright_complex_degree :
+      (Pi.binaryFanOfProp K (fun x : Option J => x = none)).snd.f n ≫
+          (Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+            ((optionSomeComplementEquiv J).symm j)).f n =
+        (Pi.π K ((optionSomeComplementEquiv J).symm j).val).f n := by
+    simpa using
+      congrArg
+        (fun f :
+          ∏ᶜ K ⟶ K ((optionSomeComplementEquiv J).symm j).val => f.f n)
+        hright_complex
+  have hright_degree :
+      (Pi.binaryFanOfProp (fun i : Option J => (K i).X n) (fun x : Option J => x = none)).snd ≫
+          Pi.π (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
+            ((optionSomeComplementEquiv J).symm j) =
+        Pi.π (fun i : Option J => (K i).X n)
+          ((optionSomeComplementEquiv J).symm j).val := by
+    simpa [Pi.binaryFanOfProp] using
+      (Pi.map'_comp_π
+        (f := fun i : Option J => (K i).X n)
+        (g := fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
+        (p := Subtype.val)
+        (q := fun _ => 𝟙 _)
+        (b := (optionSomeComplementEquiv J).symm j))
+  have hright_complex_degree_limit :
+      (Pi.binaryFanOfProp K (fun x : Option J => x = none)).snd.f n ≫
+          (limit.π (Discrete.functor
+            (fun i : {x : Option J // ¬ x = none} => K i.val))
+            ⟨(optionSomeComplementEquiv J).symm j⟩).f n =
+        (Pi.π K ((optionSomeComplementEquiv J).symm j).val).f n := by
+    simpa [Pi.π] using hright_complex_degree
+  have hright_degree_limit :
+      (Pi.binaryFanOfProp (fun i : Option J => (K i).X n) (fun x : Option J => x = none)).snd ≫
+          limit.π (Discrete.functor
+            (fun i : {x : Option J // ¬ x = none} => (K i.val).X n))
+            ⟨(optionSomeComplementEquiv J).symm j⟩ =
+        Pi.π (fun i : Option J => (K i).X n)
+          ((optionSomeComplementEquiv J).symm j).val := by
+    simpa [Pi.π] using hright_degree
+  have hcomplex :
+      ((evaluatedOptionProductComplexBinaryFan C K n).snd ≫
+          (evalTailProductPointIso C K n).hom) ≫
+        Pi.π (optionTailDegree C K n) j =
+        (optionProductBinaryFan C K).snd.f n ≫
+          (Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+            ((optionSomeComplementEquiv J).symm j)).f n := by
+    simpa [Category.assoc] using
+      evaluatedOptionProductComplexBinaryFan_snd_evalTail_hom_π C K n j
+  have hdegree_fan :
+      ((optionProductDegreeFanWithEvaluatedTargets C K n).snd ≫
+          (evalTailProductPointIso C K n).hom) ≫
+        Pi.π (optionTailDegree C K n) j =
+        ((evalProductPointIso C K n).hom ≫
+          (optionProductDegreeTransportedBinaryFan C K n).snd) ≫
+            Pi.π (optionTailDegree C K n) j := by
+    simpa [Category.assoc] using
+      optionProductDegreeFanWithEvaluatedTargets_snd_evalTail_hom_π C K n j
+  have htransport :
+      ((evalProductPointIso C K n).hom ≫
+          (optionProductDegreeTransportedBinaryFan C K n).snd) ≫
+            Pi.π (optionTailDegree C K n) j =
+        ((evalProductPointIso C K n).hom ≫
+          (optionProductDegreeBinaryFan C K n).snd) ≫
+            Pi.π (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
+              ((optionSomeComplementEquiv J).symm j) := by
+    exact
+      (Category.assoc (evalProductPointIso C K n).hom
+        (optionProductDegreeTransportedBinaryFan C K n).snd
+        (Pi.π (optionTailDegree C K n) j)).trans
+        ((congrArg (fun f => (evalProductPointIso C K n).hom ≫ f)
+          (optionProductDegreeTransportedBinaryFan_snd_π C K n j)).trans
+          (Category.assoc (evalProductPointIso C K n).hom
+            (optionProductDegreeBinaryFan C K n).snd
+            (Pi.π (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
+              ((optionSomeComplementEquiv J).symm j))).symm)
+  have hmain :
+      (optionProductBinaryFan C K).snd.f n ≫
+          (Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+            ((optionSomeComplementEquiv J).symm j)).f n =
+        ((evalProductPointIso C K n).hom ≫
+          (optionProductDegreeBinaryFan C K n).snd) ≫
+            Pi.π (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
+              ((optionSomeComplementEquiv J).symm j) := by
+    refine hright_complex_degree_limit.trans ?_
+    refine (evalProductPointIso_hom_π C K n
+      ((optionSomeComplementEquiv J).symm j).val).symm.trans ?_
+    simpa [Category.assoc] using
+      congrArg (fun f => (evalProductPointIso C K n).hom ≫ f)
+        hright_degree_limit.symm
+  exact hcomplex.trans (hmain.trans (hdegree_fan.trans htransport).symm)
+
 /-- The left leg of the evaluated-degree fan comparison. -/
 theorem evaluatedDegreeFanComparisonLeft_direct {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
@@ -655,6 +880,22 @@ theorem evaluatedDegreeFanComparison_of_right {J : Type w}
   evaluatedDegreeFanComparison_of_left_right C K n
     (evaluatedDegreeFanComparisonLeft_direct C K n) hright
 
+/-- Direct evaluated fan comparison, after closing both binary-fan projection legs. -/
+theorem evaluatedDegreeFanComparison_direct {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)] :
+    EvaluatedDegreeFanComparison C K n :=
+  evaluatedDegreeFanComparison_of_right C K n
+    (evaluatedDegreeFanComparisonRight_direct C K n)
+
 /--
 API state for the selected degreewise route.
 
@@ -704,7 +945,7 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   transportedDegreeFanWithEvaluatedTargets := "optionProductDegreeFanWithEvaluatedTargets"
   remainingEvaluatedFanComparison := "EvaluatedDegreeFanComparison"
   remainingEvaluatedLeftLeg := "EvaluatedDegreeFanComparisonLeft"
-  remainingEvaluatedRightLeg := "EvaluatedDegreeFanComparisonRight"
+  remainingEvaluatedRightLeg := "closed by evaluatedDegreeFanComparisonRight_direct"
   evaluatedFanComparisonOfLeftRight := "evaluatedDegreeFanComparison_of_left_right"
   evaluatedFanComparisonOfRight := "evaluatedDegreeFanComparison_of_right"
   binaryFanLimitPointIsoBiprod := "binaryFanLimitPointIsoBiprod"
@@ -717,11 +958,11 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   optionProductIsoBiprodOfEvalIsLimit :=
     "optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit"
   missingComplexIsoConstructor :=
-    some "Prove EvaluatedDegreeFanComparisonLeft and EvaluatedDegreeFanComparisonRight, combine them by evaluatedDegreeFanComparison_of_left_right, and transport the degreewise IsLimit proof through evalProductPointIso/evalTailProductPointIso; the resulting evaluated-fan IsLimit family feeds optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit"
+    some "Transport the degreewise IsLimit proof through evalProductPointIso/evalTailProductPointIso using evaluatedDegreeFanComparison_direct; the resulting evaluated-fan IsLimit family feeds optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit"
 
 theorem currentDegreewiseProductApiState_missing :
     currentDegreewiseProductApiState.missingComplexIsoConstructor =
-      some "Prove EvaluatedDegreeFanComparisonLeft and EvaluatedDegreeFanComparisonRight, combine them by evaluatedDegreeFanComparison_of_left_right, and transport the degreewise IsLimit proof through evalProductPointIso/evalTailProductPointIso; the resulting evaluated-fan IsLimit family feeds optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit" :=
+      some "Transport the degreewise IsLimit proof through evalProductPointIso/evalTailProductPointIso using evaluatedDegreeFanComparison_direct; the resulting evaluated-fan IsLimit family feeds optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit" :=
   rfl
 
 /-- Compact checklist of the next proof obligations after this API guard. -/
@@ -731,7 +972,7 @@ def optionProductDecompositionNextObligations : List String :=
     "identify the none subproduct with (K none).X n using productUniqueIso",
     "reindex the complement subproduct along optionSomeComplementEquiv to the J-tail using Pi.reindex",
     "compare the evaluated tail product point with the degreewise tail product using evalTailProductPointIso",
-    "show the evaluated transported complex fan matches the transported degreewise fan",
+    "transport the degreewise fan IsLimit proof across evaluatedDegreeFanComparison_direct",
     "assemble the degreewise limiting fans into a complex-level limiting fan using isLimitOfEval",
     "convert the binary-product limit into the biproduct-shaped OptionProductIsoBiprod"]
 

@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v217時点で、左leg証明済みの状態を使い、右legだけから全体のEvaluatedDegreeFanComparisonを得る evaluatedDegreeFanComparison_of_right をW151に追加した。残るOption product比較境界はEvaluatedDegreeFanComparisonRightだけになったが、その右leg、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が残るため、成果物は非終端である。",
+  "summary": "v218時点で、W151に evaluatedDegreeFanComparisonRight_direct と evaluatedDegreeFanComparison_direct を追加し、評価済みOption product fan比較の左右両legを閉じた。残るOption product境界は、degreewiseな optionProductDegreeTransportedBinaryFanIsLimit を evaluatedDegreeFanComparison_direct 経由で evaluated complex fan の IsLimit family へ輸送する部分である。有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造も残るため、成果物は非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -676,23 +676,23 @@
     "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
   ],
   "known_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v217でleft legは自動消費されるため、Option product比較の直接境界はEvaluatedDegreeFanComparisonRightのみ。",
-    "Option product decomposition 本体は、left leg証明、right leg消費補題、等式によるIsLimit輸送、HomologicalComplex.isLimitOfEval消費経路、OptionProductIsoBiprodへのcone-point変換を持つが、右legの補完reindex/evalTailProductPointIso自然性計算が未完了。",
-    "Dbounded equalizer/pullback transfer、有限colimit、pretriangulated/triangulated構造、stable infinity-category enhancement は未完了。"
+    "Option product decomposition は左右leg比較を閉じたが、degreewiseなIsLimit証明を evaluated complex fan の IsLimit family へ輸送する組み立てが未完了である。",
+    "有限family closure は W149 の Option-step 消費境界まで進んだが、一般有限積閉性としてはまだ閉じていない。",
+    "Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は依然として product_success に必要な未完了項目である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v209 classified w161 as already covered by parent v208. Support w162 is still active on the next Option complex fan IsLimit/BinaryFan comparison frontier; no duplicate target worker was launched.",
+  "worker_frontier_summary": "支援w167は右leg成分正規形まで、w168は左leg再現まで、w169は右leg修復と evaluatedDegreeFanComparison_direct まで完了した。親側v218はw169と同じ右leg結論をW151で検証済みにしており、次の境界はIsLimit輸送である。",
   "claim_review_result": "not_run_nonterminal",
   "remaining_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v209で空積base caseとOption帰納step消費補題は閉じたが、評価後のOption複体fanをdegreewise limiting fanへ比較するBinaryFan/Cone比較、HomologicalComplex.isLimitOfEvalへの接続、OptionProductIsoBiprod、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
-    "Option product decomposition 本体は、transported complex fan、degreewise limiting fan、evalTailProductPointIsoを持つが、評価後fanをtransportして optionProductDegreeTransportedBinaryFan と同定する補題と、そこから二項product limitをbiproduct型の OptionProductIsoBiprod へ変換する証明が未完了。",
-    "Dbounded equalizer/pullback transfer、有限colimit、pretriangulated/triangulated構造、stable infinity-category enhancement は未完了。"
+    "Option product decomposition は左右leg比較を閉じたが、degreewiseなIsLimit証明を evaluated complex fan の IsLimit family へ輸送する組み立てが未完了である。",
+    "有限family closure は W149 の Option-step 消費境界まで進んだが、一般有限積閉性としてはまだ閉じていない。",
+    "Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は依然として product_success に必要な未完了項目である。"
   ],
-  "next_recommended_goal": "w162-option-complex-fan-islimit の正式結果を確認し、評価後Option fanを evalTailProductPointIso でtransportして optionProductDegreeTransportedBinaryFan と比較する左右射一致をW151へ統合する。",
+  "next_recommended_goal": "W151でoptionProductDegreeTransportedBinaryFanIsLimitをevaluatedDegreeFanComparison_direct経由でmapCone評価fanのIsLimitへ輸送し、optionProductComplexTransportedBinaryFanIsLimit_of_evalへ接続する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -801,173 +801,16 @@
     "FiniteExactAcyclicProductClosureW149.finiteProductDecompositionInput_of_optionProductIsoBiprod",
     "OptionProductDecompositionW151.evalTailProductPointIso",
     "OptionProductDecompositionW151.evalTailProductPointIso_hom_π",
-    "FiniteExactAcyclicProductClosureW149.exactAcyclic_optionProduct_of_optionProductIsoBiprod"
+    "FiniteExactAcyclicProductClosureW149.exactAcyclic_optionProduct_of_optionProductIsoBiprod",
+    "optionProductDegreeFanWithEvaluatedTargets_snd_evalTail_hom_π",
+    "optionProductDegreeTransportedBinaryFan_snd_π",
+    "complementSubproductReindexIso_hom_evalTail_hom_π",
+    "evaluatedOptionProductComplexBinaryFan_snd_evalTail_hom_π",
+    "evaluatedDegreeFanComparisonRight_direct",
+    "evaluatedDegreeFanComparison_direct"
   ],
-  "generated_utc": "2026-05-20T05:56:44Z",
-  "support_result_classification": {
-    "w126-stable-dbounded-certificate-provider-route": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave68_20260519T233000Z/workers/w126-stable-dbounded-certificate-provider-route/result.json",
-      "classification": "already_integrated_byte_identical_parent_v158",
-      "parent_file": "audit/blockers/stable_dbounded_certificate_provider_route_w126.lean",
-      "product_effect": "no_product_success_claim; stable provider route remains missing"
-    },
-    "w127-mapping-cone-selected-provider-probe": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave69_20260519T233400Z/workers/w127-mapping-cone-selected-provider-probe/result.json",
-      "classification": "parent_strengthened_worker_probe_in_v159",
-      "parent_file": "audit/blockers/mapping_cone_selected_provider_probe_w127.lean",
-      "additional_parent_declarations": [
-        "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_weakEndpointSelectedCochainIso",
-        "reject_unconditional_weakEndpointSelectedCochainIso_provider_w127"
-      ],
-      "product_effect": "narrows bounded route; unconditional weak endpoint provider is refuted over IntModuleCat"
-    },
-    "w130-distinguished-eligibility-provider-constructor": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave71_20260520T001200Z/workers/w130-distinguished-eligibility-provider-constructor/result.json",
-      "classification": "superseded_by_parent_v164_v165",
-      "worker_status": "proof_segment_ready",
-      "worker_changed_files": [
-        "audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean",
-        "audit/blockers/distinguished_eligibility_provider_constructor_w130.lean"
-      ],
-      "parent_files": [
-        "audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean"
-      ],
-      "parent_declarations_covering_result": [
-        "DistinguishedEndpointTrivialEligibility",
-        "distinguishedEndpointEligibilityProvider_trivial",
-        "boundedTrianglehIso13CochainDataStrictification_of_trivialEligibilityUpgrade",
-        "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_trivialEligibilityUpgrade",
-        "reject_trivialEligibilityUpgrade_intModuleCat"
-      ],
-      "product_effect": "no_product_success_claim; provider-side result is integrated and the trivial upgrade is refuted, leaving only a genuinely nontrivial eligibility route"
-    },
-    "w132-nontrivial-distinguished-eligibility-predicate": {
-      "result_json": null,
-      "classification": "active_partial_diff_parent_ported_v172",
-      "worker_status": "in_progress_without_result_json",
-      "parent_file": "audit/blockers/nontrivial_distinguished_eligibility_predicate_w132.lean",
-      "parent_declarations_covering_result": [
-        "W132DistinguishedEndpointStrictSelectedEligibility",
-        "w132DistinguishedEndpointCochainIsoUpgrade_strictSelected",
-        "distinguishedEndpointEligibilityProvider_strictSelected_of_realization",
-        "boundedHomotopyObjectTrianglehIso13Realization_of_strictSelectedProvider",
-        "distinguishedEndpointEligibilityProvider_strictSelected_iff_realization"
-      ],
-      "product_effect": "no_product_success_claim; the strict-selected provider excludes arbitrary weak witnesses but is equivalent to the existing bounded strict-realization frontier"
-    },
-    "w133-dbounded-four-projection-provider-route": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave73_20260520T003800Z/workers/w133-dbounded-four-projection-provider-route/result.json",
-      "classification": "manual_port_parent_v173",
-      "worker_status": "proof_segment_ready",
-      "worker_changed_files": [
-        "audit/blockers/dbounded_four_projection_provider_route_w133.lean"
-      ],
-      "parent_file": "audit/blockers/dbounded_four_projection_provider_route_w133.lean",
-      "parent_declarations_covering_result": [
-        "DboundedFourProjectionProviderRouteW133.OrdinaryContextToDboundedFourProjectionProvider",
-        "DboundedFourProjectionProviderRouteW133.markerOnly_rejected",
-        "DboundedFourProjectionProviderRouteW133.ordinaryOnly_rejected",
-        "DboundedFourProjectionProviderRouteW133.currentOrdinaryOnlyAttempt_rejected",
-        "DboundedFourProjectionProviderRouteW133.fullStableProvider_accepted"
-      ],
-      "product_effect": "no_product_success_claim; ordinary Dbounded evidence is classified as rejected ordinary-only route unless a full stable four-projection provider is supplied"
-    },
-    "w156-option-binaryfan-compose": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave88_20260520T050500Z/workers/w156-option-binaryfan-compose/result.json",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/option_binaryfan_compose_w156.lean"
-      ],
-      "classification": "manual_integration_parent_v207",
-      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
-      "parent_declarations_covering_result": [
-        "OptionProductDecompositionW151.optionTailDegree",
-        "OptionProductDecompositionW151.noneSubproductDegreeIso",
-        "OptionProductDecompositionW151.complementSubproductDegreeReindexIso",
-        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan",
-        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_pt",
-        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_fst",
-        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_snd",
-        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFanIsLimit"
-      ],
-      "product_effect": "no_product_success_claim; fixed-degree transported Option binary fan and IsLimit proof are now integrated into W151, leaving evaluated complex-fan comparison and OptionProductIsoBiprod conversion open"
-    },
-    "w157-option-complex-cone-assembly": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave89_20260520T052000Z/workers/w157-option-complex-cone-assembly/result.json",
-      "classification": "manual_integration_parent_v206",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/option_complex_cone_assembly_w157.lean"
-      ],
-      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
-      "parent_declarations_covering_result": [
-        "OptionProductDecompositionW151.noneSubproductIso",
-        "OptionProductDecompositionW151.complementSubproductReindexIso",
-        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan",
-        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_pt",
-        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_fst",
-        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_snd",
-        "OptionProductDecompositionW151.optionProductSplitPair"
-      ],
-      "product_effect": "no_product_success_claim; names the complex-level transported Option binary fan but leaves its limit proof and biproduct conversion open"
-    },
-    "w158-empty-product-exactness": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave90_20260520T053000Z/workers/w158-empty-product-exactness/result.json",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/finite_empty_product_exactness_w158.lean"
-      ],
-      "classification": "manual_integration_parent_v208_via_w149",
-      "parent_file": "audit/blockers/finite_exact_acyclic_product_closure_w149.lean",
-      "parent_declarations_covering_result": [
-        "FiniteExactAcyclicProductClosureW149.exactAcyclic_emptyProduct",
-        "FiniteExactAcyclicProductClosureW149.finiteProductDecompositionInput_of_optionProductIsoBiprod"
-      ],
-      "product_effect": "no_product_success_claim; W158 bridge consumed and strengthened by proving the empty-product base case in W149"
-    },
-    "w159-option-eval-cone-comparison": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave91_20260520T053200Z/workers/w159-option-eval-cone-comparison/result.json",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/option_eval_cone_comparison_w159.lean"
-      ],
-      "classification": "manual_integration_parent_v208_partial",
-      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
-      "parent_declarations_covering_result": [
-        "OptionProductDecompositionW151.evalTailProductPointIso",
-        "OptionProductDecompositionW151.evalTailProductPointIso_hom_π"
-      ],
-      "product_effect": "no_product_success_claim; evaluated tail product point comparison is proved, leaving BinaryFan/Cone comparison and IsLimit transport open"
-    },
-    "w160-empty-product-zero-comparison": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave92_20260520T054000Z/workers/w160-empty-product-zero-comparison/result.json",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/empty_product_zero_comparison_w160.lean"
-      ],
-      "classification": "manual_integration_parent_v208_via_w149",
-      "parent_file": "audit/blockers/finite_exact_acyclic_product_closure_w149.lean",
-      "parent_declarations_covering_result": [
-        "FiniteExactAcyclicProductClosureW149.emptyProductIsoZero",
-        "FiniteExactAcyclicProductClosureW149.exactAcyclic_emptyProduct"
-      ],
-      "product_effect": "no_product_success_claim; empty product zero comparison proved directly in W149, removing separate empty-product exactness residual"
-    },
-    "w161-eval-tail-product-point-iso": {
-      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave93_20260520T054400Z/workers/w161-eval-tail-product-point-iso/result.json",
-      "worker_status": "completed_without_product_success_claim",
-      "worker_changed_files": [
-        "audit/blockers/eval_tail_product_point_iso_w161.lean"
-      ],
-      "classification": "covered_by_parent_v208_no_new_port_v209",
-      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
-      "parent_declarations_covering_result": [
-        "OptionProductDecompositionW151.evalTailProductPointIso",
-        "OptionProductDecompositionW151.evalTailProductPointIso_hom_π"
-      ],
-      "product_effect": "no_product_success_claim; useful confirmation of the eval-tail product point-iso route, already integrated by parent v208"
-    }
-  },
+  "generated_utc": "2026-05-20T07:50:28Z",
+  "support_result_classification": "w167=merge_audit_only; w168=do_not_merge_blindly_into_current_live_target; w169=merge_canonical_w151_diff already reflected by parent v218.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
