@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W426でW389 relation-pullback equality certificateからW407 reverse closed-range membershipを取り出し、W420 certificate packageまたはW380/W389/W386 certificatesだけでW399 relation-pullback descended fieldsへ接続した。残るleft-LCA入力は実際のWPP-op morphismに対するcertificate packageとstandalone audit blocksのmodule昇格であり、AddCommGrp側ではglobal forget₂ preservationを避けたselected/certificate付き経路が必要である。product successはまだ主張しない。",
+  "summary": "W427でselected AddCommGrp cokernel/cofork colimit routeをhcsとunderlying forgetful WPP-op preservationだけに縮約し、W428でそのWPP-op preservationがPreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)から従うことを確認した。ただしfinite-colimit preservation自体は未解決で、閉像条件なしのglobal保存は引き続き危険である。product successはまだ主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -590,7 +590,10 @@
     "lake env lean audit/blockers/metrizable_lca_wpp_op_has_colimits_v370_support_w425.lean",
     "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_v370_support_w424.lean audit/blockers/metrizable_lca_wpp_op_has_colimits_v370_support_w425.lean (expected no matches)",
     "lake env lean audit/blockers/wpp_op_w399_inputs_from_certificates_only_v370_support_w426.lean",
-    "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/wpp_op_w399_inputs_from_certificates_only_v370_support_w426.lean (expected no matches)"
+    "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/wpp_op_w399_inputs_from_certificates_only_v370_support_w426.lean (expected no matches)",
+    "lake env lean audit/blockers/addcommgrp_selected_cokernel_colimit_preservation_only_v370_support_w427.lean",
+    "lake env lean audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_from_finite_v370_support_w428.lean",
+    "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/addcommgrp_selected_cokernel_colimit_preservation_only_v370_support_w427.lean audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_from_finite_v370_support_w428.lean (expected no matches)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1609,10 +1612,10 @@
     "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess"
   ],
   "known_gaps": [
+    "W428後のAddCommGrp側では、PreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)を証明するか、閉像/certificate付きselected preservation経路を構成する必要がある。",
+    "W427後のAddCommGrp側では、元のhcs : IsColimit csを最終routeで供給する必要がある。",
     "W426後のleft-LCA側では、実際のWPP-op morphismについてW420 certificate package、またはW380 component closed-map、W389 relation-pullback equality、W386/W392 target-relation lift certificatesを供給する必要がある。",
     "W426後のleft-LCA側では、standalone audit blocksを最終統合可能なimportable Lean modulesへ昇格する必要がある。",
-    "W424後のAddCommGrp側では、global PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat)のdirect #synthが失敗し、閉像条件なしには数学的にも危険なため、selected/certificate付き保存経路を構成する必要がある。",
-    "W422後のAddCommGrp側では、元のhcs : IsColimit csを最終routeで供給する必要がある。",
     "W399 relation-pullback descended fieldsをW393/W390/W384 transported field routeへ最終接続する必要がある。",
     "Quillen exact category、metrizable LCA strict exact category、Yoneda-Ext、bounded derived infinity categoryの四部構成をproduct theoremとして統合する作業はまだ完了していない。"
   ],
@@ -1621,7 +1624,7 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "825e9cd",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W426 removes separate W407 input by deriving it from W389 inside W420 certificates. W425 closes MetrizableLCA shape colimits. W424 shows global forget₂ preservation is still missing and should be replaced by a selected/certificate-bearing route.",
+  "worker_frontier_summary": "W427 reduces selected AddCommGrp colimit to hcs plus underlying preservation. W428 reduces underlying WPP-op preservation to finite-colimit preservation. W426 removes separate W407 from left-LCA by using W389 certificates. Remaining blockers are real preservation/certificate/module integration/product theorem work.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
     "W406後もselected ordinary CoforkのIsColimit証明が必要である。これは通常、WPP-op colimitをforgetful short-complex functorとwalkingParallelPairOpEquiv.functorで保存・transportする証明である。",
@@ -2458,7 +2461,7 @@
     "transportedQuotientPointIsoInputs_to_pointIsoConjugacyPackageW384",
     "currentWppOpLeftLcaTransportedQuotientPointIsoV370StateW387_productSuccess"
   ],
-  "generated_utc": "2026-05-21T01:16:00Z",
+  "generated_utc": "2026-05-21T01:19:00Z",
   "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success. w377: parent-verified WPP-op closed-map remaining-fields support; target quotient closed-on-saturated theorem and W374/W371 packaging now yield descended closed-map from component closed-map, relation pullback equality, and target relation lifting. Product success remains false. w378: parent-verified partial transported relation-fields support; W375/W354 transported fields are fixed as injective, inducing, and closed-range data with a consumer adapter. Product success remains false. w379: parent-verified AddCommGrp degreewise cokernel data support; canonical componentwise cokernel short complex supplies concrete degreewise cofork data, component colimits, W376 target presentation, and difference Snake consumers. Product success remains false. w380: parent-verified component closed-map support; objectwise closed embedding supplies the W377 ordinary codomain component closed-map input, leaving relation-pullback equality and target relation lifting. Product success remains false. w381: parent-verified partial ordinary-to-transported relation-field support; ordinary W352-style fields can feed W378/W375 once point identifications, descended-map conjugacy, and injective/inducing/closed-range transports are proved. Product success remains false. w384: parent-verified iso field-transport support; injective, IsInducing, and closed-range fields now transport across source/target isomorphisms under descended-map conjugacy. Product success remains false. w382/w383/w384: parent-verified nonterminal support; no product success claim. w385/w386: parent-verified nonterminal support. w387: parent-verified nonterminal point-isomorphism support. W399 checked partial support consumed; not product success. W400/W401 checked partial support consumed; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -3351,5 +3354,5 @@
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
-  "remaining_work": "W420 certificate packageまたはW380/W389/W386 certificates、standalone audit blocksのmodule昇格、selected/certificate付きAddCommGrp保存経路、元のhcs : IsColimit cs、W399からtransported field routeへの接続、四部構成product theorem統合を証明する。"
+  "remaining_work": "PreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)または閉像/certificate付きselected preservation、hcs : IsColimit cs、W420 certificate packageまたはW380/W389/W386 certificates、standalone audit blocksのmodule昇格、W399からtransported field routeへの接続、四部構成product theorem統合を証明する。"
 }

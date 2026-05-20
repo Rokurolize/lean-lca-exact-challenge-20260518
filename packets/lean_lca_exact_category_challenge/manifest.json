@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-21T01:16:00Z",
-  "content_hash_tree": "b36b2e45f2d4f905da1a12d7baa524fcc6b825216e3f3fc893f5b9d6f3f29410",
+  "generated_utc": "2026-05-21T01:19:00Z",
+  "content_hash_tree": "4416836927c46bffa6d76235f39779c0ddb2e6e67689307d0ba639329b3034f3",
   "files": [
     {
       "path": "README_FOR_REVIEW.md",
@@ -114,8 +114,8 @@
     },
     {
       "path": "implementation-notes.html",
-      "sha256": "45f4e797033d03989823cb390a98a58df2e6e6d457c163484b9c1deca3a9829b",
-      "bytes": 358707
+      "sha256": "354c0e6c8a460df3a0bdeb12a47de09723e44318fb83dfbd9107bb7f6c4f9589",
+      "bytes": 359218
     },
     {
       "path": "initial/mathlib_initial_survey.md",
@@ -398,6 +398,11 @@
       "bytes": 17960
     },
     {
+      "path": "input/workdir/audit/blockers/addcommgrp_selected_cokernel_colimit_preservation_only_v370_support_w427.lean",
+      "sha256": "41b7735ef3b18d92ab57317fcbd008565a58572dee4c03e78f5f202d0f2275ea",
+      "bytes": 19892
+    },
+    {
       "path": "input/workdir/audit/blockers/addcommgrp_selected_target_cofork_colimit_v370_support_w406.lean",
       "sha256": "69f8c9951d66936a689b076aa00d5ff97fb55f5b9f66924fc79133a4832be3bf",
       "bytes": 12636
@@ -431,6 +436,11 @@
       "path": "input/workdir/audit/blockers/addcommgrp_target_cokernel_presentation_v369_support_w356.lean",
       "sha256": "837ca6b8dd8754af841c1bfc2aef6bd2e0c9d536be0aa8f7f2ce3cbfb62d7b24",
       "bytes": 9419
+    },
+    {
+      "path": "input/workdir/audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_from_finite_v370_support_w428.lean",
+      "sha256": "3569c2ba16c472b92c431f551de64b6162919daee76e5d159afb7a9e50a8d383",
+      "bytes": 5477
     },
     {
       "path": "input/workdir/audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_v370_support_w424.lean",
@@ -1749,8 +1759,8 @@
     },
     {
       "path": "input/workdir/docs/research/reference_route_log.md",
-      "sha256": "a1a1c06a91ba1ae5185e953dafc8a760bcfdbde58d69ce16f87d7e47d3521f66",
-      "bytes": 215570
+      "sha256": "e7457b19b4d500e0756f1c29361237dc8595415127107652d713c0a9ad1abaeb",
+      "bytes": 216282
     },
     {
       "path": "input/workdir/docs/research/sources.md",
@@ -1779,8 +1789,8 @@
     },
     {
       "path": "input/workdir/implementation-notes.html",
-      "sha256": "45f4e797033d03989823cb390a98a58df2e6e6d457c163484b9c1deca3a9829b",
-      "bytes": 358707
+      "sha256": "354c0e6c8a460df3a0bdeb12a47de09723e44318fb83dfbd9107bb7f6c4f9589",
+      "bytes": 359218
     },
     {
       "path": "input/workdir/lake-manifest.json",
@@ -1799,8 +1809,8 @@
     },
     {
       "path": "input/workdir/manifest.json",
-      "sha256": "1d2bde1418f2cdd82506e8840a9df2a3d8a77d9f15c0d78617f6e660b8676949",
-      "bytes": 68811
+      "sha256": "95f85cd01d076a2a3051c8bd3c886eff1a29de59df15484e7b70be79c7302a35",
+      "bytes": 69275
     },
     {
       "path": "input/workdir/merge_queue/README.md",
@@ -1809,13 +1819,13 @@
     },
     {
       "path": "input/workdir/progress.tsv",
-      "sha256": "f2df0ae949a5a0afccc7a63fcf1189dc2db1e480b1e1bfe776300e8eddbced12",
-      "bytes": 273735
+      "sha256": "6e39898ffe44f4f14063f1d04a75189bc59f7f93d179db1b9c41d5b5aff474c7",
+      "bytes": 274196
     },
     {
       "path": "input/workdir/proof_frontier/FRONTIER_MATRIX.json",
-      "sha256": "cf69806323461ade441e0c65b3c5c3c4b21d104202a3d4d475268824996c134a",
-      "bytes": 263414
+      "sha256": "9f289167d087771fb742633f83ab928d2b1ab37ea05b435c54ed583263ee29c3",
+      "bytes": 266319
     },
     {
       "path": "input/workdir/proof_frontier/FRONTIER_MATRIX.md",
@@ -1834,8 +1844,8 @@
     },
     {
       "path": "input/workdir/run/verification.json",
-      "sha256": "cca8d6f7644a63c28265d5989a6fc017374debd59b1632e15fe2b8e5ae6a5a12",
-      "bytes": 248691
+      "sha256": "8279a6dfa37a61c13efb6426ec04a51005191827218b9d6dc529b57104208942",
+      "bytes": 249517
     },
     {
       "path": "input/workdir/scripts/audit_no_forbidden_lean_tokens.sh",
@@ -1849,8 +1859,8 @@
     },
     {
       "path": "input/workdir/terminal_outcome/terminal_outcome.json",
-      "sha256": "3cdef3b08733aeebd158c30ea0da855b2e20f023638a9cb3a4a73581fb150727",
-      "bytes": 324417
+      "sha256": "f22d371121508a23c38c8c6f28dd6b152ec413e154ba4dcd8f8c6973efd7b1a3",
+      "bytes": 324860
     },
     {
       "path": "input/workdir/workers/README.md",
@@ -1859,18 +1869,18 @@
     },
     {
       "path": "progress.tsv",
-      "sha256": "f2df0ae949a5a0afccc7a63fcf1189dc2db1e480b1e1bfe776300e8eddbced12",
-      "bytes": 273735
+      "sha256": "6e39898ffe44f4f14063f1d04a75189bc59f7f93d179db1b9c41d5b5aff474c7",
+      "bytes": 274196
     },
     {
       "path": "run/verification.json",
-      "sha256": "cca8d6f7644a63c28265d5989a6fc017374debd59b1632e15fe2b8e5ae6a5a12",
-      "bytes": 248691
+      "sha256": "8279a6dfa37a61c13efb6426ec04a51005191827218b9d6dc529b57104208942",
+      "bytes": 249517
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "3cdef3b08733aeebd158c30ea0da855b2e20f023638a9cb3a4a73581fb150727",
-      "bytes": 324417
+      "sha256": "f22d371121508a23c38c8c6f28dd6b152ec413e154ba4dcd8f8c6973efd7b1a3",
+      "bytes": 324860
     }
   ]
 }

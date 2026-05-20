@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T01:16:00Z",
+  "generated_utc": "2026-05-21T01:19:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -3959,6 +3959,53 @@
       "実際のWPP-op morphismについてW420 certificate packageまたはW380/W389/W386 certificatesを供給する。",
       "standalone audit blocksをimportable Lean modulesへ昇格する。",
       "W399からW393/W390/W384 transported field routeへ接続する。"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w427": {
+    "timestamp_utc": "2026-05-21T01:19:00Z",
+    "status": "verified_focused",
+    "summary": "W427 reduces selected AddCommGrp cokernel/cofork colimit route to hcs plus underlying forgetful WPP-op preservation, with MetrizableLCA shape colimits supplied.",
+    "touched_files": [
+      "audit/blockers/addcommgrp_selected_cokernel_colimit_preservation_only_v370_support_w427.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "selectedForgottenTargetCokernelColimitOfOriginalPreservationOnly",
+      "selectedForgottenTargetCoforkColimitOfOriginalPreservationOnly",
+      "metrizableLCA_hasColimitsOfShape_walkingParallelPair_op"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/addcommgrp_selected_cokernel_colimit_preservation_only_v370_support_w427.lean",
+      "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/addcommgrp_selected_cokernel_colimit_preservation_only_v370_support_w427.lean audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_from_finite_v370_support_w428.lean (expected no matches)",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "hcs : IsColimit csを供給する。",
+      "PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat)を供給する。"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w428": {
+    "timestamp_utc": "2026-05-21T01:19:00Z",
+    "status": "verified_focused_partial",
+    "summary": "W428 reduces underlying forgetful WPP-op preservation to PreservesFiniteColimits or PreservesColimitsOfSize for the underlying forgetful functor; the finite-colimit preservation instance itself is missing.",
+    "touched_files": [
+      "audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_from_finite_v370_support_w428.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "walkingParallelPairOp_finCategory",
+      "underlyingForgetfulPreservesWppOpColimitsOfShape_of_preservesFiniteColimits",
+      "underlyingForgetfulPreservesWppOpColimitsOfShape_of_preservesColimitsOfSize",
+      "underlyingForgetfulPreservesWppOpColimit_of_preservesFiniteColimits",
+      "underlyingForgetfulMappedCoconeIsColimit_of_preservesFiniteColimits"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_from_finite_v370_support_w428.lean",
+      "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/addcommgrp_selected_cokernel_colimit_preservation_only_v370_support_w427.lean audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_from_finite_v370_support_w428.lean (expected no matches)",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "PreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)を証明するか、閉像/certificate付きselected preservation経路へ置き換える。"
     ],
     "product_success_claimed": false
   }
