@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T10:53:40Z",
+  "generated_utc": "2026-05-20T10:57:12Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1282,10 +1282,11 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "support w220 was parent-reimplemented as the opposite equalizer localization-transfer boundary; support w222 overlaps v239 inverse-image left-calculus transfer evidence; w221 remains external/in progress if no result exists.",
-  "latest_parent_update": "v240-opposite-equalizer-localization-transfer",
-  "summary": "v240時点で、support w220 の有用部分を親側で再実装し、audit/blockers/opposite_equalizer_localization_transfer_w220.lean を追加した。v238の局所化極限転送を (boundedExactWeakEquivalence C).op.Localization に特殊化し、OppositeWalkingParallelPairFunctorCategoryLocalizationInput を明示した。これにより有限colimit routeで必要な反対圏抽象局所化の有限limit consumerが条件付きで通ったが、opposite functor-category localization、opposite left calculus、finite-product stability、source equalizer入力はまだ未供給であり、product successは非完了である。",
+  "support_result_classification": "support w221 was parent-reimplemented as the minimized exact-acyclic iso-closure collapse boundary; support w222 overlaps v239 inverse-image left-calculus transfer evidence; support w223 is running externally on whiskering-right localization.",
+  "latest_parent_update": "v241-exact-acyclic-iso-closure-collapse-minimized",
+  "summary": "v241時点で、support w221 の有用部分を親側で再実装し、audit/blockers/exact_acyclic_iso_closure_collapse_w221.lean を追加した。v239の iso-closure collapse 入力は、HomotopyCategory.homotopyEquivOfIso でホモトピー圏同型から HomotopyEquiv を取り出し、exactAcyclic を HomotopyEquiv に沿って輸送できることへ縮約された。これにより direct bounded left-calculus route の最初の未供給入力はより具体化されたが、exact-acyclic HomotopyEquiv transport と bounded homotopy left calculus はまだ無条件には未証明であり、product successは非完了である。",
   "remaining_frontier": [
+    "Dbounded finite products: exact-acyclic iso-closure collapse is reduced to exactAcyclic transport along HomotopyEquiv; the transport theorem remains missing.",
     "Dbounded finite colimits: opposite abstract localization finite-limit consumer is formalized; remaining inputs are opposite functor-category localization, opposite left calculus, finite-product stability, and source equalizers/finite products.",
     "Dbounded finite products: direct left calculus is reduced to exact-acyclic iso-closure collapse plus bounded homotopy inverse-image calculus transfer.",
     "Dbounded finite limits: equalizer consumer is formalized; remaining first API is WalkingParallelPair functor-category localization plus parallel-pair weak-equivalence stability.",
