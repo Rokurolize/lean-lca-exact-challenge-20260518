@@ -201,6 +201,21 @@ theorem metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_ad
     (LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrp
         hclosed halg)
 
+/--
+After W318 keeps right-surjectivity in the AddCommGrp algebraic boundary, W271's
+direct WPP-op stability target needs the left LCA certificate and the strict
+AddCommGrp kernel-exactness boundary.
+-/
+theorem metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrpStrict
+    (hclosed :
+      LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_injective_inducing_closedImage)
+    (halg :
+      LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable) :
+    MetrizableLCADirectWalkingParallelPairOpColimitStabilityTarget :=
+  metrizableLCA_directWalkingParallelPairOpColimitStability_of_exactAcyclicClosure
+    (LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict
+        hclosed halg)
+
 /-- Machine-readable frontier state for W271. -/
 structure DirectWalkingParallelPairOpColimitClosureState : Type where
   seed : String
@@ -219,10 +234,10 @@ def currentDirectWalkingParallelPairOpColimitClosureState :
   checkedBoundary :=
     "exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure"
   provedConsumer :=
-    "metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrp"
+    "metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrpStrict"
   remainingInputs :=
     ["wppOp_lca_colimitMap_injective_inducing_closedImage",
-      "addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable"]
+      "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable"]
   productSuccessClaimed := false
 
 theorem currentDirectWalkingParallelPairOpColimitClosureState_productSuccess :
@@ -240,10 +255,11 @@ def directWalkingParallelPairOpColimitClosureDeclarationNames : List String :=
     "metrizableLCA_directWalkingParallelPairOpColimitStability_of_exactAcyclicClosure",
     "metrizableLCA_directWalkingParallelPairOpColimitStability_of_pureFieldFrontier",
     "metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrp",
+    "metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrpStrict",
     "currentDirectWalkingParallelPairOpColimitClosureState"]
 
 theorem directWalkingParallelPairOpColimitClosureDeclarationNames_count :
-    directWalkingParallelPairOpColimitClosureDeclarationNames.length = 11 := rfl
+    directWalkingParallelPairOpColimitClosureDeclarationNames.length = 12 := rfl
 
 section Checks
 
@@ -260,6 +276,7 @@ section Checks
 #check metrizableLCA_directWalkingParallelPairOpColimitStability_of_exactAcyclicClosure
 #check metrizableLCA_directWalkingParallelPairOpColimitStability_of_pureFieldFrontier
 #check metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrp
+#check metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrpStrict
 #check currentDirectWalkingParallelPairOpColimitClosureState
 #check currentDirectWalkingParallelPairOpColimitClosureState_productSuccess
 #check directWalkingParallelPairOpColimitClosureDeclarationNames

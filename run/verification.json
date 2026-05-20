@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v359-right-open-wpp-op-fixed-leg",
-  "generated_utc": "2026-05-20T19:41:00Z",
-  "source_tree_hash": "ccb1a4e70141afc3a0a53fe57d3ad3d8ce2f6fd90ca0dc35bd8656390c1f1cd0",
-  "summary": "v359でWPP-op canonical op-zero colimit legがsource全射かつopenであることを確認し、W318/W271からright-open入力を消した。product_completeはfalse。",
+  "schema": "lean-lca-exact-challenge-verification-v360-addcommgrp-strict-boundary",
+  "generated_utc": "2026-05-20T19:54:00Z",
+  "source_tree_hash": "56748c11d2e952c6e1ee8215113de9a1095b8879ab73dfd813d5a7affad795ba",
+  "summary": "v360でW318/W271のAddCommGrp algebraic frontierをright-surjectivity込みのstrict境界へ修正した。product_completeはfalse。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -1692,7 +1692,7 @@
     {
       "command": "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
       "status": "passed",
-      "evidence": "Focused W271 check passed with the new two-input consumer metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrp."
+      "evidence": "Focused W271 check passed with the new two-input consumer metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrpStrict."
     },
     {
       "command": "lake env lean audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
@@ -1733,6 +1733,26 @@
       "command": "lake build",
       "status": "passed",
       "evidence": "Full lake build passed after v359 right-open fixed-leg closure; warnings only."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean",
+      "status": "passed",
+      "evidence": "Focused W318 source module check passed after adding strict AddCommGrp boundary."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
+      "status": "passed",
+      "evidence": "Focused W318 audit check passed after adding strict AddCommGrp boundary and checks."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated",
+      "status": "passed",
+      "evidence": "Source module rebuilt so downstream imports see the new strict boundary declarations."
+    },
+    {
+      "command": "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+      "status": "passed",
+      "evidence": "Focused W271 direct consumer check passed with strict AddCommGrp boundary."
     }
   ],
   "implemented_declarations_checked": [
@@ -2335,7 +2355,7 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AdditiveKernelExact",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpKernelExact",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.additiveKernelExact_wppOp_colimit_boundary",
-    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.algebraicExact_walkingParallelPairOp_colimitClosure_of_additiveBoundary",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpKernelExact_iff_additiveKernelExact",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact",
@@ -2351,12 +2371,12 @@
     "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_ι_one_openMap",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_canonical_colimit_leg_opZero_surjective_open",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_lca_colimitMap_preserves_openMap_of_canonical_opZero_leg",
-    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrp",
-    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrp"
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrpStrict"
   ],
   "product_complete": false,
   "known_gaps": [
-    "W318/W271のAddCommGrp入力は、WPP-op colimit後のkernel exactness保存本体が未証明である。",
+    "W318/W271のstrict AddCommGrp入力は、WPP-op colimit後のkernel exactness保存本体が未証明である。",
     "W318/W271のleft LCA入力は、WPP-op colimit-mapのinjectivity、inducing、closed image certificate本体が未証明である。",
     "W318のleft closed-embedding入力は純MetrizableLCA WPP-op colimit-mapのinjectivity、induced topology、closed image certificateへ縮約済みだが、その三つのcertificate本体は未証明である。",
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
@@ -2435,13 +2455,13 @@
     "W337で右辺のobjectwise descentとφ≫right mediatorの同一視は抽象的に証明できたが、W333-W337をW308のincluded bounded c₁/c₂ coconesへ統合するglobal descEq wrapperはまだ未供給である。",
     "W318のleft closed-embedding preservationとalgebraic exactness preservationは引き続き未証明である。",
     "W318のleft closed-embedding branchは純LCA colimit-map injective/inducing/closed-image certificateへ縮約されたが、その三certificate本体は未証明である。",
-    "W318のalgebraic branchはAddCommGrp kernel exactness preservation境界へ縮約されたが、そのsource theorem本体は未証明である。",
-    "W271はW318の三つの純source frontierを直接消費する形になったが、左LCA certificate、右open-map保存、AddCommGrp kernel exactness保存の本体証明はまだ未証明である。"
+    "W318のalgebraic branchはstrict AddCommGrp kernel exactness preservation境界へ縮約されたが、そのsource theorem本体は未証明である。",
+    "W271はW318の残り二つの純source frontierを直接消費する形になったが、左LCA certificateとstrict AddCommGrp kernel exactness保存の本体証明はまだ未証明である。"
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "product_success": false,
   "remaining_work": [
     "wppOp_lca_colimitMap_injective_inducing_closedImage",
-    "addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable"
+    "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable"
   ]
 }

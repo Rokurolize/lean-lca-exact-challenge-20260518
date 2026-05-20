@@ -114,6 +114,10 @@ abbrev AdditiveKernelExact (T : ShortComplex MetrizableLCA.{0}) : Prop :=
 abbrev AddCommGrpKernelExact (T : ShortComplex AddCommGrpCat.{0}) : Prop :=
   ∀ x₂ : T.X₂, T.g x₂ = 0 → ∃ x₁ : T.X₁, T.f x₁ = x₂
 
+/-- Right surjectivity for a short complex of abelian groups. -/
+abbrev AddCommGrpRightSurjective (T : ShortComplex AddCommGrpCat.{0}) : Prop :=
+  Function.Surjective (T.g : T.X₂ → T.X₃)
+
 /--
 Pure additive WPP-op colimit exactness boundary.  This removes all topology from
 the algebraic field: componentwise middle-kernel exactness must be preserved by
@@ -136,6 +140,20 @@ abbrev addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable : Prop :=
       IsColimit cs →
         (∀ j : WalkingParallelPairᵒᵖ,
           AddCommGrpKernelExact ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))) →
+          AddCommGrpKernelExact (cs.pt.map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))
+
+/--
+AddCommGrp-shaped algebraic boundary with the right-surjectivity input retained.
+This is the topology-free shape matching strict short exact components.
+-/
+abbrev addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S),
+      IsColimit cs →
+        (∀ j : WalkingParallelPairᵒᵖ,
+          AddCommGrpKernelExact ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})) ∧
+            AddCommGrpRightSurjective
+              ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))) →
           AddCommGrpKernelExact (cs.pt.map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))
 
 /-- Left field consumer from W289's boundary. -/
@@ -672,6 +690,20 @@ theorem additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact
     (S.obj j)).mpr (hS j))
 
 /--
+The AddCommGrp-shaped strict kernel-exactness boundary supplies W318's
+algebraic exactness field while preserving the right-surjectivity hypothesis
+available from strict components.
+-/
+theorem algebraicExact_walkingParallelPairOp_colimitClosure_of_addCommGrpStrictKernelExact
+    (hboundary : addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable) :
+    algebraicExact_walkingParallelPairOp_colimitClosure := by
+  intro S cs hcs hS
+  exact hboundary S cs hcs (fun j =>
+    ⟨(addCommGrpKernelExact_iff_additiveKernelExact (S.obj j)).mpr
+        (fun x₂ hx₂ => (hS j).algebraic_exact x₂ hx₂),
+      (hS j).surjective⟩)
+
+/--
 Consolidated strictness consumer from the W286/W287/W289-style boundaries.
 -/
 theorem strictShortExact_walkingParallelPairOp_colimitClosure_of_consolidated_frontier
@@ -787,6 +819,19 @@ theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_fr
     (additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact halg)
 
 /--
+Variant with the algebraic input stated in the underlying AddCommGrpCat shape
+and retaining the right-surjectivity part of strictness.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpStrictField_frontier
+    (hclosed : wppOp_lca_colimitMap_injective_inducing_closedImage)
+    (hopen : wppOp_lca_colimitMap_preserves_openMap)
+    (halg : addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureTopological_frontier
+    hclosed hopen
+    (algebraicExact_walkingParallelPairOp_colimitClosure_of_addCommGrpStrictKernelExact halg)
+
+/--
 The right-open input is now supplied internally by the fixed WPP-op colimit leg.
 The exact-acyclic closure therefore only needs the left topological certificate
 and the AddCommGrpCat kernel-exactness preservation input.
@@ -796,6 +841,17 @@ theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGr
     (halg : addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable) :
     exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
   exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_frontier
+    hclosed wppOp_lca_colimitMap_preserves_openMap_of_wppOp_fixed_leg halg
+
+/--
+The right-open input is supplied internally, and the algebraic input keeps the
+right-surjectivity data from strict components.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict
+    (hclosed : wppOp_lca_colimitMap_injective_inducing_closedImage)
+    (halg : addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpStrictField_frontier
     hclosed wppOp_lca_colimitMap_preserves_openMap_of_wppOp_fixed_leg halg
 
 /-- Machine-readable W318 frontier state. -/
@@ -810,10 +866,10 @@ def currentWppOpExactAcyclicFrontierConsolidatedState :
     WppOpExactAcyclicFrontierConsolidatedState where
   seed := "w318-parent-20260521T0310Z"
   provedConsumer :=
-    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrp"
+    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict"
   remainingInputs :=
     ["wppOp_lca_colimitMap_injective_inducing_closedImage",
-      "addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable"]
+      "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable"]
   productSuccessClaimed := false
 
 theorem currentWppOpExactAcyclicFrontierConsolidatedState_productSuccess :
@@ -830,8 +886,10 @@ section Checks
 #check algebraicExact_walkingParallelPairOp_colimitClosure
 #check AdditiveKernelExact
 #check AddCommGrpKernelExact
+#check AddCommGrpRightSurjective
 #check additiveKernelExact_wppOp_colimit_boundary
 #check addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable
+#check addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable
 #check leftClosedEmbedding_walkingParallelPairOp_colimitClosure_of_preserves
 #check closedEmbedding_of_injective_inducing_closedImage
 #check wppOp_colimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage
@@ -858,13 +916,16 @@ section Checks
 #check algebraicExact_walkingParallelPairOp_colimitClosure_of_additiveBoundary
 #check addCommGrpKernelExact_iff_additiveKernelExact
 #check additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact
+#check algebraicExact_walkingParallelPairOp_colimitClosure_of_addCommGrpStrictKernelExact
 #check strictShortExact_walkingParallelPairOp_colimitClosure_of_consolidated_frontier
 #check exactAcyclic_walkingParallelPairOp_colimit_closure_of_consolidated_frontier
 #check exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureOpen_frontier
 #check exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureTopological_frontier
 #check exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureField_frontier
 #check exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_frontier
+#check exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpStrictField_frontier
 #check exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrp
+#check exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict
 #check currentWppOpExactAcyclicFrontierConsolidatedState
 #check currentWppOpExactAcyclicFrontierConsolidatedState_productSuccess
 #check ShortComplex.π₂
