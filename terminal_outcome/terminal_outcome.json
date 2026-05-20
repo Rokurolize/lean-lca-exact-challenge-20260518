@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v247時点で、v245-v246の証明frontier縮約に使ったmathlib APIを日本語研究成果物へ反映した。docs/research/reference_route_log.md、sources.md、mathlib_gap_analysis.md は、Functor.IsLocalization.mk'、StrictUniversalPropertyFixedTarget、CategoryTheory.Adjunction.hasLeftCalculusOfFractions、MorphismProperty.op のcalculus handedness、HomotopyEquiv.toHomologyIso、ShortComplex.quasiIso_iff がどのように計画を修正したかを記録している。product success はまだ非完了である。",
+  "summary": "v248時点で、反対圏有限余極限ルートのソース側有限極限入力をLeanで固定した。audit/blockers/opposite_source_finite_limits_w234.lean は、HasFiniteColimits C から HasFiniteLimits (BoundedComplexCategory C)^op、および必要な HasFiniteProducts/HasEqualizers を導く。具体的な残入力は HasFiniteColimits MetrizableLCA の包装であり、product success はまだ非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -29,7 +29,8 @@
     "lake env lean audit/blockers/whiskering_right_fixed_target_up_w227.lean",
     "lake env lean audit/blockers/inverse_image_left_calculus_adjunction_w228.lean",
     "lake env lean audit/blockers/exact_acyclic_homotopy_invariance_w229.lean",
-    "lake env lean audit/blockers/opposite_left_calculus_transfer_w230.lean"
+    "lake env lean audit/blockers/opposite_left_calculus_transfer_w230.lean",
+    "lake env lean audit/blockers/opposite_source_finite_limits_w234.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -678,9 +679,15 @@
     "EqualizerLocalizationTransferBoundary.dboundedHasWalkingParallelPairLimits_of_functorCategoryLocalization",
     "EqualizerLocalizationTransferBoundary.dboundedHasEqualizers_of_functorCategoryLocalization",
     "EqualizerLocalizationTransferBoundary.dboundedHasFiniteLimits_of_equalizerLocalizationTransfer",
-    "EqualizerLocalizationTransferBoundary.currentEqualizerLocalizationTransferState"
+    "EqualizerLocalizationTransferBoundary.currentEqualizerLocalizationTransferState",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.boundedComplexOp_hasFiniteLimits_of_sourceFiniteColimits",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.boundedComplexOp_hasFiniteProducts_of_sourceFiniteColimits",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.boundedComplexOp_hasEqualizers_of_sourceFiniteColimits",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.SourceFiniteColimitInput",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.sourceFiniteColimitInput_of_initial_and_pushouts"
   ],
   "known_gaps": [
+    "反対圏有限極限ルートのソース側入力として、HasFiniteColimits MetrizableLCA の包装が未供給である。HasInitial と HasPushouts を instance 化できれば、hasFiniteColimits_of_hasInitial_and_pushouts で閉じられる可能性が高い。",
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
@@ -703,9 +710,10 @@
   "packet_sha256_sidecar": "",
   "git_commit": "uncommitted-v247",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v247 documentation update records the mathlib APIs that changed v245-v246 proof planning. Product success remains nonterminal.",
+  "worker_frontier_summary": "v248では親側で反対圏有限余極限ルートのソース側有限極限入力を整理した。支援w231-w233は別フロンティアを所有しており、product success はまだ非完了である。",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
+    "反対圏有限極限ルートのソース側入力として、HasFiniteColimits MetrizableLCA の包装が未供給である。HasInitial と HasPushouts を instance 化できれば、hasFiniteColimits_of_hasInitial_and_pushouts で閉じられる可能性が高い。",
     "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
@@ -727,7 +735,7 @@
     "WalkingParallelPair functor-category localization input が未完了。",
     "parallel-pair mapping-cone安定性のproduct-facing接続が未完了。"
   ],
-  "next_recommended_goal": "Wait for active support w231/w232 or prove one of: WalkingParallelPair fixed-target lift/fac/uniq, ShortComplexQuasiIsoConflationTransport, localized homotopy quotient adjunction data, or PullbackRightCalculusTransfer.",
+  "next_recommended_goal": "支援w231-w233の結果が出たら優先的に消費する。重複を避ける間は、WalkingParallelPair、ShortComplex quasi-iso、局所化随伴の所有範囲に触れず、HasFiniteColimits MetrizableLCA の包装を進める。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",

@@ -1,9 +1,14 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v247-reference-route-log-update",
-  "generated_utc": "2026-05-20T11:17:46Z",
-  "source_tree_hash": "5b6b990a57729a97e1c9294adb7bf0b352529c3aec2311c51cd24c9c1716a5b0",
-  "summary": "v247時点で、v245-v246の証明frontier縮約に使ったmathlib APIを日本語研究成果物へ反映した。docs/research/reference_route_log.md、sources.md、mathlib_gap_analysis.md は、Functor.IsLocalization.mk'、StrictUniversalPropertyFixedTarget、CategoryTheory.Adjunction.hasLeftCalculusOfFractions、MorphismProperty.op のcalculus handedness、HomotopyEquiv.toHomologyIso、ShortComplex.quasiIso_iff がどのように計画を修正したかを記録している。product success はまだ非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v248-opposite-source-finite-limits",
+  "generated_utc": "2026-05-20T11:25:22Z",
+  "source_tree_hash": "0f2b3a04289a11570d0660a3a150219721bd5a9111aba8c31258c5c5ad362ee8",
+  "summary": "v248時点で、反対圏有限余極限ルートのソース側有限極限入力をLeanで固定した。audit/blockers/opposite_source_finite_limits_w234.lean は、HasFiniteColimits C から HasFiniteLimits (BoundedComplexCategory C)^op、および必要な HasFiniteProducts/HasEqualizers を導く。具体的な残入力は HasFiniteColimits MetrizableLCA の包装であり、product success はまだ非完了である。",
   "commands": [
+    {
+      "command": "lake env lean audit/blockers/opposite_source_finite_limits_w234.lean",
+      "status": "passed",
+      "evidence": "Focused W234 opposite source finite-limit boundary check passed without warnings."
+    },
     {
       "command": "lake env lean audit/blockers/opposite_left_calculus_transfer_w230.lean",
       "status": "passed",
@@ -491,7 +496,13 @@
     "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_eq_inverseImage",
     "InverseImageLeftCalculusTransferW226.BoundedHomotopyInverseImageLeftCalculusInput",
     "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_inverseImageInput",
-    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_transfer"
+    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_transfer",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.boundedComplexOp_hasFiniteLimits_of_sourceFiniteColimits",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.boundedComplexOp_hasFiniteProducts_of_sourceFiniteColimits",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.boundedComplexOp_hasEqualizers_of_sourceFiniteColimits",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.SourceFiniteColimitInput",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.sourceFiniteColimitInput_of_initial_and_pushouts",
+    "LeanLCAExactChallenge.OppositeSourceFiniteLimitsW234.currentOppositeSourceFiniteLimitState"
   ],
   "product_complete": false,
   "known_gaps": [

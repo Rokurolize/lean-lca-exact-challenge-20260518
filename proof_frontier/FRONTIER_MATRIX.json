@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T11:17:46Z",
+  "generated_utc": "2026-05-20T11:25:22Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1283,9 +1283,12 @@
     }
   ],
   "support_result_classification": "v247 updated Japanese reference-route and mathlib-gap docs for v245-v246 support consumption; no new product-success claim.",
-  "latest_parent_update": "v247-reference-route-log-update",
-  "summary": "v247時点で、v245-v246の証明frontier縮約に使ったmathlib APIを日本語研究成果物へ反映した。docs/research/reference_route_log.md、sources.md、mathlib_gap_analysis.md は、Functor.IsLocalization.mk'、StrictUniversalPropertyFixedTarget、CategoryTheory.Adjunction.hasLeftCalculusOfFractions、MorphismProperty.op のcalculus handedness、HomotopyEquiv.toHomologyIso、ShortComplex.quasiIso_iff がどのように計画を修正したかを記録している。product success はまだ非完了である。",
+  "latest_parent_update": "v248-opposite-source-finite-limits",
+  "summary": "v248時点で、反対圏有限余極限ルートのソース側有限極限入力をLeanで固定した。audit/blockers/opposite_source_finite_limits_w234.lean は、HasFiniteColimits C から HasFiniteLimits (BoundedComplexCategory C)^op、および必要な HasFiniteProducts/HasEqualizers を導く。具体的な残入力は HasFiniteColimits MetrizableLCA の包装であり、product success はまだ非完了である。",
   "remaining_frontier": [
+    "Right-calculus transfer for boundedExactWeakEquivalence C or PullbackRightCalculusTransfer C.",
+    "Opposite WalkingParallelPair functor-category localization fixed-target fields.",
+    "HasFiniteColimits MetrizableLCA source package for the opposite finite-limit route.",
     "Opposite finite-limit route: W.op left calculus requires right calculus on W; boundedExactWeakEquivalence right calculus or PullbackRightCalculusTransfer remains missing.",
     "WalkingParallelPair functor-category localization: fixed-target fields are named; lift/fac/uniq remain to be constructed for the two target categories.",
     "Dbounded left calculus: inverse-image transfer is reduced to localized adjunction data and unit membership for the homotopy quotient composite.",
@@ -1302,5 +1305,13 @@
     "Dbounded finite products: remaining left calculus of fractions for boundedExactWeakEquivalence MetrizableLCA.",
     "Dbounded finite colimits and dual transfer route.",
     "Triangulated structure and stable infinity-category structure."
+  ],
+  "support_classification": [
+    {
+      "id": "parent-v248",
+      "classification": "source_hypothesis_reduction",
+      "artifact": "audit/blockers/opposite_source_finite_limits_w234.lean",
+      "result": "HasFiniteColimits C now supplies the opposite source HasFiniteLimits/HasFiniteProducts/HasEqualizers inputs conditionally; product success remains false."
+    }
   ]
 }
