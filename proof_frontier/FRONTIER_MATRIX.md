@@ -575,6 +575,12 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W378 Transported Relation Fields
 2026-05-20T22:58:00Z: Worker support `w378-left-lca-transported-relation-fields-v370` was ported as `audit/blockers/wpp_op_left_lca_transported_relation_fields_v370_support_w378.lean`. It records the W375/W354 transported relation-pullback field shape as injective, inducing, and closed-range data, and provides the consumer adapter into W375's relation-input argument. Product success remains false because the ordinary relation/topological inputs and their identification with transported cocone points remain open.
 
+## W379 AddCommGrp Degreewise Cokernel Data
+2026-05-20T23:01:00Z: Worker support `w379-addcommgrp-degreewise-cokernel-data-v370` was ported as `audit/blockers/addcommgrp_degreewise_cokernel_data_v370_support_w379.lean`. It constructs the componentwise AddCommGrp cokernel short complex for `u - v`, supplies the concrete degreewise cofork data and component colimit proofs, and feeds W359/W373/W376 difference-Snake consumers. Product success remains false because the strict difference rows and the isomorphism from the canonical AddCommGrp cokernel row to the forgotten WPP-op colimit row remain open.
+
+## W380 WPP-op Component Closed-Map
+2026-05-20T23:04:00Z: Worker support `w380-wpp-op-component-closedmap-v370` was ported as `audit/blockers/wpp_op_component_closedmap_v370_support_w380.lean`. It proves that an objectwise closed embedding supplies the ordinary codomain component closed-map input and adapts this into W377's relation-field shape. Product success remains false because relation-pullback equality and target relation lifting remain open.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
