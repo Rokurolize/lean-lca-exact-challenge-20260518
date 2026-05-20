@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v241時点で、support w221 の有用部分を親側で再実装し、audit/blockers/exact_acyclic_iso_closure_collapse_w221.lean を追加した。v239の iso-closure collapse 入力は、HomotopyCategory.homotopyEquivOfIso でホモトピー圏同型から HomotopyEquiv を取り出し、exactAcyclic を HomotopyEquiv に沿って輸送できることへ縮約された。これにより direct bounded left-calculus route の最初の未供給入力はより具体化されたが、exact-acyclic HomotopyEquiv transport と bounded homotopy left calculus はまだ無条件には未証明であり、product successは非完了である。",
+  "summary": "v242時点で、support w223/w226 の有用部分を親側で再実装し、audit/blockers/whiskering_right_localization_general_w223.lean と audit/blockers/inverse_image_left_calculus_transfer_w226.lean を追加した。WalkingParallelPair functor-category localization は、objectwise inversion が形式化され、Functor.IsLocalization.mk' に必要な2つの StrictUniversalPropertyFixedTarget 入力へ縮約された。boundedHomotopyExactWeakEquivalence C は (exactAcyclicHomotopyIsoClosure C).trW の BoundedComplexCategory.homotopyQuotient C 沿い inverse image と定義的に一致することも記録され、bounded homotopy left calculus の残り入力は inverse-image left-calculus transfer として明確化された。product successはまだ非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -21,7 +21,9 @@
     "lake env lean audit/blockers/exact_acyclic_homotopy_iso_closure_w216.lean",
     "lake env lean audit/blockers/bounded_homotopy_left_calculus_w217.lean",
     "lake env lean audit/blockers/opposite_equalizer_localization_transfer_w220.lean",
-    "lake env lean audit/blockers/exact_acyclic_iso_closure_collapse_w221.lean"
+    "lake env lean audit/blockers/exact_acyclic_iso_closure_collapse_w221.lean",
+    "lake env lean audit/blockers/whiskering_right_localization_general_w223.lean",
+    "lake env lean audit/blockers/inverse_image_left_calculus_transfer_w226.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -674,6 +676,8 @@
   ],
   "known_gaps": [
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
+    "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
+    "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
     "exactAcyclicHomotopyIsoClosure collapse は HomotopyEquiv 沿いの exactAcyclic 輸送へ縮約されたが、その輸送定理は MetrizableLCA で無条件には未供給である。",
     "direct bounded left calculus は iso-closure collapse と bounded homotopy inverse-image calculus transfer に分解されたが、どちらも無条件には未供給である。",
     "反対圏抽象局所化の有限limit consumerは形式化されたが、OppositeWalkingParallelPairFunctorCategoryLocalizationInput と反対圏側のleft calculus/finite-product stability/source equalizer入力は未供給である。",
@@ -687,10 +691,12 @@
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v241 parent-reimplemented support w221; exact-acyclic iso-closure collapse now reduces to exactAcyclic transport along HomotopyEquiv. w222 overlaps v239; w223 is external support in progress for whiskering-right localization.",
+  "worker_frontier_summary": "v242 parent-reimplemented support w223/w226; WalkingParallelPair functor-category localization is reduced to two fixed-target universal properties, and bounded homotopy left calculus is reduced to exact inverse-image left-calculus transfer. w224/w225 remain external/in progress if no result exists.",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
     "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
+    "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
+    "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
     "exactAcyclicHomotopyIsoClosure collapse は HomotopyEquiv 沿いの exactAcyclic 輸送へ縮約されたが、その輸送定理は MetrizableLCA で無条件には未供給である。",
     "direct bounded left calculus は iso-closure collapse と bounded homotopy inverse-image calculus transfer に分解されたが、どちらも無条件には未供給である。",
     "反対圏抽象局所化の有限limit consumerは形式化されたが、OppositeWalkingParallelPairFunctorCategoryLocalizationInput と反対圏側のleft calculus/finite-product stability/source equalizer入力は未供給である。",
@@ -923,10 +929,22 @@
     "ExactAcyclicIsoClosureCollapseW221.exactAcyclicIsoClosureCollapse_of_isClosedUnderIsomorphisms",
     "ExactAcyclicIsoClosureCollapseW221.exactSideClosures_of_strictRealizationBoundary",
     "ExactAcyclicIsoClosureCollapseW221.boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_package",
-    "ExactAcyclicIsoClosureCollapseW221.dboundedFiniteProducts_metrizableLCA_of_package"
+    "ExactAcyclicIsoClosureCollapseW221.dboundedFiniteProducts_metrizableLCA_of_package",
+    "CategoryTheory.Localization.WhiskeringRightFunctorCategoryLocalizationTarget",
+    "CategoryTheory.Localization.WhiskeringRightFixedTargetUniversalProperty",
+    "CategoryTheory.Localization.WhiskeringRightFunctorCategoryLocalizationTarget.inverts",
+    "CategoryTheory.Localization.WhiskeringRightFunctorCategoryLocalizationTarget.of_fixedTargetUniversalProperties",
+    "WhiskeringRightLocalizationGeneralW223.WalkingParallelPairWhiskeringRightLocalizationTarget",
+    "WhiskeringRightLocalizationGeneralW223.walkingParallelPairTarget_of_fixedTargetUniversalProperties",
+    "InverseImageLeftCalculusTransferW226.InverseImageLeftCalculusTransfer",
+    "InverseImageLeftCalculusTransferW226.inverseImage_hasLeftCalculusOfFractions_of_transfer",
+    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_eq_inverseImage",
+    "InverseImageLeftCalculusTransferW226.BoundedHomotopyInverseImageLeftCalculusInput",
+    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_inverseImageInput",
+    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_transfer"
   ],
-  "generated_utc": "2026-05-20T10:57:12Z",
-  "support_result_classification": "support w221 was parent-reimplemented as the minimized exact-acyclic iso-closure collapse boundary; support w222 overlaps v239 inverse-image left-calculus transfer evidence; support w223 is running externally on whiskering-right localization.",
+  "generated_utc": "2026-05-20T11:01:52Z",
+  "support_result_classification": "support w223/w226 were parent-reimplemented as functor-category localization and inverse-image left-calculus frontier reductions; support w224/w225 remain external/in progress if no result exists.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1285,7 +1303,19 @@
     "ExactAcyclicIsoClosureCollapseW221.exactAcyclicIsoClosureCollapse_of_isClosedUnderIsomorphisms",
     "ExactAcyclicIsoClosureCollapseW221.exactSideClosures_of_strictRealizationBoundary",
     "ExactAcyclicIsoClosureCollapseW221.boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_package",
-    "ExactAcyclicIsoClosureCollapseW221.dboundedFiniteProducts_metrizableLCA_of_package"
+    "ExactAcyclicIsoClosureCollapseW221.dboundedFiniteProducts_metrizableLCA_of_package",
+    "CategoryTheory.Localization.WhiskeringRightFunctorCategoryLocalizationTarget",
+    "CategoryTheory.Localization.WhiskeringRightFixedTargetUniversalProperty",
+    "CategoryTheory.Localization.WhiskeringRightFunctorCategoryLocalizationTarget.inverts",
+    "CategoryTheory.Localization.WhiskeringRightFunctorCategoryLocalizationTarget.of_fixedTargetUniversalProperties",
+    "WhiskeringRightLocalizationGeneralW223.WalkingParallelPairWhiskeringRightLocalizationTarget",
+    "WhiskeringRightLocalizationGeneralW223.walkingParallelPairTarget_of_fixedTargetUniversalProperties",
+    "InverseImageLeftCalculusTransferW226.InverseImageLeftCalculusTransfer",
+    "InverseImageLeftCalculusTransferW226.inverseImage_hasLeftCalculusOfFractions_of_transfer",
+    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_eq_inverseImage",
+    "InverseImageLeftCalculusTransferW226.BoundedHomotopyInverseImageLeftCalculusInput",
+    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_inverseImageInput",
+    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_transfer"
   ],
   "product_success": false
 }

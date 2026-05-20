@@ -1,9 +1,19 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v241-exact-acyclic-iso-closure-collapse-minimized",
-  "generated_utc": "2026-05-20T10:57:12Z",
-  "source_tree_hash": "3769acf601538e6da20efb73fd1559e45218e9110192bb8869b55a01256e2b6d",
-  "summary": "v241時点で、support w221 の有用部分を親側で再実装し、audit/blockers/exact_acyclic_iso_closure_collapse_w221.lean を追加した。v239の iso-closure collapse 入力は、HomotopyCategory.homotopyEquivOfIso でホモトピー圏同型から HomotopyEquiv を取り出し、exactAcyclic を HomotopyEquiv に沿って輸送できることへ縮約された。これにより direct bounded left-calculus route の最初の未供給入力はより具体化されたが、exact-acyclic HomotopyEquiv transport と bounded homotopy left calculus はまだ無条件には未証明であり、product successは非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v242-functor-category-and-inverse-image-left-calculus-boundaries",
+  "generated_utc": "2026-05-20T11:01:52Z",
+  "source_tree_hash": "043ad35263ade1d6699248f6731bc4df7b2032893785d3fa7a3c74966100c3ee",
+  "summary": "v242時点で、support w223/w226 の有用部分を親側で再実装し、audit/blockers/whiskering_right_localization_general_w223.lean と audit/blockers/inverse_image_left_calculus_transfer_w226.lean を追加した。WalkingParallelPair functor-category localization は、objectwise inversion が形式化され、Functor.IsLocalization.mk' に必要な2つの StrictUniversalPropertyFixedTarget 入力へ縮約された。boundedHomotopyExactWeakEquivalence C は (exactAcyclicHomotopyIsoClosure C).trW の BoundedComplexCategory.homotopyQuotient C 沿い inverse image と定義的に一致することも記録され、bounded homotopy left calculus の残り入力は inverse-image left-calculus transfer として明確化された。product successはまだ非完了である。",
   "commands": [
+    {
+      "command": "lake env lean audit/blockers/whiskering_right_localization_general_w223.lean",
+      "status": "passed",
+      "evidence": "Focused whiskering-right functor-category localization boundary check passed after v242."
+    },
+    {
+      "command": "lake env lean audit/blockers/inverse_image_left_calculus_transfer_w226.lean",
+      "status": "passed",
+      "evidence": "Focused inverse-image left-calculus transfer boundary check passed after v242."
+    },
     {
       "command": "lake env lean audit/blockers/exact_acyclic_iso_closure_collapse_w221.lean",
       "status": "passed",
@@ -42,52 +52,52 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed during v241 baseline."
+      "evidence": "ProductSuccessDeclarations passed during v242 baseline."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed during v241 baseline; only pre-existing warnings were emitted."
+      "evidence": "Full lake build passed during v242 baseline; only pre-existing warnings were emitted."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed during v241 baseline."
+      "evidence": "Forbidden-token audit passed during v242 baseline."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed during v241 baseline."
+      "evidence": "RequiredDeclarations passed during v242 baseline."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v241 artifact refresh."
+      "evidence": "Whitespace diff check passed after v242 artifact refresh."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "terminal_outcome JSON parsed after v241 refresh."
+      "evidence": "terminal_outcome JSON parsed after v242 refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "proof_frontier JSON parsed after v241 refresh."
+      "evidence": "proof_frontier JSON parsed after v242 refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "verification JSON parsed after v241 refresh."
+      "evidence": "verification JSON parsed after v242 refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "manifest JSON parsed after v241 refresh."
+      "evidence": "manifest JSON parsed after v242 refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v241 manifest refresh."
+      "evidence": "External audit self-check passed after v242 manifest refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -439,11 +449,25 @@
     "ExactAcyclicIsoClosureCollapseW221.exactAcyclicIsoClosureCollapse_of_isClosedUnderIsomorphisms",
     "ExactAcyclicIsoClosureCollapseW221.exactSideClosures_of_strictRealizationBoundary",
     "ExactAcyclicIsoClosureCollapseW221.boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_package",
-    "ExactAcyclicIsoClosureCollapseW221.dboundedFiniteProducts_metrizableLCA_of_package"
+    "ExactAcyclicIsoClosureCollapseW221.dboundedFiniteProducts_metrizableLCA_of_package",
+    "CategoryTheory.Localization.WhiskeringRightFunctorCategoryLocalizationTarget",
+    "CategoryTheory.Localization.WhiskeringRightFixedTargetUniversalProperty",
+    "CategoryTheory.Localization.WhiskeringRightFunctorCategoryLocalizationTarget.inverts",
+    "CategoryTheory.Localization.WhiskeringRightFunctorCategoryLocalizationTarget.of_fixedTargetUniversalProperties",
+    "WhiskeringRightLocalizationGeneralW223.WalkingParallelPairWhiskeringRightLocalizationTarget",
+    "WhiskeringRightLocalizationGeneralW223.walkingParallelPairTarget_of_fixedTargetUniversalProperties",
+    "InverseImageLeftCalculusTransferW226.InverseImageLeftCalculusTransfer",
+    "InverseImageLeftCalculusTransferW226.inverseImage_hasLeftCalculusOfFractions_of_transfer",
+    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_eq_inverseImage",
+    "InverseImageLeftCalculusTransferW226.BoundedHomotopyInverseImageLeftCalculusInput",
+    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_inverseImageInput",
+    "InverseImageLeftCalculusTransferW226.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_transfer"
   ],
   "product_complete": false,
   "known_gaps": [
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
+    "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
+    "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
     "exactAcyclicHomotopyIsoClosure collapse は HomotopyEquiv 沿いの exactAcyclic 輸送へ縮約されたが、その輸送定理は MetrizableLCA で無条件には未供給である。",
     "direct bounded left calculus は iso-closure collapse と bounded homotopy inverse-image calculus transfer に分解されたが、どちらも無条件には未供給である。",
     "反対圏抽象局所化の有限limit consumerは形式化されたが、OppositeWalkingParallelPairFunctorCategoryLocalizationInput と反対圏側のleft calculus/finite-product stability/source equalizer入力は未供給である。",
@@ -452,5 +476,5 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "support w221 was parent-reimplemented as the minimized exact-acyclic iso-closure collapse boundary; support w222 overlaps v239 inverse-image left-calculus transfer evidence; support w223 is running externally on whiskering-right localization."
+  "support_result_classification": "support w223/w226 were parent-reimplemented as functor-category localization and inverse-image left-calculus frontier reductions; support w224/w225 remain external/in progress if no result exists."
 }
