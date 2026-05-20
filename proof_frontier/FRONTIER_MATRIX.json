@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T11:08:49Z",
+  "generated_utc": "2026-05-20T11:12:57Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1282,10 +1282,13 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "support w224/w225 were parent-reimplemented as opposite functor-category localization and exact-acyclic HomotopyEquiv transport frontier reductions.",
-  "latest_parent_update": "v244-exact-acyclic-homotopy-equiv-transport",
-  "summary": "v244時点で、support w224/w225 の有用部分を親側で再実装し、audit/blockers/opposite_functor_localization_input_w224.lean と audit/blockers/exact_acyclic_homotopy_equiv_transport_w225.lean を追加した。反対側 WalkingParallelPair functor-category localization 入力は W224FunctorCategoryLocalizationInput 形へ正規化され、exactAcyclicHomotopyIsoClosure collapse は ExactAcyclicTransportOfHomotopyEquiv C、すなわち exactAcyclic_of_homotopyEquiv へ縮約された。どちらも frontier 縮約であり、非離散 functor-category localization、HomotopyEquiv 沿い exactAcyclic 輸送、left calculus、有限余極限、三角構造、stable infinity-category 構造はまだ未完了である。",
+  "support_result_classification": "support w227/w228/w229 were parent-reimplemented as fixed-target field, inverse-image adjunction, and exact-acyclic quasi-iso frontier reductions.",
+  "latest_parent_update": "v245-fixed-target-adjunction-quasiiso-frontiers",
+  "summary": "v245時点で、support w227/w228/w229 の有用部分を親側で再実装し、audit/blockers/whiskering_right_fixed_target_up_w227.lean、audit/blockers/inverse_image_left_calculus_adjunction_w228.lean、audit/blockers/exact_acyclic_homotopy_invariance_w229.lean を追加した。WalkingParallelPair functor-category localization は2つの fixed target それぞれの inverts/lift/fac/uniq フィールドへ展開され、inverse-image left calculus は mathlib の adjunction theorem で localized homotopy quotient composite の右随伴と unit membership へ縮約され、exactAcyclic の HomotopyEquiv 輸送は HomotopyEquiv.toHomologyIso から degreewise ShortComplex.QuasiIso を得る経路へ縮約された。残る入力は lift/fac/uniq、localized adjunction data、ShortComplex quasi-iso conflation transport、さらに有限余極限・三角構造・stable infinity-category 構造である。",
   "remaining_frontier": [
+    "WalkingParallelPair functor-category localization: fixed-target fields are named; lift/fac/uniq remain to be constructed for the two target categories.",
+    "Dbounded left calculus: inverse-image transfer is reduced to localized adjunction data and unit membership for the homotopy quotient composite.",
+    "Exact-acyclic homotopy invariance: HomotopyEquiv gives degreewise ShortComplex.QuasiIso; quasi-isomorphism transport of QuillenExactCategory.Conflation remains missing.",
     "Dbounded left calculus: exact-acyclic iso-closure collapse is reduced to exactAcyclic_of_homotopyEquiv; the HomotopyEquiv transport theorem remains missing.",
     "Dbounded finite colimits: opposite WalkingParallelPair functor-category localization input is normalized to W224FunctorCategoryLocalizationInput; the non-discrete functor-category localization theorem remains missing.",
     "Dbounded finite products: bounded homotopy exact weak equivalence is definitionally an inverse image; inverse-image left-calculus transfer remains missing.",
