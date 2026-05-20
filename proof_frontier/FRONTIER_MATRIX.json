@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T19:54:00Z",
+  "generated_utc": "2026-05-20T20:12:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -1365,9 +1365,9 @@
     }
   ],
   "support_result_classification": "w272 was manually ported as a focused nonterminal boundary refining W269 fixed-target fac/uniq obligations. v296 parent-added counterexample; not support product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
-  "latest_parent_update": "v360-addcommgrp-strict-boundary",
-  "summary": "v360 corrects the W318/W271 AddCommGrp algebraic frontier by retaining left-injectivity and right-surjectivity from strict short exact components; remaining blockers are the left LCA certificate and strict AddCommGrp boundary.",
-  "remaining_frontier": "残るW318/W271 source inputsはleft LCA colimit-mapのinjective/inducing/closed-image certificateとstrict AddCommGrp kernel exactness preservationの二つ。",
+  "latest_parent_update": "v362-strict-addcommgrp-snake-cokernel-boundary",
+  "summary": "v362 refines the strict AddCommGrp branch to a mathlib ShortComplex.SnakeInput cokernel-row certificate for the WPP-op colimit short complex; left LCA and the SnakeInput certificate remain open.",
+  "remaining_frontier": "残るW318/W271 source inputsはleft LCA colimit-map certificateと、WPP-op colimit点のunderlying AddCommGrp短複体をSnakeInputのcokernel rowとして提示するcertificate。",
   "support_classification": [
     {
       "id": "parent-v248",
@@ -1577,7 +1577,9 @@
     "W318のleft closed-embedding入力は純MetrizableLCA WPP-op colimit-mapのinjectivity、induced topology、closed image certificateへ縮約済みだが、その三つのcertificate本体は未証明である。",
     "W302/W304/W308のmapping-cone comparison routeはincluded colimit入力から接続されたが、これだけでは製品全体のexact-category/stable-derived目標は完了しない。",
     "W296/W319のkernel-only AddCommGrpCat boundaryはstrictnessのleft-injectivity/right-surjectivityを落とすため、現在の主要経路はaddCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizableへ置き換えられている。",
-    "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。"
+    "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
+    "v361 left LCA route still needs relation-preimage exactness and closed-map/closed-range input for the descended quotient map.",
+    "v362 strict AddCommGrp route still needs a SnakeInput cokernel-row presentation for the WPP-op colimit short complex."
   ],
   "open_blockers": [
     "W318のleft closed-embedding入力は純MetrizableLCA WPP-op colimit-mapのinjectivity、induced topology、closed image certificateへ縮約済みだが、その三つのcertificate本体は未証明である。",
@@ -1585,8 +1587,9 @@
     "W296/W319のAddCommGrpCat kernel exactness/WPP-op colimit exactness保存定理本体はまだsource theoremとして未証明である。",
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
     "W318 left closed-embedding branch now requires pure LCA injective/inducing/closed-image certificates for the induced WPP-op colimit map.",
-    "W318 algebraic branch now requires strict AddCommGrp kernel exactness preservation for the WPP-op colimit point.",
-    "W271 now directly consumes the three pure W318 source frontiers after W318 source-module promotion."
+    "W271 now directly consumes the three pure W318 source frontiers after W318 source-module promotion.",
+    "v361 left LCA route still needs relation-preimage exactness and closed-map/closed-range input for the descended quotient map.",
+    "v362 strict AddCommGrp route still needs a SnakeInput cokernel-row presentation for the WPP-op colimit short complex."
   ],
   "consumed_support_results": [
     {
@@ -1720,6 +1723,12 @@
     {
       "artifact": "audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
       "result": "v352 narrows W318 left closed-embedding preservation to a pure LCA injective/inducing/closed-image certificate and adds a pure-topological exact-acyclic closure consumer; focused Lean check passed; not product success."
+    },
+    {
+      "worker": "w330-descended-quotient-closed-embedding-v358",
+      "status": "parent_verified",
+      "artifact": "audit/blockers/descended_quotient_closed_embedding_support_w330.lean",
+      "evidence": "Focused Lean check passed in parent target; not product success."
     }
   ],
   "known_gaps": [
@@ -1730,8 +1739,11 @@
     "W296/W319のAddCommGrpCat kernel exactness/WPP-op colimit exactness保存定理本体はまだsource theoremとして未証明である。",
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
     "W318 left closed-embedding branch now requires pure LCA injective/inducing/closed-image certificates for the induced WPP-op colimit map.",
-    "W318 algebraic branch now requires strict AddCommGrp kernel exactness preservation for the WPP-op colimit point.",
-    "W271 now directly consumes the three pure W318 source frontiers after W318 source-module promotion."
+    "W271 now directly consumes the three pure W318 source frontiers after W318 source-module promotion.",
+    "v361でleft LCA certificateはdescended quotient mapのrelation-preimage exactnessとclosed-map/closed-range入力へ分解されたが、その二入力は未証明である。",
+    "v362でstrict AddCommGrp境界はSnakeInput cokernel-row certificateへ縮約されたが、そのcertificate本体は未証明である。",
+    "v361 left LCA route still needs relation-preimage exactness and closed-map/closed-range input for the descended quotient map.",
+    "v362 strict AddCommGrp route still needs a SnakeInput cokernel-row presentation for the WPP-op colimit short complex."
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -2315,6 +2327,38 @@
     "remaining_inputs": [
       "wppOp_lca_colimitMap_injective_inducing_closedImage",
       "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_v361": {
+    "status": "verified_focused",
+    "consumed_support_result": "w330-descended-quotient-closed-embedding-v358",
+    "artifact": "audit/blockers/descended_quotient_closed_embedding_support_w330.lean",
+    "changed_declarations": [
+      "MetrizableLCA.coequalizerMap_descended_injective_of_relation_preimage_exact",
+      "MetrizableLCA.coequalizerMap_isClosedEmbedding_of_descended_closedMap",
+      "MetrizableLCA.DescendedQuotientClosedEmbeddingFrontierState"
+    ],
+    "remaining_inputs": [
+      "MetrizableLCA.coequalizerMap_relation_preimage_exact_of_component_closedEmbedding",
+      "MetrizableLCA.coequalizerMap_descended_range_closed_of_component_closedEmbedding or IsClosedMap input for the descended quotient map"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_v362": {
+    "status": "verified_focused",
+    "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean; audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean; audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+    "changed_declarations": [
+      "AddCommGrpStrictSnakeCokernelData",
+      "addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable",
+      "addCommGrpKernelExact_of_strictSnakeCokernelData",
+      "addCommGrpStrictKernelExact_wppOp_colimit_boundary_of_snakeCokernel",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_snakeCokernel",
+      "metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_snakeCokernel"
+    ],
+    "remaining_inputs": [
+      "wppOp_lca_colimitMap_injective_inducing_closedImage",
+      "addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable"
     ],
     "product_success_claimed": false
   }

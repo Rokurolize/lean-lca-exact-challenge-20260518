@@ -1,6 +1,7 @@
 import LeanLCAExactChallenge.Derived.Bounded
 import Mathlib.CategoryTheory.Abelian.GrothendieckAxioms.Colim
 import Mathlib.Algebra.Homology.ShortComplex.Limits
+import Mathlib.Algebra.Homology.ShortComplex.SnakeLemma
 import Mathlib.CategoryTheory.Limits.Shapes.Opposites.Equalizers
 
 /-!
@@ -159,6 +160,34 @@ abbrev addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable : Prop 
               AddCommGrpRightSurjective
                 ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))) →
           AddCommGrpKernelExact (cs.pt.map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))
+
+/--
+Snake-input certificate that a short complex of abelian groups is the cokernel
+row of a morphism between exact short complexes.
+-/
+structure AddCommGrpStrictSnakeCokernelData (T : ShortComplex AddCommGrpCat.{0}) :
+    Type 1 where
+  input : ShortComplex.SnakeInput AddCommGrpCat.{0}
+  cokernelRowIso : input.L₃ ≅ T
+
+/--
+Concrete SnakeInput boundary for the strict AddCommGrp algebraic route. It asks
+for a cokernel-row presentation of the underlying short complex at the WPP-op
+colimit.
+-/
+abbrev addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S),
+      IsColimit cs →
+        (∀ j : WalkingParallelPairᵒᵖ,
+          AddCommGrpLeftInjective
+              ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})) ∧
+            AddCommGrpKernelExact ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})) ∧
+              AddCommGrpRightSurjective
+                ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))) →
+          Nonempty
+            (AddCommGrpStrictSnakeCokernelData
+              (cs.pt.map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})))
 
 /-- Left field consumer from W289's boundary. -/
 theorem leftClosedEmbedding_walkingParallelPairOp_colimitClosure_of_preserves
@@ -693,6 +722,24 @@ theorem additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact
   exact hboundary S cs hcs (fun j => (addCommGrpKernelExact_iff_additiveKernelExact
     (S.obj j)).mpr (hS j))
 
+/-- A SnakeInput cokernel-row certificate gives element-level kernel exactness. -/
+theorem addCommGrpKernelExact_of_strictSnakeCokernelData
+    (T : ShortComplex AddCommGrpCat.{0})
+    (d : AddCommGrpStrictSnakeCokernelData T) :
+    AddCommGrpKernelExact T := by
+  have hT : T.Exact := ShortComplex.exact_of_iso d.cokernelRowIso d.input.L₃_exact
+  rw [ShortComplex.ab_exact_iff] at hT
+  exact hT
+
+/-- The SnakeInput cokernel-row boundary supplies the strict AddCommGrp boundary. -/
+theorem addCommGrpStrictKernelExact_wppOp_colimit_boundary_of_snakeCokernel
+    (hboundary : addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable) :
+    addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable := by
+  intro S cs hcs hS
+  rcases hboundary S cs hcs hS with ⟨d⟩
+  exact addCommGrpKernelExact_of_strictSnakeCokernelData
+    (cs.pt.map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})) d
+
 /--
 The AddCommGrp-shaped strict kernel-exactness boundary supplies W318's
 algebraic exactness field while preserving the right-surjectivity hypothesis
@@ -859,6 +906,18 @@ theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGr
   exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpStrictField_frontier
     hclosed wppOp_lca_colimitMap_preserves_openMap_of_wppOp_fixed_leg halg
 
+/--
+The remaining algebraic input can be supplied by a SnakeInput cokernel-row
+presentation of the underlying AddCommGrp short complex at the WPP-op colimit.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_snakeCokernel
+    (hclosed : wppOp_lca_colimitMap_injective_inducing_closedImage)
+    (hsnake : addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict
+    hclosed
+    (addCommGrpStrictKernelExact_wppOp_colimit_boundary_of_snakeCokernel hsnake)
+
 /-- Machine-readable W318 reduction state. -/
 structure WppOpExactAcyclicFrontierConsolidatedState : Type where
   seed : String
@@ -871,10 +930,10 @@ def currentWppOpExactAcyclicFrontierConsolidatedState :
     WppOpExactAcyclicFrontierConsolidatedState where
   seed := "w318-parent-20260521T0310Z"
   provedConsumer :=
-    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict"
+    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_snakeCokernel"
   remainingInputs :=
     ["wppOp_lca_colimitMap_injective_inducing_closedImage",
-      "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable"]
+      "addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable"]
   productSuccessClaimed := false
 
 theorem currentWppOpExactAcyclicFrontierConsolidatedState_productSuccess :

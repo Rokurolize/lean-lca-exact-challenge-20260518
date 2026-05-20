@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v360でW318/W271のAddCommGrp algebraic frontierをleft-injectivity/right-surjectivity込みのstrict境界へ修正した。product successではなく、left LCA certificateとstrict AddCommGrp boundaryが残る。",
+  "summary": "v362でstrict AddCommGrp境界をSnakeInput cokernel-row certificateへ縮約した。product successではなく、left LCA certificateとSnakeInput certificateが残る。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -275,7 +275,18 @@
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean",
     "lake env lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated",
-    "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean"
+    "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+    "lake env lean audit/blockers/descended_quotient_closed_embedding_support_w330.lean",
+    "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean",
+    "lake env lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
+    "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+    "lake build",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected product gate failure)",
+    "python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge (expected product gate failure)",
+    "git diff --check"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1036,14 +1047,16 @@
     "W318のleft closed-embedding preservationとalgebraic exactness preservationは引き続き未証明である。",
     "W318のleft closed-embedding branchは純LCA colimit-map injective/inducing/closed-image certificateへ縮約されたが、その三certificate本体は未証明である。",
     "W318のalgebraic branchはstrict AddCommGrp kernel exactness preservation境界へ縮約されたが、そのsource theorem本体は未証明である。",
-    "W271はW318の残り二つの純source frontierを直接消費する形になったが、左LCA certificateとstrict AddCommGrp kernel exactness保存の本体証明はまだ未証明である。"
+    "W271はW318の残り二つの純source frontierを直接消費する形になったが、左LCA certificateとstrict AddCommGrp kernel exactness保存の本体証明はまだ未証明である。",
+    "v361でleft LCA certificateはdescended quotient mapのrelation-preimage exactnessとclosed-map/closed-range入力へ分解されたが、その二入力は未証明である。",
+    "v362でstrict AddCommGrp境界はSnakeInput cokernel-row certificateへ縮約されたが、そのcertificate本体は未証明である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "pending-v354",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W286/W318 right-open branch is closed by the WPP-op fixed-leg theorem; W271 now consumes only the left LCA injective/inducing/closed-image certificate and strict AddCommGrp kernel exactness preservation.",
+  "worker_frontier_summary": "W286/W318 right-open branch is closed; W271 now consumes left LCA certificate plus a SnakeInput cokernel-row certificate for the strict AddCommGrp branch. W330 support narrows one left LCA descended quotient-map subroute.",
   "claim_review_result": "未実施。product_successではないため、fresh claim-review-loop acceptanceは要求段階に未到達。",
   "remaining_gaps": [
     "W318/W271のstrict AddCommGrp入力は、WPP-op colimit後のkernel exactness保存本体が未証明である。",
@@ -1057,7 +1070,7 @@
     "W318のalgebraic branchはstrict AddCommGrp kernel exactness preservation境界へ縮約されたが、そのsource theorem本体は未証明である。",
     "W271はW318の残り二つの純source frontierを直接消費する形になったが、左LCA certificateとstrict AddCommGrp kernel exactness保存の本体証明はまだ未証明である。"
   ],
-  "next_recommended_goal": "left LCA colimit-map certificateまたはstrict AddCommGrp kernel exactness preservationのどちらかを証明する。",
+  "next_recommended_goal": "WPP-op colimit点のunderlying AddCommGrp短複体をSnakeInputのcokernel rowとして構成するか、left LCA descended quotient mapのrelation-preimage/closed-map入力を証明する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
