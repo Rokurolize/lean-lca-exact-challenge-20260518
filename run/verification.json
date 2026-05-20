@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v184-shortcomplex-transport-object-isos",
-  "generated_utc": "2026-05-20T03:28:00Z",
-  "source_tree_hash": "d8a67aada471dca2f342ba108160268001df8a10a2c3ddb54ea8ed2dbbbd10a6",
-  "summary": "v186 ports and parent-verifies the W141 Dbounded equalizer-transfer audit. The audit packages EqualizerConeInput, turns it into IsStableUnderLimitsOfShape WalkingParallelPair, names the missing EqualizerLocalizationTransferTheorem, and gives a conditional HasFiniteLimits consumer.",
+  "schema": "lean-lca-exact-challenge-verification-v187-exact-acyclic-biproduct-product-api",
+  "generated_utc": "2026-05-20T03:30:31Z",
+  "source_tree_hash": "5e11160257cd2da37faa92a40efec74758864ed519d7f8acc7398554f0e82abb",
+  "summary": "v187 promotes the v185 short-complex biproduct transport result into Derived.Bounded. MetrizableLCA.exactAcyclicBiprodTransportIso compares the explicit strict short-exact biproduct complex with (K ⊞ L).sc i, and MetrizableLCA.exactAcyclic_biprod gives product-source binary biproduct closure for exact-acyclic metrizable complexes. Product success remains blocked by FiniteProductMappingConeInput C, equalizer localization transfer, finite colimits, and triangulated/stable structure.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after adding boundedExactWeakEquivalence_respectsIso and updating v182 audit references."
+      "evidence": "Full lake build passed after promoting exact-acyclic binary biproduct closure into Derived.Bounded product API."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v178 boundary audit was added."
+      "evidence": "Forbidden-token audit passed after v187 product API promotion."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed after adding boundedExactWeakEquivalence_respectsIso to the checked API surface."
+      "evidence": "RequiredDeclarations passed after adding checks for MetrizableLCA.exactAcyclicBiprodTransportIso and MetrizableLCA.exactAcyclic_biprod."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed after adding the MetrizableLCA boundedExactWeakEquivalence_respectsIso check."
+      "evidence": "ProductSuccessDeclarations passed after adding consumer examples for exact-acyclic binary biproduct closure."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -47,22 +47,22 @@
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after the v171 stable product-gate pass consumer audit and confirms negative fixtures, including self-referential packet zip SHA, remain rejecting."
+      "evidence": "External audit self-check passed after v187 state refresh and negative fixtures remain active."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v177: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v187: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v178 boundary audit artifact update."
+      "evidence": "Whitespace diff check passed after v187 source and evidence updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
       "status": "passed",
-      "evidence": "Focused Derived.Bounded build passed after adding boundedExactWeakEquivalence_respectsIso."
+      "evidence": "Focused Derived.Bounded build passed after adding MetrizableLCA.exactAcyclicBiprodTransportIso and MetrizableLCA.exactAcyclic_biprod."
     },
     {
       "command": "lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean",
@@ -402,7 +402,9 @@
     "DboundedEqualizerPullbackTransferW141.EqualizerConeInput",
     "DboundedEqualizerPullbackTransferW141.isStableUnderEqualizers_of_equalizerConeInput",
     "DboundedEqualizerPullbackTransferW141.EqualizerLocalizationTransferTheorem",
-    "DboundedEqualizerPullbackTransferW141.dboundedHasFiniteLimitsOfEqualizerTransfer"
+    "DboundedEqualizerPullbackTransferW141.dboundedHasFiniteLimitsOfEqualizerTransfer",
+    "MetrizableLCA.exactAcyclicBiprodTransportIso",
+    "MetrizableLCA.exactAcyclic_biprod"
   ],
   "product_complete": false,
   "known_gaps": [

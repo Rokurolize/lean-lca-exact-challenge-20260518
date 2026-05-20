@@ -88,6 +88,15 @@ example {S T : ShortComplex MetrizableLCA}
     MetrizableLCA.strictShortExact (MetrizableLCA.strictShortExactBiprodComplex S T) :=
   MetrizableLCA.strictShortExact_biprod hS hT
 
+noncomputable example (K L : CochainComplex MetrizableLCA ℤ) (i : ℤ) :
+    MetrizableLCA.strictShortExactBiprodComplex (K.sc i) (L.sc i) ≅ (K ⊞ L).sc i :=
+  MetrizableLCA.exactAcyclicBiprodTransportIso K L i
+
+example (K L : CochainComplex MetrizableLCA ℤ)
+    (hK : exactAcyclic MetrizableLCA K) (hL : exactAcyclic MetrizableLCA L) :
+    exactAcyclic MetrizableLCA (K ⊞ L) :=
+  MetrizableLCA.exactAcyclic_biprod K L hK hL
+
 /-
 Exact-category Ext is defined directly from the local conflation interface and
 positive degrees are quotient groups of formal Yoneda chains by local relation

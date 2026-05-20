@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T03:28:00Z",
+  "generated_utc": "2026-05-20T03:30:31Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v183 consumes completed support results w138/w139 by parent reimplementation as frontier audits; neither is treated as product completion.",
+  "worker_policy": "No workers were launched from the target worktree. v187 promotes the short-complex biproduct transport theorem into Derived.Bounded product API; remaining finite-product stability work is the mapping-cone finite-product comparison behind FiniteProductMappingConeInput C.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -573,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean && lake env lean audit/blockers/nontrivial_distinguished_eligibility_predicate_w132.lean && lake env lean audit/blockers/dbounded_four_projection_provider_route_w133.lean && lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean && lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean && lake env lean audit/blockers/dbounded_finite_products_boundary.lean && lake build LeanLCAExactChallenge.Derived.Bounded && lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean",
-      "merge_blocker": "v185 proves the short-complex biproduct transport compatibility squares and therefore the metrizable exact-acyclic binary biproduct closure audit is unconditional. v186 ports the W141 equalizer-transfer audit: Dbounded finite limits now reduce through finite products, EqualizerConeInput for boundedExactWeakEquivalence on WalkingParallelPair, and a still-missing EqualizerLocalizationTransferTheorem. Mapping-cone finite-product comparison, equalizer localization transfer, finite colimits, and triangulated/stable structures remain open.",
+      "merge_blocker": "v187 promotes the short-complex transport comparison into product source as MetrizableLCA.exactAcyclicBiprodTransportIso and proves MetrizableLCA.exactAcyclic_biprod. The remaining MetrizableLCA finite-product subroute is the mapping-cone finite-product comparison needed for FiniteProductMappingConeInput C; W141 also identifies the equalizer route for finite limits as EqualizerConeInput C plus EqualizerLocalizationTransferTheorem C. Still missing afterward are equalizer localization transfer, finite colimits, pretriangulated structure, and triangulated structure on Dbounded C. Product success is still blocked.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -973,7 +973,9 @@
         "DboundedEqualizerPullbackTransferW141.EqualizerConeInput",
         "DboundedEqualizerPullbackTransferW141.isStableUnderEqualizers_of_equalizerConeInput",
         "DboundedEqualizerPullbackTransferW141.EqualizerLocalizationTransferTheorem",
-        "DboundedEqualizerPullbackTransferW141.dboundedHasFiniteLimitsOfEqualizerTransfer"
+        "DboundedEqualizerPullbackTransferW141.dboundedHasFiniteLimitsOfEqualizerTransfer",
+        "MetrizableLCA.exactAcyclicBiprodTransportIso",
+        "MetrizableLCA.exactAcyclic_biprod"
       ],
       "technical_context": [
         "split short complexes",

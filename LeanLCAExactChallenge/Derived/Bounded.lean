@@ -258,6 +258,108 @@ theorem exactAcyclic_zero [HasZeroObject C] :
       (HomologicalComplex.eval C (ComplexShape.up ℤ) i)
       (isZero_zero (CochainComplex C ℤ) : IsZero (0 : CochainComplex C ℤ))).eq_of_src
 
+namespace MetrizableLCA
+
+@[simp]
+lemma biprodMap_biprodFst {A B A' B' : MetrizableLCA.{u}}
+    (f : A ⟶ A') (g : B ⟶ B') :
+    MetrizableLCA.biprodMap f g ≫ MetrizableLCA.biprodFst A' B' =
+      MetrizableLCA.biprodFst A B ≫ f := by
+  ext p
+  rfl
+
+@[simp]
+lemma biprodMap_biprodSnd {A B A' B' : MetrizableLCA.{u}}
+    (f : A ⟶ A') (g : B ⟶ B') :
+    MetrizableLCA.biprodMap f g ≫ MetrizableLCA.biprodSnd A' B' =
+      MetrizableLCA.biprodSnd A B ≫ g := by
+  ext p
+  rfl
+
+end MetrizableLCA
+
+@[reassoc (attr := simp)]
+lemma metrizable_biprodXIso_inv_fst
+    (K L : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ) :
+    (HomologicalComplex.biprodXIso K L i).inv ≫ (biprod.fst : K ⊞ L ⟶ K).f i =
+      biprod.fst := by
+  rw [Iso.inv_comp_eq]
+  exact (HomologicalComplex.biprodXIso_hom_fst (K := K) (L := L) i).symm
+
+@[reassoc (attr := simp)]
+lemma metrizable_biprodXIso_inv_snd
+    (K L : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ) :
+    (HomologicalComplex.biprodXIso K L i).inv ≫ (biprod.snd : K ⊞ L ⟶ L).f i =
+      biprod.snd := by
+  rw [Iso.inv_comp_eq]
+  exact (HomologicalComplex.biprodXIso_hom_snd (K := K) (L := L) i).symm
+
+namespace MetrizableLCA
+
+/-- The short-complex comparison between the explicit product model and the cochain biproduct. -/
+noncomputable def exactAcyclicBiprodTransportIso
+    (K L : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ) :
+    strictShortExactBiprodComplex (K.sc i) (L.sc i) ≅ (K ⊞ L).sc i :=
+  ShortComplex.isoMk
+    (biprodObjIsoBiprod _ _ ≪≫
+      (HomologicalComplex.biprodXIso K L ((ComplexShape.up ℤ).prev i)).symm)
+    (biprodObjIsoBiprod _ _ ≪≫ (HomologicalComplex.biprodXIso K L i).symm)
+    (biprodObjIsoBiprod _ _ ≪≫
+      (HomologicalComplex.biprodXIso K L ((ComplexShape.up ℤ).next i)).symm)
+    (by
+      dsimp [strictShortExactBiprodComplex]
+      rw [← cancel_mono (HomologicalComplex.biprodXIso K L i).hom]
+      apply biprod.hom_ext
+      · simp only [Category.assoc]
+        rw [HomologicalComplex.biprodXIso_hom_fst]
+        rw [← HomologicalComplex.Hom.comm
+          (biprod.fst : K ⊞ L ⟶ K) ((ComplexShape.up ℤ).prev i) i]
+        rw [metrizable_biprodXIso_inv_fst_assoc]
+        rw [metrizable_biprodXIso_inv_fst]
+        simp [strictShortExactBiprodComplex]
+        rw [← Category.assoc, biprodObjIsoBiprod_hom_fst]
+      · simp only [Category.assoc]
+        rw [HomologicalComplex.biprodXIso_hom_snd]
+        rw [← HomologicalComplex.Hom.comm
+          (biprod.snd : K ⊞ L ⟶ L) ((ComplexShape.up ℤ).prev i) i]
+        rw [metrizable_biprodXIso_inv_snd_assoc]
+        rw [metrizable_biprodXIso_inv_snd]
+        simp [strictShortExactBiprodComplex]
+        rw [← Category.assoc, biprodObjIsoBiprod_hom_snd]
+    )
+    (by
+      dsimp [strictShortExactBiprodComplex]
+      rw [← cancel_mono (HomologicalComplex.biprodXIso K L ((ComplexShape.up ℤ).next i)).hom]
+      apply biprod.hom_ext
+      · simp only [Category.assoc]
+        rw [HomologicalComplex.biprodXIso_hom_fst]
+        rw [← HomologicalComplex.Hom.comm
+          (biprod.fst : K ⊞ L ⟶ K) i ((ComplexShape.up ℤ).next i)]
+        rw [metrizable_biprodXIso_inv_fst_assoc]
+        rw [metrizable_biprodXIso_inv_fst]
+        simp [strictShortExactBiprodComplex]
+        rw [← Category.assoc, biprodObjIsoBiprod_hom_fst]
+      · simp only [Category.assoc]
+        rw [HomologicalComplex.biprodXIso_hom_snd]
+        rw [← HomologicalComplex.Hom.comm
+          (biprod.snd : K ⊞ L ⟶ L) i ((ComplexShape.up ℤ).next i)]
+        rw [metrizable_biprodXIso_inv_snd_assoc]
+        rw [metrizable_biprodXIso_inv_snd]
+        simp [strictShortExactBiprodComplex]
+        rw [← Category.assoc, biprodObjIsoBiprod_hom_snd])
+
+/-- Exact acyclic metrizable complexes are closed under binary biproducts. -/
+theorem exactAcyclic_biprod
+    (K L : CochainComplex MetrizableLCA.{u} ℤ)
+    (hK : exactAcyclic MetrizableLCA K)
+    (hL : exactAcyclic MetrizableLCA L) :
+    exactAcyclic MetrizableLCA (K ⊞ L) := by
+  intro i
+  exact strictShortExact_iso (exactAcyclicBiprodTransportIso K L i)
+    (strictShortExact_biprod (hK i) (hL i))
+
+end MetrizableLCA
+
 /-- Exact acyclicity of mapping cones is invariant under cochain shifts. -/
 theorem exactAcyclic_mappingCone_shift_iff [HasBinaryBiproducts C]
     {K L : CochainComplex C ℤ} (f : K ⟶ L) (n : ℤ) :

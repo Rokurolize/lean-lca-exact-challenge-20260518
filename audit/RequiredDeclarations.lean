@@ -30,6 +30,8 @@ set_option autoImplicit false
 #check LeanLCAExactChallenge.MetrizableLCA.algebraic_cokernel_of_strict
 #check LeanLCAExactChallenge.MetrizableLCA.strictShortExactBiprodComplex
 #check LeanLCAExactChallenge.MetrizableLCA.strictShortExact_biprod
+#check LeanLCAExactChallenge.MetrizableLCA.exactAcyclicBiprodTransportIso
+#check LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod
 #check LeanLCAExactChallenge.MetrizableLCA.biprodObjIsoBiprod
 #check LeanLCAExactChallenge.MetrizableLCA.biprodObjIsoBiprod_hom_fst
 #check LeanLCAExactChallenge.MetrizableLCA.biprodObjIsoBiprod_hom_snd

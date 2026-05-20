@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v186時点で、短複体transportはv185で解消済みであり、w141を親worktreeへ移植してDbounded有限極限のequalizer経路をLeanで監査した。残る有限極限入力はEqualizerConeInputで表したboundedExactWeakEquivalence CのWalkingParallelPair安定性と、EqualizerLocalizationTransferTheoremで表したlocalization equalizer転送である。mapping cone有限積比較、有限余極限、三角構造、stable infinity-category構造は未完成であり、product_successではない。",
+  "summary": "v187時点で、短複体transportの残差は製品側APIへ昇格し、MetrizableLCA.exactAcyclicBiprodTransportIsoとMetrizableLCA.exactAcyclic_biprodとして確認できる。これによりexact-acyclicなMetrizableLCA複体のbinary biproduct閉性は本体から使える。残る有限積安定性の核心はFiniteProductMappingConeInput C、すなわちmapping cone有限積比較である。Dbounded有限極限のequalizer経路はEqualizerConeInput CとEqualizerLocalizationTransferTheorem Cに分解済みだが未証明であり、有限余極限、pretriangulated/triangulated構造、stable infinity-category構造も未完成である。product_successではない。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -50,7 +50,8 @@
     "lake env lean audit/blockers/mapping_cone_finite_product_stability_w136.lean",
     "lake env lean audit/blockers/bounded_exact_weak_equivalence_finite_products_boundary.lean",
     "lake env lean audit/blockers/short_complex_biprod_transport_constructor_w138.lean",
-    "lake env lean audit/blockers/dbounded_finite_limits_colimits_transfer_w139.lean"
+    "lake env lean audit/blockers/dbounded_finite_limits_colimits_transfer_w139.lean",
+    "python3 audit/external_audit.py --root . --self-check-only"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -661,28 +662,30 @@
     "homotopyEquivZeroOfContractingHomotopy",
     "nonemptyHomotopyEquivZeroOfContractingHomotopy",
     "boundedTrianglehIso13RestrictedEndpointCochainIsoPayload",
-    "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos"
+    "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos",
+    "LeanLCAExactChallenge.MetrizableLCA.exactAcyclicBiprodTransportIso",
+    "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
   ],
   "known_gaps": [
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化されたが、mapping cone有限積比較そのものは未証明。短複体transportとRespectsIsoは製品側APIで証明済み。",
     "Dbounded C の有限極限は、有限積、EqualizerConeInput C、EqualizerLocalizationTransferTheorem C へ分解されたが、equalizer安定性とlocalization equalizer転送は未構成。",
-    "boundedExactWeakEquivalence C の有限積安定性は、FiniteProductMappingConeInput C へ上位境界化されたが、mapping cone有限積比較そのものは未証明。短複体transportとRespectsIsoは証明済み。",
-    "`boundedExactWeakEquivalence C`の有限積安定性が未完成。",
-    "`Dbounded C`の有限極限全体、有限余極限、pretriangulated構造、triangulated構造は未完成。",
-    "bounded側のstrict-selected eligibility providerは`boundedHomotopyObjectTrianglehIso13Realization`と同値であり、realization自体は未証明。"
+    "Dbounded C の有限余極限、pretriangulated構造、triangulated構造、stable infinity-category構造は未完成。",
+    "bounded側のstrict-selected eligibility providerは boundedHomotopyObjectTrianglehIso13Realization と同値であり、realization自体は未証明。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",
   "packet_sha256_sidecar": "",
   "git_commit": "omitted-from-terminal-outcome-to-avoid-self-referential-final-commit-hash; use git rev-parse HEAD",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v174 adds a parent-owned Dbounded semantic stable input adapter after v173 ported w133 and v172 ported w132. No product-success packet was produced.",
-  "claim_review_result": "not_run_nonproduct; fresh claim review is required only before product_success completion",
+  "worker_frontier_summary": "v187では新規workerを起動せず、親worktreeでv185の短複体transport証明をDerived.Boundedへ昇格した。次のfrontierはFiniteProductMappingConeInput C、EqualizerConeInput C、EqualizerLocalizationTransferTheorem C、およびDboundedの有限余極限・三角構造である。",
+  "claim_review_result": "product_complete=false。外部監査のproduct gateは failed_nonterminal を期待どおり拒否する状態を維持している。",
   "remaining_gaps": [
-    "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため拒否済みです。strict-selected eligibilityはarbitrary weak endpoint witnessを除外しますが、そのproviderはboundedHomotopyObjectTrianglehIso13Realizationと同値であり、残る本体証明を短絡しません。",
-    "stable側は、full single certificateからproduct-review-shaped readiness evidenceを経由してconsumer-side product-gate pass witnessへ変換する監査constructorは通り、ordinary-category semantic inputから単一certificate形の4射影readinessへ接続するadapterも通ったが、ordinary Dbounded contextからHasFiniteLimits、HasFiniteColimits、HasZeroObject、全shift additivity、Pretriangulated、IsTriangulatedを含むsemantic inputを構成する実装が未完成です。",
-    "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化されたが、mapping cone有限積比較そのものは未証明。短複体transportとRespectsIsoは製品側APIで証明済み。",
+    "Dbounded C の有限極限は、有限積、EqualizerConeInput C、EqualizerLocalizationTransferTheorem C へ分解されたが、equalizer安定性とlocalization equalizer転送は未構成。",
+    "Dbounded C の有限余極限、pretriangulated構造、triangulated構造、stable infinity-category構造は未完成。",
+    "bounded側のstrict-selected eligibility providerは boundedHomotopyObjectTrianglehIso13Realization と同値であり、realization自体は未証明。"
   ],
-  "next_recommended_goal": "Attack OrdinaryContextToDboundedFourProjectionProvider or define a nontrivial distinguished endpoint eligibility predicate; keep product_success false until all bounded/stable gates and external packet audit pass.",
+  "next_recommended_goal": "FiniteProductMappingConeInput C のmapping cone有限積比較を、MetrizableLCA.exactAcyclic_biprodとCochainComplex.mappingCone.mapHomologicalComplexIso系APIから攻める。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -762,7 +765,7 @@
     "DboundedSemanticStableInputAdapter.missingSemanticFieldNames_count",
     "DboundedSemanticStableInputAdapter.currentSemanticRouteState_semanticInput_not_supplied"
   ],
-  "generated_utc": "2026-05-20T03:28:00Z",
+  "generated_utc": "2026-05-20T03:30:31Z",
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave68_20260519T233000Z/workers/w126-stable-dbounded-certificate-provider-route/result.json",
@@ -839,6 +842,8 @@
     "LeanLCAExactChallenge.DboundedEqualizerPullbackTransferW141.EqualizerConeInput",
     "LeanLCAExactChallenge.DboundedEqualizerPullbackTransferW141.isStableUnderEqualizers_of_equalizerConeInput",
     "LeanLCAExactChallenge.DboundedEqualizerPullbackTransferW141.EqualizerLocalizationTransferTheorem",
-    "LeanLCAExactChallenge.DboundedEqualizerPullbackTransferW141.dboundedHasFiniteLimitsOfEqualizerTransfer"
+    "LeanLCAExactChallenge.DboundedEqualizerPullbackTransferW141.dboundedHasFiniteLimitsOfEqualizerTransfer",
+    "MetrizableLCA.exactAcyclicBiprodTransportIso",
+    "MetrizableLCA.exactAcyclic_biprod"
   ]
 }
