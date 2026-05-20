@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v181時点で、bounded exact weak equivalenceの有限積安定性へ必要な上位入力をLeanで固定した。FiniteProductMappingConeInputとRespectsIsoがあればIsStableUnderFiniteProductsが得られ、既存のDbounded finite-products APIへ接続できる。ただしmapping cone比較、短複体transport、有限極限全体、有限余極限、pretriangulated/triangulated構造は未完成であり、product_successではない。",
+  "summary": "v182時点で、boundedExactWeakEquivalenceのarrow同型不変性をLean本体APIとして証明した。FiniteProductMappingConeInputからIsStableUnderFiniteProductsへ進む境界は外部RespectsIso仮定を必要としなくなった。ただしmapping cone有限積比較、短複体transport、有限極限全体、有限余極限、pretriangulated/triangulated構造は未完成であり、product_successではない。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -662,7 +662,7 @@
     "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos"
   ],
   "known_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は、FiniteProductMappingConeInput C と RespectsIso へ上位境界化されたが、mapping cone有限積比較そのものは未証明。",
+    "boundedExactWeakEquivalence C の有限積安定性は、FiniteProductMappingConeInput C へ上位境界化されたが、mapping cone有限積比較そのものは未証明。RespectsIsoはv182で証明済み。",
     "ShortComplexBiprodTransportInput K L、つまり明示的biproduct short complexから`(K ⊞ L).sc i`への短複体同型族が未完成。",
     "`boundedExactWeakEquivalence C`の有限積安定性が未完成。",
     "`Dbounded C`の有限極限全体、有限余極限、pretriangulated構造、triangulated構造は未完成。",
@@ -760,7 +760,7 @@
     "DboundedSemanticStableInputAdapter.missingSemanticFieldNames_count",
     "DboundedSemanticStableInputAdapter.currentSemanticRouteState_semanticInput_not_supplied"
   ],
-  "generated_utc": "2026-05-20T09:45:00Z",
+  "generated_utc": "2026-05-20T13:35:00Z",
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave68_20260519T233000Z/workers/w126-stable-dbounded-certificate-provider-route/result.json",

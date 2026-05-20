@@ -44,7 +44,6 @@ missing above that comparison: the input above directly gives the class required
 `Dbounded.hasFiniteProductsOfStableFiniteProducts`.
 -/
 theorem isStableUnderFiniteProducts_of_finiteProductMappingConeInput
-    [(boundedExactWeakEquivalence C).RespectsIso]
     (h : FiniteProductMappingConeInput C) :
     (boundedExactWeakEquivalence C).IsStableUnderFiniteProducts where
   isStableUnderProductsOfShape J _ := by
@@ -55,7 +54,6 @@ theorem isStableUnderFiniteProducts_of_finiteProductMappingConeInput
 /-- The Dbounded finite-product API that becomes available after the same input is installed. -/
 noncomputable abbrev dboundedHasFiniteProductsOf_finiteProductMappingConeInput
     [HasFiniteLimits C]
-    [(boundedExactWeakEquivalence C).RespectsIso]
     [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions]
     (h : FiniteProductMappingConeInput C) :
     HasFiniteProducts (Dbounded C) := by

@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v181-bounded-exact-weak-equivalence-finite-products-boundary",
-  "generated_utc": "2026-05-20T13:10:00Z",
-  "source_tree_hash": "1677d07a2889622573ab1baef8bc525f1686764740a7235502c3a877b3e90ee5",
-  "summary": "v181 adds a bounded exact weak equivalence finite-product boundary audit. FiniteProductMappingConeInput is now the exact upper interface: with RespectsIso it yields (boundedExactWeakEquivalence C).IsStableUnderFiniteProducts, and then the existing Dbounded finite-products API gives HasFiniteProducts (Dbounded C). Product remains nonterminal because the mapping-cone finite-product comparison, short-complex transport input, full finite limits/colimits, and triangulated/stable structures remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-v182-bounded-exact-weak-equivalence-respects-iso",
+  "generated_utc": "2026-05-20T13:35:00Z",
+  "source_tree_hash": "e737b2568c638d84ea7b437b74d3fe81ca9910a4a2ec6bf1f985b4332bce9d0f",
+  "summary": "v182 proves boundedExactWeakEquivalence_respectsIso in Derived.Bounded using mappingConeIsoOfCommIso and exactAcyclic_mappingCone_congr_iff. The finite-product boundary no longer needs RespectsIso as an external input; the remaining upper finite-product input is FiniteProductMappingConeInput itself. Product remains nonterminal because the mapping-cone finite-product comparison, short-complex transport input, full finite limits/colimits, and triangulated/stable structures remain unproved.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after adding the v181 finite-product boundary audit."
+      "evidence": "Full lake build passed after adding boundedExactWeakEquivalence_respectsIso and updating v182 audit references."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -32,12 +32,12 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v178 boundary audit was added."
+      "evidence": "RequiredDeclarations passed after adding boundedExactWeakEquivalence_respectsIso to the checked API surface."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess declaration audit passed after v178; no product-success claim was added."
+      "evidence": "ProductSuccessDeclarations passed after adding the MetrizableLCA boundedExactWeakEquivalence_respectsIso check."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -62,7 +62,7 @@
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
       "status": "passed",
-      "evidence": "Focused Derived.Bounded build passed after moving the weak endpoint payload into product API."
+      "evidence": "Focused Derived.Bounded build passed after adding boundedExactWeakEquivalence_respectsIso."
     },
     {
       "command": "lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean",
@@ -177,7 +177,7 @@
     {
       "command": "lake env lean audit/blockers/bounded_exact_weak_equivalence_finite_products_boundary.lean",
       "status": "passed",
-      "evidence": "Focused v181 bounded exact weak equivalence finite-products boundary audit passed; it proves FiniteProductMappingConeInput plus RespectsIso yields IsStableUnderFiniteProducts and the existing Dbounded finite-product API."
+      "evidence": "Focused v182 finite-product boundary audit passed without an external RespectsIso assumption."
     }
   ],
   "implemented_declarations_checked": [

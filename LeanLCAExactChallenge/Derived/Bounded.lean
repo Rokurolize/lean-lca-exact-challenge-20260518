@@ -682,6 +682,22 @@ noncomputable def boundedExactWeakEquivalence [HasBinaryBiproducts C] :
     MorphismProperty (BoundedComplexCategory C) :=
   fun _ _ f => exactAcyclic C (CochainComplex.mappingCone ((boundedCochainComplex C).ι.map f))
 
+/-- Bounded exact weak equivalences are invariant under isomorphism of arrows. -/
+noncomputable instance boundedExactWeakEquivalence_respectsIso [HasBinaryBiproducts C] :
+    (boundedExactWeakEquivalence C).RespectsIso := by
+  apply MorphismProperty.RespectsIso.of_respects_arrow_iso
+  intro f g e hf
+  let eK : (BoundedComplexCategory.ι C).obj f.left ≅ (BoundedComplexCategory.ι C).obj g.left :=
+    (BoundedComplexCategory.ι C).mapIso (asIso e.hom.left)
+  let eL : (BoundedComplexCategory.ι C).obj f.right ≅ (BoundedComplexCategory.ι C).obj g.right :=
+    (BoundedComplexCategory.ι C).mapIso (asIso e.hom.right)
+  have comm : (BoundedComplexCategory.ι C).map f.hom ≫ eL.hom =
+      eK.hom ≫ (BoundedComplexCategory.ι C).map g.hom := by
+    dsimp [eK, eL]
+    change f.hom.hom ≫ e.hom.right.hom = e.hom.left.hom ≫ g.hom.hom
+    exact congrArg (fun k : f.left ⟶ g.right => k.hom) e.hom.w.symm
+  exact (exactAcyclic_mappingCone_congr_iff C eK eL comm).1 hf
+
 /-- The bounded-complex inclusion followed by the homotopy-category quotient. -/
 abbrev BoundedComplexCategory.homotopyQuotient [HasBinaryBiproducts C] :
     BoundedComplexCategory C ⥤ HomotopyCategory C (ComplexShape.up ℤ) :=
