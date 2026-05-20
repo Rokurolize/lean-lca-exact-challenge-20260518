@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T04:31:23Z",
+  "generated_utc": "2026-05-20T04:40:08Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v195 consumes support w148/w149: the parent proved the w148 source-map rewrites and reduced the right backward component square to fst/snd target equations; w149 is classified as useful but delayed finite-product decomposition evidence. This is frontier progress, not product completion.",
+  "worker_policy": "No workers were launched from the target worktree. v196 ports support w149 as a parent-owned finite exact-acyclic product closure audit; active support worker w151 overlaps the next Option-product decomposition constructor, so the parent does not launch duplicate work. This is frontier progress, not product completion.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
