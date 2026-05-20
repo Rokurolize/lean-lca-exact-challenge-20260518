@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T05:45:00Z",
+  "generated_utc": "2026-05-20T05:55:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v162 manually ports the byte-identical active-support w128 audit file, recording a narrower distinguished mapping-cone strictification route without claiming product success.",
+  "worker_policy": "No workers were launched from the target worktree. v163 manually ports the byte-identical active-support w129 audit, minimizing the stable route external API without claiming product success.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -495,7 +495,8 @@
         "audit/blockers/dbounded_direct_localization_triangulated_package.lean",
         "LeanLCAExactChallenge/Derived/ContractibleTail.lean",
         "audit/blockers/distinguished_endpoint_provider_frontier_w128.lean",
-        "audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean"
+        "audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean",
+        "audit/blockers/stable_route_external_api_minimizer_w129.lean"
       ],
       "dependencies": [
         "QuillenExactCategory",
@@ -572,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
-      "merge_blocker": "v162 records a narrower distinguished mapping-cone route: an eligibility provider plus eligible-witness cochain-isomorphism upgrade implies bounded strict realization. These inputs remain unconstructed, and the stable provider route remains missing. Product success is still blocked.",
+      "merge_blocker": "v163 minimizes the stable route to one certificate with finite-limit, finite-colimit, suspension/loop, and pushout/pullback projections, while keeping current ordinary Dbounded evidence internal. The certificate remains unconstructed, and the bounded distinguished endpoint provider route is still only conditional. Product success is still blocked.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
