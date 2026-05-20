@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T15:02:00Z",
+  "generated_utc": "2026-05-20T15:08:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v273 is parent-side port of support w255 audit.",
   "frontiers": [
@@ -1449,6 +1449,12 @@
       "classification": "manual_ported_frontier_reduction",
       "artifact": "audit/blockers/localization_finite_limit_transfer_inputs_w255.lean",
       "result": "Concrete source finite-limit facts and finite-product/equalizer/finite-limit transfer inputs are packaged for the opposite localization route; product success remains false."
+    },
+    {
+      "id": "w244",
+      "classification": "already_covered_by_parent_v252",
+      "artifact": "LeanLCAExactChallenge/LCA/Cokernel.lean",
+      "result": "Arbitrary MetrizableLCA cokernels and finite colimits are already implemented in parent v252; later v267-v270 strengthen the right-exactness interface. No new target code needed."
     }
   ],
   "remaining_blockers": [

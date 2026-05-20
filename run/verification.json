@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T15:02:00Z",
+  "generated_utc": "2026-05-20T15:08:00Z",
   "source_tree_hash": "3c7b949620eeb1254d917e783e002a8a79db0aa9632cac452e381d1bd8e1b724",
-  "summary": "v273 consumes w255: opposite localization finite-limit transfer is packaged into explicit source facts and transfer-input structures.",
+  "summary": "v274 classifies w244 as already covered by parent v252 cokernel/finite-colimit implementation.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",

@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v1",
-  "generated_utc": "2026-05-20T15:02:00Z",
+  "generated_utc": "2026-05-20T15:08:00Z",
   "file_count": 179,
-  "content_hash_tree": "d2c810baed137d71083fd930da26cf843d6e974db68609c7055cce4bdae52070",
+  "content_hash_tree": "0f85d75666c4615a33f25c69a7d981049506a05a8a245e4a1444017d1e1ecee1",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -831,8 +831,8 @@
     },
     {
       "path": "implementation-notes.html",
-      "bytes": 217018,
-      "sha256": "1c7baa99040b9851951b41be1e201a762ce32682a1a99e0172925ce967abdc10"
+      "bytes": 217578,
+      "sha256": "b78db4bc4d954a52d6782b3af5a489829e4514ebb1a2f4ac0874655a8b830971"
     },
     {
       "path": "lake-manifest.json",
@@ -856,18 +856,18 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 181870,
-      "sha256": "463f110eba7054515a834ba6ca0afaad35b548496daaa3fdfc35e871b0e78ca3"
+      "bytes": 182164,
+      "sha256": "bdb01b80aea1a7a501e8e514db6bfec068eb72b67dc4c2563318e5aed780e626"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 102038,
-      "sha256": "0999f3c8a66c8369d49332c52249045963be1e5dd958c4689258dd46db34232e"
+      "bytes": 102387,
+      "sha256": "5f841045d91b079e58eaba73761767707ba0a70e476caf8f6464c10d1ee2c7ca"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "bytes": 59065,
-      "sha256": "12a6a4451095f0714273f9abab013603fa9216ace7eb176e03ef4e77c006dbf1"
+      "bytes": 59502,
+      "sha256": "7174ccb923431516693cba9833b0e2205a2fd0a9ffb3947eecb233a17c204272"
     },
     {
       "path": "reviews/README.md",
@@ -876,8 +876,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 65974,
-      "sha256": "367c74526b7468015565a1f5093e681185d4f8045a99af361a39c1e080646d91"
+      "bytes": 65935,
+      "sha256": "04be5f037ce8d1459df12b139b34f4ea880bb1c07ab1f7a853e707d73947004f"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -891,8 +891,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 132539,
-      "sha256": "c8943c3db5292a929045f97a688f390f9cb6ede2abc358286a76ee177b0ff150"
+      "bytes": 132424,
+      "sha256": "e025b8dd15cd89c2c326b54ed22cc99ce3c318ccfb0a61e7997cbc0187efe01c"
     },
     {
       "path": "workers/README.md",

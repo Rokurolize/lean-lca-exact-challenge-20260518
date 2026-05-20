@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v273では支援結果w255を親側auditとして再実装し、反対圏局所化finite-limit transferをsource factsとtransfer-input構造体へ整理した。残るfunctor-category localizationとstability入力は未供給であり、product successではない。",
+  "summary": "v274では支援結果w244を確認し、任意cokernelとfinite colimit routeは親側v252で実装済みと分類した。product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",

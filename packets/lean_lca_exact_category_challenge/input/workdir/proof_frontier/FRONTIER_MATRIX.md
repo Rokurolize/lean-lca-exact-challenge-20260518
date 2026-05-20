@@ -217,3 +217,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v273 Update
 
 2026-05-20T15:02:00Z: Support result w255 was reimplemented as `audit/blockers/localization_finite_limit_transfer_inputs_w255.lean`. It refines the v271 opposite localization route by packaging concrete source facts and separate finite-product, equalizer, and finite-limit transfer-input structures. The strongest checked theorem produces finite limits in `((boundedExactWeakEquivalence MetrizableLCA).op).Localization` from those inputs. Remaining blockers are the opposite `WalkingParallelPair` functor-category localization input and opposite finite-product/parallel-pair stability. Product success remains nonterminal.
+
+## v274 Update
+
+2026-05-20T15:08:00Z: Support result w244 was inspected and classified as already covered by parent v252. Its arbitrary `MetrizableLCA` cokernel route and finite-colimit packaging match the committed `LeanLCAExactChallenge/LCA/Cokernel.lean` implementation, while v267-v270 already add the newer cokernel-zero/top and strict-exactness bridges. No target code was imported from w244. Product success remains nonterminal.
