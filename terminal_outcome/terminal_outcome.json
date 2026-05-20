@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v215時点で、支援worker w165を親側W151へ取り込み、binaryFanIsLimitOfEq と coneIsLimitOfEq を追加した。比較等式が得られた後のIsLimit輸送APIは整ったが、EvaluatedDegreeFanComparisonLeft/Right、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が残るため、成果物は非終端である。",
+  "summary": "v216時点で、支援worker w166を親側W151へ取り込み、EvaluatedDegreeFanComparisonLeft を証明する evaluatedDegreeFanComparisonLeft_direct を追加した。評価済みfan比較は右leg等式だけに縮約されたが、その右leg、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が残るため、成果物は非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -676,8 +676,8 @@
     "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
   ],
   "known_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v215で比較等式後のIsLimit輸送補助は入ったが、EvaluatedDegreeFanComparisonLeft と EvaluatedDegreeFanComparisonRight は未証明。",
-    "Option product decomposition 本体は、transported complex fan、degreewise limiting fan、evalProductPointIso、evalTailProductPointIso、左右leg境界、等式によるIsLimit輸送、HomologicalComplex.isLimitOfEval消費経路、OptionProductIsoBiprodへのcone-point変換を持つが、左右legの自然性計算が未完了。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v216でEvaluatedDegreeFanComparisonLeftは証明済みになったが、EvaluatedDegreeFanComparisonRight は未証明。",
+    "Option product decomposition 本体は、left leg証明、right leg境界、等式によるIsLimit輸送、HomologicalComplex.isLimitOfEval消費経路、OptionProductIsoBiprodへのcone-point変換を持つが、右legの補完reindex/evalTailProductPointIso自然性計算が未完了。",
     "Dbounded equalizer/pullback transfer、有限colimit、pretriangulated/triangulated構造、stable infinity-category enhancement は未完了。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",

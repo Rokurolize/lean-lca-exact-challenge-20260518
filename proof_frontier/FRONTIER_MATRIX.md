@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T06:20:38Z
+Generated: 2026-05-20T06:28:47Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -75,3 +75,8 @@ v214 consumes completed support worker w164 and includes the v213 downstream ass
 ## v215 Update
 
 v215 consumes support worker w165 by adding binaryFanIsLimitOfEq and coneIsLimitOfEq to W151. These equality-transport helpers are the small post-comparison assembly API needed to turn a proved evaluated fan equality into the exact IsLimit shape consumed by HomologicalComplex.isLimitOfEval. Product success remains nonterminal.
+
+
+## v216 Update
+
+v216 consumes support worker w166 by promoting evaluatedDegreeFanComparisonLeft_direct into W151. The evaluated-degree fan comparison is now reduced to the right-leg equality only, because the left leg is proved and w164 already provided evaluatedDegreeFanComparison_of_left_right. Product success remains nonterminal.

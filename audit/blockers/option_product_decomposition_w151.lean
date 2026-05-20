@@ -547,6 +547,73 @@ abbrev EvaluatedDegreeFanComparisonRight {J : Type w}
   (evaluatedOptionProductComplexBinaryFan C K n).snd =
     (optionProductDegreeFanWithEvaluatedTargets C K n).snd
 
+/-- The left leg of the evaluated-degree fan comparison. -/
+theorem evaluatedDegreeFanComparisonLeft_direct {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)] :
+    EvaluatedDegreeFanComparisonLeft C K n := by
+  have hleft_complex :
+      (Pi.binaryFanOfProp K (fun x : Option J => x = none)).fst ≫
+          Pi.π (fun i : {x : Option J // x = none} => K i.val) default =
+        Pi.π K (default : {x : Option J // x = none}).val := by
+    simpa [Pi.binaryFanOfProp] using
+      (Pi.map'_comp_π
+        (f := K)
+        (g := fun i : {x : Option J // x = none} => K i.val)
+        (p := Subtype.val)
+        (q := fun _ => 𝟙 _)
+        (b := default))
+  have hleft_degree :
+      (Pi.binaryFanOfProp K (fun x : Option J => x = none)).fst.f n ≫
+          (Pi.π (fun i : {x : Option J // x = none} => K i.val) default).f n =
+        (Pi.π K (default : {x : Option J // x = none}).val).f n := by
+    simpa using
+      congrArg
+        (fun f :
+          ∏ᶜ K ⟶ K (default : {x : Option J // x = none}).val => f.f n)
+        hleft_complex
+  have hright_degree :
+      (Pi.binaryFanOfProp (fun i : Option J => (K i).X n) (fun x : Option J => x = none)).fst ≫
+          Pi.π (fun i : {x : Option J // x = none} => (K i.val).X n) default =
+        Pi.π (fun i : Option J => (K i).X n)
+          (default : {x : Option J // x = none}).val := by
+    simpa [Pi.binaryFanOfProp] using
+      (Pi.map'_comp_π
+        (f := fun i : Option J => (K i).X n)
+        (g := fun i : {x : Option J // x = none} => (K i.val).X n)
+        (p := Subtype.val)
+        (q := fun _ => 𝟙 _)
+        (b := default))
+  have hleft_degree_limit :
+      (Pi.binaryFanOfProp K (fun x : Option J => x = none)).fst.f n ≫
+          (limit.π (Discrete.functor fun i : {x : Option J // x = none} => K i.val)
+            default).f n =
+        (Pi.π K (default : {x : Option J // x = none}).val).f n := by
+    simpa [Pi.π] using hleft_degree
+  have hright_degree_limit :
+      (Pi.binaryFanOfProp (fun i : Option J => (K i).X n) (fun x : Option J => x = none)).fst ≫
+          limit.π (Discrete.functor fun i : {x : Option J // x = none} => (K i.val).X n)
+            default =
+        Pi.π (fun i : Option J => (K i).X n)
+          (default : {x : Option J // x = none}).val := by
+    simpa [Pi.π] using hright_degree
+  simp [EvaluatedDegreeFanComparisonLeft, evaluatedOptionProductComplexBinaryFan,
+    optionProductDegreeFanWithEvaluatedTargets, optionProductComplexTransportedBinaryFan,
+    optionProductDegreeTransportedBinaryFan, optionProductBinaryFan, optionProductDegreeBinaryFan,
+    noneSubproductIso, noneSubproductDegreeIso]
+  refine hleft_degree_limit.trans ?_
+  refine (evalProductPointIso_hom_π C K n
+    (default : {x : Option J // x = none}).val).symm.trans ?_
+  simpa [Category.assoc] using
+    congrArg (fun f => (evalProductPointIso C K n).hom ≫ f) hright_degree_limit.symm
+
 /--
 Binary-fan extensionality reduces the evaluated fan comparison to exactly the two projection legs.
 -/
@@ -692,6 +759,7 @@ section Checks
 #check EvaluatedDegreeFanComparison
 #check EvaluatedDegreeFanComparisonLeft
 #check EvaluatedDegreeFanComparisonRight
+#check evaluatedDegreeFanComparisonLeft_direct
 #check evaluatedDegreeFanComparison_of_left_right
 #check DegreewiseProductApiState
 #check currentDegreewiseProductApiState

@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T06:20:38Z",
+  "generated_utc": "2026-05-20T06:28:47Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v215 consumes completed consultant support w165; support w166 is active on the left-leg naturality calculation.",
+  "worker_policy": "No workers were launched from the target worktree. v216 consumes completed consultant support w166; support w167 remains active on the right-leg naturality calculation.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1340,10 +1340,10 @@
     }
   },
   "latest_parent_update": {
-    "version": "v215",
-    "timestamp_utc": "2026-05-20T06:20:38Z",
-    "summary": "v215 consumes support worker w165 by adding binaryFanIsLimitOfEq and coneIsLimitOfEq to W151. These equality-transport helpers are the small post-comparison assembly API needed to turn a proved evaluated fan equality into the exact IsLimit shape consumed by HomologicalComplex.isLimitOfEval.",
-    "consumed_support_worker": "w165-option-islimit-assembly",
-    "remaining_next_step": "prove EvaluatedDegreeFanComparisonLeft and EvaluatedDegreeFanComparisonRight, then use equality transport and the v214 consumer path."
+    "version": "v216",
+    "timestamp_utc": "2026-05-20T06:28:47Z",
+    "summary": "v216 consumes support worker w166 by promoting evaluatedDegreeFanComparisonLeft_direct into W151. The evaluated-degree fan comparison is now reduced to the right-leg equality only, because the left leg is proved and w164 already provided evaluatedDegreeFanComparison_of_left_right.",
+    "consumed_support_worker": "w166-evaluated-degree-fan-left-leg",
+    "remaining_next_step": "prove EvaluatedDegreeFanComparisonRight, then combine with evaluatedDegreeFanComparisonLeft_direct and evaluatedDegreeFanComparison_of_left_right."
   }
 }

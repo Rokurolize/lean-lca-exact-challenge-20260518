@@ -243,3 +243,8 @@
 <h2>v215 w165 islimit equality transport</h2>
 <p><time>2026-05-20T06:20:38Z</time>: The parent consumed support worker w165 by adding <code>binaryFanIsLimitOfEq</code> and <code>coneIsLimitOfEq</code> to W151. These helpers do not prove either remaining leg, but they remove a downstream packaging concern: once a comparison equality is available, the corresponding <code>IsLimit</code> proof can be transported into the exact cone shape expected by <code>HomologicalComplex.isLimitOfEval</code>.</p>
 </section>
+
+<section id="v216-w166-left-leg">
+<h2>v216 w166 left leg</h2>
+<p><time>2026-05-20T06:28:47Z</time>: The parent consumed support worker w166 by promoting <code>evaluatedDegreeFanComparisonLeft_direct</code> into W151. The proof uses <code>Pi.map'_comp_π</code> for both the complex-level and degreewise none-subproduct projections, then links them through <code>evalProductPointIso_hom_π</code>. The right leg remains open and is owned by active support worker w167.</p>
+</section>
