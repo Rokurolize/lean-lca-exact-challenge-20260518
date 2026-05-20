@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T11:05:34Z",
+  "generated_utc": "2026-05-20T11:08:49Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1282,10 +1282,11 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "support w224 was parent-reimplemented as an opposite functor-category localization input normalization; support w225 remains external/in progress.",
-  "latest_parent_update": "v243-opposite-functor-localization-input",
-  "summary": "v243時点で、support w224 の有用部分を親側で再実装し、audit/blockers/opposite_functor_localization_input_w224.lean を追加した。反対側 WalkingParallelPair functor-category localization 入力は、w223 と同じ CategoryTheory.Localization.W224FunctorCategoryLocalizationInput 形へ正規化され、抽象 opposite localization と direct model (Dbounded.localization C).op の両方の条件付き consumer が記録された。これは finite-colimit route の frontier 縮約であり、非離散 functor-category localization 定理そのもの、opposite left calculus、有限product安定性、三角構造、stable infinity-category 構造はまだ未完了である。",
+  "support_result_classification": "support w224/w225 were parent-reimplemented as opposite functor-category localization and exact-acyclic HomotopyEquiv transport frontier reductions.",
+  "latest_parent_update": "v244-exact-acyclic-homotopy-equiv-transport",
+  "summary": "v244時点で、support w224/w225 の有用部分を親側で再実装し、audit/blockers/opposite_functor_localization_input_w224.lean と audit/blockers/exact_acyclic_homotopy_equiv_transport_w225.lean を追加した。反対側 WalkingParallelPair functor-category localization 入力は W224FunctorCategoryLocalizationInput 形へ正規化され、exactAcyclicHomotopyIsoClosure collapse は ExactAcyclicTransportOfHomotopyEquiv C、すなわち exactAcyclic_of_homotopyEquiv へ縮約された。どちらも frontier 縮約であり、非離散 functor-category localization、HomotopyEquiv 沿い exactAcyclic 輸送、left calculus、有限余極限、三角構造、stable infinity-category 構造はまだ未完了である。",
   "remaining_frontier": [
+    "Dbounded left calculus: exact-acyclic iso-closure collapse is reduced to exactAcyclic_of_homotopyEquiv; the HomotopyEquiv transport theorem remains missing.",
     "Dbounded finite colimits: opposite WalkingParallelPair functor-category localization input is normalized to W224FunctorCategoryLocalizationInput; the non-discrete functor-category localization theorem remains missing.",
     "Dbounded finite products: bounded homotopy exact weak equivalence is definitionally an inverse image; inverse-image left-calculus transfer remains missing.",
     "Dbounded finite limits: WalkingParallelPair functor-category localization now reduces to two fixed-target universal properties after objectwise inversion.",

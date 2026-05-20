@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v243時点で、support w224 の有用部分を親側で再実装し、audit/blockers/opposite_functor_localization_input_w224.lean を追加した。反対側 WalkingParallelPair functor-category localization 入力は、w223 と同じ CategoryTheory.Localization.W224FunctorCategoryLocalizationInput 形へ正規化され、抽象 opposite localization と direct model (Dbounded.localization C).op の両方の条件付き consumer が記録された。これは finite-colimit route の frontier 縮約であり、非離散 functor-category localization 定理そのもの、opposite left calculus、有限product安定性、三角構造、stable infinity-category 構造はまだ未完了である。",
+  "summary": "v244時点で、support w224/w225 の有用部分を親側で再実装し、audit/blockers/opposite_functor_localization_input_w224.lean と audit/blockers/exact_acyclic_homotopy_equiv_transport_w225.lean を追加した。反対側 WalkingParallelPair functor-category localization 入力は W224FunctorCategoryLocalizationInput 形へ正規化され、exactAcyclicHomotopyIsoClosure collapse は ExactAcyclicTransportOfHomotopyEquiv C、すなわち exactAcyclic_of_homotopyEquiv へ縮約された。どちらも frontier 縮約であり、非離散 functor-category localization、HomotopyEquiv 沿い exactAcyclic 輸送、left calculus、有限余極限、三角構造、stable infinity-category 構造はまだ未完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -24,7 +24,8 @@
     "lake env lean audit/blockers/exact_acyclic_iso_closure_collapse_w221.lean",
     "lake env lean audit/blockers/whiskering_right_localization_general_w223.lean",
     "lake env lean audit/blockers/inverse_image_left_calculus_transfer_w226.lean",
-    "lake env lean audit/blockers/opposite_functor_localization_input_w224.lean"
+    "lake env lean audit/blockers/opposite_functor_localization_input_w224.lean",
+    "lake env lean audit/blockers/exact_acyclic_homotopy_equiv_transport_w225.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -679,6 +680,7 @@
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
+    "ExactAcyclicTransportOfHomotopyEquiv C は iso-closure collapse と接続されたが、exactAcyclic_of_homotopyEquiv 自体は未供給である。",
     "反対側 WalkingParallelPair functor-category localization 入力は W224FunctorCategoryLocalizationInput 形へ正規化されたが、非離散 functor-category localization 定理そのものは未供給である。",
     "exactAcyclicHomotopyIsoClosure collapse は HomotopyEquiv 沿いの exactAcyclic 輸送へ縮約されたが、その輸送定理は MetrizableLCA で無条件には未供給である。",
     "direct bounded left calculus は iso-closure collapse と bounded homotopy inverse-image calculus transfer に分解されたが、どちらも無条件には未供給である。",
@@ -691,14 +693,15 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",
   "packet_sha256_sidecar": "",
-  "git_commit": "uncommitted-v243",
+  "git_commit": "uncommitted-v244",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v243 parent-reimplemented support w224; opposite WalkingParallelPair functor-category localization input is normalized to W224FunctorCategoryLocalizationInput. w225 exact-acyclic HomotopyEquiv transport remains external/in progress.",
+  "worker_frontier_summary": "v244 parent-reimplemented support w224/w225; opposite functor-category input is normalized and exact-acyclic iso-closure collapse is reduced to exactAcyclic_of_homotopyEquiv. Product success remains nonterminal.",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
     "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
+    "ExactAcyclicTransportOfHomotopyEquiv C は iso-closure collapse と接続されたが、exactAcyclic_of_homotopyEquiv 自体は未供給である。",
     "反対側 WalkingParallelPair functor-category localization 入力は W224FunctorCategoryLocalizationInput 形へ正規化されたが、非離散 functor-category localization 定理そのものは未供給である。",
     "exactAcyclicHomotopyIsoClosure collapse は HomotopyEquiv 沿いの exactAcyclic 輸送へ縮約されたが、その輸送定理は MetrizableLCA で無条件には未供給である。",
     "direct bounded left calculus は iso-closure collapse と bounded homotopy inverse-image calculus transfer に分解されたが、どちらも無条件には未供給である。",
@@ -712,7 +715,7 @@
     "WalkingParallelPair functor-category localization input が未完了。",
     "parallel-pair mapping-cone安定性のproduct-facing接続が未完了。"
   ],
-  "next_recommended_goal": "Prove exactAcyclic transport along HomotopyEquiv if support w225 completes, otherwise prove the non-discrete WalkingParallelPair functor-category localization fixed-target universal properties needed by w223/w224.",
+  "next_recommended_goal": "Prove exactAcyclic_of_homotopyEquiv for the local Quillen exact-category API, or prove the non-discrete WalkingParallelPair functor-category localization fixed-target universal properties needed by w223/w224.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -951,10 +954,16 @@
     "OppositeFunctorLocalizationInputW224.oppositeLocalizationHasWalkingParallelPairLimits_of_functorCategoryLocalization",
     "OppositeFunctorLocalizationInputW224.DirectOppositeWalkingParallelPairFunctorCategoryLocalizationInput",
     "OppositeFunctorLocalizationInputW224.dboundedOpHasWalkingParallelPairLimits_of_directFunctorCategoryLocalization",
-    "OppositeFunctorLocalizationInputW224.oppositeLocalizationHasEqualizers_of_functorCategoryLocalization"
+    "OppositeFunctorLocalizationInputW224.oppositeLocalizationHasEqualizers_of_functorCategoryLocalization",
+    "ExactAcyclicHomotopyEquivTransportW225.ExactAcyclicTransportOfHomotopyEquiv",
+    "ExactAcyclicHomotopyEquivTransportW225.ExactAcyclicIsoClosureCollapse",
+    "ExactAcyclicHomotopyEquivTransportW225.exactAcyclicTransportOfHomotopyEquiv_of_isClosedUnderIsomorphisms",
+    "ExactAcyclicHomotopyEquivTransportW225.exactAcyclicIsoClosureCollapse_of_homotopyEquivTransport",
+    "ExactAcyclicHomotopyEquivTransportW225.exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_isoClosureCollapse",
+    "ExactAcyclicHomotopyEquivTransportW225.exactAcyclicTransportOfHomotopyEquiv_of_isoClosureCollapse"
   ],
-  "generated_utc": "2026-05-20T11:05:34Z",
-  "support_result_classification": "support w224 was parent-reimplemented as an opposite functor-category localization input normalization; support w225 remains external/in progress.",
+  "generated_utc": "2026-05-20T11:08:49Z",
+  "support_result_classification": "support w224/w225 were parent-reimplemented as opposite functor-category localization and exact-acyclic HomotopyEquiv transport frontier reductions.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",

@@ -1,9 +1,14 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v243-opposite-functor-localization-input",
-  "generated_utc": "2026-05-20T11:05:34Z",
-  "source_tree_hash": "a91c560deb2405b4449636f6a9be6ce42508e2cebfc126a9f582dd8e14b2662d",
-  "summary": "v243時点で、support w224 の有用部分を親側で再実装し、audit/blockers/opposite_functor_localization_input_w224.lean を追加した。反対側 WalkingParallelPair functor-category localization 入力は、w223 と同じ CategoryTheory.Localization.W224FunctorCategoryLocalizationInput 形へ正規化され、抽象 opposite localization と direct model (Dbounded.localization C).op の両方の条件付き consumer が記録された。これは finite-colimit route の frontier 縮約であり、非離散 functor-category localization 定理そのもの、opposite left calculus、有限product安定性、三角構造、stable infinity-category 構造はまだ未完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v244-exact-acyclic-homotopy-equiv-transport",
+  "generated_utc": "2026-05-20T11:08:49Z",
+  "source_tree_hash": "befc1163981fb4abd5f2a77c854e82c02600a5f387ce81c964f72f9092ddaca6",
+  "summary": "v244時点で、support w224/w225 の有用部分を親側で再実装し、audit/blockers/opposite_functor_localization_input_w224.lean と audit/blockers/exact_acyclic_homotopy_equiv_transport_w225.lean を追加した。反対側 WalkingParallelPair functor-category localization 入力は W224FunctorCategoryLocalizationInput 形へ正規化され、exactAcyclicHomotopyIsoClosure collapse は ExactAcyclicTransportOfHomotopyEquiv C、すなわち exactAcyclic_of_homotopyEquiv へ縮約された。どちらも frontier 縮約であり、非離散 functor-category localization、HomotopyEquiv 沿い exactAcyclic 輸送、left calculus、有限余極限、三角構造、stable infinity-category 構造はまだ未完了である。",
   "commands": [
+    {
+      "command": "lake env lean audit/blockers/exact_acyclic_homotopy_equiv_transport_w225.lean",
+      "status": "passed",
+      "evidence": "Focused exact-acyclic HomotopyEquiv transport boundary check passed after v244."
+    },
     {
       "command": "lake env lean audit/blockers/opposite_functor_localization_input_w224.lean",
       "status": "passed",
@@ -473,6 +478,7 @@
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
+    "ExactAcyclicTransportOfHomotopyEquiv C は iso-closure collapse と接続されたが、exactAcyclic_of_homotopyEquiv 自体は未供給である。",
     "反対側 WalkingParallelPair functor-category localization 入力は W224FunctorCategoryLocalizationInput 形へ正規化されたが、非離散 functor-category localization 定理そのものは未供給である。",
     "exactAcyclicHomotopyIsoClosure collapse は HomotopyEquiv 沿いの exactAcyclic 輸送へ縮約されたが、その輸送定理は MetrizableLCA で無条件には未供給である。",
     "direct bounded left calculus は iso-closure collapse と bounded homotopy inverse-image calculus transfer に分解されたが、どちらも無条件には未供給である。",
@@ -482,5 +488,5 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "support w224 was parent-reimplemented as an opposite functor-category localization input normalization; support w225 remains external/in progress."
+  "support_result_classification": "support w224/w225 were parent-reimplemented as opposite functor-category localization and exact-acyclic HomotopyEquiv transport frontier reductions."
 }
