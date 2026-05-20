@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-20T23:04:00Z",
+  "generated_utc": "2026-05-20T23:07:00Z",
   "source_tree_hash": "f10c7e5a5f687f79f7712db87b217f72780d9ba6b58ec061f3cc0a5538926c86",
-  "summary": "W377-W380 verify closed-map, transported relation, degreewise cokernel, and component closed-map support; product_complete remains false.",
+  "summary": "W377-W381 verify closed-map, transported relation, degreewise cokernel, component closed-map, and ordinary-to-transported support; product_complete remains false.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -2323,6 +2323,16 @@
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_component_closedmap_v370_support_w380.lean",
       "status": "passed",
       "evidence": "Explicit forbidden-token rg scan returned no matches for W380."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_left_lca_ordinary_fields_to_transported_v370_support_w381.lean",
+      "status": "passed",
+      "evidence": "W381 ordinary-fields-to-transported relation support checked."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_ordinary_fields_to_transported_v370_support_w381.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W381."
     }
   ],
   "implemented_declarations_checked": [
@@ -3224,7 +3234,15 @@
     "ConcreteMetrizableLCA.ConcreteQuotientClosedMapRelationInputsW380.to_w377_relation_fields_shape",
     "wppOpOrdinaryCodomainMap_closedMap_of_objectwise_closedEmbeddingW380",
     "WppOpConcreteQuotientClosedMapRelationInputsW380.to_w377_relation_fields_shape",
-    "currentWppOpComponentClosedMapV370SupportStateW380_productSuccess"
+    "currentWppOpComponentClosedMapV370SupportStateW380_productSuccess",
+    "wppOpTransportedConcreteQuotientCocone",
+    "wppOpTransportedConcreteQuotientCoconeIsColimit",
+    "OrdinaryRelationPullbackDescendedFieldsW381",
+    "OrdinaryToTransportedRelationFieldInputsW381",
+    "ordinary_fields_to_transportedRelationPullbackTopologicalFieldsW381",
+    "ordinary_fields_to_w375_transport_relation_consumerW381",
+    "remainingOrdinaryToTransportedRelationFieldInputsW381_count",
+    "currentWppOpLeftLcaOrdinaryFieldsToTransportedV370StateW381_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -3369,9 +3387,15 @@
     "canonical AddCommGrp cokernel rowをforgotten WPP-op colimit rowと同一視するtargetIsoはまだ未証明である。",
     "audit境界として定義したW379 schemaを通常moduleから再利用する必要がある場合の昇格作業はまだ未実施である。",
     "W380後も具体WPP-op quotient relationのrelation-pullback equalityはまだ未証明である。",
-    "W380後もordinary codomain componentを通じたtarget relation liftingはまだ未証明である。"
+    "W380後もordinary codomain componentを通じたtarget relation liftingはまだ未証明である。",
+    "W381で必要なordinary quotient/cofork source pointとtransported concrete quotient cocone source pointの同一視はまだ未証明である。",
+    "W381で必要なordinary quotient/cofork target pointとtransported concrete quotient cocone target pointの同一視はまだ未証明である。",
+    "transported descended mapがordinary descended quotient mapと共役であることはまだ未証明である。",
+    "source/target point isomorphismsを通じたinjectivityの移送はまだ未証明である。",
+    "source/target point isomorphismsを通じたIsInducingの移送はまだ未証明である。",
+    "source/target point isomorphismsを通じたclosed rangeの移送はまだ未証明である。"
   ],
-  "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success. w377: parent-verified WPP-op closed-map remaining-fields support; target quotient closed-on-saturated theorem and W374/W371 packaging now yield descended closed-map from component closed-map, relation pullback equality, and target relation lifting. Product success remains false. w378: parent-verified partial transported relation-fields support; W375/W354 transported fields are fixed as injective, inducing, and closed-range data with a consumer adapter. Product success remains false. w379: parent-verified AddCommGrp degreewise cokernel data support; canonical componentwise cokernel short complex supplies concrete degreewise cofork data, component colimits, W376 target presentation, and difference Snake consumers. Product success remains false. w380: parent-verified component closed-map support; objectwise closed embedding supplies the W377 ordinary codomain component closed-map input, leaving relation-pullback equality and target relation lifting. Product success remains false.",
+  "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success. w377: parent-verified WPP-op closed-map remaining-fields support; target quotient closed-on-saturated theorem and W374/W371 packaging now yield descended closed-map from component closed-map, relation pullback equality, and target relation lifting. Product success remains false. w378: parent-verified partial transported relation-fields support; W375/W354 transported fields are fixed as injective, inducing, and closed-range data with a consumer adapter. Product success remains false. w379: parent-verified AddCommGrp degreewise cokernel data support; canonical componentwise cokernel short complex supplies concrete degreewise cofork data, component colimits, W376 target presentation, and difference Snake consumers. Product success remains false. w380: parent-verified component closed-map support; objectwise closed embedding supplies the W377 ordinary codomain component closed-map input, leaving relation-pullback equality and target relation lifting. Product success remains false. w381: parent-verified partial ordinary-to-transported relation-field support; ordinary W352-style fields can feed W378/W375 once point identifications, descended-map conjugacy, and injective/inducing/closed-range transports are proved. Product success remains false.",
   "product_success": false,
-  "remaining_work": "Prove relation-pullback equality and target relation lifting for W380/W377, W378 transported cocone identification, and W379 strict difference rows plus targetIso to the forgotten WPP-op colimit row."
+  "remaining_work": "Prove W381 point identifications, descended-map conjugacy, and field transports; prove W377 relation-pullback equality and target relation lifting; complete W379 strict difference rows and targetIso."
 }
