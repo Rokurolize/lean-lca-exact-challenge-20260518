@@ -962,3 +962,9 @@
 <p>The companion audit <code>audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean</code> checks the source-backed declaration set and records that this remains an API reduction, not a concrete WPP-op row construction.</p>
 <p>This narrows the nondegenerate AddCommGrp route to concrete row data: construct the kernel row and cokernel row certificates from the WPP-op colimit/cofork presentation, identify the WPP-op colimit short complex with the cokernel row of <code>u - v</code>, and transport the required <code>Epi L₁.g</code> and <code>Mono L₂.f</code> strictness hypotheses.</p>
 </section>
+
+<section id="w347-w349-left-lca-v368-support">
+<h2>W347-W349 left LCA support</h2>
+<p><time>2026-05-21T05:36:00Z</time>: The parent consumed <code>w347-iscolimit-map-closed-embedding-v368</code>, <code>w348-descended-quotient-iscolimit-map-v368</code>, and <code>w349-relation-pullback-condition-v368</code>. W347 proves that the canonical <code>IsColimit.map</code> closed-embedding boundary is equivalent to W318's injective/inducing/closed-image certificate. W348 packages quotient-presenting source and target cocones, descended leg equations, and descended closed-map fields into a certificate proving closed embedding for <code>IsColimit.map</code>. W349 proves that, under the square equations, relation pullback equality is equivalent to the reverse relation-preimage condition and to the closed-range preimage equality.</p>
+<p>These files are nonterminal reductions. The remaining left LCA work is the concrete quotient/coequalizer cocone construction, its colimit proof, descended leg equations, descended closed-map fields, and the reverse relation-preimage or equivalent closed-range preimage theorem.</p>
+</section>

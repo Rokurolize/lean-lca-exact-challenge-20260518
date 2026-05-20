@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v369-addcommgrp-strict-difference-cokernel-source",
-  "generated_utc": "2026-05-20T21:32:00Z",
-  "source_tree_hash": "5fedf9e10388c2aa6d3660644d9a7420fbbb77ef0241338e8b0586fa9ca1ed0d",
+  "generated_utc": "2026-05-20T21:36:00Z",
+  "source_tree_hash": "b46e330012692d7a7eddd0816aafaeab5282d140b4c493ce5a3f08957dc52339",
   "summary": "v369 adds source-backed AddCommGrp difference-cokernel SnakeInput support: strict component fields now supply the exact/epi/mono side data, leaving concrete kernel/cokernel row certificates and the colimit-row iso. product_complete remains false.",
   "commands": [
     {
@@ -1988,6 +1988,26 @@
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/AddCommGrpSnakeInputDifferenceCokernel.lean audit/blockers/addcommgrp_snakeinput_difference_cokernel_v367_support_w344.lean audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean",
       "status": "passed",
       "evidence": "Explicit forbidden-token rg scan returned no matches for W344/W345 source and audit files."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_iscolimit_map_closed_embedding_v368_support_w347.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for wpp_op_iscolimit_map_closed_embedding_v368_support_w347.lean."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_descended_quotient_iscolimit_map_v368_support_w348.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for wpp_op_descended_quotient_iscolimit_map_v368_support_w348.lean."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_relation_pullback_condition_v368_support_w349.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for wpp_op_relation_pullback_condition_v368_support_w349.lean."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_iscolimit_map_closed_embedding_v368_support_w347.lean audit/blockers/wpp_op_descended_quotient_iscolimit_map_v368_support_w348.lean audit/blockers/wpp_op_relation_pullback_condition_v368_support_w349.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W347-W349."
     }
   ],
   "implemented_declarations_checked": [
@@ -2655,10 +2675,18 @@
     "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernel.strictSnakeCokernelData_of_parallelPairDifferenceStrictCokernelData",
     "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernel.addCommGrpKernelExact_of_parallelPairDifferenceStrictCokernelData",
     "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernelW345.w345SourceDeclarationNames_count",
-    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernelW345.currentW345SourceSupportState_productSuccess"
+    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernelW345.currentW345SourceSupportState_productSuccess",
+    "LeanLCAExactChallenge.WppOpIscolimitMapClosedEmbeddingV368SupportW347.wppOp_lca_colimitMap_isClosedEmbedding_boundary_iff_injective_inducing_closedImage",
+    "LeanLCAExactChallenge.WppOpDescendedQuotientIsColimitMapV368SupportW348.DescendedQuotientIsColimitMapCertificate",
+    "LeanLCAExactChallenge.WppOpDescendedQuotientIsColimitMapV368SupportW348.isColimitMap_closedEmbedding_of_certificate",
+    "LeanLCAExactChallenge.WppOpDescendedQuotientIsColimitMapV368SupportW348.isColimitMap_fields_of_certificate",
+    "LeanLCAExactChallenge.MetrizableLCA.relationPreimagePullbackConditionIffReverseW349",
+    "LeanLCAExactChallenge.MetrizableLCA.relationPreimagePullbackConditionIffClosedRangeEqualityW349",
+    "LeanLCAExactChallenge.MetrizableLCA.RelationPullbackConditionBoundaryW349"
   ],
   "product_complete": false,
   "known_gaps": [
+    "W347-W349でIsColimit.map closed embedding、descended quotient certificate、relation pullback条件の消費口は整理済みだが、具体quotient/coequalizer cocone、colimit証明、descended leg equation、descended closed-map fields、逆向きrelation-preimage本体は未証明である。",
     "W345でsource-backed difference SnakeInput auditは検証済みだが、difference kernel row、difference cokernel row、WPP-op colimit短複体との同型は未構成である。",
     "W344でparallel pairの差`u - v`をSnakeInput中央写像として使う非退化cokernel-row APIは検証済みだが、具体WPP-op colimit/cofork dataからkernel/cokernel row certificate、colimit-row同一視、Epi/Mono strictness transportを構成する部分は未証明である。",
     "W341-W343でdegenerate SnakeInput、left LCA closed-map field consumer、reverse relation-preimage pullback境界は検証済みだが、具体relation pullback equality、quotient compatibility、descended closed-map、AddCommGrp strict kernel exactnessは未証明である。",

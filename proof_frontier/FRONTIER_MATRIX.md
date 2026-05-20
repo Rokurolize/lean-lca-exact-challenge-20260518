@@ -489,3 +489,6 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ## W345 Source-Backed Difference SnakeInput Audit
 2026-05-20T21:32:00Z: `audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean` checks the W344 source declaration set and records the three remaining row-construction inputs. Product success remains false; this is a source-backed audit marker, not a proof of the concrete WPP-op row certificates.
+
+## W347-W349 Left LCA v368 Support
+2026-05-20T21:36:00Z: W347 makes the `IsColimit.map` closed-embedding boundary equivalent to W318's left LCA fields. W348 bundles quotient-presenting cocones, descended leg equations, and descended closed-map fields into a certificate proving closed embedding for the canonical `IsColimit.map`. W349 proves relation pullback equality equivalent to the reverse relation-preimage condition and closed-range preimage equality under the square equations. Product success remains false because the concrete quotient/coequalizer cocones, colimit proofs, descended fields, and reverse-preimage theorem are still missing.
