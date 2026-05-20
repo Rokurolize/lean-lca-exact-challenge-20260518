@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v256時点で、ShortComplex.QuasiIso だけでは MetrizableLCA.strictShortExact を輸送できないことを、0→0→0 から 0→0→ZMod 2 へのquasi-isomorphism反例としてLeanで確認した。したがってv254の不足は単なる未実装ではなく、target surjectivity/open-map/topological情報などの追加仮定が必要である。product success は非完了である。",
+  "summary": "v257時点で、支援w241を親側で再実装し、WalkingParallelPair のroof dataからstrict pair dataへ進む条件付きfac/naturality橋を追加した。roof arrowをselected endpoint strict source arrowへ変換するcoherent theoremは未供給なので、functor-category localization と product success は非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -44,7 +44,9 @@
     "lake env lean audit/blockers/wpp_roof_blueprint_w236.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_roof_blueprint_w236.lean",
     "lake env lean audit/blockers/quasiiso_not_strict_transport_counterexample_w256.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/quasiiso_not_strict_transport_counterexample_w256.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/quasiiso_not_strict_transport_counterexample_w256.lean",
+    "lake env lean audit/blockers/wpp_roof_fac_uniq_w241.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_roof_fac_uniq_w241.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",

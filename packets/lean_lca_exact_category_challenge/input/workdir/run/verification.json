@@ -1,9 +1,19 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v256-quasiiso-not-strict-transport-counterexample",
-  "generated_utc": "2026-05-20T12:28:00Z",
-  "source_tree_hash": "abfe28d47a173a7d0a9fc0c32f8c566641d9f390504e1c469f5c5173692a8263",
-  "summary": "v256時点で、ShortComplex.QuasiIso だけでは MetrizableLCA.strictShortExact を輸送できないことを、0→0→0 から 0→0→ZMod 2 へのquasi-isomorphism反例としてLeanで確認した。したがってv254の不足は単なる未実装ではなく、target surjectivity/open-map/topological情報などの追加仮定が必要である。product success は非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v257-wpp-roof-fac-uniq",
+  "generated_utc": "2026-05-20T12:40:00Z",
+  "source_tree_hash": "33c9b9e1c91c0c34a920b6cb0cc5d2945ba6a5ccdb8f6af9ccef8a95a79138e8",
+  "summary": "v257時点で、支援w241を親側で再実装し、WalkingParallelPair のroof dataからstrict pair dataへ進む条件付きfac/naturality橋を追加した。roof arrowをselected endpoint strict source arrowへ変換するcoherent theoremは未供給なので、functor-category localization と product success は非完了である。",
   "commands": [
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_roof_fac_uniq_w241.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W241 audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_roof_fac_uniq_w241.lean",
+      "status": "passed",
+      "evidence": "Focused W241 roof fac/uniq bridge audit passed in the parent target worktree."
+    },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/quasiiso_not_strict_transport_counterexample_w256.lean",
       "status": "passed",
@@ -177,7 +187,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v256 focused edit."
+      "evidence": "Whitespace diff check passed after v257 focused edit."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -621,7 +631,12 @@
     "QuasiIsoNotStrictTransportCounterexampleW256.source_strict",
     "QuasiIsoNotStrictTransportCounterexampleW256.quasiIso_zero_to_target",
     "QuasiIsoNotStrictTransportCounterexampleW256.target_not_strict",
-    "QuasiIsoNotStrictTransportCounterexampleW256.no_unconditional_quasiIso_strict_transport"
+    "QuasiIsoNotStrictTransportCounterexampleW256.no_unconditional_quasiIso_strict_transport",
+    "CategoryTheory.Localization.W241StrictArrowRep.fac",
+    "CategoryTheory.Localization.W241StrictPairData.comparisonIso",
+    "CategoryTheory.Localization.W241StrictNatComponentData.natTrans",
+    "CategoryTheory.Localization.W241RoofToStrictArrowTheorem",
+    "WPPRoofFacUniqW241.DboundedRoofToStrictArrowTheorem"
   ],
   "product_complete": false,
   "known_gaps": [
