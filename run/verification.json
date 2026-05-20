@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v175-dbounded-left-calculus-semantic-boundary",
-  "generated_utc": "2026-05-20T10:15:00Z",
-  "source_tree_hash": "5dd859e044ae60d88a60ec01357e423f005df970ed3bbcd4eaa1dbc51d14f77a",
-  "summary": "v175 adds a compiling Dbounded left-calculus semantic boundary audit; existing left-calculus APIs supply preadditive, zero object, and shift-additivity fields, while finite limits, finite colimits, pretriangulated, and triangulated constructors remain missing. Product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v176-dbounded-finite-products-boundary",
+  "generated_utc": "2026-05-20T10:45:00Z",
+  "source_tree_hash": "70dd70580ec8a85d61432f601c30181a8c8561a39a82962efe0695e1c12001cb",
+  "summary": "v176 adds a compiling Dbounded finite-products boundary audit. It records that mathlib can construct finite products for Dbounded from source finite products and finite-product stability, while finite limits, finite colimits, pretriangulated, and triangulated constructors remain missing. Product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v175 Dbounded left-calculus semantic boundary audit was added."
+      "evidence": "Full lake build passed after the v176 Dbounded finite-products boundary audit was added."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v175 Dbounded left-calculus semantic boundary audit was added."
+      "evidence": "Forbidden-token audit passed after the v176 Dbounded finite-products boundary audit was added."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v175 Dbounded left-calculus semantic boundary audit was added."
+      "evidence": "Required declaration audit passed after the v176 Dbounded finite-products boundary audit was added."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess declaration audit passed after the v175 Dbounded left-calculus semantic boundary audit was added; no product-success claim was added."
+      "evidence": "ProductSuccess declaration audit passed after the v176 Dbounded finite-products boundary audit was added; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after the v175 semantic boundary audit: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after the v176 finite-products boundary audit: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed before the v175 semantic boundary audit commit."
+      "evidence": "Whitespace diff check passed before the v176 finite-products boundary audit commit."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -158,6 +158,11 @@
       "command": "lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean",
       "status": "passed",
       "evidence": "Focused v175 Dbounded left-calculus semantic boundary audit passed; it separates available left-calculus fields from the four remaining stable semantic constructors."
+    },
+    {
+      "command": "lake env lean audit/blockers/dbounded_finite_products_boundary.lean",
+      "status": "passed",
+      "evidence": "Focused v176 Dbounded finite-products boundary audit passed; it records the exact Localization.hasFiniteProducts inputs for Dbounded."
     }
   ],
   "implemented_declarations_checked": [
@@ -351,7 +356,11 @@
     "DboundedSemanticInputLeftCalculusBoundary.currentLeftCalculusBoundaryState_finiteLimits_missing",
     "DboundedSemanticInputLeftCalculusBoundary.currentLeftCalculusBoundaryState_finiteColimits_missing",
     "DboundedSemanticInputLeftCalculusBoundary.currentLeftCalculusBoundaryState_pretriangulated_missing",
-    "DboundedSemanticInputLeftCalculusBoundary.currentLeftCalculusBoundaryState_triangulated_missing"
+    "DboundedSemanticInputLeftCalculusBoundary.currentLeftCalculusBoundaryState_triangulated_missing",
+    "DboundedFiniteProductsBoundary.hasFiniteProductsOfLocalizationInputs",
+    "DboundedFiniteProductsBoundary.finiteProductsLocalizationInputNames_count",
+    "DboundedFiniteProductsBoundary.currentFiniteProductsBoundaryState_source_missing",
+    "DboundedFiniteProductsBoundary.currentFiniteProductsBoundaryState_stability_missing"
   ],
   "product_complete": false,
   "known_gaps": [
