@@ -3686,5 +3686,29 @@
       "W413 PreservesColimit接続とtarget relation lift certificateを完了する。"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w416": {
+    "timestamp_utc": "2026-05-21T00:52:00Z",
+    "status": "verified_focused",
+    "summary": "W416 reduces W413 individual preservation to shape-level PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor.",
+    "touched_files": [
+      "audit/blockers/addcommgrp_forgotten_short_complex_preservation_v370_support_w416.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "forgottenShortComplexPreservesSelectedDiagramOfShape",
+      "selectedForgottenTargetMappedCoconeIsColimitOfShapePreserves",
+      "consumeW410MappedCoconeInputOfShapePreserves"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/addcommgrp_forgotten_short_complex_preservation_v370_support_w416.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_short_complex_preservation_v370_support_w416.lean",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctorを証明または供給する。",
+      "W416からW413/W410/W406/W403/W398へ接続する。",
+      "W415/W414側のrelation statementとtarget relation lift certificateを証明する。"
+    ],
+    "product_success_claimed": false
   }
 }

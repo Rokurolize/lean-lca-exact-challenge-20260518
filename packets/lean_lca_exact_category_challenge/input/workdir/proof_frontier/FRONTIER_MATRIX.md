@@ -671,6 +671,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W415 Reverse Membership To Relation Pullback
 2026-05-21T00:49:00Z: Worker support `w415-reverse-membership-to-relation-pullback-v370` was parent-verified as `audit/blockers/wpp_op_reverse_membership_to_relation_pullback_v370_support_w415.lean`. It sends W407 reverse closed-range membership directly to W399 relation-pullback descended fields once quotient compatibility and `IsClosedMap` for the ordinary descended map are available. Product success remains false because W407/W412 still needs a concrete relation proof and the final integration must feed W405 quotient compatibility plus the W408/W411/W414 closed-map route.
 
+## W416 Forgotten Short Complex Preservation
+2026-05-21T00:52:00Z: Worker support `w416-addcommgrp-forgotten-short-complex-preservation-v370` was parent-verified as `audit/blockers/addcommgrp_forgotten_short_complex_preservation_v370_support_w416.lean`. It reduces W413's individual `PreservesColimit S forgottenShortComplexFunctor` input to the shape-level assumption `[PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor]`. Product success remains false because that shape-level preservation instance still has to be proved or instantiated and then connected through W410/W406/W403/W398.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 

@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W415でW407 reverse membershipからW399 relation-pullback descended fieldsへ渡す経路を検証した。残る作業は具体W407/W412 relation statement、W405/W408/W411/W414の最終統合、W413 preservation接続、target-lift certificateであり、product successはまだ主張しない。",
+  "summary": "W416でW413のpreservation入力をshape-level PreservesColimitsOfShapeへ縮約した。残る作業はそのshape-level instance、W415/W412 relation statement、W405/W408/W411/W414統合、target-lift certificateであり、product successはまだ主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -570,7 +570,9 @@
     "lake env lean audit/blockers/wpp_op_left_lca_representative_image_saturation_v370_support_w414.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_representative_image_saturation_v370_support_w414.lean",
     "lake env lean audit/blockers/wpp_op_reverse_membership_to_relation_pullback_v370_support_w415.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_reverse_membership_to_relation_pullback_v370_support_w415.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_reverse_membership_to_relation_pullback_v370_support_w415.lean",
+    "lake env lean audit/blockers/addcommgrp_forgotten_short_complex_preservation_v370_support_w416.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_short_complex_preservation_v370_support_w416.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1589,9 +1591,9 @@
     "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess"
   ],
   "known_gaps": [
+    "W416後のAddCommGrp側では、PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctorを証明または供給し、W413/W410/W406/W403/W398へ接続する必要がある。",
     "W415後のrelation-pullback descended fields側では、実際のWPP-op morphismについてW407/W412 relation statementを証明する必要がある。",
     "W415の消費口へW405 quotient compatibilityとW408/W411/W414によるIsClosedMap経路を最終統合する必要がある。",
-    "W413後のAddCommGrp側では、PreservesColimit S forgottenShortComplexFunctorを最終routeで供給し、W410/W406/W403/W398へ接続する必要がある。",
     "W392/W386系のtarget relation lift certificateを具体的に構成し、W371/W377/W401/W395/W414のrelation-field routeへ渡す必要がある。",
     "Quillen exact category、metrizable LCA strict exact category、Yoneda-Ext、bounded derived infinity categoryの四部構成をproduct theoremとして統合する作業はまだ完了していない。"
   ],
@@ -3330,5 +3332,5 @@
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
-  "remaining_work": "W407/W412 relation statement、W405/W408/W411/W414の最終統合、W413 PreservesColimit接続、target relation lift certificateを証明する。"
+  "remaining_work": "PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor、W407/W412 relation statement、W405/W408/W411/W414統合、target relation lift certificateを証明する。"
 }
