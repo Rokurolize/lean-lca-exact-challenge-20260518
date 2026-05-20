@@ -542,3 +542,9 @@
 <p><time>2026-05-20T17:02:00Z</time>: The parent added <code>audit/blockers/opposite_finite_product_transport_w281.lean</code>. This closes the finite-product formal transport part isolated by v277/v278: for any morphism property <code>W</code>, finite-coproduct stability of <code>W</code> gives finite-product stability of <code>W.op</code>.</p>
 <p>The proof first derives a coproduct of the unopposed objects from a product in the opposite category, then compares <code>Pi.map</code> in the opposite category with <code>Sigma.map</code> in the original category through <code>opCoproductIsoProduct</code>. The direct finite-coproduct stability of <code>boundedExactWeakEquivalence MetrizableLCA</code> remains open, as does the analogous <code>WalkingParallelPair</code> colimit-to-opposite-limit transport.</p>
 </section>
+
+<section id="v283-opposite-direct-colimit-to-limit-transport">
+<h2>v283 opposite direct colimit-to-limit transport</h2>
+<p><time>2026-05-20T14:28:09Z</time>: The parent added <code>audit/blockers/opposite_direct_colimit_to_limit_transport_w283.lean</code>. This improves the v282 double-op route by proving the sharper generic theorem directly: if <code>W</code> is stable under colimits of shape <code>Jᵒᵖ</code>, then <code>W.op</code> is stable under limits of shape <code>J</code>.</p>
+<p>The proof uses mathlib's <code>coconeLeftOpOfCone</code>, <code>isColimitCoconeLeftOpOfCone</code>, and <code>NatTrans.leftOp</code>, so no comparison through <code>W.op.op</code> is needed. For the metrizable LCA bounded weak-equivalence route, the formal <code>WalkingParallelPair</code> transport gap is now closed; the remaining non-formal input is direct stability of <code>boundedExactWeakEquivalence MetrizableLCA</code> under colimits of shape <code>WalkingParallelPairᵒᵖ</code>. Product success remains false.</p>
+</section>

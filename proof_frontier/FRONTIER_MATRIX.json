@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T14:22:31Z",
+  "generated_utc": "2026-05-20T14:29:08Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v282 is parent-side proof progress on generic double-op colimit to opposite limit transport for WalkingParallelPair.",
+  "worker_policy": "No workers were launched from the target worktree. v283 is parent-side proof progress on direct colimit-to-opposite-limit transport for WalkingParallelPair.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1329,9 +1329,9 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "v281 proved the generic finite-coproduct-to-opposite-finite-product transport; product success remains false.",
-  "latest_parent_update": "v281: proved generic finite-coproduct stability to opposite finite-product stability transport.",
-  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。 v263 narrows the MetrizableLCA exactness bridge to forgetful homology preservation or a local cycles/opcycles model. v277 isolates the opposite finite-product stability gap: direct product stability is available, but the opposite route needs finite-coproduct stability and op transport. v278 extends the opposite stability frontier to WalkingParallelPair limits as well as finite products. v279 connects ShortComplex.Exact kernel extraction to v270 cokernel/epi strict-exactness consumers. v280 rules out deriving Epi T.g from ShortComplex.Exact alone or from quasi-isomorphism-transported exactness. v281 closes the finite-product formal op-transport lemma; direct finite-coproduct stability remains open.",
+  "support_result_classification": "v283 proved direct colimit-stability to opposite limit-stability transport; product success remains false.",
+  "latest_parent_update": "v283: proved direct WalkingParallelPairᵒᵖ colimit stability transports to opposite WalkingParallelPair limit stability.",
+  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。 v263 narrows the MetrizableLCA exactness bridge to forgetful homology preservation or a local cycles/opcycles model. v277 isolates the opposite finite-product stability gap: direct product stability is available, but the opposite route needs finite-coproduct stability and op transport. v278 extends the opposite stability frontier to WalkingParallelPair limits as well as finite products. v279 connects ShortComplex.Exact kernel extraction to v270 cokernel/epi strict-exactness consumers. v280 rules out deriving Epi T.g from ShortComplex.Exact alone or from quasi-isomorphism-transported exactness. v281 closes the finite-product formal op-transport lemma; direct finite-coproduct stability remains open. v283 closes the WalkingParallelPair formal op-transport lemma directly; direct WalkingParallelPairᵒᵖ colimit stability remains open.",
   "remaining_frontier": [
     "Finite-product op transport is solved by W281; remaining opposite finite-product input is direct finite-coproduct stability of boundedExactWeakEquivalence MetrizableLCA.",
     "Exactness-to-Epi is formally refuted by W256; the right endpoint must be supplied by a real right-homology or cokernel-zero/top bridge.",
@@ -1508,5 +1508,15 @@
     "Verdier comparison route now has checked calculus consumers from RightRouteInput/LeftRouteInput; missing declarations are the factorized right/left adjunctions and factorized unit/counit membership for the comparison route.",
     "Opposite bounded localization finite limits now have a conditional equalizer/finite-limit constructor; missing inputs are opposite WalkingParallelPair stability, opposite functor-category localization, finite-product stability, and identities for the opposite localizer.",
     "MetrizableLCA right-exactness now has direct surjectivity, cokernel-subgroup-top, cokernelπ=0, Epi, and zero cokernel object interfaces; upstream derived/homology/localization extraction of these plus kernel/topology fields remains missing."
+  ],
+  "open_blockers": [
+    "Finite-product op transport is solved by W281; remaining opposite finite-product input is direct finite-coproduct stability of boundedExactWeakEquivalence MetrizableLCA.",
+    "WalkingParallelPair op transport is solved directly by W283; remaining opposite WalkingParallelPair input is direct WalkingParallelPairᵒᵖ colimit stability of boundedExactWeakEquivalence MetrizableLCA."
+  ],
+  "consumed_support_results": [
+    {
+      "artifact": "audit/blockers/opposite_direct_colimit_to_limit_transport_w283.lean",
+      "result": "Direct colimit stability of W over Jᵒᵖ now transports to limit stability of W.op over J, closing the formal WalkingParallelPair op-transport gap. Direct boundedExactWeakEquivalence WalkingParallelPairᵒᵖ colimit stability remains open."
+    }
   ]
 }
