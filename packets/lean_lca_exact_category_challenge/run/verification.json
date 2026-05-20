@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T15:08:00Z",
+  "generated_utc": "2026-05-20T15:22:00Z",
   "source_tree_hash": "3c7b949620eeb1254d917e783e002a8a79db0aa9632cac452e381d1bd8e1b724",
-  "summary": "v274 classifies w244 as already covered by parent v252 cokernel/finite-colimit implementation.",
+  "summary": "v275 refreshes baseline oracle evidence after v273-v274; all Lean/build/audit commands pass except the expected nonterminal product gate.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -378,6 +378,31 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "No whitespace errors after v273 edits."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after v273-v274 with existing linter warnings only."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations compiled after full lake build regenerated local oleans."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations compiled after v273-v274."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors in the clean target after v273-v274."
     }
   ],
   "implemented_declarations_checked": [

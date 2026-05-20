@@ -221,3 +221,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v274 Update
 
 2026-05-20T15:08:00Z: Support result w244 was inspected and classified as already covered by parent v252. Its arbitrary `MetrizableLCA` cokernel route and finite-colimit packaging match the committed `LeanLCAExactChallenge/LCA/Cokernel.lean` implementation, while v267-v270 already add the newer cokernel-zero/top and strict-exactness bridges. No target code was imported from w244. Product success remains nonterminal.
+
+## v275 Update
+
+2026-05-20T15:22:00Z: The parent reran the baseline oracle. `lake build`, forbidden-token audit, `RequiredDeclarations`, `ProductSuccessDeclarations`, and `git diff --check` passed. The external audit reached the expected `failed_nonterminal` product gate. Product success remains nonterminal.

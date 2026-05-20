@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v274では支援結果w244を確認し、任意cokernelとfinite colimit routeは親側v252で実装済みと分類した。product successではない。",
+  "summary": "v275ではベースラインoracleを再実行し、lake build、禁止トークン監査、RequiredDeclarations、ProductSuccessDeclarations、git diff --checkが通った。外部監査は現在のfailed_nonterminal product gateで期待どおり失敗しており、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",

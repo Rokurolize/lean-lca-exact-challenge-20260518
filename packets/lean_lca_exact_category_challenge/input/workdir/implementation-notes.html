@@ -257,6 +257,11 @@
 <p><time>2026-05-20T15:08:00Z</time>: The parent inspected support result <code>w244-metrizable-cokernel-port-v252</code>. Its arbitrary cokernel and finite-colimit route is already covered by parent v252 in <code>LeanLCAExactChallenge/LCA/Cokernel.lean</code> and <code>audit/blockers/metrizable_lca_cokernel_product_w252.lean</code>, with later v267-v270 strengthening the cokernel-zero/top and strict-exactness interfaces. No new target code is needed from w244.</p>
 </section>
 
+<section id="v275-baseline-oracle-refresh">
+<h2>v275 baseline oracle refresh</h2>
+<p><time>2026-05-20T15:22:00Z</time>: The parent reran the baseline oracle after v273-v274. <code>lake build</code> completed with existing linter warnings only. <code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code>, <code>lake env lean audit/RequiredDeclarations.lean</code>, <code>lake env lean audit/ProductSuccessDeclarations.lean</code>, and <code>git diff --check</code> passed. <code>python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json</code> failed only at the expected nonterminal product gate because <code>terminal_outcome.outcome</code> remains <code>failed_nonterminal</code>.</p>
+</section>
+
 </body>
 </html>
 
