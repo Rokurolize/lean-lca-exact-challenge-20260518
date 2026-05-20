@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v1",
-  "generated_utc": "2026-05-20T09:57:21Z",
-  "file_count": 140,
-  "content_hash_tree": "0920f8dd46afc55bc7b83dce8202a1345239a4724797e4898f5984d9d6e684f2",
+  "generated_utc": "2026-05-20T10:09:29Z",
+  "file_count": 141,
+  "content_hash_tree": "39f0a4fb3dd70aa462474802712f084454eae3938596b2e487fbbddcebd8ca9b",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -31,8 +31,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "bytes": 877,
-      "sha256": "d60b4e1dc2ddf31aa975551e3028766cedb7218d5aa742d94eb64714146d1d39"
+      "bytes": 936,
+      "sha256": "c08e2a08a90479b0d747984c2e2de3e67dd25bc4044661918abdeb53adcd7bc0"
     },
     {
       "path": "LeanLCAExactChallenge/AlternatingTailExtendTransport.lean",
@@ -48,6 +48,11 @@
       "path": "LeanLCAExactChallenge/Derived/Bounded.lean",
       "bytes": 175320,
       "sha256": "71948cd732e9b36e72e31ab24510441c5db3e6dd0893256ce324d57bbe5db5f0"
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
+      "bytes": 5734,
+      "sha256": "d9754a6e6ba393ecbcd03eac9d7734b030a1403022825b7172ddf8bc2696be6a"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/ContractibleTail.lean",
@@ -141,8 +146,8 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 114359,
-      "sha256": "257f9820d5c0e3dc9bb202a4ff1500bc94711cdf04b42982966fdfd729747943"
+      "bytes": 114608,
+      "sha256": "8f3d3cd436697f2eb5c1f024c410ad3011473afa0c74036a8683c44f0871eda2"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -181,8 +186,8 @@
     },
     {
       "path": "audit/blockers/bounded_exact_weak_equivalence_finite_products_boundary.lean",
-      "bytes": 2931,
-      "sha256": "659b72ca3d4c84a8a42d5365c812cb3e6b82f5dc6ad08bc3622bd296e211bfa5"
+      "bytes": 9104,
+      "sha256": "38616dd48028c1c07b2de881bfd296ded1d17d50e3e74d7219949404876cab20"
     },
     {
       "path": "audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean",
@@ -636,8 +641,8 @@
     },
     {
       "path": "implementation-notes.html",
-      "bytes": 174075,
-      "sha256": "6dc95f3dcb8043f3259cc89dbbe81ab8f78a0243f5bbc235f19e1269d9115692"
+      "bytes": 175156,
+      "sha256": "1c357b81915ee39dbe4ec47ece12935a9928d30f2e110ee97948dbc010d59411"
     },
     {
       "path": "lake-manifest.json",
@@ -661,18 +666,18 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 162767,
-      "sha256": "81368048f9523047af1d52e7232e6d4a9c12eb2ac4a33799ae571dc641e591ba"
+      "bytes": 163453,
+      "sha256": "151c222a59d16de1ab74f73a5e37ae9580f051008704d4c3221820d8ca15426c"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 87720,
-      "sha256": "e0e8441981666a15f28fbb9068f751e3a112b44f4e92fc3f82ad4f58ca513254"
+      "bytes": 87912,
+      "sha256": "ec5c93fddd6af26044cdaee52e3cf011a8efe002e6e81016d29f36d9c0fca1a0"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "bytes": 38876,
-      "sha256": "64512d3f96774508f538576b7024bc5503f71e0e6bc54ba4a389d6551a2de44b"
+      "bytes": 39524,
+      "sha256": "dc673b085f6558e5da1485d859b6801d91be0e8937949fde1f065abbce18b35b"
     },
     {
       "path": "reviews/README.md",
@@ -681,8 +686,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 26457,
-      "sha256": "efe4ac931b675bb2af0753024d630b5c8eac4e3113beb26db3b5d9d5c19b65d8"
+      "bytes": 27574,
+      "sha256": "0996ab928b2c70c6d0f56e59fe2eb30f6896570fbcd8a84b146aed7cc64119e7"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -696,8 +701,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 89250,
-      "sha256": "1ae30d31a39663885e49a7b536fa73561ec46b424208d06a59077ba88c66515c"
+      "bytes": 91304,
+      "sha256": "29171a6148ebaf990c5d143892ef9090f13054cc552b7f77831ccb026b8bc6ba"
     },
     {
       "path": "workers/README.md",

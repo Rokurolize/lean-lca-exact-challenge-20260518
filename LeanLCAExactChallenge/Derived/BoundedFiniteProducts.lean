@@ -2,73 +2,25 @@ import LeanLCAExactChallenge.Derived.Bounded
 import LeanLCAExactChallenge.Derived.MappingConeFiniteProduct
 
 /-!
-Bounded exact weak equivalence finite-product boundary.
+Finite products of bounded exact weak equivalences over metrizable LCA complexes.
 
-The MetrizableLCA route is currently blocked below this level by the degreewise comparison
-between mapping cones and products.  This file records the exact upper interface: once finite
-products of bounded morphisms are known to have exact-acyclic mapping cones, mathlib's
-`MorphismProperty.IsStableUnderFiniteProducts` instance follows immediately.
+This module transports the cochain-complex finite mapping-cone product comparison through the
+bounded-complex inclusion functor.
 -/
 
 set_option autoImplicit false
 set_option maxHeartbeats 2000000
 
-universe w v u
+universe w u
 
 namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
 
-namespace BoundedExactWeakEquivalenceFiniteProductsBoundary
+namespace BoundedFiniteProducts
 
-variable (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
-  [HasBinaryBiproducts C]
-
-/--
-The remaining finite-product mapping-cone input for `boundedExactWeakEquivalence`.
-
-It is intentionally stated at the `Limits.Pi.map` level because that is exactly the API used by
-`MorphismProperty.IsStableUnderProductsOfShape.mk`.
--/
-abbrev FiniteProductMappingConeInput : Prop :=
-  ∀ (J : Type) [Finite J]
-    (X₁ X₂ : J → BoundedComplexCategory C) [HasProduct X₁] [HasProduct X₂]
-    (f : ∀ j, X₁ j ⟶ X₂ j),
-    (∀ j, boundedExactWeakEquivalence C (f j)) →
-      boundedExactWeakEquivalence C (Limits.Pi.map f)
-
-/--
-The upper closure step for finite products of bounded exact weak equivalences.
-
-This does not prove the mapping-cone comparison.  It proves that no further localization API is
-missing above that comparison: the input above directly gives the class required by
-`Dbounded.hasFiniteProductsOfStableFiniteProducts`.
--/
-theorem isStableUnderFiniteProducts_of_finiteProductMappingConeInput
-    (h : FiniteProductMappingConeInput C) :
-    (boundedExactWeakEquivalence C).IsStableUnderFiniteProducts where
-  isStableUnderProductsOfShape J _ := by
-    exact MorphismProperty.IsStableUnderProductsOfShape.mk
-      (boundedExactWeakEquivalence C) J
-      (h J)
-
-/-- The Dbounded finite-product API that becomes available after the same input is installed. -/
-noncomputable abbrev dboundedHasFiniteProductsOf_finiteProductMappingConeInput
-    [HasFiniteLimits C]
-    [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions]
-    (h : FiniteProductMappingConeInput C) :
-    HasFiniteProducts (Dbounded C) := by
-  haveI : (boundedExactWeakEquivalence C).IsStableUnderFiniteProducts :=
-    isStableUnderFiniteProducts_of_finiteProductMappingConeInput C h
-  exact Dbounded.hasFiniteProductsOfStableFiniteProducts C
-
-section MetrizableLCA
-
-/--
-The product of bounded complexes, included into cochain complexes, is the cochain-complex product
-of the included components.
--/
+/-- The included bounded product is the product of the included cochain complexes. -/
 noncomputable def includedProductIso
     {J : Type w} [Finite J]
     (X : J → BoundedComplexCategory MetrizableLCA.{u}) [HasProduct X] :
@@ -97,10 +49,7 @@ theorem includedProductIso_hom_π
         (G := BoundedComplexCategory.ι MetrizableLCA) (F := Discrete.functor X)
         (Discrete.mk j))
 
-/--
-The bounded-category finite product map agrees, after inclusion, with the cochain-complex finite
-product map, up to the canonical product-preservation isomorphisms.
--/
+/-- The included bounded product map agrees with the cochain-complex product map. -/
 theorem includedProductMap_naturality
     {J : Type w} [Finite J]
     {X Y : J → BoundedComplexCategory MetrizableLCA.{u}}
@@ -122,8 +71,8 @@ theorem includedProductMap_naturality
   change ((Limits.Pi.map f ≫ Limits.Pi.π Y j).hom = (Limits.Pi.π X j ≫ f j).hom)
   exact congrArg (fun g : (∏ᶜ X) ⟶ Y j => g.hom) (Limits.Pi.map_π f j)
 
-/-- The cochain-complex finite product mapping-cone exactness supplied by v232. -/
-theorem exactAcyclic_mappingCone_cochain_piMap_of_v232
+/-- The cochain-complex finite product mapping-cone exactness produced by the finite comparison. -/
+theorem exactAcyclic_mappingCone_cochain_piMap
     {J : Type u} [Finite J]
     {K L : J → CochainComplex MetrizableLCA.{u} ℤ} [HasProduct K] [HasProduct L]
     (f : ∀ j, K j ⟶ L j) [HasProduct (fun j => CochainComplex.mappingCone (f j))]
@@ -136,12 +85,14 @@ theorem exactAcyclic_mappingCone_cochain_piMap_of_v232
   exact exactAcyclic_of_iso MetrizableLCA
     (MappingConeFiniteProduct.tailFiniteMappingConeComparisonInput_direct.iso f).symm hProduct
 
-/--
-Finite products of bounded exact weak equivalences over `MetrizableLCA` are again bounded exact
-weak equivalences.
--/
+/-- Finite products of bounded exact weak equivalences over default-universe `MetrizableLCA`. -/
 theorem finiteProductMappingConeInput_metrizableLCA :
-    FiniteProductMappingConeInput MetrizableLCA.{0} := by
+    ∀ (J : Type) [Finite J]
+      (X₁ X₂ : J → BoundedComplexCategory MetrizableLCA.{0})
+      [HasProduct X₁] [HasProduct X₂]
+      (f : ∀ j, X₁ j ⟶ X₂ j),
+      (∀ j, boundedExactWeakEquivalence MetrizableLCA (f j)) →
+        boundedExactWeakEquivalence MetrizableLCA (Limits.Pi.map f) := by
   intro J _ X₁ X₂ _ _ f hf
   let K : J → CochainComplex MetrizableLCA.{0} ℤ :=
     fun j => (BoundedComplexCategory.ι MetrizableLCA).obj (X₁ j)
@@ -154,7 +105,7 @@ theorem finiteProductMappingConeInput_metrizableLCA :
     simpa [boundedExactWeakEquivalence, fι] using hf j
   have hCochain :
       exactAcyclic MetrizableLCA (CochainComplex.mappingCone (Limits.Pi.map fι)) :=
-    exactAcyclic_mappingCone_cochain_piMap_of_v232 fι hfι
+    exactAcyclic_mappingCone_cochain_piMap fι hfι
   have hcomm :
       (BoundedComplexCategory.ι MetrizableLCA).map (Limits.Pi.map f) ≫
           (includedProductIso X₂).hom =
@@ -168,41 +119,16 @@ theorem finiteProductMappingConeInput_metrizableLCA :
       (includedProductIso X₁) (includedProductIso X₂) hcomm).2 hCochain
   simpa [boundedExactWeakEquivalence] using hBounded
 
-/-- The resulting finite-product stability instance for bounded exact weak equivalences. -/
-theorem isStableUnderFiniteProducts_metrizableLCA :
-    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteProducts :=
-  isStableUnderFiniteProducts_of_finiteProductMappingConeInput
-    MetrizableLCA.{0} finiteProductMappingConeInput_metrizableLCA
-
-/-- Finite products in `Dbounded MetrizableLCA` after the v232 bounded transfer. -/
-noncomputable abbrev dboundedHasFiniteProducts_metrizableLCA
-    [HasFiniteLimits MetrizableLCA.{0}]
-    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
-    HasFiniteProducts (Dbounded MetrizableLCA.{0}) := by
-  haveI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteProducts :=
-    isStableUnderFiniteProducts_metrizableLCA
-  exact Dbounded.hasFiniteProductsOfStableFiniteProducts (C := MetrizableLCA.{0})
-
-end MetrizableLCA
-
 section Checks
 
-#check FiniteProductMappingConeInput
-#check isStableUnderFiniteProducts_of_finiteProductMappingConeInput
-#check dboundedHasFiniteProductsOf_finiteProductMappingConeInput
-#check Dbounded.hasFiniteProductsOfStableFiniteProducts
-#check MorphismProperty.IsStableUnderProductsOfShape.mk
-#check boundedExactWeakEquivalence
 #check includedProductIso
 #check includedProductIso_hom_π
 #check includedProductMap_naturality
-#check exactAcyclic_mappingCone_cochain_piMap_of_v232
+#check exactAcyclic_mappingCone_cochain_piMap
 #check finiteProductMappingConeInput_metrizableLCA
-#check isStableUnderFiniteProducts_metrizableLCA
-#check dboundedHasFiniteProducts_metrizableLCA
 
 end Checks
 
-end BoundedExactWeakEquivalenceFiniteProductsBoundary
+end BoundedFiniteProducts
 
 end LeanLCAExactChallenge

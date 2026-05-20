@@ -1881,6 +1881,11 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
     HasFiniteProducts (Dbounded C) :=
   Dbounded.hasFiniteProductsOfStableFiniteProducts C
 
+#check BoundedFiniteProducts.includedProductIso
+#check BoundedFiniteProducts.includedProductMap_naturality
+#check BoundedFiniteProducts.exactAcyclic_mappingCone_cochain_piMap
+#check BoundedFiniteProducts.finiteProductMappingConeInput_metrizableLCA
+
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]
     [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]

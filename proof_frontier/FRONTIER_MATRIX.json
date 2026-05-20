@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T09:56:45Z",
+  "generated_utc": "2026-05-20T10:09:29Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1140,7 +1140,8 @@
       "another_active_process_already_owns_it": false,
       "product_contribution": "promotes Option-product comparison from audit proof into product module and W149 Option-step input; product success remains blocked by finite-family induction closure and downstream Dbounded/stable structure",
       "parent_updates": [
-        "v232 promoted finite mapping-cone comparison to Derived.MappingConeFiniteProduct and connected W145 finite cochain exactness consumer."
+        "v232 promoted finite mapping-cone comparison to Derived.MappingConeFiniteProduct and connected W145 finite cochain exactness consumer.",
+        "v233 proved bounded exact weak equivalence finite-product mapping-cone input for MetrizableLCA and audit-level finite-product stability."
       ]
     },
     {
@@ -1277,11 +1278,11 @@
     }
   ],
   "support_result_classification": "support worker w192-tail-finite-mapping-cone-comparison is active in the consultant-owned tree. Parent did not launch duplicate workers and will inspect result.json when it appears.",
-  "latest_parent_update": "v232-mapping-cone-finite-product-promotion",
-  "summary": "v232時点で、有限mapping-cone/product比較を LeanLCAExactChallenge.Derived.MappingConeFiniteProduct へ昇格し、root import と W145 の finiteMappingConeProductComparisonInput_of_w146 および exactAcyclic_mappingCone_piMap_of_w151 に接続した。W145 の有限一般化次義務は空になり、cochain-complex レベルの有限 Limits.Pi.map mapping cone exactness は製品側APIから利用できる。一方で、boundedExactWeakEquivalence の有限積安定性へ移す bounded-complex product 保存同型の transfer、Dbounded 有限積/有限極限、有限 colimit、三角構造、stable infinity-category 構造は未完了である。",
+  "latest_parent_update": "v233-bounded-finite-products-transfer",
+  "summary": "v233時点で、LeanLCAExactChallenge.Derived.BoundedFiniteProducts を追加し、BoundedComplexCategory.ι が有限product mapをcochain-complex側の有限product mapへ運ぶ可換四角形を証明した。これにより default universe の MetrizableLCA について finiteProductMappingConeInput_metrizableLCA が成立し、boundedExactWeakEquivalence の有限product安定性に必要なmapping-cone入力は閉じた。監査境界ではこの入力から IsStableUnderFiniteProducts と条件付き Dbounded finite-products API まで接続した。ただし Dbounded の無条件有限product/有限limitには HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer が残り、有限colimit、三角構造、stable infinity-category構造も未完了である。",
   "remaining_frontier": [
-    "BoundedComplexCategory.ι finite-product preservation transfer from cochain exactAcyclic_mappingCone_piMap_of_w151 to boundedExactWeakEquivalence finite-product stability.",
-    "Dbounded finite products/finite limits transfer after boundedExactWeakEquivalence stability.",
-    "Finite colimits, triangulated structure, and stable infinity-category structure."
+    "Dbounded finite limits: HasFiniteLimits MetrizableLCA plus pullback/equalizer weak-equivalence and localization transfer.",
+    "Dbounded finite colimits and dual transfer route.",
+    "Triangulated structure and stable infinity-category structure."
   ]
 }
