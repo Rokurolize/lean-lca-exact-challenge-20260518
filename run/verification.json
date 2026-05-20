@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T16:07:02Z",
-  "source_tree_hash": "dfcb98326eaf6aa324ab586ba50cafb7d1a9d24e8486745b8a1b699559995d9d",
-  "summary": "v301で残るWPP-op Conflation colimit closure入力を、MetrizableLCA.strictShortExactの4つの場、すなわちclosed embedding、open map、surjectivity、algebraic exactnessの閉性へ縮約した。product_completeはfalseのまま。",
+  "generated_utc": "2026-05-20T16:12:37Z",
+  "source_tree_hash": "15abd5667d68bcd8e8516cba9c6fae55b00ce0531087428670e4e8e20f9f172e",
+  "summary": "v302でW276のmapping-cone比較側を、具体的なmappingConeDiagramとmappingConeCoconeのcolimit証明へ縮約した。product_completeはfalseのまま。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -738,6 +738,16 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_strict_short_exact_colimit_fields_w301.lean",
       "status": "passed",
       "evidence": "v301 focused forbidden-token audit passed in the parent target worktree."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_object_cone_boundary_w302.lean",
+      "status": "passed",
+      "evidence": "v302 focused WPP-op object cone boundary check passed in the parent target worktree."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_object_cone_boundary_w302.lean",
+      "status": "passed",
+      "evidence": "v302 focused forbidden-token audit passed in the parent target worktree."
     }
   ],
   "implemented_declarations_checked": [
@@ -1295,7 +1305,7 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "W301でShortComplex MetrizableLCA上のWPP-op Conflation colimit closureはMetrizableLCA.strictShortExactの4フィールド、左closed embedding、右open map、右surjectivity、algebraic exactnessの余極限閉性へ縮約されたが、これら4つの場の閉性はまだ未供給である。",
+    "W276のmapping-cone比較入力はW302で、自然変換fから作る具体的なmappingConeDiagramとcompatible coconeから作るmappingConeCoconeがCochainComplex MetrizableLCA ℤでcolimitであることへ縮約されたが、このIsColimit証明はまだ未供給である。",
     "W269/W274の反対圏WalkingParallelPair functor-category localizationは、coherent strict-representative blueprintと、diagram/model fixed targetそれぞれのfac/uniq schema義務4個へ縮約されたが、これらの実体証明はまだ未供給である。",
     "W271のmapping-cone比較入力はW276でobject-level WPP-op cone/colimit比較境界へ縮約されたが、そのobject-level比較図式と、別入力のexactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closureはまだ未供給である。",
     "W229/W273のHomotopyEquiv輸送をplain ShortComplex.QuasiIsoによるConflation輸送で閉じる経路はW296の0 -> 0 -> ZMod 2反例で偽と確認された。exactAcyclicのHomotopyEquiv輸送には、より弱い次数別定理、endpoint/topology入力付きの輸送、または別経路が必要である。",
@@ -1342,6 +1352,6 @@
     "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。",
     "direct identity containmentのiso-closed入力はW273でMetrizableLCAExactAcyclicTransportOfHomotopyEquivへ縮約されたが、exactAcyclicをHomotopyEquivで輸送する本体、特にShortComplex.QuasiIsoによるQuillenExactCategory.Conflation輸送はまだ未証明である。"
   ],
-  "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success.",
+  "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success.",
   "product_success": false
 }

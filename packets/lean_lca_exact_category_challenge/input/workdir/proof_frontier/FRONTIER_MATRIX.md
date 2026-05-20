@@ -293,3 +293,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v301 Update
 
 2026-05-20T16:07:02Z: `audit/blockers/wpp_op_strict_short_exact_colimit_fields_w301.lean` reduces the remaining W299/W300 `ShortComplex MetrizableLCA` `Conflation` colimit-closure input to the actual four fields of `MetrizableLCA.strictShortExact`: left closed embedding, right open map, right surjectivity, and algebraic exactness at the colimit point. This uses the product exact-category definition `MetrizableLCA.quillenExactCategory` with `Conflation := strictShortExact`. All four field-closure inputs remain open, so product success remains nonterminal.
+
+## v302 Update
+
+2026-05-20T16:12:37Z: `audit/blockers/wpp_op_object_cone_boundary_w302.lean` refines the W276 mapping-cone comparison input by fixing the object-level diagram to `mappingConeDiagram X₁ X₂ f` and the induced cocone to `mappingConeCocone c₁ c₂ f φ hφ`. The checked consumer proves W276's comparison input from the single remaining proof that this concrete cocone is colimit in `CochainComplex MetrizableLCA ℤ`. Product success remains nonterminal.
