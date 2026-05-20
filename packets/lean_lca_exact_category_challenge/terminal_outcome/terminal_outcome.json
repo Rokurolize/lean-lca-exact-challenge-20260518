@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W388でW379 canonical cokernel rowから作ったW376 presentationのC同一性を検証し、W385のpresentation-equality branchを閉じた。残る作業は直接targetIso、pointwise descended-map conjugacy、ordinary W352 descended fields、W386 relation-pullback equalityであり、product successはまだ主張しない。",
+  "summary": "W389でrelation-pullback equalityをreverse-preimage/certificate入力へ縮約し、W390でcanonical transported descended mapのpointwise conjugacyを検証した。残る作業はordinary W352 descended quotient fields、必要なW389 concrete certificate、AddCommGrp direct targetIsoであり、product successはまだ主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -518,7 +518,10 @@
     "lake env lean audit/blockers/wpp_op_left_lca_transported_quotient_point_iso_v370_support_w387.lean",
     "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_transported_quotient_point_iso_v370_support_w387.lean",
     "lake env lean audit/blockers/addcommgrp_forgotten_target_c_identification_v370_support_w388.lean",
-    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_forgotten_target_c_identification_v370_support_w388.lean"
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_forgotten_target_c_identification_v370_support_w388.lean",
+    "lake env lean audit/blockers/wpp_op_relation_pullback_equality_v370_support_w389.lean",
+    "lake env lean audit/blockers/wpp_op_left_lca_transported_descended_conjugacy_v370_support_w390.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_relation_pullback_equality_v370_support_w389.lean audit/blockers/wpp_op_left_lca_transported_descended_conjugacy_v370_support_w390.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1474,7 +1477,16 @@
     "CIdentificationInputW388.toForgottenTargetRowIsoInput",
     "cIdentificationInputW388_of_w376CanonicalTargetPresentation",
     "wppOpForgottenTargetCokernelCoforkPresentation_of_w376CanonicalTargetPresentation",
-    "currentAddCommGrpForgottenTargetCIdentificationV370SupportState_productSuccess"
+    "currentAddCommGrpForgottenTargetCIdentificationV370SupportState_productSuccess",
+    "WppOpRelationPullbackEqualityCertificateW389.to_w383_inputs",
+    "WppOpRelationPullbackEqualityCertificateW389.to_w377_relation_fields_via_w386",
+    "currentWppOpRelationPullbackEqualityV370SupportStateW389_productSuccess",
+    "transportedDescendedByPointIsoConjugacyW390",
+    "transportedDescendedByPointIsoConjugacyW390_pointwise",
+    "TransportedDescendedConjugacyInputW390",
+    "transportedDescendedConjugacyInputW390_to_pointIsoConjugacyPackageW384",
+    "transportedDescendedByPointIsoConjugacyW390_to_pointIsoConjugacyPackageW384",
+    "currentWppOpLeftLcaTransportedDescendedConjugacyV370StateW390_productSuccess"
   ],
   "known_gaps": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
@@ -1565,20 +1577,19 @@
     "W383後もordinary codomain componentを通じたtarget relation liftingは未証明である。",
     "W384 transported point packageのsource point isomorphismはまだ未証明である。",
     "W384 transported point packageのtarget point isomorphismはまだ未証明である。",
-    "W384 transported point packageのpointwise descended-map conjugacyはまだ未証明である。",
     "W384 transported point packageへ渡すordinary W352 descended quotient fieldsはまだ未証明である。",
     "W385後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
-    "W386後もordinary codomain componentを通じたrelation-pullback equalityは未証明である。",
-    "W387後もtransported descended mapとordinary descended quotient mapのpointwise conjugacyは未証明である。",
-    "W387後もordinary W352 descended quotient fieldsは未証明である。",
-    "W388後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。"
+    "W388後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
+    "W390後もordinary W352 descended quotient fieldsは未証明である。",
+    "W390後も外部から与えたtransported descended mapを使う場合はcanonical conjugated transported mapとの同一視、またはTransportedDescendedConjugacyInputW390が必要である。",
+    "W389後もrelation-pullback equality本体にはreverse relation-preimage certificate、またはW389 certificateの具体供給が必要である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "pending-w388-artifact-sync",
+  "git_commit": "pending-w389-w390-artifact-sync",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W388 closes the W385 presentation-equality branch. Remaining AddCommGrp input is the direct targetIso from the canonical row to the forgotten WPP-op colimit row; remaining left-LCA inputs are pointwise conjugacy, ordinary W352 fields, and relation-pullback equality.",
+  "worker_frontier_summary": "W389 turns relation-pullback equality into a concrete reverse-preimage/certificate obligation. W390 closes canonical transported-map pointwise conjugacy. Remaining frontier: ordinary W352 descended quotient fields, concrete W389 certificate as needed, and AddCommGrp direct targetIso.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
