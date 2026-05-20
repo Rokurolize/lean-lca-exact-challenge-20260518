@@ -623,6 +623,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W398 Forgotten Target Cofork Map Input
 2026-05-20T23:58:00Z: Worker support `w398-addcommgrp-forgotten-target-cofork-map-v370` was ported as `audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean`. It exposes the forgotten target cofork map, zero relation, and IsColimit proof as the exact W394-side input. Product success remains false because that map and IsColimit proof must still be instantiated from the concrete forgotten WPP-op colimit cocone leg.
 
+## W397 Relation Fields From W371/W377
+2026-05-20T23:59:00Z: Worker support `w397-wpp-op-relation-fields-from-w371-v370` was verified in the target worktree. It extracts W395 relation fields, W389 relation-pullback certificates, and W386/W392 target relation lift certificates from W371/W377 relation input packages. Product success remains false because the concrete W371/W377 callers still need component closed-map, relation-pullback equality, and target relation lifting.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
