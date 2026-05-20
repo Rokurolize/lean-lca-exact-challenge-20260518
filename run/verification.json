@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v178-metrizable-exact-acyclic-biproduct-boundary",
-  "generated_utc": "2026-05-20T11:55:00Z",
-  "source_tree_hash": "f25125a6c6f3c59a06dfc48bade5784039e5fd1571d72a0df52e1d6341181e43",
-  "summary": "v178 adds a MetrizableLCA boundary audit proving exact-acyclic inputs give a strict exact explicit degreewise biproduct short complex, plus biprodXIso inverse projection helpers. Product remains nonterminal because transport to (K ⊞ L).sc i and finite-product stability of bounded exact weak equivalences are not complete.",
+  "schema": "lean-lca-exact-challenge-verification-v179-shortcomplex-biproduct-projection-helpers",
+  "generated_utc": "2026-05-20T12:19:24Z",
+  "source_tree_hash": "712004c53e2aa4b60b8d956f75b8a8555772556463b1ba5e26cb108634027d3a",
+  "summary": "v179 adds ShortComplex biproduct projection comparison helpers for π₁/π₂/π₃.mapBiprod in the MetrizableLCA exact-acyclic biproduct boundary audit. The explicit short-complex biproduct is not yet transported to the categorical complex biproduct, so product success remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
@@ -167,7 +167,7 @@
     {
       "command": "lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean",
       "status": "passed",
-      "evidence": "Focused v178 MetrizableLCA exact-acyclic biproduct boundary audit passed; it proves strict exactness for the explicit degreewise biproduct short complex and records the remaining transport to (K ⊞ L).sc i."
+      "evidence": "Focused v179 MetrizableLCA exact-acyclic biproduct boundary audit passed; it now includes ShortComplex π₁/π₂/π₃ mapBiprod inverse-projection helpers and π₂/π₃ hom-projection helpers for the remaining explicit-to-categorical short-complex biproduct comparison."
     }
   ],
   "implemented_declarations_checked": [

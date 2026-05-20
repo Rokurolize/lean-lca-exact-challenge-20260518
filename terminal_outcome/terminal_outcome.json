@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v178時点で、MetrizableLCAの厳密短完全列について、exact-acyclicな2つの複体のdegreewise明示的biproduct short complexが再びstrictShortExactになる境界補題を追加した。さらにHomologicalComplex.biprodXIsoの逆射と射影の補助補題を監査ファイルで確認した。これはboundedExactWeakEquivalenceの有限積安定性へ向かう局所モデル側の証拠だが、(K ⊞ L).sc iへの短複体同型移送、mapping coneの有限積安定性、Dbounded Cの有限極限全体、有限余極限、pretriangulated、triangulated構造は未完成であり、product_successではない。",
+  "summary": "v179時点で、MetrizableLCAのexact-acyclic biproduct境界監査に、ShortComplexのπ₁/π₂/π₃が保存するbiproduct比較同型の逆射・射影補題と、π₂/π₃側の射・射影補題を追加した。これは明示的なdegreewise biproduct short complexからShortComplex内のcategorical biproductへ移送するための成分比較を切り出す進捗だが、同型そのもの、(K ⊞ L).sc iへの移送、boundedExactWeakEquivalenceの有限積安定性、Dbounded Cの有限極限全体、有限余極限、pretriangulated、triangulated構造は未完成であり、product_successではない。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -660,9 +660,10 @@
     "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos"
   ],
   "known_gaps": [
-    "bounded側では、strict-selected eligibility providerがboundedHomotopyObjectTrianglehIso13Realizationと同値であり、その本体realization theoremがまだ未証明である。",
-    "stable側では、BoundedComplexCategory Cの有限極限・有限余極限と、Dbounded Cの条件付き有限積APIまでは得られた。しかしboundedExactWeakEquivalence Cの有限積安定性、Dbounded Cの有限極限全体、有限余極限、pretriangulated、triangulated構造を構成する証明がまだない。",
-    "product_success用のterminal outcome、authoritative review packet zip、外部sidecar SHA256、fresh claim review acceptanceはまだ作成していない。"
+    "短複体の明示的biproduct strictShortExactBiprodComplex S TからShortComplex MetrizableLCA内のcategorical biproduct S ⊞ Tへの同型は未完成。",
+    "(K ⊞ L).sc iへのstrict exact性の移送と、boundedExactWeakEquivalence Cの有限積安定性が未完成。",
+    "Dbounded Cの有限極限全体、有限余極限、pretriangulated構造、triangulated構造は未完成。",
+    "bounded側のstrict-selected eligibility providerはboundedHomotopyObjectTrianglehIso13Realizationと同値であり、realization自体は未証明。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",
