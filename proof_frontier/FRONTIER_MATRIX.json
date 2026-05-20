@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T13:12:00Z",
+  "generated_utc": "2026-05-20T13:28:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v262 is parent-side implementation.",
   "frontiers": [
@@ -194,7 +194,15 @@
         "LeanLCAExactChallenge.MetrizableLCA.denseRange_of_cokernelSubgroup_eq_top",
         "LeanLCAExactChallenge.MetrizableLCA.surjective_of_denseRange_of_isOpenMap",
         "LeanLCAExactChallenge.MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap",
-        "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top"
+        "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top",
+        "LeanLCAExactChallenge.AdjunctionTransportUnitEqualityW250.transportOfNatIsoLeft",
+        "LeanLCAExactChallenge.AdjunctionTransportUnitEqualityW250.transportOfNatIsoLeft_unit",
+        "LeanLCAExactChallenge.AdjunctionTransportUnitEqualityW250.transportOfNatIsoRight",
+        "LeanLCAExactChallenge.AdjunctionTransportUnitEqualityW250.transportOfNatIsoRight_counit",
+        "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.functorCategory_postcomp_iso_mem",
+        "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.functorCategory_precomp_iso_mem",
+        "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.rightAdjunction_unit_mem_of_transport_eq",
+        "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.leftAdjunction_counit_mem_of_transport_eq"
       ]
     },
     {
@@ -1302,8 +1310,8 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "v264 consumed support w249; product remains nonterminal.",
-  "latest_parent_update": "v264: promoted w249 open-cokernel surjectivity bridge into StrictExact.",
+  "support_result_classification": "v265 consumed support w247/w250; concrete transported localized adjunction remains missing.",
+  "latest_parent_update": "v265: consumed support w247/w250 as localized comparison membership and adjunction-transport equality audits.",
   "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。 v263 narrows the MetrizableLCA exactness bridge to forgetful homology preservation or a local cycles/opcycles model.",
   "remaining_frontier": [
     "General closedness of the explicit MetrizableLCA pushout relation subgroup beyond strict-short-exact left legs.",

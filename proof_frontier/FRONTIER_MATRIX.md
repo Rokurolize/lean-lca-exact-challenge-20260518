@@ -181,3 +181,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v264 Update
 
 2026-05-20T13:12:00Z: Support result w249 was promoted into `LeanLCAExactChallenge/LCA/StrictExact.lean`. The new bridge `MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap` converts `cokernelSubgroup f = ⊤` plus openness of `f` into concrete surjectivity, and `MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top` packages that as a strict-exactness constructor. This replaces one target-side direct surjectivity input with a cokernel-zero/top condition, but product success remains blocked by the upstream production of kernel equality, topological fields, and the remaining derived/stable infinity-category obligations.
+
+## v265 Update
+
+2026-05-20T13:28:00Z: Support results w247 and w250 were reimplemented as `audit/blockers/localized_comparison_unit_membership_w247.lean` and `audit/blockers/adjunction_transport_unit_equality_w250.lean`. The checked frontier now has objectwise functor-category membership transport across natural isomorphisms, conditional unit/counit membership transport, and the unit/counit equations for `Adjunction.ofNatIsoLeft` and `Adjunction.ofNatIsoRight`. The remaining localized-comparison input is the concrete transported localized adjunction through `BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso`, not the generic membership transport. Product success remains nonterminal.

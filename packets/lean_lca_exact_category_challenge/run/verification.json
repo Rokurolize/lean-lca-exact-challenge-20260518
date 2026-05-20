@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T13:12:00Z",
-  "source_tree_hash": "306662c41f2e14ff7e16d09e94f00ccce9d5c3e122813050e8bcef3c0f1fca01",
-  "summary": "v264 promotes w249: open maps with cokernelSubgroup top are surjective, and strictShortExact can consume kernel equality, closed/open topology, and cokernel-subgroup-top.",
+  "generated_utc": "2026-05-20T13:28:00Z",
+  "source_tree_hash": "4dc8a19a445c8179ab31c2ba01a2adb3c602b2ef680da61701ca914423903992",
+  "summary": "v265 consumes w247/w250 as audit files: localized comparison unit/counit membership transport and adjunction transport unit/counit equalities are now checked Lean frontiers.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -232,7 +232,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v264 edits."
+      "evidence": "Whitespace diff check passed after v265 edits."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -268,6 +268,21 @@
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
       "evidence": "JSON metadata parsed after v263 updates."
+    },
+    {
+      "command": "lake env lean audit/blockers/adjunction_transport_unit_equality_w250.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for W250 adjunction transport equality audit."
+    },
+    {
+      "command": "lake env lean audit/blockers/localized_comparison_unit_membership_w247.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for W247 localized comparison membership audit."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/adjunction_transport_unit_equality_w250.lean audit/blockers/localized_comparison_unit_membership_w247.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the v265 audit files."
     }
   ],
   "implemented_declarations_checked": [
@@ -720,10 +735,19 @@
     "LeanLCAExactChallenge.MetrizableLCA.denseRange_of_cokernelSubgroup_eq_top",
     "LeanLCAExactChallenge.MetrizableLCA.surjective_of_denseRange_of_isOpenMap",
     "LeanLCAExactChallenge.MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap",
-    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top"
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top",
+    "LeanLCAExactChallenge.AdjunctionTransportUnitEqualityW250.transportOfNatIsoLeft",
+    "LeanLCAExactChallenge.AdjunctionTransportUnitEqualityW250.transportOfNatIsoLeft_unit",
+    "LeanLCAExactChallenge.AdjunctionTransportUnitEqualityW250.transportOfNatIsoRight",
+    "LeanLCAExactChallenge.AdjunctionTransportUnitEqualityW250.transportOfNatIsoRight_counit",
+    "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.functorCategory_postcomp_iso_mem",
+    "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.functorCategory_precomp_iso_mem",
+    "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.rightAdjunction_unit_mem_of_transport_eq",
+    "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.leftAdjunction_counit_mem_of_transport_eq"
   ],
   "product_complete": false,
   "known_gaps": [
+    "localized comparisonのunit/counit membership輸送とadjunction transport等式は形式化されたが、verdierComparisonLocalizationIsoを通じた具体的なtransported localized adjunction自体はまだ未構成である。",
     "MetrizableLCAではcokernelSubgroup f = ⊤と開写像性から全射を得る橋が入ったが、上流側で核等式、閉埋め込み、開写像性、cokernel-subgroup-topを同時に生成する証明はまだ未完成である。",
     "MetrizableLCAの忘却関手にはHasForget₂、Additive、PreservesZeroMorphismsと条件付きexact-to-strict橋が入ったが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology、または同等の局所cycles/opcycles構成がまだ未完成である。",
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
@@ -743,6 +767,6 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "v264 consumed support w249; no product-success claim.",
+  "support_result_classification": "v265 consumed support w247/w250; no product-success claim.",
   "product_success": false
 }
