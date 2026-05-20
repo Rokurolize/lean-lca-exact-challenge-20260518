@@ -137,6 +137,198 @@ structure OptionTransportedFanMapProjectionNaturalityInput : Type (u + 1) where
         Limits.Pi.map (fun j : J => f (some j))
 
 /--
+The `none`/singleton projection of the transported Option-product fan is natural in product
+maps. This closes the `fst` half of `OptionTransportedFanMapProjectionNaturalityInput`.
+-/
+theorem optionTransportedFanMapFstNaturality {J : Type u} [Finite J]
+    {K L : Option J → CochainComplex MetrizableLCA.{u} ℤ}
+    [HasProduct K] [HasProduct L]
+    [HasProduct (fun j : J => K (some j))]
+    [HasProduct (fun j : J => L (some j))]
+    [∀ x : Option J, Decidable (x = none)]
+    (f : ∀ j, K j ⟶ L j) :
+    Limits.Pi.map f ≫
+        (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).fst =
+      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).fst ≫
+        f none := by
+  simp only [OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan,
+    OptionProductDecompositionW151.noneSubproductIso, Limits.Pi.binaryFanOfProp,
+    BinaryFan.mk_fst, Limits.productUniqueIso_hom]
+  change (Limits.Pi.map f ≫ (Pi.map' Subtype.val fun x => 𝟙 (L ↑x))) ≫
+      limit.π (Discrete.functor fun i : {x : Option J // x = none} => L ↑i) default =
+    ((Pi.map' Subtype.val fun x => 𝟙 (K ↑x)) ≫
+      limit.π (Discrete.functor fun i : {x : Option J // x = none} => K ↑i) default) ≫ f none
+  rw [Limits.Pi.map_comp_map']
+  simp only [Category.comp_id]
+  have hleft :
+      (Pi.map' Subtype.val (fun b : {x : Option J // x = none} => f ↑b)) ≫
+        limit.π (Discrete.functor fun i : {x : Option J // x = none} => L ↑i) default =
+      limit.π (Discrete.functor K) (Discrete.mk none) ≫ f none := by
+    have h := Limits.Pi.map'_comp_π (p := Subtype.val)
+      (q := fun b : {x : Option J // x = none} => f b.val)
+      (b := (default : Discrete {x : Option J // x = none}).as)
+    have hval : ((default : Discrete {x : Option J // x = none}).as).val = none :=
+      ((default : Discrete {x : Option J // x = none}).as).property
+    simpa [Pi.π, hval] using h
+  have hright :
+      ((Pi.map' Subtype.val fun x : {x : Option J // x = none} => 𝟙 (K ↑x)) ≫
+        limit.π (Discrete.functor fun i : {x : Option J // x = none} => K ↑i) default) ≫ f none =
+      limit.π (Discrete.functor K) (Discrete.mk none) ≫ f none := by
+    have h := Limits.Pi.map'_comp_π (p := Subtype.val)
+      (q := fun b : {x : Option J // x = none} => 𝟙 (K b.val))
+      (b := (default : Discrete {x : Option J // x = none}).as)
+    have hval : ((default : Discrete {x : Option J // x = none}).as).val = none :=
+      ((default : Discrete {x : Option J // x = none}).as).property
+    simpa [Pi.π, hval, Category.assoc] using congrArg (fun g => g ≫ f none) h
+  rw [hleft, hright]
+
+/--
+Projection formula for the tail side of the transported Option-product fan.
+
+After reindexing the complement by `Option.some`, the `j`-th tail projection is the original
+product projection at `some j`.
+-/
+theorem optionProductComplexTransportedBinaryFan_snd_π {J : Type u} [Finite J]
+    (K : Option J → CochainComplex MetrizableLCA.{u} ℤ)
+    [HasProduct K]
+    [HasProduct (fun j : J => K (some j))]
+    [∀ x : Option J, Decidable (x = none)] (j : J) :
+    (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+      Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA K) j =
+    Pi.π K (some j) := by
+  simp only [OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan,
+    OptionProductDecompositionW151.complementSubproductReindexIso, Limits.Pi.binaryFanOfProp,
+    BinaryFan.mk_snd, Iso.symm_hom]
+  letI : HasProduct
+      ((fun i : {x : Option J // ¬ x = none} => K i.val) ∘
+        ⇑(OptionProductDecompositionW151.optionSomeComplementEquiv J).symm) := by
+    simpa [Function.comp, OptionProductDecompositionW151.optionTail,
+      OptionProductDecompositionW151.optionSomeComplementEquiv]
+      using (inferInstance : HasProduct (OptionProductDecompositionW151.optionTail MetrizableLCA K))
+  have hreindex :
+      (Pi.reindex (OptionProductDecompositionW151.optionSomeComplementEquiv J).symm
+          (fun i : {x : Option J // ¬ x = none} => K i.val)).inv ≫
+          Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA K) j =
+        Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+          ((OptionProductDecompositionW151.optionSomeComplementEquiv J).symm j) := by
+    simpa [OptionProductDecompositionW151.optionTail,
+      OptionProductDecompositionW151.optionSomeComplementEquiv] using
+      (Pi.reindex_inv_π (OptionProductDecompositionW151.optionSomeComplementEquiv J).symm
+        (fun i : {x : Option J // ¬ x = none} => K i.val) j)
+  change (Pi.map' Subtype.val (fun x : {x : Option J // ¬ x = none} => 𝟙 (K ↑x))) ≫
+      ((Pi.reindex (OptionProductDecompositionW151.optionSomeComplementEquiv J).symm
+          (fun i : {x : Option J // ¬ x = none} => K i.val)).inv ≫
+        Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA K) j) =
+    Pi.π K (some j)
+  rw [hreindex]
+  have hraw :
+      (Pi.map' Subtype.val fun x : {x : Option J // ¬ x = none} => 𝟙 (K ↑x)) ≫
+          Pi.π (fun i : {x : Option J // ¬ x = none} => K i.val)
+            ((OptionProductDecompositionW151.optionSomeComplementEquiv J).symm j) =
+        Pi.π K ((OptionProductDecompositionW151.optionSomeComplementEquiv J).symm j).val := by
+    simpa [Pi.π] using
+      (Pi.map'_comp_π (p := Subtype.val)
+        (q := fun x : {x : Option J // ¬ x = none} => 𝟙 (K x.val))
+        (b := (OptionProductDecompositionW151.optionSomeComplementEquiv J).symm j))
+  exact hraw.trans (by
+    simp [OptionProductDecompositionW151.optionSomeComplementEquiv_symm_apply])
+
+/--
+The tail projection of the transported Option-product fan is natural in product maps.
+
+Together with `optionTransportedFanMapFstNaturality`, this closes the promoted Option-product
+map naturality input.
+-/
+theorem optionTransportedFanMapSndNaturality {J : Type u} [Finite J]
+    {K L : Option J → CochainComplex MetrizableLCA.{u} ℤ}
+    [HasProduct K] [HasProduct L]
+    [HasProduct (fun j : J => K (some j))]
+    [HasProduct (fun j : J => L (some j))]
+    [∀ x : Option J, Decidable (x = none)]
+    (f : ∀ j, K j ⟶ L j) :
+    Limits.Pi.map f ≫
+        (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).snd =
+      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+        Limits.Pi.map (fun j : J => f (some j)) := by
+  apply Limits.Pi.hom_ext
+  intro j
+  have hL := optionProductComplexTransportedBinaryFan_snd_π (K := L) j
+  have hK := optionProductComplexTransportedBinaryFan_snd_π (K := K) j
+  calc
+    (Limits.Pi.map f ≫
+        (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).snd) ≫
+        Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA L) j =
+      Limits.Pi.map f ≫ Pi.π L (some j) := by
+        simpa [Category.assoc] using congrArg (fun g => Limits.Pi.map f ≫ g) hL
+    _ = Pi.π K (some j) ≫ f (some j) := by
+        simpa using (Pi.map_π f (some j))
+    _ =
+      ((OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+        Limits.Pi.map (fun j : J => f (some j))) ≫
+        Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA L) j := by
+        have htail := Pi.map_π (fun j : J => f (some j)) j
+        calc
+          Pi.π K (some j) ≫ f (some j) =
+              ((OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+                Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA K) j) ≫ f (some j) := by
+                simpa [Category.assoc] using congrArg (fun g => g ≫ f (some j)) hK.symm
+          _ =
+              (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+                (Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA K) j ≫ f (some j)) := by
+                simp [Category.assoc]
+          _ =
+              (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+                (Limits.Pi.map (fun j : J => f (some j)) ≫
+                  Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA L) j) := by
+                simpa [Category.assoc, OptionProductDecompositionW151.optionTail] using
+                  congrArg (fun g =>
+                    (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫ g)
+                    htail.symm
+          _ =
+              ((OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+                Limits.Pi.map (fun j : J => f (some j))) ≫
+                Pi.π (OptionProductDecompositionW151.optionTail MetrizableLCA L) j := by
+                simp [Category.assoc]
+
+/-- The remaining transported fan naturality input after the singleton projection is proved. -/
+structure OptionTransportedFanMapTailProjectionNaturalityInput : Type (u + 1) where
+  snd_comm : ∀ {J : Type u} [Finite J]
+    {K L : Option J → CochainComplex MetrizableLCA.{u} ℤ}
+    [HasProduct K] [HasProduct L]
+    [HasProduct (fun j : J => K (some j))]
+    [HasProduct (fun j : J => L (some j))]
+    [∀ x : Option J, Decidable (x = none)]
+    (f : ∀ j, K j ⟶ L j),
+      Limits.Pi.map f ≫
+        (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA L).snd =
+      (OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan MetrizableLCA K).snd ≫
+        Limits.Pi.map (fun j : J => f (some j))
+
+/--
+The proved singleton projection plus the remaining tail projection naturality provide the full
+transported fan projection naturality input.
+-/
+def optionTransportedFanMapProjectionNaturalityInput_of_tailProjection
+    (tailProjectionNaturality : OptionTransportedFanMapTailProjectionNaturalityInput.{u}) :
+    OptionTransportedFanMapProjectionNaturalityInput.{u} where
+  fst_comm := by
+    intro J _ K L _ _ _ _ _ f
+    exact optionTransportedFanMapFstNaturality f
+  snd_comm := by
+    intro J _ K L _ _ _ _ _ f
+    exact tailProjectionNaturality.snd_comm f
+
+/-- The transported fan projection naturality input is now provided directly. -/
+def optionTransportedFanMapProjectionNaturalityInput_direct :
+    OptionTransportedFanMapProjectionNaturalityInput.{u} where
+  fst_comm := by
+    intro J _ K L _ _ _ _ _ f
+    exact optionTransportedFanMapFstNaturality f
+  snd_comm := by
+    intro J _ K L _ _ _ _ _ f
+    exact optionTransportedFanMapSndNaturality f
+
+/--
 Projection-level transported-fan naturality implies the existing Option-product map naturality
 input used by the Option-step exactness consumer.
 -/
@@ -211,6 +403,11 @@ def optionProductMapNaturalityInput_of_projectionNaturality
           simp [Category.assoc]
       exact h₁.trans (h₂.trans (h₃.trans h₄))
 
+/-- The promoted Option-product decomposition is natural for product maps. -/
+def optionProductMapNaturalityInput_direct : OptionProductMapNaturalityInput.{u} :=
+  optionProductMapNaturalityInput_of_projectionNaturality
+    optionTransportedFanMapProjectionNaturalityInput_direct
+
 /--
 Recursive tail comparison input for finite mapping-cone products.
 
@@ -276,14 +473,32 @@ theorem exactAcyclic_optionPiMap_of_naturality_and_tailComparison
     naturality.commute f
   exact (exactAcyclic_mappingCone_congr_iff MetrizableLCA eK eL hcomm).2 hBiprod
 
+/--
+Option-step exactness consumer after proving Option-product-map naturality directly.
+
+The only remaining Option-step input is the recursive tail comparison.
+-/
+theorem exactAcyclic_optionPiMap_of_tailComparison
+    (tailComparison : TailFiniteMappingConeComparisonInput.{u})
+    {J : Type u} [Finite J]
+    {K L : Option J → CochainComplex MetrizableLCA.{u} ℤ}
+    [HasProduct K] [HasProduct L]
+    [HasProduct (fun j : J => K (some j))]
+    [HasProduct (fun j : J => L (some j))]
+    (f : ∀ j, K j ⟶ L j)
+    [HasProduct (fun j : J => CochainComplex.mappingCone (f (some j)))]
+    [∀ x : Option J, Decidable (x = none)]
+    (hf : ∀ j, exactAcyclic MetrizableLCA (CochainComplex.mappingCone (f j))) :
+    exactAcyclic MetrizableLCA (CochainComplex.mappingCone (Limits.Pi.map f)) :=
+  exactAcyclic_optionPiMap_of_naturality_and_tailComparison
+    optionProductMapNaturalityInput_direct tailComparison f hf
+
 /-- The exact lower inputs still missing after the Option-step exactness consumer. -/
 def optionMappingConeComparisonStepMissingInputs : List String :=
-  ["OptionTransportedFanMapProjectionNaturalityInput.fst_comm for singleton none projection",
-    "OptionTransportedFanMapProjectionNaturalityInput.snd_comm for complement/tail projection",
-    "recursive TailFiniteMappingConeComparisonInput for the tail index type"]
+  ["recursive TailFiniteMappingConeComparisonInput for the tail index type"]
 
 theorem optionMappingConeComparisonStepMissingInputs_count :
-    optionMappingConeComparisonStepMissingInputs.length = 3 := rfl
+    optionMappingConeComparisonStepMissingInputs.length = 1 := rfl
 
 section Checks
 
@@ -291,9 +506,17 @@ section Checks
 #check optionProductIsoBiprod_finiteProducts_hom_fst
 #check optionProductIsoBiprod_finiteProducts_hom_snd
 #check OptionTransportedFanMapProjectionNaturalityInput
+#check optionTransportedFanMapFstNaturality
+#check optionProductComplexTransportedBinaryFan_snd_π
+#check optionTransportedFanMapSndNaturality
+#check OptionTransportedFanMapTailProjectionNaturalityInput
+#check optionTransportedFanMapProjectionNaturalityInput_of_tailProjection
+#check optionTransportedFanMapProjectionNaturalityInput_direct
 #check optionProductMapNaturalityInput_of_projectionNaturality
+#check optionProductMapNaturalityInput_direct
 #check TailFiniteMappingConeComparisonInput
 #check exactAcyclic_optionPiMap_of_naturality_and_tailComparison
+#check exactAcyclic_optionPiMap_of_tailComparison
 #check optionMappingConeComparisonStepMissingInputs
 #check optionMappingConeComparisonStepMissingInputs_count
 #check OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct

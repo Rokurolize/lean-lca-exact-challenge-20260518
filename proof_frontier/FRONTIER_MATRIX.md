@@ -120,3 +120,7 @@ v223 promotes the W151 Option-product decomposition proof body into LeanLCAExact
 ## v227 Update
 
 v227 sharpens the W146 Option mapping-cone product step. The promoted Option-product biproduct isomorphism now has checked projection lemmas `optionProductIsoBiprod_finiteProducts_hom_fst` and `optionProductIsoBiprod_finiteProducts_hom_snd`, removing the cone-point uniqueness wrapper from the naturality problem. W146 also adds `OptionTransportedFanMapProjectionNaturalityInput` and proves `optionProductMapNaturalityInput_of_projectionNaturality`, so the previous opaque `OptionProductMapNaturalityInput` is reduced to two concrete transported-fan projection naturality equations plus the existing recursive tail comparison. Product success remains nonterminal.
+
+## v228 Update
+
+v228 closes the two concrete transported-fan projection naturality equations in W146. The singleton side is proved as `optionTransportedFanMapFstNaturality`; the tail side is proved through `optionProductComplexTransportedBinaryFan_snd_π` and `optionTransportedFanMapSndNaturality`. Consequently W146 now provides `optionProductMapNaturalityInput_direct` and the Option-step exactness consumer `exactAcyclic_optionPiMap_of_tailComparison`, so the remaining lower input for the finite mapping-cone product induction is the recursive `TailFiniteMappingConeComparisonInput`. Product success remains nonterminal because that recursive comparison and the downstream Dbounded/stable-infinity route are still incomplete.
