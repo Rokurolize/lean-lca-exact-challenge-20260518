@@ -462,3 +462,8 @@
 <p><time>2026-05-20T13:48:00Z</time>: The parent added <code>MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top</code> in <code>LeanLCAExactChallenge/LCA/Cokernel.lean</code>. For the concrete cokernel object <code>B ⧸ cokernelSubgroup f</code>, the cokernel projection is the zero morphism exactly when the closed cokernel subgroup is all of <code>B</code>.</p>
 <p>This lets the v264 strict-exactness bridge consume the more categorical condition <code>cokernelπ T.g = 0</code>. The new theorem <code>MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero</code> constructs strict exactness from kernel equality, closed embedding, open map, and zero cokernel projection. It is still not a full target-side extraction from <code>ShortComplex.Exact</code>, but it turns the right-surjectivity side into a cokernel-zero condition that downstream homology/cokernel arguments can target.</p>
 </section>
+<section id="v268-epi-cokernel-zero-bridge">
+<h2>v268 epi cokernel-zero bridge</h2>
+<p><time>2026-05-20T13:57:00Z</time>: The parent added <code>MetrizableLCA.cokernelπ_eq_zero_of_epi</code>. Since <code>cokernelπ f</code> kills <code>f</code>, any categorical epimorphism <code>f</code> forces the concrete cokernel projection to be zero by cancellation.</p>
+<p>The companion constructor <code>MetrizableLCA.strictShortExact_of_kernel_open_closed_epi</code> now builds strict exactness from kernel equality, closed embedding, open map, and categorical <code>Epi T.g</code>. This is another right-side bridge for future <code>ShortComplex.ShortExact</code> or categorical exactness extraction. It does not by itself extract the left kernel equality or the topological closed/open fields.</p>
+</section>

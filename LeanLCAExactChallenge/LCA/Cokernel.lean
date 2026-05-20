@@ -82,6 +82,10 @@ lemma comp_cokernelπ : f ≫ cokernelπ f = 0 := by
   rw [QuotientAddGroup.eq_zero_iff]
   exact map_mem_cokernelSubgroup f a
 
+lemma cokernelπ_eq_zero_of_epi [Epi f] : cokernelπ f = 0 := by
+  rw [← cancel_epi f]
+  simpa using comp_cokernelπ f
+
 /--
 If a morphism kills `f`, then the closed cokernel subgroup of `f` is contained in its
 kernel.

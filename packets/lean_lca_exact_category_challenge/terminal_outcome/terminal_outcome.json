@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v267では、具体的cokernel APIにcokernelπ f = 0とcokernelSubgroup f = ⊤の同値を追加し、核等式・閉埋め込み・開写像性・cokernelπ=0からstrictShortExactを構成する定理を追加した。右端全射条件をcokernel projection zeroへ接続できるようになったが、ShortComplex.Exactやquasi-iso/homology routeから必要な全条件を抽出する証明は未完了であり、product successではない。",
+  "summary": "v268では、任意のEpi fについて具体cokernel projectionがゼロになる定理MetrizableLCA.cokernelπ_eq_zero_of_epiを追加し、核等式・閉埋め込み・開写像性・Epi T.gからstrictShortExactを構成する定理を追加した。右端条件をcategorical epiから具体的cokernel-zeroへ接続できるようになったが、ShortComplex.Exactやquasi-iso/homology routeから必要な全条件を抽出する証明は未完成であり、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -745,9 +745,12 @@
     "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero",
     "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_cokernelSubgroup_eq_top",
     "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top",
-    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero"
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_epi",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi"
   ],
   "known_gaps": [
+    "Epi T.gからcokernelπ T.g = 0を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeからEpi T.g、核等式、閉埋め込み、開写像性を同時に抽出する証明はまだ未完成である。",
     "cokernelπ T.g = 0から右端全射を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeから核等式、閉埋め込み、開写像性、cokernelπ=0を抽出する証明はまだ未完成である。",
     "MetrizableLCAの反対側bounded complex sourceには有限limit/product/equalizerが入ったが、bounded derived localizationへ有限limitを輸送するための右calculus、functor-category localization、局所化transferはまだ未完成である。",
     "localized comparisonのunit/counit membership輸送とadjunction transport等式は形式化されたが、verdierComparisonLocalizationIsoを通じた具体的なtransported localized adjunction自体はまだ未構成である。",
@@ -766,6 +769,7 @@
   "worker_frontier_summary": "v251で支援w235を消費し、MetrizableLCA有限余極限を有限余積プラス任意pushout/cokernelへ縮約した。product success は未主張である。",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
+    "Epi T.gからcokernelπ T.g = 0を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeからEpi T.g、核等式、閉埋め込み、開写像性を同時に抽出する証明はまだ未完成である。",
     "cokernelπ T.g = 0から右端全射を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeから核等式、閉埋め込み、開写像性、cokernelπ=0を抽出する証明はまだ未完成である。",
     "MetrizableLCAの反対側bounded complex sourceには有限limit/product/equalizerが入ったが、bounded derived localizationへ有限limitを輸送するための右calculus、functor-category localization、局所化transferはまだ未完成である。",
     "localized comparisonのunit/counit membership輸送とadjunction transport等式は形式化されたが、verdierComparisonLocalizationIsoを通じた具体的なtransported localized adjunction自体はまだ未構成である。",
@@ -1081,10 +1085,12 @@
     "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero",
     "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_cokernelSubgroup_eq_top",
     "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top",
-    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero"
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_epi",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi"
   ],
-  "generated_utc": "2026-05-20T13:48:00Z",
-  "support_result_classification": "v267 parent-side implementation; product remains failed_nonterminal.",
+  "generated_utc": "2026-05-20T13:57:00Z",
+  "support_result_classification": "v268 parent-side implementation; product remains failed_nonterminal.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1507,7 +1513,9 @@
     "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero",
     "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_cokernelSubgroup_eq_top",
     "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top",
-    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero"
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_epi",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"

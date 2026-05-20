@@ -193,3 +193,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v267 Update
 
 2026-05-20T13:48:00Z: `MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top` was added to the concrete cokernel API, and `MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero` was added to the strict-exactness bridge. The target-side right condition can now be expressed as the categorical zero-cokernel projection `cokernelπ T.g = 0`, which feeds the previous open-map/dense-range surjectivity theorem. Product success remains nonterminal because the upstream extraction of kernel equality, closed/open topology, and zero cokernel projection is still not supplied by the derived/homology route.
+
+## v268 Update
+
+2026-05-20T13:57:00Z: `MetrizableLCA.cokernelπ_eq_zero_of_epi` now connects categorical epimorphisms to the concrete zero-cokernel-projection bridge by cancelling the identity `f ≫ cokernelπ f = 0`. `MetrizableLCA.strictShortExact_of_kernel_open_closed_epi` packages this as a strict-exactness constructor from kernel equality, closed embedding, open map, and `Epi T.g`. This gives a second categorical right-side input for future `ShortComplex.ShortExact` or exactness extraction, but product success remains blocked by the left kernel and topological extraction inputs.
