@@ -492,3 +492,5 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ## W347-W349 Left LCA v368 Support
 2026-05-20T21:36:00Z: W347 makes the `IsColimit.map` closed-embedding boundary equivalent to W318's left LCA fields. W348 bundles quotient-presenting cocones, descended leg equations, and descended closed-map fields into a certificate proving closed embedding for the canonical `IsColimit.map`. W349 proves relation pullback equality equivalent to the reverse relation-preimage condition and closed-range preimage equality under the square equations. Product success remains false because the concrete quotient/coequalizer cocones, colimit proofs, descended fields, and reverse-preimage theorem are still missing.
+
+2026-05-20T21:39:00Z: W348 was expanded with `wppOp_lca_colimitMap_fields_of_descendedQuotientCertificate_boundary`, which consumes a global descended-quotient certificate boundary into W318's left LCA fields. Product success remains false because the global certificate boundary still needs concrete quotient/coequalizer construction.

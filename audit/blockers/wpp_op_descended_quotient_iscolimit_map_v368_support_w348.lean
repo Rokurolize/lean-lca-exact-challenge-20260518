@@ -243,6 +243,44 @@ theorem isColimitMap_fields_of_certificate
     isColimitMap_closedEmbedding_of_certificate cert
   exact ⟨hclosed.injective, hclosed.isInducing, hclosed.isClosed_range⟩
 
+/--
+Global certificate boundary for the left LCA route: for every componentwise
+closed-embedding natural transformation, a quotient-presenting descended map
+certificate exists.
+-/
+abbrev wppOp_lca_descendedQuotientCertificate_boundary : Prop :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y),
+      IsColimit cx →
+        IsColimit cy →
+          (∀ j : WalkingParallelPairᵒᵖ,
+            IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+            Nonempty (DescendedQuotientIsColimitMapCertificate X Y α cx cy)
+
+/--
+The global descended-quotient certificate boundary is enough to prove W318's
+left LCA injective/inducing/closed-image certificate for arbitrary compatible
+colimit maps.
+-/
+theorem wppOp_lca_colimitMap_fields_of_descendedQuotientCertificate_boundary
+    (hboundary : wppOp_lca_descendedQuotientCertificate_boundary) :
+    WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_injective_inducing_closedImage := by
+  intro X Y α cx cy φ hcx hcy hclosed hcompat
+  rcases hboundary X Y α cx cy hcx hcy hclosed with ⟨cert⟩
+  rcases isColimitMap_fields_of_certificate cert with
+    ⟨hinj, hind, hclosedImage⟩
+  have hmapClosed :
+      IsClosedEmbedding (IsColimit.map cert.hcx cy α : cx.pt → cy.pt) :=
+    WppOpExactAcyclicFrontierConsolidatedW318.closedEmbedding_of_injective_inducing_closedImage
+      (IsColimit.map cert.hcx cy α : cx.pt → cy.pt) hinj hind hclosedImage
+  have hmapEq : IsColimit.map cert.hcx cy α = φ :=
+    isColimit_map_eq_of_compat α φ cert.hcx hcompat
+  have hφ : IsClosedEmbedding (φ : cx.pt → cy.pt) := by
+    change IsClosedEmbedding (MetrizableLCA.Hom.hom φ)
+    rw [← hmapEq]
+    simpa using hmapClosed
+  exact ⟨hφ.injective, hφ.isInducing, hφ.isClosed_range⟩
+
 /-- Current checked declaration names for external review scripts. -/
 def w348SupportDeclarationNames : List String :=
   ["DescendedClosedMapFields",
@@ -254,10 +292,12 @@ def w348SupportDeclarationNames : List String :=
     "DescendedQuotientIsColimitMapCertificate",
     "mkDescendedQuotientIsColimitMapCertificate",
     "isColimitMap_closedEmbedding_of_certificate",
-    "isColimitMap_fields_of_certificate"]
+    "isColimitMap_fields_of_certificate",
+    "wppOp_lca_descendedQuotientCertificate_boundary",
+    "wppOp_lca_colimitMap_fields_of_descendedQuotientCertificate_boundary"]
 
 theorem w348SupportDeclarationNames_count :
-    w348SupportDeclarationNames.length = 10 := rfl
+    w348SupportDeclarationNames.length = 12 := rfl
 
 /-- Machine-readable state for this checked support file. -/
 structure WppOpDescendedQuotientIsColimitMapV368State : Type where
@@ -275,7 +315,8 @@ def currentWppOpDescendedQuotientIsColimitMapV368State :
   checkedFacts :=
     ["transported descended quotient map equals IsColimit.map",
       "certificate bundles quotient cocones, colimit proofs, descended map, leg equation, fields, and equality",
-      "certificate yields IsClosedEmbedding and W318-style fields for IsColimit.map"]
+      "certificate yields IsClosedEmbedding and W318-style fields for IsColimit.map",
+      "a global certificate boundary yields the W318 left LCA injective/inducing/closed-image certificate"]
   remainingInputs :=
     ["instantiate source and target as the concrete quotient/coequalizer WPP-op cocones",
       "prove those concrete cocones are colimits",
@@ -299,6 +340,8 @@ section Checks
 #check mkDescendedQuotientIsColimitMapCertificate
 #check isColimitMap_closedEmbedding_of_certificate
 #check isColimitMap_fields_of_certificate
+#check wppOp_lca_descendedQuotientCertificate_boundary
+#check wppOp_lca_colimitMap_fields_of_descendedQuotientCertificate_boundary
 #check w348SupportDeclarationNames
 #check w348SupportDeclarationNames_count
 #check currentWppOpDescendedQuotientIsColimitMapV368State
