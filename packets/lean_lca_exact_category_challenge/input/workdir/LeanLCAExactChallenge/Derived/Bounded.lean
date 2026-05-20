@@ -1865,6 +1865,14 @@ abbrev boundedHomotopyExactWeakEquivalence [HasZeroObject C] [HasBinaryBiproduct
   (exactAcyclicHomotopyIsoClosure C).trW.inverseImage
     (BoundedComplexCategory.homotopyQuotient C)
 
+/-- The isomorphism-closed homotopy/Verdier bounded weak equivalences contain all
+identities without any separate homotopy-invariance hypothesis. -/
+noncomputable instance boundedHomotopyExactWeakEquivalence_containsIdentities
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    (boundedHomotopyExactWeakEquivalence C).ContainsIdentities := by
+  dsimp [boundedHomotopyExactWeakEquivalence]
+  infer_instance
+
 /-- Direct mapping-cone exact weak equivalences are homotopy/Verdier weak equivalences after
 passing to the homotopy category and closing exact acyclic objects under isomorphism. -/
 theorem boundedExactWeakEquivalence_le_boundedHomotopyExactWeakEquivalence

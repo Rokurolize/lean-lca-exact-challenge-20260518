@@ -253,3 +253,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v291 Update
 
 2026-05-20T14:59:24Z: `boundedExactWeakEquivalence_containsIdentities_of_isoClosed` now proves direct bounded mapping-cone weak equivalences contain identities from `(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms`, and W291 verifies the corresponding opposite `MetrizableLCA` identity-containment input. This narrows W266 by reducing `((boundedExactWeakEquivalence MetrizableLCA).op).ContainsIdentities` to the iso-closed exact-acyclic homotopy input, but product success remains nonterminal because that input, direct `WalkingParallelPairᵒᵖ` colimit stability, and W269 functor-category localization fac/uniq fields are still open.
+
+## v292 Update
+
+2026-05-20T15:11:10Z: `boundedHomotopyExactWeakEquivalence_containsIdentities` now proves identity containment for the isomorphism-closed homotopy/Verdier bounded weak-equivalence class without requiring `(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms`. The W292 audit verifies the opposite `MetrizableLCA` instance. This gives a clean identity input for a homotopy/Verdier-class finite-limit route, but it does not by itself prove the direct W266 input for `boundedExactWeakEquivalence`; that still needs exact acyclicity of identity mapping cones or a checked replacement assembly. Product success remains nonterminal.

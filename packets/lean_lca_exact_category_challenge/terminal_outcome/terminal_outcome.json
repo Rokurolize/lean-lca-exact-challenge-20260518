@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v291ではopposite identity containmentをiso-closed入力へ縮約した。`boundedExactWeakEquivalence_containsIdentities_of_isoClosed`により、exact-acyclic homotopy objectがisomorphismで閉じていればdirect classがidentitiesを含み、W291監査でMetrizableLCAのopposite classにも運べることを確認した。product successではない。",
+  "summary": "v292ではisomorphism-closed homotopy/Verdier class `boundedHomotopyExactWeakEquivalence`のidentity containmentを無条件で追加した。opposite MetrizableLCA版も監査で確認したが、direct class `boundedExactWeakEquivalence`のW266入力そのものはまだ閉じていないためproduct successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -111,7 +111,9 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_contains_identities_of_iso_closed_w291.lean",
     "clean extraction: python3 audit/external_audit.py --root <unzipped packet>/lean_lca_exact_category_challenge --terminal-outcome <unzipped packet>/lean_lca_exact_category_challenge/terminal_outcome/terminal_outcome.json",
-    "cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256"
+    "cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256",
+    "lake env lean audit/blockers/homotopy_weq_contains_identities_w292.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/homotopy_weq_contains_identities_w292.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -826,15 +828,16 @@
     "W269はcoherent opposite lift blueprintからcandidate liftを作るが、blueprint存在、fac、uniqはまだ未証明である。",
     "right-homology zeroはT.fromOpcyclesのzero-kernel側であり、endpoint cokernelπ=0やEpi T.gは従わない。Epi T.fromOpcyclesなどの明示右端入力がまだ必要である。",
     "opposite identity containmentはiso-closed入力へ縮約されたが、(exactAcyclicHomotopyObject MetrizableLCA).IsClosedUnderIsomorphisms自体はまだproduct theoremではない。",
-    "direct WalkingParallelPairᵒᵖ colimit stabilityとW269 functor-category localization fac/uniq fieldsは未完了。"
+    "direct WalkingParallelPairᵒᵖ colimit stabilityとW269 functor-category localization fac/uniq fieldsは未完了。",
+    "homotopy/Verdier classのidentity containmentは解決したが、direct boundedExactWeakEquivalenceのW266 identity inputは未完了。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "uncommitted-v291",
+  "git_commit": "uncommitted-v292",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W266のidentity inputはiso-closed exact-acyclic homotopy inputへ縮約された。残りはそのiso-closed input、direct WalkingParallelPairᵒᵖ colimit stability、W269 functor-category localization fac/uniq fields。",
-  "claim_review_result": "未実施。v291はproduct_success claimではなく、root/clean extraction external auditはいずれも想定どおりfailed_nonterminal product gateで停止した。",
+  "worker_frontier_summary": "homotopy/Verdier classのopposite identity containmentはv292で解決。direct W266 identity input、direct WalkingParallelPairᵒᵖ colimit stability、W269 fac/uniq fieldsは残る。",
+  "claim_review_result": "未実施。v292はproduct_success claimではなく、root/clean extraction external auditはいずれも想定どおりfailed_nonterminal product gateで停止した。",
   "remaining_gaps": [
     "factorized localized composite側のright/left adjunctionとunit/counit membership入力は構造体として分離されたが、その実体constructorはまだ未供給である。",
     "反対圏finite-limit transferはsource factsとtransfer-input構造体に整理されたが、opposite WalkingParallelPair functor-category localization、opposite finite-product stability、opposite WalkingParallelPair stabilityはまだ未供給である。",
@@ -884,9 +887,10 @@
     "W269はcoherent opposite lift blueprintからcandidate liftを作るが、blueprint存在、fac、uniqはまだ未証明である。",
     "right-homology zeroはT.fromOpcyclesのzero-kernel側であり、endpoint cokernelπ=0やEpi T.gは従わない。Epi T.fromOpcyclesなどの明示右端入力がまだ必要である。",
     "opposite identity containmentはiso-closed入力へ縮約されたが、(exactAcyclicHomotopyObject MetrizableLCA).IsClosedUnderIsomorphisms自体はまだproduct theoremではない。",
-    "direct WalkingParallelPairᵒᵖ colimit stabilityとW269 functor-category localization fac/uniq fieldsは未完了。"
+    "direct WalkingParallelPairᵒᵖ colimit stabilityとW269 functor-category localization fac/uniq fieldsは未完了。",
+    "homotopy/Verdier classのidentity containmentは解決したが、direct boundedExactWeakEquivalenceのW266 identity inputは未完了。"
   ],
-  "next_recommended_goal": "次は`(exactAcyclicHomotopyObject MetrizableLCA).IsClosedUnderIsomorphisms`を証明するか、direct `WalkingParallelPairᵒᵖ` colimit stabilityとW269のfac/uniq localization fieldsを詰める。",
+  "next_recommended_goal": "次は`mappingCone (𝟙 K)`のexact acyclicityからdirect identity containmentを証明するか、`boundedHomotopyExactWeakEquivalence`上のW266相当finite-limit assemblyを構成する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -1228,9 +1232,11 @@
     "RightHomologyCokernelComparisonW268.strictShortExact_of_exact_of_topology_of_epi_fromOpcycles",
     "RightHomologyCokernelComparisonW268.no_rightHomologyZero_to_targetEpi",
     "boundedExactWeakEquivalence_containsIdentities_of_isoClosed",
-    "OppositeContainsIdentitiesOfIsoClosedW291.metrizableLCA_oppositeContainsIdentities_from_isoClosed"
+    "OppositeContainsIdentitiesOfIsoClosedW291.metrizableLCA_oppositeContainsIdentities_from_isoClosed",
+    "boundedHomotopyExactWeakEquivalence_containsIdentities",
+    "HomotopyWeqContainsIdentitiesW292.metrizableLCA_homotopyWeq_op_containsIdentities"
   ],
-  "generated_utc": "2026-05-20T14:59:24Z",
+  "generated_utc": "2026-05-20T15:11:10Z",
   "support_result_classification": "parent-side source progress; no support worker result consumed.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -1665,7 +1671,9 @@
     "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorLeftTransportInput.localizedAdjunction",
     "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorLeftTransportInput.localized_counit_mem",
     "boundedExactWeakEquivalence_containsIdentities_of_isoClosed",
-    "OppositeContainsIdentitiesOfIsoClosedW291.metrizableLCA_oppositeContainsIdentities_from_isoClosed"
+    "OppositeContainsIdentitiesOfIsoClosedW291.metrizableLCA_oppositeContainsIdentities_from_isoClosed",
+    "boundedHomotopyExactWeakEquivalence_containsIdentities",
+    "HomotopyWeqContainsIdentitiesW292.metrizableLCA_homotopyWeq_op_containsIdentities"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"
