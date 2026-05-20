@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v172-strict-selected-eligibility-audit",
-  "generated_utc": "2026-05-20T09:05:00Z",
-  "source_tree_hash": "5dd30521a7fe1df8cbe712b4bd380af4864da85e4cf6b19f6ceb97fd33c72dd8",
-  "summary": "v172 ports the compiling w132 strict-selected distinguished eligibility audit; it proves the narrower eligibility route is equivalent to the existing bounded strict-realization frontier, so product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v173-dbounded-four-projection-route-gate",
+  "generated_utc": "2026-05-20T09:25:00Z",
+  "source_tree_hash": "6dbef209bfdb490aa8d025c2b5b8bfb314c47c7bc11b3d119b1e3e961d7798a1",
+  "summary": "v173 ports the compiling w133 Dbounded four-projection route gate; marker-only and ordinary-only stable routes are rejected, and product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v172 strict-selected eligibility audit was added."
+      "evidence": "Full lake build passed after the v173 Dbounded four-projection route gate was added."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v172 strict-selected eligibility audit was added."
+      "evidence": "Forbidden-token audit passed after the v173 Dbounded four-projection route gate was added."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v172 strict-selected eligibility audit was added."
+      "evidence": "Required declaration audit passed after the v173 Dbounded four-projection route gate was added."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess declaration audit passed after the v172 strict-selected eligibility audit was added; no product-success claim was added."
+      "evidence": "ProductSuccess declaration audit passed after the v173 Dbounded four-projection route gate was added; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after the v171 consumer audit: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after the v173 route-gate audit: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed before the v171 stable product-gate pass consumer audit."
+      "evidence": "Whitespace diff check passed before the v173 route-gate audit commit."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -143,6 +143,11 @@
       "command": "lake env lean audit/blockers/stable_certificate_four_projection_constructor_w131.lean",
       "status": "passed",
       "evidence": "Focused v171 w131 stable four-projection audit passed after adding the consumer-side stable product-gate pass witness and converters."
+    },
+    {
+      "command": "lake env lean audit/blockers/dbounded_four_projection_provider_route_w133.lean",
+      "status": "passed",
+      "evidence": "Focused v173 w133 Dbounded four-projection provider route audit passed; marker-only and ordinary-context-only routes are rejected, while only a full stable four-projection provider is accepted."
     }
   ],
   "implemented_declarations_checked": [
@@ -295,7 +300,27 @@
     "StableCertificateFourProjectionConstructorW131.DboundedStableProductGatePass.ofExtractedProviders",
     "StableCertificateFourProjectionConstructorW131.DboundedStableProductGatePass.ready_ofExtractedProviders",
     "StableCertificateFourProjectionConstructorW131.dboundedStableProductGatePassOfFourProjectionProvider",
-    "StableCertificateFourProjectionConstructorW131.dboundedStableProductGatePass_ready_of_fourProjectionProvider"
+    "StableCertificateFourProjectionConstructorW131.dboundedStableProductGatePass_ready_of_fourProjectionProvider",
+    "DboundedFourProjectionProviderRouteW133.OrdinaryDboundedInfinityContext",
+    "DboundedFourProjectionProviderRouteW133.currentOrdinaryDboundedInfinityContext",
+    "DboundedFourProjectionProviderRouteW133.FullStableFourProjectionCertificate",
+    "DboundedFourProjectionProviderRouteW133.DboundedFourProjectionProvider",
+    "DboundedFourProjectionProviderRouteW133.DboundedFourProjectionProvider.ready",
+    "DboundedFourProjectionProviderRouteW133.DboundedFourProjectionProvider.ready_of_fields",
+    "DboundedFourProjectionProviderRouteW133.OrdinaryContextToDboundedFourProjectionProvider",
+    "DboundedFourProjectionProviderRouteW133.MarkerOnlyStableClaim",
+    "DboundedFourProjectionProviderRouteW133.OrdinaryOnlyStableClaim",
+    "DboundedFourProjectionProviderRouteW133.DboundedFourProjectionRouteAttempt",
+    "DboundedFourProjectionProviderRouteW133.attemptAccepted",
+    "DboundedFourProjectionProviderRouteW133.markerOnly_rejected",
+    "DboundedFourProjectionProviderRouteW133.ordinaryOnly_rejected",
+    "DboundedFourProjectionProviderRouteW133.fullStableProvider_accepted",
+    "DboundedFourProjectionProviderRouteW133.currentOrdinaryOnlyAttempt",
+    "DboundedFourProjectionProviderRouteW133.currentOrdinaryOnlyAttempt_rejected",
+    "DboundedFourProjectionProviderRouteW133.requiredProjectionFieldNames",
+    "DboundedFourProjectionProviderRouteW133.requiredProjectionFieldNames_count",
+    "DboundedFourProjectionProviderRouteW133.missingTheoremName",
+    "DboundedFourProjectionProviderRouteW133.missingTheoremSignature"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -353,6 +378,23 @@
         "distinguishedEndpointEligibilityProvider_strictSelected_iff_realization"
       ],
       "product_effect": "no_product_success_claim; the strict-selected provider excludes arbitrary weak witnesses but is equivalent to the existing bounded strict-realization frontier"
+    },
+    "w133-dbounded-four-projection-provider-route": {
+      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave73_20260520T003800Z/workers/w133-dbounded-four-projection-provider-route/result.json",
+      "classification": "manual_port_parent_v173",
+      "worker_status": "proof_segment_ready",
+      "worker_changed_files": [
+        "audit/blockers/dbounded_four_projection_provider_route_w133.lean"
+      ],
+      "parent_file": "audit/blockers/dbounded_four_projection_provider_route_w133.lean",
+      "parent_declarations_covering_result": [
+        "DboundedFourProjectionProviderRouteW133.OrdinaryContextToDboundedFourProjectionProvider",
+        "DboundedFourProjectionProviderRouteW133.markerOnly_rejected",
+        "DboundedFourProjectionProviderRouteW133.ordinaryOnly_rejected",
+        "DboundedFourProjectionProviderRouteW133.currentOrdinaryOnlyAttempt_rejected",
+        "DboundedFourProjectionProviderRouteW133.fullStableProvider_accepted"
+      ],
+      "product_effect": "no_product_success_claim; ordinary Dbounded evidence is classified as rejected ordinary-only route unless a full stable four-projection provider is supplied"
     }
   }
 }
