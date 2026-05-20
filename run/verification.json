@@ -47,7 +47,7 @@
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check will be rerun after manifest refresh."
+      "evidence": "External audit self-check passed after the v171 stable product-gate pass consumer audit and confirms negative fixtures, including self-referential packet zip SHA, remain rejecting."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -285,7 +285,7 @@
   "product_complete": false,
   "known_gaps": [
     "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため、arbitrary weak endpoint witnessを除外する非自明なeligibility predicateと、そのeligible witnessだけをcochain同型へ上げるupgradeが必要です。",
-    "stable側は、full single certificateからproduct-review-shaped readiness evidenceへ変換する監査constructorは通ったが、ordinary Dbounded contextからfull stable four-projection certificateを構成する実装が未完成です。",
+    "stable側は、full single certificateからproduct-review-shaped readiness evidenceを経由してconsumer-side product-gate pass witnessへ変換する監査constructorは通ったが、ordinary Dbounded contextからfull stable four-projection certificateを構成する実装が未完成です。",
     "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
   ],
   "support_result_classification": {
