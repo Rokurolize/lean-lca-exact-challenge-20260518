@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-20T22:04:00Z",
-  "content_hash_tree": "484de74aeeeb4a987be20d2ad12ad88ce075ca0966f2178a876d44a0fd194440",
+  "generated_utc": "2026-05-20T22:07:00Z",
+  "content_hash_tree": "8c6ca3be1b6606473c3cac466d1df2f2607374539d6ac4a991467933cea3ee5e",
   "files": [
     {
       "path": "README_FOR_REVIEW.md",
@@ -1073,6 +1073,11 @@
       "bytes": 3853
     },
     {
+      "path": "input/workdir/audit/blockers/wpp_op_left_lca_concrete_quotient_cocone_v369_support_w357.lean",
+      "sha256": "03d407035aea9fa747acbaaf8e251325675a3d9c62d1dcbc39b3ec41ae340910",
+      "bytes": 17101
+    },
+    {
       "path": "input/workdir/audit/blockers/wpp_op_left_lca_relation_certificate_composer_v369_support_w354.lean",
       "sha256": "72033cb812ca91ec6943d29580e345aaedc2250c9324b0758101b4b5aea18de0",
       "bytes": 18226
@@ -1389,8 +1394,8 @@
     },
     {
       "path": "input/workdir/docs/research/reference_route_log.md",
-      "sha256": "6df2caf76dfdb6040bc2989381225b526745ccfe175fbea7d455f6804ddb0c3e",
-      "bytes": 172728
+      "sha256": "b17904be3db1ae310f229788383cdba70e5db9d0618e2871072b75065565c414",
+      "bytes": 174530
     },
     {
       "path": "input/workdir/docs/research/sources.md",
@@ -1419,8 +1424,8 @@
     },
     {
       "path": "input/workdir/implementation-notes.html",
-      "sha256": "bb60486a32eedce7508f088984b9bedde018ae6535f77e8fd172ccd249367149",
-      "bytes": 315253
+      "sha256": "5132e42e5b24573521b3670ce4814244b520814e6056aba22ce73ada9e46c8cc",
+      "bytes": 317317
     },
     {
       "path": "input/workdir/lake-manifest.json",
@@ -1439,8 +1444,8 @@
     },
     {
       "path": "input/workdir/manifest.json",
-      "sha256": "e2d4b4cc9ce87a0ba50b9dd4ee1b5182912127b6ea7afe7f7196fee545d0cf8e",
-      "bytes": 54450
+      "sha256": "1b10f003df6b5066fd6fc9eaef1b54d84455200e5b4724e4d61977386c0caf74",
+      "bytes": 54664
     },
     {
       "path": "input/workdir/merge_queue/README.md",
@@ -1449,18 +1454,18 @@
     },
     {
       "path": "input/workdir/progress.tsv",
-      "sha256": "c0901467897b3e80cada2d2d766d1b52da9fe82b627c22444cb2f13d1ada39f4",
-      "bytes": 247922
+      "sha256": "b57eed2dc3a4e2baf2ab0b14d3fce3bb9faeb1d37460376134003517e0be4383",
+      "bytes": 248901
     },
     {
       "path": "input/workdir/proof_frontier/FRONTIER_MATRIX.json",
-      "sha256": "17908e41b6119cf1fa514644d3c9b6e820a09faea63db960101a6e904fd25344",
-      "bytes": 197123
+      "sha256": "bd93ffa3eaf4fc06e08f0e2813f3d45607c3c64941d27fc0e390c217ceae19ab",
+      "bytes": 200683
     },
     {
       "path": "input/workdir/proof_frontier/FRONTIER_MATRIX.md",
-      "sha256": "ea4884b2e85296508a12c73358c35d28517e50ef32f2bd0d0915ef1d52714eee",
-      "bytes": 121082
+      "sha256": "3febae05e3b32441e43956aff9a690ad30ef08dd77d58c1b2a134752e9536535",
+      "bytes": 122547
     },
     {
       "path": "input/workdir/proof_frontier/ROOT_BLOCKERS_W320.json",
@@ -1474,8 +1479,8 @@
     },
     {
       "path": "input/workdir/run/verification.json",
-      "sha256": "af96cde3dd532f04ed251e778e7045d3367099942d256320b08cbd7699f8de4b",
-      "bytes": 203781
+      "sha256": "6f6918bd30e6c4d6924ee1da3639d76d156128093e2461de914c67fd6140e6e7",
+      "bytes": 206475
     },
     {
       "path": "input/workdir/scripts/audit_no_forbidden_lean_tokens.sh",
@@ -1489,8 +1494,8 @@
     },
     {
       "path": "input/workdir/terminal_outcome/terminal_outcome.json",
-      "sha256": "ac67da8ba9b1158e0e068ba9aed08b10214752bad95393b9f34f98ffb3dd3ce2",
-      "bytes": 264858
+      "sha256": "1cf2c01c0f4863e12ad41565423fa4dcfff1277b5766d9adb7bfb10c83e76215",
+      "bytes": 271217
     },
     {
       "path": "input/workdir/workers/README.md",
@@ -1499,13 +1504,13 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "af96cde3dd532f04ed251e778e7045d3367099942d256320b08cbd7699f8de4b",
-      "bytes": 203781
+      "sha256": "6f6918bd30e6c4d6924ee1da3639d76d156128093e2461de914c67fd6140e6e7",
+      "bytes": 206475
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "ac67da8ba9b1158e0e068ba9aed08b10214752bad95393b9f34f98ffb3dd3ce2",
-      "bytes": 264858
+      "sha256": "1cf2c01c0f4863e12ad41565423fa4dcfff1277b5766d9adb7bfb10c83e76215",
+      "bytes": 271217
     }
   ]
 }
