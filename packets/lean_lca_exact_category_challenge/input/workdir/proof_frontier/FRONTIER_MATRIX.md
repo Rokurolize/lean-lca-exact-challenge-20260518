@@ -197,3 +197,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v268 Update
 
 2026-05-20T13:57:00Z: `MetrizableLCA.cokernelπ_eq_zero_of_epi` now connects categorical epimorphisms to the concrete zero-cokernel-projection bridge by cancelling the identity `f ≫ cokernelπ f = 0`. `MetrizableLCA.strictShortExact_of_kernel_open_closed_epi` packages this as a strict-exactness constructor from kernel equality, closed embedding, open map, and `Epi T.g`. This gives a second categorical right-side input for future `ShortComplex.ShortExact` or exactness extraction, but product success remains blocked by the left kernel and topological extraction inputs.
+
+## v269 Update
+
+2026-05-20T14:08:00Z: Support result w253 was reimplemented as `audit/blockers/localized_comparison_transport_input_w253.lean`. It combines the v265 transport lemmas with `BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso`, producing W245-shaped `ComparisonFactorRightTransportInput` and `ComparisonFactorLeftTransportInput` structures. The localized-comparison frontier is now reduced to factorized adjunctions for the Verdier-comparison route plus factorized unit/counit membership; the localized adjunction and membership fields then follow by checked transport. Product success remains nonterminal.
