@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T05:15:00Z",
+  "generated_utc": "2026-05-20T05:35:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v192 proves degreewise inverse compatibility for the binary mapping-cone/biproduct comparison candidates; this is frontier progress, not product completion.",
+  "worker_policy": "No workers were launched from the target worktree. v193 adds biprod.map projection helper lemmas for the binary mapping-cone/biproduct differential frontier; this is frontier progress, not product completion.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",

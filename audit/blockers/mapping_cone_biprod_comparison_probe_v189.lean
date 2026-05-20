@@ -166,6 +166,16 @@ theorem biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX (n : ℤ) :
   rw [biprodConeToConeBiprodMapX_auxiliary_comp]
   simp
 
+theorem biprodMap_fst_f (n : ℤ) :
+    (biprod.map f₁ f₂).f n ≫ (biprod.fst : L₁ ⊞ L₂ ⟶ L₁).f n =
+      (biprod.fst : K₁ ⊞ K₂ ⟶ K₁).f n ≫ f₁.f n := by
+  rw [← HomologicalComplex.comp_f, biprod.map_fst, HomologicalComplex.comp_f]
+
+theorem biprodMap_snd_f (n : ℤ) :
+    (biprod.map f₁ f₂).f n ≫ (biprod.snd : L₁ ⊞ L₂ ⟶ L₂).f n =
+      (biprod.snd : K₁ ⊞ K₂ ⟶ K₂).f n ≫ f₂.f n := by
+  rw [← HomologicalComplex.comp_f, biprod.map_snd, HomologicalComplex.comp_f]
+
 structure BinaryMappingConeBiprodDifferentialCompatibility : Prop where
   left_to_right :
     ∀ (n : ℤ),
@@ -216,6 +226,8 @@ section Checks
 #check rightComponentToConeBiprodMap_comp_coneBiprodMapToRightComponent
 #check biprodConeToConeBiprodMapX_auxiliary_comp
 #check biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX
+#check biprodMap_fst_f
+#check biprodMap_snd_f
 #check BinaryMappingConeBiprodDifferentialCompatibility
 #check BinaryMappingConeBiprodInverseCompatibility
 #check binaryMappingConeBiprodInverseCompatibility
