@@ -273,3 +273,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v296 Update
 
 2026-05-20T15:43:03Z: `audit/blockers/shortcomplex_quasiiso_conflation_counterexample_w296.lean` proves that the plain W229/W273 bridge is false for the concrete `MetrizableLCA` strict exact structure. The split zero short complex is a `QuillenExactCategory.Conflation` and is `ShortComplex.QuasiIso` to `0 -> 0 -> ZMod 2`, but the target right map is not surjective, so the target is not a conflation. The exact-acyclic HomotopyEquiv transport route must therefore use a weaker degreewise theorem, additional endpoint/topology data, or a different construction; product success remains nonterminal.
+
+## v297 Update
+
+2026-05-20T15:47:39Z: Support result W276 was ported as `audit/blockers/wpp_op_mapping_cone_comparison_w276.lean`. The W271 input `mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison` now follows from the smaller `walkingParallelPairOp_mappingCone_objectComparisonBoundary`, which asks for a cochain-complex WPP-op comparison diagram with component mapping-cone isomorphisms and a colimit-point mapping-cone isomorphism. The separate exact-acyclic WPP-op colimit-closure input remains open. Support W275 was classified as delayed because v296 refutes its plain quasi-isomorphism-to-conflation transport bridge.

@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T15:43:03Z",
-  "source_tree_hash": "8d8046d489ed350fe251f42c2b64dea9bc0bdcb6899caa5ea4939aa22b49e017",
-  "summary": "v296でW229/W273のplain ShortComplex.QuasiIsoによるConflation輸送経路を、MetrizableLCAの0 -> 0 -> ZMod 2反例で偽と確認した。product_completeはfalseのまま。",
+  "generated_utc": "2026-05-20T15:47:39Z",
+  "source_tree_hash": "cc7d88c942d733bd0ea3c069500d23681915be11531eedb4b5808d758aab0a58",
+  "summary": "v297でW276を親側監査ファイルとして取り込み、W271のmapping-cone比較入力をobject-level WPP-op cone/colimit比較境界へ縮約した。product_completeはfalseのまま。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -688,6 +688,16 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_quasiiso_conflation_counterexample_w296.lean",
       "status": "passed",
       "evidence": "v296 focused check passed in the parent target worktree."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_comparison_w276.lean",
+      "status": "passed",
+      "evidence": "v297 focused W276 boundary check passed in the parent target worktree."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_comparison_w276.lean",
+      "status": "passed",
+      "evidence": "v297 focused W276 boundary check passed in the parent target worktree."
     }
   ],
   "implemented_declarations_checked": [
@@ -1225,10 +1235,16 @@
     "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.quasiIso_zero_to_target",
     "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.target_not_conflation",
     "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.no_metrizableLCA_quasiIsoConflationTransport",
-    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.quasiIsoConflationTransportCounterexampleStatus"
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.quasiIsoConflationTransportCounterexampleStatus",
+    "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison",
+    "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.walkingParallelPairOp_mappingCone_objectComparisonBoundary",
+    "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_objectBoundary",
+    "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.currentWppOpMappingConeComparisonState",
+    "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.currentWppOpMappingConeComparisonState_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
+    "W271のmapping-cone比較入力はW276でobject-level WPP-op cone/colimit比較境界へ縮約されたが、そのobject-level比較図式と、別入力のexactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closureはまだ未供給である。",
     "W229/W273のHomotopyEquiv輸送をplain ShortComplex.QuasiIsoによるConflation輸送で閉じる経路はW296の0 -> 0 -> ZMod 2反例で偽と確認された。exactAcyclicのHomotopyEquiv輸送には、より弱い次数別定理、endpoint/topology入力付きの輸送、または別経路が必要である。",
     "factorized localized composite側のright/left adjunctionとunit/counit membership入力は構造体として分離されたが、その実体constructorはまだ未供給である。",
     "反対圏finite-limit transferはsource factsとtransfer-input構造体に整理されたが、opposite WalkingParallelPair functor-category localization、opposite finite-product stability、opposite WalkingParallelPair stabilityはまだ未供給である。",
@@ -1273,6 +1289,6 @@
     "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。",
     "direct identity containmentのiso-closed入力はW273でMetrizableLCAExactAcyclicTransportOfHomotopyEquivへ縮約されたが、exactAcyclicをHomotopyEquivで輸送する本体、特にShortComplex.QuasiIsoによるQuillenExactCategory.Conflation輸送はまだ未証明である。"
   ],
-  "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success.",
+  "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success.",
   "product_success": false
 }
