@@ -1,9 +1,19 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v255-wpp-roof-blueprint",
-  "generated_utc": "2026-05-20T12:18:00Z",
-  "source_tree_hash": "e4d1c250239b991224d1ed5085feb74d23d612d4d13c5c91cbc9221d839a83af",
-  "summary": "v255時点で、支援w236を親側で再実装し、WalkingParallelPair functor-category localization のroof-style blueprintを監査として追加した。roof dataは局所化後の対象・射を表すが、W231のstrict liftへ直接入れるには共通分母strictification、strict自然性、恒等・合成coherenceがまだ必要である。product success は非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v256-quasiiso-not-strict-transport-counterexample",
+  "generated_utc": "2026-05-20T12:28:00Z",
+  "source_tree_hash": "abfe28d47a173a7d0a9fc0c32f8c566641d9f390504e1c469f5c5173692a8263",
+  "summary": "v256時点で、ShortComplex.QuasiIso だけでは MetrizableLCA.strictShortExact を輸送できないことを、0→0→0 から 0→0→ZMod 2 へのquasi-isomorphism反例としてLeanで確認した。したがってv254の不足は単なる未実装ではなく、target surjectivity/open-map/topological情報などの追加仮定が必要である。product success は非完了である。",
   "commands": [
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/quasiiso_not_strict_transport_counterexample_w256.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W256 audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/quasiiso_not_strict_transport_counterexample_w256.lean",
+      "status": "passed",
+      "evidence": "Focused W256 counterexample audit passed in the parent target worktree."
+    },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_roof_blueprint_w236.lean",
       "status": "passed",
@@ -167,7 +177,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v255 focused edit."
+      "evidence": "Whitespace diff check passed after v256 focused edit."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -607,7 +617,11 @@
     "CategoryTheory.Localization.WalkingParallelPairArrowRoofData",
     "CategoryTheory.Localization.WalkingParallelPairRoofPreimageData",
     "CategoryTheory.Localization.WalkingParallelPairRoofBlueprint",
-    "WPPRoofBlueprintW236.WalkingParallelPairDboundedRoofBlueprint"
+    "WPPRoofBlueprintW236.WalkingParallelPairDboundedRoofBlueprint",
+    "QuasiIsoNotStrictTransportCounterexampleW256.source_strict",
+    "QuasiIsoNotStrictTransportCounterexampleW256.quasiIso_zero_to_target",
+    "QuasiIsoNotStrictTransportCounterexampleW256.target_not_strict",
+    "QuasiIsoNotStrictTransportCounterexampleW256.no_unconditional_quasiIso_strict_transport"
   ],
   "product_complete": false,
   "known_gaps": [

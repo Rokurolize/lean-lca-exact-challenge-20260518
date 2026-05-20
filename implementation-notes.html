@@ -402,3 +402,8 @@
 <p><time>2026-05-20T12:18:00Z</time>: The parent consumed support result <code>w236-wpp-roof-blueprint-v249</code> by reimplementing it as <code>audit/blockers/wpp_roof_blueprint_w236.lean</code>. This records a roof-style representation for objects, arrows, and natural transformations in the target <code>WalkingParallelPair</code> functor category after localization. The audit also records why this does not directly supply the strict W231 lift input: independent roofs still need common denominators, strict maps in the source category, strict naturality equations, and identity/composition coherence.</p>
 <p>This is a functor-category localization frontier reduction only. No product declaration changed and no product success is claimed.</p>
 </section>
+<section id="v256-quasiiso-not-strict-transport-counterexample">
+<h2>v256 quasiiso transport counterexample</h2>
+<p><time>2026-05-20T12:28:00Z</time>: The parent added <code>audit/blockers/quasiiso_not_strict_transport_counterexample_w256.lean</code>. It builds a finite discrete <code>ZMod 2</code> object in <code>MetrizableLCA</code> and compares the strict zero short complex <code>0 -> 0 -> 0</code> with <code>0 -> 0 -> ZMod 2</code>. The zero morphism is a <code>ShortComplex.QuasiIso</code> because both middle homologies are zero, but the target last map is not surjective, so the target is not <code>MetrizableLCA.strictShortExact</code>.</p>
+<p>This proves that the broad transport theorem isolated in v254 is false without extra hypotheses. Future work must not try to derive strict exactness from <code>ShortComplex.QuasiIso</code> alone; it needs separate target surjectivity/open-map/topological information or a more structured transport theorem.</p>
+</section>
