@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T14:48:00Z",
-  "source_tree_hash": "df5243051b9e245ff936e5b256f82417dac1db1fb5368f39506940bf63746291",
-  "summary": "v272 consumes w254: Verdier comparison factorized adjunction and membership API gaps are mapped to checked left/right calculus consumers.",
+  "generated_utc": "2026-05-20T15:02:00Z",
+  "source_tree_hash": "3c7b949620eeb1254d917e783e002a8a79db0aa9632cac452e381d1bd8e1b724",
+  "summary": "v273 consumes w255: opposite localization finite-limit transfer is packaged into explicit source facts and transfer-input structures.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -363,6 +363,21 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "No whitespace errors after v272 edits."
+    },
+    {
+      "command": "lake env lean audit/blockers/localization_finite_limit_transfer_inputs_w255.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for W255 localization finite-limit transfer input audit."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/localization_finite_limit_transfer_inputs_w255.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W255 audit file."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors after v273 edits."
     }
   ],
   "implemented_declarations_checked": [
@@ -862,10 +877,19 @@
     "LeanLCAExactChallenge.VerdierComparisonAdjunctionApiSearchW254.leftRoute_localized_counit_mem",
     "LeanLCAExactChallenge.VerdierComparisonAdjunctionApiSearchW254.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_rightRoute",
     "LeanLCAExactChallenge.VerdierComparisonAdjunctionApiSearchW254.boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_leftRoute",
-    "LeanLCAExactChallenge.VerdierComparisonAdjunctionApiSearchW254.verdierComparisonAdjunctionApiMap_length"
+    "LeanLCAExactChallenge.VerdierComparisonAdjunctionApiSearchW254.verdierComparisonAdjunctionApiMap_length",
+    "LeanLCAExactChallenge.LocalizationFiniteLimitTransferInputsW255.MetrizableLCAConcreteSourceFiniteLimitFacts",
+    "LeanLCAExactChallenge.LocalizationFiniteLimitTransferInputsW255.MetrizableLCAOppositeFiniteProductTransferInputs",
+    "LeanLCAExactChallenge.LocalizationFiniteLimitTransferInputsW255.MetrizableLCAOppositeEqualizerTransferInputs",
+    "LeanLCAExactChallenge.LocalizationFiniteLimitTransferInputsW255.MetrizableLCAOppositeFiniteLimitTransferInputs",
+    "LeanLCAExactChallenge.LocalizationFiniteLimitTransferInputsW255.metrizableLCA_oppositeLocalizationHasFiniteProducts_of_transferInputs",
+    "LeanLCAExactChallenge.LocalizationFiniteLimitTransferInputsW255.metrizableLCA_oppositeLocalizationHasEqualizers_of_transferInputs",
+    "LeanLCAExactChallenge.LocalizationFiniteLimitTransferInputsW255.metrizableLCA_oppositeLocalizationHasFiniteLimits_of_transferInputs",
+    "CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization_w255"
   ],
   "product_complete": false,
   "known_gaps": [
+    "反対圏finite-limit transferはsource factsとtransfer-input構造体に整理されたが、opposite WalkingParallelPair functor-category localization、opposite finite-product stability、opposite WalkingParallelPair stabilityはまだ未供給である。",
     "Verdier comparison routeはright/left calculus consumerまで形式化されたが、factorized right/left adjunctionとfactorized unit/counit membershipの実体はまだ未供給である。",
     "反対圏抽象局所化のequalizer/finite-limit constructorはW252で形式化されたが、opposite WalkingParallelPair stability、opposite functor-category localization、finite-product stability、identity条件はまだ未供給である。",
     "cokernelSubgroup-topはzero cokernel objectやopen-map下の全射性と接続されたが、derived/homology/localization routeから核等式、閉埋め込み、開写像性、右exactness入力を同時に抽出する証明はまだ未完成である。",

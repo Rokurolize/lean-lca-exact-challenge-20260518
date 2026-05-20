@@ -213,3 +213,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v272 Update
 
 2026-05-20T14:48:00Z: Support result w254 was reimplemented as `audit/blockers/verdier_comparison_adjunction_api_search_w254.lean`. The audit packages the exact right-route and left-route inputs needed around `BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso`, and proves these packages feed the mathlib left/right calculus-of-fractions consumers for `boundedHomotopyExactWeakEquivalence C`. The remaining declarations are factorized right/left adjunctions for the Verdier comparison route plus factorized unit/counit membership in the inverse-image weak-equivalence class. Product success remains nonterminal.
+
+## v273 Update
+
+2026-05-20T15:02:00Z: Support result w255 was reimplemented as `audit/blockers/localization_finite_limit_transfer_inputs_w255.lean`. It refines the v271 opposite localization route by packaging concrete source facts and separate finite-product, equalizer, and finite-limit transfer-input structures. The strongest checked theorem produces finite limits in `((boundedExactWeakEquivalence MetrizableLCA).op).Localization` from those inputs. Remaining blockers are the opposite `WalkingParallelPair` functor-category localization input and opposite finite-product/parallel-pair stability. Product success remains nonterminal.

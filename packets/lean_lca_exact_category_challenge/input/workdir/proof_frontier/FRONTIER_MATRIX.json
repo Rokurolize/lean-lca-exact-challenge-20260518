@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T14:48:00Z",
+  "generated_utc": "2026-05-20T15:02:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v272 is parent-side port of support w254 audit.",
+  "worker_policy": "No workers were launched from the target worktree. v273 is parent-side port of support w255 audit.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1443,9 +1443,16 @@
       "classification": "manual_ported_api_frontier",
       "artifact": "audit/blockers/verdier_comparison_adjunction_api_search_w254.lean",
       "result": "RightRouteInput and LeftRouteInput package the exact missing Verdier comparison adjunction API needed to derive left/right calculus; product success remains false."
+    },
+    {
+      "id": "w255",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/localization_finite_limit_transfer_inputs_w255.lean",
+      "result": "Concrete source finite-limit facts and finite-product/equalizer/finite-limit transfer inputs are packaged for the opposite localization route; product success remains false."
     }
   ],
   "remaining_blockers": [
+    "Opposite finite-limit transfer now has explicit source-fact and transfer-input structures; missing inputs are opposite WalkingParallelPair functor-category localization, opposite finite-product stability, and opposite WalkingParallelPair stability.",
     "Verdier comparison route now has checked calculus consumers from RightRouteInput/LeftRouteInput; missing declarations are the factorized right/left adjunctions and factorized unit/counit membership for the comparison route.",
     "Opposite bounded localization finite limits now have a conditional equalizer/finite-limit constructor; missing inputs are opposite WalkingParallelPair stability, opposite functor-category localization, finite-product stability, and identities for the opposite localizer.",
     "MetrizableLCA right-exactness now has direct surjectivity, cokernel-subgroup-top, cokernelπ=0, Epi, and zero cokernel object interfaces; upstream derived/homology/localization extraction of these plus kernel/topology fields remains missing."

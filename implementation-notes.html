@@ -246,6 +246,12 @@
 <p>The checked API map records that the factorized right/left adjunction declarations and the factorized unit/counit membership declarations are still absent. This is a precise frontier map, not a product-success claim.</p>
 </section>
 
+<section id="v273-localization-finite-limit-transfer-inputs">
+<h2>v273 localization finite-limit transfer inputs</h2>
+<p><time>2026-05-20T15:02:00Z</time>: The parent consumed support result <code>w255-localization-finite-limit-transfer-inputs-v266</code> by adding <code>audit/blockers/localization_finite_limit_transfer_inputs_w255.lean</code>. This audit packages the opposite finite-limit route into explicit source facts and transfer-input structures: <code>MetrizableLCAConcreteSourceFiniteLimitFacts</code>, <code>MetrizableLCAOppositeFiniteProductTransferInputs</code>, <code>MetrizableLCAOppositeEqualizerTransferInputs</code>, and <code>MetrizableLCAOppositeFiniteLimitTransferInputs</code>.</p>
+<p>The strongest theorem now consumes those structures to produce <code>HasFiniteLimits ((boundedExactWeakEquivalence MetrizableLCA).op).Localization</code>. The first unavailable declaration remains the opposite <code>WalkingParallelPair</code> functor-category localization input, plus finite-product and parallel-pair stability for the opposite localizer. No product success is claimed.</p>
+</section>
+
 </body>
 </html>
 
