@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v179-shortcomplex-biproduct-projection-helpers",
-  "generated_utc": "2026-05-20T12:19:24Z",
-  "source_tree_hash": "712004c53e2aa4b60b8d956f75b8a8555772556463b1ba5e26cb108634027d3a",
-  "summary": "v179 adds ShortComplex biproduct projection comparison helpers for π₁/π₂/π₃.mapBiprod in the MetrizableLCA exact-acyclic biproduct boundary audit. The explicit short-complex biproduct is not yet transported to the categorical complex biproduct, so product success remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v180-w136-shortcomplex-transport-boundary",
+  "generated_utc": "2026-05-20T12:45:00Z",
+  "source_tree_hash": "4af58c9655877c949c65ccae1e30ff9288b946279e6d5185bb4ea4b13469a13b",
+  "summary": "v180 ports the useful w136 support audit into the parent target. It isolates ShortComplexBiprodTransportInput as the exact remaining MetrizableLCA short-complex transport needed to turn explicit degreewise biproduct strict exactness into exactAcyclic MetrizableLCA (K ⊞ L). Product remains nonterminal because that transport input, finite-product stability of boundedExactWeakEquivalence, and Dbounded stable structures remain unproved.",
   "commands": [
     {
       "command": "lake build",
@@ -168,6 +168,11 @@
       "command": "lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean",
       "status": "passed",
       "evidence": "Focused v179 MetrizableLCA exact-acyclic biproduct boundary audit passed; it now includes ShortComplex π₁/π₂/π₃ mapBiprod inverse-projection helpers and π₂/π₃ hom-projection helpers for the remaining explicit-to-categorical short-complex biproduct comparison."
+    },
+    {
+      "command": "lake env lean audit/blockers/mapping_cone_finite_product_stability_w136.lean",
+      "status": "passed",
+      "evidence": "Focused v180 w136 short-complex transport boundary audit passed in the parent target; it proves exactAcyclic_biprod_of_shortComplexBiprodTransport conditionally on ShortComplexBiprodTransportInput."
     }
   ],
   "implemented_declarations_checked": [
