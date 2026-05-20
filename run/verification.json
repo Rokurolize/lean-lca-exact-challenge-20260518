@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T17:12:02Z",
-  "source_tree_hash": "4c186d9738d432f4a3ce17711bb2710c72da0d011c9033d73658de1b97ea8ecb",
-  "summary": "v322でW320 negative guardとROOT_BLOCKERS_W320を親側検証し、W319を自動exact colimitで閉じない制約を記録した。product_completeはfalseのまま。",
+  "generated_utc": "2026-05-20T17:15:21Z",
+  "source_tree_hash": "27724fc972b4e0135d324f2effc860a7ce3979a9628262164b4f77f23bb09704",
+  "summary": "v323でW308にmapping-cone desc assembly consumerを追加し、W292支援を重複なしで親側統合した。product_completeはfalseのまま。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -232,7 +232,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after W320 artifact updates."
+      "evidence": "Whitespace diff check passed after W323 artifact updates."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -797,7 +797,7 @@
     {
       "command": "lake env lean audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
       "status": "passed",
-      "evidence": "Focused W308 mapping-cone unique mediator boundary passed after parent verification."
+      "evidence": "Focused W308/W323 mapping-cone desc assembly consumer passed."
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_right_map_epi_open_w309.lean",
@@ -953,6 +953,16 @@
       "command": "python3 -m json.tool proof_frontier/ROOT_BLOCKERS_W320.json",
       "status": "passed",
       "evidence": "ROOT_BLOCKERS_W320.json parsed successfully."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/ROOT_BLOCKERS_W320.json >/dev/null",
+      "status": "passed",
+      "evidence": "ROOT_BLOCKERS_W320.json is valid JSON."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in updated W308."
     }
   ],
   "implemented_declarations_checked": [
@@ -1510,6 +1520,7 @@
   ],
   "product_complete": false,
   "known_gaps": [
+    "W323でFixedMappingConeCoconeDescAssemblyDataがW308 unique-mediating inputに十分であることを確認したが、そのassembly data、特にbounded right-target lift、left cochain、descEq、fac、uniqはまだ未供給である。",
     "W320でAddCommGrpCatのWalkingParallelPair/WPP-op exact colimit instanceは自動合成されないことをguardしたため、W319はAB5やconnectednessだけでは閉じられない。有限coequalizer/WPP colimit専用のkernel exactness保存証明が未供給である。",
     "W290でglobal forget₂ PreservesHomologyは全てのkernel/cokernel保存へ、local routeはpreserved LeftHomologyData/RightHomologyDataへ縮約されたが、これらの保存入力はまだ未供給である。",
     "W319でW318のalgebraic exactness入力はadditiveKernelExact_wppOp_colimit_boundaryへ縮約されたが、このAddCommGrpCat側のWPP-op colimit kernel-exactness保存定理はまだ未供給である。",

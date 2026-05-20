@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T17:12:02Z",
+  "generated_utc": "2026-05-20T17:15:21Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent. W308/W309 external worker outputs were inspected after their processes ended; W310/W311 were accepted only after parent-side focused verification.",
   "frontiers": [
@@ -1365,9 +1365,10 @@
     }
   ],
   "support_result_classification": "w272 was manually ported as a focused nonterminal boundary refining W269 fixed-target fac/uniq obligations. v296 parent-added counterexample; not support product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
-  "latest_parent_update": "v322 added wpp_op_addcommgrp_exact_colimit_guard_w320 and ROOT_BLOCKERS_W320: no synthesized exact WPP colimits in AddCommGrpCat; W319 needs a shape-specific proof.",
-  "summary": "v322でW320 negative guardとROOT_BLOCKERS_W320を親側検証し、W319を自動exact colimitで閉じない制約を記録した。Product success remains nonterminal.",
+  "latest_parent_update": "v323 updated wpp_op_mapping_cone_unique_mediator_w308: FixedMappingConeCoconeDescAssemblyData now implies the unique-mediating input.",
+  "summary": "v323でW308にmapping-cone desc assembly consumerを追加し、W292支援を重複なしで親側統合した。Product success remains nonterminal.",
   "remaining_frontier": [
+    "W323でFixedMappingConeCoconeDescAssemblyDataがW308 unique-mediating inputに十分であることを確認したが、そのassembly data、特にbounded right-target lift、left cochain、descEq、fac、uniqはまだ未供給である。",
     "W320でAddCommGrpCatのWalkingParallelPair/WPP-op exact colimit instanceは自動合成されないことをguardしたため、W319はAB5やconnectednessだけでは閉じられない。有限coequalizer/WPP colimit専用のkernel exactness保存証明が未供給である。",
     "W290でglobal forget₂ PreservesHomologyは全てのkernel/cokernel保存へ、local routeはpreserved LeftHomologyData/RightHomologyDataへ縮約されたが、これらの保存入力はまだ未供給である。",
     "W319でW318のalgebraic exactness入力はadditiveKernelExact_wppOp_colimit_boundaryへ縮約されたが、このAddCommGrpCat側のWPP-op colimit kernel-exactness保存定理はまだ未供給である。",
@@ -1800,9 +1801,16 @@
       "status": "parent_verified",
       "artifact": "audit/blockers/wpp_op_addcommgrp_exact_colimit_guard_w320.lean",
       "evidence": "Focused Lean #guard_msgs check, forbidden-token audit, ROOT_BLOCKERS JSON check, and git diff --check passed in parent worktree."
+    },
+    {
+      "worker": "w292-mapping-cone-mediator-fields-v316",
+      "status": "parent_verified_partial",
+      "artifact": "audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
+      "evidence": "Parent added assembledMediator and uniqueMediatingInput_of_descAssemblyData to existing W308; focused Lean, forbidden-token audit, and git diff --check passed."
     }
   ],
   "known_gaps": [
+    "W323でFixedMappingConeCoconeDescAssemblyDataがW308 unique-mediating inputに十分であることを確認したが、そのassembly data、特にbounded right-target lift、left cochain、descEq、fac、uniqはまだ未供給である。",
     "W320でAddCommGrpCatのWalkingParallelPair/WPP-op exact colimit instanceは自動合成されないことをguardしたため、W319はAB5やconnectednessだけでは閉じられない。有限coequalizer/WPP colimit専用のkernel exactness保存証明が未供給である。",
     "W290でglobal forget₂ PreservesHomologyは全てのkernel/cokernel保存へ、local routeはpreserved LeftHomologyData/RightHomologyDataへ縮約されたが、これらの保存入力はまだ未供給である。",
     "W319でW318のalgebraic exactness入力はadditiveKernelExact_wppOp_colimit_boundaryへ縮約されたが、このAddCommGrpCat側のWPP-op colimit kernel-exactness保存定理はまだ未供給である。",

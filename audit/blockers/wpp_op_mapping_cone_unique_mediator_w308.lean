@@ -204,6 +204,42 @@ structure FixedMappingConeCoconeDescAssemblyData {J : Type} [Category J]
             (rightLegMediator hc₂ (rightLift s))
             (descEq s)
 
+/-- The assembled mediator obtained from the right lift and remaining cochain data. -/
+noncomputable def assembledMediator {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    {c₁ : Cocone X₁} {c₂ : Cocone X₂} {f : X₁ ⟶ X₂}
+    {hc₂ : IsColimit c₂}
+    {φ : c₁.pt ⟶ c₂.pt}
+    {hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j}
+    (D : FixedMappingConeCoconeDescAssemblyData c₁ c₂ f hc₂ φ hφ)
+    (s : Cocone (mappingConeDiagram X₁ X₂ f)) :
+    (mappingConeCocone c₁ c₂ f φ hφ).pt ⟶ s.pt :=
+  CochainComplex.mappingCone.desc
+    ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+    (D.leftCochain s)
+    (rightLegMediator hc₂ (D.rightLift s))
+    (D.descEq s)
+
+/--
+The W308 desc-assembly data is not merely diagnostic: it is sufficient to prove
+the unique-mediating-map input required by the fixed mapping-cone cocone
+universal-property route.
+-/
+theorem uniqueMediatingInput_of_descAssemblyData {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    {c₁ : Cocone X₁} {c₂ : Cocone X₂} {f : X₁ ⟶ X₂}
+    {hc₂ : IsColimit c₂}
+    {φ : c₁.pt ⟶ c₂.pt}
+    {hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j}
+    (D : FixedMappingConeCoconeDescAssemblyData c₁ c₂ f hc₂ φ hφ) :
+    FixedMappingConeCoconeUniqueMediatingInput c₁ c₂ f φ hφ := by
+  intro s
+  refine ⟨assembledMediator D s, ?_, ?_⟩
+  · intro j
+    simpa [assembledMediator] using D.fac s j
+  · intro m hm
+    simpa [assembledMediator] using D.uniq s m hm
+
 /-- Machine-readable frontier state for W308. -/
 structure WppOpMappingConeUniqueMediatorState : Type where
   seed : String
@@ -240,6 +276,8 @@ section Checks
 #check rightLegMediator
 #check rightLegMediator_fac
 #check FixedMappingConeCoconeDescAssemblyData
+#check assembledMediator
+#check uniqueMediatingInput_of_descAssemblyData
 #check currentWppOpMappingConeUniqueMediatorState
 #check currentWppOpMappingConeUniqueMediatorState_productSuccess
 #check CochainComplex.mappingCone.desc
