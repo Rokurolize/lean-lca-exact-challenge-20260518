@@ -969,3 +969,15 @@
 <p>A follow-up W348 expansion adds <code>wppOp_lca_colimitMap_fields_of_descendedQuotientCertificate_boundary</code>, so a global descended-quotient certificate boundary now directly supplies W318's left LCA fields.</p>
 <p>These files are nonterminal reductions. The remaining left LCA work is the concrete quotient/coequalizer cocone construction, its colimit proof, descended leg equations, descended closed-map fields, and the reverse relation-preimage or equivalent closed-range preimage theorem.</p>
 </section>
+
+<section id="w350-addcommgrp-difference-snake-boundary">
+<h2>W350 difference Snake boundary</h2>
+<p><time>2026-05-21T05:44:00Z</time>: The parent consumed <code>w350-addcommgrp-difference-snake-boundary-v369</code> by adding and verifying <code>audit/blockers/addcommgrp_difference_snake_boundary_v369_support_w350.lean</code>. The support file defines <code>DifferenceSnakeBoundaryInputs</code>, turns those inputs into <code>AddCommGrpStrictSnakeCokernelData</code> and <code>AddCommGrpKernelExact</code>, and adds <code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_differenceSnake</code>, which combines the left LCA certificate with the difference-Snake boundary to close the WPP-op exact-acyclic consumer.</p>
+<p>This is still conditional. The remaining AddCommGrp work is to construct the concrete difference kernel row, the concrete difference cokernel row, and the isomorphism from that cokernel row to <code>cs.pt.map (forget₂ MetrizableLCA AddCommGrpCat)</code>.</p>
+</section>
+
+<section id="w351-descended-certificate-left-lca-consumer">
+<h2>W351 descended certificate consumer</h2>
+<p><time>2026-05-21T05:45:00Z</time>: The parent consumed <code>w351-descended-certificate-left-lca-consumer-v369</code> by adding and verifying <code>audit/blockers/wpp_op_descended_certificate_left_lca_consumer_v369_support_w351.lean</code>. It restates the descended quotient certificate route in a consumer form: a certificate for each componentwise closed-embedding natural transformation yields W318's left LCA injective/inducing/closed-image input.</p>
+<p>The remaining inputs are unchanged: instantiate concrete quotient-presenting cocones, prove they are colimits, prove descended leg equations, and derive descended closed-map fields from quotient relation data.</p>
+</section>
