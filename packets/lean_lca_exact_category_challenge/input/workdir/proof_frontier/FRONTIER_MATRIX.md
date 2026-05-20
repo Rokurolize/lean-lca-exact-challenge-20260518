@@ -462,3 +462,12 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ## v356 Canonical fixed-leg certificate
 2026-05-20T19:14:00Z: W286/W318 now reduce the right-open pure LCA frontier to a canonical fixed-leg certificate. It is enough to prove that the canonical WPP-op colimit leg is source-surjective and target-open; arbitrary colimit cocones are handled by colimit-point isomorphism transport. Product success remains false.
+
+## v365 Left LCA colimit transport
+2026-05-20T20:44:00Z: `audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean` was verified. A compatible map between WPP-op colimit points is uniquely `IsColimit.map`; the remaining left LCA work is the concrete quotient/coequalizer transport to the descended map plus relation-preimage and closed-map fields. Product success remains false.
+
+## v366 Degenerate SnakeInput guard
+2026-05-20T20:44:00Z: `audit/blockers/addcommgrp_degenerate_snake_support_w366.lean` was verified. An already exact AddCommGrp short complex with mono left map admits a degenerate SnakeInput cokernel-row presentation, so the real algebraic work is proving WPP-op colimit left injectivity/kernel exactness or building a non-degenerate SnakeInput that supplies those facts. Product success remains false.
+
+## W338 SnakeInput API support
+2026-05-20T20:48:00Z: Worker support `w338-addcommgrp-snake-cokernel-v362` was ported as `audit/blockers/addcommgrp_snake_cokernel_v362_support_w338.lean`. It records the `ShortComplex.SnakeInput` cokernel-row API (`L₃`, `h₃`, `L₃_exact`) and the checked W318 consumer from a SnakeInput row certificate to `AddCommGrpKernelExact`. Product success remains false because the concrete WPP-op colimit SnakeInput row certificate is still missing.

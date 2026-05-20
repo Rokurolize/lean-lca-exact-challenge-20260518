@@ -913,3 +913,21 @@
 <p><time>2026-05-21T05:29:00Z</time>: The parent consumed support result <code>w337-left-lca-relation-closedmap-v360</code> by porting and verifying <code>audit/blockers/wpp_op_left_lca_relation_closedmap_v360_support_w337.lean</code>. The checked bridge <code>wppOp_lca_colimitMap_injective_inducing_closedImage_of_relationClosedMapFields</code> says that once the W333-style descended quotient relation-preimage, closed-map, and transport-identification data are available at the categorical WPP-op colimit map, they exactly discharge W318's left LCA <code>injective/inducing/closed-image</code> target.</p>
 <p>The smallest remaining equation on this branch is now explicit: identify the categorical WPP-op colimit-induced map with the descended quotient map after choosing the source and target coequalizer/cokernel quotient presentations. Product success remains false.</p>
 </section>
+
+<section id="v365-left-lca-colimit-transport-support">
+<h2>v365 left LCA transport</h2>
+<p><time>2026-05-21T05:44:00Z</time>: The parent added and verified <code>audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean</code>. The checked theorem <code>isColimit_map_eq_of_compat</code> isolates the pure categorical part of the left LCA transport: any map <code>φ : cx.pt ⟶ cy.pt</code> satisfying the natural cocone square equations is uniquely the <code>IsColimit.map hcx cy α</code> induced by the natural transformation.</p>
+<p>This is deliberately nonterminal. It removes one ambiguity from the W337 route, but the concrete quotient/coequalizer presentation still has to identify this categorical map with the descended quotient map, and the relation-preimage plus closed-map fields remain unproved.</p>
+</section>
+
+<section id="v366-addcommgrp-degenerate-snake-support">
+<h2>v366 degenerate SnakeInput</h2>
+<p><time>2026-05-21T05:44:00Z</time>: The parent verified <code>audit/blockers/addcommgrp_degenerate_snake_support_w366.lean</code>. It proves that an already exact <code>AddCommGrpCat</code> short complex with mono left map can be presented as the cokernel row of a degenerate <code>ShortComplex.SnakeInput</code> of shape <code>0 -> T -> T</code>.</p>
+<p>This is useful as a guardrail for the v362 algebraic route. A SnakeInput certificate is only substantive for product success if it supplies the missing WPP-op colimit exactness and mono facts, or if those facts are proved separately; repackaging an already exact colimit row is not enough.</p>
+</section>
+
+<section id="w338-addcommgrp-snake-cokernel-support">
+<h2>W338 SnakeInput support</h2>
+<p><time>2026-05-21T05:48:00Z</time>: The parent consumed completed support worker <code>w338-addcommgrp-snake-cokernel-v362</code> by adding and verifying <code>audit/blockers/addcommgrp_snake_cokernel_v362_support_w338.lean</code>. This records the mathlib <code>ShortComplex.SnakeInput</code> row names and checked consumers: <code>L₃</code> is the cokernel row, <code>h₃</code> is the cokernel cofork colimit proof, <code>L₃_exact</code> gives exactness, and <code>addCommGrpKernelExact_of_snakeCokernelRowCertificate</code> feeds the existing W318 strict AddCommGrp boundary.</p>
+<p>The remaining AddCommGrp obligation is still the concrete construction of a SnakeInput whose cokernel row is isomorphic to the WPP-op colimit short complex, or an equivalent proof of the colimit point's left injectivity and kernel exactness. Product success remains false.</p>
+</section>
