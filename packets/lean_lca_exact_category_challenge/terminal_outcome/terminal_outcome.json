@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v280では支援結果w256を親側auditとして再実装し、ShortComplex.ExactからEpi T.gを得る一般ルートが偽であることをZMod2反例でLean確認した。product successではない。",
+  "summary": "v281ではgenericなfinite-coproduct stabilityからopposite finite-product stabilityへのformal transportをLeanで証明した。direct finite-coproduct stabilityなどはまだ未供給で、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -84,7 +84,9 @@
     "lake env lean audit/blockers/shortcomplex_right_exactness_extraction_w258.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_right_exactness_extraction_w258.lean",
     "lake env lean audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean",
+    "lake env lean audit/blockers/opposite_finite_product_transport_w281.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_finite_product_transport_w281.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -772,6 +774,7 @@
     "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi"
   ],
   "known_gaps": [
+    "finite-coproduct stabilityからopposite finite-product stabilityへのgeneric transportはW281で解決した。残る有限積側入力は (boundedExactWeakEquivalence MetrizableLCA).IsStableUnderFiniteCoproducts の直接閉性であり、WalkingParallelPair側のcolimit/opposite-limit transportは別途未完了である。",
     "ShortComplex.Exactやquasi-isoで輸送されたExactからEpi T.gを出す一般ルートはW256のZMod2反例で偽と確認された。右端入力は別途、right-homology/cokernel-zero/topなどから構成する必要がある。",
     "ShortComplex.Exactからkernel equalityを得るW258 consumerは入ったが、right-homology-zeroからEpi T.g、cokernelπ T.g = 0、cokernelSubgroup T.g = ⊤、またはIsZero (cokernelObj T.g)を得る右端抽出定理はまだ未供給である。",
     "W255の反対圏stability入力はW259で、finite-product stabilityとWalkingParallelPair limit stabilityの2フィールドに分離された。残る入力はdirect finite-coproduct stability、direct WalkingParallelPairᵒᵖ colimit stability、およびそれらをopposite側へ輸送する2つのformal transport lemmaである。",
@@ -1146,10 +1149,13 @@
     "LeanLCAExactChallenge.ShortComplexExactEpiKernelBridgeW256.exactButNotEpiTarget_exact",
     "LeanLCAExactChallenge.ShortComplexExactEpiKernelBridgeW256.exactButNotEpiTarget_g_not_epi",
     "LeanLCAExactChallenge.ShortComplexExactEpiKernelBridgeW256.no_shortComplexExact_to_targetEpi",
-    "LeanLCAExactChallenge.ShortComplexExactEpiKernelBridgeW256.no_quasiIsoExact_to_targetEpi"
+    "LeanLCAExactChallenge.ShortComplexExactEpiKernelBridgeW256.no_quasiIsoExact_to_targetEpi",
+    "LeanLCAExactChallenge.OppositeFiniteProductTransportW281.hasCoproduct_unop_of_hasProduct_op",
+    "LeanLCAExactChallenge.OppositeFiniteProductTransportW281.op_isStableUnderProductsOfShape_of_isStableUnderCoproductsOfShape",
+    "LeanLCAExactChallenge.OppositeFiniteProductTransportW281.op_isStableUnderFiniteProducts_of_isStableUnderFiniteCoproducts"
   ],
   "generated_utc": "2026-05-20T14:08:00Z",
-  "support_result_classification": "v280 consumed support w256 as exact/epi false-route audit; no product-success claim.",
+  "support_result_classification": "v281 is parent-side proof progress: generic finite-coproduct to opposite finite-product transport; no product-success claim.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",

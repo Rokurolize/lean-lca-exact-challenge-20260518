@@ -245,3 +245,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v280 Update
 
 2026-05-20T16:42:00Z: Support result w256 was reimplemented as `audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean`. It overlaps with v279 on the exactness-to-kernel bridge, but adds a checked negative endpoint result: the exact target `0 -> 0 -> ZMod 2` is not epi on the right, so neither `ShortComplex.Exact` alone nor quasi-isomorphism-transported exactness can produce `[Epi T.g]`. This prevents a false right-exactness route and leaves explicit right-homology/cokernel-zero extraction as the remaining target. Product success remains nonterminal.
+
+## v281 Update
+
+2026-05-20T17:02:00Z: The parent added `audit/blockers/opposite_finite_product_transport_w281.lean`. This proves the generic formal transport that W277/W259 had isolated: if a morphism property `W` is stable under finite coproducts, then `W.op` is stable under finite products. The proof also includes the individual product/opposite-coproduct bridge `hasCoproduct_unop_of_hasProduct_op`. The direct closure theorem `(boundedExactWeakEquivalence MetrizableLCA).IsStableUnderFiniteCoproducts` remains missing, and the `WalkingParallelPair` colimit-to-opposite-limit transport remains separate. Product success remains nonterminal.
