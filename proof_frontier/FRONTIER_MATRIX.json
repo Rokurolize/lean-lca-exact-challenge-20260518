@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T14:34:00Z",
+  "generated_utc": "2026-05-20T14:48:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v271 is parent-side port of support w252 audit.",
+  "worker_policy": "No workers were launched from the target worktree. v272 is parent-side port of support w254 audit.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1437,9 +1437,16 @@
       "classification": "manual_ported_frontier_reduction",
       "artifact": "audit/blockers/bounded_opposite_localization_equalizer_w252.lean",
       "result": "Concrete finite limits/products/equalizers on the opposite bounded-complex source feed conditional equalizer and finite-limit constructors on the abstract opposite localization; product success remains false."
+    },
+    {
+      "id": "w254",
+      "classification": "manual_ported_api_frontier",
+      "artifact": "audit/blockers/verdier_comparison_adjunction_api_search_w254.lean",
+      "result": "RightRouteInput and LeftRouteInput package the exact missing Verdier comparison adjunction API needed to derive left/right calculus; product success remains false."
     }
   ],
   "remaining_blockers": [
+    "Verdier comparison route now has checked calculus consumers from RightRouteInput/LeftRouteInput; missing declarations are the factorized right/left adjunctions and factorized unit/counit membership for the comparison route.",
     "Opposite bounded localization finite limits now have a conditional equalizer/finite-limit constructor; missing inputs are opposite WalkingParallelPair stability, opposite functor-category localization, finite-product stability, and identities for the opposite localizer.",
     "MetrizableLCA right-exactness now has direct surjectivity, cokernel-subgroup-top, cokernelπ=0, Epi, and zero cokernel object interfaces; upstream derived/homology/localization extraction of these plus kernel/topology fields remains missing."
   ]
