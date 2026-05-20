@@ -72,6 +72,36 @@ noncomputable def mappingConeDiagram {J : Type} [Category J]
             (fun g => (BoundedComplexCategory.ι MetrizableLCA.{0}).map g)
             (f.naturality β).symm))
 
+/-- Naturality of test legs over the W308 bounded-inclusion mapping-cone diagram. -/
+abbrev MappingConeTestLegNaturality {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    (f : X₁ ⟶ X₂)
+    {T : CochainComplex MetrizableLCA.{0} ℤ}
+    (leg : ∀ j : J,
+      CochainComplex.mappingCone
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)) ⟶ T) : Prop :=
+  ∀ {j j' : J} (α : j ⟶ j'),
+    CochainComplex.mappingCone.map
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₁.map α))
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₂.map α))
+        (by
+          rw [← Functor.map_comp, ← Functor.map_comp]
+          exact congrArg
+            (fun g => (BoundedComplexCategory.ι MetrizableLCA.{0}).map g)
+            (f.naturality α).symm) ≫
+      leg j' = leg j
+
+/-- Every W308 test cocone supplies the naturality input needed by the global descEq wrapper. -/
+theorem testCoconeLegNaturality {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    (f : X₁ ⟶ X₂)
+    (s : Cocone (mappingConeDiagram X₁ X₂ f)) :
+    MappingConeTestLegNaturality f (fun j => s.ι.app j) := by
+  intro j j' α
+  simpa [mappingConeDiagram] using s.w α
+
 /-- The fixed mapping-cone cocone from W303/W304. -/
 noncomputable def mappingConeCocone {J : Type} [Category J]
     {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
@@ -462,8 +492,8 @@ def currentWppOpMappingConeUniqueMediatorState :
   narrowedBoundary :=
     "AmbientFixedMappingConeCoconeDescAssemblyData"
   remainingInputs :=
-    ["construct the left degree -1 cochain for each test cocone s",
-      "prove the mappingCone.desc compatibility equation δ left = ofHom (φ ≫ rightLegMediator)",
+    ["instantiate W338's descended left cochain with the included bounded c₁ cocone",
+      "instantiate W338's global descEq with ambientRightLegMediator_fac and testCoconeLegNaturality",
       "prove the mappingCone.desc leg equations against every fixed cocone leg",
       "prove uniqueness by mappingCone.ext_from plus colimit uniqueness for c₁ and c₂"]
   productSuccessClaimed := false
@@ -474,6 +504,8 @@ theorem currentWppOpMappingConeUniqueMediatorState_productSuccess :
 section Checks
 
 #check mappingConeDiagram
+#check MappingConeTestLegNaturality
+#check testCoconeLegNaturality
 #check mappingConeCocone
 #check FixedMappingConeCoconeUniqueMediatingInput
 #check TestCoconeBoundedRightLift

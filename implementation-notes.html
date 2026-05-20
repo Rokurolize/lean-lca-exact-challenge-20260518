@@ -781,3 +781,33 @@
 <p><time>2026-05-20T18:24:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean</code>. The theorem <code>global_descEq_of_mappingConeLegs</code> packages the W333-W337 reductions into one checked global <code>mappingCone.desc</code> differential equation for the descended left cochain.</p>
 <p>The remaining W308 work is now an instantiation and assembly problem: apply this theorem to the included bounded <code>c₁/c₂</code> cocones, then feed the result into <code>AmbientFixedMappingConeCoconeDescAssemblyData</code> with the existing fac/uniq splits. Product success remains false.</p>
 </section>
+
+<section id="v340-w302-left-cochain-uniqueness">
+<h2>v340 W302 uniqueness consumer</h2>
+<p><time>2026-05-20T18:31:00Z</time>: The parent ported support result W302 as <code>audit/blockers/mapping_cone_left_cochain_uniqueness_support_w302.lean</code>. The theorem <code>mappingCone_mediator_unique_of_left_cochain_and_c2_legs</code> combines the W327 mapping-cone left/right extensionality split with the W329 preserved <code>c₂</code> colimit right-component uniqueness.</p>
+<p>The W308 uniqueness side is now reduced to a left <code>mappingCone.inl</code> cochain equality plus right-leg equations after included <code>c₂</code> cocone legs. Product success remains false.</p>
+</section>
+
+<section id="v341-w339-test-cocone-naturality">
+<h2>v341 W339 test cocone naturality</h2>
+<p><time>2026-05-20T18:35:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean</code>. It defines the ambient objectwise mapping-cone diagram and proves <code>testCoconeLegNaturality</code>: a cocone over that diagram supplies the <code>MappingConeTestLegNaturality</code> input required by W338.</p>
+<p>The remaining W308 bridge is identifying the bounded mapping-cone diagram used in W308 with this ambient cochain-complex diagram after inclusion, then instantiating W338 and W302 inside the desc assembly. Product success remains false.</p>
+</section>
+
+<section id="v342-w340-bounded-test-cocone-naturality">
+<h2>v342 W340 bounded cocone naturality</h2>
+<p><time>2026-05-20T18:39:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean</code>. It defines the bounded-inclusion mapping-cone diagram used by W308 and proves <code>boundedTestCoconeLegNaturality</code>, discharging the W338 leg-naturality input directly from a W308-style test cocone.</p>
+<p>The remaining bridge is now the W338 instantiation with <code>X₁ ⋙ ι</code>/<code>X₂ ⋙ ι</code>, plus identification of W308 <code>φ</code> and <code>ambientRightLegMediator</code> with W338 inputs. Product success remains false.</p>
+</section>
+
+<section id="v343-w341-bounded-left-cochain">
+<h2>v343 W341 bounded left cochain</h2>
+<p><time>2026-05-20T18:43:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean</code> and the updated <code>audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean</code>. W341 packages the bounded-inclusion left cochain used by W308, the global <code>descEq</code>, the <code>mappingCone.desc</code> fac equation, and the left <code>mappingCone.inl</code> cochain equality for an arbitrary competing mediator.</p>
+<p>The W308 file now also records its local bounded test-leg naturality wrapper directly. The remaining bridge is final uniqueness packaging: connect the left equality from W341 with the right <code>c₂</code> colimit equality from W302/W329/W330 and feed the resulting fields into the W308 assembly. Product success remains false.</p>
+</section>
+
+<section id="v344-w342-included-colimit-inputs">
+<h2>v344 W342 included colimit inputs</h2>
+<p><time>2026-05-20T18:47:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean</code>. It proves that WPP-op and WPP bounded colimits remain colimits after <code>BoundedComplexCategory.ι MetrizableLCA</code>, and that the evaluation functors preserve the included WPP-op/WPP cochain-complex colimits needed by W341.</p>
+<p>This removes the generic included-colimit input from the W308 left-cochain path. The remaining work is the concrete W308 instantiation with the actual WPP-op source diagram and the final uniqueness packaging. Product success remains false.</p>
+</section>

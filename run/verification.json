@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v339-w338-global-descEq-wrapper",
-  "generated_utc": "2026-05-20T18:20:00Z",
-  "source_tree_hash": "329b2b49a920a164709ad91d55fe706661c5a2c9038a0778475ba2aad44dad72",
-  "summary": "v339でW338 global descEq wrapperを追加・検証した。W333-W337が一つの抽象descEq theoremへ統合されたが、product_completeはfalseのまま。",
+  "schema": "lean-lca-exact-challenge-verification-v344-bounded-mapping-cone-assembly",
+  "generated_utc": "2026-05-20T18:47:00Z",
+  "source_tree_hash": "5ffe6ab02c8e430aa0413e70cb2fae2bcb6f3c13a03372c8634fdf7ac97ac254",
+  "summary": "v344でW342 included colimit inputsとW341 bounded mapping-cone assembly fieldsを追加・検証した。product_completeはfalse。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -232,7 +232,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after W323 artifact updates."
+      "evidence": "Whitespace/error diff check passed after W341/W308 and packet refresh."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -262,7 +262,7 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Failed expected because terminal_outcome.outcome is nonterminal_frontier, not product_success."
+      "evidence": "Root external audit reached the expected nonterminal product gate: terminal_outcome.outcome is blocked_nonterminal_frontier, not product_success."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
@@ -637,7 +637,7 @@
     {
       "command": "cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256",
       "status": "passed",
-      "evidence": "External packet SHA256 sidecar validates the regenerated packet zip."
+      "evidence": "Packet sidecar verified against regenerated zip."
     },
     {
       "command": "lake env lean audit/blockers/homotopy_weq_contains_identities_w292.lean",
@@ -1218,6 +1218,96 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W338 global descEq wrapper."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for testCoconeLegNaturality."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W339 test cocone naturality file."
+    },
+    {
+      "command": "lake env lean audit/blockers/mapping_cone_left_cochain_uniqueness_support_w302.lean",
+      "status": "passed",
+      "evidence": "W302 uniqueness consumer checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/mapping_cone_left_cochain_uniqueness_support_w302.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W302."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W302 port."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean",
+      "status": "passed",
+      "evidence": "W339 test cocone naturality checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W339."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean",
+      "status": "passed",
+      "evidence": "W340 bounded test cocone naturality checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W340."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W340."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for W341 left cochain, global descEq, fac, and arbitrary mediator left equality."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W341."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean audit/blockers/mapping_cone_left_cochain_uniqueness_support_w302.lean audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W308/W341/W302/W339/W340 focused files; rg exited 1 because no matches were found."
+    },
+    {
+      "command": "clean extraction external audit (expected failed_nonterminal product gate)",
+      "status": "failed_expected",
+      "evidence": "Regenerated zip was extracted into a temporary directory and external_audit.py failed only at the expected nonterminal product gate."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for included WPP/WPP-op colimit and eval preservation inputs."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W342."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W342; rg exited 1 because no matches were found."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W341/W342; rg exited 1 because no matches were found."
     }
   ],
   "implemented_declarations_checked": [
@@ -1809,6 +1899,9 @@
   ],
   "product_complete": false,
   "known_gaps": [
+    "W344でW308 bounded desc assemblyのfacまでは証明済みだが、uniqueness fieldはまだ未供給である。",
+    "W341でW308 bounded settingのleft cochainとglobal descEqは証明済みになったが、included c₁ colimit入力、ambientRightLegMediatorへの具体化、mappingCone.desc fac/uniq packagingはまだ未完了である。",
+    "W339でtest coconeからW338のnaturality入力は得られるようになったが、W308 bounded-inclusion mappingConeDiagramとの同一視、included c₁/c₂ colimit入力、fac/uniq packagingはまだ未完了である。",
     "W338で抽象global descEqは閉じたが、W308のincluded bounded c₁/c₂ coconeと評価colimit保存入力へインスタンス化し、FixedMappingConeCoconeDescAssemblyDataのdescEq/fac/uniq fieldへ組み込む作業はまだ未完了である。",
     "W329で右mappingCone.inr成分の一意性はpreserved ambient colimitのhom_extへ縮約されたが、左mappingCone.inl cochainの構成、一致証明、desc differential compatibilityはまだsource theoremとして未証明である。",
     "W327で固定mapping-cone leg equationは右脚互換性と左cochain互換性へ分解されたが、任意test coconeに対するleft degree -1 cochain、descEq、左cochain互換性、一意性はまだsource theoremとして未証明である。",
@@ -1886,5 +1979,10 @@
     "W337で右辺のobjectwise descentとφ≫right mediatorの同一視は抽象的に証明できたが、W333-W337をW308のincluded bounded c₁/c₂ coconesへ統合するglobal descEq wrapperはまだ未供給である。"
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
-  "product_success": false
+  "product_success": false,
+  "remaining_work": [
+    "Combine W341 left-component equality with W302/W329/W330 right c₂ colimit equality and package final W308 uniqueness.",
+    "Instantiate W341 with W308 actual WPP-op source diagram.",
+    "Instantiate W341/W338 with W308 actual WPP-op source diagram and ambientRightLegMediator."
+  ]
 }

@@ -1,5 +1,15 @@
 # Proof Frontier Matrix
 
+Parent update v345: The parent extended `audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean` with `boundedMappingConeDesc_fac` and `arbitraryMediator_leftCochain_eq`. This now proves both the bounded-inclusion mapping-cone `desc` fac equation and the left `mappingCone.inl` cochain equality for any competing mediator satisfying the fixed test-leg fac equations. The remaining W308 uniqueness packaging is the right `mappingCone.inr` component, supplied by included `c₂` colimit uniqueness, and the final combination by mapping-cone extensionality.
+
+Parent update v344: The parent added `audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean` and completed the W341 bounded mapping-cone assembly package through `globalDescEqOfBoundedTestCocone`, `boundedMappingConeDesc_fac`, and `arbitraryMediator_leftCochain_eq`. The remaining W308 integration step is now the concrete instantiation with the actual WPP-op source diagram and final uniqueness packaging with the right `c₂` colimit component.
+
+Parent update v343: The parent added `audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean` and updated `audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean`. W341 constructs the W308 bounded-inclusion left cochain from natural bounded mapping-cone test legs and proves its `mappingCone.inl` leg equation after the included `c₁` colimit legs.
+
+Parent update v340: The parent added `audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean` and integrated the same `testCoconeLegNaturality` boundary into `audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean`. This proves that a W308 test cocone over the bounded-inclusion mapping-cone diagram automatically supplies the naturality input needed by the global descEq wrapper.
+
+Parent update v339: The parent added `audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean`. This proves that any cocone over the objectwise mapping-cone diagram automatically supplies the `MappingConeTestLegNaturality` input required by W338. The next W308 integration step is therefore reduced to identifying the bounded-inclusion mapping-cone diagram with this ambient diagram, passing included `c₁/c₂` colimit data, and packaging descEq/fac/uniq fields.
+
 Parent update v338: The parent added `audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean`. This packages W333-W337 into a single import-safe global descEq theorem: from mapping-cone test-leg naturality, the descended left cochain satisfies `δ left = ofHom (φ ≫ β)` whenever `φ` and `β` have the expected colimit-leg equations. This closes the abstract global `descEq` reduction for W308, but product success still requires instantiating the theorem with the included bounded `c₁/c₂` cocones and packaging the remaining desc assembly, fac, and uniqueness fields.
 
 Parent update v327: The parent added `audit/blockers/wpp_op_mapping_cone_fac_split_w327.lean`. This proves the local mapping-cone algebra that a fixed `mappingCone.map ≫ mappingCone.desc` leg equation follows from two component equations: the left `mappingCone.inl` cochain compatibility and the right `mappingCone.inr` morphism compatibility. Since W308 already supplies the ambient right-leg compatibility, this removes the bundled full-leg-equation obligation from the mapping-cone desc assembly frontier. Product success remains blocked by construction of the left degree -1 cochain, its compatibility, the desc differential equation, and uniqueness.
@@ -394,3 +404,12 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ## v339 W338 global descEq
 2026-05-20T18:24:00Z: `audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean` was verified. It packages W333-W337 into `global_descEq_of_mappingConeLegs`, a checked global differential equation for the descended left cochain. Product success remains false.
+
+## v340 W302 left cochain uniqueness consumer
+2026-05-20T18:31:00Z: `audit/blockers/mapping_cone_left_cochain_uniqueness_support_w302.lean` was verified. It combines W327 and W329 into `mappingCone_mediator_unique_of_left_cochain_and_c2_legs`, reducing W308 uniqueness to left cochain equality plus right equality after included `c₂` legs. Product success remains false.
+
+## v341 W339 test cocone naturality
+2026-05-20T18:35:00Z: `audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean` was verified. It proves that cocone naturality over the ambient objectwise mapping-cone diagram supplies the `MappingConeTestLegNaturality` input required by W338. Product success remains false.
+
+## v342 W340 bounded test cocone naturality
+2026-05-20T18:39:00Z: `audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean` was verified. It proves that a W308-style bounded mapping-cone test cocone supplies the W338 naturality input after applying `BoundedComplexCategory.ι`. Product success remains false.

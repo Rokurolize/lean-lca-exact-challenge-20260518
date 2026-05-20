@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v339でW338 global descEq補題を追加・検証した。100%達成ではなく、update_goal(status=\"complete\")は禁止のまま。",
+  "summary": "v344でW342 included colimit inputsとW341 bounded mapping-cone assembly fieldsを追加・検証した。100%達成ではなく、update_goal(status=\"complete\")は禁止のまま。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -209,7 +209,23 @@
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/colimit_right_side_identification_w337.lean",
     "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/colimit_right_side_identification_w337.lean",
     "lake env lean audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
-    "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean"
+    "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
+    "lake env lean audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean",
+    "lake env lean audit/blockers/mapping_cone_left_cochain_uniqueness_support_w302.lean",
+    "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/mapping_cone_left_cochain_uniqueness_support_w302.lean",
+    "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean",
+    "lake env lean audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean",
+    "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean",
+    "lake env lean audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean audit/blockers/mapping_cone_left_cochain_uniqueness_support_w302.lean audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean",
+    "lake env lean audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean",
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean",
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -937,6 +953,7 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicFrontierConsolidatedState"
   ],
   "known_gaps": [
+    "W341でW308 bounded-inclusion left cochainとinl leg equationは確認したが、included c₁ colimit入力、W338 descEq instantiation、fac/uniq packagingは未完了である。",
     "W329で右mappingCone.inr成分の一意性はpreserved ambient colimitのhom_extへ縮約されたが、左mappingCone.inl cochainの構成、一致証明、desc differential compatibilityはまだsource theoremとして未証明である。",
     "W327で固定mapping-cone leg equationは右脚互換性と左cochain互換性へ分解されたが、任意test coconeに対するleft degree -1 cochain、descEq、左cochain互換性、一意性はまだsource theoremとして未証明である。",
     "W296でW319のadditive exactness境界はAddCommGrpCat kernel exactness/ShortComplex exactness closureへ縮約されたが、そのWPP-op colimit exactness保存定理本体はまだsource theoremとして未証明である。",
@@ -1027,14 +1044,17 @@
     "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。",
     "W337で右辺のobjectwise descentとφ≫right mediatorの同一視は抽象的に証明できたが、W333-W337をW308のincluded bounded c₁/c₂ coconesへ統合するglobal descEq wrapperはまだ未供給である。",
     "W337後も、right_jをmappingCone.inr (f.app j) ≫ leg_jへ具体化し、W333-W337をW308 ambient desc assemblyへ接続する証明は未完了。",
-    "W338後も、global_descEq_of_mappingConeLegsをW308のincluded bounded c₁/c₂ coconesへ具体化し、AmbientFixedMappingConeCoconeDescAssemblyDataへ組み込む作業は未完了。"
+    "W338後も、global_descEq_of_mappingConeLegsをW308のincluded bounded c₁/c₂ coconesへ具体化し、AmbientFixedMappingConeCoconeDescAssemblyDataへ組み込む作業は未完了。",
+    "W302後も、W302 uniqueness consumerとW338 global descEqをW308 ambient desc assemblyへ実際に接続する作業は未完了。",
+    "W339後も、W308のbounded mappingConeDiagramをambient cochain-complex mappingConeDiagramへ同一視し、W338/W302をassemblyへ接続する作業は未完了。",
+    "W340後も、W338をincluded bounded diagramsへインスタンス化し、W308のφ/right mediator/fac/uniq assemblyへ接続する作業は未完了。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "pending-v339",
+  "git_commit": "pending-v344",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W301で左閉埋め込み保存を三つの位相certificateへ、W330で右一意性を余極限脚ごとの等式へ、W331-W338でW308左cochain/descEqをglobal_descEq_of_mappingConeLegsまで縮約した。",
+  "worker_frontier_summary": "W302でW308 uniquenessを左cochain等式+c₂脚等式へ、W339/W340でW338 naturality入力をtest cocone自然性へ縮約した。",
   "claim_review_result": "未実施。product_successではないため、fresh claim-review-loop acceptanceは要求段階に未到達。",
   "remaining_gaps": [
     "W329で右mappingCone.inr成分の一意性はpreserved ambient colimitのhom_extへ縮約されたが、左mappingCone.inl cochainの構成、一致証明、desc differential compatibilityはまだsource theoremとして未証明である。",
@@ -1127,7 +1147,10 @@
     "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。",
     "W337で右辺のobjectwise descentとφ≫right mediatorの同一視は抽象的に証明できたが、W333-W337をW308のincluded bounded c₁/c₂ coconesへ統合するglobal descEq wrapperはまだ未供給である。",
     "W337後も、right_jをmappingCone.inr (f.app j) ≫ leg_jへ具体化し、W333-W337をW308 ambient desc assemblyへ接続する証明は未完了。",
-    "W338後も、global_descEq_of_mappingConeLegsをW308のincluded bounded c₁/c₂ coconesへ具体化し、AmbientFixedMappingConeCoconeDescAssemblyDataへ組み込む作業は未完了。"
+    "W338後も、global_descEq_of_mappingConeLegsをW308のincluded bounded c₁/c₂ coconesへ具体化し、AmbientFixedMappingConeCoconeDescAssemblyDataへ組み込む作業は未完了。",
+    "W302後も、W302 uniqueness consumerとW338 global descEqをW308 ambient desc assemblyへ実際に接続する作業は未完了。",
+    "W339後も、W308のbounded mappingConeDiagramをambient cochain-complex mappingConeDiagramへ同一視し、W338/W302をassemblyへ接続する作業は未完了。",
+    "W340後も、W338をincluded bounded diagramsへインスタンス化し、W308のφ/right mediator/fac/uniq assemblyへ接続する作業は未完了。"
   ],
   "next_recommended_goal": "Construct the W308 left degree -1 cochain and prove left equality/descEq, or close the W297/W296 source theorems for closed embedding and additive exactness.",
   "implemented_declarations": [
@@ -1578,9 +1601,18 @@
     "LeanLCAExactChallenge.CochainDeltaColimitLegW336.delta_of_colimit_leg_comp",
     "LeanLCAExactChallenge.CochainDeltaColimitLegW336.colimit_leg_delta_eq_of_precomp_eq",
     "LeanLCAExactChallenge.ColimitRightSideIdentificationW337.rightSideObjectwiseCocone",
-    "LeanLCAExactChallenge.ColimitRightSideIdentificationW337.phi_comp_rightMediator_eq_desc_objectwise"
+    "LeanLCAExactChallenge.ColimitRightSideIdentificationW337.phi_comp_rightMediator_eq_desc_objectwise",
+    "LeanLCAExactChallenge.WppOpMappingConeBoundedLeftCochainW341.leftCochainOfBoundedTestCocone",
+    "LeanLCAExactChallenge.WppOpMappingConeBoundedLeftCochainW341.leftCochainOfBoundedTestCocone_comp_fac",
+    "LeanLCAExactChallenge.WppOpMappingConeUniqueMediatorW308.MappingConeTestLegNaturality",
+    "LeanLCAExactChallenge.WppOpMappingConeUniqueMediatorW308.testCoconeLegNaturality",
+    "LeanLCAExactChallenge.WppOpMappingConeIncludedColimitInputsW342.includedWppOpColimit_isColimit",
+    "LeanLCAExactChallenge.WppOpMappingConeIncludedColimitInputsW342.includedWppColimit_isColimit",
+    "LeanLCAExactChallenge.WppOpMappingConeBoundedLeftCochainW341.globalDescEqOfBoundedTestCocone",
+    "LeanLCAExactChallenge.WppOpMappingConeBoundedLeftCochainW341.boundedMappingConeDesc_fac",
+    "LeanLCAExactChallenge.WppOpMappingConeBoundedLeftCochainW341.arbitraryMediator_leftCochain_eq"
   ],
-  "generated_utc": "2026-05-20T18:26:00Z",
+  "generated_utc": "2026-05-20T18:39:00Z",
   "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -2104,5 +2136,11 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicFrontierConsolidatedState"
   ],
   "product_success": false,
-  "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"
+  "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
+  "remaining_work": [
+    "Combine W341 left-component equality with W302/W329/W330 right c₂ colimit equality and package final W308 uniqueness.",
+    "Instantiate W341 with W308 actual WPP-op source diagram.",
+    "Instantiate W341/W338 with W308 actual WPP-op source diagram and ambientRightLegMediator.",
+    "Connect W308 bounded-inclusion mappingConeDiagram to W339 generic mappingConeDiagram so test cocones provide W338 naturality automatically."
+  ]
 }
