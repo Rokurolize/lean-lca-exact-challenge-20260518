@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
   "generated_utc": "2026-05-20T23:07:00Z",
-  "source_tree_hash": "f10c7e5a5f687f79f7712db87b217f72780d9ba6b58ec061f3cc0a5538926c86",
+  "source_tree_hash": "7d80e665e43d0057dcbb541a39f10e00de6ec721d0e8b7d28dde95f0efbb3bac",
   "summary": "W377-W381 verify closed-map, transported relation, degreewise cokernel, component closed-map, and ordinary-to-transported support; product_complete remains false.",
   "commands": [
     {
