@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T05:24:02Z
+Generated: 2026-05-20T05:30:24Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -25,6 +25,8 @@ v202 consumes support w154 as `audit/blockers/option_complement_product_reindex_
 v203 closes the binary mapping-cone/biproduct differential-compatibility audit in `mapping_cone_biprod_comparison_probe_v189.lean`. The parent now proves both left and right component differential squares, `biprodConeToConeBiprodMapX_differentialCompatibility`, and `binaryMappingConeBiprodDifferentialCompatibility`. The remaining binary route is no longer componentwise differential compatibility; it is packaging the degreewise maps plus inverse/differential compatibility as a cochain-complex isomorphism satisfying W142's `BinaryMappingConeBiprodComparisonInput`.
 
 v204 packages the binary mapping-cone/biproduct comparison as an actual cochain-complex isomorphism. `binaryMappingConeBiprodXIso` wraps the degreewise inverse maps, and `binaryMappingConeBiprodIso` uses `HomologicalComplex.Hom.isoOfComponents` plus `binaryMappingConeBiprodDifferentialCompatibility`. Completed support worker w156 was inspected and classified as useful audit-only evidence for the separate Option-product route; it is not needed for the v204 mapping-cone iso. Remaining blockers are feeding this iso into the W142 finite-product comparison interface, completing the Option product assembly and empty-product exactness, Dbounded equalizer/pullback transfer, finite colimits, triangulated structure, and stable infinity-category structure.
+
+v205 promotes the binary comparison into reusable product-side code and feeds W142. `LeanLCAExactChallenge/Derived/MappingConeBiprod.lean` provides `MappingConeBiprodComparison.binaryMappingConeBiprodIso`, while `mapping_cone_finite_product_comparison_w142.lean` now defines `binaryMappingConeBiprodComparisonInput` and proves `exactAcyclic_mappingCone_biprodMap_of_v204`. The binary mapping-cone comparison is no longer a finite-product route blocker; the route now needs the Option product decomposition assembly, empty-product exactness, finite-family induction connection, Dbounded transfer, finite colimits, triangulated structure, and stable infinity-category structure.
 
 | frontier_id | target | allowed writes | verification | merge blocker | product contribution | owner |
 | --- | --- | --- | --- | --- | --- | --- |

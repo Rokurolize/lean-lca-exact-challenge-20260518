@@ -1,4 +1,4 @@
-import LeanLCAExactChallenge.Derived.Bounded
+import LeanLCAExactChallenge.Derived.MappingConeBiprod
 
 /-!
 W142 audit: lower mapping-cone finite-product comparison frontier.
@@ -72,6 +72,26 @@ theorem exactAcyclic_mappingCone_biprodMap_of_v187_comparison
   exactAcyclic_mappingCone_biprodMap_of_comparison comparison
     (fun K L => MetrizableLCA.exactAcyclic_biprod K L) hf₁ hf₂
 
+/-- The v204 component-map comparison supplies the binary mapping-cone input. -/
+noncomputable def binaryMappingConeBiprodComparisonInput
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    BinaryMappingConeBiprodComparisonInput C where
+  iso f₁ f₂ := MappingConeBiprodComparison.binaryMappingConeBiprodIso f₁ f₂
+
+/--
+The current parent route now closes the lower binary comparison input for MetrizableLCA
+product-map exact-acyclicity.
+-/
+theorem exactAcyclic_mappingCone_biprodMap_of_v204
+    {K₁ K₂ L₁ L₂ : CochainComplex MetrizableLCA.{u} ℤ}
+    {f₁ : K₁ ⟶ L₁} {f₂ : K₂ ⟶ L₂}
+    (hf₁ : exactAcyclic MetrizableLCA (CochainComplex.mappingCone f₁))
+    (hf₂ : exactAcyclic MetrizableLCA (CochainComplex.mappingCone f₂)) :
+    exactAcyclic MetrizableLCA (CochainComplex.mappingCone (biprod.map f₁ f₂)) :=
+  exactAcyclic_mappingCone_biprodMap_of_v187_comparison
+    (binaryMappingConeBiprodComparisonInput MetrizableLCA) hf₁ hf₂
+
 /-- Product-map finite-product stability requires one more input than biproduct closure. -/
 def binaryProductMapRequiredInputNames : List String :=
   ["component mapping-cone exact-acyclicity",
@@ -101,21 +121,22 @@ structure BinaryMappingConeProductFrontierState : Type where
 /-- Current v187 state for the lower mapping-cone finite-product route. -/
 def currentBinaryMappingConeProductFrontierState : BinaryMappingConeProductFrontierState where
   exactAcyclicBiprodClosure := "MetrizableLCA.exactAcyclic_biprod"
-  comparisonConstructor := none
+  comparisonConstructor := some "MappingConeBiprodComparison.binaryMappingConeBiprodIso"
   upperFiniteProductConsumer :=
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.FiniteProductMappingConeInput"
 
-theorem currentBinaryMappingConeProductFrontierState_comparison_missing :
-    currentBinaryMappingConeProductFrontierState.comparisonConstructor = none := rfl
+theorem currentBinaryMappingConeProductFrontierState_comparison_supplied :
+    currentBinaryMappingConeProductFrontierState.comparisonConstructor =
+      some "MappingConeBiprodComparison.binaryMappingConeBiprodIso" := rfl
 
-def nextMappingConeComparisonEquations : List String :=
-  ["construct the biproduct-map cone object comparison",
-    "prove compatibility with the cone differential from the source summand",
-    "prove compatibility with the cone differential from the target summand",
-    "package the comparison as an isomorphism usable by exactAcyclic_of_iso"]
+def completedMappingConeComparisonSteps : List String :=
+  ["constructed the biproduct-map cone object comparison",
+    "proved componentwise differential compatibility",
+    "packaged the comparison as MappingConeBiprodComparison.binaryMappingConeBiprodIso",
+    "used the comparison with exactAcyclic_of_iso and MetrizableLCA.exactAcyclic_biprod"]
 
-theorem nextMappingConeComparisonEquations_count :
-    nextMappingConeComparisonEquations.length = 4 := rfl
+theorem completedMappingConeComparisonSteps_count :
+    completedMappingConeComparisonSteps.length = 4 := rfl
 
 section Checks
 
@@ -123,17 +144,20 @@ section Checks
 #check BinaryExactAcyclicBiprodClosure
 #check exactAcyclic_mappingCone_biprodMap_of_comparison
 #check exactAcyclic_mappingCone_biprodMap_of_v187_comparison
+#check binaryMappingConeBiprodComparisonInput
+#check exactAcyclic_mappingCone_biprodMap_of_v204
 #check binaryProductMapRequiredInputNames
 #check v187SuppliedInputNames
 #check v187SuppliedInputs_are_not_all_binaryProductInputs
 #check BinaryMappingConeProductFrontierState
 #check currentBinaryMappingConeProductFrontierState
-#check currentBinaryMappingConeProductFrontierState_comparison_missing
-#check nextMappingConeComparisonEquations
-#check nextMappingConeComparisonEquations_count
+#check currentBinaryMappingConeProductFrontierState_comparison_supplied
+#check completedMappingConeComparisonSteps
+#check completedMappingConeComparisonSteps_count
 #check boundedExactWeakEquivalence
 #check exactAcyclic_of_iso
 #check MetrizableLCA.exactAcyclic_biprod
+#check MappingConeBiprodComparison.binaryMappingConeBiprodIso
 #check CochainComplex.mappingCone
 #check biprod.map
 

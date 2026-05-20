@@ -10,5 +10,6 @@ import LeanLCAExactChallenge.LCA.Pushout
 import LeanLCAExactChallenge.LCA.ExactCategory
 import LeanLCAExactChallenge.Ext.Yoneda
 import LeanLCAExactChallenge.Derived.Bounded
+import LeanLCAExactChallenge.Derived.MappingConeBiprod
 import LeanLCAExactChallenge.AlternatingTailExtendTransport
 import LeanLCAExactChallenge.Derived.ContractibleTail

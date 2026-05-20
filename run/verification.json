@@ -1,13 +1,13 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v203-binary-mapping-cone-differential-compatibility",
-  "generated_utc": "2026-05-20T05:24:02Z",
-  "source_tree_hash": "d6c0e6f66dfc3cb3d33a58dc3a75fd8480046f752ded3676caac9bd17ededb93",
-  "summary": "v204 packages the binary mapping-cone/biproduct comparison as an actual cochain-complex isomorphism: binaryMappingConeBiprodXIso wraps the degreewise inverse maps and binaryMappingConeBiprodIso uses HomologicalComplex.Hom.isoOfComponents with binaryMappingConeBiprodDifferentialCompatibility. Product success remains nonterminal because this iso still has to feed W142 BinaryMappingConeBiprodComparisonInput, and Option-product assembly, empty-product exactness, Dbounded transfer, finite colimits, triangulated structure, and stable infinity-category structure remain open.",
+  "generated_utc": "2026-05-20T05:30:24Z",
+  "source_tree_hash": "59158c1241313581491261f107a9dc17c761b62a5c526d5617f655d463eb4901",
+  "summary": "v205 promotes the binary mapping-cone/biproduct comparison to reusable product-side code in LeanLCAExactChallenge.Derived.MappingConeBiprod and feeds W142 BinaryMappingConeBiprodComparisonInput. exactAcyclic_mappingCone_biprodMap_of_v204 now proves the binary biproduct-map cone is exact-acyclic from component cone exact-acyclicity plus MetrizableLCA.exactAcyclic_biprod. Product success remains nonterminal because Option-product assembly, empty-product exactness, finite-family closure, Dbounded transfer, finite colimits, triangulated structure, and stable infinity-category structure remain open.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed for v204 after packaging binaryMappingConeBiprodIso; existing informational/linter output remains nonblocking."
+      "evidence": "Full lake build passed for v205 after adding LeanLCAExactChallenge.Derived.MappingConeBiprod and importing it from the root module; existing informational/linter output remains nonblocking."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed for v204."
+      "evidence": "Forbidden-token audit passed for v205, including the new MappingConeBiprod product-side module."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed for v204; command output was logged because #check output is large."
+      "evidence": "RequiredDeclarations passed for v205; command output was logged because #check output is large."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed for v204; product success remains unclaimed."
+      "evidence": "ProductSuccessDeclarations passed for v205; product success remains unclaimed."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v204: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v205: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v204 source and artifact updates."
+      "evidence": "Whitespace diff check passed after v205 source and artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -197,7 +197,7 @@
     {
       "command": "lake env lean audit/blockers/mapping_cone_finite_product_comparison_w142.lean",
       "status": "passed",
-      "evidence": "Focused v188 W142 mapping-cone finite-product comparison frontier audit passed in the parent worktree."
+      "evidence": "Focused W142 audit passed after connecting MappingConeBiprodComparison.binaryMappingConeBiprodIso to BinaryMappingConeBiprodComparisonInput and proving exactAcyclic_mappingCone_biprodMap_of_v204."
     },
     {
       "command": "lake env lean audit/blockers/dbounded_pullback_localization_transfer_w143.lean",
@@ -237,22 +237,22 @@
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "terminal_outcome JSON parsed after v204 refresh."
+      "evidence": "terminal_outcome JSON parsed after v205 refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "proof frontier JSON parsed after v204 refresh."
+      "evidence": "proof frontier JSON parsed after v205 refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "verification JSON parsed after v204 refresh."
+      "evidence": "verification JSON parsed after v205 refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "manifest JSON parsed after v204 refresh."
+      "evidence": "manifest JSON parsed after v205 refresh."
     },
     {
       "command": "lake env lean audit/blockers/option_complement_product_reindex_w154.lean",
@@ -483,7 +483,7 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v204でbinary段階のcochain-complex同型は証明したが、W142の BinaryMappingConeBiprodComparisonInput への接続、FiniteMappingConeProductComparisonInput、FiniteExactAcyclicProductClosure は未構成。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v205でbinary mapping-cone比較入力は閉じたが、Option product decomposition本体、空積exactness、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
     "Option product decomposition 本体は、none側singleton縮約、complement reindex、degreewise binary fan合成、HomologicalComplex.isLimitOfEval での複体level assembly、および空積exactnessが未完成。",
     "Dbounded C の有限極限は、有限積に加えてequalizer routeとpullback routeへ分解されたが、EqualizerConeInput C、EqualizerLocalizationTransferTheorem C、PullbackConeInput C、PullbackLocalizationTransferTheorem Cはいずれも未構成。",
     "Dbounded C の有限余極限、pretriangulated構造、triangulated構造、stable infinity-category構造は未完成。",

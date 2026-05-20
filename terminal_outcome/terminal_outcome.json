@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v204時点で、binary mapping cone/biproduct比較を実際のcochain-complex同型として包装した。binaryMappingConeBiprodXIsoが次数ごとの逆写像性を同型にし、binaryMappingConeBiprodIsoがHomologicalComplex.Hom.isoOfComponentsとbinaryMappingConeBiprodDifferentialCompatibilityから構成される。ただし、この同型をW142のBinaryMappingConeBiprodComparisonInputへ接続する部分、Option product decomposition本体と空積exactness、Dbounded transfer、有限余極限、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
+  "summary": "v205時点で、binary mapping cone/biproduct比較を再利用可能な製品側モジュール LeanLCAExactChallenge.Derived.MappingConeBiprod へ昇格し、W142の BinaryMappingConeBiprodComparisonInput へ接続した。exactAcyclic_mappingCone_biprodMap_of_v204 により、component cone のexact-acyclic性と MetrizableLCA.exactAcyclic_biprod から biprod.map の mapping cone がexact-acyclicであることまで進める。ただし、Option product decomposition本体、空積exactness、有限family closure、Dbounded transfer、有限余極限、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -676,7 +676,7 @@
     "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
   ],
   "known_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v204でbinary段階のcochain-complex同型は証明したが、W142の BinaryMappingConeBiprodComparisonInput への接続、FiniteMappingConeProductComparisonInput、FiniteExactAcyclicProductClosure は未構成。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v205でbinary mapping-cone比較入力は閉じたが、Option product decomposition本体、空積exactness、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
     "Option product decomposition 本体は、none側singleton縮約、complement reindex、degreewise binary fan合成、HomologicalComplex.isLimitOfEval での複体level assembly、および空積exactnessが未完成。",
     "Dbounded C の有限極限は、有限積に加えてequalizer routeとpullback routeへ分解されたが、EqualizerConeInput C、EqualizerLocalizationTransferTheorem C、PullbackConeInput C、PullbackLocalizationTransferTheorem Cはいずれも未構成。",
     "Dbounded C の有限余極限、pretriangulated構造、triangulated構造、stable infinity-category構造は未完成。",
@@ -687,10 +687,10 @@
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v204 closes the parent-owned complex-iso packaging for the binary mapping-cone/biproduct comparison; remaining product work is W142 input integration, Option product assembly/empty product, Dbounded transfer, finite colimits, triangulated structure, and stable infinity-category structure.",
+  "worker_frontier_summary": "v205 closes the binary mapping-cone comparison input for the finite-product route; remaining product work is Option product assembly/empty product/finite-family closure, Dbounded transfer, finite colimits, triangulated structure, and stable infinity-category structure.",
   "claim_review_result": "product_complete=false。w142/w143はいずれもconditional frontier監査であり、product gateを通す証拠ではない。",
   "remaining_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v204でbinary段階のcochain-complex同型は証明したが、W142の BinaryMappingConeBiprodComparisonInput への接続、FiniteMappingConeProductComparisonInput、FiniteExactAcyclicProductClosure は未構成。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v205でbinary mapping-cone比較入力は閉じたが、Option product decomposition本体、空積exactness、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
     "Option product decomposition 本体は、none側singleton縮約、complement reindex、degreewise binary fan合成、HomologicalComplex.isLimitOfEval での複体level assembly、および空積exactnessが未完成。",
     "Dbounded C の有限極限は、有限積に加えてequalizer routeとpullback routeへ分解されたが、EqualizerConeInput C、EqualizerLocalizationTransferTheorem C、PullbackConeInput C、PullbackLocalizationTransferTheorem Cはいずれも未構成。",
     "Dbounded C の有限余極限、pretriangulated構造、triangulated構造、stable infinity-category構造は未完成。",
@@ -778,9 +778,14 @@
     "MappingConeBiprodComparisonProbeV189.binaryMappingConeBiprodXIso",
     "MappingConeBiprodComparisonProbeV189.binaryMappingConeBiprodIso",
     "MappingConeBiprodComparisonProbeV189.binaryMappingConeBiprodIso_hom_f",
-    "MappingConeBiprodComparisonProbeV189.binaryMappingConeBiprodIso_inv_f"
+    "MappingConeBiprodComparisonProbeV189.binaryMappingConeBiprodIso_inv_f",
+    "MappingConeBiprodComparison.binaryMappingConeBiprodIso",
+    "MappingConeBiprodComparison.binaryMappingConeBiprodXIso",
+    "MappingConeFiniteProductComparisonW142.binaryMappingConeBiprodComparisonInput",
+    "MappingConeFiniteProductComparisonW142.exactAcyclic_mappingCone_biprodMap_of_v204",
+    "MappingConeFiniteProductComparisonW142.currentBinaryMappingConeProductFrontierState_comparison_supplied"
   ],
-  "generated_utc": "2026-05-20T05:24:02Z",
+  "generated_utc": "2026-05-20T05:30:24Z",
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave68_20260519T233000Z/workers/w126-stable-dbounded-certificate-provider-route/result.json",
@@ -891,6 +896,11 @@
     "MappingConeBiprodComparisonProbeV189.binaryMappingConeBiprodXIso",
     "MappingConeBiprodComparisonProbeV189.binaryMappingConeBiprodIso",
     "MappingConeBiprodComparisonProbeV189.binaryMappingConeBiprodIso_hom_f",
-    "MappingConeBiprodComparisonProbeV189.binaryMappingConeBiprodIso_inv_f"
+    "MappingConeBiprodComparisonProbeV189.binaryMappingConeBiprodIso_inv_f",
+    "MappingConeBiprodComparison.binaryMappingConeBiprodIso",
+    "MappingConeBiprodComparison.binaryMappingConeBiprodXIso",
+    "MappingConeFiniteProductComparisonW142.binaryMappingConeBiprodComparisonInput",
+    "MappingConeFiniteProductComparisonW142.exactAcyclic_mappingCone_biprodMap_of_v204",
+    "MappingConeFiniteProductComparisonW142.currentBinaryMappingConeProductFrontierState_comparison_supplied"
   ]
 }
