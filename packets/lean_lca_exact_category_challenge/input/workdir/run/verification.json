@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T14:51:28Z",
-  "source_tree_hash": "f114529fca96efa017c38713bdeec797650e08203d0dc982b6bc83e2476435db",
-  "summary": "v289 adds W269 opposite functor-category localization boundary: objectwise inversion is checked, and two fixed-target lift/fac/uniq packages imply the WalkingParallelPair functor-category localization input.",
+  "generated_utc": "2026-05-20T14:53:42Z",
+  "source_tree_hash": "f49fd5c4566c3bed309bef5398b21e9f8326a21552eb99a806574f4b7ef674fe",
+  "summary": "v290 adds W268 right-homology endpoint comparison: endpoint cokernelπ is a cokernel of fromOpcycles, so Epi fromOpcycles is a positive bridge; right-homology zero alone remains false for Epi T.g.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -588,6 +588,21 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "Whitespace diff check passed after adding the W269 audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/right_homology_cokernel_comparison_w268.lean",
+      "status": "passed",
+      "evidence": "Focused W268 right-homology endpoint cokernel comparison audit passed in the parent target worktree."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/right_homology_cokernel_comparison_w268.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W268 audit file."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after adding the W268 audit file."
     }
   ],
   "implemented_declarations_checked": [
@@ -1140,8 +1155,9 @@
     "Opposite finite-limit assembly still requires opposite identity containment, direct WalkingParallelPairᵒᵖ colimit stability, and opposite functor-category localization.",
     "Direct WalkingParallelPairᵒᵖ colimit stability is reduced to mapping-cone colimit comparison and exact-acyclic closure under that colimit shape.",
     "Opposite functor-category localization still needs fac and uniq fields for the target and model fixed-target categories.",
-    "Coherent opposite WalkingParallelPair strict-preimage lift blueprints are not constructed yet; W269 only gives a lift functor from such a blueprint."
+    "Coherent opposite WalkingParallelPair strict-preimage lift blueprints are not constructed yet; W269 only gives a lift functor from such a blueprint.",
+    "Right-homology zero remains insufficient for endpoint cokernel zero or Epi T.g; downstream strictness needs Epi fromOpcycles or another explicit endpoint input."
   ],
-  "support_result_classification": "w269 manually ported as focused nonterminal frontier reduction; product success remains false.",
+  "support_result_classification": "w268 manually ported as focused nonterminal frontier reduction; product success remains false.",
   "product_success": false
 }
