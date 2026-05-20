@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T01:04:00Z",
+  "generated_utc": "2026-05-21T01:07:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -3819,6 +3819,55 @@
       "実際のWPP-op morphismについてW386/W392 target-relation lift certificateを供給する。",
       "W399からW393/W390/W384 transported field routeへ接続する。",
       "W419 shape-level preservation inputと四部構成全体の統合を完了する。"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w421": {
+    "timestamp_utc": "2026-05-21T01:07:00Z",
+    "status": "verified_focused",
+    "summary": "W421 proves W399 relation-pullback descended fields from W407 reverse membership plus W417 relation fields, identifying the W418 and W417 ordinary descended maps.",
+    "touched_files": [
+      "audit/blockers/wpp_op_w399_inputs_from_reverse_membership_and_relation_fields_v370_support_w421.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "ordinaryDescendedOfOrdinaryMapW418_eq_W417",
+      "relationPullbackDescendedFieldsInputsW399_of_reverseMembership_and_relationFields",
+      "remainingInputsAfterW421Assembly_count",
+      "w421SupportDeclarationNames_count"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_w399_inputs_from_reverse_membership_and_relation_fields_v370_support_w421.lean",
+      "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/wpp_op_w399_inputs_from_reverse_membership_and_relation_fields_v370_support_w421.lean audit/blockers/addcommgrp_selected_cokernel_colimit_from_underlying_v370_support_w422.lean (expected no matches)",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "実際のWPP-op morphismについてW407 reverse closed-range membershipを供給する。",
+      "実際のWPP-op morphismについてW417 component_closedMap、relation_pullback、target_relation_liftsを供給する。",
+      "W399からW393/W390/W384 transported field routeへ接続する。"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w422": {
+    "timestamp_utc": "2026-05-21T01:07:00Z",
+    "status": "verified_focused",
+    "summary": "W422 derives selected mapped cocone, selected cofork, and selected cokernel cofork IsColimit facts from original IsColimit cs plus underlying forget₂ WPP-op preservation.",
+    "touched_files": [
+      "audit/blockers/addcommgrp_selected_cokernel_colimit_from_underlying_v370_support_w422.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "selectedForgottenTargetMappedCoconeIsColimitOfUnderlying",
+      "selectedForgottenTargetCoforkColimitOfOriginalUnderlying",
+      "selectedForgottenTargetCokernelColimitOfOriginalUnderlying"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/addcommgrp_selected_cokernel_colimit_from_underlying_v370_support_w422.lean",
+      "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/wpp_op_w399_inputs_from_reverse_membership_and_relation_fields_v370_support_w421.lean audit/blockers/addcommgrp_selected_cokernel_colimit_from_underlying_v370_support_w422.lean (expected no matches)",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "元のhcs : IsColimit csを供給する。",
+      "HasColimitsOfShape WalkingParallelPairᵒᵖ MetrizableLCAを供給する。",
+      "PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat)を供給する。"
     ],
     "product_success_claimed": false
   }
