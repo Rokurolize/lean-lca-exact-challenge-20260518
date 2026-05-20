@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v250時点で、反対圏有限極限ルートに必要な右calculus入力を局所化随伴の双対定理へ縮約した。audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean は、CategoryTheory.Adjunction.hasRightCalculusOfFractions を使い、bounded homotopy localized composite の左随伴とcounit所属から boundedHomotopyExactWeakEquivalence C の右calculus、さらにiso-closed条件下で boundedExactWeakEquivalence C の右calculusを得る条件付き経路を記録する。product success はまだ非完了である。",
+  "summary": "v251時点で、支援w235を取り込み、MetrizableLCA の有限余極限ルートを整理した。audit/blockers/metrizable_lca_finite_colimits_w235.lean は、既存の零対象と二項双積から HasFiniteCoproducts MetrizableLCA を包装し、HasFiniteColimits MetrizableLCA を HasPushouts または HasCokernels へ縮約する。任意pushout/cokernelはまだ未供給なので product success は非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -34,7 +34,8 @@
     "lake env lean audit/blockers/walking_parallel_pair_lift_fields_w231.lean",
     "lake env lean audit/blockers/shortcomplex_quasiiso_conflation_w232.lean",
     "lake env lean audit/blockers/bounded_homotopy_localized_adjunction_w233.lean",
-    "lake env lean audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean"
+    "lake env lean audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean",
+    "lake env lean audit/blockers/metrizable_lca_finite_colimits_w235.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -699,14 +700,19 @@
     "LeanLCAExactChallenge.BoundedHomotopyLocalizedLeftAdjointW250.BoundedHomotopyLocalizedLeftAdjointInput",
     "LeanLCAExactChallenge.BoundedHomotopyLocalizedLeftAdjointW250.boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedAdjunction",
     "LeanLCAExactChallenge.BoundedHomotopyLocalizedLeftAdjointW250.boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjoint",
-    "LeanLCAExactChallenge.BoundedHomotopyLocalizedLeftAdjointW250.metrizableLCABoundedExactWeakEquivalence_hasRightCalculusOfFractions"
+    "LeanLCAExactChallenge.BoundedHomotopyLocalizedLeftAdjointW250.metrizableLCABoundedExactWeakEquivalence_hasRightCalculusOfFractions",
+    "LeanLCAExactChallenge.MetrizableLCAFiniteColimitsW235.metrizableLCA_hasFiniteCoproducts",
+    "LeanLCAExactChallenge.MetrizableLCAFiniteColimitsW235.metrizableLCA_hasFiniteColimits_of_hasPushouts",
+    "LeanLCAExactChallenge.MetrizableLCAFiniteColimitsW235.metrizableLCA_hasFiniteColimits_of_hasCokernels",
+    "LeanLCAExactChallenge.MetrizableLCAFiniteColimitsW235.PushoutRouteInput",
+    "LeanLCAExactChallenge.MetrizableLCAFiniteColimitsW235.CokernelRouteInput"
   ],
   "known_gaps": [
     "反対圏有限極限ルートに必要な right calculus は、bounded homotopy localized composite の左随伴とcounit所属へ縮約されたが、その左随伴本体とcounit所属証明は未供給である。",
     "WalkingParallelPair固定対象liftはcoherent strict-preimage blueprintで構成できるが、そのblueprintの存在、fac、uniqは未供給である。",
     "ShortComplex.QuasiIso に沿って QuillenExactCategory.Conflation を運ぶ局所定理が未供給であり、MetrizableLCAではhomology同型データからtargetのstrictShortExactを得る橋が必要である。",
     "bounded homotopy localized composite の右随伴と unit membership が未供給であり、boundedHomotopyExactWeakEquivalence C の left calculus はまだ条件付きである。",
-    "反対圏有限極限ルートのソース側入力として、HasFiniteColimits MetrizableLCA の包装が未供給である。HasInitial と HasPushouts を instance 化できれば、hasFiniteColimits_of_hasInitial_and_pushouts で閉じられる可能性が高い。",
+    "HasFiniteColimits MetrizableLCA は有限余積まで包装済みだが、残りは任意の HasPushouts MetrizableLCA または HasCokernels MetrizableLCA の構成である。既存pushout APIはstrictShortExact由来の左脚に制限されている。",
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
@@ -729,14 +735,14 @@
   "packet_sha256_sidecar": "",
   "git_commit": "uncommitted-v247",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v250で親側がright-calculus双対ルートを追加した。支援w235はMetrizableLCA有限余極限を別系統で処理中であり、product success は未主張である。",
+  "worker_frontier_summary": "v251で支援w235を消費し、MetrizableLCA有限余極限を有限余積プラス任意pushout/cokernelへ縮約した。product success は未主張である。",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
     "反対圏有限極限ルートに必要な right calculus は、bounded homotopy localized composite の左随伴とcounit所属へ縮約されたが、その左随伴本体とcounit所属証明は未供給である。",
     "WalkingParallelPair固定対象liftはcoherent strict-preimage blueprintで構成できるが、そのblueprintの存在、fac、uniqは未供給である。",
     "ShortComplex.QuasiIso に沿って QuillenExactCategory.Conflation を運ぶ局所定理が未供給であり、MetrizableLCAではhomology同型データからtargetのstrictShortExactを得る橋が必要である。",
     "bounded homotopy localized composite の右随伴と unit membership が未供給であり、boundedHomotopyExactWeakEquivalence C の left calculus はまだ条件付きである。",
-    "反対圏有限極限ルートのソース側入力として、HasFiniteColimits MetrizableLCA の包装が未供給である。HasInitial と HasPushouts を instance 化できれば、hasFiniteColimits_of_hasInitial_and_pushouts で閉じられる可能性が高い。",
+    "HasFiniteColimits MetrizableLCA は有限余積まで包装済みだが、残りは任意の HasPushouts MetrizableLCA または HasCokernels MetrizableLCA の構成である。既存pushout APIはstrictShortExact由来の左脚に制限されている。",
     "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
@@ -758,7 +764,7 @@
     "WalkingParallelPair functor-category localization input が未完了。",
     "parallel-pair mapping-cone安定性のproduct-facing接続が未完了。"
   ],
-  "next_recommended_goal": "次は支援w235の有限余極限結果を消費するか、right-calculus双対ルートの左随伴/counit所属、WalkingParallelPairのfac/uniq、またはShortComplexQuasiIsoConflationTransportのいずれかを実 theorem 化する。",
+  "next_recommended_goal": "次はMetrizableLCAの任意pushoutまたはcokernelを構成するか、right-calculus双対ルートの左随伴/counit所属、WalkingParallelPairのfac/uniq、ShortComplexQuasiIsoConflationTransportのいずれかを実 theorem 化する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",

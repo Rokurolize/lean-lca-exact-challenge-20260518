@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T11:35:12Z",
+  "generated_utc": "2026-05-20T11:38:11Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1283,9 +1283,11 @@
     }
   ],
   "support_result_classification": "v247 updated Japanese reference-route and mathlib-gap docs for v245-v246 support consumption; no new product-success claim.",
-  "latest_parent_update": "v250-bounded-homotopy-right-calculus-adjunction",
-  "summary": "v250時点で、反対圏有限極限ルートに必要な右calculus入力を局所化随伴の双対定理へ縮約した。audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean は、CategoryTheory.Adjunction.hasRightCalculusOfFractions を使い、bounded homotopy localized composite の左随伴とcounit所属から boundedHomotopyExactWeakEquivalence C の右calculus、さらにiso-closed条件下で boundedExactWeakEquivalence C の右calculusを得る条件付き経路を記録する。product success はまだ非完了である。",
+  "latest_parent_update": "v251-w235-metrizable-lca-finite-colimits",
+  "summary": "v251時点で、支援w235を取り込み、MetrizableLCA の有限余極限ルートを整理した。audit/blockers/metrizable_lca_finite_colimits_w235.lean は、既存の零対象と二項双積から HasFiniteCoproducts MetrizableLCA を包装し、HasFiniteColimits MetrizableLCA を HasPushouts または HasCokernels へ縮約する。任意pushout/cokernelはまだ未供給なので product success は非完了である。",
   "remaining_frontier": [
+    "General closedness of the explicit MetrizableLCA pushout relation subgroup beyond strict-short-exact left legs.",
+    "Arbitrary HasPushouts MetrizableLCA or HasCokernels MetrizableLCA to close HasFiniteColimits MetrizableLCA.",
     "Left adjoint and counit membership for the bounded homotopy localized composite, giving right calculus for the opposite finite-limit route.",
     "Right adjoint and unit membership for the bounded homotopy localized composite.",
     "ShortComplexQuasiIsoConflationTransport or concrete MetrizableLCA strictShortExact transport from homology-isomorphism data.",
@@ -1340,6 +1342,12 @@
       "classification": "right_calculus_frontier_reduction",
       "artifact": "audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean",
       "result": "Mathlib hasRightCalculusOfFractions reduces boundedExactWeakEquivalence right calculus to localized left-adjoint and counit-membership input plus iso-closedness."
+    },
+    {
+      "id": "w235",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/metrizable_lca_finite_colimits_w235.lean",
+      "result": "HasFiniteCoproducts MetrizableLCA is packaged; HasFiniteColimits reduces to HasPushouts or HasCokernels."
     }
   ]
 }
