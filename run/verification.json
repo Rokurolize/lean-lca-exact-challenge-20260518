@@ -1,9 +1,19 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v253-localized-adjunction-candidate",
-  "generated_utc": "2026-05-20T12:02:00Z",
-  "source_tree_hash": "eb0f76e9aca8ad6dc2e93db436c4fc6ac19f1aa5a8b749da2a0a1dd29b733629",
-  "summary": "v253時点で、支援w238を親側で再実装し、boundedHomotopyExactWeakEquivalence のleft/right calculusを局所化後随伴surfaceへ縮約する監査を追加した。v252でsource側 HasFiniteColimits MetrizableLCA は実装済みだが、具体的な局所化後随伴、反対側functor-category localization、triangulated structure、stable infinity-category certificateは未完なので product success は非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v254-metrizable-shortcomplex-strict-exact-field-extraction",
+  "generated_utc": "2026-05-20T12:12:00Z",
+  "source_tree_hash": "5b539da45fc7f8c33761dc749cf3c76bcc24cdf3c1c6be126e289bccfc01945c",
+  "summary": "v254時点で、支援w242を親側で再実装し、MetrizableLCA.strictShortExact を ShortComplex.QuasiIso に沿って運ぶための不足を、target algebraic kernel/surjectivity extraction と target topological closed/open extraction に分割する監査を追加した。QuasiIso APIが提供するのは homologyMap の同型であり、これらの抽出定理は未完なので product success は非完了である。",
   "commands": [
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_shortcomplex_strict_exact_field_extraction_w242.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W242 audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/metrizable_shortcomplex_strict_exact_field_extraction_w242.lean",
+      "status": "passed",
+      "evidence": "Focused W242 strict-field extraction boundary audit passed in the parent target worktree."
+    },
     {
       "command": "lake env lean audit/blockers/localized_adjunction_candidate_w238.lean",
       "status": "passed",
@@ -147,7 +157,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v252 changes."
+      "evidence": "Whitespace diff check passed after v254 focused edit."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -578,7 +588,12 @@
     "LocalizedAdjunctionCandidateW238.inverseImage_hasRightCalculusOfFractions_of_leftAdjoint",
     "LocalizedAdjunctionCandidateW238.BoundedHomotopyLocalizedAdjunctionSurface",
     "LocalizedAdjunctionCandidateW238.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_surface",
-    "LocalizedAdjunctionCandidateW238.boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_surface"
+    "LocalizedAdjunctionCandidateW238.boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_surface",
+    "MetrizableShortComplexStrictExactFieldExtractionW242.TargetStrictTopology",
+    "MetrizableShortComplexStrictExactFieldExtractionW242.TargetAlgebraicExactness",
+    "MetrizableShortComplexStrictExactFieldExtractionW242.strictTransport_of_algebraicExtraction_of_topologyExtraction",
+    "MetrizableShortComplexStrictExactFieldExtractionW242.quasiIso_homologyMap_isIso",
+    "MetrizableShortComplexStrictExactFieldExtractionW242.algebraicExtraction_of_kernelExtraction_of_surjectivityExtraction"
   ],
   "product_complete": false,
   "known_gaps": [

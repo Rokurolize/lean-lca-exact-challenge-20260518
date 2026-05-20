@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v253時点で、支援w238を親側で再実装し、boundedHomotopyExactWeakEquivalence のleft/right calculusを局所化後随伴surfaceへ縮約する監査を追加した。v252でsource側 HasFiniteColimits MetrizableLCA は実装済みだが、具体的な局所化後随伴、反対側functor-category localization、triangulated structure、stable infinity-category certificateは未完なので product success は非完了である。",
+  "summary": "v254時点で、支援w242を親側で再実装し、MetrizableLCA.strictShortExact を ShortComplex.QuasiIso に沿って運ぶための不足を、target algebraic kernel/surjectivity extraction と target topological closed/open extraction に分割する監査を追加した。QuasiIso APIが提供するのは homologyMap の同型であり、これらの抽出定理は未完なので product success は非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -38,7 +38,9 @@
     "lake env lean audit/blockers/metrizable_lca_finite_colimits_w235.lean",
     "lake env lean LeanLCAExactChallenge/LCA/Cokernel.lean",
     "lake env lean audit/blockers/metrizable_lca_cokernel_product_w252.lean",
-    "lake env lean audit/blockers/localized_adjunction_candidate_w238.lean"
+    "lake env lean audit/blockers/localized_adjunction_candidate_w238.lean",
+    "lake env lean audit/blockers/metrizable_shortcomplex_strict_exact_field_extraction_w242.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_shortcomplex_strict_exact_field_extraction_w242.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
