@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v165-trivial-eligibility-upgrade-refuted",
-  "generated_utc": "2026-05-20T06:25:00Z",
-  "source_tree_hash": "7d480dee7b95e7a3db9e4ab31c56b145721b7b74fb72075e36002d377aba6291",
-  "summary": "v165 refutes the trivial distinguished endpoint eligibility upgrade: packaging arbitrary homotopy-equivalence endpoint data as a distinguished mapping-cone witness would imply the already false endpointHomotopyEquiv strictification bridge; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v166-stable-four-projection-finite-limit-extractor",
+  "generated_utc": "2026-05-20T06:45:00Z",
+  "source_tree_hash": "542d0a8d05ac38ddc3a584542d3ea7d8c17e666b3489fef8b0453ad9e9b86053",
+  "summary": "v166 ports a corrected w131 stable-certificate four-projection constructor audit: a full single certificate yields a finite-limit projection provider, while ordinary Dbounded evidence still cannot construct that stable projection; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v165 trivial eligibility refutation."
+      "evidence": "Full lake build passed after the v166 stable four-projection audit."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v165 trivial eligibility refutation."
+      "evidence": "Forbidden-token audit passed after the v166 stable four-projection audit."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v165 trivial eligibility refutation."
+      "evidence": "Required declaration audit passed after the v166 stable four-projection audit."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess declaration audit passed after the v165 trivial eligibility refutation; no product-success claim was added."
+      "evidence": "ProductSuccess declaration audit passed after the v166 stable four-projection audit; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -57,7 +57,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v165 artifact updates."
+      "evidence": "Whitespace diff check passed after the v166 artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -133,6 +133,11 @@
       "command": "cmp -s audit/blockers/stable_route_external_api_minimizer_w129.lean <w129-worktree>/audit/blockers/stable_route_external_api_minimizer_w129.lean",
       "status": "passed",
       "evidence": "Parent v163 w129 audit file is byte-identical to the active support worktree file."
+    },
+    {
+      "command": "lake env lean audit/blockers/stable_certificate_four_projection_constructor_w131.lean",
+      "status": "passed",
+      "evidence": "Focused v166 w131 stable four-projection constructor audit passed after marking the Dbounded finite-limit projection extractor noncomputable."
     }
   ],
   "implemented_declarations_checked": [
@@ -239,12 +244,22 @@
     "boundedTrianglehIso13CochainDataStrictification_of_trivialEligibilityUpgrade",
     "boundedHomotopyObjectTrianglehIso13Realization_of_trivialEligibilityUpgrade",
     "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_trivialEligibilityUpgrade",
-    "reject_trivialEligibilityUpgrade_intModuleCat"
+    "reject_trivialEligibilityUpgrade_intModuleCat",
+    "StableCertificateFourProjectionConstructorW131.OrdinaryDboundedInfinityContext",
+    "StableCertificateFourProjectionConstructorW131.currentOrdinaryDboundedInfinityContext",
+    "StableCertificateFourProjectionConstructorW131.StableFourProjectionCertificate",
+    "StableCertificateFourProjectionConstructorW131.StableFiniteLimitsProjection",
+    "StableCertificateFourProjectionConstructorW131.StableFourProjectionCertificate.finiteLimitsProjection",
+    "StableCertificateFourProjectionConstructorW131.StableFourProjectionCertificate.finiteLimitsProjection_ready",
+    "StableCertificateFourProjectionConstructorW131.DboundedFiniteLimitsProjectionProvider",
+    "StableCertificateFourProjectionConstructorW131.DboundedFourProjectionProvider",
+    "StableCertificateFourProjectionConstructorW131.dboundedFiniteLimitsProjectionOfFourProjectionProvider",
+    "StableCertificateFourProjectionConstructorW131.OrdinaryContextToDboundedFiniteLimitsProjection"
   ],
   "product_complete": false,
   "known_gaps": [
     "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため、arbitrary weak endpoint witnessを除外する非自明なeligibility predicateと、そのeligible witnessだけをcochain同型へ上げるupgradeが必要です。",
-    "stable側は、ordinary Dbounded evidenceからsingle stable certificateの4射影（finite limits、finite colimits、suspension/loop equivalence、pushout/pullback compatibility）を構成する実装が未完成です。",
+    "stable側は、full single certificateから有限極限projection providerを取り出す監査constructorは通ったが、ordinary Dbounded contextからそのstable finite-limit projection、さらに残る3射影を構成する実装が未完成です。",
     "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
   ],
   "support_result_classification": {

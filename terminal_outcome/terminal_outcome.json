@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v165時点で、自明なdistinguished endpoint eligibility upgradeは既存のIntModuleCat反例により拒否されることを確認した。product_successではない。bounded側には非自明なeligibility predicateと対応upgrade、stable側にはsingle-certificate四射影APIの実構成が残る。",
+  "summary": "v166時点で、stable側にfull single certificateから有限極限projection providerを取り出す監査constructorを追加した。product_successではない。bounded側には非自明eligibility predicateと対応upgrade、stable側にはordinary Dbounded contextからstable四射影を実際に構成する実装が残る。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -38,7 +38,8 @@
     "lake env lean audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean",
     "cmp -s audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean <w128-worktree>/audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean",
     "lake env lean audit/blockers/stable_route_external_api_minimizer_w129.lean",
-    "cmp -s audit/blockers/stable_route_external_api_minimizer_w129.lean <w129-worktree>/audit/blockers/stable_route_external_api_minimizer_w129.lean"
+    "cmp -s audit/blockers/stable_route_external_api_minimizer_w129.lean <w129-worktree>/audit/blockers/stable_route_external_api_minimizer_w129.lean",
+    "lake env lean audit/blockers/stable_certificate_four_projection_constructor_w131.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -653,7 +654,7 @@
   ],
   "known_gaps": [
     "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため、arbitrary weak endpoint witnessを除外する非自明なeligibility predicateと、そのeligible witnessだけをcochain同型へ上げるupgradeが必要です。",
-    "stable側は、ordinary Dbounded evidenceからsingle stable certificateの4射影（finite limits、finite colimits、suspension/loop equivalence、pushout/pullback compatibility）を構成する実装が未完成です。",
+    "stable側は、full single certificateから有限極限projection providerを取り出す監査constructorは通ったが、ordinary Dbounded contextからそのstable finite-limit projection、さらに残る3射影を構成する実装が未完成です。",
     "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -661,14 +662,14 @@
   "packet_sha256_sidecar": "",
   "git_commit": "omitted-from-terminal-outcome-to-avoid-self-referential-final-commit-hash; use git rev-parse HEAD",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v165 parent-only update. w128/w129 prior support had been integrated; the trivial distinguished endpoint eligibility upgrade is now formally rejected, so the bounded frontier requires a nontrivial eligibility certificate. Stable frontier remains the minimized single-certificate four-projection route.",
+  "worker_frontier_summary": "v166 parent-corrected w131 in-progress audit was ported: full stable four-projection certificate can supply the finite-limit projection provider. w130 remains superseded by v164-v165. No product-success packet was produced.",
   "claim_review_result": "not_run_nonproduct; fresh claim review is required only before product_success completion",
   "remaining_gaps": [
     "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため、arbitrary weak endpoint witnessを除外する非自明なeligibility predicateと、そのeligible witnessだけをcochain同型へ上げるupgradeが必要です。",
-    "stable側は、ordinary Dbounded evidenceからsingle stable certificateの4射影（finite limits、finite colimits、suspension/loop equivalence、pushout/pullback compatibility）を構成する実装が未完成です。",
+    "stable側は、full single certificateから有限極限projection providerを取り出す監査constructorは通ったが、ordinary Dbounded contextからそのstable finite-limit projection、さらに残る3射影を構成する実装が未完成です。",
     "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
   ],
-  "next_recommended_goal": "Define a genuinely nontrivial distinguished endpoint eligibility predicate that excludes arbitrary homotopy-equivalence endpoint witnesses, or construct the minimized stable four-projection certificate API; keep product_success false until one route closes and the full oracle/packet gate passes.",
+  "next_recommended_goal": "Construct one real stable projection from ordinary Dbounded context or define the nontrivial distinguished endpoint eligibility predicate; keep product_success false until all required stable/bounded gates and external packet audit pass.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -706,9 +707,13 @@
     "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload",
     "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data",
     "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_trivialEligibilityUpgrade",
-    "reject_trivialEligibilityUpgrade_intModuleCat"
+    "reject_trivialEligibilityUpgrade_intModuleCat",
+    "StableCertificateFourProjectionConstructorW131.OrdinaryDboundedInfinityContext",
+    "StableCertificateFourProjectionConstructorW131.StableFourProjectionCertificate",
+    "StableCertificateFourProjectionConstructorW131.dboundedFiniteLimitsProjectionOfFourProjectionProvider",
+    "StableCertificateFourProjectionConstructorW131.OrdinaryContextToDboundedFiniteLimitsProjection"
   ],
-  "generated_utc": "2026-05-20T06:25:00Z",
+  "generated_utc": "2026-05-20T06:45:00Z",
   "support_result_classification": {
     "w126": "already integrated byte-identically by parent v158",
     "w127": "formal worker result integrated and strengthened by parent v159"
