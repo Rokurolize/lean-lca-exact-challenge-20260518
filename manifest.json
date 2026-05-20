@@ -1,6 +1,6 @@
 {
   "generated_utc": "2026-05-20T20:12:00Z",
-  "content_hash_tree": "71448b3c7722e691e9d30820be1fbd1b0e0e572981e2a87de188c89a604250c9",
+  "content_hash_tree": "490b1b7326ded1f03b36dff96527006108c0beda7437a0d7e8845c6937050f89",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -1204,8 +1204,8 @@
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "sha256": "7aa3ac32316cb278d29be6528cec1dd6aa42cee744a871a1642717f05a6d3e27",
-      "bytes": 161598
+      "sha256": "507bef9129c2f8dec379043d99211549e413b895cbfcc2407a03093734be86ff",
+      "bytes": 162006
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
@@ -1224,8 +1224,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "f697a50053d0d11257ac958ebd895c3cf3fb4293b4be86e46ed2ec467f56d5d6",
-      "bytes": 166870
+      "sha256": "5bc2a5385919050770b95b0384b3aff9685a222aca5301e64201d87bbb182c0d",
+      "bytes": 167033
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -1239,8 +1239,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "da0960d362a0bf9e995ae3505313c896e12c65c054069580bb8051165ceb14d7",
-      "bytes": 203080
+      "sha256": "a3389f4d438f1bc3a619afa876ac74375705d3c109b2c42fd08c7f88f4764e71",
+      "bytes": 203435
     },
     {
       "path": "workers/README.md",

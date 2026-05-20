@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v360-addcommgrp-strict-boundary",
-  "generated_utc": "2026-05-20T19:54:00Z",
+  "schema": "lean-lca-exact-challenge-verification-v362-addcommgrp-snake-cokernel-route",
+  "generated_utc": "2026-05-20T20:12:00Z",
   "source_tree_hash": "ef08a918843602db38b444bbfc88674b3e3cea9bc91c2b0e008e4b72098c3ab8",
-  "summary": "v360でW318/W271のAddCommGrp algebraic frontierをleft-injectivity/right-surjectivity込みのstrict境界へ修正した。product_completeはfalse。",
+  "summary": "v362 reduces the strict AddCommGrp algebraic boundary to a mathlib ShortComplex.SnakeInput cokernel-row presentation for the WPP-op colimit short complex. product_complete remains false.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -232,7 +232,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Passed after v357; no whitespace errors."
+      "evidence": "No whitespace errors reported after v362 source and metadata edits."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -257,7 +257,7 @@
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v263 metadata refresh."
+      "evidence": "Root external audit self-check passed after v362 metadata refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -267,7 +267,7 @@
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "JSON metadata parsed after v263 updates."
+      "evidence": "JSON validation passed for the root metadata files after the v362 metadata refresh."
     },
     {
       "command": "lake env lean audit/blockers/adjunction_transport_unit_equality_w250.lean",
@@ -662,7 +662,7 @@
     {
       "command": "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
       "status": "passed",
-      "evidence": "Focused W271 check passed after importing the connected WppOpMappingConeUniqueMediator source module."
+      "evidence": "Focused W271 audit passed with left-and-snake-cokernel direct consumer."
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
@@ -912,7 +912,7 @@
     {
       "command": "lake env lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
       "status": "passed",
-      "evidence": "Passed after v357; W318 audit checks closed quotient-cover data consumer."
+      "evidence": "Focused W318 audit passed with SnakeInput cokernel-row boundary checks."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
@@ -1517,12 +1517,12 @@
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean",
       "status": "passed",
-      "evidence": "Passed after v357; source module checks closed quotient-cover data consumer."
+      "evidence": "Source module passed after importing ShortComplex.SnakeLemma and adding the SnakeInput cokernel-row boundary."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated",
       "status": "passed",
-      "evidence": "Built promoted W318 source module; only pre-existing/style warnings were emitted."
+      "evidence": "Source module rebuilt so downstream imports see the SnakeInput cokernel-row declarations."
     },
     {
       "command": "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
@@ -1813,6 +1813,21 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "No whitespace errors."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+      "status": "passed",
+      "evidence": "Focused forbidden-token script reported no forbidden Lean tokens for the v362 source path; rg scan over all three v362 files also returned no matches."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+      "status": "passed",
+      "evidence": "No matches for forbidden Lean tokens in the three v362-focused files."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root .",
+      "status": "failed_expected",
+      "evidence": "Root external audit reached the terminal product gate and failed only because terminal_outcome.outcome is 'blocked_nonterminal_frontier', not product_success."
     }
   ],
   "implemented_declarations_checked": [
@@ -2436,7 +2451,9 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpStrictSnakeCokernelData",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_snakeCokernel",
-    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_snakeCokernel"
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_snakeCokernel",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpKernelExact_of_strictSnakeCokernelData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictKernelExact_wppOp_colimit_boundary_of_snakeCokernel"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -2519,15 +2536,15 @@
     "W337で右辺のobjectwise descentとφ≫right mediatorの同一視は抽象的に証明できたが、W333-W337をW308のincluded bounded c₁/c₂ coconesへ統合するglobal descEq wrapperはまだ未供給である。",
     "W318のleft closed-embedding preservationとalgebraic exactness preservationは引き続き未証明である。",
     "W318のleft closed-embedding branchは純LCA colimit-map injective/inducing/closed-image certificateへ縮約されたが、その三certificate本体は未証明である。",
-    "W318のalgebraic branchはstrict AddCommGrp kernel exactness preservation境界へ縮約されたが、そのsource theorem本体は未証明である。",
     "W271はW318の残り二つの純source frontierを直接消費する形になったが、左LCA certificateとstrict AddCommGrp kernel exactness保存の本体証明はまだ未証明である。",
-    "v361 left LCA route still needs relation-preimage exactness and closed-map/closed-range input for the descended quotient map.",
-    "v362 strict AddCommGrp route still needs a SnakeInput cokernel-row presentation for the WPP-op colimit short complex."
+    "v361でleft LCA routeはdescended quotient mapのrelation-preimage exactnessとclosed-mapまたはclosed-range入力へ分解されたが、その二入力はまだ未証明である。",
+    "v362でstrict AddCommGrp routeはWPP-op colimit短複体をSnakeInputのcokernel rowとして提示するcertificateへ縮約されたが、そのcertificate本体はまだ未証明である。",
+    "残りのsource certificate、完全な抽出packet、clean external audit、fresh claim reviewが揃うまでproduct successではない。"
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "product_success": false,
   "remaining_work": [
     "wppOp_lca_colimitMap_injective_inducing_closedImage",
-    "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable"
+    "addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable"
   ]
 }

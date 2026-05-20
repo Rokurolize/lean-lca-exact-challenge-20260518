@@ -1,6 +1,6 @@
 {
   "generated_utc": "2026-05-20T19:41:00Z",
-  "content_hash_tree": "3599984f2283e560381d75d614ebee8f1d5fe19e411aeb77c8149e0ed5a3ba66",
+  "content_hash_tree": "d5f5247a6505bbdc5bc1e971e33cec18122b0371294916aa590e1fb2995de65f",
   "files": [
     {
       "path": "README_FOR_REVIEW.md",
@@ -1309,7 +1309,7 @@
     },
     {
       "path": "input/workdir/manifest.json",
-      "sha256": "36ff80eeb2a986482462f19a457806292420dc59aff446ca61bb0caeea86a130",
+      "sha256": "f75a29dac53293b1a0644323d2d76b645ee935feea949c6d114e63413ad22aed",
       "bytes": 48196
     },
     {
@@ -1324,8 +1324,8 @@
     },
     {
       "path": "input/workdir/proof_frontier/FRONTIER_MATRIX.json",
-      "sha256": "62e7fb7f8f3dd5a999cbb6812dbee86a96ba73b58cd93390085bbd4271721dbc",
-      "bytes": 161043
+      "sha256": "507bef9129c2f8dec379043d99211549e413b895cbfcc2407a03093734be86ff",
+      "bytes": 162006
     },
     {
       "path": "input/workdir/proof_frontier/FRONTIER_MATRIX.md",
@@ -1344,8 +1344,8 @@
     },
     {
       "path": "input/workdir/run/verification.json",
-      "sha256": "d7bfdaf2bdebf9dfb4dae683f2d8011234299e244829252ca9f0176a8e8f918c",
-      "bytes": 165384
+      "sha256": "5bc2a5385919050770b95b0384b3aff9685a222aca5301e64201d87bbb182c0d",
+      "bytes": 167033
     },
     {
       "path": "input/workdir/scripts/audit_no_forbidden_lean_tokens.sh",
@@ -1359,8 +1359,8 @@
     },
     {
       "path": "input/workdir/terminal_outcome/terminal_outcome.json",
-      "sha256": "1adf18d2c2b30c0c6e9567bc8ce809ebe6fac774607f6378e8cf64b1b92624c2",
-      "bytes": 199481
+      "sha256": "a3389f4d438f1bc3a619afa876ac74375705d3c109b2c42fd08c7f88f4764e71",
+      "bytes": 203435
     },
     {
       "path": "input/workdir/workers/README.md",
@@ -1369,13 +1369,13 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "d7bfdaf2bdebf9dfb4dae683f2d8011234299e244829252ca9f0176a8e8f918c",
-      "bytes": 165384
+      "sha256": "5bc2a5385919050770b95b0384b3aff9685a222aca5301e64201d87bbb182c0d",
+      "bytes": 167033
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "1adf18d2c2b30c0c6e9567bc8ce809ebe6fac774607f6378e8cf64b1b92624c2",
-      "bytes": 199481
+      "sha256": "a3389f4d438f1bc3a619afa876ac74375705d3c109b2c42fd08c7f88f4764e71",
+      "bytes": 203435
     }
   ]
 }

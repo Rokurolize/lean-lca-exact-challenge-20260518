@@ -289,7 +289,8 @@
     "git diff --check",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
     "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
-    "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json run/verification.json terminal_outcome/terminal_outcome.json manifest.json"
+    "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json run/verification.json terminal_outcome/terminal_outcome.json manifest.json",
+    "python3 audit/external_audit.py --root . (failed_expected: blocked_nonterminal_frontier product gate)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1058,9 +1059,9 @@
     "W271はW318の残り二つの純source frontierを直接消費する形になったが、左LCA certificateとstrict AddCommGrp kernel exactness保存の本体証明はまだ未証明である。",
     "v361でleft LCA certificateはdescended quotient mapのrelation-preimage exactnessとclosed-map/closed-range入力へ分解されたが、その二入力は未証明である。",
     "v362でstrict AddCommGrp境界はSnakeInput cokernel-row certificateへ縮約されたが、そのcertificate本体は未証明である。",
-    "v361 left LCA route still needs relation-preimage exactness and closed-map/closed-range input for the descended quotient map.",
-    "v362 strict AddCommGrp route still needs a SnakeInput cokernel-row presentation for the WPP-op colimit short complex.",
-    "Product success remains false until the remaining source certificates, full extraction packet, clean external audit, and fresh claim review are complete."
+    "v361でleft LCA routeはdescended quotient mapのrelation-preimage exactnessとclosed-mapまたはclosed-range入力へ分解されたが、その二入力はまだ未証明である。",
+    "v362でstrict AddCommGrp routeはWPP-op colimit短複体をSnakeInputのcokernel rowとして提示するcertificateへ縮約されたが、そのcertificate本体はまだ未証明である。",
+    "残りのsource certificate、完全な抽出packet、clean external audit、fresh claim reviewが揃うまでproduct successではない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
@@ -1079,9 +1080,9 @@
     "W318のleft closed-embedding preservationとalgebraic exactness preservationは引き続き未証明である。",
     "W318のleft closed-embedding branchは純LCA colimit-map injective/inducing/closed-image certificateへ縮約されたが、その三certificate本体は未証明である。",
     "W271はW318の残り二つの純source frontierを直接消費する形になったが、左LCA certificateとstrict AddCommGrp kernel exactness保存の本体証明はまだ未証明である。",
-    "v361 left LCA route still needs relation-preimage exactness and closed-map/closed-range input for the descended quotient map.",
-    "v362 strict AddCommGrp route still needs a SnakeInput cokernel-row presentation for the WPP-op colimit short complex.",
-    "Product success remains false until the remaining source certificates, full extraction packet, clean external audit, and fresh claim review are complete."
+    "v361でleft LCA routeはdescended quotient mapのrelation-preimage exactnessとclosed-mapまたはclosed-range入力へ分解されたが、その二入力はまだ未証明である。",
+    "v362でstrict AddCommGrp routeはWPP-op colimit短複体をSnakeInputのcokernel rowとして提示するcertificateへ縮約されたが、そのcertificate本体はまだ未証明である。",
+    "残りのsource certificate、完全な抽出packet、clean external audit、fresh claim reviewが揃うまでproduct successではない。"
   ],
   "next_recommended_goal": "WPP-op colimit点のunderlying AddCommGrp短複体をSnakeInputのcokernel rowとして構成するか、left LCA descended quotient mapのrelation-preimage/closed-map入力を証明する。",
   "implemented_declarations": [

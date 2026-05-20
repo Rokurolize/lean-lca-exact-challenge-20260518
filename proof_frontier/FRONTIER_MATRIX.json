@@ -1578,8 +1578,8 @@
     "W302/W304/W308のmapping-cone comparison routeはincluded colimit入力から接続されたが、これだけでは製品全体のexact-category/stable-derived目標は完了しない。",
     "W296/W319のkernel-only AddCommGrpCat boundaryはstrictnessのleft-injectivity/right-surjectivityを落とすため、現在の主要経路はaddCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizableへ置き換えられている。",
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
-    "v361 left LCA route still needs relation-preimage exactness and closed-map/closed-range input for the descended quotient map.",
-    "v362 strict AddCommGrp route still needs a SnakeInput cokernel-row presentation for the WPP-op colimit short complex."
+    "v361でleft LCA routeはdescended quotient mapのrelation-preimage exactnessとclosed-mapまたはclosed-range入力へ分解されたが、その二入力はまだ未証明である。",
+    "v362でstrict AddCommGrp routeはWPP-op colimit短複体をSnakeInputのcokernel rowとして提示するcertificateへ縮約されたが、そのcertificate本体はまだ未証明である。"
   ],
   "open_blockers": [
     "W318のleft closed-embedding入力は純MetrizableLCA WPP-op colimit-mapのinjectivity、induced topology、closed image certificateへ縮約済みだが、その三つのcertificate本体は未証明である。",
@@ -1588,8 +1588,8 @@
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
     "W318 left closed-embedding branch now requires pure LCA injective/inducing/closed-image certificates for the induced WPP-op colimit map.",
     "W271 now directly consumes the three pure W318 source frontiers after W318 source-module promotion.",
-    "v361 left LCA route still needs relation-preimage exactness and closed-map/closed-range input for the descended quotient map.",
-    "v362 strict AddCommGrp route still needs a SnakeInput cokernel-row presentation for the WPP-op colimit short complex."
+    "v361でleft LCA routeはdescended quotient mapのrelation-preimage exactnessとclosed-mapまたはclosed-range入力へ分解されたが、その二入力はまだ未証明である。",
+    "v362でstrict AddCommGrp routeはWPP-op colimit短複体をSnakeInputのcokernel rowとして提示するcertificateへ縮約されたが、そのcertificate本体はまだ未証明である。"
   ],
   "consumed_support_results": [
     {
@@ -1742,8 +1742,8 @@
     "W271 now directly consumes the three pure W318 source frontiers after W318 source-module promotion.",
     "v361でleft LCA certificateはdescended quotient mapのrelation-preimage exactnessとclosed-map/closed-range入力へ分解されたが、その二入力は未証明である。",
     "v362でstrict AddCommGrp境界はSnakeInput cokernel-row certificateへ縮約されたが、そのcertificate本体は未証明である。",
-    "v361 left LCA route still needs relation-preimage exactness and closed-map/closed-range input for the descended quotient map.",
-    "v362 strict AddCommGrp route still needs a SnakeInput cokernel-row presentation for the WPP-op colimit short complex."
+    "v361でleft LCA routeはdescended quotient mapのrelation-preimage exactnessとclosed-mapまたはclosed-range入力へ分解されたが、その二入力はまだ未証明である。",
+    "v362でstrict AddCommGrp routeはWPP-op colimit短複体をSnakeInputのcokernel rowとして提示するcertificateへ縮約されたが、そのcertificate本体はまだ未証明である。"
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",

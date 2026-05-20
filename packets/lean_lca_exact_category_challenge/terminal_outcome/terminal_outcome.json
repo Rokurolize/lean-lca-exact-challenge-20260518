@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v362でstrict AddCommGrp境界をSnakeInput cokernel-row certificateへ縮約した。product successではなく、left LCA certificateとSnakeInput certificateが残る。",
+  "summary": "v362でstrict AddCommGrp境界をmathlib ShortComplex.SnakeInputのcokernel-row certificateへ縮約した。product successではなく、left LCA certificateとSnakeInput certificateが残る。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -286,7 +286,11 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected product gate failure)",
     "python3 packets/lean_lca_exact_category_challenge/external_audit.py --root packets/lean_lca_exact_category_challenge (expected product gate failure)",
-    "git diff --check"
+    "git diff --check",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+    "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json run/verification.json terminal_outcome/terminal_outcome.json manifest.json",
+    "python3 audit/external_audit.py --root . (failed_expected: blocked_nonterminal_frontier product gate)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1035,7 +1039,13 @@
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_pureFieldFrontier",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOpLcaColimitMapOpenCoverOfLeg",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates",
-    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates"
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpStrictSnakeCokernelData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpKernelExact_of_strictSnakeCokernelData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictKernelExact_wppOp_colimit_boundary_of_snakeCokernel",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_snakeCokernel",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_snakeCokernel"
   ],
   "known_gaps": [
     "W318/W271のstrict AddCommGrp入力は、WPP-op colimit後のkernel exactness保存本体が未証明である。",
@@ -1046,10 +1056,12 @@
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
     "W318のleft closed-embedding preservationとalgebraic exactness preservationは引き続き未証明である。",
     "W318のleft closed-embedding branchは純LCA colimit-map injective/inducing/closed-image certificateへ縮約されたが、その三certificate本体は未証明である。",
-    "W318のalgebraic branchはstrict AddCommGrp kernel exactness preservation境界へ縮約されたが、そのsource theorem本体は未証明である。",
     "W271はW318の残り二つの純source frontierを直接消費する形になったが、左LCA certificateとstrict AddCommGrp kernel exactness保存の本体証明はまだ未証明である。",
     "v361でleft LCA certificateはdescended quotient mapのrelation-preimage exactnessとclosed-map/closed-range入力へ分解されたが、その二入力は未証明である。",
-    "v362でstrict AddCommGrp境界はSnakeInput cokernel-row certificateへ縮約されたが、そのcertificate本体は未証明である。"
+    "v362でstrict AddCommGrp境界はSnakeInput cokernel-row certificateへ縮約されたが、そのcertificate本体は未証明である。",
+    "v361でleft LCA routeはdescended quotient mapのrelation-preimage exactnessとclosed-mapまたはclosed-range入力へ分解されたが、その二入力はまだ未証明である。",
+    "v362でstrict AddCommGrp routeはWPP-op colimit短複体をSnakeInputのcokernel rowとして提示するcertificateへ縮約されたが、そのcertificate本体はまだ未証明である。",
+    "残りのsource certificate、完全な抽出packet、clean external audit、fresh claim reviewが揃うまでproduct successではない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
@@ -1067,8 +1079,10 @@
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
     "W318のleft closed-embedding preservationとalgebraic exactness preservationは引き続き未証明である。",
     "W318のleft closed-embedding branchは純LCA colimit-map injective/inducing/closed-image certificateへ縮約されたが、その三certificate本体は未証明である。",
-    "W318のalgebraic branchはstrict AddCommGrp kernel exactness preservation境界へ縮約されたが、そのsource theorem本体は未証明である。",
-    "W271はW318の残り二つの純source frontierを直接消費する形になったが、左LCA certificateとstrict AddCommGrp kernel exactness保存の本体証明はまだ未証明である。"
+    "W271はW318の残り二つの純source frontierを直接消費する形になったが、左LCA certificateとstrict AddCommGrp kernel exactness保存の本体証明はまだ未証明である。",
+    "v361でleft LCA routeはdescended quotient mapのrelation-preimage exactnessとclosed-mapまたはclosed-range入力へ分解されたが、その二入力はまだ未証明である。",
+    "v362でstrict AddCommGrp routeはWPP-op colimit短複体をSnakeInputのcokernel rowとして提示するcertificateへ縮約されたが、そのcertificate本体はまだ未証明である。",
+    "残りのsource certificate、完全な抽出packet、clean external audit、fresh claim reviewが揃うまでproduct successではない。"
   ],
   "next_recommended_goal": "WPP-op colimit点のunderlying AddCommGrp短複体をSnakeInputのcokernel rowとして構成するか、left LCA descended quotient mapのrelation-preimage/closed-map入力を証明する。",
   "implemented_declarations": [
@@ -1567,9 +1581,15 @@
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_canonical_colimit_leg_opZero_surjective_open",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_lca_colimitMap_preserves_openMap_of_canonical_opZero_leg",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict",
-    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrpStrict"
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrpStrict",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpStrictSnakeCokernelData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpKernelExact_of_strictSnakeCokernelData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictKernelExact_wppOp_colimit_boundary_of_snakeCokernel",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_snakeCokernel",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_snakeCokernel"
   ],
-  "generated_utc": "2026-05-20T19:54:00Z",
+  "generated_utc": "2026-05-20T20:12:00Z",
   "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -2129,12 +2149,18 @@
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_canonical_colimit_leg_opZero_surjective_open",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_lca_colimitMap_preserves_openMap_of_canonical_opZero_leg",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict",
-    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrpStrict"
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_addCommGrpStrict",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpStrictSnakeCokernelData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpKernelExact_of_strictSnakeCokernelData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictKernelExact_wppOp_colimit_boundary_of_snakeCokernel",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_snakeCokernel",
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_left_and_snakeCokernel"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
     "wppOp_lca_colimitMap_injective_inducing_closedImage",
-    "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable"
+    "addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable"
   ]
 }
