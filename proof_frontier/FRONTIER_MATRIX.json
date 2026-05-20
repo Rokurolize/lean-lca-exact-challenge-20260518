@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T12:45:00Z",
+  "generated_utc": "2026-05-20T13:10:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v180 consumes support worker w136 by parent reimplementation: ShortComplexBiprodTransportInput is now recorded as the exact remaining transport input from explicit degreewise biproduct short complexes to exactAcyclic of K ⊞ L. Support worker w137 was inspected and delayed because it overlaps existing residual-field audits and does not discharge a new product input.",
+  "worker_policy": "No workers were launched from the target worktree. v181 adds a parent-owned upper boundary for finite-product stability of boundedExactWeakEquivalence; active support workers w138/w139 remain isolated and were not duplicated.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -573,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean && lake env lean audit/blockers/nontrivial_distinguished_eligibility_predicate_w132.lean && lake env lean audit/blockers/dbounded_four_projection_provider_route_w133.lean && lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean && lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean && lake env lean audit/blockers/dbounded_finite_products_boundary.lean && lake build LeanLCAExactChallenge.Derived.Bounded && lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean",
-      "merge_blocker": "v180 ports the w136 short-complex transport boundary: exactAcyclic MetrizableLCA (K ⊞ L) follows from ShortComplexBiprodTransportInput K L, so the remaining MetrizableLCA finite-product subroute is precisely the construction of those short-complex isomorphisms. Still missing afterward are finite-product stability of `boundedExactWeakEquivalence C`, full finite limits, finite colimits, pretriangulated structure, and triangulated structure on `Dbounded C`. w137 was inspected and delayed as overlapping conditional residual-field evidence. Product success is still blocked.",
+      "merge_blocker": "v181 records the upper finite-product stability interface: FiniteProductMappingConeInput plus RespectsIso yields IsStableUnderFiniteProducts for boundedExactWeakEquivalence and then HasFiniteProducts (Dbounded C). The lower mapping-cone comparison, short-complex transport input, finite limits beyond products, finite colimits, and triangulated/stable structures remain open.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -953,7 +953,10 @@
         "MappingConeFiniteProductStabilityW136.ShortComplexBiprodTransportInput",
         "MappingConeFiniteProductStabilityW136.exactAcyclic_biprod_of_shortComplexBiprodTransport",
         "MappingConeFiniteProductStabilityW136.shortComplexTransportConstructorIngredients",
-        "MappingConeFiniteProductStabilityW136.rejectedShortcut_ne_requiredInput"
+        "MappingConeFiniteProductStabilityW136.rejectedShortcut_ne_requiredInput",
+        "BoundedExactWeakEquivalenceFiniteProductsBoundary.FiniteProductMappingConeInput",
+        "BoundedExactWeakEquivalenceFiniteProductsBoundary.isStableUnderFiniteProducts_of_finiteProductMappingConeInput",
+        "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProductsOf_finiteProductMappingConeInput"
       ],
       "technical_context": [
         "split short complexes",

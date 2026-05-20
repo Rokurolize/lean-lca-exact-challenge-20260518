@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v180時点で、支援worker w136の有用部分を親worktreeへ移植し、短複体輸送入力を境界監査として固定した。`ShortComplexBiprodTransportInput K L`があれば、明示的biproduct short complexのstrict exact性から`exactAcyclic MetrizableLCA (K ⊞ L)`へ移送できることをLeanで確認した。これはmapping cone有限積安定性へ向かう条件付き進捗だが、その輸送入力そのもの、`boundedExactWeakEquivalence C`の有限積安定性、`Dbounded C`の有限極限全体・有限余極限・pretriangulated・triangulated構造は未完成であり、product_successではない。",
+  "summary": "v181時点で、bounded exact weak equivalenceの有限積安定性へ必要な上位入力をLeanで固定した。FiniteProductMappingConeInputとRespectsIsoがあればIsStableUnderFiniteProductsが得られ、既存のDbounded finite-products APIへ接続できる。ただしmapping cone比較、短複体transport、有限極限全体、有限余極限、pretriangulated/triangulated構造は未完成であり、product_successではない。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -47,7 +47,8 @@
     "lake env lean audit/blockers/dbounded_finite_products_boundary.lean",
     "lake build LeanLCAExactChallenge.Derived.Bounded",
     "lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean",
-    "lake env lean audit/blockers/mapping_cone_finite_product_stability_w136.lean"
+    "lake env lean audit/blockers/mapping_cone_finite_product_stability_w136.lean",
+    "lake env lean audit/blockers/bounded_exact_weak_equivalence_finite_products_boundary.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -661,6 +662,7 @@
     "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos"
   ],
   "known_gaps": [
+    "boundedExactWeakEquivalence C の有限積安定性は、FiniteProductMappingConeInput C と RespectsIso へ上位境界化されたが、mapping cone有限積比較そのものは未証明。",
     "ShortComplexBiprodTransportInput K L、つまり明示的biproduct short complexから`(K ⊞ L).sc i`への短複体同型族が未完成。",
     "`boundedExactWeakEquivalence C`の有限積安定性が未完成。",
     "`Dbounded C`の有限極限全体、有限余極限、pretriangulated構造、triangulated構造は未完成。",
