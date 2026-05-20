@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v356-right-open-canonical-quotient-data",
-  "generated_utc": "2026-05-20T19:17:29Z",
-  "source_tree_hash": "d4fc002f5365118eb41f75718d4f1eb9360303975d6af10952151d738a6bc450",
-  "summary": "v356でright-open pure LCA入力をcanonical colimit leg certificateまたはquotient/coequalizer open-map dataへ縮小した。product_completeはfalse。",
+  "schema": "lean-lca-exact-challenge-verification-v358-coequalizer-leg-topology",
+  "generated_utc": "2026-05-20T19:24:00Z",
+  "source_tree_hash": "81c36b7e862fb9b61590a511289f9942b79c2b32624d091d17ece141d1b88135",
+  "summary": "v358でMetrizableLCA coequalizer/parallelPair colimit legのsurjective/open補題を追加した。product_completeはfalse。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -212,27 +212,27 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Passed after v356; product declaration audit file still checks, without product_success claim."
+      "evidence": "Passed after v357; product declaration audit file still checks, without product_success claim."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Passed after v356 right-open canonical/quotient-data source changes; existing warnings only."
+      "evidence": "Passed after v357 closed quotient-cover source changes; existing warnings only."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Passed after v356; no forbidden Lean tokens under LeanLCAExactChallenge."
+      "evidence": "Passed after v357; no forbidden Lean tokens under LeanLCAExactChallenge."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Passed after v356; required declarations still check after lake build generated updated olean files."
+      "evidence": "Passed after v357; required declarations still check."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Passed after v356; no whitespace errors."
+      "evidence": "Passed after v357; no whitespace errors."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -852,7 +852,7 @@
     {
       "command": "lake env lean audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
       "status": "passed",
-      "evidence": "Passed after v356; W286 checks canonical-leg and quotient/coequalizer-data right-open consumers."
+      "evidence": "Passed after v357; W286 checks closed quotient-cover data consumer."
     },
     {
       "command": "lake env lean audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean",
@@ -912,7 +912,7 @@
     {
       "command": "lake env lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
       "status": "passed",
-      "evidence": "Passed after v356; W318 audit checks canonical-leg and quotient/coequalizer-data consumers."
+      "evidence": "Passed after v357; W318 audit checks closed quotient-cover data consumer."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
@@ -1517,7 +1517,7 @@
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean",
       "status": "passed",
-      "evidence": "Passed after v356; promoted source module checks with canonical-leg and quotient/coequalizer-data consumers."
+      "evidence": "Passed after v357; source module checks closed quotient-cover data consumer."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated",
@@ -1603,6 +1603,26 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/LCA/Cokernel.lean",
+      "status": "passed",
+      "evidence": "Passed after v358 coequalizer-leg topology additions; simp-style warnings only."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.LCA.Cokernel",
+      "status": "passed",
+      "evidence": "Passed after v358 coequalizer-leg topology additions; existing simp-style warnings only; produced the .olean artifact needed by import audits."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Passed after v358 and after building LeanLCAExactChallenge.LCA.Cokernel artifact; output is declaration #check listing."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Passed after v358 and after building LeanLCAExactChallenge.LCA.Cokernel artifact; no product_success claim was made."
     }
   ],
   "implemented_declarations_checked": [
@@ -2215,10 +2235,15 @@
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_pureFieldFrontier",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOpLcaColimitMapOpenCoverOfLeg",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates",
-    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates"
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates",
+    "LeanLCAExactChallenge.MetrizableLCA.coequalizerπ_surjective",
+    "LeanLCAExactChallenge.MetrizableLCA.coequalizerπ_openMap",
+    "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_ι_one_surjective",
+    "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_ι_one_openMap"
   ],
   "product_complete": false,
   "known_gaps": [
+    "W286/W318のright-open branchはcomponent coequalizer脚のsurjective/open事実を得たが、それをWPP-op closed quotient-cover data本体へ組み立てる証明は未完了である。",
     "W318のleft closed-embedding入力は純MetrizableLCA WPP-op colimit-mapのinjectivity、induced topology、closed image certificateへ縮約済みだが、その三つのcertificate本体は未証明である。",
     "W286/W318のright open-map preservationは純MetrizableLCAの自然変換colimit-map open保存定理、またはWppOpLcaColimitMapOpenCoverの具体構成へ縮約済みだが、その純LCA定理またはcover constructionは未証明である。",
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",

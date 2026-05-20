@@ -194,6 +194,120 @@ instance instHasFiniteColimits : HasFiniteColimits MetrizableLCA.{u} :=
     Preadditive.hasCoequalizers_of_hasCokernels
   hasFiniteColimits_of_hasCoequalizers_and_finite_coproducts
 
+/-- The underlying map of an isomorphism in `MetrizableLCA` is open. -/
+lemma iso_hom_openMap {A B : MetrizableLCA.{u}} (e : A ≅ B) :
+    IsOpenMap (e.hom : A → B) := by
+  intro U hU
+  have hpre : e.hom '' U = (e.inv : B → A) ⁻¹' U := by
+    ext b
+    constructor
+    · intro hb
+      rcases hb with ⟨a, ha, hb⟩
+      subst hb
+      have h := congrArg (fun f : A ⟶ A => f a) e.hom_inv_id
+      simpa using congrArg (fun x => x ∈ U) h.symm ▸ ha
+    · intro hb
+      refine ⟨e.inv b, hb, ?_⟩
+      have h := congrArg (fun f : B ⟶ B => f b) e.inv_hom_id
+      simpa using h
+  rw [hpre]
+  exact hU.preimage e.inv.hom.continuous
+
+/-- Surjectivity is preserved by composing on the right with an isomorphism. -/
+lemma surjective_comp_iso {A B C : MetrizableLCA.{u}} (q : A ⟶ B) (e : B ≅ C)
+    (hq : Function.Surjective (q : A → B)) :
+    Function.Surjective ((q ≫ e.hom : A ⟶ C) : A → C) := by
+  intro c
+  rcases hq (e.inv c) with ⟨a, ha⟩
+  refine ⟨a, ?_⟩
+  change e.hom (q a) = c
+  rw [ha]
+  have h := congrArg (fun f : C ⟶ C => f c) e.inv_hom_id
+  simpa using h
+
+/-- Openness is preserved by composing on the right with an isomorphism. -/
+lemma openMap_comp_iso {A B C : MetrizableLCA.{u}} (q : A ⟶ B) (e : B ≅ C)
+    (hq : IsOpenMap (q : A → B)) :
+    IsOpenMap ((q ≫ e.hom : A ⟶ C) : A → C) :=
+  (iso_hom_openMap e).comp hq
+
+/--
+The coequalizer projection in `MetrizableLCA` is surjective on underlying
+groups.  The proof compares the chosen coequalizer with the explicit cokernel
+quotient of `f - g`.
+-/
+lemma coequalizerπ_surjective {A B : MetrizableLCA.{u}} (f g : A ⟶ B) :
+    Function.Surjective
+      ((coequalizer.π f g : B ⟶ (coequalizer f g : MetrizableLCA.{u})) :
+        B → (coequalizer f g : MetrizableLCA.{u})) := by
+  let ck : CokernelCofork (f - g) :=
+    CokernelCofork.ofπ (cokernelπ (f - g)) (comp_cokernelπ (f - g))
+  let cf : Cofork f g := Preadditive.coforkOfCokernelCofork ck
+  have hcf : IsColimit cf :=
+    Preadditive.isColimitCoforkOfCokernelCofork (cokernelIsColimit (f - g))
+  let e : cf.pt ≅ coequalizer f g :=
+    IsColimit.coconePointUniqueUpToIso hcf (colimit.isColimit (parallelPair f g))
+  have hπe : cf.π ≫ e.hom = coequalizer.π f g := by
+    simpa [e] using
+      (IsColimit.comp_coconePointUniqueUpToIso_hom hcf
+        (colimit.isColimit (parallelPair f g)) WalkingParallelPair.one)
+  have hck : cf.π = cokernelπ (f - g) := by
+    simpa [cf, ck] using Preadditive.coforkOfCokernelCofork_π ck
+  have hsurj : Function.Surjective
+      ((cf.π ≫ e.hom : B ⟶ (coequalizer f g : MetrizableLCA.{u})) :
+        B → (coequalizer f g : MetrizableLCA.{u})) := by
+    rw [hck]
+    exact surjective_comp_iso (cokernelπ (f - g)) e
+      (quotientMap_surjective B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _))
+  simpa [hπe] using hsurj
+
+/--
+The coequalizer projection in `MetrizableLCA` is an open map.  The proof
+compares the chosen coequalizer with the explicit cokernel quotient of `f - g`.
+-/
+lemma coequalizerπ_openMap {A B : MetrizableLCA.{u}} (f g : A ⟶ B) :
+    IsOpenMap
+      ((coequalizer.π f g : B ⟶ (coequalizer f g : MetrizableLCA.{u})) :
+        B → (coequalizer f g : MetrizableLCA.{u})) := by
+  let ck : CokernelCofork (f - g) :=
+    CokernelCofork.ofπ (cokernelπ (f - g)) (comp_cokernelπ (f - g))
+  let cf : Cofork f g := Preadditive.coforkOfCokernelCofork ck
+  have hcf : IsColimit cf :=
+    Preadditive.isColimitCoforkOfCokernelCofork (cokernelIsColimit (f - g))
+  let e : cf.pt ≅ coequalizer f g :=
+    IsColimit.coconePointUniqueUpToIso hcf (colimit.isColimit (parallelPair f g))
+  have hπe : cf.π ≫ e.hom = coequalizer.π f g := by
+    simpa [e] using
+      (IsColimit.comp_coconePointUniqueUpToIso_hom hcf
+        (colimit.isColimit (parallelPair f g)) WalkingParallelPair.one)
+  have hck : cf.π = cokernelπ (f - g) := by
+    simpa [cf, ck] using Preadditive.coforkOfCokernelCofork_π ck
+  have hopen : IsOpenMap
+      ((cf.π ≫ e.hom : B ⟶ (coequalizer f g : MetrizableLCA.{u})) :
+        B → (coequalizer f g : MetrizableLCA.{u})) := by
+    rw [hck]
+    exact openMap_comp_iso (cokernelπ (f - g)) e
+      (quotientMap_openMap B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _))
+  simpa [hπe] using hopen
+
+/-- The `one` leg of the colimit cocone of a parallel pair is surjective. -/
+lemma parallelPair_colimit_ι_one_surjective {A B : MetrizableLCA.{u}} (f g : A ⟶ B) :
+    Function.Surjective
+      ((colimit.ι (parallelPair f g) WalkingParallelPair.one :
+          B ⟶ (colimit (parallelPair f g) : MetrizableLCA.{u})) :
+        B → (colimit (parallelPair f g) : MetrizableLCA.{u})) :=
+  coequalizerπ_surjective f g
+
+/-- The `one` leg of the colimit cocone of a parallel pair is open. -/
+lemma parallelPair_colimit_ι_one_openMap {A B : MetrizableLCA.{u}} (f g : A ⟶ B) :
+    IsOpenMap
+      ((colimit.ι (parallelPair f g) WalkingParallelPair.one :
+          B ⟶ (colimit (parallelPair f g) : MetrizableLCA.{u})) :
+        B → (colimit (parallelPair f g) : MetrizableLCA.{u})) :=
+  coequalizerπ_openMap f g
+
 end MetrizableLCA
 
 end LeanLCAExactChallenge

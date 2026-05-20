@@ -242,6 +242,88 @@ structure WppOpLcaQuotientOpenMapData
   aggregate_open : IsOpenMap (G : QX → QY)
   quotient_comm : qX ≫ φ = G ≫ qY
 
+/-- Closed-subgroup quotient-cover data supplying the quotient open-map package. -/
+structure WppOpLcaClosedQuotientCoverData
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt) : Type 2 where
+  AX : MetrizableLCA.{0}
+  AY : MetrizableLCA.{0}
+  NX : AddSubgroup AX
+  NY : AddSubgroup AY
+  NX_closed : IsClosed (NX : Set AX)
+  NY_closed : IsClosed (NY : Set AY)
+  qX : MetrizableLCA.quotientObj AX NX NX_closed ⟶ cx.pt
+  qY : MetrizableLCA.quotientObj AY NY NY_closed ⟶ cy.pt
+  aggregate : MetrizableLCA.quotientObj AX NX NX_closed ⟶
+    MetrizableLCA.quotientObj AY NY NY_closed
+  qX_surjective : Function.Surjective
+    (qX : MetrizableLCA.quotientObj AX NX NX_closed → cx.pt)
+  qY_open : IsOpenMap (qY : MetrizableLCA.quotientObj AY NY NY_closed → cy.pt)
+  aggregate_open : IsOpenMap
+    (aggregate :
+      MetrizableLCA.quotientObj AX NX NX_closed →
+        MetrizableLCA.quotientObj AY NY NY_closed)
+  quotient_comm : qX ≫ φ = aggregate ≫ qY
+
+namespace WppOpLcaClosedQuotientCoverData
+
+variable {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+variable {cx : Cocone X} {cy : Cocone Y} {φ : cx.pt ⟶ cy.pt}
+
+/-- The canonical source quotient map attached to closed quotient-cover data. -/
+def sourceQuotientMap (d : WppOpLcaClosedQuotientCoverData X Y α cx cy φ) :
+    d.AX ⟶ MetrizableLCA.quotientObj d.AX d.NX d.NX_closed :=
+  MetrizableLCA.quotientMap d.AX d.NX d.NX_closed
+
+/-- The canonical target quotient map attached to closed quotient-cover data. -/
+def targetQuotientMap (d : WppOpLcaClosedQuotientCoverData X Y α cx cy φ) :
+    d.AY ⟶ MetrizableLCA.quotientObj d.AY d.NY d.NY_closed :=
+  MetrizableLCA.quotientMap d.AY d.NY d.NY_closed
+
+theorem sourceQuotientMap_surjective
+    (d : WppOpLcaClosedQuotientCoverData X Y α cx cy φ) :
+    Function.Surjective
+      (d.sourceQuotientMap :
+        d.AX → MetrizableLCA.quotientObj d.AX d.NX d.NX_closed) :=
+  MetrizableLCA.quotientMap_surjective d.AX d.NX d.NX_closed
+
+theorem sourceQuotientMap_open
+    (d : WppOpLcaClosedQuotientCoverData X Y α cx cy φ) :
+    IsOpenMap
+      (d.sourceQuotientMap :
+        d.AX → MetrizableLCA.quotientObj d.AX d.NX d.NX_closed) :=
+  MetrizableLCA.quotientMap_openMap d.AX d.NX d.NX_closed
+
+theorem targetQuotientMap_surjective
+    (d : WppOpLcaClosedQuotientCoverData X Y α cx cy φ) :
+    Function.Surjective
+      (d.targetQuotientMap :
+        d.AY → MetrizableLCA.quotientObj d.AY d.NY d.NY_closed) :=
+  MetrizableLCA.quotientMap_surjective d.AY d.NY d.NY_closed
+
+theorem targetQuotientMap_open
+    (d : WppOpLcaClosedQuotientCoverData X Y α cx cy φ) :
+    IsOpenMap
+      (d.targetQuotientMap :
+        d.AY → MetrizableLCA.quotientObj d.AY d.NY d.NY_closed) :=
+  MetrizableLCA.quotientMap_openMap d.AY d.NY d.NY_closed
+
+/-- Closed quotient-cover data constructs quotient open-map data. -/
+def toQuotientOpenMapData
+    (d : WppOpLcaClosedQuotientCoverData X Y α cx cy φ) :
+    WppOpLcaQuotientOpenMapData X Y α cx cy φ where
+  QX := MetrizableLCA.quotientObj d.AX d.NX d.NX_closed
+  QY := MetrizableLCA.quotientObj d.AY d.NY d.NY_closed
+  qX := d.qX
+  qY := d.qY
+  G := d.aggregate
+  qX_surjective := d.qX_surjective
+  qY_open := d.qY_open
+  aggregate_open := d.aggregate_open
+  quotient_comm := d.quotient_comm
+
+end WppOpLcaClosedQuotientCoverData
+
 /-- Quotient/coequalizer open-map data proves the pure component open-map input. -/
 theorem wppOp_lca_colimitMap_preserves_openMap_of_quotientBoundary
     (hboundary :
@@ -262,6 +344,23 @@ theorem wppOp_lca_colimitMap_preserves_openMap_of_quotientBoundary
     exact hdata.qY_open.comp hdata.aggregate_open
   exact MetrizableLCA.isOpenMap_of_comp_surjective hdata.qX φ
     hdata.qX_surjective hcomp
+
+/-- Closed quotient-cover data proves the pure component open-map input. -/
+theorem wppOp_lca_colimitMap_preserves_openMap_of_closedQuotientCoverBoundary
+    (hboundary :
+      ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+        (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+          IsColimit cx →
+            IsColimit cy →
+              (∀ j : WalkingParallelPairᵒᵖ, IsOpenMap (α.app j : X.obj j → Y.obj j)) →
+                (∀ j : WalkingParallelPairᵒᵖ,
+                  cx.ι.app j ≫ φ = α.app j ≫ cy.ι.app j) →
+                  Nonempty (WppOpLcaClosedQuotientCoverData X Y α cx cy φ)) :
+    wppOp_lca_colimitMap_preserves_openMap :=
+  wppOp_lca_colimitMap_preserves_openMap_of_quotientBoundary
+    (fun X Y α cx cy φ hcx hcy hopen hcompat => by
+      rcases hboundary X Y α cx cy φ hcx hcy hopen hcompat with ⟨d⟩
+      exact ⟨d.toQuotientOpenMapData⟩)
 
 /-- The underlying map of an isomorphism in `MetrizableLCA` is surjective. -/
 lemma metrizableLCA_iso_hom_surjective {A B : MetrizableLCA.{0}} (e : A ≅ B) :
@@ -566,6 +665,11 @@ section Checks
 #check openMap_walkingParallelPairOp_colimitMap_boundary_of_lca_colimitMap
 #check WppOpLcaQuotientOpenMapData
 #check wppOp_lca_colimitMap_preserves_openMap_of_quotientBoundary
+#check WppOpLcaClosedQuotientCoverData
+#check WppOpLcaClosedQuotientCoverData.sourceQuotientMap
+#check WppOpLcaClosedQuotientCoverData.targetQuotientMap
+#check WppOpLcaClosedQuotientCoverData.toQuotientOpenMapData
+#check wppOp_lca_colimitMap_preserves_openMap_of_closedQuotientCoverBoundary
 #check metrizableLCA_iso_hom_surjective
 #check metrizableLCA_iso_hom_openMap
 #check surjective_comp_of_surjective_iso
