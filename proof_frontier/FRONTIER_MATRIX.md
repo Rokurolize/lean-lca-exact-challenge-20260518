@@ -1,5 +1,7 @@
 # Proof Frontier Matrix
 
+Parent update v230: W146 now proves the empty-index mapping-cone/product comparison input via `mappingConeZeroZeroIsoZero`, `zeroComplexIsoHomologicalZero`, `emptyProductIsoHomologicalZero`, and `emptyMappingConeProductComparisonInput_direct`. Together with v229, the finite induction has an empty base and an Option step; the remaining blocker is the equivalence/reindex naturality layer needed to construct `TailFiniteMappingConeComparisonInput`. Support worker w192 is active on this same frontier in the consultant-owned tree, so no duplicate target worker was launched.
+
 Parent update v229: W146 now has `optionMappingConeProductComparisonIso_of_tailComparison`, an iso-level Option step for `mappingCone (Limits.Pi.map f)` over `Option J`, using direct Option-product-map naturality, `mappingConeIsoOfCommIso`, the binary mapping-cone/biproduct comparison, recursive tail comparison, and the promoted Option-product decomposition on component cones. The finite comparison is still nonterminal: `TailFiniteMappingConeComparisonInput` remains to be constructed by finite induction, including empty-index and reindex/equivalence layers.
 
 Generated: 2026-05-20T08:39:20Z

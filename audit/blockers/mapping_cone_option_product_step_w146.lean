@@ -19,6 +19,7 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+open scoped ZeroObject
 
 namespace MappingConeOptionProductStepW146
 
@@ -434,6 +435,58 @@ structure EmptyMappingConeProductComparisonInput : Type (u + 1) where
         ∏ᶜ (fun j => CochainComplex.mappingCone (f j))
 
 /--
+The mapping cone of any morphism between the explicit zero cochain complex and itself is the
+explicit zero cochain complex.
+-/
+noncomputable def mappingConeZeroZeroIsoZero
+    (f : (HomologicalComplex.zero : CochainComplex MetrizableLCA.{u} ℤ) ⟶
+      (HomologicalComplex.zero : CochainComplex MetrizableLCA.{u} ℤ)) :
+    CochainComplex.mappingCone f ≅
+      (HomologicalComplex.zero : CochainComplex MetrizableLCA.{u} ℤ) := by
+  refine HomologicalComplex.Hom.isoOfComponents (C₁ := CochainComplex.mappingCone f)
+    (C₂ := (HomologicalComplex.zero : CochainComplex MetrizableLCA.{u} ℤ)) (fun i => ?_) ?_
+  · have hX : IsZero ((CochainComplex.mappingCone f).X i) := by
+      rw [CochainComplex.mappingCone.isZero_X_iff]
+      constructor <;> dsimp [HomologicalComplex.zero] <;> exact isZero_zero MetrizableLCA.{u}
+    simpa [HomologicalComplex.zero] using hX.isoZero
+  · intro i j hij
+    apply (isZero_zero MetrizableLCA.{u}).eq_of_tgt
+
+/-- The chosen zero complex is isomorphic to the explicit `HomologicalComplex.zero`. -/
+noncomputable def zeroComplexIsoHomologicalZero :
+    (0 : CochainComplex MetrizableLCA.{u} ℤ) ≅
+      (HomologicalComplex.zero : CochainComplex MetrizableLCA.{u} ℤ) :=
+  IsTerminal.uniqueUpToIso
+    ((isZero_zero (CochainComplex MetrizableLCA.{u} ℤ) :
+      IsZero (0 : CochainComplex MetrizableLCA.{u} ℤ)).isTerminal)
+    ((HomologicalComplex.isZero_zero :
+      IsZero (HomologicalComplex.zero : CochainComplex MetrizableLCA.{u} ℤ)).isTerminal)
+
+/-- Empty products of cochain complexes as the explicit zero complex. -/
+noncomputable def emptyProductIsoHomologicalZero
+    {J : Type u} [IsEmpty J]
+    (K : J → CochainComplex MetrizableLCA.{u} ℤ) [HasProduct K] :
+    ∏ᶜ K ≅ (HomologicalComplex.zero : CochainComplex MetrizableLCA.{u} ℤ) :=
+  FiniteProductExactness.emptyProductIsoZero K ≪≫ zeroComplexIsoHomologicalZero
+
+/-- The empty-index base case for finite mapping-cone/product comparison. -/
+noncomputable def emptyMappingConeProductComparisonInput_direct :
+    EmptyMappingConeProductComparisonInput.{u} where
+  iso := by
+    intro J _ K L _ _ f _
+    let eK := emptyProductIsoHomologicalZero K
+    let eL := emptyProductIsoHomologicalZero L
+    let f0 : (HomologicalComplex.zero : CochainComplex MetrizableLCA.{u} ℤ) ⟶
+        (HomologicalComplex.zero : CochainComplex MetrizableLCA.{u} ℤ) :=
+      eK.inv ≫ Limits.Pi.map f ≫ eL.hom
+    have hcomm : Limits.Pi.map f ≫ eL.hom = eK.hom ≫ f0 := by
+      dsimp [f0]
+      simp
+    exact mappingConeIsoOfCommIso MetrizableLCA eK eL hcomm ≪≫
+      mappingConeZeroZeroIsoZero f0 ≪≫
+        (emptyProductIsoHomologicalZero (fun j : J => CochainComplex.mappingCone (f j))).symm
+
+/--
 Option-step exactness consumer.
 
 Given Option-product-map naturality and the recursive tail comparison, component exactness
@@ -565,6 +618,11 @@ section Checks
 #check optionProductMapNaturalityInput_of_projectionNaturality
 #check optionProductMapNaturalityInput_direct
 #check TailFiniteMappingConeComparisonInput
+#check EmptyMappingConeProductComparisonInput
+#check mappingConeZeroZeroIsoZero
+#check zeroComplexIsoHomologicalZero
+#check emptyProductIsoHomologicalZero
+#check emptyMappingConeProductComparisonInput_direct
 #check exactAcyclic_optionPiMap_of_naturality_and_tailComparison
 #check exactAcyclic_optionPiMap_of_tailComparison
 #check optionMappingConeProductComparisonIso_of_tailComparison

@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v229時点で、W146はOption添字のmapping-cone product比較をexactnessだけでなく同型として構成した。新しい optionMappingConeProductComparisonIso_of_tailComparison は、v228のOption-product-map自然性、mappingConeIsoOfCommIso、binaryMappingConeBiprodIso、tailComparison.iso、OptionProductDecompositionW151のOption積分解を合成して mappingCone (Limits.Pi.map f) ≅ ∏ᶜ (fun j : Option J => mappingCone (f j)) を返す。有限帰納の空添字base shapeとして EmptyMappingConeProductComparisonInput も記録したが、TailFiniteMappingConeComparisonInput の構成、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
+  "summary": "v230時点で、W146は有限mapping-cone/product比較の空添字base caseを直接構成した。mappingConeZeroZeroIsoZero は、明示的ゼロ複体間の任意の射のmapping coneが明示的ゼロ複体に同型であることを、mappingCone.isZero_X_iff と HomologicalComplex.Hom.isoOfComponents で証明する。zeroComplexIsoHomologicalZero と emptyProductIsoHomologicalZero により空productを明示的ゼロ複体へ接続し、emptyMappingConeProductComparisonInput_direct が EmptyMappingConeProductComparisonInput を満たす。v229のOption step comparison isoと合わせて有限帰納の両端は揃ったが、TailFiniteMappingConeComparisonInput を構成するための添字同値/reindex自然性層、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/mapping_cone_option_product_step_w146.lean",
     "lake build",
@@ -647,7 +647,7 @@
     "MappingConeOptionProductStepW146.optionMappingConeComparisonStepMissingInputs_count"
   ],
   "known_gaps": [
-    "recursive TailFiniteMappingConeComparisonInput はまだ構成されていない。Option stepの比較isoは得たが、空添字base caseと添字同値/reindex層を含む有限帰納は未完了である。",
+    "recursive TailFiniteMappingConeComparisonInput はまだ構成されていない。空添字base caseとOption step comparison isoは得たが、Finite.induction_empty_option の equivalence/reindex 層が未完了である。",
     "finite mapping-cone product comparison から Dbounded の有限product/有限limit transfer への接続は未完了である。",
     "有限colimit、三角構造、stable infinity-category構造は未完了である。"
   ],
@@ -663,7 +663,7 @@
     "TailFiniteMappingConeComparisonInputの実構成、つまりfinite inductionでmappingCone (Limits.Pi.map f)とcomponent mapping coneの有限productを比較するisoは未完了である。",
     "boundedExactWeakEquivalenceの有限積安定性、Dbounded側の有限積・有限極限transfer、有限colimit、三角構造、stable infinity-category構造は依然としてproduct_successに必要な未完了項目である。"
   ],
-  "next_recommended_goal": "TailFiniteMappingConeComparisonInputを構成する。具体的には、v229のOption比較isoを有限帰納stepとして使い、空添字mapping-cone/product比較base caseと添字同値に沿うPi.map/reindex自然性を証明して、W145のFiniteMappingConeProductComparisonInputへ接続する。",
+  "next_recommended_goal": "TailFiniteMappingConeComparisonInputを構成する。具体的には、v230の空添字base caseとv229のOption step comparison isoをFinite.induction_empty_optionへ渡すため、添字同値に沿うPi.map/Pi.reindex自然性を、`K ∘ e`と`fun a => K (e a)`を混ぜない正規形で証明する。support w192が完了したらresult.jsonと差分を確認して有用部分を親側で再実装する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",

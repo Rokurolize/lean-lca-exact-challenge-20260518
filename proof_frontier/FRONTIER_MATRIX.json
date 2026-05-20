@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T09:18:01Z",
+  "generated_utc": "2026-05-20T09:26:47Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -573,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean && lake env lean audit/blockers/nontrivial_distinguished_eligibility_predicate_w132.lean && lake env lean audit/blockers/dbounded_four_projection_provider_route_w133.lean && lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean && lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean && lake env lean audit/blockers/dbounded_finite_products_boundary.lean && lake build LeanLCAExactChallenge.Derived.Bounded && lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean && lake env lean audit/blockers/mapping_cone_finite_product_comparison_w142.lean && lake env lean audit/blockers/dbounded_pullback_localization_transfer_w143.lean && lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean && lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
-      "merge_blocker": "v228 leaves finite mapping-cone product stability reduced to recursive TailFiniteMappingConeComparisonInput for the tail index type, followed by downstream Dbounded finite-product/finite-limit transfer. Finite colimits, pretriangulated structure, triangulated structure, and stable infinity-category structure remain unproved. Product success is still blocked.",
+      "merge_blocker": "v230 supplies the empty-index comparison input and v229 supplies the Option-step comparison iso. The remaining finite mapping-cone comparison blocker is the equivalence/reindex naturality layer needed to assemble TailFiniteMappingConeComparisonInput by Finite.induction_empty_option. Dbounded finite-product/finite-limit transfer, finite colimits, triangulated structure, and stable infinity-category structure remain unproved.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -1060,7 +1060,11 @@
         "MappingConeOptionProductStepW146.optionTransportedFanMapSndNaturality",
         "MappingConeOptionProductStepW146.optionTransportedFanMapProjectionNaturalityInput_direct",
         "MappingConeOptionProductStepW146.optionProductMapNaturalityInput_direct",
-        "MappingConeOptionProductStepW146.exactAcyclic_optionPiMap_of_tailComparison"
+        "MappingConeOptionProductStepW146.exactAcyclic_optionPiMap_of_tailComparison",
+        "MappingConeOptionProductStepW146.mappingConeZeroZeroIsoZero",
+        "MappingConeOptionProductStepW146.zeroComplexIsoHomologicalZero",
+        "MappingConeOptionProductStepW146.emptyProductIsoHomologicalZero",
+        "MappingConeOptionProductStepW146.emptyMappingConeProductComparisonInput_direct"
       ],
       "technical_context": [
         "split short complexes",
@@ -1269,6 +1273,6 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "w187/w188 support did not need to be integrated; parent independently proved v228 naturality and v229 Option comparison iso. No target-worktree workers were launched.",
-  "latest_parent_update": "v229 proves an iso-level W146 Option mapping-cone/product comparison from recursive TailFiniteMappingConeComparisonInput; remaining finite induction work is empty base plus reindex/equivalence layer to construct the tail input."
+  "support_result_classification": "support worker w192-tail-finite-mapping-cone-comparison is active in the consultant-owned tree. Parent did not launch duplicate workers and will inspect result.json when it appears.",
+  "latest_parent_update": "v230 proves the empty-index mapping-cone/product comparison input directly; finite induction now remains blocked by the equivalence/reindex naturality layer needed to construct TailFiniteMappingConeComparisonInput."
 }
