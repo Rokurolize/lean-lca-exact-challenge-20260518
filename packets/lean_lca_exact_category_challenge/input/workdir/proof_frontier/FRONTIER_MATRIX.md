@@ -281,3 +281,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v298 Update
 
 2026-05-20T15:51:19Z: Support result W274 was ported as `audit/blockers/opposite_fixed_target_obligations_w274.lean`. It refines the W272/W293 opposite fixed-target boundary by factoring the remaining `fac` and `uniq` fields into reusable schemas `OppositeFixedTargetFacObligationFor` and `OppositeFixedTargetUniqObligationFor`, specialized to the diagram and model fixed targets required by `Functor.IsLocalization.mk'`. The remaining inputs are still the coherent strict-representative blueprint plus four schema obligations; product success remains nonterminal.
+
+## v299 Update
+
+2026-05-20T15:55:37Z: `audit/blockers/wpp_op_exact_acyclic_colimit_closure_w299.lean` reduces W271's exact-acyclic WPP-op colimit-closure input to two smaller facts: degreewise short-complex functor preservation of the WPP-op cochain-complex colimit cocone, and WPP-op colimit closure of `QuillenExactCategory.Conflation` in `ShortComplex MetrizableLCA`. This follows directly from the product definition `exactAcyclic C K := ∀ i, Conflation (K.sc i)`. Both lower inputs remain open, so product success remains nonterminal.
