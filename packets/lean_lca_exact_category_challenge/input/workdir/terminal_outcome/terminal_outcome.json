@@ -451,6 +451,16 @@
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/shortcomplex_degreewise_cofork_concrete_v369_support_w361.lean audit/blockers/wpp_op_left_lca_cocone_transport_v369_support_w362.lean audit/blockers/wpp_op_target_quotient_closed_saturated_v369_support_w363.lean",
       "status": "passed",
       "evidence": "Explicit forbidden-token rg scan returned no matches for W361/W362/W363."
+    },
+    {
+      "command": "lake env lean audit/blockers/shortcomplex_pi_mapcofork_colimits_v369_support_w364.lean",
+      "status": "passed",
+      "evidence": "W364 ShortComplex pi mapCofork colimits support checked."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/shortcomplex_pi_mapcofork_colimits_v369_support_w364.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W364."
     }
   ],
   "required_declarations_checked": [
@@ -1309,7 +1319,13 @@
     "LeanLCAExactChallenge.MetrizableLCA.image_closed_of_isQuotientMap_and_saturatedW360",
     "LeanLCAExactChallenge.MetrizableLCA.quotientMap_isQuotientMapW360",
     "LeanLCAExactChallenge.MetrizableLCA.quotientMap_image_closed_of_closed_saturatedW360",
-    "LeanLCAExactChallenge.MetrizableLCA.targetQuotientClosedOnSaturatedSetsW360"
+    "LeanLCAExactChallenge.MetrizableLCA.targetQuotientClosedOnSaturatedSetsW360",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.PiMapCoforkComponentTransportBoundary",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₁OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₂OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₃OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.toW359CompatibleOfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.shortComplexCokernelOfComponentIso"
   ],
   "known_gaps": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
@@ -1357,7 +1373,8 @@
     "W357 left LCA concrete quotient coconeでordinary quotient cofork、descended quotient map、whiskered WPP-op quotient coconeは検証済みだが、actual Cocone Xへのtransport、W354 leg equationへの書換え、W352/W355 topological fieldsとの結合は未証明である。",
     "W360 counit cocone transportでinverse-whiskered quotient coconeからactual Cocone Xへのtransportとcolimit保存は検証済みだが、transported leg equationsのW354形への書換えとW352/W355 fieldsとの結合は未証明である。",
     "W361-W363でdegreewise concrete cofork、transported W354 cocone fields、target quotient closed-on-saturated theoremは検証済みだが、具体target relation lifting、relation pullback equality、W354/W351 integration、AddCommGrp component cofork/isomorphism dataは未証明である。",
-    "W360/W363によりtarget quotient closed-on-saturated theoremは検証済みであり、残りのtopological入力は具体target relation lifting、relation pullback equality、必要なrepresentative-image条件のW354/W351統合である。"
+    "W360/W363によりtarget quotient closed-on-saturated theoremは検証済みであり、残りのtopological入力は具体target relation lifting、relation pullback equality、必要なrepresentative-image条件のW354/W351統合である。",
+    "W364でπᵢ.mapCocone colimitを成分cokernel coforkから運ぶ消費口は検証済みだが、π₁/π₂/π₃それぞれのcomponent cocone transport本体は未証明である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
@@ -1408,7 +1425,8 @@
     "W357 left LCA concrete quotient coconeでordinary quotient cofork、descended quotient map、whiskered WPP-op quotient coconeは検証済みだが、actual Cocone Xへのtransport、W354 leg equationへの書換え、W352/W355 topological fieldsとの結合は未証明である。",
     "W360 counit cocone transportでinverse-whiskered quotient coconeからactual Cocone Xへのtransportとcolimit保存は検証済みだが、transported leg equationsのW354形への書換えとW352/W355 fieldsとの結合は未証明である。",
     "W361-W363でdegreewise concrete cofork、transported W354 cocone fields、target quotient closed-on-saturated theoremは検証済みだが、具体target relation lifting、relation pullback equality、W354/W351 integration、AddCommGrp component cofork/isomorphism dataは未証明である。",
-    "W360/W363によりtarget quotient closed-on-saturated theoremは検証済みであり、残りのtopological入力は具体target relation lifting、relation pullback equality、必要なrepresentative-image条件のW354/W351統合である。"
+    "W360/W363によりtarget quotient closed-on-saturated theoremは検証済みであり、残りのtopological入力は具体target relation lifting、relation pullback equality、必要なrepresentative-image条件のW354/W351統合である。",
+    "W364でπᵢ.mapCocone colimitを成分cokernel coforkから運ぶ消費口は検証済みだが、π₁/π₂/π₃それぞれのcomponent cocone transport本体は未証明である。"
   ],
   "next_recommended_goal": "sourceIso.hom ≫ φ = descended ≫ targetIso.homを具体的WPP-op coequalizer presentationで証明し、relation-preimage exactnessまたはdescended closed-map入力を閉じる。",
   "implemented_declarations": [
@@ -2071,9 +2089,15 @@
     "LeanLCAExactChallenge.MetrizableLCA.image_closed_of_isQuotientMap_and_saturatedW360",
     "LeanLCAExactChallenge.MetrizableLCA.quotientMap_isQuotientMapW360",
     "LeanLCAExactChallenge.MetrizableLCA.quotientMap_image_closed_of_closed_saturatedW360",
-    "LeanLCAExactChallenge.MetrizableLCA.targetQuotientClosedOnSaturatedSetsW360"
+    "LeanLCAExactChallenge.MetrizableLCA.targetQuotientClosedOnSaturatedSetsW360",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.PiMapCoforkComponentTransportBoundary",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₁OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₂OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₃OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.toW359CompatibleOfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.shortComplexCokernelOfComponentIso"
   ],
-  "generated_utc": "2026-05-20T22:18:00Z",
+  "generated_utc": "2026-05-20T22:19:00Z",
   "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -2797,7 +2821,13 @@
     "LeanLCAExactChallenge.MetrizableLCA.image_closed_of_isQuotientMap_and_saturatedW360",
     "LeanLCAExactChallenge.MetrizableLCA.quotientMap_isQuotientMapW360",
     "LeanLCAExactChallenge.MetrizableLCA.quotientMap_image_closed_of_closed_saturatedW360",
-    "LeanLCAExactChallenge.MetrizableLCA.targetQuotientClosedOnSaturatedSetsW360"
+    "LeanLCAExactChallenge.MetrizableLCA.targetQuotientClosedOnSaturatedSetsW360",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.PiMapCoforkComponentTransportBoundary",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₁OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₂OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₃OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.toW359CompatibleOfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.shortComplexCokernelOfComponentIso"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
