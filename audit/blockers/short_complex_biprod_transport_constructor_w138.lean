@@ -47,6 +47,23 @@ structure ObjectIsoOnlyData
   e₃ : (ExplicitBiprodShortComplex K L i).X₃ ≅ (TargetBiprodShortComplex K L i).X₃
 
 /--
+The three object isomorphisms are available: compose the explicit MetrizableLCA biproduct model
+with `HomologicalComplex.biprodXIso` in the three degrees of the short complex.
+-/
+noncomputable def objectIsoDataOfBiprodXIso
+    (K L : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ) :
+    ObjectIsoOnlyData K L i where
+  e₁ :=
+    MetrizableLCA.biprodObjIsoBiprod _ _ ≪≫
+      (HomologicalComplex.biprodXIso K L ((ComplexShape.up ℤ).prev i)).symm
+  e₂ :=
+    MetrizableLCA.biprodObjIsoBiprod _ _ ≪≫
+      (HomologicalComplex.biprodXIso K L i).symm
+  e₃ :=
+    MetrizableLCA.biprodObjIsoBiprod _ _ ≪≫
+      (HomologicalComplex.biprodXIso K L ((ComplexShape.up ℤ).next i)).symm
+
+/--
 The exact missing constructor payload for `ShortComplex.isoMk`.
 
 Fields `comm₁₂` and `comm₂₃` are the two remaining differential-compatibility squares; without
@@ -62,6 +79,28 @@ structure TransportConstructorFields
   comm₂₃ :
     toObjectIsoOnlyData.e₂.hom ≫ (TargetBiprodShortComplex K L i).g =
       (ExplicitBiprodShortComplex K L i).g ≫ toObjectIsoOnlyData.e₃.hom
+
+/--
+After the object isomorphisms above, only the two `ShortComplex.isoMk` compatibility squares
+remain.
+-/
+structure TransportCompatibilitySquares
+    (K L : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ) where
+  comm₁₂ :
+    (objectIsoDataOfBiprodXIso K L i).e₁.hom ≫ (TargetBiprodShortComplex K L i).f =
+      (ExplicitBiprodShortComplex K L i).f ≫ (objectIsoDataOfBiprodXIso K L i).e₂.hom
+  comm₂₃ :
+    (objectIsoDataOfBiprodXIso K L i).e₂.hom ≫ (TargetBiprodShortComplex K L i).g =
+      (ExplicitBiprodShortComplex K L i).g ≫ (objectIsoDataOfBiprodXIso K L i).e₃.hom
+
+/-- The two remaining compatibility squares supply the full `ShortComplex.isoMk` payload. -/
+noncomputable def transportConstructorFieldsOfCompatibilitySquares
+    {K L : CochainComplex MetrizableLCA.{u} ℤ} {i : ℤ}
+    (squares : TransportCompatibilitySquares K L i) :
+    TransportConstructorFields K L i where
+  toObjectIsoOnlyData := objectIsoDataOfBiprodXIso K L i
+  comm₁₂ := squares.comm₁₂
+  comm₂₃ := squares.comm₂₃
 
 /-- The missing transport input as a family of short-complex isomorphisms. -/
 abbrev ShortComplexBiprodTransportInput
@@ -99,13 +138,33 @@ theorem exactAcyclic_biprod_of_transportConstructorFields
   exact MetrizableLCA.strictShortExact_iso (transportIsoOfFields (fields i))
     (MetrizableLCA.strictShortExact_biprod (hK i) (hL i))
 
+/--
+Conditional closure after discharging the three object isomorphisms.
+
+The only remaining payload is the two compatibility equations for each degree.
+-/
+theorem exactAcyclic_biprod_of_transportCompatibilitySquares
+    (K L : CochainComplex MetrizableLCA.{u} ℤ)
+    (squares : ∀ i : ℤ, TransportCompatibilitySquares K L i)
+    (hK : exactAcyclic MetrizableLCA K)
+    (hL : exactAcyclic MetrizableLCA L) :
+    exactAcyclic MetrizableLCA (K ⊞ L) := by
+  exact exactAcyclic_biprod_of_transportConstructorFields K L
+    (fun i => transportConstructorFieldsOfCompatibilitySquares (squares i)) hK hL
+
 def objectIsoOnlyFieldCount : Nat := 3
 
 def requiredTransportFieldCount : Nat := 5
 
+def remainingCompatibilityFieldCount : Nat := 2
+
 /-- Formal rejection of the nearest false shortcut: three object isomorphisms are not five fields. -/
 theorem objectIsoOnly_has_fewer_fields :
     objectIsoOnlyFieldCount < requiredTransportFieldCount := by
+  decide
+
+theorem remainingCompatibilityFields_count :
+    remainingCompatibilityFieldCount + objectIsoOnlyFieldCount = requiredTransportFieldCount := by
   decide
 
 def missingCompatibilitySquares : List String :=
@@ -117,12 +176,17 @@ section Checks
 #check ExplicitBiprodShortComplex
 #check TargetBiprodShortComplex
 #check ObjectIsoOnlyData
+#check objectIsoDataOfBiprodXIso
 #check TransportConstructorFields
+#check TransportCompatibilitySquares
+#check transportConstructorFieldsOfCompatibilitySquares
 #check ShortComplexBiprodTransportInput
 #check transportIsoOfFields
 #check transportInputOfFields
 #check exactAcyclic_biprod_of_transportConstructorFields
+#check exactAcyclic_biprod_of_transportCompatibilitySquares
 #check objectIsoOnly_has_fewer_fields
+#check remainingCompatibilityFields_count
 #check missingCompatibilitySquares
 #check ShortComplex.isoMk
 #check MetrizableLCA.strictShortExact_biprod
