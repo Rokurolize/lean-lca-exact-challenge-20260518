@@ -1859,6 +1859,13 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
   Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions C 1
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasFiniteLimits C] [HasBinaryBiproducts C]
+    [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions]
+    [(boundedExactWeakEquivalence C).IsStableUnderFiniteProducts] :
+    HasFiniteProducts (Dbounded C) :=
+  Dbounded.hasFiniteProductsOfStableFiniteProducts C
+
+noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]
     [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
     [(boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions] :

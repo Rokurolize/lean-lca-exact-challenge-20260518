@@ -6,6 +6,7 @@ import Mathlib.AlgebraicTopology.Quasicategory.Nerve
 import Mathlib.AlgebraicTopology.Quasicategory.StrictBicategory
 import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
 import Mathlib.CategoryTheory.Localization.CalculusOfFractions.Preadditive
+import Mathlib.CategoryTheory.Localization.FiniteProducts
 import Mathlib.CategoryTheory.Localization.HasLocalization
 import Mathlib.CategoryTheory.Localization.Triangulated
 import Mathlib.CategoryTheory.ObjectProperty.ContainsZero
@@ -51,6 +52,60 @@ instance boundedCochainComplex_isClosedUnderIsomorphisms :
     letI : K.IsStrictlyLE b := hle
     exact ⟨a, b, CochainComplex.isStrictlyGE_of_iso e a,
       CochainComplex.isStrictlyLE_of_iso e b⟩
+
+/-- Bounded cochain complexes are closed under finite-shaped limits. -/
+instance boundedCochainComplex_isClosedUnderLimitsOfShape
+    (J : Type*) [SmallCategory J] [FinCategory J] [HasLimitsOfShape J C] :
+    (boundedCochainComplex C).IsClosedUnderLimitsOfShape J where
+  limitsOfShape_le := by
+    rintro K ⟨p⟩
+    choose a b hge hle using p.prop_diag_obj
+    obtain ⟨a₀, ha₀⟩ : ∃ (a₀ : ℤ), ∀ (j : J), (p.diag.obj j).IsStrictlyGE a₀ := by
+      exact ⟨Finset.min' (Finset.image a ⊤ ∪ {0}) ⟨0, by grind⟩, fun j ↦
+        (p.diag.obj j).isStrictlyGE_of_ge _ _
+          (Finset.min'_le _ (a j) (by simp))⟩
+    obtain ⟨b₀, hb₀⟩ : ∃ (b₀ : ℤ), ∀ (j : J), (p.diag.obj j).IsStrictlyLE b₀ := by
+      exact ⟨Finset.max' (Finset.image b ⊤ ∪ {0}) ⟨0, by grind⟩, fun j ↦
+        (p.diag.obj j).isStrictlyLE_of_le _ _
+          (Finset.le_max' _ (b j) (by simp))⟩
+    refine ⟨a₀, b₀, ?_, ?_⟩
+    · rw [CochainComplex.isStrictlyGE_iff]
+      intro i hi
+      rw [IsZero.iff_id_eq_zero]
+      exact (isLimitOfPreserves (HomologicalComplex.eval _ _ i) p.isLimit).hom_ext
+        (fun j ↦ ((p.diag.obj j).isZero_of_isStrictlyGE a₀ i).eq_of_tgt _ _)
+    · rw [CochainComplex.isStrictlyLE_iff]
+      intro i hi
+      rw [IsZero.iff_id_eq_zero]
+      exact (isLimitOfPreserves (HomologicalComplex.eval _ _ i) p.isLimit).hom_ext
+        (fun j ↦ ((p.diag.obj j).isZero_of_isStrictlyLE b₀ i).eq_of_tgt _ _)
+
+/-- Bounded cochain complexes are closed under finite-shaped colimits. -/
+instance boundedCochainComplex_isClosedUnderColimitsOfShape
+    (J : Type*) [SmallCategory J] [FinCategory J] [HasColimitsOfShape J C] :
+    (boundedCochainComplex C).IsClosedUnderColimitsOfShape J where
+  colimitsOfShape_le := by
+    rintro K ⟨p⟩
+    choose a b hge hle using p.prop_diag_obj
+    obtain ⟨a₀, ha₀⟩ : ∃ (a₀ : ℤ), ∀ (j : J), (p.diag.obj j).IsStrictlyGE a₀ := by
+      exact ⟨Finset.min' (Finset.image a ⊤ ∪ {0}) ⟨0, by grind⟩, fun j ↦
+        (p.diag.obj j).isStrictlyGE_of_ge _ _
+          (Finset.min'_le _ (a j) (by simp))⟩
+    obtain ⟨b₀, hb₀⟩ : ∃ (b₀ : ℤ), ∀ (j : J), (p.diag.obj j).IsStrictlyLE b₀ := by
+      exact ⟨Finset.max' (Finset.image b ⊤ ∪ {0}) ⟨0, by grind⟩, fun j ↦
+        (p.diag.obj j).isStrictlyLE_of_le _ _
+          (Finset.le_max' _ (b j) (by simp))⟩
+    refine ⟨a₀, b₀, ?_, ?_⟩
+    · rw [CochainComplex.isStrictlyGE_iff]
+      intro i hi
+      rw [IsZero.iff_id_eq_zero]
+      exact (isColimitOfPreserves (HomologicalComplex.eval _ _ i) p.isColimit).hom_ext
+        (fun j ↦ ((p.diag.obj j).isZero_of_isStrictlyGE a₀ i).eq_of_src _ _)
+    · rw [CochainComplex.isStrictlyLE_iff]
+      intro i hi
+      rw [IsZero.iff_id_eq_zero]
+      exact (isColimitOfPreserves (HomologicalComplex.eval _ _ i) p.isColimit).hom_ext
+        (fun j ↦ ((p.diag.obj j).isZero_of_isStrictlyLE b₀ i).eq_of_src _ _)
 
 /-- Bounded cochain complexes are closed under the cochain shift. -/
 instance boundedCochainComplex_isStableUnderShift :
@@ -138,6 +193,14 @@ abbrev BoundedComplexCategory : Type (max u v) :=
 /-- The inclusion of bounded complexes into all cochain complexes. -/
 abbrev BoundedComplexCategory.ι : BoundedComplexCategory C ⥤ CochainComplex C ℤ :=
   (boundedCochainComplex C).ι
+
+instance BoundedComplexCategory.hasFiniteLimits [HasFiniteLimits C] :
+    HasFiniteLimits (BoundedComplexCategory C) where
+  out J _ _ := by infer_instance
+
+instance BoundedComplexCategory.hasFiniteColimits [HasFiniteColimits C] :
+    HasFiniteColimits (BoundedComplexCategory C) where
+  out J _ _ := by infer_instance
 
 /-- The category of bounded complexes has a zero object when the base category does. -/
 instance boundedComplexCategory_hasZeroObject [HasZeroObject C] :
@@ -2943,6 +3006,18 @@ theorem shiftFunctor_additiveOfHasLeftCalculusOfFractions [HasBinaryBiproducts C
   rw [Localization.functor_additive_iff (Dbounded.localization C) (boundedExactWeakEquivalence C)
     (shiftFunctor (Dbounded C) n)]
   exact Functor.additive_of_iso ((Dbounded.localization C).commShiftIso n)
+
+/--
+Under finite limits in the base and finite-product stability of the weak equivalences, the
+localized bounded derived category has finite products.
+-/
+noncomputable abbrev hasFiniteProductsOfStableFiniteProducts [HasFiniteLimits C]
+    [HasBinaryBiproducts C]
+    [(boundedExactWeakEquivalence C).HasLeftCalculusOfFractions]
+    [(boundedExactWeakEquivalence C).IsStableUnderFiniteProducts] :
+    HasFiniteProducts (Dbounded C) := by
+  change HasFiniteProducts (boundedExactWeakEquivalence C).Localization
+  infer_instance
 
 /-- If exact acyclicity is homotopy-isomorphism closed, a left calculus for the
 homotopy/Verdier pullback localizer gives the direct bounded localization a preadditive

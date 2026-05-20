@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v176-dbounded-finite-products-boundary",
-  "generated_utc": "2026-05-20T10:45:00Z",
-  "source_tree_hash": "70dd70580ec8a85d61432f601c30181a8c8561a39a82962efe0695e1c12001cb",
-  "summary": "v176 adds a compiling Dbounded finite-products boundary audit. It records that mathlib can construct finite products for Dbounded from source finite products and finite-product stability, while finite limits, finite colimits, pretriangulated, and triangulated constructors remain missing. Product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v177-bounded-source-finite-limits-colimits",
+  "generated_utc": "2026-05-20T11:25:00Z",
+  "source_tree_hash": "ea32a336597967d8a1561ee269e06f14ff0980df7fcf8a6271e28857237b5b35",
+  "summary": "v177 proves finite limits and finite colimits for BoundedComplexCategory and adds Dbounded finite products conditional on finite-product stability of bounded exact weak equivalences. Product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
@@ -37,7 +37,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess declaration audit passed after the v176 Dbounded finite-products boundary audit was added; no product-success claim was added."
+      "evidence": "ProductSuccess declaration audit passed after v177 checked Dbounded.hasFiniteProductsOfStableFiniteProducts; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,7 +52,7 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after the v176 finite-products boundary audit: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v177: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
@@ -360,7 +360,12 @@
     "DboundedFiniteProductsBoundary.hasFiniteProductsOfLocalizationInputs",
     "DboundedFiniteProductsBoundary.finiteProductsLocalizationInputNames_count",
     "DboundedFiniteProductsBoundary.currentFiniteProductsBoundaryState_source_missing",
-    "DboundedFiniteProductsBoundary.currentFiniteProductsBoundaryState_stability_missing"
+    "DboundedFiniteProductsBoundary.currentFiniteProductsBoundaryState_stability_missing",
+    "boundedCochainComplex_isClosedUnderLimitsOfShape",
+    "boundedCochainComplex_isClosedUnderColimitsOfShape",
+    "BoundedComplexCategory.hasFiniteLimits",
+    "BoundedComplexCategory.hasFiniteColimits",
+    "Dbounded.hasFiniteProductsOfStableFiniteProducts"
   ],
   "product_complete": false,
   "known_gaps": [
