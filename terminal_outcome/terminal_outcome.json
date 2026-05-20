@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v236時点で、audit/blockers/opposite_localization_finite_colimits_boundary.lean に反対圏局所化の有限colimitルート境界を追加した。既存の Dbounded.localization C のop関手が (boundedExactWeakEquivalence C).op の局所化であること、(Dbounded C)^op の有限limitがあれば Dbounded C の有限colimitが得られること、さらに反対側の有限product安定性仮定の下で局所化有限product定理を適用できることを名前付き宣言として記録した。ただし反対側有限limitを与えるequalizer/pullback局所化転送、left calculus of fractions、三角構造、stable infinity-category構造は未完了である。",
+  "summary": "v237時点で、support w214 の有用部分を親側で再実装し、audit/blockers/opposite_localization_finite_colimits_boundary.lean を拡張した。反対圏の抽象局所化 (boundedExactWeakEquivalence C).op.Localization から (Dbounded C)^op への標準同値を記録し、HasFiniteLimits (boundedExactWeakEquivalence C).op.Localization があれば HasFiniteColimits (Dbounded C) を得られることを証明した。これは有限colimitルートの残り入力を反対圏抽象局所化の有限limitへ狭めるが、無条件product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
     "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
@@ -648,31 +648,39 @@
     "MappingConeOptionProductStepW146.optionMappingConeComparisonStepMissingInputs_count",
     "OppositeLocalizationFiniteColimitsBoundary.dboundedLocalization_op_isLocalization",
     "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_op_hasFiniteLimits",
-    "OppositeLocalizationFiniteColimitsBoundary.oppositeLocalizationHasFiniteProducts_of_stableFiniteProducts"
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeLocalizationHasFiniteProducts_of_stableFiniteProducts",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeDirectLocalization",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeModelEquivalence",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeModelLocalizationIso",
+    "OppositeLocalizationFiniteColimitsBoundary.dboundedOp_hasFiniteLimits_of_oppositeLocalization_hasFiniteLimits",
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeLocalization_hasFiniteLimits",
+    "OppositeLocalizationFiniteColimitsBoundary.OppositeLocalizationFiniteLimitInput",
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput"
   ],
   "known_gaps": [
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
+    "反対圏有限colimitルートは (boundedExactWeakEquivalence C).op.Localization の有限limitへ縮約されたが、その有限limit証明はまだ未供給である。",
     "Dboundedの無条件有限limitには、left calculus of fractions と pullback/equalizer localization transfer の接続が残る。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
-    "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。",
-    "反対圏有限colimitルートでは、(Dbounded C)^op の有限limitを与える証明がまだ未供給である。",
-    "stable infinity-category構造を与えるproduct-facing証明はまだ未供給である。"
+    "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v236 parent-owned audit formalized the opposite-localization finite-colimits bridge; no duplicate worker launched.",
+  "worker_frontier_summary": "v237 parent-reimplemented support w214 into the opposite finite-colimits boundary; w215 delayed as stable-overclaim guard evidence.",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
     "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "bounded finite-product transferはdefault-universe MetrizableLCAで閉じたが、最終product successには抽出レビューpacketとfresh claim reviewがまだ必要である。",
     "反対圏有限colimitルートでは、(Dbounded C)^op の有限limitをまだ構成していない。",
-    "Dbounded のequalizer/pullback局所化転送、三角構造、stable infinity-category構造は未完了。"
+    "Dbounded のequalizer/pullback局所化転送、三角構造、stable infinity-category構造は未完了。",
+    "反対圏抽象局所化 (boundedExactWeakEquivalence C).op.Localization の有限limit証明が未完了。",
+    "w215のstable projection bridgeは監査境界であり、stable providerそのものは未構成。"
   ],
-  "next_recommended_goal": "Prove finite limits on (Dbounded MetrizableLCA)^op via opposite-side finite-product stability plus equalizer or pullback localization transfer, then reconnect finite colimits to the stable semantic input.",
+  "next_recommended_goal": "Prove HasFiniteLimits (boundedExactWeakEquivalence MetrizableLCA).op.Localization by combining opposite-side finite products with equalizer or pullback localization transfer.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -850,10 +858,17 @@
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA",
     "OppositeLocalizationFiniteColimitsBoundary.dboundedLocalization_op_isLocalization",
     "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_op_hasFiniteLimits",
-    "OppositeLocalizationFiniteColimitsBoundary.oppositeLocalizationHasFiniteProducts_of_stableFiniteProducts"
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeLocalizationHasFiniteProducts_of_stableFiniteProducts",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeDirectLocalization",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeModelEquivalence",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeModelLocalizationIso",
+    "OppositeLocalizationFiniteColimitsBoundary.dboundedOp_hasFiniteLimits_of_oppositeLocalization_hasFiniteLimits",
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeLocalization_hasFiniteLimits",
+    "OppositeLocalizationFiniteColimitsBoundary.OppositeLocalizationFiniteLimitInput",
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput"
   ],
-  "generated_utc": "2026-05-20T10:30:32Z",
-  "support_result_classification": "Completed support summaries w209/w210 informed the opposite-localization route, but no usable worker branch/file was present in the target tree; parent added a fresh named audit boundary instead.",
+  "generated_utc": "2026-05-20T10:35:47Z",
+  "support_result_classification": "support w214 was parent-reimplemented into the opposite finite-colimits boundary; support w215 was delayed as useful stable-overclaim guard evidence, not a product proof.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1170,7 +1185,14 @@
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA",
     "OppositeLocalizationFiniteColimitsBoundary.dboundedLocalization_op_isLocalization",
     "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_op_hasFiniteLimits",
-    "OppositeLocalizationFiniteColimitsBoundary.oppositeLocalizationHasFiniteProducts_of_stableFiniteProducts"
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeLocalizationHasFiniteProducts_of_stableFiniteProducts",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeDirectLocalization",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeModelEquivalence",
+    "OppositeLocalizationFiniteColimitsBoundary.oppositeModelLocalizationIso",
+    "OppositeLocalizationFiniteColimitsBoundary.dboundedOp_hasFiniteLimits_of_oppositeLocalization_hasFiniteLimits",
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeLocalization_hasFiniteLimits",
+    "OppositeLocalizationFiniteColimitsBoundary.OppositeLocalizationFiniteLimitInput",
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput"
   ],
   "product_success": false
 }
