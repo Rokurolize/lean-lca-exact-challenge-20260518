@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T09:07:05Z",
+  "generated_utc": "2026-05-20T09:18:01Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1269,6 +1269,6 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "w188 option-product-naturality support worker was still active/no result available when parent v228 closed the direct W146 naturality route. Parent did not launch duplicate workers from the target worktree.",
-  "latest_parent_update": "v228 proves W146 Option-product-map naturality directly; the Option mapping-cone product step now only needs recursive TailFiniteMappingConeComparisonInput."
+  "support_result_classification": "w187/w188 support did not need to be integrated; parent independently proved v228 naturality and v229 Option comparison iso. No target-worktree workers were launched.",
+  "latest_parent_update": "v229 proves an iso-level W146 Option mapping-cone/product comparison from recursive TailFiniteMappingConeComparisonInput; remaining finite induction work is empty base plus reindex/equivalence layer to construct the tail input."
 }

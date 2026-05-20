@@ -423,6 +423,16 @@ structure TailFiniteMappingConeComparisonInput : Type (u + 1) where
       CochainComplex.mappingCone (Limits.Pi.map f) ≅
         ∏ᶜ (fun j => CochainComplex.mappingCone (f j))
 
+/-- Empty-index base case for the finite mapping-cone/product comparison induction. -/
+structure EmptyMappingConeProductComparisonInput : Type (u + 1) where
+  iso : ∀ {J : Type u} [IsEmpty J]
+    {K L : J → CochainComplex MetrizableLCA.{u} ℤ}
+    [HasProduct K] [HasProduct L]
+    (f : ∀ j, K j ⟶ L j)
+    [HasProduct (fun j => CochainComplex.mappingCone (f j))],
+      CochainComplex.mappingCone (Limits.Pi.map f) ≅
+        ∏ᶜ (fun j => CochainComplex.mappingCone (f j))
+
 /--
 Option-step exactness consumer.
 
@@ -493,6 +503,46 @@ theorem exactAcyclic_optionPiMap_of_tailComparison
   exactAcyclic_optionPiMap_of_naturality_and_tailComparison
     optionProductMapNaturalityInput_direct tailComparison f hf
 
+/--
+Option-step comparison iso after proving Option-product-map naturality directly.
+
+This is the iso-level version of `exactAcyclic_optionPiMap_of_tailComparison`: transport the
+`Option J` product map to a binary biproduct map, use the binary mapping-cone comparison, replace
+the tail cone by the recursive finite-product comparison, then fold the resulting biproduct back
+to the Option-indexed product of component cones.
+-/
+noncomputable def optionMappingConeProductComparisonIso_of_tailComparison
+    (tailComparison : TailFiniteMappingConeComparisonInput.{u})
+    {J : Type u} [Finite J]
+    {K L : Option J → CochainComplex MetrizableLCA.{u} ℤ}
+    [HasProduct K] [HasProduct L]
+    [HasProduct (fun j : J => K (some j))]
+    [HasProduct (fun j : J => L (some j))]
+    (f : ∀ j, K j ⟶ L j)
+    [HasProduct (fun j : J => CochainComplex.mappingCone (f (some j)))]
+    [HasProduct (fun j : Option J => CochainComplex.mappingCone (f j))]
+    [∀ x : Option J, Decidable (x = none)] :
+    CochainComplex.mappingCone (Limits.Pi.map f) ≅
+      ∏ᶜ (fun j : Option J => CochainComplex.mappingCone (f j)) := by
+  let tailMap : ∀ j : J, K (some j) ⟶ L (some j) := fun j => f (some j)
+  let eK :=
+    OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+      MetrizableLCA K
+  let eL :=
+    OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+      MetrizableLCA L
+  have hcomm :
+      Limits.Pi.map f ≫ eL.hom =
+        eK.hom ≫ biprod.map (f none) (Limits.Pi.map tailMap) :=
+    optionProductMapNaturalityInput_direct.commute f
+  exact
+    mappingConeIsoOfCommIso MetrizableLCA eK eL hcomm ≪≫
+      MappingConeBiprodComparison.binaryMappingConeBiprodIso (f none) (Limits.Pi.map tailMap) ≪≫
+        biprod.mapIso (Iso.refl (CochainComplex.mappingCone (f none)))
+          (tailComparison.iso tailMap) ≪≫
+          (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+            MetrizableLCA (fun j : Option J => CochainComplex.mappingCone (f j))).symm
+
 /-- The exact lower inputs still missing after the Option-step exactness consumer. -/
 def optionMappingConeComparisonStepMissingInputs : List String :=
   ["recursive TailFiniteMappingConeComparisonInput for the tail index type"]
@@ -517,6 +567,7 @@ section Checks
 #check TailFiniteMappingConeComparisonInput
 #check exactAcyclic_optionPiMap_of_naturality_and_tailComparison
 #check exactAcyclic_optionPiMap_of_tailComparison
+#check optionMappingConeProductComparisonIso_of_tailComparison
 #check optionMappingConeComparisonStepMissingInputs
 #check optionMappingConeComparisonStepMissingInputs_count
 #check OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
