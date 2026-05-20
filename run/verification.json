@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v182-bounded-exact-weak-equivalence-respects-iso",
-  "generated_utc": "2026-05-20T13:35:00Z",
-  "source_tree_hash": "e737b2568c638d84ea7b437b74d3fe81ca9910a4a2ec6bf1f985b4332bce9d0f",
-  "summary": "v182 proves boundedExactWeakEquivalence_respectsIso in Derived.Bounded using mappingConeIsoOfCommIso and exactAcyclic_mappingCone_congr_iff. The finite-product boundary no longer needs RespectsIso as an external input; the remaining upper finite-product input is FiniteProductMappingConeInput itself. Product remains nonterminal because the mapping-cone finite-product comparison, short-complex transport input, full finite limits/colimits, and triangulated/stable structures remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-v183-w138-w139-frontier-audits",
+  "generated_utc": "2026-05-20T14:05:00Z",
+  "source_tree_hash": "6910bbbf058b940ac6f40cdb049254a7a89e6e6d10b728f2d1a1d29c3210cb9d",
+  "summary": "v183 ports/reimplements support workers w138 and w139 as parent-owned frontier audits. w138 sharpens the short-complex biproduct transport gap to TransportConstructorFields: three object isomorphisms plus comm12 and comm23 for ShortComplex.isoMk. w139 packages finite-limit transfer for Dbounded as finite products plus equalizers, or terminal plus pullbacks, leaving equalizer/pullback transfer and finite colimits separate. Product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
@@ -178,6 +178,16 @@
       "command": "lake env lean audit/blockers/bounded_exact_weak_equivalence_finite_products_boundary.lean",
       "status": "passed",
       "evidence": "Focused v182 finite-product boundary audit passed without an external RespectsIso assumption."
+    },
+    {
+      "command": "lake env lean audit/blockers/short_complex_biprod_transport_constructor_w138.lean",
+      "status": "passed",
+      "evidence": "Focused parent check passed for the w138 short-complex biproduct transport constructor frontier audit."
+    },
+    {
+      "command": "lake env lean audit/blockers/dbounded_finite_limits_colimits_transfer_w139.lean",
+      "status": "passed",
+      "evidence": "Focused parent check passed for the w139 Dbounded finite-limit transfer frontier audit."
     }
   ],
   "implemented_declarations_checked": [
