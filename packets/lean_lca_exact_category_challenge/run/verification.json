@@ -1,9 +1,14 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v261-shortcomplex-exactness-homology-zero",
-  "generated_utc": "2026-05-20T12:31:00Z",
-  "source_tree_hash": "4014d22382635793df7ccbd44d678813724064409e03d4d5fcac1924ef2b6387",
-  "summary": "v261時点で、支援w246を親側で再実装し、ShortComplex.Exactだけでは MetrizableLCA.strictShortExact のtarget surjectivityを導けないことをLeanで確認した。0 -> 0 -> ZMod 2 はShortComplex.Exactだが最終零写像は全射でない。strict exactness輸送には、categorical exactnessに加えて要素レベルkernel/surjectivity APIとtarget topologyが必要である。product success は非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
+  "generated_utc": "2026-05-20T12:36:11Z",
+  "source_tree_hash": "702fe720221c4ae3f1528c71d973bedfcdc69faa24829028a24753510192abc0",
+  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。",
   "commands": [
+    {
+      "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
+      "status": "passed",
+      "evidence": "StrictExact module rebuilt after adding forgetToAddCommGrpCat_exact_of_strict."
+    },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
       "status": "passed",
@@ -700,7 +705,8 @@
     "ShortComplexExactnessHomologyZeroW246.strictShortExact_of_quasiIso_of_exactElementAPI_of_topology",
     "ShortComplexExactnessHomologyZeroW246.exactButNotSurjectiveTarget_exact",
     "ShortComplexExactnessHomologyZeroW246.exactButNotSurjectiveTarget_g_not_surjective",
-    "ShortComplexExactnessHomologyZeroW246.no_shortComplexExact_to_targetSurjectivity"
+    "ShortComplexExactnessHomologyZeroW246.no_shortComplexExact_to_targetSurjectivity",
+    "MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -721,6 +727,6 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "v261 consumed support w246 as a parent-side strict-exactness transport obstruction; no product-success claim.",
+  "support_result_classification": "v262 parent-side implementation: strict LCA exactness now implies exactness after forgetting topology; no product-success claim.",
   "product_success": false
 }

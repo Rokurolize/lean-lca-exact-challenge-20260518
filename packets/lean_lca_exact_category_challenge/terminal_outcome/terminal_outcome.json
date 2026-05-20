@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v261時点で、支援w246を親側で再実装し、ShortComplex.Exactだけでは MetrizableLCA.strictShortExact のtarget surjectivityを導けないことをLeanで確認した。0 -> 0 -> ZMod 2 はShortComplex.Exactだが最終零写像は全射でない。strict exactness輸送には、categorical exactnessに加えて要素レベルkernel/surjectivity APIとtarget topologyが必要である。product success は非完了である。",
+  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -54,7 +54,8 @@
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/inverse_image_right_calculus_transfer_w234.lean",
     "lake env lean audit/blockers/inverse_image_right_calculus_transfer_w234.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
-    "lake env lean audit/blockers/shortcomplex_exactness_homology_zero_w246.lean"
+    "lake env lean audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
+    "lake build LeanLCAExactChallenge.LCA.StrictExact"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1025,8 +1026,8 @@
     "OppositeLeftCalculusTransferW230.PullbackRightCalculusTransfer",
     "OppositeLeftCalculusTransferW230.oppositeWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_rightTransfer"
   ],
-  "generated_utc": "2026-05-20T12:31:00Z",
-  "support_result_classification": "v261 consumed support w246 as a parent-side strict-exactness transport obstruction; product success remains false.",
+  "generated_utc": "2026-05-20T12:36:11Z",
+  "support_result_classification": "v262 parent-side strict-to-underlying-Ab exactness bridge; product success remains false.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1421,7 +1422,8 @@
     "ShortComplexExactnessHomologyZeroW246.strictShortExact_of_quasiIso_of_exactElementAPI_of_topology",
     "ShortComplexExactnessHomologyZeroW246.exactButNotSurjectiveTarget_exact",
     "ShortComplexExactnessHomologyZeroW246.exactButNotSurjectiveTarget_g_not_surjective",
-    "ShortComplexExactnessHomologyZeroW246.no_shortComplexExact_to_targetSurjectivity"
+    "ShortComplexExactnessHomologyZeroW246.no_shortComplexExact_to_targetSurjectivity",
+    "MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"

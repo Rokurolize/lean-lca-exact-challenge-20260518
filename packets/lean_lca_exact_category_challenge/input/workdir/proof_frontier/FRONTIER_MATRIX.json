@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T12:31:00Z",
+  "generated_utc": "2026-05-20T12:36:11Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v261 consumes support w246 by parent-side reimplementation.",
+  "worker_policy": "No workers were launched from the target worktree. v262 is parent-side implementation.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1294,9 +1294,9 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "v261 consumed support w246 as a ShortComplex exactness obstruction; no product-success claim.",
-  "latest_parent_update": "v261-shortcomplex-exactness-homology-zero",
-  "summary": "v261時点で、支援w246を親側で再実装し、ShortComplex.Exactだけでは MetrizableLCA.strictShortExact のtarget surjectivityを導けないことをLeanで確認した。0 -> 0 -> ZMod 2 はShortComplex.Exactだが最終零写像は全射でない。strict exactness輸送には、categorical exactnessに加えて要素レベルkernel/surjectivity APIとtarget topologyが必要である。product success は非完了である。",
+  "support_result_classification": "v262 parent-side strict-to-underlying-Ab exactness bridge; no product-success claim.",
+  "latest_parent_update": "v262-strict-forgetful-ab-exactness",
+  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。",
   "remaining_frontier": [
     "General closedness of the explicit MetrizableLCA pushout relation subgroup beyond strict-short-exact left legs.",
     "Arbitrary HasPushouts MetrizableLCA or HasCokernels MetrizableLCA to close HasFiniteColimits MetrizableLCA.",
@@ -1384,6 +1384,12 @@
       "classification": "manual_ported_counterexample_frontier",
       "artifact": "audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
       "result": "ShortComplex.Exact plus element/topology fields can build strictShortExact, but ShortComplex.Exact alone cannot imply target g surjectivity; product success remains false."
+    },
+    {
+      "id": "parent-v262",
+      "classification": "parent_implementation_bridge",
+      "artifact": "LeanLCAExactChallenge/LCA/StrictExact.lean",
+      "result": "MetrizableLCA.strictShortExact now implies exactness of S.map MetrizableLCA.forgetToAddCommGrpCat; product success remains false."
     }
   ]
 }

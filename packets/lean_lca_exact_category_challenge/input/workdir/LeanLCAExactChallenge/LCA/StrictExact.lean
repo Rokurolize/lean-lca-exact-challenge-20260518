@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.LCA.Basic
+import Mathlib.Algebra.Homology.ShortComplex.Ab
 import Mathlib.Topology.Constructions
 
 /-!
@@ -56,6 +57,18 @@ lemma algebraic_cokernel_of_strict {S : ShortComplex MetrizableLCA.{u}}
     (hS : strictShortExact S) :
     Function.Surjective (S.g : S.X₂ → S.X₃) :=
   hS.surjective
+
+/--
+After forgetting the topology, a strict short exact sequence is exact as a short
+complex of abelian groups.
+-/
+lemma forgetToAddCommGrpCat_exact_of_strict {S : ShortComplex MetrizableLCA.{u}}
+    (hS : strictShortExact S) :
+    (S.map forgetToAddCommGrpCat).Exact := by
+  rw [ShortComplex.ab_exact_iff]
+  intro x₂ hx₂
+  rcases hS.algebraic_exact x₂ hx₂ with ⟨x₁, hx₁⟩
+  exact ⟨x₁, hx₁⟩
 
 /-- Coordinatewise product of two short complexes. -/
 def strictShortExactBiprodComplex (S T : ShortComplex MetrizableLCA.{u}) :

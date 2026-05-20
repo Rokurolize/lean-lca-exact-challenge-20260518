@@ -63,6 +63,7 @@ example : HasFiniteColimits MetrizableLCA := by infer_instance
 #check MetrizableLCA.pushoutCokernelMap_kernel_iff_range_inr
 #check MetrizableLCA.shortExactExtensionPushout_kernel_iff_range_i
 #check MetrizableLCA.strictShortExact_pushout
+#check MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict
 
 noncomputable example (A B : MetrizableLCA) :
     MetrizableLCA.biprodObj A B ≅ A ⊞ B :=
