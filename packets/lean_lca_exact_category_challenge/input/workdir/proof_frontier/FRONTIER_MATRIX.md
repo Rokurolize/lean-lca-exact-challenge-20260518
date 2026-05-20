@@ -177,3 +177,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v263 Update
 
 2026-05-20T12:58:00Z: `MetrizableLCA` now has `HasForget₂ MetrizableLCA AddCommGrpCat`, `(forget₂ MetrizableLCA AddCommGrpCat).PreservesZeroMorphisms`, and `(forget₂ MetrizableLCA AddCommGrpCat).Additive` for the topology-forgetting functor. `MetrizableLCA.strictShortExact_of_exact_of_topology` records the conditional bridge from `ShortComplex.Exact` plus topological closed/open/surjectivity fields to `strictShortExact`, assuming `S.HasHomology` and forgetful homology preservation. This narrows the remaining MetrizableLCA exactness blocker to proving `(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology` or replacing it with an equivalent local cycles/opcycles model. Product success remains nonterminal.
+
+## v264 Update
+
+2026-05-20T13:12:00Z: Support result w249 was promoted into `LeanLCAExactChallenge/LCA/StrictExact.lean`. The new bridge `MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap` converts `cokernelSubgroup f = ⊤` plus openness of `f` into concrete surjectivity, and `MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top` packages that as a strict-exactness constructor. This replaces one target-side direct surjectivity input with a cokernel-zero/top condition, but product success remains blocked by the upstream production of kernel equality, topological fields, and the remaining derived/stable infinity-category obligations.

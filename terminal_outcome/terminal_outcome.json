@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v263では、MetrizableLCAからAddCommGrpCatへの忘却関手についてHasForget₂、PreservesZeroMorphisms、Additiveのインスタンスを追加し、さらにS.HasHomologyと忘却関手のhomology保存を仮定すれば、ShortComplex.Exactと閉埋め込み・開写像・全射の位相的条件からMetrizableLCA.strictShortExactを構成できる定理MetrizableLCA.strictShortExact_of_exact_of_topologyを証明した。これにより局所LCA内のexactness橋はかなり絞られたが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomologyまたは同等のcycles/opcycles局所モデルが未完成なので、product successではない。",
+  "summary": "v264では支援結果w249を本体へ昇格し、cokernelSubgroup f = ⊤とIsOpenMap fからFunction.Surjective fを導く定理と、それを使って核等式・閉埋め込み・開写像性・cokernel-subgroup-topからstrictShortExactを構成する定理を追加した。これにより右端全射の入力はcokernel消滅型へ弱められたが、上流で必要な核等式と位相的条件を生成する証明、および導来圏/stable infinity-category側の義務は未完了であり、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -731,9 +731,15 @@
     "LeanLCAExactChallenge.MetrizableLCA.forgetToAddCommGrpCat",
     "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
     "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
-    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology"
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology",
+    "LeanLCAExactChallenge.MetrizableLCA.rangeSubgroup_coe",
+    "LeanLCAExactChallenge.MetrizableLCA.denseRange_of_cokernelSubgroup_eq_top",
+    "LeanLCAExactChallenge.MetrizableLCA.surjective_of_denseRange_of_isOpenMap",
+    "LeanLCAExactChallenge.MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top"
   ],
   "known_gaps": [
+    "MetrizableLCAではcokernelSubgroup f = ⊤と開写像性から全射を得る橋が入ったが、上流側で核等式、閉埋め込み、開写像性、cokernel-subgroup-topを同時に生成する証明はまだ未完成である。",
     "MetrizableLCAの忘却関手にはHasForget₂、Additive、PreservesZeroMorphismsと条件付きexact-to-strict橋が入ったが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology、または同等の局所cycles/opcycles構成がまだ未完成である。",
     "Dbounded MetrizableLCA へ有限余極限を運ぶ局所化移送は未完である。source側の HasFiniteColimits MetrizableLCA はv252で実装済みだが、反対側right calculusとWalkingParallelPair functor-category localizationが残る。",
     "Dbounded のordinary triangulated structureと、stable infinity-categoryとして必要な有限極限・有限余極限・suspension/loop互換・pushout/pullback互換のcertificateは未構成である。",
@@ -748,6 +754,7 @@
   "worker_frontier_summary": "v251で支援w235を消費し、MetrizableLCA有限余極限を有限余積プラス任意pushout/cokernelへ縮約した。product success は未主張である。",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
+    "MetrizableLCAではcokernelSubgroup f = ⊤と開写像性から全射を得る橋が入ったが、上流側で核等式、閉埋め込み、開写像性、cokernel-subgroup-topを同時に生成する証明はまだ未完成である。",
     "MetrizableLCAの忘却関手にはHasForget₂、Additive、PreservesZeroMorphismsと条件付きexact-to-strict橋が入ったが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology、または同等の局所cycles/opcycles構成がまだ未完成である。",
     "反対圏有限極限ルートに必要な right calculus は、bounded homotopy localized composite の左随伴とcounit所属へ縮約されたが、その左随伴本体とcounit所属証明は未供給である。",
     "WalkingParallelPair固定対象liftはcoherent strict-preimage blueprintで構成できるが、そのblueprintの存在、fac、uniqは未供給である。",
@@ -1036,10 +1043,15 @@
     "LeanLCAExactChallenge.MetrizableLCA.forgetToAddCommGrpCat",
     "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
     "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
-    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology"
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology",
+    "LeanLCAExactChallenge.MetrizableLCA.rangeSubgroup_coe",
+    "LeanLCAExactChallenge.MetrizableLCA.denseRange_of_cokernelSubgroup_eq_top",
+    "LeanLCAExactChallenge.MetrizableLCA.surjective_of_denseRange_of_isOpenMap",
+    "LeanLCAExactChallenge.MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top"
   ],
-  "generated_utc": "2026-05-20T12:58:00Z",
-  "support_result_classification": "v263 parent-side implementation; no product-success claim.",
+  "generated_utc": "2026-05-20T13:12:00Z",
+  "support_result_classification": "v264 consumed support w249; product remains failed_nonterminal.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1439,7 +1451,12 @@
     "LeanLCAExactChallenge.MetrizableLCA.forgetToAddCommGrpCat",
     "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
     "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
-    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology"
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology",
+    "LeanLCAExactChallenge.MetrizableLCA.rangeSubgroup_coe",
+    "LeanLCAExactChallenge.MetrizableLCA.denseRange_of_cokernelSubgroup_eq_top",
+    "LeanLCAExactChallenge.MetrizableLCA.surjective_of_denseRange_of_isOpenMap",
+    "LeanLCAExactChallenge.MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"

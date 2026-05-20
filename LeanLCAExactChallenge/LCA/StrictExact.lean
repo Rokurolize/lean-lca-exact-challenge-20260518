@@ -1,6 +1,7 @@
-import LeanLCAExactChallenge.LCA.Basic
+import LeanLCAExactChallenge.LCA.Cokernel
 import Mathlib.Algebra.Homology.ShortComplex.Ab
 import Mathlib.Algebra.Homology.ShortComplex.ConcreteCategory
+import Mathlib.Topology.Algebra.OpenSubgroup
 import Mathlib.Topology.Constructions
 
 /-!
@@ -86,6 +87,62 @@ lemma strictShortExact_of_exact_of_topology {S : ShortComplex MetrizableLCA.{u}}
     letI := hpres
     intro x₂ hx₂
     exact (ShortComplex.exact_iff_of_hasForget S).mp hS x₂ hx₂
+
+lemma rangeSubgroup_coe {A B : MetrizableLCA.{u}} (f : A ⟶ B) :
+    ((AddSubgroup.map f.hom.toAddMonoidHom (⊤ : AddSubgroup A) : AddSubgroup B) :
+        Set B) = Set.range (f : A → B) := by
+  ext b
+  constructor
+  · rintro ⟨a, _ha, rfl⟩
+    exact ⟨a, rfl⟩
+  · rintro ⟨a, rfl⟩
+    exact ⟨a, trivial, rfl⟩
+
+lemma denseRange_of_cokernelSubgroup_eq_top {A B : MetrizableLCA.{u}} (f : A ⟶ B)
+    (hcok : cokernelSubgroup f = ⊤) :
+    DenseRange (f : A → B) := by
+  rw [denseRange_iff_closure_range]
+  have hset := congrArg (fun S : AddSubgroup B => (S : Set B)) hcok
+  simpa [cokernelSubgroup, AddSubgroup.topologicalClosure_coe, rangeSubgroup_coe f] using hset
+
+lemma surjective_of_denseRange_of_isOpenMap {A B : MetrizableLCA.{u}} (f : A ⟶ B)
+    (hdense : DenseRange (f : A → B)) (hopen : IsOpenMap (f : A → B)) :
+    Function.Surjective (f : A → B) := by
+  let R : AddSubgroup B := AddSubgroup.map f.hom.toAddMonoidHom (⊤ : AddSubgroup A)
+  have hRopen : IsOpen (R : Set B) := by
+    have h_image : IsOpen ((f : A → B) '' Set.univ) := hopen Set.univ isOpen_univ
+    simpa [R, Set.image_univ, rangeSubgroup_coe f] using h_image
+  have hRclosed : IsClosed (R : Set B) := AddSubgroup.isClosed_of_isOpen R hRopen
+  have hRclosure : closure (R : Set B) = Set.univ := by
+    simpa [R, rangeSubgroup_coe f] using hdense.closure_range
+  have hRuniv : (R : Set B) = Set.univ := by
+    rw [← hRclosed.closure_eq, hRclosure]
+  intro b
+  have hb : b ∈ (R : Set B) := by
+    rw [hRuniv]
+    exact Set.mem_univ b
+  rcases hb with ⟨a, _ha, ha⟩
+  exact ⟨a, ha⟩
+
+lemma surjective_of_cokernelSubgroup_eq_top_of_isOpenMap {A B : MetrizableLCA.{u}}
+    (f : A ⟶ B) (hcok : cokernelSubgroup f = ⊤) (hopen : IsOpenMap (f : A → B)) :
+    Function.Surjective (f : A → B) :=
+  surjective_of_denseRange_of_isOpenMap f
+    (denseRange_of_cokernelSubgroup_eq_top f hcok) hopen
+
+lemma strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top
+    {T : ShortComplex MetrizableLCA.{u}}
+    (hker : ∀ x₂ : T.X₂, T.g x₂ = 0 ↔ ∃ x₁ : T.X₁, T.f x₁ = x₂)
+    (hclosed : IsClosedEmbedding (T.f : T.X₁ → T.X₂))
+    (hopen : IsOpenMap (T.g : T.X₂ → T.X₃))
+    (hcok : cokernelSubgroup T.g = ⊤) :
+    strictShortExact T where
+  closed_inclusion := hclosed
+  open_map := hopen
+  surjective := surjective_of_cokernelSubgroup_eq_top_of_isOpenMap T.g hcok hopen
+  algebraic_exact := by
+    intro x₂ hx₂
+    exact (hker x₂).mp hx₂
 
 /-- Coordinatewise product of two short complexes. -/
 def strictShortExactBiprodComplex (S T : ShortComplex MetrizableLCA.{u}) :

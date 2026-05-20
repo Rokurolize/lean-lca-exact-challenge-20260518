@@ -1,13 +1,13 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T12:58:00Z",
-  "source_tree_hash": "ba066d4ab32059fe8fea0968dbf406c5548559639dcaa902cceb94ee7fc9e8c6",
-  "summary": "v263 adds concrete-category forgetful bridge instances for MetrizableLCA and a conditional strictShortExact constructor from ShortComplex.Exact plus topology under forgetful homology preservation; product remains incomplete.",
+  "generated_utc": "2026-05-20T13:12:00Z",
+  "source_tree_hash": "306662c41f2e14ff7e16d09e94f00ccce9d5c3e122813050e8bcef3c0f1fca01",
+  "summary": "v264 promotes w249: open maps with cokernelSubgroup top are surjective, and strictShortExact can consume kernel equality, closed/open topology, and cokernel-subgroup-top.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
       "status": "passed",
-      "evidence": "StrictExact module rebuilt after adding forgetful HasForget₂/Additive instances and strictShortExact_of_exact_of_topology."
+      "evidence": "StrictExact rebuilt after promoting w249 open-cokernel surjectivity bridge."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
@@ -212,7 +212,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declarations check includes forgetful HasForget₂/Additive and strictShortExact_of_exact_of_topology."
+      "evidence": "Product declaration audit checks the v264 open-cokernel surjectivity bridge."
     },
     {
       "command": "lake build",
@@ -222,7 +222,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after v264."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
@@ -232,7 +232,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v263 edits."
+      "evidence": "Whitespace diff check passed after v264 edits."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -715,10 +715,16 @@
     "LeanLCAExactChallenge.MetrizableLCA.forgetToAddCommGrpCat",
     "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
     "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
-    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology"
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology",
+    "LeanLCAExactChallenge.MetrizableLCA.rangeSubgroup_coe",
+    "LeanLCAExactChallenge.MetrizableLCA.denseRange_of_cokernelSubgroup_eq_top",
+    "LeanLCAExactChallenge.MetrizableLCA.surjective_of_denseRange_of_isOpenMap",
+    "LeanLCAExactChallenge.MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top"
   ],
   "product_complete": false,
   "known_gaps": [
+    "MetrizableLCAではcokernelSubgroup f = ⊤と開写像性から全射を得る橋が入ったが、上流側で核等式、閉埋め込み、開写像性、cokernel-subgroup-topを同時に生成する証明はまだ未完成である。",
     "MetrizableLCAの忘却関手にはHasForget₂、Additive、PreservesZeroMorphismsと条件付きexact-to-strict橋が入ったが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology、または同等の局所cycles/opcycles構成がまだ未完成である。",
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
@@ -737,6 +743,6 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "v263 parent-side implementation; no new support result consumed.",
+  "support_result_classification": "v264 consumed support w249; no product-success claim.",
   "product_success": false
 }
