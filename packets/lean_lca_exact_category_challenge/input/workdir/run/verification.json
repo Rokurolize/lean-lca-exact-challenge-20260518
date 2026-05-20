@@ -1,9 +1,19 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v259-shortcomplex-quasiiso-homology-map-api",
-  "generated_utc": "2026-05-20T12:50:00Z",
-  "source_tree_hash": "a335e0695410ee186d1cc5b604ba158da180042c52338880be203580f20c739b",
-  "summary": "v259時点で、支援w243を親側で再実装し、ShortComplex.QuasiIso.exact_iff によって categorical ShortComplex.Exact はtargetへ輸送できることをLeanで確認した。一方、W242のtarget algebraic payloadへ戻すには、MetrizableLCA上のShortComplex.Exactまたはhomologyπ/ιデータから要素レベルのkernel equalityとT.gのsurjectivityを抽出する具体橋が必要である。product success は非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v260-inverse-image-right-calculus-transfer",
+  "generated_utc": "2026-05-20T12:29:28Z",
+  "source_tree_hash": "57dd274fca8e48b4c72c347bccac23bcb192eefe16ed83639c9dfeb92623eb12",
+  "summary": "v260時点で、支援w234を親側で再実装し、boundedHomotopyExactWeakEquivalence C の右calculusは、ambient Verdier右calculusから任意inverse-imageへ移す一般transfer、または localized composite のleft adjointとcounit membershipを使うadjunction経路に縮約された。一般transferは未発見であり、product success は非完了である。",
   "commands": [
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/inverse_image_right_calculus_transfer_w234.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W234 inverse-image right-calculus audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/inverse_image_right_calculus_transfer_w234.lean",
+      "status": "passed",
+      "evidence": "Focused W234 inverse-image right-calculus transfer audit passed in the parent target worktree."
+    },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_quasiiso_homology_map_api_w243.lean",
       "status": "passed",
@@ -668,7 +678,13 @@
     "ShortComplexQuasiIsoHomologyMapAPIW243.target_shortComplexExact_of_quasiIso",
     "ShortComplexQuasiIsoHomologyMapAPIW243.targetAlgebraicPayload_of_quasiIso_of_exactBridges",
     "ShortComplexQuasiIsoHomologyMapAPIW243.quasiIsoTargetSurjectivityExtraction_fromExactBridge",
-    "ShortComplexQuasiIsoHomologyMapAPIW243.missingConcreteHomologyDeclarations_count"
+    "ShortComplexQuasiIsoHomologyMapAPIW243.missingConcreteHomologyDeclarations_count",
+    "InverseImageRightCalculusTransferW234.InverseImageRightCalculusTransfer",
+    "InverseImageRightCalculusTransferW234.inverseImage_hasRightCalculusOfFractions_of_localizedAdjunction",
+    "InverseImageRightCalculusTransferW234.boundedHomotopyExactWeakEquivalence_eq_inverseImage",
+    "InverseImageRightCalculusTransferW234.BoundedHomotopyInverseImageRightCalculusInput",
+    "InverseImageRightCalculusTransferW234.boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedAdjunction",
+    "InverseImageRightCalculusTransferW234.inverseImageRightCalculusSearchFindings_count"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -689,6 +705,6 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "v259 consumed support w243 as a parent-side frontier reduction; categorical exactness transport is recorded, but concrete MetrizableLCA element-level extraction remains missing. No product-success claim.",
+  "support_result_classification": "v260 consumed support w234 as a parent-side right-calculus frontier reduction; no product-success claim.",
   "product_success": false
 }
