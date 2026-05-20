@@ -3529,5 +3529,29 @@
       "W406 selected ordinary cofork IsColimitとtarget relation lift certificateを証明する。"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w410": {
+    "timestamp_utc": "2026-05-21T00:34:00Z",
+    "status": "verified_focused",
+    "summary": "W410 transports IsColimit of selectedForgottenTargetMappedCocone into the selected ordinary cofork and selected target cokernel cofork.",
+    "touched_files": [
+      "audit/blockers/addcommgrp_selected_cofork_from_mapped_cocone_v370_support_w410.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "selectedForgottenTargetMappedCoconeIsoPrecomposeCofork",
+      "selectedForgottenTargetCoforkColimitOfMappedCocone",
+      "selectedForgottenTargetCokernelColimitOfMappedCocone"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/addcommgrp_selected_cofork_from_mapped_cocone_v370_support_w410.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_cofork_from_mapped_cocone_v370_support_w410.lean",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "元のWPP-op colimitの保存とtransportからIsColimit (selectedForgottenTargetMappedCocone S cs)を証明する。",
+      "W409/W407のclosed-range証明を具体WPP-op morphismについて行う。",
+      "W408 representative-image closedness certificateとtarget relation lift certificateを証明する。"
+    ],
+    "product_success_claimed": false
   }
 }
