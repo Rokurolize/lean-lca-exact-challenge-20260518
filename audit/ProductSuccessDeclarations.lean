@@ -1893,6 +1893,8 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
 #check BoundedFiniteProducts.includedProductMap_naturality
 #check BoundedFiniteProducts.exactAcyclic_mappingCone_cochain_piMap
 #check BoundedFiniteProducts.finiteProductMappingConeInput_metrizableLCA
+#check BoundedFiniteProducts.isStableUnderFiniteProducts_metrizableLCA
+#check BoundedFiniteProducts.dboundedHasFiniteProducts_metrizableLCA
 
 noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasZeroObject C] [HasBinaryBiproducts C]

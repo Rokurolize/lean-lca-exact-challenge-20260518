@@ -139,3 +139,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v234 Update
 
 2026-05-20T10:18:40Z: MetrizableLCA now exposes `MetrizableLCA.instHasPullbacks` from the explicit pullback cone and `MetrizableLCA.instHasFiniteLimits` from terminal objects plus pullbacks. `audit/ProductSuccessDeclarations.lean` checks both instances, and `audit/blockers/bounded_exact_weak_equivalence_finite_products_boundary.lean` no longer requires an explicit `HasFiniteLimits MetrizableLCA` premise for its conditional Dbounded finite-products API. Product success remains nonterminal because Dbounded localization transfer, finite colimits, triangulated structure, and stable infinity-category obligations remain open.
+
+## v235 Update
+
+2026-05-20T10:23:57Z: `LeanLCAExactChallenge.Derived.BoundedFiniteProducts` now exposes `BoundedFiniteProducts.isStableUnderFiniteProducts_metrizableLCA` and `BoundedFiniteProducts.dboundedHasFiniteProducts_metrizableLCA`. Thus the finite-product source category and weak-equivalence stability inputs are product-module declarations; the conditional `Dbounded MetrizableLCA` finite-products constructor now leaves only the direct bounded exact weak-equivalence left-calculus premise. Product success remains nonterminal because left calculus, finite-limit localization transfer, finite colimits, triangulated structure, and stable infinity-category obligations remain open.

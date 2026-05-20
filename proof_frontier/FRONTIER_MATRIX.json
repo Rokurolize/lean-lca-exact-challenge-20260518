@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T10:18:40Z",
+  "generated_utc": "2026-05-20T10:23:57Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -573,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean && lake env lean audit/blockers/nontrivial_distinguished_eligibility_predicate_w132.lean && lake env lean audit/blockers/dbounded_four_projection_provider_route_w133.lean && lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean && lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean && lake env lean audit/blockers/dbounded_finite_products_boundary.lean && lake build LeanLCAExactChallenge.Derived.Bounded && lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean && lake env lean audit/blockers/mapping_cone_finite_product_comparison_w142.lean && lake env lean audit/blockers/dbounded_pullback_localization_transfer_w143.lean && lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean && lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
-      "merge_blocker": "v234 closes the source-category HasFiniteLimits MetrizableLCA prerequisite by exposing MetrizableLCA pullbacks and finite limits. Dbounded finite-products/finite-limits still require left calculus of fractions plus pullback/equalizer localization transfer; finite colimits, triangulated structure, and stable infinity-category structure remain unproved.",
+      "merge_blocker": "v235 promotes finite-product stability and conditional Dbounded finite products for MetrizableLCA into the product module. The remaining finite-product premise is left calculus of fractions; finite limits still need pullback/equalizer localization transfer, followed by finite colimits, triangulated structure, and stable infinity-category structure.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -1067,7 +1067,9 @@
         "MappingConeOptionProductStepW146.emptyMappingConeProductComparisonInput_direct",
         "MetrizableLCA.instHasPullbacks",
         "MetrizableLCA.instHasFiniteLimits",
-        "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA"
+        "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA",
+        "BoundedFiniteProducts.isStableUnderFiniteProducts_metrizableLCA",
+        "BoundedFiniteProducts.dboundedHasFiniteProducts_metrizableLCA"
       ],
       "technical_context": [
         "split short complexes",
@@ -1281,10 +1283,11 @@
     }
   ],
   "support_result_classification": "support worker w192-tail-finite-mapping-cone-comparison is active in the consultant-owned tree. Parent did not launch duplicate workers and will inspect result.json when it appears.",
-  "latest_parent_update": "v234-metrizable-lca-finite-limits",
-  "summary": "v234時点で、既存の明示的pullback coneから MetrizableLCA.instHasPullbacks を公開し、terminal object と pullback による標準構成で MetrizableLCA.instHasFiniteLimits を追加した。ProductSuccessDeclarations は HasPullbacks MetrizableLCA と HasFiniteLimits MetrizableLCA を確認し、bounded exact weak equivalence finite-products境界の Dbounded finite-products API から HasFiniteLimits MetrizableLCA の外部仮定を外した。ただし Dbounded の無条件有限product/有限limitには left calculus of fractions と pullback/equalizer localization transfer が残り、有限colimit、三角構造、stable infinity-category構造も未完了である。",
+  "latest_parent_update": "v235-dbounded-finite-products-product-api",
+  "summary": "v235時点で、LeanLCAExactChallenge.Derived.BoundedFiniteProducts に boundedExactWeakEquivalence MetrizableLCA の有限product安定性 isStableUnderFiniteProducts_metrizableLCA と、left calculus of fractions だけを残す条件付き Dbounded finite-products constructor dboundedHasFiniteProducts_metrizableLCA を追加した。v234の HasFiniteLimits MetrizableLCA と v233のmapping-cone有限product転送により、D̂bounded finite-products側のsource finite limitsとweak-equivalence finite-product stabilityはproduct module内で供給される。ただし left calculus of fractions、pullback/equalizer localization transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
   "remaining_frontier": [
-    "Dbounded finite products/finite limits: left calculus of fractions plus pullback/equalizer weak-equivalence and localization transfer.",
+    "Dbounded finite products: remaining left calculus of fractions for boundedExactWeakEquivalence MetrizableLCA.",
+    "Dbounded finite limits: pullback/equalizer weak-equivalence and localization transfer.",
     "Dbounded finite colimits and dual transfer route.",
     "Triangulated structure and stable infinity-category structure."
   ]

@@ -2,16 +2,13 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v234時点で、既存の明示的pullback coneから MetrizableLCA.instHasPullbacks を公開し、terminal object と pullback による標準構成で MetrizableLCA.instHasFiniteLimits を追加した。ProductSuccessDeclarations は HasPullbacks MetrizableLCA と HasFiniteLimits MetrizableLCA を確認し、bounded exact weak equivalence finite-products境界の Dbounded finite-products API から HasFiniteLimits MetrizableLCA の外部仮定を外した。ただし Dbounded の無条件有限product/有限limitには left calculus of fractions と pullback/equalizer localization transfer が残り、有限colimit、三角構造、stable infinity-category構造も未完了である。",
+  "summary": "v235時点で、LeanLCAExactChallenge.Derived.BoundedFiniteProducts に boundedExactWeakEquivalence MetrizableLCA の有限product安定性 isStableUnderFiniteProducts_metrizableLCA と、left calculus of fractions だけを残す条件付き Dbounded finite-products constructor dboundedHasFiniteProducts_metrizableLCA を追加した。v234の HasFiniteLimits MetrizableLCA と v233のmapping-cone有限product転送により、D̂bounded finite-products側のsource finite limitsとweak-equivalence finite-product stabilityはproduct module内で供給される。ただし left calculus of fractions、pullback/equalizer localization transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/LCA/Pullback.lean",
-    "lake build LeanLCAExactChallenge.LCA.Pullback",
     "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
-    "lake env lean audit/blockers/bounded_exact_weak_equivalence_finite_products_boundary.lean",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "lake env lean audit/RequiredDeclarations.lean",
-    "lake env lean audit/ProductSuccessDeclarations.lean",
     "git diff --check",
     "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
     "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
@@ -650,7 +647,8 @@
     "MappingConeOptionProductStepW146.optionMappingConeComparisonStepMissingInputs_count"
   ],
   "known_gaps": [
-    "Dboundedの無条件有限product/有限limitには、left calculus of fractions と pullback/equalizer localization transfer の接続が残る。HasFiniteLimits MetrizableLCA はv234で閉じた。",
+    "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
+    "Dboundedの無条件有限limitには、left calculus of fractions と pullback/equalizer localization transfer の接続が残る。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
@@ -843,7 +841,7 @@
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.isStableUnderFiniteProducts_metrizableLCA",
     "BoundedExactWeakEquivalenceFiniteProductsBoundary.dboundedHasFiniteProducts_metrizableLCA"
   ],
-  "generated_utc": "2026-05-20T10:18:40Z",
+  "generated_utc": "2026-05-20T10:23:57Z",
   "support_result_classification": "w184 resultはv226時点で未到着。w182/w183はv223-v224で既に親側実装済みとして分類済み。",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",

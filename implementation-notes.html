@@ -222,6 +222,12 @@
 <p><time>2026-05-20T10:18:40Z</time>: The explicit pullback construction now exports <code>MetrizableLCA.instHasPullbacks</code>, and finite limits are synthesized as <code>MetrizableLCA.instHasFiniteLimits</code> from terminal objects plus pullbacks. <code>ProductSuccessDeclarations</code> checks both instances, and the bounded finite-products boundary no longer carries a separate <code>HasFiniteLimits MetrizableLCA</code> premise for its conditional <code>Dbounded</code> finite-products declaration. Remaining product work is the localization-transfer layer and the finite-colimit, triangulated, and stable infinity-category obligations.</p>
 </section>
 
+
+<section id="v235-dbounded-finite-products-product-api">
+<h2>v235 Dbounded finite products product API</h2>
+<p><time>2026-05-20T10:23:57Z</time>: The finite-product stability theorem <code>BoundedFiniteProducts.isStableUnderFiniteProducts_metrizableLCA</code> and conditional <code>BoundedFiniteProducts.dboundedHasFiniteProducts_metrizableLCA</code> were promoted into the product module. This records that v233-v234 have supplied the source finite limits and weak-equivalence finite-product stability needed above the localization API. The constructor still assumes <code>(boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions</code>, so it is progress toward but not a proof of unconditional finite products or product success.</p>
+</section>
+
 </body>
 </html>
 

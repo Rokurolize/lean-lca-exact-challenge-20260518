@@ -119,6 +119,27 @@ theorem finiteProductMappingConeInput_metrizableLCA :
       (includedProductIso X₁) (includedProductIso X₂) hcomm).2 hCochain
   simpa [boundedExactWeakEquivalence] using hBounded
 
+/-- Bounded exact weak equivalences over default-universe `MetrizableLCA` are stable under finite products. -/
+theorem isStableUnderFiniteProducts_metrizableLCA :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteProducts where
+  isStableUnderProductsOfShape J _ := by
+    exact MorphismProperty.IsStableUnderProductsOfShape.mk
+      (boundedExactWeakEquivalence MetrizableLCA.{0}) J
+      (finiteProductMappingConeInput_metrizableLCA J)
+
+/--
+Finite products in `Dbounded MetrizableLCA` after the finite mapping-cone transfer.
+
+The remaining premise is the left calculus of fractions for the direct bounded exact weak
+equivalences; source finite limits and finite-product stability are supplied by the project.
+-/
+noncomputable abbrev dboundedHasFiniteProducts_metrizableLCA
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    HasFiniteProducts (Dbounded MetrizableLCA.{0}) := by
+  haveI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteProducts :=
+    isStableUnderFiniteProducts_metrizableLCA
+  exact Dbounded.hasFiniteProductsOfStableFiniteProducts (C := MetrizableLCA.{0})
+
 section Checks
 
 #check includedProductIso
@@ -126,6 +147,8 @@ section Checks
 #check includedProductMap_naturality
 #check exactAcyclic_mappingCone_cochain_piMap
 #check finiteProductMappingConeInput_metrizableLCA
+#check isStableUnderFiniteProducts_metrizableLCA
+#check dboundedHasFiniteProducts_metrizableLCA
 
 end Checks
 
