@@ -769,3 +769,15 @@
 <p><time>2026-05-20T18:10:00Z</time>: The parent verified <code>audit/blockers/cochain_delta_colimit_leg_w336.lean</code>. It packages <code>HomComplex.δ_ofHom_comp</code> in the exact W308 form needed to move <code>δ</code> across precomposition by a colimit leg.</p>
 <p>This lets W335 legwise global <code>descEq</code> obligations be rewritten to W334 objectwise <code>descEq</code>. The remaining input is the right-mediator leg identification. Product success remains false.</p>
 </section>
+
+<section id="v338-w337-right-side-identification">
+<h2>v338 W337 right side identification</h2>
+<p><time>2026-05-20T18:14:00Z</time>: The parent verified <code>audit/blockers/colimit_right_side_identification_w337.lean</code>. It proves that, given the expected leg equations for <code>φ</code> and the ambient right mediator <code>β</code>, the composite <code>φ ≫ β</code> is the colimit descent of the objectwise right-side cocone <code>f.app j ≫ right_j</code>.</p>
+<p>This closes the abstract right-side identification needed after W334-W336. The remaining W308 work is to instantiate <code>right_j</code> with <code>mappingCone.inr (f.app j) ≫ leg_j</code> and connect the assembled descEq/fac/uniq package to the existing W308 ambient desc assembly. Product success remains false.</p>
+</section>
+
+<section id="v339-w338-global-desc-eq">
+<h2>v339 W338 global descEq</h2>
+<p><time>2026-05-20T18:24:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean</code>. The theorem <code>global_descEq_of_mappingConeLegs</code> packages the W333-W337 reductions into one checked global <code>mappingCone.desc</code> differential equation for the descended left cochain.</p>
+<p>The remaining W308 work is now an instantiation and assembly problem: apply this theorem to the included bounded <code>c₁/c₂</code> cocones, then feed the result into <code>AmbientFixedMappingConeCoconeDescAssemblyData</code> with the existing fac/uniq splits. Product success remains false.</p>
+</section>

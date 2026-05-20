@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T18:09:00Z",
+  "generated_utc": "2026-05-20T18:20:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -1365,8 +1365,8 @@
     }
   ],
   "support_result_classification": "w272 was manually ported as a focused nonterminal boundary refining W269 fixed-target fac/uniq obligations. v296 parent-added counterexample; not support product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
-  "latest_parent_update": "v336 added delta_of_colimit_leg_comp, packaging δ_ofHom_comp for W308 colimit-leg descEq rewriting.",
-  "summary": "v336でglobal descEq左辺の脚後rewriteを証明した。残りは右辺objectwise right termとambient right mediatorの同一視。Product success remains nonterminal.",
+  "latest_parent_update": "v338 added global_descEq_of_mappingConeLegs, composing W333-W337 into a global descEq wrapper under natural test legs and expected φ/β leg equations.",
+  "summary": "v338でW333-W337をglobal descEq wrapperへ統合し、descEq抽象境界を閉じた。残りはincluded bounded c₁/c₂へのインスタンス化とW308 desc assembly/fac/uniqへの組み込み。Product success remains nonterminal.",
   "remaining_frontier": [
     "W323でFixedMappingConeCoconeDescAssemblyDataがW308 unique-mediating inputに十分であることを確認したが、そのassembly data、特にbounded right-target lift、left cochain、descEq、fac、uniqはまだ未供給である。",
     "W320でAddCommGrpCatのWalkingParallelPair/WPP-op exact colimit instanceは自動合成されないことをguardしたため、W319はAB5やconnectednessだけでは閉じられない。有限coequalizer/WPP colimit専用のkernel exactness保存証明が未供給である。",
@@ -1430,7 +1430,8 @@
     "W333でtest mapping-cone legsからleftCochainOfMappingConeLegsを直接構成しinl leg equationも得たが、W308本体へ適用するにはincluded bounded `c₁`のambient colimit/evaluation preservation入力とdescEqがまだ必要である。",
     "W334でobjectwise left cochain候補のdescEqは証明済みになったが、W333で降下したleft cochainのδとW308 ambient right mediatorを結ぶglobal colimit-descent descEqはまだ未供給である。",
     "W335でcochain等式をcolimit脚後の等式へ落とせることを確認したが、W334のobjectwise右辺を降下したものとW308 ambient right mediatorの同一視はまだ未供給である。",
-    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。"
+    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。",
+    "W337で右辺のobjectwise descentとφ≫right mediatorの同一視は抽象的に証明できたが、W333-W337をW308のincluded bounded c₁/c₂ coconesへ統合するglobal descEq wrapperはまだ未供給である。"
   ],
   "support_classification": [
     {
@@ -1673,7 +1674,8 @@
     "W333でtest mapping-cone legsからleftCochainOfMappingConeLegsを直接構成しinl leg equationも得たが、W308本体へ適用するにはincluded bounded `c₁`のambient colimit/evaluation preservation入力とdescEqがまだ必要である。",
     "W334でobjectwise left cochain候補のdescEqは証明済みになったが、W333で降下したleft cochainのδとW308 ambient right mediatorを結ぶglobal colimit-descent descEqはまだ未供給である。",
     "W335でcochain等式をcolimit脚後の等式へ落とせることを確認したが、W334のobjectwise右辺を降下したものとW308 ambient right mediatorの同一視はまだ未供給である。",
-    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。"
+    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。",
+    "W337で右辺のobjectwise descentとφ≫right mediatorの同一視は抽象的に証明できたが、W333-W337をW308のincluded bounded c₁/c₂ coconesへ統合するglobal descEq wrapperはまだ未供給である。"
   ],
   "open_blockers": [
     "W317でexactAcyclic WPP-op colimit closureはleftClosedEmbedding、rightOpenMap、algebraicExactの三つの直接field closureへ縮約されたが、この三つのfield保存定理はまだ未供給である。",
@@ -1717,7 +1719,8 @@
     "W333でtest mapping-cone legsからleftCochainOfMappingConeLegsを直接構成しinl leg equationも得たが、W308本体へ適用するにはincluded bounded `c₁`のambient colimit/evaluation preservation入力とdescEqがまだ必要である。",
     "W334でobjectwise left cochain候補のdescEqは証明済みになったが、W333で降下したleft cochainのδとW308 ambient right mediatorを結ぶglobal colimit-descent descEqはまだ未供給である。",
     "W335でcochain等式をcolimit脚後の等式へ落とせることを確認したが、W334のobjectwise右辺を降下したものとW308 ambient right mediatorの同一視はまだ未供給である。",
-    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。"
+    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。",
+    "W337で右辺のobjectwise descentとφ≫right mediatorの同一視は抽象的に証明できたが、W333-W337をW308のincluded bounded c₁/c₂ coconesへ統合するglobal descEq wrapperはまだ未供給である。"
   ],
   "consumed_support_results": [
     {
@@ -1873,7 +1876,8 @@
     "W333でtest mapping-cone legsからleftCochainOfMappingConeLegsを直接構成しinl leg equationも得たが、W308本体へ適用するにはincluded bounded `c₁`のambient colimit/evaluation preservation入力とdescEqがまだ必要である。",
     "W334でobjectwise left cochain候補のdescEqは証明済みになったが、W333で降下したleft cochainのδとW308 ambient right mediatorを結ぶglobal colimit-descent descEqはまだ未供給である。",
     "W335でcochain等式をcolimit脚後の等式へ落とせることを確認したが、W334のobjectwise右辺を降下したものとW308 ambient right mediatorの同一視はまだ未供給である。",
-    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。"
+    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。",
+    "W337で右辺のobjectwise descentとφ≫right mediatorの同一視は抽象的に証明できたが、W333-W337をW308のincluded bounded c₁/c₂ coconesへ統合するglobal descEq wrapperはまだ未供給である。"
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -2048,21 +2052,50 @@
     "product_success_claimed": false
   },
   "parent_update_v337": {
-    "timestamp_utc": "2026-05-20T18:10:00Z",
+    "summary": "v337でphi_comp_rightMediator_eq_desc_objectwiseを追加し、φとright mediatorのleg equationsから右辺descent同一視を証明した。product_completeはfalseのまま。",
+    "positive_facts": [
+      "rightSideObjectwiseCocone packages objectwise maps f.app j ≫ right_j as an X₁-cocone.",
+      "phi_comp_rightMediator_eq_desc_objectwise proves φ ≫ β equals the colimit desc of this cocone."
+    ],
+    "remaining_inputs": [
+      "package W333-W337 into a single global descEq wrapper",
+      "instantiate with W308 included bounded c₁/c₂ cocones and ambient right mediator",
+      "finish W308 ambient desc assembly or continue source theorem closures",
+      "continue W318/W296/W297 source theorem work"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_v338": {
+    "summary": "v338でglobal_descEq_of_mappingConeLegsを追加し、W333-W337のleft cochain construction, objectwise descEq, δ-precomposition, and right-side colimit comparisonを単一のcochain等式へ統合した。product_completeはfalseのまま。",
+    "accepted_file": "audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
+    "positive_facts": [
+      "cochain_ext_of_colimit_legs_w338 reduces the global equality to colimit legs.",
+      "global_descEq_of_mappingConeLegs proves δ(leftCochainOfMappingConeLegs)=ofHom(φ ≫ β) from mapping-cone leg naturality and expected φ/β leg equations.",
+      "The previous component-level q=p normalization issue was avoided by proving the legged equality at HomComplex.Cochain level."
+    ],
+    "remaining_inputs": [
+      "instantiate included bounded c₁/c₂ cocones and evaluation-colimit preservation inputs",
+      "package global_descEq_of_mappingConeLegs into W308 FixedMappingConeCoconeDescAssemblyData",
+      "finish fixed leg fac and uniqueness fields using W327-W330"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_v339": {
+    "timestamp_utc": "2026-05-20T18:24:00Z",
     "artifacts": [
-      "audit/blockers/cochain_delta_colimit_leg_w336.lean"
+      "audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean"
     ],
     "verified_commands": [
-      "lake env lean audit/blockers/cochain_delta_colimit_leg_w336.lean",
-      "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/cochain_delta_colimit_leg_w336.lean",
+      "lake env lean audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
+      "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
       "git diff --check"
     ],
-    "frontier_effect": "Legwise global descEq obligations can now commute δ through colimit-leg precomposition and reduce to W334 objectwise descEq.",
+    "frontier_effect": "W308 descEq is now a checked standalone theorem from natural mapping-cone test legs, right mediator leg equations, and evaluation-colimit preservation.",
     "product_complete": false,
     "remaining_inputs": [
-      "right-mediator leg identification",
-      "combine W333/W334/W335/W336 into W308 descEq",
-      "finish W308 fac/uniq assembly"
+      "instantiate W338 with included bounded c1/c2 cocones",
+      "feed global_descEq_of_mappingConeLegs into AmbientFixedMappingConeCoconeDescAssemblyData",
+      "finish W308 fac/uniq assembly and exactness/topology gaps"
     ]
   }
 }

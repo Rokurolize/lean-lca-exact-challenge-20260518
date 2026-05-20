@@ -1,5 +1,7 @@
 # Proof Frontier Matrix
 
+Parent update v338: The parent added `audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean`. This packages W333-W337 into a single import-safe global descEq theorem: from mapping-cone test-leg naturality, the descended left cochain satisfies `δ left = ofHom (φ ≫ β)` whenever `φ` and `β` have the expected colimit-leg equations. This closes the abstract global `descEq` reduction for W308, but product success still requires instantiating the theorem with the included bounded `c₁/c₂` cocones and packaging the remaining desc assembly, fac, and uniqueness fields.
+
 Parent update v327: The parent added `audit/blockers/wpp_op_mapping_cone_fac_split_w327.lean`. This proves the local mapping-cone algebra that a fixed `mappingCone.map ≫ mappingCone.desc` leg equation follows from two component equations: the left `mappingCone.inl` cochain compatibility and the right `mappingCone.inr` morphism compatibility. Since W308 already supplies the ambient right-leg compatibility, this removes the bundled full-leg-equation obligation from the mapping-cone desc assembly frontier. Product success remains blocked by construction of the left degree -1 cochain, its compatibility, the desc differential equation, and uniqueness.
 
 Parent update v328: The same W327 file now also proves `mappingCone_hom_ext_of_left_right`, splitting uniqueness of maps out of a mapping cone into left `mappingCone.inl` cochain equality plus right `mappingCone.inr` morphism equality. This narrows W308 uniqueness to component equality obligations, but the source construction of the left cochain and its compatibility remains open.
@@ -19,6 +21,8 @@ Parent update v334: The parent added `audit/blockers/wpp_op_mapping_cone_objectw
 Parent update v335: The parent added `audit/blockers/cochain_ext_of_colimit_legs_w335.lean`. This proves an extensionality principle for cochains out of a colimit cochain complex: with evaluation-colimit preservation, two cochains are equal if they agree after every colimit leg. This is the global wrapper needed to lift W334's objectwise descEq calculations to the descended W333 left cochain; the remaining task is identifying the descended objectwise right side with W308's ambient right mediator.
 
 Parent update v336: The parent added `audit/blockers/cochain_delta_colimit_leg_w336.lean`. This packages mathlib's `HomComplex.δ_ofHom_comp` in the exact form needed for W308: `δ` commutes with precomposition by a colimit leg. Combining W333, W334, W335, and W336 reduces the global `descEq` proof to identifying the right-hand descended objectwise term with the ambient right mediator.
+
+Parent update v337: The parent added `audit/blockers/colimit_right_side_identification_w337.lean`. This proves the needed right-side colimit identification: if `φ : c₁.pt ⟶ c₂.pt` and `β : c₂.pt ⟶ T` have the expected leg equations, then `φ ≫ β` is the colimit descent of the objectwise maps `f.app j ≫ right_j`. This closes the abstract right-mediator comparison needed after W334-W336; the remaining W308 work is now to instantiate all these local pieces with the included bounded `c₁/c₂` cocones and package the global `descEq`.
 
 Parent update v326: The parent verified support files `audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean` and `audit/blockers/component_closed_embedding_coequalizer_support_w297.lean`. W296 reduces W319's additive exactness boundary to an `AddCommGrpCat` kernel-exactness/short-complex exactness closure theorem while preserving the negative guard against synthesized WPP-op exact colimits. W297 reduces W289/W318 left closed-embedding preservation to a pure `MetrizableLCA` natural-transformation coequalizer theorem: componentwise closed embeddings should induce a closed embedding on WPP-op colimit points. Both are source-theorem reductions, not product success.
 
@@ -384,3 +388,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ## v337 W336 delta through colimit leg
 2026-05-20T18:10:00Z: `audit/blockers/cochain_delta_colimit_leg_w336.lean` was verified. It packages `HomComplex.δ_ofHom_comp` so W335 legwise `descEq` goals can be rewritten to W334 objectwise `descEq`. Product success remains false.
+
+## v338 W337 right side identification
+2026-05-20T18:14:00Z: `audit/blockers/colimit_right_side_identification_w337.lean` was verified. It identifies the global right side `φ ≫ β` with the colimit descent of objectwise right-side legs, leaving concrete `mappingCone.inr` instantiation and W308 assembly wiring. Product success remains false.
+
+## v339 W338 global descEq
+2026-05-20T18:24:00Z: `audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean` was verified. It packages W333-W337 into `global_descEq_of_mappingConeLegs`, a checked global differential equation for the descended left cochain. Product success remains false.

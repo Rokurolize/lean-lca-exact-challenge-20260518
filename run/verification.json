@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v337-w301-w330-w331-w332-w333-w334-w335-w336-frontier-refinement",
-  "generated_utc": "2026-05-20T18:09:00Z",
-  "source_tree_hash": "1ce3ee5c0b9e0f6c1e9362d888d5a630a47ca73cdfe62656f8cc995c48cdccd7",
-  "summary": "v336でδ-precomposition補題を追加・検証した。product_completeはfalseのまま。",
+  "schema": "lean-lca-exact-challenge-verification-v339-w338-global-descEq-wrapper",
+  "generated_utc": "2026-05-20T18:20:00Z",
+  "source_tree_hash": "329b2b49a920a164709ad91d55fe706661c5a2c9038a0778475ba2aad44dad72",
+  "summary": "v339でW338 global descEq wrapperを追加・検証した。W333-W337が一つの抽象descEq theoremへ統合されたが、product_completeはfalseのまま。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -1163,6 +1163,61 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/cochain_delta_colimit_leg_w336.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W336."
+    },
+    {
+      "command": "lake env lean audit/blockers/colimit_right_side_identification_w337.lean",
+      "status": "passed",
+      "evidence": "Focused W337 check passed; φ ≫ right mediator equals the colimit descent of the objectwise right sides under the expected leg equations."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/colimit_right_side_identification_w337.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W337."
+    },
+    {
+      "command": "lake env lean audit/blockers/colimit_right_side_identification_w337.lean",
+      "status": "passed",
+      "evidence": "W337 right-side colimit identification checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/colimit_right_side_identification_w337.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W337."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Fresh baseline lake build passed after W337; warnings only."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W337."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations Lean check passed after W337."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations Lean check passed after W337."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
+      "status": "passed",
+      "evidence": "W338 global descEq checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W338."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W338 global descEq wrapper."
     }
   ],
   "implemented_declarations_checked": [
@@ -1747,10 +1802,14 @@
     "LeanLCAExactChallenge.CochainExtOfColimitLegsW335.currentCochainExtOfColimitLegsState_productSuccess",
     "LeanLCAExactChallenge.CochainDeltaColimitLegW336.delta_of_colimit_leg_comp",
     "LeanLCAExactChallenge.CochainDeltaColimitLegW336.colimit_leg_delta_eq_of_precomp_eq",
-    "LeanLCAExactChallenge.CochainDeltaColimitLegW336.currentCochainDeltaColimitLegState_productSuccess"
+    "LeanLCAExactChallenge.CochainDeltaColimitLegW336.currentCochainDeltaColimitLegState_productSuccess",
+    "LeanLCAExactChallenge.ColimitRightSideIdentificationW337.rightSideObjectwiseCocone",
+    "LeanLCAExactChallenge.ColimitRightSideIdentificationW337.phi_comp_rightMediator_eq_desc_objectwise",
+    "LeanLCAExactChallenge.ColimitRightSideIdentificationW337.currentColimitRightSideIdentificationState_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
+    "W338で抽象global descEqは閉じたが、W308のincluded bounded c₁/c₂ coconeと評価colimit保存入力へインスタンス化し、FixedMappingConeCoconeDescAssemblyDataのdescEq/fac/uniq fieldへ組み込む作業はまだ未完了である。",
     "W329で右mappingCone.inr成分の一意性はpreserved ambient colimitのhom_extへ縮約されたが、左mappingCone.inl cochainの構成、一致証明、desc differential compatibilityはまだsource theoremとして未証明である。",
     "W327で固定mapping-cone leg equationは右脚互換性と左cochain互換性へ分解されたが、任意test coconeに対するleft degree -1 cochain、descEq、左cochain互換性、一意性はまだsource theoremとして未証明である。",
     "W296でW319のadditive exactness境界はAddCommGrpCat kernel exactness/ShortComplex exactness closureへ縮約されたが、そのWPP-op colimit exactness保存定理本体はまだsource theoremとして未証明である。",
@@ -1823,7 +1882,8 @@
     "W333でtest mapping-cone legsからleftCochainOfMappingConeLegsを直接構成しinl leg equationも得たが、W308本体へ適用するにはincluded bounded `c₁`のambient colimit/evaluation preservation入力とdescEqがまだ必要である。",
     "W334でobjectwise left cochain候補のdescEqは証明済みになったが、W333で降下したleft cochainのδとW308 ambient right mediatorを結ぶglobal colimit-descent descEqはまだ未供給である。",
     "W335でcochain等式をcolimit脚後の等式へ落とせることを確認したが、W334のobjectwise右辺を降下したものとW308 ambient right mediatorの同一視はまだ未供給である。",
-    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。"
+    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。",
+    "W337で右辺のobjectwise descentとφ≫right mediatorの同一視は抽象的に証明できたが、W333-W337をW308のincluded bounded c₁/c₂ coconesへ統合するglobal descEq wrapperはまだ未供給である。"
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "product_success": false
