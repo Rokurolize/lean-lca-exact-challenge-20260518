@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T14:38:36Z",
-  "source_tree_hash": "7afb8e8b06e6340d524c53a74c584277023b8b6d93eb8d2bb0985ca38ccae523",
-  "summary": "v286 adds a ShortComplex right-homology/cokernel bridge audit: ShortExact gives right cokernel endpoints, while right-homology zero needs an explicit cokernel comparison and does not imply Epi in general.",
+  "generated_utc": "2026-05-20T14:43:50Z",
+  "source_tree_hash": "72ea28bec46eca480be42813b75b5d5979a4fda81633e1759096d89c6d685eb1",
+  "summary": "v287 adds the W260 factorized localized adjunction constructor boundary. It verifies transport consumers from flattened right/unit and left/counit boundaries; product success remains false.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -508,6 +508,46 @@
       "command": "clean extraction: python3 audit/external_audit.py --root extracted/lean_lca_exact_category_challenge --terminal-outcome extracted/lean_lca_exact_category_challenge/terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Clean extraction external audit reached the expected failed_nonterminal product gate after packet regeneration."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Baseline lake build passed before v287 edits; existing warnings only."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Baseline forbidden-token audit for LeanLCAExactChallenge passed before v287 edits."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Baseline RequiredDeclarations check passed before v287 edits."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Baseline ProductSuccessDeclarations check passed before v287 edits."
+    },
+    {
+      "command": "lake env lean audit/blockers/factorized_localized_adjunction_constructor_w260.lean",
+      "status": "passed",
+      "evidence": "Focused W260 factorized localized adjunction constructor boundary audit passed in the parent target worktree."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/factorized_localized_adjunction_constructor_w260.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W260 audit file."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after adding the W260 audit file."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Baseline external audit reached the expected failed_nonterminal product gate before v287; product success was not claimed."
     }
   ],
   "implemented_declarations_checked": [
@@ -1054,8 +1094,10 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。",
     "RightHomologyCokernelObjComparison T is only packaged as an input; it is not yet constructed from the current ShortComplex/derived route.",
-    "ShortComplex right-homology zero does not imply Epi T.g in general, as witnessed by the W262 ZMod2 exact endpoint."
+    "ShortComplex right-homology zero does not imply Epi T.g in general, as witnessed by the W262 ZMod2 exact endpoint.",
+    "FactorizedRightUnitBoundary C and FactorizedLeftCounitBoundary C are checked consumer inputs only; no concrete constructor is available yet.",
+    "W261 support was superseded by parent source theorems v284/v285 and does not change the remaining WalkingParallelPairᵒᵖ colimit-stability gap."
   ],
-  "support_result_classification": "w262 manually ported as focused nonterminal frontier evidence; product success remains false.",
+  "support_result_classification": "w260 manually ported as a focused nonterminal frontier reduction; w261 classified as superseded by v284/v285.",
   "product_success": false
 }
