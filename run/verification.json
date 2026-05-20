@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v223-option-product-module-promotion",
-  "generated_utc": "2026-05-20T08:34:03Z",
-  "source_tree_hash": "5f88f91522889588c0ed43e8ed7c5f26e55b4019d0a0a9c05de9bf277e2ea97a",
-  "summary": "v225時点で、v224のFiniteProductExactness.finiteExactAcyclicProductClosure_of_w151をW145の有限mapping-cone product API scoutへ接続し、FiniteMappingConeProductComparisonInputが与えられればmappingCone (Limits.Pi.map f)のexact acyclicityが従う定理exactAcyclic_mappingCone_piMap_of_w151_comparisonを追加した。これにより上段の有限exact-acyclic closure不足は解消され、残る有限積frontierはmapping coneと有限productの比較入力そのものに狭まった。ただし、mapping cone finite-product comparison、boundedExactWeakEquivalence/Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
+  "generated_utc": "2026-05-20T08:39:20Z",
+  "source_tree_hash": "bf2ec0d2c8e64d6a2ec716982dd18a57a2265e03cc5b5b6c06c58aa014876278",
+  "summary": "v226時点で、Option添字のmapping-cone finite-product routeを一段進め、Option積分解がLimits.Pi.mapと可換である自然性入力と、tail側の有限mapping-cone比較入力があれば、binary mapping-cone biprod comparisonとv224の有限exact-acyclic product closureからmappingCone (Limits.Pi.map f)のexact acyclicityが従うことをW146監査で証明した。これによりOption stepの上段exactness消費は閉じ、残る下段入力はOption product map naturalityとtail比較の実構成である。product_successに必要なmapping cone finite-product comparison、boundedExactWeakEquivalence/Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
   "commands": [
     {
       "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
@@ -12,7 +12,7 @@
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed for the v225 W145 consumer update; existing unrelated linter warnings may be printed."
+      "evidence": "Full lake build passed for v226 baseline before W146 artifact update; existing unrelated linter warnings may be printed."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -22,17 +22,17 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed after v225; no product-success claim added."
+      "evidence": "RequiredDeclarations passed for v226 baseline; W146 remains an audit frontier file."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed after v225; product_success remains unclaimed."
+      "evidence": "ProductSuccessDeclarations passed for v226 baseline; product_success remains unclaimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed for v225 changes."
+      "evidence": "Whitespace diff check passed for v226 changes."
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
@@ -263,6 +263,11 @@
       "command": "lake env lean LeanLCAExactChallenge/Derived/FiniteProductExactness.lean",
       "status": "passed",
       "evidence": "Focused product-side finite exact-acyclic product closure module passed after adding finiteExactAcyclicProductClosure_of_w151."
+    },
+    {
+      "command": "lake env lean audit/blockers/mapping_cone_option_product_step_w146.lean",
+      "status": "passed",
+      "evidence": "Focused W146 audit passed; it proves exactAcyclic_optionPiMap_of_naturality_and_tailComparison from Option product-map naturality, recursive tail comparison, binary mapping-cone biprod comparison, and finite exact-acyclic product closure."
     }
   ],
   "implemented_declarations_checked": [
@@ -349,6 +354,10 @@
     "MappingConeBiprodComparisonProbeV189.comp_biprod_total_f",
     "MappingConeFiniteProductComparisonW142.BinaryMappingConeBiprodComparisonInput",
     "MappingConeFiniteProductComparisonW142.exactAcyclic_mappingCone_biprodMap_of_v187_comparison",
+    "MappingConeOptionProductStepW146.OptionProductMapNaturalityInput",
+    "MappingConeOptionProductStepW146.TailFiniteMappingConeComparisonInput",
+    "MappingConeOptionProductStepW146.exactAcyclic_optionPiMap_of_naturality_and_tailComparison",
+    "MappingConeOptionProductStepW146.optionMappingConeComparisonStepMissingInputs_count",
     "MappingConeProductApiScoutW145.FiniteExactAcyclicProductClosure",
     "MappingConeProductApiScoutW145.FiniteMappingConeProductComparisonInput",
     "MappingConeProductApiScoutW145.currentFiniteProductApiLayerState_closure_supplied",
@@ -522,9 +531,9 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "FiniteExactAcyclicProductClosureは製品側で証明済みで、W145消費者にも接続済みだが、FiniteMappingConeProductComparisonInput、すなわちmappingCone (Limits.Pi.map f)と各component mapping coneの有限productとの比較isoは未構成である。",
-    "boundedExactWeakEquivalenceの有限積安定性とDbounded側の有限積・有限極限transferは未完了である。",
-    "Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は依然としてproduct_successに必要な未完了項目である。"
+    "Option stepのexactness消費者はW146で証明済みだが、OptionProductMapNaturalityInput、すなわちpromoted Option-product decompositionがLimits.Pi.mapをhead/tailのbiprod.mapへ運ぶ自然性は未証明である。",
+    "TailFiniteMappingConeComparisonInputの実構成、つまりfinite inductionでmappingCone (Limits.Pi.map f)とcomponent mapping coneの有限productを比較するisoは未完了である。",
+    "boundedExactWeakEquivalenceの有限積安定性、Dbounded側の有限積・有限極限transfer、有限colimit、三角構造、stable infinity-category構造は依然としてproduct_successに必要な未完了項目である。"
   ],
-  "support_result_classification": "w182は既存v223で吸収済み、w183はv224で親側実装済み。今回のv225は支援worker出力のmergeではなく、親側のW145上段接続である。"
+  "support_result_classification": "w184 resultはv226時点で未到着。w182/w183はv223-v224で既に親側実装済みとして分類済み。"
 }

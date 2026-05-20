@@ -1,11 +1,13 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T08:34:03Z
+Generated: 2026-05-20T08:39:20Z
 
 
 Parent update v224: `LeanLCAExactChallenge.Derived.FiniteProductExactness` now proves `finiteExactAcyclicProductClosure_of_w151` from the empty product base case, the W151 Option-product decomposition, product reindexing along equivalences, and `Finite.induction_empty_option`. The current frontier moves to mapping-cone finite-product stability and Dbounded finite-product transfer; product success is still not claimed.
 
 Parent update v225: W145 now has `exactAcyclic_mappingCone_piMap_of_w151_comparison`, so finite exact-acyclic closure is no longer missing above the finite mapping-cone product route. The remaining input is `FiniteMappingConeProductComparisonInput` itself, the comparison between `mappingCone (Limits.Pi.map f)` and the finite product of component mapping cones.
+
+Parent update v226: W146 adds `exactAcyclic_optionPiMap_of_naturality_and_tailComparison`. For an `Option J` index, exactness of `mappingCone (Limits.Pi.map f)` now follows from Option-product-map naturality plus the recursive tail finite mapping-cone comparison, using `binaryMappingConeBiprodIso` and finite exact-acyclic product closure.
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
