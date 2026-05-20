@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v368-left-lca-iscolimit-map-closed-embedding-boundary",
-  "generated_utc": "2026-05-20T20:27:32Z",
-  "source_tree_hash": "0e8043e6e74be882fffa6d27bc284f1c41ca77936a5193c5906458a8663f693d",
-  "summary": "v368 verifies a left LCA boundary reducing the W318 three-part certificate to closed embedding of the canonical IsColimit.map. product_complete remains false. W368 source-tree hash was refreshed after left LCA IsColimit.map closed-embedding boundary support.",
+  "schema": "lean-lca-exact-challenge-verification-v369-addcommgrp-strict-difference-cokernel-source",
+  "generated_utc": "2026-05-20T21:32:00Z",
+  "source_tree_hash": "5fedf9e10388c2aa6d3660644d9a7420fbbb77ef0241338e8b0586fa9ca1ed0d",
+  "summary": "v369 adds source-backed AddCommGrp difference-cokernel SnakeInput support: strict component fields now supply the exact/epi/mono side data, leaving concrete kernel/cokernel row certificates and the colimit-row iso. product_complete remains false.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -1943,6 +1943,51 @@
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_degenerate_boundary_v366_support_w341.lean audit/blockers/wpp_op_left_lca_closedmap_field_consumer_v366_support_w342.lean audit/blockers/wpp_op_left_lca_reverse_preimage_pullback_v366_support_w343.lean audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean",
       "status": "passed",
       "evidence": "Explicit forbidden-token rg scan returned no matches for W341/W342/W343 and expanded W365."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_snakeinput_difference_cokernel_v367_support_w344.lean",
+      "status": "passed",
+      "evidence": "W344 difference-cokernel SnakeInput support checked in parent target."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_snakeinput_difference_cokernel_v367_support_w344.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W344."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/AddCommGrpSnakeInputDifferenceCokernel.lean",
+      "status": "passed",
+      "evidence": "W344 source module checked in parent target."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/AddCommGrpSnakeInputDifferenceCokernel.lean audit/blockers/addcommgrp_snakeinput_difference_cokernel_v367_support_w344.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W344 source and audit files."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.AddCommGrpSnakeInputDifferenceCokernel",
+      "status": "passed",
+      "evidence": "W345 source module built successfully; only pre-existing linter warnings appeared in dependencies."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean",
+      "status": "passed",
+      "evidence": "W345 audit blocker imported the source module and #checked the public API."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean LeanLCAExactChallenge/Derived/AddCommGrpSnakeInputDifferenceCokernel.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W345 source/audit files."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Top-level import file accepted after importing the W345 source module."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/AddCommGrpSnakeInputDifferenceCokernel.lean audit/blockers/addcommgrp_snakeinput_difference_cokernel_v367_support_w344.lean audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W344/W345 source and audit files."
     }
   ],
   "implemented_declarations_checked": [
@@ -2595,10 +2640,27 @@
     "LeanLCAExactChallenge.WppOpLeftLcaClosedMapFieldConsumerV366SupportW342.colimitMap_fields_of_transport_certificate",
     "LeanLCAExactChallenge.MetrizableLCA.relationPreimagePullbackCondition",
     "LeanLCAExactChallenge.MetrizableLCA.coequalizerMap_relation_preimage_exact_of_squares_and_pullback_condition",
-    "LeanLCAExactChallenge.MetrizableLCA.CoequalizerRelationPullbackInputs"
+    "LeanLCAExactChallenge.MetrizableLCA.CoequalizerRelationPullbackInputs",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.DifferenceCokernelSnakeInputData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.snakeInput_of_differenceCokernelData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.ParallelPairDifferenceCokernelData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.parallelPair_snakeInput_v₁₂",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.strictSnakeCokernelData_of_parallelPairDifferenceCokernelData",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.addCommGrpKernelExact_of_parallelPairDifferenceCokernelData",
+    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernel.shortComplexExact_of_addCommGrpKernelExact",
+    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernel.epi_g_of_addCommGrpRightSurjective",
+    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernel.mono_f_of_addCommGrpLeftInjective",
+    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernel.ParallelPairDifferenceStrictCokernelData",
+    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernel.parallelPairDifferenceCokernelData_of_strictData",
+    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernel.strictSnakeCokernelData_of_parallelPairDifferenceStrictCokernelData",
+    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernel.addCommGrpKernelExact_of_parallelPairDifferenceStrictCokernelData",
+    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernelW345.w345SourceDeclarationNames_count",
+    "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernelW345.currentW345SourceSupportState_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
+    "W345でsource-backed difference SnakeInput auditは検証済みだが、difference kernel row、difference cokernel row、WPP-op colimit短複体との同型は未構成である。",
+    "W344でparallel pairの差`u - v`をSnakeInput中央写像として使う非退化cokernel-row APIは検証済みだが、具体WPP-op colimit/cofork dataからkernel/cokernel row certificate、colimit-row同一視、Epi/Mono strictness transportを構成する部分は未証明である。",
     "W341-W343でdegenerate SnakeInput、left LCA closed-map field consumer、reverse relation-preimage pullback境界は検証済みだが、具体relation pullback equality、quotient compatibility、descended closed-map、AddCommGrp strict kernel exactnessは未証明である。",
     "W365拡張でIsColimit.map closed embeddingからW318 left LCA三条件への消費口は閉じたが、具体WPP-op IsColimit.map closed-embedding定理本体は未証明である。",
     "W340でrelation-preimageの前向き包含は証明済みだが、逆向きpreimage包含、quotient compatibility、descended closed-map性はまだ未証明である。",
@@ -2698,6 +2760,7 @@
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "product_success": false,
   "remaining_work": [
+    "W344の非退化SnakeInput APIを具体WPP-op colimit/cofork row certificatesへインスタンス化する。",
     "wppOp_lca_colimitMap_injective_inducing_closedImage",
     "addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable"
   ]

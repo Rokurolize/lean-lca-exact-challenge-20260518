@@ -483,3 +483,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ## W341-W343 v366 Support
 2026-05-20T21:28:00Z: W341 reduces the degenerate SnakeInput algebraic route to AddCommGrp left-injectivity at the colimit plus strict kernel exactness. W342 combines W339 transport with W340 descended fields to produce the left LCA three fields for `φ`. W343 sharpens reverse relation-preimage to an exact pullback equality of cokernel relation subgroups. Product success remains false because the concrete pullback equality, quotient-presenting colimits, descended closed-map/compatibility, and AddCommGrp strict kernel exactness remain open.
+
+## W344 Difference-Cokernel SnakeInput
+2026-05-20T21:31:00Z: Worker support `w344-addcommgrp-snakeinput-difference-cokernel-v367` was ported as `LeanLCAExactChallenge/Derived/AddCommGrpSnakeInputDifferenceCokernel.lean` and `audit/blockers/addcommgrp_snakeinput_difference_cokernel_v367_support_w344.lean`. It packages parallel-pair difference data around `u - v` into mathlib `ShortComplex.SnakeInput`, produces `AddCommGrpStrictSnakeCokernelData`, and checks the existing W318 `AddCommGrpKernelExact` consumer. Product success remains false because the concrete WPP-op kernel/cokernel row certificates, colimit-row identification, and Epi/Mono strictness transport are still missing.
+
+## W345 Source-Backed Difference SnakeInput Audit
+2026-05-20T21:32:00Z: `audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean` checks the W344 source declaration set and records the three remaining row-construction inputs. Product success remains false; this is a source-backed audit marker, not a proof of the concrete WPP-op row certificates.
