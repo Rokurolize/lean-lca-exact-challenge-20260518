@@ -569,6 +569,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W376 AddCommGrp ShortComplex Cokernel Iso Adapter
 2026-05-20T22:52:00Z: Worker support `w376-addcommgrp-shortcomplex-cokernel-iso-v370` was ported as `audit/blockers/addcommgrp_shortcomplex_cokernel_iso_v370_support_w376.lean`. It uses the W373 projection transports to turn concrete degreewise cokernel cofork data into a short-complex cokernel cofork, target cokernel-row presentation, difference Snake boundary, and `AddCommGrpKernelExact` consumer. Product success remains false because concrete degreewise data, target row isomorphism to the forgotten WPP-op colimit row, and compatibility squares remain open.
 
+## W377 WPP-op Closed-Map Remaining Fields
+2026-05-20T22:55:00Z: Worker support `w377-wpp-op-closedmap-remaining-fields-v370` was ported as `audit/blockers/wpp_op_closedmap_remaining_fields_v370_support_w377.lean`. It proves target quotient closedness on closed saturated sets and packages component closed-map, relation pullback equality, and target relation lifting into W374/W371 remaining inputs, yielding the descended closed-map projection. Product success remains false because those three concrete WPP-op inputs and the W354/W351 integration still remain open.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
