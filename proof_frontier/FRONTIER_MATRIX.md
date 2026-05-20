@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T05:17:44Z
+Generated: 2026-05-20T05:24:02Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -23,6 +23,8 @@ v201 proves the remaining backward right-component `fst` target equation in the 
 v202 consumes support w154 as `audit/blockers/option_complement_product_reindex_w154.lean`. The complement subproduct of an `Option J`-indexed cochain-complex family is now packaged as `complementSubproductReindexIso : ∏ᶜ (fun i : {x : Option J // ¬ x = none} => K i.val) ≅ ∏ᶜ (fun j : J => K (some j))`, with a fixed-degree analogue `complementSubproductDegreeReindexIso`. This removes the complement-product reindex bridge from the Option product decomposition route; the remaining work is to compose this with the W152 `noneSubproductIso`, `Pi.binaryFanOfProp`, and `HomologicalComplex.isLimitOfEval`.
 
 v203 closes the binary mapping-cone/biproduct differential-compatibility audit in `mapping_cone_biprod_comparison_probe_v189.lean`. The parent now proves both left and right component differential squares, `biprodConeToConeBiprodMapX_differentialCompatibility`, and `binaryMappingConeBiprodDifferentialCompatibility`. The remaining binary route is no longer componentwise differential compatibility; it is packaging the degreewise maps plus inverse/differential compatibility as a cochain-complex isomorphism satisfying W142's `BinaryMappingConeBiprodComparisonInput`.
+
+v204 packages the binary mapping-cone/biproduct comparison as an actual cochain-complex isomorphism. `binaryMappingConeBiprodXIso` wraps the degreewise inverse maps, and `binaryMappingConeBiprodIso` uses `HomologicalComplex.Hom.isoOfComponents` plus `binaryMappingConeBiprodDifferentialCompatibility`. Completed support worker w156 was inspected and classified as useful audit-only evidence for the separate Option-product route; it is not needed for the v204 mapping-cone iso. Remaining blockers are feeding this iso into the W142 finite-product comparison interface, completing the Option product assembly and empty-product exactness, Dbounded equalizer/pullback transfer, finite colimits, triangulated structure, and stable infinity-category structure.
 
 | frontier_id | target | allowed writes | verification | merge blocker | product contribution | owner |
 | --- | --- | --- | --- | --- | --- | --- |

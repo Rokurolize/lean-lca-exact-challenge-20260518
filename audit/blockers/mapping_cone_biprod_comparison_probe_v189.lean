@@ -686,12 +686,40 @@ theorem binaryMappingConeBiprodInverseCompatibility :
   cone_biprod_cone := coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX f₁ f₂
   biprod_cone_biprod := biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX f₁ f₂
 
+noncomputable def binaryMappingConeBiprodXIso (n : ℤ) :
+    (coneBiprodMap f₁ f₂).X n ≅ (biprodCone f₁ f₂).X n where
+  hom := coneBiprodMapToBiprodConeX f₁ f₂ n
+  inv := biprodConeToConeBiprodMapX f₁ f₂ n
+  hom_inv_id := coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX f₁ f₂ n
+  inv_hom_id := biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX f₁ f₂ n
+
+noncomputable def binaryMappingConeBiprodIso :
+    coneBiprodMap f₁ f₂ ≅ biprodCone f₁ f₂ :=
+  HomologicalComplex.Hom.isoOfComponents
+    (binaryMappingConeBiprodXIso f₁ f₂)
+    (fun i j hij => by
+      dsimp [binaryMappingConeBiprodXIso]
+      rw [ComplexShape.up_Rel] at hij
+      subst j
+      simpa using
+        (binaryMappingConeBiprodDifferentialCompatibility f₁ f₂).left_to_right i)
+
+theorem binaryMappingConeBiprodIso_hom_f (n : ℤ) :
+    (binaryMappingConeBiprodIso f₁ f₂).hom.f n =
+      coneBiprodMapToBiprodConeX f₁ f₂ n :=
+  rfl
+
+theorem binaryMappingConeBiprodIso_inv_f (n : ℤ) :
+    (binaryMappingConeBiprodIso f₁ f₂).inv.f n =
+      biprodConeToConeBiprodMapX f₁ f₂ n :=
+  rfl
+
 def v189ComponentMapFrontier : List String :=
   ["component maps from mappingCone (biprod.map f₁ f₂) to the biproduct cone",
     "component maps from the biproduct cone to mappingCone (biprod.map f₁ f₂)",
     "proved: inverse identities for the candidate degreewise maps",
     "proved: differential compatibility for both component-map families",
-    "remaining: package the componentwise isomorphism as the binary mapping-cone product input"]
+    "proved: packaged the componentwise maps as a cochain-complex isomorphism"]
 
 theorem v189ComponentMapFrontier_count :
     v189ComponentMapFrontier.length = 5 := rfl
@@ -751,6 +779,10 @@ section Checks
 #check binaryMappingConeBiprodDifferentialCompatibility
 #check BinaryMappingConeBiprodInverseCompatibility
 #check binaryMappingConeBiprodInverseCompatibility
+#check binaryMappingConeBiprodXIso
+#check binaryMappingConeBiprodIso
+#check binaryMappingConeBiprodIso_hom_f
+#check binaryMappingConeBiprodIso_inv_f
 #check v189ComponentMapFrontier
 #check v189ComponentMapFrontier_count
 #check CochainComplex.mappingCone.ext_to
