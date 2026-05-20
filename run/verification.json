@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-20T22:06:00Z",
-  "source_tree_hash": "b2b2f050cd832d435dfb9b1532b6db1ab4f1fb8101055775538ed4aea3460af8",
+  "generated_utc": "2026-05-20T22:10:30Z",
+  "source_tree_hash": "941c0d05e1138ecf17686feb1558922b91ce8c65171322df879d338e5d1d3742",
   "summary": "v359 verifies W357/W358/W359 support plus the left-LCA concrete quotient cocone support; product_complete remains false.",
   "commands": [
     {
@@ -2118,6 +2118,26 @@
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_concrete_quotient_cocone_v369_support_w357.lean",
       "status": "passed",
       "evidence": "Explicit forbidden-token rg scan returned no matches for W357 left LCA concrete quotient cocone support."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_descended_saturation_quotient_closed_v369_support_w360.lean",
+      "status": "passed",
+      "evidence": "W360 descended saturation quotient-closed support checked."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_descended_saturation_quotient_closed_v369_support_w360.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W360."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_counit_cocone_transport_v369_support_w360.lean",
+      "status": "passed",
+      "evidence": "W360 counit cocone transport support checked."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_counit_cocone_transport_v369_support_w360.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W360 counit transport support."
     }
   ],
   "implemented_declarations_checked": [
@@ -2873,7 +2893,19 @@
     "LeanLCAExactChallenge.WppOpLeftLcaConcreteQuotientCoconeV369SupportW357.WppOpConcreteQuotientCoconeBoundary",
     "LeanLCAExactChallenge.WppOpLeftLcaConcreteQuotientCoconeV369SupportW357.wppOpConcreteQuotientCoconeBoundary",
     "LeanLCAExactChallenge.WppOpLeftLcaConcreteQuotientCoconeV369SupportW357.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_leftLeg",
-    "LeanLCAExactChallenge.WppOpLeftLcaConcreteQuotientCoconeV369SupportW357.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_rightLeg"
+    "LeanLCAExactChallenge.WppOpLeftLcaConcreteQuotientCoconeV369SupportW357.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_rightLeg",
+    "LeanLCAExactChallenge.MetrizableLCA.IsSaturatedForW360",
+    "LeanLCAExactChallenge.MetrizableLCA.IsStableUnderSubgroupTranslationsW360",
+    "LeanLCAExactChallenge.MetrizableLCA.quotientMap_saturated_of_subgroup_translation_stableW360",
+    "LeanLCAExactChallenge.MetrizableLCA.representativeImage_translation_stable_of_relation_lifts_and_pullbackW360",
+    "LeanLCAExactChallenge.MetrizableLCA.representativeImage_saturated_of_relation_lifts_and_pullbackW360",
+    "LeanLCAExactChallenge.MetrizableLCA.TargetQuotientClosedOnSaturatedSetsW360",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedQuotient_representativeImageClosed_of_relation_lifts_pullback_and_targetClosedOnSaturatedW360",
+    "LeanLCAExactChallenge.WppOpCounitCoconeTransportV369SupportW360.wppOpInverseFunctorCounitDiagramIso",
+    "LeanLCAExactChallenge.WppOpCounitCoconeTransportV369SupportW360.wppOpCoconeOfInverseWhiskered",
+    "LeanLCAExactChallenge.WppOpCounitCoconeTransportV369SupportW360.wppOpCoconeOfInverseWhiskeredIsColimit",
+    "LeanLCAExactChallenge.WppOpCounitCoconeTransportV369SupportW360.WppOpCounitTransportedCoconeBoundary",
+    "LeanLCAExactChallenge.WppOpCounitCoconeTransportV369SupportW360.wppOpCounitTransportedCoconeBoundary"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -2989,7 +3021,9 @@
     "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。",
     "W358でW355 representative-image closednessはsaturation plus target quotient projection closednessまたはdirect representative-image closednessへ縮約済みだが、具体representative image saturationとtarget quotient projection closedness本体は未証明である。",
     "W357/W359でcomponentwise target isoとdegreewise cokernel coforkからW356 target row presentationへの消費口は検証済みだが、具体degreewise cokernel cofork、成分同型、compatibility squareは未証明である。",
-    "W357 left LCA concrete quotient coconeでordinary quotient cofork、descended quotient map、whiskered WPP-op quotient coconeは検証済みだが、actual Cocone Xへのtransport、W354 leg equationへの書換え、W352/W355 topological fieldsとの結合は未証明である。"
+    "W357 left LCA concrete quotient coconeでordinary quotient cofork、descended quotient map、whiskered WPP-op quotient coconeは検証済みだが、actual Cocone Xへのtransport、W354 leg equationへの書換え、W352/W355 topological fieldsとの結合は未証明である。",
+    "W360でrelation lifting plus pullback equalityからrepresentative-image saturationとW355 closedness消費口は検証済みだが、具体target relation liftingとtarget quotient closed-on-saturated-sets theoremは未証明である。",
+    "W360 counit cocone transportでinverse-whiskered quotient coconeからactual Cocone Xへのtransportとcolimit保存は検証済みだが、transported leg equationsのW354形への書換えとW352/W355 fieldsとの結合は未証明である。"
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "product_success": false,

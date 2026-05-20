@@ -522,6 +522,11 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W357 Left LCA Concrete Quotient Cocone
 2026-05-20T22:07:00Z: Worker support `w357-left-lca-concrete-quotient-cocone-v369` was ported as `audit/blockers/wpp_op_left_lca_concrete_quotient_cocone_v369_support_w357.lean`. It constructs ordinary quotient coforks as cokernels of `f - g`, proves their colimit property, defines descended quotient maps from compatible squares, and packages a whiskered WPP-op concrete quotient cocone with `IsColimit`. Product success remains false because transport to an actual `Cocone X`, W354-style leg-equation rewriting, and W352/W355 topological fields still need to be combined.
 
+## W360 Saturation To Representative-Image Closedness
+2026-05-20T22:10:00Z: Worker support `w360-descended-saturation-quotient-closed-v369` was ported as `audit/blockers/wpp_op_descended_saturation_quotient_closed_v369_support_w360.lean`. It proves representative-image saturation from target relation lifting plus relation pullback equality, and then derives W355-style representative-image closedness from target quotient closedness on closed saturated sets. Product success remains false because the concrete target relation-lifting condition and target quotient closed-on-saturated-sets theorem are still missing.
+
+2026-05-20T22:10:00Z: Local support `audit/blockers/wpp_op_counit_cocone_transport_v369_support_w360.lean` was also verified. It transports inverse-whiskered WPP-op quotient cocones back to actual `Cocone X` objects through the equivalence counit and preserves colimitness. Product success remains false because the transported leg equations still need to be rewritten into the W354 certificate shape and combined with W352/W355 fields.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
