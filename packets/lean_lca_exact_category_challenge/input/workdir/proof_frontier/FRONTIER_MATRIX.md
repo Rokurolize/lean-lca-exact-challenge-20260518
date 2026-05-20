@@ -620,6 +620,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W396 W352-To-W390 Consumer
 2026-05-20T23:52:00Z: Worker support `w396-left-lca-ordinary-descended-fields-from-w352-v370` was ported as `audit/blockers/wpp_op_left_lca_ordinary_descended_fields_from_w352_v370_support_w396.lean`. It consumes W352 relation-pullback descended-field inputs into W393 ordinary fields and then into the W390/W384 point-isomorphism conjugacy package. Product success remains false because the concrete ordinary descended quotient map still needs the W352 input package, equivalently the injective/inducing/closed-range fields for that map.
 
+## W398 Forgotten Target Cofork Map Input
+2026-05-20T23:58:00Z: Worker support `w398-addcommgrp-forgotten-target-cofork-map-v370` was ported as `audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean`. It exposes the forgotten target cofork map, zero relation, and IsColimit proof as the exact W394-side input. Product success remains false because that map and IsColimit proof must still be instantiated from the concrete forgotten WPP-op colimit cocone leg.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 

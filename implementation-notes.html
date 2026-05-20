@@ -1246,3 +1246,9 @@
 <p><time>2026-05-21T08:52:00Z</time>: The parent ported and verified <code>audit/blockers/wpp_op_left_lca_ordinary_descended_fields_from_w352_v370_support_w396.lean</code>. It extends the parent W352-to-W393 adapter by consuming W352 relation-pullback input packages into W393 ordinary fields and then into the W390/W384 point-isomorphism conjugacy package.</p>
 <p>The remaining left-LCA field blocker is no longer an adapter issue: it is the concrete W352 input package for the actual ordinary descended quotient map.</p>
 </section>
+
+<section id="w398-forgotten-target-cofork-map-input">
+<h2>W398 forgotten target cofork map input</h2>
+<p><time>2026-05-21T08:58:00Z</time>: The parent ported and verified <code>audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean</code>. It names the forgotten target-side input required by W394: a map <code>qForgotten : L₂ ⟶ cs.pt.map (forget₂ MetrizableLCA AddCommGrpCat)</code>, its zero relation against <code>u - v</code>, and an <code>IsColimit</code> proof for the corresponding cokernel cofork.</p>
+<p>The remaining AddCommGrp target-iso blocker is to instantiate that input from the actual forgotten WPP-op colimit cocone leg.</p>
+</section>

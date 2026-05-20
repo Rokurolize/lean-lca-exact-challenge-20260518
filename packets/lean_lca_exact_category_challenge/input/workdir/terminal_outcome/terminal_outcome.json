@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W396でW352 relation-pullback inputsからW393 ordinary fields、さらにW390/W384 packageへ渡す経路を検証した。残る作業は実際のordinary descended quotient mapの具体W352 input package、forgotten target cofork map/IsColimit proof、closed component field、W389 certificate、W392 certificateであり、product successはまだ主張しない。",
+  "summary": "W398でforgotten target側のqForgotten、zero relation、IsColimit cofork proofをW394へ渡す入力形を検証した。残る作業はqForgottenを実際のforgotten WPP-op colimit cocone legから構成しIsColimitを証明すること、具体W352 package、W395 closed component、W389/W392 certificatesであり、product successはまだ主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -533,7 +533,9 @@
     "lake env lean audit/blockers/wpp_op_relation_fields_composer_v370_support_w395.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_colimit_iso_v370_support_w394.lean audit/blockers/wpp_op_relation_fields_composer_v370_support_w395.lean",
     "lake env lean audit/blockers/wpp_op_left_lca_ordinary_descended_fields_from_w352_v370_support_w396.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_fields_from_w352_v370_support_w396.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_fields_from_w352_v370_support_w396.lean",
+    "lake env lean audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1534,7 +1536,15 @@
     "ordinaryDescendedQuotientFieldsW393_of_relationPullbackInputsW352",
     "descendedQuotientFieldsW352_to_pointIsoConjugacyPackageW384",
     "relationPullbackInputsW352_to_pointIsoConjugacyPackageW384",
-    "currentWppOpLeftLcaOrdinaryDescendedFieldsFromW352V370StateW396_productSuccess"
+    "currentWppOpLeftLcaOrdinaryDescendedFieldsFromW352V370StateW396_productSuccess",
+    "ForgottenTargetCoforkMapInputW398",
+    "ForgottenTargetCoforkMapInputW398.qForgotten",
+    "ForgottenTargetCoforkMapInputW398.wForgotten",
+    "ForgottenTargetCoforkMapInputW398.hForgotten",
+    "ForgottenTargetCoforkMapInputW398.cofork",
+    "ForgottenTargetCoforkMapInputW398.isColimit_cofork",
+    "ForgottenTargetCoforkMapInputW398.toW394ColimitIsoInput",
+    "currentAddCommGrpForgottenTargetCoforkMapV370SupportState_productSuccess"
   ],
   "known_gaps": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
@@ -1628,16 +1638,16 @@
     "W385後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
     "W388後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
     "W390後も外部から与えたtransported descended mapを使う場合はcanonical conjugated transported mapとの同一視、またはTransportedDescendedConjugacyInputW390が必要である。",
-    "W394後もforgotten target cofork map qForgottenと同じparallel pair上のIsColimit proofが必要である。",
     "W395後もobjectwise closed-mapまたはclosed-embedding component field、W389 relation-pullback certificate、W392 target relation lift certificateの具体供給が必要である。",
-    "W396後も実際のordinary WPP-op descended quotient mapに対する具体W352 input package、または同等のinjective/inducing/closed_range fieldsが必要である。"
+    "W396後も実際のordinary WPP-op descended quotient mapに対する具体W352 input package、または同等のinjective/inducing/closed_range fieldsが必要である。",
+    "W398後もqForgottenを実際のforgotten WPP-op colimit cocone legから構成し、そのcokernel coforkが同じ差写像のIsColimitであることを証明する必要がある。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "pending-w396-artifact-sync",
+  "git_commit": "pending-w398-artifact-sync",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W396 removes the W352-to-W390 consumer gap. Remaining frontier: concrete W352 package for the actual ordinary descended quotient map, forgotten target cofork map/IsColimit proof, closed component field, W389 certificate, and W392 certificate.",
+  "worker_frontier_summary": "W398 exposes the exact forgotten-target qForgotten/wForgotten/hForgotten input for W394. Remaining frontier: instantiate it from the actual forgotten WPP-op colimit cocone leg, plus concrete W352 and W395/W389/W392 relation inputs.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
