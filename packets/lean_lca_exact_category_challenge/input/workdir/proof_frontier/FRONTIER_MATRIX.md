@@ -249,3 +249,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v281 Update
 
 2026-05-20T17:02:00Z: The parent added `audit/blockers/opposite_finite_product_transport_w281.lean`. This proves the generic formal transport that W277/W259 had isolated: if a morphism property `W` is stable under finite coproducts, then `W.op` is stable under finite products. The proof also includes the individual product/opposite-coproduct bridge `hasCoproduct_unop_of_hasProduct_op`. The direct closure theorem `(boundedExactWeakEquivalence MetrizableLCA).IsStableUnderFiniteCoproducts` remains missing, and the `WalkingParallelPair` colimit-to-opposite-limit transport remains separate. Product success remains nonterminal.
+
+## v291 Update
+
+2026-05-20T14:59:24Z: `boundedExactWeakEquivalence_containsIdentities_of_isoClosed` now proves direct bounded mapping-cone weak equivalences contain identities from `(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms`, and W291 verifies the corresponding opposite `MetrizableLCA` identity-containment input. This narrows W266 by reducing `((boundedExactWeakEquivalence MetrizableLCA).op).ContainsIdentities` to the iso-closed exact-acyclic homotopy input, but product success remains nonterminal because that input, direct `WalkingParallelPairᵒᵖ` colimit stability, and W269 functor-category localization fac/uniq fields are still open.

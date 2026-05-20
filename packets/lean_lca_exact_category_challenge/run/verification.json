@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T14:53:42Z",
-  "source_tree_hash": "f49fd5c4566c3bed309bef5398b21e9f8326a21552eb99a806574f4b7ef674fe",
-  "summary": "v290 adds W268 right-homology endpoint comparison: endpoint cokernelπ is a cokernel of fromOpcycles, so Epi fromOpcycles is a positive bridge; right-homology zero alone remains false for Epi T.g.",
+  "generated_utc": "2026-05-20T14:59:24Z",
+  "source_tree_hash": "2e243eedc863ced36ec531f7c1fc297a585757458a04b36ccc892e9b5d367756",
+  "summary": "v291 adds a source instance and audit reducing opposite identity containment to exact-acyclic homotopy iso-closedness; product success remains nonterminal.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -603,6 +603,41 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "Whitespace diff check passed after adding the W268 audit file."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "Bounded module rebuilt after adding the conditional ContainsIdentities instance."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "Focused Bounded.lean check passed with boundedExactWeakEquivalence_containsIdentities_of_isoClosed."
+    },
+    {
+      "command": "lake env lean audit/blockers/opposite_contains_identities_of_iso_closed_w291.lean",
+      "status": "passed",
+      "evidence": "Focused W291 audit proved direct and opposite identity containment from exact-acyclic homotopy iso-closedness."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the edited product source file."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_contains_identities_of_iso_closed_w291.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W291 audit file."
+    },
+    {
+      "command": "clean extraction: python3 audit/external_audit.py --root <unzipped packet>/lean_lca_exact_category_challenge --terminal-outcome <unzipped packet>/lean_lca_exact_category_challenge/terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Clean extraction reached the same expected failed_nonterminal product gate."
+    },
+    {
+      "command": "cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256",
+      "status": "passed",
+      "evidence": "External packet SHA256 sidecar validates the regenerated packet zip."
     }
   ],
   "implemented_declarations_checked": [
@@ -1116,7 +1151,9 @@
     "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.FactorizedUnitMembershipInput",
     "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.FactorizedCounitMembershipInput",
     "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.localized_unit_mem_of_factorized_unit",
-    "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.localized_counit_mem_of_factorized_counit"
+    "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.localized_counit_mem_of_factorized_counit",
+    "boundedExactWeakEquivalence_containsIdentities_of_isoClosed",
+    "OppositeContainsIdentitiesOfIsoClosedW291.metrizableLCA_oppositeContainsIdentities_from_isoClosed"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -1156,8 +1193,9 @@
     "Direct WalkingParallelPairᵒᵖ colimit stability is reduced to mapping-cone colimit comparison and exact-acyclic closure under that colimit shape.",
     "Opposite functor-category localization still needs fac and uniq fields for the target and model fixed-target categories.",
     "Coherent opposite WalkingParallelPair strict-preimage lift blueprints are not constructed yet; W269 only gives a lift functor from such a blueprint.",
-    "Right-homology zero remains insufficient for endpoint cokernel zero or Epi T.g; downstream strictness needs Epi fromOpcycles or another explicit endpoint input."
+    "Right-homology zero remains insufficient for endpoint cokernel zero or Epi T.g; downstream strictness needs Epi fromOpcycles or another explicit endpoint input.",
+    "Identity containment is conditional on exactAcyclicHomotopyObject iso-closedness; this does not prove direct WPPᵒᵖ colimit stability or functor-category localization fac/uniq."
   ],
-  "support_result_classification": "w268 manually ported as focused nonterminal frontier reduction; product success remains false.",
+  "support_result_classification": "v291 parent-side source progress; no support worker result consumed.",
   "product_success": false
 }

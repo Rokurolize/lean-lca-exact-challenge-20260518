@@ -1849,6 +1849,15 @@ theorem boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
       (HomotopyCategory.mappingCone_triangleh_distinguished
         ((BoundedComplexCategory.ι C).map f))).1 hf
 
+/-- If exact acyclicity is homotopy-category isomorphism invariant, direct bounded
+mapping-cone weak equivalences contain all identities. -/
+noncomputable instance boundedExactWeakEquivalence_containsIdentities_of_isoClosed
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms] :
+    (boundedExactWeakEquivalence C).ContainsIdentities := by
+  rw [boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage C]
+  infer_instance
+
 /-- Bounded morphisms whose image in the homotopy category lies in the Verdier-style weak
 equivalence class attached to the isomorphism closure of exact acyclic homotopy objects. -/
 abbrev boundedHomotopyExactWeakEquivalence [HasZeroObject C] [HasBinaryBiproducts C] :

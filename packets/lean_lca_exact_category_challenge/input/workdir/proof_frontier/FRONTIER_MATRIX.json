@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T14:53:42Z",
+  "generated_utc": "2026-05-20T14:59:24Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v290 consumes completed support W268 from the read-only support stream.",
+  "worker_policy": "No workers were launched from the target worktree. v291 is parent-side source progress reducing opposite identity containment to an iso-closedness input.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1329,9 +1329,9 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "w268 was manually ported as a focused nonterminal boundary clarifying the right-homology endpoint comparison.",
-  "latest_parent_update": "v290 added audit/blockers/right_homology_cokernel_comparison_w268.lean and verified it with focused Lean plus forbidden-token audit.",
-  "summary": "v290 proves the precise right endpoint comparison: rightHomology is the kernel of fromOpcycles, while the local endpoint cokernelπ is a cokernel of fromOpcycles. Epi fromOpcycles is a valid positive input; right-homology zero alone remains insufficient.",
+  "support_result_classification": "v291 was implemented directly in the parent target worktree; no new support worker result was consumed.",
+  "latest_parent_update": "v291 added boundedExactWeakEquivalence_containsIdentities_of_isoClosed and audit/blockers/opposite_contains_identities_of_iso_closed_w291.lean.",
+  "summary": "v291 reduces ((boundedExactWeakEquivalence MetrizableLCA).op).ContainsIdentities to exactAcyclicHomotopyObject iso-closedness; product success remains nonterminal because the iso-closed input, direct WPPᵒᵖ stability, and W269 fac/uniq localization fields remain open.",
   "remaining_frontier": [
     "Finite-product op transport is solved by W281; remaining opposite finite-product input is direct finite-coproduct stability of boundedExactWeakEquivalence MetrizableLCA.",
     "Exactness-to-Epi is formally refuted by W256; the right endpoint must be supplied by a real right-homology or cokernel-zero/top bridge.",
@@ -1367,7 +1367,9 @@
     "W261 opposite finite-coproduct/op-transport support is superseded by v284/v285 source theorems; remaining opposite finite-limit input is still WalkingParallelPairᵒᵖ colimit stability.",
     "W266 gives a checked HasFiniteLimits consumer for ((boundedExactWeakEquivalence MetrizableLCA).op).Localization, conditional on the three assembly inputs; this is not product success.",
     "The v288 opposite finite-limit assembly still lacks direct WPPᵒᵖ colimit stability and identity containment; its functor-category localization input is now reduced by W269 but not closed.",
-    "Downstream strictness must supply Epi T.fromOpcycles, Epi T.g, cokernelπ=0, cokernelSubgroup=top, or IsZero cokernelObj; right-homology zero alone is rejected."
+    "Downstream strictness must supply Epi T.fromOpcycles, Epi T.g, cokernelπ=0, cokernelSubgroup=top, or IsZero cokernelObj; right-homology zero alone is rejected.",
+    "((boundedExactWeakEquivalence MetrizableLCA).op).ContainsIdentities is reduced to exactAcyclicHomotopyObject iso-closedness by v291; the iso-closed input remains part of the strict-realization frontier.",
+    "W266 now has identity containment conditional on iso-closedness, but still lacks direct WalkingParallelPairᵒᵖ colimit stability and W269 fac/uniq localization fields."
   ],
   "support_classification": [
     {
@@ -1549,6 +1551,12 @@
       "classification": "manual_ported_frontier_reduction",
       "artifact": "audit/blockers/right_homology_cokernel_comparison_w268.lean",
       "result": "Shows T.rightHomology is Kernel T.fromOpcycles and MetrizableLCA.cokernelπ T.g is Cokernel T.fromOpcycles; Epi T.fromOpcycles is a positive endpoint input, while rightHomology zero alone is insufficient."
+    },
+    {
+      "id": "v291-parent",
+      "classification": "parent_source_progress_frontier_reduction",
+      "artifact": "audit/blockers/opposite_contains_identities_of_iso_closed_w291.lean",
+      "result": "Adds a source instance proving boundedExactWeakEquivalence C contains identities from exactAcyclicHomotopyObject iso-closedness, and applies mathlib op ContainsIdentities to the MetrizableLCA opposite class."
     }
   ],
   "remaining_blockers": [
@@ -1565,7 +1573,8 @@
     "Concrete factorized adjunction and factorized unit/counit membership proofs for the bounded homotopy localized composite are still absent.",
     "Direct WalkingParallelPairᵒᵖ colimit stability still needs mapping-cone colimit comparison plus exact-acyclic closure under that colimit shape.",
     "W269 gives candidate lift functors from coherent opposite strict-preimage blueprints, but fac, uniq, and blueprint existence are still unproved.",
-    "Right-homology zero is only the zero-kernel side of T.fromOpcycles; it does not imply endpoint cokernel zero or Epi T.g."
+    "Right-homology zero is only the zero-kernel side of T.fromOpcycles; it does not imply endpoint cokernel zero or Epi T.g.",
+    "Identity containment for the opposite weak-equivalence class is conditional on (exactAcyclicHomotopyObject MetrizableLCA).IsClosedUnderIsomorphisms."
   ],
   "open_blockers": [
     "WalkingParallelPair op transport is solved directly by W283; remaining opposite WalkingParallelPair input is direct WalkingParallelPairᵒᵖ colimit stability of boundedExactWeakEquivalence MetrizableLCA.",
@@ -1574,7 +1583,8 @@
     "Factorized localized adjunction route now needs concrete FactorizedRightUnitBoundary C or FactorizedLeftCounitBoundary C constructors; W260 only proves consumers from those flattened inputs.",
     "Opposite finite-limit assembly is now reduced to three explicit inputs: opposite identity containment, direct WalkingParallelPairᵒᵖ colimit stability of boundedExactWeakEquivalence MetrizableLCA, and opposite functor-category localization.",
     "Opposite functor-category localization now requires two fixed-target packages for WalkingParallelPair diagrams: target and model lift/fac/uniq fields; objectwise inversion is solved.",
-    "ShortComplex right endpoint now has a sharper positive input: Epi T.fromOpcycles implies cokernelπ T.g = 0 and can feed strict exactness with exactness/topology."
+    "ShortComplex right endpoint now has a sharper positive input: Epi T.fromOpcycles implies cokernelπ T.g = 0 and can feed strict exactness with exactness/topology.",
+    "Prove exact-acyclic homotopy objects are closed under isomorphisms, or bypass that input while completing WPPᵒᵖ colimit stability and W269 functor-category localization fac/uniq."
   ],
   "consumed_support_results": [
     {
@@ -1612,6 +1622,10 @@
     {
       "artifact": "audit/blockers/right_homology_cokernel_comparison_w268.lean",
       "result": "Shows T.rightHomology is Kernel T.fromOpcycles and MetrizableLCA.cokernelπ T.g is Cokernel T.fromOpcycles; Epi T.fromOpcycles is a positive endpoint input, while rightHomology zero alone is insufficient."
+    },
+    {
+      "artifact": "audit/blockers/opposite_contains_identities_of_iso_closed_w291.lean",
+      "result": "Parent-side v291 source progress; no support worker result consumed."
     }
   ]
 }
