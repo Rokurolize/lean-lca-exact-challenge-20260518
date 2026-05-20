@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v201-backward-right-fst-target-equation",
-  "generated_utc": "2026-05-20T05:04:07Z",
-  "source_tree_hash": "f9bf6a8b7c09aef44025a9139c3e547350a7435b58c4e089e800f0967ede47e0",
-  "summary": "v201 adds rightComponentDifferentialSquareFstEquation_proof to mapping_cone_biprod_comparison_probe_v189.lean. Together with the v200 snd proof, the backward right-component target equations are closed; product success remains blocked by remaining differential compatibility, Option product assembly, Dbounded transfer, and stable structures.",
+  "schema": "lean-lca-exact-challenge-verification-v202-option-complement-product-reindex",
+  "generated_utc": "2026-05-20T05:11:07Z",
+  "source_tree_hash": "7e4655490e48f91432aed730fb3503490355066b60f6487cdc08f837181f07a0",
+  "summary": "v202 ports support w154 as option_complement_product_reindex_w154.lean, proving the complement-subproduct reindex iso and fixed-degree analogue for the Option product decomposition route. Product success remains blocked by binaryFan/isLimitOfEval assembly, remaining mapping-cone differential compatibility, Dbounded transfer, and stable structures.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed for v201 after the mapping-cone fst proof and ProductSuccessDeclarations name-qualification fix; existing informational #check output remains nonblocking."
+      "evidence": "Full lake build passed for v202 after adding the W154 complement product reindex audit; existing informational #check output remains nonblocking."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed for v201."
+      "evidence": "Forbidden-token audit passed for v202."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed for v201; command output was logged because #check output is large."
+      "evidence": "RequiredDeclarations passed for v202; command output was logged because #check output is large."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed for v201 after qualifying the IntModuleCat audit example through AlternatingTailExtendTransport.IntModuleCat; product success remains unclaimed."
+      "evidence": "ProductSuccessDeclarations passed for v202; product success remains unclaimed."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v201: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v202: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v201 source and artifact updates."
+      "evidence": "Whitespace diff check passed after v202 source and artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -227,12 +227,12 @@
     {
       "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
       "status": "passed",
-      "evidence": "Focused v199 W151 audit passed after adding complementTailReindexIso."
+      "evidence": "Focused W151 Option product decomposition audit still passed after v202."
     },
     {
       "command": "lake env lean audit/blockers/option_product_reindex_packaging_w152.lean",
       "status": "passed",
-      "evidence": "Focused v199 W152 singleton none-subproduct audit passed after parent port."
+      "evidence": "Focused W152 singleton/reindex packaging audit still passed after v202."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -253,6 +253,11 @@
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
       "evidence": "manifest JSON parsed after v201 refresh."
+    },
+    {
+      "command": "lake env lean audit/blockers/option_complement_product_reindex_w154.lean",
+      "status": "passed",
+      "evidence": "Focused v202 W154 complement product reindex audit passed in the parent worktree."
     }
   ],
   "implemented_declarations_checked": [

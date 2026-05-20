@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v201時点で、binary mapping cone/biproduct比較について、逆向き右成分squareの残りfst target equationをrightComponentDifferentialSquareFstEquation_proofとして親側v189監査へ統合した。v200のsnd target equationと合わせて、rightComponentDifferentialSquare_ext_to_iffが要求する右成分target equationsは両方閉じた。ただし、左成分側、前向き射影等式、完全なbinary mapping-cone differential compatibility、Option product decomposition本体、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
+  "summary": "v202時点で、支援worker w154を親側へ audit/blockers/option_complement_product_reindex_w154.lean として統合し、Option product分解routeの補集合subproductからsome-tail productへの複体product同型 complementSubproductReindexIso と固定次数版 complementSubproductDegreeReindexIso を確認した。逆向き右成分target equationsはv201で閉じている。ただし、Option product本体のbinaryFan合成とHomologicalComplex.isLimitOfEval組み上げ、残りのbinary mapping-cone differential compatibility、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -59,7 +59,8 @@
     "lake env lean audit/blockers/finite_exact_acyclic_product_closure_w149.lean",
     "lake env lean audit/blockers/backward_source_map_rewrite_w150.lean",
     "lake env lean audit/blockers/option_product_decomposition_w151.lean",
-    "lake env lean audit/blockers/option_product_reindex_packaging_w152.lean"
+    "lake env lean audit/blockers/option_product_reindex_packaging_w152.lean",
+    "lake env lean audit/blockers/option_complement_product_reindex_w154.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
