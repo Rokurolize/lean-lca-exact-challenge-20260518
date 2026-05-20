@@ -222,6 +222,12 @@
 <p><time>2026-05-20T10:18:40Z</time>: The explicit pullback construction now exports <code>MetrizableLCA.instHasPullbacks</code>, and finite limits are synthesized as <code>MetrizableLCA.instHasFiniteLimits</code> from terminal objects plus pullbacks. <code>ProductSuccessDeclarations</code> checks both instances, and the bounded finite-products boundary no longer carries a separate <code>HasFiniteLimits MetrizableLCA</code> premise for its conditional <code>Dbounded</code> finite-products declaration. Remaining product work is the localization-transfer layer and the finite-colimit, triangulated, and stable infinity-category obligations.</p>
 </section>
 
+<section id="v329-mapping-cone-right-uniqueness">
+<h2>v329 mapping-cone right uniqueness</h2>
+<p><time>2026-05-20T17:52:00Z</time>: The parent added <code>audit/blockers/wpp_op_mapping_cone_right_uniqueness_w329.lean</code>. The checked lemma <code>ambientRightComponent_ext_of_colimit</code> proves that, once <code>c₂</code> remains colimiting after applying <code>BoundedComplexCategory.ι</code>, two candidate right components are equal if they agree after every included leg of <code>c₂</code>.</p>
+<p>Together with W328, the right <code>mappingCone.inr</code> side of W308 uniqueness is now a standard colimit uniqueness obligation. The remaining W308 work is the left <code>mappingCone.inl</code> cochain construction/equality and the <code>mappingCone.desc</code> differential compatibility equation. Product success remains false.</p>
+</section>
+
 <section id="v327-mapping-cone-fac-split">
 <h2>v327 mapping-cone fac split</h2>
 <p><time>2026-05-20T17:40:00Z</time>: The parent added <code>audit/blockers/wpp_op_mapping_cone_fac_split_w327.lean</code>. The checked lemma <code>mappingCone_map_desc_fac_of_left_right</code> isolates the local mapping-cone algebra needed by W308: for one fixed diagram object, the full leg equation for <code>mappingCone.map ... ≫ mappingCone.desc ...</code> follows from the already-available right <code>mappingCone.inr</code> equation and a left <code>mappingCone.inl</code> cochain compatibility equation.</p>

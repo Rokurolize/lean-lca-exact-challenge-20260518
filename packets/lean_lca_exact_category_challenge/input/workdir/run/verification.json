@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v327-mapping-cone-fac-split",
-  "generated_utc": "2026-05-20T17:47:00Z",
-  "source_tree_hash": "21fea3449db832bee774b3d664a637e5c8d74ec2024af06e910e666bd558605b",
-  "summary": "v328でW308 uniqueness split補題を追加・検証した。product_completeはfalseのまま。",
+  "schema": "lean-lca-exact-challenge-verification-v329-right-component-uniqueness",
+  "generated_utc": "2026-05-20T17:52:00Z",
+  "source_tree_hash": "08593e4755f63d1efb87cb324ba7293d97d496a553f7e78d92a89998160f0415",
+  "summary": "v329でW308右成分uniquenessをpreserved ambient colimitのhom_extへ縮約した。product_completeはfalseのまま。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -1008,6 +1008,16 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_fac_split_w327.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W327."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_right_uniqueness_w329.lean",
+      "status": "passed",
+      "evidence": "Focused W329 check passed; right mappingCone.inr component uniqueness follows from preserved ambient c₂ colimit hom_ext."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_right_uniqueness_w329.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W329."
     }
   ],
   "implemented_declarations_checked": [
@@ -1570,10 +1580,14 @@
     "LeanLCAExactChallenge.ComponentClosedEmbeddingCoequalizerSupportW297.currentComponentClosedEmbeddingCoequalizerSupportState_productSuccess",
     "LeanLCAExactChallenge.WppOpMappingConeFacSplitW327.mappingCone_map_desc_fac_of_left_right",
     "LeanLCAExactChallenge.WppOpMappingConeFacSplitW327.currentWppOpMappingConeFacSplitState_productSuccess",
-    "LeanLCAExactChallenge.WppOpMappingConeFacSplitW327.mappingCone_hom_ext_of_left_right"
+    "LeanLCAExactChallenge.WppOpMappingConeFacSplitW327.mappingCone_hom_ext_of_left_right",
+    "LeanLCAExactChallenge.WppOpMappingConeRightUniquenessW329.ambientRightComponent_ext_of_colimit",
+    "LeanLCAExactChallenge.WppOpMappingConeRightUniquenessW329.w308_right_uniqueness_component_of_legs",
+    "LeanLCAExactChallenge.WppOpMappingConeRightUniquenessW329.currentWppOpMappingConeRightUniquenessState_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
+    "W329で右mappingCone.inr成分の一意性はpreserved ambient colimitのhom_extへ縮約されたが、左mappingCone.inl cochainの構成、一致証明、desc differential compatibilityはまだsource theoremとして未証明である。",
     "W327で固定mapping-cone leg equationは右脚互換性と左cochain互換性へ分解されたが、任意test coconeに対するleft degree -1 cochain、descEq、左cochain互換性、一意性はまだsource theoremとして未証明である。",
     "W296でW319のadditive exactness境界はAddCommGrpCat kernel exactness/ShortComplex exactness closureへ縮約されたが、そのWPP-op colimit exactness保存定理本体はまだsource theoremとして未証明である。",
     "W297でW289/W318のleft closed embedding保存は純MetrizableLCAのcomponentwise closed embeddingな自然変換がWPP-op colimit mapでclosed embeddingを誘導する定理へ縮約されたが、そのcoequalizer/quotient位相定理本体はまだsource theoremとして未証明である。",
@@ -1637,7 +1651,8 @@
     "W326でW319の代数境界はAddCommGrpCat kernel-exactnessまたはShortComplex exactnessのWPP-op colimit保存へ縮約されたが、このAddCommGrpCat側の保存定理はまだ未供給である。",
     "W326でW289/W318のleft closed embedding境界はMetrizableLCAの自然変換coequalizer/colimit-map closed-embedding保存定理へ縮約されたが、この純LCA定理はまだ未供給である。",
     "W327で固定mappingCone leg equationは左`mappingCone.inl` cochain互換性と右`mappingCone.inr`互換性へ分解できたが、左degree -1 cochain、その互換性、descEq、および一意性はまだ未供給である。",
-    "W328でmapping coneから出る射の一意性はleft `mappingCone.inl` cochain equalityとright `mappingCone.inr` morphism equalityへ分解できたが、左cochain構成と左成分一致証明はまだ未供給である。"
+    "W328でmapping coneから出る射の一意性はleft `mappingCone.inl` cochain equalityとright `mappingCone.inr` morphism equalityへ分解できたが、左cochain構成と左成分一致証明はまだ未供給である。",
+    "W329でW328のright `mappingCone.inr`成分 equalityは保存済みambient `c₂` colimitのhom_extから従うことを確認したが、左`mappingCone.inl` cochain構成、左成分一致、descEqはまだ未供給である。"
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "product_success": false
