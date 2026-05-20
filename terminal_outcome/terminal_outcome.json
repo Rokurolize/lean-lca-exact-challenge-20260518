@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "親側W352-to-W393 adapterでW352 descended quotient fieldsがW393 ordinary fieldsを直接供給することを検証した。残る作業は実際のordinary WPP-op descended mapに対する具体W352 fields、direct targetIso、concrete W392 certificate、W389 relation-pullback certificateであり、product successはまだ主張しない。",
+  "summary": "W394でAddCommGrp targetIsoを同じcokernel cofork上のcolimit一意性へ縮約し、W395でclosed componentとW389/W392 certificateからrelation fieldsを組み立てた。残る作業はforgotten target cofork map/IsColimit proof、closed component field、W389 certificate、W392 certificate、具体W352 quotient compatibility/closed-map入力であり、product successはまだ主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -528,7 +528,10 @@
     "lake env lean audit/blockers/wpp_op_left_lca_ordinary_descended_fields_v370_support_w393.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_fields_v370_support_w393.lean",
     "lake env lean audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean",
+    "lake env lean audit/blockers/addcommgrp_forgotten_target_colimit_iso_v370_support_w394.lean",
+    "lake env lean audit/blockers/wpp_op_relation_fields_composer_v370_support_w395.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_colimit_iso_v370_support_w394.lean audit/blockers/wpp_op_relation_fields_composer_v370_support_w395.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1512,7 +1515,18 @@
     "currentWppOpLeftLcaOrdinaryDescendedFieldsV370StateW393_productSuccess",
     "DescendedQuotientFieldsW352",
     "descendedQuotientFieldsW352_to_ordinaryDescendedQuotientFieldsW393",
-    "currentWppOpLeftLcaW352ToW393AdapterV370SupportState_productSuccess"
+    "currentWppOpLeftLcaW352ToW393AdapterV370SupportState_productSuccess",
+    "cokernelCoforkPointUniqueIso",
+    "cokernelCoforkPointUniqueIso_hom_π",
+    "cokernelCoforkPointUniqueIso_inv_π",
+    "ForgottenTargetColimitIsoInput.targetIso",
+    "ForgottenTargetColimitIsoInput.toW391CompatibleTargetIsoInput",
+    "currentAddCommGrpForgottenTargetColimitIsoV370SupportState_productSuccess",
+    "ConcreteMetrizableLCA.relationFields_of_closedMap_w389_w392",
+    "ConcreteMetrizableLCA.relationFields_of_closedEmbedding_w389_w392",
+    "WppOpRelationPullbackEqualityCertificateW389.to_relation_fields_via_w392",
+    "WppOpRelationPullbackEqualityCertificateW389.to_w371_inputs_via_w392",
+    "currentWppOpRelationFieldsComposerV370SupportStateW395_productSuccess"
   ],
   "known_gaps": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
@@ -1606,17 +1620,16 @@
     "W385後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
     "W388後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
     "W390後も外部から与えたtransported descended mapを使う場合はcanonical conjugated transported mapとの同一視、またはTransportedDescendedConjugacyInputW390が必要である。",
-    "W389後もrelation-pullback equality本体にはreverse relation-preimage certificate、またはW389 certificateの具体供給が必要である。",
-    "W391後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへのdirect targetIso構成は未証明である。",
-    "W392後もelementwise target relation lift、またはそれを含むW392 certificateの具体供給は未証明である。",
-    "親W352-to-W393 adapter後も、実際のordinary WPP-op descended mapに対する具体W352 fields、すなわちrelation-pullback、quotient compatibility、closed-map入力の構成が必要である。"
+    "親W352-to-W393 adapter後も、実際のordinary WPP-op descended mapに対する具体W352 fields、すなわちrelation-pullback、quotient compatibility、closed-map入力の構成が必要である。",
+    "W394後もforgotten target cofork map qForgottenと同じparallel pair上のIsColimit proofが必要である。",
+    "W395後もobjectwise closed-mapまたはclosed-embedding component field、W389 relation-pullback certificate、W392 target relation lift certificateの具体供給が必要である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "pending-parent-w352-to-w393-artifact-sync",
+  "git_commit": "pending-w394-w395-artifact-sync",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "Parent W352-to-W393 adapter removes the field-shape bridge gap. Remaining frontier: concrete W352 fields for the actual ordinary WPP-op descended map, AddCommGrp direct targetIso, concrete W392 certificate, and W389 relation-pullback certificate.",
+  "worker_frontier_summary": "W394 reduces direct targetIso to same-cofork colimit uniqueness. W395 composes closed component plus W389/W392 certificates into W383/W371 relation fields. Remaining frontier: forgotten target cofork map/IsColimit proof, closed component field, W389 certificate, W392 certificate, and concrete W352 quotient compatibility/closed-map inputs.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",

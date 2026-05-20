@@ -614,6 +614,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## Parent W352-to-W393 Adapter
 2026-05-20T23:45:00Z: Parent support `audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean` was added and focused-verified. It proves W352-style descended quotient fields directly instantiate W393 ordinary descended quotient fields. Product success remains false because the actual ordinary WPP-op descended map still needs concrete W352 fields: relation-pullback, quotient compatibility, and closed-map input.
 
+## W394-W395 Colimit Iso And Relation Composer
+2026-05-20T23:49:00Z: Worker support `w394-addcommgrp-forgotten-target-colimit-iso-v370` and `w395-wpp-op-relation-fields-composer-v370` were ported and focused-verified. W394 constructs the targetIso from uniqueness of cokernel-cofork colimit points once the canonical and forgotten target coforks are presented over the same pair. W395 composes objectwise closed-map/closed-embedding component data with W389 and W392 certificates into W383/W371 relation fields. Product success remains false because the forgotten target cofork map and IsColimit proof, closed component field, W389 certificate, and W392 certificate remain concrete inputs.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
