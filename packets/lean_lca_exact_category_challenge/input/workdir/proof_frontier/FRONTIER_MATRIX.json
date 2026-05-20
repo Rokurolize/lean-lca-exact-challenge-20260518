@@ -3610,5 +3610,30 @@
       "W411 component closed-map/closed-embeddingとtarget saturation、target relation lift certificateを証明する。"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w413": {
+    "timestamp_utc": "2026-05-21T00:43:00Z",
+    "status": "verified_focused",
+    "summary": "W413 derives IsColimit of selectedForgottenTargetMappedCocone from IsColimit cs plus PreservesColimit S forgottenShortComplexFunctor.",
+    "touched_files": [
+      "audit/blockers/addcommgrp_mapped_cocone_iscolimit_source_v370_support_w413.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "selectedForgottenTargetMappedCocone",
+      "selectedForgottenTargetMappedCoconeIsColimitOfPreserves",
+      "consumeW410MappedCoconeInputOfOriginalColimit",
+      "currentAddCommGrpMappedCoconeIsColimitSourceV370SupportState_productSuccess"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/addcommgrp_mapped_cocone_iscolimit_source_v370_support_w413.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_mapped_cocone_iscolimit_source_v370_support_w413.lean",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "PreservesColimit S forgottenShortComplexFunctorを最終routeで供給する。",
+      "W413からW410/W406/W403/W398 target input routeへ接続する。",
+      "W412 relation statement、W411 topological inputs、target relation lift certificateを証明する。"
+    ],
+    "product_success_claimed": false
   }
 }
