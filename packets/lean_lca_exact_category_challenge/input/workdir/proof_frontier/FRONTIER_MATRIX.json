@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T18:48:00Z",
+  "generated_utc": "2026-05-20T19:02:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -1365,9 +1365,9 @@
     }
   ],
   "support_result_classification": "w272 was manually ported as a focused nonterminal boundary refining W269 fixed-target fac/uniq obligations. v296 parent-added counterexample; not support product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
-  "latest_parent_update": "v350-w271-mapping-cone-comparison-consumed",
-  "summary": "v350でW271 consumes the included-colimit mapping-cone comparison theorem. The direct WPP-op colimit stability target now only needs exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure, which W318 reduces to left closed embedding, right open map, and algebraic exactness preservation. Product success remains nonterminal.",
-  "remaining_frontier": "Concrete WPP-op instantiation of W341 into W308 AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData, plus exact/topological preservation source theorems.",
+  "latest_parent_update": "v354-w271-pure-field-frontier-consumer",
+  "summary": "v354 promotes W318 to product source and connects W271 direct WPP-op colimit stability directly to the three pure source-level W318 inputs.",
+  "remaining_frontier": "Prove one or more of the three W318 pure source theorems: left LCA certificate, right open-map/cover, AddCommGrp kernel exactness.",
   "support_classification": [
     {
       "id": "parent-v248",
@@ -1572,16 +1572,28 @@
     "v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success."
   ],
   "remaining_blockers": [
+    "W318のleft closed-embedding入力は純MetrizableLCA WPP-op colimit-mapのinjectivity、induced topology、closed image certificateへ縮約済みだが、その三つのcertificate本体は未証明である。",
+    "W286/W318のright open-map preservationは純MetrizableLCAの自然変換colimit-map open保存定理、またはWppOpLcaColimitMapOpenCoverの具体構成へ縮約済みだが、その純LCA定理またはcover constructionは未証明である。",
     "W302/W304/W308のmapping-cone comparison routeはincluded colimit入力から接続されたが、これだけでは製品全体のexact-category/stable-derived目標は完了しない。",
     "W296/W319のAddCommGrpCat kernel exactness/WPP-op colimit exactness保存定理本体はまだsource theoremとして未証明である。",
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
-    "W286/W311のright open-map preservationはquotient/coequalizer cover dataへ縮約済みだが、具体cover constructionは未証明である。"
+    "W286/W311のright open-map preservationはquotient/coequalizer cover dataへ縮約済みだが、具体cover constructionは未証明である。",
+    "W318 right-open branch now requires pure LCA WPP-op colimit-map open preservation or a WppOpLcaColimitMapOpenCover construction.",
+    "W318 left closed-embedding branch now requires pure LCA injective/inducing/closed-image certificates for the induced WPP-op colimit map.",
+    "W318 algebraic branch now requires AddCommGrp kernel exactness preservation for the WPP-op colimit point.",
+    "W271 now directly consumes the three pure W318 source frontiers after W318 source-module promotion."
   ],
   "open_blockers": [
+    "W318のleft closed-embedding入力は純MetrizableLCA WPP-op colimit-mapのinjectivity、induced topology、closed image certificateへ縮約済みだが、その三つのcertificate本体は未証明である。",
+    "W286/W318のright open-map preservationは純MetrizableLCAの自然変換colimit-map open保存定理、またはWppOpLcaColimitMapOpenCoverの具体構成へ縮約済みだが、その純LCA定理またはcover constructionは未証明である。",
     "W302/W304/W308のmapping-cone comparison routeはincluded colimit入力から接続されたが、これだけでは製品全体のexact-category/stable-derived目標は完了しない。",
     "W296/W319のAddCommGrpCat kernel exactness/WPP-op colimit exactness保存定理本体はまだsource theoremとして未証明である。",
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
-    "W286/W311のright open-map preservationはquotient/coequalizer cover dataへ縮約済みだが、具体cover constructionは未証明である。"
+    "W286/W311のright open-map preservationはquotient/coequalizer cover dataへ縮約済みだが、具体cover constructionは未証明である。",
+    "W318 right-open branch now requires pure LCA WPP-op colimit-map open preservation or a WppOpLcaColimitMapOpenCover construction.",
+    "W318 left closed-embedding branch now requires pure LCA injective/inducing/closed-image certificates for the induced WPP-op colimit map.",
+    "W318 algebraic branch now requires AddCommGrp kernel exactness preservation for the WPP-op colimit point.",
+    "W271 now directly consumes the three pure W318 source frontiers after W318 source-module promotion."
   ],
   "consumed_support_results": [
     {
@@ -1707,13 +1719,27 @@
       "status": "parent_verified_partial",
       "artifact": "audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
       "evidence": "Parent added assembledMediator and uniqueMediatingInput_of_descAssemblyData to existing W308; focused Lean, forbidden-token audit, and git diff --check passed."
+    },
+    {
+      "artifact": "audit/blockers/right_open_map_wpp_op_colimit_w286.lean; audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
+      "result": "v351 narrows the W318 right-open field to pure LCA colimit-map open preservation or WppOpLcaColimitMapOpenCover data; focused Lean checks passed; not product success."
+    },
+    {
+      "artifact": "audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
+      "result": "v352 narrows W318 left closed-embedding preservation to a pure LCA injective/inducing/closed-image certificate and adds a pure-topological exact-acyclic closure consumer; focused Lean check passed; not product success."
     }
   ],
   "known_gaps": [
+    "W318のleft closed-embedding入力は純MetrizableLCA WPP-op colimit-mapのinjectivity、induced topology、closed image certificateへ縮約済みだが、その三つのcertificate本体は未証明である。",
+    "W286/W318のright open-map preservationは純MetrizableLCAの自然変換colimit-map open保存定理、またはWppOpLcaColimitMapOpenCoverの具体構成へ縮約済みだが、その純LCA定理またはcover constructionは未証明である。",
     "W302/W304/W308のmapping-cone comparison routeはincluded colimit入力から接続されたが、これだけでは製品全体のexact-category/stable-derived目標は完了しない。",
     "W296/W319のAddCommGrpCat kernel exactness/WPP-op colimit exactness保存定理本体はまだsource theoremとして未証明である。",
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。",
-    "W286/W311のright open-map preservationはquotient/coequalizer cover dataへ縮約済みだが、具体cover constructionは未証明である。"
+    "W286/W311のright open-map preservationはquotient/coequalizer cover dataへ縮約済みだが、具体cover constructionは未証明である。",
+    "W318 right-open branch now requires pure LCA WPP-op colimit-map open preservation or a WppOpLcaColimitMapOpenCover construction.",
+    "W318 left closed-embedding branch now requires pure LCA injective/inducing/closed-image certificates for the induced WPP-op colimit map.",
+    "W318 algebraic branch now requires AddCommGrp kernel exactness preservation for the WPP-op colimit point.",
+    "W271 now directly consumes the three pure W318 source frontiers after W318 source-module promotion."
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -2112,5 +2138,57 @@
     ],
     "contribution": "Closes the mapping-cone comparison blocker in W271 using the W308/W302 included-colimit route.",
     "remaining": "Prove exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure, currently reduced by W318 to left closed embedding, right open map, and algebraic exactness preservation."
+  },
+  "parent_update_v351": {
+    "summary": "W286/W318 right-open-map preservation is narrowed from the short-complex boundary to pure MetrizableLCA colimit-map open preservation, with an explicit open-cover sufficient condition.",
+    "positive_facts": [
+      "wppOp_lca_colimitMap_preserves_openMap boundary recorded",
+      "WppOpLcaColimitMapOpenCover consumer proves pure open-map preservation",
+      "W318 exact-acyclic closure consumer accepts the pure right-open input"
+    ],
+    "remaining": "Construct the pure LCA open-map theorem or cover data, plus the left closed-embedding and algebraic exactness source theorems."
+  },
+  "parent_update_v352": {
+    "summary": "W318 left closed-embedding and right open-map inputs are both pure component-level LCA colimit-map frontiers.",
+    "positive_facts": [
+      "wppOp_lca_colimitMap_injective_inducing_closedImage boundary recorded",
+      "closedEmbedding_of_injective_inducing_closedImage checked",
+      "wppOp_colimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage checked",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureTopological_frontier checked"
+    ],
+    "remaining": "Prove the pure left-topology certificate, pure right-open theorem/cover construction, and algebraic exactness preservation."
+  },
+  "parent_update_v353": {
+    "timestamp_utc": "2026-05-20T18:57:00Z",
+    "status": "verified_focused",
+    "summary": "W318 algebraic field now consumes additive and AddCommGrp kernel-exactness boundaries, producing exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_frontier.",
+    "touched_files": [
+      "audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AdditiveKernelExact",
+      "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpKernelExact",
+      "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.additiveKernelExact_wppOp_colimit_boundary",
+      "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable",
+      "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.algebraicExact_walkingParallelPairOp_colimitClosure_of_additiveBoundary",
+      "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpKernelExact_iff_additiveKernelExact",
+      "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact",
+      "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureField_frontier",
+      "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_frontier"
+    ],
+    "remaining_inputs": [
+      "wppOp_lca_colimitMap_injective_inducing_closedImage",
+      "wppOp_lca_colimitMap_preserves_openMap",
+      "addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_v354": {
+    "summary": "W271 consumes promoted W318 pure field package directly.",
+    "positive_facts": [
+      "LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean checks",
+      "metrizableLCA_directWalkingParallelPairOpColimitStability_of_pureFieldFrontier checks"
+    ],
+    "remaining": "The three pure source theorems remain unproved; product success remains false."
   }
 }

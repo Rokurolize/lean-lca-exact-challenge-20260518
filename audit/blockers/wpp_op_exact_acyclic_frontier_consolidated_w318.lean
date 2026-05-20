@@ -55,6 +55,23 @@ abbrev wppOp_colimit_preserves_leftClosedEmbedding : Prop :=
           IsClosedEmbedding ((S.obj j).f : (S.obj j).X₁ → (S.obj j).X₂)) →
           IsClosedEmbedding (cs.pt.f : cs.pt.X₁ → cs.pt.X₂)
 
+/--
+Pure component-level LCA certificate for the left closed-embedding field.
+For the induced map between WPP-op colimit points it is enough to prove
+injectivity, induced source topology, and closed image.
+-/
+abbrev wppOp_lca_colimitMap_injective_inducing_closedImage : Prop :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+      IsColimit cx →
+        IsColimit cy →
+          (∀ j : WalkingParallelPairᵒᵖ,
+            IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+            (∀ j : WalkingParallelPairᵒᵖ, cx.ι.app j ≫ φ = α.app j ≫ cy.ι.app j) →
+              Function.Injective (φ : cx.pt → cy.pt) ∧
+                IsInducing (φ : cx.pt → cy.pt) ∧
+                  IsClosed (Set.range (φ : cx.pt → cy.pt))
+
 /-- WPP-op component colimits preserve openness of the induced right map. -/
 abbrev openMap_walkingParallelPairOp_colimitMap_boundary : Prop :=
   ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
@@ -67,6 +84,20 @@ abbrev openMap_walkingParallelPairOp_colimitMap_boundary : Prop :=
             IsOpenMap ((S.obj j).g : (S.obj j).X₂ → (S.obj j).X₃)) →
             IsOpenMap (cs.pt.g : cs.pt.X₂ → cs.pt.X₃)
 
+/--
+Pure component-level LCA boundary for the right-open field: a natural
+transformation of WPP-op LCA diagrams with open component maps induces an open
+map between colimit points.
+-/
+abbrev wppOp_lca_colimitMap_preserves_openMap : Prop :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+      IsColimit cx →
+        IsColimit cy →
+          (∀ j : WalkingParallelPairᵒᵖ, IsOpenMap (α.app j : X.obj j → Y.obj j)) →
+            (∀ j : WalkingParallelPairᵒᵖ, cx.ι.app j ≫ φ = α.app j ≫ cy.ι.app j) →
+              IsOpenMap (φ : cx.pt → cy.pt)
+
 /-- Direct algebraic exactness at the WPP-op colimit point. -/
 abbrev algebraicExact_walkingParallelPairOp_colimitClosure : Prop :=
   ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
@@ -74,6 +105,38 @@ abbrev algebraicExact_walkingParallelPairOp_colimitClosure : Prop :=
       IsColimit cs →
         (∀ j : WalkingParallelPairᵒᵖ, MetrizableLCA.strictShortExact (S.obj j)) →
           ∀ x₂ : cs.pt.X₂, cs.pt.g x₂ = 0 → ∃ x₁ : cs.pt.X₁, cs.pt.f x₁ = x₂
+
+/-- Element-level exactness of a short complex after forgetting topology. -/
+abbrev AdditiveKernelExact (T : ShortComplex MetrizableLCA.{0}) : Prop :=
+  ∀ x₂ : T.X₂, T.g x₂ = 0 → ∃ x₁ : T.X₁, T.f x₁ = x₂
+
+/-- Element-level middle-kernel exactness for a short complex of abelian groups. -/
+abbrev AddCommGrpKernelExact (T : ShortComplex AddCommGrpCat.{0}) : Prop :=
+  ∀ x₂ : T.X₂, T.g x₂ = 0 → ∃ x₁ : T.X₁, T.f x₁ = x₂
+
+/--
+Pure additive WPP-op colimit exactness boundary.  This removes all topology from
+the algebraic field: componentwise middle-kernel exactness must be preserved by
+the WPP-op colimit point.
+-/
+abbrev additiveKernelExact_wppOp_colimit_boundary : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S),
+      IsColimit cs →
+        (∀ j : WalkingParallelPairᵒᵖ, AdditiveKernelExact (S.obj j)) →
+          AdditiveKernelExact cs.pt
+
+/--
+AddCommGrp-shaped kernel exactness boundary for the WPP-op colimit point.  This
+is the topology-free version of `additiveKernelExact_wppOp_colimit_boundary`.
+-/
+abbrev addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S),
+      IsColimit cs →
+        (∀ j : WalkingParallelPairᵒᵖ,
+          AddCommGrpKernelExact ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))) →
+          AddCommGrpKernelExact (cs.pt.map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))
 
 /-- Left field consumer from W289's boundary. -/
 theorem leftClosedEmbedding_walkingParallelPairOp_colimitClosure_of_preserves
@@ -85,6 +148,48 @@ theorem leftClosedEmbedding_walkingParallelPairOp_colimitClosure_of_preserves
             IsClosedEmbedding (cs.pt.f : cs.pt.X₁ → cs.pt.X₂) := by
   intro S cs hcs hS
   exact hpres S cs hcs (fun j => (hS j).closed_inclusion)
+
+/-- The three-part topological certificate is exactly enough for a closed embedding. -/
+theorem closedEmbedding_of_injective_inducing_closedImage
+    {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y] (f : X → Y)
+    (hinj : Function.Injective f) (hind : IsInducing f)
+    (hclosed : IsClosed (Set.range f)) :
+    IsClosedEmbedding f :=
+  { toIsEmbedding := { toIsInducing := hind, injective := hinj }
+    isClosed_range := hclosed }
+
+/-- The pure LCA certificate supplies the left closed-embedding preservation boundary. -/
+theorem wppOp_colimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage
+    (hquot : wppOp_lca_colimitMap_injective_inducing_closedImage) :
+    wppOp_colimit_preserves_leftClosedEmbedding := by
+  intro S cs hcs hclosed
+  let α : S ⋙ (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤
+      MetrizableLCA.{0}) ⟶
+      S ⋙ (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤
+        MetrizableLCA.{0}) :=
+    { app := fun j => (S.obj j).f
+      naturality := fun _ _ f => (S.map f).comm₁₂ }
+  have h₁ : IsColimit
+      ((ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤
+        MetrizableLCA.{0}).mapCocone cs) :=
+    isColimitOfPreserves
+      (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) hcs
+  have h₂ : IsColimit
+      ((ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤
+        MetrizableLCA.{0}).mapCocone cs) :=
+    isColimitOfPreserves
+      (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) hcs
+  rcases hquot
+    (S ⋙ (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}))
+    (S ⋙ (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}))
+    α
+    ((ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCocone cs)
+    ((ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCocone cs)
+    cs.pt.f
+    h₁ h₂ hclosed
+    (fun j => (cs.ι.app j).comm₁₂) with ⟨hinj, hind, hclosedImage⟩
+  exact closedEmbedding_of_injective_inducing_closedImage
+    (cs.pt.f : cs.pt.X₁ → cs.pt.X₂) hinj hind hclosedImage
 
 /-- Right-open field consumer from W286's boundary. -/
 theorem rightOpenMap_walkingParallelPairOp_colimitClosure_of_boundary
@@ -101,6 +206,27 @@ theorem rightOpenMap_walkingParallelPairOp_colimitClosure_of_boundary
     (isColimitOfPreserves
       (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) hcs)
     (fun j => (hS j).open_map)
+
+/-- The pure component-level LCA open-map boundary supplies the W286/W318 boundary. -/
+theorem openMap_walkingParallelPairOp_colimitMap_boundary_of_lca_colimitMap
+    (hcomponent : wppOp_lca_colimitMap_preserves_openMap) :
+    openMap_walkingParallelPairOp_colimitMap_boundary := by
+  intro S cs h₂ h₃ hopen
+  let α : S ⋙ (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤
+      MetrizableLCA.{0}) ⟶
+      S ⋙ (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤
+        MetrizableLCA.{0}) :=
+    { app := fun j => (S.obj j).g
+      naturality := fun _ _ f => (S.map f).comm₂₃ }
+  exact hcomponent
+    (S ⋙ (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}))
+    (S ⋙ (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}))
+    α
+    ((ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCocone cs)
+    ((ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCocone cs)
+    cs.pt.g
+    h₂ h₃ hopen
+    (fun j => (cs.ι.app j).comm₂₃)
 
 /-- The colimit right map is categorically epi, by componentwise strict exactness. -/
 theorem rightMapEpi_walkingParallelPairOp_colimitClosure_direct
@@ -122,6 +248,28 @@ theorem rightMapEpi_walkingParallelPairOp_colimitClosure_direct
     (fun j => by
       dsimp [φ]
       simpa using (cs.ι.app j).comm₂₃)
+
+/-- The pure additive boundary supplies W318's algebraic exactness field. -/
+theorem algebraicExact_walkingParallelPairOp_colimitClosure_of_additiveBoundary
+    (hboundary : additiveKernelExact_wppOp_colimit_boundary) :
+    algebraicExact_walkingParallelPairOp_colimitClosure := by
+  intro S cs hcs hS
+  exact hboundary S cs hcs (fun j x₂ hx₂ => (hS j).algebraic_exact x₂ hx₂)
+
+/-- The MetrizableLCA and AddCommGrpCat element-level predicates are definitionally aligned. -/
+theorem addCommGrpKernelExact_iff_additiveKernelExact
+    (T : ShortComplex MetrizableLCA.{0}) :
+    AddCommGrpKernelExact (T.map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})) ↔
+      AdditiveKernelExact T := by
+  rfl
+
+/-- The AddCommGrp-shaped kernel exactness boundary supplies the additive boundary. -/
+theorem additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact
+    (hboundary : addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable) :
+    additiveKernelExact_wppOp_colimit_boundary := by
+  intro S cs hcs hS
+  exact hboundary S cs hcs (fun j => (addCommGrpKernelExact_iff_additiveKernelExact
+    (S.obj j)).mpr (hS j))
 
 /--
 Consolidated strictness consumer from the W286/W287/W289-style boundaries.
@@ -185,6 +333,59 @@ theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_consolidated_front
   exact strictShortExact_walkingParallelPairOp_colimitClosure_of_consolidated_frontier
     hclosed hopen halg S cs hcs hS
 
+/--
+Variant of the consolidated consumer with the right-open input narrowed to the
+pure component-level LCA colimit-map theorem.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureOpen_frontier
+    (hclosed : wppOp_colimit_preserves_leftClosedEmbedding)
+    (hopen : wppOp_lca_colimitMap_preserves_openMap)
+    (halg : algebraicExact_walkingParallelPairOp_colimitClosure) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_consolidated_frontier
+    hclosed
+    (openMap_walkingParallelPairOp_colimitMap_boundary_of_lca_colimitMap hopen)
+    halg
+
+/--
+Variant with both topological inputs narrowed to pure component-level LCA
+frontiers.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureTopological_frontier
+    (hclosed : wppOp_lca_colimitMap_injective_inducing_closedImage)
+    (hopen : wppOp_lca_colimitMap_preserves_openMap)
+    (halg : algebraicExact_walkingParallelPairOp_colimitClosure) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_consolidated_frontier
+    (wppOp_colimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage hclosed)
+    (openMap_walkingParallelPairOp_colimitMap_boundary_of_lca_colimitMap hopen)
+    halg
+
+/--
+Variant with both topological inputs and the algebraic input narrowed to their
+pure source-level frontiers.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureField_frontier
+    (hclosed : wppOp_lca_colimitMap_injective_inducing_closedImage)
+    (hopen : wppOp_lca_colimitMap_preserves_openMap)
+    (halg : additiveKernelExact_wppOp_colimit_boundary) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureTopological_frontier
+    hclosed hopen
+    (algebraicExact_walkingParallelPairOp_colimitClosure_of_additiveBoundary halg)
+
+/--
+Variant with the algebraic input stated in the underlying AddCommGrpCat shape.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_frontier
+    (hclosed : wppOp_lca_colimitMap_injective_inducing_closedImage)
+    (hopen : wppOp_lca_colimitMap_preserves_openMap)
+    (halg : addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureField_frontier
+    hclosed hopen
+    (additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact halg)
+
 /-- Machine-readable W318 frontier state. -/
 structure WppOpExactAcyclicFrontierConsolidatedState : Type where
   seed : String
@@ -199,9 +400,9 @@ def currentWppOpExactAcyclicFrontierConsolidatedState :
   provedConsumer :=
     "exactAcyclic_walkingParallelPairOp_colimit_closure_of_consolidated_frontier"
   remainingInputs :=
-    ["wppOp_colimit_preserves_leftClosedEmbedding",
-      "openMap_walkingParallelPairOp_colimitMap_boundary",
-      "algebraicExact_walkingParallelPairOp_colimitClosure"]
+    ["wppOp_lca_colimitMap_injective_inducing_closedImage",
+      "wppOp_lca_colimitMap_preserves_openMap",
+      "addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable"]
   productSuccessClaimed := false
 
 theorem currentWppOpExactAcyclicFrontierConsolidatedState_productSuccess :
@@ -212,13 +413,29 @@ section Checks
 #check degreeShortComplexFunctor
 #check exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure
 #check wppOp_colimit_preserves_leftClosedEmbedding
+#check wppOp_lca_colimitMap_injective_inducing_closedImage
 #check openMap_walkingParallelPairOp_colimitMap_boundary
+#check wppOp_lca_colimitMap_preserves_openMap
 #check algebraicExact_walkingParallelPairOp_colimitClosure
+#check AdditiveKernelExact
+#check AddCommGrpKernelExact
+#check additiveKernelExact_wppOp_colimit_boundary
+#check addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable
 #check leftClosedEmbedding_walkingParallelPairOp_colimitClosure_of_preserves
+#check closedEmbedding_of_injective_inducing_closedImage
+#check wppOp_colimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage
 #check rightOpenMap_walkingParallelPairOp_colimitClosure_of_boundary
+#check openMap_walkingParallelPairOp_colimitMap_boundary_of_lca_colimitMap
 #check rightMapEpi_walkingParallelPairOp_colimitClosure_direct
+#check algebraicExact_walkingParallelPairOp_colimitClosure_of_additiveBoundary
+#check addCommGrpKernelExact_iff_additiveKernelExact
+#check additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact
 #check strictShortExact_walkingParallelPairOp_colimitClosure_of_consolidated_frontier
 #check exactAcyclic_walkingParallelPairOp_colimit_closure_of_consolidated_frontier
+#check exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureOpen_frontier
+#check exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureTopological_frontier
+#check exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureField_frontier
+#check exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_frontier
 #check currentWppOpExactAcyclicFrontierConsolidatedState
 #check currentWppOpExactAcyclicFrontierConsolidatedState_productSuccess
 #check ShortComplex.π₂

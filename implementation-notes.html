@@ -823,3 +823,33 @@
 <p><time>2026-05-20T18:45:10Z</time>: The parent verified <code>audit/blockers/wpp_op_object_cone_boundary_w302.lean</code> and <code>audit/blockers/wpp_op_mapping_cone_universal_w304.lean</code> after connecting them to <code>WppOpMappingConeUniqueMediatorW308.uniqueMediatingInput_of_includedColimits</code>. W302 now obtains the fixed mapping-cone cocone colimit input, and the W276 mapping-cone comparison input, from included colimit data. W304 likewise obtains its fixed-cocone colimit input through the included-colimit unique-mediating route.</p>
 <p>This closes the mapping-cone fixed-cocone comparison route as an audit/proof frontier. Product success remains false because the W318 exact/topological preservation inputs, especially additive exactness, left closed embedding, and right open map preservation for WPP-op colimits, remain unproved.</p>
 </section>
+
+<section id="v350-w271-included-colimit-comparison-consumed">
+<h2>v350 W271 included-colimit comparison</h2>
+<p><time>2026-05-20T19:09:00Z</time>: The parent verified <code>audit/blockers/direct_wpp_op_colimit_closure_w271.lean</code> after adding <code>mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimits</code>, <code>directWalkingParallelPairOpColimitConditionInput_of_includedComparison_and_closure</code>, and <code>metrizableLCA_directWalkingParallelPairOpColimitStability_of_exactAcyclicClosure</code>.</p>
+<p>The direct WPP-op colimit stability target no longer has a mapping-cone comparison blocker. The remaining W271 input is <code>exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure</code>, currently reduced by W318 to preservation of left closed embeddings, right open maps, and algebraic exactness for WPP-op colimits.</p>
+</section>
+
+<section id="v351-w318-right-open-pure-lca-boundary">
+<h2>v351 W318 right-open boundary</h2>
+<p><time>2026-05-21T03:20:00Z</time>: The parent verified the extended <code>audit/blockers/right_open_map_wpp_op_colimit_w286.lean</code> and <code>audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean</code>. W286 now isolates <code>wppOp_lca_colimitMap_preserves_openMap</code>, the pure component-level theorem that a natural transformation of WPP-op <code>MetrizableLCA</code> diagrams with open component maps induces an open map on colimit points.</p>
+<p>The same audit also records <code>WppOpLcaColimitMapOpenCover</code> and a checked consumer from such cover data to the pure open-map theorem. W318 now has <code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureOpen_frontier</code>, so the right-open part of the exact-acyclic closure frontier is narrowed from a short-complex boundary to a pure LCA natural-transformation colimit-map theorem or a concrete open-cover construction. Product success remains false because the pure open-map theorem or cover construction, the left closed-embedding certificate, and the AddCommGrpCat kernel-exactness preservation theorem are still unproved.</p>
+</section>
+
+<section id="v352-w318-pure-topological-boundary">
+<h2>v352 W318 pure topology</h2>
+<p><time>2026-05-21T03:25:00Z</time>: The parent verified another extension of <code>audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean</code>. It adds <code>wppOp_lca_colimitMap_injective_inducing_closedImage</code>, <code>closedEmbedding_of_injective_inducing_closedImage</code>, <code>wppOp_colimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage</code>, and <code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureTopological_frontier</code>.</p>
+<p>Both topological W318 inputs are now stated at the pure WPP-op <code>MetrizableLCA</code> colimit-map level. The left field needs injectivity, induced source topology, and closed image for the induced colimit map; the right field needs open-map preservation or an explicit open-cover construction. Product success remains false because those pure topological source theorems and the algebraic exactness preservation theorem are still unproved.</p>
+</section>
+
+<section id="v353-w318-addcommgrp-field-frontier">
+<h2>v353 W318 additive field</h2>
+<p><time>2026-05-21T03:57:00Z</time>: The parent verified <code>audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean</code> after adding <code>AdditiveKernelExact</code>, <code>AddCommGrpKernelExact</code>, <code>additiveKernelExact_wppOp_colimit_boundary</code>, and <code>addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable</code>. The checked consumers <code>algebraicExact_walkingParallelPairOp_colimitClosure_of_additiveBoundary</code> and <code>additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact</code> connect those pure additive inputs back to W318's algebraic field.</p>
+<p>W318 now has <code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_frontier</code>. Its remaining inputs are exactly three pure source-level frontiers: left LCA colimit-map injectivity/inducing/closed-image, right LCA colimit-map open preservation or cover construction, and AddCommGrp kernel exactness preservation for WPP-op colimits. Product success remains false.</p>
+</section>
+
+<section id="v354-w271-pure-field-consumer">
+<h2>v354 W271 pure fields</h2>
+<p><time>2026-05-21T04:02:00Z</time>: The parent promoted the W318 consolidation to <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean</code> and verified <code>audit/blockers/direct_wpp_op_colimit_closure_w271.lean</code> after adding <code>metrizableLCA_directWalkingParallelPairOpColimitStability_of_pureFieldFrontier</code>.</p>
+<p>W271 now consumes the three W318 pure source-level inputs directly: <code>wppOp_lca_colimitMap_injective_inducing_closedImage</code>, <code>wppOp_lca_colimitMap_preserves_openMap</code>, and <code>addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable</code>. Product success remains false because all three source theorems are still unproved.</p>
+</section>
