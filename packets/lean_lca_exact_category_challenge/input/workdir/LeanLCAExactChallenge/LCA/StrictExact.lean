@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.LCA.Basic
 import Mathlib.Algebra.Homology.ShortComplex.Ab
+import Mathlib.Algebra.Homology.ShortComplex.ConcreteCategory
 import Mathlib.Topology.Constructions
 
 /-!
@@ -69,6 +70,22 @@ lemma forgetToAddCommGrpCat_exact_of_strict {S : ShortComplex MetrizableLCA.{u}}
   intro x₂ hx₂
   rcases hS.algebraic_exact x₂ hx₂ with ⟨x₁, hx₁⟩
   exact ⟨x₁, hx₁⟩
+
+lemma strictShortExact_of_exact_of_topology {S : ShortComplex MetrizableLCA.{u}}
+    (hhom : S.HasHomology)
+    (hpres : (forget₂ MetrizableLCA.{u} AddCommGrpCat.{u}).PreservesHomology)
+    (hS : S.Exact) (hclosed : IsClosedEmbedding (S.f : S.X₁ → S.X₂))
+    (hopen : IsOpenMap (S.g : S.X₂ → S.X₃))
+    (hsurj : Function.Surjective (S.g : S.X₂ → S.X₃)) :
+    strictShortExact S where
+  closed_inclusion := hclosed
+  open_map := hopen
+  surjective := hsurj
+  algebraic_exact := by
+    letI := hhom
+    letI := hpres
+    intro x₂ hx₂
+    exact (ShortComplex.exact_iff_of_hasForget S).mp hS x₂ hx₂
 
 /-- Coordinatewise product of two short complexes. -/
 def strictShortExactBiprodComplex (S T : ShortComplex MetrizableLCA.{u}) :

@@ -1,13 +1,13 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T12:36:11Z",
-  "source_tree_hash": "702fe720221c4ae3f1528c71d973bedfcdc69faa24829028a24753510192abc0",
-  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。",
+  "generated_utc": "2026-05-20T12:58:00Z",
+  "source_tree_hash": "ba066d4ab32059fe8fea0968dbf406c5548559639dcaa902cceb94ee7fc9e8c6",
+  "summary": "v263 adds concrete-category forgetful bridge instances for MetrizableLCA and a conditional strictShortExact constructor from ShortComplex.Exact plus topology under forgetful homology preservation; product remains incomplete.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
       "status": "passed",
-      "evidence": "StrictExact module rebuilt after adding forgetToAddCommGrpCat_exact_of_strict."
+      "evidence": "StrictExact module rebuilt after adding forgetful HasForget₂/Additive instances and strictShortExact_of_exact_of_topology."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
@@ -212,7 +212,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed after adding MetrizableLCA cokernel and finite-colimit checks."
+      "evidence": "Product declarations check includes forgetful HasForget₂/Additive and strictShortExact_of_exact_of_topology."
     },
     {
       "command": "lake build",
@@ -222,17 +222,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after v252 changes."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed after v252 changes."
+      "evidence": "Required declarations still elaborate after v263 edits."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v257 focused edit."
+      "evidence": "Whitespace diff check passed after v263 edits."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -257,12 +257,17 @@
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v252; rerun pending after v253 manifest refresh."
+      "evidence": "External audit self-check passed after v263 metadata refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected product gate remains failed_nonterminal until product success is achieved."
+      "evidence": "Expected product gate remains failed_nonterminal because terminal_outcome.outcome is not product_success."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON metadata parsed after v263 updates."
     }
   ],
   "implemented_declarations_checked": [
@@ -706,10 +711,15 @@
     "ShortComplexExactnessHomologyZeroW246.exactButNotSurjectiveTarget_exact",
     "ShortComplexExactnessHomologyZeroW246.exactButNotSurjectiveTarget_g_not_surjective",
     "ShortComplexExactnessHomologyZeroW246.no_shortComplexExact_to_targetSurjectivity",
-    "MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict"
+    "MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict",
+    "LeanLCAExactChallenge.MetrizableLCA.forgetToAddCommGrpCat",
+    "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
+    "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology"
   ],
   "product_complete": false,
   "known_gaps": [
+    "MetrizableLCAの忘却関手にはHasForget₂、Additive、PreservesZeroMorphismsと条件付きexact-to-strict橋が入ったが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology、または同等の局所cycles/opcycles構成がまだ未完成である。",
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
@@ -727,6 +737,6 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "v262 parent-side implementation: strict LCA exactness now implies exactness after forgetting topology; no product-success claim.",
+  "support_result_classification": "v263 parent-side implementation; no new support result consumed.",
   "product_success": false
 }

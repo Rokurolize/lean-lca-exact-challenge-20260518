@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T12:36:11Z",
+  "generated_utc": "2026-05-20T12:58:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v262 is parent-side implementation.",
   "frontiers": [
@@ -186,7 +186,10 @@
         "YonedaExt.positiveYonedaExtCast_mk",
         "YonedaExt.positiveYonedaExtCast_ofExtension",
         "YonedaExt.positiveYonedaExtCast_spliceLeftWith_assoc",
-        "YonedaExt.yonedaProduct_ofExtension_assoc_cast"
+        "YonedaExt.yonedaProduct_ofExtension_assoc_cast",
+        "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
+        "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
+        "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology"
       ]
     },
     {
@@ -1294,9 +1297,9 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "v262 parent-side strict-to-underlying-Ab exactness bridge; no product-success claim.",
-  "latest_parent_update": "v262-strict-forgetful-ab-exactness",
-  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。",
+  "support_result_classification": "v263 parent-side implementation: concrete-category forgetful bridge added; homology preservation remains the blocker, so no product-success claim.",
+  "latest_parent_update": "v263: added HasForget₂/Additive/PreservesZeroMorphisms for the MetrizableLCA forgetful functor and a conditional exact-to-strict bridge assuming forgetful homology preservation.",
+  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。 v263 narrows the MetrizableLCA exactness bridge to forgetful homology preservation or a local cycles/opcycles model.",
   "remaining_frontier": [
     "General closedness of the explicit MetrizableLCA pushout relation subgroup beyond strict-short-exact left legs.",
     "Arbitrary HasPushouts MetrizableLCA or HasCokernels MetrizableLCA to close HasFiniteColimits MetrizableLCA.",

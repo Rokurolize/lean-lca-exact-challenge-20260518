@@ -502,8 +502,23 @@ def forgetToAddCommGrpCat : MetrizableLCA.{u} ⥤ AddCommGrpCat.{u} where
   obj A := AddCommGrpCat.of A
   map f := AddCommGrpCat.ofHom f.hom.toAddMonoidHom
 
+instance : HasForget₂ MetrizableLCA.{u} AddCommGrpCat.{u} where
+  forget₂ := forgetToAddCommGrpCat
+  forget_comp := rfl
+
 instance : forgetToAddCommGrpCat.PreservesZeroMorphisms where
   map_zero A B := by
+    ext x
+    rfl
+
+instance : (forget₂ MetrizableLCA.{u} AddCommGrpCat.{u}).PreservesZeroMorphisms where
+  map_zero A B := by
+    ext x
+    rfl
+
+instance : (forget₂ MetrizableLCA.{u} AddCommGrpCat.{u}).Additive where
+  map_add := by
+    intro X Y f g
     ext x
     rfl
 

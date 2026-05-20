@@ -173,3 +173,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v235 Update
 
 2026-05-20T10:23:57Z: `LeanLCAExactChallenge.Derived.BoundedFiniteProducts` now exposes `BoundedFiniteProducts.isStableUnderFiniteProducts_metrizableLCA` and `BoundedFiniteProducts.dboundedHasFiniteProducts_metrizableLCA`. Thus the finite-product source category and weak-equivalence stability inputs are product-module declarations; the conditional `Dbounded MetrizableLCA` finite-products constructor now leaves only the direct bounded exact weak-equivalence left-calculus premise. Product success remains nonterminal because left calculus, finite-limit localization transfer, finite colimits, triangulated structure, and stable infinity-category obligations remain open.
+
+## v263 Update
+
+2026-05-20T12:58:00Z: `MetrizableLCA` now has `HasForget₂ MetrizableLCA AddCommGrpCat`, `(forget₂ MetrizableLCA AddCommGrpCat).PreservesZeroMorphisms`, and `(forget₂ MetrizableLCA AddCommGrpCat).Additive` for the topology-forgetting functor. `MetrizableLCA.strictShortExact_of_exact_of_topology` records the conditional bridge from `ShortComplex.Exact` plus topological closed/open/surjectivity fields to `strictShortExact`, assuming `S.HasHomology` and forgetful homology preservation. This narrows the remaining MetrizableLCA exactness blocker to proving `(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology` or replacing it with an equivalent local cycles/opcycles model. Product success remains nonterminal.

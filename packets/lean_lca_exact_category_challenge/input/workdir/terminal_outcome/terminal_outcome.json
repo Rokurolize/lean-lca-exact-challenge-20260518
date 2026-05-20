@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。",
+  "summary": "v263では、MetrizableLCAからAddCommGrpCatへの忘却関手についてHasForget₂、PreservesZeroMorphisms、Additiveのインスタンスを追加し、さらにS.HasHomologyと忘却関手のhomology保存を仮定すれば、ShortComplex.Exactと閉埋め込み・開写像・全射の位相的条件からMetrizableLCA.strictShortExactを構成できる定理MetrizableLCA.strictShortExact_of_exact_of_topologyを証明した。これにより局所LCA内のexactness橋はかなり絞られたが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomologyまたは同等のcycles/opcycles局所モデルが未完成なので、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -55,7 +55,9 @@
     "lake env lean audit/blockers/inverse_image_right_calculus_transfer_w234.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
     "lake env lean audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
-    "lake build LeanLCAExactChallenge.LCA.StrictExact"
+    "lake build LeanLCAExactChallenge.LCA.StrictExact",
+    "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -725,9 +727,14 @@
     "LeanLCAExactChallenge.MetrizableLCAFiniteColimitsW235.metrizableLCA_hasFiniteColimits_of_hasPushouts",
     "LeanLCAExactChallenge.MetrizableLCAFiniteColimitsW235.metrizableLCA_hasFiniteColimits_of_hasCokernels",
     "LeanLCAExactChallenge.MetrizableLCAFiniteColimitsW235.PushoutRouteInput",
-    "LeanLCAExactChallenge.MetrizableLCAFiniteColimitsW235.CokernelRouteInput"
+    "LeanLCAExactChallenge.MetrizableLCAFiniteColimitsW235.CokernelRouteInput",
+    "LeanLCAExactChallenge.MetrizableLCA.forgetToAddCommGrpCat",
+    "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
+    "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology"
   ],
   "known_gaps": [
+    "MetrizableLCAの忘却関手にはHasForget₂、Additive、PreservesZeroMorphismsと条件付きexact-to-strict橋が入ったが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology、または同等の局所cycles/opcycles構成がまだ未完成である。",
     "Dbounded MetrizableLCA へ有限余極限を運ぶ局所化移送は未完である。source側の HasFiniteColimits MetrizableLCA はv252で実装済みだが、反対側right calculusとWalkingParallelPair functor-category localizationが残る。",
     "Dbounded のordinary triangulated structureと、stable infinity-categoryとして必要な有限極限・有限余極限・suspension/loop互換・pushout/pullback互換のcertificateは未構成である。",
     "bounded strict-realization経路では、bare HomotopyEquiv によるboundedness輸送が反例で否定されており、distinguished triangle由来の追加構造を使うstrictificationまたは別のstable certificate構成が必要である。",
@@ -741,6 +748,7 @@
   "worker_frontier_summary": "v251で支援w235を消費し、MetrizableLCA有限余極限を有限余積プラス任意pushout/cokernelへ縮約した。product success は未主張である。",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
+    "MetrizableLCAの忘却関手にはHasForget₂、Additive、PreservesZeroMorphismsと条件付きexact-to-strict橋が入ったが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology、または同等の局所cycles/opcycles構成がまだ未完成である。",
     "反対圏有限極限ルートに必要な right calculus は、bounded homotopy localized composite の左随伴とcounit所属へ縮約されたが、その左随伴本体とcounit所属証明は未供給である。",
     "WalkingParallelPair固定対象liftはcoherent strict-preimage blueprintで構成できるが、そのblueprintの存在、fac、uniqは未供給である。",
     "ShortComplex.QuasiIso に沿って QuillenExactCategory.Conflation を運ぶ局所定理が未供給であり、MetrizableLCAではhomology同型データからtargetのstrictShortExactを得る橋が必要である。",
@@ -1024,10 +1032,14 @@
     "OppositeLeftCalculusTransferW230.op_hasLeftCalculusOfFractions_of_hasRight",
     "OppositeLeftCalculusTransferW230.oppositeWeakEquivalence_hasLeftCalculusOfFractions_of_hasRight",
     "OppositeLeftCalculusTransferW230.PullbackRightCalculusTransfer",
-    "OppositeLeftCalculusTransferW230.oppositeWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_rightTransfer"
+    "OppositeLeftCalculusTransferW230.oppositeWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_rightTransfer",
+    "LeanLCAExactChallenge.MetrizableLCA.forgetToAddCommGrpCat",
+    "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
+    "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology"
   ],
-  "generated_utc": "2026-05-20T12:36:11Z",
-  "support_result_classification": "v262 parent-side strict-to-underlying-Ab exactness bridge; product success remains false.",
+  "generated_utc": "2026-05-20T12:58:00Z",
+  "support_result_classification": "v263 parent-side implementation; no product-success claim.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1423,7 +1435,11 @@
     "ShortComplexExactnessHomologyZeroW246.exactButNotSurjectiveTarget_exact",
     "ShortComplexExactnessHomologyZeroW246.exactButNotSurjectiveTarget_g_not_surjective",
     "ShortComplexExactnessHomologyZeroW246.no_shortComplexExact_to_targetSurjectivity",
-    "MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict"
+    "MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict",
+    "LeanLCAExactChallenge.MetrizableLCA.forgetToAddCommGrpCat",
+    "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
+    "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"

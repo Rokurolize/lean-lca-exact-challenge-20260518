@@ -64,6 +64,9 @@ example : HasFiniteColimits MetrizableLCA := by infer_instance
 #check MetrizableLCA.shortExactExtensionPushout_kernel_iff_range_i
 #check MetrizableLCA.strictShortExact_pushout
 #check MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict
+#check (inferInstance : HasForget₂ MetrizableLCA AddCommGrpCat)
+#check (inferInstance : (forget₂ MetrizableLCA AddCommGrpCat).Additive)
+#check MetrizableLCA.strictShortExact_of_exact_of_topology
 
 noncomputable example (A B : MetrizableLCA) :
     MetrizableLCA.biprodObj A B ≅ A ⊞ B :=
