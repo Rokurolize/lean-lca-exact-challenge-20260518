@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v1",
-  "generated_utc": "2026-05-20T08:00:00Z",
+  "generated_utc": "2026-05-20T08:30:00Z",
   "file_count": 111,
-  "content_hash_tree": "2f98b2ad8a7be66eb14b5311c90a039ccf87493976d6322e5a95bb55efec0893",
+  "content_hash_tree": "c1f5c629808d0a8ca422a197f8fc2ddad308db44fa134f67a135d0cc32f97e62",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -271,8 +271,8 @@
     },
     {
       "path": "audit/blockers/stable_certificate_four_projection_constructor_w131.lean",
-      "bytes": 21262,
-      "sha256": "30ed9690c3455bbaa2af17860b818ba9fe0eede59dae18a853f1d6538831d7d1"
+      "bytes": 24931,
+      "sha256": "7362848f7f124c61f9ab9d997394117dcaf356e72c7c1db19b22433746beacb1"
     },
     {
       "path": "audit/blockers/stable_certificate_projection_audit_shape.lean",
@@ -536,8 +536,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 21439,
-      "sha256": "d08784e519b0b10dc15c40dbb370c685c98872e455ac417bb0834399f31f8539"
+      "bytes": 22104,
+      "sha256": "ea582a26b0c6611e17711c580e867211bc39dcb97f4deccb47b49461bdd9f123"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -551,8 +551,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 60900,
-      "sha256": "5e041a8511ecdd8293abec11ed6be2aca818dad57971cdb9daedf1eb1361a80f"
+      "bytes": 61008,
+      "sha256": "08ccd7c1ac33f0b90ea7fd0a73213000dceb2f30f0798fdc1f0e96617131cee8"
     },
     {
       "path": "workers/README.md",

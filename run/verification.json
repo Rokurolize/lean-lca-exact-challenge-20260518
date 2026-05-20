@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v170-stable-readiness-evidence-bundle",
-  "generated_utc": "2026-05-20T08:00:00Z",
-  "source_tree_hash": "08b5129ba708900c515aadff206c2698ad43c7238275639c0d955dae69bfc4e6",
-  "summary": "v170 converts the extracted Dbounded stable projection providers into a product-review-shaped four-proposition readiness evidence bundle; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v171-stable-product-gate-pass-consumer",
+  "generated_utc": "2026-05-20T08:30:00Z",
+  "source_tree_hash": "4d2cae9d5c285c8750cabcfce48a9a497461178f985d457ea94ec574af6efe37",
+  "summary": "v171 adds a consumer-side stable product-gate pass witness from the Dbounded four-projection readiness evidence; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v170 stable readiness evidence bundle audit."
+      "evidence": "Full lake build passed before the v171 stable product-gate pass consumer audit."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v170 stable readiness evidence bundle audit."
+      "evidence": "Forbidden-token audit passed before the v171 stable product-gate pass consumer audit."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v170 stable readiness evidence bundle audit."
+      "evidence": "Required declaration audit passed before the v171 stable product-gate pass consumer audit."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess declaration audit passed after the v170 stable readiness evidence bundle audit; no product-success claim was added."
+      "evidence": "ProductSuccess declaration audit passed before the v171 stable product-gate pass consumer audit; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after the v171 consumer audit: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v170 artifact updates."
+      "evidence": "Whitespace diff check passed before the v171 stable product-gate pass consumer audit."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -137,7 +137,7 @@
     {
       "command": "lake env lean audit/blockers/stable_certificate_four_projection_constructor_w131.lean",
       "status": "passed",
-      "evidence": "Focused v170 w131 stable four-projection audit passed after adding the product-review-shaped readiness evidence bundle and converters."
+      "evidence": "Focused v171 w131 stable four-projection audit passed after adding the consumer-side stable product-gate pass witness and converters."
     }
   ],
   "implemented_declarations_checked": [
@@ -274,7 +274,13 @@
     "StableCertificateFourProjectionConstructorW131.DboundedFourProjectionReadinessEvidence.ofExtractedProviders",
     "StableCertificateFourProjectionConstructorW131.DboundedFourProjectionReadinessEvidence.ready_ofExtractedProviders",
     "StableCertificateFourProjectionConstructorW131.dboundedFourProjectionReadinessEvidenceOfFourProjectionProvider",
-    "StableCertificateFourProjectionConstructorW131.dboundedFourProjectionReadinessEvidence_ready_of_fourProjectionProvider"
+    "StableCertificateFourProjectionConstructorW131.dboundedFourProjectionReadinessEvidence_ready_of_fourProjectionProvider",
+    "StableCertificateFourProjectionConstructorW131.DboundedStableProductGatePass",
+    "StableCertificateFourProjectionConstructorW131.DboundedStableProductGatePass.ofReadinessEvidence",
+    "StableCertificateFourProjectionConstructorW131.DboundedStableProductGatePass.ofExtractedProviders",
+    "StableCertificateFourProjectionConstructorW131.DboundedStableProductGatePass.ready_ofExtractedProviders",
+    "StableCertificateFourProjectionConstructorW131.dboundedStableProductGatePassOfFourProjectionProvider",
+    "StableCertificateFourProjectionConstructorW131.dboundedStableProductGatePass_ready_of_fourProjectionProvider"
   ],
   "product_complete": false,
   "known_gaps": [

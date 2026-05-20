@@ -251,6 +251,44 @@ theorem DboundedFourProjectionReadinessEvidence.ready_ofExtractedProviders
     providers.suspensionLoop.suspensionLoopEquivalence_ready,
     providers.pushoutPullback.pushoutPullbackCompatibility_ready⟩
 
+/--
+Consumer-side stable pass witness for a future product gate. It deliberately depends on
+the four-proposition readiness bundle rather than on the original certificate provider,
+so the remaining construction problem stays isolated at the provider boundary.
+-/
+structure DboundedStableProductGatePass
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type 2 where
+  readinessEvidence : DboundedFourProjectionReadinessEvidence C
+  readinessEvidence_ready : readinessEvidence.ready
+
+/-- A readiness evidence bundle satisfying its four-field predicate is accepted by the
+consumer-side stable product gate. -/
+def DboundedStableProductGatePass.ofReadinessEvidence
+    {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (evidence : DboundedFourProjectionReadinessEvidence C)
+    (ready : evidence.ready) :
+    DboundedStableProductGatePass C where
+  readinessEvidence := evidence
+  readinessEvidence_ready := ready
+
+/-- Extracted four-projection providers are enough for the consumer-side stable pass gate. -/
+def DboundedStableProductGatePass.ofExtractedProviders
+    {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (providers : DboundedExtractedFourProjectionProviders C) :
+    DboundedStableProductGatePass C :=
+  DboundedStableProductGatePass.ofReadinessEvidence
+    (DboundedFourProjectionReadinessEvidence.ofExtractedProviders providers)
+    (DboundedFourProjectionReadinessEvidence.ready_ofExtractedProviders providers)
+
+/-- The pass witness obtained from extracted providers carries the expected readiness
+predicate, which is the exact condition a future product review can consume. -/
+theorem DboundedStableProductGatePass.ready_ofExtractedProviders
+    {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (providers : DboundedExtractedFourProjectionProviders C) :
+    (DboundedStableProductGatePass.ofExtractedProviders providers).readinessEvidence.ready := by
+  exact (DboundedStableProductGatePass.ofExtractedProviders providers).readinessEvidence_ready
+
 /-- The full four-projection provider required specifically for `Dbounded.infinityCategory C`. -/
 abbrev DboundedFourProjectionProvider
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -324,6 +362,23 @@ theorem dboundedFourProjectionReadinessEvidence_ready_of_fourProjectionProvider
     (dboundedFourProjectionReadinessEvidenceOfFourProjectionProvider C cert).ready := by
   exact DboundedFourProjectionReadinessEvidence.ready_ofExtractedProviders _
 
+/-- A full four-projection certificate supplies the consumer-side stable pass witness. -/
+noncomputable def dboundedStableProductGatePassOfFourProjectionProvider
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (cert : DboundedFourProjectionProvider C) :
+    DboundedStableProductGatePass C :=
+  DboundedStableProductGatePass.ofReadinessEvidence
+    (dboundedFourProjectionReadinessEvidenceOfFourProjectionProvider C cert)
+    (dboundedFourProjectionReadinessEvidence_ready_of_fourProjectionProvider C cert)
+
+/-- The pass witness extracted from a full certificate carries the four-field readiness
+predicate. -/
+theorem dboundedStableProductGatePass_ready_of_fourProjectionProvider
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (cert : DboundedFourProjectionProvider C) :
+    (dboundedStableProductGatePassOfFourProjectionProvider C cert).readinessEvidence.ready := by
+  exact (dboundedStableProductGatePassOfFourProjectionProvider C cert).readinessEvidence_ready
+
 /--
 Exact missing field signature after these constructors: the current ordinary `Dbounded`
 context would need to produce the full semantic four-projection certificate for
@@ -371,6 +426,10 @@ section Checks
 #check DboundedFourProjectionReadinessEvidence.ready
 #check DboundedFourProjectionReadinessEvidence.ofExtractedProviders
 #check DboundedFourProjectionReadinessEvidence.ready_ofExtractedProviders
+#check DboundedStableProductGatePass
+#check DboundedStableProductGatePass.ofReadinessEvidence
+#check DboundedStableProductGatePass.ofExtractedProviders
+#check DboundedStableProductGatePass.ready_ofExtractedProviders
 #check DboundedFourProjectionProvider
 #check dboundedFiniteLimitsProjectionOfFourProjectionProvider
 #check dboundedFiniteColimitsProjectionOfFourProjectionProvider
@@ -380,6 +439,8 @@ section Checks
 #check dboundedExtractedFourProjectionProviders_ready_of_fourProjectionProvider
 #check dboundedFourProjectionReadinessEvidenceOfFourProjectionProvider
 #check dboundedFourProjectionReadinessEvidence_ready_of_fourProjectionProvider
+#check dboundedStableProductGatePassOfFourProjectionProvider
+#check dboundedStableProductGatePass_ready_of_fourProjectionProvider
 #check OrdinaryContextToDboundedFourProjectionProvider
 #check nearestOrdinaryStableProjectionCandidates
 #check missingFourProjectionProviderSignature
@@ -393,6 +454,7 @@ section Checks
 #check (dboundedSuspensionLoopProjectionOfFourProjectionProvider (C := MetrizableLCA))
 #check (dboundedPushoutPullbackProjectionOfFourProjectionProvider (C := MetrizableLCA))
 #check (dboundedExtractedFourProjectionProvidersOfFourProjectionProvider (C := MetrizableLCA))
+#check (dboundedStableProductGatePassOfFourProjectionProvider (C := MetrizableLCA))
 
 end Checks
 

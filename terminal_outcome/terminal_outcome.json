@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v170時点で、stable側に4射影providerからproduct-review-shaped readiness evidenceへ変換する監査APIを追加した。product_successではない。bounded側には非自明eligibility predicateと対応upgrade、stable側にはordinary Dbounded contextからfull stable four-projection certificateを実際に構成する実装が残る。",
+  "summary": "v171時点で、stable側に4射影providerからproduct-review-shaped readiness evidenceを経由してconsumer-side product-gate pass witnessへ変換する監査APIを追加した。product_successではない。bounded側には非自明eligibility predicateと対応upgrade、stable側にはordinary Dbounded contextからfull stable four-projection certificateを実際に構成する実装が残る。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -654,7 +654,7 @@
   ],
   "known_gaps": [
     "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため、arbitrary weak endpoint witnessを除外する非自明なeligibility predicateと、そのeligible witnessだけをcochain同型へ上げるupgradeが必要です。",
-    "stable側は、full single certificateからproduct-review-shaped readiness evidenceへ変換する監査constructorは通ったが、ordinary Dbounded contextからfull stable four-projection certificateを構成する実装が未完成です。",
+    "stable側は、full single certificateからproduct-review-shaped readiness evidenceを経由してconsumer-side product-gate pass witnessへ変換する監査constructorは通ったが、ordinary Dbounded contextからfull stable four-projection certificateを構成する実装が未完成です。",
     "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
