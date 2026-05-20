@@ -297,3 +297,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v302 Update
 
 2026-05-20T16:12:37Z: `audit/blockers/wpp_op_object_cone_boundary_w302.lean` refines the W276 mapping-cone comparison input by fixing the object-level diagram to `mappingConeDiagram X₁ X₂ f` and the induced cocone to `mappingConeCocone c₁ c₂ f φ hφ`. The checked consumer proves W276's comparison input from the single remaining proof that this concrete cocone is colimit in `CochainComplex MetrizableLCA ℤ`. Product success remains nonterminal.
+
+## v303 Update
+
+2026-05-20T16:18:07Z: `audit/blockers/wpp_op_mapping_cone_fixed_cocone_w303.lean` reduces W302's concrete `mappingConeCocone` colimit input to explicit desc/fac/uniq universal data via `IsColimit.mk`, and proves the equivalence back from an existing colimit proof. The remaining mapping-cone boundary is now construction of those desc/fac/uniq maps for the fixed WPP-op cocone. Product success remains nonterminal.
