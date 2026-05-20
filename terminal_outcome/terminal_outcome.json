@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v193時点で、binary mapping cone/biproduct比較について、次数ごとの候補写像の双方向合成が恒等射であることに加え、微分可換性残差を縮める biprod.map の左右射影成分補題 biprodMap_fst_f と biprodMap_snd_f をLeanで証明した。ただし、候補写像が微分と可換であること、有限product比較、有限exact-acyclic product閉性、DboundedのEqualizer/Pullback転送、有限余極限、pretriangulated/triangulated構造、stable infinity-category構造は未完成であり、product_successではない。",
+  "summary": "v194時点で、binary mapping cone/biproduct比較について、次数ごとの候補写像の双方向合成が恒等射であること、biprod.mapの左右射影成分補題、および前向き微分可換squareを左右の双積射影等式へ還元するforwardDifferentialSquare_reduction_iffをLeanで証明した。ただし、左右射影等式そのもの、逆向き候補写像の微分可換性、有限product比較、有限exact-acyclic product閉性、DboundedのEqualizer/Pullback転送、有限余極限、pretriangulated/triangulated構造、stable infinity-category構造は未完成であり、product_successではない。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",

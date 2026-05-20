@@ -176,6 +176,50 @@ theorem biprodMap_snd_f (n : ℤ) :
       (biprod.snd : K₁ ⊞ K₂ ⟶ K₂).f n ≫ f₂.f n := by
   rw [← HomologicalComplex.comp_f, biprod.map_snd, HomologicalComplex.comp_f]
 
+def forwardDifferentialSquare (n : ℤ) : Prop :=
+  coneBiprodMapToBiprodConeX f₁ f₂ n ≫ (biprodCone f₁ f₂).d n (n + 1) =
+    (coneBiprodMap f₁ f₂).d n (n + 1) ≫ coneBiprodMapToBiprodConeX f₁ f₂ (n + 1)
+
+def forwardDifferentialSquareLeftProjection (n : ℤ) : Prop :=
+  (coneBiprodMapToBiprodConeX f₁ f₂ n ≫ (biprodCone f₁ f₂).d n (n + 1)) ≫
+      (biprod.fst :
+        CochainComplex.mappingCone f₁ ⊞ CochainComplex.mappingCone f₂ ⟶
+          CochainComplex.mappingCone f₁).f (n + 1) =
+    ((coneBiprodMap f₁ f₂).d n (n + 1) ≫
+      coneBiprodMapToBiprodConeX f₁ f₂ (n + 1)) ≫
+        (biprod.fst :
+          CochainComplex.mappingCone f₁ ⊞ CochainComplex.mappingCone f₂ ⟶
+            CochainComplex.mappingCone f₁).f (n + 1)
+
+def forwardDifferentialSquareRightProjection (n : ℤ) : Prop :=
+  (coneBiprodMapToBiprodConeX f₁ f₂ n ≫ (biprodCone f₁ f₂).d n (n + 1)) ≫
+      (biprod.snd :
+        CochainComplex.mappingCone f₁ ⊞ CochainComplex.mappingCone f₂ ⟶
+          CochainComplex.mappingCone f₂).f (n + 1) =
+    ((coneBiprodMap f₁ f₂).d n (n + 1) ≫
+      coneBiprodMapToBiprodConeX f₁ f₂ (n + 1)) ≫
+        (biprod.snd :
+          CochainComplex.mappingCone f₁ ⊞ CochainComplex.mappingCone f₂ ⟶
+            CochainComplex.mappingCone f₂).f (n + 1)
+
+theorem forwardDifferentialSquare_reduction_iff (n : ℤ) :
+    forwardDifferentialSquare f₁ f₂ n ↔
+      forwardDifferentialSquareLeftProjection f₁ f₂ n ∧
+        forwardDifferentialSquareRightProjection f₁ f₂ n := by
+  constructor
+  · intro h
+    constructor
+    · dsimp [forwardDifferentialSquareLeftProjection, forwardDifferentialSquare] at h ⊢
+      rw [h]
+    · dsimp [forwardDifferentialSquareRightProjection, forwardDifferentialSquare] at h ⊢
+      rw [h]
+  · rintro ⟨hleft, hright⟩
+    dsimp [forwardDifferentialSquareLeftProjection, forwardDifferentialSquareRightProjection,
+      forwardDifferentialSquare] at hleft hright ⊢
+    apply HomologicalComplex.biprodX_ext_to
+    · simpa [Category.assoc] using hleft
+    · simpa [Category.assoc] using hright
+
 structure BinaryMappingConeBiprodDifferentialCompatibility : Prop where
   left_to_right :
     ∀ (n : ℤ),
@@ -203,10 +247,11 @@ def v189ComponentMapFrontier : List String :=
   ["component maps from mappingCone (biprod.map f₁ f₂) to the biproduct cone",
     "component maps from the biproduct cone to mappingCone (biprod.map f₁ f₂)",
     "proved: inverse identities for the candidate degreewise maps",
+    "proved: forward differential square reduces to left and right biproduct projections",
     "remaining: differential compatibility for both component-map families"]
 
 theorem v189ComponentMapFrontier_count :
-    v189ComponentMapFrontier.length = 4 := rfl
+    v189ComponentMapFrontier.length = 5 := rfl
 
 section Checks
 
@@ -228,6 +273,10 @@ section Checks
 #check biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX
 #check biprodMap_fst_f
 #check biprodMap_snd_f
+#check forwardDifferentialSquare
+#check forwardDifferentialSquareLeftProjection
+#check forwardDifferentialSquareRightProjection
+#check forwardDifferentialSquare_reduction_iff
 #check BinaryMappingConeBiprodDifferentialCompatibility
 #check BinaryMappingConeBiprodInverseCompatibility
 #check binaryMappingConeBiprodInverseCompatibility

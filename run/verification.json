@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v193-mapping-cone-biprod-map-projection-helpers",
-  "generated_utc": "2026-05-20T05:35:00Z",
-  "source_tree_hash": "cb5cedc633f37ff623c793563a06d331c38e161f239deb36433a5452a292d616",
-  "summary": "v193 adds biprodMap_fst_f and biprodMap_snd_f in the binary mapping-cone/biproduct comparison probe, reducing the differential-compatibility residuals involving (biprod.map f₁ f₂).f n followed by biproduct projections. Product success remains blocked by differential compatibility, finite product comparison, finite exact-acyclic product closure, Dbounded transfer, and stable structures.",
+  "schema": "lean-lca-exact-challenge-verification-v194-forward-differential-square-reduction",
+  "generated_utc": "2026-05-20T05:55:00Z",
+  "source_tree_hash": "96aaccc4407a8046e8dec4430799354853021dfc29042738dacbf533e4b8c25c",
+  "summary": "v194 reimplements the useful part of support w147 against the parent v189 definitions: forwardDifferentialSquare_reduction_iff reduces the forward mapping-cone/biproduct differential square to its left and right biproduct projection equations. Product success remains blocked by those projection equations, backward differential compatibility, finite product comparison, finite exact-acyclic product closure, Dbounded transfer, and stable structures.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after v193 source and artifact updates; existing Derived.Bounded simp/flexible warnings remain nonblocking."
+      "evidence": "Full lake build passed after v194 source and artifact updates; existing Derived.Bounded simp/flexible warnings remain nonblocking."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after v193 source updates."
+      "evidence": "Forbidden-token audit passed after v194 source updates."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed after v193 source and artifact updates."
+      "evidence": "RequiredDeclarations passed after v194 source and artifact updates."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed after v193 source updates; new helper lemmas remain frontier support and do not claim product success."
+      "evidence": "ProductSuccessDeclarations passed after v194 source updates; new forward-square reduction remains frontier support and does not claim product success."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -47,17 +47,17 @@
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v193 state refresh and negative fixtures remain active."
+      "evidence": "External audit self-check passed after v194 state refresh and negative fixtures remain active."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v193: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v194: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v193 source and artifact updates."
+      "evidence": "Whitespace diff check passed after v194 source and artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -207,7 +207,7 @@
     {
       "command": "lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean",
       "status": "passed",
-      "evidence": "Focused v193 binary component-map probe passed after adding biprodMap_fst_f and biprodMap_snd_f projection helpers for biprod.map."
+      "evidence": "Focused v194 binary component-map probe passed after adding forwardDifferentialSquare, its left/right projection predicates, and forwardDifferentialSquare_reduction_iff."
     },
     {
       "command": "lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
