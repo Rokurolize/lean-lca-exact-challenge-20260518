@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T16:53:09Z",
-  "source_tree_hash": "c671b81b3565cac3ae1099d00f0292d1fe796c1acf406e84e263c2cb933fc6ec",
-  "summary": "v315-v316でW286/W287/W315/W316を親側検証し、右open map、algebraic exactness、HasHomology、忘却PreservesHomology入力をそれぞれ小さい標準API境界へ縮約した。product_completeはfalseのまま。",
+  "generated_utc": "2026-05-20T17:05:18Z",
+  "source_tree_hash": "8158c4f3c55b7f0937c77b123679215142c90f3354aaa52d39085b049e66fa53",
+  "summary": "v320でW319を親側検証し、W318のalgebraic exactness入力を純粋なadditive colimit kernel-exactness境界へ縮約した。product_completeはfalseのまま。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -232,7 +232,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v269 edits."
+      "evidence": "Whitespace diff check passed after W319 artifact updates."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -888,6 +888,46 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_lca_category_with_homology_w315.lean audit/blockers/metrizable_lca_forget_preserves_homology_w316.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W315/W316 audit files."
+    },
+    {
+      "command": "lake env lean audit/blockers/left_closed_embedding_wpp_op_colimit_w289.lean",
+      "status": "passed",
+      "evidence": "Focused W289 left closed-embedding preservation boundary passed after parent verification."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/left_closed_embedding_wpp_op_colimit_w289.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W289 audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_exact_acyclic_from_direct_fields_w317.lean",
+      "status": "passed",
+      "evidence": "Focused W317 direct-field exact-acyclic boundary passed."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_exact_acyclic_from_direct_fields_w317.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W317."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
+      "status": "passed",
+      "evidence": "Focused W318 consolidated frontier passed."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W318."
+    },
+    {
+      "command": "lake env lean audit/blockers/algebraic_exact_additive_colimit_boundary_w319.lean",
+      "status": "passed",
+      "evidence": "Focused W319 additive algebraic exactness boundary passed."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/algebraic_exact_additive_colimit_boundary_w319.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W319."
     }
   ],
   "implemented_declarations_checked": [
@@ -1445,6 +1485,8 @@
   ],
   "product_complete": false,
   "known_gaps": [
+    "W319でW318のalgebraic exactness入力はadditiveKernelExact_wppOp_colimit_boundaryへ縮約されたが、このAddCommGrpCat側のWPP-op colimit kernel-exactness保存定理はまだ未供給である。",
+    "W318でW271のexactAcyclic WPP-op colimit closureは、left closed embedding保存、component colimit open-map保存、algebraic exactness closureの三つへ統合されたが、これら三つのsource theoremはまだ未供給である。",
     "W303の固定mappingConeCocone universal入力は追加境界で一意なmediating mapの存在へ縮約されたが、そのmediating mapの実構成と可換性・一意性はまだ未供給である。",
     "W301の右全射性フィールドはW305で右開写像性とcolimit右射のcategorical epiへ縮約されたが、どちらもまだ未供給である。",
     "W306のopposite functor-category localization uniform化は宇宙レベル多相schemaとしては未成立であり、現時点ではtwo fixed-target boundaryを保持する非終端境界に留まる。",
