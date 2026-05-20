@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T01:10:00Z",
+  "generated_utc": "2026-05-21T01:13:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -3894,6 +3894,48 @@
       "standalone audit blocksをimportable Lean modulesへ昇格する。",
       "W399からW393/W390/W384 transported field routeへ接続する。"
     ],
+    "product_success_claimed": false
+  },
+  "parent_update_w424": {
+    "timestamp_utc": "2026-05-21T01:13:00Z",
+    "status": "verified_focused_blocked_reduction",
+    "summary": "W424 checks consumers for underlying forget₂ WPP-op preservation, but records that PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat) is still missing and not synthesized.",
+    "touched_files": [
+      "audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_v370_support_w424.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "underlyingForgetfulPreservesWppOpColimitsOfShape",
+      "underlyingForgetfulPreservesWppOpColimit",
+      "underlyingForgetfulMappedCoconeIsColimitOfShapePreserves"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_v370_support_w424.lean",
+      "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_v370_support_w424.lean audit/blockers/metrizable_lca_wpp_op_has_colimits_v370_support_w425.lean (expected no matches)",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat)を証明または供給する。"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w425": {
+    "timestamp_utc": "2026-05-21T01:13:00Z",
+    "status": "verified_focused",
+    "summary": "W425 supplies HasColimitsOfShape WalkingParallelPairᵒᵖ MetrizableLCA from existing finite colimits.",
+    "touched_files": [
+      "audit/blockers/metrizable_lca_wpp_op_has_colimits_v370_support_w425.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "metrizableLCA_hasFiniteColimits",
+      "metrizableLCA_hasColimitsOfShape_walkingParallelPair_op",
+      "metrizableLCA_hasColimit_walkingParallelPair_op"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/metrizable_lca_wpp_op_has_colimits_v370_support_w425.lean",
+      "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_v370_support_w424.lean audit/blockers/metrizable_lca_wpp_op_has_colimits_v370_support_w425.lean (expected no matches)",
+      "git diff --check"
+    ],
+    "remaining_inputs": [],
     "product_success_claimed": false
   }
 }
