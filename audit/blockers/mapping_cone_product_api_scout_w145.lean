@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Derived.Bounded
+import LeanLCAExactChallenge.Derived.FiniteProductExactness
 
 /-!
 W145 audit: finite-product mapping-cone API scout.
@@ -95,34 +96,51 @@ def currentFiniteProductApiLayerState : FiniteProductApiLayerState where
   coneExtensionalityApi := "CochainComplex.mappingCone.ext_to, ext_from, lift, desc"
   binaryComplexBiprodIso := "HomologicalComplex.biprodXIso"
   finiteConeProductComparisonConstructor := none
-  finiteExactAcyclicProductClosure := none
+  finiteExactAcyclicProductClosure :=
+    some "FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151"
 
 theorem currentFiniteProductApiLayerState_comparison_missing :
     currentFiniteProductApiLayerState.finiteConeProductComparisonConstructor = none := rfl
 
-theorem currentFiniteProductApiLayerState_closure_missing :
-    currentFiniteProductApiLayerState.finiteExactAcyclicProductClosure = none := rfl
+theorem currentFiniteProductApiLayerState_closure_supplied :
+    currentFiniteProductApiLayerState.finiteExactAcyclicProductClosure =
+      some "FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151" := rfl
+
+/--
+After v224, the finite exact-acyclic product closure input is supplied for MetrizableLCA.
+The remaining finite-product mapping-cone route input is the cone/product comparison.
+-/
+theorem exactAcyclic_mappingCone_piMap_of_w151_comparison
+    (comparison : FiniteMappingConeProductComparisonInput.{u, u, u + 1} MetrizableLCA.{u})
+    {J : Type u} [Finite J]
+    {K L : J → CochainComplex MetrizableLCA.{u} ℤ} [HasProduct K] [HasProduct L]
+    (f : ∀ j, K j ⟶ L j) [HasProduct (fun j => CochainComplex.mappingCone (f j))]
+    (hf : ∀ j, exactAcyclic MetrizableLCA (CochainComplex.mappingCone (f j))) :
+    exactAcyclic MetrizableLCA (CochainComplex.mappingCone (Limits.Pi.map f)) := by
+  exact exactAcyclic_mappingCone_piMap_of_comparison MetrizableLCA comparison
+    (fun J _ K _ hK =>
+      FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151 K hK) f hf
 
 /-- Next proof obligations for the finite generalization route. -/
 def finiteGeneralizationNextObligations : List String :=
   ["build a product-object comparison for mappingCone (Limits.Pi.map f)",
     "prove the comparison commutes with cone differentials using mappingCone.d_fst_v/d_snd_v",
     "package the comparison as FiniteMappingConeProductComparisonInput",
-    "derive FiniteExactAcyclicProductClosure for MetrizableLCA from exactAcyclic_biprod",
     "feed both inputs to exactAcyclic_mappingCone_piMap_of_comparison"]
 
 theorem finiteGeneralizationNextObligations_count :
-    finiteGeneralizationNextObligations.length = 5 := rfl
+    finiteGeneralizationNextObligations.length = 4 := rfl
 
 section Checks
 
 #check FiniteMappingConeProductComparisonInput
 #check FiniteExactAcyclicProductClosure
 #check exactAcyclic_mappingCone_piMap_of_comparison
+#check exactAcyclic_mappingCone_piMap_of_w151_comparison
 #check finiteGeneralizationAvailableApi
 #check currentFiniteProductApiLayerState
 #check currentFiniteProductApiLayerState_comparison_missing
-#check currentFiniteProductApiLayerState_closure_missing
+#check currentFiniteProductApiLayerState_closure_supplied
 #check finiteGeneralizationNextObligations
 #check finiteGeneralizationNextObligations_count
 #check Limits.Pi.map
