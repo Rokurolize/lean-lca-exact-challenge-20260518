@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T17:15:21Z",
+  "generated_utc": "2026-05-20T17:31:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No new workers were launched by the parent. W308/W309 external worker outputs were inspected after their processes ended; W310/W311 were accepted only after parent-side focused verification.",
+  "worker_policy": "No new workers were launched by the parent for v324; the parent verified the focused W308/W324 Lean edits directly. A concurrent same-worktree Codex process was observed, so packet hashes were regenerated only after the W308 file stabilized and focused Lean passed.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1826,5 +1826,21 @@
     "W312でW311のRightOpenMapColimitCoverはcolimit点がstrict short exactならidentity coverで構成できると分かったが、そのcolimit点のstrict short exactness、または具体的な商表示cover dataはまだ未供給である。",
     "W308で固定mappingConeCocone mediatorの右脚は、任意test coconeに対するbounded right-target lift dataが無いとc₂のcolimit descを使えないことが判明した。このlift data、左degree -1 cochain、descEq、fac、uniqは未供給である。",
     "W310でW301のrightSurjective colimit closureはrightOpenMap colimit closureだけへ縮約されたが、W311によりこの入力はRightOpenMapColimitCoverの構成へさらに縮約され、このcover dataはまだ未供給である。"
-  ]
+  ],
+  "parent_update_v324": {
+    "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
+    "positive_facts": [
+      "BoundedComplexCategory.ι MetrizableLCA preserves WalkingParallelPairᵒᵖ colimits",
+      "BoundedComplexCategory.ι MetrizableLCA preserves WalkingParallelPair colimits",
+      "W308 constructs ambient right-leg cocone data from any test cocone"
+    ],
+    "remaining_inputs": [
+      "fixed mapping-cone left degree -1 cochain",
+      "mappingCone.desc compatibility equation",
+      "fixed cocone leg equations",
+      "uniqueness for the assembled mediator",
+      "W318 topological and additive source preservation theorems"
+    ],
+    "product_success_claimed": false
+  }
 }
