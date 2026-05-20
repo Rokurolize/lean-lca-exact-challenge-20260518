@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T00:24:00Z",
+  "generated_utc": "2026-05-21T01:04:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -3788,6 +3788,37 @@
       "HasColimitsOfShape WalkingParallelPairᵒᵖ MetrizableLCAを供給する。",
       "PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat)を供給する。",
       "W418 relation/closed-map inputsと全体統合を完了する。"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w420": {
+    "timestamp_utc": "2026-05-21T01:04:00Z",
+    "status": "verified_focused",
+    "summary": "W420 composes component closed-map, relation-pullback equality, and target-relation lift certificates into W417 relation fields and ordinary concrete inputs.",
+    "touched_files": [
+      "audit/blockers/wpp_op_left_lca_closed_map_from_certificates_v370_support_w420.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "ComponentClosedMapCertificateW380.of_closedEmbedding",
+      "certificateRelationFieldsW395_of_w380_w389_w386",
+      "closedMapRelationFieldsW417_of_certificateRelationFieldsW395",
+      "closedMapRelationFieldsW417_of_w380_w389_w386",
+      "ordinaryDescendedOfOrdinaryMap_isClosedMap_of_certificateRelationFieldsW395",
+      "ordinaryConcreteInputsW417_of_certificateRelationFieldsW395",
+      "ordinaryDescendedOfOrdinaryMap_isClosedMap_of_w380_w389_w386",
+      "ordinaryConcreteInputsW417_of_w380_w389_w386"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_left_lca_closed_map_from_certificates_v370_support_w420.lean",
+      "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/wpp_op_left_lca_closed_map_from_certificates_v370_support_w420.lean (expected no matches)",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "実際のWPP-op morphismについてW380/component closed-map certificateまたはclosed-embedding sourceを供給する。",
+      "実際のWPP-op morphismについてW389 relation-pullback equality certificateを供給する。",
+      "実際のWPP-op morphismについてW386/W392 target-relation lift certificateを供給する。",
+      "W399からW393/W390/W384 transported field routeへ接続する。",
+      "W419 shape-level preservation inputと四部構成全体の統合を完了する。"
     ],
     "product_success_claimed": false
   }
