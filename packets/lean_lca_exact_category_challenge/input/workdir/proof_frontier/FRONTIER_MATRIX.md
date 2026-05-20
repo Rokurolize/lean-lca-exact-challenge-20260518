@@ -471,3 +471,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ## W338 SnakeInput API support
 2026-05-20T20:48:00Z: Worker support `w338-addcommgrp-snake-cokernel-v362` was ported as `audit/blockers/addcommgrp_snake_cokernel_v362_support_w338.lean`. It records the `ShortComplex.SnakeInput` cokernel-row API (`L₃`, `h₃`, `L₃_exact`) and the checked W318 consumer from a SnakeInput row certificate to `AddCommGrpKernelExact`. Product success remains false because the concrete WPP-op colimit SnakeInput row certificate is still missing.
+
+## W339 Left LCA coequalizer transport
+2026-05-20T21:08:00Z: Worker support `w339-left-lca-coequalizer-transport-v362` was ported as `audit/blockers/wpp_op_left_lca_coequalizer_transport_v362_support_w339.lean`. It proves the W337 transport equation from source and target quotient-presenting cocone leg equations. Product success remains false because the concrete quotient-presenting cocones, their colimit proofs, and descended leg equations are still missing.
+
+## W340 Left LCA relation preimage
+2026-05-20T21:10:00Z: Worker support `w340-left-lca-relation-preimage-v362` was ported as `audit/blockers/wpp_op_left_lca_relation_preimage_v362_support_w340.lean`. Square equations prove the forward relation-preimage inclusion; the reverse inclusion, quotient compatibility, and descended closed-map input are now explicit fields. Product success remains false.

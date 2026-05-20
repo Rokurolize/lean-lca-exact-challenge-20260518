@@ -2487,5 +2487,39 @@
       "identify the cokernel/coequalizer comparison isomorphisms for that WPP-op colimit"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w339": {
+    "status": "verified_focused",
+    "consumed_support_result": "w339-left-lca-coequalizer-transport-v362",
+    "artifact": "audit/blockers/wpp_op_left_lca_coequalizer_transport_v362_support_w339.lean",
+    "changed_declarations": [
+      "WppOpLeftLcaCoequalizerTransportV362SupportW339.coconePointUniqueUpToIso_hom_naturality_of_leg_eq",
+      "WppOpLeftLcaCoequalizerTransportV362SupportW339.wppOp_sourceIso_hom_comp_colimitMap_eq_descended_comp_targetIso_hom",
+      "WppOpLeftLcaCoequalizerTransportV362SupportW339.currentWppOpLeftLcaCoequalizerTransportV362SupportState"
+    ],
+    "remaining_inputs": [
+      "construct concrete WPP-op quotient-presenting source and target cocones",
+      "prove those concrete cocones are colimit cocones",
+      "prove descended quotient map leg equations for every WalkingParallelPairᵒᵖ leg"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w340": {
+    "status": "verified_focused",
+    "consumed_support_result": "w340-left-lca-relation-preimage-v362",
+    "artifact": "audit/blockers/wpp_op_left_lca_relation_preimage_v362_support_w340.lean",
+    "changed_declarations": [
+      "MetrizableLCA.coequalizerMap_relation_preimage_forward_of_squares",
+      "MetrizableLCA.coequalizerMap_relation_preimage_exact_of_squares_and_reverse_preimage",
+      "MetrizableLCA.CoequalizerRelationPreimageClosedMapInputs",
+      "MetrizableLCA.CoequalizerRelationPreimageClosedMapInputs.descended_fields",
+      "MetrizableLCA.currentLeftLcaRelationPreimageV362SupportState"
+    ],
+    "remaining_inputs": [
+      "prove reverse relation-preimage inclusion for the concrete left LCA quotient presentation",
+      "prove quotient compatibility for the descended quotient map",
+      "prove IsClosedMap for the descended quotient map"
+    ],
+    "product_success_claimed": false
   }
 }

@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v367-addcommgrp-snake-api-support",
-  "generated_utc": "2026-05-20T20:48:00Z",
-  "source_tree_hash": "5c2476d10fe71a683d530cbc6874abf0e1348ba79a7597fd86debd01d83e62eb",
+  "generated_utc": "2026-05-20T21:15:00Z",
+  "source_tree_hash": "04bf0d68463153c464751eabd84363c10c129151766726967a5783f84dc4b54b",
   "summary": "v367 verifies the SnakeInput cokernel-row APIs used by the v362 AddCommGrp frontier. product_complete remains false.",
   "commands": [
     {
@@ -212,27 +212,27 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Passed after v357; product declaration audit file still checks, without product_success claim."
+      "evidence": "Fresh baseline product guard declarations audit passed."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Passed after v357 closed quotient-cover source changes; existing warnings only."
+      "evidence": "Fresh baseline lake build passed before W339/W340 merge; warnings only."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Passed after v357; no forbidden Lean tokens under LeanLCAExactChallenge."
+      "evidence": "Fresh baseline forbidden-token scan passed."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Passed after v357; required declarations still check."
+      "evidence": "Fresh baseline required declarations audit passed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "No whitespace errors after W338/W365/W366 artifact refresh."
+      "evidence": "Fresh baseline whitespace check passed."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -262,7 +262,7 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Root external audit passed manifest/hash checks and failed only at the expected non-product terminal gate."
+      "evidence": "Root external audit passed non-product checks and failed only at blocked_nonterminal_frontier product gate."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
@@ -1898,6 +1898,21 @@
       "command": "sha256sum -c packets/lean_lca_exact_category_challenge.zip.sha256",
       "status": "passed",
       "evidence": "Packet zip sidecar verified after refresh."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_left_lca_coequalizer_transport_v362_support_w339.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for ported W339 left LCA coequalizer transport support."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_left_lca_relation_preimage_v362_support_w340.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for ported W340 left LCA relation-preimage support."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_coequalizer_transport_v362_support_w339.lean audit/blockers/wpp_op_left_lca_relation_preimage_v362_support_w340.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W339/W340 support files."
     }
   ],
   "implemented_declarations_checked": [
@@ -2536,10 +2551,18 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeCokernelV362SupportW338.snakeInput_cokernelRow_exact",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeCokernelV362SupportW338.exact_of_strictSnakeCokernelData",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeCokernelV362SupportW338.addCommGrpKernelExact_of_snakeCokernelRowCertificate",
-    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeCokernelV362SupportW338.v362Boundary_iff_snakeCokernelRowCertificateBoundary"
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeCokernelV362SupportW338.v362Boundary_iff_snakeCokernelRowCertificateBoundary",
+    "LeanLCAExactChallenge.WppOpLeftLcaCoequalizerTransportV362SupportW339.coconePointUniqueUpToIso_hom_naturality_of_leg_eq",
+    "LeanLCAExactChallenge.WppOpLeftLcaCoequalizerTransportV362SupportW339.wppOp_sourceIso_hom_comp_colimitMap_eq_descended_comp_targetIso_hom",
+    "LeanLCAExactChallenge.MetrizableLCA.coequalizerMap_relation_preimage_forward_of_squares",
+    "LeanLCAExactChallenge.MetrizableLCA.coequalizerMap_relation_preimage_exact_of_squares_and_reverse_preimage",
+    "LeanLCAExactChallenge.MetrizableLCA.CoequalizerRelationPreimageClosedMapInputs",
+    "LeanLCAExactChallenge.MetrizableLCA.CoequalizerRelationPreimageClosedMapInputs.descended_fields"
   ],
   "product_complete": false,
   "known_gaps": [
+    "W340でrelation-preimageの前向き包含は証明済みだが、逆向きpreimage包含、quotient compatibility、descended closed-map性はまだ未証明である。",
+    "W339でW337 transport equationはconcrete colimit cocone leg equationsへ縮約されたが、quotient-presenting cocone本体、colimit証明、descended leg equationはまだ未証明である。",
     "W338でSnakeInputのL₃/h₃/L₃_exact APIとW318 consumerは確認済みだが、WPP-op colimit短複体を実際のSnakeInput cokernel rowとして提示する構成はまだ未証明である。",
     "W318/W271のstrict AddCommGrp入力は、WPP-op colimit後のkernel exactness保存本体が未証明である。",
     "W318/W271のleft LCA入力は、WPP-op colimit-mapのinjectivity、inducing、closed image certificate本体が未証明である。",

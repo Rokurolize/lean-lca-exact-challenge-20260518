@@ -931,3 +931,15 @@
 <p><time>2026-05-21T05:48:00Z</time>: The parent consumed completed support worker <code>w338-addcommgrp-snake-cokernel-v362</code> by adding and verifying <code>audit/blockers/addcommgrp_snake_cokernel_v362_support_w338.lean</code>. This records the mathlib <code>ShortComplex.SnakeInput</code> row names and checked consumers: <code>L₃</code> is the cokernel row, <code>h₃</code> is the cokernel cofork colimit proof, <code>L₃_exact</code> gives exactness, and <code>addCommGrpKernelExact_of_snakeCokernelRowCertificate</code> feeds the existing W318 strict AddCommGrp boundary.</p>
 <p>The remaining AddCommGrp obligation is still the concrete construction of a SnakeInput whose cokernel row is isomorphic to the WPP-op colimit short complex, or an equivalent proof of the colimit point's left injectivity and kernel exactness. Product success remains false.</p>
 </section>
+
+<section id="w339-left-lca-coequalizer-transport">
+<h2>W339 left LCA transport</h2>
+<p><time>2026-05-21T06:08:00Z</time>: The parent consumed support worker <code>w339-left-lca-coequalizer-transport-v362</code> by adding and verifying <code>audit/blockers/wpp_op_left_lca_coequalizer_transport_v362_support_w339.lean</code>. The main theorem <code>wppOp_sourceIso_hom_comp_colimitMap_eq_descended_comp_targetIso_hom</code> proves the W337 transport equation <code>sourceIso.hom ≫ φ = descended ≫ targetIso.hom</code> from leg equations for the concrete source and target colimit cocones.</p>
+<p>This closes only the abstract categorical part of the transport. The remaining left LCA construction still needs concrete quotient-presenting WPP-op cocones, proofs that they are colimit cocones, and the descended quotient-map leg equations.</p>
+</section>
+
+<section id="w340-left-lca-relation-preimage">
+<h2>W340 relation preimage</h2>
+<p><time>2026-05-21T06:10:00Z</time>: The parent consumed support worker <code>w340-left-lca-relation-preimage-v362</code> by adding and verifying <code>audit/blockers/wpp_op_left_lca_relation_preimage_v362_support_w340.lean</code>. The theorem <code>MetrizableLCA.coequalizerMap_relation_preimage_forward_of_squares</code> proves the forward inclusion of source cokernel relations into target cokernel relations from the two square equations.</p>
+<p>The file also packages <code>CoequalizerRelationPreimageClosedMapInputs</code>, separating the remaining local obligations into reverse relation-preimage, quotient compatibility, and <code>IsClosedMap</code> for the descended quotient map. The worker evidence explicitly shows that component closed embedding plus square equations alone do not provide the reverse inclusion. Product success remains false.</p>
+</section>
