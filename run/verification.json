@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v329-right-component-uniqueness",
-  "generated_utc": "2026-05-20T17:52:00Z",
-  "source_tree_hash": "08593e4755f63d1efb87cb324ba7293d97d496a553f7e78d92a89998160f0415",
-  "summary": "v329でW308右成分uniquenessをpreserved ambient colimitのhom_extへ縮約した。product_completeはfalseのまま。",
+  "schema": "lean-lca-exact-challenge-verification-v337-w301-w330-w331-w332-w333-w334-w335-w336-frontier-refinement",
+  "generated_utc": "2026-05-20T18:09:00Z",
+  "source_tree_hash": "1ce3ee5c0b9e0f6c1e9362d888d5a630a47ca73cdfe62656f8cc995c48cdccd7",
+  "summary": "v336でδ-precomposition補題を追加・検証した。product_completeはfalseのまま。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -1018,6 +1018,151 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_right_uniqueness_w329.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W329."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_colimit_right_ext_w330.lean",
+      "status": "passed",
+      "evidence": "Focused W330 check passed; mapping-cone hom ext can use left inl equality plus right inr equality after colimit legs."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_colimit_right_ext_w330.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W330."
+    },
+    {
+      "command": "lake env lean audit/blockers/lca_wpp_op_closed_embedding_pure_support_w301.lean",
+      "status": "passed",
+      "evidence": "v331/v332 focused verification passed in the parent target worktree."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_colimit_right_ext_w330.lean",
+      "status": "passed",
+      "evidence": "v331/v332 focused verification passed in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/lca_wpp_op_closed_embedding_pure_support_w301.lean audit/blockers/wpp_op_mapping_cone_colimit_right_ext_w330.lean",
+      "status": "passed",
+      "evidence": "v331/v332 focused verification passed in the parent target worktree."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "v331/v332 focused verification passed in the parent target worktree."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_left_cochain_colimit_w331.lean",
+      "status": "passed",
+      "evidence": "Focused W331 check passed; compatible objectwise degree -1 cochains descend along a cochain-complex colimit with the expected leg equation."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_left_cochain_colimit_w331.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W331."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_left_cochain_colimit_w331.lean",
+      "status": "passed",
+      "evidence": "W331 left cochain colimit constructor checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_left_cochain_colimit_w331.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W331."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_objectwise_left_w332.lean",
+      "status": "passed",
+      "evidence": "Focused W332 check passed; mappingCone.inl composed with test cocone legs is compatible under mappingCone.map leg naturality."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_objectwise_left_w332.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W332."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_objectwise_left_w332.lean",
+      "status": "passed",
+      "evidence": "W332 objectwise left cochain compatibility checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_objectwise_left_w332.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W332."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_left_cochain_assembly_w333.lean",
+      "status": "passed",
+      "evidence": "Focused W333 check passed; leftCochainOfMappingConeLegs constructs the W308-style left cochain from mappingCone.map-natural test legs."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_left_cochain_assembly_w333.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W333."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_left_cochain_assembly_w333.lean",
+      "status": "passed",
+      "evidence": "W333 left cochain assembly checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_left_cochain_assembly_w333.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W333."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_objectwise_desc_eq_w334.lean",
+      "status": "passed",
+      "evidence": "Focused W334 check passed; objectwise mappingCone.inl-left cochain satisfies the expected differential equation."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_objectwise_desc_eq_w334.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W334."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_objectwise_desc_eq_w334.lean",
+      "status": "passed",
+      "evidence": "W334 objectwise descEq checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/wpp_op_mapping_cone_objectwise_desc_eq_w334.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W334."
+    },
+    {
+      "command": "lake env lean audit/blockers/cochain_ext_of_colimit_legs_w335.lean",
+      "status": "passed",
+      "evidence": "Focused W335 check passed; cochain equality out of a colimit complex follows from equality after every colimit leg."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/cochain_ext_of_colimit_legs_w335.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W335."
+    },
+    {
+      "command": "lake env lean audit/blockers/cochain_ext_of_colimit_legs_w335.lean",
+      "status": "passed",
+      "evidence": "W335 cochain extensionality checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/cochain_ext_of_colimit_legs_w335.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W335."
+    },
+    {
+      "command": "lake env lean audit/blockers/cochain_delta_colimit_leg_w336.lean",
+      "status": "passed",
+      "evidence": "W336 delta-through-leg lemma checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom|unsafe)\\b audit/blockers/cochain_delta_colimit_leg_w336.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W336."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/cochain_delta_colimit_leg_w336.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W336."
     }
   ],
   "implemented_declarations_checked": [
@@ -1583,7 +1728,26 @@
     "LeanLCAExactChallenge.WppOpMappingConeFacSplitW327.mappingCone_hom_ext_of_left_right",
     "LeanLCAExactChallenge.WppOpMappingConeRightUniquenessW329.ambientRightComponent_ext_of_colimit",
     "LeanLCAExactChallenge.WppOpMappingConeRightUniquenessW329.w308_right_uniqueness_component_of_legs",
-    "LeanLCAExactChallenge.WppOpMappingConeRightUniquenessW329.currentWppOpMappingConeRightUniquenessState_productSuccess"
+    "LeanLCAExactChallenge.WppOpMappingConeRightUniquenessW329.currentWppOpMappingConeRightUniquenessState_productSuccess",
+    "LeanLCAExactChallenge.WppOpMappingConeColimitRightExtW330.mappingCone_hom_ext_of_left_and_colimit_right",
+    "LeanLCAExactChallenge.WppOpMappingConeColimitRightExtW330.currentWppOpMappingConeColimitRightExtState_productSuccess",
+    "LeanLCAExactChallenge.WppOpMappingConeLeftCochainColimitW331.leftCochainOfColimit",
+    "LeanLCAExactChallenge.WppOpMappingConeLeftCochainColimitW331.leftCochainOfColimit_comp_fac",
+    "LeanLCAExactChallenge.WppOpMappingConeLeftCochainColimitW331.currentWppOpMappingConeLeftCochainColimitState_productSuccess",
+    "LeanLCAExactChallenge.WppOpMappingConeObjectwiseLeftW332.objectwiseLeftCochain",
+    "LeanLCAExactChallenge.WppOpMappingConeObjectwiseLeftW332.objectwiseLeftCochain_compatible_of_leg_naturality",
+    "LeanLCAExactChallenge.WppOpMappingConeObjectwiseLeftW332.currentWppOpMappingConeObjectwiseLeftState_productSuccess",
+    "LeanLCAExactChallenge.WppOpMappingConeLeftCochainAssemblyW333.leftCochainOfMappingConeLegs",
+    "LeanLCAExactChallenge.WppOpMappingConeLeftCochainAssemblyW333.leftCochainOfMappingConeLegs_comp_fac",
+    "LeanLCAExactChallenge.WppOpMappingConeLeftCochainAssemblyW333.currentWppOpMappingConeLeftCochainAssemblyState_productSuccess",
+    "LeanLCAExactChallenge.WppOpMappingConeObjectwiseDescEqW334.objectwiseLeftCochain_descEq",
+    "LeanLCAExactChallenge.WppOpMappingConeObjectwiseDescEqW334.currentWppOpMappingConeObjectwiseDescEqState_productSuccess",
+    "LeanLCAExactChallenge.CochainExtOfColimitLegsW335.cochain_ext_of_colimit_legs",
+    "LeanLCAExactChallenge.CochainExtOfColimitLegsW335.cochain_ext_of_colimit_legs_component",
+    "LeanLCAExactChallenge.CochainExtOfColimitLegsW335.currentCochainExtOfColimitLegsState_productSuccess",
+    "LeanLCAExactChallenge.CochainDeltaColimitLegW336.delta_of_colimit_leg_comp",
+    "LeanLCAExactChallenge.CochainDeltaColimitLegW336.colimit_leg_delta_eq_of_precomp_eq",
+    "LeanLCAExactChallenge.CochainDeltaColimitLegW336.currentCochainDeltaColimitLegState_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -1652,7 +1816,14 @@
     "W326でW289/W318のleft closed embedding境界はMetrizableLCAの自然変換coequalizer/colimit-map closed-embedding保存定理へ縮約されたが、この純LCA定理はまだ未供給である。",
     "W327で固定mappingCone leg equationは左`mappingCone.inl` cochain互換性と右`mappingCone.inr`互換性へ分解できたが、左degree -1 cochain、その互換性、descEq、および一意性はまだ未供給である。",
     "W328でmapping coneから出る射の一意性はleft `mappingCone.inl` cochain equalityとright `mappingCone.inr` morphism equalityへ分解できたが、左cochain構成と左成分一致証明はまだ未供給である。",
-    "W329でW328のright `mappingCone.inr`成分 equalityは保存済みambient `c₂` colimitのhom_extから従うことを確認したが、左`mappingCone.inl` cochain構成、左成分一致、descEqはまだ未供給である。"
+    "W329でW328のright `mappingCone.inr`成分 equalityは保存済みambient `c₂` colimitのhom_extから従うことを確認したが、左`mappingCone.inl` cochain構成、左成分一致、descEqはまだ未供給である。",
+    "W330でmapping coneから出る射の一意性はleft `mappingCone.inl` cochain equalityとright `mappingCone.inr` equality after colimit legsへ縮約されたが、W308本体へ戻すには左cochain構成、left compatibility、descEqがまだ必要である。",
+    "W331でcompatible objectwise degree -1 cochainsはcochain-complex colimitからleft cochainへ降下できることを確認したが、W308へ適用するにはobjectwise `mappingCone.inl` legsのcompatibility、評価関手のcolimit保存入力、descEqがまだ必要である。",
+    "W332でobjectwise left cochain候補のcompatibilityはtest cocone leg自然性から従うことを確認したが、W331との結合、included `c₁` colimitの評価保存入力、descEqはまだ未供給である。",
+    "W333でtest mapping-cone legsからleftCochainOfMappingConeLegsを直接構成しinl leg equationも得たが、W308本体へ適用するにはincluded bounded `c₁`のambient colimit/evaluation preservation入力とdescEqがまだ必要である。",
+    "W334でobjectwise left cochain候補のdescEqは証明済みになったが、W333で降下したleft cochainのδとW308 ambient right mediatorを結ぶglobal colimit-descent descEqはまだ未供給である。",
+    "W335でcochain等式をcolimit脚後の等式へ落とせることを確認したが、W334のobjectwise右辺を降下したものとW308 ambient right mediatorの同一視はまだ未供給である。",
+    "W336でglobal descEq左辺を脚後にobjectwise δへ戻せることを確認したが、右辺のobjectwise right termとW308 ambient right mediatorの同一視はまだ未供給である。"
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "product_success": false

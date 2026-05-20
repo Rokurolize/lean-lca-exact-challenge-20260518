@@ -727,3 +727,45 @@
 <p><time>2026-05-20T16:25:25Z</time>: During the v304 artifact update, four additional untracked audit boundaries appeared in the target worktree. The parent did not delete them; it inspected and verified them. <code>audit/blockers/wpp_op_mapping_cone_universal_w304.lean</code> reduces the W303 fixed-cocone desc/fac/uniq package to a unique-mediating-map input for every target cocone. <code>audit/blockers/wpp_op_strict_short_exact_colimit_field_w305.lean</code> reduces the W301 right-surjectivity field to right-open-map preservation plus a categorical epi proof of the colimit right map. <code>audit/blockers/wpp_op_strict_short_exact_colimit_fields_iff_w307.lean</code> proves that the W301 four-field split is an equivalence, not merely a sufficient condition.</p>
 <p><code>audit/blockers/opposite_functor_category_localization_w306.lean</code> initially contained an invalid universe-polymorphic uniform fixed-target attempt and a generated <code>sorry</code>. The parent repaired it into a conservative checked boundary: objectwise inversion and the already validated two fixed-target package remain the real evidence, while the attempted uniformization is recorded as not established. Product success remains false for all four additions.</p>
 </section>
+
+<section id="v331-w301-w330-frontier-refinement">
+<h2>v331 W301/W330 frontier refinement</h2>
+<p><time>2026-05-20T17:58:00Z</time>: The parent consumed support result <code>w301-lca-wpp-op-closed-embedding-pure-v324</code> by adding <code>audit/blockers/lca_wpp_op_closed_embedding_pure_support_w301.lean</code>. The checked consumer reduces the pure WPP-op colimit-map closed-embedding theorem to three concrete topological facts about the induced coequalizer map: injectivity, induced source topology, and closed image. Product success remains false because those three facts are still unproved for the actual quotient/coequalizer map.</p>
+<p>The parent also verified <code>audit/blockers/wpp_op_mapping_cone_colimit_right_ext_w330.lean</code>. This records that mapping-cone hom uniqueness follows from the left <code>mappingCone.inl</code> cochain equality and right <code>mappingCone.inr</code> equality checked after all legs of a colimit cocone. This complements W329 and keeps W308 uniqueness split into left cochain construction plus colimit-controlled right component.</p>
+</section>
+
+<section id="v332-w331-left-cochain-colimit">
+<h2>v332 W331 left cochain colimit</h2>
+<p><time>2026-05-20T17:59:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_left_cochain_colimit_w331.lean</code>. It constructs a degree <code>-1</code> <code>HomComplex.Cochain</code> on a colimit point from compatible objectwise degree <code>-1</code> cochains, assuming each evaluation functor preserves the relevant colimit. The checked theorem <code>leftCochainOfColimit_comp_fac</code> gives the cochain-level leg equation needed by the W308 left side.</p>
+<p>This is still a boundary refinement, not the full W308 assembly. The remaining work is to instantiate the objectwise left cochains from the mapping-cone test cocone, prove their diagram compatibility, and prove the mapping-cone desc differential equation.</p>
+</section>
+
+<section id="v333-w332-objectwise-left-cochain">
+<h2>v333 W332 objectwise left cochain</h2>
+<p><time>2026-05-20T18:02:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_objectwise_left_w332.lean</code>. It defines <code>objectwiseLeftCochain</code> as <code>mappingCone.inl φ</code> composed with a test cocone leg, and proves <code>objectwiseLeftCochain_compatible_of_leg_naturality</code>: mapping-cone leg naturality is enough for the W331 compatibility input.</p>
+<p>Combined with W331, the W308 left side is now reduced to supplying the included <code>c₁</code> colimit/evaluation preservation inputs and the remaining <code>mappingCone.desc</code> differential compatibility. Product success remains false.</p>
+</section>
+
+<section id="v334-w333-left-cochain-assembly">
+<h2>v334 W333 left cochain assembly</h2>
+<p><time>2026-05-20T18:04:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_left_cochain_assembly_w333.lean</code>. It combines the W331 colimit descent and W332 objectwise leg naturality ideas into a standalone constructor <code>leftCochainOfMappingConeLegs</code>, with <code>leftCochainOfMappingConeLegs_comp_fac</code> proving the expected <code>mappingCone.inl</code> leg equation.</p>
+<p>The remaining W308 left-side inputs are now the included <code>c₁</code> evaluation-colimit preservation instance and the <code>mappingCone.desc</code> differential compatibility for the assembled left/right data. Product success remains false.</p>
+</section>
+
+<section id="v335-w334-objectwise-desc-eq">
+<h2>v335 W334 objectwise descEq</h2>
+<p><time>2026-05-20T18:06:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_objectwise_desc_eq_w334.lean</code>. It proves the objectwise differential equation <code>objectwiseLeftCochain_descEq</code> for the W333 left-cochain candidate: <code>δ left = ofHom (φ ≫ mappingCone.inr φ ≫ leg)</code>.</p>
+<p>The W308 <code>descEq</code> remainder is now a colimit comparison problem: descend the objectwise equation and identify the resulting right side with the ambient right mediator already isolated in W308/W329/W330. Product success remains false.</p>
+</section>
+
+<section id="v336-w335-cochain-ext-colimit-legs">
+<h2>v336 W335 cochain ext</h2>
+<p><time>2026-05-20T18:08:00Z</time>: The parent verified <code>audit/blockers/cochain_ext_of_colimit_legs_w335.lean</code>. The theorem <code>cochain_ext_of_colimit_legs</code> proves that two cochains out of a colimit complex are equal when their composites with every colimit leg agree, assuming degreewise evaluation preserves the colimit.</p>
+<p>This supplies the global colimit-descent wrapper for W334 objectwise <code>descEq</code>. The remaining comparison is identifying the descended right-hand side with W308 ambient right mediator. Product success remains false.</p>
+</section>
+
+<section id="v337-w336-delta-colimit-leg">
+<h2>v337 W336 delta leg</h2>
+<p><time>2026-05-20T18:10:00Z</time>: The parent verified <code>audit/blockers/cochain_delta_colimit_leg_w336.lean</code>. It packages <code>HomComplex.δ_ofHom_comp</code> in the exact W308 form needed to move <code>δ</code> across precomposition by a colimit leg.</p>
+<p>This lets W335 legwise global <code>descEq</code> obligations be rewritten to W334 objectwise <code>descEq</code>. The remaining input is the right-mediator leg identification. Product success remains false.</p>
+</section>
