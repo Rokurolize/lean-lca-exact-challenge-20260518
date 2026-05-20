@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v191-mapping-cone-biprod-one-sided-inverse",
-  "generated_utc": "2026-05-20T04:52:00Z",
-  "source_tree_hash": "9d8c1a5399250dfb70d6ff61703c035ec7f2f8969ae7455f09be76a546a42a5b",
-  "summary": "v191 adds the component roundtrip on mappingCone (biprod.map f₁ f₂) and proves the forward composite identity for the binary mapping-cone/biproduct comparison candidates. Product success remains blocked: the reverse composite identity, differential compatibility, finite product comparison, finite exact-acyclic product closure, Dbounded transfer, and stable structures remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-v192-mapping-cone-biprod-inverse-compatibility",
+  "generated_utc": "2026-05-20T05:15:00Z",
+  "source_tree_hash": "61a28a097e6d6df7c1eff46cb11723696d1cc955ac17ab41b4382f70077a6619",
+  "summary": "v192 proves all degreewise inverse identities for the binary mapping-cone/biproduct comparison candidates and packages BinaryMappingConeBiprodInverseCompatibility. Product success remains blocked by differential compatibility, finite product comparison, finite exact-acyclic product closure, Dbounded transfer, and stable structures.",
   "commands": [
     {
       "command": "lake build",
@@ -207,7 +207,7 @@
     {
       "command": "lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean",
       "status": "passed",
-      "evidence": "Focused v191 binary component-map probe passed after adding coneBiprodMap_component_roundtrip and coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX."
+      "evidence": "Focused v192 binary component-map probe passed after adding all four component roundtrip/orthogonality identities, the reverse composite identity, and binaryMappingConeBiprodInverseCompatibility."
     },
     {
       "command": "lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
@@ -439,7 +439,7 @@
   "product_complete": false,
   "known_gaps": [
     "Dbounded finite limits remain conditional on EqualizerConeInput C and EqualizerLocalizationTransferTheorem C after v186.",
-    "boundedExactWeakEquivalence C finite-product stability remains blocked by the mapping-cone finite-product comparison; short-complex transport, RespectsIso, and one binary comparison inverse direction are proved.",
+    "boundedExactWeakEquivalence C finite-product stability remains blocked by the mapping-cone finite-product comparison; short-complex transport, RespectsIso, and binary degreewise inverse compatibility are proved.",
     "finite colimits, pretriangulated structure, triangulated structure, and stable infinity-category product structure remain unproved."
   ],
   "support_result_classification": {

@@ -116,6 +116,56 @@ theorem coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX (n : ℤ) :
   simp [coneBiprodMapToBiprodConeX, biprodConeToConeBiprodMapX,
     coneBiprodMap_component_roundtrip]
 
+theorem leftComponentToConeBiprodMap_comp_coneBiprodMapToLeftComponent (n : ℤ) :
+    leftComponentToConeBiprodMap f₁ f₂ n ≫ coneBiprodMapToLeftComponent f₁ f₂ n = 𝟙 _ := by
+  apply CochainComplex.mappingCone.ext_to f₁ n (n + 1) rfl
+  · simp [leftComponentToConeBiprodMap, coneBiprodMapToLeftComponent, Category.assoc]
+  · simp [leftComponentToConeBiprodMap, coneBiprodMapToLeftComponent, Category.assoc]
+
+theorem leftComponentToConeBiprodMap_comp_coneBiprodMapToRightComponent (n : ℤ) :
+    leftComponentToConeBiprodMap f₁ f₂ n ≫ coneBiprodMapToRightComponent f₁ f₂ n = 0 := by
+  apply CochainComplex.mappingCone.ext_to f₂ n (n + 1) rfl
+  · simp [leftComponentToConeBiprodMap, coneBiprodMapToRightComponent, Category.assoc]
+  · simp [leftComponentToConeBiprodMap, coneBiprodMapToRightComponent, Category.assoc]
+
+theorem rightComponentToConeBiprodMap_comp_coneBiprodMapToLeftComponent (n : ℤ) :
+    rightComponentToConeBiprodMap f₁ f₂ n ≫ coneBiprodMapToLeftComponent f₁ f₂ n = 0 := by
+  apply CochainComplex.mappingCone.ext_to f₁ n (n + 1) rfl
+  · simp [rightComponentToConeBiprodMap, coneBiprodMapToLeftComponent, Category.assoc]
+  · simp [rightComponentToConeBiprodMap, coneBiprodMapToLeftComponent, Category.assoc]
+
+theorem rightComponentToConeBiprodMap_comp_coneBiprodMapToRightComponent (n : ℤ) :
+    rightComponentToConeBiprodMap f₁ f₂ n ≫ coneBiprodMapToRightComponent f₁ f₂ n = 𝟙 _ := by
+  apply CochainComplex.mappingCone.ext_to f₂ n (n + 1) rfl
+  · simp [rightComponentToConeBiprodMap, coneBiprodMapToRightComponent, Category.assoc]
+  · simp [rightComponentToConeBiprodMap, coneBiprodMapToRightComponent, Category.assoc]
+
+theorem biprodConeToConeBiprodMapX_auxiliary_comp (n : ℤ) :
+    biprod.desc (leftComponentToConeBiprodMap f₁ f₂ n) (rightComponentToConeBiprodMap f₁ f₂ n) ≫
+      biprod.lift (coneBiprodMapToLeftComponent f₁ f₂ n) (coneBiprodMapToRightComponent f₁ f₂ n) =
+        𝟙 _ := by
+  ext <;>
+    simp [leftComponentToConeBiprodMap_comp_coneBiprodMapToLeftComponent,
+      leftComponentToConeBiprodMap_comp_coneBiprodMapToRightComponent,
+      rightComponentToConeBiprodMap_comp_coneBiprodMapToLeftComponent,
+      rightComponentToConeBiprodMap_comp_coneBiprodMapToRightComponent,
+      Category.assoc]
+
+theorem biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX (n : ℤ) :
+    biprodConeToConeBiprodMapX f₁ f₂ n ≫ coneBiprodMapToBiprodConeX f₁ f₂ n = 𝟙 _ := by
+  rw [show biprodConeToConeBiprodMapX f₁ f₂ n ≫ coneBiprodMapToBiprodConeX f₁ f₂ n =
+      (HomologicalComplex.biprodXIso
+          (CochainComplex.mappingCone f₁) (CochainComplex.mappingCone f₂) n).hom ≫
+        (biprod.desc (leftComponentToConeBiprodMap f₁ f₂ n)
+            (rightComponentToConeBiprodMap f₁ f₂ n) ≫
+          biprod.lift (coneBiprodMapToLeftComponent f₁ f₂ n)
+            (coneBiprodMapToRightComponent f₁ f₂ n)) ≫
+        (HomologicalComplex.biprodXIso
+          (CochainComplex.mappingCone f₁) (CochainComplex.mappingCone f₂) n).inv by
+    simp [coneBiprodMapToBiprodConeX, biprodConeToConeBiprodMapX, Category.assoc]]
+  rw [biprodConeToConeBiprodMapX_auxiliary_comp]
+  simp
+
 structure BinaryMappingConeBiprodDifferentialCompatibility : Prop where
   left_to_right :
     ∀ (n : ℤ),
@@ -134,11 +184,16 @@ structure BinaryMappingConeBiprodInverseCompatibility : Prop where
     ∀ (n : ℤ),
       biprodConeToConeBiprodMapX f₁ f₂ n ≫ coneBiprodMapToBiprodConeX f₁ f₂ n = 𝟙 _
 
+theorem binaryMappingConeBiprodInverseCompatibility :
+    BinaryMappingConeBiprodInverseCompatibility f₁ f₂ where
+  cone_biprod_cone := coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX f₁ f₂
+  biprod_cone_biprod := biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX f₁ f₂
+
 def v189ComponentMapFrontier : List String :=
   ["component maps from mappingCone (biprod.map f₁ f₂) to the biproduct cone",
     "component maps from the biproduct cone to mappingCone (biprod.map f₁ f₂)",
-    "remaining: differential compatibility for both component-map families",
-    "remaining: inverse identities after the differential-compatible complex morphisms exist"]
+    "proved: inverse identities for the candidate degreewise maps",
+    "remaining: differential compatibility for both component-map families"]
 
 theorem v189ComponentMapFrontier_count :
     v189ComponentMapFrontier.length = 4 := rfl
@@ -155,8 +210,15 @@ section Checks
 #check comp_biprod_total_f
 #check coneBiprodMap_component_roundtrip
 #check coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX
+#check leftComponentToConeBiprodMap_comp_coneBiprodMapToLeftComponent
+#check leftComponentToConeBiprodMap_comp_coneBiprodMapToRightComponent
+#check rightComponentToConeBiprodMap_comp_coneBiprodMapToLeftComponent
+#check rightComponentToConeBiprodMap_comp_coneBiprodMapToRightComponent
+#check biprodConeToConeBiprodMapX_auxiliary_comp
+#check biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX
 #check BinaryMappingConeBiprodDifferentialCompatibility
 #check BinaryMappingConeBiprodInverseCompatibility
+#check binaryMappingConeBiprodInverseCompatibility
 #check v189ComponentMapFrontier
 #check v189ComponentMapFrontier_count
 #check CochainComplex.mappingCone.ext_to

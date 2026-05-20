@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v191時点で、binary mapping cone/biproduct比較について、次数ごとの候補写像とbiproduct total補助補題に加え、mappingCone (biprod.map f₁ f₂)側の成分往復恒等式と、候補比較写像の片側合成恒等式をLeanで確認した。ただし、逆方向の合成恒等式、微分互換、有限product比較、有限exact-acyclic product閉性、DboundedのEqualizer/Pullback転送、有限余極限、pretriangulated/triangulated構造、stable infinity-category構造は未完成であり、product_successではない。",
+  "summary": "v192時点で、binary mapping cone/biproduct比較について、次数ごとの候補写像の双方向合成が恒等射であることをLeanで証明し、binaryMappingConeBiprodInverseCompatibilityとして包装した。ただし、候補写像が微分と可換であること、有限product比較、有限exact-acyclic product閉性、DboundedのEqualizer/Pullback転送、有限余極限、pretriangulated/triangulated構造、stable infinity-category構造は未完成であり、product_successではない。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -671,7 +671,7 @@
     "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
   ],
   "known_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v191でbinary段階の成分往復恒等式と片側合成恒等式は証明したが、逆方向の合成恒等式、微分互換、FiniteMappingConeProductComparisonInput、FiniteExactAcyclicProductClosureはいずれも未構成。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v192でbinary段階の次数ごとの逆写像性は証明したが、微分互換、FiniteMappingConeProductComparisonInput、FiniteExactAcyclicProductClosureはいずれも未構成。",
     "Dbounded C の有限極限は、有限積に加えてequalizer routeとpullback routeへ分解されたが、EqualizerConeInput C、EqualizerLocalizationTransferTheorem C、PullbackConeInput C、PullbackLocalizationTransferTheorem Cはいずれも未構成。",
     "Dbounded C の有限余極限、pretriangulated構造、triangulated構造、stable infinity-category構造は未完成。",
     "bounded側のstrict-selected eligibility providerは boundedHomotopyObjectTrianglehIso13Realization と同値であり、realization自体は未証明。"
@@ -684,7 +684,7 @@
   "worker_frontier_summary": "v190では新規workerを起動せず、支援worker w145を親側で検査して移植した。binary側はv189候補写像にbiproduct total合成補助補題を追加した。有限側はFiniteMappingConeProductComparisonInputとFiniteExactAcyclicProductClosureをconsumer入力として固定した。次のfrontierはbinary候補写像の微分互換・逆写像性、有限product比較、有限exact-acyclic product閉性、PullbackConeInput C、PullbackLocalizationTransferTheorem C、EqualizerConeInput C、EqualizerLocalizationTransferTheorem Cである。",
   "claim_review_result": "product_complete=false。w142/w143はいずれもconditional frontier監査であり、product gateを通す証拠ではない。",
   "remaining_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v191でbinary段階の成分往復恒等式と片側合成恒等式は証明したが、逆方向の合成恒等式、微分互換、FiniteMappingConeProductComparisonInput、FiniteExactAcyclicProductClosureはいずれも未構成。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v192でbinary段階の次数ごとの逆写像性は証明したが、微分互換、FiniteMappingConeProductComparisonInput、FiniteExactAcyclicProductClosureはいずれも未構成。",
     "Dbounded C の有限極限は、有限積に加えてequalizer routeとpullback routeへ分解されたが、EqualizerConeInput C、EqualizerLocalizationTransferTheorem C、PullbackConeInput C、PullbackLocalizationTransferTheorem Cはいずれも未構成。",
     "Dbounded C の有限余極限、pretriangulated構造、triangulated構造、stable infinity-category構造は未完成。",
     "bounded側のstrict-selected eligibility providerは boundedHomotopyObjectTrianglehIso13Realization と同値であり、realization自体は未証明。"
@@ -769,7 +769,7 @@
     "DboundedSemanticStableInputAdapter.missingSemanticFieldNames_count",
     "DboundedSemanticStableInputAdapter.currentSemanticRouteState_semanticInput_not_supplied"
   ],
-  "generated_utc": "2026-05-20T04:52:00Z",
+  "generated_utc": "2026-05-20T05:15:00Z",
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave68_20260519T233000Z/workers/w126-stable-dbounded-certificate-provider-route/result.json",
