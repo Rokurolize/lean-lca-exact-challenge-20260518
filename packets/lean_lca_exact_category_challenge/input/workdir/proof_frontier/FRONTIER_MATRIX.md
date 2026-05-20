@@ -644,6 +644,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W407 Relation Reverse Preimage
 2026-05-21T00:22:00Z: Worker support `w407-wpp-op-relation-reverse-preimage-v370` was ported and parent-verified as `audit/blockers/wpp_op_relation_reverse_preimage_v370_support_w407.lean`. It shows that the W404 reverse-preimage input is definitionally the unfolded closed-range membership statement, and that the stronger closed-range preimage equality also feeds the same W389 certificate route. Product success remains false because the concrete WPP-op morphism still needs that closed-range membership or equality proof.
 
+## W406 Selected Target Cofork Colimit
+2026-05-21T00:24:00Z: Worker support `w406-addcommgrp-selected-target-cofork-colimit-v370` was parent-verified as `audit/blockers/addcommgrp_selected_target_cofork_colimit_v370_support_w406.lean`. It converts an `IsColimit` proof for the selected ordinary `Cofork` into the selected target `CokernelCofork` colimit and then into W403/W398-shaped inputs. Product success remains false because the selected ordinary cofork still needs its actual colimit proof, usually by preserving and transporting the WPP-op colimit through the forgetful short-complex functor and `walkingParallelPairOpEquiv.functor`.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
