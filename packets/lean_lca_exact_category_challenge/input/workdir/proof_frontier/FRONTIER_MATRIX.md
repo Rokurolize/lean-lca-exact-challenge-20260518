@@ -596,6 +596,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W385/W386 Target Iso And Target Lift
 2026-05-20T23:20:00Z: Worker support `w385-addcommgrp-forgotten-target-iso-v370` and `w386-wpp-op-target-relation-lift-v370` were ported as `audit/blockers/addcommgrp_forgotten_target_iso_v370_support_w385.lean` and `audit/blockers/wpp_op_target_relation_lift_v370_support_w386.lean`. W385 reduces the AddCommGrp target-row gap to a direct targetIso or a W376 presentation equality. W386 packages target relation lifting so the W377/W383 left-LCA route is now concentrated on relation-pullback equality. Product success remains false.
 
+## W387 Transported Quotient Point Iso
+2026-05-20T23:24:00Z: Worker support `w387-left-lca-transported-quotient-point-iso-v370` was ported as `audit/blockers/wpp_op_left_lca_transported_quotient_point_iso_v370_support_w387.lean`. It constructs the W352-style ordinary quotient point and source/target point isomorphisms to the transported concrete quotient cocone points. Product success remains false because pointwise descended-map conjugacy and ordinary W352 descended quotient fields remain open.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
