@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T16:25:25Z",
+  "generated_utc": "2026-05-20T17:18:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v294 consumes completed support W271 by parent-side reimplementation as an audit boundary.",
+  "worker_policy": "No new workers were launched by the parent. W308/W309 external worker outputs were inspected after their processes ended; W310/W311 were accepted only after parent-side focused verification.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1647,6 +1647,11 @@
     "Coherent opposite WalkingParallelPair strict-representative blueprint and the four W272 fixed-target fac/uniq obligations remain open."
   ],
   "open_blockers": [
+    "W314でW271のexactAcyclic WPP-op colimit closureはW313と同じ五つのexact/topology入力へ接続されたが、HasHomology、忘却関手のPreservesHomology、colimit短複体のExact、左closed embedding、右open mapはまだ未供給である。",
+    "W313でWPP-op strictShortExact colimit closureはHasHomology、忘却関手のPreservesHomology、colimit短複体のExact、左closed embedding、右open mapへ縮約され、右全射性はcategorical epiとopen mapから得られると分かったが、この五つの入力はまだ未供給である。",
+    "W312でW311のRightOpenMapColimitCoverはcolimit点がstrict short exactならidentity coverで構成できると分かったが、そのcolimit点のstrict short exactness、または具体的な商表示cover dataはまだ未供給である。",
+    "W308で固定mappingConeCocone mediatorの右脚は、任意test coconeに対するbounded right-target lift dataが無いとc₂のcolimit descを使えないことが判明した。このlift data、左degree -1 cochain、descEq、fac、uniqは未供給である。",
+    "W310でW301のrightSurjective colimit closureはrightOpenMap colimit closureだけへ縮約されたが、W311によりこの入力はRightOpenMapColimitCoverの構成へさらに縮約され、このcover dataはまだ未供給である。",
     "W303の固定mappingConeCocone universal入力は追加境界で一意なmediating mapの存在へ縮約されたが、そのmediating mapの実構成と可換性・一意性はまだ未供給である。",
     "W301の右全射性フィールドはW305で右開写像性とcolimit右射のcategorical epiへ縮約されたが、どちらもまだ未供給である。",
     "W306のopposite functor-category localization uniform化は宇宙レベル多相schemaとしては未成立であり、現時点ではtwo fixed-target boundaryを保持する非終端境界に留まる。",
@@ -1721,6 +1726,29 @@
     "generated-wpp-op-mapping-cone-universal-w304",
     "generated-wpp-op-strict-short-exact-colimit-field-w305",
     "generated-opposite-functor-category-localization-w306-repaired",
-    "generated-wpp-op-strict-short-exact-colimit-fields-iff-w307"
+    "generated-wpp-op-strict-short-exact-colimit-fields-iff-w307",
+    {
+      "artifact": "audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean; audit/blockers/wpp_op_right_map_epi_open_w309.lean; audit/blockers/wpp_op_right_surjective_of_open_w310.lean; audit/blockers/wpp_op_right_open_map_w311.lean",
+      "result": "v308-v311: parent inspected W308/W309 worker outputs; W308 narrowed mapping-cone mediator to bounded right-target lift plus mappingCone.desc assembly data, W309 proved categorical epi for the colimit right map, W310 reduced right-surjectivity closure to the right-open-map field only, and W311 reduced right-open-map to quotient-presentation cover data; not product success."
+    },
+    {
+      "artifact": "audit/blockers/wpp_op_right_open_cover_w312.lean",
+      "result": "W312 proves the W311 cover package follows from strict short exactness of the WPP-op colimit point by identity cover maps; remaining work is constructing that strict colimit point or direct quotient/coequalizer cover data; not product success."
+    },
+    {
+      "artifact": "audit/blockers/wpp_op_strict_short_exact_from_exact_topology_w313.lean",
+      "result": "W313 reduces WPP-op strictShortExact colimit closure to HasHomology, forgetful PreservesHomology, exactness, left closed embedding, and right open map; right surjectivity is supplied by categorical epi plus openness; not product success."
+    },
+    {
+      "artifact": "audit/blockers/wpp_op_exact_acyclic_from_exact_topology_w314.lean",
+      "result": "W314 connects W271 exactAcyclic WPP-op colimit closure to the W313 exact/topology inputs using the W300 degreewise short-complex colimit comparison; not product success."
+    }
+  ],
+  "known_gaps": [
+    "W314でW271のexactAcyclic WPP-op colimit closureはW313と同じ五つのexact/topology入力へ接続されたが、HasHomology、忘却関手のPreservesHomology、colimit短複体のExact、左closed embedding、右open mapはまだ未供給である。",
+    "W313でWPP-op strictShortExact colimit closureはHasHomology、忘却関手のPreservesHomology、colimit短複体のExact、左closed embedding、右open mapへ縮約され、右全射性はcategorical epiとopen mapから得られると分かったが、この五つの入力はまだ未供給である。",
+    "W312でW311のRightOpenMapColimitCoverはcolimit点がstrict short exactならidentity coverで構成できると分かったが、そのcolimit点のstrict short exactness、または具体的な商表示cover dataはまだ未供給である。",
+    "W308で固定mappingConeCocone mediatorの右脚は、任意test coconeに対するbounded right-target lift dataが無いとc₂のcolimit descを使えないことが判明した。このlift data、左degree -1 cochain、descEq、fac、uniqは未供給である。",
+    "W310でW301のrightSurjective colimit closureはrightOpenMap colimit closureだけへ縮約されたが、W311によりこの入力はRightOpenMapColimitCoverの構成へさらに縮約され、このcover dataはまだ未供給である。"
   ]
 }
