@@ -1,0 +1,11 @@
+{
+  "schema": "negative-fixture-failed-expected-product-success-v1",
+  "source_tree_hash": "fixture",
+  "commands": [
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "This fixture must be rejected because product_success evidence cannot contain an expected failing verification command."
+    }
+  ]
+}

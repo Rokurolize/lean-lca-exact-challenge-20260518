@@ -1,0 +1,10 @@
+{
+  "schema": "lean-lca-exact-goal-identity-v1",
+  "generated_utc": "2026-05-18T22:25:52Z",
+  "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
+  "target_workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
+  "product_spec_goal": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_exact_category_challenge_goal_20260518.md",
+  "governor_goal": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_exact_parallel_completion_governor_goal_20260519.md",
+  "interpretation": "The product spec remains binding. The governor goal is used for planning and artifacts, but no workers are launched while this active parent thread owns a dirty target worktree.",
+  "completion_type": "product_success_only"
+}

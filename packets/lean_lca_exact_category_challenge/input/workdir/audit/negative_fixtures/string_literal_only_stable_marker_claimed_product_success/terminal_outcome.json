@@ -1,0 +1,7 @@
+{
+  "outcome": "product_success",
+  "product_complete": true,
+  "update_goal_allowed": true,
+  "known_gaps": [],
+  "summary": "Lean string literal内だけのstable markersを証明済みのstable infinity-category証拠として誤って完了主張する負例。"
+}

@@ -1,0 +1,20 @@
+import LeanLCAExactChallenge.Derived.ContractibleTail
+
+set_option autoImplicit false
+
+namespace LeanLCAExactChallenge
+
+open AlternatingTailExtendTransport
+
+#check RightUnboundedNonzeroTerms
+#check not_boundedCochainComplex_of_rightUnboundedNonzeroTerms
+#check boundedCochainComplex_zero
+#check RightUnboundedContractibleComplex
+#check StrictBoundednessTransportOfHomotopyEquiv
+#check homotopyEquivZeroOfContractingHomotopy
+#check nonemptyHomotopyEquivZeroOfContractingHomotopy
+#check not_strictBoundednessTransport_of_rightUnboundedContractibleComplex
+#check intAlternatingTailGERightUnboundedContractible
+#check not_strictBoundednessTransport_intAlternatingTailGE
+
+end LeanLCAExactChallenge

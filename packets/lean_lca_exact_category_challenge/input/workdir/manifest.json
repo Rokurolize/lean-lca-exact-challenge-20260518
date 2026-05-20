@@ -1,0 +1,128 @@
+{
+  "schema": "lean-lca-exact-challenge-manifest-v1",
+  "generated_utc": "2026-05-18T17:56:14Z",
+  "root_kind": "workdir",
+  "files": [
+    {
+      "path": "LeanLCAExactChallenge.lean",
+      "bytes": 397,
+      "sha256": "341dbac03fd1b5460b5d4eab71f1f46e897d80d9fbda72096cca5abd19763c36"
+    },
+    {
+      "path": "LeanLCAExactChallenge/Basic.lean",
+      "bytes": 21,
+      "sha256": "a88fef4d3efa63c9f9f5c948dd5ba1de3ea09d828ce8388ee83fa3d039e734a4"
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/Bounded.lean",
+      "bytes": 1514,
+      "sha256": "4416d22b3df12204eab29ee2d151344f9ef709390f49b54fe10fa7bda03bf6ba"
+    },
+    {
+      "path": "LeanLCAExactChallenge/ExactCategory/Basic.lean",
+      "bytes": 2361,
+      "sha256": "27a802a787d1768551ad40c1536f3cd59b6b3396d6d8ef373492d45a52ea7260"
+    },
+    {
+      "path": "LeanLCAExactChallenge/ExactCategory/Conflation.lean",
+      "bytes": 685,
+      "sha256": "f836c8a6b2ad1036521bd923ffa2f79abffcf688b7c20e577518add2dd36a5a4"
+    },
+    {
+      "path": "LeanLCAExactChallenge/Ext/Yoneda.lean",
+      "bytes": 1356,
+      "sha256": "b9a2a05e0377c242b24e646262457e5c0711d9f5996ea07ef78bb56ace3e7a0b"
+    },
+    {
+      "path": "LeanLCAExactChallenge/LCA/Basic.lean",
+      "bytes": 4208,
+      "sha256": "16f83a37f2df8586f598e9a0f548bc65465dadfc510326270eb070c16e80be45"
+    },
+    {
+      "path": "LeanLCAExactChallenge/LCA/ExactCategory.lean",
+      "bytes": 2054,
+      "sha256": "157fed8056d47107c62af5479daa42ad646a0c9ebc8f0a78f9764f291566c87f"
+    },
+    {
+      "path": "LeanLCAExactChallenge/LCA/StrictExact.lean",
+      "bytes": 2078,
+      "sha256": "344d162bc8ebbd34cf99201afa1245d55c01e1d1a53f032174ed2cd72fd6656a"
+    },
+    {
+      "path": "LeanLCAExactChallenge/MathlibSurvey.lean",
+      "bytes": 1065,
+      "sha256": "af24a9485a9eea79ca8994e1fcc436d456b25fefe738277a1101f6de30d8cd72"
+    },
+    {
+      "path": "README_FOR_REVIEW.md",
+      "bytes": 2368,
+      "sha256": "059ed2c71ab049d6f5366e3a13397ddaa86aa19377704784594c4274f2185810"
+    },
+    {
+      "path": "audit/RequiredDeclarations.lean",
+      "bytes": 1289,
+      "sha256": "f14487649c500317f67df79c38cddc4458434c713a640d06822ee0205b89779a"
+    },
+    {
+      "path": "audit/blockers/derived_infinity_exact_category_api.lean",
+      "bytes": 506,
+      "sha256": "1b2d56febfb586b45d99a0875f0137b889811df06427534ff79f287b81a702ba"
+    },
+    {
+      "path": "audit/blockers/quasi_abelian_exact_category_api.lean",
+      "bytes": 670,
+      "sha256": "d3e9965323d03d437afda1c71b55bfaef5e4a0adfa862233a1634e9673dd29e8"
+    },
+    {
+      "path": "audit/blockers/yoneda_ext_exact_category_api.lean",
+      "bytes": 569,
+      "sha256": "2d773b9da2c0f3334fc9462cec6634dffe95d6f49d6bd1f6e729e96a6c5c8615"
+    },
+    {
+      "path": "audit/external_audit.py",
+      "bytes": 14250,
+      "sha256": "c3f04eef6fec3404877f79a81b7b4904224330290c2a9b61c6928697645a25b7"
+    },
+    {
+      "path": "audit/negative_fixtures/self_referential_zip_sha_authoritative/manifest.json",
+      "bytes": 149,
+      "sha256": "974a4218184e50a723861e451a56bedab141d47f305242d319df1976643dc20c"
+    },
+    {
+      "path": "audit/negative_fixtures/self_referential_zip_sha_authoritative/terminal_outcome.json",
+      "bytes": 198,
+      "sha256": "c8486b94e774fa7fce8087695ee7baad39b12c8020b5c853747e05a2ae51c53d"
+    },
+    {
+      "path": "docs/research/mathlib_gap_analysis.md",
+      "bytes": 3906,
+      "sha256": "1f49f78b16334ea17dbe0595ae42751c41cfe411adc016c46735b308ac28ca7e"
+    },
+    {
+      "path": "docs/research/mathlib_initial_survey.md",
+      "bytes": 1073,
+      "sha256": "57a5b9bf05437d13bb6c62c160045a050621b4ea7bf742290ef5f301dcabc7dd"
+    },
+    {
+      "path": "docs/research/reference_route_log.md",
+      "bytes": 4775,
+      "sha256": "c12501bf5efb01d2e99692c65b284ef90736578c919bfc6f46ed282ee85132ce"
+    },
+    {
+      "path": "docs/research/sources.md",
+      "bytes": 3137,
+      "sha256": "face1b7643f8ddc6b02f05745f2e0032f83a15b0eec31042b48266a19f073980"
+    },
+    {
+      "path": "run/verification.json",
+      "bytes": 1672,
+      "sha256": "29bebfdb7633b98c65b30d07085c81cd5d9505078be352efaeaf300809539b71"
+    },
+    {
+      "path": "terminal_outcome/terminal_outcome.json",
+      "bytes": 3499,
+      "sha256": "e414d7e1b27c9b8d7e94e384c90b748535e880f1fc9a59c90bb2b56843787272"
+    }
+  ],
+  "content_hash_tree": "61a119b7b803d98314ef20a69b6ff92808dbae0efb34d7964d56d3487a154bb3"
+}
