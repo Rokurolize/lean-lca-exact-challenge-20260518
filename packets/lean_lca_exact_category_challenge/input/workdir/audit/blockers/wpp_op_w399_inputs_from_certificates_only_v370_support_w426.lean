@@ -1347,11 +1347,33 @@ theorem relationReverseClosedRangeMembershipW407_of_relationPullbackEqualityCert
         (MetrizableLCA.cokernelSubgroup
           (WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpLeft Y -
             WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpRight Y)) := hb
-  simpa
-    [WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.WppOpRelationReverseClosedRangeMembershipW407,
-      MetrizableLCA.relationReverseClosedRangeMembershipW407,
-      WppOpLeftLcaClosedMapFromRelationFieldsV370SupportW417.relationPreimagePullbackConditionW417]
-    using (hpullback.relation_pullback ▸ hb_comap)
+  have hpullback_w418 :
+      AddSubgroup.comap
+          (ordinaryMap.app WalkingParallelPair.one).hom.toAddMonoidHom
+          (MetrizableLCA.cokernelSubgroup
+            (WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpLeft Y -
+              WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpRight Y)) =
+        MetrizableLCA.cokernelSubgroup
+          (WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpLeft X -
+            WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpRight X) := by
+    simpa
+      [WppOpLeftLcaClosedMapFromRelationFieldsV370SupportW417.relationPreimagePullbackConditionW417,
+        WppOpLeftLcaClosedMapFromRelationFieldsV370SupportW417.wppOpLeft,
+        WppOpLeftLcaClosedMapFromRelationFieldsV370SupportW417.wppOpRight,
+        WppOpLeftLcaClosedMapFromRelationFieldsV370SupportW417.wppOpCodomain,
+        WppOpLeftLcaClosedMapFromRelationFieldsV370SupportW417.wppOpOrdinaryDiagram,
+        WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpLeft,
+        WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpRight,
+        WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpCodomain,
+        WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpOrdinaryDiagram]
+      using hpullback.relation_pullback
+  have hb_source :
+      b ∈ MetrizableLCA.cokernelSubgroup
+        (WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpLeft X -
+          WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.wppOpRight X) := by
+    rw [← hpullback_w418]
+    exact hb_comap
+  simpa [MetrizableLCA.cokernelSubgroup] using hb_source
 
 /--
 W426 certificate-only assembly: the W395 package supplies both the W389

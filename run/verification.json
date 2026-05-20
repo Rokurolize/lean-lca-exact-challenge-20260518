@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-21T01:19:00Z",
-  "source_tree_hash": "cc707a67eefe30353de0ee96a6425052c2ce0210e31ee786024973d06659dd21",
+  "generated_utc": "2026-05-21T01:22:00Z",
+  "source_tree_hash": "87b52c6f7583516b7fc4bea4d23239beb675149e9b03f8247cf526175d1ea6b9",
   "summary": "W427でselected AddCommGrp cokernel/cofork colimit routeをhcsとunderlying forgetful WPP-op preservationだけに縮約し、W428でそのWPP-op preservationがPreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)から従うことを確認した。ただしfinite-colimit preservation自体は未解決で、閉像条件なしのglobal保存は引き続き危険である。product successはまだ主張しない。",
   "commands": [
     {
@@ -2873,6 +2873,16 @@
       "command": "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/addcommgrp_selected_cokernel_colimit_preservation_only_v370_support_w427.lean audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_from_finite_v370_support_w428.lean (expected no matches)",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W427/W428 support files."
+    },
+    {
+      "status": "passed",
+      "command": "lake env lean audit/blockers/addcommgrp_cokernel_closed_range_set_input_v370_support_parent.lean",
+      "evidence": "Focused W429 closed-range set-input adapter checked successfully."
+    },
+    {
+      "status": "passed",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_cokernel_closed_range_set_input_v370_support_parent.lean",
+      "evidence": "No forbidden Lean tokens found in the W429 parent support file."
     }
   ],
   "implemented_declarations_checked": [
