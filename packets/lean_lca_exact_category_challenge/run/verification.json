@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-20T22:46:00Z",
-  "source_tree_hash": "273ef592d0712c53d960baff9ee7901783597b30f10cefaa59cf904b9715f1a0",
+  "generated_utc": "2026-05-20T22:49:00Z",
+  "source_tree_hash": "96a6ee3bf1a660233523c7db72bfed00478cf928850855d00b2832ef72665168",
   "summary": "v359 verifies W357/W358/W359 support plus the left-LCA concrete quotient cocone support; product_complete remains false.",
   "commands": [
     {
@@ -2263,6 +2263,16 @@
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_square_equations_v370_support_w374.lean",
       "status": "passed",
       "evidence": "Explicit forbidden-token rg scan returned no matches for W374."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_left_lca_ordinary_whiskered_projection_v370_support_w375.lean",
+      "status": "passed",
+      "evidence": "W375 ordinary whiskered projection support checked."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_ordinary_whiskered_projection_v370_support_w375.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W375."
     }
   ],
   "implemented_declarations_checked": [
@@ -3120,7 +3130,13 @@
     "LeanLCAExactChallenge.WppOpSquareEquationsV370SupportW374.wppOpRightSquareEquationW374",
     "LeanLCAExactChallenge.WppOpSquareEquationsV370SupportW374.wppOpLeftSquareEquationW374_naturality_component",
     "LeanLCAExactChallenge.WppOpSquareEquationsV370SupportW374.wppOpRightSquareEquationW374_naturality_component",
-    "LeanLCAExactChallenge.WppOpSquareEquationsV370SupportW374.WppOpConcreteQuotientClosedMapInputsW371.of_remaining_inputsW374"
+    "LeanLCAExactChallenge.WppOpSquareEquationsV370SupportW374.WppOpConcreteQuotientClosedMapInputsW371.of_remaining_inputsW374",
+    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_π",
+    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_leftLeg",
+    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_rightLeg",
+    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ordinaryWhiskeredProjectionEquation",
+    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.transportedDescendedLegEquations_of_w357_ordinary_projection",
+    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.transportedConcreteQuotientW354Inputs_of_w357_ordinary_projection"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -3249,9 +3265,10 @@
     "W373でπ₂/π₃ component cocone isoと三成分colimit proofからW359 short-complex cokernel consumerへの接続は検証済みだが、具体degreewise cokernel cofork data、forgotten WPP-op colimit rowへのcomponent-row iso、compatibility squaresは未証明である。",
     "W371で具体descended quotient mapのquotient compatibilityとW368/W365 closed-map composerへの接続は検証済みだが、component closed-map、relation pullback equality、target relation lifting、W354/W351統合は未証明である。",
     "W372でW369のobjectwise whiskered naturality hypothesisは放電済みだが、ordinary projection equation本体とrelation-pullback descended fieldsは未証明である。",
-    "W374でW371のleft/right square equationsはWPP-op naturalityから検証済みだが、component closed-map、relation pullback equality、target relation lifting、W354/W351統合は未証明である。"
+    "W374でW371のleft/right square equationsはWPP-op naturalityから検証済みだが、component closed-map、relation pullback equality、target relation lifting、W354/W351統合は未証明である。",
+    "W375でordinary/inverse-whiskered projection equationsからW354 transported leg equationsへの接続は検証済みだが、transported relation-pullback descended fieldsは未証明である。"
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "product_success": false,
-  "remaining_work": "Complete component closed-map, relation pullback equality, target relation lifting, W351/W354/W365 integration, concrete degreewise cokernel cofork data, component-row isomorphisms, and compatibility squares."
+  "remaining_work": "Complete transported relation-pullback descended fields, component closed-map/relation-pullback/topological field instantiation, concrete degreewise cokernel cofork data, component-row isomorphisms, and compatibility squares."
 }

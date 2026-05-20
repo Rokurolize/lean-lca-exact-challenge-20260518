@@ -563,6 +563,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W374 WPP-op Square Equations
 2026-05-20T22:46:00Z: Worker support `w374-wpp-op-square-equations-v370` was ported as `audit/blockers/wpp_op_square_equations_v370_support_w374.lean`. It proves the left and right square equations required by W371 from naturality of a WPP-op natural transformation, so the W371 closed-map input package no longer needs those equations as independent fields. Product success remains false because component closed-map, relation pullback equality, target relation lifting, and W354/W351 integration remain open.
 
+## W375 Ordinary Whiskered Projection
+2026-05-20T22:49:00Z: Worker support `w375-left-lca-ordinary-whiskered-projection-v370` was ported as `audit/blockers/wpp_op_left_lca_ordinary_whiskered_projection_v370_support_w375.lean`. It proves the ordinary and inverse-whiskered projection equations for the concrete descended quotient map and feeds W372 to obtain W354-compatible transported leg equations. Product success remains false because the transported relation-pullback descended fields remain open.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
