@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v283ではWalkingParallelPair分岐について、WのWalkingParallelPairᵒᵖ余極限安定性からW.opのWalkingParallelPair極限安定性を出すgenericなformal transportをLeanで直接証明した。direct側の余極限安定性入力はまだ未供給で、product successではない。",
+  "summary": "v284ではboundedExactWeakEquivalence MetrizableLCAの有限余積安定性をsource theoremとして実装した。W281のformal transportと合わせてopposite finite-product側の入力は前進したが、WalkingParallelPairᵒᵖ余極限安定性などが残り、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -90,7 +90,8 @@
     "lake env lean audit/blockers/opposite_walking_parallel_pair_transport_w282.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_walking_parallel_pair_transport_w282.lean",
     "lake env lean audit/blockers/opposite_direct_colimit_to_limit_transport_w283.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_direct_colimit_to_limit_transport_w283.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_direct_colimit_to_limit_transport_w283.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -781,7 +782,6 @@
     "finite-coproduct stabilityからopposite finite-product stabilityへのgeneric transportはW281で解決した。残る有限積側入力は (boundedExactWeakEquivalence MetrizableLCA).IsStableUnderFiniteCoproducts の直接閉性であり、WalkingParallelPair側のcolimit/opposite-limit transportは別途未完了である。",
     "ShortComplex.Exactやquasi-isoで輸送されたExactからEpi T.gを出す一般ルートはW256のZMod2反例で偽と確認された。右端入力は別途、right-homology/cokernel-zero/topなどから構成する必要がある。",
     "ShortComplex.Exactからkernel equalityを得るW258 consumerは入ったが、right-homology-zeroからEpi T.g、cokernelπ T.g = 0、cokernelSubgroup T.g = ⊤、またはIsZero (cokernelObj T.g)を得る右端抽出定理はまだ未供給である。",
-    "W255の反対圏stability入力はW259で、finite-product stabilityとWalkingParallelPair limit stabilityの2フィールドに分離された。残る入力はdirect finite-coproduct stability、direct WalkingParallelPairᵒᵖ colimit stability、およびそれらをopposite側へ輸送する2つのformal transport lemmaである。",
     "反対圏finite-product routeは、direct product stabilityでは足りないことがW258で明確化された。残る入力は (boundedExactWeakEquivalence MetrizableLCA).IsStableUnderFiniteCoproducts と、そこから ((boundedExactWeakEquivalence MetrizableLCA).op).IsStableUnderFiniteProducts へ移すformal op transportである。",
     "localized comparison transport inputはW245形に具体化されたが、factorizedLocalizedComposite Cの右/左随伴とfactorized unit/counit membershipの構成はまだ未完成である。",
     "Epi T.gからcokernelπ T.g = 0を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeからEpi T.g、核等式、閉埋め込み、開写像性を同時に抽出する証明はまだ未完成である。",
@@ -794,7 +794,8 @@
     "Dbounded のordinary triangulated structureと、stable infinity-categoryとして必要な有限極限・有限余極限・suspension/loop互換・pushout/pullback互換のcertificateは未構成である。",
     "bounded strict-realization経路では、bare HomotopyEquiv によるboundedness輸送が反例で否定されており、distinguished triangle由来の追加構造を使うstrictificationまたは別のstable certificate構成が必要である。",
     "ShortComplex.QuasiIso だけから MetrizableLCA.strictShortExact を無条件に輸送する命題は、0→0→ZMod 2 反例でLean上否定済みである。",
-    "WalkingParallelPair分岐ではformal op transportはv283で直接証明済みだが、(boundedExactWeakEquivalence MetrizableLCA).IsStableUnderColimitsOfShape WalkingParallelPairᵒᵖ が未証明。"
+    "WalkingParallelPair分岐ではformal op transportはv283で直接証明済みだが、(boundedExactWeakEquivalence MetrizableLCA).IsStableUnderColimitsOfShape WalkingParallelPairᵒᵖ が未証明。",
+    "opposite finite-product分岐ではformal transportとdirect finite-coproduct stabilityは実装済みだが、それを下流のfinite-limit localization packageへ完全統合する残作業がある。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",

@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T14:29:08Z",
-  "source_tree_hash": "5529f1bd1bdac6c139a57078bf3ef22071e4b0fcbaa993bf1d4663a706b8bf13",
-  "summary": "v283 proves direct colimit-stability to opposite limit-stability transport for the WalkingParallelPair branch; direct boundedExactWeakEquivalence WalkingParallelPairᵒᵖ colimit stability remains missing.",
+  "generated_utc": "2026-05-20T14:32:00Z",
+  "source_tree_hash": "7cf80e7f5b345de0c3b39562a4d94af7d8b10f0c079198cd6dff5649ec500db4",
+  "summary": "v284 proves direct finite-coproduct stability of boundedExactWeakEquivalence MetrizableLCA in source; remaining opposite finite-limit stability gap is WalkingParallelPairᵒᵖ colimit stability and downstream localization inputs.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -488,6 +488,11 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_direct_colimit_to_limit_transport_w283.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W283 audit file."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in BoundedFiniteProducts after v284."
     }
   ],
   "implemented_declarations_checked": [

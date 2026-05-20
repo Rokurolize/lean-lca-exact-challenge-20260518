@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Derived.Bounded
 import LeanLCAExactChallenge.Derived.MappingConeFiniteProduct
+import Mathlib.CategoryTheory.Preadditive.Biproducts
 
 /-!
 Finite products of bounded exact weak equivalences over metrizable LCA complexes.
@@ -11,7 +12,7 @@ bounded-complex inclusion functor.
 set_option autoImplicit false
 set_option maxHeartbeats 2000000
 
-universe w u
+universe w v u
 
 namespace LeanLCAExactChallenge
 
@@ -128,6 +129,44 @@ theorem isStableUnderFiniteProducts_metrizableLCA :
       (finiteProductMappingConeInput_metrizableLCA J)
 
 /--
+In a preadditive category, finite coproduct stability follows from finite product stability:
+finite coproducts are finite biproducts, hence also products, and the product and coproduct
+comparison maps are isomorphic as arrows.
+-/
+theorem finiteCoproductStability_of_finiteProductStability
+    {C : Type u} [Category.{v} C] [Preadditive C]
+    (W : MorphismProperty C) [HasFiniteCoproducts C]
+    [W.RespectsIso] [W.IsStableUnderFiniteProducts] :
+    W.IsStableUnderFiniteCoproducts where
+  isStableUnderCoproductsOfShape J _ := by
+    refine MorphismProperty.IsStableUnderCoproductsOfShape.mk W J ?_
+    intro X₁ X₂ _ _ f hf
+    letI : HasFiniteBiproducts C := HasFiniteBiproducts.of_hasFiniteCoproducts
+    let F₁ : Discrete J ⥤ C := Discrete.functor X₁
+    let F₂ : Discrete J ⥤ C := Discrete.functor X₂
+    let η : F₁ ⟶ F₂ := Discrete.natTrans (fun j => f j.as)
+    have hη : W.functorCategory (Discrete J) η := by
+      intro j
+      exact hf j.as
+    have hLimitMap : W (Limits.limMap η) :=
+      MorphismProperty.limMap (W := W) (J := Discrete J) η hη
+    have hColimitMap : W (Limits.colimMap η) := by
+      refine (W.arrow_mk_iso_iff ?_).2 hLimitMap
+      refine Arrow.isoMk
+        ((HasBiproductsOfShape.colimIsoLim (J := J) (C := C)).app F₁)
+        ((HasBiproductsOfShape.colimIsoLim (J := J) (C := C)).app F₂) ?_
+      exact (HasBiproductsOfShape.colimIsoLim (J := J) (C := C)).hom.naturality η |>.symm
+    simpa [Limits.Sigma.map, η, F₁, F₂] using hColimitMap
+
+/-- Bounded exact weak equivalences over default-universe `MetrizableLCA` are stable under finite coproducts. -/
+theorem isStableUnderFiniteCoproducts_metrizableLCA :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteCoproducts := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteProducts :=
+    isStableUnderFiniteProducts_metrizableLCA
+  exact finiteCoproductStability_of_finiteProductStability
+    (boundedExactWeakEquivalence MetrizableLCA.{0})
+
+/--
 Finite products in `Dbounded MetrizableLCA` after the finite mapping-cone transfer.
 
 The remaining premise is the left calculus of fractions for the direct bounded exact weak
@@ -148,6 +187,8 @@ section Checks
 #check exactAcyclic_mappingCone_cochain_piMap
 #check finiteProductMappingConeInput_metrizableLCA
 #check isStableUnderFiniteProducts_metrizableLCA
+#check finiteCoproductStability_of_finiteProductStability
+#check isStableUnderFiniteCoproducts_metrizableLCA
 #check dboundedHasFiniteProducts_metrizableLCA
 
 end Checks
