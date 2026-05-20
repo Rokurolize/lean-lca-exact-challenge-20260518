@@ -269,3 +269,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v295 Update
 
 2026-05-20T15:36:40Z: Support result W273 was ported as `audit/blockers/exact_acyclic_iso_closed_w273.lean`. The direct v291 identity-containment input for `boundedExactWeakEquivalence MetrizableLCA` is now specialized and reduced to `MetrizableLCAExactAcyclicTransportOfHomotopyEquiv`: exact acyclicity transported along a `HomotopyEquiv` of selected cochain complexes. Existing W229 evidence already reduces that theorem to degreewise homology plus `ShortComplexQuasiIsoConflationTransport`; the missing local bridge remains quasi-isomorphism invariance of `QuillenExactCategory.Conflation`, so product success remains nonterminal.
+
+## v296 Update
+
+2026-05-20T15:43:03Z: `audit/blockers/shortcomplex_quasiiso_conflation_counterexample_w296.lean` proves that the plain W229/W273 bridge is false for the concrete `MetrizableLCA` strict exact structure. The split zero short complex is a `QuillenExactCategory.Conflation` and is `ShortComplex.QuasiIso` to `0 -> 0 -> ZMod 2`, but the target right map is not surjective, so the target is not a conflation. The exact-acyclic HomotopyEquiv transport route must therefore use a weaker degreewise theorem, additional endpoint/topology data, or a different construction; product success remains nonterminal.

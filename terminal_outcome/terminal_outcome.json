@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v295でW273を親側監査ファイルとして取り込み、direct identity containmentのiso-closed入力をMetrizableLCAのexactAcyclic HomotopyEquiv輸送へ縮約した。product_completeはfalseのまま。",
+  "summary": "v296でW229/W273のplain ShortComplex.QuasiIsoによるConflation輸送経路を、MetrizableLCAの0 -> 0 -> ZMod 2反例で偽と確認した。product_completeはfalseのまま。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -119,7 +119,9 @@
     "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
     "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
     "lake env lean audit/blockers/exact_acyclic_iso_closed_w273.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/exact_acyclic_iso_closed_w273.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/exact_acyclic_iso_closed_w273.lean",
+    "lake env lean audit/blockers/shortcomplex_quasiiso_conflation_counterexample_w296.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_quasiiso_conflation_counterexample_w296.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -807,6 +809,7 @@
     "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi"
   ],
   "known_gaps": [
+    "W229/W273のHomotopyEquiv輸送をplain ShortComplex.QuasiIsoによるConflation輸送で閉じる経路はW296の0 -> 0 -> ZMod 2反例で偽と確認された。exactAcyclicのHomotopyEquiv輸送には、より弱い次数別定理、endpoint/topology入力付きの輸送、または別経路が必要である。",
     "ShortComplex.Exactやquasi-isoで輸送されたExactからEpi T.gを出す一般ルートはW256のZMod2反例で偽と確認された。右端入力は別途、right-homology/cokernel-zero/topなどから構成する必要がある。",
     "ShortComplex.Exactからkernel equalityを得るW258 consumerは入ったが、right-homology-zeroからEpi T.g、cokernelπ T.g = 0、cokernelSubgroup T.g = ⊤、またはIsZero (cokernelObj T.g)を得る右端抽出定理はまだ未供給である。",
     "反対圏finite-product routeは、direct product stabilityでは足りないことがW258で明確化された。残る入力は (boundedExactWeakEquivalence MetrizableLCA).IsStableUnderFiniteCoproducts と、そこから ((boundedExactWeakEquivalence MetrizableLCA).op).IsStableUnderFiniteProducts へ移すformal op transportである。",
@@ -844,11 +847,12 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "uncommitted-v295",
+  "git_commit": "uncommitted-v296",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W272によりopposite functor-category localizationはblueprint + diagram/model fac/uniq義務へ縮約。direct WPPᵒᵖ colimit stability、direct identity containmentまたはhomotopy-class assembly、bounded-derived infinity product obligationsは残る。",
   "claim_review_result": "未実施。v293はproduct_success claimではなく、root/clean extraction external auditはいずれも想定どおりfailed_nonterminal product gateで停止した。",
   "remaining_gaps": [
+    "W229/W273のHomotopyEquiv輸送をplain ShortComplex.QuasiIsoによるConflation輸送で閉じる経路はW296の0 -> 0 -> ZMod 2反例で偽と確認された。exactAcyclicのHomotopyEquiv輸送には、より弱い次数別定理、endpoint/topology入力付きの輸送、または別経路が必要である。",
     "factorized localized composite側のright/left adjunctionとunit/counit membership入力は構造体として分離されたが、その実体constructorはまだ未供給である。",
     "反対圏finite-limit transferはsource factsとtransfer-input構造体に整理されたが、opposite WalkingParallelPair functor-category localization、opposite finite-product stability、opposite WalkingParallelPair stabilityはまだ未供給である。",
     "Verdier comparison routeはright/left calculus consumerまで形式化されたが、factorized right/left adjunctionとfactorized unit/counit membershipの実体はまだ未供給である。",
@@ -1262,10 +1266,16 @@
     "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicIsoClosureCollapse",
     "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicIsoClosureCollapse_of_homotopyEquivTransport",
     "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_isoClosedInput_of_homotopyEquivTransport",
-    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicHomotopyObject_isClosedUnderIsomorphisms"
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicHomotopyObject_isClosedUnderIsomorphisms",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.MetrizableLCAQuasiIsoConflationTransport",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.source_conflation",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.quasiIso_zero_to_target",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.target_not_conflation",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.no_metrizableLCA_quasiIsoConflationTransport",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.quasiIsoConflationTransportCounterexampleStatus"
   ],
-  "generated_utc": "2026-05-20T15:36:40Z",
-  "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success.",
+  "generated_utc": "2026-05-20T15:43:03Z",
+  "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1715,7 +1725,13 @@
     "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicIsoClosureCollapse",
     "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicIsoClosureCollapse_of_homotopyEquivTransport",
     "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_isoClosedInput_of_homotopyEquivTransport",
-    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicHomotopyObject_isClosedUnderIsomorphisms"
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicHomotopyObject_isClosedUnderIsomorphisms",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.MetrizableLCAQuasiIsoConflationTransport",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.source_conflation",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.quasiIso_zero_to_target",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.target_not_conflation",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.no_metrizableLCA_quasiIsoConflationTransport",
+    "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationCounterexampleW296.quasiIsoConflationTransportCounterexampleStatus"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"
