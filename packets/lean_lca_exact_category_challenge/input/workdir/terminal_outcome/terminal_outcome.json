@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v294でW271を親側監査ファイルとして取り込み、direct WalkingParallelPairᵒᵖ colimit stabilityをmapping-cone比較とexact-acyclic colimit closureの二入力へ縮約した。product_completeはfalseのまま。",
+  "summary": "v295でW273を親側監査ファイルとして取り込み、direct identity containmentのiso-closed入力をMetrizableLCAのexactAcyclic HomotopyEquiv輸送へ縮約した。product_completeはfalseのまま。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -117,7 +117,9 @@
     "lake env lean audit/blockers/opposite_fixed_target_fac_uniq_w272.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_fixed_target_fac_uniq_w272.lean",
     "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
-    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/direct_wpp_op_colimit_closure_w271.lean"
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+    "lake env lean audit/blockers/exact_acyclic_iso_closed_w273.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/exact_acyclic_iso_closed_w273.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -836,12 +838,13 @@
     "homotopy/Verdier classのidentity containmentは解決したが、direct boundedExactWeakEquivalenceのW266 identity inputは未完了。",
     "W272のcoherent strict-representative blueprintとdiagram/model fixed-target fac/uniq義務は未証明。",
     "direct WalkingParallelPairᵒᵖ colimit stabilityとbounded-derived infinity product obligationsは未完了。",
-    "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。"
+    "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。",
+    "direct identity containmentのiso-closed入力はW273でMetrizableLCAExactAcyclicTransportOfHomotopyEquivへ縮約されたが、exactAcyclicをHomotopyEquivで輸送する本体、特にShortComplex.QuasiIsoによるQuillenExactCategory.Conflation輸送はまだ未証明である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "uncommitted-v294",
+  "git_commit": "uncommitted-v295",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W272によりopposite functor-category localizationはblueprint + diagram/model fac/uniq義務へ縮約。direct WPPᵒᵖ colimit stability、direct identity containmentまたはhomotopy-class assembly、bounded-derived infinity product obligationsは残る。",
   "claim_review_result": "未実施。v293はproduct_success claimではなく、root/clean extraction external auditはいずれも想定どおりfailed_nonterminal product gateで停止した。",
@@ -898,7 +901,8 @@
     "homotopy/Verdier classのidentity containmentは解決したが、direct boundedExactWeakEquivalenceのW266 identity inputは未完了。",
     "W272のcoherent strict-representative blueprintとdiagram/model fixed-target fac/uniq義務は未証明。",
     "direct WalkingParallelPairᵒᵖ colimit stabilityとbounded-derived infinity product obligationsは未完了。",
-    "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。"
+    "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。",
+    "direct identity containmentのiso-closed入力はW273でMetrizableLCAExactAcyclicTransportOfHomotopyEquivへ縮約されたが、exactAcyclicをHomotopyEquivで輸送する本体、特にShortComplex.QuasiIsoによるQuillenExactCategory.Conflation輸送はまだ未証明である。"
   ],
   "next_recommended_goal": "次はW272のcoherent strict-representative blueprintと4つのfac/uniq義務を構成するか、direct WalkingParallelPairᵒᵖ colimit stabilityへ戻る。",
   "implemented_declarations": [
@@ -1252,10 +1256,16 @@
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.exactAcyclic_mappingCone_of_walkingParallelPairOp_comparison_and_closure",
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closure",
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure",
-    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.currentDirectWalkingParallelPairOpColimitClosureState"
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.currentDirectWalkingParallelPairOpColimitClosureState",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAIsoClosedInput",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicTransportOfHomotopyEquiv",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicIsoClosureCollapse",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicIsoClosureCollapse_of_homotopyEquivTransport",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_isoClosedInput_of_homotopyEquivTransport",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicHomotopyObject_isClosedUnderIsomorphisms"
   ],
-  "generated_utc": "2026-05-20T15:28:44Z",
-  "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success.",
+  "generated_utc": "2026-05-20T15:36:40Z",
+  "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1699,7 +1709,13 @@
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.exactAcyclic_mappingCone_of_walkingParallelPairOp_comparison_and_closure",
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closure",
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure",
-    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.currentDirectWalkingParallelPairOpColimitClosureState"
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.currentDirectWalkingParallelPairOpColimitClosureState",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAIsoClosedInput",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicTransportOfHomotopyEquiv",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicIsoClosureCollapse",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicIsoClosureCollapse_of_homotopyEquivTransport",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_isoClosedInput_of_homotopyEquivTransport",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicHomotopyObject_isClosedUnderIsomorphisms"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"

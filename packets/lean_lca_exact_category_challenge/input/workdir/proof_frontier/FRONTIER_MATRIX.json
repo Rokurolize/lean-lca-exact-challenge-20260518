@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T15:28:44Z",
+  "generated_utc": "2026-05-20T15:36:40Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v294 consumes completed support W271 by parent-side reimplementation as an audit boundary.",
   "frontiers": [
@@ -1122,7 +1122,13 @@
         "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.exactAcyclic_mappingCone_of_walkingParallelPairOp_comparison_and_closure",
         "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closure",
         "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure",
-        "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.currentDirectWalkingParallelPairOpColimitClosureState"
+        "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.currentDirectWalkingParallelPairOpColimitClosureState",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAIsoClosedInput",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicTransportOfHomotopyEquiv",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicIsoClosureCollapse",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicIsoClosureCollapse_of_homotopyEquivTransport",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_isoClosedInput_of_homotopyEquivTransport",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicHomotopyObject_isClosedUnderIsomorphisms"
       ],
       "technical_context": [
         "split short complexes",
@@ -1202,11 +1208,14 @@
         "v233 proved bounded exact weak equivalence finite-product mapping-cone input for MetrizableLCA and audit-level finite-product stability."
       ],
       "latest_parent_updates": [
-        "v294: direct WalkingParallelPairᵒᵖ colimit stability reduced to mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison plus exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure via audit/blockers/direct_wpp_op_colimit_closure_w271.lean."
+        "v294: direct WalkingParallelPairᵒᵖ colimit stability reduced to mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison plus exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure via audit/blockers/direct_wpp_op_colimit_closure_w271.lean.",
+        "v295: direct identity iso-closed input reduced to MetrizableLCAExactAcyclicTransportOfHomotopyEquiv via audit/blockers/exact_acyclic_iso_closed_w273.lean; W229 leaves ShortComplexQuasiIsoConflationTransport as the local bridge."
       ],
       "remaining_inputs": [
         "mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison",
-        "exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure"
+        "exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure",
+        "MetrizableLCAExactAcyclicTransportOfHomotopyEquiv",
+        "ShortComplexQuasiIsoConflationTransport"
       ]
     },
     {
@@ -1256,10 +1265,23 @@
         "QuillenExactCategory.deflation_of_conflation",
         "QuillenExactCategory.conflation_of_splitting",
         "QuillenExactCategory.inflation_of_splitting",
-        "QuillenExactCategory.deflation_of_splitting"
+        "QuillenExactCategory.deflation_of_splitting",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAIsoClosedInput",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicTransportOfHomotopyEquiv",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicIsoClosureCollapse",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicIsoClosureCollapse_of_homotopyEquivTransport",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_isoClosedInput_of_homotopyEquivTransport",
+        "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicHomotopyObject_isClosedUnderIsomorphisms"
       ],
       "technical_context": [
         "Manually ported from external support worker w01 after reading result.json and diff. Focused ExactCategory build and Required/Product declaration audits passed in parent worktree."
+      ],
+      "latest_parent_updates": [
+        "v295: direct identity iso-closed input reduced to MetrizableLCAExactAcyclicTransportOfHomotopyEquiv via audit/blockers/exact_acyclic_iso_closed_w273.lean; W229 leaves ShortComplexQuasiIsoConflationTransport as the local bridge."
+      ],
+      "remaining_inputs": [
+        "MetrizableLCAExactAcyclicTransportOfHomotopyEquiv",
+        "ShortComplexQuasiIsoConflationTransport"
       ]
     },
     {

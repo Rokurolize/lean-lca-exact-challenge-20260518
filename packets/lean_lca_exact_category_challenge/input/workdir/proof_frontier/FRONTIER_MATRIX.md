@@ -265,3 +265,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v294 Update
 
 2026-05-20T15:28:44Z: Support result W271 was ported as `audit/blockers/direct_wpp_op_colimit_closure_w271.lean`. The checked theorem `metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure` proves the direct `WalkingParallelPairᵒᵖ` colimit-stability input from two lower-level inputs: `mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison` and `exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure`. This lowers the W265 constructor condition to concrete cochain-complex comparison/closure work, but both inputs remain open and product success remains nonterminal.
+
+## v295 Update
+
+2026-05-20T15:36:40Z: Support result W273 was ported as `audit/blockers/exact_acyclic_iso_closed_w273.lean`. The direct v291 identity-containment input for `boundedExactWeakEquivalence MetrizableLCA` is now specialized and reduced to `MetrizableLCAExactAcyclicTransportOfHomotopyEquiv`: exact acyclicity transported along a `HomotopyEquiv` of selected cochain complexes. Existing W229 evidence already reduces that theorem to degreewise homology plus `ShortComplexQuasiIsoConflationTransport`; the missing local bridge remains quasi-isomorphism invariance of `QuillenExactCategory.Conflation`, so product success remains nonterminal.

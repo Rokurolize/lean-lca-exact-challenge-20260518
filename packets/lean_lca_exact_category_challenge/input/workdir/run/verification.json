@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T15:28:44Z",
-  "source_tree_hash": "d65a23d2a3770123a83207dd5426268440bf73d8b639b580a3ba55663e751ba9",
-  "summary": "v294でW271を親側監査ファイルとして取り込み、direct WalkingParallelPairᵒᵖ colimit stabilityをmapping-cone比較とexact-acyclic colimit closureの二入力へ縮約した。product_completeはfalseのまま。",
+  "generated_utc": "2026-05-20T15:36:40Z",
+  "source_tree_hash": "bdd5ecc917a0009c2f0151b82e13a37411d5962e7e9eaa42105fb62ccbdbceb6",
+  "summary": "v295でW273を親側監査ファイルとして取り込み、direct identity containmentのiso-closed入力をMetrizableLCAのexactAcyclic HomotopyEquiv輸送へ縮約した。product_completeはfalseのまま。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -668,6 +668,16 @@
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W271 audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/exact_acyclic_iso_closed_w273.lean",
+      "status": "passed",
+      "evidence": "Focused W273 audit reduced the MetrizableLCA iso-closed input to exactAcyclic transport along HomotopyEquiv."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/exact_acyclic_iso_closed_w273.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W273 audit file."
     }
   ],
   "implemented_declarations_checked": [
@@ -1193,7 +1203,13 @@
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.exactAcyclic_mappingCone_of_walkingParallelPairOp_comparison_and_closure",
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closure",
     "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure",
-    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.currentDirectWalkingParallelPairOpColimitClosureState"
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.currentDirectWalkingParallelPairOpColimitClosureState",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAIsoClosedInput",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicTransportOfHomotopyEquiv",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.MetrizableLCAExactAcyclicIsoClosureCollapse",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicIsoClosureCollapse_of_homotopyEquivTransport",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_isoClosedInput_of_homotopyEquivTransport",
+    "LeanLCAExactChallenge.ExactAcyclicIsoClosedW273.metrizableLCA_exactAcyclicHomotopyObject_isClosedUnderIsomorphisms"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -1237,8 +1253,9 @@
     "Identity containment is conditional on exactAcyclicHomotopyObject iso-closedness; this does not prove direct WPPᵒᵖ colimit stability or functor-category localization fac/uniq.",
     "v292 solves identity containment for boundedHomotopyExactWeakEquivalence, not direct boundedExactWeakEquivalence; direct WPPᵒᵖ colimit stability and W269 fac/uniq remain open.",
     "W272 leaves the coherent opposite WalkingParallelPair lift blueprint and four fixed-target fac/uniq obligations unproved.",
-    "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。"
+    "direct WalkingParallelPairᵒᵖ余極限安定性はW271でmapping-cone colimit comparisonとexactAcyclicのWPPᵒᵖ余極限閉性へ縮約されたが、どちらの下位入力もまだsource theoremではない。",
+    "direct identity containmentのiso-closed入力はW273でMetrizableLCAExactAcyclicTransportOfHomotopyEquivへ縮約されたが、exactAcyclicをHomotopyEquivで輸送する本体、特にShortComplex.QuasiIsoによるQuillenExactCategory.Conflation輸送はまだ未証明である。"
   ],
-  "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success.",
+  "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success.",
   "product_success": false
 }
