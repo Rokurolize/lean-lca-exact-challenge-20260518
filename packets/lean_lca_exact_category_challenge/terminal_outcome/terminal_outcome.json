@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v254時点で、支援w242を親側で再実装し、MetrizableLCA.strictShortExact を ShortComplex.QuasiIso に沿って運ぶための不足を、target algebraic kernel/surjectivity extraction と target topological closed/open extraction に分割する監査を追加した。QuasiIso APIが提供するのは homologyMap の同型であり、これらの抽出定理は未完なので product success は非完了である。",
+  "summary": "v255時点で、支援w236を親側で再実装し、WalkingParallelPair functor-category localization のroof-style blueprintを監査として追加した。roof dataは局所化後の対象・射を表すが、W231のstrict liftへ直接入れるには共通分母strictification、strict自然性、恒等・合成coherenceがまだ必要である。product success は非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -40,7 +40,9 @@
     "lake env lean audit/blockers/metrizable_lca_cokernel_product_w252.lean",
     "lake env lean audit/blockers/localized_adjunction_candidate_w238.lean",
     "lake env lean audit/blockers/metrizable_shortcomplex_strict_exact_field_extraction_w242.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_shortcomplex_strict_exact_field_extraction_w242.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_shortcomplex_strict_exact_field_extraction_w242.lean",
+    "lake env lean audit/blockers/wpp_roof_blueprint_w236.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_roof_blueprint_w236.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
