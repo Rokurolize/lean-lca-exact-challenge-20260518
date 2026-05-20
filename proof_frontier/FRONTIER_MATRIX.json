@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T11:30:31Z",
+  "generated_utc": "2026-05-20T11:35:12Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1283,9 +1283,10 @@
     }
   ],
   "support_result_classification": "v247 updated Japanese reference-route and mathlib-gap docs for v245-v246 support consumption; no new product-success claim.",
-  "latest_parent_update": "v249-w231-w233-support-boundaries",
-  "summary": "v249時点で、支援w231-w233の結果を親ツリーへ取り込んだ。WalkingParallelPair固定対象liftはcoherent strict-preimage blueprintへ、ShortComplex quasi-iso経路はConflation transport橋へ、bounded homotopy left calculusは局所化随伴入力へ、それぞれ縮約された。いずれも条件付きfrontier縮約であり、product success はまだ非完了である。",
+  "latest_parent_update": "v250-bounded-homotopy-right-calculus-adjunction",
+  "summary": "v250時点で、反対圏有限極限ルートに必要な右calculus入力を局所化随伴の双対定理へ縮約した。audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean は、CategoryTheory.Adjunction.hasRightCalculusOfFractions を使い、bounded homotopy localized composite の左随伴とcounit所属から boundedHomotopyExactWeakEquivalence C の右calculus、さらにiso-closed条件下で boundedExactWeakEquivalence C の右calculusを得る条件付き経路を記録する。product success はまだ非完了である。",
   "remaining_frontier": [
+    "Left adjoint and counit membership for the bounded homotopy localized composite, giving right calculus for the opposite finite-limit route.",
     "Right adjoint and unit membership for the bounded homotopy localized composite.",
     "ShortComplexQuasiIsoConflationTransport or concrete MetrizableLCA strictShortExact transport from homology-isomorphism data.",
     "WalkingParallelPair coherent strict-preimage blueprint existence plus fac and uniq fields.",
@@ -1333,6 +1334,12 @@
       "classification": "manual_ported_frontier_reduction",
       "artifact": "audit/blockers/bounded_homotopy_localized_adjunction_w233.lean",
       "result": "Localized-adjunction input implies boundedHomotopyExactWeakEquivalence left calculus conditionally."
+    },
+    {
+      "id": "parent-v250",
+      "classification": "right_calculus_frontier_reduction",
+      "artifact": "audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean",
+      "result": "Mathlib hasRightCalculusOfFractions reduces boundedExactWeakEquivalence right calculus to localized left-adjoint and counit-membership input plus iso-closedness."
     }
   ]
 }

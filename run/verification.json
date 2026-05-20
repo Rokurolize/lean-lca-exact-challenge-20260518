@@ -1,9 +1,14 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v249-support-boundaries",
-  "generated_utc": "2026-05-20T11:30:31Z",
-  "source_tree_hash": "b06d763704e0f0a67df3f1e430b1e37aef1100f0b91a9dcfc014263318477124",
-  "summary": "v249時点で、支援w231-w233の結果を親ツリーへ取り込んだ。WalkingParallelPair固定対象liftはcoherent strict-preimage blueprintへ、ShortComplex quasi-iso経路はConflation transport橋へ、bounded homotopy left calculusは局所化随伴入力へ、それぞれ縮約された。いずれも条件付きfrontier縮約であり、product success はまだ非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v250-bounded-homotopy-right-calculus-adjunction",
+  "generated_utc": "2026-05-20T11:35:12Z",
+  "source_tree_hash": "b33879b6740df45960e27f02461dbb578dfb2e4efb3fb6ef8218f1706811395a",
+  "summary": "v250時点で、反対圏有限極限ルートに必要な右calculus入力を局所化随伴の双対定理へ縮約した。audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean は、CategoryTheory.Adjunction.hasRightCalculusOfFractions を使い、bounded homotopy localized composite の左随伴とcounit所属から boundedHomotopyExactWeakEquivalence C の右calculus、さらにiso-closed条件下で boundedExactWeakEquivalence C の右calculusを得る条件付き経路を記録する。product success はまだ非完了である。",
   "commands": [
+    {
+      "command": "lake env lean audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean",
+      "status": "passed",
+      "evidence": "Focused W250 right-calculus localized-left-adjoint boundary check passed."
+    },
     {
       "command": "lake env lean audit/blockers/walking_parallel_pair_lift_fields_w231.lean",
       "status": "passed",
@@ -523,7 +528,12 @@
     "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationW232.ShortComplexQuasiIsoConflationTransport",
     "LeanLCAExactChallenge.ShortComplexQuasiIsoConflationW232.exactAcyclicTransportOfHomotopyEquiv_of_shortComplexQuasiIso",
     "LeanLCAExactChallenge.BoundedHomotopyLocalizedAdjunctionW233.BoundedHomotopyLocalizedAdjunctionInput",
-    "LeanLCAExactChallenge.BoundedHomotopyLocalizedAdjunctionW233.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedAdjunction"
+    "LeanLCAExactChallenge.BoundedHomotopyLocalizedAdjunctionW233.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedAdjunction",
+    "LeanLCAExactChallenge.BoundedHomotopyLocalizedLeftAdjointW250.inverseImage_hasRightCalculusOfFractions_of_localizedAdjunction",
+    "LeanLCAExactChallenge.BoundedHomotopyLocalizedLeftAdjointW250.BoundedHomotopyLocalizedLeftAdjointInput",
+    "LeanLCAExactChallenge.BoundedHomotopyLocalizedLeftAdjointW250.boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedAdjunction",
+    "LeanLCAExactChallenge.BoundedHomotopyLocalizedLeftAdjointW250.boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjoint",
+    "LeanLCAExactChallenge.BoundedHomotopyLocalizedLeftAdjointW250.metrizableLCABoundedExactWeakEquivalence_hasRightCalculusOfFractions"
   ],
   "product_complete": false,
   "known_gaps": [
