@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v246-opposite-left-calculus-handedness",
-  "generated_utc": "2026-05-20T11:15:35Z",
-  "source_tree_hash": "f3b4ee2705ca7c2f7f9df2ac79e59d442c6c4664d6cb56f5fa341a511aa8e3e7",
-  "summary": "v246時点で、support w230 の有用部分を親側で再実装し、audit/blockers/opposite_left_calculus_transfer_w230.lean を追加した。反対側 finite-limit route の calculus handedness は、mathlib の opposite instance により、W.op の left calculus には元の W の right calculus が必要だと明確化された。したがって (boundedExactWeakEquivalence C).op の left calculus には、(boundedExactWeakEquivalence C).HasRightCalculusOfFractions、または bounded homotopy inverse image に対する PullbackRightCalculusTransfer C が残入力である。product success はまだ非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v247-reference-route-log-update",
+  "generated_utc": "2026-05-20T11:17:46Z",
+  "source_tree_hash": "5b6b990a57729a97e1c9294adb7bf0b352529c3aec2311c51cd24c9c1716a5b0",
+  "summary": "v247時点で、v245-v246の証明frontier縮約に使ったmathlib APIを日本語研究成果物へ反映した。docs/research/reference_route_log.md、sources.md、mathlib_gap_analysis.md は、Functor.IsLocalization.mk'、StrictUniversalPropertyFixedTarget、CategoryTheory.Adjunction.hasLeftCalculusOfFractions、MorphismProperty.op のcalculus handedness、HomotopyEquiv.toHomologyIso、ShortComplex.quasiIso_iff がどのように計画を修正したかを記録している。product success はまだ非完了である。",
   "commands": [
     {
       "command": "lake env lean audit/blockers/opposite_left_calculus_transfer_w230.lean",
@@ -512,5 +512,5 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "support w230 was parent-reimplemented as an opposite left-calculus handedness and right-calculus transfer frontier reduction."
+  "support_result_classification": "v247 updated Japanese reference-route and mathlib-gap docs for v245-v246 support consumption; no new product-success claim."
 }

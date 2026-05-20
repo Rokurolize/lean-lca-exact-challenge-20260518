@@ -491,3 +491,12 @@ mathlib探索では、現行のquasicategory APIはordinary categoryのnerveを`
 2026-05-20T02:30:00Z時点で、サポートworker w123の生成済み監査案を親側で再実装し、`audit/blockers/bounded_strict_realization_frontier_minimizer.lean`として追加した。この監査は、無条件に得られる`homotopyEndpointPayloadWithoutSelectedCochainIso`から`boundedTrianglehIso13CochainDataStrictification`へ進む命題を`boundedWeakEndpointPayloadToCochainDataStrictification`として切り出す。
 
 この命題が証明できれば、既存の製品側APIだけで`boundedHomotopyObjectTrianglehIso13Realization`、`boundedHomotopyObject`の`IsTriangulatedClosed₂`、bounded homotopy categoryのpretriangulated/triangulated構造まで進む。一方で、この監査はその命題自体を証明していない。product gapは、弱いhomotopy endpoint payloadをcochain-level strictification payloadへ上げる正しい追加構造を見つけることに残る。
+### v245-v246で狭まったmathlib/API gap
+
+2026-05-20T11:20:00Z時点で、非離散`WalkingParallelPair` functor-category localizationについては、`Functor.IsLocalization.mk'`が使う2つの`StrictUniversalPropertyFixedTarget`が正確な残入力であることをLean上で記録した。さらに各fixed targetは`inverts`、`lift`、`fac`、`uniq`の4フィールドに分解でき、`inverts`はobjectwise localizationで形式的に解ける。したがって残るgapは、2つのtarget categoryに対する`lift/fac/uniq`を構成する非離散diagram-localization theoremであり、有限離散積の`Functor.IsLocalization.pi`だけでは足りない。
+
+inverse-image calculusについては、任意の`W.inverseImage F`にleft/right calculusを移す一般定理は見つからない。ただし`CategoryTheory.Adjunction.hasLeftCalculusOfFractions`により、`F ⋙ W.Q`が右随伴を持ち、そのunitがinverse-image classに入る場合にはleft calculusが得られる。bounded homotopy routeでは、`BoundedComplexCategory.homotopyQuotient C ⋙ ((exactAcyclicHomotopyIsoClosure C).trW).Q`の右随伴とunit-membershipが新しい具体gapである。
+
+反対圏側については、`MorphismProperty.op`がcalculusの向きを入れ替えるため、`(boundedExactWeakEquivalence C).op`のleft calculusには`boundedExactWeakEquivalence C`のright calculusが必要である。従来のleft-calculus transferだけでは反対側finite-limit routeの入力を満たさない。残るgapは`PullbackRightCalculusTransfer C`、または`(boundedHomotopyExactWeakEquivalence C).HasRightCalculusOfFractions`の直接証明である。
+
+`exactAcyclic_of_homotopyEquiv`については、mathlibの`HomotopyEquiv.toHomologyIso`と`ShortComplex.quasiIso_iff`により、homotopy equivalenceから各degreeのshort complex quasi-isomorphismまでは進める。残るgapは、ローカル`QuillenExactCategory.Conflation`がshort-complex quasi-isomorphismで不変であるという定理であり、strict cochain isomorphismによる既存の`exactAcyclic_of_iso`より強い。

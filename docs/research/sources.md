@@ -2,6 +2,11 @@
 
 ## Lean/mathlib
 
+- ローカルmathlib `Mathlib/CategoryTheory/Localization/CalculusOfFractions.lean`: `MorphismProperty.op`でleft/right calculus of fractionsの向きが入れ替わるinstanceを確認した。v246で、反対側localizerのleft calculusには元のlocalizerのright calculusが必要であると計画を修正する根拠にした。
+- ローカルmathlib `Mathlib/CategoryTheory/Localization/CalculusOfFractions/OfAdjunction.lean`: `CategoryTheory.Adjunction.hasLeftCalculusOfFractions`を確認した。v245で、inverse-image left calculusをlocalized compositeの右随伴とunit-membership入力へ縮約する根拠にした。
+- ローカルmathlib `Mathlib/CategoryTheory/Localization/Predicate.lean`: `Functor.IsLocalization.mk'`と`StrictUniversalPropertyFixedTarget`を確認した。v245で、非離散`WalkingParallelPair` functor-category localizationを2つのfixed-target universal propertyの`inverts`、`lift`、`fac`、`uniq`フィールドへ展開する根拠にした。
+- ローカルmathlib `Mathlib/Algebra/Homology/HomotopyCategory/Homology.lean`および関連import: `HomotopyEquiv.toHomologyIso`を確認した。v245で、`HomotopyEquiv`からdegreewise homology isomorphismを得て`ShortComplex.QuasiIso`へ進む経路に使った。
+- ローカルmathlib `Mathlib/Algebra/Homology/ShortComplex/QuasiIso.lean`および関連import: `ShortComplex.quasiIso_iff`を確認した。v245で、degreewise homology mapが同型ならshort complex morphismがquasi-isomorphismであることを使った。
 - ローカルmathlib `Mathlib/Topology/Category/TopCat/Basic.lean`: `TopCat`、`TopCat.Hom`、連続写像、位相空間の圏を確認した。
 - ローカルmathlib `Mathlib/Algebra/Category/Grp/Basic.lean`と`Preadditive.lean`: `AddCommGrpCat`、bundleされた加法可換群、zero morphismを確認した。
 - ローカルmathlib `Mathlib/Topology/Algebra/ContinuousMonoidHom.lean`: `MetrizableLCA.Hom`で使う連続加法準同型の根拠にした。
