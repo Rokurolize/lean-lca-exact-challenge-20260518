@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v360でW318/W271のAddCommGrp algebraic frontierをright-surjectivity込みのstrict境界へ修正した。product successではなく、left LCA certificateとstrict AddCommGrp boundaryが残る。",
+  "summary": "v360でW318/W271のAddCommGrp algebraic frontierをleft-injectivity/right-surjectivity込みのstrict境界へ修正した。product successではなく、left LCA certificateとstrict AddCommGrp boundaryが残る。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",

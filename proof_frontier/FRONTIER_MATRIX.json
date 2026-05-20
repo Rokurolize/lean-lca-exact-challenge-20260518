@@ -1366,7 +1366,7 @@
   ],
   "support_result_classification": "w272 was manually ported as a focused nonterminal boundary refining W269 fixed-target fac/uniq obligations. v296 parent-added counterexample; not support product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "latest_parent_update": "v360-addcommgrp-strict-boundary",
-  "summary": "v360 corrects the W318/W271 AddCommGrp algebraic frontier by retaining right-surjectivity from strict short exact components; remaining blockers are the left LCA certificate and strict AddCommGrp boundary.",
+  "summary": "v360 corrects the W318/W271 AddCommGrp algebraic frontier by retaining left-injectivity and right-surjectivity from strict short exact components; remaining blockers are the left LCA certificate and strict AddCommGrp boundary.",
   "remaining_frontier": "残るW318/W271 source inputsはleft LCA colimit-mapのinjective/inducing/closed-image certificateとstrict AddCommGrp kernel exactness preservationの二つ。",
   "support_classification": [
     {
@@ -1572,11 +1572,11 @@
     "v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success."
   ],
   "remaining_blockers": [
-    "W318/W271のstrict AddCommGrp入力は、WPP-op colimit後のkernel exactness保存本体がright-surjectivity込みで未証明である。",
+    "W318/W271のstrict AddCommGrp入力は、WPP-op colimit後のkernel exactness保存本体がleft-injectivity/right-surjectivity込みで未証明である。",
     "W318/W271のleft LCA入力は、WPP-op colimit-mapのinjectivity、inducing、closed image certificate本体が未証明である。",
     "W318のleft closed-embedding入力は純MetrizableLCA WPP-op colimit-mapのinjectivity、induced topology、closed image certificateへ縮約済みだが、その三つのcertificate本体は未証明である。",
     "W302/W304/W308のmapping-cone comparison routeはincluded colimit入力から接続されたが、これだけでは製品全体のexact-category/stable-derived目標は完了しない。",
-    "W296/W319のkernel-only AddCommGrpCat boundaryはstrictnessのright-surjectivityを落とすため、現在の主要経路はaddCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizableへ置き換えられている。",
+    "W296/W319のkernel-only AddCommGrpCat boundaryはstrictnessのleft-injectivity/right-surjectivityを落とすため、現在の主要経路はaddCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizableへ置き換えられている。",
     "W297/W301のleft closed-embedding preservationはinjectivity、induced topology、closed image certificateへ縮約済みだが、三つの位相的certificate本体は未証明である。"
   ],
   "open_blockers": [
@@ -2304,6 +2304,7 @@
   "parent_update_v360": {
     "status": "verified_focused",
     "changed_declarations": [
+      "AddCommGrpLeftInjective",
       "AddCommGrpRightSurjective",
       "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable",
       "algebraicExact_walkingParallelPairOp_colimitClosure_of_addCommGrpStrictKernelExact",

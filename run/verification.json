@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v360-addcommgrp-strict-boundary",
   "generated_utc": "2026-05-20T19:54:00Z",
-  "source_tree_hash": "56748c11d2e952c6e1ee8215113de9a1095b8879ab73dfd813d5a7affad795ba",
-  "summary": "v360でW318/W271のAddCommGrp algebraic frontierをright-surjectivity込みのstrict境界へ修正した。product_completeはfalse。",
+  "source_tree_hash": "b8068a0053ec234041452b0711bbba1e410afc23266b4b7aa555099585451b8d",
+  "summary": "v360でW318/W271のAddCommGrp algebraic frontierをleft-injectivity/right-surjectivity込みのstrict境界へ修正した。product_completeはfalse。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -1753,6 +1753,11 @@
       "command": "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
       "status": "passed",
       "evidence": "Focused W271 direct consumer check passed with strict AddCommGrp boundary."
+    },
+    {
+      "command": "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+      "status": "passed",
+      "evidence": "Focused W271 direct consumer check passed after strict boundary was refined to include left-injectivity and right-surjectivity."
     }
   ],
   "implemented_declarations_checked": [

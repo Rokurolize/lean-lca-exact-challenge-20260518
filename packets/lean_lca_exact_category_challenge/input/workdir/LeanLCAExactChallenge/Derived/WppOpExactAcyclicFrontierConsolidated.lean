@@ -119,6 +119,10 @@ abbrev AddCommGrpKernelExact (T : ShortComplex AddCommGrpCat.{0}) : Prop :=
 abbrev AddCommGrpRightSurjective (T : ShortComplex AddCommGrpCat.{0}) : Prop :=
   Function.Surjective (T.g : T.X₂ → T.X₃)
 
+/-- Left injectivity for a short complex of abelian groups. -/
+abbrev AddCommGrpLeftInjective (T : ShortComplex AddCommGrpCat.{0}) : Prop :=
+  Function.Injective (T.f : T.X₁ → T.X₂)
+
 /--
 Pure additive WPP-op colimit exactness boundary.  This removes all topology from
 the algebraic field: componentwise middle-kernel exactness must be preserved by
@@ -143,18 +147,17 @@ abbrev addCommGrpKernelExact_wppOp_colimit_boundary_for_metrizable : Prop :=
           AddCommGrpKernelExact ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))) →
           AddCommGrpKernelExact (cs.pt.map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))
 
-/--
-AddCommGrp-shaped algebraic boundary with the right-surjectivity input retained.
-This is the topology-free shape matching strict short exact components.
--/
+/-- AddCommGrp-shaped algebraic boundary retaining the algebraic strictness fields. -/
 abbrev addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable : Prop :=
   ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
     (cs : Cocone S),
       IsColimit cs →
         (∀ j : WalkingParallelPairᵒᵖ,
-          AddCommGrpKernelExact ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})) ∧
-            AddCommGrpRightSurjective
-              ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))) →
+          AddCommGrpLeftInjective
+              ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})) ∧
+            AddCommGrpKernelExact ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})) ∧
+              AddCommGrpRightSurjective
+                ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))) →
           AddCommGrpKernelExact (cs.pt.map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))
 
 /-- Left field consumer from W289's boundary. -/
@@ -700,7 +703,8 @@ theorem algebraicExact_walkingParallelPairOp_colimitClosure_of_addCommGrpStrictK
     algebraicExact_walkingParallelPairOp_colimitClosure := by
   intro S cs hcs hS
   exact hboundary S cs hcs (fun j =>
-    ⟨(addCommGrpKernelExact_iff_additiveKernelExact (S.obj j)).mpr
+    ⟨(hS j).closed_inclusion.injective,
+      (addCommGrpKernelExact_iff_additiveKernelExact (S.obj j)).mpr
         (fun x₂ hx₂ => (hS j).algebraic_exact x₂ hx₂),
       (hS j).surjective⟩)
 

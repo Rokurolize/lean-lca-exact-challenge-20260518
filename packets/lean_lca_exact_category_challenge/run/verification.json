@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-right-open-wpp-op-fixed-leg",
   "generated_utc": "2026-05-20T19:41:00Z",
-  "source_tree_hash": "56748c11d2e952c6e1ee8215113de9a1095b8879ab73dfd813d5a7affad795ba",
+  "source_tree_hash": "b8068a0053ec234041452b0711bbba1e410afc23266b4b7aa555099585451b8d",
   "summary": "v359でWPP-op canonical op-zero colimit legがsource全射かつopenであることを確認し、W318/W271からright-open入力を消した。product_completeはfalse。",
   "commands": [
     {
