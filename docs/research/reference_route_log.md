@@ -545,4 +545,8 @@ W297は、W289/W318の左closed embedding保存入力を、短複体ではなく
 
 2026-05-20T22:37:00Z時点で、`audit/blockers/shortcomplex_pi1_nat_cocone_iso_v370_support_w370.lean`を再検証した。これはW367が要求したπ₁側のparallel-pair diagram isoとmapped cofork cocone isoを具体構成し、成分π₁ cokernel coforkのcolimit proofを`ShortComplex.π₁.mapCocone`へ運ぶ。これによりAddCommGrp側で残るprojection transportはπ₂とπ₃に絞られた。product successはまだ主張しない。
 
+2026-05-20T22:40:00Z時点で、support worker `w371-wpp-op-quotient-closedmap-inputs-v370`を親ターゲットへ取り込み、`audit/blockers/wpp_op_quotient_closedmap_inputs_v370_support_w371.lean`として再検証した。これは具体descended quotient mapのquotient compatibilityをW371内部で構成し、component closed-map、relation pullback、target relation liftingを入力にすればW368/W365 composerへ渡して`IsClosedMap`を得る。残りはそれら具体topological/relation入力の実体化と、W354/W351 consumerへの結合である。product successはまだ主張しない。
+
+2026-05-20T22:41:00Z時点で、support worker `w372-left-lca-whiskered-naturality-proof-v370`を親ターゲットへ取り込み、`audit/blockers/wpp_op_left_lca_whiskered_naturality_proof_v370_support_w372.lean`として再検証した。これはW369で仮定として残っていたobjectwise whiskered naturality equationを`simpa`で放電し、ordinary projection equationだけからtransported descended leg equationsを得る。残りはordinary projection equation本体とrelation-pullback descended fieldsである。product successはまだ主張しない。
+
 2026-05-20T22:42:00Z時点で、親側で`audit/blockers/shortcomplex_pi23_nat_cocone_iso_v370_support_w373.lean`を追加して再検証した。これはW370のπ₁ transportと同じ方法で、π₂とπ₃のparallel-pair diagram isoおよびmapped cofork cocone isoを具体構成し、三つすべての成分cokernel cofork colimit proofから`ShortComplex.isColimitOfIsColimitπ`経由で短複体cokernel coforkを得る。AddCommGrp側のprojection transport gapは閉じ、残りは具体degreewise cokernel cofork data、forgotten WPP-op colimit rowへのcomponent-row iso、compatibility squaresである。product successはまだ主張しない。

@@ -551,6 +551,12 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W370 ShortComplex π₁ Cocone Iso
 2026-05-20T22:37:00Z: Local support `audit/blockers/shortcomplex_pi1_nat_cocone_iso_v370_support_w370.lean` was verified. It constructs the `π₁` parallel-pair diagram isomorphism and mapped cofork cocone isomorphism required by W367, so the component `π₁` cokernel colimit proof transports to `ShortComplex.π₁.mapCocone`. Product success remains false because the `π₂`/`π₃` transports and final component-row data are still open.
 
+## W371 Quotient Closed-Map Inputs
+2026-05-20T22:40:00Z: Worker support `w371-wpp-op-quotient-closedmap-inputs-v370` was ported as `audit/blockers/wpp_op_quotient_closedmap_inputs_v370_support_w371.lean`. It constructs quotient compatibility for the concrete descended quotient map and packages component closed-map, relation pullback, and target relation lifting into the W368/W365 descended closed-map consumer. Product success remains false because those concrete topological/relation fields still need to be instantiated and integrated with W354/W351.
+
+## W372 Whiskered Naturality Proof
+2026-05-20T22:41:00Z: Worker support `w372-left-lca-whiskered-naturality-proof-v370` was ported as `audit/blockers/wpp_op_left_lca_whiskered_naturality_proof_v370_support_w372.lean`. It discharges the objectwise whiskered naturality equation left as a W369 hypothesis, so ordinary projection equations now produce transported descended leg equations without that extra input. Product success remains false because the ordinary projection equation and relation-pullback descended fields remain open.
+
 ## W373 ShortComplex π₂/π₃ Cocone Iso
 2026-05-20T22:42:00Z: Parent support `audit/blockers/shortcomplex_pi23_nat_cocone_iso_v370_support_w373.lean` was added and verified. It constructs the remaining `π₂` and `π₃` parallel-pair diagram isomorphisms and mapped cofork cocone isomorphisms, then combines all three component colimit proofs into the W359 short-complex cokernel consumer. Product success remains false because concrete degreewise cokernel cofork data, component-row isomorphisms to the forgotten WPP-op colimit row, and compatibility squares remain open.
 
