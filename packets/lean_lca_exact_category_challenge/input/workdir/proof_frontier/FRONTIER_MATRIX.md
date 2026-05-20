@@ -536,6 +536,18 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W365 Quotient Closed-Map Composer
 2026-05-20T22:22:00Z: Worker support `w365-quotient-closed-map-composer-v369` was ported as `audit/blockers/wpp_op_quotient_closed_map_composer_v369_support_w365.lean`. It composes the W355 representative-image criterion, W363 quotient closed-on-saturated theorem, and W358/W360-style saturation input into a checked `IsClosedMap` projection for the descended quotient map. Product success remains false because the concrete WPP-op quotient compatibility, relation pullback, and target representative-image saturation/relation-lifting inputs are still missing.
 
+## W366 Transported Descended Leg Support
+2026-05-20T22:25:00Z: Worker support `w366-transported-descended-leg-v369` was ported as `audit/blockers/wpp_op_left_lca_transported_descended_leg_v369_support_w366.lean`. It transports the concrete quotient cocone to the actual WPP-op diagram and packages descended leg equations into a W354-compatible consumer shape. Product success remains false because relation-pullback descended fields and W351/W354/W365 integration remain open.
+
+## W367 ShortComplex π-cocone Transport
+2026-05-20T22:27:00Z: Support `audit/blockers/shortcomplex_pi_cocone_transport_v370_support_w367.lean` was verified. It turns an explicit component diagram/cocone transport for `π₁` plus W364-style `π₂`/`π₃` transport functions into W359-compatible short-complex cokernel data. Product success remains false because the remaining component transports and concrete component-row data are still missing.
+
+## W368 Target Representative Saturation
+2026-05-20T22:31:00Z: Worker support `w368-target-representative-saturation-v370` was ported as `audit/blockers/wpp_op_target_representative_saturation_v370_support_w368.lean`. It proves the W365 representative-image saturation input from relation-preimage pullback equality and target relation lifting, then feeds the W365 descended closed-map consumer. Product success remains false because the concrete quotient compatibility, relation pullback equality, and target relation lifting still need to be instantiated for the WPP-op descended map.
+
+## W369 Whiskered Naturality Leg Transport
+2026-05-20T22:34:00Z: Local support `audit/blockers/wpp_op_left_lca_whiskered_naturality_v370_support_w369.lean` was verified. It isolates the objectwise whiskered naturality square that transports an ordinary W357 projection equation into the W366 transported cocone leg equation and then into a W354-compatible package. Product success remains false because the ordinary projection equation, relation-pullback descended fields, and final W351/W354/W365 integration remain open.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 

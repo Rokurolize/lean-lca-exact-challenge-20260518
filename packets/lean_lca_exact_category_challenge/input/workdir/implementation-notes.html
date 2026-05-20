@@ -1078,3 +1078,27 @@
 <p><time>2026-05-21T06:22:00Z</time>: The parent consumed <code>w365-quotient-closed-map-composer-v369</code> by adding and verifying <code>audit/blockers/wpp_op_quotient_closed_map_composer_v369_support_w365.lean</code>. This file composes the W355 representative-image closed-map criterion, the W363 quotient closed-on-saturated theorem, and W358/W360-style saturation input into a single <code>QuotientClosedMapComposerInputsW365.descended_closedMap</code> projection for the descended quotient morphism.</p>
 <p>The target quotient closed-on-saturated theorem is now an internal checked input of the composer. Remaining work is to instantiate the composer for the concrete WPP-op quotient/coequalizer descended map, in particular the quotient compatibility equation and the target representative-image saturation or relation-lifting condition.</p>
 </section>
+
+<section id="w366-transported-descended-leg">
+<h2>W366 transported descended legs</h2>
+<p><time>2026-05-21T06:25:00Z</time>: The parent consumed <code>w366-transported-descended-leg-v369</code> by adding and verifying <code>audit/blockers/wpp_op_left_lca_transported_descended_leg_v369_support_w366.lean</code>. This support records the ordinary concrete descended quotient map cofork equation, transports the whiskered concrete quotient cocone to the actual WPP-op diagram, and packages the descended leg equations needed by W354-shaped transported concrete quotient inputs.</p>
+<p>The remaining left-LCA work is to provide the concrete relation-pullback descended fields and combine W366 with the W351/W354/W365 certificate consumers.</p>
+</section>
+
+<section id="w367-shortcomplex-pi-cocone-transport">
+<h2>W367 π-cocone transport</h2>
+<p><time>2026-05-21T06:27:00Z</time>: The parent verified <code>audit/blockers/shortcomplex_pi_cocone_transport_v370_support_w367.lean</code>. It sharpens W364 by naming an explicit diagram/cocone transport for the <code>π₁</code> component cofork and proving that this transport, together with W364-style <code>π₂</code> and <code>π₃</code> transport functions, yields W359-compatible short-complex cokernel data and hence a short-complex cokernel cofork.</p>
+<p>This narrows the AddCommGrp branch again but does not close it. Concrete <code>π₂</code>/<code>π₃</code> transports and the final component-row data still have to be constructed.</p>
+</section>
+
+<section id="w368-target-representative-saturation">
+<h2>W368 representative saturation</h2>
+<p><time>2026-05-21T06:31:00Z</time>: The parent consumed <code>w368-target-representative-saturation-v370</code> by adding and verifying <code>audit/blockers/wpp_op_target_representative_saturation_v370_support_w368.lean</code>. This support proves that relation-preimage pullback equality plus target relation lifting makes the W365 representative images saturated for the target quotient projection, then uses that to feed the W365 descended closed-map consumer.</p>
+<p>The closed-map route is now narrowed to concrete instantiation: prove quotient compatibility for the actual WPP-op descended map, prove the relation pullback equality, and supply target relation lifting.</p>
+</section>
+
+<section id="w369-whiskered-naturality-leg-transport">
+<h2>W369 whiskered naturality</h2>
+<p><time>2026-05-21T06:34:00Z</time>: The parent verified <code>audit/blockers/wpp_op_left_lca_whiskered_naturality_v370_support_w369.lean</code>. The file isolates the objectwise whiskered naturality square needed to carry an ordinary W357 projection equation across the equivalence-counit transport used by W366, producing transported descended leg equations in the W354-compatible shape.</p>
+<p>This removes one categorical ambiguity from the left-LCA route. The remaining work is the ordinary projection equation itself, concrete relation-pullback descended fields, and final certificate integration.</p>
+</section>
