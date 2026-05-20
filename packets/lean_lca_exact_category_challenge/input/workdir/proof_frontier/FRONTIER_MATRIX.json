@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T01:13:00Z",
+  "generated_utc": "2026-05-21T01:16:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -3936,6 +3936,30 @@
       "git diff --check"
     ],
     "remaining_inputs": [],
+    "product_success_claimed": false
+  },
+  "parent_update_w426": {
+    "timestamp_utc": "2026-05-21T01:16:00Z",
+    "status": "verified_focused_parent_port_before_worker_result",
+    "summary": "W426 derives W407 reverse membership from W389 relation-pullback certificate and obtains W399 descended fields from W420/W380-W389-W386 certificates only.",
+    "touched_files": [
+      "audit/blockers/wpp_op_w399_inputs_from_certificates_only_v370_support_w426.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "relationReverseClosedRangeMembershipW407_of_relationPullbackEqualityCertificateW389",
+      "relationPullbackDescendedFieldsInputsW399_of_certificateRelationFieldsW395",
+      "relationPullbackDescendedFieldsInputsW399_of_w380_w389_w386"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_w399_inputs_from_certificates_only_v370_support_w426.lean",
+      "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/wpp_op_w399_inputs_from_certificates_only_v370_support_w426.lean (expected no matches)",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "実際のWPP-op morphismについてW420 certificate packageまたはW380/W389/W386 certificatesを供給する。",
+      "standalone audit blocksをimportable Lean modulesへ昇格する。",
+      "W399からW393/W390/W384 transported field routeへ接続する。"
+    ],
     "product_success_claimed": false
   }
 }
