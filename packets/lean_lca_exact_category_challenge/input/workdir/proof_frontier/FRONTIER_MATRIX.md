@@ -301,3 +301,11 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v303 Update
 
 2026-05-20T16:18:07Z: `audit/blockers/wpp_op_mapping_cone_fixed_cocone_w303.lean` reduces W302's concrete `mappingConeCocone` colimit input to explicit desc/fac/uniq universal data via `IsColimit.mk`, and proves the equivalence back from an existing colimit proof. The remaining mapping-cone boundary is now construction of those desc/fac/uniq maps for the fixed WPP-op cocone. Product success remains nonterminal.
+
+## v304 Update
+
+2026-05-20T16:25:25Z: `audit/blockers/homotopy_equiv_target_data_w304.lean` reimplements the useful support W282 signal for the exact-acyclic HomotopyEquiv transport route. The checked theorem `exactAcyclic_of_homotopyEquiv_of_exactAcyclic_targetData` removes the separate source-side categorical exactness input by deriving it from `exactAcyclic MetrizableLCA K` under degreewise homology and forgetful homology-preservation inputs. The target-side closed embedding, open map, cokernel-top, and homology-preservation inputs remain open, so product success remains nonterminal.
+
+## v305-v308 Update
+
+2026-05-20T16:25:25Z: Four additional audit boundaries were verified. `audit/blockers/wpp_op_mapping_cone_universal_w304.lean` reduces the W303 fixed-cocone universal package to unique mediating maps into arbitrary target cocones. `audit/blockers/wpp_op_strict_short_exact_colimit_field_w305.lean` reduces the W301 right-surjectivity field to right-open-map preservation plus categorical epi for the colimit right map. `audit/blockers/wpp_op_strict_short_exact_colimit_fields_iff_w307.lean` proves the W301 strict-short-exact four-field split is an equivalence. `audit/blockers/opposite_functor_category_localization_w306.lean` was repaired from a failed universe-polymorphic uniformization attempt into a conservative checked boundary retaining the existing two fixed-target package. Product success remains nonterminal.
