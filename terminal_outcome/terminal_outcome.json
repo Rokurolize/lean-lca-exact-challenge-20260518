@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v326でW296/W297支援を移植・検証し、AddCommGrpCat代数境界とMetrizableLCA左closed embedding境界をより小さいsource theoremへ縮約した。100%達成ではなく、update_goal(status=\"complete\")は禁止のまま。",
+  "summary": "v327でmapping-cone leg equationを左右成分へ分解した。右脚互換性と左cochain互換性から固定leg equationが従うことを確認したが、left cochain/descEq/uniquenessは未完了。product_completeはfalseのまま。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -178,7 +178,9 @@
     "lake env lean audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean",
     "lake env lean audit/blockers/component_closed_embedding_coequalizer_support_w297.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean audit/blockers/component_closed_embedding_coequalizer_support_w297.lean audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean audit/blockers/component_closed_embedding_coequalizer_support_w297.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean audit/blockers/component_closed_embedding_coequalizer_support_w297.lean",
+    "lake env lean audit/blockers/wpp_op_mapping_cone_fac_split_w327.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_fac_split_w327.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -906,6 +908,7 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicFrontierConsolidatedState"
   ],
   "known_gaps": [
+    "W327で固定mapping-cone leg equationは右脚互換性と左cochain互換性へ分解されたが、任意test coconeに対するleft degree -1 cochain、descEq、左cochain互換性、一意性はまだsource theoremとして未証明である。",
     "W296でW319のadditive exactness境界はAddCommGrpCat kernel exactness/ShortComplex exactness closureへ縮約されたが、そのWPP-op colimit exactness保存定理本体はまだsource theoremとして未証明である。",
     "W297でW289/W318のleft closed embedding保存は純MetrizableLCAのcomponentwise closed embeddingな自然変換がWPP-op colimit mapでclosed embeddingを誘導する定理へ縮約されたが、そのcoequalizer/quotient位相定理本体はまだsource theoremとして未証明である。",
     "W324でBoundedComplexCategory.ιがWalkingParallelPair/WPP-op colimitを保存することを確認し、W308で任意test coconeからambient right-leg cocone dataも作れるようにしたが、固定mapping-cone coconeのleft cochain、descEq、leg equations、uniquenessはまだsource theoremとして未証明である。",
@@ -973,16 +976,18 @@
     "W317でW271 exactAcyclic WPP-op colimit closureはleft closed embedding、right open map、algebraic exactnessの3直接フィールドへ縮約されたが、これらはまだsource theoremとして未証明である。",
     "W318でW271 exactAcyclic WPP-op colimit closureは、closed-embedding保存、colimit-open-map境界、direct algebraic exactnessの3つへ集約されたが、これらはまだsource theoremとして未証明である。",
     "W326でW319の代数境界はAddCommGrpCat kernel-exactnessまたはShortComplex exactnessのWPP-op colimit保存へ縮約されたが、このAddCommGrpCat側の保存定理はまだ未供給である。",
-    "W326でW289/W318のleft closed embedding境界はMetrizableLCAの自然変換coequalizer/colimit-map closed-embedding保存定理へ縮約されたが、この純LCA定理はまだ未供給である。"
+    "W326でW289/W318のleft closed embedding境界はMetrizableLCAの自然変換coequalizer/colimit-map closed-embedding保存定理へ縮約されたが、この純LCA定理はまだ未供給である。",
+    "W327で固定mappingCone leg equationは左`mappingCone.inl` cochain互換性と右`mappingCone.inr`互換性へ分解できたが、左degree -1 cochain、その互換性、descEq、および一意性はまだ未供給である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "uncommitted-v323",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W326でAddCommGrpCat kernel exactness/ShortComplex exactness境界とMetrizableLCA component coequalizer closed-embedding境界を親側で検証した。W308 desc assembly、W318 right open-map、W296 AddCommGrp保存、W297純LCA coequalizer閉埋め込みは未完了。",
+  "worker_frontier_summary": "W327 splits the W308 fixed mapping-cone leg equation into right-leg and left-cochain compatibility obligations. This narrows but does not close the ambient desc assembly route.",
   "claim_review_result": "未実施。product_successではないため、fresh claim-review-loop acceptanceは要求段階に未到達。",
   "remaining_gaps": [
+    "W327で固定mapping-cone leg equationは右脚互換性と左cochain互換性へ分解されたが、任意test coconeに対するleft degree -1 cochain、descEq、左cochain互換性、一意性はまだsource theoremとして未証明である。",
     "W296でW319のadditive exactness境界はAddCommGrpCat kernel exactness/ShortComplex exactness closureへ縮約されたが、そのWPP-op colimit exactness保存定理本体はまだsource theoremとして未証明である。",
     "W297でW289/W318のleft closed embedding保存は純MetrizableLCAのcomponentwise closed embeddingな自然変換がWPP-op colimit mapでclosed embeddingを誘導する定理へ縮約されたが、そのcoequalizer/quotient位相定理本体はまだsource theoremとして未証明である。",
     "W324でBoundedComplexCategory.ιがWalkingParallelPair/WPP-op colimitを保存することを確認し、W308で任意test coconeからambient right-leg cocone dataも作れるようにしたが、固定mapping-cone coconeのleft cochain、descEq、leg equations、uniquenessはまだsource theoremとして未証明である。",
@@ -1039,9 +1044,10 @@
     "W317でW271 exactAcyclic WPP-op colimit closureはleft closed embedding、right open map、algebraic exactnessの3直接フィールドへ縮約されたが、これらはまだsource theoremとして未証明である。",
     "W318でW271 exactAcyclic WPP-op colimit closureは、closed-embedding保存、colimit-open-map境界、direct algebraic exactnessの3つへ集約されたが、これらはまだsource theoremとして未証明である。",
     "W326でW319の代数境界はAddCommGrpCat kernel-exactnessまたはShortComplex exactnessのWPP-op colimit保存へ縮約されたが、このAddCommGrpCat側の保存定理はまだ未供給である。",
-    "W326でW289/W318のleft closed embedding境界はMetrizableLCAの自然変換coequalizer/colimit-map closed-embedding保存定理へ縮約されたが、この純LCA定理はまだ未供給である。"
+    "W326でW289/W318のleft closed embedding境界はMetrizableLCAの自然変換coequalizer/colimit-map closed-embedding保存定理へ縮約されたが、この純LCA定理はまだ未供給である。",
+    "W327で固定mappingCone leg equationは左`mappingCone.inl` cochain互換性と右`mappingCone.inr`互換性へ分解できたが、左degree -1 cochain、その互換性、descEq、および一意性はまだ未供給である。"
   ],
-  "next_recommended_goal": "W297の純MetrizableLCA coequalizer closed-embedding定理、またはW296のAddCommGrpCat WPP-op ShortComplex exactness保存定理を証明する。並行してW308 ambient desc assemblyのleft cochain/descEq/fac/uniqを構成する。",
+  "next_recommended_goal": "Construct the W308 left degree -1 cochain and prove its compatibility/desc equation, or close W297/W296 source theorems for left closed embedding and AddCommGrp exactness.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -1472,7 +1478,8 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicFrontierConsolidatedState",
     "LeanLCAExactChallenge.AddCommGrpWppOpKernelExactnessSupportW296.additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact",
     "LeanLCAExactChallenge.AddCommGrpWppOpKernelExactnessSupportW296.addCommGrpKernelExact_wppOp_colimit_boundary_of_shortComplexExact",
-    "LeanLCAExactChallenge.ComponentClosedEmbeddingCoequalizerSupportW297.wppOp_colimit_preserves_leftClosedEmbedding_of_lca_colimitMap"
+    "LeanLCAExactChallenge.ComponentClosedEmbeddingCoequalizerSupportW297.wppOp_colimit_preserves_leftClosedEmbedding_of_lca_colimitMap",
+    "LeanLCAExactChallenge.WppOpMappingConeFacSplitW327.mappingCone_map_desc_fac_of_left_right"
   ],
   "generated_utc": "2026-05-20T17:40:00Z",
   "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",

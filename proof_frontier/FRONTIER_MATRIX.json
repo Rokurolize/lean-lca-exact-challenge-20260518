@@ -1365,8 +1365,8 @@
     }
   ],
   "support_result_classification": "w272 was manually ported as a focused nonterminal boundary refining W269 fixed-target fac/uniq obligations. v296 parent-added counterexample; not support product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
-  "latest_parent_update": "v326 integrated W296/W297 support: additive exactness is reduced to AddCommGrp kernel/ShortComplex exactness preservation, and left closed-embedding is reduced to a pure MetrizableLCA WPP-op component coequalizer closed-embedding theorem.",
-  "summary": "v326でW296/W297支援を親側target worktreeに移植・Focused Lean検証した。W319代数境界とW289/W318左closed embedding境界はさらに狭まったが、product success remains nonterminal.",
+  "latest_parent_update": "v327 split the W308 fixed mapping-cone fac obligation into left inl-cochain compatibility plus right inr compatibility.",
+  "summary": "v327でW308のmappingCone leg equationを左右成分に分解する補題を追加した。右成分は既存ambient right-leg routeに接続し、残りは左cochain/descEq/uniqへ狭まった。Product success remains nonterminal.",
   "remaining_frontier": [
     "W323でFixedMappingConeCoconeDescAssemblyDataがW308 unique-mediating inputに十分であることを確認したが、そのassembly data、特にbounded right-target lift、left cochain、descEq、fac、uniqはまだ未供給である。",
     "W320でAddCommGrpCatのWalkingParallelPair/WPP-op exact colimit instanceは自動合成されないことをguardしたため、W319はAB5やconnectednessだけでは閉じられない。有限coequalizer/WPP colimit専用のkernel exactness保存証明が未供給である。",
@@ -1420,7 +1420,8 @@
     "Opposite functor-category localization now reduces to OppositeWalkingParallelPairLiftBlueprint plus OppositeDiagramFixedTargetFacObligation, OppositeDiagramFixedTargetUniqObligation, OppositeModelFixedTargetFacObligation, and OppositeModelFixedTargetUniqObligation.",
     "The W269/v293 fixed-target boundary is sharper but still does not construct the blueprint or the four fac/uniq obligations.",
     "W326でW319の代数境界はAddCommGrpCat kernel-exactnessまたはShortComplex exactnessのWPP-op colimit保存へ縮約されたが、このAddCommGrpCat側の保存定理はまだ未供給である。",
-    "W326でW289/W318のleft closed embedding境界は、MetrizableLCA上のWalkingParallelPairᵒᵖ自然変換coequalizer/colimit-mapがcomponentwise closed embeddingをclosed embeddingへ送る定理へ縮約されたが、この純LCA定理はまだ未供給である。"
+    "W326でW289/W318のleft closed embedding境界は、MetrizableLCA上のWalkingParallelPairᵒᵖ自然変換coequalizer/colimit-mapがcomponentwise closed embeddingをclosed embeddingへ送る定理へ縮約されたが、この純LCA定理はまだ未供給である。",
+    "W327で固定mappingCone leg equationは左`mappingCone.inl` cochain互換性と右`mappingCone.inr`互換性へ分解できたが、左degree -1 cochain、その互換性、descEq、および一意性はまだ未供給である。"
   ],
   "support_classification": [
     {
@@ -1653,7 +1654,8 @@
     "Direct W266 identity containment for ((boundedExactWeakEquivalence MetrizableLCA).op) remains conditional; v292 solves only ((boundedHomotopyExactWeakEquivalence MetrizableLCA).op).ContainsIdentities unconditionally.",
     "Coherent opposite WalkingParallelPair strict-representative blueprint and the four W272 fixed-target fac/uniq obligations remain open.",
     "W326でW319の代数境界はAddCommGrpCat kernel-exactnessまたはShortComplex exactnessのWPP-op colimit保存へ縮約されたが、このAddCommGrpCat側の保存定理はまだ未供給である。",
-    "W326でW289/W318のleft closed embedding境界は、MetrizableLCA上のWalkingParallelPairᵒᵖ自然変換coequalizer/colimit-mapがcomponentwise closed embeddingをclosed embeddingへ送る定理へ縮約されたが、この純LCA定理はまだ未供給である。"
+    "W326でW289/W318のleft closed embedding境界は、MetrizableLCA上のWalkingParallelPairᵒᵖ自然変換coequalizer/colimit-mapがcomponentwise closed embeddingをclosed embeddingへ送る定理へ縮約されたが、この純LCA定理はまだ未供給である。",
+    "W327で固定mappingCone leg equationは左`mappingCone.inl` cochain互換性と右`mappingCone.inr`互換性へ分解できたが、左degree -1 cochain、その互換性、descEq、および一意性はまだ未供給である。"
   ],
   "open_blockers": [
     "W317でexactAcyclic WPP-op colimit closureはleftClosedEmbedding、rightOpenMap、algebraicExactの三つの直接field closureへ縮約されたが、この三つのfield保存定理はまだ未供給である。",
@@ -1687,7 +1689,8 @@
     "Choose between direct identity containment via exact acyclicity of mappingCone identities and a checked W266-style assembly over boundedHomotopyExactWeakEquivalence.",
     "Construct the W272 blueprint and prove diagram/model fixed-target fac/uniq, or find a mathlib theorem that supplies objectwise functor-category localization for this opposite localizer.",
     "W326でW319の代数境界はAddCommGrpCat kernel-exactnessまたはShortComplex exactnessのWPP-op colimit保存へ縮約されたが、このAddCommGrpCat側の保存定理はまだ未供給である。",
-    "W326でW289/W318のleft closed embedding境界は、MetrizableLCA上のWalkingParallelPairᵒᵖ自然変換coequalizer/colimit-mapがcomponentwise closed embeddingをclosed embeddingへ送る定理へ縮約されたが、この純LCA定理はまだ未供給である。"
+    "W326でW289/W318のleft closed embedding境界は、MetrizableLCA上のWalkingParallelPairᵒᵖ自然変換coequalizer/colimit-mapがcomponentwise closed embeddingをclosed embeddingへ送る定理へ縮約されたが、この純LCA定理はまだ未供給である。",
+    "W327で固定mappingCone leg equationは左`mappingCone.inl` cochain互換性と右`mappingCone.inr`互換性へ分解できたが、左degree -1 cochain、その互換性、descEq、および一意性はまだ未供給である。"
   ],
   "consumed_support_results": [
     {
@@ -1833,7 +1836,8 @@
     "W308で固定mappingConeCocone mediatorの右脚は、任意test coconeに対するbounded right-target lift dataが無いとc₂のcolimit descを使えないことが判明した。このlift data、左degree -1 cochain、descEq、fac、uniqは未供給である。",
     "W310でW301のrightSurjective colimit closureはrightOpenMap colimit closureだけへ縮約されたが、W311によりこの入力はRightOpenMapColimitCoverの構成へさらに縮約され、このcover dataはまだ未供給である。",
     "W326でW319の代数境界はAddCommGrpCat kernel-exactnessまたはShortComplex exactnessのWPP-op colimit保存へ縮約されたが、このAddCommGrpCat側の保存定理はまだ未供給である。",
-    "W326でW289/W318のleft closed embedding境界は、MetrizableLCA上のWalkingParallelPairᵒᵖ自然変換coequalizer/colimit-mapがcomponentwise closed embeddingをclosed embeddingへ送る定理へ縮約されたが、この純LCA定理はまだ未供給である。"
+    "W326でW289/W318のleft closed embedding境界は、MetrizableLCA上のWalkingParallelPairᵒᵖ自然変換coequalizer/colimit-mapがcomponentwise closed embeddingをclosed embeddingへ送る定理へ縮約されたが、この純LCA定理はまだ未供給である。",
+    "W327で固定mappingCone leg equationは左`mappingCone.inl` cochain互換性と右`mappingCone.inr`互換性へ分解できたが、左degree -1 cochain、その互換性、descEq、および一意性はまだ未供給である。"
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -1863,6 +1867,17 @@
       "wppOp_lca_colimitMap_preserves_closedEmbedding for MetrizableLCA WalkingParallelPairᵒᵖ diagrams",
       "W318 right open-map source theorem",
       "W308 fixed mapping-cone left cochain, descEq, leg equations, and uniqueness"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_v327": {
+    "summary": "v327でmapping-cone leg equationを左右成分へ分解した。右脚互換性と左cochain互換性から固定leg equationが従うことを確認したが、left cochain/descEq/uniquenessは未完了。product_completeはfalseのまま。",
+    "accepted_file": "audit/blockers/wpp_op_mapping_cone_fac_split_w327.lean",
+    "remaining_inputs": [
+      "left degree -1 cochain for each test cocone",
+      "left cochain compatibility against fixed legs",
+      "mappingCone.desc differential equation",
+      "componentwise uniqueness"
     ],
     "product_success_claimed": false
   }
