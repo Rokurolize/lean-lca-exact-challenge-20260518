@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v160時点で、w126とw127の正式結果を分類した。w126は親側v158とbyte単位で一致し、w127は親側v159で正式worker案より強く補強済みである。product_successではない。bounded側にはdistinguished mapping-cone endpointへ限定したstrictification命題、stable側にはOrdinaryContextToStableProviderRoute相当の実装が残る。",
+  "summary": "v161時点で、distinguished endpointに限定したselected cochain providerを監査ファイルとして追加し、これがbounded strict realizationと同値であることをLeanで確認した。product_successではない。bounded側にはこの同値なpositive theorem自体の実証、stable側にはOrdinaryContextToStableProviderRoute相当の実装が残る。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -33,7 +33,8 @@
     "lake env lean audit/blockers/mapping_cone_selected_provider_probe_w127.lean",
     "lake env lean audit/blockers/stable_dbounded_certificate_provider_route_w126.lean",
     "cmp -s audit/blockers/stable_dbounded_certificate_provider_route_w126.lean <w126-worktree>/audit/blockers/stable_dbounded_certificate_provider_route_w126.lean",
-    "diff -u audit/blockers/mapping_cone_selected_provider_probe_w127.lean <w127-worktree>/audit/blockers/mapping_cone_selected_provider_probe_w127.lean"
+    "diff -u audit/blockers/mapping_cone_selected_provider_probe_w127.lean <w127-worktree>/audit/blockers/mapping_cone_selected_provider_probe_w127.lean",
+    "lake env lean audit/blockers/distinguished_endpoint_provider_frontier_w128.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -668,7 +669,8 @@
     "v143で実cochain-complex同型付きselected cochain payloadは製品側APIになったが、そのpayloadを一般のhomotopy-category endpoint同型から構成するstrictification定理は未完成である。",
     "具体的な右非有界contractible selected complexはModuleCat ℤ上で構成済みだが、それをpositiveなstrictification制御またはDboundedのstable certificateへ変換する定理は未完成である。",
     "stable certificateに必要な有限極限、有限余極限、suspension/loop equivalence、pushout/pullback互換性の各obligationは未証明である。",
-    "最終clean review packet、全oracle通過、fresh claim reviewによるproduct_success=trueの受理はいずれも未完了である。"
+    "最終clean review packet、全oracle通過、fresh claim reviewによるproduct_success=trueの受理はいずれも未完了である。",
+    "The distinguished endpoint selected-cochain provider is now proved equivalent to bounded strict realization, so it is a precise reformulation of the remaining bounded theorem, not a completed proof."
   ],
   "next_recommended_goal": "次はw114の十分条件をproduct方向へ進め、homotopy-category endpoint同型からselected source/coneへの実cochain-complex同型を作るstrictification theorem、またはDboundedのstable infinity-category certificateに必要な局所APIを構成する。",
   "implemented_declarations": [

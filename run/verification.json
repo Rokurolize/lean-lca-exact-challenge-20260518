@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v160-w126-w127-official-results-confirmed",
-  "generated_utc": "2026-05-20T05:15:00Z",
-  "source_tree_hash": "7e691df9b3351fcf888f7a473f61bad0b5dc0ca73c5664537ccb46d5cc06c3c3",
-  "summary": "v160 records formal w126/w127 support result classification: w126 was byte-identical to parent v158, and w127 was already strengthened by parent v159; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v161-distinguished-endpoint-provider-frontier",
+  "generated_utc": "2026-05-20T05:35:00Z",
+  "source_tree_hash": "2b6033f94fdc7fb97a63832887e9daeac6d8ed83e9070aedc3f378e346721964",
+  "summary": "v161 adds a distinguished-endpoint provider frontier audit and proves it is equivalent to bounded strict realization; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v159 weak-endpoint provider refutation."
+      "evidence": "Full lake build passed after adding the v161 audit file."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v159 audit edit."
+      "evidence": "Forbidden-token audit passed after the v161 audit file."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v159 audit edit."
+      "evidence": "Required declaration audit passed after the v161 audit file."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess audit passed after the v159 audit edit; no product-success claim was added."
+      "evidence": "ProductSuccess declaration audit passed after the v161 audit file; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -108,6 +108,11 @@
       "command": "diff -u audit/blockers/mapping_cone_selected_provider_probe_w127.lean <w127-worktree>/audit/blockers/mapping_cone_selected_provider_probe_w127.lean",
       "status": "passed",
       "evidence": "The only substantive difference is that the parent file includes the v159 implication to endpoint strictification and the unconditional weak-endpoint provider refutation."
+    },
+    {
+      "command": "lake env lean audit/blockers/distinguished_endpoint_provider_frontier_w128.lean",
+      "status": "passed",
+      "evidence": "Focused v161 distinguished-endpoint provider frontier audit passed."
     }
   ],
   "implemented_declarations_checked": [
@@ -185,7 +190,12 @@
     "StableDboundedCertificateProviderRouteW126.currentProviderRouteSearchState",
     "StableDboundedCertificateProviderRouteW126.currentProviderRoute_not_supplied",
     "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_weakEndpointSelectedCochainIso",
-    "reject_unconditional_weakEndpointSelectedCochainIso_provider_w127"
+    "reject_unconditional_weakEndpointSelectedCochainIso_provider_w127",
+    "distinguishedEndpointSelectedCochainIsoProvider",
+    "boundedRealization_of_distinguishedEndpointSelectedCochainIsoProvider",
+    "distinguishedEndpointSelectedCochainIsoProvider_of_boundedRealization",
+    "distinguishedEndpointSelectedCochainIsoProvider_iff_boundedRealization",
+    "reject_broad_endpoint_strictification_provider"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -199,7 +209,8 @@
     "The current stable certificate provider map now formally rejects all-fields-supplied status and each required field remains not supplied.",
     "bounded側の弱endpoint routeは、homotopy category上のendpoint同型をcochain-complex同型へ上げるprovider weakEndpointHomotopyCategoryIsoToSelectedCochainIso まで絞られたが、そのprovider自体は未証明である。",
     "stable側では、現行のordinary contextをsingle-certificate stable provider routeへ昇格する OrdinaryContextToStableProviderRoute が未構成である。",
-    "weakEndpointHomotopyCategoryIsoToSelectedCochainIso は無条件には false であり、bounded routeにはdistinguished mapping-cone endpointに特化したより弱いstrictification命題が必要である。"
+    "weakEndpointHomotopyCategoryIsoToSelectedCochainIso は無条件には false であり、bounded routeにはdistinguished mapping-cone endpointに特化したより弱いstrictification命題が必要である。",
+    "The distinguished endpoint selected-cochain provider is now proved equivalent to bounded strict realization, so it is a precise reformulation of the remaining bounded theorem, not a completed proof."
   ],
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {
