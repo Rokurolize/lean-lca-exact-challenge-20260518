@@ -608,6 +608,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W391-W392 Final Input Reducers
 2026-05-20T23:39:00Z: Worker support `w391-addcommgrp-forgotten-target-iso-construction-v370` and `w392-wpp-op-target-relation-lift-certificate-v370` were ported and focused-verified. W391 exposes the exact direct targetIso input consumed by W385/W388/W376. W392 connects target relation lift certificates into the W371/W377/W383/W389 relation-field route. Product success remains false because W391 and W392 are reducers: the direct targetIso, concrete target relation lift or W392 certificate, W389 relation-pullback certificate, and ordinary W352 descended fields are still open.
 
+## W393 Ordinary Descended Fields Adapter
+2026-05-20T23:42:00Z: Worker support `w393-left-lca-ordinary-descended-fields-v370` was ported as `audit/blockers/wpp_op_left_lca_ordinary_descended_fields_v370_support_w393.lean`. It packages ordinary W352 descended quotient fields as one input and feeds W381 ordinary fields plus W390/W384 point-isomorphism conjugacy. Product success remains false because the concrete W352 relation-pullback quotient-map package still has to instantiate `OrdinaryDescendedQuotientFieldsW393`.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
