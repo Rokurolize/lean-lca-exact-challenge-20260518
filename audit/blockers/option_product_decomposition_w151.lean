@@ -29,6 +29,11 @@ abbrev optionTail {J : Type w} (K : Option J → CochainComplex C ℤ) :
     J → CochainComplex C ℤ :=
   fun j => K (some j)
 
+/-- The tail family at a fixed cochain degree after dropping the `none` entry. -/
+abbrev optionTailDegree {J : Type w} (K : Option J → CochainComplex C ℤ) (n : ℤ) :
+    J → C :=
+  fun j => (K (some j)).X n
+
 /-- The complement of the `none` index in `Option J` is canonically equivalent to `J`. -/
 def optionSomeComplementEquiv (J : Type w) :
     {x : Option J // ¬ x = none} ≃ J where
@@ -183,6 +188,122 @@ noncomputable abbrev optionProductDegreeBinaryFan {J : Type w}
       (∏ᶜ (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)) :=
   Pi.binaryFanOfProp (fun i : Option J => (K i).X n) (fun x : Option J => x = none)
 
+/-- The singleton reduction, specialized to a fixed cochain degree. -/
+noncomputable def noneSubproductDegreeIso {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ) :
+    ∏ᶜ (fun i : {x : Option J // x = none} => (K i.val).X n) ≅ (K none).X n :=
+  Limits.productUniqueIso (fun i : {x : Option J // x = none} => (K i.val).X n)
+
+/-- The complement reindexing, specialized to a fixed cochain degree. -/
+noncomputable def complementSubproductDegreeReindexIso {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTailDegree C K n)] :
+    ∏ᶜ (fun i : {x : Option J // ¬ x = none} => (K i.val).X n) ≅
+      ∏ᶜ (optionTailDegree C K n) :=
+  by
+    letI : HasProduct
+        ((fun i : {x : Option J // ¬ x = none} => (K i.val).X n) ∘
+          ⇑(optionSomeComplementEquiv J).symm) := by
+      simpa [Function.comp, optionTailDegree, optionSomeComplementEquiv]
+        using (inferInstance : HasProduct (optionTailDegree C K n))
+    simpa [Function.comp, optionTailDegree, optionSomeComplementEquiv]
+      using (Limits.Pi.reindex (optionSomeComplementEquiv J).symm
+        (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)).symm
+
+noncomputable def optionProductDegreeTransportedBinaryFan {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun i : Option J => (K i).X n)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTailDegree C K n)] :
+    BinaryFan ((K none).X n) (∏ᶜ (optionTailDegree C K n)) :=
+  BinaryFan.mk
+    ((optionProductDegreeBinaryFan C K n).fst ≫ (noneSubproductDegreeIso C K n).hom)
+    ((optionProductDegreeBinaryFan C K n).snd ≫
+      (complementSubproductDegreeReindexIso C K n).hom)
+
+theorem optionProductDegreeTransportedBinaryFan_pt {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun i : Option J => (K i).X n)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTailDegree C K n)] :
+    (optionProductDegreeTransportedBinaryFan C K n).pt =
+      ∏ᶜ (fun i : Option J => (K i).X n) :=
+  rfl
+
+theorem optionProductDegreeTransportedBinaryFan_fst {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun i : Option J => (K i).X n)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTailDegree C K n)] :
+    (optionProductDegreeTransportedBinaryFan C K n).fst =
+      (optionProductDegreeBinaryFan C K n).fst ≫ (noneSubproductDegreeIso C K n).hom :=
+  rfl
+
+theorem optionProductDegreeTransportedBinaryFan_snd {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun i : Option J => (K i).X n)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTailDegree C K n)] :
+    (optionProductDegreeTransportedBinaryFan C K n).snd =
+      (optionProductDegreeBinaryFan C K n).snd ≫
+        (complementSubproductDegreeReindexIso C K n).hom :=
+  rfl
+
+/-- The transported fixed-degree fan remains limiting, by reducing back to `Pi.binaryFanOfProp`. -/
+noncomputable def optionProductDegreeTransportedBinaryFanIsLimit {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun i : Option J => (K i).X n)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTailDegree C K n)]
+    [∀ x : Option J, Decidable (x = none)] :
+    IsLimit (optionProductDegreeTransportedBinaryFan C K n) := by
+  let s₀ := optionProductDegreeBinaryFan C K n
+  let eL := noneSubproductDegreeIso C K n
+  let eR := complementSubproductDegreeReindexIso C K n
+  let h₀ : IsLimit s₀ :=
+    Pi.binaryFanOfPropIsLimit (fun i : Option J => (K i).X n)
+      (fun x : Option J => x = none)
+  refine BinaryFan.IsLimit.mk _
+    (fun {T} f g => h₀.lift (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv))) ?_ ?_ ?_
+  · intro T f g
+    have hfac :=
+      h₀.fac (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ⟨WalkingPair.left⟩
+    simpa [optionProductDegreeTransportedBinaryFan, s₀, eL, eR, Category.assoc]
+      using congrArg (fun q => q ≫ eL.hom) hfac
+  · intro T f g
+    have hfac :=
+      h₀.fac (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ⟨WalkingPair.right⟩
+    simpa [optionProductDegreeTransportedBinaryFan, s₀, eL, eR, Category.assoc]
+      using congrArg (fun q => q ≫ eR.hom) hfac
+  · intro T f g m hm₁ hm₂
+    have hm₁' : m ≫ s₀.fst ≫ eL.hom = f := by
+      simpa [optionProductDegreeTransportedBinaryFan, s₀, eL, eR, Category.assoc] using hm₁
+    have hm₂' : m ≫ s₀.snd ≫ eR.hom = g := by
+      simpa [optionProductDegreeTransportedBinaryFan, s₀, eL, eR, Category.assoc] using hm₂
+    have hfac₁ :
+        h₀.lift (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ≫ s₀.fst = f ≫ eL.inv := by
+      simpa using h₀.fac (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ⟨WalkingPair.left⟩
+    have hfac₂ :
+        h₀.lift (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ≫ s₀.snd = g ≫ eR.inv := by
+      simpa using h₀.fac (BinaryFan.mk (f ≫ eL.inv) (g ≫ eR.inv)) ⟨WalkingPair.right⟩
+    have hm₁base : m ≫ s₀.fst = f ≫ eL.inv := by
+      calc
+        m ≫ s₀.fst = (m ≫ s₀.fst ≫ eL.hom) ≫ eL.inv := by simp [Category.assoc]
+        _ = f ≫ eL.inv := by rw [hm₁']
+    have hm₂base : m ≫ s₀.snd = g ≫ eR.inv := by
+      calc
+        m ≫ s₀.snd = (m ≫ s₀.snd ≫ eR.hom) ≫ eR.inv := by simp [Category.assoc]
+        _ = g ≫ eR.inv := by rw [hm₂']
+    apply BinaryFan.IsLimit.hom_ext h₀
+    · exact hm₁base.trans hfac₁.symm
+    · exact hm₂base.trans hfac₂.symm
+
 /--
 API state for the selected degreewise route.
 
@@ -197,6 +318,8 @@ structure DegreewiseProductApiState : Type where
   productReindex : String
   singletonProductReduction : String
   complexTransportedFan : String
+  degreewiseTransportedFan : String
+  degreewiseTransportedFanIsLimit : String
   missingComplexIsoConstructor : Option String
 
 /-- W151's current API frontier for the selected route. -/
@@ -207,6 +330,8 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   productReindex := "Limits.Pi.reindex / map' over Option.some"
   singletonProductReduction := "Limits.productUniqueIso for the none-indexed subproduct"
   complexTransportedFan := "optionProductComplexTransportedBinaryFan"
+  degreewiseTransportedFan := "optionProductDegreeTransportedBinaryFan"
+  degreewiseTransportedFanIsLimit := "optionProductDegreeTransportedBinaryFanIsLimit"
   missingComplexIsoConstructor :=
     some "Prove the transported complex fan is limiting via evaluated degreewise cones and convert the binary product limit to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))"
 
@@ -246,6 +371,14 @@ section Checks
 #check optionProductComplexTransportedBinaryFan_snd
 #check optionProductSplitPair
 #check optionProductDegreeBinaryFan
+#check optionTailDegree
+#check noneSubproductDegreeIso
+#check complementSubproductDegreeReindexIso
+#check optionProductDegreeTransportedBinaryFan
+#check optionProductDegreeTransportedBinaryFan_pt
+#check optionProductDegreeTransportedBinaryFan_fst
+#check optionProductDegreeTransportedBinaryFan_snd
+#check optionProductDegreeTransportedBinaryFanIsLimit
 #check DegreewiseProductApiState
 #check currentDegreewiseProductApiState
 #check currentDegreewiseProductApiState_missing

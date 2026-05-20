@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T05:34:50Z",
+  "generated_utc": "2026-05-20T05:39:55Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v203 is parent-owned proof work on the binary mapping-cone/biproduct comparison while support w155/w156 continue in isolated consultant worktrees.",
   "frontiers": [
@@ -573,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean && lake env lean audit/blockers/nontrivial_distinguished_eligibility_predicate_w132.lean && lake env lean audit/blockers/dbounded_four_projection_provider_route_w133.lean && lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean && lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean && lake env lean audit/blockers/dbounded_finite_products_boundary.lean && lake build LeanLCAExactChallenge.Derived.Bounded && lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean && lake env lean audit/blockers/mapping_cone_finite_product_comparison_w142.lean && lake env lean audit/blockers/dbounded_pullback_localization_transfer_w143.lean && lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean && lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
-      "merge_blocker": "v206 names the complex-level transported Option binary fan in W151. The remaining finite-product route is to prove this fan limiting via degreewise comparisons/W156 and isLimitOfEval, convert the binary product limit to OptionProductIsoBiprod, then add empty-product exactness and finite-family closure; Dbounded transfer, finite colimits, triangulated structure, and stable structures remain open.",
+      "merge_blocker": "v207 integrates the fixed-degree transported Option binary fan and proves it limiting as optionProductDegreeTransportedBinaryFanIsLimit, after v206 named the complex-level transported fan. The remaining finite-product route is now the evaluated complex-fan comparison to the degreewise fan, HomologicalComplex.isLimitOfEval assembly, conversion to OptionProductIsoBiprod, empty-product exactness, finite-family closure, and then the Dbounded finite-product/finite-limit transfer; finite colimits, pretriangulated structure, triangulated structure, and stable infinity-category structure remain unproved.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -1019,7 +1019,15 @@
         "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_pt",
         "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_fst",
         "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_snd",
-        "OptionProductDecompositionW151.optionProductSplitPair"
+        "OptionProductDecompositionW151.optionProductSplitPair",
+        "OptionProductDecompositionW151.optionTailDegree",
+        "OptionProductDecompositionW151.noneSubproductDegreeIso",
+        "OptionProductDecompositionW151.complementSubproductDegreeReindexIso",
+        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan",
+        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_pt",
+        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_fst",
+        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_snd",
+        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFanIsLimit"
       ],
       "technical_context": [
         "split short complexes",
@@ -1230,17 +1238,23 @@
   "support_result_classification": {
     "w156-option-binaryfan-compose": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave88_20260520T050500Z/workers/w156-option-binaryfan-compose/result.json",
-      "classification": "useful_audit_deferred_not_ported_v204",
       "worker_status": "completed_without_product_success_claim",
       "worker_changed_files": [
         "audit/blockers/option_binaryfan_compose_w156.lean"
       ],
-      "parent_file": null,
+      "classification": "manual_integration_parent_v207",
+      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
       "parent_declarations_covering_result": [
-        "OptionComplementProductReindexW154.complementSubproductDegreeReindexIso",
-        "OptionProductReindexPackagingW152.noneSubproductDegreeIso"
+        "OptionProductDecompositionW151.optionTailDegree",
+        "OptionProductDecompositionW151.noneSubproductDegreeIso",
+        "OptionProductDecompositionW151.complementSubproductDegreeReindexIso",
+        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan",
+        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_pt",
+        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_fst",
+        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFan_snd",
+        "OptionProductDecompositionW151.optionProductDegreeTransportedBinaryFanIsLimit"
       ],
-      "product_effect": "no_product_success_claim; useful degreewise Option binary-fan composition route, deferred because v204 closed the separate binary mapping-cone complex iso packaging step"
+      "product_effect": "no_product_success_claim; fixed-degree transported Option binary fan and IsLimit proof are now integrated into W151, leaving evaluated complex-fan comparison and OptionProductIsoBiprod conversion open"
     },
     "w157-option-complex-cone-assembly": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave89_20260520T052000Z/workers/w157-option-complex-cone-assembly/result.json",
