@@ -505,6 +505,42 @@ noncomputable def optionProductDegreeFanWithEvaluatedTargets {J : Type w}
       (optionProductDegreeTransportedBinaryFan C K n).snd ≫
       (evalTailProductPointIso C K n).inv)
 
+/--
+The transported degree fan remains limiting after moving its cone point and right target back to
+the evaluated complex-level objects.
+-/
+noncomputable def optionProductDegreeFanWithEvaluatedTargetsIsLimit {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)]
+    [∀ x : Option J, Decidable (x = none)] :
+    IsLimit (optionProductDegreeFanWithEvaluatedTargets C K n) := by
+  let s := optionProductDegreeTransportedBinaryFan C K n
+  let eP := evalProductPointIso C K n
+  let eR := evalTailProductPointIso C K n
+  let hs : IsLimit s := optionProductDegreeTransportedBinaryFanIsLimit C K n
+  let α :
+      pair ((K none).X n) (∏ᶜ (optionTailDegree C K n)) ≅
+        pair ((K none).X n) ((∏ᶜ (optionTail C K)).X n) :=
+    mapPairIso (Iso.refl _) eR.symm
+  let hs' : IsLimit ((Cone.postcompose α.hom).obj s) :=
+    (IsLimit.postcomposeHomEquiv α s).symm hs
+  exact IsLimit.ofIsoLimit hs' <|
+    Cone.ext_inv eP.symm (by
+      intro j
+      rcases j with ⟨j⟩
+      cases j
+      · simp [Cone.postcompose, optionProductDegreeFanWithEvaluatedTargets, s, eP, eR, α,
+          mapPairIso]
+        exact congrArg (fun q => eP.hom ≫ q) (BinaryFan.π_app_left s)
+      · simp [Cone.postcompose, optionProductDegreeFanWithEvaluatedTargets, s, eP, eR, α,
+          mapPairIso]
+        exact congrArg (fun q => eP.hom ≫ q) (BinaryFan.π_app_right s))
+
 /-- The remaining typed comparison before transporting the degreewise `IsLimit` proof. -/
 abbrev EvaluatedDegreeFanComparison {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
@@ -897,6 +933,129 @@ theorem evaluatedDegreeFanComparison_direct {J : Type w}
     (evaluatedDegreeFanComparisonRight_direct C K n)
 
 /--
+The evaluated complex-level Option product binary fan is limiting after transporting the
+evaluated-target degree fan limit across the direct evaluated fan comparison.
+-/
+noncomputable def evaluatedOptionProductComplexBinaryFanIsLimit_direct {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)]
+    [∀ x : Option J, Decidable (x = none)] :
+    IsLimit (evaluatedOptionProductComplexBinaryFan C K n) := by
+  rw [evaluatedDegreeFanComparison_direct C K n]
+  exact optionProductDegreeFanWithEvaluatedTargetsIsLimit C K n
+
+/--
+The displayed evaluated complex-level binary fan is equivalent, for limit purposes, to the exact
+cone produced by `Functor.mapCone`. The cones live over definitionally different displays of the
+same binary diagram, so the bridge is an `IsLimit` equivalence rather than a cone equality.
+-/
+noncomputable def evaluatedOptionProductComplexBinaryFanIsLimitEquivEvalMapCone {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [HasProduct (optionTail C K)] :
+    IsLimit
+        ((HomologicalComplex.eval C (ComplexShape.up ℤ) n).mapCone
+          (optionProductComplexTransportedBinaryFan C K)) ≃
+      IsLimit (evaluatedOptionProductComplexBinaryFan C K n) := by
+  simpa [evaluatedOptionProductComplexBinaryFan, optionProductComplexTransportedBinaryFan]
+    using
+      isLimitMapConeBinaryFanEquiv
+        (HomologicalComplex.eval C (ComplexShape.up ℤ) n)
+        (optionProductComplexTransportedBinaryFan C K).fst
+        (optionProductComplexTransportedBinaryFan C K).snd
+
+/--
+The exact evaluated `Functor.mapCone` consumer follows by applying the displayed-binary-fan
+equivalence backwards to the direct evaluated binary fan limit.
+-/
+noncomputable def optionProductComplexTransportedBinaryFanEvalIsLimit_direct {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)]
+    [∀ x : Option J, Decidable (x = none)] :
+    IsLimit
+      ((HomologicalComplex.eval C (ComplexShape.up ℤ) n).mapCone
+        (optionProductComplexTransportedBinaryFan C K)) :=
+  (evaluatedOptionProductComplexBinaryFanIsLimitEquivEvalMapCone C K n).symm
+    (evaluatedOptionProductComplexBinaryFanIsLimit_direct C K n)
+
+/--
+Package the degreewise mapCone limits into the complex-level transported Option-product binary fan.
+-/
+noncomputable def optionProductComplexTransportedBinaryFanIsLimit_direct {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // x = none} => (K i.val).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)]
+    [∀ x : Option J, Decidable (x = none)] :
+    IsLimit (optionProductComplexTransportedBinaryFan C K) :=
+  optionProductComplexTransportedBinaryFanIsLimit_of_eval C K
+    (fun n => optionProductComplexTransportedBinaryFanEvalIsLimit_direct C K n)
+
+/--
+Finite-product call-site consumer for the Option induction shape.
+
+This packages the direct fan limit through the existing biproduct-point wrapper and returns the
+exact iso shape expected by `FiniteProductOptionDecompositionInput.optionProductIsoBiprod`, with
+the remaining product and biproduct instances kept explicit.
+-/
+noncomputable def optionProductIsoBiprod_finiteProductCallsite_of_direct {J : Type w}
+    [Finite J]
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun j : J => K (some j))]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // x = none} => (K i.val).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m)]
+    [∀ m : ℤ, HasProduct (fun j : J => (K (some j)).X m)]
+    [∀ x : Option J, Decidable (x = none)]
+    [HasBinaryBiproduct (K none) (∏ᶜ (fun j : J => K (some j)))] :
+    ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j : J => K (some j)) :=
+  optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit C K
+    (optionProductComplexTransportedBinaryFanIsLimit_direct C K)
+
+/--
+The finite-product call site no longer needs a new fan proof after the direct IsLimit route.
+What remains is instance packaging from W149's leaner input hypotheses to the explicit W151
+consumer.
+-/
+def finiteProductCallsiteRemainingInstanceGaps : List String :=
+  ["derive the singleton none-subproduct HasProduct from the finite Option product context",
+    "derive the complement subproduct HasProduct from the finite Option product context",
+    "derive degreewise Option-product HasProduct instances for every cochain degree",
+    "derive degreewise singleton subproduct HasProduct instances for every cochain degree",
+    "derive degreewise complement subproduct HasProduct instances for every cochain degree",
+    "provide the selected HasBinaryBiproduct for the head complex and tail product complex"]
+
+theorem finiteProductCallsiteRemainingInstanceGaps_count :
+    finiteProductCallsiteRemainingInstanceGaps.length = 6 :=
+  rfl
+
+/--
 API state for the selected degreewise route.
 
 The first three fields are available in mathlib/local imports; the final field is the missing
@@ -958,11 +1117,11 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   optionProductIsoBiprodOfEvalIsLimit :=
     "optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit"
   missingComplexIsoConstructor :=
-    some "Transport the degreewise IsLimit proof through evalProductPointIso/evalTailProductPointIso using evaluatedDegreeFanComparison_direct; the resulting evaluated-fan IsLimit family feeds optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit"
+    some "The direct Option-product fan IsLimit route is closed by optionProductComplexTransportedBinaryFanIsLimit_direct; the remaining finite-product call-site work is instance packaging for subproducts, degreewise products, and the selected binary biproduct."
 
 theorem currentDegreewiseProductApiState_missing :
     currentDegreewiseProductApiState.missingComplexIsoConstructor =
-      some "Transport the degreewise IsLimit proof through evalProductPointIso/evalTailProductPointIso using evaluatedDegreeFanComparison_direct; the resulting evaluated-fan IsLimit family feeds optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit" :=
+      some "The direct Option-product fan IsLimit route is closed by optionProductComplexTransportedBinaryFanIsLimit_direct; the remaining finite-product call-site work is instance packaging for subproducts, degreewise products, and the selected binary biproduct." :=
   rfl
 
 /-- Compact checklist of the next proof obligations after this API guard. -/
@@ -974,7 +1133,7 @@ def optionProductDecompositionNextObligations : List String :=
     "compare the evaluated tail product point with the degreewise tail product using evalTailProductPointIso",
     "transport the degreewise fan IsLimit proof across evaluatedDegreeFanComparison_direct",
     "assemble the degreewise limiting fans into a complex-level limiting fan using isLimitOfEval",
-    "convert the binary-product limit into the biproduct-shaped OptionProductIsoBiprod"]
+    "package finite call-site instances for optionProductIsoBiprod_finiteProductCallsite_of_direct"]
 
 theorem optionProductDecompositionNextObligations_count :
     optionProductDecompositionNextObligations.length = 8 :=
@@ -1018,12 +1177,22 @@ section Checks
 #check evalTailProductPointIso_hom_π
 #check evaluatedOptionProductComplexBinaryFan
 #check optionProductDegreeFanWithEvaluatedTargets
+#check optionProductDegreeFanWithEvaluatedTargetsIsLimit
 #check EvaluatedDegreeFanComparison
 #check EvaluatedDegreeFanComparisonLeft
 #check EvaluatedDegreeFanComparisonRight
 #check evaluatedDegreeFanComparisonLeft_direct
+#check evaluatedDegreeFanComparisonRight_direct
 #check evaluatedDegreeFanComparison_of_left_right
 #check evaluatedDegreeFanComparison_of_right
+#check evaluatedDegreeFanComparison_direct
+#check evaluatedOptionProductComplexBinaryFanIsLimit_direct
+#check evaluatedOptionProductComplexBinaryFanIsLimitEquivEvalMapCone
+#check optionProductComplexTransportedBinaryFanEvalIsLimit_direct
+#check optionProductComplexTransportedBinaryFanIsLimit_direct
+#check optionProductIsoBiprod_finiteProductCallsite_of_direct
+#check finiteProductCallsiteRemainingInstanceGaps
+#check finiteProductCallsiteRemainingInstanceGaps_count
 #check DegreewiseProductApiState
 #check currentDegreewiseProductApiState
 #check currentDegreewiseProductApiState_missing

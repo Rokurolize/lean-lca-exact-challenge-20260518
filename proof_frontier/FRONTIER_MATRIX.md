@@ -89,3 +89,7 @@ v217 adds evaluatedDegreeFanComparison_of_right to W151. Since v216 proved the l
 ## v218 Update
 
 v218 proves EvaluatedDegreeFanComparisonRight directly in W151 and adds evaluatedDegreeFanComparison_direct. The right leg is reduced by postcomposing with evalTailProductPointIso.hom and checking tail projections through Pi.reindex_inv_π, Pi.map'_comp_π, and evalProductPointIso_hom_π. The remaining Option-product boundary is the IsLimit transport from optionProductDegreeTransportedBinaryFanIsLimit across evaluatedDegreeFanComparison_direct into the evaluated complex fan required by optionProductComplexTransportedBinaryFanIsLimit_of_eval. Product success remains nonterminal.
+
+## v219 Update
+
+v219 closes the direct Option-product transported fan IsLimit route in W151. The new path transports optionProductDegreeTransportedBinaryFanIsLimit to optionProductDegreeFanWithEvaluatedTargetsIsLimit, rewrites by evaluatedDegreeFanComparison_direct, bridges the displayed evaluated BinaryFan to the exact eval.mapCone cone with isLimitMapConeBinaryFanEquiv, and feeds the resulting degree family to optionProductComplexTransportedBinaryFanIsLimit_of_eval. The finite-product call site now has optionProductIsoBiprod_finiteProductCallsite_of_direct; the remaining blocker is instance packaging for finite Option families, not a missing fan proof. Product success remains nonterminal.

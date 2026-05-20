@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T07:50:28Z",
+  "generated_utc": "2026-05-20T07:56:14Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v218 closes the right-leg comparison in parent-owned W151 work; active support worker outputs remain read-only context only.",
+  "worker_policy": "No workers were launched from the target worktree. v219 consumes completed support results w170-w177 by parent-side reimplementation; active/newer support remains read-only evidence.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1242,11 +1242,11 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "w167 completed with reusable right-leg component normal forms; w168 completed as left-leg replay evidence; w169 completed with a canonical W151 right-leg/direct-comparison proof. Parent v218 has already integrated the right-leg/direct-comparison conclusion.",
+  "support_result_classification": "w170-w177 completed the evaluated-target IsLimit, mapCone, and finite call-site route; parent v219 integrates the fan/IsLimit route and records finite call-site instance packaging as next. w178-w179 are leads for that packaging boundary.",
   "latest_parent_update": {
-    "version": "v218",
-    "timestamp_utc": "2026-05-20T07:50:28Z",
-    "summary": "v218 proves evaluatedDegreeFanComparisonRight_direct and evaluatedDegreeFanComparison_direct in W151, matching the now-completed w169 right-leg repair result and closing both evaluated fan comparison legs.",
-    "remaining_next_step": "transport optionProductDegreeTransportedBinaryFanIsLimit across evaluatedDegreeFanComparison_direct into the evaluated complex fan IsLimit family."
+    "version": "v219",
+    "timestamp_utc": "2026-05-20T07:56:14Z",
+    "summary": "v219 closes the direct Option-product transported fan IsLimit route and adds optionProductIsoBiprod_finiteProductCallsite_of_direct in W151.",
+    "remaining_next_step": "derive finite Option-family subproduct, degreewise product, and selected binary biproduct instances so W149 can consume optionProductIsoBiprod_finiteProductCallsite_of_direct."
   }
 }

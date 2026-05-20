@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v218時点で、W151に evaluatedDegreeFanComparisonRight_direct と evaluatedDegreeFanComparison_direct を追加し、評価済みOption product fan比較の左右両legを閉じた。残るOption product境界は、degreewiseな optionProductDegreeTransportedBinaryFanIsLimit を evaluatedDegreeFanComparison_direct 経由で evaluated complex fan の IsLimit family へ輸送する部分である。有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造も残るため、成果物は非終端である。",
+  "summary": "v219時点で、W151に optionProductDegreeFanWithEvaluatedTargetsIsLimit、evaluatedOptionProductComplexBinaryFanIsLimit_direct、evaluatedOptionProductComplexBinaryFanIsLimitEquivEvalMapCone、optionProductComplexTransportedBinaryFanEvalIsLimit_direct、optionProductComplexTransportedBinaryFanIsLimit_direct、optionProductIsoBiprod_finiteProductCallsite_of_direct を追加し、Option product の transported fan IsLimit ルートを直接閉じた。残るOption product境界は有限Option familyのsubproduct、degreewise product、binary biproductインスタンス包装であり、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造も未完了のため、成果物は非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -676,8 +676,8 @@
     "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
   ],
   "known_gaps": [
-    "Option product decomposition は左右leg比較を閉じたが、degreewiseなIsLimit証明を evaluated complex fan の IsLimit family へ輸送する組み立てが未完了である。",
-    "有限family closure は W149 の Option-step 消費境界まで進んだが、一般有限積閉性としてはまだ閉じていない。",
+    "Option product decomposition のfan IsLimit証明は閉じたが、W149の有限Option family call-siteへ渡すsubproduct、degreewise product、binary biproductインスタンス包装が未完了である。",
+    "有限family closure は optionProductIsoBiprod_finiteProductCallsite_of_direct を消費できる段階まで進んだが、一般有限積閉性としてはまだ閉じていない。",
     "Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は依然として product_success に必要な未完了項目である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -685,14 +685,14 @@
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "支援w167は右leg成分正規形まで、w168は左leg再現まで、w169は右leg修復と evaluatedDegreeFanComparison_direct まで完了した。親側v218はw169と同じ右leg結論をW151で検証済みにしており、次の境界はIsLimit輸送である。",
+  "worker_frontier_summary": "w170-w177の支援結果を親側v219で検証可能なW151ルートとして再実装した。w178-w179はinstance packaging周辺の後続支援として扱い、次の親フロンティアはW149有限Option family call-siteのインスタンス包装である。",
   "claim_review_result": "not_run_nonterminal",
   "remaining_gaps": [
-    "Option product decomposition は左右leg比較を閉じたが、degreewiseなIsLimit証明を evaluated complex fan の IsLimit family へ輸送する組み立てが未完了である。",
-    "有限family closure は W149 の Option-step 消費境界まで進んだが、一般有限積閉性としてはまだ閉じていない。",
+    "Option product decomposition のfan IsLimit証明は閉じたが、W149の有限Option family call-siteへ渡すsubproduct、degreewise product、binary biproductインスタンス包装が未完了である。",
+    "有限family closure は optionProductIsoBiprod_finiteProductCallsite_of_direct を消費できる段階まで進んだが、一般有限積閉性としてはまだ閉じていない。",
     "Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は依然として product_success に必要な未完了項目である。"
   ],
-  "next_recommended_goal": "W151でoptionProductDegreeTransportedBinaryFanIsLimitをevaluatedDegreeFanComparison_direct経由でmapCone評価fanのIsLimitへ輸送し、optionProductComplexTransportedBinaryFanIsLimit_of_evalへ接続する。",
+  "next_recommended_goal": "W149で有限Option familyの文脈からnone/complement subproduct、degreewise product、選択binary biproductの各インスタンスを構成し、optionProductIsoBiprod_finiteProductCallsite_of_directをFiniteProductOptionDecompositionInputへ接続する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -807,9 +807,16 @@
     "complementSubproductReindexIso_hom_evalTail_hom_π",
     "evaluatedOptionProductComplexBinaryFan_snd_evalTail_hom_π",
     "evaluatedDegreeFanComparisonRight_direct",
-    "evaluatedDegreeFanComparison_direct"
+    "evaluatedDegreeFanComparison_direct",
+    "optionProductDegreeFanWithEvaluatedTargetsIsLimit",
+    "evaluatedOptionProductComplexBinaryFanIsLimit_direct",
+    "evaluatedOptionProductComplexBinaryFanIsLimitEquivEvalMapCone",
+    "optionProductComplexTransportedBinaryFanEvalIsLimit_direct",
+    "optionProductComplexTransportedBinaryFanIsLimit_direct",
+    "optionProductIsoBiprod_finiteProductCallsite_of_direct",
+    "finiteProductCallsiteRemainingInstanceGaps"
   ],
-  "generated_utc": "2026-05-20T07:50:28Z",
+  "generated_utc": "2026-05-20T07:56:14Z",
   "support_result_classification": "w167=merge_audit_only; w168=do_not_merge_blindly_into_current_live_target; w169=merge_canonical_w151_diff already reflected by parent v218.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
