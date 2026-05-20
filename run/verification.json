@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v184-shortcomplex-transport-object-isos",
-  "generated_utc": "2026-05-20T14:25:00Z",
-  "source_tree_hash": "4c58a0a1b19a5fbdb6e5dd0e833257278fb6257676543700eb33b8708d1b5c85",
-  "summary": "v184 discharges the three object-isomorphism fields in the short-complex biproduct transport frontier. objectIsoDataOfBiprodXIso composes MetrizableLCA.biprodObjIsoBiprod with HomologicalComplex.biprodXIso in the three short-complex degrees, so only comm12 and comm23 remain as TransportCompatibilitySquares.",
+  "generated_utc": "2026-05-20T03:15:29Z",
+  "source_tree_hash": "22eda17071534374f1961285528e394e569d7519f23ad08d910a0f0baa263623",
+  "summary": "v185 discharges the short-complex biproduct transport compatibility squares. transportCompatibilitySquaresOfBiprodXIso proves comm12 and comm23 from biprodXIso projection lemmas, the Hom.comm naturality of biprod.fst/snd, and MetrizableLCA biprodObjIsoBiprod projection lemmas; exactAcyclic_biprod is now unconditional in the w138 audit file.",
   "commands": [
     {
       "command": "lake build",
@@ -182,7 +182,7 @@
     {
       "command": "lake env lean audit/blockers/short_complex_biprod_transport_constructor_w138.lean",
       "status": "passed",
-      "evidence": "Focused v184 short-complex transport audit passed after constructing the three object isomorphisms and reducing the residual to comm12/comm23."
+      "evidence": "Focused v185 short-complex transport audit passed after proving comm12/comm23 and exactAcyclic_biprod."
     },
     {
       "command": "lake env lean audit/blockers/dbounded_finite_limits_colimits_transfer_w139.lean",
@@ -390,7 +390,10 @@
     "boundedCochainComplex_isClosedUnderColimitsOfShape",
     "BoundedComplexCategory.hasFiniteLimits",
     "BoundedComplexCategory.hasFiniteColimits",
-    "Dbounded.hasFiniteProductsOfStableFiniteProducts"
+    "Dbounded.hasFiniteProductsOfStableFiniteProducts",
+    "ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
+    "ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
+    "ShortComplexBiprodTransportConstructorW138.exactAcyclic_biprod"
   ],
   "product_complete": false,
   "known_gaps": [

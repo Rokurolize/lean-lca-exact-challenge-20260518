@@ -22,6 +22,38 @@ open CategoryTheory.Limits
 
 namespace ShortComplexBiprodTransportConstructorW138
 
+@[simp]
+lemma biprodMap_biprodFst {A B A' B' : MetrizableLCA.{u}}
+    (f : A ⟶ A') (g : B ⟶ B') :
+    MetrizableLCA.biprodMap f g ≫ MetrizableLCA.biprodFst A' B' =
+      MetrizableLCA.biprodFst A B ≫ f := by
+  ext p
+  rfl
+
+@[simp]
+lemma biprodMap_biprodSnd {A B A' B' : MetrizableLCA.{u}}
+    (f : A ⟶ A') (g : B ⟶ B') :
+    MetrizableLCA.biprodMap f g ≫ MetrizableLCA.biprodSnd A' B' =
+      MetrizableLCA.biprodSnd A B ≫ g := by
+  ext p
+  rfl
+
+@[reassoc (attr := simp)]
+lemma biprodXIso_inv_fst
+    (K L : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ) :
+    (HomologicalComplex.biprodXIso K L i).inv ≫ (biprod.fst : K ⊞ L ⟶ K).f i =
+      biprod.fst := by
+  rw [Iso.inv_comp_eq]
+  exact (HomologicalComplex.biprodXIso_hom_fst (K := K) (L := L) i).symm
+
+@[reassoc (attr := simp)]
+lemma biprodXIso_inv_snd
+    (K L : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ) :
+    (HomologicalComplex.biprodXIso K L i).inv ≫ (biprod.snd : K ⊞ L ⟶ L).f i =
+      biprod.snd := by
+  rw [Iso.inv_comp_eq]
+  exact (HomologicalComplex.biprodXIso_hom_snd (K := K) (L := L) i).symm
+
 /-- The explicit strict-short-exact biproduct short complex already handled upstream. -/
 noncomputable abbrev ExplicitBiprodShortComplex
     (K L : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ) :
@@ -152,6 +184,67 @@ theorem exactAcyclic_biprod_of_transportCompatibilitySquares
   exact exactAcyclic_biprod_of_transportConstructorFields K L
     (fun i => transportConstructorFieldsOfCompatibilitySquares (squares i)) hK hL
 
+/-- The canonical cochain-complex biproduct object is compatible with the explicit product model. -/
+noncomputable def transportCompatibilitySquaresOfBiprodXIso
+    (K L : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ) :
+    TransportCompatibilitySquares K L i where
+  comm₁₂ := by
+    dsimp [objectIsoDataOfBiprodXIso, ExplicitBiprodShortComplex, TargetBiprodShortComplex]
+    rw [← cancel_mono (HomologicalComplex.biprodXIso K L i).hom]
+    apply biprod.hom_ext
+    · simp only [Category.assoc]
+      rw [HomologicalComplex.biprodXIso_hom_fst]
+      rw [← HomologicalComplex.Hom.comm
+        (biprod.fst : K ⊞ L ⟶ K) ((ComplexShape.up ℤ).prev i) i]
+      rw [biprodXIso_inv_fst_assoc]
+      rw [biprodXIso_inv_fst]
+      simp [MetrizableLCA.strictShortExactBiprodComplex]
+      rw [← Category.assoc, MetrizableLCA.biprodObjIsoBiprod_hom_fst]
+    · simp only [Category.assoc]
+      rw [HomologicalComplex.biprodXIso_hom_snd]
+      rw [← HomologicalComplex.Hom.comm
+        (biprod.snd : K ⊞ L ⟶ L) ((ComplexShape.up ℤ).prev i) i]
+      rw [biprodXIso_inv_snd_assoc]
+      rw [biprodXIso_inv_snd]
+      simp [MetrizableLCA.strictShortExactBiprodComplex]
+      rw [← Category.assoc, MetrizableLCA.biprodObjIsoBiprod_hom_snd]
+  comm₂₃ := by
+    dsimp [objectIsoDataOfBiprodXIso, ExplicitBiprodShortComplex, TargetBiprodShortComplex]
+    rw [← cancel_mono (HomologicalComplex.biprodXIso K L ((ComplexShape.up ℤ).next i)).hom]
+    apply biprod.hom_ext
+    · simp only [Category.assoc]
+      rw [HomologicalComplex.biprodXIso_hom_fst]
+      rw [← HomologicalComplex.Hom.comm
+        (biprod.fst : K ⊞ L ⟶ K) i ((ComplexShape.up ℤ).next i)]
+      rw [biprodXIso_inv_fst_assoc]
+      rw [biprodXIso_inv_fst]
+      simp [MetrizableLCA.strictShortExactBiprodComplex]
+      rw [← Category.assoc, MetrizableLCA.biprodObjIsoBiprod_hom_fst]
+    · simp only [Category.assoc]
+      rw [HomologicalComplex.biprodXIso_hom_snd]
+      rw [← HomologicalComplex.Hom.comm
+        (biprod.snd : K ⊞ L ⟶ L) i ((ComplexShape.up ℤ).next i)]
+      rw [biprodXIso_inv_snd_assoc]
+      rw [biprodXIso_inv_snd]
+      simp [MetrizableLCA.strictShortExactBiprodComplex]
+      rw [← Category.assoc, MetrizableLCA.biprodObjIsoBiprod_hom_snd]
+
+/-- The canonical cochain-complex biproduct supplies the full short-complex transport input. -/
+noncomputable def transportConstructorFieldsOfBiprodXIso
+    (K L : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ) :
+    TransportConstructorFields K L i :=
+  transportConstructorFieldsOfCompatibilitySquares
+    (transportCompatibilitySquaresOfBiprodXIso K L i)
+
+/-- Unconditional closure of metrizable exact-acyclic complexes under binary biproducts. -/
+theorem exactAcyclic_biprod
+    (K L : CochainComplex MetrizableLCA.{u} ℤ)
+    (hK : exactAcyclic MetrizableLCA K)
+    (hL : exactAcyclic MetrizableLCA L) :
+    exactAcyclic MetrizableLCA (K ⊞ L) := by
+  exact exactAcyclic_biprod_of_transportConstructorFields K L
+    (transportConstructorFieldsOfBiprodXIso K L) hK hL
+
 def objectIsoOnlyFieldCount : Nat := 3
 
 def requiredTransportFieldCount : Nat := 5
@@ -185,6 +278,9 @@ section Checks
 #check transportInputOfFields
 #check exactAcyclic_biprod_of_transportConstructorFields
 #check exactAcyclic_biprod_of_transportCompatibilitySquares
+#check transportCompatibilitySquaresOfBiprodXIso
+#check transportConstructorFieldsOfBiprodXIso
+#check exactAcyclic_biprod
 #check objectIsoOnly_has_fewer_fields
 #check remainingCompatibilityFields_count
 #check missingCompatibilitySquares
