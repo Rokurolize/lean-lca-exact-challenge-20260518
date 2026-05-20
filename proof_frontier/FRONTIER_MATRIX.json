@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T04:40:08Z",
+  "generated_utc": "2026-05-20T04:45:33Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v196 ports support w149 as a parent-owned finite exact-acyclic product closure audit; active support worker w151 overlaps the next Option-product decomposition constructor, so the parent does not launch duplicate work. This is frontier progress, not product completion.",
+  "worker_policy": "No workers were launched from the target worktree. v197 ports completed support results w150/w151 as parent-owned frontier audits: backward source-map reduction and Option product decomposition API scouting. This narrows proof frontiers but is not product completion.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1067,7 +1067,8 @@
         "all weak endpoint provider surfaces are equivalent to bounded strict realization",
         "v185 discharges the comm12/comm23 short-complex transport equations using HomologicalComplex.biprodXIso projection lemmas, HomologicalComplex.Hom.comm for biprod.fst/snd, and MetrizableLCA.biprodObjIsoBiprod projection lemmas.",
         "v186 consumes support w141 after parent focused Lean verification; support w140 is superseded by parent v185."
-      ]
+      ],
+      "another_active_process_already_owns_it": false
     },
     {
       "frontier_id": "frontier-exact-category-api",

@@ -1,0 +1,134 @@
+import LeanLCAExactChallenge.Derived.Bounded
+import Mathlib.CategoryTheory.Limits.Shapes.PiProd
+
+/-!
+W151 audit: Option product decomposition for cochain-complex products.
+
+The SSoT route selected `degreewise-product-api`.  This file records the concrete product APIs
+available for splitting an `Option J`-indexed product into the `none` factor and the `some`
+tail, and isolates the remaining constructor needed by W149's finite-product induction route.
+
+This is a frontier/API guard, not a product-success proof.
+-/
+
+set_option autoImplicit false
+
+universe w v u
+
+namespace LeanLCAExactChallenge
+
+open CategoryTheory
+open CategoryTheory.Limits
+
+namespace OptionProductDecompositionW151
+
+variable (C : Type u) [Category.{v} C] [Preadditive C] [HasBinaryBiproducts C]
+
+/-- The tail family obtained by dropping the `none` summand from an `Option`-indexed family. -/
+abbrev optionTail {J : Type w} (K : Option J → CochainComplex C ℤ) :
+    J → CochainComplex C ℤ :=
+  fun j => K (some j)
+
+/--
+The product-object decomposition needed by the finite exact-acyclic product induction:
+an `Option J` product of cochain complexes should be the binary biproduct of the `none` complex
+and the product over the `some` tail.
+-/
+abbrev OptionProductIsoBiprod :=
+  ∀ (J : Type w)
+    (K : Option J → CochainComplex C ℤ) [HasProduct K] [HasProduct (optionTail C K)],
+      ∏ᶜ K ≅ K none ⊞ ∏ᶜ (optionTail C K)
+
+/--
+The degreewise product split exposed by mathlib's `PiProd` API.  It splits the product over
+`Option J` into the subproduct over entries equal to `none` and the complementary subproduct.
+-/
+noncomputable abbrev optionProductBinaryFan {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)] :
+    BinaryFan
+      (∏ᶜ (fun i : {x : Option J // x = none} => K i.val))
+      (∏ᶜ (fun i : {x : Option J // ¬ x = none} => K i.val)) :=
+  Pi.binaryFanOfProp K (fun x : Option J => x = none)
+
+/-- The same split at a fixed cochain degree. -/
+noncomputable abbrev optionProductDegreeBinaryFan {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun i : Option J => (K i).X n)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)] :
+    BinaryFan
+      (∏ᶜ (fun i : {x : Option J // x = none} => (K i.val).X n))
+      (∏ᶜ (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)) :=
+  Pi.binaryFanOfProp (fun i : Option J => (K i).X n) (fun x : Option J => x = none)
+
+/--
+API state for the selected degreewise route.
+
+The first three fields are available in mathlib/local imports; the final field is the missing
+constructor that would turn the degreewise product split plus reindexing into the cochain-complex
+iso needed by `OptionProductIsoBiprod`.
+-/
+structure DegreewiseProductApiState : Type where
+  complexLimitBuilder : String
+  complexLimitCone : String
+  optionSplitProductCone : String
+  productReindex : String
+  singletonProductReduction : String
+  missingComplexIsoConstructor : Option String
+
+/-- W151's current API frontier for the selected route. -/
+def currentDegreewiseProductApiState : DegreewiseProductApiState where
+  complexLimitBuilder := "HomologicalComplex.isLimitOfEval"
+  complexLimitCone := "HomologicalComplex.coneOfHasLimitEval"
+  optionSplitProductCone := "Limits.Pi.binaryFanOfProp / binaryFanOfPropIsLimit"
+  productReindex := "Limits.Pi.reindex / map' over Option.some"
+  singletonProductReduction := "Limits.productUniqueIso for the none-indexed subproduct"
+  missingComplexIsoConstructor :=
+    some "Promote the degreewise Option split to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))"
+
+theorem currentDegreewiseProductApiState_missing :
+    currentDegreewiseProductApiState.missingComplexIsoConstructor =
+      some "Promote the degreewise Option split to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))" :=
+  rfl
+
+/-- Compact checklist of the next proof obligations after this API guard. -/
+def optionProductDecompositionNextObligations : List String :=
+  ["instantiate degreewise products for (fun i : Option J => (K i).X n)",
+    "split that degreewise product with Pi.binaryFanOfProp at predicate x = none",
+    "identify the none subproduct with (K none).X n using productUniqueIso",
+    "reindex the complement subproduct along Option.some to the J-tail using Pi.reindex",
+    "assemble the degreewise isomorphisms into a HomologicalComplex isomorphism using isLimitOfEval"]
+
+theorem optionProductDecompositionNextObligations_count :
+    optionProductDecompositionNextObligations.length = 5 :=
+  rfl
+
+section Checks
+
+#check OptionProductIsoBiprod
+#check optionProductBinaryFan
+#check optionProductDegreeBinaryFan
+#check DegreewiseProductApiState
+#check currentDegreewiseProductApiState
+#check currentDegreewiseProductApiState_missing
+#check optionProductDecompositionNextObligations
+#check optionProductDecompositionNextObligations_count
+#check HomologicalComplex.isLimitOfEval
+#check HomologicalComplex.coneOfHasLimitEval
+#check HomologicalComplex.isLimitConeOfHasLimitEval
+#check Limits.Pi.map
+#check Limits.Pi.map'
+#check Limits.Pi.mapIso
+#check Limits.Pi.reindex
+#check Limits.Pi.binaryFanOfProp
+#check Limits.Pi.binaryFanOfPropIsLimit
+#check Limits.productUniqueIso
+
+end Checks
+
+end OptionProductDecompositionW151
+
+end LeanLCAExactChallenge

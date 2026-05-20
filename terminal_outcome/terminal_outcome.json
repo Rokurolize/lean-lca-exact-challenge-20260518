@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v196時点で、binary mapping cone/biproduct比較について、次数ごとの候補写像の双方向合成が恒等射であること、biprod.mapの左右射影成分補題、前向き微分可換squareを左右の双積射影等式へ還元するforwardDifferentialSquare_reduction_iff、逆向き右成分source-map rewrite、および右成分微分squareをfst/snd target equationsへ還元するrightComponentDifferentialSquare_ext_to_iffをLeanで証明した。さらに有限exact-acyclic product閉性について、MetrizableLCA.exactAcyclic_biprodからOption帰納ステップへ進む監査を追加し、FiniteProductDecompositionInput.optionProductIsoBiprodと空積exactnessが次入力であることを確認した。ただし、左右射影等式そのもの、右成分のfst/snd target equations、左成分/逆向き候補写像の微分可換性、有限product比較/分解、有限exact-acyclic product閉性、DboundedのEqualizer/Pullback転送、有限余極限、pretriangulated/triangulated構造、stable infinity-category構造は未完成であり、product_successではない。",
+  "summary": "v197時点で、binary mapping cone/biproduct比較について、候補写像の双方向合成、biprod.map射影補題、前向き微分squareの左右射影還元、逆向きsource-map還元、および右成分微分squareのfst/snd target equationへの還元をLeanで確認した。さらに有限exact-acyclic product閉性について、MetrizableLCA.exactAcyclic_biprodからOption帰納ステップへ進む監査と、Limits.Pi.binaryFanOfProp/productUniqueIso/Pi.reindex/HomologicalComplex.isLimitOfEvalを使うOption product分解API監査を追加した。ただし、左右射影等式そのもの、右成分fst/snd target equations、左成分/逆向き全体の微分可換性、有限product分解の本体、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -56,7 +56,9 @@
     "lake env lean audit/blockers/dbounded_pullback_localization_transfer_w143.lean",
     "lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean",
     "lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
-    "lake env lean audit/blockers/finite_exact_acyclic_product_closure_w149.lean"
+    "lake env lean audit/blockers/finite_exact_acyclic_product_closure_w149.lean",
+    "lake env lean audit/blockers/backward_source_map_rewrite_w150.lean",
+    "lake env lean audit/blockers/option_product_decomposition_w151.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -770,7 +772,7 @@
     "DboundedSemanticStableInputAdapter.missingSemanticFieldNames_count",
     "DboundedSemanticStableInputAdapter.currentSemanticRouteState_semanticInput_not_supplied"
   ],
-  "generated_utc": "2026-05-20T05:15:00Z",
+  "generated_utc": "2026-05-20T04:45:33Z",
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave68_20260519T233000Z/workers/w126-stable-dbounded-certificate-provider-route/result.json",

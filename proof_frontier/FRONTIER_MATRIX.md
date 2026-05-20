@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T04:40:08Z
+Generated: 2026-05-20T04:45:33Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -9,6 +9,8 @@ No workers are launched from the target worktree. The v166 parent update ports a
 v195 consumes support w148/w149: the useful w148 source-map rewrite is proved in the parent as `biprod_inr_f_comp_biprodConeToConeBiprodMapX`, with symmetric `biprod_inl_f_comp_biprodConeToConeBiprodMapX`, and the right backward component square is reduced by `rightComponentDifferentialSquare_ext_to_iff` to two target equations; w149 is useful but delayed because it isolates finite-product decomposition and empty-product inputs rather than closing the active binary comparison.
 
 v196 ports support w149 as `audit/blockers/finite_exact_acyclic_product_closure_w149.lean`. The audit proves that `MetrizableLCA.exactAcyclic_biprod` gives the nonempty finite exact-acyclic product induction step once an `Option`-product decomposition and tail closure are supplied, and records `FiniteProductDecompositionInput.optionProductIsoBiprod` plus empty-product exactness as the next finite-product inputs. The active support worker `w151-option-product-decomposition` overlaps the decomposition constructor, so no duplicate target-owned worker is launched.
+
+v197 consumes completed support results w150/w151 as parent-owned frontier audits. `audit/blockers/backward_source_map_rewrite_w150.lean` proves the backward right source-map route reduces to `rightComponentDifferentialSquare` and confirms the remaining right target equations are exactly the fst/snd component equations. `audit/blockers/option_product_decomposition_w151.lean` identifies the `Limits.Pi.binaryFanOfProp`, `Limits.productUniqueIso`, `Limits.Pi.reindex`, and `HomologicalComplex.isLimitOfEval` route needed to construct the `Option` product decomposition used by v196. Both files are audit/frontier evidence only and do not claim product success.
 
 | frontier_id | target | allowed writes | verification | merge blocker | product contribution | owner |
 | --- | --- | --- | --- | --- | --- | --- |

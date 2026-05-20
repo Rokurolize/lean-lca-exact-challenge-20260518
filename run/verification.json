@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v196-finite-exact-acyclic-product-closure-audit",
-  "generated_utc": "2026-05-20T04:40:08Z",
-  "source_tree_hash": "8dc0db9efbbff9182994af4f62c3d3464f00615ea41e6bf1d386ea887ab1f8a5",
-  "summary": "v196 ports support w149 as a parent-owned finite exact-acyclic product closure audit. It proves that MetrizableLCA.exactAcyclic_biprod supplies the Option induction step once Option product decomposition and tail closure are provided; product success remains blocked by binary mapping-cone differential equations, finite product decomposition/closure, Dbounded transfer, and stable structures.",
+  "schema": "lean-lca-exact-challenge-verification-v197-w150-w151-frontier-audits",
+  "generated_utc": "2026-05-20T04:45:33Z",
+  "source_tree_hash": "bcb8b0958d91459e14666b4173a9bc146727212b6728a8573e2af9025212dbc2",
+  "summary": "v197 ports support w150 and w151 as parent-owned frontier audits. W150 proves the backward source-map route reduces to the existing right component differential square and its fst/snd target equations. W151 records the Option product decomposition API route through Pi.binaryFanOfProp, productUniqueIso, Pi.reindex, and HomologicalComplex.isLimitOfEval. Product success remains blocked by the actual target equations, finite product decomposition/closure, Dbounded transfer, and stable structures.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after v196 source and artifact updates; existing Derived.Bounded simp/flexible warnings remain nonblocking."
+      "evidence": "Full lake build passed after v196 source and artifact updates; existing Derived.Bounded simp/flexible warnings remain nonblocking. v197 baseline/oracle check passed."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after v196 source updates."
+      "evidence": "Forbidden-token audit passed after v196 source updates. v197 baseline/oracle check passed."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed after v196 source and artifact updates."
+      "evidence": "RequiredDeclarations passed after v196 source and artifact updates. v197 baseline/oracle check passed."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed after v196 source updates; the finite-product closure audit remains frontier support and does not claim product success."
+      "evidence": "ProductSuccessDeclarations passed after v196 source updates; the finite-product closure audit remains frontier support and does not claim product success. v197 baseline/oracle check passed."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v196: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v197: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v196 source and artifact updates."
+      "evidence": "Whitespace diff check passed after v197 source and artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -218,6 +218,16 @@
       "command": "lake env lean audit/blockers/finite_exact_acyclic_product_closure_w149.lean",
       "status": "passed",
       "evidence": "Focused v196 finite exact-acyclic product closure audit passed; it isolates Option product decomposition plus empty-product exactness as the next finite-product inputs."
+    },
+    {
+      "command": "lake env lean audit/blockers/backward_source_map_rewrite_w150.lean",
+      "status": "passed",
+      "evidence": "Focused v197 backward source-map rewrite audit passed; it reduces the backward right source component to rightComponentDifferentialSquare and records the remaining fst/snd target equations."
+    },
+    {
+      "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
+      "status": "passed",
+      "evidence": "Focused v197 Option product decomposition API audit passed; it identifies Pi.binaryFanOfProp, productUniqueIso, Pi.reindex, and HomologicalComplex.isLimitOfEval as the route to the missing Option product iso."
     }
   ],
   "implemented_declarations_checked": [
