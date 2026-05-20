@@ -86,6 +86,40 @@ structure WppOpLcaColimitMapOpenCover
   qY_open : IsOpenMap (qY : QY → cy.pt)
   comm : qX ≫ φ = G ≫ qY
 
+/--
+Quotient/coequalizer data for the pure component open-map boundary.
+`qX` and `qY` are quotient-style covers of the source and target colimit
+points, and `G` is the aggregate map before descending to the target colimit.
+-/
+structure WppOpLcaQuotientOpenMapData
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt) : Type 2 where
+  QX : MetrizableLCA.{0}
+  QY : MetrizableLCA.{0}
+  qX : QX ⟶ cx.pt
+  qY : QY ⟶ cy.pt
+  G : QX ⟶ QY
+  qX_surjective : Function.Surjective (qX : QX → cx.pt)
+  qY_open : IsOpenMap (qY : QY → cy.pt)
+  aggregate_open : IsOpenMap (G : QX → QY)
+  quotient_comm : qX ≫ φ = G ≫ qY
+
+/-- Quotient/coequalizer open-map data supplies the cover package. -/
+def WppOpLcaQuotientOpenMapData.toCover
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y} {φ : cx.pt ⟶ cy.pt}
+    (h : WppOpLcaQuotientOpenMapData X Y α cx cy φ) :
+    WppOpLcaColimitMapOpenCover X Y α cx cy φ where
+  QX := h.QX
+  QY := h.QY
+  qX := h.qX
+  qY := h.qY
+  G := h.G
+  qX_surjective := h.qX_surjective
+  G_open := h.aggregate_open
+  qY_open := h.qY_open
+  comm := h.quotient_comm
+
 /-- A pure open-map cover proves openness of the induced colimit map. -/
 theorem wppOp_lca_colimitMap_openMap_of_cover
     {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
@@ -123,6 +157,45 @@ def wppOpLcaColimitMapOpenCoverOfLeg
   qY_open := htarget_open
   comm := hcompat
 
+/-- The underlying map of an isomorphism in `MetrizableLCA` is surjective. -/
+lemma metrizableLCA_iso_hom_surjective {A B : MetrizableLCA.{0}} (e : A ≅ B) :
+    Function.Surjective (e.hom : A → B) := by
+  intro b
+  refine ⟨e.inv b, ?_⟩
+  have h := congrArg (fun f : B ⟶ B => f b) e.inv_hom_id
+  simpa using h
+
+/-- The underlying map of an isomorphism in `MetrizableLCA` is open. -/
+lemma metrizableLCA_iso_hom_openMap {A B : MetrizableLCA.{0}} (e : A ≅ B) :
+    IsOpenMap (e.hom : A → B) := by
+  intro U hU
+  have hpre : e.hom '' U = (e.inv : B → A) ⁻¹' U := by
+    ext b
+    constructor
+    · intro hb
+      rcases hb with ⟨a, ha, hb⟩
+      subst hb
+      have h := congrArg (fun f : A ⟶ A => f a) e.hom_inv_id
+      simpa using congrArg (fun x => x ∈ U) h.symm ▸ ha
+    · intro hb
+      refine ⟨e.inv b, hb, ?_⟩
+      have h := congrArg (fun f : B ⟶ B => f b) e.inv_hom_id
+      simpa using h
+  rw [hpre]
+  exact hU.preimage e.inv.hom.continuous
+
+/-- Surjectivity is preserved by composing on the right with an isomorphism. -/
+lemma surjective_comp_of_surjective_iso {A B C : MetrizableLCA.{0}} (q : A ⟶ B)
+    (e : B ≅ C) (hq : Function.Surjective (q : A → B)) :
+    Function.Surjective ((q ≫ e.hom : A ⟶ C) : A → C) := by
+  intro c
+  rcases hq (e.inv c) with ⟨a, ha⟩
+  refine ⟨a, ?_⟩
+  change e.hom (q a) = c
+  rw [ha]
+  have h := congrArg (fun f : C ⟶ C => f c) e.inv_hom_id
+  simpa using h
+
 /-- A leg-level quotient/open certificate supplies the pure component open-map boundary. -/
 theorem wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates
     (hleg :
@@ -144,6 +217,42 @@ theorem wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates
     (wppOpLcaColimitMapOpenCoverOfLeg j (hcompat j)
       hsource_surjective (hopen j) htarget_open)
 
+/--
+It is enough to prove the source-surjective and target-open leg certificate for
+the canonical colimit cocone at one fixed WPP-op leg.  Any other colimit cocone
+is transported from the canonical one by the unique colimit-point isomorphism.
+-/
+theorem wppOp_lca_colimitMap_preserves_openMap_of_canonical_leg_certificates
+    (j₀ : WalkingParallelPairᵒᵖ)
+    (hsource : ∀ (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}),
+      Function.Surjective
+        ((colimit.ι X j₀ : X.obj j₀ ⟶ (colimit X : MetrizableLCA.{0})) :
+          (X.obj j₀).carrier → (colimit X : MetrizableLCA.{0})))
+    (htarget : ∀ (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}),
+      IsOpenMap
+        ((colimit.ι Y j₀ : Y.obj j₀ ⟶ (colimit Y : MetrizableLCA.{0})) :
+          (Y.obj j₀).carrier → (colimit Y : MetrizableLCA.{0}))) :
+    wppOp_lca_colimitMap_preserves_openMap := by
+  apply wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates
+  intro X Y α cx cy φ hcx hcy hopen hcompat
+  let ex : colimit X ≅ cx.pt := (colimit.isColimit X).coconePointUniqueUpToIso hcx
+  let ey : colimit Y ≅ cy.pt := (colimit.isColimit Y).coconePointUniqueUpToIso hcy
+  refine ⟨j₀, ?_, ?_⟩
+  · have hcomp : Function.Surjective
+        ((colimit.ι X j₀ ≫ ex.hom : X.obj j₀ ⟶ cx.pt) : X.obj j₀ → cx.pt) :=
+      surjective_comp_of_surjective_iso (colimit.ι X j₀) ex (hsource X)
+    have hfac : colimit.ι X j₀ ≫ ex.hom = cx.ι.app j₀ := by
+      simpa [ex] using
+        (IsColimit.comp_coconePointUniqueUpToIso_hom (colimit.isColimit X) hcx j₀)
+    simpa [hfac] using hcomp
+  · have hcomp : IsOpenMap
+        ((colimit.ι Y j₀ ≫ ey.hom : Y.obj j₀ ⟶ cy.pt) : Y.obj j₀ → cy.pt) := by
+      exact (metrizableLCA_iso_hom_openMap ey).comp (htarget Y)
+    have hfac : colimit.ι Y j₀ ≫ ey.hom = cy.ι.app j₀ := by
+      simpa [ey] using
+        (IsColimit.comp_coconePointUniqueUpToIso_hom (colimit.isColimit Y) hcy j₀)
+    simpa [hfac] using hcomp
+
 /-- Pure cover construction is enough for the pure component-level LCA boundary. -/
 theorem wppOp_lca_colimitMap_preserves_openMap_of_cover
     (hcover :
@@ -159,6 +268,22 @@ theorem wppOp_lca_colimitMap_preserves_openMap_of_cover
   intro X Y α cx cy φ hcx hcy hopen hcompat
   rcases hcover X Y α cx cy φ hcx hcy hopen hcompat with ⟨cover⟩
   exact wppOp_lca_colimitMap_openMap_of_cover cover
+
+/-- Quotient/coequalizer open-map data is enough for the pure component-level LCA boundary. -/
+theorem wppOp_lca_colimitMap_preserves_openMap_of_quotientBoundary
+    (hboundary :
+      ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+        (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+          IsColimit cx →
+            IsColimit cy →
+              (∀ j : WalkingParallelPairᵒᵖ, IsOpenMap (α.app j : X.obj j → Y.obj j)) →
+                (∀ j : WalkingParallelPairᵒᵖ,
+                  cx.ι.app j ≫ φ = α.app j ≫ cy.ι.app j) →
+                  Nonempty (WppOpLcaQuotientOpenMapData X Y α cx cy φ)) :
+    wppOp_lca_colimitMap_preserves_openMap := by
+  intro X Y α cx cy φ hcx hcy hopen hcompat
+  rcases hboundary X Y α cx cy φ hcx hcy hopen hcompat with ⟨hdata⟩
+  exact wppOp_lca_colimitMap_openMap_of_cover hdata.toCover
 
 /-- The pure component-level LCA boundary supplies W286's short-complex boundary. -/
 theorem openMap_walkingParallelPairOp_colimitMap_boundary_of_lca_colimitMap
@@ -215,6 +340,7 @@ def currentRightOpenMapWppOpColimitState :
   remainingInputs :=
     ["pure LCA API: wppOp_lca_colimitMap_preserves_openMap",
       "or construct WppOpLcaColimitMapOpenCover for the induced component map",
+      "or prove the fixed canonical WPP-op colimit leg is source-surjective/open",
       "degreewise source and target cocones are supplied by ShortComplex.π₂/π₃ colimit preservation"]
   productSuccessClaimed := false
 
@@ -227,16 +353,23 @@ def rightOpenMapWppOpColimitDeclarationNames : List String :=
     "openMap_walkingParallelPairOp_colimitMap_boundary",
     "wppOp_lca_colimitMap_preserves_openMap",
     "WppOpLcaColimitMapOpenCover",
+    "WppOpLcaQuotientOpenMapData",
+    "WppOpLcaQuotientOpenMapData.toCover",
     "wppOp_lca_colimitMap_openMap_of_cover",
     "wppOpLcaColimitMapOpenCoverOfLeg",
+    "metrizableLCA_iso_hom_surjective",
+    "metrizableLCA_iso_hom_openMap",
+    "surjective_comp_of_surjective_iso",
     "wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates",
+    "wppOp_lca_colimitMap_preserves_openMap_of_canonical_leg_certificates",
     "wppOp_lca_colimitMap_preserves_openMap_of_cover",
+    "wppOp_lca_colimitMap_preserves_openMap_of_quotientBoundary",
     "openMap_walkingParallelPairOp_colimitMap_boundary_of_lca_colimitMap",
     "rightOpenMap_walkingParallelPairOp_colimitClosure_of_colimitMapBoundary",
     "currentRightOpenMapWppOpColimitState"]
 
 theorem rightOpenMapWppOpColimitDeclarationNames_count :
-    rightOpenMapWppOpColimitDeclarationNames.length = 11 := rfl
+    rightOpenMapWppOpColimitDeclarationNames.length = 18 := rfl
 
 section Checks
 
@@ -244,10 +377,17 @@ section Checks
 #check openMap_walkingParallelPairOp_colimitMap_boundary
 #check wppOp_lca_colimitMap_preserves_openMap
 #check WppOpLcaColimitMapOpenCover
+#check WppOpLcaQuotientOpenMapData
+#check WppOpLcaQuotientOpenMapData.toCover
 #check wppOp_lca_colimitMap_openMap_of_cover
 #check wppOpLcaColimitMapOpenCoverOfLeg
+#check metrizableLCA_iso_hom_surjective
+#check metrizableLCA_iso_hom_openMap
+#check surjective_comp_of_surjective_iso
 #check wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates
+#check wppOp_lca_colimitMap_preserves_openMap_of_canonical_leg_certificates
 #check wppOp_lca_colimitMap_preserves_openMap_of_cover
+#check wppOp_lca_colimitMap_preserves_openMap_of_quotientBoundary
 #check openMap_walkingParallelPairOp_colimitMap_boundary_of_lca_colimitMap
 #check rightOpenMap_walkingParallelPairOp_colimitClosure_of_colimitMapBoundary
 #check currentRightOpenMapWppOpColimitState
