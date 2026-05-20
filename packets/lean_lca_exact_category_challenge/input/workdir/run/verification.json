@@ -1,9 +1,19 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v258-localized-comparison-factor-adjunction",
-  "generated_utc": "2026-05-20T12:42:00Z",
-  "source_tree_hash": "fd8b4236f1fb21087e090dbddb8f410ab8b2cff35cf4a842f75cbcbd93bd09e5",
-  "summary": "v258時点で、支援w245を親側で再実装し、bounded homotopy localized composite の比較因子化は得られるが、それだけでは Adjunction ではないことをLeanで記録した。必要な入力は、比較因子ルートからlocalization compositeへtransported localized adjunctionを供給し、さらにunit/counit membershipを証明することである。product success は非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v259-shortcomplex-quasiiso-homology-map-api",
+  "generated_utc": "2026-05-20T12:50:00Z",
+  "source_tree_hash": "a335e0695410ee186d1cc5b604ba158da180042c52338880be203580f20c739b",
+  "summary": "v259時点で、支援w243を親側で再実装し、ShortComplex.QuasiIso.exact_iff によって categorical ShortComplex.Exact はtargetへ輸送できることをLeanで確認した。一方、W242のtarget algebraic payloadへ戻すには、MetrizableLCA上のShortComplex.Exactまたはhomologyπ/ιデータから要素レベルのkernel equalityとT.gのsurjectivityを抽出する具体橋が必要である。product success は非完了である。",
   "commands": [
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_quasiiso_homology_map_api_w243.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W243 homology-map API audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/shortcomplex_quasiiso_homology_map_api_w243.lean",
+      "status": "passed",
+      "evidence": "Focused W243 ShortComplex quasiiso homology-map API audit passed in the parent target worktree."
+    },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/localized_comparison_factor_adjunction_w245.lean",
       "status": "passed",
@@ -652,7 +662,13 @@
     "LocalizedComparisonFactorAdjunctionW245.boundedHomotopyInverseImage_hasLeftCalculusOfFractions_of_comparisonFactorRight",
     "LocalizedComparisonFactorAdjunctionW245.boundedHomotopyInverseImage_hasRightCalculusOfFractions_of_comparisonFactorLeft",
     "LocalizedComparisonFactorAdjunctionW245.currentComparisonFactorAdjunctionState_no_transport_or_membership",
-    "LocalizedComparisonFactorAdjunctionW245.localizedComparisonFactorAdjunctionFindings_count"
+    "LocalizedComparisonFactorAdjunctionW245.localizedComparisonFactorAdjunctionFindings_count",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.TargetAlgebraicPayload",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.source_targetAlgebraicPayload",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.target_shortComplexExact_of_quasiIso",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.targetAlgebraicPayload_of_quasiIso_of_exactBridges",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.quasiIsoTargetSurjectivityExtraction_fromExactBridge",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.missingConcreteHomologyDeclarations_count"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -673,6 +689,6 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "v258 consumed support w245 as a parent-side frontier reduction; comparison factorization is recorded as insufficient without transported adjunction plus unit/counit membership. No product-success claim.",
+  "support_result_classification": "v259 consumed support w243 as a parent-side frontier reduction; categorical exactness transport is recorded, but concrete MetrizableLCA element-level extraction remains missing. No product-success claim.",
   "product_success": false
 }

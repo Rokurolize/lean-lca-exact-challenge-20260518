@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v258時点で、支援w245を親側で再実装し、bounded homotopy localized composite の比較因子化は得られるが、それだけでは Adjunction ではないことをLeanで記録した。必要な入力は、比較因子ルートからlocalization compositeへtransported localized adjunctionを供給し、さらにunit/counit membershipを証明することである。product success は非完了である。",
+  "summary": "v259時点で、支援w243を親側で再実装し、ShortComplex.QuasiIso.exact_iff によって categorical ShortComplex.Exact はtargetへ輸送できることをLeanで確認した。一方、W242のtarget algebraic payloadへ戻すには、MetrizableLCA上のShortComplex.Exactまたはhomologyπ/ιデータから要素レベルのkernel equalityとT.gのsurjectivityを抽出する具体橋が必要である。product success は非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -48,7 +48,9 @@
     "lake env lean audit/blockers/wpp_roof_fac_uniq_w241.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_roof_fac_uniq_w241.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/localized_comparison_factor_adjunction_w245.lean",
-    "lake env lean audit/blockers/localized_comparison_factor_adjunction_w245.lean"
+    "lake env lean audit/blockers/localized_comparison_factor_adjunction_w245.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_quasiiso_homology_map_api_w243.lean",
+    "lake env lean audit/blockers/shortcomplex_quasiiso_homology_map_api_w243.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1019,8 +1021,8 @@
     "OppositeLeftCalculusTransferW230.PullbackRightCalculusTransfer",
     "OppositeLeftCalculusTransferW230.oppositeWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_rightTransfer"
   ],
-  "generated_utc": "2026-05-20T12:42:00Z",
-  "support_result_classification": "v258 consumed support w245 as a parent-side frontier reduction; product success remains false.",
+  "generated_utc": "2026-05-20T12:50:00Z",
+  "support_result_classification": "v259 consumed support w243 as a parent-side frontier reduction; product success remains false.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1397,7 +1399,13 @@
     "LocalizedComparisonFactorAdjunctionW245.boundedHomotopyInverseImage_hasLeftCalculusOfFractions_of_comparisonFactorRight",
     "LocalizedComparisonFactorAdjunctionW245.boundedHomotopyInverseImage_hasRightCalculusOfFractions_of_comparisonFactorLeft",
     "LocalizedComparisonFactorAdjunctionW245.currentComparisonFactorAdjunctionState_no_transport_or_membership",
-    "LocalizedComparisonFactorAdjunctionW245.localizedComparisonFactorAdjunctionFindings_count"
+    "LocalizedComparisonFactorAdjunctionW245.localizedComparisonFactorAdjunctionFindings_count",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.TargetAlgebraicPayload",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.source_targetAlgebraicPayload",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.target_shortComplexExact_of_quasiIso",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.targetAlgebraicPayload_of_quasiIso_of_exactBridges",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.quasiIsoTargetSurjectivityExtraction_fromExactBridge",
+    "ShortComplexQuasiIsoHomologyMapAPIW243.missingConcreteHomologyDeclarations_count"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"

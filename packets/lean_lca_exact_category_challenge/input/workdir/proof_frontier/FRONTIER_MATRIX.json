@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T12:42:00Z",
+  "generated_utc": "2026-05-20T12:50:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v258 consumes support w245 by parent-side reimplementation.",
+  "worker_policy": "No workers were launched from the target worktree. v259 consumes support w243 by parent-side reimplementation.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1294,9 +1294,9 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "v258 consumed support w245 as a localized-adjunction frontier reduction; no product-success claim.",
-  "latest_parent_update": "v258-localized-comparison-factor-adjunction",
-  "summary": "v258時点で、支援w245を親側で再実装し、bounded homotopy localized composite の比較因子化は得られるが、それだけでは Adjunction ではないことをLeanで記録した。必要な入力は、比較因子ルートからlocalization compositeへtransported localized adjunctionを供給し、さらにunit/counit membershipを証明することである。product success は非完了である。",
+  "support_result_classification": "v259 consumed support w243 as a ShortComplex quasiiso homology API frontier reduction; no product-success claim.",
+  "latest_parent_update": "v259-shortcomplex-quasiiso-homology-map-api",
+  "summary": "v259時点で、支援w243を親側で再実装し、ShortComplex.QuasiIso.exact_iff によって categorical ShortComplex.Exact はtargetへ輸送できることをLeanで確認した。一方、W242のtarget algebraic payloadへ戻すには、MetrizableLCA上のShortComplex.Exactまたはhomologyπ/ιデータから要素レベルのkernel equalityとT.gのsurjectivityを抽出する具体橋が必要である。product success は非完了である。",
   "remaining_frontier": [
     "General closedness of the explicit MetrizableLCA pushout relation subgroup beyond strict-short-exact left legs.",
     "Arbitrary HasPushouts MetrizableLCA or HasCokernels MetrizableLCA to close HasFiniteColimits MetrizableLCA.",
@@ -1366,6 +1366,12 @@
       "classification": "manual_ported_frontier_reduction",
       "artifact": "audit/blockers/localized_comparison_factor_adjunction_w245.lean",
       "result": "Comparison factorization of the bounded homotopy localized composite is recorded, but it still requires transported localized adjunction plus unit/counit membership; product success remains false."
+    },
+    {
+      "id": "w243",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/shortcomplex_quasiiso_homology_map_api_w243.lean",
+      "result": "ShortComplex.QuasiIso.exact_iff transports categorical exactness; concrete MetrizableLCA exactness-to-kernel/surjectivity extraction remains missing."
     }
   ]
 }
