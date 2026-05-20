@@ -486,6 +486,87 @@ noncomputable def emptyMappingConeProductComparisonInput_direct :
       mappingConeZeroZeroIsoZero f0 ≪≫
         (emptyProductIsoHomologicalZero (fun j : J => CochainComplex.mappingCone (f j))).symm
 
+/-- Product-map naturality for reindexing along a type equivalence. -/
+theorem piMap_reindex_hom_naturality {α β : Type u} (e : α ≃ β)
+    {K L : β → CochainComplex MetrizableLCA.{u} ℤ}
+    [HasProduct K] [HasProduct L] [HasProduct (K ∘ e)] [HasProduct (L ∘ e)]
+    [HasProduct (fun a : α => K (e a))] [HasProduct (fun a : α => L (e a))]
+    (f : ∀ b, K b ⟶ L b) :
+    Limits.Pi.map (fun a : α => (f (e a) : (K ∘ e) a ⟶ (L ∘ e) a)) ≫
+        (Pi.reindex e L).hom =
+      (Pi.reindex e K).hom ≫ Limits.Pi.map f := by
+  apply Limits.Pi.hom_ext
+  intro b
+  rw [← e.apply_symm_apply b]
+  have hL :
+      (Pi.reindex e L).hom ≫ Pi.π L (e (e.symm b)) =
+        Pi.π (L ∘ e) (e.symm b) :=
+    Pi.reindex_hom_π e L (e.symm b)
+  have hK :
+      (Pi.reindex e K).hom ≫ Pi.π K (e (e.symm b)) =
+        Pi.π (K ∘ e) (e.symm b) :=
+    Pi.reindex_hom_π e K (e.symm b)
+  have hleft :
+      ((Limits.Pi.map (fun a : α => (f (e a) : (K ∘ e) a ⟶ (L ∘ e) a)) ≫
+          (Pi.reindex e L).hom) ≫
+          Pi.π L (e (e.symm b))) =
+        Pi.π (K ∘ e) (e.symm b) ≫ f (e (e.symm b)) := by
+    exact (Category.assoc _ _ _).trans
+      ((congrArg
+        (fun g =>
+          Limits.Pi.map
+            (fun a : α => (f (e a) : (K ∘ e) a ⟶ (L ∘ e) a)) ≫ g)
+        hL).trans
+      (Pi.map_π
+        (fun a : α => (f (e a) : (K ∘ e) a ⟶ (L ∘ e) a)) (e.symm b)))
+  have hright :
+      ((Pi.reindex e K).hom ≫ Limits.Pi.map f) ≫ Pi.π L (e (e.symm b)) =
+        Pi.π (K ∘ e) (e.symm b) ≫ f (e (e.symm b)) := by
+    exact (Category.assoc _ _ _).trans
+      ((congrArg (fun g => (Pi.reindex e K).hom ≫ g)
+        (Pi.map_π f (e (e.symm b)))).trans
+      (congrArg (fun g => g ≫ f (e (e.symm b))) hK))
+  exact hleft.trans hright.symm
+
+/-- Reindexing along an equivalence transports the finite mapping-cone product comparison. -/
+noncomputable def mappingConeProductComparisonIso_of_equiv
+    (tailComparison : TailFiniteMappingConeComparisonInput.{u})
+    {α β : Type u} [Finite α] [Finite β] (e : α ≃ β)
+    {K L : β → CochainComplex MetrizableLCA.{u} ℤ}
+    [HasProduct K] [HasProduct L]
+    (f : ∀ b, K b ⟶ L b)
+    [HasProduct (fun b => CochainComplex.mappingCone (f b))] :
+    CochainComplex.mappingCone (Limits.Pi.map f) ≅
+      ∏ᶜ (fun b => CochainComplex.mappingCone (f b)) := by
+  letI : HasProduct (K ∘ e) :=
+    hasProduct_of_equiv_of_iso K (K ∘ e) e (fun _ => Iso.refl _)
+  letI : HasProduct (fun a : α => K (e a)) :=
+    hasProduct_of_equiv_of_iso K (fun a : α => K (e a)) e (fun _ => Iso.refl _)
+  letI : HasProduct (L ∘ e) :=
+    hasProduct_of_equiv_of_iso L (L ∘ e) e (fun _ => Iso.refl _)
+  letI : HasProduct (fun a : α => L (e a)) :=
+    hasProduct_of_equiv_of_iso L (fun a : α => L (e a)) e (fun _ => Iso.refl _)
+  let coneFamily : β → CochainComplex MetrizableLCA.{u} ℤ :=
+    fun b => CochainComplex.mappingCone (f b)
+  letI : HasProduct (coneFamily ∘ e) :=
+    hasProduct_of_equiv_of_iso coneFamily (coneFamily ∘ e) e (fun _ => Iso.refl _)
+  letI : HasProduct (fun a : α => coneFamily (e a)) :=
+    hasProduct_of_equiv_of_iso coneFamily (fun a : α => coneFamily (e a)) e
+      (fun _ => Iso.refl _)
+  let fα : ∀ a : α, (K ∘ e) a ⟶ (L ∘ e) a :=
+    fun a => f (e a)
+  letI : HasProduct (fun a : α => CochainComplex.mappingCone (fα a)) := by
+    simpa [fα, coneFamily, Function.comp] using
+      (inferInstance : HasProduct (fun a : α => coneFamily (e a)))
+  have hcomm :
+      Limits.Pi.map fα ≫ (Pi.reindex e L).hom =
+        (Pi.reindex e K).hom ≫ Limits.Pi.map f := by
+    simpa [fα] using piMap_reindex_hom_naturality e f
+  exact
+    (mappingConeIsoOfCommIso MetrizableLCA (Pi.reindex e K) (Pi.reindex e L) hcomm).symm ≪≫
+      tailComparison.iso fα ≪≫
+      Pi.reindex e coneFamily
+
 /--
 Option-step exactness consumer.
 
@@ -596,12 +677,84 @@ noncomputable def optionMappingConeProductComparisonIso_of_tailComparison
           (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
             MetrizableLCA (fun j : Option J => CochainComplex.mappingCone (f j))).symm
 
+/-- The full finite mapping-cone/product comparison from empty base, equivalence, and Option step. -/
+noncomputable def tailFiniteMappingConeComparisonInput_direct :
+    TailFiniteMappingConeComparisonInput.{u} where
+  iso := by
+    intro J _ K L _ _ f _
+    let P : Type u → Prop :=
+      fun J =>
+        ∀ {K L : J → CochainComplex MetrizableLCA.{u} ℤ}
+          [HasProduct K] [HasProduct L]
+          (f : ∀ j, K j ⟶ L j)
+          [HasProduct (fun j => CochainComplex.mappingCone (f j))],
+            Nonempty
+              (CochainComplex.mappingCone (Limits.Pi.map f) ≅
+                ∏ᶜ (fun j => CochainComplex.mappingCone (f j)))
+    have hP : P J := by
+      refine (Finite.induction_empty_option (P := P) ?of_equiv ?h_empty ?h_option) J
+      · intro α β e hα K L _ _ f _
+        letI : HasProduct (K ∘ e) :=
+          hasProduct_of_equiv_of_iso K (K ∘ e) e (fun _ => Iso.refl _)
+        letI : HasProduct (fun a : α => K (e a)) :=
+          hasProduct_of_equiv_of_iso K (fun a : α => K (e a)) e (fun _ => Iso.refl _)
+        letI : HasProduct (L ∘ e) :=
+          hasProduct_of_equiv_of_iso L (L ∘ e) e (fun _ => Iso.refl _)
+        letI : HasProduct (fun a : α => L (e a)) :=
+          hasProduct_of_equiv_of_iso L (fun a : α => L (e a)) e (fun _ => Iso.refl _)
+        let coneFamily : β → CochainComplex MetrizableLCA.{u} ℤ :=
+          fun b => CochainComplex.mappingCone (f b)
+        letI : HasProduct (coneFamily ∘ e) :=
+          hasProduct_of_equiv_of_iso coneFamily (coneFamily ∘ e) e (fun _ => Iso.refl _)
+        letI : HasProduct (fun a : α => coneFamily (e a)) :=
+          hasProduct_of_equiv_of_iso coneFamily (fun a : α => coneFamily (e a)) e
+            (fun _ => Iso.refl _)
+        let fα : ∀ a : α, (K ∘ e) a ⟶ (L ∘ e) a :=
+          fun a => f (e a)
+        letI : HasProduct (fun a : α => CochainComplex.mappingCone (fα a)) := by
+          simpa [fα, coneFamily, Function.comp] using
+            (inferInstance : HasProduct (fun a : α => coneFamily (e a)))
+        have hcomm :
+            Limits.Pi.map fα ≫ (Pi.reindex e L).hom =
+              (Pi.reindex e K).hom ≫ Limits.Pi.map f := by
+          simpa [fα] using piMap_reindex_hom_naturality e f
+        exact ⟨
+          (mappingConeIsoOfCommIso MetrizableLCA (Pi.reindex e K) (Pi.reindex e L) hcomm).symm ≪≫
+            Classical.choice (hα fα) ≪≫
+            Pi.reindex e coneFamily⟩
+      · intro K L _ _ f _
+        exact ⟨emptyMappingConeProductComparisonInput_direct.iso f⟩
+      · intro α _ hα K L _ _ f _
+        letI : HasProduct (fun j : α => K (some j)) := by infer_instance
+        letI : HasProduct (fun j : α => L (some j)) := by infer_instance
+        letI : HasProduct (fun j : α => CochainComplex.mappingCone (f (some j))) := by infer_instance
+        let tailMap : ∀ j : α, K (some j) ⟶ L (some j) := fun j => f (some j)
+        let eK :=
+          OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+            MetrizableLCA K
+        let eL :=
+          OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+            MetrizableLCA L
+        have hcomm :
+            Limits.Pi.map f ≫ eL.hom =
+              eK.hom ≫ biprod.map (f none) (Limits.Pi.map tailMap) :=
+          optionProductMapNaturalityInput_direct.commute f
+        exact ⟨
+          mappingConeIsoOfCommIso MetrizableLCA eK eL hcomm ≪≫
+            MappingConeBiprodComparison.binaryMappingConeBiprodIso (f none)
+              (Limits.Pi.map tailMap) ≪≫
+              biprod.mapIso (Iso.refl (CochainComplex.mappingCone (f none)))
+                (Classical.choice (hα tailMap)) ≪≫
+                (OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+                  MetrizableLCA (fun j : Option α => CochainComplex.mappingCone (f j))).symm⟩
+    exact Classical.choice (hP (K := K) (L := L) f)
+
 /-- The exact lower inputs still missing after the Option-step exactness consumer. -/
 def optionMappingConeComparisonStepMissingInputs : List String :=
-  ["recursive TailFiniteMappingConeComparisonInput for the tail index type"]
+  []
 
 theorem optionMappingConeComparisonStepMissingInputs_count :
-    optionMappingConeComparisonStepMissingInputs.length = 1 := rfl
+    optionMappingConeComparisonStepMissingInputs.length = 0 := rfl
 
 section Checks
 
@@ -623,9 +776,12 @@ section Checks
 #check zeroComplexIsoHomologicalZero
 #check emptyProductIsoHomologicalZero
 #check emptyMappingConeProductComparisonInput_direct
+#check piMap_reindex_hom_naturality
+#check mappingConeProductComparisonIso_of_equiv
 #check exactAcyclic_optionPiMap_of_naturality_and_tailComparison
 #check exactAcyclic_optionPiMap_of_tailComparison
 #check optionMappingConeProductComparisonIso_of_tailComparison
+#check tailFiniteMappingConeComparisonInput_direct
 #check optionMappingConeComparisonStepMissingInputs
 #check optionMappingConeComparisonStepMissingInputs_count
 #check OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct

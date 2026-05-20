@@ -128,3 +128,6 @@ v227 sharpens the W146 Option mapping-cone product step. The promoted Option-pro
 ## v228 Update
 
 v228 closes the two concrete transported-fan projection naturality equations in W146. The singleton side is proved as `optionTransportedFanMapFstNaturality`; the tail side is proved through `optionProductComplexTransportedBinaryFan_snd_π` and `optionTransportedFanMapSndNaturality`. Consequently W146 now provides `optionProductMapNaturalityInput_direct` and the Option-step exactness consumer `exactAcyclic_optionPiMap_of_tailComparison`, so the remaining lower input for the finite mapping-cone product induction is the recursive `TailFiniteMappingConeComparisonInput`. Product success remains nonterminal because that recursive comparison and the downstream Dbounded/stable-infinity route are still incomplete.
+
+### Parent update v231 - tail finite mapping cone comparison
+2026-05-20T10:04:39Z: W146 now proves `piMap_reindex_hom_naturality`, `mappingConeProductComparisonIso_of_equiv`, and `tailFiniteMappingConeComparisonInput_direct`. This closes the audit-local finite mapping-cone/product comparison frontier. Remaining work is promotion/connection to Derived and Dbounded transfer, then finite colimits, triangulated structure, and stable infinity-category obligations.
