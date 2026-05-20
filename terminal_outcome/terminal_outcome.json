@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v174時点で、stable側は4射影providerからproduct-review-shaped readiness evidenceを経由してconsumer-side product-gate pass witnessへ変換する監査APIを持ち、ordinary Dbounded contextだけのrouteとmarker-only routeを拒否する監査に加えて、ordinary-category semantic inputから単一certificate形の4射影readinessへ接続するadapter監査を追加した。product_successではない。bounded側にはstrict-selected eligibility providerと同値な本体realization theorem、stable側にはordinary Dbounded contextからfinite limits、finite colimits、zero object、shift additivity、pretriangulated、triangulated構造を含むsemantic inputを実際に構成する実装が残る。",
+  "summary": "v175時点で、stable側はordinary Dbounded contextだけのrouteとmarker-only routeを拒否し、ordinary-category semantic inputから4射影readinessへ接続するadapter監査に加えて、現在のstrict Dbounded left-calculus APIがpreadditive、zero object、全shift additivityだけを供給することをLeanで確認した。product_successではない。bounded側にはstrict-selected eligibility providerと同値な本体realization theorem、stable側にはfinite limits、finite colimits、pretriangulated、triangulated構造をDbounded C上で実際に構成する実装が残る。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -42,7 +42,8 @@
     "cmp -s audit/blockers/stable_route_external_api_minimizer_w129.lean <w129-worktree>/audit/blockers/stable_route_external_api_minimizer_w129.lean",
     "lake env lean audit/blockers/stable_certificate_four_projection_constructor_w131.lean",
     "lake env lean audit/blockers/dbounded_four_projection_provider_route_w133.lean",
-    "lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean"
+    "lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean",
+    "lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -656,9 +657,9 @@
     "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos"
   ],
   "known_gaps": [
-    "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため拒否済みです。strict-selected eligibilityはarbitrary weak endpoint witnessを除外しますが、そのproviderはboundedHomotopyObjectTrianglehIso13Realizationと同値であり、残る本体証明を短絡しません。",
-    "stable側は、full single certificateからproduct-review-shaped readiness evidenceを経由してconsumer-side product-gate pass witnessへ変換する監査constructorは通ったが、ordinary Dbounded contextからfull stable four-projection certificateを構成する実装が未完成です。",
-    "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
+    "bounded側では、strict-selected eligibility providerがboundedHomotopyObjectTrianglehIso13Realizationと同値であり、その本体realization theoremがまだ未証明である。",
+    "stable側では、strict Dbounded left-calculus APIからpreadditive、zero object、全shift additivityまでは得られるが、finite limits、finite colimits、pretriangulated、triangulated構造をDbounded C上で構成する証明がまだない。",
+    "product_success用のterminal outcome、authoritative review packet zip、外部sidecar SHA256、fresh claim review acceptanceはまだ作成していない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",

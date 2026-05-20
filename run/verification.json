@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v174-dbounded-semantic-stable-input-adapter",
-  "generated_utc": "2026-05-20T09:45:00Z",
-  "source_tree_hash": "cf673bb44da7cbc0e5902baed1b107baaaedfda81f989dc9d2e1284a2941e6d0",
-  "summary": "v174 adds a compiling Dbounded semantic stable input adapter audit; the stable gap is narrowed to concrete ordinary-category semantic fields, and product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v175-dbounded-left-calculus-semantic-boundary",
+  "generated_utc": "2026-05-20T10:15:00Z",
+  "source_tree_hash": "5dd859e044ae60d88a60ec01357e423f005df970ed3bbcd4eaa1dbc51d14f77a",
+  "summary": "v175 adds a compiling Dbounded left-calculus semantic boundary audit; existing left-calculus APIs supply preadditive, zero object, and shift-additivity fields, while finite limits, finite colimits, pretriangulated, and triangulated constructors remain missing. Product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v174 Dbounded semantic stable input adapter was added."
+      "evidence": "Full lake build passed after the v175 Dbounded left-calculus semantic boundary audit was added."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v174 Dbounded semantic stable input adapter was added."
+      "evidence": "Forbidden-token audit passed after the v175 Dbounded left-calculus semantic boundary audit was added."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v174 Dbounded semantic stable input adapter was added."
+      "evidence": "Required declaration audit passed after the v175 Dbounded left-calculus semantic boundary audit was added."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess declaration audit passed after the v174 Dbounded semantic stable input adapter was added; no product-success claim was added."
+      "evidence": "ProductSuccess declaration audit passed after the v175 Dbounded left-calculus semantic boundary audit was added; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after the v174 semantic input adapter audit: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after the v175 semantic boundary audit: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed before the v174 semantic input adapter audit commit."
+      "evidence": "Whitespace diff check passed before the v175 semantic boundary audit commit."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -153,6 +153,11 @@
       "command": "lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean",
       "status": "passed",
       "evidence": "Focused v174 Dbounded semantic stable input adapter audit passed; it narrows the stable route gap to concrete ordinary-category semantic fields for Dbounded."
+    },
+    {
+      "command": "lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean",
+      "status": "passed",
+      "evidence": "Focused v175 Dbounded left-calculus semantic boundary audit passed; it separates available left-calculus fields from the four remaining stable semantic constructors."
     }
   ],
   "implemented_declarations_checked": [
@@ -338,7 +343,15 @@
     "DboundedSemanticStableInputAdapter.OrdinaryContextToSemanticStableInput",
     "DboundedSemanticStableInputAdapter.missingSemanticFieldNames",
     "DboundedSemanticStableInputAdapter.missingSemanticFieldNames_count",
-    "DboundedSemanticStableInputAdapter.currentSemanticRouteState_semanticInput_not_supplied"
+    "DboundedSemanticStableInputAdapter.currentSemanticRouteState_semanticInput_not_supplied",
+    "DboundedSemanticInputLeftCalculusBoundary.DboundedLeftCalculusAvailableInput",
+    "DboundedSemanticInputLeftCalculusBoundary.currentLeftCalculusAvailableInput",
+    "DboundedSemanticInputLeftCalculusBoundary.availableSemanticFieldNames_count",
+    "DboundedSemanticInputLeftCalculusBoundary.missingAfterLeftCalculusFieldNames_count",
+    "DboundedSemanticInputLeftCalculusBoundary.currentLeftCalculusBoundaryState_finiteLimits_missing",
+    "DboundedSemanticInputLeftCalculusBoundary.currentLeftCalculusBoundaryState_finiteColimits_missing",
+    "DboundedSemanticInputLeftCalculusBoundary.currentLeftCalculusBoundaryState_pretriangulated_missing",
+    "DboundedSemanticInputLeftCalculusBoundary.currentLeftCalculusBoundaryState_triangulated_missing"
   ],
   "product_complete": false,
   "known_gaps": [
