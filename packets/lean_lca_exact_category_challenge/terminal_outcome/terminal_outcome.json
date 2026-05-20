@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v297でW276を親側監査ファイルとして取り込み、W271のmapping-cone比較入力をobject-level WPP-op cone/colimit比較境界へ縮約した。product_completeはfalseのまま。",
+  "summary": "v298でW274を親側監査ファイルとして取り込み、反対圏WalkingParallelPair functor-category localizationの固定対象fac/uniq義務を再利用可能なschemaへ分解した。product_completeはfalseのまま。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -123,7 +123,9 @@
     "lake env lean audit/blockers/shortcomplex_quasiiso_conflation_counterexample_w296.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_quasiiso_conflation_counterexample_w296.lean",
     "lake env lean audit/blockers/wpp_op_mapping_cone_comparison_w276.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_comparison_w276.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_comparison_w276.lean",
+    "lake env lean audit/blockers/opposite_fixed_target_obligations_w274.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_fixed_target_obligations_w274.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -811,6 +813,7 @@
     "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi"
   ],
   "known_gaps": [
+    "W269/W274の反対圏WalkingParallelPair functor-category localizationは、coherent strict-representative blueprintと、diagram/model fixed targetそれぞれのfac/uniq schema義務4個へ縮約されたが、これらの実体証明はまだ未供給である。",
     "W271のmapping-cone比較入力はW276でobject-level WPP-op cone/colimit比較境界へ縮約されたが、そのobject-level比較図式と、別入力のexactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closureはまだ未供給である。",
     "W229/W273のHomotopyEquiv輸送をplain ShortComplex.QuasiIsoによるConflation輸送で閉じる経路はW296の0 -> 0 -> ZMod 2反例で偽と確認された。exactAcyclicのHomotopyEquiv輸送には、より弱い次数別定理、endpoint/topology入力付きの輸送、または別経路が必要である。",
     "ShortComplex.Exactやquasi-isoで輸送されたExactからEpi T.gを出す一般ルートはW256のZMod2反例で偽と確認された。右端入力は別途、right-homology/cokernel-zero/topなどから構成する必要がある。",
@@ -850,11 +853,12 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "uncommitted-v297",
+  "git_commit": "uncommitted-v298",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W272によりopposite functor-category localizationはblueprint + diagram/model fac/uniq義務へ縮約。direct WPPᵒᵖ colimit stability、direct identity containmentまたはhomotopy-class assembly、bounded-derived infinity product obligationsは残る。",
   "claim_review_result": "未実施。v293はproduct_success claimではなく、root/clean extraction external auditはいずれも想定どおりfailed_nonterminal product gateで停止した。",
   "remaining_gaps": [
+    "W269/W274の反対圏WalkingParallelPair functor-category localizationは、coherent strict-representative blueprintと、diagram/model fixed targetそれぞれのfac/uniq schema義務4個へ縮約されたが、これらの実体証明はまだ未供給である。",
     "W271のmapping-cone比較入力はW276でobject-level WPP-op cone/colimit比較境界へ縮約されたが、そのobject-level比較図式と、別入力のexactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closureはまだ未供給である。",
     "W229/W273のHomotopyEquiv輸送をplain ShortComplex.QuasiIsoによるConflation輸送で閉じる経路はW296の0 -> 0 -> ZMod 2反例で偽と確認された。exactAcyclicのHomotopyEquiv輸送には、より弱い次数別定理、endpoint/topology入力付きの輸送、または別経路が必要である。",
     "factorized localized composite側のright/left adjunctionとunit/counit membership入力は構造体として分離されたが、その実体constructorはまだ未供給である。",
@@ -1281,10 +1285,16 @@
     "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.walkingParallelPairOp_mappingCone_objectComparisonBoundary",
     "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_objectBoundary",
     "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.currentWppOpMappingConeComparisonState",
-    "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.currentWppOpMappingConeComparisonState_productSuccess"
+    "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.currentWppOpMappingConeComparisonState_productSuccess",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.OppositeFixedTargetFacObligationFor",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.OppositeFixedTargetUniqObligationFor",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.OppositeFixedTargetObligationBoundary.toFixedTargetBoundary",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.metrizableLCA_oppositeFunctorCategoryLocalization_of_blueprint_obligations",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.metrizableLCA_oppositeFunctorCategoryLocalization_of_blueprint_fac_uniq",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.currentOppositeFixedTargetObligationState"
   ],
-  "generated_utc": "2026-05-20T15:47:39Z",
-  "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success.",
+  "generated_utc": "2026-05-20T15:51:19Z",
+  "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1745,7 +1755,13 @@
     "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.walkingParallelPairOp_mappingCone_objectComparisonBoundary",
     "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_objectBoundary",
     "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.currentWppOpMappingConeComparisonState",
-    "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.currentWppOpMappingConeComparisonState_productSuccess"
+    "LeanLCAExactChallenge.WppOpMappingConeComparisonW276.currentWppOpMappingConeComparisonState_productSuccess",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.OppositeFixedTargetFacObligationFor",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.OppositeFixedTargetUniqObligationFor",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.OppositeFixedTargetObligationBoundary.toFixedTargetBoundary",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.metrizableLCA_oppositeFunctorCategoryLocalization_of_blueprint_obligations",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.metrizableLCA_oppositeFunctorCategoryLocalization_of_blueprint_fac_uniq",
+    "LeanLCAExactChallenge.OppositeFixedTargetObligationsW274.currentOppositeFixedTargetObligationState"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"

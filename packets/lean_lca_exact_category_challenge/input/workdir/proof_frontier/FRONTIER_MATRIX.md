@@ -277,3 +277,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v297 Update
 
 2026-05-20T15:47:39Z: Support result W276 was ported as `audit/blockers/wpp_op_mapping_cone_comparison_w276.lean`. The W271 input `mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison` now follows from the smaller `walkingParallelPairOp_mappingCone_objectComparisonBoundary`, which asks for a cochain-complex WPP-op comparison diagram with component mapping-cone isomorphisms and a colimit-point mapping-cone isomorphism. The separate exact-acyclic WPP-op colimit-closure input remains open. Support W275 was classified as delayed because v296 refutes its plain quasi-isomorphism-to-conflation transport bridge.
+
+## v298 Update
+
+2026-05-20T15:51:19Z: Support result W274 was ported as `audit/blockers/opposite_fixed_target_obligations_w274.lean`. It refines the W272/W293 opposite fixed-target boundary by factoring the remaining `fac` and `uniq` fields into reusable schemas `OppositeFixedTargetFacObligationFor` and `OppositeFixedTargetUniqObligationFor`, specialized to the diagram and model fixed targets required by `Functor.IsLocalization.mk'`. The remaining inputs are still the coherent strict-representative blueprint plus four schema obligations; product success remains nonterminal.
