@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T15:34:00Z",
-  "source_tree_hash": "b7e9f275a8a447c511583d25309fdb6cbedf7d2c33f9ae8e7301b5f988b8cda8",
-  "summary": "v276 consumes w257: factorized localized adjunction and membership inputs are isolated and transported to localized membership.",
+  "generated_utc": "2026-05-20T15:50:00Z",
+  "source_tree_hash": "1b16258839f706608004125da6786b11872dee13bef737576abd742bb269a88a",
+  "summary": "v277 adds an opposite finite-product stability input audit: direct product stability is available, but the opposite route still needs finite-coproduct stability plus formal op transport.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -418,6 +418,16 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "No whitespace errors after v276 edits."
+    },
+    {
+      "command": "lake env lean audit/blockers/opposite_finite_product_stability_input_w258.lean",
+      "status": "passed",
+      "evidence": "Focused W258 opposite finite-product stability input audit passed; it packages the finite-coproduct/op-transport bridge needed by the opposite localization finite-product consumer."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_finite_product_stability_input_w258.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W258 opposite finite-product stability input audit file."
     }
   ],
   "implemented_declarations_checked": [

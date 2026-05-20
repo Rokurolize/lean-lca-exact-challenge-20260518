@@ -229,3 +229,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v276 Update
 
 2026-05-20T15:34:00Z: Support result w257 was reimplemented as `audit/blockers/factorized_localized_adjunction_membership_w257.lean`. It isolates the factorized localized composite inputs needed before the v253/v254 transport and calculus consumers can fire: right adjunction, left adjunction, unit membership, and counit membership. The audit proves these factorized inputs transport to localized unit/counit membership through `verdierComparisonLocalizationIso`. Product success remains nonterminal because the factorized adjunctions and membership constructors are not yet supplied.
+
+## v277 Update
+
+2026-05-20T15:50:00Z: The parent added `audit/blockers/opposite_finite_product_stability_input_w258.lean`. The audit isolates the precise missing bridge for the opposite finite-product route: the existing `BoundedFiniteProducts.isStableUnderFiniteProducts_metrizableLCA` proves direct finite-product stability, but products in `(BoundedComplexCategory MetrizableLCA)^op` correspond to finite coproducts in the original bounded-complex category. The checked consumer now packages finite coproduct stability plus formal op transport as `OppositeFiniteProductStabilityBridgeInput`, feeding `CategoryTheory.Localization.hasFiniteProducts` for the opposite localization once left calculus is supplied. Product success remains nonterminal.

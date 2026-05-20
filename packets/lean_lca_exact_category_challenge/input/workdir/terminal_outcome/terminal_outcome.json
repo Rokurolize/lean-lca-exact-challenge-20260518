@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v276では支援結果w257を親側auditとして再実装し、factorized localized composite側の随伴・membership入力を分離し、それらがlocalized unit/counit membershipへ輸送されることをLeanで確認した。入力の実体constructorは未供給であり、product successではない。",
+  "summary": "v277では反対圏finite-product stabilityの未供給入力をauditとして分離した。direct finite-product stabilityは利用可能だが反対圏routeにはfinite-coproduct stabilityとop transportが必要であり、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -76,7 +76,9 @@
     "lake env lean audit/blockers/localization_finite_limit_transfer_inputs_w255.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/localization_finite_limit_transfer_inputs_w255.lean",
     "lake env lean audit/blockers/factorized_localized_adjunction_membership_w257.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/factorized_localized_adjunction_membership_w257.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/factorized_localized_adjunction_membership_w257.lean",
+    "lake env lean audit/blockers/opposite_finite_product_stability_input_w258.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_finite_product_stability_input_w258.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -764,6 +766,7 @@
     "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi"
   ],
   "known_gaps": [
+    "反対圏finite-product routeは、direct product stabilityでは足りないことがW258で明確化された。残る入力は (boundedExactWeakEquivalence MetrizableLCA).IsStableUnderFiniteCoproducts と、そこから ((boundedExactWeakEquivalence MetrizableLCA).op).IsStableUnderFiniteProducts へ移すformal op transportである。",
     "localized comparison transport inputはW245形に具体化されたが、factorizedLocalizedComposite Cの右/左随伴とfactorized unit/counit membershipの構成はまだ未完成である。",
     "Epi T.gからcokernelπ T.g = 0を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeからEpi T.g、核等式、閉埋め込み、開写像性を同時に抽出する証明はまだ未完成である。",
     "cokernelπ T.g = 0から右端全射を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeから核等式、閉埋め込み、開写像性、cokernelπ=0を抽出する証明はまだ未完成である。",
@@ -1115,10 +1118,14 @@
     "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorRightTransportInput.localized_unit_mem",
     "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorLeftTransportInput",
     "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorLeftTransportInput.localizedAdjunction",
-    "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorLeftTransportInput.localized_counit_mem"
+    "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorLeftTransportInput.localized_counit_mem",
+    "LeanLCAExactChallenge.OppositeFiniteProductStabilityInputW258.directFiniteProductStability_available",
+    "LeanLCAExactChallenge.OppositeFiniteProductStabilityInputW258.OppositeFiniteProductStabilityBridgeInput",
+    "LeanLCAExactChallenge.OppositeFiniteProductStabilityInputW258.oppositeFiniteProductStability_of_bridgeInput",
+    "LeanLCAExactChallenge.OppositeFiniteProductStabilityInputW258.oppositeLocalizationHasFiniteProducts_of_bridgeInput"
   ],
   "generated_utc": "2026-05-20T14:08:00Z",
-  "support_result_classification": "v269 consumed support w253; product remains failed_nonterminal.",
+  "support_result_classification": "v277 is parent-side frontier work, not a support-result consumption; no product-success claim.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
