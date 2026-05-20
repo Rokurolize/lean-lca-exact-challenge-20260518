@@ -130,19 +130,41 @@ lemma surjective_of_cokernelSubgroup_eq_top_of_isOpenMap {A B : MetrizableLCA.{u
   surjective_of_denseRange_of_isOpenMap f
     (denseRange_of_cokernelSubgroup_eq_top f hcok) hopen
 
+lemma surjective_iff_cokernelSubgroup_eq_top_of_isOpenMap {A B : MetrizableLCA.{u}}
+    (f : A ⟶ B) (hopen : IsOpenMap (f : A → B)) :
+    Function.Surjective (f : A → B) ↔ cokernelSubgroup f = ⊤ :=
+  ⟨cokernelSubgroup_eq_top_of_surjective f,
+    fun hcok => surjective_of_cokernelSubgroup_eq_top_of_isOpenMap f hcok hopen⟩
+
+structure CokernelTopStrictInput (T : ShortComplex MetrizableLCA.{u}) : Prop where
+  kernel_equality : ∀ x₂ : T.X₂, T.g x₂ = 0 ↔ ∃ x₁ : T.X₁, T.f x₁ = x₂
+  closed_embedding_f : IsClosedEmbedding (T.f : T.X₁ → T.X₂)
+  open_map_g : IsOpenMap (T.g : T.X₂ → T.X₃)
+  cokernel_top_g : cokernelSubgroup T.g = ⊤
+
+lemma strictShortExact_of_cokernelTopStrictInput
+    {T : ShortComplex MetrizableLCA.{u}} (hT : CokernelTopStrictInput T) :
+    strictShortExact T where
+  closed_inclusion := hT.closed_embedding_f
+  open_map := hT.open_map_g
+  surjective :=
+    surjective_of_cokernelSubgroup_eq_top_of_isOpenMap T.g hT.cokernel_top_g hT.open_map_g
+  algebraic_exact := by
+    intro x₂ hx₂
+    exact (hT.kernel_equality x₂).mp hx₂
+
 lemma strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top
     {T : ShortComplex MetrizableLCA.{u}}
     (hker : ∀ x₂ : T.X₂, T.g x₂ = 0 ↔ ∃ x₁ : T.X₁, T.f x₁ = x₂)
     (hclosed : IsClosedEmbedding (T.f : T.X₁ → T.X₂))
     (hopen : IsOpenMap (T.g : T.X₂ → T.X₃))
     (hcok : cokernelSubgroup T.g = ⊤) :
-    strictShortExact T where
-  closed_inclusion := hclosed
-  open_map := hopen
-  surjective := surjective_of_cokernelSubgroup_eq_top_of_isOpenMap T.g hcok hopen
-  algebraic_exact := by
-    intro x₂ hx₂
-    exact (hker x₂).mp hx₂
+    strictShortExact T :=
+  strictShortExact_of_cokernelTopStrictInput
+    { kernel_equality := hker
+      closed_embedding_f := hclosed
+      open_map_g := hopen
+      cokernel_top_g := hcok }
 
 lemma strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero
     {T : ShortComplex MetrizableLCA.{u}}

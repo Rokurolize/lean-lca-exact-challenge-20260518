@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T14:08:00Z",
-  "source_tree_hash": "bc82705298a9eade671956a465d59133e7626471d12306aaa96a77849512170e",
-  "summary": "v269 consumes w253: W245 localized comparison transport input is now packaged around verdierComparisonLocalizationIso.",
+  "generated_utc": "2026-05-20T14:22:00Z",
+  "source_tree_hash": "0ab7446512b275c8df8d55740cf54c6ea0e7738ed84ef2544ba6c701f03ec99b",
+  "summary": "v270 consumes w251: concrete cokernel-subgroup-top is now connected to zero categorical cokernel object, and open-map right exactness has a bidirectional cokernel-top/surjectivity bridge plus named strict-exact input.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -303,6 +303,36 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/localized_comparison_transport_input_w253.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W253 audit file."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.LCA.Cokernel LeanLCAExactChallenge.LCA.StrictExact",
+      "status": "passed",
+      "evidence": "Built v270 Cokernel and StrictExact API changes successfully."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations #checks include v270 cokernel-top/IsZero and strict input declarations."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/LCA/Cokernel.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in Cokernel.lean after v270."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/LCA/StrictExact.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in StrictExact.lean after v270."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in ProductSuccessDeclarations after v270."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors after v270 edits."
     }
   ],
   "implemented_declarations_checked": [
@@ -782,10 +812,16 @@
     "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorRightTransportInput.localized_unit_mem",
     "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorLeftTransportInput",
     "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorLeftTransportInput.localizedAdjunction",
-    "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorLeftTransportInput.localized_counit_mem"
+    "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorLeftTransportInput.localized_counit_mem",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_of_surjective",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_iff_cokernelObj_isZero",
+    "LeanLCAExactChallenge.MetrizableLCA.surjective_iff_cokernelSubgroup_eq_top_of_isOpenMap",
+    "LeanLCAExactChallenge.MetrizableLCA.CokernelTopStrictInput",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_cokernelTopStrictInput"
   ],
   "product_complete": false,
   "known_gaps": [
+    "cokernelSubgroup-topはzero cokernel objectやopen-map下の全射性と接続されたが、derived/homology/localization routeから核等式、閉埋め込み、開写像性、右exactness入力を同時に抽出する証明はまだ未完成である。",
     "localized comparison transport inputはW245形に具体化されたが、factorizedLocalizedComposite Cの右/左随伴とfactorized unit/counit membershipの構成はまだ未完成である。",
     "Epi T.gからcokernelπ T.g = 0を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeからEpi T.g、核等式、閉埋め込み、開写像性を同時に抽出する証明はまだ未完成である。",
     "cokernelπ T.g = 0から右端全射を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeから核等式、閉埋め込み、開写像性、cokernelπ=0を抽出する証明はまだ未完成である。",

@@ -75,6 +75,54 @@ lemma cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top :
   ⟨cokernelSubgroup_eq_top_of_cokernelπ_eq_zero f,
     cokernelπ_eq_zero_of_cokernelSubgroup_eq_top f⟩
 
+lemma cokernelSubgroup_eq_top_of_surjective (hsurj : Function.Surjective (f : A → B)) :
+    cokernelSubgroup f = ⊤ := by
+  apply le_antisymm le_top
+  intro b _hb
+  rcases hsurj b with ⟨a, rfl⟩
+  exact map_mem_cokernelSubgroup f a
+
+private lemma cokernelObj_all_eq_zero_of_cokernelSubgroup_eq_top
+    (hcok : cokernelSubgroup f = ⊤) (q : cokernelObj f) :
+    q = 0 := by
+  rcases quotientMap_surjective B (cokernelSubgroup f)
+      (AddSubgroup.isClosed_topologicalClosure _) q with ⟨b, rfl⟩
+  change ((b : B) : B ⧸ cokernelSubgroup f) = 0
+  rw [QuotientAddGroup.eq_zero_iff]
+  rw [hcok]
+  trivial
+
+lemma cokernelObj_isZero_of_cokernelSubgroup_eq_top
+    (hcok : cokernelSubgroup f = ⊤) :
+    IsZero (cokernelObj f) where
+  unique_to Y := ⟨{
+    default := 0
+    uniq := by
+      intro g
+      ext q
+      have hq : q = 0 := cokernelObj_all_eq_zero_of_cokernelSubgroup_eq_top f hcok q
+      rw [hq]
+      exact map_zero g.hom }⟩
+  unique_from Y := ⟨{
+    default := 0
+    uniq := by
+      intro g
+      ext y
+      have hg : g y = 0 := cokernelObj_all_eq_zero_of_cokernelSubgroup_eq_top f hcok (g y)
+      simpa using hg }⟩
+
+lemma cokernelSubgroup_eq_top_of_cokernelObj_isZero
+    (hzero : IsZero (cokernelObj f)) :
+    cokernelSubgroup f = ⊤ := by
+  letI : Unique (B ⟶ cokernelObj f) := Classical.choice (hzero.unique_from B)
+  have hπzero : cokernelπ f = 0 := Subsingleton.elim _ _
+  exact cokernelSubgroup_eq_top_of_cokernelπ_eq_zero f hπzero
+
+lemma cokernelSubgroup_eq_top_iff_cokernelObj_isZero :
+    cokernelSubgroup f = ⊤ ↔ IsZero (cokernelObj f) :=
+  ⟨cokernelObj_isZero_of_cokernelSubgroup_eq_top f,
+    cokernelSubgroup_eq_top_of_cokernelObj_isZero f⟩
+
 /-- The cokernel projection kills `f`. -/
 lemma comp_cokernelπ : f ≫ cokernelπ f = 0 := by
   ext a

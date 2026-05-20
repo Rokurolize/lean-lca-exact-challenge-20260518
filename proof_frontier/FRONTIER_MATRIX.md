@@ -201,3 +201,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v269 Update
 
 2026-05-20T14:08:00Z: Support result w253 was reimplemented as `audit/blockers/localized_comparison_transport_input_w253.lean`. It combines the v265 transport lemmas with `BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso`, producing W245-shaped `ComparisonFactorRightTransportInput` and `ComparisonFactorLeftTransportInput` structures. The localized-comparison frontier is now reduced to factorized adjunctions for the Verdier-comparison route plus factorized unit/counit membership; the localized adjunction and membership fields then follow by checked transport. Product success remains nonterminal.
+
+## v270 Update
+
+2026-05-20T14:22:00Z: Support result w251 was promoted into the product API where it was not already covered by v264-v268. `MetrizableLCA.cokernelSubgroup_eq_top_iff_cokernelObj_isZero` connects the concrete closed-range quotient condition to categorical zero cokernel object, and `MetrizableLCA.surjective_iff_cokernelSubgroup_eq_top_of_isOpenMap` makes the open-map right-exactness bridge bidirectional. `MetrizableLCA.CokernelTopStrictInput` is now a named consumer surface for strict exactness from kernel equality, closed embedding, open map, and cokernel-subgroup-top. Product success remains nonterminal because derived/homology/localization extraction of those inputs is still missing.

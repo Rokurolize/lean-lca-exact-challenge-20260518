@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v1",
-  "generated_utc": "2026-05-20T14:08:00Z",
+  "generated_utc": "2026-05-20T14:22:00Z",
   "file_count": 176,
-  "content_hash_tree": "156518b8854065faa4b670dc4a7c590ca1b7b0d7a9e81b77af492a783de49fab",
+  "content_hash_tree": "bc16e04e6b802ea7ac00ae64e436cc888dba779d9bb31b72f36751832b364394",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -101,8 +101,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/LCA/Cokernel.lean",
-      "bytes": 5863,
-      "sha256": "073f97aa50b910a1f6069e9771e4251c13c4666aecc52c22bcfa9a33a614a23e"
+      "bytes": 7567,
+      "sha256": "15af0960acc986d5e0c134e2ff1d0ec9fe3b4ce0cde09409e58eaa3f1c02d776"
     },
     {
       "path": "LeanLCAExactChallenge/LCA/ExactCategory.lean",
@@ -126,8 +126,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/LCA/StrictExact.lean",
-      "bytes": 15691,
-      "sha256": "8406279d03f4c4716199a0aebb6a62be855a8b9ae17152f58dee40d2e0d85aa5"
+      "bytes": 16748,
+      "sha256": "cda0bffaaf9123285d8f567696eec97b31822a38544a7d213eca63c1b6d331cd"
     },
     {
       "path": "LeanLCAExactChallenge/MathlibSurvey.lean",
@@ -151,8 +151,8 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 116243,
-      "sha256": "8f9e677b556da0bf7bdb1a28591fbaa6025c51a61f3f854905afba5784c3e0a9"
+      "bytes": 116551,
+      "sha256": "de759d0575f0664bea58bebf42a9900023bca92d0d0abbd31943f9eda8b3d0aa"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -163,6 +163,11 @@
       "path": "audit/YonedaUnsuffixedPortSmokeW84.lean",
       "bytes": 2040,
       "sha256": "3d0d4054e296e358c7ea3e5c93f6326c22108fa6c43c2e47774d26e3f24fc7be"
+    },
+    {
+      "path": "audit/blockers/adjunction_transport_unit_equality_w250.lean",
+      "bytes": 2789,
+      "sha256": "ea0cfd9a1ea6398ba4412e97b90fc6371bbaf957baffd7bb0548042985acb039"
     },
     {
       "path": "audit/blockers/alternating_tail_extend_transport_probe.lean",
@@ -228,6 +233,11 @@
       "path": "audit/blockers/bounded_homotopy_transport_counterexample.lean",
       "bytes": 3609,
       "sha256": "2e2abf9a477b0b923d3c82c93060fb9c524f1b1af447bafaa78596fab34195f9"
+    },
+    {
+      "path": "audit/blockers/bounded_opposite_concrete_finite_limits_w248.lean",
+      "bytes": 4129,
+      "sha256": "2543b38a720b309f6bd44aa8089311c35983d6c646065079d92d557dcf66402d"
     },
     {
       "path": "audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
@@ -373,6 +383,16 @@
       "path": "audit/blockers/localized_comparison_factor_adjunction_w245.lean",
       "bytes": 12803,
       "sha256": "875507cb9de9ea091cf2f459a1d6fa6f9da6d0436ffa38511ab57f91b2d442a2"
+    },
+    {
+      "path": "audit/blockers/localized_comparison_transport_input_w253.lean",
+      "bytes": 9282,
+      "sha256": "cd56e0c1b1508dd079bfbdb067e473f55fcce2269ae2fc1dfaac6fd4fcc4664c"
+    },
+    {
+      "path": "audit/blockers/localized_comparison_unit_membership_w247.lean",
+      "bytes": 5289,
+      "sha256": "0269f9fff2bc0abc1ca2e6fc3d30a0eed350a572b369505963b4d63520affd6d"
     },
     {
       "path": "audit/blockers/localized_functor_is_triangulated_transfer.lean",
@@ -796,8 +816,8 @@
     },
     {
       "path": "implementation-notes.html",
-      "bytes": 212500,
-      "sha256": "42c86aa4f7a3cff4c38c956e9b9bdf558c5c52d0fd041f2c145be943a0952826"
+      "bytes": 213848,
+      "sha256": "3d42a64f64e8d04f2ebb57bc615221ef74175f9dc715db4d9133e5a03aabda55"
     },
     {
       "path": "lake-manifest.json",
@@ -821,18 +841,18 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 180250,
-      "sha256": "fd5d287852f9f8d0fd81de10027b2089b39fa8c373541568da0735a01abb381c"
+      "bytes": 180652,
+      "sha256": "04d3458c3b855a5f1e4cb62c2d5b481b93dc2c731e36d42d30fa2df44f4b75e5"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 99406,
-      "sha256": "3be6cb3c329511e5786d2c812c94ea81187d157668e69c5e54e7e46937e92194"
+      "bytes": 100141,
+      "sha256": "346ccede016796aba7655c8a7353d03bfc2444e17b0b72a0e5c5693a27001047"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "bytes": 56445,
-      "sha256": "40e8e270111d7c7fbffac2a8d994c05604be865f524d664a43b8b18c4317bb50"
+      "bytes": 57156,
+      "sha256": "41fbafd45c3feb8743d4cf63f7f03be6368d71136251e38360ca52eacc84c3d0"
     },
     {
       "path": "reviews/README.md",
@@ -841,8 +861,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 58725,
-      "sha256": "17407b7639ae08abfdbeaaeaecbcf4ebbad3ec1a6f967cdb5103997f5cdf86f7"
+      "bytes": 60777,
+      "sha256": "6cef0a6eef668688e981e1a736af4379b07932463b7db9d9936b2ac0f3562a62"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -856,33 +876,13 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 130757,
-      "sha256": "e684e51a47464cbdd8f08a2b03a69e884ea00a79d4beea2879f14c559f1522cc"
+      "bytes": 131411,
+      "sha256": "1ec1d02be74237cbfbd7e62073efe582fa8d7682263a58776494ceac72b7bdce"
     },
     {
       "path": "workers/README.md",
       "bytes": 131,
       "sha256": "b4ba0be0ad31f2118f67d860388b64931659bd96742e8b5c73a1b92846040191"
-    },
-    {
-      "path": "audit/blockers/adjunction_transport_unit_equality_w250.lean",
-      "bytes": 2789,
-      "sha256": "ea0cfd9a1ea6398ba4412e97b90fc6371bbaf957baffd7bb0548042985acb039"
-    },
-    {
-      "path": "audit/blockers/localized_comparison_unit_membership_w247.lean",
-      "bytes": 5289,
-      "sha256": "0269f9fff2bc0abc1ca2e6fc3d30a0eed350a572b369505963b4d63520affd6d"
-    },
-    {
-      "path": "audit/blockers/bounded_opposite_concrete_finite_limits_w248.lean",
-      "bytes": 4129,
-      "sha256": "2543b38a720b309f6bd44aa8089311c35983d6c646065079d92d557dcf66402d"
-    },
-    {
-      "path": "audit/blockers/localized_comparison_transport_input_w253.lean",
-      "bytes": 9282,
-      "sha256": "cd56e0c1b1508dd079bfbdb067e473f55fcce2269ae2fc1dfaac6fd4fcc4664c"
     }
   ]
 }

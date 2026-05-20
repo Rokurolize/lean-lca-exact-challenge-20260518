@@ -228,6 +228,12 @@
 <p><time>2026-05-20T10:23:57Z</time>: The finite-product stability theorem <code>BoundedFiniteProducts.isStableUnderFiniteProducts_metrizableLCA</code> and conditional <code>BoundedFiniteProducts.dboundedHasFiniteProducts_metrizableLCA</code> were promoted into the product module. This records that v233-v234 have supplied the source finite limits and weak-equivalence finite-product stability needed above the localization API. The constructor still assumes <code>(boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions</code>, so it is progress toward but not a proof of unconditional finite products or product success.</p>
 </section>
 
+<section id="v270-cokernel-top-strict-exact-equivalence">
+<h2>v270 cokernel top strict-exact equivalence</h2>
+<p><time>2026-05-20T14:22:00Z</time>: The parent consumed support result <code>w251-cokernel-top-strict-exact-equivalence-v262</code> by promoting its non-duplicative API into <code>LeanLCAExactChallenge/LCA/Cokernel.lean</code> and <code>LeanLCAExactChallenge/LCA/StrictExact.lean</code>. The cokernel API now has <code>MetrizableLCA.cokernelSubgroup_eq_top_of_surjective</code> and <code>MetrizableLCA.cokernelSubgroup_eq_top_iff_cokernelObj_isZero</code>, connecting the concrete top subgroup condition with zero categorical cokernel object. The strict exactness API now has <code>MetrizableLCA.surjective_iff_cokernelSubgroup_eq_top_of_isOpenMap</code>, <code>MetrizableLCA.CokernelTopStrictInput</code>, and <code>MetrizableLCA.strictShortExact_of_cokernelTopStrictInput</code>.</p>
+<p>This improves the target-side right exactness interface: future upstream routes may feed direct surjectivity, <code>cokernelπ = 0</code>, <code>Epi</code>, concrete cokernel-subgroup-top, or zero cokernel object. Product success remains nonterminal because the upstream route still has to produce kernel equality, closed embedding, open-map status, and a right-exactness input from the derived/homology/localization construction.</p>
+</section>
+
 </body>
 </html>
 

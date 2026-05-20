@@ -67,7 +67,12 @@ example : HasFiniteColimits MetrizableLCA := by infer_instance
 #check (inferInstance : HasForget₂ MetrizableLCA AddCommGrpCat)
 #check (inferInstance : (forget₂ MetrizableLCA AddCommGrpCat).Additive)
 #check MetrizableLCA.strictShortExact_of_exact_of_topology
+#check MetrizableLCA.cokernelSubgroup_eq_top_of_surjective
+#check MetrizableLCA.cokernelSubgroup_eq_top_iff_cokernelObj_isZero
 #check MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap
+#check MetrizableLCA.surjective_iff_cokernelSubgroup_eq_top_of_isOpenMap
+#check MetrizableLCA.CokernelTopStrictInput
+#check MetrizableLCA.strictShortExact_of_cokernelTopStrictInput
 #check MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top
 #check MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top
 #check MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero
