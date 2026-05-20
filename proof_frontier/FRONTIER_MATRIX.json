@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T11:12:57Z",
+  "generated_utc": "2026-05-20T11:15:35Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1282,10 +1282,11 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "support w227/w228/w229 were parent-reimplemented as fixed-target field, inverse-image adjunction, and exact-acyclic quasi-iso frontier reductions.",
-  "latest_parent_update": "v245-fixed-target-adjunction-quasiiso-frontiers",
-  "summary": "v245時点で、support w227/w228/w229 の有用部分を親側で再実装し、audit/blockers/whiskering_right_fixed_target_up_w227.lean、audit/blockers/inverse_image_left_calculus_adjunction_w228.lean、audit/blockers/exact_acyclic_homotopy_invariance_w229.lean を追加した。WalkingParallelPair functor-category localization は2つの fixed target それぞれの inverts/lift/fac/uniq フィールドへ展開され、inverse-image left calculus は mathlib の adjunction theorem で localized homotopy quotient composite の右随伴と unit membership へ縮約され、exactAcyclic の HomotopyEquiv 輸送は HomotopyEquiv.toHomologyIso から degreewise ShortComplex.QuasiIso を得る経路へ縮約された。残る入力は lift/fac/uniq、localized adjunction data、ShortComplex quasi-iso conflation transport、さらに有限余極限・三角構造・stable infinity-category 構造である。",
+  "support_result_classification": "support w230 was parent-reimplemented as an opposite left-calculus handedness and right-calculus transfer frontier reduction.",
+  "latest_parent_update": "v246-opposite-left-calculus-handedness",
+  "summary": "v246時点で、support w230 の有用部分を親側で再実装し、audit/blockers/opposite_left_calculus_transfer_w230.lean を追加した。反対側 finite-limit route の calculus handedness は、mathlib の opposite instance により、W.op の left calculus には元の W の right calculus が必要だと明確化された。したがって (boundedExactWeakEquivalence C).op の left calculus には、(boundedExactWeakEquivalence C).HasRightCalculusOfFractions、または bounded homotopy inverse image に対する PullbackRightCalculusTransfer C が残入力である。product success はまだ非完了である。",
   "remaining_frontier": [
+    "Opposite finite-limit route: W.op left calculus requires right calculus on W; boundedExactWeakEquivalence right calculus or PullbackRightCalculusTransfer remains missing.",
     "WalkingParallelPair functor-category localization: fixed-target fields are named; lift/fac/uniq remain to be constructed for the two target categories.",
     "Dbounded left calculus: inverse-image transfer is reduced to localized adjunction data and unit membership for the homotopy quotient composite.",
     "Exact-acyclic homotopy invariance: HomotopyEquiv gives degreewise ShortComplex.QuasiIso; quasi-isomorphism transport of QuillenExactCategory.Conflation remains missing.",

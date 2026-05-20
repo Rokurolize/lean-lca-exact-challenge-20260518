@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v245時点で、support w227/w228/w229 の有用部分を親側で再実装し、audit/blockers/whiskering_right_fixed_target_up_w227.lean、audit/blockers/inverse_image_left_calculus_adjunction_w228.lean、audit/blockers/exact_acyclic_homotopy_invariance_w229.lean を追加した。WalkingParallelPair functor-category localization は2つの fixed target それぞれの inverts/lift/fac/uniq フィールドへ展開され、inverse-image left calculus は mathlib の adjunction theorem で localized homotopy quotient composite の右随伴と unit membership へ縮約され、exactAcyclic の HomotopyEquiv 輸送は HomotopyEquiv.toHomologyIso から degreewise ShortComplex.QuasiIso を得る経路へ縮約された。残る入力は lift/fac/uniq、localized adjunction data、ShortComplex quasi-iso conflation transport、さらに有限余極限・三角構造・stable infinity-category 構造である。",
+  "summary": "v246時点で、support w230 の有用部分を親側で再実装し、audit/blockers/opposite_left_calculus_transfer_w230.lean を追加した。反対側 finite-limit route の calculus handedness は、mathlib の opposite instance により、W.op の left calculus には元の W の right calculus が必要だと明確化された。したがって (boundedExactWeakEquivalence C).op の left calculus には、(boundedExactWeakEquivalence C).HasRightCalculusOfFractions、または bounded homotopy inverse image に対する PullbackRightCalculusTransfer C が残入力である。product success はまだ非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -28,7 +28,8 @@
     "lake env lean audit/blockers/exact_acyclic_homotopy_equiv_transport_w225.lean",
     "lake env lean audit/blockers/whiskering_right_fixed_target_up_w227.lean",
     "lake env lean audit/blockers/inverse_image_left_calculus_adjunction_w228.lean",
-    "lake env lean audit/blockers/exact_acyclic_homotopy_invariance_w229.lean"
+    "lake env lean audit/blockers/exact_acyclic_homotopy_invariance_w229.lean",
+    "lake env lean audit/blockers/opposite_left_calculus_transfer_w230.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -683,6 +684,7 @@
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
+    "反対側 left calculus は元localizerの right calculus へ正しく向きが修正されたが、(boundedExactWeakEquivalence C).HasRightCalculusOfFractions または PullbackRightCalculusTransfer C は未供給である。",
     "WalkingParallelPair functor-category localization は fixed-target fields へ展開されたが、2つの target category で lift/fac/uniq を構成する本体は未供給である。",
     "bounded homotopy inverse-image left calculus は localized adjunction theorem へ縮約されたが、homotopy quotient composite の右随伴と unit membership は未供給である。",
     "exactAcyclic homotopy invariance は degreewise ShortComplex.QuasiIso 経路へ縮約されたが、QuillenExactCategory.Conflation の quasi-iso transport は未供給である。",
@@ -699,14 +701,15 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",
   "packet_sha256_sidecar": "",
-  "git_commit": "uncommitted-v245",
+  "git_commit": "uncommitted-v246",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v245 parent-reimplemented support w227/w228/w229; fixed-target fields, localized adjunction route, and ShortComplex quasi-iso route are recorded. Product success remains nonterminal.",
+  "worker_frontier_summary": "v246 parent-reimplemented support w230; opposite left calculus is reduced to right calculus on boundedExactWeakEquivalence C or PullbackRightCalculusTransfer C. Product success remains nonterminal.",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
     "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
+    "反対側 left calculus は元localizerの right calculus へ正しく向きが修正されたが、(boundedExactWeakEquivalence C).HasRightCalculusOfFractions または PullbackRightCalculusTransfer C は未供給である。",
     "WalkingParallelPair functor-category localization は fixed-target fields へ展開されたが、2つの target category で lift/fac/uniq を構成する本体は未供給である。",
     "bounded homotopy inverse-image left calculus は localized adjunction theorem へ縮約されたが、homotopy quotient composite の右随伴と unit membership は未供給である。",
     "exactAcyclic homotopy invariance は degreewise ShortComplex.QuasiIso 経路へ縮約されたが、QuillenExactCategory.Conflation の quasi-iso transport は未供給である。",
@@ -724,7 +727,7 @@
     "WalkingParallelPair functor-category localization input が未完了。",
     "parallel-pair mapping-cone安定性のproduct-facing接続が未完了。"
   ],
-  "next_recommended_goal": "Either construct lift/fac/uniq for the two WalkingParallelPair fixed targets, construct the localized homotopy quotient adjunction data for inverse-image left calculus, or prove ShortComplexQuasiIsoConflationTransport for the local exact-category predicate.",
+  "next_recommended_goal": "Prove PullbackRightCalculusTransfer C, construct the localized homotopy quotient adjunction data, prove the WalkingParallelPair fixed-target lift/fac/uniq fields, or prove ShortComplexQuasiIsoConflationTransport.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -977,10 +980,14 @@
     "InverseImageLeftCalculusAdjunctionW228.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedAdjunction",
     "ExactAcyclicHomotopyInvarianceW229.ShortComplexQuasiIsoConflationTransport",
     "ExactAcyclicHomotopyInvarianceW229.shortComplex_quasiIso_of_homotopyEquiv",
-    "ExactAcyclicHomotopyInvarianceW229.exactAcyclicTransportOfHomotopyEquiv_of_shortComplexQuasiIso"
+    "ExactAcyclicHomotopyInvarianceW229.exactAcyclicTransportOfHomotopyEquiv_of_shortComplexQuasiIso",
+    "OppositeLeftCalculusTransferW230.op_hasLeftCalculusOfFractions_of_hasRight",
+    "OppositeLeftCalculusTransferW230.oppositeWeakEquivalence_hasLeftCalculusOfFractions_of_hasRight",
+    "OppositeLeftCalculusTransferW230.PullbackRightCalculusTransfer",
+    "OppositeLeftCalculusTransferW230.oppositeWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_rightTransfer"
   ],
-  "generated_utc": "2026-05-20T11:12:57Z",
-  "support_result_classification": "support w227/w228/w229 were parent-reimplemented as fixed-target field, inverse-image adjunction, and exact-acyclic quasi-iso frontier reductions.",
+  "generated_utc": "2026-05-20T11:15:35Z",
+  "support_result_classification": "support w230 was parent-reimplemented as an opposite left-calculus handedness and right-calculus transfer frontier reduction.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",

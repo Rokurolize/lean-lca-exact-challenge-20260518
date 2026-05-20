@@ -1,9 +1,14 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v245-fixed-target-adjunction-quasiiso-frontiers",
-  "generated_utc": "2026-05-20T11:12:57Z",
-  "source_tree_hash": "bde6c2c0a001047410d41efeeb826b933f6033f62214fd322e2840ea3cf0ba40",
-  "summary": "v245時点で、support w227/w228/w229 の有用部分を親側で再実装し、audit/blockers/whiskering_right_fixed_target_up_w227.lean、audit/blockers/inverse_image_left_calculus_adjunction_w228.lean、audit/blockers/exact_acyclic_homotopy_invariance_w229.lean を追加した。WalkingParallelPair functor-category localization は2つの fixed target それぞれの inverts/lift/fac/uniq フィールドへ展開され、inverse-image left calculus は mathlib の adjunction theorem で localized homotopy quotient composite の右随伴と unit membership へ縮約され、exactAcyclic の HomotopyEquiv 輸送は HomotopyEquiv.toHomologyIso から degreewise ShortComplex.QuasiIso を得る経路へ縮約された。残る入力は lift/fac/uniq、localized adjunction data、ShortComplex quasi-iso conflation transport、さらに有限余極限・三角構造・stable infinity-category 構造である。",
+  "schema": "lean-lca-exact-challenge-verification-v246-opposite-left-calculus-handedness",
+  "generated_utc": "2026-05-20T11:15:35Z",
+  "source_tree_hash": "f3b4ee2705ca7c2f7f9df2ac79e59d442c6c4664d6cb56f5fa341a511aa8e3e7",
+  "summary": "v246時点で、support w230 の有用部分を親側で再実装し、audit/blockers/opposite_left_calculus_transfer_w230.lean を追加した。反対側 finite-limit route の calculus handedness は、mathlib の opposite instance により、W.op の left calculus には元の W の right calculus が必要だと明確化された。したがって (boundedExactWeakEquivalence C).op の left calculus には、(boundedExactWeakEquivalence C).HasRightCalculusOfFractions、または bounded homotopy inverse image に対する PullbackRightCalculusTransfer C が残入力である。product success はまだ非完了である。",
   "commands": [
+    {
+      "command": "lake env lean audit/blockers/opposite_left_calculus_transfer_w230.lean",
+      "status": "passed",
+      "evidence": "Focused W230 opposite left-calculus handedness boundary check passed after v246."
+    },
     {
       "command": "lake env lean audit/blockers/whiskering_right_fixed_target_up_w227.lean",
       "status": "passed",
@@ -493,6 +498,7 @@
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
     "boundedHomotopyExactWeakEquivalence C は inverse image と定義的に一致するが、任意の W.inverseImage F へ left calculus を移す一般転送は未供給である。",
     "WalkingParallelPair functor-category localization は objectwise inversion まで形式化されたが、2つの StrictUniversalPropertyFixedTarget 入力がまだ未供給である。",
+    "反対側 left calculus は元localizerの right calculus へ正しく向きが修正されたが、(boundedExactWeakEquivalence C).HasRightCalculusOfFractions または PullbackRightCalculusTransfer C は未供給である。",
     "WalkingParallelPair functor-category localization は fixed-target fields へ展開されたが、2つの target category で lift/fac/uniq を構成する本体は未供給である。",
     "bounded homotopy inverse-image left calculus は localized adjunction theorem へ縮約されたが、homotopy quotient composite の右随伴と unit membership は未供給である。",
     "exactAcyclic homotopy invariance は degreewise ShortComplex.QuasiIso 経路へ縮約されたが、QuillenExactCategory.Conflation の quasi-iso transport は未供給である。",
@@ -506,5 +512,5 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "support w227/w228/w229 were parent-reimplemented as fixed-target field, inverse-image adjunction, and exact-acyclic quasi-iso frontier reductions."
+  "support_result_classification": "support w230 was parent-reimplemented as an opposite left-calculus handedness and right-calculus transfer frontier reduction."
 }
