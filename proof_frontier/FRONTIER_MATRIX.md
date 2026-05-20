@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T06:11:06Z
+Generated: 2026-05-20T06:18:07Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -60,3 +60,13 @@ v211 consumes completed support worker w162 as parent-owned W151 frontier API: i
 ## v212 Update
 
 v212 consumes completed support worker w163 by adding the cone-point uniqueness conversion from a limiting binary fan to a biproduct-shaped product iso. W151 now has binaryFanLimitPointIsoBiprod, optionProductIsoBiprod_of_complexFanIsLimit, and the specialization optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit. The remaining Option route input is the complex-level IsLimit proof, expected from EvaluatedDegreeFanComparison plus HomologicalComplex.isLimitOfEval. Product success remains nonterminal.
+
+
+## v213 Update
+
+v213 adds the parent-owned assembly layer after the evaluated fan comparison: optionProductComplexTransportedBinaryFanIsLimit_of_eval packages degreewise evaluated-fan IsLimit proofs via HomologicalComplex.isLimitOfEval, and optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit feeds that directly into the v212 biproduct iso conversion. This avoids duplicating active w164 comparison work while closing the downstream consumer path once evaluated-fan IsLimit evidence is available. Product success remains nonterminal.
+
+
+## v214 Update
+
+v214 consumes completed support worker w164 and includes the v213 downstream assembly layer. W151 now has optionProductComplexTransportedBinaryFanIsLimit_of_eval and optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit, plus EvaluatedDegreeFanComparisonLeft, EvaluatedDegreeFanComparisonRight, and evaluatedDegreeFanComparison_of_left_right. The Option route is reduced to proving the two concrete leg equalities and then transporting the degreewise IsLimit proof into the evaluated-fan IsLimit family. Product success remains nonterminal.

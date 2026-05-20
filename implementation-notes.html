@@ -228,3 +228,13 @@
 <h2>v212 w163 limit to biproduct</h2>
 <p><time>2026-05-20T06:11:06Z</time>: Completed support worker w163 was consumed in W151. The parent added <code>binaryFanLimitPointIsoBiprod</code>, <code>optionProductIsoBiprod_of_complexFanIsLimit</code>, and <code>optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit</code>. This closes the downstream conversion from a limiting transported Option product binary fan to the biproduct-shaped iso required by finite-product closure; the remaining Option-route proof is the complex-level <code>IsLimit</code> construction, currently reduced to <code>EvaluatedDegreeFanComparison</code> and transport through <code>HomologicalComplex.isLimitOfEval</code>.</p>
 </section>
+
+<section id="v213-option-fan-eval-islimit-consumer">
+<h2>v213 option fan eval islimit consumer</h2>
+<p><time>2026-05-20T06:15:46Z</time>: W151 now has the downstream assembly layer after the evaluated fan comparison. <code>optionProductComplexTransportedBinaryFanIsLimit_of_eval</code> applies <code>HomologicalComplex.isLimitOfEval</code> to a family of evaluated-fan limit proofs, and <code>optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit</code> feeds that result into the v212 biproduct conversion. This was intentionally chosen as non-overlapping parent work while support worker w164 owns the direct <code>EvaluatedDegreeFanComparison</code> attempt.</p>
+</section>
+
+<section id="v214-w164-left-right-frontier">
+<h2>v214 w164 left right frontier</h2>
+<p><time>2026-05-20T06:18:07Z</time>: The parent consumed support worker w164 and kept the v213 downstream assembly layer. W151 now reduces <code>EvaluatedDegreeFanComparison</code> to <code>EvaluatedDegreeFanComparisonLeft</code> and <code>EvaluatedDegreeFanComparisonRight</code> via <code>evaluatedDegreeFanComparison_of_left_right</code>. Together with <code>optionProductComplexTransportedBinaryFanIsLimit_of_eval</code> and <code>optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit</code>, the remaining Option-product route is no longer cone packaging but two concrete leg calculations.</p>
+</section>

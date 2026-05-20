@@ -200,6 +200,26 @@ theorem optionProductComplexTransportedBinaryFan_snd {J : Type w}
   rfl
 
 /--
+Assemble degreewise limit proofs for the evaluated transported Option-product fan into the
+complex-level limiting fan.
+-/
+noncomputable def optionProductComplexTransportedBinaryFanIsLimit_of_eval
+    {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [HasProduct (optionTail C K)]
+    (hEval :
+      ∀ n : ℤ,
+        IsLimit
+          ((HomologicalComplex.eval C (ComplexShape.up ℤ) n).mapCone
+            (optionProductComplexTransportedBinaryFan C K))) :
+    IsLimit (optionProductComplexTransportedBinaryFan C K) :=
+  HomologicalComplex.isLimitOfEval (pair (K none) (∏ᶜ (optionTail C K)))
+    (optionProductComplexTransportedBinaryFan C K) hEval
+
+/--
 Specialization of the cone-point uniqueness conversion to W151's transported complex fan.
 -/
 noncomputable def optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit
@@ -216,6 +236,27 @@ noncomputable def optionProductIsoBiprod_of_optionProductComplexTransportedBinar
     (optionProductComplexTransportedBinaryFan C K)
     (optionProductComplexTransportedBinaryFan_pt C K)
     hFan
+
+/--
+Consumer wrapper: degreewise limit proofs for the evaluated transported fan already imply the
+biproduct-shaped Option-product iso.
+-/
+noncomputable def optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit
+    {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [HasProduct (optionTail C K)]
+    [HasBinaryBiproduct (K none) (∏ᶜ (optionTail C K))]
+    (hEval :
+      ∀ n : ℤ,
+        IsLimit
+          ((HomologicalComplex.eval C (ComplexShape.up ℤ) n).mapCone
+            (optionProductComplexTransportedBinaryFan C K))) :
+    ∏ᶜ K ≅ K none ⊞ ∏ᶜ (optionTail C K) :=
+  optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit C K
+    (optionProductComplexTransportedBinaryFanIsLimit_of_eval C K hEval)
 
 noncomputable abbrev optionProductSplitPair {J : Type w}
     (K : Option J → CochainComplex C ℤ)
@@ -465,6 +506,56 @@ abbrev EvaluatedDegreeFanComparison {J : Type w}
   evaluatedOptionProductComplexBinaryFan C K n =
     optionProductDegreeFanWithEvaluatedTargets C K n
 
+/-- The left-leg equality exposed by binary-fan extensionality. -/
+abbrev EvaluatedDegreeFanComparisonLeft {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)] : Prop :=
+  (evaluatedOptionProductComplexBinaryFan C K n).fst =
+    (optionProductDegreeFanWithEvaluatedTargets C K n).fst
+
+/-- The right-leg equality exposed by binary-fan extensionality. -/
+abbrev EvaluatedDegreeFanComparisonRight {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)] : Prop :=
+  (evaluatedOptionProductComplexBinaryFan C K n).snd =
+    (optionProductDegreeFanWithEvaluatedTargets C K n).snd
+
+/--
+Binary-fan extensionality reduces the evaluated fan comparison to exactly the two projection legs.
+-/
+theorem evaluatedDegreeFanComparison_of_left_right {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)]
+    (hleft : EvaluatedDegreeFanComparisonLeft C K n)
+    (hright : EvaluatedDegreeFanComparisonRight C K n) :
+    EvaluatedDegreeFanComparison C K n := by
+  dsimp [EvaluatedDegreeFanComparison, EvaluatedDegreeFanComparisonLeft,
+    EvaluatedDegreeFanComparisonRight, evaluatedOptionProductComplexBinaryFan,
+    optionProductDegreeFanWithEvaluatedTargets] at hleft hright ⊢
+  rw [hleft, hright]
+  rfl
+
 /--
 API state for the selected degreewise route.
 
@@ -486,8 +577,13 @@ structure DegreewiseProductApiState : Type where
   evaluatedComplexFan : String
   transportedDegreeFanWithEvaluatedTargets : String
   remainingEvaluatedFanComparison : String
+  remainingEvaluatedLeftLeg : String
+  remainingEvaluatedRightLeg : String
+  evaluatedFanComparisonOfLeftRight : String
   binaryFanLimitPointIsoBiprod : String
+  complexTransportedFanIsLimitOfEval : String
   optionProductIsoBiprodOfComplexFanIsLimit : String
+  optionProductIsoBiprodOfEvalIsLimit : String
   missingComplexIsoConstructor : Option String
 
 /-- W151's current API frontier for the selected route. -/
@@ -505,15 +601,22 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   evaluatedComplexFan := "evaluatedOptionProductComplexBinaryFan"
   transportedDegreeFanWithEvaluatedTargets := "optionProductDegreeFanWithEvaluatedTargets"
   remainingEvaluatedFanComparison := "EvaluatedDegreeFanComparison"
+  remainingEvaluatedLeftLeg := "EvaluatedDegreeFanComparisonLeft"
+  remainingEvaluatedRightLeg := "EvaluatedDegreeFanComparisonRight"
+  evaluatedFanComparisonOfLeftRight := "evaluatedDegreeFanComparison_of_left_right"
   binaryFanLimitPointIsoBiprod := "binaryFanLimitPointIsoBiprod"
+  complexTransportedFanIsLimitOfEval :=
+    "optionProductComplexTransportedBinaryFanIsLimit_of_eval"
   optionProductIsoBiprodOfComplexFanIsLimit :=
     "optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit"
+  optionProductIsoBiprodOfEvalIsLimit :=
+    "optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit"
   missingComplexIsoConstructor :=
-    some "Prove EvaluatedDegreeFanComparison and transport the degreewise IsLimit proof through evalProductPointIso/evalTailProductPointIso; the binary-product limit can then be converted to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j)) by optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit"
+    some "Prove EvaluatedDegreeFanComparisonLeft and EvaluatedDegreeFanComparisonRight, combine them by evaluatedDegreeFanComparison_of_left_right, and transport the degreewise IsLimit proof through evalProductPointIso/evalTailProductPointIso; the resulting evaluated-fan IsLimit family feeds optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit"
 
 theorem currentDegreewiseProductApiState_missing :
     currentDegreewiseProductApiState.missingComplexIsoConstructor =
-      some "Prove EvaluatedDegreeFanComparison and transport the degreewise IsLimit proof through evalProductPointIso/evalTailProductPointIso; the binary-product limit can then be converted to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j)) by optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit" :=
+      some "Prove EvaluatedDegreeFanComparisonLeft and EvaluatedDegreeFanComparisonRight, combine them by evaluatedDegreeFanComparison_of_left_right, and transport the degreewise IsLimit proof through evalProductPointIso/evalTailProductPointIso; the resulting evaluated-fan IsLimit family feeds optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit" :=
   rfl
 
 /-- Compact checklist of the next proof obligations after this API guard. -/
@@ -548,7 +651,9 @@ section Checks
 #check optionProductComplexTransportedBinaryFan_pt
 #check optionProductComplexTransportedBinaryFan_fst
 #check optionProductComplexTransportedBinaryFan_snd
+#check optionProductComplexTransportedBinaryFanIsLimit_of_eval
 #check optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit
+#check optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit
 #check optionProductSplitPair
 #check optionProductDegreeBinaryFan
 #check optionTailDegree
@@ -566,6 +671,9 @@ section Checks
 #check evaluatedOptionProductComplexBinaryFan
 #check optionProductDegreeFanWithEvaluatedTargets
 #check EvaluatedDegreeFanComparison
+#check EvaluatedDegreeFanComparisonLeft
+#check EvaluatedDegreeFanComparisonRight
+#check evaluatedDegreeFanComparison_of_left_right
 #check DegreewiseProductApiState
 #check currentDegreewiseProductApiState
 #check currentDegreewiseProductApiState_missing

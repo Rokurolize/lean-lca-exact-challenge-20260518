@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v212時点で、完了した支援worker w163を親側W151へ取り込み、limiting BinaryFanからbiproduct型isoへ変換する binaryFanLimitPointIsoBiprod、optionProductIsoBiprod_of_complexFanIsLimit、optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit を追加した。Option product routeは複体レベルのIsLimit構成まで絞られたが、EvaluatedDegreeFanComparison、HomologicalComplex.isLimitOfEvalへの接続、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が残るため、成果物は非終端である。",
+  "summary": "v214時点で、v213の評価済みfan IsLimit消費経路に加えて、完了した支援worker w164を親側W151へ取り込み、EvaluatedDegreeFanComparisonLeft、EvaluatedDegreeFanComparisonRight、evaluatedDegreeFanComparison_of_left_right を追加した。Option product routeは左右2本の具体的なleg等式へ縮約されたが、その等式証明、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が残るため、成果物は非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -676,8 +676,8 @@
     "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
   ],
   "known_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v212でlimiting Option complex fanからbiproduct型isoへの変換は入ったが、EvaluatedDegreeFanComparison、その比較からの複体レベル IsLimit 構成、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
-    "Option product decomposition 本体は、transported complex fan、degreewise limiting fan、evalProductPointIso、evalTailProductPointIso、EvaluatedDegreeFanComparison境界、OptionProductIsoBiprodへのcone-point変換を持つが、肝心の複体レベル transported fan の IsLimit 証明が未完了。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v214でOption product comparisonは左右2本のleg等式へ縮約され、評価済みfan IsLimit族からOptionProductIsoBiprodへ流す消費経路も入ったが、EvaluatedDegreeFanComparisonLeft と EvaluatedDegreeFanComparisonRight は未証明。",
+    "Option product decomposition 本体は、transported complex fan、degreewise limiting fan、evalProductPointIso、evalTailProductPointIso、左右leg境界、HomologicalComplex.isLimitOfEval消費経路、OptionProductIsoBiprodへのcone-point変換を持つが、左右legの自然性計算が未完了。",
     "Dbounded equalizer/pullback transfer、有限colimit、pretriangulated/triangulated構造、stable infinity-category enhancement は未完了。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
