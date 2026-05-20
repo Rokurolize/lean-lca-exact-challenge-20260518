@@ -637,6 +637,25 @@ theorem evaluatedDegreeFanComparison_of_left_right {J : Type w}
   rfl
 
 /--
+After `evaluatedDegreeFanComparisonLeft_direct`, only the right leg remains to prove the full
+evaluated fan comparison.
+-/
+theorem evaluatedDegreeFanComparison_of_right {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [HasProduct (fun i : {x : Option J // x = none} => (K i.val).X n)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)]
+    [HasProduct (optionTail C K)]
+    [∀ m : ℤ, HasProduct (optionTailDegree C K m)]
+    (hright : EvaluatedDegreeFanComparisonRight C K n) :
+    EvaluatedDegreeFanComparison C K n :=
+  evaluatedDegreeFanComparison_of_left_right C K n
+    (evaluatedDegreeFanComparisonLeft_direct C K n) hright
+
+/--
 API state for the selected degreewise route.
 
 The first three fields are available in mathlib/local imports; the final field is the missing
@@ -660,6 +679,7 @@ structure DegreewiseProductApiState : Type where
   remainingEvaluatedLeftLeg : String
   remainingEvaluatedRightLeg : String
   evaluatedFanComparisonOfLeftRight : String
+  evaluatedFanComparisonOfRight : String
   binaryFanLimitPointIsoBiprod : String
   binaryFanIsLimitOfEq : String
   coneIsLimitOfEq : String
@@ -686,6 +706,7 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   remainingEvaluatedLeftLeg := "EvaluatedDegreeFanComparisonLeft"
   remainingEvaluatedRightLeg := "EvaluatedDegreeFanComparisonRight"
   evaluatedFanComparisonOfLeftRight := "evaluatedDegreeFanComparison_of_left_right"
+  evaluatedFanComparisonOfRight := "evaluatedDegreeFanComparison_of_right"
   binaryFanLimitPointIsoBiprod := "binaryFanLimitPointIsoBiprod"
   binaryFanIsLimitOfEq := "binaryFanIsLimitOfEq"
   coneIsLimitOfEq := "coneIsLimitOfEq"
@@ -761,6 +782,7 @@ section Checks
 #check EvaluatedDegreeFanComparisonRight
 #check evaluatedDegreeFanComparisonLeft_direct
 #check evaluatedDegreeFanComparison_of_left_right
+#check evaluatedDegreeFanComparison_of_right
 #check DegreewiseProductApiState
 #check currentDegreewiseProductApiState
 #check currentDegreewiseProductApiState_missing

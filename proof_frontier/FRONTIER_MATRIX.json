@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T06:28:47Z",
+  "generated_utc": "2026-05-20T06:30:53Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v216 consumes completed consultant support w166; support w167 remains active on the right-leg naturality calculation.",
+  "worker_policy": "No workers were launched from the target worktree. v217 is parent-owned consumer work and avoids duplicating active support w167 on the right-leg naturality calculation.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1340,10 +1340,9 @@
     }
   },
   "latest_parent_update": {
-    "version": "v216",
-    "timestamp_utc": "2026-05-20T06:28:47Z",
-    "summary": "v216 consumes support worker w166 by promoting evaluatedDegreeFanComparisonLeft_direct into W151. The evaluated-degree fan comparison is now reduced to the right-leg equality only, because the left leg is proved and w164 already provided evaluatedDegreeFanComparison_of_left_right.",
-    "consumed_support_worker": "w166-evaluated-degree-fan-left-leg",
-    "remaining_next_step": "prove EvaluatedDegreeFanComparisonRight, then combine with evaluatedDegreeFanComparisonLeft_direct and evaluatedDegreeFanComparison_of_left_right."
+    "version": "v217",
+    "timestamp_utc": "2026-05-20T06:30:53Z",
+    "summary": "v217 adds evaluatedDegreeFanComparison_of_right to W151. Since v216 proved the left leg, the full evaluated fan comparison now requires only EvaluatedDegreeFanComparisonRight; once the right leg is supplied, evaluatedDegreeFanComparison_of_right feeds the existing downstream Option-product IsLimit and biproduct conversion path.",
+    "remaining_next_step": "prove or consume EvaluatedDegreeFanComparisonRight, then apply evaluatedDegreeFanComparison_of_right and the downstream IsLimit/biproduct conversion path."
   }
 }

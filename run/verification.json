@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v216-w166-left-leg",
-  "generated_utc": "2026-05-20T06:28:47Z",
-  "source_tree_hash": "64c18c14934555f549f5f9797e64ff8dc5d508551f134aabc6541e19b66397fe",
-  "summary": "v216 consumes support worker w166 by promoting evaluatedDegreeFanComparisonLeft_direct into W151. The evaluated-degree fan comparison is now reduced to the right-leg equality only, because the left leg is proved and w164 already provided evaluatedDegreeFanComparison_of_left_right. Product success remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v217-right-leg-consumer",
+  "generated_utc": "2026-05-20T06:30:53Z",
+  "source_tree_hash": "5fc761eb75631e501c9a33a22294cd8df32b168d52ebec59bdbe349bd0ea7007",
+  "summary": "v217 adds evaluatedDegreeFanComparison_of_right to W151. Since v216 proved the left leg, the full evaluated fan comparison now requires only EvaluatedDegreeFanComparisonRight; once the right leg is supplied, evaluatedDegreeFanComparison_of_right feeds the existing downstream Option-product IsLimit and biproduct conversion path. Product success remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
@@ -468,6 +468,36 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "Whitespace diff check passed for v216 before commit."
+    },
+    {
+      "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
+      "status": "passed",
+      "evidence": "Focused W151 Lean check passed after adding evaluatedDegreeFanComparison_of_right."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed for v217; output logged to /tmp/v217-lake-build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token audit passed for v217 product source."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed for v217; command output was logged because #check output is large."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations passed for v217; product success remains unclaimed."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed for v217 before commit."
     }
   ],
   "implemented_declarations_checked": [

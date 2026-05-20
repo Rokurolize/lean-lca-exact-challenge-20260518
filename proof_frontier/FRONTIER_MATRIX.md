@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T06:28:47Z
+Generated: 2026-05-20T06:30:53Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -80,3 +80,8 @@ v215 consumes support worker w165 by adding binaryFanIsLimitOfEq and coneIsLimit
 ## v216 Update
 
 v216 consumes support worker w166 by promoting evaluatedDegreeFanComparisonLeft_direct into W151. The evaluated-degree fan comparison is now reduced to the right-leg equality only, because the left leg is proved and w164 already provided evaluatedDegreeFanComparison_of_left_right. Product success remains nonterminal.
+
+
+## v217 Update
+
+v217 adds evaluatedDegreeFanComparison_of_right to W151. Since v216 proved the left leg, the full evaluated fan comparison now requires only EvaluatedDegreeFanComparisonRight; once the right leg is supplied, evaluatedDegreeFanComparison_of_right feeds the existing downstream Option-product IsLimit and biproduct conversion path. Product success remains nonterminal.
