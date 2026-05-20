@@ -148,18 +148,49 @@ theorem exactAcyclic_optionProduct_of_optionProductIsoBiprod
   exactAcyclic_optionProduct_of_decomposition
     (finiteProductDecompositionInput_of_optionProductIsoBiprod input) K hK hTail
 
+/--
+Finite exact-acyclic product closure follows from the empty product base case and the promoted
+Option-product decomposition step.
+-/
+theorem finiteExactAcyclicProductClosure_of_optionProductIsoBiprod
+    (input : FiniteProductOptionDecompositionInput.{u}) :
+    FiniteExactAcyclicProductClosure.{u} := by
+  let P : Type u → Prop :=
+    fun J =>
+      ∀ (K : J → CochainComplex MetrizableLCA.{u} ℤ) [HasProduct K],
+        (∀ j, exactAcyclic MetrizableLCA (K j)) → exactAcyclic MetrizableLCA (∏ᶜ K)
+  refine Finite.induction_empty_option (P := P) ?of_equiv ?h_empty ?h_option
+  · intro α β e hα K _ hK
+    letI : HasProduct (K ∘ e) :=
+      hasProduct_of_equiv_of_iso K (K ∘ e) e (fun _ => Iso.refl _)
+    exact exactAcyclic_of_iso MetrizableLCA (Pi.reindex e K)
+      (hα (K ∘ e) (fun j => hK (e j)))
+  · intro K _ _
+    exact exactAcyclic_emptyProduct K
+  · intro α _ hα K _ hK
+    letI : HasProduct (fun j : α => K (some j)) := by infer_instance
+    exact exactAcyclic_optionProduct_of_optionProductIsoBiprod input K hK
+      (hα (fun j : α => K (some j)) (fun j => hK (some j)))
+
+/-- The W151 Option-product comparison closes W149's finite-product exactness target. -/
+theorem finiteExactAcyclicProductClosure_of_w151 :
+    FiniteExactAcyclicProductClosure.{u} :=
+  finiteExactAcyclicProductClosure_of_optionProductIsoBiprod
+    finiteProductOptionDecompositionInput_of_w151
+
 /-- The earliest missing theorem isolated by this audit. -/
 def earliestMissingTheorem : String :=
-  "FiniteProductDecompositionInput.optionProductIsoBiprod for cochain-complex products"
+  "mapping-cone finite-product stability after finite exact-acyclic product closure"
 
 /-- Why this is the first obstruction after the binary exactness theorem. -/
 def obstructionRouteMap : List String :=
   ["emptyProductIsoZero and exactAcyclic_zero prove the empty product base case",
     "MetrizableLCA.exactAcyclic_biprod proves the Option induction step after product decomposition",
-    "the remaining missing input is the Option product-object comparison, not empty-product exactness or exactness of biproducts"]
+    "Finite.induction_empty_option closes finite exact-acyclic product closure from the W151 Option comparison",
+    "the remaining missing input is the mapping-cone finite-product stability connection"]
 
 theorem obstructionRouteMap_count :
-    obstructionRouteMap.length = 3 := rfl
+    obstructionRouteMap.length = 4 := rfl
 
 section Checks
 
@@ -173,6 +204,8 @@ section Checks
 #check exactAcyclic_emptyProduct_of_decomposition
 #check exactAcyclic_optionProduct_of_decomposition
 #check exactAcyclic_optionProduct_of_optionProductIsoBiprod
+#check finiteExactAcyclicProductClosure_of_optionProductIsoBiprod
+#check finiteExactAcyclicProductClosure_of_w151
 #check earliestMissingTheorem
 #check obstructionRouteMap
 #check obstructionRouteMap_count

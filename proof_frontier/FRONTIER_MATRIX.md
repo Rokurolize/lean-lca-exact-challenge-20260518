@@ -1,6 +1,9 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T06:30:53Z
+Generated: 2026-05-20T08:29:11Z
+
+
+Parent update v224: `LeanLCAExactChallenge.Derived.FiniteProductExactness` now proves `finiteExactAcyclicProductClosure_of_w151` from the empty product base case, the W151 Option-product decomposition, product reindexing along equivalences, and `Finite.induction_empty_option`. The current frontier moves to mapping-cone finite-product stability and Dbounded finite-product transfer; product success is still not claimed.
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 

@@ -2,23 +2,21 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v223時点で、W151のOption-product decomposition証明本体をLeanLCAExactChallenge.Derived.OptionProductDecompositionへ昇格し、W149のfiniteProductOptionDecompositionInput_of_w151でFiniteProductOptionDecompositionInputへ接続した。Option-product object comparisonは製品側から消費可能になったが、一般有限family exact-acyclic product closure、mapping cone finite-product stability、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が未完了のため、成果物は非終端である。",
+  "summary": "v224時点で、W151のOption-product decompositionを使い、空積base case、Option step、添字同値での積reindexをFinite.induction_empty_optionに束ねて、FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151を製品側モジュールへ昇格した。W149監査ファイルにも同じ有限族exact-acyclic product closureを接続済みである。ただし、mapping cone finite-product stability、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が未完了のため、成果物は非終端である。",
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/OptionProductDecomposition.lean",
-    "lake build LeanLCAExactChallenge.Derived.OptionProductDecomposition",
+    "lake env lean LeanLCAExactChallenge/Derived/FiniteProductExactness.lean",
     "lake env lean audit/blockers/finite_exact_acyclic_product_closure_w149.lean",
-    "lake env lean LeanLCAExactChallenge.lean",
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "lake env lean audit/RequiredDeclarations.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
+    "git diff --check",
     "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
     "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
     "python3 -m json.tool run/verification.json >/dev/null",
     "python3 -m json.tool manifest.json >/dev/null",
     "python3 audit/external_audit.py --root . --self-check-only",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate)",
-    "git diff --check"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -631,11 +629,21 @@
     "boundedTrianglehIso13RestrictedEndpointCochainIsoPayload",
     "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos",
     "LeanLCAExactChallenge.MetrizableLCA.exactAcyclicBiprodTransportIso",
-    "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
+    "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod",
+    "FiniteProductExactness.FiniteExactAcyclicProductClosure",
+    "FiniteProductExactness.FiniteProductOptionDecompositionInput",
+    "FiniteProductExactness.emptyProductIsoZero",
+    "FiniteProductExactness.exactAcyclic_emptyProduct",
+    "FiniteProductExactness.finiteProductOptionDecompositionInput_of_w151",
+    "FiniteProductExactness.exactAcyclic_optionProduct_of_optionProductIsoBiprod",
+    "FiniteProductExactness.finiteExactAcyclicProductClosure_of_optionProductIsoBiprod",
+    "FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151",
+    "FiniteExactAcyclicProductClosureW149.finiteExactAcyclicProductClosure_of_optionProductIsoBiprod",
+    "FiniteExactAcyclicProductClosureW149.finiteExactAcyclicProductClosure_of_w151"
   ],
   "known_gaps": [
-    "W151のOption-product object comparisonは製品側モジュールへ昇格し、W149のFiniteProductOptionDecompositionInputへ接続済みだが、空積base caseとOption stepから一般有限family exact-acyclic product closureを導く帰納定理は未完了である。",
-    "mapping cone finite-product stabilityへこの有限積閉性を供給する接続は未完了である。",
+    "一般有限family exact-acyclic product closureはFiniteProductExactness.finiteExactAcyclicProductClosure_of_w151として製品側で証明済みだが、mapping cone finite-product stabilityへこの閉性を供給する接続は未完了である。",
+    "boundedExactWeakEquivalenceの有限積安定性とDbounded側の有限積・有限極限transferは未完了である。",
     "Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は依然としてproduct_successに必要な未完了項目である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -643,14 +651,14 @@
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "w181は親側v221/v222で吸収・上回り済み。v223では親側がW151 proof bodyを製品側モジュールへ昇格し、W149のOption-step inputへ接続した。",
-  "claim_review_result": "not_run_nonterminal",
+  "worker_frontier_summary": "w182/w183支援workerはこのtarget編集には未統合であり、parent所有のv224でW149の有限族exact-acyclic product closureを直接閉じた。現在のfrontierはmapping-cone finite-product stabilityである。",
+  "claim_review_result": "非終端self-auditのみ。Lean focused checkとfull lake buildは通過したが、product_successは意図的に主張していない。",
   "remaining_gaps": [
-    "W151のOption-product object comparisonは製品側モジュールへ昇格し、W149のFiniteProductOptionDecompositionInputへ接続済みだが、空積base caseとOption stepから一般有限family exact-acyclic product closureを導く帰納定理は未完了である。",
-    "mapping cone finite-product stabilityへこの有限積閉性を供給する接続は未完了である。",
+    "一般有限family exact-acyclic product closureはFiniteProductExactness.finiteExactAcyclicProductClosure_of_w151として製品側で証明済みだが、mapping cone finite-product stabilityへこの閉性を供給する接続は未完了である。",
+    "boundedExactWeakEquivalenceの有限積安定性とDbounded側の有限積・有限極限transferは未完了である。",
     "Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は依然としてproduct_successに必要な未完了項目である。"
   ],
-  "next_recommended_goal": "W149で空積base caseとfiniteProductOptionDecompositionInput_of_w151のOption stepからFiniteExactAcyclicProductClosureを証明し、mapping-cone finite-product stabilityへ接続する。",
+  "next_recommended_goal": "FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151をmapping-cone finite-product stabilityの比較入力へ接続し、boundedExactWeakEquivalenceの有限積安定性からDbounded有限積transferへ進める。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -780,10 +788,20 @@
     "complementSubproductDegreeHasProduct_of_optionTailDegree",
     "complementSubproductDegreeHasProduct_of_someTailDegree",
     "optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct",
-    "optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct"
+    "optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct",
+    "FiniteProductExactness.FiniteExactAcyclicProductClosure",
+    "FiniteProductExactness.FiniteProductOptionDecompositionInput",
+    "FiniteProductExactness.emptyProductIsoZero",
+    "FiniteProductExactness.exactAcyclic_emptyProduct",
+    "FiniteProductExactness.finiteProductOptionDecompositionInput_of_w151",
+    "FiniteProductExactness.exactAcyclic_optionProduct_of_optionProductIsoBiprod",
+    "FiniteProductExactness.finiteExactAcyclicProductClosure_of_optionProductIsoBiprod",
+    "FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151",
+    "FiniteExactAcyclicProductClosureW149.finiteExactAcyclicProductClosure_of_optionProductIsoBiprod",
+    "FiniteExactAcyclicProductClosureW149.finiteExactAcyclicProductClosure_of_w151"
   ],
-  "generated_utc": "2026-05-20T08:18:36Z",
-  "support_result_classification": "w167=merge_audit_only; w168=do_not_merge_blindly_into_current_live_target; w169=merge_canonical_w151_diff already reflected by parent v218.",
+  "generated_utc": "2026-05-20T08:29:11Z",
+  "support_result_classification": "parent v224の証明はactiveなW149支援frontierの有限族閉包部分を置き換える。この編集では支援worker出力をmergeしていない。",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1052,6 +1070,16 @@
     "OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct",
     "MetrizableLCA.instHasFiniteProducts",
     "OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct",
-    "FiniteExactAcyclicProductClosureW149.finiteProductOptionDecompositionInput_of_w151"
+    "FiniteExactAcyclicProductClosureW149.finiteProductOptionDecompositionInput_of_w151",
+    "FiniteProductExactness.FiniteExactAcyclicProductClosure",
+    "FiniteProductExactness.FiniteProductOptionDecompositionInput",
+    "FiniteProductExactness.emptyProductIsoZero",
+    "FiniteProductExactness.exactAcyclic_emptyProduct",
+    "FiniteProductExactness.finiteProductOptionDecompositionInput_of_w151",
+    "FiniteProductExactness.exactAcyclic_optionProduct_of_optionProductIsoBiprod",
+    "FiniteProductExactness.finiteExactAcyclicProductClosure_of_optionProductIsoBiprod",
+    "FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151",
+    "FiniteExactAcyclicProductClosureW149.finiteExactAcyclicProductClosure_of_optionProductIsoBiprod",
+    "FiniteExactAcyclicProductClosureW149.finiteExactAcyclicProductClosure_of_w151"
   ]
 }

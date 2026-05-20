@@ -1508,6 +1508,9 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check (exactAcyclic_shift (C := MetrizableLCA))
 #check (exactAcyclic_shift_iff (C := MetrizableLCA))
 #check (exactAcyclic_zero (C := MetrizableLCA))
+#check FiniteProductExactness.FiniteExactAcyclicProductClosure
+#check FiniteProductExactness.finiteProductOptionDecompositionInput_of_w151
+#check FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151
 #check (exactAcyclic_mappingCone_shift_iff (C := MetrizableLCA))
 #check (mappingConeIsoOfCommIso (C := MetrizableLCA))
 #check (exactAcyclic_mappingCone_congr_iff (C := MetrizableLCA))
