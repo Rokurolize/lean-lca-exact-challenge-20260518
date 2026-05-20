@@ -668,6 +668,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W414 Representative Image Saturation
 2026-05-21T00:46:00Z: Worker support `w414-left-lca-representative-image-saturation-v370` was parent-verified as `audit/blockers/wpp_op_left_lca_representative_image_saturation_v370_support_w414.lean`. It proves the target representative-image saturation input required by W411 from relation-pullback equality and target-relation lifting through the ordinary codomain component. Product success remains false because the actual morphism still needs the W412-equivalent relation statement and target-relation lift certificate.
 
+## W415 Reverse Membership To Relation Pullback
+2026-05-21T00:49:00Z: Worker support `w415-reverse-membership-to-relation-pullback-v370` was parent-verified as `audit/blockers/wpp_op_reverse_membership_to_relation_pullback_v370_support_w415.lean`. It sends W407 reverse closed-range membership directly to W399 relation-pullback descended fields once quotient compatibility and `IsClosedMap` for the ordinary descended map are available. Product success remains false because W407/W412 still needs a concrete relation proof and the final integration must feed W405 quotient compatibility plus the W408/W411/W414 closed-map route.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 

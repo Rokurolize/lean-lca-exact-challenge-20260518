@@ -3660,5 +3660,31 @@
       "W413のPreservesColimit接続と四部構成全体の統合を完了する。"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w415": {
+    "timestamp_utc": "2026-05-21T00:49:00Z",
+    "status": "verified_focused",
+    "summary": "W415 sends W407 reverse closed-range membership to W399 relation-pullback descended fields given quotient compatibility and IsClosedMap for the ordinary descended map.",
+    "touched_files": [
+      "audit/blockers/wpp_op_reverse_membership_to_relation_pullback_v370_support_w415.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "MetrizableLCA.relationClosedRangePreimageEquality_of_reverseMembership_and_squares",
+      "MetrizableLCA.relationPreimagePullbackCondition_of_reverseMembership_and_squares",
+      "MetrizableLCA.RelationPullbackDescendedFieldsInputsW399.of_reverseMembership",
+      "WppOpRelationReverseClosedRangeMembershipW407.to_relationPullbackW399",
+      "relationPullbackDescendedFieldsInputsW399_of_reverseMembership"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_reverse_membership_to_relation_pullback_v370_support_w415.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_reverse_membership_to_relation_pullback_v370_support_w415.lean",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "実際のWPP-op morphismについてW407/W412 relation statementを証明する。",
+      "W405 quotient compatibilityとW408/W411/W414 IsClosedMap経路を最終統合する。",
+      "W413 PreservesColimit接続とtarget relation lift certificateを完了する。"
+    ],
+    "product_success_claimed": false
   }
 }
