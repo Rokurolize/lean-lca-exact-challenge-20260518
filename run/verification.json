@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v203-binary-mapping-cone-differential-compatibility",
-  "generated_utc": "2026-05-20T05:56:44Z",
-  "source_tree_hash": "7fd8d24f1e399beb26e2ef1ac4f0e5a677f1331671016fe090a752ad3ccf973e",
-  "summary": "v209 adds the W149 consumer theorem exactAcyclic_optionProduct_of_optionProductIsoBiprod, so after v208 removed the empty-product base case from the decomposition input, the Option induction step can consume FiniteProductOptionDecompositionInput directly. Completed support worker w161 was inspected and classified as already covered by parent v208 evalTailProductPointIso/evalTailProductPointIso_hom_π. Product success remains nonterminal because OptionProductIsoBiprod, finite-family closure, Dbounded transfer, finite colimits, triangulated structure, and stable infinity-category structure remain open.",
+  "schema": "lean-lca-exact-challenge-verification-v211-w162-evaluated-fan-frontier",
+  "generated_utc": "2026-05-20T06:06:19Z",
+  "source_tree_hash": "36b1c9998056427fe0a9079c5b5f2fe4cd49ddf7411a106bb5d37a991ada8130",
+  "summary": "v211 consumes completed support worker w162 as parent-owned W151 frontier API: it keeps the generic evalProductPointIso/evalProductPointIso_hom_π from v210, adds evaluatedOptionProductComplexBinaryFan, optionProductDegreeFanWithEvaluatedTargets, and the typed remaining proposition EvaluatedDegreeFanComparison. This sharply identifies the next proof before transporting optionProductDegreeTransportedBinaryFanIsLimit through evalProductPointIso/evalTailProductPointIso and applying HomologicalComplex.isLimitOfEval. Product success remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
@@ -258,6 +258,66 @@
       "command": "lake env lean audit/blockers/option_complement_product_reindex_w154.lean",
       "status": "passed",
       "evidence": "Focused v202 W154 complement product reindex audit passed in the parent worktree."
+    },
+    {
+      "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
+      "status": "passed",
+      "evidence": "Focused W151 Lean check passed after adding generic evalProductPointIso/evalProductPointIso_hom_π and tail specialization."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed for v210 after adding the generic product-evaluation point iso; output logged to /tmp/v210-lake-build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token audit passed for v210 product source."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed for v210; command output was logged because #check output is large."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations passed for v210; product success remains unclaimed."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after v210 source and artifact updates before commit."
+    },
+    {
+      "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
+      "status": "passed",
+      "evidence": "Focused W151 Lean check passed after adding w162 frontier definitions evaluatedOptionProductComplexBinaryFan, optionProductDegreeFanWithEvaluatedTargets, and EvaluatedDegreeFanComparison."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed for v211 after consuming w162 frontier API; output logged to /tmp/v211-lake-build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token audit passed for v211 product source."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed for v211; command output was logged because #check output is large."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations passed for v211; product success remains unclaimed."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed for v211 before commit."
     }
   ],
   "implemented_declarations_checked": [

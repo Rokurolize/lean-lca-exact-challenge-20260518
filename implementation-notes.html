@@ -213,3 +213,13 @@
     <p>2026-05-20T05:56:44Z時点で、支援worker <code>w161-eval-tail-product-point-iso</code>の正式結果を確認した。親側v208の<code>evalTailProductPointIso</code>と同じ点同型を別経路で証明する監査であり、製品側に追加移植すべき新しい補題はなかったため、v208で吸収済みとして分類した。親側ではW149に<code>exactAcyclic_optionProduct_of_optionProductIsoBiprod</code>を追加し、空積base caseを外した新入力<code>FiniteProductOptionDecompositionInput</code>からOption帰納stepを直接消費できるようにした。残る作業は変わらず、評価後Option fanのBinaryFan/Cone比較、<code>HomologicalComplex.isLimitOfEval</code>、<code>OptionProductIsoBiprod</code>、有限family closure、Dbounded側のtransferである。</p>
 </body>
 </html>
+
+<section id="v210-eval-product-point-iso">
+<h2>v210 eval product point iso</h2>
+<p><time>2026-05-20T06:03:41Z</time>: W151 now exposes <code>evalProductPointIso</code> and <code>evalProductPointIso_hom_π</code> for any product family of cochain complexes, and <code>evalTailProductPointIso</code> is the tail specialization of that generic API. This fills the reusable point-comparison layer needed before transporting the evaluated Option product binary fan to the degreewise transported fan. The full fan comparison and <code>OptionProductIsoBiprod</code> remain open, so the terminal outcome stays nonterminal.</p>
+</section>
+
+<section id="v211-w162-evaluated-fan-frontier">
+<h2>v211 w162 evaluated fan frontier</h2>
+<p><time>2026-05-20T06:06:19Z</time>: Completed support worker w162 was consumed as parent-owned W151 API rather than as a duplicate audit file. W151 now defines <code>evaluatedOptionProductComplexBinaryFan</code>, <code>optionProductDegreeFanWithEvaluatedTargets</code>, and <code>EvaluatedDegreeFanComparison</code>, reusing the generic <code>evalProductPointIso</code> and tail specialization from v210. The next proof is the typed BinaryFan equality, after which the degreewise limiting proof can be transported toward <code>HomologicalComplex.isLimitOfEval</code>.</p>
+</section>

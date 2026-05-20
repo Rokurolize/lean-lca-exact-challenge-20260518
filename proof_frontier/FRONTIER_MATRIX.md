@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T05:56:44Z
+Generated: 2026-05-20T06:06:19Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -45,3 +45,13 @@ v209 classifies completed support worker w161 as already covered by parent v208'
 | `frontier-exact-category-api` | Quillen exact-category interface packaging | `ExactCategory/Basic.lean`, declaration audits | `lake build LeanLCAExactChallenge.ExactCategory.Basic LeanLCAExactChallenge.ExactCategory.Conflation` | v115 exposes conflation and split-conflation packaging lemmas for inflation/deflation. This is a downstream convenience API and does not change the remaining bounded derived infinity-category blocker | supports exact-category proof ergonomics | active parent |
 | `frontier-audit-hardening` | external audit and product declarations reject placeholders | `audit/external_audit.py`, `audit/ProductSuccessDeclarations.lean` | `python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json` | v124 validates every `run/verification.json` command entry, rejects unresolved statuses, requires evidence, rejects `failed_expected` inside product-success evidence, rejects ordinary-nerve product claims, strips Lean comments/string contents before accepting stable markers, and rejects stable-certificate names without concrete field evidence; negative fixtures cover pending verification, product-success expected-failure ledgers, ordinary nerve, comment-only stable markers, string-literal-only stable markers, self-referential packet zip SHA, and stable certificate name-only claims; v125 also adds a Lean projection-audit shape for future semantic certificate checks. Self-check passed again after v171. | prevents false product claims | active parent |
 | `frontier-route-log` | Japanese route log, gap analysis, packet consistency | docs, manifest/evidence, packets | external audit plus packet clean extraction | v120 route log records the w49/w61/w62 strictification and source-triangulation audit probes while preserving the stable-infinity blocker as nonterminal | required for reviewability | active parent |
+
+
+## v210 Update
+
+v210 generalizes the W151 product-evaluation API by adding evalProductPointIso and evalProductPointIso_hom_π for arbitrary product families of cochain complexes, then rewrites evalTailProductPointIso as the tail specialization. This supplies the missing point-comparison API needed to compare the evaluated Option product binary fan with the degreewise transported fan. Product success remains nonterminal because the full evaluated-fan comparison, OptionProductIsoBiprod, finite-family closure, Dbounded transfer, finite colimits, triangulated structure, and stable infinity-category structure remain open.
+
+
+## v211 Update
+
+v211 consumes completed support worker w162 as parent-owned W151 frontier API: it keeps the generic evalProductPointIso/evalProductPointIso_hom_π from v210, adds evaluatedOptionProductComplexBinaryFan, optionProductDegreeFanWithEvaluatedTargets, and the typed remaining proposition EvaluatedDegreeFanComparison. This sharply identifies the next proof before transporting optionProductDegreeTransportedBinaryFanIsLimit through evalProductPointIso/evalTailProductPointIso and applying HomologicalComplex.isLimitOfEval. Product success remains nonterminal.

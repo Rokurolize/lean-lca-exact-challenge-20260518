@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T05:56:44Z",
+  "generated_utc": "2026-05-20T06:06:19Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v203 is parent-owned proof work on the binary mapping-cone/biproduct comparison while support w155/w156 continue in isolated consultant worktrees.",
+  "worker_policy": "No workers were launched from the target worktree. v211 consumes completed consultant support w162 as parent-owned W151 frontier API while support w163 may still be running in an isolated consultant worktree.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1338,5 +1338,12 @@
       ],
       "product_effect": "no_product_success_claim; useful confirmation of the eval-tail product point-iso route, already integrated by parent v208"
     }
+  },
+  "latest_parent_update": {
+    "version": "v211",
+    "timestamp_utc": "2026-05-20T06:06:19Z",
+    "summary": "v211 consumes completed support worker w162 as parent-owned W151 frontier API: it keeps the generic evalProductPointIso/evalProductPointIso_hom_π from v210, adds evaluatedOptionProductComplexBinaryFan, optionProductDegreeFanWithEvaluatedTargets, and the typed remaining proposition EvaluatedDegreeFanComparison. This sharply identifies the next proof before transporting optionProductDegreeTransportedBinaryFanIsLimit through evalProductPointIso/evalTailProductPointIso and applying HomologicalComplex.isLimitOfEval. Product success remains nonterminal.",
+    "consumed_support_worker": "w162-option-complex-fan-islimit",
+    "remaining_next_step": "prove EvaluatedDegreeFanComparison, then transport optionProductDegreeTransportedBinaryFanIsLimit and call HomologicalComplex.isLimitOfEval."
   }
 }
