@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v197-w150-w151-frontier-audits",
-  "generated_utc": "2026-05-20T04:45:33Z",
-  "source_tree_hash": "bcb8b0958d91459e14666b4173a9bc146727212b6728a8573e2af9025212dbc2",
-  "summary": "v197 ports support w150 and w151 as parent-owned frontier audits. W150 proves the backward source-map route reduces to the existing right component differential square and its fst/snd target equations. W151 records the Option product decomposition API route through Pi.binaryFanOfProp, productUniqueIso, Pi.reindex, and HomologicalComplex.isLimitOfEval. Product success remains blocked by the actual target equations, finite product decomposition/closure, Dbounded transfer, and stable structures.",
+  "schema": "lean-lca-exact-challenge-verification-v198-option-complement-reindex-equivalence",
+  "generated_utc": "2026-05-20T04:49:01Z",
+  "source_tree_hash": "de02e7056a7186735e691d1df2c52e2e431cfbeb2581573a1d03d231b2c93652",
+  "summary": "v198 strengthens the W151 Option product decomposition audit with optionSomeComplementEquiv, a concrete equivalence between the non-none Option complement and J. The product reindex iso and HomologicalComplex.isLimitOfEval assembly remain open; product success is not claimed.",
   "commands": [
     {
       "command": "lake build",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v197: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v198: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v197 source and artifact updates."
+      "evidence": "Whitespace diff check passed after v198 source and artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -227,7 +227,7 @@
     {
       "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
       "status": "passed",
-      "evidence": "Focused v197 Option product decomposition API audit passed; it identifies Pi.binaryFanOfProp, productUniqueIso, Pi.reindex, and HomologicalComplex.isLimitOfEval as the route to the missing Option product iso."
+      "evidence": "Focused v198 Option product decomposition audit passed after adding optionSomeComplementEquiv and its computation lemmas."
     }
   ],
   "implemented_declarations_checked": [

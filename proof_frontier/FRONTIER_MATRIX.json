@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T04:45:33Z",
+  "generated_utc": "2026-05-20T04:49:01Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v197 ports completed support results w150/w151 as parent-owned frontier audits: backward source-map reduction and Option product decomposition API scouting. This narrows proof frontiers but is not product completion.",
+  "worker_policy": "No workers were launched from the target worktree. v198 strengthens the parent-owned W151 Option product decomposition audit by proving the complement index equivalence {x : Option J // ¬ x = none} ≃ J; this is frontier progress, not product completion.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",

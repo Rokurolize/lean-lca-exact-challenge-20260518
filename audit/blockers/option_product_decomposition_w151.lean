@@ -29,6 +29,31 @@ abbrev optionTail {J : Type w} (K : Option J → CochainComplex C ℤ) :
     J → CochainComplex C ℤ :=
   fun j => K (some j)
 
+/-- The complement of the `none` index in `Option J` is canonically equivalent to `J`. -/
+def optionSomeComplementEquiv (J : Type w) :
+    {x : Option J // ¬ x = none} ≃ J where
+  toFun x :=
+    match h : x.1 with
+    | none => False.elim (x.2 h)
+    | some j => j
+  invFun j := ⟨some j, by simp⟩
+  left_inv := by
+    rintro ⟨x, hx⟩
+    cases x with
+    | none => exact False.elim (hx rfl)
+    | some j => rfl
+  right_inv := by
+    intro j
+    rfl
+
+theorem optionSomeComplementEquiv_apply_some {J : Type w} (j : J) :
+    optionSomeComplementEquiv J ⟨some j, by simp⟩ = j :=
+  rfl
+
+theorem optionSomeComplementEquiv_symm_apply {J : Type w} (j : J) :
+    (optionSomeComplementEquiv J).symm j = ⟨some j, by simp⟩ :=
+  rfl
+
 /--
 The product-object decomposition needed by the finite exact-acyclic product induction:
 an `Option J` product of cochain complexes should be the binary biproduct of the `none` complex
@@ -99,7 +124,7 @@ def optionProductDecompositionNextObligations : List String :=
   ["instantiate degreewise products for (fun i : Option J => (K i).X n)",
     "split that degreewise product with Pi.binaryFanOfProp at predicate x = none",
     "identify the none subproduct with (K none).X n using productUniqueIso",
-    "reindex the complement subproduct along Option.some to the J-tail using Pi.reindex",
+    "reindex the complement subproduct along optionSomeComplementEquiv to the J-tail using Pi.reindex",
     "assemble the degreewise isomorphisms into a HomologicalComplex isomorphism using isLimitOfEval"]
 
 theorem optionProductDecompositionNextObligations_count :
@@ -109,6 +134,9 @@ theorem optionProductDecompositionNextObligations_count :
 section Checks
 
 #check OptionProductIsoBiprod
+#check optionSomeComplementEquiv
+#check optionSomeComplementEquiv_apply_some
+#check optionSomeComplementEquiv_symm_apply
 #check optionProductBinaryFan
 #check optionProductDegreeBinaryFan
 #check DegreewiseProductApiState

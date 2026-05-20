@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T04:45:33Z
+Generated: 2026-05-20T04:49:01Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -11,6 +11,8 @@ v195 consumes support w148/w149: the useful w148 source-map rewrite is proved in
 v196 ports support w149 as `audit/blockers/finite_exact_acyclic_product_closure_w149.lean`. The audit proves that `MetrizableLCA.exactAcyclic_biprod` gives the nonempty finite exact-acyclic product induction step once an `Option`-product decomposition and tail closure are supplied, and records `FiniteProductDecompositionInput.optionProductIsoBiprod` plus empty-product exactness as the next finite-product inputs. The active support worker `w151-option-product-decomposition` overlaps the decomposition constructor, so no duplicate target-owned worker is launched.
 
 v197 consumes completed support results w150/w151 as parent-owned frontier audits. `audit/blockers/backward_source_map_rewrite_w150.lean` proves the backward right source-map route reduces to `rightComponentDifferentialSquare` and confirms the remaining right target equations are exactly the fst/snd component equations. `audit/blockers/option_product_decomposition_w151.lean` identifies the `Limits.Pi.binaryFanOfProp`, `Limits.productUniqueIso`, `Limits.Pi.reindex`, and `HomologicalComplex.isLimitOfEval` route needed to construct the `Option` product decomposition used by v196. Both files are audit/frontier evidence only and do not claim product success.
+
+v198 strengthens the W151 audit by proving `optionSomeComplementEquiv : {x : Option J // ¬ x = none} ≃ J` with computation lemmas on `some`. This discharges the indexing-equivalence part of the complement-to-tail reindexing route; the actual product reindex iso and the assembly of degreewise isomorphisms into a cochain-complex iso remain open.
 
 | frontier_id | target | allowed writes | verification | merge blocker | product contribution | owner |
 | --- | --- | --- | --- | --- | --- | --- |

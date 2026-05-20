@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v197時点で、binary mapping cone/biproduct比較について、候補写像の双方向合成、biprod.map射影補題、前向き微分squareの左右射影還元、逆向きsource-map還元、および右成分微分squareのfst/snd target equationへの還元をLeanで確認した。さらに有限exact-acyclic product閉性について、MetrizableLCA.exactAcyclic_biprodからOption帰納ステップへ進む監査と、Limits.Pi.binaryFanOfProp/productUniqueIso/Pi.reindex/HomologicalComplex.isLimitOfEvalを使うOption product分解API監査を追加した。ただし、左右射影等式そのもの、右成分fst/snd target equations、左成分/逆向き全体の微分可換性、有限product分解の本体、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
+  "summary": "v198時点で、binary mapping cone/biproduct比較の候補写像・射影還元・逆向きsource-map還元に加え、有限exact-acyclic product閉性のOption分解routeについて、none補集合の添字型をJへ戻すoptionSomeComplementEquivをLeanで構成した。ただし、補集合productからtail productへの実際のproduct reindex iso、全次数の同型をHomologicalComplex.isLimitOfEvalで組み上げるOption product decomposition本体、mapping-cone target equations、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -772,7 +772,7 @@
     "DboundedSemanticStableInputAdapter.missingSemanticFieldNames_count",
     "DboundedSemanticStableInputAdapter.currentSemanticRouteState_semanticInput_not_supplied"
   ],
-  "generated_utc": "2026-05-20T04:45:33Z",
+  "generated_utc": "2026-05-20T04:49:01Z",
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave68_20260519T233000Z/workers/w126-stable-dbounded-certificate-provider-route/result.json",
