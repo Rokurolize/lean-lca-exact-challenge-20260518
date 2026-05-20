@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v177時点で、boundedCochainComplexが有限形の極限・余極限で閉じていることを証明し、BoundedComplexCategory Cの有限極限・有限余極限を本体APIにした。さらにDbounded Cについては、boundedExactWeakEquivalence Cの有限積安定性があれば有限積を得るAPIを追加した。product_successではない。bounded側にはstrict-selected eligibility providerと同値な本体realization theorem、stable側にはDbounded Cの有限極限全体、有限余極限、pretriangulated、triangulated構造を実際に構成する実装が残る。",
+  "summary": "v178時点で、MetrizableLCAの厳密短完全列について、exact-acyclicな2つの複体のdegreewise明示的biproduct short complexが再びstrictShortExactになる境界補題を追加した。さらにHomologicalComplex.biprodXIsoの逆射と射影の補助補題を監査ファイルで確認した。これはboundedExactWeakEquivalenceの有限積安定性へ向かう局所モデル側の証拠だが、(K ⊞ L).sc iへの短複体同型移送、mapping coneの有限積安定性、Dbounded Cの有限極限全体、有限余極限、pretriangulated、triangulated構造は未完成であり、product_successではない。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -45,7 +45,8 @@
     "lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean",
     "lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean",
     "lake env lean audit/blockers/dbounded_finite_products_boundary.lean",
-    "lake build LeanLCAExactChallenge.Derived.Bounded"
+    "lake build LeanLCAExactChallenge.Derived.Bounded",
+    "lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
