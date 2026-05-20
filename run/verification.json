@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T14:43:50Z",
-  "source_tree_hash": "72ea28bec46eca480be42813b75b5d5979a4fda81633e1759096d89c6d685eb1",
-  "summary": "v287 adds the W260 factorized localized adjunction constructor boundary. It verifies transport consumers from flattened right/unit and left/counit boundaries; product success remains false.",
+  "generated_utc": "2026-05-20T14:47:17Z",
+  "source_tree_hash": "aac49d4a3597ba2decb69bce4329b36b7b40a9f5d0567d65b3e8e95dd84adaa4",
+  "summary": "v288 adds W265 direct WalkingParallelPairᵒᵖ colimit-stability boundary and W266 opposite finite-limit assembly. The strongest consumer is conditional on identity containment, direct WPPᵒᵖ colimit stability, and opposite functor-category localization.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -548,6 +548,31 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Baseline external audit reached the expected failed_nonterminal product gate before v287; product success was not claimed."
+    },
+    {
+      "command": "lake env lean audit/blockers/direct_wpp_op_colimit_stability_w265.lean",
+      "status": "passed",
+      "evidence": "Focused W265 direct WPPᵒᵖ colimit-stability boundary audit passed in the parent target worktree."
+    },
+    {
+      "command": "lake env lean audit/blockers/opposite_finite_limit_assembly_w266.lean",
+      "status": "passed",
+      "evidence": "Focused W266 opposite finite-limit assembly audit passed in the parent target worktree after updating the obsolete mathlib import path."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/direct_wpp_op_colimit_stability_w265.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W265 audit file."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_finite_limit_assembly_w266.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W266 audit file."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after adding W265/W266 audit files."
     }
   ],
   "implemented_declarations_checked": [
@@ -1096,8 +1121,10 @@
     "RightHomologyCokernelObjComparison T is only packaged as an input; it is not yet constructed from the current ShortComplex/derived route.",
     "ShortComplex right-homology zero does not imply Epi T.g in general, as witnessed by the W262 ZMod2 exact endpoint.",
     "FactorizedRightUnitBoundary C and FactorizedLeftCounitBoundary C are checked consumer inputs only; no concrete constructor is available yet.",
-    "W261 support was superseded by parent source theorems v284/v285 and does not change the remaining WalkingParallelPairᵒᵖ colimit-stability gap."
+    "W261 support was superseded by parent source theorems v284/v285 and does not change the remaining WalkingParallelPairᵒᵖ colimit-stability gap.",
+    "Opposite finite-limit assembly still requires opposite identity containment, direct WalkingParallelPairᵒᵖ colimit stability, and opposite functor-category localization.",
+    "Direct WalkingParallelPairᵒᵖ colimit stability is reduced to mapping-cone colimit comparison and exact-acyclic closure under that colimit shape."
   ],
-  "support_result_classification": "w260 manually ported as a focused nonterminal frontier reduction; w261 classified as superseded by v284/v285.",
+  "support_result_classification": "w265 ported; w266 parent-verified after import-path adjustment; w267 classified as covered by v287.",
   "product_success": false
 }
