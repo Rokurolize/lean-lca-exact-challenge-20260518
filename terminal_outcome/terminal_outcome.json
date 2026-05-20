@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v202時点で、支援worker w154を親側へ audit/blockers/option_complement_product_reindex_w154.lean として統合し、Option product分解routeの補集合subproductからsome-tail productへの複体product同型 complementSubproductReindexIso と固定次数版 complementSubproductDegreeReindexIso を確認した。逆向き右成分target equationsはv201で閉じている。ただし、Option product本体のbinaryFan合成とHomologicalComplex.isLimitOfEval組み上げ、残りのbinary mapping-cone differential compatibility、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
+  "summary": "v203時点で、binary mapping cone/biproduct比較について、左右成分の微分square、逆向き候補写像の微分互換性、および次数ごとの逆写像性から導いた binaryMappingConeBiprodDifferentialCompatibility を親側v189監査で証明した。ただし、これを実際のcochain-complex同型として包装してW142のBinaryMappingConeBiprodComparisonInputへ接続する部分、Option product decomposition本体、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",

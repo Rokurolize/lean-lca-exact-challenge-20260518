@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T05:11:07Z
+Generated: 2026-05-20T05:17:44Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -21,6 +21,8 @@ v200 consumes support w153 directly into the parent v189 mapping-cone probe. The
 v201 proves the remaining backward right-component `fst` target equation in the same parent v189 mapping-cone probe. The new `rightComponentDifferentialSquareFstEquation_proof` uses a dependent-index tolerant `rightComponentToConeBiprodMap_fst_of_eq` helper and the source-side `biprod.inr` chain-map equation `biprodCone_d_right_source_component`. The right-component target equations needed by `rightComponentDifferentialSquare_ext_to_iff` are now both proved; binary differential compatibility still needs the remaining left/backward and forward projection equations before it can close `BinaryMappingConeBiprodComparisonInput`.
 
 v202 consumes support w154 as `audit/blockers/option_complement_product_reindex_w154.lean`. The complement subproduct of an `Option J`-indexed cochain-complex family is now packaged as `complementSubproductReindexIso : ∏ᶜ (fun i : {x : Option J // ¬ x = none} => K i.val) ≅ ∏ᶜ (fun j : J => K (some j))`, with a fixed-degree analogue `complementSubproductDegreeReindexIso`. This removes the complement-product reindex bridge from the Option product decomposition route; the remaining work is to compose this with the W152 `noneSubproductIso`, `Pi.binaryFanOfProp`, and `HomologicalComplex.isLimitOfEval`.
+
+v203 closes the binary mapping-cone/biproduct differential-compatibility audit in `mapping_cone_biprod_comparison_probe_v189.lean`. The parent now proves both left and right component differential squares, `biprodConeToConeBiprodMapX_differentialCompatibility`, and `binaryMappingConeBiprodDifferentialCompatibility`. The remaining binary route is no longer componentwise differential compatibility; it is packaging the degreewise maps plus inverse/differential compatibility as a cochain-complex isomorphism satisfying W142's `BinaryMappingConeBiprodComparisonInput`.
 
 | frontier_id | target | allowed writes | verification | merge blocker | product contribution | owner |
 | --- | --- | --- | --- | --- | --- | --- |

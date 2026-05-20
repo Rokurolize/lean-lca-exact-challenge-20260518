@@ -250,6 +250,163 @@ theorem biprod_inl_f_comp_biprodConeToConeBiprodMapX (n : ℤ) :
   rw [Iso.inv_hom_id_assoc]
   simp
 
+def leftComponentDifferentialSquare (n : ℤ) : Prop :=
+  leftComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1) =
+    (CochainComplex.mappingCone f₁).d n (n + 1) ≫
+      leftComponentToConeBiprodMap f₁ f₂ (n + 1)
+
+def leftComponentDifferentialSquareFstEquation (n : ℤ) : Prop :=
+  (leftComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1)) ≫
+      (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v (n + 1) (n + 2)
+        (by omega) =
+    ((CochainComplex.mappingCone f₁).d n (n + 1) ≫
+      leftComponentToConeBiprodMap f₁ f₂ (n + 1)) ≫
+        (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v (n + 1) (n + 2)
+          (by omega)
+
+def leftComponentDifferentialSquareSndEquation (n : ℤ) : Prop :=
+  (leftComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1)) ≫
+      (CochainComplex.mappingCone.snd (biprod.map f₁ f₂)).v (n + 1) (n + 1)
+        (add_zero (n + 1)) =
+    ((CochainComplex.mappingCone f₁).d n (n + 1) ≫
+      leftComponentToConeBiprodMap f₁ f₂ (n + 1)) ≫
+        (CochainComplex.mappingCone.snd (biprod.map f₁ f₂)).v (n + 1) (n + 1)
+          (add_zero (n + 1))
+
+theorem leftComponentToConeBiprodMap_fst (n : ℤ) :
+    leftComponentToConeBiprodMap f₁ f₂ n ≫
+      (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v n (n + 1) rfl =
+        (CochainComplex.mappingCone.fst f₁).1.v n (n + 1) rfl ≫
+          (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f (n + 1) := by
+  simp [leftComponentToConeBiprodMap, Category.assoc]
+
+theorem leftComponentToConeBiprodMap_fst_of_eq (n j : ℤ) (h : n + 1 = j) :
+    leftComponentToConeBiprodMap f₁ f₂ n ≫
+      (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v n j h =
+        (CochainComplex.mappingCone.fst f₁).1.v n j h ≫
+          (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f j := by
+  subst j
+  simpa using leftComponentToConeBiprodMap_fst f₁ f₂ n
+
+theorem leftComponentToConeBiprodMap_snd (n : ℤ) :
+    leftComponentToConeBiprodMap f₁ f₂ n ≫
+      (CochainComplex.mappingCone.snd (biprod.map f₁ f₂)).v n n (add_zero n) =
+        (CochainComplex.mappingCone.snd f₁).v n n (add_zero n) ≫
+          (biprod.inl : L₁ ⟶ L₁ ⊞ L₂).f n := by
+  simp [leftComponentToConeBiprodMap, Category.assoc]
+
+theorem biprodMap_inl_f (n : ℤ) :
+    (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f n ≫ (biprod.map f₁ f₂).f n =
+      f₁.f n ≫ (biprod.inl : L₁ ⟶ L₁ ⊞ L₂).f n := by
+  rw [← HomologicalComplex.comp_f, biprod.inl_map, HomologicalComplex.comp_f]
+
+theorem biprodCone_d_left_component (n : ℤ) :
+    (biprod.inl : L₁ ⟶ L₁ ⊞ L₂).f n ≫ (L₁ ⊞ L₂).d n (n + 1) =
+      L₁.d n (n + 1) ≫ (biprod.inl : L₁ ⟶ L₁ ⊞ L₂).f (n + 1) := by
+  exact (biprod.inl : L₁ ⟶ L₁ ⊞ L₂).comm n (n + 1)
+
+theorem biprodCone_d_left_source_component (n : ℤ) :
+    (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f n ≫ (K₁ ⊞ K₂).d n (n + 1) =
+      K₁.d n (n + 1) ≫ (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f (n + 1) := by
+  exact (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).comm n (n + 1)
+
+theorem leftComponentDifferentialSquareFstEquation_proof (n : ℤ) :
+    leftComponentDifferentialSquareFstEquation f₁ f₂ n := by
+  dsimp [leftComponentDifferentialSquareFstEquation]
+  calc
+    (leftComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1)) ≫
+        (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v (n + 1) (n + 2)
+          (by omega) =
+      leftComponentToConeBiprodMap f₁ f₂ n ≫
+        ((coneBiprodMap f₁ f₂).d n (n + 1) ≫
+          (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v (n + 1) (n + 2)
+            (by omega)) := by
+        rw [Category.assoc]
+    _ = leftComponentToConeBiprodMap f₁ f₂ n ≫
+        (-(CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v n (n + 1) rfl ≫
+          (K₁ ⊞ K₂).d (n + 1) (n + 2)) := by
+        rw [CochainComplex.mappingCone.d_fst_v (biprod.map f₁ f₂) n (n + 1) (n + 2) rfl (by omega)]
+    _ = -((leftComponentToConeBiprodMap f₁ f₂ n ≫
+          (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v n (n + 1) rfl) ≫
+        (K₁ ⊞ K₂).d (n + 1) (n + 2)) := by
+        simp [Category.assoc]
+    _ = -(((CochainComplex.mappingCone.fst f₁).1.v n (n + 1) rfl ≫
+          (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f (n + 1)) ≫
+        (K₁ ⊞ K₂).d (n + 1) (n + 2)) := by
+        rw [leftComponentToConeBiprodMap_fst]
+    _ = -(((CochainComplex.mappingCone.fst f₁).1.v n (n + 1) rfl ≫
+          K₁.d (n + 1) (n + 2)) ≫
+        (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f (n + 2)) := by
+        have hsrc :
+            ((CochainComplex.mappingCone.fst f₁).1.v n (n + 1) rfl ≫
+                (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f (n + 1)) ≫
+              (K₁ ⊞ K₂).d (n + 1) (n + 2) =
+                ((CochainComplex.mappingCone.fst f₁).1.v n (n + 1) rfl ≫
+                  K₁.d (n + 1) (n + 2)) ≫
+                    (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f (n + 2) := by
+          simpa [Category.assoc] using
+            congrArg
+              (fun q =>
+                (CochainComplex.mappingCone.fst f₁).1.v n (n + 1) rfl ≫ q)
+              (biprodCone_d_left_source_component (K₁ := K₁) (K₂ := K₂) (n + 1))
+        simpa [hsrc]
+    _ = ((CochainComplex.mappingCone f₁).d n (n + 1) ≫
+          (CochainComplex.mappingCone.fst f₁).1.v (n + 1) (n + 2) (by omega)) ≫
+        (biprod.inl : K₁ ⟶ K₁ ⊞ K₂).f (n + 2) := by
+        rw [CochainComplex.mappingCone.d_fst_v f₁ n (n + 1) (n + 2) rfl (by omega)]
+        simp [Category.assoc]
+    _ = ((CochainComplex.mappingCone f₁).d n (n + 1) ≫
+          leftComponentToConeBiprodMap f₁ f₂ (n + 1)) ≫
+        (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v (n + 1) (n + 2)
+          (by omega) := by
+        symm
+        rw [Category.assoc, leftComponentToConeBiprodMap_fst_of_eq]
+        rw [Category.assoc]
+
+theorem leftComponentDifferentialSquareSndEquation_proof (n : ℤ) :
+    leftComponentDifferentialSquareSndEquation f₁ f₂ n := by
+  dsimp [leftComponentDifferentialSquareSndEquation]
+  rw [Category.assoc]
+  rw [CochainComplex.mappingCone.d_snd_v (biprod.map f₁ f₂) n (n + 1) rfl]
+  rw [Preadditive.comp_add]
+  rw [← Category.assoc, leftComponentToConeBiprodMap_fst]
+  rw [← Category.assoc, leftComponentToConeBiprodMap_snd]
+  rw [Category.assoc, biprodMap_inl_f]
+  rw [Category.assoc, biprodCone_d_left_component]
+  rw [← Category.assoc]
+  rw [← Category.assoc]
+  rw [← Preadditive.add_comp]
+  rw [← CochainComplex.mappingCone.d_snd_v f₁ n (n + 1) rfl]
+  rw [Category.assoc]
+  rw [Category.assoc]
+  rw [leftComponentToConeBiprodMap_snd]
+
+theorem leftComponentDifferentialSquare_ext_to_iff (n : ℤ) :
+    leftComponentDifferentialSquare f₁ f₂ n ↔
+      leftComponentDifferentialSquareFstEquation f₁ f₂ n ∧
+        leftComponentDifferentialSquareSndEquation f₁ f₂ n := by
+  constructor
+  · intro h
+    constructor
+    · dsimp [leftComponentDifferentialSquareFstEquation,
+        leftComponentDifferentialSquare] at h ⊢
+      rw [h]
+    · dsimp [leftComponentDifferentialSquareSndEquation,
+        leftComponentDifferentialSquare] at h ⊢
+      rw [h]
+  · rintro ⟨hfst, hsnd⟩
+    dsimp [leftComponentDifferentialSquareFstEquation,
+      leftComponentDifferentialSquareSndEquation, leftComponentDifferentialSquare] at hfst hsnd ⊢
+    apply CochainComplex.mappingCone.ext_to (biprod.map f₁ f₂) (n + 1) (n + 2) (by omega)
+    · simpa [Category.assoc] using hfst
+    · simpa [Category.assoc] using hsnd
+
+theorem leftComponentDifferentialSquare_proof (n : ℤ) :
+    leftComponentDifferentialSquare f₁ f₂ n :=
+  (leftComponentDifferentialSquare_ext_to_iff f₁ f₂ n).2
+    ⟨leftComponentDifferentialSquareFstEquation_proof f₁ f₂ n,
+      leftComponentDifferentialSquareSndEquation_proof f₁ f₂ n⟩
+
 def rightComponentDifferentialSquare (n : ℤ) : Prop :=
   rightComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1) =
     (CochainComplex.mappingCone f₂).d n (n + 1) ≫
@@ -401,6 +558,52 @@ theorem rightComponentDifferentialSquare_ext_to_iff (n : ℤ) :
     · simpa [Category.assoc] using hfst
     · simpa [Category.assoc] using hsnd
 
+theorem rightComponentDifferentialSquare_proof (n : ℤ) :
+    rightComponentDifferentialSquare f₁ f₂ n :=
+  (rightComponentDifferentialSquare_ext_to_iff f₁ f₂ n).2
+    ⟨rightComponentDifferentialSquareFstEquation_proof f₁ f₂ n,
+      rightComponentDifferentialSquareSndEquation_proof f₁ f₂ n⟩
+
+theorem biprodConeToConeBiprodMapX_differentialCompatibility (n : ℤ) :
+    biprodConeToConeBiprodMapX f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1) =
+      (biprodCone f₁ f₂).d n (n + 1) ≫
+        biprodConeToConeBiprodMapX f₁ f₂ (n + 1) := by
+  apply HomologicalComplex.biprodX_ext_from
+  · calc
+      (biprod.inl : CochainComplex.mappingCone f₁ ⟶ biprodCone f₁ f₂).f n ≫
+          (biprodConeToConeBiprodMapX f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1)) =
+        leftComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1) := by
+          rw [← Category.assoc, biprod_inl_f_comp_biprodConeToConeBiprodMapX]
+      _ = (CochainComplex.mappingCone f₁).d n (n + 1) ≫
+            leftComponentToConeBiprodMap f₁ f₂ (n + 1) := by
+          exact leftComponentDifferentialSquare_proof f₁ f₂ n
+      _ = ((biprod.inl : CochainComplex.mappingCone f₁ ⟶ biprodCone f₁ f₂).f n ≫
+            (biprodCone f₁ f₂).d n (n + 1)) ≫
+            biprodConeToConeBiprodMapX f₁ f₂ (n + 1) := by
+          rw [(biprod.inl : CochainComplex.mappingCone f₁ ⟶ biprodCone f₁ f₂).comm n (n + 1)]
+          rw [Category.assoc, biprod_inl_f_comp_biprodConeToConeBiprodMapX]
+      _ = (biprod.inl : CochainComplex.mappingCone f₁ ⟶ biprodCone f₁ f₂).f n ≫
+          ((biprodCone f₁ f₂).d n (n + 1) ≫
+            biprodConeToConeBiprodMapX f₁ f₂ (n + 1)) := by
+          rw [Category.assoc]
+  · calc
+      (biprod.inr : CochainComplex.mappingCone f₂ ⟶ biprodCone f₁ f₂).f n ≫
+          (biprodConeToConeBiprodMapX f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1)) =
+        rightComponentToConeBiprodMap f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1) := by
+          rw [← Category.assoc, biprod_inr_f_comp_biprodConeToConeBiprodMapX]
+      _ = (CochainComplex.mappingCone f₂).d n (n + 1) ≫
+            rightComponentToConeBiprodMap f₁ f₂ (n + 1) := by
+          exact rightComponentDifferentialSquare_proof f₁ f₂ n
+      _ = ((biprod.inr : CochainComplex.mappingCone f₂ ⟶ biprodCone f₁ f₂).f n ≫
+            (biprodCone f₁ f₂).d n (n + 1)) ≫
+            biprodConeToConeBiprodMapX f₁ f₂ (n + 1) := by
+          rw [(biprod.inr : CochainComplex.mappingCone f₂ ⟶ biprodCone f₁ f₂).comm n (n + 1)]
+          rw [Category.assoc, biprod_inr_f_comp_biprodConeToConeBiprodMapX]
+      _ = (biprod.inr : CochainComplex.mappingCone f₂ ⟶ biprodCone f₁ f₂).f n ≫
+          ((biprodCone f₁ f₂).d n (n + 1) ≫
+            biprodConeToConeBiprodMapX f₁ f₂ (n + 1)) := by
+          rw [Category.assoc]
+
 structure BinaryMappingConeBiprodDifferentialCompatibility : Prop where
   left_to_right :
     ∀ (n : ℤ),
@@ -410,6 +613,65 @@ structure BinaryMappingConeBiprodDifferentialCompatibility : Prop where
     ∀ (n : ℤ),
       biprodConeToConeBiprodMapX f₁ f₂ n ≫ (coneBiprodMap f₁ f₂).d n (n + 1) =
         (biprodCone f₁ f₂).d n (n + 1) ≫ biprodConeToConeBiprodMapX f₁ f₂ (n + 1)
+
+theorem binaryMappingConeBiprodDifferentialCompatibility :
+    BinaryMappingConeBiprodDifferentialCompatibility f₁ f₂ where
+  left_to_right n := by
+    have hpost :
+        (coneBiprodMapToBiprodConeX f₁ f₂ n ≫ (biprodCone f₁ f₂).d n (n + 1)) ≫
+            biprodConeToConeBiprodMapX f₁ f₂ (n + 1) =
+          ((coneBiprodMap f₁ f₂).d n (n + 1) ≫
+            coneBiprodMapToBiprodConeX f₁ f₂ (n + 1)) ≫
+              biprodConeToConeBiprodMapX f₁ f₂ (n + 1) := by
+      calc
+        (coneBiprodMapToBiprodConeX f₁ f₂ n ≫ (biprodCone f₁ f₂).d n (n + 1)) ≫
+            biprodConeToConeBiprodMapX f₁ f₂ (n + 1) =
+          coneBiprodMapToBiprodConeX f₁ f₂ n ≫
+            ((biprodCone f₁ f₂).d n (n + 1) ≫
+              biprodConeToConeBiprodMapX f₁ f₂ (n + 1)) := by
+            rw [Category.assoc]
+        _ = coneBiprodMapToBiprodConeX f₁ f₂ n ≫
+            (biprodConeToConeBiprodMapX f₁ f₂ n ≫
+              (coneBiprodMap f₁ f₂).d n (n + 1)) := by
+            rw [← biprodConeToConeBiprodMapX_differentialCompatibility]
+        _ = (coneBiprodMapToBiprodConeX f₁ f₂ n ≫
+              biprodConeToConeBiprodMapX f₁ f₂ n) ≫
+              (coneBiprodMap f₁ f₂).d n (n + 1) := by
+            rw [Category.assoc]
+        _ = (coneBiprodMap f₁ f₂).d n (n + 1) := by
+            rw [coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX]
+            simp
+        _ = ((coneBiprodMap f₁ f₂).d n (n + 1) ≫
+            coneBiprodMapToBiprodConeX f₁ f₂ (n + 1)) ≫
+              biprodConeToConeBiprodMapX f₁ f₂ (n + 1) := by
+            rw [Category.assoc, coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX]
+            simp
+    calc
+      coneBiprodMapToBiprodConeX f₁ f₂ n ≫ (biprodCone f₁ f₂).d n (n + 1) =
+        (coneBiprodMapToBiprodConeX f₁ f₂ n ≫ (biprodCone f₁ f₂).d n (n + 1)) ≫
+          (biprodConeToConeBiprodMapX f₁ f₂ (n + 1) ≫
+            coneBiprodMapToBiprodConeX f₁ f₂ (n + 1)) := by
+          rw [biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX]
+          simp
+      _ = ((coneBiprodMapToBiprodConeX f₁ f₂ n ≫ (biprodCone f₁ f₂).d n (n + 1)) ≫
+            biprodConeToConeBiprodMapX f₁ f₂ (n + 1)) ≫
+          coneBiprodMapToBiprodConeX f₁ f₂ (n + 1) := by
+          simp [Category.assoc]
+      _ = (((coneBiprodMap f₁ f₂).d n (n + 1) ≫
+            coneBiprodMapToBiprodConeX f₁ f₂ (n + 1)) ≫
+              biprodConeToConeBiprodMapX f₁ f₂ (n + 1)) ≫
+          coneBiprodMapToBiprodConeX f₁ f₂ (n + 1) := by
+          rw [hpost]
+      _ = ((coneBiprodMap f₁ f₂).d n (n + 1) ≫
+            coneBiprodMapToBiprodConeX f₁ f₂ (n + 1)) ≫
+          (biprodConeToConeBiprodMapX f₁ f₂ (n + 1) ≫
+            coneBiprodMapToBiprodConeX f₁ f₂ (n + 1)) := by
+          simp [Category.assoc]
+      _ = (coneBiprodMap f₁ f₂).d n (n + 1) ≫
+            coneBiprodMapToBiprodConeX f₁ f₂ (n + 1) := by
+          rw [biprodConeToConeBiprodMapX_comp_coneBiprodMapToBiprodConeX]
+          simp
+  right_to_left := biprodConeToConeBiprodMapX_differentialCompatibility f₁ f₂
 
 structure BinaryMappingConeBiprodInverseCompatibility : Prop where
   cone_biprod_cone :
@@ -428,8 +690,8 @@ def v189ComponentMapFrontier : List String :=
   ["component maps from mappingCone (biprod.map f₁ f₂) to the biproduct cone",
     "component maps from the biproduct cone to mappingCone (biprod.map f₁ f₂)",
     "proved: inverse identities for the candidate degreewise maps",
-    "proved: forward differential square reduces to left and right biproduct projections",
-    "remaining: differential compatibility for both component-map families"]
+    "proved: differential compatibility for both component-map families",
+    "remaining: package the componentwise isomorphism as the binary mapping-cone product input"]
 
 theorem v189ComponentMapFrontier_count :
     v189ComponentMapFrontier.length = 5 := rfl
@@ -460,6 +722,18 @@ section Checks
 #check forwardDifferentialSquare_reduction_iff
 #check biprod_inr_f_comp_biprodConeToConeBiprodMapX
 #check biprod_inl_f_comp_biprodConeToConeBiprodMapX
+#check leftComponentDifferentialSquare
+#check leftComponentDifferentialSquareFstEquation
+#check leftComponentDifferentialSquareSndEquation
+#check leftComponentToConeBiprodMap_fst
+#check leftComponentToConeBiprodMap_snd
+#check biprodMap_inl_f
+#check biprodCone_d_left_component
+#check biprodCone_d_left_source_component
+#check leftComponentDifferentialSquareFstEquation_proof
+#check leftComponentDifferentialSquareSndEquation_proof
+#check leftComponentDifferentialSquare_ext_to_iff
+#check leftComponentDifferentialSquare_proof
 #check rightComponentDifferentialSquare
 #check rightComponentDifferentialSquareFstEquation
 #check rightComponentDifferentialSquareSndEquation
@@ -471,7 +745,10 @@ section Checks
 #check rightComponentDifferentialSquareFstEquation_proof
 #check rightComponentDifferentialSquareSndEquation_proof
 #check rightComponentDifferentialSquare_ext_to_iff
+#check rightComponentDifferentialSquare_proof
+#check biprodConeToConeBiprodMapX_differentialCompatibility
 #check BinaryMappingConeBiprodDifferentialCompatibility
+#check binaryMappingConeBiprodDifferentialCompatibility
 #check BinaryMappingConeBiprodInverseCompatibility
 #check binaryMappingConeBiprodInverseCompatibility
 #check v189ComponentMapFrontier

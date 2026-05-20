@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v202-option-complement-product-reindex",
-  "generated_utc": "2026-05-20T05:11:07Z",
-  "source_tree_hash": "7e4655490e48f91432aed730fb3503490355066b60f6487cdc08f837181f07a0",
-  "summary": "v202 ports support w154 as option_complement_product_reindex_w154.lean, proving the complement-subproduct reindex iso and fixed-degree analogue for the Option product decomposition route. Product success remains blocked by binaryFan/isLimitOfEval assembly, remaining mapping-cone differential compatibility, Dbounded transfer, and stable structures.",
+  "schema": "lean-lca-exact-challenge-verification-v203-binary-mapping-cone-differential-compatibility",
+  "generated_utc": "2026-05-20T05:17:44Z",
+  "source_tree_hash": "a8112c1ced609ce256c156016684ee6c6016bc1bc37cdb5c1c72888061c3fb0c",
+  "summary": "v203 proves binaryMappingConeBiprodDifferentialCompatibility in mapping_cone_biprod_comparison_probe_v189.lean. The remaining binary comparison work is packaging the degreewise maps as a cochain-complex isomorphism and feeding W142 BinaryMappingConeBiprodComparisonInput; product success remains blocked by that packaging, Option product assembly, Dbounded transfer, and stable structures.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed for v202 after adding the W154 complement product reindex audit; existing informational #check output remains nonblocking."
+      "evidence": "Full lake build passed for v203 after proving binaryMappingConeBiprodDifferentialCompatibility; existing informational #check output remains nonblocking."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed for v202."
+      "evidence": "Forbidden-token audit passed for v203."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed for v202; command output was logged because #check output is large."
+      "evidence": "RequiredDeclarations passed for v203; command output was logged because #check output is large."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed for v202; product success remains unclaimed."
+      "evidence": "ProductSuccessDeclarations passed for v203; product success remains unclaimed."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v202: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v203: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v202 source and artifact updates."
+      "evidence": "Whitespace diff check passed after v203 source and artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -207,7 +207,7 @@
     {
       "command": "lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean",
       "status": "passed",
-      "evidence": "Focused v201 v189 mapping-cone probe passed after adding rightComponentDifferentialSquareFstEquation_proof; Lean reported only existing unnecessarySimpa linter suggestions."
+      "evidence": "Focused v203 v189 mapping-cone probe passed after proving left/right component differential squares and binaryMappingConeBiprodDifferentialCompatibility; Lean reported only existing unnecessarySimpa linter suggestions."
     },
     {
       "command": "lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
