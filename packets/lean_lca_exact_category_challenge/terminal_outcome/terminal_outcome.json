@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v270では支援結果w251のうち既存v264-v268と重複しない部分を本体APIへ昇格し、cokernelSubgroup=⊤とzero cokernel objectの同値、およびopen map下の全射性との同値、名前付きCokernelTopStrictInputをLeanで確認した。これは右exactness入力面を改善するが、derived/homology/localization routeから必要な核・位相・右exactness入力を抽出する証明は未完成であり、product successではない。",
+  "summary": "v271では支援結果w252を親側auditとして再実装し、MetrizableLCAの反対bounded-complex source finite limitsを、抽象反対局所化のconditional equalizer/finite-limit constructorへ接続した。残るopposite stability/functor-category localization/finite-product条件は未供給であり、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -68,7 +68,9 @@
     "lake build LeanLCAExactChallenge.LCA.Cokernel LeanLCAExactChallenge.LCA.StrictExact",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/LCA/Cokernel.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/LCA/StrictExact.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+    "lake env lean audit/blockers/bounded_opposite_localization_equalizer_w252.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/bounded_opposite_localization_equalizer_w252.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -776,6 +778,7 @@
   "worker_frontier_summary": "v251で支援w235を消費し、MetrizableLCA有限余極限を有限余積プラス任意pushout/cokernelへ縮約した。product success は未主張である。",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
+    "反対圏抽象局所化のequalizer/finite-limit constructorはW252で形式化されたが、opposite WalkingParallelPair stability、opposite functor-category localization、finite-product stability、identity条件はまだ未供給である。",
     "cokernelSubgroup-topはzero cokernel objectやopen-map下の全射性と接続されたが、derived/homology/localization routeから核等式、閉埋め込み、開写像性、右exactness入力を同時に抽出する証明はまだ未完成である。",
     "localized comparison transport inputはW245形に具体化されたが、factorizedLocalizedComposite Cの右/左随伴とfactorized unit/counit membershipの構成はまだ未完成である。",
     "Epi T.gからcokernelπ T.g = 0を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeからEpi T.g、核等式、閉埋め込み、開写像性を同時に抽出する証明はまだ未完成である。",

@@ -234,6 +234,12 @@
 <p>This improves the target-side right exactness interface: future upstream routes may feed direct surjectivity, <code>cokernelπ = 0</code>, <code>Epi</code>, concrete cokernel-subgroup-top, or zero cokernel object. Product success remains nonterminal because the upstream route still has to produce kernel equality, closed embedding, open-map status, and a right-exactness input from the derived/homology/localization construction.</p>
 </section>
 
+<section id="v271-bounded-opposite-localization-equalizer">
+<h2>v271 bounded opposite localization equalizer</h2>
+<p><time>2026-05-20T14:34:00Z</time>: The parent consumed support result <code>w252-bounded-opposite-localization-equalizer-v262</code> by adding <code>audit/blockers/bounded_opposite_localization_equalizer_w252.lean</code>. The audit combines the concrete source finite-colimit input for <code>MetrizableLCA</code> with a generic localization transfer theorem for limits of shape <code>J</code>, producing concrete finite limits, finite products, and equalizers on <code>(BoundedComplexCategory MetrizableLCA)ᵒᵖ</code>.</p>
+<p>The localized target is the abstract opposite localization <code>((boundedExactWeakEquivalence MetrizableLCA).op).Localization</code>. Equalizers and finite limits there are now conditional on the precise remaining inputs: opposite localizer stability under <code>WalkingParallelPair</code>, the corresponding functor-category localization, finite-product stability, and identities. Product success remains nonterminal.</p>
+</section>
+
 </body>
 </html>
 

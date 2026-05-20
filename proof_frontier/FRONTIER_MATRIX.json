@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T14:22:00Z",
+  "generated_utc": "2026-05-20T14:34:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v270 is parent-side promotion of support w251 API.",
+  "worker_policy": "No workers were launched from the target worktree. v271 is parent-side port of support w252 audit.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1431,9 +1431,16 @@
       "classification": "promoted_parent_api_bridge",
       "artifact": "LeanLCAExactChallenge/LCA/Cokernel.lean; LeanLCAExactChallenge/LCA/StrictExact.lean",
       "result": "Concrete cokernel-subgroup-top is equivalent to zero categorical cokernel object and, under open-map hypothesis, equivalent to surjectivity; CokernelTopStrictInput packages the strict-exact consumer. Product success remains false."
+    },
+    {
+      "id": "w252",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/bounded_opposite_localization_equalizer_w252.lean",
+      "result": "Concrete finite limits/products/equalizers on the opposite bounded-complex source feed conditional equalizer and finite-limit constructors on the abstract opposite localization; product success remains false."
     }
   ],
   "remaining_blockers": [
+    "Opposite bounded localization finite limits now have a conditional equalizer/finite-limit constructor; missing inputs are opposite WalkingParallelPair stability, opposite functor-category localization, finite-product stability, and identities for the opposite localizer.",
     "MetrizableLCA right-exactness now has direct surjectivity, cokernel-subgroup-top, cokernelπ=0, Epi, and zero cokernel object interfaces; upstream derived/homology/localization extraction of these plus kernel/topology fields remains missing."
   ]
 }

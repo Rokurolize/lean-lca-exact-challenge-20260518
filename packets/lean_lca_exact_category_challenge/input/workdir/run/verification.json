@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T14:22:00Z",
-  "source_tree_hash": "0ab7446512b275c8df8d55740cf54c6ea0e7738ed84ef2544ba6c701f03ec99b",
-  "summary": "v270 consumes w251: concrete cokernel-subgroup-top is now connected to zero categorical cokernel object, and open-map right exactness has a bidirectional cokernel-top/surjectivity bridge plus named strict-exact input.",
+  "generated_utc": "2026-05-20T14:34:00Z",
+  "source_tree_hash": "329014c03f6fb08481433e8e590fda8e155cc90d6d305758fd4eec785fc678b9",
+  "summary": "v271 consumes w252: opposite bounded-complex source finite limits are connected to conditional equalizer and finite-limit constructors for the abstract opposite localization.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -333,6 +333,21 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "No whitespace errors after v270 edits."
+    },
+    {
+      "command": "lake env lean audit/blockers/bounded_opposite_localization_equalizer_w252.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for W252 opposite localization equalizer audit."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/bounded_opposite_localization_equalizer_w252.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W252 audit file."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors after v271 edits."
     }
   ],
   "implemented_declarations_checked": [
@@ -817,10 +832,19 @@
     "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_iff_cokernelObj_isZero",
     "LeanLCAExactChallenge.MetrizableLCA.surjective_iff_cokernelSubgroup_eq_top_of_isOpenMap",
     "LeanLCAExactChallenge.MetrizableLCA.CokernelTopStrictInput",
-    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_cokernelTopStrictInput"
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_cokernelTopStrictInput",
+    "LeanLCAExactChallenge.BoundedOppositeLocalizationEqualizerW252.metrizableLCA_sourceFiniteColimitInput",
+    "LeanLCAExactChallenge.BoundedOppositeLocalizationEqualizerW252.metrizableLCA_boundedComplexOp_hasFiniteLimits",
+    "LeanLCAExactChallenge.BoundedOppositeLocalizationEqualizerW252.metrizableLCA_boundedComplexOp_hasFiniteProducts",
+    "LeanLCAExactChallenge.BoundedOppositeLocalizationEqualizerW252.metrizableLCA_boundedComplexOp_hasEqualizers",
+    "LeanLCAExactChallenge.BoundedOppositeLocalizationEqualizerW252.MetrizableLCAOppositeWalkingParallelPairFunctorCategoryLocalizationInput",
+    "LeanLCAExactChallenge.BoundedOppositeLocalizationEqualizerW252.metrizableLCA_oppositeLocalizationHasEqualizers_of_transferInputs",
+    "LeanLCAExactChallenge.BoundedOppositeLocalizationEqualizerW252.metrizableLCA_oppositeLocalizationHasFiniteLimits_of_transferInputs",
+    "CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization_w252"
   ],
   "product_complete": false,
   "known_gaps": [
+    "反対圏抽象局所化のequalizer/finite-limit constructorはW252で形式化されたが、opposite WalkingParallelPair stability、opposite functor-category localization、finite-product stability、identity条件はまだ未供給である。",
     "cokernelSubgroup-topはzero cokernel objectやopen-map下の全射性と接続されたが、derived/homology/localization routeから核等式、閉埋め込み、開写像性、右exactness入力を同時に抽出する証明はまだ未完成である。",
     "localized comparison transport inputはW245形に具体化されたが、factorizedLocalizedComposite Cの右/左随伴とfactorized unit/counit membershipの構成はまだ未完成である。",
     "Epi T.gからcokernelπ T.g = 0を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeからEpi T.g、核等式、閉埋め込み、開写像性を同時に抽出する証明はまだ未完成である。",

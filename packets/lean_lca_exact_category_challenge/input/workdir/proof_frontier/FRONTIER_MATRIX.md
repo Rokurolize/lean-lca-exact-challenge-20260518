@@ -205,3 +205,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v270 Update
 
 2026-05-20T14:22:00Z: Support result w251 was promoted into the product API where it was not already covered by v264-v268. `MetrizableLCA.cokernelSubgroup_eq_top_iff_cokernelObj_isZero` connects the concrete closed-range quotient condition to categorical zero cokernel object, and `MetrizableLCA.surjective_iff_cokernelSubgroup_eq_top_of_isOpenMap` makes the open-map right-exactness bridge bidirectional. `MetrizableLCA.CokernelTopStrictInput` is now a named consumer surface for strict exactness from kernel equality, closed embedding, open map, and cokernel-subgroup-top. Product success remains nonterminal because derived/homology/localization extraction of those inputs is still missing.
+
+## v271 Update
+
+2026-05-20T14:34:00Z: Support result w252 was reimplemented as `audit/blockers/bounded_opposite_localization_equalizer_w252.lean`. It packages a generic localization transfer theorem for limits of shape `J` through functor-category localization, then applies it to the concrete opposite bounded-complex source for `MetrizableLCA`. The abstract opposite localization now has conditional equalizer and finite-limit constructors; remaining inputs are opposite `WalkingParallelPair` stability, opposite functor-category localization, finite-product stability, and identities. Product success remains nonterminal.
