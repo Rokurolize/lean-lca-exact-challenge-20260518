@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v188-w142-w143-frontier-audits",
-  "generated_utc": "2026-05-20T03:52:00Z",
-  "source_tree_hash": "c6701fcf577fbb3d5ab234d6e3edc9446256ccaae17f5bf24f80269b14a68041",
-  "summary": "v188 ports support w142/w143 into parent-owned frontier audits. W142 isolates BinaryMappingConeBiprodComparisonInput as the lower binary mapping-cone/product comparison needed after MetrizableLCA.exactAcyclic_biprod. W143 isolates the pullback route for Dbounded finite limits as PullbackConeInput C plus PullbackLocalizationTransferTheorem C. Product success remains blocked by these residuals plus finite colimits and triangulated/stable structure.",
+  "schema": "lean-lca-exact-challenge-verification-v189-mapping-cone-component-probe",
+  "generated_utc": "2026-05-20T04:12:00Z",
+  "source_tree_hash": "b9d36bfbadb62028abf2305eccbe9bbada6b6cefc10f30b760339e5981b7f965",
+  "summary": "v189 adds a parent-owned mapping-cone/biproduct comparison probe. It defines the degreewise candidate maps mappingCone (biprod.map f₁ f₂) ⇄ mappingCone f₁ ⊞ mappingCone f₂ and records the remaining differential-compatibility and inverse-compatibility inputs. BinaryMappingConeBiprodComparisonInput, finite Limits.Pi.map stability, Dbounded equalizer/pullback transfer, finite colimits, and triangulated/stable structure remain unproved.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after adding the v188 W142/W143 frontier audit files."
+      "evidence": "Full lake build passed after adding the v189 component-map probe and refreshed artifacts."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -47,17 +47,17 @@
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v188 state refresh and negative fixtures remain active."
+      "evidence": "External audit self-check passed after v189 state refresh and negative fixtures remain active."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v188: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v189: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v188 source and evidence updates."
+      "evidence": "Whitespace diff check passed after v189 source and evidence updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -203,6 +203,11 @@
       "command": "lake env lean audit/blockers/dbounded_pullback_localization_transfer_w143.lean",
       "status": "passed",
       "evidence": "Focused v188 W143 Dbounded pullback localization-transfer frontier audit passed in the parent worktree."
+    },
+    {
+      "command": "lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean",
+      "status": "passed",
+      "evidence": "Focused v189 mapping-cone/biproduct component-map probe passed; it does not prove differential compatibility or inverse identities."
     }
   ],
   "implemented_declarations_checked": [
