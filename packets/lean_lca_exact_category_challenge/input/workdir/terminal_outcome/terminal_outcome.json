@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v281ではgenericなfinite-coproduct stabilityからopposite finite-product stabilityへのformal transportをLeanで証明した。direct finite-coproduct stabilityなどはまだ未供給で、product successではない。",
+  "summary": "v282ではWalkingParallelPair分岐について、W.op.opの余極限安定性からW.opの極限安定性を出すgenericなformal transportをLeanで証明した。directまたはdouble-op側の余極限安定性入力はまだ未供給で、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -86,7 +86,9 @@
     "lake env lean audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean",
     "lake env lean audit/blockers/opposite_finite_product_transport_w281.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_finite_product_transport_w281.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_finite_product_transport_w281.lean",
+    "lake env lean audit/blockers/opposite_walking_parallel_pair_transport_w282.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_walking_parallel_pair_transport_w282.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -789,7 +791,9 @@
     "Dbounded MetrizableLCA へ有限余極限を運ぶ局所化移送は未完である。source側の HasFiniteColimits MetrizableLCA はv252で実装済みだが、反対側right calculusとWalkingParallelPair functor-category localizationが残る。",
     "Dbounded のordinary triangulated structureと、stable infinity-categoryとして必要な有限極限・有限余極限・suspension/loop互換・pushout/pullback互換のcertificateは未構成である。",
     "bounded strict-realization経路では、bare HomotopyEquiv によるboundedness輸送が反例で否定されており、distinguished triangle由来の追加構造を使うstrictificationまたは別のstable certificate構成が必要である。",
-    "ShortComplex.QuasiIso だけから MetrizableLCA.strictShortExact を無条件に輸送する命題は、0→0→ZMod 2 反例でLean上否定済みである。"
+    "ShortComplex.QuasiIso だけから MetrizableLCA.strictShortExact を無条件に輸送する命題は、0→0→ZMod 2 反例でLean上否定済みである。",
+    "WalkingParallelPair分岐ではformal op transportはv282で進んだが、(boundedExactWeakEquivalence MetrizableLCA).op.op側のWalkingParallelPairᵒᵖ余極限安定性入力が未証明。",
+    "source-side direct WalkingParallelPairᵒᵖ colimit stabilityとdouble-op入力の比較・輸送は未証明。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",

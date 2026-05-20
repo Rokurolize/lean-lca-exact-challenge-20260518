@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T17:02:00Z",
-  "source_tree_hash": "b64304b49f056be583764d2b080f514afaf9dc4c4b9ae978c4b217063d5ebd64",
-  "summary": "v281 proves the generic finite-coproduct-to-opposite-finite-product stability transport; direct boundedExactWeakEquivalence finite-coproduct stability remains missing.",
+  "generated_utc": "2026-05-20T14:22:31Z",
+  "source_tree_hash": "84d9c4dec45ad7ae036c71ccc0d40e79df2c767e02206d9c2735ad0206b192ca",
+  "summary": "v282 proves generic double-op colimit-stability to opposite limit-stability transport for the WalkingParallelPair branch; the direct/double-op colimit-stability input remains missing.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -468,6 +468,16 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_finite_product_transport_w281.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W281 opposite finite-product transport audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/opposite_walking_parallel_pair_transport_w282.lean",
+      "status": "passed",
+      "evidence": "Focused W282 generic double-op colimit to opposite limit transport audit passed."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_walking_parallel_pair_transport_w282.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W282 audit file."
     }
   ],
   "implemented_declarations_checked": [

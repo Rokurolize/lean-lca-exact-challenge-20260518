@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-manifest-v1",
-  "generated_utc": "2026-05-20T17:02:00Z",
-  "file_count": 185,
-  "content_hash_tree": "24a2dea9a23fbdd0521346008be2955fc70b4ef526e9ba19240e9849f753774d",
+  "generated_utc": "2026-05-20T14:22:31Z",
+  "file_count": 186,
+  "content_hash_tree": "b6802735e8c50db35f54887c211ff49d54ae82e6c4f7cdf6011ec1e14f1fc757",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -505,6 +505,11 @@
       "sha256": "6e20af57f7bcf25fca248feb9ea67921469e6bda804969a60d32cf2f9147c1cd"
     },
     {
+      "path": "audit/blockers/opposite_walking_parallel_pair_transport_w282.lean",
+      "bytes": 5826,
+      "sha256": "1ad233b0d07937ad05e6330bb80744af1d819807509414719dff027fb6da00eb"
+    },
+    {
       "path": "audit/blockers/opposite_weak_equivalence_stability_w259.lean",
       "bytes": 9633,
       "sha256": "d5cd6428b9d85dd985d19111aa434a9ecadd32683345bc64ad5fd5d012443814"
@@ -891,8 +896,8 @@
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 107291,
-      "sha256": "11a333034a2b58d238244293a88975085bff5d301fe4931149ab91ea7a090255"
+      "bytes": 107327,
+      "sha256": "a3052d1bd2ca09a8d5c984f9c966f819bad41005e062f8d50eaa454bf5bb6860"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
@@ -906,8 +911,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 71292,
-      "sha256": "5a4f83e0c18382cf4248f0e0b4f776c7b9a1dcdb39f74642d709557aa10b9f0f"
+      "bytes": 71790,
+      "sha256": "4ec8b6e0d2d891de1ec1106f7b0e590e21ad51e58ec20c23c3da58c49f7fda72"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -921,8 +926,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 137964,
-      "sha256": "24cc01e413b8ece5bb9aa5390fbb3dc8aee39cbf4a0db58dea743b941e97f057"
+      "bytes": 138538,
+      "sha256": "d3d2b1dd5372d9839d608d8d9ad831428ad9003266c0a5d7c9b92101fbba096f"
     },
     {
       "path": "workers/README.md",
