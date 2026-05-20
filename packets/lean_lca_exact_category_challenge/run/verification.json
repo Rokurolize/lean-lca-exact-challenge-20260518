@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T14:32:00Z",
-  "source_tree_hash": "7cf80e7f5b345de0c3b39562a4d94af7d8b10f0c079198cd6dff5649ec500db4",
-  "summary": "v284 proves direct finite-coproduct stability of boundedExactWeakEquivalence MetrizableLCA in source; remaining opposite finite-limit stability gap is WalkingParallelPairᵒᵖ colimit stability and downstream localization inputs.",
+  "generated_utc": "2026-05-20T14:34:46Z",
+  "source_tree_hash": "682083e19b1138c67eb2a9449d7849dfe217cfc21c8e9cfa73e5a72b32bdaa7d",
+  "summary": "v285 proves finite-product stability of (boundedExactWeakEquivalence MetrizableLCA).op in source; remaining opposite finite-limit stability gap is WalkingParallelPairᵒᵖ colimit stability and downstream localization inputs.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -207,7 +207,7 @@
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
       "status": "passed",
-      "evidence": "Focused product module check passed; it now exposes finite-product stability and conditional Dbounded finite products for MetrizableLCA."
+      "evidence": "Focused BoundedFiniteProducts check passed after adding source-level finite-coproduct and opposite finite-product stability theorems."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -492,7 +492,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in BoundedFiniteProducts after v284."
+      "evidence": "No forbidden Lean tokens found in BoundedFiniteProducts after v285."
     }
   ],
   "implemented_declarations_checked": [
