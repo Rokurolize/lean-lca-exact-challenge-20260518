@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v164-distinguished-provider-side-discharged",
-  "generated_utc": "2026-05-20T06:10:00Z",
-  "source_tree_hash": "bac944056f05918b927a5c2a58b981f4e23b5cffb5543754d6a4005f30e026a1",
-  "summary": "v164 discharges the distinguished endpoint eligibility provider side from the existing weak endpoint payload, reducing the bounded route to the cochain-isomorphism upgrade for explicit distinguished witnesses; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v165-trivial-eligibility-upgrade-refuted",
+  "generated_utc": "2026-05-20T06:25:00Z",
+  "source_tree_hash": "7d480dee7b95e7a3db9e4ab31c56b145721b7b74fb72075e36002d377aba6291",
+  "summary": "v165 refutes the trivial distinguished endpoint eligibility upgrade: packaging arbitrary homotopy-equivalence endpoint data as a distinguished mapping-cone witness would imply the already false endpointHomotopyEquiv strictification bridge; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after the v163 audit file."
+      "evidence": "Full lake build passed after the v165 trivial eligibility refutation."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v164 route update."
+      "evidence": "Forbidden-token audit passed after the v165 trivial eligibility refutation."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v164 route update."
+      "evidence": "Required declaration audit passed after the v165 trivial eligibility refutation."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess declaration audit passed after the v164 route update; no product-success claim was added."
+      "evidence": "ProductSuccess declaration audit passed after the v165 trivial eligibility refutation; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -57,7 +57,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v159 docs/artifact updates."
+      "evidence": "Whitespace diff check passed after the v165 artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -117,7 +117,7 @@
     {
       "command": "lake env lean audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean",
       "status": "passed",
-      "evidence": "Focused v164 w128 route audit passed after discharging the trivial eligibility provider side."
+      "evidence": "Focused v165 w128 route audit passed after adding the trivial-eligibility upgrade implication and IntModuleCat refutation."
     },
     {
       "command": "cmp -s audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean <w128-worktree>/audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean",
@@ -237,25 +237,15 @@
     "DistinguishedEndpointTrivialEligibility",
     "distinguishedEndpointEligibilityProvider_trivial",
     "boundedTrianglehIso13CochainDataStrictification_of_trivialEligibilityUpgrade",
-    "boundedHomotopyObjectTrianglehIso13Realization_of_trivialEligibilityUpgrade"
+    "boundedHomotopyObjectTrianglehIso13Realization_of_trivialEligibilityUpgrade",
+    "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_trivialEligibilityUpgrade",
+    "reject_trivialEligibilityUpgrade_intModuleCat"
   ],
   "product_complete": false,
   "known_gaps": [
-    "boundedWeakEndpointPayloadToCochainDataStrictification is now isolated as the remaining bounded positive theorem but remains unproved.",
-    "No stable infinity-category certificate for D^b(LCA) has been proved.",
-    "No final clean review packet, oracle pass, or fresh claim review has accepted product_success=true.",
-    "Stable infinity-category certificate still lacks concrete finite-limit, finite-colimit, suspension/loop, and pushout/pullback projections.",
-    "boundedWeakEndpointPayloadToCochainDataStrictification remains unproved.",
-    "The weak-endpoint minimizer is now equivalent to bounded strict realization, so proving the minimizer still requires the bounded strict-realization theorem itself.",
-    "Stable certificate provider map now records finite limits and finite colimits as missing, and suspension-loop plus pushout-pullback as ordinary-only.",
-    "The current stable certificate provider map now formally rejects all-fields-supplied status and each required field remains not supplied.",
-    "bounded側の弱endpoint routeは、homotopy category上のendpoint同型をcochain-complex同型へ上げるprovider weakEndpointHomotopyCategoryIsoToSelectedCochainIso まで絞られたが、そのprovider自体は未証明である。",
-    "stable側では、現行のordinary contextをsingle-certificate stable provider routeへ昇格する OrdinaryContextToStableProviderRoute が未構成である。",
-    "weakEndpointHomotopyCategoryIsoToSelectedCochainIso は無条件には false であり、bounded routeにはdistinguished mapping-cone endpointに特化したより弱いstrictification命題が必要である。",
-    "The distinguished endpoint selected-cochain provider is now proved equivalent to bounded strict realization, so it is a precise reformulation of the remaining bounded theorem, not a completed proof.",
-    "The distinguished mapping-cone route still needs an actual eligibility provider and eligible-witness cochain-isomorphism upgrade; v162 only proves that these narrower inputs are sufficient.",
-    "The stable route is now minimized to a single-certificate four-projection API, but that stable certificate is still not constructed for Dbounded.infinityCategory.",
-    "The bounded distinguished route no longer needs a separate eligibility provider for trivial eligibility, but it still needs the cochain-isomorphism upgrade for explicit distinguished weak endpoint witnesses."
+    "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため、arbitrary weak endpoint witnessを除外する非自明なeligibility predicateと、そのeligible witnessだけをcochain同型へ上げるupgradeが必要です。",
+    "stable側は、ordinary Dbounded evidenceからsingle stable certificateの4射影（finite limits、finite colimits、suspension/loop equivalence、pushout/pullback compatibility）を構成する実装が未完成です。",
+    "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
   ],
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {

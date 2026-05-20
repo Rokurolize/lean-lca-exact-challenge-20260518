@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v164時点で、distinguished endpoint routeのprovider側を既存の弱endpoint payloadから構成した。product_successではない。bounded側には明示的なdistinguished weak endpoint witnessをcochain同型へ上げるupgrade、stable側にはsingle-certificate四射影APIの実構成が残る。",
+  "summary": "v165時点で、自明なdistinguished endpoint eligibility upgradeは既存のIntModuleCat反例により拒否されることを確認した。product_successではない。bounded側には非自明なeligibility predicateと対応upgrade、stable側にはsingle-certificate四射影APIの実構成が残る。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -652,34 +652,23 @@
     "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos"
   ],
   "known_gaps": [
-    "弱endpoint payloadからselected cochain payload、compact cochain-isomorphism payload、expanded cochain-data payloadへ上げる3つのprovider surfaceはbounded strict-realization本体と同値であり、その本体が未証明である。",
-    "weakEndpointHomotopyCategoryIsoToSelectedCochainIsoは無条件には反例があり、bounded側にはより弱い正しいstrictification命題が必要である。",
-    "このproviderを無条件のhomotopy equivalence strictificationで代用する道は、IntModuleCat上の反例で拒否されている。",
-    "弱endpoint routeには、homotopy category上のendpoint同型をcochain-complex同型へ上げるproviderがまだ必要である。",
-    "D^b(LCA)をstable infinity-categoryとして認証するfinite limitsとfinite colimitsのproviderが欠落している。",
-    "D^b(LCA)のsuspension/loop同値とpushout/pullback互換性はordinary triangulated dataに留まり、stable certificateの射影としては未構成である。",
-    "現行のstable certificate provider mapはall-fields-suppliedを満たさないことをLeanで確認済みであり、現在suppliedになっているstable fieldはない。",
-    "最終review packetのclean extraction監査とclaim reviewが未実施である。",
-    "Dboundedのordinary contextをsingle-certificate stable provider routeへ昇格するAPIが未構成である。"
+    "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため、arbitrary weak endpoint witnessを除外する非自明なeligibility predicateと、そのeligible witnessだけをcochain同型へ上げるupgradeが必要です。",
+    "stable側は、ordinary Dbounded evidenceからsingle stable certificateの4射影（finite limits、finite colimits、suspension/loop equivalence、pushout/pullback compatibility）を構成する実装が未完成です。",
+    "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "",
   "packet_sha256_sidecar": "",
   "git_commit": "omitted-from-terminal-outcome-to-avoid-self-referential-final-commit-hash; use git rev-parse HEAD",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "w108-w118まで親側で確認した。w112はv139-v140で吸収済み、w113はv140の具体反例化へ反映済み、w114はrestricted guardからDerived.Boundedの製品側selected-cochain payload APIへ昇格、w115はcontracting homotopyから零複体へのHomotopyEquiv bridgeとして移植、w116/w117はv140-v142のContractibleTail実装で消化済み、w118はv143のproduct-side payload APIで消化済みと分類した。 w119はresult.jsonなしで途中停止していたため、親側ではログから得たsmoke観点だけを採用し、重複作業は行わなかった。",
+  "worker_frontier_summary": "v165 parent-only update. w128/w129 prior support had been integrated; the trivial distinguished endpoint eligibility upgrade is now formally rejected, so the bounded frontier requires a nontrivial eligibility certificate. Stable frontier remains the minimized single-certificate four-projection route.",
   "claim_review_result": "not_run_nonproduct; fresh claim review is required only before product_success completion",
   "remaining_gaps": [
-    "v143で実cochain-complex同型付きselected cochain payloadは製品側APIになったが、そのpayloadを一般のhomotopy-category endpoint同型から構成するstrictification定理は未完成である。",
-    "具体的な右非有界contractible selected complexはModuleCat ℤ上で構成済みだが、それをpositiveなstrictification制御またはDboundedのstable certificateへ変換する定理は未完成である。",
-    "stable certificateに必要な有限極限、有限余極限、suspension/loop equivalence、pushout/pullback互換性の各obligationは未証明である。",
-    "最終clean review packet、全oracle通過、fresh claim reviewによるproduct_success=trueの受理はいずれも未完了である。",
-    "The distinguished endpoint selected-cochain provider is now proved equivalent to bounded strict realization, so it is a precise reformulation of the remaining bounded theorem, not a completed proof.",
-    "The distinguished mapping-cone route still needs an actual eligibility provider and eligible-witness cochain-isomorphism upgrade; v162 only proves that these narrower inputs are sufficient.",
-    "The stable route is now minimized to a single-certificate four-projection API, but that stable certificate is still not constructed for Dbounded.infinityCategory.",
-    "The bounded distinguished route no longer needs a separate eligibility provider for trivial eligibility, but it still needs the cochain-isomorphism upgrade for explicit distinguished weak endpoint witnesses."
+    "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため、arbitrary weak endpoint witnessを除外する非自明なeligibility predicateと、そのeligible witnessだけをcochain同型へ上げるupgradeが必要です。",
+    "stable側は、ordinary Dbounded evidenceからsingle stable certificateの4射影（finite limits、finite colimits、suspension/loop equivalence、pushout/pullback compatibility）を構成する実装が未完成です。",
+    "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
   ],
-  "next_recommended_goal": "次はw114の十分条件をproduct方向へ進め、homotopy-category endpoint同型からselected source/coneへの実cochain-complex同型を作るstrictification theorem、またはDboundedのstable infinity-category certificateに必要な局所APIを構成する。",
+  "next_recommended_goal": "Define a genuinely nontrivial distinguished endpoint eligibility predicate that excludes arbitrary homotopy-equivalence endpoint witnesses, or construct the minimized stable four-projection certificate API; keep product_success false until one route closes and the full oracle/packet gate passes.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -715,9 +704,11 @@
     "boundedTrianglehIso13CochainIsoPayload",
     "boundedTrianglehIso13CochainDataStrictification",
     "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_iso_payload",
-    "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data"
+    "boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data",
+    "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_trivialEligibilityUpgrade",
+    "reject_trivialEligibilityUpgrade_intModuleCat"
   ],
-  "generated_utc": "2026-05-20T02:30:00Z",
+  "generated_utc": "2026-05-20T06:25:00Z",
   "support_result_classification": {
     "w126": "already integrated byte-identically by parent v158",
     "w127": "formal worker result integrated and strengthened by parent v159"

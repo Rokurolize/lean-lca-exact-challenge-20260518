@@ -159,6 +159,66 @@ theorem boundedHomotopyObjectTrianglehIso13Realization_of_trivialEligibilityUpgr
       C upgrade)
 
 omit [QuillenExactCategory C] in
+/-- The trivial eligibility upgrade is still too broad: every arbitrary homotopy-equivalence
+endpoint strictification instance can be packaged as an eligible distinguished mapping-cone
+witness. -/
+theorem endpointHomotopyEquivToSelectedCochainIsoStrictification_of_trivialEligibilityUpgrade
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (upgrade : DistinguishedEndpointCochainIsoUpgrade C
+      (DistinguishedEndpointTrivialEligibility C)) :
+    endpointHomotopyEquivToSelectedCochainIsoStrictification C := by
+  intro Ksrc Kcone K L f hKsrc hKcone hK hCone
+  let T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ)) :=
+    CochainComplex.mappingCone.triangleh f
+  have hT : T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) := by
+    dsimp [T]
+    exact HomotopyCategory.mappingCone_triangleh_distinguished f
+  have h₁ : boundedHomotopyObject C T.obj₁ := by
+    dsimp [T]
+    exact (boundedHomotopyObject C).prop_of_iso
+      (HomotopyCategory.isoOfHomotopyEquiv hK)
+      (boundedHomotopyObject_quotient_obj C hKsrc)
+  have h₃ : boundedHomotopyObject C T.obj₃ := by
+    dsimp [T]
+    exact (boundedHomotopyObject C).prop_of_iso
+      (HomotopyCategory.isoOfHomotopyEquiv hCone)
+      (boundedHomotopyObject_quotient_obj C hKcone)
+  let w : DistinguishedEndpointWeakWitness C T := {
+    sourceRepresentative := Ksrc
+    coneRepresentative := Kcone
+    selectedSource := K
+    selectedTarget := L
+    selectedMap := f
+    triangleSourceIso := Iso.refl _
+    triangleConeIso := Iso.refl _
+    triangleComm := by
+      dsimp [T]
+      simp
+    sourceBounded := hKsrc
+    coneBounded := hKcone
+    sourceHomotopyCategoryIso := ⟨HomotopyCategory.isoOfHomotopyEquiv hK⟩
+    coneHomotopyCategoryIso := ⟨HomotopyCategory.isoOfHomotopyEquiv hCone⟩ }
+  rcases upgrade hT h₁ h₃ w trivial with ⟨hSourceIso, hConeIso⟩
+  exact ⟨hSourceIso.some, hConeIso.some, trivial⟩
+
+omit [QuillenExactCategory C] in
+/-- The trivial eligibility upgrade is refuted in the alternating-tail integer-module
+model, so a successful distinguished endpoint certificate must use a genuinely narrower
+eligibility predicate. -/
+theorem reject_trivialEligibilityUpgrade_intModuleCat
+    [HasZeroObject AlternatingTailExtendTransport.IntModuleCat]
+    [HasBinaryBiproducts AlternatingTailExtendTransport.IntModuleCat] :
+    ¬ DistinguishedEndpointCochainIsoUpgrade
+        AlternatingTailExtendTransport.IntModuleCat
+        (DistinguishedEndpointTrivialEligibility
+          AlternatingTailExtendTransport.IntModuleCat) := by
+  intro upgrade
+  exact
+    AlternatingTailExtendTransport.not_endpointHomotopyEquivToSelectedCochainIsoStrictification_intModuleCat
+      (endpointHomotopyEquivToSelectedCochainIsoStrictification_of_trivialEligibilityUpgrade
+        AlternatingTailExtendTransport.IntModuleCat upgrade)
+
+omit [QuillenExactCategory C] in
 /-- A distinguished-only certificate provider and eligible-witness upgrade are enough for
 the expanded cochain-data strictification frontier. -/
 theorem boundedTrianglehIso13CochainDataStrictification_of_distinguishedEndpointCertificate
@@ -231,6 +291,8 @@ variable [HasZeroObject C] [HasBinaryBiproducts C]
 #check distinguishedEndpointEligibilityProvider_trivial
 #check boundedTrianglehIso13CochainDataStrictification_of_trivialEligibilityUpgrade
 #check boundedHomotopyObjectTrianglehIso13Realization_of_trivialEligibilityUpgrade
+#check endpointHomotopyEquivToSelectedCochainIsoStrictification_of_trivialEligibilityUpgrade
+#check reject_trivialEligibilityUpgrade_intModuleCat
 #check boundedTrianglehIso13CochainDataStrictification_of_distinguishedEndpointCertificate
 #check boundedHomotopyObjectTrianglehIso13Realization_of_distinguishedEndpointCertificate
 #check reject_unconditionalHomotopyEquiv_endpointStrictification_w128

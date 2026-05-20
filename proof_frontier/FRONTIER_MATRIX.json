@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T06:10:00Z",
+  "generated_utc": "2026-05-20T06:25:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v164 is parent-only and discharges the trivial distinguished endpoint eligibility provider from existing weak endpoint payload evidence.",
+  "worker_policy": "No workers were launched from the target worktree. v165 is parent-only and refutes the trivial distinguished endpoint eligibility upgrade as still too broad.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -573,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
-      "merge_blocker": "v164 discharges the trivial distinguished endpoint eligibility provider from existing weak endpoint payload evidence. The remaining bounded input is now the cochain-isomorphism upgrade for explicit distinguished weak endpoint witnesses; the stable single-certificate route remains unconstructed. Product success is still blocked.",
+      "merge_blocker": "v165 narrows the bounded route: the trivial distinguished endpoint eligibility upgrade implies the known-false unconditional endpointHomotopyEquiv strictification bridge and is refuted in IntModuleCat. Remaining bounded input must use a genuinely nontrivial eligibility predicate; stable input remains the minimized single-certificate four-projection API.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -916,7 +916,9 @@
         "StableDboundedCertificateProviderRouteW126.currentOrdinaryContext_allCandidatesAreOrdinaryContext",
         "StableDboundedCertificateProviderRouteW126.currentProviderRoute_not_supplied",
         "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_weakEndpointSelectedCochainIso",
-        "reject_unconditional_weakEndpointSelectedCochainIso_provider_w127"
+        "reject_unconditional_weakEndpointSelectedCochainIso_provider_w127",
+        "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_trivialEligibilityUpgrade",
+        "reject_trivialEligibilityUpgrade_intModuleCat"
       ],
       "technical_context": [
         "split short complexes",
