@@ -1,9 +1,14 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v239-left-calculus-input-boundaries",
-  "generated_utc": "2026-05-20T10:49:32Z",
-  "source_tree_hash": "d08fb34c6b511a31b44895042b8065e64f76692d1bc000f9a543e538f1e3dc49",
-  "summary": "v239時点で、support w216/w217 の有用部分を親側で再実装し、audit/blockers/exact_acyclic_homotopy_iso_closure_w216.lean と audit/blockers/bounded_homotopy_left_calculus_w217.lean を追加した。direct bounded left-calculus route は、exactAcyclicHomotopyIsoClosure C を exactAcyclicHomotopyObject C へ戻す iso-closure collapse と、BoundedComplexCategory.homotopyQuotient C に沿う inverse-image へ Verdier left calculus を移す transfer に分解された。これは有限product routeの残り入力を明確にするが、product successはまだ非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v240-opposite-equalizer-localization-transfer",
+  "generated_utc": "2026-05-20T10:53:40Z",
+  "source_tree_hash": "72e0e39d5ccd1c6600f4d7fa59ea9d9e021c8b6d1004b15ab7b4e1ff0e54901b",
+  "summary": "v240時点で、support w220 の有用部分を親側で再実装し、audit/blockers/opposite_equalizer_localization_transfer_w220.lean を追加した。v238の局所化極限転送を (boundedExactWeakEquivalence C).op.Localization に特殊化し、OppositeWalkingParallelPairFunctorCategoryLocalizationInput を明示した。これにより有限colimit routeで必要な反対圏抽象局所化の有限limit consumerが条件付きで通ったが、opposite functor-category localization、opposite left calculus、finite-product stability、source equalizer入力はまだ未供給であり、product successは非完了である。",
   "commands": [
+    {
+      "command": "lake env lean audit/blockers/opposite_equalizer_localization_transfer_w220.lean",
+      "status": "passed",
+      "evidence": "Focused opposite equalizer localization-transfer boundary check passed after v240."
+    },
     {
       "command": "lake env lean audit/blockers/exact_acyclic_homotopy_iso_closure_w216.lean",
       "status": "passed",
@@ -32,52 +37,52 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed after v239 artifact refresh."
+      "evidence": "ProductSuccessDeclarations passed during v240 baseline."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed during v239 baseline; only pre-existing warnings were emitted."
+      "evidence": "Full lake build passed during v240 baseline; only pre-existing warnings were emitted."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed during v239 baseline."
+      "evidence": "Forbidden-token audit passed during v240 baseline."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed after v239 artifact refresh."
+      "evidence": "RequiredDeclarations passed during v240 baseline."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v239 artifact refresh."
+      "evidence": "Whitespace diff check passed after v240 artifact refresh."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "terminal_outcome JSON parsed after v239 refresh."
+      "evidence": "terminal_outcome JSON parsed after v240 refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "proof_frontier JSON parsed after v239 refresh."
+      "evidence": "proof_frontier JSON parsed after v240 refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "verification JSON parsed after v239 refresh."
+      "evidence": "verification JSON parsed after v240 refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "manifest JSON parsed after v239 refresh."
+      "evidence": "manifest JSON parsed after v240 refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v239 manifest refresh."
+      "evidence": "External audit self-check passed after v240 manifest refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -414,16 +419,24 @@
     "BoundedHomotopyLeftCalculusW217.ambientVerdierLeftCalculus_of_isoClosureClosed2",
     "BoundedHomotopyLeftCalculusW217.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_transfer",
     "BoundedHomotopyLeftCalculusW217.BoundedHomotopyLeftCalculusSufficientPackage",
-    "BoundedHomotopyLeftCalculusW217.metrizableLCABoundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_package"
+    "BoundedHomotopyLeftCalculusW217.metrizableLCABoundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_package",
+    "CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization",
+    "OppositeEqualizerLocalizationTransferW220.OppositeWalkingParallelPairFunctorCategoryLocalizationInput",
+    "OppositeEqualizerLocalizationTransferW220.oppositeLocalizationHasWalkingParallelPairLimits_of_functorCategoryLocalization",
+    "OppositeEqualizerLocalizationTransferW220.oppositeLocalizationHasEqualizers_of_functorCategoryLocalization",
+    "OppositeEqualizerLocalizationTransferW220.oppositeEqualizerLocalizationTransferTheorem",
+    "OppositeEqualizerLocalizationTransferW220.oppositeLocalizationHasFiniteLimits_of_equalizerLocalizationTransfer",
+    "OppositeEqualizerLocalizationTransferW220.currentOppositeEqualizerLocalizationTransferState"
   ],
   "product_complete": false,
   "known_gaps": [
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
     "direct bounded left calculus は iso-closure collapse と bounded homotopy inverse-image calculus transfer に分解されたが、どちらも無条件には未供給である。",
+    "反対圏抽象局所化の有限limit consumerは形式化されたが、OppositeWalkingParallelPairFunctorCategoryLocalizationInput と反対圏側のleft calculus/finite-product stability/source equalizer入力は未供給である。",
     "Dbounded有限limitのequalizer consumerは形式化されたが、WalkingParallelPair functor-category localization とparallel-pair安定性がまだ未供給である。",
     "反対圏有限colimitルートは (boundedExactWeakEquivalence C).op.Localization の有限limitへ縮約されたが、その有限limit証明はまだ未供給である。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "support w216/w217 were parent-reimplemented as left-calculus input boundaries; support w219 overlaps v238 and is classified as conditional evidence, while support w220 is still running externally."
+  "support_result_classification": "support w220 was parent-reimplemented as the opposite equalizer localization-transfer boundary; support w222 overlaps v239 inverse-image left-calculus transfer evidence; w221 remains external/in progress if no result exists."
 }
