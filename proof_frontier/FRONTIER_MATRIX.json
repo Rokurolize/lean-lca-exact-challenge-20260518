@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T08:05:52Z",
+  "generated_utc": "2026-05-20T08:13:37Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -573,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean && lake env lean audit/blockers/nontrivial_distinguished_eligibility_predicate_w132.lean && lake env lean audit/blockers/dbounded_four_projection_provider_route_w133.lean && lake env lean audit/blockers/dbounded_semantic_stable_input_adapter.lean && lake env lean audit/blockers/dbounded_semantic_input_left_calculus_boundary.lean && lake env lean audit/blockers/dbounded_finite_products_boundary.lean && lake build LeanLCAExactChallenge.Derived.Bounded && lake env lean audit/blockers/metrizable_exact_acyclic_biproduct_boundary.lean && lake env lean audit/blockers/mapping_cone_finite_product_comparison_w142.lean && lake env lean audit/blockers/dbounded_pullback_localization_transfer_w143.lean && lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean && lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
-      "merge_blocker": "v221 leaves the finite-product route with one explicit W151 finite Option call-site packaging gap: degreewise Option-product HasProduct for every cochain degree. The direct Option-product fan IsLimit, complement packaging, singleton packaging, selected binary biproduct packaging, empty base case, and Option exactness consumer are proved, but finite-family induction closure from that Option step and Dbounded finite-product/finite-limit transfer remain; finite colimits, pretriangulated structure, triangulated structure, and stable infinity-category structure remain unproved.",
+      "merge_blocker": "v222 closes the W151 direct Option-product fan IsLimit route and finite Option call-site instance packaging under finite products in the base category. The remaining finite-product route blocker is no longer W151 instance packaging; it is promoting or connecting the W151 audit proof to W149 FiniteProductOptionDecompositionInput, proving finite-family closure, and then completing Dbounded finite-product/finite-limit transfer. Finite colimits, pretriangulated structure, triangulated structure, and stable infinity-category structure remain unproved.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -1108,7 +1108,7 @@
         "v186 consumes support w141 after parent focused Lean verification; support w140 is superseded by parent v185."
       ],
       "another_active_process_already_owns_it": false,
-      "product_contribution": "narrows W151/W149 finite-product route; product success remains blocked by degreewise Option-product packaging and downstream Dbounded/stable structure"
+      "product_contribution": "closes W151 finite Option call-site instance packaging; product success remains blocked by W149/product-module integration and downstream Dbounded/stable structure"
     },
     {
       "frontier_id": "frontier-exact-category-api",
@@ -1244,5 +1244,5 @@
     }
   ],
   "support_result_classification": "w178-w179 completed complement and degreewise complement product packaging; parent v220 integrates those conclusions. Next packaging gaps are singleton none, degreewise Option, degreewise singleton, and selected binary biproduct.",
-  "latest_parent_update": "v221 packages W151 singleton none-subproduct and selected binary-biproduct call-site assumptions; remaining finite Option-product packaging gap is degreewise Option-product HasProduct."
+  "latest_parent_update": "v222 closes W151 finite Option call-site instance packaging under [HasFiniteProducts C]; next frontier is promoting/connecting W151 to W149 finite-family closure."
 }

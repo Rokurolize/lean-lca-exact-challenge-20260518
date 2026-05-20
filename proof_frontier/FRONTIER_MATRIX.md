@@ -101,3 +101,7 @@ v220 consumes w178-w179 by adding complement-subproduct packaging from the displ
 ## v221 Update
 
 v221 packages the singleton none-subproduct and selected binary-biproduct call-site assumptions in W151. The none index is now named as optionNoneIndex with a Unique instance, so complex-level and degreewise singleton products are synthesized by mathlib's unique-index product instance. The new strongest wrapper is optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct, and the remaining finite Option-family packaging gap is degreewise Option-product HasProduct for every cochain degree. Product success remains nonterminal.
+
+## v222 Update
+
+v222 closes the remaining W151 finite Option call-site instance packaging under finite products in the base category. MetrizableLCA now has HasFiniteProducts from the existing terminal/zero object and binary products, and optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct synthesizes both degreewise Option-product and tail-product HasProduct families for finite J. The W151 call-site gap list is now empty; remaining work is to promote/connect this audit proof to W149's FiniteProductOptionDecompositionInput, prove finite-family closure, and continue the Dbounded finite-product/stable-infinity route. Product success remains nonterminal.

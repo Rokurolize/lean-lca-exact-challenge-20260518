@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Derived.Bounded
 import Mathlib.CategoryTheory.Limits.Shapes.BinaryBiproducts
+import Mathlib.CategoryTheory.Limits.Shapes.FiniteProducts
 import Mathlib.CategoryTheory.Limits.Shapes.PiProd
 import Mathlib.CategoryTheory.Limits.Preserves.Shapes.Products
 
@@ -1212,15 +1213,36 @@ noncomputable def optionProductIsoBiprod_finiteProductCallsite_packaged_of_direc
   exact optionProductIsoBiprod_finiteProductCallsite_singletonTailDegreeComplement_of_direct C K
 
 /--
+Close the finite Option call-site instance packaging under finite products in the base category.
+For finite `J`, `[HasFiniteProducts C]` supplies the degreewise products indexed by both
+`Option J` and `J`; the preceding wrappers discharge the singleton, complement, and selected
+binary-biproduct requirements.
+-/
+noncomputable def optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+    {J : Type w}
+    [Finite J]
+    (K : Option J → CochainComplex C ℤ)
+    [HasFiniteProducts C]
+    [HasProduct K]
+    [HasProduct (fun j : J => K (some j))]
+    [∀ x : Option J, Decidable (x = none)] :
+    ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j : J => K (some j)) := by
+  letI : ∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m) :=
+    fun _ => inferInstance
+  letI : ∀ m : ℤ, HasProduct (fun j : J => (K (some j)).X m) :=
+    fun _ => inferInstance
+  exact optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct C K
+
+/--
 The finite-product call site no longer needs a new fan proof after the direct IsLimit route.
 What remains is instance packaging from W149's leaner input hypotheses to the explicit W151
 consumer.
 -/
 def finiteProductCallsiteRemainingInstanceGaps : List String :=
-  ["derive degreewise Option-product HasProduct instances for every cochain degree"]
+  []
 
 theorem finiteProductCallsiteRemainingInstanceGaps_count :
-    finiteProductCallsiteRemainingInstanceGaps.length = 1 :=
+    finiteProductCallsiteRemainingInstanceGaps.length = 0 :=
   rfl
 
 /--
@@ -1285,11 +1307,11 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   optionProductIsoBiprodOfEvalIsLimit :=
     "optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit"
   missingComplexIsoConstructor :=
-    some "The direct Option-product fan IsLimit route is closed by optionProductComplexTransportedBinaryFanIsLimit_direct; the remaining finite-product call-site work is degreewise Option-product HasProduct packaging."
+    some "The direct Option-product fan IsLimit route and finite Option call-site instance packaging are closed; remaining work is connecting this wrapper to W149's finite-family closure and downstream Dbounded stability."
 
 theorem currentDegreewiseProductApiState_missing :
     currentDegreewiseProductApiState.missingComplexIsoConstructor =
-      some "The direct Option-product fan IsLimit route is closed by optionProductComplexTransportedBinaryFanIsLimit_direct; the remaining finite-product call-site work is degreewise Option-product HasProduct packaging." :=
+      some "The direct Option-product fan IsLimit route and finite Option call-site instance packaging are closed; remaining work is connecting this wrapper to W149's finite-family closure and downstream Dbounded stability." :=
   rfl
 
 /-- Compact checklist of the next proof obligations after this API guard. -/
@@ -1371,6 +1393,7 @@ section Checks
 #check optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct
 #check optionProductIsoBiprod_finiteProductCallsite_singletonTailDegreeComplement_of_direct
 #check optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct
+#check optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
 #check finiteProductCallsiteRemainingInstanceGaps
 #check finiteProductCallsiteRemainingInstanceGaps_count
 #check DegreewiseProductApiState

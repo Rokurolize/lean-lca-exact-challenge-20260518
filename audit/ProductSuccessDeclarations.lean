@@ -37,6 +37,9 @@ example : HasBinaryBiproducts MetrizableLCA := by infer_instance
 /-- The strict metrizable LCA category has a genuine zero object. -/
 example : HasZeroObject MetrizableLCA := by infer_instance
 
+/-- The strict metrizable LCA category has finite products from zero and binary products. -/
+example : HasFiniteProducts MetrizableLCA := by infer_instance
+
 #check MetrizableLCA.zeroObj
 #check MetrizableLCA.zeroObj_isZero
 #check MetrizableLCA.pushoutCokernelMap_open_surjection

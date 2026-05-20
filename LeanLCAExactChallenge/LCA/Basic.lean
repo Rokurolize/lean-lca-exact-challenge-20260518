@@ -1,4 +1,5 @@
 import Mathlib.Algebra.Category.Grp.Preadditive
+import Mathlib.CategoryTheory.Limits.Constructions.FiniteProductsOfBinaryProducts
 import Mathlib.CategoryTheory.Limits.Shapes.BinaryBiproducts
 import Mathlib.Topology.Algebra.ContinuousMonoidHom
 import Mathlib.Topology.Algebra.Group.Basic
@@ -361,6 +362,9 @@ def binaryBiproductData (A B : MetrizableLCA.{u}) :
 
 instance : HasBinaryBiproducts MetrizableLCA.{u} where
   has_binary_biproduct A B := HasBinaryBiproduct.mk (binaryBiproductData A B)
+
+instance instHasFiniteProducts : HasFiniteProducts MetrizableLCA.{u} :=
+  hasFiniteProducts_of_has_binary_and_terminal
 
 /-- The explicit product model is canonically isomorphic to mathlib's chosen binary biproduct. -/
 noncomputable def biprodObjIsoBiprod (A B : MetrizableLCA.{u}) :
