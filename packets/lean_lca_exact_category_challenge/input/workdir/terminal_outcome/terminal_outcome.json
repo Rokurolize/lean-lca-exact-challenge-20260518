@@ -490,7 +490,9 @@
     "lake env lean audit/blockers/wpp_op_square_equations_v370_support_w374.lean",
     "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_square_equations_v370_support_w374.lean",
     "lake env lean audit/blockers/wpp_op_left_lca_ordinary_whiskered_projection_v370_support_w375.lean",
-    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_ordinary_whiskered_projection_v370_support_w375.lean"
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_ordinary_whiskered_projection_v370_support_w375.lean",
+    "lake env lean audit/blockers/addcommgrp_shortcomplex_cokernel_iso_v370_support_w376.lean",
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_shortcomplex_cokernel_iso_v370_support_w376.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1423,14 +1425,15 @@
     "W371で具体descended quotient mapのquotient compatibilityとW368/W365 closed-map composerへの接続は検証済みだが、component closed-map、relation pullback equality、target relation lifting、W354/W351統合は未証明である。",
     "W372でW369のobjectwise whiskered naturality hypothesisは放電済みだが、ordinary projection equation本体とrelation-pullback descended fieldsは未証明である。",
     "W374でW371のleft/right square equationsはWPP-op naturalityから検証済みだが、component closed-map、relation pullback equality、target relation lifting、W354/W351統合は未証明である。",
-    "W375でordinary/inverse-whiskered projection equationsからW354 transported leg equationsへの接続は検証済みだが、transported relation-pullback descended fieldsは未証明である。"
+    "W375でordinary/inverse-whiskered projection equationsからW354 transported leg equationsへの接続は検証済みだが、transported relation-pullback descended fieldsは未証明である。",
+    "W376でconcrete degreewise cokernel cofork dataからW356/W350/AddCommGrpKernelExact consumerへの接続は検証済みだが、具体degreewise data、forgotten WPP-op colimit rowへのtargetIso、compatibility squaresは未証明である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "pending-v354",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W375 closes the ordinary/inverse-whiskered projection equation path into W372/W354 transported leg equations. The left-LCA branch is now blocked mainly on transported relation-pullback descended fields; AddCommGrp still needs concrete component-row data.",
+  "worker_frontier_summary": "W375 concentrates the left-LCA route on transported relation-pullback descended fields. W376 concentrates the AddCommGrp route on concrete degreewise data and targetIso to the forgotten WPP-op colimit row. Product success remains false.",
   "claim_review_result": "未実施。product_successではないため、fresh claim-review-loop acceptanceは要求段階に未到達。",
   "remaining_gaps": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
@@ -1490,9 +1493,10 @@
     "W371で具体descended quotient mapのquotient compatibilityとW368/W365 closed-map composerへの接続は検証済みだが、component closed-map、relation pullback equality、target relation lifting、W354/W351統合は未証明である。",
     "W372でW369のobjectwise whiskered naturality hypothesisは放電済みだが、ordinary projection equation本体とrelation-pullback descended fieldsは未証明である。",
     "W374でW371のleft/right square equationsはWPP-op naturalityから検証済みだが、component closed-map、relation pullback equality、target relation lifting、W354/W351統合は未証明である。",
-    "W375でordinary/inverse-whiskered projection equationsからW354 transported leg equationsへの接続は検証済みだが、transported relation-pullback descended fieldsは未証明である。"
+    "W375でordinary/inverse-whiskered projection equationsからW354 transported leg equationsへの接続は検証済みだが、transported relation-pullback descended fieldsは未証明である。",
+    "W376でconcrete degreewise cokernel cofork dataからW356/W350/AddCommGrpKernelExact consumerへの接続は検証済みだが、具体degreewise data、forgotten WPP-op colimit rowへのtargetIso、compatibility squaresは未証明である。"
   ],
-  "next_recommended_goal": "Prove transported relation-pullback descended fields for the concrete quotient cocones, then integrate W351/W354/W365; separately build concrete AddCommGrp component-row isomorphisms using W373.",
+  "next_recommended_goal": "Prove transported relation-pullback descended fields for W375/W354 and construct concrete degreewise cokernel data plus targetIso for W376.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2233,9 +2237,18 @@
     "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_rightLeg",
     "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ordinaryWhiskeredProjectionEquation",
     "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.transportedDescendedLegEquations_of_w357_ordinary_projection",
-    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.transportedConcreteQuotientW354Inputs_of_w357_ordinary_projection"
+    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.transportedConcreteQuotientW354Inputs_of_w357_ordinary_projection",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.ConcreteDegreewiseCokernelCoforkData.shortComplexCokernelOfPi123CoconeIso",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.targetCokernelRowPresentation_of_concreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.AddCommGrpShortComplexCokernelIsoAdapter",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.addCommGrpShortComplexCokernelIsoAdapter_of_concreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.cokernelRowIsoOfConcreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.differenceSnakeBoundaryInputs_of_concreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.strictSnakeCokernelData_of_concreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.addCommGrpKernelExact_of_concreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.wppOpForgottenTargetCokernelCoforkPresentation_of_concreteDegreewise"
   ],
-  "generated_utc": "2026-05-20T22:49:00Z",
+  "generated_utc": "2026-05-20T22:52:00Z",
   "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -3039,9 +3052,18 @@
     "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_rightLeg",
     "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ordinaryWhiskeredProjectionEquation",
     "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.transportedDescendedLegEquations_of_w357_ordinary_projection",
-    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.transportedConcreteQuotientW354Inputs_of_w357_ordinary_projection"
+    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.transportedConcreteQuotientW354Inputs_of_w357_ordinary_projection",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.ConcreteDegreewiseCokernelCoforkData.shortComplexCokernelOfPi123CoconeIso",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.targetCokernelRowPresentation_of_concreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.AddCommGrpShortComplexCokernelIsoAdapter",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.addCommGrpShortComplexCokernelIsoAdapter_of_concreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.cokernelRowIsoOfConcreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.differenceSnakeBoundaryInputs_of_concreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.strictSnakeCokernelData_of_concreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.addCommGrpKernelExact_of_concreteDegreewise",
+    "LeanLCAExactChallenge.AddCommGrpShortComplexCokernelIsoV370SupportW376.wppOpForgottenTargetCokernelCoforkPresentation_of_concreteDegreewise"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
-  "remaining_work": "Complete transported relation-pullback descended fields, component closed-map/relation-pullback/topological field instantiation, concrete degreewise cokernel cofork data, component-row isomorphisms, and compatibility squares."
+  "remaining_work": "Complete transported relation-pullback descended fields, concrete degreewise cokernel cofork data, targetIso to the forgotten WPP-op colimit row, and compatibility squares."
 }
