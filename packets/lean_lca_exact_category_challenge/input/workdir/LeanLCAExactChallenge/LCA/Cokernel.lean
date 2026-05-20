@@ -53,6 +53,28 @@ def cokernelπ : B ⟶ cokernelObj f :=
 lemma cokernelπ_apply (b : B) : cokernelπ f b = (b : B ⧸ cokernelSubgroup f) :=
   rfl
 
+lemma cokernelSubgroup_eq_top_of_cokernelπ_eq_zero (hπ : cokernelπ f = 0) :
+    cokernelSubgroup f = ⊤ := by
+  apply le_antisymm le_top
+  intro b _hb
+  have h := congrArg (fun q : B ⟶ cokernelObj f => q b) hπ
+  change ((b : B) : B ⧸ cokernelSubgroup f) = 0 at h
+  rw [QuotientAddGroup.eq_zero_iff] at h
+  exact h
+
+lemma cokernelπ_eq_zero_of_cokernelSubgroup_eq_top (hcok : cokernelSubgroup f = ⊤) :
+    cokernelπ f = 0 := by
+  ext b
+  change ((b : B) : B ⧸ cokernelSubgroup f) = 0
+  rw [QuotientAddGroup.eq_zero_iff]
+  rw [hcok]
+  trivial
+
+lemma cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top :
+    cokernelπ f = 0 ↔ cokernelSubgroup f = ⊤ :=
+  ⟨cokernelSubgroup_eq_top_of_cokernelπ_eq_zero f,
+    cokernelπ_eq_zero_of_cokernelSubgroup_eq_top f⟩
+
 /-- The cokernel projection kills `f`. -/
 lemma comp_cokernelπ : f ≫ cokernelπ f = 0 := by
   ext a

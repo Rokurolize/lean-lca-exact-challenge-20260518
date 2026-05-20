@@ -69,6 +69,8 @@ example : HasFiniteColimits MetrizableLCA := by infer_instance
 #check MetrizableLCA.strictShortExact_of_exact_of_topology
 #check MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap
 #check MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top
+#check MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top
+#check MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero
 
 noncomputable example (A B : MetrizableLCA) :
     MetrizableLCA.biprodObj A B ≅ A ⊞ B :=

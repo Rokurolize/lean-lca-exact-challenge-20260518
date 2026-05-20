@@ -1,13 +1,13 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T13:37:00Z",
-  "source_tree_hash": "1a40ee6bf9f1810529601046978283f6f9b8c8acbdd253856577a4e6db8e3026",
-  "summary": "v266 consumes w248: finite colimits of MetrizableLCA are specialized into finite limits/products/equalizers on the opposite bounded-complex source.",
+  "generated_utc": "2026-05-20T13:48:00Z",
+  "source_tree_hash": "4cadc8324467dd5095cae2d3b8878c919b18754593b2d4b096df674aa8e0af98",
+  "summary": "v267 adds concrete cokernel projection zero/top equivalence and a strict-exactness bridge using cokernelπ=0.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
       "status": "passed",
-      "evidence": "StrictExact rebuilt after promoting w249 open-cokernel surjectivity bridge."
+      "evidence": "StrictExact and Cokernel rebuilt after adding the cokernel projection zero bridge."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
@@ -212,7 +212,7 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit checks the v264 open-cokernel surjectivity bridge."
+      "evidence": "Product declaration audit checks the v267 cokernel projection zero bridge."
     },
     {
       "command": "lake build",
@@ -222,7 +222,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after v264."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after v267."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
@@ -232,7 +232,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v266 edits."
+      "evidence": "Whitespace diff check passed after v267 edits."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -759,10 +759,15 @@
     "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_sourceFiniteColimitInput",
     "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasFiniteLimits",
     "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasFiniteProducts",
-    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasEqualizers"
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasEqualizers",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_cokernelSubgroup_eq_top",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero"
   ],
   "product_complete": false,
   "known_gaps": [
+    "cokernelπ T.g = 0から右端全射を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeから核等式、閉埋め込み、開写像性、cokernelπ=0を抽出する証明はまだ未完成である。",
     "MetrizableLCAの反対側bounded complex sourceには有限limit/product/equalizerが入ったが、bounded derived localizationへ有限limitを輸送するための右calculus、functor-category localization、局所化transferはまだ未完成である。",
     "localized comparisonのunit/counit membership輸送とadjunction transport等式は形式化されたが、verdierComparisonLocalizationIsoを通じた具体的なtransported localized adjunction自体はまだ未構成である。",
     "MetrizableLCAではcokernelSubgroup f = ⊤と開写像性から全射を得る橋が入ったが、上流側で核等式、閉埋め込み、開写像性、cokernel-subgroup-topを同時に生成する証明はまだ未完成である。",
@@ -784,6 +789,6 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "v266 consumed support w248; no product-success claim.",
+  "support_result_classification": "v267 parent-side implementation; no product-success claim.",
   "product_success": false
 }

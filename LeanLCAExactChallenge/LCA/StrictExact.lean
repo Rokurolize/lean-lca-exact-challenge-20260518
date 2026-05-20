@@ -144,6 +144,16 @@ lemma strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top
     intro x₂ hx₂
     exact (hker x₂).mp hx₂
 
+lemma strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero
+    {T : ShortComplex MetrizableLCA.{u}}
+    (hker : ∀ x₂ : T.X₂, T.g x₂ = 0 ↔ ∃ x₁ : T.X₁, T.f x₁ = x₂)
+    (hclosed : IsClosedEmbedding (T.f : T.X₁ → T.X₂))
+    (hopen : IsOpenMap (T.g : T.X₂ → T.X₃))
+    (hπ : cokernelπ T.g = 0) :
+    strictShortExact T :=
+  strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top hker hclosed hopen
+    (cokernelSubgroup_eq_top_of_cokernelπ_eq_zero T.g hπ)
+
 /-- Coordinatewise product of two short complexes. -/
 def strictShortExactBiprodComplex (S T : ShortComplex MetrizableLCA.{u}) :
     ShortComplex MetrizableLCA.{u} where

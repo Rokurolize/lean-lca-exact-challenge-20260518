@@ -189,3 +189,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v266 Update
 
 2026-05-20T13:37:00Z: Support result w248 was reimplemented as `audit/blockers/bounded_opposite_concrete_finite_limits_w248.lean`. It proves that `HasFiniteColimits MetrizableLCA`, supplied by the cokernel construction, gives `HasFiniteLimits`, `HasFiniteProducts`, and `HasEqualizers` on `(BoundedComplexCategory MetrizableLCA)ᵒᵖ`. The source-side finite-limit package for the opposite route is now concrete; remaining blockers are right-handed calculus, functor-category localization, and finite-limit transport through the bounded derived localization. Product success remains nonterminal.
+
+## v267 Update
+
+2026-05-20T13:48:00Z: `MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top` was added to the concrete cokernel API, and `MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero` was added to the strict-exactness bridge. The target-side right condition can now be expressed as the categorical zero-cokernel projection `cokernelπ T.g = 0`, which feeds the previous open-map/dense-range surjectivity theorem. Product success remains nonterminal because the upstream extraction of kernel equality, closed/open topology, and zero cokernel projection is still not supplied by the derived/homology route.
