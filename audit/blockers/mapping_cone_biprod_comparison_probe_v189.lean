@@ -83,6 +83,18 @@ noncomputable def biprodConeToConeBiprodMapX (n : ℤ) :
       (leftComponentToConeBiprodMap f₁ f₂ n)
       (rightComponentToConeBiprodMap f₁ f₂ n)
 
+theorem biprod_total_f_comp {A : C} {K L : CochainComplex C ℤ} (n : ℤ)
+    (g : (K ⊞ L).X n ⟶ A) :
+    ((biprod.fst : K ⊞ L ⟶ K).f n ≫ (biprod.inl : K ⟶ K ⊞ L).f n) ≫ g +
+      ((biprod.snd : K ⊞ L ⟶ L).f n ≫ (biprod.inr : L ⟶ K ⊞ L).f n) ≫ g = g := by
+  rw [← Preadditive.add_comp, HomologicalComplex.biprod_total_f, Category.id_comp]
+
+theorem comp_biprod_total_f {A : C} {K L : CochainComplex C ℤ} (n : ℤ)
+    (g : A ⟶ (K ⊞ L).X n) :
+    g ≫ ((biprod.fst : K ⊞ L ⟶ K).f n ≫ (biprod.inl : K ⟶ K ⊞ L).f n) +
+      g ≫ ((biprod.snd : K ⊞ L ⟶ L).f n ≫ (biprod.inr : L ⟶ K ⊞ L).f n) = g := by
+  rw [← Preadditive.comp_add, HomologicalComplex.biprod_total_f, Category.comp_id]
+
 structure BinaryMappingConeBiprodDifferentialCompatibility : Prop where
   left_to_right :
     ∀ (n : ℤ),
@@ -118,6 +130,8 @@ section Checks
 #check leftComponentToConeBiprodMap
 #check rightComponentToConeBiprodMap
 #check biprodConeToConeBiprodMapX
+#check biprod_total_f_comp
+#check comp_biprod_total_f
 #check BinaryMappingConeBiprodDifferentialCompatibility
 #check BinaryMappingConeBiprodInverseCompatibility
 #check v189ComponentMapFrontier
