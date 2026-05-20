@@ -1174,3 +1174,9 @@
 <p><time>2026-05-21T07:07:00Z</time>: The parent consumed partial support <code>w381-left-lca-ordinary-fields-to-transported-v370</code> by adding and verifying <code>audit/blockers/wpp_op_left_lca_ordinary_fields_to_transported_v370_support_w381.lean</code>. It records the adapter from ordinary W352-style descended fields to W378/W375 transported relation fields over the transported concrete quotient cocones.</p>
 <p>The remaining left-LCA work is now explicit: identify the ordinary source and target quotient points with the transported cocone points, prove the transported descended map is conjugate to the ordinary descended quotient map, and transport injectivity, inducing topology, and closed range across those point isomorphisms.</p>
 </section>
+
+<section id="w384-left-lca-iso-field-transport">
+<h2>W384 iso field transport</h2>
+<p><time>2026-05-21T07:12:00Z</time>: The parent added and verified <code>audit/blockers/wpp_op_left_lca_iso_field_transport_v370_support_w384.lean</code>. It proves that a categorical isomorphism in <code>MetrizableLCA</code> gives a carrier homeomorphism and that injectivity, <code>IsInducing</code>, and closed range transport across source and target point isomorphisms when the transported descended map is conjugate to the ordinary descended map.</p>
+<p>This reduces W381's six transport obligations to three structural inputs: source point isomorphism, target point isomorphism, and descended-map conjugacy. Those inputs still block product success.</p>
+</section>
