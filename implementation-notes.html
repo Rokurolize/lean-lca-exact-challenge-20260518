@@ -223,3 +223,8 @@
 <h2>v211 w162 evaluated fan frontier</h2>
 <p><time>2026-05-20T06:06:19Z</time>: Completed support worker w162 was consumed as parent-owned W151 API rather than as a duplicate audit file. W151 now defines <code>evaluatedOptionProductComplexBinaryFan</code>, <code>optionProductDegreeFanWithEvaluatedTargets</code>, and <code>EvaluatedDegreeFanComparison</code>, reusing the generic <code>evalProductPointIso</code> and tail specialization from v210. The next proof is the typed BinaryFan equality, after which the degreewise limiting proof can be transported toward <code>HomologicalComplex.isLimitOfEval</code>.</p>
 </section>
+
+<section id="v212-w163-limit-to-biprod">
+<h2>v212 w163 limit to biproduct</h2>
+<p><time>2026-05-20T06:11:06Z</time>: Completed support worker w163 was consumed in W151. The parent added <code>binaryFanLimitPointIsoBiprod</code>, <code>optionProductIsoBiprod_of_complexFanIsLimit</code>, and <code>optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit</code>. This closes the downstream conversion from a limiting transported Option product binary fan to the biproduct-shaped iso required by finite-product closure; the remaining Option-route proof is the complex-level <code>IsLimit</code> construction, currently reduced to <code>EvaluatedDegreeFanComparison</code> and transport through <code>HomologicalComplex.isLimitOfEval</code>.</p>
+</section>

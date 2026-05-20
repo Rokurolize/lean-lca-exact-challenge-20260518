@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T06:06:19Z
+Generated: 2026-05-20T06:11:06Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -55,3 +55,8 @@ v210 generalizes the W151 product-evaluation API by adding evalProductPointIso a
 ## v211 Update
 
 v211 consumes completed support worker w162 as parent-owned W151 frontier API: it keeps the generic evalProductPointIso/evalProductPointIso_hom_π from v210, adds evaluatedOptionProductComplexBinaryFan, optionProductDegreeFanWithEvaluatedTargets, and the typed remaining proposition EvaluatedDegreeFanComparison. This sharply identifies the next proof before transporting optionProductDegreeTransportedBinaryFanIsLimit through evalProductPointIso/evalTailProductPointIso and applying HomologicalComplex.isLimitOfEval. Product success remains nonterminal.
+
+
+## v212 Update
+
+v212 consumes completed support worker w163 by adding the cone-point uniqueness conversion from a limiting binary fan to a biproduct-shaped product iso. W151 now has binaryFanLimitPointIsoBiprod, optionProductIsoBiprod_of_complexFanIsLimit, and the specialization optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit. The remaining Option route input is the complex-level IsLimit proof, expected from EvaluatedDegreeFanComparison plus HomologicalComplex.isLimitOfEval. Product success remains nonterminal.

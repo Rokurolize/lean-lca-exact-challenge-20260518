@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T06:06:19Z",
+  "generated_utc": "2026-05-20T06:11:06Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v211 consumes completed consultant support w162 as parent-owned W151 frontier API while support w163 may still be running in an isolated consultant worktree.",
+  "worker_policy": "No workers were launched from the target worktree. v212 consumes completed consultant support w163 as parent-owned W151 API while w164 may still be running on EvaluatedDegreeFanComparison.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1340,10 +1340,10 @@
     }
   },
   "latest_parent_update": {
-    "version": "v211",
-    "timestamp_utc": "2026-05-20T06:06:19Z",
-    "summary": "v211 consumes completed support worker w162 as parent-owned W151 frontier API: it keeps the generic evalProductPointIso/evalProductPointIso_hom_π from v210, adds evaluatedOptionProductComplexBinaryFan, optionProductDegreeFanWithEvaluatedTargets, and the typed remaining proposition EvaluatedDegreeFanComparison. This sharply identifies the next proof before transporting optionProductDegreeTransportedBinaryFanIsLimit through evalProductPointIso/evalTailProductPointIso and applying HomologicalComplex.isLimitOfEval. Product success remains nonterminal.",
-    "consumed_support_worker": "w162-option-complex-fan-islimit",
-    "remaining_next_step": "prove EvaluatedDegreeFanComparison, then transport optionProductDegreeTransportedBinaryFanIsLimit and call HomologicalComplex.isLimitOfEval."
+    "version": "v212",
+    "timestamp_utc": "2026-05-20T06:11:06Z",
+    "summary": "v212 consumes completed support worker w163 by adding the cone-point uniqueness conversion from a limiting binary fan to a biproduct-shaped product iso. W151 now has binaryFanLimitPointIsoBiprod, optionProductIsoBiprod_of_complexFanIsLimit, and the specialization optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit. The remaining Option route input is the complex-level IsLimit proof, expected from EvaluatedDegreeFanComparison plus HomologicalComplex.isLimitOfEval.",
+    "consumed_support_worker": "w163-option-limit-to-biprod-iso",
+    "remaining_next_step": "prove complex-level IsLimit for optionProductComplexTransportedBinaryFan, expected via EvaluatedDegreeFanComparison and HomologicalComplex.isLimitOfEval; then apply optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit."
   }
 }

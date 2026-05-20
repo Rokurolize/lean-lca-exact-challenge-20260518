@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v211時点で、完了した支援worker w162を親側W151へ取り込み、evalProductPointIso/evalTailProductPointIsoを使う evaluatedOptionProductComplexBinaryFan、optionProductDegreeFanWithEvaluatedTargets、残り命題 EvaluatedDegreeFanComparison を追加した。評価済みOption product binary fanとdegreewise transported fanの比較境界は型として明確になったが、その等式証明、OptionProductIsoBiprod、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が残るため、成果物は非終端である。",
+  "summary": "v212時点で、完了した支援worker w163を親側W151へ取り込み、limiting BinaryFanからbiproduct型isoへ変換する binaryFanLimitPointIsoBiprod、optionProductIsoBiprod_of_complexFanIsLimit、optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanIsLimit を追加した。Option product routeは複体レベルのIsLimit構成まで絞られたが、EvaluatedDegreeFanComparison、HomologicalComplex.isLimitOfEvalへの接続、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が残るため、成果物は非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -676,8 +676,8 @@
     "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
   ],
   "known_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v211で評価済みOption fanとdegreewise transported fanを比較する命題 EvaluatedDegreeFanComparison は型として切り出されたが、その等式証明、HomologicalComplex.isLimitOfEvalへの接続、OptionProductIsoBiprod、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
-    "Option product decomposition 本体は、transported complex fan、degreewise limiting fan、evalProductPointIso、evalTailProductPointIso、evaluatedOptionProductComplexBinaryFan、optionProductDegreeFanWithEvaluatedTargetsを持つが、EvaluatedDegreeFanComparison と、そこから二項product limitをbiproduct型の OptionProductIsoBiprod へ変換する証明が未完了。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v212でlimiting Option complex fanからbiproduct型isoへの変換は入ったが、EvaluatedDegreeFanComparison、その比較からの複体レベル IsLimit 構成、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
+    "Option product decomposition 本体は、transported complex fan、degreewise limiting fan、evalProductPointIso、evalTailProductPointIso、EvaluatedDegreeFanComparison境界、OptionProductIsoBiprodへのcone-point変換を持つが、肝心の複体レベル transported fan の IsLimit 証明が未完了。",
     "Dbounded equalizer/pullback transfer、有限colimit、pretriangulated/triangulated構造、stable infinity-category enhancement は未完了。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
