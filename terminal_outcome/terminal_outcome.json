@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v252時点で、MetrizableLCA の任意cokernelと有限余極限を製品側モジュールとして実装した。任意射の代数的像の位相閉包で割る商がcategorical cokernelであることを証明し、HasCokernels と HasFiniteColimits MetrizableLCA をProductSuccess監査で確認した。ただし Dbounded への有限余極限移送、反対側right calculus/functor-category localization、triangulated structure、stable infinity-category certificateはまだ未完なので product success は非完了である。",
+  "summary": "v253時点で、支援w238を親側で再実装し、boundedHomotopyExactWeakEquivalence のleft/right calculusを局所化後随伴surfaceへ縮約する監査を追加した。v252でsource側 HasFiniteColimits MetrizableLCA は実装済みだが、具体的な局所化後随伴、反対側functor-category localization、triangulated structure、stable infinity-category certificateは未完なので product success は非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -37,7 +37,8 @@
     "lake env lean audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean",
     "lake env lean audit/blockers/metrizable_lca_finite_colimits_w235.lean",
     "lake env lean LeanLCAExactChallenge/LCA/Cokernel.lean",
-    "lake env lean audit/blockers/metrizable_lca_cokernel_product_w252.lean"
+    "lake env lean audit/blockers/metrizable_lca_cokernel_product_w252.lean",
+    "lake env lean audit/blockers/localized_adjunction_candidate_w238.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",

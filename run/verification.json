@@ -1,9 +1,14 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v252-metrizable-lca-cokernels",
-  "generated_utc": "2026-05-20T11:45:00Z",
-  "source_tree_hash": "1a2f19ac87d093f7437c6ef4a121b66f3a4f67f242bb3921b20c43f3c0dae4d8",
-  "summary": "v252時点で、MetrizableLCA の任意cokernelと有限余極限を製品側モジュールとして実装した。任意射の代数的像の位相閉包で割る商がcategorical cokernelであることを証明し、HasCokernels と HasFiniteColimits MetrizableLCA をProductSuccess監査で確認した。ただし Dbounded への有限余極限移送、反対側right calculus/functor-category localization、triangulated structure、stable infinity-category certificateはまだ未完なので product success は非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v253-localized-adjunction-candidate",
+  "generated_utc": "2026-05-20T12:02:00Z",
+  "source_tree_hash": "eb0f76e9aca8ad6dc2e93db436c4fc6ac19f1aa5a8b749da2a0a1dd29b733629",
+  "summary": "v253時点で、支援w238を親側で再実装し、boundedHomotopyExactWeakEquivalence のleft/right calculusを局所化後随伴surfaceへ縮約する監査を追加した。v252でsource側 HasFiniteColimits MetrizableLCA は実装済みだが、具体的な局所化後随伴、反対側functor-category localization、triangulated structure、stable infinity-category certificateは未完なので product success は非完了である。",
   "commands": [
+    {
+      "command": "lake env lean audit/blockers/localized_adjunction_candidate_w238.lean",
+      "status": "passed",
+      "evidence": "Focused W238 localized-adjunction candidate audit passed in the parent target worktree."
+    },
     {
       "command": "lake env lean audit/blockers/metrizable_lca_cokernel_product_w252.lean",
       "status": "passed",
@@ -167,12 +172,12 @@
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v252 manifest refresh."
+      "evidence": "External audit self-check passed after v252; rerun pending after v253 manifest refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "External audit product gate correctly rejected failed_nonterminal terminal_outcome after v252 refresh."
+      "evidence": "Expected product gate remains failed_nonterminal until product success is achieved."
     }
   ],
   "implemented_declarations_checked": [
@@ -568,7 +573,12 @@
     "MetrizableLCA.instHasCokernels",
     "MetrizableLCA.instHasFiniteColimits",
     "MetrizableLCACokernelProductW252.hasCokernels",
-    "MetrizableLCACokernelProductW252.hasFiniteColimits"
+    "MetrizableLCACokernelProductW252.hasFiniteColimits",
+    "LocalizedAdjunctionCandidateW238.inverseImage_hasLeftCalculusOfFractions_of_rightAdjoint",
+    "LocalizedAdjunctionCandidateW238.inverseImage_hasRightCalculusOfFractions_of_leftAdjoint",
+    "LocalizedAdjunctionCandidateW238.BoundedHomotopyLocalizedAdjunctionSurface",
+    "LocalizedAdjunctionCandidateW238.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_surface",
+    "LocalizedAdjunctionCandidateW238.boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_surface"
   ],
   "product_complete": false,
   "known_gaps": [
