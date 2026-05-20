@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T07:40:00Z",
+  "generated_utc": "2026-05-20T08:00:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v169 parent-only update adds readiness for the extracted stable four-projection providers.",
+  "worker_policy": "No workers were launched from the target worktree. v170 parent-only update converts extracted stable projection providers to product-review-shaped readiness evidence; support workers w132/w133 remain active outside the target.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -573,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
-      "merge_blocker": "v169 stable-side refinement: a full four-projection certificate yields four extracted Dbounded projection providers and proves their readiness. The remaining stable blocker is constructing OrdinaryContextToDboundedFourProjectionProvider from ordinary Dbounded evidence; bounded-side v165 still requires nontrivial distinguished eligibility.",
+      "merge_blocker": "v170 stable-side refinement: a full certificate now yields product-review-shaped four-proposition readiness evidence via extracted providers. The remaining stable blocker is constructing OrdinaryContextToDboundedFourProjectionProvider from ordinary Dbounded evidence; bounded-side v165 still requires nontrivial distinguished eligibility.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [
@@ -925,7 +925,9 @@
         "StableCertificateFourProjectionConstructorW131.dboundedExtractedFourProjectionProvidersOfFourProjectionProvider",
         "StableCertificateFourProjectionConstructorW131.OrdinaryContextToDboundedFourProjectionProvider",
         "StableCertificateFourProjectionConstructorW131.DboundedExtractedFourProjectionProviders.ready",
-        "StableCertificateFourProjectionConstructorW131.dboundedExtractedFourProjectionProviders_ready_of_fourProjectionProvider"
+        "StableCertificateFourProjectionConstructorW131.dboundedExtractedFourProjectionProviders_ready_of_fourProjectionProvider",
+        "StableCertificateFourProjectionConstructorW131.DboundedFourProjectionReadinessEvidence",
+        "StableCertificateFourProjectionConstructorW131.dboundedFourProjectionReadinessEvidence_ready_of_fourProjectionProvider"
       ],
       "technical_context": [
         "split short complexes",

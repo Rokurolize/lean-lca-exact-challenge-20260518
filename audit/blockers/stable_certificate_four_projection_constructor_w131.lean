@@ -197,6 +197,60 @@ def DboundedExtractedFourProjectionProviders.ready
     providers.pushoutPullback.pushoutPullbackCompatibility
       providers.pushoutPullback.certificate
 
+/-- Product-review-shaped proposition bundle obtained after the four stable projections are
+available. This strips the certificate-dependent provider records down to the four
+semantic propositions a future product gate has to consume. -/
+structure DboundedFourProjectionReadinessEvidence
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type 2 where
+  finiteLimits : Prop
+  finiteColimits : Prop
+  suspensionLoopEquivalence : Prop
+  pushoutPullbackCompatibility : Prop
+  finiteLimits_ready : finiteLimits
+  finiteColimits_ready : finiteColimits
+  suspensionLoopEquivalence_ready : suspensionLoopEquivalence
+  pushoutPullbackCompatibility_ready : pushoutPullbackCompatibility
+
+/-- The product-review-shaped four-field pass predicate. -/
+def DboundedFourProjectionReadinessEvidence.ready
+    {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (evidence : DboundedFourProjectionReadinessEvidence C) :
+    Prop :=
+  evidence.finiteLimits ∧ evidence.finiteColimits ∧
+    evidence.suspensionLoopEquivalence ∧ evidence.pushoutPullbackCompatibility
+
+/-- Extracted provider records produce the proposition bundle consumed by the next stable
+product gate. -/
+def DboundedFourProjectionReadinessEvidence.ofExtractedProviders
+    {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (providers : DboundedExtractedFourProjectionProviders C) :
+    DboundedFourProjectionReadinessEvidence C where
+  finiteLimits := providers.finiteLimits.finiteLimits providers.finiteLimits.certificate
+  finiteColimits := providers.finiteColimits.finiteColimits providers.finiteColimits.certificate
+  suspensionLoopEquivalence :=
+    providers.suspensionLoop.suspensionLoopEquivalence
+      providers.suspensionLoop.certificate
+  pushoutPullbackCompatibility :=
+    providers.pushoutPullback.pushoutPullbackCompatibility
+      providers.pushoutPullback.certificate
+  finiteLimits_ready := providers.finiteLimits.finiteLimits_ready
+  finiteColimits_ready := providers.finiteColimits.finiteColimits_ready
+  suspensionLoopEquivalence_ready := providers.suspensionLoop.suspensionLoopEquivalence_ready
+  pushoutPullbackCompatibility_ready :=
+    providers.pushoutPullback.pushoutPullbackCompatibility_ready
+
+/-- The proposition bundle obtained from extracted providers satisfies the product-review
+four-field pass predicate. -/
+theorem DboundedFourProjectionReadinessEvidence.ready_ofExtractedProviders
+    {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (providers : DboundedExtractedFourProjectionProviders C) :
+    (DboundedFourProjectionReadinessEvidence.ofExtractedProviders providers).ready := by
+  exact ⟨providers.finiteLimits.finiteLimits_ready,
+    providers.finiteColimits.finiteColimits_ready,
+    providers.suspensionLoop.suspensionLoopEquivalence_ready,
+    providers.pushoutPullback.pushoutPullbackCompatibility_ready⟩
+
 /-- The full four-projection provider required specifically for `Dbounded.infinityCategory C`. -/
 abbrev DboundedFourProjectionProvider
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
@@ -253,6 +307,23 @@ theorem dboundedExtractedFourProjectionProviders_ready_of_fourProjectionProvider
   exact ⟨cert.finiteLimits_ready, cert.finiteColimits_ready,
     cert.suspensionLoopEquivalence_ready, cert.pushoutPullbackCompatibility_ready⟩
 
+/-- A full four-projection certificate also supplies the proposition bundle expected by a
+future stable product review gate. -/
+noncomputable def dboundedFourProjectionReadinessEvidenceOfFourProjectionProvider
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (cert : DboundedFourProjectionProvider C) :
+    DboundedFourProjectionReadinessEvidence C :=
+  DboundedFourProjectionReadinessEvidence.ofExtractedProviders
+    (dboundedExtractedFourProjectionProvidersOfFourProjectionProvider C cert)
+
+/-- The product-review-shaped evidence obtained from a full certificate satisfies the
+four-field readiness predicate. -/
+theorem dboundedFourProjectionReadinessEvidence_ready_of_fourProjectionProvider
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (cert : DboundedFourProjectionProvider C) :
+    (dboundedFourProjectionReadinessEvidenceOfFourProjectionProvider C cert).ready := by
+  exact DboundedFourProjectionReadinessEvidence.ready_ofExtractedProviders _
+
 /--
 Exact missing field signature after these constructors: the current ordinary `Dbounded`
 context would need to produce the full semantic four-projection certificate for
@@ -296,6 +367,10 @@ section Checks
 #check DboundedPushoutPullbackProjectionProvider
 #check DboundedExtractedFourProjectionProviders
 #check DboundedExtractedFourProjectionProviders.ready
+#check DboundedFourProjectionReadinessEvidence
+#check DboundedFourProjectionReadinessEvidence.ready
+#check DboundedFourProjectionReadinessEvidence.ofExtractedProviders
+#check DboundedFourProjectionReadinessEvidence.ready_ofExtractedProviders
 #check DboundedFourProjectionProvider
 #check dboundedFiniteLimitsProjectionOfFourProjectionProvider
 #check dboundedFiniteColimitsProjectionOfFourProjectionProvider
@@ -303,6 +378,8 @@ section Checks
 #check dboundedPushoutPullbackProjectionOfFourProjectionProvider
 #check dboundedExtractedFourProjectionProvidersOfFourProjectionProvider
 #check dboundedExtractedFourProjectionProviders_ready_of_fourProjectionProvider
+#check dboundedFourProjectionReadinessEvidenceOfFourProjectionProvider
+#check dboundedFourProjectionReadinessEvidence_ready_of_fourProjectionProvider
 #check OrdinaryContextToDboundedFourProjectionProvider
 #check nearestOrdinaryStableProjectionCandidates
 #check missingFourProjectionProviderSignature
