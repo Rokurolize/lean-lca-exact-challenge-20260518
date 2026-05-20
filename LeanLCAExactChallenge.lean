@@ -13,5 +13,6 @@ import LeanLCAExactChallenge.Derived.Bounded
 import LeanLCAExactChallenge.Derived.OptionProductDecomposition
 import LeanLCAExactChallenge.Derived.FiniteProductExactness
 import LeanLCAExactChallenge.Derived.MappingConeBiprod
+import LeanLCAExactChallenge.Derived.MappingConeFiniteProduct
 import LeanLCAExactChallenge.AlternatingTailExtendTransport
 import LeanLCAExactChallenge.Derived.ContractibleTail

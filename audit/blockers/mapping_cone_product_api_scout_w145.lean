@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Derived.Bounded
 import LeanLCAExactChallenge.Derived.FiniteProductExactness
+import LeanLCAExactChallenge.Derived.MappingConeFiniteProduct
 
 /-!
 W145 audit: finite-product mapping-cone API scout.
@@ -95,12 +96,14 @@ def currentFiniteProductApiLayerState : FiniteProductApiLayerState where
   complexProductApi := "HomologicalComplex.isLimitOfEval / coneOfHasLimitEval"
   coneExtensionalityApi := "CochainComplex.mappingCone.ext_to, ext_from, lift, desc"
   binaryComplexBiprodIso := "HomologicalComplex.biprodXIso"
-  finiteConeProductComparisonConstructor := none
+  finiteConeProductComparisonConstructor :=
+    some "MappingConeFiniteProduct.tailFiniteMappingConeComparisonInput_direct"
   finiteExactAcyclicProductClosure :=
     some "FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151"
 
-theorem currentFiniteProductApiLayerState_comparison_missing :
-    currentFiniteProductApiLayerState.finiteConeProductComparisonConstructor = none := rfl
+theorem currentFiniteProductApiLayerState_comparison_supplied :
+      currentFiniteProductApiLayerState.finiteConeProductComparisonConstructor =
+        some "MappingConeFiniteProduct.tailFiniteMappingConeComparisonInput_direct" := rfl
 
 theorem currentFiniteProductApiLayerState_closure_supplied :
     currentFiniteProductApiLayerState.finiteExactAcyclicProductClosure =
@@ -121,15 +124,33 @@ theorem exactAcyclic_mappingCone_piMap_of_w151_comparison
     (fun J _ K _ hK =>
       FiniteProductExactness.finiteExactAcyclicProductClosure_of_w151 K hK) f hf
 
+/-- W146 supplies the finite mapping-cone/product comparison needed by this API layer. -/
+noncomputable def finiteMappingConeProductComparisonInput_of_w146 :
+    FiniteMappingConeProductComparisonInput.{u, u, u + 1} MetrizableLCA.{u} where
+  iso := by
+    intro J _ K L _ _ f _
+    exact
+      MappingConeFiniteProduct.tailFiniteMappingConeComparisonInput_direct.iso f
+
+/--
+After v231, the W145 finite-product mapping-cone exactness consumer no longer needs an external
+comparison input for MetrizableLCA: W146 supplies it directly.
+-/
+theorem exactAcyclic_mappingCone_piMap_of_w151
+    {J : Type u} [Finite J]
+    {K L : J → CochainComplex MetrizableLCA.{u} ℤ} [HasProduct K] [HasProduct L]
+    (f : ∀ j, K j ⟶ L j) [HasProduct (fun j => CochainComplex.mappingCone (f j))]
+    (hf : ∀ j, exactAcyclic MetrizableLCA (CochainComplex.mappingCone (f j))) :
+    exactAcyclic MetrizableLCA (CochainComplex.mappingCone (Limits.Pi.map f)) :=
+  exactAcyclic_mappingCone_piMap_of_w151_comparison
+    finiteMappingConeProductComparisonInput_of_w146 f hf
+
 /-- Next proof obligations for the finite generalization route. -/
 def finiteGeneralizationNextObligations : List String :=
-  ["build a product-object comparison for mappingCone (Limits.Pi.map f)",
-    "prove the comparison commutes with cone differentials using mappingCone.d_fst_v/d_snd_v",
-    "package the comparison as FiniteMappingConeProductComparisonInput",
-    "feed both inputs to exactAcyclic_mappingCone_piMap_of_comparison"]
+  []
 
 theorem finiteGeneralizationNextObligations_count :
-    finiteGeneralizationNextObligations.length = 4 := rfl
+    finiteGeneralizationNextObligations.length = 0 := rfl
 
 section Checks
 
@@ -137,9 +158,11 @@ section Checks
 #check FiniteExactAcyclicProductClosure
 #check exactAcyclic_mappingCone_piMap_of_comparison
 #check exactAcyclic_mappingCone_piMap_of_w151_comparison
+#check finiteMappingConeProductComparisonInput_of_w146
+#check exactAcyclic_mappingCone_piMap_of_w151
 #check finiteGeneralizationAvailableApi
 #check currentFiniteProductApiLayerState
-#check currentFiniteProductApiLayerState_comparison_missing
+#check currentFiniteProductApiLayerState_comparison_supplied
 #check currentFiniteProductApiLayerState_closure_supplied
 #check finiteGeneralizationNextObligations
 #check finiteGeneralizationNextObligations_count

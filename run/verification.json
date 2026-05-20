@@ -1,18 +1,23 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v231-tail-finite-mapping-cone-comparison",
-  "generated_utc": "2026-05-20T10:04:39Z",
-  "source_tree_hash": "d414a6086b72b396721307d347ac84f05e664baec49024f748acdf43d7c731a5",
-  "summary": "v231時点で、W146は有限mapping-cone/product比較の監査ローカルな有限帰納を閉じた。piMap_reindex_hom_naturality が Pi.reindex と Pi.map の可換四角形を射影外延性で証明し、mappingConeProductComparisonIso_of_equiv が mappingConeIsoOfCommIso と Pi.reindex で添字同値を輸送する。tailFiniteMappingConeComparisonInput_direct は Nonempty な比較同型を述語にした Finite.induction_empty_option により、v230の空添字base caseとv229のOption step comparison isoを合成して TailFiniteMappingConeComparisonInput を構成する。ただしこれはまだ audit/blockers 内の監査成果であり、Derived/Dbounded 側の公開APIや有限積transferへ昇格していない。Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v232-mapping-cone-finite-product-promotion",
+  "generated_utc": "2026-05-20T09:56:45Z",
+  "source_tree_hash": "670c3d45bbbdfa53011b6d0fa6cd0fb0afb3feaa5e03d7e575db828fb1c6ca1a",
+  "summary": "v232時点で、有限mapping-cone/product比較を LeanLCAExactChallenge.Derived.MappingConeFiniteProduct へ昇格し、root import と W145 の finiteMappingConeProductComparisonInput_of_w146 および exactAcyclic_mappingCone_piMap_of_w151 に接続した。W145 の有限一般化次義務は空になり、cochain-complex レベルの有限 Limits.Pi.map mapping cone exactness は製品側APIから利用できる。一方で、boundedExactWeakEquivalence の有限積安定性へ移す bounded-complex product 保存同型の transfer、Dbounded 有限積/有限極限、有限 colimit、三角構造、stable infinity-category 構造は未完了である。",
   "commands": [
     {
-      "command": "lake env lean audit/blockers/mapping_cone_option_product_step_w146.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/MappingConeFiniteProduct.lean",
       "status": "passed",
-      "evidence": "Focused W146 check passed after proving piMap_reindex_hom_naturality, mappingConeProductComparisonIso_of_equiv, and tailFiniteMappingConeComparisonInput_direct; existing linter warnings only."
+      "evidence": "Focused promoted MappingConeFiniteProduct module check passed with existing linter warnings only."
+    },
+    {
+      "command": "lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",
+      "status": "passed",
+      "evidence": "Focused W145 check passed after connecting MappingConeFiniteProduct.tailFiniteMappingConeComparisonInput_direct through finiteMappingConeProductComparisonInput_of_w146 and exactAcyclic_mappingCone_piMap_of_w151."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after v231 W146 finite-induction closure; existing warnings only."
+      "evidence": "Full lake build passed after v232 promotion; existing warnings only."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -22,7 +27,7 @@
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after v231 changes."
+      "evidence": "Required declaration audit passed after v232 changes."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -32,32 +37,32 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after the v231 patch and artifact refresh."
+      "evidence": "Whitespace diff check passed after v232 patch and artifact refresh."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "terminal_outcome JSON parsed after v231 refresh."
+      "evidence": "terminal_outcome JSON parsed after v232 refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "proof_frontier JSON parsed after v231 refresh."
+      "evidence": "proof_frontier JSON parsed after v232 refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "verification JSON parsed after v231 refresh."
+      "evidence": "verification JSON parsed after v232 refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "manifest JSON parsed after v231 refresh."
+      "evidence": "manifest JSON parsed after v232 refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v231 artifact refresh."
+      "evidence": "External audit self-check passed after v232 artifact refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -331,13 +336,31 @@
     "reject_unconditional_weakEndpointSelectedCochainIso_provider_w127",
     "strictBoundednessTransport_of_endpointHomotopyEquivToSelectedCochainIsoStrictification",
     "w132DistinguishedEndpointCochainIsoUpgrade_strictSelected",
-    "weakEndpointHomotopyCategoryIsoToSelectedCochainIso"
+    "weakEndpointHomotopyCategoryIsoToSelectedCochainIso",
+    "MappingConeFiniteProduct.OptionProductMapNaturalityInput",
+    "MappingConeFiniteProduct.OptionTransportedFanMapProjectionNaturalityInput",
+    "MappingConeFiniteProduct.optionProductMapNaturalityInput_direct",
+    "MappingConeFiniteProduct.TailFiniteMappingConeComparisonInput",
+    "MappingConeFiniteProduct.EmptyMappingConeProductComparisonInput",
+    "MappingConeFiniteProduct.mappingConeZeroZeroIsoZero",
+    "MappingConeFiniteProduct.zeroComplexIsoHomologicalZero",
+    "MappingConeFiniteProduct.emptyProductIsoHomologicalZero",
+    "MappingConeFiniteProduct.emptyMappingConeProductComparisonInput_direct",
+    "MappingConeFiniteProduct.piMap_reindex_hom_naturality",
+    "MappingConeFiniteProduct.mappingConeProductComparisonIso_of_equiv",
+    "MappingConeFiniteProduct.exactAcyclic_optionPiMap_of_tailComparison",
+    "MappingConeFiniteProduct.optionMappingConeProductComparisonIso_of_tailComparison",
+    "MappingConeFiniteProduct.tailFiniteMappingConeComparisonInput_direct",
+    "MappingConeProductApiScoutW145.finiteMappingConeProductComparisonInput_of_w146",
+    "MappingConeProductApiScoutW145.exactAcyclic_mappingCone_piMap_of_w151",
+    "MappingConeProductApiScoutW145.currentFiniteProductApiLayerState_comparison_supplied",
+    "MappingConeProductApiScoutW145.finiteGeneralizationNextObligations_count"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Option stepのexactness消費者はW146で証明済みだが、OptionProductMapNaturalityInput、すなわちpromoted Option-product decompositionがLimits.Pi.mapをhead/tailのbiprod.mapへ運ぶ自然性は未証明である。",
-    "TailFiniteMappingConeComparisonInputの実構成、つまりfinite inductionでmappingCone (Limits.Pi.map f)とcomponent mapping coneの有限productを比較するisoは未完了である。",
-    "boundedExactWeakEquivalenceの有限積安定性、Dbounded側の有限積・有限極限transfer、有限colimit、三角構造、stable infinity-category構造は依然としてproduct_successに必要な未完了項目である。"
+    "有限mapping-cone/product比較はDerivedへ昇格しW145へ接続済みだが、boundedExactWeakEquivalenceの有限積安定性へ移すbounded-complex product保存同型transferが未実装である。",
+    "Dbounded有限積・有限極限へ接続するtransfer層が未完了である。",
+    "有限余極限、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。"
   ],
   "support_result_classification": "w184 resultはv226時点で未到着。w182/w183はv223-v224で既に親側実装済みとして分類済み。"
 }

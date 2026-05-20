@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T10:04:39Z",
+  "generated_utc": "2026-05-20T09:56:45Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1138,7 +1138,10 @@
         "v186 consumes support w141 after parent focused Lean verification; support w140 is superseded by parent v185."
       ],
       "another_active_process_already_owns_it": false,
-      "product_contribution": "promotes Option-product comparison from audit proof into product module and W149 Option-step input; product success remains blocked by finite-family induction closure and downstream Dbounded/stable structure"
+      "product_contribution": "promotes Option-product comparison from audit proof into product module and W149 Option-step input; product success remains blocked by finite-family induction closure and downstream Dbounded/stable structure",
+      "parent_updates": [
+        "v232 promoted finite mapping-cone comparison to Derived.MappingConeFiniteProduct and connected W145 finite cochain exactness consumer."
+      ]
     },
     {
       "frontier_id": "frontier-exact-category-api",
@@ -1274,11 +1277,11 @@
     }
   ],
   "support_result_classification": "support worker w192-tail-finite-mapping-cone-comparison is active in the consultant-owned tree. Parent did not launch duplicate workers and will inspect result.json when it appears.",
-  "latest_parent_update": "v231-tail-finite-mapping-cone-comparison",
-  "summary": "v231時点で、W146は有限mapping-cone/product比較の監査ローカルな有限帰納を閉じた。piMap_reindex_hom_naturality が Pi.reindex と Pi.map の可換四角形を射影外延性で証明し、mappingConeProductComparisonIso_of_equiv が mappingConeIsoOfCommIso と Pi.reindex で添字同値を輸送する。tailFiniteMappingConeComparisonInput_direct は Nonempty な比較同型を述語にした Finite.induction_empty_option により、v230の空添字base caseとv229のOption step comparison isoを合成して TailFiniteMappingConeComparisonInput を構成する。ただしこれはまだ audit/blockers 内の監査成果であり、Derived/Dbounded 側の公開APIや有限積transferへ昇格していない。Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は未完了である。",
+  "latest_parent_update": "v232-mapping-cone-finite-product-promotion",
+  "summary": "v232時点で、有限mapping-cone/product比較を LeanLCAExactChallenge.Derived.MappingConeFiniteProduct へ昇格し、root import と W145 の finiteMappingConeProductComparisonInput_of_w146 および exactAcyclic_mappingCone_piMap_of_w151 に接続した。W145 の有限一般化次義務は空になり、cochain-complex レベルの有限 Limits.Pi.map mapping cone exactness は製品側APIから利用できる。一方で、boundedExactWeakEquivalence の有限積安定性へ移す bounded-complex product 保存同型の transfer、Dbounded 有限積/有限極限、有限 colimit、三角構造、stable infinity-category 構造は未完了である。",
   "remaining_frontier": [
-    "Promote or connect W146 tailFiniteMappingConeComparisonInput_direct to product-facing Derived/Dbounded finite-product transfer.",
-    "Finish Dbounded finite products/finite limits transfer from the finite mapping-cone comparison.",
-    "Finish finite colimits, triangulated/pretriangulated structure, and stable infinity-category obligations."
+    "BoundedComplexCategory.ι finite-product preservation transfer from cochain exactAcyclic_mappingCone_piMap_of_w151 to boundedExactWeakEquivalence finite-product stability.",
+    "Dbounded finite products/finite limits transfer after boundedExactWeakEquivalence stability.",
+    "Finite colimits, triangulated structure, and stable infinity-category structure."
   ]
 }
