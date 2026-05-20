@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v265では支援結果w247とw250を親側auditとして再実装し、localized comparison routeで必要になるfunctorCategoryのunit/counit membership輸送と、Adjunction.ofNatIsoLeft/ofNatIsoRightのunit/counit等式をLeanで確認した。これにより一般的なmembership輸送は閉じたが、verdierComparisonLocalizationIsoを通じた具体的なtransported localized adjunctionの構成は未完了であり、product successではない。",
+  "summary": "v266では支援結果w248を親側auditとして再実装し、MetrizableLCAの有限余極限から(BoundedComplexCategory MetrizableLCA)ᵒᵖの有限limit、有限product、equalizerを得ることをLeanで確認した。これにより反対側ルートのsource-side有限limit入力は具体化されたが、bounded derived localizationへの有限limit輸送、右calculus、functor-category localizationは未完成であり、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -60,7 +60,9 @@
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
     "lake env lean audit/blockers/adjunction_transport_unit_equality_w250.lean",
     "lake env lean audit/blockers/localized_comparison_unit_membership_w247.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/adjunction_transport_unit_equality_w250.lean audit/blockers/localized_comparison_unit_membership_w247.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/adjunction_transport_unit_equality_w250.lean audit/blockers/localized_comparison_unit_membership_w247.lean",
+    "lake env lean audit/blockers/bounded_opposite_concrete_finite_limits_w248.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/bounded_opposite_concrete_finite_limits_w248.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -742,6 +744,7 @@
     "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelSubgroup_eq_top"
   ],
   "known_gaps": [
+    "MetrizableLCAの反対側bounded complex sourceには有限limit/product/equalizerが入ったが、bounded derived localizationへ有限limitを輸送するための右calculus、functor-category localization、局所化transferはまだ未完成である。",
     "localized comparisonのunit/counit membership輸送とadjunction transport等式は形式化されたが、verdierComparisonLocalizationIsoを通じた具体的なtransported localized adjunction自体はまだ未構成である。",
     "MetrizableLCAではcokernelSubgroup f = ⊤と開写像性から全射を得る橋が入ったが、上流側で核等式、閉埋め込み、開写像性、cokernel-subgroup-topを同時に生成する証明はまだ未完成である。",
     "MetrizableLCAの忘却関手にはHasForget₂、Additive、PreservesZeroMorphismsと条件付きexact-to-strict橋が入ったが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology、または同等の局所cycles/opcycles構成がまだ未完成である。",
@@ -758,6 +761,7 @@
   "worker_frontier_summary": "v251で支援w235を消費し、MetrizableLCA有限余極限を有限余積プラス任意pushout/cokernelへ縮約した。product success は未主張である。",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
+    "MetrizableLCAの反対側bounded complex sourceには有限limit/product/equalizerが入ったが、bounded derived localizationへ有限limitを輸送するための右calculus、functor-category localization、局所化transferはまだ未完成である。",
     "localized comparisonのunit/counit membership輸送とadjunction transport等式は形式化されたが、verdierComparisonLocalizationIsoを通じた具体的なtransported localized adjunction自体はまだ未構成である。",
     "MetrizableLCAではcokernelSubgroup f = ⊤と開写像性から全射を得る橋が入ったが、上流側で核等式、閉埋め込み、開写像性、cokernel-subgroup-topを同時に生成する証明はまだ未完成である。",
     "MetrizableLCAの忘却関手にはHasForget₂、Additive、PreservesZeroMorphismsと条件付きexact-to-strict橋が入ったが、(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology、または同等の局所cycles/opcycles構成がまだ未完成である。",
@@ -1061,10 +1065,16 @@
     "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.functorCategory_postcomp_iso_mem",
     "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.functorCategory_precomp_iso_mem",
     "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.rightAdjunction_unit_mem_of_transport_eq",
-    "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.leftAdjunction_counit_mem_of_transport_eq"
+    "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.leftAdjunction_counit_mem_of_transport_eq",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.SourceFiniteColimitInput",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.boundedComplexOp_hasFiniteLimits_of_sourceFiniteColimits",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_sourceFiniteColimitInput",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasFiniteLimits",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasFiniteProducts",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasEqualizers"
   ],
-  "generated_utc": "2026-05-20T13:28:00Z",
-  "support_result_classification": "v265 consumed support w247/w250; product remains failed_nonterminal.",
+  "generated_utc": "2026-05-20T13:37:00Z",
+  "support_result_classification": "v266 consumed support w248; product remains failed_nonterminal.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1477,7 +1487,13 @@
     "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.functorCategory_postcomp_iso_mem",
     "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.functorCategory_precomp_iso_mem",
     "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.rightAdjunction_unit_mem_of_transport_eq",
-    "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.leftAdjunction_counit_mem_of_transport_eq"
+    "LeanLCAExactChallenge.LocalizedComparisonUnitMembershipW247.leftAdjunction_counit_mem_of_transport_eq",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.SourceFiniteColimitInput",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.boundedComplexOp_hasFiniteLimits_of_sourceFiniteColimits",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_sourceFiniteColimitInput",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasFiniteLimits",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasFiniteProducts",
+    "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasEqualizers"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"

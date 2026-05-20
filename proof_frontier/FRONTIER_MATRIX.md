@@ -185,3 +185,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v265 Update
 
 2026-05-20T13:28:00Z: Support results w247 and w250 were reimplemented as `audit/blockers/localized_comparison_unit_membership_w247.lean` and `audit/blockers/adjunction_transport_unit_equality_w250.lean`. The checked frontier now has objectwise functor-category membership transport across natural isomorphisms, conditional unit/counit membership transport, and the unit/counit equations for `Adjunction.ofNatIsoLeft` and `Adjunction.ofNatIsoRight`. The remaining localized-comparison input is the concrete transported localized adjunction through `BoundedHomotopyDerivedCategory.verdierComparisonLocalizationIso`, not the generic membership transport. Product success remains nonterminal.
+
+## v266 Update
+
+2026-05-20T13:37:00Z: Support result w248 was reimplemented as `audit/blockers/bounded_opposite_concrete_finite_limits_w248.lean`. It proves that `HasFiniteColimits MetrizableLCA`, supplied by the cokernel construction, gives `HasFiniteLimits`, `HasFiniteProducts`, and `HasEqualizers` on `(BoundedComplexCategory MetrizableLCA)ᵒᵖ`. The source-side finite-limit package for the opposite route is now concrete; remaining blockers are right-handed calculus, functor-category localization, and finite-limit transport through the bounded derived localization. Product success remains nonterminal.
