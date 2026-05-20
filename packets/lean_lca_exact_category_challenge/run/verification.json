@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v354-w271-pure-field-frontier-consumer",
-  "generated_utc": "2026-05-20T19:08:00Z",
-  "source_tree_hash": "08391c77527e6fa811ed4b6e2cb78df28f2f74033f3f4df7699742bfa3d8e867",
-  "summary": "v354でW318を製品source moduleへ昇格し、W271 direct WPP-op stability consumerを三つの純source-level入力へ直接接続した。product_completeはfalse。",
+  "schema": "lean-lca-exact-challenge-verification-v355-right-open-leg-certificate",
+  "generated_utc": "2026-05-20T19:08:27Z",
+  "source_tree_hash": "ba3bb8d591b09859aec244076595614d3adbbf7cc819e4199ee8017d416efc78",
+  "summary": "v355でright-open pure LCA frontierをcomponent colimit leg certificateへ縮小した。product_completeはfalse。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -212,27 +212,27 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations check passed in fresh baseline."
+      "evidence": "Passed after v355; product declaration audit file still checks, without product_success claim."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Fresh baseline lake build passed before W290/W320 audit-only additions; new audit files were checked separately."
+      "evidence": "Passed after v355 right-open leg-certificate source changes; existing warnings only."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
+      "evidence": "Passed after v355; no forbidden Lean tokens under LeanLCAExactChallenge."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declarations check passed in fresh baseline."
+      "evidence": "Passed after v355; required declarations still check."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace/error diff check passed after W341/W308 and packet refresh."
+      "evidence": "Passed after v355; no whitespace errors."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -852,7 +852,7 @@
     {
       "command": "lake env lean audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
       "status": "passed",
-      "evidence": "Focused W286 right-open-map component-colimit boundary passed after parent verification."
+      "evidence": "Passed after v355; W286 checks wppOpLcaColimitMapOpenCoverOfLeg and leg-certificate consumer."
     },
     {
       "command": "lake env lean audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean",
@@ -912,7 +912,7 @@
     {
       "command": "lake env lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
       "status": "passed",
-      "evidence": "Focused W318 consolidated frontier passed."
+      "evidence": "Passed after v355; W318 checks right-open leg-certificate consumer."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
@@ -1517,7 +1517,7 @@
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean",
       "status": "passed",
-      "evidence": "Focused product source module check passed after removing product-facing placeholder words from comments."
+      "evidence": "Passed after v355; promoted source module checks."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated",
@@ -1538,6 +1538,31 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Returned expected nonterminal product gate: external_audit: FAIL: terminal_outcome.outcome must be product_success for this Goal, got blocked_nonterminal_frontier."
+    },
+    {
+      "command": "lake env lean audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
+      "status": "passed",
+      "evidence": "Focused W286 check passed after adding leg-level open-cover construction and consumer."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
+      "status": "passed",
+      "evidence": "Focused W318 check passed after adding leg-certificate right-open consumer."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated",
+      "status": "passed",
+      "evidence": "Promoted W318 source module rebuilt after leg-certificate consumer addition; only pre-existing/style warnings were emitted."
+    },
+    {
+      "command": "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+      "status": "passed",
+      "evidence": "Focused W271 check still passed after W318 source module update."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Returned expected nonterminal product gate: external_audit: FAIL: terminal_outcome.outcome must be product_success for this Goal, got 'blocked_nonterminal_frontier'."
     }
   ],
   "implemented_declarations_checked": [
@@ -2147,7 +2172,10 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.additiveKernelExact_wppOp_colimit_boundary_of_addCommGrpKernelExact",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_pureField_frontier",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_addCommGrpField_frontier",
-    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_pureFieldFrontier"
+    "LeanLCAExactChallenge.DirectWalkingParallelPairOpColimitClosureW271.metrizableLCA_directWalkingParallelPairOpColimitStability_of_pureFieldFrontier",
+    "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOpLcaColimitMapOpenCoverOfLeg",
+    "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -2237,13 +2265,14 @@
     "W318のleft closed-embedding preservationとalgebraic exactness preservationは引き続き未証明である。",
     "W318のleft closed-embedding branchは純LCA colimit-map injective/inducing/closed-image certificateへ縮約されたが、その三certificate本体は未証明である。",
     "W318のalgebraic branchはAddCommGrp kernel exactness preservation境界へ縮約されたが、そのsource theorem本体は未証明である。",
-    "W271はW318の三つの純source frontierを直接消費する形になったが、左LCA certificate、右open-map保存、AddCommGrp kernel exactness保存の本体証明はまだ未証明である。"
+    "W271はW318の三つの純source frontierを直接消費する形になったが、左LCA certificate、右open-map保存、AddCommGrp kernel exactness保存の本体証明はまだ未証明である。",
+    "W318のright-open branchはWPP-op component colimitの脚certificateへ縮約されたが、coequalizerの商写像脚がsource側で全射かつtarget側でopenであることの本体証明はまだ未証明である。"
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "product_success": false,
   "remaining_work": [
+    "WPP-op component colimitの脚certificateを証明する。具体的にはcoequalizerの商写像脚がsource側で全射かつtarget側でopenであることを示す。",
     "Prove W318 left pure LCA colimit-map certificates: injective, inducing, and closed image.",
-    "Prove W318 pure right-open source theorem or construct WppOpLcaColimitMapOpenCover for the induced component map.",
     "Prove W318 AddCommGrp kernel exactness preservation for WPP-op colimits."
   ]
 }

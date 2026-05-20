@@ -228,6 +228,34 @@ theorem openMap_walkingParallelPairOp_colimitMap_boundary_of_lca_colimitMap
     h₂ h₃ hopen
     (fun j => (cs.ι.app j).comm₂₃)
 
+/--
+A leg-level quotient/open certificate supplies the pure component-level LCA
+right-open input.  For the concrete WPP-op coequalizer presentation, the
+expected leg is the quotient map from the coequalizer source object.
+-/
+theorem wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates
+    (hleg :
+      ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+        (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+          IsColimit cx →
+            IsColimit cy →
+              (∀ j : WalkingParallelPairᵒᵖ, IsOpenMap (α.app j : X.obj j → Y.obj j)) →
+                (∀ j : WalkingParallelPairᵒᵖ,
+                  cx.ι.app j ≫ φ = α.app j ≫ cy.ι.app j) →
+                  ∃ j : WalkingParallelPairᵒᵖ,
+                    Function.Surjective (cx.ι.app j : X.obj j → cx.pt) ∧
+                      IsOpenMap (cy.ι.app j : Y.obj j → cy.pt)) :
+    wppOp_lca_colimitMap_preserves_openMap := by
+  intro X Y α cx cy φ hcx hcy hopen hcompat
+  rcases hleg X Y α cx cy φ hcx hcy hopen hcompat with
+    ⟨j, hsource_surjective, htarget_open⟩
+  have hcomp : IsOpenMap ((cx.ι.app j ≫ φ : X.obj j ⟶ cy.pt) :
+      X.obj j → cy.pt) := by
+    rw [hcompat j]
+    exact htarget_open.comp (hopen j)
+  exact MetrizableLCA.isOpenMap_of_comp_surjective (cx.ι.app j) φ
+    hsource_surjective hcomp
+
 /-- The colimit right map is categorically epi, by componentwise strict exactness. -/
 theorem rightMapEpi_walkingParallelPairOp_colimitClosure_direct
     (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
