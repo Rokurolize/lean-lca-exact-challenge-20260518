@@ -994,6 +994,12 @@
 <p>The remaining proof work is concrete: target cokernel presentation, quotient compatibility, representative-image closedness, relation-pullback equality, and difference kernel/cokernel row data.</p>
 </section>
 
+<section id="w354-w356-relation-composer-target-presentation">
+<h2>W354/W356 relation composer and target presentation</h2>
+<p><time>2026-05-21T05:56:00Z</time>: The parent consumed <code>w354-left-lca-relation-certificate-composer-v369</code> and <code>w356-addcommgrp-target-cokernel-presentation-v369</code> by adding and verifying <code>audit/blockers/wpp_op_left_lca_relation_certificate_composer_v369_support_w354.lean</code> and <code>audit/blockers/addcommgrp_target_cokernel_presentation_v369_support_w356.lean</code>. W354 composes W352-style relation/descended fields into the W351-style certificate and then into W318 left LCA fields. W356 gives the WPP-op forgotten-colimit target version of the W353 AddCommGrp bridge: if the forgotten colimit row is isomorphic to a cokernel cofork row for the same difference map, it supplies the target presentation consumed by the difference-Snake route.</p>
+<p>The remaining proof work is the concrete quotient-presenting cocone and field connection on the LCA side, and the concrete colimit-row/cokernel-row isomorphism plus degreewise-colimit bridge on the AddCommGrp side.</p>
+</section>
+
 <section id="w353-addcommgrp-cokernel-row-colimit-iso">
 <h2>W353 cokernel-row colimit iso</h2>
 <p><time>2026-05-21T05:50:00Z</time>: The parent consumed <code>w353-addcommgrp-cokernel-row-colimit-iso-v369</code> by adding and verifying <code>audit/blockers/addcommgrp_cokernel_row_colimit_iso_v369_support_w353.lean</code>. The support file packages a target cokernel-row presentation for the same parallel-pair difference <code>u - v</code>, transports the cokernel cofork colimit proof across an isomorphism, and then supplies <code>DifferenceSnakeBoundaryInputs</code>, <code>AddCommGrpStrictSnakeCokernelData</code>, and <code>AddCommGrpKernelExact</code>.</p>
@@ -1004,4 +1010,16 @@
 <h2>W355 descended closed map</h2>
 <p><time>2026-05-21T05:51:00Z</time>: The parent consumed <code>w355-descended-quotient-closed-map-v369</code> by adding and verifying <code>audit/blockers/wpp_op_descended_quotient_closed_map_v369_support_w355.lean</code>. It isolates a representative-image closedness condition that proves <code>IsClosedMap</code> for the descended quotient map, and records a component-closed-map plus target-projection-closed-on-representative-images sufficient condition.</p>
 <p>This is the missing closed-map supplier expected by W352, but it is still conditional. Product success still needs the concrete representative-image closedness proof, or the corresponding component closed-map and target quotient projection closedness theorem, together with W352's relation pullback and quotient compatibility inputs.</p>
+</section>
+
+<section id="w354-left-lca-relation-certificate-composer">
+<h2>W354 relation certificate composer</h2>
+<p><time>2026-05-21T05:53:00Z</time>: The parent consumed <code>w354-left-lca-relation-certificate-composer-v369</code> by adding and verifying <code>audit/blockers/wpp_op_left_lca_relation_certificate_composer_v369_support_w354.lean</code>. This composes W352-style descended fields, colimit-point transport, and W348/W351-style certificates into the W318 left LCA <code>injective/inducing/closed-image</code> fields for <code>IsColimit.map</code>.</p>
+<p>The remaining work is concrete instantiation: choose the source and target quotient-presenting cocones, connect the W352 quotient-object package to the cocone-point fields, and prove the descended leg equations.</p>
+</section>
+
+<section id="w356-addcommgrp-target-cokernel-presentation">
+<h2>W356 target cokernel presentation</h2>
+<p><time>2026-05-21T05:54:00Z</time>: The parent consumed <code>w356-addcommgrp-target-cokernel-presentation-v369</code> by adding and verifying <code>audit/blockers/addcommgrp_target_cokernel_presentation_v369_support_w356.lean</code>. It specializes W353 to a forgotten WPP-op colimit cocone: if the forgotten colimit point is isomorphic to a cokernel cofork row for <code>u - v</code>, it yields the target cokernel-row presentation, W350 difference-Snake input, strict Snake cokernel data, and <code>AddCommGrpKernelExact</code>.</p>
+<p>This leaves the concrete algebraic source work: build the difference kernel row and cokernel row, prove the forgotten WPP-op colimit row is isomorphic to that cokernel row, and connect degreewise <code>ShortComplex.isColimitOfIsColimitπ</code> colimits to the row presentation.</p>
 </section>
