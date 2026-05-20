@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T15:50:00Z",
-  "source_tree_hash": "1b16258839f706608004125da6786b11872dee13bef737576abd742bb269a88a",
-  "summary": "v277 adds an opposite finite-product stability input audit: direct product stability is available, but the opposite route still needs finite-coproduct stability plus formal op transport.",
+  "generated_utc": "2026-05-20T16:08:00Z",
+  "source_tree_hash": "93623c26c2f6288faaaba71f9fb7a111134a6d38167692cc1ab808856d1f25d7",
+  "summary": "v278 consumes support w259: opposite weak-equivalence finite-product and WalkingParallelPair stability fields are isolated and reduced to direct coproduct/coequalizer closure plus op transport.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -428,6 +428,16 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_finite_product_stability_input_w258.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W258 opposite finite-product stability input audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/opposite_weak_equivalence_stability_w259.lean",
+      "status": "passed",
+      "evidence": "Focused W259 opposite weak-equivalence stability audit passed; it packages the finite-product and WalkingParallelPair stability fields for the opposite localization route."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_weak_equivalence_stability_w259.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W259 opposite weak-equivalence stability audit file."
     }
   ],
   "implemented_declarations_checked": [

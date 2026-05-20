@@ -233,3 +233,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v277 Update
 
 2026-05-20T15:50:00Z: The parent added `audit/blockers/opposite_finite_product_stability_input_w258.lean`. The audit isolates the precise missing bridge for the opposite finite-product route: the existing `BoundedFiniteProducts.isStableUnderFiniteProducts_metrizableLCA` proves direct finite-product stability, but products in `(BoundedComplexCategory MetrizableLCA)^op` correspond to finite coproducts in the original bounded-complex category. The checked consumer now packages finite coproduct stability plus formal op transport as `OppositeFiniteProductStabilityBridgeInput`, feeding `CategoryTheory.Localization.hasFiniteProducts` for the opposite localization once left calculus is supplied. Product success remains nonterminal.
+
+## v278 Update
+
+2026-05-20T16:08:00Z: Support result w259 was reimplemented as `audit/blockers/opposite_weak_equivalence_stability_w259.lean`. It extends the v277 finite-product bridge isolation to the full W255 stability package: finite products and `WalkingParallelPair` limits for `((boundedExactWeakEquivalence MetrizableLCA).op)`. The remaining direct closure inputs are finite-coproduct stability and `WalkingParallelPairᵒᵖ` colimit stability of the original weak equivalences, plus the corresponding opposite-transport lemmas. Product success remains nonterminal.

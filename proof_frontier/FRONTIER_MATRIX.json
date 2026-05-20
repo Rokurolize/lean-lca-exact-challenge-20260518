@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T15:50:00Z",
+  "generated_utc": "2026-05-20T16:08:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v277 is parent-side frontier reduction for opposite finite-product stability.",
+  "worker_policy": "No workers were launched from the target worktree. v278 is parent-side port of support w259 audit.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1329,10 +1329,11 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "v277 added parent-side W258 opposite finite-product stability input audit; no product-success claim.",
-  "latest_parent_update": "v277: isolated opposite finite-product stability bridge as finite-coproduct stability plus formal op transport.",
-  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。 v263 narrows the MetrizableLCA exactness bridge to forgetful homology preservation or a local cycles/opcycles model. v277 isolates the opposite finite-product stability gap: direct product stability is available, but the opposite route needs finite-coproduct stability and op transport.",
+  "support_result_classification": "v278 consumed support w259; opposite weak-equivalence stability fields are narrowed, product success remains false.",
+  "latest_parent_update": "v278: consumed w259 as opposite weak-equivalence stability input audit.",
+  "summary": "v262時点で、MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict を追加し、strict short exact sequence が忘却後の AddCommGrpCat 短複体として exact になることをLeanで証明した。これは ShortComplex.ab_exact_iff と local algebraic_exact field による実装済みの橋である。ただし MetrizableLCA 内の ShortComplex.Exact そのものへは、forgetful functor のhomology保存/反映または具体cycles/opcyclesモデルがまだ必要であり、product success は非完了である。 v263 narrows the MetrizableLCA exactness bridge to forgetful homology preservation or a local cycles/opcycles model. v277 isolates the opposite finite-product stability gap: direct product stability is available, but the opposite route needs finite-coproduct stability and op transport. v278 extends the opposite stability frontier to WalkingParallelPair limits as well as finite products.",
   "remaining_frontier": [
+    "Opposite weak-equivalence stability now requires direct finite-coproduct stability, direct WalkingParallelPair-op colimit stability, and two formal opposite-transport lemmas.",
     "Opposite finite-product stability is now isolated to finite-coproduct stability of boundedExactWeakEquivalence MetrizableLCA plus formal transport to the opposite morphism property.",
     "General closedness of the explicit MetrizableLCA pushout relation subgroup beyond strict-short-exact left legs.",
     "Arbitrary HasPushouts MetrizableLCA or HasCokernels MetrizableLCA to close HasFiniteColimits MetrizableLCA.",
@@ -1468,9 +1469,16 @@
       "classification": "parent_frontier_reduction",
       "artifact": "audit/blockers/opposite_finite_product_stability_input_w258.lean",
       "result": "Direct finite-product stability is available but insufficient for the opposite route; finite-coproduct stability plus formal op transport is isolated as the remaining bridge. Product success remains false."
+    },
+    {
+      "id": "w259",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/opposite_weak_equivalence_stability_w259.lean",
+      "result": "Opposite finite-product and WalkingParallelPair stability fields are packaged and reduced to direct finite-coproduct/coequalizer closure plus op transport; product success remains false."
     }
   ],
   "remaining_blockers": [
+    "Opposite weak-equivalence stability fields are packaged by W259; missing constructors are boundedExactWeakEquivalence finite-coproduct stability, WalkingParallelPairᵒᵖ colimit stability, and their opposite-transport lemmas.",
     "Opposite finite-product stability for ((boundedExactWeakEquivalence MetrizableLCA).op) now has a checked bridge-input package; missing constructors are finite-coproduct stability of the original weak equivalences and formal op transport.",
     "Factorized localized composite inputs are isolated; missing constructors are FactorizedRightAdjunctionInput, FactorizedLeftAdjunctionInput, FactorizedUnitMembershipInput, and FactorizedCounitMembershipInput for the Verdier comparison route.",
     "Opposite finite-limit transfer now has explicit source-fact and transfer-input structures; missing inputs are opposite WalkingParallelPair functor-category localization, opposite finite-product stability, and opposite WalkingParallelPair stability.",

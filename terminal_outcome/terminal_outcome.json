@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v277では反対圏finite-product stabilityの未供給入力をauditとして分離した。direct finite-product stabilityは利用可能だが反対圏routeにはfinite-coproduct stabilityとop transportが必要であり、product successではない。",
+  "summary": "v278では支援結果w259を親側auditとして再実装し、反対圏weak-equivalenceのfinite-product stabilityとWalkingParallelPair stabilityをdirect coproduct/coequalizer closureとop transportへ分解した。product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -78,7 +78,9 @@
     "lake env lean audit/blockers/factorized_localized_adjunction_membership_w257.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/factorized_localized_adjunction_membership_w257.lean",
     "lake env lean audit/blockers/opposite_finite_product_stability_input_w258.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_finite_product_stability_input_w258.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_finite_product_stability_input_w258.lean",
+    "lake env lean audit/blockers/opposite_weak_equivalence_stability_w259.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_weak_equivalence_stability_w259.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -766,6 +768,7 @@
     "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi"
   ],
   "known_gaps": [
+    "W255の反対圏stability入力はW259で、finite-product stabilityとWalkingParallelPair limit stabilityの2フィールドに分離された。残る入力はdirect finite-coproduct stability、direct WalkingParallelPairᵒᵖ colimit stability、およびそれらをopposite側へ輸送する2つのformal transport lemmaである。",
     "反対圏finite-product routeは、direct product stabilityでは足りないことがW258で明確化された。残る入力は (boundedExactWeakEquivalence MetrizableLCA).IsStableUnderFiniteCoproducts と、そこから ((boundedExactWeakEquivalence MetrizableLCA).op).IsStableUnderFiniteProducts へ移すformal op transportである。",
     "localized comparison transport inputはW245形に具体化されたが、factorizedLocalizedComposite Cの右/左随伴とfactorized unit/counit membershipの構成はまだ未完成である。",
     "Epi T.gからcokernelπ T.g = 0を得る橋は入ったが、ShortComplex.Exactやquasi-iso/homology routeからEpi T.g、核等式、閉埋め込み、開写像性を同時に抽出する証明はまだ未完成である。",
@@ -1122,10 +1125,14 @@
     "LeanLCAExactChallenge.OppositeFiniteProductStabilityInputW258.directFiniteProductStability_available",
     "LeanLCAExactChallenge.OppositeFiniteProductStabilityInputW258.OppositeFiniteProductStabilityBridgeInput",
     "LeanLCAExactChallenge.OppositeFiniteProductStabilityInputW258.oppositeFiniteProductStability_of_bridgeInput",
-    "LeanLCAExactChallenge.OppositeFiniteProductStabilityInputW258.oppositeLocalizationHasFiniteProducts_of_bridgeInput"
+    "LeanLCAExactChallenge.OppositeFiniteProductStabilityInputW258.oppositeLocalizationHasFiniteProducts_of_bridgeInput",
+    "LeanLCAExactChallenge.OppositeWeakEquivalenceStabilityW259.metrizableLCA_oppositeWeakEquivalence",
+    "LeanLCAExactChallenge.OppositeWeakEquivalenceStabilityW259.MetrizableLCAOppositeWeakEquivalenceStabilityFields",
+    "LeanLCAExactChallenge.OppositeWeakEquivalenceStabilityW259.MetrizableLCAOppositeWeakEquivalenceStabilityTransportInputs",
+    "LeanLCAExactChallenge.OppositeWeakEquivalenceStabilityW259.metrizableLCA_oppositeWeakEquivalenceStabilityFields_of_transportInputs"
   ],
   "generated_utc": "2026-05-20T14:08:00Z",
-  "support_result_classification": "v277 is parent-side frontier work, not a support-result consumption; no product-success claim.",
+  "support_result_classification": "v278 consumed support w259 as opposite weak-equivalence stability frontier reduction; no product-success claim.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
