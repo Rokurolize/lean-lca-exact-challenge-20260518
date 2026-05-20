@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
   "generated_utc": "2026-05-21T01:04:00Z",
-  "source_tree_hash": "6f434f3ab59565731b150622ca4e4aca1e13a390c92521f2fef1b0bca17977f2",
+  "source_tree_hash": "e8a3ee4b0b3f048b77f7464bcc7d266b62f464b99d310e00112b6b9f4bb16117",
   "summary": "W420でW380 component closed-map、W389 relation-pullback equality、W386/W392 target-relation lift certificateからW417 relation fieldsとordinary concrete inputsを得るadapterを追加した。残る作業は実際のWPP-op morphismでそれらcertificateを供給し、W399からtransported field routeとAddCommGrp preservation routeへ接続することであり、product successはまだ主張しない。",
   "commands": [
     {
@@ -2799,9 +2799,16 @@
       "status": "passed",
       "evidence": "git diff --check produced no output after W419 support import."
     },
-    "lake env lean audit/blockers/wpp_op_left_lca_closed_map_from_certificates_v370_support_w420.lean",
-    "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/wpp_op_left_lca_closed_map_from_certificates_v370_support_w420.lean (expected no matches)",
-    "git diff --check"
+    {
+      "command": "lake env lean audit/blockers/wpp_op_left_lca_closed_map_from_certificates_v370_support_w420.lean",
+      "status": "passed",
+      "evidence": "Focused W420 certificate-to-relation-fields adapter checked in the parent target worktree."
+    },
+    {
+      "command": "rg -n \\b(sorry|admit|axiom)\\b audit/blockers/wpp_op_left_lca_closed_map_from_certificates_v370_support_w420.lean (expected no matches)",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W420 support file."
+    }
   ],
   "implemented_declarations_checked": [
     "AlternatingTailExtendTransport.not_endpointHomotopyEquivToSelectedCochainIsoStrictification_intModuleCat",
