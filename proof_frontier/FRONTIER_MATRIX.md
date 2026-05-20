@@ -241,3 +241,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v279 Update
 
 2026-05-20T16:24:00Z: Support result w258 was reimplemented as `audit/blockers/shortcomplex_right_exactness_extraction_w258.lean`. The audit proves that `ShortComplex.Exact`, with `HasHomology` and forgetful `PreservesHomology`, gives the concrete target kernel equality. It then feeds the v270 cokernel-top API to construct `MetrizableLCA.strictShortExact` from topology plus any of `cokernelSubgroup = ⊤`, `cokernelπ = 0`, `[Epi T.g]`, or `IsZero (cokernelObj T.g)`. The right-end extraction from right-homology-zero to cokernel-zero or epi remains missing, so product success remains nonterminal.
+
+## v280 Update
+
+2026-05-20T16:42:00Z: Support result w256 was reimplemented as `audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean`. It overlaps with v279 on the exactness-to-kernel bridge, but adds a checked negative endpoint result: the exact target `0 -> 0 -> ZMod 2` is not epi on the right, so neither `ShortComplex.Exact` alone nor quasi-isomorphism-transported exactness can produce `[Epi T.g]`. This prevents a false right-exactness route and leaves explicit right-homology/cokernel-zero extraction as the remaining target. Product success remains nonterminal.

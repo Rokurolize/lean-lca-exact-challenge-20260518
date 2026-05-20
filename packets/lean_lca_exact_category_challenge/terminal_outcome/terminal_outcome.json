@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v279では支援結果w258を親側auditとして再実装し、ShortComplex.Exactからkernel equalityを抽出し、v270 cokernel/epi右端入力でstrictShortExactへ接続する条件付きconsumerを確認した。product successではない。",
+  "summary": "v280では支援結果w256を親側auditとして再実装し、ShortComplex.ExactからEpi T.gを得る一般ルートが偽であることをZMod2反例でLean確認した。product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -82,7 +82,9 @@
     "lake env lean audit/blockers/opposite_weak_equivalence_stability_w259.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_weak_equivalence_stability_w259.lean",
     "lake env lean audit/blockers/shortcomplex_right_exactness_extraction_w258.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_right_exactness_extraction_w258.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_right_exactness_extraction_w258.lean",
+    "lake env lean audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -770,6 +772,7 @@
     "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi"
   ],
   "known_gaps": [
+    "ShortComplex.Exactやquasi-isoで輸送されたExactからEpi T.gを出す一般ルートはW256のZMod2反例で偽と確認された。右端入力は別途、right-homology/cokernel-zero/topなどから構成する必要がある。",
     "ShortComplex.Exactからkernel equalityを得るW258 consumerは入ったが、right-homology-zeroからEpi T.g、cokernelπ T.g = 0、cokernelSubgroup T.g = ⊤、またはIsZero (cokernelObj T.g)を得る右端抽出定理はまだ未供給である。",
     "W255の反対圏stability入力はW259で、finite-product stabilityとWalkingParallelPair limit stabilityの2フィールドに分離された。残る入力はdirect finite-coproduct stability、direct WalkingParallelPairᵒᵖ colimit stability、およびそれらをopposite側へ輸送する2つのformal transport lemmaである。",
     "反対圏finite-product routeは、direct product stabilityでは足りないことがW258で明確化された。残る入力は (boundedExactWeakEquivalence MetrizableLCA).IsStableUnderFiniteCoproducts と、そこから ((boundedExactWeakEquivalence MetrizableLCA).op).IsStableUnderFiniteProducts へ移すformal op transportである。",
@@ -1138,10 +1141,15 @@
     "LeanLCAExactChallenge.ShortComplexRightExactnessExtractionW258.targetKernelEquality_of_shortComplexExact",
     "LeanLCAExactChallenge.ShortComplexRightExactnessExtractionW258.strictShortExact_of_shortComplexExact_of_topology_of_cokernelπ_eq_zero",
     "LeanLCAExactChallenge.ShortComplexRightExactnessExtractionW258.strictShortExact_of_shortComplexExact_of_topology_of_epi",
-    "LeanLCAExactChallenge.ShortComplexRightExactnessExtractionW258.strictShortExact_of_shortComplexExact_of_topology_of_cokernelObj_isZero"
+    "LeanLCAExactChallenge.ShortComplexRightExactnessExtractionW258.strictShortExact_of_shortComplexExact_of_topology_of_cokernelObj_isZero",
+    "LeanLCAExactChallenge.ShortComplexExactEpiKernelBridgeW256.targetKernelEquality_of_exact_of_hasForget",
+    "LeanLCAExactChallenge.ShortComplexExactEpiKernelBridgeW256.exactButNotEpiTarget_exact",
+    "LeanLCAExactChallenge.ShortComplexExactEpiKernelBridgeW256.exactButNotEpiTarget_g_not_epi",
+    "LeanLCAExactChallenge.ShortComplexExactEpiKernelBridgeW256.no_shortComplexExact_to_targetEpi",
+    "LeanLCAExactChallenge.ShortComplexExactEpiKernelBridgeW256.no_quasiIsoExact_to_targetEpi"
   ],
   "generated_utc": "2026-05-20T14:08:00Z",
-  "support_result_classification": "v279 consumed support w258 as ShortComplex right-exactness extraction frontier reduction; no product-success claim.",
+  "support_result_classification": "v280 consumed support w256 as exact/epi false-route audit; no product-success claim.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",

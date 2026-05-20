@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T16:24:00Z",
-  "source_tree_hash": "04589de50fe30a3ed9ceb4b12c3278dde7b60af8892e196747ca7316cfaae561",
-  "summary": "v279 consumes support w258: ShortComplex.Exact supplies kernel equality under homology/forgetful-preservation inputs, while v270 cokernel/epi right inputs feed strictShortExact.",
+  "generated_utc": "2026-05-20T16:42:00Z",
+  "source_tree_hash": "d1a11f14a7153a5e4f482be77147fbe432299ca55a48e27374e44fe8e25f362b",
+  "summary": "v280 consumes support w256: exactness-to-kernel bridge is confirmed and exactness-to-Epi is refuted by a concrete ZMod2 endpoint counterexample.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -448,6 +448,16 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_right_exactness_extraction_w258.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W258 right-exactness extraction audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean",
+      "status": "passed",
+      "evidence": "Focused W256 ShortComplex exact/epi/kernel bridge audit passed; it includes the exact-but-not-epi target and false-route refutations."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W256 exact/epi/kernel bridge audit file."
     }
   ],
   "implemented_declarations_checked": [

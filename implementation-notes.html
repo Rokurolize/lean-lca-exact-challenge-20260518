@@ -530,3 +530,9 @@
 <p><time>2026-05-20T16:24:00Z</time>: The parent consumed support result <code>w258-shortcomplex-right-exactness-extraction-v270</code> by adding <code>audit/blockers/shortcomplex_right_exactness_extraction_w258.lean</code>. The audit shows that categorical <code>ShortComplex.Exact</code>, together with <code>HasHomology</code> and forgetful <code>PreservesHomology</code>, supplies the element-level kernel equality consumed by local strict exactness.</p>
 <p>The right end is now tied to the promoted v270 cokernel API: topology plus <code>cokernelSubgroup T.g = ⊤</code>, <code>cokernelπ T.g = 0</code>, <code>[Epi T.g]</code>, or <code>IsZero (cokernelObj T.g)</code> gives <code>MetrizableLCA.strictShortExact T</code>. The audit preserves the W246 boundary: exactness alone is not a source of right surjectivity, and a theorem from right-homology-zero to cokernel-zero or epi is still missing.</p>
 </section>
+
+<section id="v280-shortcomplex-exact-epi-kernel-bridge">
+<h2>v280 ShortComplex exact epi kernel bridge</h2>
+<p><time>2026-05-20T16:42:00Z</time>: The parent consumed support result <code>w256-shortcomplex-exact-epi-kernel-bridge-v268</code> by adding <code>audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean</code>. The exactness-to-kernel portion overlaps with v279, but W256 adds a useful negative endpoint proof.</p>
+<p>The audit constructs the exact complex <code>0 -> 0 -> ZMod 2</code> in <code>MetrizableLCA</code> and proves its right map is not epi. Therefore a theorem of the form <code>ShortComplex.Exact -> Epi T.g</code>, or the same conclusion after quasi-isomorphism-transported exactness, is impossible. The right endpoint must come from a real right-exactness, cokernel-zero/top, or right-homology bridge.</p>
+</section>
