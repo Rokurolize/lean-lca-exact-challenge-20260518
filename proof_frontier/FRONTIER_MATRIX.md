@@ -656,6 +656,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W410 Selected Cofork From Mapped Cocone
 2026-05-21T00:34:00Z: Worker support `w410-addcommgrp-selected-cofork-from-mapped-cocone-v370` was parent-verified as `audit/blockers/addcommgrp_selected_cofork_from_mapped_cocone_v370_support_w410.lean`. It identifies `selectedForgottenTargetMappedCocone` with the precomposed selected ordinary cofork and transports its colimit proof into both the selected ordinary cofork and selected target cokernel cofork. Product success remains false because the remaining colimit input is now `IsColimit (selectedForgottenTargetMappedCocone S cs)` from the original WPP-op colimit preservation/transport.
 
+## W411 Representative Image Closedness
+2026-05-21T00:37:00Z: Worker support `w411-left-lca-representative-image-closedness-v370` was parent-verified as `audit/blockers/wpp_op_left_lca_representative_image_closedness_v370_support_w411.lean`. It reduces W408's representative-image closedness certificate to an ordinary codomain component closed-map or closed-embedding field plus target representative-image saturation for closed source quotient subsets. Product success remains false because those two concrete topological inputs still need proofs for the actual WPP-op morphism.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 

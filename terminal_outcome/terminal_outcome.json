@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W410でselectedForgottenTargetMappedCoconeのcolimit proofからselected ordinary coforkとselected target cokernel coforkのcolimit proofへ移送する経路を検証した。残る作業はmapped-cocone colimit、W409/W407 closed-range証明、W408 representative-image closedness、target-lift certificateであり、product successはまだ主張しない。",
+  "summary": "W411でW408 representative-image closednessをcomponent closed-map/closed-embeddingとtarget saturationへ縮約した。残る作業はW410 mapped-cocone colimit、W409/W407 closed-range証明、W411 topological inputs、target-lift certificateであり、product successはまだ主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -560,7 +560,9 @@
     "lake env lean audit/blockers/wpp_op_closed_range_membership_v370_support_w409.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_closed_range_membership_v370_support_w409.lean",
     "lake env lean audit/blockers/addcommgrp_selected_cofork_from_mapped_cocone_v370_support_w410.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_cofork_from_mapped_cocone_v370_support_w410.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_cofork_from_mapped_cocone_v370_support_w410.lean",
+    "lake env lean audit/blockers/wpp_op_left_lca_representative_image_closedness_v370_support_w411.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_representative_image_closedness_v370_support_w411.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1581,7 +1583,7 @@
   "known_gaps": [
     "W410後のAddCommGrp側では、元のWPP-op colimitの保存とtransportからIsColimit (selectedForgottenTargetMappedCocone S cs)を証明する必要がある。",
     "W409で整理したclosed-range preimage equality、またはW407 membership statementを具体WPP-op morphismについて証明する必要がある。",
-    "W408が要求するrepresentative-image closedness certificate、すなわちclosed source quotient setの代表元像がtarget quotientで閉じていることを証明する必要がある。",
+    "W411後のordinary descended closed-map側では、ordinary codomain componentのclosed-mapまたはclosed-embedding fieldとtarget representative-image saturationを証明する必要がある。",
     "W392/W386系のtarget relation lift certificateを具体的に構成し、W371/W377/W401/W395のrelation-field routeへ渡す必要がある。",
     "Quillen exact category、metrizable LCA strict exact category、Yoneda-Ext、bounded derived infinity categoryの四部構成をproduct theoremとして統合する作業はまだ完了していない。"
   ],
@@ -3320,5 +3322,5 @@
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
-  "remaining_work": "mapped-cocone colimit、W409/W407のclosed-range証明、W408のrepresentative-image closedness、target relation lift certificateを証明する。"
+  "remaining_work": "W410 mapped-cocone colimit、W409/W407のclosed-range証明、W411のcomponent closed-map/closed-embeddingとtarget saturation、target relation lift certificateを証明する。"
 }
