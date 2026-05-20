@@ -54,6 +54,28 @@ theorem optionSomeComplementEquiv_symm_apply {J : Type w} (j : J) :
     (optionSomeComplementEquiv J).symm j = ⟨some j, by simp⟩ :=
   rfl
 
+theorem optionSomeComplementEquiv_value_eq_some {J : Type w}
+    (x : {x : Option J // ¬ x = none}) :
+    x.val = some (optionSomeComplementEquiv J x) := by
+  cases x with
+  | mk x hx =>
+  cases x with
+  | none => exact False.elim (hx rfl)
+  | some j => rfl
+
+/--
+The complement subproduct can be reindexed along `optionSomeComplementEquiv` once its family is
+written through that equivalence. The remaining packaging step is to identify this displayed family
+with the original complement family `fun i => K i.val`.
+-/
+noncomputable def complementTailReindexIso {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct (optionTail C K)]
+    [HasProduct (optionTail C K ∘ optionSomeComplementEquiv J)] :
+    ∏ᶜ (optionTail C K ∘ optionSomeComplementEquiv J) ≅
+      ∏ᶜ (optionTail C K) :=
+  Limits.Pi.reindex (optionSomeComplementEquiv J) (optionTail C K)
+
 /--
 The product-object decomposition needed by the finite exact-acyclic product induction:
 an `Option J` product of cochain complexes should be the binary biproduct of the `none` complex
@@ -137,6 +159,8 @@ section Checks
 #check optionSomeComplementEquiv
 #check optionSomeComplementEquiv_apply_some
 #check optionSomeComplementEquiv_symm_apply
+#check optionSomeComplementEquiv_value_eq_some
+#check complementTailReindexIso
 #check optionProductBinaryFan
 #check optionProductDegreeBinaryFan
 #check DegreewiseProductApiState

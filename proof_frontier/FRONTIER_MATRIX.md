@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T04:49:01Z
+Generated: 2026-05-20T04:53:07Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -13,6 +13,8 @@ v196 ports support w149 as `audit/blockers/finite_exact_acyclic_product_closure_
 v197 consumes completed support results w150/w151 as parent-owned frontier audits. `audit/blockers/backward_source_map_rewrite_w150.lean` proves the backward right source-map route reduces to `rightComponentDifferentialSquare` and confirms the remaining right target equations are exactly the fst/snd component equations. `audit/blockers/option_product_decomposition_w151.lean` identifies the `Limits.Pi.binaryFanOfProp`, `Limits.productUniqueIso`, `Limits.Pi.reindex`, and `HomologicalComplex.isLimitOfEval` route needed to construct the `Option` product decomposition used by v196. Both files are audit/frontier evidence only and do not claim product success.
 
 v198 strengthens the W151 audit by proving `optionSomeComplementEquiv : {x : Option J // ¬ x = none} ≃ J` with computation lemmas on `some`. This discharges the indexing-equivalence part of the complement-to-tail reindexing route; the actual product reindex iso and the assembly of degreewise isomorphisms into a cochain-complex iso remain open.
+
+v199 consumes support w152 as `audit/blockers/option_product_reindex_packaging_w152.lean`, proving the `none` subindex is `Unique` and packaging `Limits.productUniqueIso` as both complex-level and degreewise singleton reductions. It also adds `complementTailReindexIso` to the W151 audit, exposing the `Limits.Pi.reindex` iso for the complement family written through `optionSomeComplementEquiv`. The remaining Option-product route is now the family-identification layer from `K i.val` to `K (some (optionSomeComplementEquiv J i))`, the composition with `Pi.binaryFanOfProp`, and the `HomologicalComplex.isLimitOfEval` assembly.
 
 | frontier_id | target | allowed writes | verification | merge blocker | product contribution | owner |
 | --- | --- | --- | --- | --- | --- | --- |

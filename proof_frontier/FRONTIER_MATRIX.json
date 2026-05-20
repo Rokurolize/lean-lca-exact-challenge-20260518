@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T04:49:01Z",
+  "generated_utc": "2026-05-20T04:53:07Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v198 strengthens the parent-owned W151 Option product decomposition audit by proving the complement index equivalence {x : Option J // ¬ x = none} ≃ J; this is frontier progress, not product completion.",
+  "worker_policy": "No workers were launched from the target worktree. v199 ports completed support result w152 as a singleton none-subproduct audit and adds complementTailReindexIso in W151; this narrows Option product decomposition but is not product completion.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",

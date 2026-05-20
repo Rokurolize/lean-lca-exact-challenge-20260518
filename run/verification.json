@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v198-option-complement-reindex-equivalence",
-  "generated_utc": "2026-05-20T04:49:01Z",
-  "source_tree_hash": "de02e7056a7186735e691d1df2c52e2e431cfbeb2581573a1d03d231b2c93652",
-  "summary": "v198 strengthens the W151 Option product decomposition audit with optionSomeComplementEquiv, a concrete equivalence between the non-none Option complement and J. The product reindex iso and HomologicalComplex.isLimitOfEval assembly remain open; product success is not claimed.",
+  "schema": "lean-lca-exact-challenge-verification-v199-option-product-singleton-and-reindex",
+  "generated_utc": "2026-05-20T04:53:07Z",
+  "source_tree_hash": "c0149455b00faa5d1b83ed3c9a3b4c8423362b9a22ca34fb3182e2a03734a2ae",
+  "summary": "v199 ports W152 singleton none-subproduct packaging and adds complementTailReindexIso to W151. The Option-product route now has singleton reduction and displayed complement reindexing; product success remains blocked by family identification, binary fan composition, complex-level assembly, mapping-cone equations, Dbounded transfer, and stable structures.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after v196 source and artifact updates; existing Derived.Bounded simp/flexible warnings remain nonblocking. v197 baseline/oracle check passed."
+      "evidence": "Full lake build passed at v199 baseline; existing Derived.Bounded warnings remain nonblocking."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after v196 source updates. v197 baseline/oracle check passed."
+      "evidence": "Forbidden-token audit passed after v199 source updates."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed after v196 source and artifact updates. v197 baseline/oracle check passed."
+      "evidence": "RequiredDeclarations passed after v199 source updates."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed after v196 source updates; the finite-product closure audit remains frontier support and does not claim product success. v197 baseline/oracle check passed."
+      "evidence": "ProductSuccessDeclarations passed after v199 source updates; product success remains unclaimed."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v198: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v199: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v198 source and artifact updates."
+      "evidence": "Whitespace diff check passed after v199 source and artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -227,7 +227,12 @@
     {
       "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
       "status": "passed",
-      "evidence": "Focused v198 Option product decomposition audit passed after adding optionSomeComplementEquiv and its computation lemmas."
+      "evidence": "Focused v199 W151 audit passed after adding complementTailReindexIso."
+    },
+    {
+      "command": "lake env lean audit/blockers/option_product_reindex_packaging_w152.lean",
+      "status": "passed",
+      "evidence": "Focused v199 W152 singleton none-subproduct audit passed after parent port."
     }
   ],
   "implemented_declarations_checked": [
