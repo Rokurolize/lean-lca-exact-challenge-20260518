@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T12:29:28Z",
+  "generated_utc": "2026-05-20T12:31:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v260 consumes support w234 by parent-side reimplementation.",
+  "worker_policy": "No workers were launched from the target worktree. v261 consumes support w246 by parent-side reimplementation.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1294,9 +1294,9 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "v260 consumed support w234 as an inverse-image right-calculus frontier reduction; no product-success claim.",
-  "latest_parent_update": "v260-inverse-image-right-calculus-transfer",
-  "summary": "v260時点で、支援w234を親側で再実装し、boundedHomotopyExactWeakEquivalence C の右calculusは、ambient Verdier右calculusから任意inverse-imageへ移す一般transfer、または localized composite のleft adjointとcounit membershipを使うadjunction経路に縮約された。一般transferは未発見であり、product success は非完了である。",
+  "support_result_classification": "v261 consumed support w246 as a ShortComplex exactness obstruction; no product-success claim.",
+  "latest_parent_update": "v261-shortcomplex-exactness-homology-zero",
+  "summary": "v261時点で、支援w246を親側で再実装し、ShortComplex.Exactだけでは MetrizableLCA.strictShortExact のtarget surjectivityを導けないことをLeanで確認した。0 -> 0 -> ZMod 2 はShortComplex.Exactだが最終零写像は全射でない。strict exactness輸送には、categorical exactnessに加えて要素レベルkernel/surjectivity APIとtarget topologyが必要である。product success は非完了である。",
   "remaining_frontier": [
     "General closedness of the explicit MetrizableLCA pushout relation subgroup beyond strict-short-exact left legs.",
     "Arbitrary HasPushouts MetrizableLCA or HasCokernels MetrizableLCA to close HasFiniteColimits MetrizableLCA.",
@@ -1378,6 +1378,12 @@
       "classification": "manual_ported_frontier_reduction",
       "artifact": "audit/blockers/inverse_image_right_calculus_transfer_w234.lean",
       "result": "Right calculus for boundedHomotopyExactWeakEquivalence is reduced to direct inverse-image transfer or localized left-adjoint/counit-membership input; product success remains false."
+    },
+    {
+      "id": "w246",
+      "classification": "manual_ported_counterexample_frontier",
+      "artifact": "audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
+      "result": "ShortComplex.Exact plus element/topology fields can build strictShortExact, but ShortComplex.Exact alone cannot imply target g surjectivity; product success remains false."
     }
   ]
 }

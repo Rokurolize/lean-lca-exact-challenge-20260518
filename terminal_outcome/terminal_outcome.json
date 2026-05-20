@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v260時点で、支援w234を親側で再実装し、boundedHomotopyExactWeakEquivalence C の右calculusは、ambient Verdier右calculusから任意inverse-imageへ移す一般transfer、または localized composite のleft adjointとcounit membershipを使うadjunction経路に縮約された。一般transferは未発見であり、product success は非完了である。",
+  "summary": "v261時点で、支援w246を親側で再実装し、ShortComplex.Exactだけでは MetrizableLCA.strictShortExact のtarget surjectivityを導けないことをLeanで確認した。0 -> 0 -> ZMod 2 はShortComplex.Exactだが最終零写像は全射でない。strict exactness輸送には、categorical exactnessに加えて要素レベルkernel/surjectivity APIとtarget topologyが必要である。product success は非完了である。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -52,7 +52,9 @@
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_quasiiso_homology_map_api_w243.lean",
     "lake env lean audit/blockers/shortcomplex_quasiiso_homology_map_api_w243.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/inverse_image_right_calculus_transfer_w234.lean",
-    "lake env lean audit/blockers/inverse_image_right_calculus_transfer_w234.lean"
+    "lake env lean audit/blockers/inverse_image_right_calculus_transfer_w234.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/shortcomplex_exactness_homology_zero_w246.lean",
+    "lake env lean audit/blockers/shortcomplex_exactness_homology_zero_w246.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1023,8 +1025,8 @@
     "OppositeLeftCalculusTransferW230.PullbackRightCalculusTransfer",
     "OppositeLeftCalculusTransferW230.oppositeWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_rightTransfer"
   ],
-  "generated_utc": "2026-05-20T12:29:28Z",
-  "support_result_classification": "v260 consumed support w234 as a parent-side right-calculus frontier reduction; product success remains false.",
+  "generated_utc": "2026-05-20T12:31:00Z",
+  "support_result_classification": "v261 consumed support w246 as a parent-side strict-exactness transport obstruction; product success remains false.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1413,7 +1415,13 @@
     "InverseImageRightCalculusTransferW234.boundedHomotopyExactWeakEquivalence_eq_inverseImage",
     "InverseImageRightCalculusTransferW234.BoundedHomotopyInverseImageRightCalculusInput",
     "InverseImageRightCalculusTransferW234.boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedAdjunction",
-    "InverseImageRightCalculusTransferW234.inverseImageRightCalculusSearchFindings_count"
+    "InverseImageRightCalculusTransferW234.inverseImageRightCalculusSearchFindings_count",
+    "ShortComplexExactnessHomologyZeroW246.ExactElementAPI",
+    "ShortComplexExactnessHomologyZeroW246.strictShortExact_of_shortComplexExact_of_elementAPI_of_topology",
+    "ShortComplexExactnessHomologyZeroW246.strictShortExact_of_quasiIso_of_exactElementAPI_of_topology",
+    "ShortComplexExactnessHomologyZeroW246.exactButNotSurjectiveTarget_exact",
+    "ShortComplexExactnessHomologyZeroW246.exactButNotSurjectiveTarget_g_not_surjective",
+    "ShortComplexExactnessHomologyZeroW246.no_shortComplexExact_to_targetSurjectivity"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518"
