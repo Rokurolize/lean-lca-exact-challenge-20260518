@@ -1654,7 +1654,7 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "pending-w397-w398-artifact-sync",
+  "git_commit": "5b9f726",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W398 exposes the forgotten target cofork input for W394. W397 extracts W395/W389/W386 certificates from W371/W377 input packages. Remaining frontier: concrete qForgotten/IsColimit proof, concrete W371/W377 inputs, and concrete W352 ordinary descended package.",
   "claim_review_result": "未実施",
