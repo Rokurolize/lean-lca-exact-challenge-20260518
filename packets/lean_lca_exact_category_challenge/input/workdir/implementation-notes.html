@@ -1000,6 +1000,12 @@
 <p>The remaining proof work is the concrete quotient-presenting cocone and field connection on the LCA side, and the concrete colimit-row/cokernel-row isomorphism plus degreewise-colimit bridge on the AddCommGrp side.</p>
 </section>
 
+<section id="w357-w358-componentwise-target-and-representative-closedness">
+<h2>W357/W358 target iso and representative closedness</h2>
+<p><time>2026-05-21T06:03:00Z</time>: The parent added and verified <code>audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean</code>, and consumed <code>w358-descended-representative-image-closed-v369</code> as <code>audit/blockers/wpp_op_descended_representative_image_closed_v369_support_w358.lean</code>. W357 reduces the AddCommGrp target-row isomorphism to component isomorphisms and compatibility squares, then carries that componentwise target presentation through to <code>AddCommGrpStrictSnakeCokernelData</code> and <code>AddCommGrpKernelExact</code>. W358 reduces W355 representative-image closedness to component closed-map plus saturation/projection-closedness or direct projection-closedness on those images.</p>
+<p>The remaining proof work is concrete component isomorphisms and cokernel row data on the AddCommGrp side, plus representative-image saturation or direct quotient-image closedness on the LCA side.</p>
+</section>
+
 <section id="w353-addcommgrp-cokernel-row-colimit-iso">
 <h2>W353 cokernel-row colimit iso</h2>
 <p><time>2026-05-21T05:50:00Z</time>: The parent consumed <code>w353-addcommgrp-cokernel-row-colimit-iso-v369</code> by adding and verifying <code>audit/blockers/addcommgrp_cokernel_row_colimit_iso_v369_support_w353.lean</code>. The support file packages a target cokernel-row presentation for the same parallel-pair difference <code>u - v</code>, transports the cokernel cofork colimit proof across an isomorphism, and then supplies <code>DifferenceSnakeBoundaryInputs</code>, <code>AddCommGrpStrictSnakeCokernelData</code>, and <code>AddCommGrpKernelExact</code>.</p>
@@ -1022,4 +1028,16 @@
 <h2>W356 target cokernel presentation</h2>
 <p><time>2026-05-21T05:54:00Z</time>: The parent consumed <code>w356-addcommgrp-target-cokernel-presentation-v369</code> by adding and verifying <code>audit/blockers/addcommgrp_target_cokernel_presentation_v369_support_w356.lean</code>. It specializes W353 to a forgotten WPP-op colimit cocone: if the forgotten colimit point is isomorphic to a cokernel cofork row for <code>u - v</code>, it yields the target cokernel-row presentation, W350 difference-Snake input, strict Snake cokernel data, and <code>AddCommGrpKernelExact</code>.</p>
 <p>This leaves the concrete algebraic source work: build the difference kernel row and cokernel row, prove the forgotten WPP-op colimit row is isomorphic to that cokernel row, and connect degreewise <code>ShortComplex.isColimitOfIsColimitπ</code> colimits to the row presentation.</p>
+</section>
+
+<section id="w358-descended-representative-image-closed">
+<h2>W358 representative images</h2>
+<p><time>2026-05-21T06:01:00Z</time>: The parent consumed <code>w358-descended-representative-image-closed-v369</code> by adding and verifying <code>audit/blockers/wpp_op_descended_representative_image_closed_v369_support_w358.lean</code>. This is a checked refinement of W355's closed-map route: if the component map is closed and the relevant representative images are saturated for the target quotient projection, then closedness of the target quotient projection on closed saturated sets supplies W355-style representative-image closedness.</p>
+<p>The file intentionally does not claim that component closedness alone closes quotient images. The remaining topological inputs are saturation of the concrete representative images and target quotient projection closedness on those saturated sets, or a direct closedness theorem for the specific representative images.</p>
+</section>
+
+<section id="w357-w359-addcommgrp-row-assembly">
+<h2>W357/W359 row assembly</h2>
+<p><time>2026-05-21T06:04:00Z</time>: The parent verified a local W357 support file, <code>audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean</code>, after it appeared in the target worktree, and consumed support worker <code>w359-shortcomplex-cokernel-row-degreewise-v369</code> as <code>audit/blockers/shortcomplex_cokernel_row_degreewise_v369_support_w359.lean</code>. W357 turns three component isomorphisms plus short-complex square compatibility into the target-row isomorphism needed by W356. W359 uses degreewise cokernel cofork colimits and <code>ShortComplex.isColimitOfIsColimitπ</code> to assemble a short-complex cokernel-row presentation.</p>
+<p>These files narrow the algebraic route but remain conditional. The remaining inputs are the concrete degreewise cokernel coforks for <code>u - v</code>, the componentwise isomorphisms to the forgotten WPP-op colimit row, and the compatibility squares tying them into a short-complex isomorphism.</p>
 </section>

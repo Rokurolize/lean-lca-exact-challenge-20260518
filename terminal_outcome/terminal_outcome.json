@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W354でW352型のrelation/descended fieldsをW351型certificateへ組み立て、W318 left LCA fieldsへ渡す境界を検証した。W356で忘却後のWPP-op colimit rowが同じ差写像のcokernel cofork rowと同型ならW350/W353のtarget presentationを得る境界を検証した。残る作業は具体quotient-presenting cocones、W352-style field connection、descended leg equations、colimit-row/cokernel-row iso、degreewise-colimit bridgeであり、product successはまだ主張しない。",
+  "summary": "W357でAddCommGrp target-row同型をcomponent isoとcompatibility squareへ分解し、そのcomponentwise target presentationからAddCommGrpStrictSnakeCokernelDataとAddCommGrpKernelExactを直接得る境界を検証した。W358でW355 representative-image closednessをsaturation plus target quotient projection closedness、またはdirect representative-image closednessへ縮約した。残る作業は具体component isomorphisms、compatibility squares、cokernel row/cofork proof、representative-image saturationまたは直接closednessであり、product successはまだ主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -370,7 +370,36 @@
     },
     "lake env lean audit/blockers/wpp_op_left_lca_relation_certificate_composer_v369_support_w354.lean (passed: focused support checked)",
     "lake env lean audit/blockers/addcommgrp_target_cokernel_presentation_v369_support_w356.lean (passed: focused support checked)",
-    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_relation_certificate_composer_v369_support_w354.lean audit/blockers/addcommgrp_target_cokernel_presentation_v369_support_w356.lean (passed: no matches)"
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_relation_certificate_composer_v369_support_w354.lean audit/blockers/addcommgrp_target_cokernel_presentation_v369_support_w356.lean (passed: no matches)",
+    {
+      "command": "lake env lean audit/blockers/wpp_op_descended_representative_image_closed_v369_support_w358.lean",
+      "status": "passed",
+      "evidence": "W358 descended representative-image closedness support checked."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_descended_representative_image_closed_v369_support_w358.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W358."
+    },
+    "lake env lean audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean (passed: focused support checked)",
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean (passed: no matches)",
+    "lake env lean audit/blockers/wpp_op_descended_representative_image_closed_v369_support_w358.lean (passed: focused support checked)",
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_descended_representative_image_closed_v369_support_w358.lean (passed: no matches)",
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean",
+      "status": "passed",
+      "evidence": "W357 AddCommGrp componentwise target iso support checked."
+    },
+    {
+      "command": "lake env lean audit/blockers/shortcomplex_cokernel_row_degreewise_v369_support_w359.lean",
+      "status": "passed",
+      "evidence": "W359 ShortComplex degreewise cokernel-row support checked."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean audit/blockers/shortcomplex_cokernel_row_degreewise_v369_support_w359.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W357/W359."
+    }
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1171,9 +1200,29 @@
     "LeanLCAExactChallenge.AddCommGrpTargetCokernelPresentationV369SupportW356.targetCokernelRowPresentation_of_wppOpForgottenColimitIso",
     "LeanLCAExactChallenge.AddCommGrpTargetCokernelPresentationV369SupportW356.differenceSnakeBoundaryInputs_of_wppOpForgottenColimitIso",
     "LeanLCAExactChallenge.AddCommGrpTargetCokernelPresentationV369SupportW356.strictSnakeCokernelData_of_wppOpForgottenColimitIso",
-    "LeanLCAExactChallenge.AddCommGrpTargetCokernelPresentationV369SupportW356.addCommGrpKernelExact_of_wppOpForgottenColimitIso"
+    "LeanLCAExactChallenge.AddCommGrpTargetCokernelPresentationV369SupportW356.addCommGrpKernelExact_of_wppOpForgottenColimitIso",
+    "LeanLCAExactChallenge.MetrizableLCA.IsSaturatedForW358",
+    "LeanLCAExactChallenge.MetrizableLCA.isSaturatedForW358_iff_preimage_image_subset",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedQuotient_representativeImageClosed_of_componentClosed_and_targetProjectionClosedOnSaturatedW358",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedQuotient_representativeImageClosed_of_componentClosed_and_targetProjectionClosedOnRepresentativeImagesW358",
+    "LeanLCAExactChallenge.MetrizableLCA.DescendedRepresentativeImageClosedV369SupportStateW358",
+    "LeanLCAExactChallenge.MetrizableLCA.currentDescendedRepresentativeImageClosedV369SupportStateW358",
+    "LeanLCAExactChallenge.MetrizableLCA.currentDescendedRepresentativeImageClosedV369SupportStateW358_productSuccess",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedRepresentativeImageClosedV369SupportDeclarationNamesW358",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedRepresentativeImageClosedV369SupportDeclarationNamesW358_count",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.ComponentwiseTargetIsoData",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.targetIso_of_componentwiseTargetIsoData",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.WppOpForgottenTargetComponentIsoPresentation",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.targetCokernelRowPresentation_of_componentIso",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.addCommGrpKernelExact_of_componentwiseTargetPresentation",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.DegreewiseCokernelCoforkData",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.DegreewiseCokernelCoforkData.shortComplexCokernel",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.targetCokernelRowPresentation_of_degreewise",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.DegreewiseWppOpForgottenBoundary",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.wppOpForgottenTargetCokernelCoforkPresentation_of_degreewise"
   ],
   "known_gaps": [
+    "W357でcomponentwise target presentationからAddCommGrpStrictSnakeCokernelDataとAddCommGrpKernelExactへの消費口は検証済みだが、具体component isomorphisms、compatibility squares、concrete cokernel row、cokernel cofork proofは未構成である。",
     "W354/W356でW352-style fieldsからW318 left LCAへのcomposerとWPP-op forgotten colimit row target presentationの消費口は検証済みだが、具体quotient-presenting cocones、W352-style field connection、descended leg equations、colimit-row/cokernel-row iso、degreewise-colimit bridgeは未構成である。",
     "W353/W355でtarget cokernel row presentationとdescended closed-map criterionの消費口は検証済みだが、具体target presentation、quotient compatibility、representative-image closedness、relation pullback equality、difference kernel/cokernel row dataは未構成である。",
     "W352でrelation pullback/quotient compatibility/closed-map入力からdescended fieldsへの消費口は検証済みだが、具体quotient compatibility、relation pullback equality、descended closed-map theoremは未証明である。",
@@ -1212,7 +1261,9 @@
     "W353でtarget cokernel row presentationからdifference-Snake入力とAddCommGrpKernelExactへの消費口は検証済みだが、具体difference kernel row、difference cokernel row、WPP-op colimit rowとのtarget presentationは未証明である。",
     "W355でdescended quotient closed-map入力はrepresentative-image closednessまたはcomponent closed-map plus target projection closednessへ縮約済みだが、具体representative-image closedness、quotient compatibility、relation pullback equalityは未証明である。",
     "W354でW352型descended fieldsとquotient-presenting cocone transportからW318 left LCA fieldsへの合成は検証済みだが、具体cocone instantiation、W352 quotient packageとの接続、descended leg equationsは未証明である。",
-    "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。"
+    "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。",
+    "W358でW355 representative-image closednessはsaturation plus target quotient projection closednessまたはdirect representative-image closednessへ縮約済みだが、具体representative image saturationとtarget quotient projection closedness本体は未証明である。",
+    "W357/W359でcomponentwise target isoとdegreewise cokernel coforkからW356 target row presentationへの消費口は検証済みだが、具体degreewise cokernel cofork、成分同型、compatibility squareは未証明である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
@@ -1222,6 +1273,7 @@
   "worker_frontier_summary": "W286/W318 right-open branch is closed. W337 narrows left LCA to relation-preimage, descended closed-map, and transport-identification fields; W334 narrows one AddCommGrp cokernel route to closed-range/ClosureKernelInput; SnakeInput remains the main algebraic route.",
   "claim_review_result": "未実施。product_successではないため、fresh claim-review-loop acceptanceは要求段階に未到達。",
   "remaining_gaps": [
+    "W357でcomponentwise target presentationからAddCommGrpStrictSnakeCokernelDataとAddCommGrpKernelExactへの消費口は検証済みだが、具体component isomorphisms、compatibility squares、concrete cokernel row、cokernel cofork proofは未構成である。",
     "W354/W356でW352-style fieldsからW318 left LCAへのcomposerとWPP-op forgotten colimit row target presentationの消費口は検証済みだが、具体quotient-presenting cocones、W352-style field connection、descended leg equations、colimit-row/cokernel-row iso、degreewise-colimit bridgeは未構成である。",
     "W353/W355でtarget cokernel row presentationとdescended closed-map criterionの消費口は検証済みだが、具体target presentation、quotient compatibility、representative-image closedness、relation pullback equality、difference kernel/cokernel row dataは未構成である。",
     "W352でrelation pullback/quotient compatibility/closed-map入力からdescended fieldsへの消費口は検証済みだが、具体quotient compatibility、relation pullback equality、descended closed-map theoremは未証明である。",
@@ -1256,7 +1308,9 @@
     "W353でtarget cokernel row presentationからdifference-Snake入力とAddCommGrpKernelExactへの消費口は検証済みだが、具体difference kernel row、difference cokernel row、WPP-op colimit rowとのtarget presentationは未証明である。",
     "W355でdescended quotient closed-map入力はrepresentative-image closednessまたはcomponent closed-map plus target projection closednessへ縮約済みだが、具体representative-image closedness、quotient compatibility、relation pullback equalityは未証明である。",
     "W354でW352型descended fieldsとquotient-presenting cocone transportからW318 left LCA fieldsへの合成は検証済みだが、具体cocone instantiation、W352 quotient packageとの接続、descended leg equationsは未証明である。",
-    "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。"
+    "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。",
+    "W358でW355 representative-image closednessはsaturation plus target quotient projection closednessまたはdirect representative-image closednessへ縮約済みだが、具体representative image saturationとtarget quotient projection closedness本体は未証明である。",
+    "W357/W359でcomponentwise target isoとdegreewise cokernel coforkからW356 target row presentationへの消費口は検証済みだが、具体degreewise cokernel cofork、成分同型、compatibility squareは未証明である。"
   ],
   "next_recommended_goal": "sourceIso.hom ≫ φ = descended ≫ targetIso.homを具体的WPP-op coequalizer presentationで証明し、relation-preimage exactnessまたはdescended closed-map入力を閉じる。",
   "implemented_declarations": [
@@ -1858,9 +1912,30 @@
     "LeanLCAExactChallenge.AddCommGrpTargetCokernelPresentationV369SupportW356.strictSnakeCokernelData_of_wppOpForgottenColimitIso",
     "LeanLCAExactChallenge.AddCommGrpTargetCokernelPresentationV369SupportW356.addCommGrpKernelExact_of_wppOpForgottenColimitIso",
     "LeanLCAExactChallenge.WppOpLeftLcaRelationCertificateComposerV369SupportW354.LeftLcaRelationCertificateInputsW354",
-    "LeanLCAExactChallenge.WppOpLeftLcaRelationCertificateComposerV369SupportW354.w318_fields_for_isColimitMap_of_relation_certificate_inputs_w354"
+    "LeanLCAExactChallenge.WppOpLeftLcaRelationCertificateComposerV369SupportW354.w318_fields_for_isColimitMap_of_relation_certificate_inputs_w354",
+    "LeanLCAExactChallenge.MetrizableLCA.IsSaturatedForW358",
+    "LeanLCAExactChallenge.MetrizableLCA.isSaturatedForW358_iff_preimage_image_subset",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedQuotient_representativeImageClosed_of_componentClosed_and_targetProjectionClosedOnSaturatedW358",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedQuotient_representativeImageClosed_of_componentClosed_and_targetProjectionClosedOnRepresentativeImagesW358",
+    "LeanLCAExactChallenge.MetrizableLCA.DescendedRepresentativeImageClosedV369SupportStateW358",
+    "LeanLCAExactChallenge.MetrizableLCA.currentDescendedRepresentativeImageClosedV369SupportStateW358",
+    "LeanLCAExactChallenge.MetrizableLCA.currentDescendedRepresentativeImageClosedV369SupportStateW358_productSuccess",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedRepresentativeImageClosedV369SupportDeclarationNamesW358",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedRepresentativeImageClosedV369SupportDeclarationNamesW358_count",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.ComponentwiseTargetIsoData",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.targetIso_of_componentwiseTargetIsoData",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.WppOpForgottenTargetComponentIsoPresentation",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.targetCokernelRowPresentation_of_componentIso",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.cokernelRowIsoOfComponentwiseTargetPresentation",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.strictSnakeCokernelData_of_componentwiseTargetPresentation",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.addCommGrpKernelExact_of_componentwiseTargetPresentation",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.DegreewiseCokernelCoforkData",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.DegreewiseCokernelCoforkData.shortComplexCokernel",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.targetCokernelRowPresentation_of_degreewise",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.DegreewiseWppOpForgottenBoundary",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.wppOpForgottenTargetCokernelCoforkPresentation_of_degreewise"
   ],
-  "generated_utc": "2026-05-20T21:56:00Z",
+  "generated_utc": "2026-05-20T22:04:00Z",
   "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -2523,9 +2598,30 @@
     "LeanLCAExactChallenge.AddCommGrpTargetCokernelPresentationV369SupportW356.strictSnakeCokernelData_of_wppOpForgottenColimitIso",
     "LeanLCAExactChallenge.AddCommGrpTargetCokernelPresentationV369SupportW356.addCommGrpKernelExact_of_wppOpForgottenColimitIso",
     "LeanLCAExactChallenge.WppOpLeftLcaRelationCertificateComposerV369SupportW354.LeftLcaRelationCertificateInputsW354",
-    "LeanLCAExactChallenge.WppOpLeftLcaRelationCertificateComposerV369SupportW354.w318_fields_for_isColimitMap_of_relation_certificate_inputs_w354"
+    "LeanLCAExactChallenge.WppOpLeftLcaRelationCertificateComposerV369SupportW354.w318_fields_for_isColimitMap_of_relation_certificate_inputs_w354",
+    "LeanLCAExactChallenge.MetrizableLCA.IsSaturatedForW358",
+    "LeanLCAExactChallenge.MetrizableLCA.isSaturatedForW358_iff_preimage_image_subset",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedQuotient_representativeImageClosed_of_componentClosed_and_targetProjectionClosedOnSaturatedW358",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedQuotient_representativeImageClosed_of_componentClosed_and_targetProjectionClosedOnRepresentativeImagesW358",
+    "LeanLCAExactChallenge.MetrizableLCA.DescendedRepresentativeImageClosedV369SupportStateW358",
+    "LeanLCAExactChallenge.MetrizableLCA.currentDescendedRepresentativeImageClosedV369SupportStateW358",
+    "LeanLCAExactChallenge.MetrizableLCA.currentDescendedRepresentativeImageClosedV369SupportStateW358_productSuccess",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedRepresentativeImageClosedV369SupportDeclarationNamesW358",
+    "LeanLCAExactChallenge.MetrizableLCA.descendedRepresentativeImageClosedV369SupportDeclarationNamesW358_count",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.ComponentwiseTargetIsoData",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.targetIso_of_componentwiseTargetIsoData",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.WppOpForgottenTargetComponentIsoPresentation",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.targetCokernelRowPresentation_of_componentIso",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.cokernelRowIsoOfComponentwiseTargetPresentation",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.strictSnakeCokernelData_of_componentwiseTargetPresentation",
+    "LeanLCAExactChallenge.AddCommGrpComponentwiseTargetIsoV369SupportW357.addCommGrpKernelExact_of_componentwiseTargetPresentation",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.DegreewiseCokernelCoforkData",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.DegreewiseCokernelCoforkData.shortComplexCokernel",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.targetCokernelRowPresentation_of_degreewise",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.DegreewiseWppOpForgottenBoundary",
+    "LeanLCAExactChallenge.ShortComplexCokernelRowDegreewiseV369SupportW359.wppOpForgottenTargetCokernelCoforkPresentation_of_degreewise"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
-  "remaining_work": "Construct concrete quotient-presenting cocones, W352-style field connection, descended leg equations, WPP-op forgotten colimit row/cokernel row isomorphism, degreewise colimit bridge, and difference row data."
+  "remaining_work": "Construct concrete component isomorphisms, compatibility squares, cokernel row/cofork proof, representative-image saturation or direct quotient-image closedness, quotient compatibility, and relation pullback equality."
 }

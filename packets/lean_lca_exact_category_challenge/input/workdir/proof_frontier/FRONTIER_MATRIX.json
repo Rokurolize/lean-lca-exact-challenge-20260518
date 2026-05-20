@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T21:56:00Z",
+  "generated_utc": "2026-05-20T22:04:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -1365,7 +1365,7 @@
     }
   ],
   "support_result_classification": "w272 was manually ported as a focused nonterminal boundary refining W269 fixed-target fac/uniq obligations. v296 parent-added counterexample; not support product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success. w344: parent-verified difference-cokernel SnakeInput API support; concrete WPP-op row certificates remain open; not product success. w345: parent-verified source-backed difference SnakeInput audit; row construction remains open; not product success. w347-w349: parent-verified left LCA v368 reductions; concrete quotient/coequalizer inputs remain open; not product success. w350: parent-verified AddCommGrp difference Snake boundary; concrete row construction remains open; not product success. w350-w351: parent-verified conditional AddCommGrp and left LCA consumers; concrete row/cocone construction remains open; not product success. w352: parent-verified relation pullback descended fields support; concrete quotient compatibility/pullback/closed-map inputs remain open; not product success.",
-  "latest_parent_update": "w354-w356-relation-composer-and-target-presentation",
+  "latest_parent_update": "w357-w359-addcommgrp-row-assembly",
   "summary": "v368 strengthens the left LCA transport support: the W318 three-part certificate now follows from closed embedding of the canonical IsColimit.map; AddCommGrp Snake concrete construction remains open.",
   "remaining_frontier": "left LCA側は、WPP-op colimit mapをdescended quotient mapへ同一視するtransport equation、relation-preimage exactness、closed-mapまたはclosed-range入力へ分解された。AddCommGrp側はclosed-range/ClosureKernelInputまたはSnakeInput certificateが残る。",
   "support_classification": [
@@ -1577,6 +1577,7 @@
     }
   ],
   "remaining_blockers": [
+    "W357でcomponentwise target presentationからAddCommGrpStrictSnakeCokernelDataとAddCommGrpKernelExactへの消費口は検証済みだが、具体component isomorphisms、compatibility squares、concrete cokernel row、cokernel cofork proofは未構成である。",
     "W354/W356でW352-style fieldsからW318 left LCAへのcomposerとWPP-op forgotten colimit row target presentationの消費口は検証済みだが、具体quotient-presenting cocones、W352-style field connection、descended leg equations、colimit-row/cokernel-row iso、degreewise-colimit bridgeは未構成である。",
     "W353/W355でtarget cokernel row presentationとdescended closed-map criterionの消費口は検証済みだが、具体target presentation、quotient compatibility、representative-image closedness、relation pullback equality、difference kernel/cokernel row dataは未構成である。",
     "W318/W271のstrict AddCommGrp入力は、WPP-op colimit後のkernel exactness保存本体がleft-injectivity/right-surjectivity込みで未証明である。",
@@ -1595,9 +1596,12 @@
     "W353でtarget cokernel row presentationからdifference-Snake入力とAddCommGrpKernelExactへの消費口は検証済みだが、具体difference kernel row、difference cokernel row、WPP-op colimit rowとのtarget presentationは未証明である。",
     "W355でdescended quotient closed-map入力はrepresentative-image closednessまたはcomponent closed-map plus target projection closednessへ縮約済みだが、具体representative-image closedness、quotient compatibility、relation pullback equalityは未証明である。",
     "W354でW352型descended fieldsとquotient-presenting cocone transportからW318 left LCA fieldsへの合成は検証済みだが、具体cocone instantiation、W352 quotient packageとの接続、descended leg equationsは未証明である。",
-    "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。"
+    "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。",
+    "W358でW355 representative-image closednessはsaturation plus target quotient projection closednessまたはdirect representative-image closednessへ縮約済みだが、具体representative image saturationとtarget quotient projection closedness本体は未証明である。",
+    "W357/W359でcomponentwise target isoとdegreewise cokernel coforkからW356 target row presentationへの消費口は検証済みだが、具体degreewise cokernel cofork、成分同型、compatibility squareは未証明である。"
   ],
   "open_blockers": [
+    "W357でcomponentwise target presentationからAddCommGrpStrictSnakeCokernelDataとAddCommGrpKernelExactへの消費口は検証済みだが、具体component isomorphisms、compatibility squares、concrete cokernel row、cokernel cofork proofは未構成である。",
     "W354/W356でW352-style fieldsからW318 left LCAへのcomposerとWPP-op forgotten colimit row target presentationの消費口は検証済みだが、具体quotient-presenting cocones、W352-style field connection、descended leg equations、colimit-row/cokernel-row iso、degreewise-colimit bridgeは未構成である。",
     "W353/W355でtarget cokernel row presentationとdescended closed-map criterionの消費口は検証済みだが、具体target presentation、quotient compatibility、representative-image closedness、relation pullback equality、difference kernel/cokernel row dataは未構成である。",
     "W318のleft closed-embedding入力は純MetrizableLCA WPP-op colimit-mapのinjectivity、induced topology、closed image certificateへ縮約済みだが、その三つのcertificate本体は未証明である。",
@@ -1616,7 +1620,9 @@
     "W353でtarget cokernel row presentationからdifference-Snake入力とAddCommGrpKernelExactへの消費口は検証済みだが、具体difference kernel row、difference cokernel row、WPP-op colimit rowとのtarget presentationは未証明である。",
     "W355でdescended quotient closed-map入力はrepresentative-image closednessまたはcomponent closed-map plus target projection closednessへ縮約済みだが、具体representative-image closedness、quotient compatibility、relation pullback equalityは未証明である。",
     "W354でW352型descended fieldsとquotient-presenting cocone transportからW318 left LCA fieldsへの合成は検証済みだが、具体cocone instantiation、W352 quotient packageとの接続、descended leg equationsは未証明である。",
-    "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。"
+    "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。",
+    "W358でW355 representative-image closednessはsaturation plus target quotient projection closednessまたはdirect representative-image closednessへ縮約済みだが、具体representative image saturationとtarget quotient projection closedness本体は未証明である。",
+    "W357/W359でcomponentwise target isoとdegreewise cokernel coforkからW356 target row presentationへの消費口は検証済みだが、具体degreewise cokernel cofork、成分同型、compatibility squareは未証明である。"
   ],
   "consumed_support_results": [
     {
@@ -1819,6 +1825,7 @@
     }
   ],
   "known_gaps": [
+    "W357でcomponentwise target presentationからAddCommGrpStrictSnakeCokernelDataとAddCommGrpKernelExactへの消費口は検証済みだが、具体component isomorphisms、compatibility squares、concrete cokernel row、cokernel cofork proofは未構成である。",
     "W354/W356でW352-style fieldsからW318 left LCAへのcomposerとWPP-op forgotten colimit row target presentationの消費口は検証済みだが、具体quotient-presenting cocones、W352-style field connection、descended leg equations、colimit-row/cokernel-row iso、degreewise-colimit bridgeは未構成である。",
     "W353/W355でtarget cokernel row presentationとdescended closed-map criterionの消費口は検証済みだが、具体target presentation、quotient compatibility、representative-image closedness、relation pullback equality、difference kernel/cokernel row dataは未構成である。",
     "W318/W271のstrict AddCommGrp入力は、WPP-op colimit後のkernel exactness保存本体が未証明である。",
@@ -1850,7 +1857,9 @@
     "W353でtarget cokernel row presentationからdifference-Snake入力とAddCommGrpKernelExactへの消費口は検証済みだが、具体difference kernel row、difference cokernel row、WPP-op colimit rowとのtarget presentationは未証明である。",
     "W355でdescended quotient closed-map入力はrepresentative-image closednessまたはcomponent closed-map plus target projection closednessへ縮約済みだが、具体representative-image closedness、quotient compatibility、relation pullback equalityは未証明である。",
     "W354でW352型descended fieldsとquotient-presenting cocone transportからW318 left LCA fieldsへの合成は検証済みだが、具体cocone instantiation、W352 quotient packageとの接続、descended leg equationsは未証明である。",
-    "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。"
+    "W356でforgotten WPP-op colimit pointのcokernel row presentationからdifference-Snake/AddCommGrp exactness routeへの接続は検証済みだが、具体difference row、forgotten colimit-row同型、degreewise colimitからcokernel cofork rowへの接続は未証明である。",
+    "W358でW355 representative-image closednessはsaturation plus target quotient projection closednessまたはdirect representative-image closednessへ縮約済みだが、具体representative image saturationとtarget quotient projection closedness本体は未証明である。",
+    "W357/W359でcomponentwise target isoとdegreewise cokernel coforkからW356 target row presentationへの消費口は検証済みだが、具体degreewise cokernel cofork、成分同型、compatibility squareは未証明である。"
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -2744,5 +2753,61 @@
       "degreewise colimit bridge"
     ],
     "product_success": false
+  },
+  "parent_update_w358": {
+    "time_utc": "2026-05-20T22:01:00Z",
+    "files": [
+      "audit/blockers/wpp_op_descended_representative_image_closed_v369_support_w358.lean"
+    ],
+    "verified_commands": [
+      "lake env lean audit/blockers/wpp_op_descended_representative_image_closed_v369_support_w358.lean",
+      "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_descended_representative_image_closed_v369_support_w358.lean"
+    ],
+    "contribution": "W358 reduces W355 representative-image closedness to component closed-map data plus saturation and target quotient projection closedness on closed saturated sets, or direct projection closedness on representative images.",
+    "remaining_inputs": [
+      "concrete representative-image saturation",
+      "target quotient projection closedness on closed saturated sets",
+      "or direct closedness for the representative images",
+      "quotient compatibility and relation pullback equality from W352"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w357_w358": {
+    "ts_utc": "2026-05-20T22:03:00Z",
+    "status": "verified_focused",
+    "files": [
+      "audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean",
+      "audit/blockers/wpp_op_descended_representative_image_closed_v369_support_w358.lean"
+    ],
+    "proved_support": [
+      "componentwise target-row iso data gives AddCommGrp strict SnakeInput and kernel exactness for the forgotten WPP-op target",
+      "representative-image closedness reduces to saturation/projection-closedness or direct representative-image closedness"
+    ],
+    "remaining": [
+      "concrete component isomorphisms",
+      "compatibility squares",
+      "concrete cokernel row/cofork proof",
+      "representative-image saturation or direct quotient-image closedness"
+    ],
+    "product_success": false
+  },
+  "parent_update_w357_w359": {
+    "time_utc": "2026-05-20T22:04:00Z",
+    "files": [
+      "audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean",
+      "audit/blockers/shortcomplex_cokernel_row_degreewise_v369_support_w359.lean"
+    ],
+    "verified_commands": [
+      "lake env lean audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean",
+      "lake env lean audit/blockers/shortcomplex_cokernel_row_degreewise_v369_support_w359.lean",
+      "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean audit/blockers/shortcomplex_cokernel_row_degreewise_v369_support_w359.lean"
+    ],
+    "contribution": "W357 reduces W356 target-row isomorphism to component isomorphisms and short-complex compatibility squares; W359 assembles degreewise cokernel cofork colimits into a short-complex cokernel-row presentation.",
+    "remaining_inputs": [
+      "concrete degreewise cokernel coforks",
+      "component isomorphisms to forgotten WPP-op colimit row",
+      "short-complex compatibility squares"
+    ],
+    "product_success_claimed": false
   }
 }
