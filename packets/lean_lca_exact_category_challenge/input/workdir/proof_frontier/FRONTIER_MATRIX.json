@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T22:34:00Z",
+  "generated_utc": "2026-05-20T22:37:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -1365,7 +1365,7 @@
     }
   ],
   "support_result_classification": "w272 was manually ported as a focused nonterminal boundary refining W269 fixed-target fac/uniq obligations. v296 parent-added counterexample; not support product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success. w344: parent-verified difference-cokernel SnakeInput API support; concrete WPP-op row certificates remain open; not product success. w345: parent-verified source-backed difference SnakeInput audit; row construction remains open; not product success. w347-w349: parent-verified left LCA v368 reductions; concrete quotient/coequalizer inputs remain open; not product success. w350: parent-verified AddCommGrp difference Snake boundary; concrete row construction remains open; not product success. w350-w351: parent-verified conditional AddCommGrp and left LCA consumers; concrete row/cocone construction remains open; not product success. w352: parent-verified relation pullback descended fields support; concrete quotient compatibility/pullback/closed-map inputs remain open; not product success.",
-  "latest_parent_update": "w369-whiskered-naturality-leg-transport",
+  "latest_parent_update": "w370-shortcomplex-pi1-cocone-iso",
   "summary": "v368 strengthens the left LCA transport support: the W318 three-part certificate now follows from closed embedding of the canonical IsColimit.map; AddCommGrp Snake concrete construction remains open.",
   "remaining_frontier": "Ordinary projection equation, concrete quotient compatibility, relation pullback equality, target relation lifting, W351/W354/W365 integration, concrete π₂/π₃ component cocone transports, and final AddCommGrp component-row data.",
   "support_classification": [
@@ -1838,7 +1838,8 @@
     "w366-transported-descended-leg-v369",
     "w367-shortcomplex-pi-cocone-transport-v370",
     "w368-target-representative-saturation-v370",
-    "w369-whiskered-naturality-v370"
+    "w369-whiskered-naturality-v370",
+    "w370-shortcomplex-pi1-nat-cocone-iso-v370"
   ],
   "known_gaps": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
@@ -1885,7 +1886,8 @@
     "W366でtransported concrete quotient coconeとdescended leg equationsのW354互換consumerは検証済みだが、具体relation-pullback descended fieldsとW351/W354/W365 certificate統合は未証明である。",
     "W367でπ₁のcomponent cocone transport境界とW359 short-complex cokernel consumerへの接続は検証済みだが、具体π₂/π₃ transportsと最終component-row dataは未証明である。",
     "W368でW365 representative-image saturation入力はrelation pullback equalityとtarget relation liftingから検証済みだが、具体WPP-op descended mapのquotient compatibility、relation pullback equality、target relation liftingは未証明である。",
-    "W369でordinary whiskered projection equationとobjectwise naturalityからW366/W354 transported leg equationsへのtransportは検証済みだが、ordinary projection equation本体、relation pullback descended fields、最終W351/W354/W365統合は未証明である。"
+    "W369でordinary whiskered projection equationとobjectwise naturalityからW366/W354 transported leg equationsへのtransportは検証済みだが、ordinary projection equation本体、relation pullback descended fields、最終W351/W354/W365統合は未証明である。",
+    "W370でπ₁ component cocone isoとShortComplex.π₁.mapCoconeへのcolimit transportは検証済みだが、具体π₂/π₃ transportsと最終component-row dataは未証明である。"
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -3039,6 +3041,23 @@
       "ordinary projection equation",
       "relation-pullback descended fields",
       "W351/W354/W365 integration"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w370": {
+    "time_utc": "2026-05-20T22:37:00Z",
+    "files": [
+      "audit/blockers/shortcomplex_pi1_nat_cocone_iso_v370_support_w370.lean"
+    ],
+    "verified_commands": [
+      "lake env lean audit/blockers/shortcomplex_pi1_nat_cocone_iso_v370_support_w370.lean",
+      "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/shortcomplex_pi1_nat_cocone_iso_v370_support_w370.lean"
+    ],
+    "contribution": "The π₁ component diagram/cocone isomorphisms required by W367 are constructed, transporting component cokernel colimit proof to ShortComplex.π₁.mapCocone.",
+    "remaining_inputs": [
+      "concrete π₂ component cocone transport",
+      "concrete π₃ component cocone transport",
+      "final component-row data"
     ],
     "product_success_claimed": false
   }

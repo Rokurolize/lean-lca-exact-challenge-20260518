@@ -548,6 +548,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W369 Whiskered Naturality Leg Transport
 2026-05-20T22:34:00Z: Local support `audit/blockers/wpp_op_left_lca_whiskered_naturality_v370_support_w369.lean` was verified. It isolates the objectwise whiskered naturality square that transports an ordinary W357 projection equation into the W366 transported cocone leg equation and then into a W354-compatible package. Product success remains false because the ordinary projection equation, relation-pullback descended fields, and final W351/W354/W365 integration remain open.
 
+## W370 ShortComplex π₁ Cocone Iso
+2026-05-20T22:37:00Z: Local support `audit/blockers/shortcomplex_pi1_nat_cocone_iso_v370_support_w370.lean` was verified. It constructs the `π₁` parallel-pair diagram isomorphism and mapped cofork cocone isomorphism required by W367, so the component `π₁` cokernel colimit proof transports to `ShortComplex.π₁.mapCocone`. Product success remains false because the `π₂`/`π₃` transports and final component-row data are still open.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
