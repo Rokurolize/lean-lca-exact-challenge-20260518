@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-20T21:16:00Z",
-  "content_hash_tree": "b9b1ebada619116756e062828161fa389a311eb982c4bcf738698284c26e537d",
+  "generated_utc": "2026-05-20T20:27:32Z",
+  "content_hash_tree": "c12f6183faaefa95e8312ee91ec18a902ff7e4dff012f217738a7cd39136f694",
   "files": [
     {
       "path": "README_FOR_REVIEW.md",
@@ -293,14 +293,14 @@
       "bytes": 2040
     },
     {
-      "path": "input/workdir/audit/__pycache__/external_audit.cpython-312.pyc",
-      "sha256": "45f212a6c6f763115e7f19f4505a775c3dd60fea45a315c84ab7ccbe6e557102",
-      "bytes": 30037
-    },
-    {
       "path": "input/workdir/audit/blockers/addcommgrp_cokernel_closed_range_support_w334.lean",
       "sha256": "a38cdb55c24365fa227cfbb69ac10dd86ed15dc0331f5dfe22d3f0026ebc08b3",
       "bytes": 10379
+    },
+    {
+      "path": "input/workdir/audit/blockers/addcommgrp_degenerate_boundary_v366_support_w341.lean",
+      "sha256": "31e8f30dcc6c994f53137f2bae985861244e96c7cfc09c8cd8de8e2893d7042a",
+      "bytes": 11967
     },
     {
       "path": "input/workdir/audit/blockers/addcommgrp_degenerate_snake_support_w366.lean",
@@ -993,14 +993,19 @@
       "bytes": 49568
     },
     {
+      "path": "input/workdir/audit/blockers/wpp_op_left_lca_closedmap_field_consumer_v366_support_w342.lean",
+      "sha256": "2167203f6277e53e9e3b1b434248c8eb3a66dc9cfb5fda335f312b587ae9ce46",
+      "bytes": 13888
+    },
+    {
       "path": "input/workdir/audit/blockers/wpp_op_left_lca_coequalizer_transport_v362_support_w339.lean",
       "sha256": "6f366564cea1f3a48ad81020c947f639e9c829457e5692c0bd6377abca19f8d0",
       "bytes": 7189
     },
     {
       "path": "input/workdir/audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean",
-      "sha256": "f0d16a781d70c7b77cdc3ee0d46501440dd2f66af39d8271e9699e97d810fa0e",
-      "bytes": 2055
+      "sha256": "bd9932449f0f033b621ba9d903d4f91fd43da7c70f9d913cc6ac5288e7701b10",
+      "bytes": 3853
     },
     {
       "path": "input/workdir/audit/blockers/wpp_op_left_lca_relation_closedmap_v360_support_w337.lean",
@@ -1011,6 +1016,11 @@
       "path": "input/workdir/audit/blockers/wpp_op_left_lca_relation_preimage_v362_support_w340.lean",
       "sha256": "79e803c6b775e04aab15d41f242e9c3d63fabfb07fd3226ca4e3b313bf965fcd",
       "bytes": 14989
+    },
+    {
+      "path": "input/workdir/audit/blockers/wpp_op_left_lca_reverse_preimage_pullback_v366_support_w343.lean",
+      "sha256": "2272304140cb082c0abd1c1214d67b503f7094687a70a3de44976d9ca25992f2",
+      "bytes": 11727
     },
     {
       "path": "input/workdir/audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
@@ -1299,8 +1309,8 @@
     },
     {
       "path": "input/workdir/docs/research/reference_route_log.md",
-      "sha256": "426e7807a4c90191c3ee3b8ab4b50b1a1b4859d743042a9bc4c3f38bfcc8bedc",
-      "bytes": 159187
+      "sha256": "663e8505dd43210ce3de6db493900c3155127f262d9d7cc30ca606aa4262e544",
+      "bytes": 161283
     },
     {
       "path": "input/workdir/docs/research/sources.md",
@@ -1329,8 +1339,8 @@
     },
     {
       "path": "input/workdir/implementation-notes.html",
-      "sha256": "33593dcd582c75da42070a482b488efa66b427540d4d028af6d98563c6fc5f4b",
-      "bytes": 298815
+      "sha256": "89884af294c9765e6dfb8a33b28e98e7d9aa1c63bb6d1172a8923a322caa0eba",
+      "bytes": 300816
     },
     {
       "path": "input/workdir/lake-manifest.json",
@@ -1349,8 +1359,8 @@
     },
     {
       "path": "input/workdir/manifest.json",
-      "sha256": "8114faa6193cc56a55addd9f7de4346cf690fe84d96a2ff7bc0ef101a72d0b8b",
-      "bytes": 49607
+      "sha256": "afa193ce1b0a5503a32a1b22d465f0822860190d62a7abc202f633bd098b7138",
+      "bytes": 51061
     },
     {
       "path": "input/workdir/merge_queue/README.md",
@@ -1359,18 +1369,18 @@
     },
     {
       "path": "input/workdir/progress.tsv",
-      "sha256": "55535482d920de1176559126de156162ab43c4bf78c683a565f1148804793b39",
-      "bytes": 238813
+      "sha256": "361e8b9b1f812bc17f2922dc820fb2ca017aaed5eb2c7fe81e007bf1979736f7",
+      "bytes": 239973
     },
     {
       "path": "input/workdir/proof_frontier/FRONTIER_MATRIX.json",
-      "sha256": "9e2ef14803bdb143bec7aeeec47cc6ba856344ce74b78cf196c9b06747a4e150",
-      "bytes": 172402
+      "sha256": "3068608678f340a245d43728c71789cf91511ea854acba676b4e23342cb83204",
+      "bytes": 175766
     },
     {
       "path": "input/workdir/proof_frontier/FRONTIER_MATRIX.md",
-      "sha256": "caee5d7c0015468e537ce294a697e3b9f142ba6ec74b169b40d5378f452f0511",
-      "bytes": 111794
+      "sha256": "9e2faee01785f9a5467032765c39ac63c368f1de5e0931fdc7e0cc450baf5da9",
+      "bytes": 112758
     },
     {
       "path": "input/workdir/proof_frontier/ROOT_BLOCKERS_W320.json",
@@ -1384,8 +1394,8 @@
     },
     {
       "path": "input/workdir/run/verification.json",
-      "sha256": "e0e6d815c356d875029943a7e016daa45e06c6b1e9562eadd0407bf3e547a0bc",
-      "bytes": 175751
+      "sha256": "baefbac017d61ce870ca3aee57e8b55d37aa4a308c06108290ae849865bcf5ab",
+      "bytes": 179206
     },
     {
       "path": "input/workdir/scripts/audit_no_forbidden_lean_tokens.sh",
@@ -1399,8 +1409,8 @@
     },
     {
       "path": "input/workdir/terminal_outcome/terminal_outcome.json",
-      "sha256": "3cfa4d4f788884dac62788ef386dea3e93ea914f3ce5f82d12af401e5b8f4c56",
-      "bytes": 215491
+      "sha256": "65e0192b84d610655db7b6981d923f343797485c4505340f9fa6ad85eb11e428",
+      "bytes": 219809
     },
     {
       "path": "input/workdir/workers/README.md",
@@ -1409,13 +1419,13 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "6118be71088923548022ed14bdfcc71d459fc05f5a7e88e25edc384ccca8efb9",
-      "bytes": 175751
+      "sha256": "baefbac017d61ce870ca3aee57e8b55d37aa4a308c06108290ae849865bcf5ab",
+      "bytes": 179206
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "46601f2f82c1a4531f07fc81283eac46b4b09f462a52f35dc45e52591bb69911",
-      "bytes": 215491
+      "sha256": "65e0192b84d610655db7b6981d923f343797485c4505340f9fa6ad85eb11e428",
+      "bytes": 219809
     }
   ]
 }

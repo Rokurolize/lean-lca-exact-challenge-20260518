@@ -477,3 +477,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ## W340 Left LCA relation preimage
 2026-05-20T21:10:00Z: Worker support `w340-left-lca-relation-preimage-v362` was ported as `audit/blockers/wpp_op_left_lca_relation_preimage_v362_support_w340.lean`. Square equations prove the forward relation-preimage inclusion; the reverse inclusion, quotient compatibility, and descended closed-map input are now explicit fields. Product success remains false.
+
+## v365 Closed-Embedding Boundary
+2026-05-20T21:26:00Z: `audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean` now also proves that a direct closed-embedding theorem for `IsColimit.map hcx cy α` supplies W318's left LCA injective/inducing/closed-image fields for arbitrary compatible `φ`. Product success remains false because the direct closed-embedding theorem is still unproved.
+
+## W341-W343 v366 Support
+2026-05-20T21:28:00Z: W341 reduces the degenerate SnakeInput algebraic route to AddCommGrp left-injectivity at the colimit plus strict kernel exactness. W342 combines W339 transport with W340 descended fields to produce the left LCA three fields for `φ`. W343 sharpens reverse relation-preimage to an exact pullback equality of cokernel relation subgroups. Product success remains false because the concrete pullback equality, quotient-presenting colimits, descended closed-map/compatibility, and AddCommGrp strict kernel exactness remain open.

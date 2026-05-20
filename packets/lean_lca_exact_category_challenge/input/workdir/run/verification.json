@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v367-addcommgrp-snake-api-support",
-  "generated_utc": "2026-05-20T21:15:00Z",
-  "source_tree_hash": "04bf0d68463153c464751eabd84363c10c129151766726967a5783f84dc4b54b",
-  "summary": "v367 verifies the SnakeInput cokernel-row APIs used by the v362 AddCommGrp frontier. product_complete remains false.",
+  "schema": "lean-lca-exact-challenge-verification-v368-left-lca-iscolimit-map-closed-embedding-boundary",
+  "generated_utc": "2026-05-20T20:27:32Z",
+  "source_tree_hash": "0e8043e6e74be882fffa6d27bc284f1c41ca77936a5193c5906458a8663f693d",
+  "summary": "v368 verifies a left LCA boundary reducing the W318 three-part certificate to closed embedding of the canonical IsColimit.map. product_complete remains false. W368 source-tree hash was refreshed after left LCA IsColimit.map closed-embedding boundary support.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -1852,7 +1852,7 @@
     {
       "command": "lake env lean audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean",
       "status": "passed",
-      "evidence": "Focused Lean check passed for the v365 left LCA colimit transport support file."
+      "evidence": "Expanded W365 closed-embedding boundary checked."
     },
     {
       "command": "lake env lean audit/blockers/addcommgrp_degenerate_snake_support_w366.lean",
@@ -1913,6 +1913,36 @@
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_coequalizer_transport_v362_support_w339.lean audit/blockers/wpp_op_left_lca_relation_preimage_v362_support_w340.lean",
       "status": "passed",
       "evidence": "Explicit forbidden-token rg scan returned no matches for W339/W340 support files."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean",
+      "status": "passed",
+      "evidence": "Focused forbidden-token scan reported no forbidden Lean tokens after the v368 update."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches after the v368 update."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_degenerate_boundary_v366_support_w341.lean",
+      "status": "passed",
+      "evidence": "W341 AddCommGrp degenerate boundary support checked."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_left_lca_closedmap_field_consumer_v366_support_w342.lean",
+      "status": "passed",
+      "evidence": "W342 left LCA closed-map field consumer checked."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_left_lca_reverse_preimage_pullback_v366_support_w343.lean",
+      "status": "passed",
+      "evidence": "W343 reverse relation-preimage pullback support checked."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_degenerate_boundary_v366_support_w341.lean audit/blockers/wpp_op_left_lca_closedmap_field_consumer_v366_support_w342.lean audit/blockers/wpp_op_left_lca_reverse_preimage_pullback_v366_support_w343.lean audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W341/W342/W343 and expanded W365."
     }
   ],
   "implemented_declarations_checked": [
@@ -2557,10 +2587,20 @@
     "LeanLCAExactChallenge.MetrizableLCA.coequalizerMap_relation_preimage_forward_of_squares",
     "LeanLCAExactChallenge.MetrizableLCA.coequalizerMap_relation_preimage_exact_of_squares_and_reverse_preimage",
     "LeanLCAExactChallenge.MetrizableLCA.CoequalizerRelationPreimageClosedMapInputs",
-    "LeanLCAExactChallenge.MetrizableLCA.CoequalizerRelationPreimageClosedMapInputs.descended_fields"
+    "LeanLCAExactChallenge.MetrizableLCA.CoequalizerRelationPreimageClosedMapInputs.descended_fields",
+    "LeanLCAExactChallenge.WppOpLeftLcaColimitTransportW365.wppOp_lca_colimitMap_isClosedEmbedding_boundary",
+    "LeanLCAExactChallenge.WppOpLeftLcaColimitTransportW365.wppOp_lca_colimitMap_injective_inducing_closedImage_of_isColimitMapClosedEmbedding",
+    "LeanLCAExactChallenge.AddCommGrpDegenerateBoundaryV366SupportW341.addCommGrpStrictSnakeCokernel_boundary_of_leftInjective_and_strictKernelExact",
+    "LeanLCAExactChallenge.AddCommGrpDegenerateBoundaryV366SupportW341.addCommGrpLeftInjective_wppOp_colimit_boundary_of_lca_leftCertificate",
+    "LeanLCAExactChallenge.WppOpLeftLcaClosedMapFieldConsumerV366SupportW342.colimitMap_fields_of_transport_certificate",
+    "LeanLCAExactChallenge.MetrizableLCA.relationPreimagePullbackCondition",
+    "LeanLCAExactChallenge.MetrizableLCA.coequalizerMap_relation_preimage_exact_of_squares_and_pullback_condition",
+    "LeanLCAExactChallenge.MetrizableLCA.CoequalizerRelationPullbackInputs"
   ],
   "product_complete": false,
   "known_gaps": [
+    "W341-W343でdegenerate SnakeInput、left LCA closed-map field consumer、reverse relation-preimage pullback境界は検証済みだが、具体relation pullback equality、quotient compatibility、descended closed-map、AddCommGrp strict kernel exactnessは未証明である。",
+    "W365拡張でIsColimit.map closed embeddingからW318 left LCA三条件への消費口は閉じたが、具体WPP-op IsColimit.map closed-embedding定理本体は未証明である。",
     "W340でrelation-preimageの前向き包含は証明済みだが、逆向きpreimage包含、quotient compatibility、descended closed-map性はまだ未証明である。",
     "W339でW337 transport equationはconcrete colimit cocone leg equationsへ縮約されたが、quotient-presenting cocone本体、colimit証明、descended leg equationはまだ未証明である。",
     "W338でSnakeInputのL₃/h₃/L₃_exact APIとW318 consumerは確認済みだが、WPP-op colimit短複体を実際のSnakeInput cokernel rowとして提示する構成はまだ未証明である。",
@@ -2652,7 +2692,8 @@
     "v364でleft LCA certificateはrelation closed-map styleのWppOpLeftLcaRelationClosedMapFieldsへ縮約されたが、そのfield本体はまだ未証明である。",
     "v365でleft LCA routeはcompatibleなcolimit点間射φとIsColimit.mapの一致まで確認されたが、quotient/descended mapとの同一視とclosed-map fields本体はまだ未証明である。",
     "v366でdegenerate SnakeInputはexactnessとleft monoを仮定すれば構成できることが確認されたが、WPP-op colimit点のAddCommGrp left injectivityとkernel exactness、またはそれらを供給する非退化SnakeInputはまだ未証明である。",
-    "v367でSnakeInputのL₃/h₃/L₃_exact APIとv362境界の対応は確認されたが、WPP-op colimit短複体をL₃として提示する具体的SnakeInput本体はまだ未証明である。"
+    "v367でSnakeInputのL₃/h₃/L₃_exact APIとv362境界の対応は確認されたが、WPP-op colimit短複体をL₃として提示する具体的SnakeInput本体はまだ未証明である。",
+    "v368でleft LCA certificateはcanonicalなIsColimit.mapのclosed embedding性へ縮約されたが、そのIsColimit.map closed embedding証明またはdescended quotient map同一視はまだ未証明である。"
   ],
   "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "product_success": false,

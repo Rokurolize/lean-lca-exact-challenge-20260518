@@ -943,3 +943,15 @@
 <p><time>2026-05-21T06:10:00Z</time>: The parent consumed support worker <code>w340-left-lca-relation-preimage-v362</code> by adding and verifying <code>audit/blockers/wpp_op_left_lca_relation_preimage_v362_support_w340.lean</code>. The theorem <code>MetrizableLCA.coequalizerMap_relation_preimage_forward_of_squares</code> proves the forward inclusion of source cokernel relations into target cokernel relations from the two square equations.</p>
 <p>The file also packages <code>CoequalizerRelationPreimageClosedMapInputs</code>, separating the remaining local obligations into reverse relation-preimage, quotient compatibility, and <code>IsClosedMap</code> for the descended quotient map. The worker evidence explicitly shows that component closed embedding plus square equations alone do not provide the reverse inclusion. Product success remains false.</p>
 </section>
+
+<section id="v365-left-lca-closedembedding-boundary">
+<h2>v365 closed-embedding boundary</h2>
+<p><time>2026-05-21T05:26:00Z</time>: The parent verified an extension of <code>audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean</code>. The new boundary <code>wppOp_lca_colimitMap_isClosedEmbedding_boundary</code> asks directly for <code>IsClosedEmbedding (IsColimit.map hcx cy α)</code>, and <code>wppOp_lca_colimitMap_injective_inducing_closedImage_of_isColimitMapClosedEmbedding</code> turns that into W318's left LCA three-field input for arbitrary compatible <code>φ</code>.</p>
+<p>This strengthens the abstract consumer side without proving the concrete coequalizer theorem. The remaining topological work is still the construction of closed-embedding data for the actual WPP-op quotient/coequalizer map.</p>
+</section>
+
+<section id="w341-w342-w343-v366-support">
+<h2>W341-W343 support</h2>
+<p><time>2026-05-21T05:28:00Z</time>: The parent consumed three additional support files. <code>audit/blockers/addcommgrp_degenerate_boundary_v366_support_w341.lean</code> reduces the degenerate SnakeInput route to AddCommGrp left-injectivity at the colimit plus the strict kernel-exactness boundary. <code>audit/blockers/wpp_op_left_lca_closedmap_field_consumer_v366_support_w342.lean</code> transports W340-style descended injective/inducing/closed-range fields across W339 colimit-point isomorphisms to produce W318's fields for <code>φ</code>. <code>audit/blockers/wpp_op_left_lca_reverse_preimage_pullback_v366_support_w343.lean</code> sharpens W340's reverse relation-preimage input to the subgroup equality <code>comap iB (cokernelSubgroup (f' - g')) = cokernelSubgroup (f - g)</code>.</p>
+<p>These are all nonterminal support artifacts. The remaining product work is now more explicit: prove the concrete pullback relation equality, quotient compatibility, descended closed-map input, quotient-presenting colimit cocones, and the AddCommGrp strict kernel-exactness route.</p>
+</section>
