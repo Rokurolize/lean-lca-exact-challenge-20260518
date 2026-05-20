@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T15:11:10Z",
-  "source_tree_hash": "0df7585b69fc2f3be161af5341dc8a4529a18149e88d40426a4a4d51f3c97e22",
-  "summary": "v292 adds unconditional identity containment for the isomorphism-closed homotopy/Verdier bounded weak-equivalence class; product success remains nonterminal because direct W266 identity containment or a checked homotopy-class assembly remains open.",
+  "generated_utc": "2026-05-20T15:20:37Z",
+  "source_tree_hash": "1b4f8199c6b5718d92bbeb7349fd1f9a632d143a890dc38b533921b28b7fb303",
+  "summary": "v293 ports W272, refining the opposite functor-category localization boundary to a blueprint plus four fixed-target fac/uniq obligations; product success remains nonterminal.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -648,6 +648,16 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/homotopy_weq_contains_identities_w292.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W292 audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/opposite_fixed_target_fac_uniq_w272.lean",
+      "status": "passed",
+      "evidence": "Focused W272 audit checked the fixed-target fac/uniq boundary and blueprint-supplied lift field."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/opposite_fixed_target_fac_uniq_w272.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W272 audit file."
     }
   ],
   "implemented_declarations_checked": [
@@ -1165,7 +1175,9 @@
     "boundedExactWeakEquivalence_containsIdentities_of_isoClosed",
     "OppositeContainsIdentitiesOfIsoClosedW291.metrizableLCA_oppositeContainsIdentities_from_isoClosed",
     "boundedHomotopyExactWeakEquivalence_containsIdentities",
-    "HomotopyWeqContainsIdentitiesW292.metrizableLCA_homotopyWeq_op_containsIdentities"
+    "HomotopyWeqContainsIdentitiesW292.metrizableLCA_homotopyWeq_op_containsIdentities",
+    "OppositeFixedTargetFacUniqW272.metrizableLCA_oppositeFunctorCategoryLocalization_of_blueprint_fac_uniq",
+    "OppositeFixedTargetFacUniqW272.oppositeLiftFieldFromBlueprint"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -1207,8 +1219,9 @@
     "Coherent opposite WalkingParallelPair strict-preimage lift blueprints are not constructed yet; W269 only gives a lift functor from such a blueprint.",
     "Right-homology zero remains insufficient for endpoint cokernel zero or Epi T.g; downstream strictness needs Epi fromOpcycles or another explicit endpoint input.",
     "Identity containment is conditional on exactAcyclicHomotopyObject iso-closedness; this does not prove direct WPPᵒᵖ colimit stability or functor-category localization fac/uniq.",
-    "v292 solves identity containment for boundedHomotopyExactWeakEquivalence, not direct boundedExactWeakEquivalence; direct WPPᵒᵖ colimit stability and W269 fac/uniq remain open."
+    "v292 solves identity containment for boundedHomotopyExactWeakEquivalence, not direct boundedExactWeakEquivalence; direct WPPᵒᵖ colimit stability and W269 fac/uniq remain open.",
+    "W272 leaves the coherent opposite WalkingParallelPair lift blueprint and four fixed-target fac/uniq obligations unproved."
   ],
-  "support_result_classification": "v292 parent-side source progress; no support worker result consumed.",
+  "support_result_classification": "w272 manually ported as parent-verified audit boundary.",
   "product_success": false
 }

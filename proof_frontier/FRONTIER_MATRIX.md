@@ -257,3 +257,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v292 Update
 
 2026-05-20T15:11:10Z: `boundedHomotopyExactWeakEquivalence_containsIdentities` now proves identity containment for the isomorphism-closed homotopy/Verdier bounded weak-equivalence class without requiring `(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms`. The W292 audit verifies the opposite `MetrizableLCA` instance. This gives a clean identity input for a homotopy/Verdier-class finite-limit route, but it does not by itself prove the direct W266 input for `boundedExactWeakEquivalence`; that still needs exact acyclicity of identity mapping cones or a checked replacement assembly. Product success remains nonterminal.
+
+## v293 Update
+
+2026-05-20T15:20:37Z: Support result W272 was ported as `audit/blockers/opposite_fixed_target_fac_uniq_w272.lean`. The checked theorem `metrizableLCA_oppositeFunctorCategoryLocalization_of_blueprint_fac_uniq` proves the opposite `WalkingParallelPair` functor-category localization input from a coherent strict-representative blueprint plus four explicit fixed-target obligations: diagram `fac`, diagram `uniq`, model `fac`, and model `uniq`. This sharpens W269 but does not prove those obligations, so product success remains nonterminal.
