@@ -1,43 +1,43 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v222-finite-option-callsite-packaging",
-  "generated_utc": "2026-05-20T08:13:37Z",
-  "source_tree_hash": "4e316a36b3b8e2364ebb8e672a25846021beefafe2e516a974710832c2f5aa5e",
-  "summary": "v222 adds finite-products packaging for the W151 finite Option call site. MetrizableLCA now has HasFiniteProducts from terminal/zero plus binary products, and W151 synthesizes all remaining degreewise finite products under [HasFiniteProducts C]. Product success remains nonterminal because the audit proof still must be promoted or connected to W149 finite-family closure and downstream Dbounded stability.",
+  "schema": "lean-lca-exact-challenge-verification-v223-option-product-module-promotion",
+  "generated_utc": "2026-05-20T08:18:36Z",
+  "source_tree_hash": "00b17da0d2cc9b0e4f1d5095bdb61783206439b41f76efa14c6f525c2d365651",
+  "summary": "v223 promotes the W151 Option-product decomposition proof body into LeanLCAExactChallenge.Derived.OptionProductDecomposition and connects W149 through finiteProductOptionDecompositionInput_of_w151. Product success remains nonterminal because general finite-family exact-acyclic product closure and downstream Dbounded/stable structure remain incomplete.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
       "status": "passed",
-      "evidence": "Focused W151 passed for v222 after adding the finite-products call-site wrapper; warnings are existing lints; output logged to /tmp/v222-w151.log."
+      "evidence": "Focused W151 audit file remains available; v223 promoted its proof body into LeanLCAExactChallenge.Derived.OptionProductDecomposition."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full package build passed for v222; output logged to /tmp/v222-package-build.log."
+      "evidence": "Full lake build passed for v223 after product module promotion; output logged to /tmp/v223-lake-build.log."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed for v222 product source."
+      "evidence": "Forbidden-token audit passed for v223 product source."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed for v222 baseline; output logged to /tmp/v222-baseline-required.log."
+      "evidence": "RequiredDeclarations passed for v223; output logged to /tmp/v223-required.log."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed for v222 after adding the HasFiniteProducts MetrizableLCA check; output logged to /tmp/v222-product-success.log."
+      "evidence": "ProductSuccessDeclarations passed for v223; output logged to /tmp/v223-product-success.log."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "git diff --check passed for v222 after artifact refresh."
+      "evidence": "git diff --check passed for v223 after artifact refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check is expected to pass after replacing temporary refresh statuses."
+      "evidence": "External audit self-check is expected to pass after v223 artifact refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -47,22 +47,22 @@
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "terminal_outcome JSON parsed for v222."
+      "evidence": "terminal_outcome JSON parsed for v223."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "proof_frontier JSON parsed for v222."
+      "evidence": "proof_frontier JSON parsed for v223."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "verification JSON parsed for v222."
+      "evidence": "verification JSON parsed for v223."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "manifest JSON parsed for v222."
+      "evidence": "manifest JSON parsed for v223."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -500,12 +500,13 @@
     "OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_singletonTailDegreeComplement_of_direct",
     "OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct",
     "MetrizableLCA.instHasFiniteProducts",
-    "OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct"
+    "OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct",
+    "FiniteExactAcyclicProductClosureW149.finiteProductOptionDecompositionInput_of_w151"
   ],
   "product_complete": false,
   "known_gaps": [
-    "W151のdirect Option-product fan IsLimitと有限Option call-site instance包装は閉じたが、このaudit proofを製品側のFiniteProductOptionDecompositionInputへ昇格または接続する作業が未完了である。",
-    "有限family closureおよびFiniteExactAcyclicProductClosureはまだ一般定理として閉じていない。",
+    "W151のOption-product object comparisonは製品側モジュールへ昇格し、W149のFiniteProductOptionDecompositionInputへ接続済みだが、空積base caseとOption stepから一般有限family exact-acyclic product closureを導く帰納定理は未完了である。",
+    "mapping cone finite-product stabilityへこの有限積閉性を供給する接続は未完了である。",
     "Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は依然としてproduct_successに必要な未完了項目である。"
   ],
   "support_result_classification": {

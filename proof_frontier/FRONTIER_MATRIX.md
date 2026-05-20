@@ -105,3 +105,7 @@ v221 packages the singleton none-subproduct and selected binary-biproduct call-s
 ## v222 Update
 
 v222 closes the remaining W151 finite Option call-site instance packaging under finite products in the base category. MetrizableLCA now has HasFiniteProducts from the existing terminal/zero object and binary products, and optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct synthesizes both degreewise Option-product and tail-product HasProduct families for finite J. The W151 call-site gap list is now empty; remaining work is to promote/connect this audit proof to W149's FiniteProductOptionDecompositionInput, prove finite-family closure, and continue the Dbounded finite-product/stable-infinity route. Product success remains nonterminal.
+
+## v223 Update
+
+v223 promotes the W151 Option-product decomposition proof body into LeanLCAExactChallenge.Derived.OptionProductDecomposition and connects it to W149 via finiteProductOptionDecompositionInput_of_w151. The Option-product object comparison is now available from a product module and supplies W149's Option-step input. The remaining finite-product blocker is the general finite-family exact-acyclic product closure from the empty case plus the Option step, followed by mapping-cone finite-product stability and Dbounded transfer. Product success remains nonterminal.

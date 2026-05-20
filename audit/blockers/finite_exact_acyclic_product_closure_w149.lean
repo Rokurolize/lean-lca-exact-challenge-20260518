@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Derived.Bounded
+import LeanLCAExactChallenge.Derived.OptionProductDecomposition
 
 /-!
 W149 obstruction audit: finite exact-acyclic product closure.
@@ -90,6 +91,18 @@ def finiteProductDecompositionInput_of_optionProductIsoBiprod
     exact input.optionProductIsoBiprod K
 
 /--
+W151's promoted Option-product decomposition supplies the W149 Option-step input for
+metrizable LCA cochain-complex products.
+-/
+noncomputable def finiteProductOptionDecompositionInput_of_w151 :
+    FiniteProductOptionDecompositionInput.{u} where
+  optionProductIsoBiprod := by
+    intro J _ K _ _
+    exact
+      LeanLCAExactChallenge.OptionProductDecompositionW151.optionProductIsoBiprod_finiteProductCallsite_finiteProducts_of_direct
+          MetrizableLCA K
+
+/--
 Base case once the empty-product comparison is supplied.
 
 This audit keeps the base case as an input because the selected frontier is the finite induction
@@ -156,6 +169,7 @@ section Checks
 #check exactAcyclic_emptyProduct
 #check FiniteProductOptionDecompositionInput
 #check finiteProductDecompositionInput_of_optionProductIsoBiprod
+#check finiteProductOptionDecompositionInput_of_w151
 #check exactAcyclic_emptyProduct_of_decomposition
 #check exactAcyclic_optionProduct_of_decomposition
 #check exactAcyclic_optionProduct_of_optionProductIsoBiprod
