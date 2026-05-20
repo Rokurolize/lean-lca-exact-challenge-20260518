@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v199時点で、Option product分解routeについて、none側subproductをLimits.productUniqueIsoでK noneへ縮約する監査を追加し、補集合側についてはoptionSomeComplementEquivを通した表示familyからtail productへのcomplementTailReindexIsoをLeanで確認した。binary mapping cone/biproduct比較の候補写像・射影還元も維持されている。ただし、補集合familyの同一視、Pi.binaryFanOfPropとの合成、HomologicalComplex.isLimitOfEvalによる複体同型の組み上げ、mapping-cone target equations、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
+  "summary": "v200時点で、binary mapping cone/biproduct比較について、逆向き右成分squareのsnd target equationをrightComponentDifferentialSquareSndEquation_proofとして親側v189監査へ統合した。Option product分解routeではnone側singleton縮約と補集合側の表示reindex同型も確認済みである。ただし、逆向き右成分のfst target equation、前向き左右射影等式、完全なbinary mapping-cone differential compatibility、Option product decomposition本体、Dbounded transfer、三角構造、stable infinity-category構造は未完成であり、product outcomeは非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -773,7 +773,7 @@
     "DboundedSemanticStableInputAdapter.missingSemanticFieldNames_count",
     "DboundedSemanticStableInputAdapter.currentSemanticRouteState_semanticInput_not_supplied"
   ],
-  "generated_utc": "2026-05-20T04:53:07Z",
+  "generated_utc": "2026-05-20T04:55:29Z",
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave68_20260519T233000Z/workers/w126-stable-dbounded-certificate-provider-route/result.json",

@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T04:53:07Z
+Generated: 2026-05-20T04:55:29Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -15,6 +15,8 @@ v197 consumes completed support results w150/w151 as parent-owned frontier audit
 v198 strengthens the W151 audit by proving `optionSomeComplementEquiv : {x : Option J // ¬ x = none} ≃ J` with computation lemmas on `some`. This discharges the indexing-equivalence part of the complement-to-tail reindexing route; the actual product reindex iso and the assembly of degreewise isomorphisms into a cochain-complex iso remain open.
 
 v199 consumes support w152 as `audit/blockers/option_product_reindex_packaging_w152.lean`, proving the `none` subindex is `Unique` and packaging `Limits.productUniqueIso` as both complex-level and degreewise singleton reductions. It also adds `complementTailReindexIso` to the W151 audit, exposing the `Limits.Pi.reindex` iso for the complement family written through `optionSomeComplementEquiv`. The remaining Option-product route is now the family-identification layer from `K i.val` to `K (some (optionSomeComplementEquiv J i))`, the composition with `Pi.binaryFanOfProp`, and the `HomologicalComplex.isLimitOfEval` assembly.
+
+v200 consumes support w153 directly into the parent v189 mapping-cone probe. The right-component `snd` target equation is now proved as `rightComponentDifferentialSquareSndEquation_proof`, using projection lemmas for `rightComponentToConeBiprodMap`, `biprod.inr_map`, and the chain-map commutativity of `biprod.inr`. On the backward right-component route, the remaining target equation is now only `rightComponentDifferentialSquareFstEquation`; the full binary differential compatibility and product completion are still open.
 
 | frontier_id | target | allowed writes | verification | merge blocker | product contribution | owner |
 | --- | --- | --- | --- | --- | --- | --- |

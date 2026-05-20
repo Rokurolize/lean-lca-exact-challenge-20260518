@@ -1,13 +1,13 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v199-option-product-singleton-and-reindex",
-  "generated_utc": "2026-05-20T04:53:07Z",
-  "source_tree_hash": "c0149455b00faa5d1b83ed3c9a3b4c8423362b9a22ca34fb3182e2a03734a2ae",
-  "summary": "v199 ports W152 singleton none-subproduct packaging and adds complementTailReindexIso to W151. The Option-product route now has singleton reduction and displayed complement reindexing; product success remains blocked by family identification, binary fan composition, complex-level assembly, mapping-cone equations, Dbounded transfer, and stable structures.",
+  "schema": "lean-lca-exact-challenge-verification-v200-backward-right-snd-target-equation",
+  "generated_utc": "2026-05-20T04:55:29Z",
+  "source_tree_hash": "443014933c0229b084a5565b32b894a59f776830ea64d51b7f9a647650f4bab3",
+  "summary": "v200 consumes W153 by integrating rightComponentDifferentialSquareSndEquation_proof into mapping_cone_biprod_comparison_probe_v189.lean. The backward right route now has only the fst target equation remaining; product success remains blocked by full differential compatibility, Option product assembly, Dbounded transfer, and stable structures.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed at v199 baseline; existing Derived.Bounded warnings remain nonblocking."
+      "evidence": "Full lake build passed during v200 baseline; existing Derived.Bounded warnings remain nonblocking."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after v199 source updates."
+      "evidence": "Forbidden-token audit passed before v200 artifact refresh; no forbidden source tokens were introduced."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed after v199 source updates."
+      "evidence": "RequiredDeclarations passed before v200 artifact refresh."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed after v199 source updates; product success remains unclaimed."
+      "evidence": "ProductSuccessDeclarations passed before v200 artifact refresh; product success remains unclaimed."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v199: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v200: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v199 source and artifact updates."
+      "evidence": "Whitespace diff check passed after v200 source and artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -207,7 +207,7 @@
     {
       "command": "lake env lean audit/blockers/mapping_cone_biprod_comparison_probe_v189.lean",
       "status": "passed",
-      "evidence": "Focused v196 binary component-map probe still passes after rejecting the noncompiling fst-equation attempt."
+      "evidence": "Focused v200 v189 mapping-cone probe passed after integrating rightComponentDifferentialSquareSndEquation_proof and projection lemmas from W153."
     },
     {
       "command": "lake env lean audit/blockers/mapping_cone_product_api_scout_w145.lean",

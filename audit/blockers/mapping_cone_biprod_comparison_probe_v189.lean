@@ -273,6 +273,48 @@ def rightComponentDifferentialSquareSndEquation (n : ℤ) : Prop :=
         (CochainComplex.mappingCone.snd (biprod.map f₁ f₂)).v (n + 1) (n + 1)
           (add_zero (n + 1))
 
+theorem rightComponentToConeBiprodMap_fst (n : ℤ) :
+    rightComponentToConeBiprodMap f₁ f₂ n ≫
+      (CochainComplex.mappingCone.fst (biprod.map f₁ f₂)).1.v n (n + 1) rfl =
+        (CochainComplex.mappingCone.fst f₂).1.v n (n + 1) rfl ≫
+          (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f (n + 1) := by
+  simp [rightComponentToConeBiprodMap, Category.assoc]
+
+theorem rightComponentToConeBiprodMap_snd (n : ℤ) :
+    rightComponentToConeBiprodMap f₁ f₂ n ≫
+      (CochainComplex.mappingCone.snd (biprod.map f₁ f₂)).v n n (add_zero n) =
+        (CochainComplex.mappingCone.snd f₂).v n n (add_zero n) ≫
+          (biprod.inr : L₂ ⟶ L₁ ⊞ L₂).f n := by
+  simp [rightComponentToConeBiprodMap, Category.assoc]
+
+theorem biprodMap_inr_f (n : ℤ) :
+    (biprod.inr : K₂ ⟶ K₁ ⊞ K₂).f n ≫ (biprod.map f₁ f₂).f n =
+      f₂.f n ≫ (biprod.inr : L₂ ⟶ L₁ ⊞ L₂).f n := by
+  rw [← HomologicalComplex.comp_f, biprod.inr_map, HomologicalComplex.comp_f]
+
+theorem biprodCone_d_right_component (n : ℤ) :
+    (biprod.inr : L₂ ⟶ L₁ ⊞ L₂).f n ≫ (L₁ ⊞ L₂).d n (n + 1) =
+      L₂.d n (n + 1) ≫ (biprod.inr : L₂ ⟶ L₁ ⊞ L₂).f (n + 1) := by
+  exact (biprod.inr : L₂ ⟶ L₁ ⊞ L₂).comm n (n + 1)
+
+theorem rightComponentDifferentialSquareSndEquation_proof (n : ℤ) :
+    rightComponentDifferentialSquareSndEquation f₁ f₂ n := by
+  dsimp [rightComponentDifferentialSquareSndEquation]
+  rw [Category.assoc]
+  rw [CochainComplex.mappingCone.d_snd_v (biprod.map f₁ f₂) n (n + 1) rfl]
+  rw [Preadditive.comp_add]
+  rw [← Category.assoc, rightComponentToConeBiprodMap_fst]
+  rw [← Category.assoc, rightComponentToConeBiprodMap_snd]
+  rw [Category.assoc, biprodMap_inr_f]
+  rw [Category.assoc, biprodCone_d_right_component]
+  rw [← Category.assoc]
+  rw [← Category.assoc]
+  rw [← Preadditive.add_comp]
+  rw [← CochainComplex.mappingCone.d_snd_v f₂ n (n + 1) rfl]
+  rw [Category.assoc]
+  rw [Category.assoc]
+  rw [rightComponentToConeBiprodMap_snd]
+
 theorem rightComponentDifferentialSquare_ext_to_iff (n : ℤ) :
     rightComponentDifferentialSquare f₁ f₂ n ↔
       rightComponentDifferentialSquareFstEquation f₁ f₂ n ∧
@@ -355,6 +397,11 @@ section Checks
 #check rightComponentDifferentialSquare
 #check rightComponentDifferentialSquareFstEquation
 #check rightComponentDifferentialSquareSndEquation
+#check rightComponentToConeBiprodMap_fst
+#check rightComponentToConeBiprodMap_snd
+#check biprodMap_inr_f
+#check biprodCone_d_right_component
+#check rightComponentDifferentialSquareSndEquation_proof
 #check rightComponentDifferentialSquare_ext_to_iff
 #check BinaryMappingConeBiprodDifferentialCompatibility
 #check BinaryMappingConeBiprodInverseCompatibility
