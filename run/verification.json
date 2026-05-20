@@ -1,13 +1,13 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v203-binary-mapping-cone-differential-compatibility",
-  "generated_utc": "2026-05-20T05:30:24Z",
-  "source_tree_hash": "59158c1241313581491261f107a9dc17c761b62a5c526d5617f655d463eb4901",
-  "summary": "v205 promotes the binary mapping-cone/biproduct comparison to reusable product-side code in LeanLCAExactChallenge.Derived.MappingConeBiprod and feeds W142 BinaryMappingConeBiprodComparisonInput. exactAcyclic_mappingCone_biprodMap_of_v204 now proves the binary biproduct-map cone is exact-acyclic from component cone exact-acyclicity plus MetrizableLCA.exactAcyclic_biprod. Product success remains nonterminal because Option-product assembly, empty-product exactness, finite-family closure, Dbounded transfer, finite colimits, triangulated structure, and stable infinity-category structure remain open.",
+  "generated_utc": "2026-05-20T05:34:50Z",
+  "source_tree_hash": "31a63037bda6d9367cffe5223c4ca9495ac4b0af26ef19988bd5f92753c6162a",
+  "summary": "v206 consumes support worker w157 by integrating the complex-level transported Option binary fan into option_product_decomposition_w151.lean. The Option product route now has noneSubproductIso, complementSubproductReindexIso, optionProductComplexTransportedBinaryFan, and point/projection shape lemmas. Product success remains nonterminal because the transported fan still must be proved limiting via evaluated degreewise cones, converted into OptionProductIsoBiprod, and connected to empty-product exactness, finite-family closure, Dbounded transfer, finite colimits, triangulated structure, and stable infinity-category structure.",
   "commands": [
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed for v205 after adding LeanLCAExactChallenge.Derived.MappingConeBiprod and importing it from the root module; existing informational/linter output remains nonblocking."
+      "evidence": "Full lake build passed for v206 after integrating the complex-level Option transported binary fan into the W151 audit; existing informational/linter output remains nonblocking."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.ContractibleTail",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed for v205, including the new MappingConeBiprod product-side module."
+      "evidence": "Forbidden-token audit passed for v206."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed for v205; command output was logged because #check output is large."
+      "evidence": "RequiredDeclarations passed for v206; command output was logged because #check output is large."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed for v205; product success remains unclaimed."
+      "evidence": "ProductSuccessDeclarations passed for v206; product success remains unclaimed."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -52,12 +52,12 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected external audit product gate remains after v205: terminal_outcome is failed_nonterminal, so product completion is not claimed."
+      "evidence": "Expected external audit product gate remains after v206: terminal_outcome is failed_nonterminal, so product completion is not claimed."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after v205 source and artifact updates."
+      "evidence": "Whitespace diff check passed after v206 source and artifact updates."
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
@@ -227,7 +227,7 @@
     {
       "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
       "status": "passed",
-      "evidence": "Focused W151 Option product decomposition audit still passed after v202."
+      "evidence": "Focused W151 audit passed after adding noneSubproductIso, complementSubproductReindexIso, optionProductComplexTransportedBinaryFan, and point/projection shape lemmas; warnings were unused section variables in audit-only theorems."
     },
     {
       "command": "lake env lean audit/blockers/option_product_reindex_packaging_w152.lean",
@@ -237,22 +237,22 @@
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "terminal_outcome JSON parsed after v205 refresh."
+      "evidence": "terminal_outcome JSON parsed after v206 refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "proof frontier JSON parsed after v205 refresh."
+      "evidence": "proof frontier JSON parsed after v206 refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "verification JSON parsed after v205 refresh."
+      "evidence": "verification JSON parsed after v206 refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "manifest JSON parsed after v205 refresh."
+      "evidence": "manifest JSON parsed after v206 refresh."
     },
     {
       "command": "lake env lean audit/blockers/option_complement_product_reindex_w154.lean",
@@ -483,8 +483,8 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v205でbinary mapping-cone比較入力は閉じたが、Option product decomposition本体、空積exactness、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
-    "Option product decomposition 本体は、none側singleton縮約、complement reindex、degreewise binary fan合成、HomologicalComplex.isLimitOfEval での複体level assembly、および空積exactnessが未完成。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v205でbinary mapping-cone比較入力は閉じ、v206でOption積の複体level transported fanは命名したが、そのlimit性、OptionProductIsoBiprod、空積exactness、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
+    "Option product decomposition 本体は、transported complex fanの評価後coneをW156のdegreewise limiting fanへ比較し、HomologicalComplex.isLimitOfEval で複体level limitへ上げ、binary product limitをbiproduct-shaped isoへ変換する部分が未完成。",
     "Dbounded C の有限極限は、有限積に加えてequalizer routeとpullback routeへ分解されたが、EqualizerConeInput C、EqualizerLocalizationTransferTheorem C、PullbackConeInput C、PullbackLocalizationTransferTheorem Cはいずれも未構成。",
     "Dbounded C の有限余極限、pretriangulated構造、triangulated構造、stable infinity-category構造は未完成。",
     "bounded側のstrict-selected eligibility providerは boundedHomotopyObjectTrianglehIso13Realization と同値であり、realization自体は未証明。"
@@ -570,6 +570,25 @@
         "OptionProductReindexPackagingW152.noneSubproductDegreeIso"
       ],
       "product_effect": "no_product_success_claim; useful degreewise Option binary-fan composition route, deferred because v204 closed the separate binary mapping-cone complex iso packaging step"
+    },
+    "w157-option-complex-cone-assembly": {
+      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave89_20260520T052000Z/workers/w157-option-complex-cone-assembly/result.json",
+      "classification": "manual_integration_parent_v206",
+      "worker_status": "completed_without_product_success_claim",
+      "worker_changed_files": [
+        "audit/blockers/option_complex_cone_assembly_w157.lean"
+      ],
+      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
+      "parent_declarations_covering_result": [
+        "OptionProductDecompositionW151.noneSubproductIso",
+        "OptionProductDecompositionW151.complementSubproductReindexIso",
+        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan",
+        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_pt",
+        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_fst",
+        "OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_snd",
+        "OptionProductDecompositionW151.optionProductSplitPair"
+      ],
+      "product_effect": "no_product_success_claim; names the complex-level transported Option binary fan but leaves its limit proof and biproduct conversion open"
     }
   }
 }

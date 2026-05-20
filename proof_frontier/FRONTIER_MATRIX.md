@@ -1,6 +1,6 @@
 # Proof Frontier Matrix
 
-Generated: 2026-05-20T05:30:24Z
+Generated: 2026-05-20T05:34:50Z
 
 Active thread at generation: `019e3c1e-ce8e-7190-9df0-18452cc5e187`.
 
@@ -27,6 +27,8 @@ v203 closes the binary mapping-cone/biproduct differential-compatibility audit i
 v204 packages the binary mapping-cone/biproduct comparison as an actual cochain-complex isomorphism. `binaryMappingConeBiprodXIso` wraps the degreewise inverse maps, and `binaryMappingConeBiprodIso` uses `HomologicalComplex.Hom.isoOfComponents` plus `binaryMappingConeBiprodDifferentialCompatibility`. Completed support worker w156 was inspected and classified as useful audit-only evidence for the separate Option-product route; it is not needed for the v204 mapping-cone iso. Remaining blockers are feeding this iso into the W142 finite-product comparison interface, completing the Option product assembly and empty-product exactness, Dbounded equalizer/pullback transfer, finite colimits, triangulated structure, and stable infinity-category structure.
 
 v205 promotes the binary comparison into reusable product-side code and feeds W142. `LeanLCAExactChallenge/Derived/MappingConeBiprod.lean` provides `MappingConeBiprodComparison.binaryMappingConeBiprodIso`, while `mapping_cone_finite_product_comparison_w142.lean` now defines `binaryMappingConeBiprodComparisonInput` and proves `exactAcyclic_mappingCone_biprodMap_of_v204`. The binary mapping-cone comparison is no longer a finite-product route blocker; the route now needs the Option product decomposition assembly, empty-product exactness, finite-family induction connection, Dbounded transfer, finite colimits, triangulated structure, and stable infinity-category structure.
+
+v206 consumes support worker w157 without adding a duplicate audit file. `option_product_decomposition_w151.lean` now includes the complex-level transported Option binary fan: `noneSubproductIso`, `complementSubproductReindexIso`, `optionProductComplexTransportedBinaryFan`, and projection/point shape lemmas. The Option product route has a named complex fan whose point is `∏ᶜ K`; remaining work is to prove its evaluated cones are limiting via the W156 degreewise fan, apply `HomologicalComplex.isLimitOfEval`, convert the binary product limit into the biproduct-shaped `OptionProductIsoBiprod`, and connect empty-product exactness/finite-family closure.
 
 | frontier_id | target | allowed writes | verification | merge blocker | product contribution | owner |
 | --- | --- | --- | --- | --- | --- | --- |

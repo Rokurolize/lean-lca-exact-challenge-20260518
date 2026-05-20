@@ -100,6 +100,78 @@ noncomputable abbrev optionProductBinaryFan {J : Type w}
       (∏ᶜ (fun i : {x : Option J // ¬ x = none} => K i.val)) :=
   Pi.binaryFanOfProp K (fun x : Option J => x = none)
 
+/-- The `none` subproduct of cochain complexes is canonically the `none` complex. -/
+noncomputable def noneSubproductIso {J : Type w}
+    (K : Option J → CochainComplex C ℤ) :
+    ∏ᶜ (fun i : {x : Option J // x = none} => K i.val) ≅ K none :=
+  Limits.productUniqueIso (fun i : {x : Option J // x = none} => K i.val)
+
+/-- The complement subproduct of cochain complexes reindexed to the `some` tail. -/
+noncomputable def complementSubproductReindexIso {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [HasProduct (optionTail C K)] :
+    ∏ᶜ (fun i : {x : Option J // ¬ x = none} => K i.val) ≅ ∏ᶜ (optionTail C K) :=
+  by
+    letI : HasProduct
+        ((fun i : {x : Option J // ¬ x = none} => K i.val) ∘
+          ⇑(optionSomeComplementEquiv J).symm) := by
+      simpa [Function.comp, optionTail, optionSomeComplementEquiv]
+        using (inferInstance : HasProduct (optionTail C K))
+    simpa [Function.comp, optionTail, optionSomeComplementEquiv]
+      using (Limits.Pi.reindex (optionSomeComplementEquiv J).symm
+        (fun i : {x : Option J // ¬ x = none} => K i.val)).symm
+
+/--
+The complex-level binary fan after composing the raw `Option` product split with the singleton
+reduction on the `none` side and the complement reindexing on the `some` side.
+-/
+noncomputable def optionProductComplexTransportedBinaryFan {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [HasProduct (optionTail C K)] :
+    BinaryFan (K none) (∏ᶜ (optionTail C K)) :=
+  BinaryFan.mk
+    ((optionProductBinaryFan C K).fst ≫ (noneSubproductIso C K).hom)
+    ((optionProductBinaryFan C K).snd ≫ (complementSubproductReindexIso C K).hom)
+
+theorem optionProductComplexTransportedBinaryFan_pt {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [HasProduct (optionTail C K)] :
+    (optionProductComplexTransportedBinaryFan C K).pt = ∏ᶜ K :=
+  rfl
+
+theorem optionProductComplexTransportedBinaryFan_fst {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [HasProduct (optionTail C K)] :
+    (optionProductComplexTransportedBinaryFan C K).fst =
+      (optionProductBinaryFan C K).fst ≫ (noneSubproductIso C K).hom :=
+  rfl
+
+theorem optionProductComplexTransportedBinaryFan_snd {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val)]
+    [HasProduct (optionTail C K)] :
+    (optionProductComplexTransportedBinaryFan C K).snd =
+      (optionProductBinaryFan C K).snd ≫ (complementSubproductReindexIso C K).hom :=
+  rfl
+
+noncomputable abbrev optionProductSplitPair {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct (optionTail C K)] :
+    Discrete WalkingPair ⥤ CochainComplex C ℤ :=
+  pair (K none) (∏ᶜ (optionTail C K))
+
 /-- The same split at a fixed cochain degree. -/
 noncomputable abbrev optionProductDegreeBinaryFan {J : Type w}
     (K : Option J → CochainComplex C ℤ) (n : ℤ)
@@ -124,6 +196,7 @@ structure DegreewiseProductApiState : Type where
   optionSplitProductCone : String
   productReindex : String
   singletonProductReduction : String
+  complexTransportedFan : String
   missingComplexIsoConstructor : Option String
 
 /-- W151's current API frontier for the selected route. -/
@@ -133,12 +206,13 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   optionSplitProductCone := "Limits.Pi.binaryFanOfProp / binaryFanOfPropIsLimit"
   productReindex := "Limits.Pi.reindex / map' over Option.some"
   singletonProductReduction := "Limits.productUniqueIso for the none-indexed subproduct"
+  complexTransportedFan := "optionProductComplexTransportedBinaryFan"
   missingComplexIsoConstructor :=
-    some "Promote the degreewise Option split to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))"
+    some "Prove the transported complex fan is limiting via evaluated degreewise cones and convert the binary product limit to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))"
 
 theorem currentDegreewiseProductApiState_missing :
     currentDegreewiseProductApiState.missingComplexIsoConstructor =
-      some "Promote the degreewise Option split to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))" :=
+      some "Prove the transported complex fan is limiting via evaluated degreewise cones and convert the binary product limit to ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j => K (some j))" :=
   rfl
 
 /-- Compact checklist of the next proof obligations after this API guard. -/
@@ -147,10 +221,12 @@ def optionProductDecompositionNextObligations : List String :=
     "split that degreewise product with Pi.binaryFanOfProp at predicate x = none",
     "identify the none subproduct with (K none).X n using productUniqueIso",
     "reindex the complement subproduct along optionSomeComplementEquiv to the J-tail using Pi.reindex",
-    "assemble the degreewise isomorphisms into a HomologicalComplex isomorphism using isLimitOfEval"]
+    "show the evaluated transported complex fan matches the transported degreewise fan",
+    "assemble the degreewise limiting fans into a complex-level limiting fan using isLimitOfEval",
+    "convert the binary-product limit into the biproduct-shaped OptionProductIsoBiprod"]
 
 theorem optionProductDecompositionNextObligations_count :
-    optionProductDecompositionNextObligations.length = 5 :=
+    optionProductDecompositionNextObligations.length = 7 :=
   rfl
 
 section Checks
@@ -162,6 +238,13 @@ section Checks
 #check optionSomeComplementEquiv_value_eq_some
 #check complementTailReindexIso
 #check optionProductBinaryFan
+#check noneSubproductIso
+#check complementSubproductReindexIso
+#check optionProductComplexTransportedBinaryFan
+#check optionProductComplexTransportedBinaryFan_pt
+#check optionProductComplexTransportedBinaryFan_fst
+#check optionProductComplexTransportedBinaryFan_snd
+#check optionProductSplitPair
 #check optionProductDegreeBinaryFan
 #check DegreewiseProductApiState
 #check currentDegreewiseProductApiState
