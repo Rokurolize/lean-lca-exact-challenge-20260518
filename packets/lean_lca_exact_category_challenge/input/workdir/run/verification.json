@@ -1,9 +1,19 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v257-wpp-roof-fac-uniq",
-  "generated_utc": "2026-05-20T12:40:00Z",
-  "source_tree_hash": "33c9b9e1c91c0c34a920b6cb0cc5d2945ba6a5ccdb8f6af9ccef8a95a79138e8",
-  "summary": "v257時点で、支援w241を親側で再実装し、WalkingParallelPair のroof dataからstrict pair dataへ進む条件付きfac/naturality橋を追加した。roof arrowをselected endpoint strict source arrowへ変換するcoherent theoremは未供給なので、functor-category localization と product success は非完了である。",
+  "schema": "lean-lca-exact-challenge-verification-v258-localized-comparison-factor-adjunction",
+  "generated_utc": "2026-05-20T12:42:00Z",
+  "source_tree_hash": "fd8b4236f1fb21087e090dbddb8f410ab8b2cff35cf4a842f75cbcbd93bd09e5",
+  "summary": "v258時点で、支援w245を親側で再実装し、bounded homotopy localized composite の比較因子化は得られるが、それだけでは Adjunction ではないことをLeanで記録した。必要な入力は、比較因子ルートからlocalization compositeへtransported localized adjunctionを供給し、さらにunit/counit membershipを証明することである。product success は非完了である。",
   "commands": [
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/localized_comparison_factor_adjunction_w245.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W245 audit file."
+    },
+    {
+      "command": "lake env lean audit/blockers/localized_comparison_factor_adjunction_w245.lean",
+      "status": "passed",
+      "evidence": "Focused W245 localized comparison-factor adjunction audit passed in the parent target worktree."
+    },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_roof_fac_uniq_w241.lean",
       "status": "passed",
@@ -636,7 +646,13 @@
     "CategoryTheory.Localization.W241StrictPairData.comparisonIso",
     "CategoryTheory.Localization.W241StrictNatComponentData.natTrans",
     "CategoryTheory.Localization.W241RoofToStrictArrowTheorem",
-    "WPPRoofFacUniqW241.DboundedRoofToStrictArrowTheorem"
+    "WPPRoofFacUniqW241.DboundedRoofToStrictArrowTheorem",
+    "LocalizedComparisonFactorAdjunctionW245.ComparisonFactorRightAdjunctionInput",
+    "LocalizedComparisonFactorAdjunctionW245.ComparisonFactorLeftAdjunctionInput",
+    "LocalizedComparisonFactorAdjunctionW245.boundedHomotopyInverseImage_hasLeftCalculusOfFractions_of_comparisonFactorRight",
+    "LocalizedComparisonFactorAdjunctionW245.boundedHomotopyInverseImage_hasRightCalculusOfFractions_of_comparisonFactorLeft",
+    "LocalizedComparisonFactorAdjunctionW245.currentComparisonFactorAdjunctionState_no_transport_or_membership",
+    "LocalizedComparisonFactorAdjunctionW245.localizedComparisonFactorAdjunctionFindings_count"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -657,6 +673,6 @@
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "v247 updated Japanese reference-route and mathlib-gap docs for v245-v246 support consumption; no new product-success claim.",
+  "support_result_classification": "v258 consumed support w245 as a parent-side frontier reduction; comparison factorization is recorded as insufficient without transported adjunction plus unit/counit membership. No product-success claim.",
   "product_success": false
 }

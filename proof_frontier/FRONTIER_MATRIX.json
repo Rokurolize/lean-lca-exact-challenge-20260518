@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T12:40:00Z",
+  "generated_utc": "2026-05-20T12:42:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v257 consumes support w241 by parent-side reimplementation.",
+  "worker_policy": "No workers were launched from the target worktree. v258 consumes support w245 by parent-side reimplementation.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1294,9 +1294,9 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "v247 updated Japanese reference-route and mathlib-gap docs for v245-v246 support consumption; no new product-success claim.",
-  "latest_parent_update": "v251-w235-metrizable-lca-finite-colimits",
-  "summary": "v251時点で、支援w235を取り込み、MetrizableLCA の有限余極限ルートを整理した。audit/blockers/metrizable_lca_finite_colimits_w235.lean は、既存の零対象と二項双積から HasFiniteCoproducts MetrizableLCA を包装し、HasFiniteColimits MetrizableLCA を HasPushouts または HasCokernels へ縮約する。任意pushout/cokernelはまだ未供給なので product success は非完了である。",
+  "support_result_classification": "v258 consumed support w245 as a localized-adjunction frontier reduction; no product-success claim.",
+  "latest_parent_update": "v258-localized-comparison-factor-adjunction",
+  "summary": "v258時点で、支援w245を親側で再実装し、bounded homotopy localized composite の比較因子化は得られるが、それだけでは Adjunction ではないことをLeanで記録した。必要な入力は、比較因子ルートからlocalization compositeへtransported localized adjunctionを供給し、さらにunit/counit membershipを証明することである。product success は非完了である。",
   "remaining_frontier": [
     "General closedness of the explicit MetrizableLCA pushout relation subgroup beyond strict-short-exact left legs.",
     "Arbitrary HasPushouts MetrizableLCA or HasCokernels MetrizableLCA to close HasFiniteColimits MetrizableLCA.",
@@ -1360,6 +1360,12 @@
       "classification": "manual_ported_frontier_reduction",
       "artifact": "audit/blockers/metrizable_lca_finite_colimits_w235.lean",
       "result": "HasFiniteCoproducts MetrizableLCA is packaged; HasFiniteColimits reduces to HasPushouts or HasCokernels."
+    },
+    {
+      "id": "w245",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/localized_comparison_factor_adjunction_w245.lean",
+      "result": "Comparison factorization of the bounded homotopy localized composite is recorded, but it still requires transported localized adjunction plus unit/counit membership; product success remains false."
     }
   ]
 }
