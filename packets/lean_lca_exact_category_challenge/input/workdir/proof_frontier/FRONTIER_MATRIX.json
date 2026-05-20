@@ -3738,5 +3738,33 @@
       "W416 shape-level preservation instanceと四部構成全体の統合を完了する。"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w418": {
+    "timestamp_utc": "2026-05-21T00:58:00Z",
+    "status": "verified_focused",
+    "summary": "W418 constructs the ordinary descended quotient map and quotient compatibility, then derives W399 relation-pullback descended fields from W407 reverse membership plus IsClosedMap.",
+    "touched_files": [
+      "audit/blockers/wpp_op_w399_inputs_from_reverse_membership_and_quotient_v370_support_w418.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "MetrizableLCA.ordinaryDescendedQuotientMapW418",
+      "MetrizableLCA.ordinaryDescendedQuotientMap_quotient_compatW418",
+      "MetrizableLCA.RelationPullbackDescendedFieldsInputsW399.of_reverseMembership_ordinaryDescended",
+      "ordinaryDescendedOfOrdinaryMapW418",
+      "ordinaryDescendedOfOrdinaryMap_quotient_compatW418",
+      "relationPullbackDescendedFieldsInputsW399_of_reverseMembership_and_closedMap"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_w399_inputs_from_reverse_membership_and_quotient_v370_support_w418.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w399_inputs_from_reverse_membership_and_quotient_v370_support_w418.lean",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "実際のWPP-op morphismについてW407 reverse closed-range membershipを証明する。",
+      "ordinaryDescendedOfOrdinaryMapW418 ordinaryMapのIsClosedMapを証明する。",
+      "W399からW393/W390/W384 transported field routeへ接続する。",
+      "W416 shape-level preservation instanceを完了する。"
+    ],
+    "product_success_claimed": false
   }
 }
