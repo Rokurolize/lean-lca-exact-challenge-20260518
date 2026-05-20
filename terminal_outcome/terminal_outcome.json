@@ -2,8 +2,9 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v237時点で、support w214 の有用部分を親側で再実装し、audit/blockers/opposite_localization_finite_colimits_boundary.lean を拡張した。反対圏の抽象局所化 (boundedExactWeakEquivalence C).op.Localization から (Dbounded C)^op への標準同値を記録し、HasFiniteLimits (boundedExactWeakEquivalence C).op.Localization があれば HasFiniteColimits (Dbounded C) を得られることを証明した。これは有限colimitルートの残り入力を反対圏抽象局所化の有限limitへ狭めるが、無条件product successではない。",
+  "summary": "v238時点で、support w213 の有用部分を親側で再実装し、audit/blockers/equalizer_localization_transfer_boundary.lean を追加した。局所化で極限を転送する一般補題 CategoryTheory.Localization.hasLimitsOfShape が、J形functor-category局所化を仮定すれば通ることを証明した。WalkingParallelPairへ特殊化すると、Dbounded C のequalizer、さらに既存の有限product routeと合わせた有限limitが条件付きで得られる。残り入力は非離散shape WalkingParallelPair のfunctor-category localizationとparallel-pair安定性などであり、product successはまだ非完了である。",
   "verified_commands": [
+    "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
     "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -655,12 +656,22 @@
     "OppositeLocalizationFiniteColimitsBoundary.dboundedOp_hasFiniteLimits_of_oppositeLocalization_hasFiniteLimits",
     "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeLocalization_hasFiniteLimits",
     "OppositeLocalizationFiniteColimitsBoundary.OppositeLocalizationFiniteLimitInput",
-    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput"
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput",
+    "CategoryTheory.Localization.hasLimitsOfShape",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.inverts",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.limitFunctor",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.compLimitFunctorIso",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.adj",
+    "EqualizerLocalizationTransferBoundary.WalkingParallelPairFunctorCategoryLocalizationInput",
+    "EqualizerLocalizationTransferBoundary.dboundedHasWalkingParallelPairLimits_of_functorCategoryLocalization",
+    "EqualizerLocalizationTransferBoundary.dboundedHasEqualizers_of_functorCategoryLocalization",
+    "EqualizerLocalizationTransferBoundary.dboundedHasFiniteLimits_of_equalizerLocalizationTransfer",
+    "EqualizerLocalizationTransferBoundary.currentEqualizerLocalizationTransferState"
   ],
   "known_gaps": [
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
+    "Dbounded有限limitのequalizer consumerは形式化されたが、WalkingParallelPair functor-category localization とparallel-pair安定性がまだ未供給である。",
     "反対圏有限colimitルートは (boundedExactWeakEquivalence C).op.Localization の有限limitへ縮約されたが、その有限limit証明はまだ未供給である。",
-    "Dboundedの無条件有限limitには、left calculus of fractions と pullback/equalizer localization transfer の接続が残る。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
@@ -669,7 +680,7 @@
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v237 parent-reimplemented support w214 into the opposite finite-colimits boundary; w215 delayed as stable-overclaim guard evidence.",
+  "worker_frontier_summary": "v238 parent-reimplemented support w213; equalizer localization transfer is formal conditional on WalkingParallelPair functor-category localization. w212 remains obstruction evidence.",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
     "Dboundedの無条件有限product/有限limitには、HasFiniteLimits MetrizableLCA、left calculus of fractions、pullback/equalizer localization transfer の接続が残る。",
@@ -678,9 +689,11 @@
     "反対圏有限colimitルートでは、(Dbounded C)^op の有限limitをまだ構成していない。",
     "Dbounded のequalizer/pullback局所化転送、三角構造、stable infinity-category構造は未完了。",
     "反対圏抽象局所化 (boundedExactWeakEquivalence C).op.Localization の有限limit証明が未完了。",
-    "w215のstable projection bridgeは監査境界であり、stable providerそのものは未構成。"
+    "w215のstable projection bridgeは監査境界であり、stable providerそのものは未構成。",
+    "WalkingParallelPair functor-category localization input が未完了。",
+    "parallel-pair mapping-cone安定性のproduct-facing接続が未完了。"
   ],
-  "next_recommended_goal": "Prove HasFiniteLimits (boundedExactWeakEquivalence MetrizableLCA).op.Localization by combining opposite-side finite products with equalizer or pullback localization transfer.",
+  "next_recommended_goal": "Prove the WalkingParallelPair functor-category localization input for Dbounded.localization, or prove an equivalent equalizer localization transfer theorem directly.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -865,10 +878,20 @@
     "OppositeLocalizationFiniteColimitsBoundary.dboundedOp_hasFiniteLimits_of_oppositeLocalization_hasFiniteLimits",
     "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeLocalization_hasFiniteLimits",
     "OppositeLocalizationFiniteColimitsBoundary.OppositeLocalizationFiniteLimitInput",
-    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput"
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput",
+    "CategoryTheory.Localization.hasLimitsOfShape",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.inverts",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.limitFunctor",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.compLimitFunctorIso",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.adj",
+    "EqualizerLocalizationTransferBoundary.WalkingParallelPairFunctorCategoryLocalizationInput",
+    "EqualizerLocalizationTransferBoundary.dboundedHasWalkingParallelPairLimits_of_functorCategoryLocalization",
+    "EqualizerLocalizationTransferBoundary.dboundedHasEqualizers_of_functorCategoryLocalization",
+    "EqualizerLocalizationTransferBoundary.dboundedHasFiniteLimits_of_equalizerLocalizationTransfer",
+    "EqualizerLocalizationTransferBoundary.currentEqualizerLocalizationTransferState"
   ],
-  "generated_utc": "2026-05-20T10:35:47Z",
-  "support_result_classification": "support w214 was parent-reimplemented into the opposite finite-colimits boundary; support w215 was delayed as useful stable-overclaim guard evidence, not a product proof.",
+  "generated_utc": "2026-05-20T10:43:46Z",
+  "support_result_classification": "support w213 was parent-reimplemented as a generic localization limit-transfer boundary; support w212 remains obstruction evidence for left calculus and is not merged as product proof.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -1192,7 +1215,17 @@
     "OppositeLocalizationFiniteColimitsBoundary.dboundedOp_hasFiniteLimits_of_oppositeLocalization_hasFiniteLimits",
     "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeLocalization_hasFiniteLimits",
     "OppositeLocalizationFiniteColimitsBoundary.OppositeLocalizationFiniteLimitInput",
-    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput"
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput",
+    "CategoryTheory.Localization.hasLimitsOfShape",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.inverts",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.limitFunctor",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.compLimitFunctorIso",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.adj",
+    "EqualizerLocalizationTransferBoundary.WalkingParallelPairFunctorCategoryLocalizationInput",
+    "EqualizerLocalizationTransferBoundary.dboundedHasWalkingParallelPairLimits_of_functorCategoryLocalization",
+    "EqualizerLocalizationTransferBoundary.dboundedHasEqualizers_of_functorCategoryLocalization",
+    "EqualizerLocalizationTransferBoundary.dboundedHasFiniteLimits_of_equalizerLocalizationTransfer",
+    "EqualizerLocalizationTransferBoundary.currentEqualizerLocalizationTransferState"
   ],
   "product_success": false
 }

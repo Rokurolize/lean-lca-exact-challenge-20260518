@@ -1,9 +1,14 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v237-opposite-localization-model-finite-limit-reduction",
-  "generated_utc": "2026-05-20T10:35:47Z",
-  "source_tree_hash": "06c3fab0a2e8d0b543083f8b066c9de62733dedbeabef50cb379dbb15e4db7e4",
-  "summary": "v237時点で、support w214 の有用部分を親側で再実装し、audit/blockers/opposite_localization_finite_colimits_boundary.lean を拡張した。反対圏の抽象局所化 (boundedExactWeakEquivalence C).op.Localization から (Dbounded C)^op への標準同値を記録し、HasFiniteLimits (boundedExactWeakEquivalence C).op.Localization があれば HasFiniteColimits (Dbounded C) を得られることを証明した。これは有限colimitルートの残り入力を反対圏抽象局所化の有限limitへ狭めるが、無条件product successではない。",
+  "schema": "lean-lca-exact-challenge-verification-v238-equalizer-localization-transfer-boundary",
+  "generated_utc": "2026-05-20T10:43:46Z",
+  "source_tree_hash": "8584ee025e4ecff8b3bd80aded1b81dd2a7a6d914b92b26fb48c0b3b25f150f6",
+  "summary": "v238時点で、support w213 の有用部分を親側で再実装し、audit/blockers/equalizer_localization_transfer_boundary.lean を追加した。局所化で極限を転送する一般補題 CategoryTheory.Localization.hasLimitsOfShape が、J形functor-category局所化を仮定すれば通ることを証明した。WalkingParallelPairへ特殊化すると、Dbounded C のequalizer、さらに既存の有限product routeと合わせた有限limitが条件付きで得られる。残り入力は非離散shape WalkingParallelPair のfunctor-category localizationとparallel-pair安定性などであり、product successはまだ非完了である。",
   "commands": [
+    {
+      "command": "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
+      "status": "passed",
+      "evidence": "Focused equalizer localization transfer boundary check passed."
+    },
     {
       "command": "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
       "status": "passed",
@@ -17,52 +22,52 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations Lean audit passed for v237."
+      "evidence": "ProductSuccessDeclarations passed after v238 artifact refresh."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed for v237 with existing warnings only."
+      "evidence": "Full lake build passed after v238 equalizer localization transfer boundary addition; only pre-existing warnings were emitted."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed for LeanLCAExactChallenge after v237."
+      "evidence": "Forbidden-token audit passed after v238 artifact refresh."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations Lean audit passed for v237."
+      "evidence": "RequiredDeclarations passed after v238 artifact refresh."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed for v237."
+      "evidence": "Whitespace diff check passed after v238 artifact refresh."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "terminal_outcome JSON parsed after v237 refresh."
+      "evidence": "terminal_outcome JSON parsed after v238 refresh."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "proof_frontier JSON parsed after v237 refresh."
+      "evidence": "proof_frontier JSON parsed after v238 refresh."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "verification JSON parsed after v237 refresh."
+      "evidence": "verification JSON parsed after v238 refresh."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "manifest JSON parsed after v237 refresh."
+      "evidence": "manifest JSON parsed after v238 refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after v237 manifest refresh."
+      "evidence": "External audit self-check passed after v238 manifest refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -379,15 +384,25 @@
     "OppositeLocalizationFiniteColimitsBoundary.dboundedOp_hasFiniteLimits_of_oppositeLocalization_hasFiniteLimits",
     "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeLocalization_hasFiniteLimits",
     "OppositeLocalizationFiniteColimitsBoundary.OppositeLocalizationFiniteLimitInput",
-    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput"
+    "OppositeLocalizationFiniteColimitsBoundary.hasFiniteColimits_dbounded_of_oppositeFiniteLimitInput",
+    "CategoryTheory.Localization.hasLimitsOfShape",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.inverts",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.limitFunctor",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.compLimitFunctorIso",
+    "CategoryTheory.Localization.HasLimitsOfShapeAux.adj",
+    "EqualizerLocalizationTransferBoundary.WalkingParallelPairFunctorCategoryLocalizationInput",
+    "EqualizerLocalizationTransferBoundary.dboundedHasWalkingParallelPairLimits_of_functorCategoryLocalization",
+    "EqualizerLocalizationTransferBoundary.dboundedHasEqualizers_of_functorCategoryLocalization",
+    "EqualizerLocalizationTransferBoundary.dboundedHasFiniteLimits_of_equalizerLocalizationTransfer",
+    "EqualizerLocalizationTransferBoundary.currentEqualizerLocalizationTransferState"
   ],
   "product_complete": false,
   "known_gaps": [
     "Dbounded MetrizableLCA の有限product constructor は product module に入ったが、まだ (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions を仮定している。",
+    "Dbounded有限limitのequalizer consumerは形式化されたが、WalkingParallelPair functor-category localization とparallel-pair安定性がまだ未供給である。",
     "反対圏有限colimitルートは (boundedExactWeakEquivalence C).op.Localization の有限limitへ縮約されたが、その有限limit証明はまだ未供給である。",
-    "Dboundedの無条件有限limitには、left calculus of fractions と pullback/equalizer localization transfer の接続が残る。",
     "Dbounded有限colimit、三角構造、stable infinity-category構造のproduct-facing証明とProductSuccessDeclarationsへの接続が未完了である。",
     "最終product successには抽出レビューpacket、clean extraction audit、fresh claim reviewがまだ必要である。"
   ],
-  "support_result_classification": "support w214 was parent-reimplemented into the opposite finite-colimits boundary; support w215 was delayed as useful stable-overclaim guard evidence, not a product proof."
+  "support_result_classification": "support w213 was parent-reimplemented as a generic localization limit-transfer boundary; support w212 remains obstruction evidence for left calculus and is not merged as product proof."
 }

@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T10:35:47Z",
+  "generated_utc": "2026-05-20T10:43:46Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1282,13 +1282,13 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "support w214 was parent-reimplemented into the opposite finite-colimits boundary; support w215 was delayed as useful stable-overclaim guard evidence, not a product proof.",
-  "latest_parent_update": "v237-opposite-localization-model-finite-limit-reduction",
-  "summary": "v237時点で、support w214 の有用部分を親側で再実装し、audit/blockers/opposite_localization_finite_colimits_boundary.lean を拡張した。反対圏の抽象局所化 (boundedExactWeakEquivalence C).op.Localization から (Dbounded C)^op への標準同値を記録し、HasFiniteLimits (boundedExactWeakEquivalence C).op.Localization があれば HasFiniteColimits (Dbounded C) を得られることを証明した。これは有限colimitルートの残り入力を反対圏抽象局所化の有限limitへ狭めるが、無条件product successではない。",
+  "support_result_classification": "support w213 was parent-reimplemented as a generic localization limit-transfer boundary; support w212 remains obstruction evidence for left calculus and is not merged as product proof.",
+  "latest_parent_update": "v238-equalizer-localization-transfer-boundary",
+  "summary": "v238時点で、support w213 の有用部分を親側で再実装し、audit/blockers/equalizer_localization_transfer_boundary.lean を追加した。局所化で極限を転送する一般補題 CategoryTheory.Localization.hasLimitsOfShape が、J形functor-category局所化を仮定すれば通ることを証明した。WalkingParallelPairへ特殊化すると、Dbounded C のequalizer、さらに既存の有限product routeと合わせた有限limitが条件付きで得られる。残り入力は非離散shape WalkingParallelPair のfunctor-category localizationとparallel-pair安定性などであり、product successはまだ非完了である。",
   "remaining_frontier": [
+    "Dbounded finite limits: equalizer consumer is formalized; remaining first API is WalkingParallelPair functor-category localization plus parallel-pair weak-equivalence stability.",
     "Dbounded finite colimits: reduced to HasFiniteLimits (boundedExactWeakEquivalence C).op.Localization; still needs opposite-side finite-product stability plus equalizer/pullback localization transfer.",
     "Dbounded finite products: remaining left calculus of fractions for boundedExactWeakEquivalence MetrizableLCA.",
-    "Dbounded finite limits: pullback/equalizer weak-equivalence and localization transfer.",
     "Dbounded finite colimits and dual transfer route.",
     "Triangulated structure and stable infinity-category structure."
   ]
