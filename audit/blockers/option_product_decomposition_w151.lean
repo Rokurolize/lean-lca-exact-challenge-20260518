@@ -36,6 +36,20 @@ abbrev optionTailDegree {J : Type w} (K : Option J → CochainComplex C ℤ) (n 
     J → C :=
   fun j => (K (some j)).X n
 
+/-- The singleton subindex selecting only the `none` entry of an `Option J` family. -/
+abbrev optionNoneIndex (J : Type w) : Type w :=
+  {x : Option J // x = none}
+
+instance optionNoneIndexUnique (J : Type w) : Unique (optionNoneIndex J) where
+  default := ⟨none, rfl⟩
+  uniq := by
+    intro a
+    cases a with
+    | mk x hx =>
+      cases x with
+      | none => rfl
+      | some j => cases hx
+
 /-- The complement of the `none` index in `Option J` is canonically equivalent to `J`. -/
 def optionSomeComplementEquiv (J : Type w) :
     {x : Option J // ¬ x = none} ≃ J where
@@ -1157,18 +1171,56 @@ noncomputable def optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplem
   exact optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct C K
 
 /--
+Remove the singleton-subproduct product requirements from the finite call site. The index
+`{x : Option J // x = none}` is unique, so mathlib's unique-index product instance supplies both
+the complex-level and fixed-degree singleton products.
+-/
+noncomputable def optionProductIsoBiprod_finiteProductCallsite_singletonTailDegreeComplement_of_direct
+    {J : Type w}
+    [Finite J]
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun j : J => K (some j))]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [∀ m : ℤ, HasProduct (fun j : J => (K (some j)).X m)]
+    [∀ x : Option J, Decidable (x = none)]
+    [HasBinaryBiproduct (K none) (∏ᶜ (fun j : J => K (some j)))] :
+    ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j : J => K (some j)) := by
+  letI : HasProduct (fun i : {x : Option J // x = none} => K i.val) :=
+    inferInstance
+  letI : ∀ m : ℤ,
+      HasProduct (fun i : {x : Option J // x = none} => (K i.val).X m) :=
+    fun _ => inferInstance
+  exact optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct C K
+
+/--
+Remove the selected binary-biproduct requirement from the finite call site. Binary biproducts in
+the cochain-complex category are synthesized from the ambient binary biproducts in `C`.
+-/
+noncomputable def optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct
+    {J : Type w}
+    [Finite J]
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun j : J => K (some j))]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [∀ m : ℤ, HasProduct (fun j : J => (K (some j)).X m)]
+    [∀ x : Option J, Decidable (x = none)] :
+    ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j : J => K (some j)) := by
+  letI : HasBinaryBiproduct (K none) (∏ᶜ (fun j : J => K (some j))) :=
+    inferInstance
+  exact optionProductIsoBiprod_finiteProductCallsite_singletonTailDegreeComplement_of_direct C K
+
+/--
 The finite-product call site no longer needs a new fan proof after the direct IsLimit route.
 What remains is instance packaging from W149's leaner input hypotheses to the explicit W151
 consumer.
 -/
 def finiteProductCallsiteRemainingInstanceGaps : List String :=
-  ["derive the singleton none-subproduct HasProduct from the finite Option product context",
-    "derive degreewise Option-product HasProduct instances for every cochain degree",
-    "derive degreewise singleton subproduct HasProduct instances for every cochain degree",
-    "provide the selected HasBinaryBiproduct for the head complex and tail product complex"]
+  ["derive degreewise Option-product HasProduct instances for every cochain degree"]
 
 theorem finiteProductCallsiteRemainingInstanceGaps_count :
-    finiteProductCallsiteRemainingInstanceGaps.length = 4 :=
+    finiteProductCallsiteRemainingInstanceGaps.length = 1 :=
   rfl
 
 /--
@@ -1233,11 +1285,11 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   optionProductIsoBiprodOfEvalIsLimit :=
     "optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit"
   missingComplexIsoConstructor :=
-    some "The direct Option-product fan IsLimit route is closed by optionProductComplexTransportedBinaryFanIsLimit_direct; the remaining finite-product call-site work is instance packaging for subproducts, degreewise products, and the selected binary biproduct."
+    some "The direct Option-product fan IsLimit route is closed by optionProductComplexTransportedBinaryFanIsLimit_direct; the remaining finite-product call-site work is degreewise Option-product HasProduct packaging."
 
 theorem currentDegreewiseProductApiState_missing :
     currentDegreewiseProductApiState.missingComplexIsoConstructor =
-      some "The direct Option-product fan IsLimit route is closed by optionProductComplexTransportedBinaryFanIsLimit_direct; the remaining finite-product call-site work is instance packaging for subproducts, degreewise products, and the selected binary biproduct." :=
+      some "The direct Option-product fan IsLimit route is closed by optionProductComplexTransportedBinaryFanIsLimit_direct; the remaining finite-product call-site work is degreewise Option-product HasProduct packaging." :=
   rfl
 
 /-- Compact checklist of the next proof obligations after this API guard. -/
@@ -1263,6 +1315,8 @@ section Checks
 #check binaryFanIsLimitOfEq
 #check coneIsLimitOfEq
 #check optionSomeComplementEquiv
+#check optionNoneIndex
+#check optionNoneIndexUnique
 #check optionSomeComplementEquiv_apply_some
 #check optionSomeComplementEquiv_symm_apply
 #check optionSomeComplementEquiv_value_eq_some
@@ -1315,6 +1369,8 @@ section Checks
 #check optionProductIsoBiprod_finiteProductCallsite_of_direct
 #check optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct
 #check optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct
+#check optionProductIsoBiprod_finiteProductCallsite_singletonTailDegreeComplement_of_direct
+#check optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct
 #check finiteProductCallsiteRemainingInstanceGaps
 #check finiteProductCallsiteRemainingInstanceGaps_count
 #check DegreewiseProductApiState

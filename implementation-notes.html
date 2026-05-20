@@ -265,3 +265,7 @@
 <h2>v220 tail complement packaging</h2>
 <p><time>2026-05-20T07:59:24Z</time>: The parent consumed w178-w179 by adding W151 call-site packaging lemmas from the displayed <code>some</code>-tail product to the complement subtype product, both at complex level and degreewise. <code>optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct</code> now removes the explicit complement and degreewise-complement product assumptions from the finite Option call site. The remaining explicit packaging gaps are the singleton <code>none</code> subproduct, degreewise Option products, degreewise singleton subproducts, and the selected binary biproduct.</p>
 </section>
+<section id="v221-singleton-binary-packaging">
+<h2>v221 singleton and binary packaging</h2>
+<p><time>2026-05-20T08:05:52Z</time>: The parent added <code>optionNoneIndex</code> and <code>optionNoneIndexUnique</code> to W151, then used mathlib's unique-index product instance to remove the complex-level and degreewise singleton <code>none</code> subproduct assumptions from the finite Option call site. A second wrapper, <code>optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct</code>, also removes the selected binary-biproduct assumption by typeclass synthesis in the cochain-complex category. The finite call-site gap list is now reduced to one explicit blocker: degreewise Option-product <code>HasProduct</code> instances for every cochain degree. Product success remains nonterminal.</p>
+</section>

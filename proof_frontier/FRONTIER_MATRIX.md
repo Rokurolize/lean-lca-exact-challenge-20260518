@@ -97,3 +97,7 @@ v219 closes the direct Option-product transported fan IsLimit route in W151. The
 ## v220 Update
 
 v220 consumes w178-w179 by adding complement-subproduct packaging from the displayed some-tail product, and the same construction degreewise. The strongest W151 call-site wrapper is now optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct. The remaining finite Option-family packaging gaps are singleton none-subproduct products, degreewise Option products, degreewise singleton products, and the selected binary biproduct. Product success remains nonterminal.
+
+## v221 Update
+
+v221 packages the singleton none-subproduct and selected binary-biproduct call-site assumptions in W151. The none index is now named as optionNoneIndex with a Unique instance, so complex-level and degreewise singleton products are synthesized by mathlib's unique-index product instance. The new strongest wrapper is optionProductIsoBiprod_finiteProductCallsite_packaged_of_direct, and the remaining finite Option-family packaging gap is degreewise Option-product HasProduct for every cochain degree. Product success remains nonterminal.
