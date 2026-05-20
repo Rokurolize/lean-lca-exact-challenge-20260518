@@ -3635,5 +3635,30 @@
       "W412 relation statement、W411 topological inputs、target relation lift certificateを証明する。"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w414": {
+    "timestamp_utc": "2026-05-21T00:46:00Z",
+    "status": "verified_focused",
+    "summary": "W414 proves W411 target representative-image saturation from relation-pullback equality and target-relation lifting through the ordinary codomain component.",
+    "touched_files": [
+      "audit/blockers/wpp_op_left_lca_representative_image_saturation_v370_support_w414.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "ConcreteMetrizableLCA.quotientMap_add_relation_eqW414",
+      "ConcreteMetrizableLCA.representativeImageSaturated_of_relationPullback_targetLiftsW414",
+      "ordinaryDescendedRepresentativeImageSaturated_of_relationPullback_targetLiftsW414",
+      "ordinaryDescendedRepresentativeImageSaturated_of_relationFieldsW414"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_left_lca_representative_image_saturation_v370_support_w414.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_representative_image_saturation_v370_support_w414.lean",
+      "git diff --check"
+    ],
+    "remaining_inputs": [
+      "実際のWPP-op morphismについてW412で同値化されたrelation statementを証明する。",
+      "target-relation lift certificateを証明する。",
+      "W413のPreservesColimit接続と四部構成全体の統合を完了する。"
+    ],
+    "product_success_claimed": false
   }
 }

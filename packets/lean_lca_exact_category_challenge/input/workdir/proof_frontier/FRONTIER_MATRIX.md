@@ -665,6 +665,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W413 Mapped Cocone IsColimit Source
 2026-05-21T00:43:00Z: Worker support `w413-addcommgrp-mapped-cocone-iscolimit-source-v370` was parent-verified as `audit/blockers/addcommgrp_mapped_cocone_iscolimit_source_v370_support_w413.lean`. It proves that `selectedForgottenTargetMappedCocone S cs` is a colimit when `cs` is a colimit and `forgottenShortComplexFunctor` preserves that colimit. Product success remains false because the preservation instance still has to be supplied in the final route and then connected through W410/W406/W403/W398.
 
+## W414 Representative Image Saturation
+2026-05-21T00:46:00Z: Worker support `w414-left-lca-representative-image-saturation-v370` was parent-verified as `audit/blockers/wpp_op_left_lca_representative_image_saturation_v370_support_w414.lean`. It proves the target representative-image saturation input required by W411 from relation-pullback equality and target-relation lifting through the ordinary codomain component. Product success remains false because the actual morphism still needs the W412-equivalent relation statement and target-relation lift certificate.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
