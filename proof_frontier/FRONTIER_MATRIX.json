@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T07:10:00Z",
+  "generated_utc": "2026-05-20T07:25:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v167 parent-only update extends the w131 stable four-projection audit to all extracted projection providers.",
+  "worker_policy": "No workers were launched from the target worktree. v168 classifies completed support result w130 as superseded by parent v164-v165.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -573,7 +573,7 @@
       ],
       "worker_count_allowed": 0,
       "verification_command": "lake env lean audit/blockers/derived_infinity_exact_category_api.lean && lake env lean audit/blockers/dbounded_pretriangulated_wrapper.lean && lake env lean audit/blockers/localized_functor_is_triangulated_transfer.lean && lake env lean audit/blockers/dbounded_direct_localization_triangulated_package.lean && lake env lean audit/blockers/strict_boundedness_cochain_data_from_strictification.lean && lake env lean audit/blockers/bounded_complex_source_triangulated_package.lean && lake env lean audit/blockers/stable_infinity_certificate_interface_shape.lean && lake env lean audit/blockers/bounded_exact_weak_equivalence_triangle_completion_transport.lean && lake env lean audit/blockers/bounded_homotopy_equivalence_transport_frontier.lean && lake env lean audit/blockers/bounded_triangle_lift_completion_frontier_w74.lean && lake env lean audit/blockers/bounded_homotopy_transport_counterexample.lean && lake env lean audit/blockers/stable_certificate_projection_audit_shape.lean && lake env lean audit/blockers/stable_certificate_field_provider_scout_w124.lean && lake env lean audit/blockers/bounded_weak_endpoint_cochain_bridge_provider_w125.lean && lake env lean audit/blockers/contractible_tail_counterexample_formalization.lean && lake env lean audit/blockers/bounded_homotopy_strict_representative_frontier.lean && lake env lean audit/blockers/alternating_tail_extend_transport_probe.lean && lake env lean audit/blockers/int_tail_unbounded_contractible_probe.lean && lake env lean audit/blockers/selected_cochain_restricted_iso_payload_w114.lean && lake env lean audit/blockers/bounded_strict_realization_frontier_minimizer.lean",
-      "merge_blocker": "v167 stable-side refinement: a full single stable four-projection certificate yields all four independent Dbounded projection providers, but ordinary Dbounded evidence still does not construct that certificate. Bounded-side v165 still requires a nontrivial distinguished eligibility predicate.",
+      "merge_blocker": "v168 support classification: w130 provider-side trivial eligibility result is already covered by parent v164, and parent v165 refutes the corresponding trivial/always upgrade over IntModuleCat. Remaining bounded input must be a genuinely nontrivial eligibility predicate; stable input remains OrdinaryContextToDboundedFourProjectionProvider.",
       "product_success_contribution": "Required for fourth objective; v157 narrows the bounded endpoint provider but does not prove product success.",
       "owned_by_active_process": true,
       "implemented_declarations": [

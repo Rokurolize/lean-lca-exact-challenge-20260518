@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v167-stable-four-projection-extractors",
-  "generated_utc": "2026-05-20T07:10:00Z",
+  "schema": "lean-lca-exact-challenge-verification-v168-w130-classified",
+  "generated_utc": "2026-05-20T07:25:00Z",
   "source_tree_hash": "66b4e93bdb7267e85fc27e4c08ac1fc8f811ed0dc6e35063f9034c85b75d5401",
-  "summary": "v167 extends the stable four-projection audit so a full single stable certificate yields all four independent Dbounded projection providers; ordinary Dbounded evidence still does not construct the certificate, so product remains nonterminal.",
+  "summary": "v168 classifies completed support result w130 as superseded by parent v164-v165: provider-side trivial eligibility construction was already integrated and the corresponding always/trivial upgrade was further refuted over IntModuleCat; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
@@ -290,6 +290,26 @@
         "reject_unconditional_weakEndpointSelectedCochainIso_provider_w127"
       ],
       "product_effect": "narrows bounded route; unconditional weak endpoint provider is refuted over IntModuleCat"
+    },
+    "w130-distinguished-eligibility-provider-constructor": {
+      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave71_20260520T001200Z/workers/w130-distinguished-eligibility-provider-constructor/result.json",
+      "classification": "superseded_by_parent_v164_v165",
+      "worker_status": "proof_segment_ready",
+      "worker_changed_files": [
+        "audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean",
+        "audit/blockers/distinguished_eligibility_provider_constructor_w130.lean"
+      ],
+      "parent_files": [
+        "audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean"
+      ],
+      "parent_declarations_covering_result": [
+        "DistinguishedEndpointTrivialEligibility",
+        "distinguishedEndpointEligibilityProvider_trivial",
+        "boundedTrianglehIso13CochainDataStrictification_of_trivialEligibilityUpgrade",
+        "endpointHomotopyEquivToSelectedCochainIsoStrictification_of_trivialEligibilityUpgrade",
+        "reject_trivialEligibilityUpgrade_intModuleCat"
+      ],
+      "product_effect": "no_product_success_claim; provider-side result is integrated and the trivial upgrade is refuted, leaving only a genuinely nontrivial eligibility route"
     }
   }
 }
