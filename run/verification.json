@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
   "generated_utc": "2026-05-20T22:58:00Z",
-  "source_tree_hash": "0e99bd0d9445ed6a9c13ce436ac22b40533d6dad77c245e015bfa9dcafad7d99",
+  "source_tree_hash": "71cce734409089ade7d3032acadabcd7cf6bfdb2965f7dfd45e122cd6c837ef6",
   "summary": "W377/W378 verify closed-map remaining-field and transported relation-field support; product_complete remains false.",
   "commands": [
     {

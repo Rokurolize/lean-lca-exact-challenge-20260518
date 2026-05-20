@@ -1605,15 +1605,15 @@
     "W360/W363によりtarget quotient closed-on-saturated theoremは検証済みであり、残りのtopological入力は具体target relation lifting、relation pullback equality、必要なrepresentative-image条件のW354/W351統合である。",
     "W364でπᵢ.mapCocone colimitを成分cokernel coforkから運ぶ消費口は検証済みだが、π₁/π₂/π₃それぞれのcomponent cocone transport本体は未証明である。",
     "W365でW355/W363/W358型入力からdescended quotient mapのIsClosedMapへのcomposerは検証済みだが、具体WPP-op quotient compatibility、relation pullback、target representative-image saturation/relation liftingは未証明である。",
-    "concrete component closed-map theorem for the ordinary codomain component",
-    "relation-pullback equality for the concrete WPP-op quotient relations",
-    "target relation lifting through the ordinary codomain component",
-    "W354/W351 integration of the resulting descended closed-map and transported certificate fields",
-    "ordinary component square equations for the WPP-op natural transformation",
-    "relation-pullback equality or reverse preimage condition for W378",
-    "quotient compatibility for the ordinary descended quotient map",
-    "closed-map input for the ordinary descended quotient map",
-    "identification of ordinary W352 fields with transported concrete quotient cocone points"
+    "ordinary codomain componentについて、具体descended quotient mapへ渡すcomponent closed-map定理はまだ未証明である。",
+    "具体WPP-op quotient relationについて、relation-pullback equality本体はまだ未証明である。",
+    "ordinary codomain componentを通じたtarget relation liftingはまだ未証明である。",
+    "得られたdescended closed-mapとtransported certificate fieldsをW354/W351 consumerへ統合する部分はまだ未証明である。",
+    "W378のordinary component square equationsを実際のWPP-op natural transformationから与える部分はまだ未証明である。",
+    "W378で必要なrelation-pullback equality、または同値なreverse preimage conditionはまだ未証明である。",
+    "ordinary descended quotient mapのquotient compatibilityはまだ未証明である。",
+    "ordinary descended quotient mapのclosed-map inputはまだ未証明である。",
+    "ordinary W352 fieldsをtransported concrete quotient cocone points上のfieldsとして同一視する部分はまだ未証明である。"
   ],
   "open_blockers": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
@@ -1644,15 +1644,15 @@
     "W360/W363によりtarget quotient closed-on-saturated theoremは検証済みであり、残りのtopological入力は具体target relation lifting、relation pullback equality、必要なrepresentative-image条件のW354/W351統合である。",
     "W364でπᵢ.mapCocone colimitを成分cokernel coforkから運ぶ消費口は検証済みだが、π₁/π₂/π₃それぞれのcomponent cocone transport本体は未証明である。",
     "W365でW355/W363/W358型入力からdescended quotient mapのIsClosedMapへのcomposerは検証済みだが、具体WPP-op quotient compatibility、relation pullback、target representative-image saturation/relation liftingは未証明である。",
-    "concrete component closed-map theorem for the ordinary codomain component",
-    "relation-pullback equality for the concrete WPP-op quotient relations",
-    "target relation lifting through the ordinary codomain component",
-    "W354/W351 integration of the resulting descended closed-map and transported certificate fields",
-    "ordinary component square equations for the WPP-op natural transformation",
-    "relation-pullback equality or reverse preimage condition for W378",
-    "quotient compatibility for the ordinary descended quotient map",
-    "closed-map input for the ordinary descended quotient map",
-    "identification of ordinary W352 fields with transported concrete quotient cocone points"
+    "ordinary codomain componentについて、具体descended quotient mapへ渡すcomponent closed-map定理はまだ未証明である。",
+    "具体WPP-op quotient relationについて、relation-pullback equality本体はまだ未証明である。",
+    "ordinary codomain componentを通じたtarget relation liftingはまだ未証明である。",
+    "得られたdescended closed-mapとtransported certificate fieldsをW354/W351 consumerへ統合する部分はまだ未証明である。",
+    "W378のordinary component square equationsを実際のWPP-op natural transformationから与える部分はまだ未証明である。",
+    "W378で必要なrelation-pullback equality、または同値なreverse preimage conditionはまだ未証明である。",
+    "ordinary descended quotient mapのquotient compatibilityはまだ未証明である。",
+    "ordinary descended quotient mapのclosed-map inputはまだ未証明である。",
+    "ordinary W352 fieldsをtransported concrete quotient cocone points上のfieldsとして同一視する部分はまだ未証明である。"
   ],
   "consumed_support_results": [
     {
@@ -1920,15 +1920,15 @@
     "W374でW371のleft/right square equationsはWPP-op naturalityから検証済みだが、component closed-map、relation pullback equality、target relation lifting、W354/W351統合は未証明である。",
     "W375でordinary/inverse-whiskered projection equationsからW354 transported leg equationsへの接続は検証済みだが、transported relation-pullback descended fieldsは未証明である。",
     "W376でconcrete degreewise cokernel cofork dataからW356/W350/AddCommGrpKernelExact consumerへの接続は検証済みだが、具体degreewise data、forgotten WPP-op colimit rowへのtargetIso、compatibility squaresは未証明である。",
-    "concrete component closed-map theorem for the ordinary codomain component",
-    "relation-pullback equality for the concrete WPP-op quotient relations",
-    "target relation lifting through the ordinary codomain component",
-    "W354/W351 integration of the resulting descended closed-map and transported certificate fields",
-    "ordinary component square equations for the WPP-op natural transformation",
-    "relation-pullback equality or reverse preimage condition for W378",
-    "quotient compatibility for the ordinary descended quotient map",
-    "closed-map input for the ordinary descended quotient map",
-    "identification of ordinary W352 fields with transported concrete quotient cocone points"
+    "ordinary codomain componentについて、具体descended quotient mapへ渡すcomponent closed-map定理はまだ未証明である。",
+    "具体WPP-op quotient relationについて、relation-pullback equality本体はまだ未証明である。",
+    "ordinary codomain componentを通じたtarget relation liftingはまだ未証明である。",
+    "得られたdescended closed-mapとtransported certificate fieldsをW354/W351 consumerへ統合する部分はまだ未証明である。",
+    "W378のordinary component square equationsを実際のWPP-op natural transformationから与える部分はまだ未証明である。",
+    "W378で必要なrelation-pullback equality、または同値なreverse preimage conditionはまだ未証明である。",
+    "ordinary descended quotient mapのquotient compatibilityはまだ未証明である。",
+    "ordinary descended quotient mapのclosed-map inputはまだ未証明である。",
+    "ordinary W352 fieldsをtransported concrete quotient cocone points上のfieldsとして同一視する部分はまだ未証明である。"
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -3228,10 +3228,10 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_closedmap_remaining_fields_v370_support_w377.lean"
     ],
     "remaining_inputs": [
-      "concrete component closed-map theorem for the ordinary codomain component",
-      "relation-pullback equality for the concrete WPP-op quotient relations",
-      "target relation lifting through the ordinary codomain component",
-      "W354/W351 integration of the resulting descended closed-map and transported certificate fields"
+      "ordinary codomain componentについて、具体descended quotient mapへ渡すcomponent closed-map定理はまだ未証明である。",
+      "具体WPP-op quotient relationについて、relation-pullback equality本体はまだ未証明である。",
+      "ordinary codomain componentを通じたtarget relation liftingはまだ未証明である。",
+      "得られたdescended closed-mapとtransported certificate fieldsをW354/W351 consumerへ統合する部分はまだ未証明である。"
     ],
     "product_success_claimed": false
   },
@@ -3255,11 +3255,11 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_transported_relation_fields_v370_support_w378.lean"
     ],
     "remaining_inputs": [
-      "ordinary component square equations for the WPP-op natural transformation",
-      "relation-pullback equality or reverse preimage condition for W378",
-      "quotient compatibility for the ordinary descended quotient map",
-      "closed-map input for the ordinary descended quotient map",
-      "identification of ordinary W352 fields with transported concrete quotient cocone points"
+      "W378のordinary component square equationsを実際のWPP-op natural transformationから与える部分はまだ未証明である。",
+      "W378で必要なrelation-pullback equality、または同値なreverse preimage conditionはまだ未証明である。",
+      "ordinary descended quotient mapのquotient compatibilityはまだ未証明である。",
+      "ordinary descended quotient mapのclosed-map inputはまだ未証明である。",
+      "ordinary W352 fieldsをtransported concrete quotient cocone points上のfieldsとして同一視する部分はまだ未証明である。"
     ],
     "product_success_claimed": false
   }
