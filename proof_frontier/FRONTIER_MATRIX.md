@@ -611,6 +611,9 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W393 Ordinary Descended Fields Adapter
 2026-05-20T23:42:00Z: Worker support `w393-left-lca-ordinary-descended-fields-v370` was ported as `audit/blockers/wpp_op_left_lca_ordinary_descended_fields_v370_support_w393.lean`. It packages ordinary W352 descended quotient fields as one input and feeds W381 ordinary fields plus W390/W384 point-isomorphism conjugacy. Product success remains false because the concrete W352 relation-pullback quotient-map package still has to instantiate `OrdinaryDescendedQuotientFieldsW393`.
 
+## Parent W352-to-W393 Adapter
+2026-05-20T23:45:00Z: Parent support `audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean` was added and focused-verified. It proves W352-style descended quotient fields directly instantiate W393 ordinary descended quotient fields. Product success remains false because the actual ordinary WPP-op descended map still needs concrete W352 fields: relation-pullback, quotient compatibility, and closed-map input.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 

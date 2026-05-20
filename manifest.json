@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-20T23:42:00Z",
-  "content_hash_tree": "ebc26d3679b7c8434e589057df12d34bfadb27bc0d6c571943f9d0cb83c9491f",
+  "generated_utc": "2026-05-20T23:45:00Z",
+  "content_hash_tree": "f92448b93a4387f43d571142030a7a72b37625c29f41fdcd495530f996375f88",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -1108,6 +1108,11 @@
       "bytes": 6586
     },
     {
+      "path": "audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean",
+      "sha256": "dcdfeeb30bc6d674cd3fa3dc607bdcdd92bcd9e6f3b83030864a8a8743c1f59b",
+      "bytes": 6010
+    },
+    {
       "path": "audit/blockers/wpp_op_left_lca_whiskered_naturality_proof_v370_support_w372.lean",
       "sha256": "84d0d85e1f89917b5c531207ce98b3c07dabfb2fd8a776bb37342bf9a360fa9c",
       "bytes": 16629
@@ -1474,8 +1479,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "sha256": "89584df70f480cd8e9008bfc6c025538083b6574ae6e24e712b273ffc1311a19",
-      "bytes": 195661
+      "sha256": "aaeb1b326f125f40b69d90fdae71f4ee198c3e126f299a03abffcc3b9846066b",
+      "bytes": 196213
     },
     {
       "path": "docs/research/sources.md",
@@ -1504,8 +1509,8 @@
     },
     {
       "path": "implementation-notes.html",
-      "sha256": "328f60643c34d6748642a585b61cd6d65fbf86596788e522cdef2a8f5b95ee91",
-      "bytes": 340807
+      "sha256": "ad792c8d10064bcf7dc8dcea51ae7da59da4d6badc63e64b2cd239bb38b71233",
+      "bytes": 341416
     },
     {
       "path": "lake-manifest.json",
@@ -1529,18 +1534,18 @@
     },
     {
       "path": "progress.tsv",
-      "sha256": "cef30aae36fe8f60125e290f20a28d570669f275a1ed01b0c247349dfcdcf144",
-      "bytes": 262146
+      "sha256": "45016adc1afa0846a13df7faf952d19b68e83b5eb91b7803a062b51b846a80ee",
+      "bytes": 262481
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "sha256": "34e61ea91f8933f38616c65da74611bf13aec095ddd50924f07793328a941ad8",
-      "bytes": 261968
+      "sha256": "9ba4145fb3f15934e86c7d68afea5ecf1c02abba4a3788602349389b16022093",
+      "bytes": 263130
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "sha256": "e9542db1760f243df501dd4987010f79773dc03ecd54c44170d68e871b661d9b",
-      "bytes": 139416
+      "sha256": "62485f7b6d4e8b0d67bc98f992e42bb0d77aeb71acd24b7ac5ec76ca99f95a00",
+      "bytes": 139883
     },
     {
       "path": "proof_frontier/ROOT_BLOCKERS_W320.json",
@@ -1554,8 +1559,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "14805e41d249a7762ab3947003ad6f2abdd9a795045fbe495b377cdc182a100b",
-      "bytes": 256319
+      "sha256": "0917cdece174c3481eff36962abccdfd4e589d17cee707b7e1ca89e12b130ae4",
+      "bytes": 257125
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -1569,8 +1574,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "60f0469f4291745a0c0058ae090a8ebdfddd65e604b89feb8d187af62e0b6175",
-      "bytes": 347203
+      "sha256": "b3805667411a4e202e4435d7a37f32797eeb72c31d9b7eafb54a431f3cf71e87",
+      "bytes": 347573
     },
     {
       "path": "workers/README.md",

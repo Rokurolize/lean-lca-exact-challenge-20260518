@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T23:42:00Z",
+  "generated_utc": "2026-05-20T23:45:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -1364,10 +1364,10 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "w272 was manually ported as a focused nonterminal boundary refining W269 fixed-target fac/uniq obligations. v296 parent-added counterexample; not support product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success. w344: parent-verified difference-cokernel SnakeInput API support; concrete WPP-op row certificates remain open; not product success. w345: parent-verified source-backed difference SnakeInput audit; row construction remains open; not product success. w347-w349: parent-verified left LCA v368 reductions; concrete quotient/coequalizer inputs remain open; not product success. w350: parent-verified AddCommGrp difference Snake boundary; concrete row construction remains open; not product success. w350-w351: parent-verified conditional AddCommGrp and left LCA consumers; concrete row/cocone construction remains open; not product success. w352: parent-verified relation pullback descended fields support; concrete quotient compatibility/pullback/closed-map inputs remain open; not product success. w377: parent-verified WPP-op closed-map remaining-fields support; target quotient closed-on-saturated theorem and W374/W371 packaging now yield descended closed-map from component closed-map, relation pullback equality, and target relation lifting. Product success remains false. w378: parent-verified partial transported relation-fields support; W375/W354 transported fields are fixed as injective, inducing, and closed-range data with a consumer adapter. Product success remains false. w379: parent-verified AddCommGrp degreewise cokernel data support; canonical componentwise cokernel short complex supplies concrete degreewise cofork data, component colimits, W376 target presentation, and difference Snake consumers. Product success remains false. w380: parent-verified component closed-map support; objectwise closed embedding supplies the W377 ordinary codomain component closed-map input, leaving relation-pullback equality and target relation lifting. Product success remains false. w381: parent-verified partial ordinary-to-transported relation-field support; ordinary W352-style fields can feed W378/W375 once point identifications, descended-map conjugacy, and injective/inducing/closed-range transports are proved. Product success remains false. w384: parent-verified iso field-transport support; injective, IsInducing, and closed-range fields now transport across source/target isomorphisms under descended-map conjugacy. Product success remains false. w382/w383/w384: parent-verified nonterminal support. w385/w386: parent-verified nonterminal support. w387: parent-verified nonterminal support. w388: parent-verified C-identification support; W376 presentation equality branch for W385 is closed, but direct targetIso remains open. Product success remains false. w389: parent-verified partial relation-pullback equality certificate reducer; concrete reverse-preimage/certificate remains open. w390: parent-verified canonical transported-map pointwise conjugacy; ordinary W352 fields and optional noncanonical-map identification remain open. Product success remains false. w391: parent-verified final direct targetIso reducer for W385/W388/W376; targetIso construction remains open. w392: parent-verified target relation lift certificate reducer for W389/W377/W383; concrete certificate remains open. Product success remains false. w393: parent-verified ordinary descended fields adapter; concrete W352 package instantiation remains open. Product success remains false.",
-  "latest_parent_update": "W393 parent-verified focused support; product success remains false.",
-  "summary": "W393 packages ordinary W352 descended quotient fields into a single adapter feeding W381 and W390/W384.",
-  "remaining_frontier": "After W393, instantiate OrdinaryDescendedQuotientFieldsW393 from the concrete W352 relation-pullback quotient-map package; still prove direct targetIso, concrete W392 target-relation-lift certificate, and W389 relation-pullback/reverse-preimage certificate.",
+  "support_result_classification": "w272 was manually ported as a focused nonterminal boundary refining W269 fixed-target fac/uniq obligations. v296 parent-added counterexample; not support product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success. w344: parent-verified difference-cokernel SnakeInput API support; concrete WPP-op row certificates remain open; not product success. w345: parent-verified source-backed difference SnakeInput audit; row construction remains open; not product success. w347-w349: parent-verified left LCA v368 reductions; concrete quotient/coequalizer inputs remain open; not product success. w350: parent-verified AddCommGrp difference Snake boundary; concrete row construction remains open; not product success. w350-w351: parent-verified conditional AddCommGrp and left LCA consumers; concrete row/cocone construction remains open; not product success. w352: parent-verified relation pullback descended fields support; concrete quotient compatibility/pullback/closed-map inputs remain open; not product success. w377: parent-verified WPP-op closed-map remaining-fields support; target quotient closed-on-saturated theorem and W374/W371 packaging now yield descended closed-map from component closed-map, relation pullback equality, and target relation lifting. Product success remains false. w378: parent-verified partial transported relation-fields support; W375/W354 transported fields are fixed as injective, inducing, and closed-range data with a consumer adapter. Product success remains false. w379: parent-verified AddCommGrp degreewise cokernel data support; canonical componentwise cokernel short complex supplies concrete degreewise cofork data, component colimits, W376 target presentation, and difference Snake consumers. Product success remains false. w380: parent-verified component closed-map support; objectwise closed embedding supplies the W377 ordinary codomain component closed-map input, leaving relation-pullback equality and target relation lifting. Product success remains false. w381: parent-verified partial ordinary-to-transported relation-field support; ordinary W352-style fields can feed W378/W375 once point identifications, descended-map conjugacy, and injective/inducing/closed-range transports are proved. Product success remains false. w384: parent-verified iso field-transport support; injective, IsInducing, and closed-range fields now transport across source/target isomorphisms under descended-map conjugacy. Product success remains false. w382/w383/w384: parent-verified nonterminal support. w385/w386: parent-verified nonterminal support. w387: parent-verified nonterminal support. w388: parent-verified C-identification support; W376 presentation equality branch for W385 is closed, but direct targetIso remains open. Product success remains false. w389: parent-verified partial relation-pullback equality certificate reducer; concrete reverse-preimage/certificate remains open. w390: parent-verified canonical transported-map pointwise conjugacy; ordinary W352 fields and optional noncanonical-map identification remain open. Product success remains false. w391: parent-verified final direct targetIso reducer for W385/W388/W376; targetIso construction remains open. w392: parent-verified target relation lift certificate reducer for W389/W377/W383; concrete certificate remains open. Product success remains false. w393: parent-verified ordinary descended fields adapter; concrete W352 package instantiation remains open. Product success remains false. parent-w352-to-w393: checked local adapter from W352 fields to W393 fields; concrete W352 instantiation remains open. Product success remains false.",
+  "latest_parent_update": "Parent W352-to-W393 adapter verified; product success remains false.",
+  "summary": "Parent W352-to-W393 adapter verifies that W352 descended quotient fields directly supply W393 ordinary descended fields.",
+  "remaining_frontier": "Construct concrete W352 fields for the actual ordinary WPP-op descended map: relation-pullback, quotient compatibility, and closed-map input. Separately prove AddCommGrp direct targetIso and concrete W392/W389 certificates.",
   "support_classification": [
     {
       "id": "parent-v248",
@@ -1634,14 +1634,13 @@
     "W383後もordinary codomain componentを通じたtarget relation liftingは未証明である。",
     "W384 transported point packageのsource point isomorphismはまだ未証明である。",
     "W384 transported point packageのtarget point isomorphismはまだ未証明である。",
-    "W384 transported point packageへ渡すordinary W352 descended quotient fieldsはまだ未証明である。",
     "W385後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
     "W388後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
     "W390後も外部から与えたtransported descended mapを使う場合はcanonical conjugated transported mapとの同一視、またはTransportedDescendedConjugacyInputW390が必要である。",
     "W389後もrelation-pullback equality本体にはreverse relation-preimage certificate、またはW389 certificateの具体供給が必要である。",
     "W391後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへのdirect targetIso構成は未証明である。",
     "W392後もelementwise target relation lift、またはそれを含むW392 certificateの具体供給は未証明である。",
-    "W393後も具体W352 relation-pullback quotient-map packageからOrdinaryDescendedQuotientFieldsW393をインスタンス化する必要がある。"
+    "親W352-to-W393 adapter後も、実際のordinary WPP-op descended mapに対する具体W352 fields、すなわちrelation-pullback、quotient compatibility、closed-map入力の構成が必要である。"
   ],
   "open_blockers": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
@@ -1701,14 +1700,13 @@
     "W383後もordinary codomain componentを通じたtarget relation liftingは未証明である。",
     "W384 transported point packageのsource point isomorphismはまだ未証明である。",
     "W384 transported point packageのtarget point isomorphismはまだ未証明である。",
-    "W384 transported point packageへ渡すordinary W352 descended quotient fieldsはまだ未証明である。",
     "W385後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
     "W388後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
     "W390後も外部から与えたtransported descended mapを使う場合はcanonical conjugated transported mapとの同一視、またはTransportedDescendedConjugacyInputW390が必要である。",
     "W389後もrelation-pullback equality本体にはreverse relation-preimage certificate、またはW389 certificateの具体供給が必要である。",
     "W391後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへのdirect targetIso構成は未証明である。",
     "W392後もelementwise target relation lift、またはそれを含むW392 certificateの具体供給は未証明である。",
-    "W393後も具体W352 relation-pullback quotient-map packageからOrdinaryDescendedQuotientFieldsW393をインスタンス化する必要がある。"
+    "親W352-to-W393 adapter後も、実際のordinary WPP-op descended mapに対する具体W352 fields、すなわちrelation-pullback、quotient compatibility、closed-map入力の構成が必要である。"
   ],
   "consumed_support_results": [
     {
@@ -1937,7 +1935,8 @@
     "w390-left-lca-transported-descended-conjugacy-v370",
     "w391-addcommgrp-forgotten-target-iso-construction-v370",
     "w392-wpp-op-target-relation-lift-certificate-v370",
-    "w393-left-lca-ordinary-descended-fields-v370"
+    "w393-left-lca-ordinary-descended-fields-v370",
+    "parent-w352-to-w393-adapter-v370"
   ],
   "known_gaps": [
     "W357-left-LCAで具体quotient cofork/cocone、descended quotient map、projection compatibility、cofork leg equations、ordinary/inverse-whiskered WPP-op concrete quotient coconesは検証済みだが、counit diagram-iso transport、W354 source.ι.app j形へのleg rewrite、W352/W355 topological fieldsとの合成は未構成である。",
@@ -2021,14 +2020,13 @@
     "W383後もordinary codomain componentを通じたtarget relation liftingは未証明である。",
     "W384 transported point packageのsource point isomorphismはまだ未証明である。",
     "W384 transported point packageのtarget point isomorphismはまだ未証明である。",
-    "W384 transported point packageへ渡すordinary W352 descended quotient fieldsはまだ未証明である。",
     "W385後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
     "W388後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
     "W390後も外部から与えたtransported descended mapを使う場合はcanonical conjugated transported mapとの同一視、またはTransportedDescendedConjugacyInputW390が必要である。",
     "W389後もrelation-pullback equality本体にはreverse relation-preimage certificate、またはW389 certificateの具体供給が必要である。",
     "W391後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへのdirect targetIso構成は未証明である。",
     "W392後もelementwise target relation lift、またはそれを含むW392 certificateの具体供給は未証明である。",
-    "W393後も具体W352 relation-pullback quotient-map packageからOrdinaryDescendedQuotientFieldsW393をインスタンス化する必要がある。"
+    "親W352-to-W393 adapter後も、実際のordinary WPP-op descended mapに対する具体W352 fields、すなわちrelation-pullback、quotient compatibility、closed-map入力の構成が必要である。"
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -3707,6 +3705,31 @@
     ],
     "remaining_inputs": [
       "instantiate OrdinaryDescendedQuotientFieldsW393 from the concrete W352 relation-pullback quotient-map package",
+      "direct targetIso",
+      "concrete W392 target relation lift certificate",
+      "W389 relation-pullback/reverse-preimage certificate"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w352_to_w393_adapter": {
+    "timestamp_utc": "2026-05-20T23:45:00Z",
+    "status": "verified_focused",
+    "summary": "W352 descended quotient fields directly instantiate W393 ordinary descended fields.",
+    "touched_files": [
+      "audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean"
+    ],
+    "proved_or_checked_declarations": [
+      "DescendedQuotientFieldsW352",
+      "OrdinaryDescendedQuotientFieldsW393",
+      "descendedQuotientFieldsW352_to_ordinaryDescendedQuotientFieldsW393",
+      "currentWppOpLeftLcaW352ToW393AdapterV370SupportState_productSuccess"
+    ],
+    "verification": [
+      "lake env lean audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean"
+    ],
+    "remaining_inputs": [
+      "concrete W352 fields for the actual ordinary WPP-op descended map",
       "direct targetIso",
       "concrete W392 target relation lift certificate",
       "W389 relation-pullback/reverse-preimage certificate"
