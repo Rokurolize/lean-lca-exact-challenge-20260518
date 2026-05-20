@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v163-stable-route-external-api-minimizer",
-  "generated_utc": "2026-05-20T05:55:00Z",
-  "source_tree_hash": "c222852e8a90bd2aedd4c27412ddc79262464217b2615f9055f3f7621c504726",
-  "summary": "v163 ports the byte-identical w129 stable-route external API minimizer audit, separating current ordinary Dbounded evidence from the remaining single-certificate stable provider API; product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v164-distinguished-provider-side-discharged",
+  "generated_utc": "2026-05-20T06:10:00Z",
+  "source_tree_hash": "bac944056f05918b927a5c2a58b981f4e23b5cffb5543754d6a4005f30e026a1",
+  "summary": "v164 discharges the distinguished endpoint eligibility provider side from the existing weak endpoint payload, reducing the bounded route to the cochain-isomorphism upgrade for explicit distinguished witnesses; product remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
@@ -27,17 +27,17 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed after the v163 audit file."
+      "evidence": "Forbidden-token audit passed after the v164 route update."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declaration audit passed after the v163 audit file."
+      "evidence": "Required declaration audit passed after the v164 route update."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccess declaration audit passed after the v163 audit file; no product-success claim was added."
+      "evidence": "ProductSuccess declaration audit passed after the v164 route update; no product-success claim was added."
     },
     {
       "command": "python3 -m py_compile audit/external_audit.py",
@@ -117,7 +117,7 @@
     {
       "command": "lake env lean audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean",
       "status": "passed",
-      "evidence": "Focused v162 distinguished mapping-cone strictification route audit passed."
+      "evidence": "Focused v164 w128 route audit passed after discharging the trivial eligibility provider side."
     },
     {
       "command": "cmp -s audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean <w128-worktree>/audit/blockers/distinguished_mapping_cone_strictification_route_w128.lean",
@@ -233,7 +233,11 @@
     "StableRouteExternalAPIMinimizerW129.routeFromMinimalExternalAPI",
     "StableRouteExternalAPIMinimizerW129.markerOnly_rejected",
     "StableRouteExternalAPIMinimizerW129.ordinaryContextOnly_rejected",
-    "StableRouteExternalAPIMinimizerW129.singleCertificate_accepted"
+    "StableRouteExternalAPIMinimizerW129.singleCertificate_accepted",
+    "DistinguishedEndpointTrivialEligibility",
+    "distinguishedEndpointEligibilityProvider_trivial",
+    "boundedTrianglehIso13CochainDataStrictification_of_trivialEligibilityUpgrade",
+    "boundedHomotopyObjectTrianglehIso13Realization_of_trivialEligibilityUpgrade"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -250,7 +254,8 @@
     "weakEndpointHomotopyCategoryIsoToSelectedCochainIso は無条件には false であり、bounded routeにはdistinguished mapping-cone endpointに特化したより弱いstrictification命題が必要である。",
     "The distinguished endpoint selected-cochain provider is now proved equivalent to bounded strict realization, so it is a precise reformulation of the remaining bounded theorem, not a completed proof.",
     "The distinguished mapping-cone route still needs an actual eligibility provider and eligible-witness cochain-isomorphism upgrade; v162 only proves that these narrower inputs are sufficient.",
-    "The stable route is now minimized to a single-certificate four-projection API, but that stable certificate is still not constructed for Dbounded.infinityCategory."
+    "The stable route is now minimized to a single-certificate four-projection API, but that stable certificate is still not constructed for Dbounded.infinityCategory.",
+    "The bounded distinguished route no longer needs a separate eligibility provider for trivial eligibility, but it still needs the cochain-isomorphism upgrade for explicit distinguished weak endpoint witnesses."
   ],
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {

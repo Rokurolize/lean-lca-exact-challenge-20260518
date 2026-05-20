@@ -94,6 +94,71 @@ abbrev DistinguishedEndpointCochainIsoUpgrade
         Nonempty (w.coneRepresentative ≅ CochainComplex.mappingCone w.selectedMap)
 
 omit [QuillenExactCategory C] in
+/-- The broadest distinguished-only eligibility predicate: every weak endpoint witness
+coming from a distinguished triangle is eligible. This is still narrower than arbitrary
+homotopy-equivalence transport because it is parameterized by a distinguished triangle and
+an explicit mapping-cone witness. -/
+abbrev DistinguishedEndpointTrivialEligibility
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    DistinguishedEndpointEligibility C :=
+  fun _hT _h₁ _h₃ _w => True
+
+omit [QuillenExactCategory C] in
+/-- The existing weak endpoint payload already supplies eligible distinguished witnesses
+for the trivial eligibility predicate. Thus the nontrivial remaining input is the
+cochain-isomorphism upgrade on those witnesses. -/
+theorem distinguishedEndpointEligibilityProvider_trivial
+    [HasZeroObject C] [HasBinaryBiproducts C] :
+    DistinguishedEndpointEligibilityProvider C
+      (DistinguishedEndpointTrivialEligibility C) := by
+  intro T hT h₁ h₃
+  rcases homotopyEndpointPayloadWithoutSelectedCochainIso_of_distinguished
+      C hT h₁ h₃ with
+    ⟨Ksrc, Kcone, K, L, f, e₁, e₃, comm, hKsrc, hKcone, hKiso, hConeIso⟩
+  exact ⟨{
+    sourceRepresentative := Ksrc
+    coneRepresentative := Kcone
+    selectedSource := K
+    selectedTarget := L
+    selectedMap := f
+    triangleSourceIso := e₁
+    triangleConeIso := e₃
+    triangleComm := comm
+    sourceBounded := hKsrc
+    coneBounded := hKcone
+    sourceHomotopyCategoryIso := hKiso
+    coneHomotopyCategoryIso := hConeIso }, trivial⟩
+
+omit [QuillenExactCategory C] in
+/-- With the witness provider now discharged by the existing distinguished-triangle
+payload, the bounded route is reduced to a cochain-isomorphism upgrade for distinguished
+weak endpoint witnesses. -/
+theorem boundedTrianglehIso13CochainDataStrictification_of_trivialEligibilityUpgrade
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (upgrade : DistinguishedEndpointCochainIsoUpgrade C
+      (DistinguishedEndpointTrivialEligibility C)) :
+    boundedTrianglehIso13CochainDataStrictification C := by
+  intro T hT h₁ h₃
+  rcases distinguishedEndpointEligibilityProvider_trivial C hT h₁ h₃ with ⟨w, hw⟩
+  rcases upgrade hT h₁ h₃ w hw with ⟨hSourceIso, hConeIso⟩
+  exact
+    ⟨w.sourceRepresentative, w.coneRepresentative, w.selectedSource, w.selectedTarget,
+      w.selectedMap, w.triangleSourceIso, w.triangleConeIso, hSourceIso.some,
+      hConeIso.some, w.triangleComm, w.sourceBounded, w.coneBounded⟩
+
+omit [QuillenExactCategory C] in
+/-- The corresponding bounded strict-realization consequence after the provider side has
+been discharged. -/
+theorem boundedHomotopyObjectTrianglehIso13Realization_of_trivialEligibilityUpgrade
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (upgrade : DistinguishedEndpointCochainIsoUpgrade C
+      (DistinguishedEndpointTrivialEligibility C)) :
+    boundedHomotopyObjectTrianglehIso13Realization C :=
+  boundedHomotopyObjectTrianglehIso13Realization_of_cochain_data C
+    (boundedTrianglehIso13CochainDataStrictification_of_trivialEligibilityUpgrade
+      C upgrade)
+
+omit [QuillenExactCategory C] in
 /-- A distinguished-only certificate provider and eligible-witness upgrade are enough for
 the expanded cochain-data strictification frontier. -/
 theorem boundedTrianglehIso13CochainDataStrictification_of_distinguishedEndpointCertificate
@@ -162,6 +227,10 @@ variable [HasZeroObject C] [HasBinaryBiproducts C]
 #check DistinguishedEndpointEligibility
 #check DistinguishedEndpointEligibilityProvider
 #check DistinguishedEndpointCochainIsoUpgrade
+#check DistinguishedEndpointTrivialEligibility
+#check distinguishedEndpointEligibilityProvider_trivial
+#check boundedTrianglehIso13CochainDataStrictification_of_trivialEligibilityUpgrade
+#check boundedHomotopyObjectTrianglehIso13Realization_of_trivialEligibilityUpgrade
 #check boundedTrianglehIso13CochainDataStrictification_of_distinguishedEndpointCertificate
 #check boundedHomotopyObjectTrianglehIso13Realization_of_distinguishedEndpointCertificate
 #check reject_unconditionalHomotopyEquiv_endpointStrictification_w128

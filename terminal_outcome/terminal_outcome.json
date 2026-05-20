@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v163時点で、w129のstable-route external API minimizerを親側にbyte単位で移植し、現行ordinary evidenceと、未構成のsingle-certificate stable provider APIを分離した。product_successではない。bounded側には狭いdistinguished endpoint routeの実構成、stable側にはこの四射影certificateの実構成が残る。",
+  "summary": "v164時点で、distinguished endpoint routeのprovider側を既存の弱endpoint payloadから構成した。product_successではない。bounded側には明示的なdistinguished weak endpoint witnessをcochain同型へ上げるupgrade、stable側にはsingle-certificate四射影APIの実構成が残る。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -676,7 +676,8 @@
     "最終clean review packet、全oracle通過、fresh claim reviewによるproduct_success=trueの受理はいずれも未完了である。",
     "The distinguished endpoint selected-cochain provider is now proved equivalent to bounded strict realization, so it is a precise reformulation of the remaining bounded theorem, not a completed proof.",
     "The distinguished mapping-cone route still needs an actual eligibility provider and eligible-witness cochain-isomorphism upgrade; v162 only proves that these narrower inputs are sufficient.",
-    "The stable route is now minimized to a single-certificate four-projection API, but that stable certificate is still not constructed for Dbounded.infinityCategory."
+    "The stable route is now minimized to a single-certificate four-projection API, but that stable certificate is still not constructed for Dbounded.infinityCategory.",
+    "The bounded distinguished route no longer needs a separate eligibility provider for trivial eligibility, but it still needs the cochain-isomorphism upgrade for explicit distinguished weak endpoint witnesses."
   ],
   "next_recommended_goal": "次はw114の十分条件をproduct方向へ進め、homotopy-category endpoint同型からselected source/coneへの実cochain-complex同型を作るstrictification theorem、またはDboundedのstable infinity-category certificateに必要な局所APIを構成する。",
   "implemented_declarations": [
