@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Derived.MappingConeFiniteProduct
+import LeanLCAExactChallenge.Derived.WppOpMappingConeBoundedLeftCochain
 import Mathlib.CategoryTheory.MorphismProperty.Limits
 
 /-!
@@ -385,6 +386,171 @@ noncomputable def ambientAssembledMediator {J : Type} [Category J]
     (ambientRightLegMediator hc₂ (ambientRightLegCoconeDataOfTestCocone s))
     (D.descEq s)
 
+/--
+Uniqueness of the ambient assembled mapping-cone mediator after the left
+`mappingCone.inl` cochain component has been identified.
+
+The right `mappingCone.inr` component is forced by the preserved included
+`c₂` colimit and the fixed test-leg equations.
+-/
+theorem ambientAssembledMediator_unique_of_left {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    {c₁ : Cocone X₁} {c₂ : Cocone X₂} {f : X₁ ⟶ X₂}
+    [PreservesColimit X₂ (BoundedComplexCategory.ι MetrizableLCA.{0})]
+    {hc₂ : IsColimit c₂}
+    {φ : c₁.pt ⟶ c₂.pt}
+    {hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j}
+    {s : Cocone (mappingConeDiagram X₁ X₂ f)}
+    (α : CochainComplex.HomComplex.Cochain
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).obj c₁.pt) s.pt (-1))
+    (eq :
+      CochainComplex.HomComplex.δ (-1) 0 α =
+        CochainComplex.HomComplex.Cochain.ofHom
+          (((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≫
+            ambientRightLegMediator hc₂ (ambientRightLegCoconeDataOfTestCocone s)))
+    (m : (mappingConeCocone c₁ c₂ f φ hφ).pt ⟶ s.pt)
+    (hm : ∀ j : J, (mappingConeCocone c₁ c₂ f φ hφ).ι.app j ≫ m = s.ι.app j)
+    (hleft :
+      (CochainComplex.mappingCone.inl
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).comp
+          (CochainComplex.HomComplex.Cochain.ofHom m) (add_zero (-1)) = α) :
+    m =
+      CochainComplex.mappingCone.desc
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+        α
+        (ambientRightLegMediator hc₂ (ambientRightLegCoconeDataOfTestCocone s))
+        eq := by
+  let β :=
+    ambientRightLegMediator hc₂ (ambientRightLegCoconeDataOfTestCocone s)
+  let desc :=
+    CochainComplex.mappingCone.desc
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) α β eq
+  have hright :
+      CochainComplex.mappingCone.inr
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≫ m =
+        β := by
+    apply (isColimitOfPreserves (BoundedComplexCategory.ι MetrizableLCA.{0}) hc₂).hom_ext
+    intro j
+    let inrj :=
+      CochainComplex.mappingCone.inr
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+    have hfixed :
+        inrj ≫ ((mappingConeCocone c₁ c₂ f φ hφ).ι.app j ≫ m) =
+          inrj ≫ s.ι.app j := by
+      simpa [Category.assoc] using
+        congrArg (fun q => inrj ≫ q) (hm j)
+    have hcanonical :
+        inrj ≫ s.ι.app j =
+          (BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.ι.app j) ≫ β := by
+      simpa [inrj] using (ambientRightLegMediator_fac hc₂
+        (ambientRightLegCoconeDataOfTestCocone s) j).symm
+    simpa [inrj, mappingConeCocone, CochainComplex.mappingCone.map, Category.assoc] using
+      hfixed.trans hcanonical
+  apply HomologicalComplex.hom_ext
+  intro p
+  apply CochainComplex.mappingCone.ext_from
+    ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) (p + 1) p rfl
+  · have hdesc_left :
+        (CochainComplex.mappingCone.inl
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).comp
+            (CochainComplex.HomComplex.Cochain.ofHom desc) (add_zero (-1)) = α := by
+        simpa [desc, β] using
+          (CochainComplex.mappingCone.inl_desc
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) α β eq)
+    have hcochain :
+        (CochainComplex.mappingCone.inl
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).comp
+            (CochainComplex.HomComplex.Cochain.ofHom m) (add_zero (-1)) =
+          (CochainComplex.mappingCone.inl
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).comp
+              (CochainComplex.HomComplex.Cochain.ofHom desc) (add_zero (-1)) :=
+      hleft.trans hdesc_left.symm
+    replace hcochain := CochainComplex.HomComplex.Cochain.congr_v
+      hcochain (p + 1) p (by omega)
+    simpa [desc] using hcochain
+  · have hright' :
+        CochainComplex.mappingCone.inr
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≫ m =
+          CochainComplex.mappingCone.inr
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≫ desc := by
+        simpa [desc, β] using hright.trans
+          (CochainComplex.mappingCone.inr_desc
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) α β eq).symm
+    simpa [desc] using congrArg (fun q => q.f p) hright'
+
+/--
+Ambient desc-assembly data where uniqueness is reduced to the left
+`mappingCone.inl` cochain component.
+-/
+structure AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    (c₁ : Cocone X₁) (c₂ : Cocone X₂) (f : X₁ ⟶ X₂)
+    [PreservesColimit X₂ (BoundedComplexCategory.ι MetrizableLCA.{0})]
+    (hc₂ : IsColimit c₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j) : Type 2 where
+  leftCochain : ∀ s : Cocone (mappingConeDiagram X₁ X₂ f),
+    CochainComplex.HomComplex.Cochain
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).obj c₁.pt) s.pt (-1)
+  descEq : ∀ s : Cocone (mappingConeDiagram X₁ X₂ f),
+    CochainComplex.HomComplex.δ (-1) 0 (leftCochain s) =
+      CochainComplex.HomComplex.Cochain.ofHom
+        (((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≫
+          ambientRightLegMediator hc₂ (ambientRightLegCoconeDataOfTestCocone s))
+  fac : ∀ (s : Cocone (mappingConeDiagram X₁ X₂ f)) (j : J),
+    (mappingConeCocone c₁ c₂ f φ hφ).ι.app j ≫
+      CochainComplex.mappingCone.desc
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+        (leftCochain s)
+        (ambientRightLegMediator hc₂ (ambientRightLegCoconeDataOfTestCocone s))
+        (descEq s) = s.ι.app j
+  left_uniq : ∀ (s : Cocone (mappingConeDiagram X₁ X₂ f))
+    (m : (mappingConeCocone c₁ c₂ f φ hφ).pt ⟶ s.pt),
+      (∀ j : J, (mappingConeCocone c₁ c₂ f φ hφ).ι.app j ≫ m = s.ι.app j) →
+        (CochainComplex.mappingCone.inl
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).comp
+            (CochainComplex.HomComplex.Cochain.ofHom m) (add_zero (-1)) =
+          leftCochain s
+
+/-- Left-uniqueness assembly data supplies the original ambient assembly data. -/
+def AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData.toAmbientData
+    {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    {c₁ : Cocone X₁} {c₂ : Cocone X₂} {f : X₁ ⟶ X₂}
+    [PreservesColimit X₂ (BoundedComplexCategory.ι MetrizableLCA.{0})]
+    {hc₂ : IsColimit c₂}
+    {φ : c₁.pt ⟶ c₂.pt}
+    {hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j}
+    (D : AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData c₁ c₂ f hc₂ φ hφ) :
+    AmbientFixedMappingConeCoconeDescAssemblyData c₁ c₂ f hc₂ φ hφ where
+  leftCochain := D.leftCochain
+  descEq := D.descEq
+  fac := D.fac
+  uniq := by
+    intro s m hm
+    exact ambientAssembledMediator_unique_of_left
+      (D.leftCochain s) (D.descEq s) m hm (D.left_uniq s m hm)
+
+/-- Left-uniqueness assembly data is sufficient for the fixed cocone universal property. -/
+theorem uniqueMediatingInput_of_ambientDescAssemblyLeftUniqData {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    {c₁ : Cocone X₁} {c₂ : Cocone X₂} {f : X₁ ⟶ X₂}
+    [PreservesColimit X₂ (BoundedComplexCategory.ι MetrizableLCA.{0})]
+    {hc₂ : IsColimit c₂}
+    {φ : c₁.pt ⟶ c₂.pt}
+    {hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j}
+    (D : AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData c₁ c₂ f hc₂ φ hφ) :
+    FixedMappingConeCoconeUniqueMediatingInput c₁ c₂ f φ hφ := by
+  intro s
+  refine ⟨ambientAssembledMediator D.toAmbientData s, ?_, ?_⟩
+  · intro j
+    simpa [ambientAssembledMediator, AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData.toAmbientData]
+      using D.fac s j
+  · intro m hm
+    simpa [ambientAssembledMediator, AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData.toAmbientData]
+      using ambientAssembledMediator_unique_of_left
+        (D.leftCochain s) (D.descEq s) m hm (D.left_uniq s m hm)
+
 /-- Ambient desc-assembly data is sufficient for the fixed cocone universal property. -/
 theorem uniqueMediatingInput_of_ambientDescAssemblyData {J : Type} [Category J]
     {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
@@ -475,6 +641,73 @@ theorem uniqueMediatingInput_of_descAssemblyData {J : Type} [Category J]
   · intro m hm
     simpa [assembledMediator] using D.uniq s m hm
 
+/--
+The W341 bounded-inclusion assembly supplies W308's ambient desc-assembly data
+from the included `c₁` colimit, evaluation-colimit preservation, and the
+preserved included `c₂` colimit.
+-/
+noncomputable def ambientDescAssemblyDataOfIncludedColimits {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    {c₁ : Cocone X₁} {c₂ : Cocone X₂} {f : X₁ ⟶ X₂}
+    (hc₁i : IsColimit ((BoundedComplexCategory.ι MetrizableLCA.{0}).mapCocone c₁))
+    [∀ p : ℤ, PreservesColimit (X₁ ⋙ BoundedComplexCategory.ι MetrizableLCA.{0})
+      (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) p)]
+    [PreservesColimit X₂ (BoundedComplexCategory.ι MetrizableLCA.{0})]
+    (hc₂ : IsColimit c₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j) :
+    AmbientFixedMappingConeCoconeDescAssemblyData c₁ c₂ f hc₂ φ hφ where
+  leftCochain := fun s =>
+    WppOpMappingConeBoundedLeftCochainW341.leftCochainOfBoundedTestCocone
+      hc₁i f (fun j => s.ι.app j)
+      (testCoconeLegNaturality f s)
+  descEq := by
+    intro s
+    exact WppOpMappingConeBoundedLeftCochainW341.globalDescEqOfBoundedTestCocone
+      hc₁i f φ hφ
+      (ambientRightLegMediator hc₂ (ambientRightLegCoconeDataOfTestCocone s))
+      (fun j => s.ι.app j)
+      (testCoconeLegNaturality f s)
+      (fun j => ambientRightLegMediator_fac hc₂ (ambientRightLegCoconeDataOfTestCocone s) j)
+  fac := by
+    intro s j
+    exact WppOpMappingConeBoundedLeftCochainW341.boundedMappingConeDesc_fac
+      hc₁i f φ hφ
+      (ambientRightLegMediator hc₂ (ambientRightLegCoconeDataOfTestCocone s))
+      (fun j => s.ι.app j)
+      (testCoconeLegNaturality f s)
+      (fun j => ambientRightLegMediator_fac hc₂ (ambientRightLegCoconeDataOfTestCocone s) j)
+      j
+  uniq := by
+    intro s m hm
+    exact WppOpMappingConeBoundedLeftCochainW341.boundedMappingConeDesc_unique
+      hc₁i
+      (isColimitOfPreserves (BoundedComplexCategory.ι MetrizableLCA.{0}) hc₂)
+      f φ hφ
+      (ambientRightLegMediator hc₂ (ambientRightLegCoconeDataOfTestCocone s))
+      (fun j => s.ι.app j)
+      (testCoconeLegNaturality f s)
+      (fun j => ambientRightLegMediator_fac hc₂ (ambientRightLegCoconeDataOfTestCocone s) j)
+      m hm
+
+/--
+Included colimit/evaluation inputs are now sufficient for W308's fixed
+mapping-cone cocone unique-mediating-map input.
+-/
+theorem uniqueMediatingInput_of_includedColimits {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    {c₁ : Cocone X₁} {c₂ : Cocone X₂} {f : X₁ ⟶ X₂}
+    (hc₁i : IsColimit ((BoundedComplexCategory.ι MetrizableLCA.{0}).mapCocone c₁))
+    [∀ p : ℤ, PreservesColimit (X₁ ⋙ BoundedComplexCategory.ι MetrizableLCA.{0})
+      (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) p)]
+    [PreservesColimit X₂ (BoundedComplexCategory.ι MetrizableLCA.{0})]
+    (hc₂ : IsColimit c₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j) :
+    FixedMappingConeCoconeUniqueMediatingInput c₁ c₂ f φ hφ :=
+  uniqueMediatingInput_of_ambientDescAssemblyData
+    (ambientDescAssemblyDataOfIncludedColimits hc₁i hc₂ φ hφ)
+
 /-- Machine-readable frontier state for W308. -/
 structure WppOpMappingConeUniqueMediatorState : Type where
   seed : String
@@ -490,12 +723,10 @@ def currentWppOpMappingConeUniqueMediatorState :
   provedRightLeg :=
     "rightLegMediator hc₂ s := hc₂.desc (rightLegCocone s), with fac theorem"
   narrowedBoundary :=
-    "AmbientFixedMappingConeCoconeDescAssemblyData"
+    "uniqueMediatingInput_of_includedColimits"
   remainingInputs :=
-    ["instantiate W338's descended left cochain with the included bounded c₁ cocone",
-      "instantiate W338's global descEq with ambientRightLegMediator_fac and testCoconeLegNaturality",
-      "prove the mappingCone.desc leg equations against every fixed cocone leg",
-      "prove uniqueness by mappingCone.ext_from plus colimit uniqueness for c₁ and c₂"]
+    ["supply the included c₁ colimit and evaluation-preservation instances for the actual WPP-op source cocone",
+      "apply uniqueMediatingInput_of_includedColimits inside the W303/W304 fixed-cocone colimit route"]
   productSuccessClaimed := false
 
 theorem currentWppOpMappingConeUniqueMediatorState_productSuccess :
@@ -519,9 +750,15 @@ section Checks
 #check AmbientFixedMappingConeCoconeDescAssemblyData
 #check ambientAssembledMediator
 #check uniqueMediatingInput_of_ambientDescAssemblyData
+#check ambientAssembledMediator_unique_of_left
+#check AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData
+#check AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData.toAmbientData
+#check uniqueMediatingInput_of_ambientDescAssemblyLeftUniqData
 #check FixedMappingConeCoconeDescAssemblyData
 #check assembledMediator
 #check uniqueMediatingInput_of_descAssemblyData
+#check ambientDescAssemblyDataOfIncludedColimits
+#check uniqueMediatingInput_of_includedColimits
 #check currentWppOpMappingConeUniqueMediatorState
 #check currentWppOpMappingConeUniqueMediatorState_productSuccess
 #check CochainComplex.mappingCone.desc

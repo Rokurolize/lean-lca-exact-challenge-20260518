@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Derived.MappingConeFiniteProduct
+import LeanLCAExactChallenge.Derived.WppOpMappingConeUniqueMediator
 import Mathlib.CategoryTheory.MorphismProperty.Limits
 
 /-!
@@ -339,6 +340,33 @@ theorem walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_uniqueMedia
   WppOpMappingConeFixedCoconeW303.walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_universalInput
     (walkingParallelPairOp_mappingCone_fixedCoconeUniversalInput_of_uniqueMediating h)
 
+/--
+The included-colimit W308 theorem supplies the W304 unique-mediating-map input
+for the actual WPP-op fixed mapping-cone cocone.
+-/
+theorem walkingParallelPairOp_mappingCone_fixedCoconeUniqueMediatingInput_of_includedColimits :
+    walkingParallelPairOp_mappingCone_fixedCoconeUniqueMediatingInput := by
+  intro X₁ X₂ c₁ c₂ hc₁ hc₂ f φ hφ
+  have huniq :=
+    WppOpMappingConeUniqueMediatorW308.uniqueMediatingInput_of_includedColimits
+      (X₁ := X₁) (X₂ := X₂) (c₁ := c₁) (c₂ := c₂) (f := f)
+      (isColimitOfPreserves (BoundedComplexCategory.ι MetrizableLCA.{0}) hc₁)
+      hc₂ φ hφ
+  simpa [FixedMappingConeCoconeUniqueMediatingInput,
+    WppOpMappingConeUniqueMediatorW308.FixedMappingConeCoconeUniqueMediatingInput,
+    WppOpMappingConeFixedCoconeW303.mappingConeDiagram,
+    WppOpMappingConeUniqueMediatorW308.mappingConeDiagram,
+    WppOpMappingConeFixedCoconeW303.mappingConeCocone,
+    WppOpMappingConeUniqueMediatorW308.mappingConeCocone] using huniq
+
+/--
+The included-colimit W308 theorem supplies W303's fixed-cocone colimit input.
+-/
+theorem walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_includedColimits :
+    WppOpMappingConeFixedCoconeW303.walkingParallelPairOp_mappingCone_fixedCoconeColimitInput :=
+  walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_uniqueMediating
+    walkingParallelPairOp_mappingCone_fixedCoconeUniqueMediatingInput_of_includedColimits
+
 /-- Machine-readable frontier state for W304. -/
 structure WppOpMappingConeUniversalState : Type where
   seed : String
@@ -353,11 +381,10 @@ def currentWppOpMappingConeUniversalState : WppOpMappingConeUniversalState where
   selectedRoute :=
     "fixed mapping-cone cocone universal data reduced to unique mediating maps"
   provedConsumer :=
-    "walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_uniqueMediating"
+    "walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_includedColimits"
   remainingInputs :=
-    ["prove FixedMappingConeCoconeUniqueMediatingInput for the concrete mappingConeCocone",
-      "construct the unique mediator into an arbitrary Cocone (mappingConeDiagram X₁ X₂ f)",
-      "prove its compatibility with every WalkingParallelPairᵒᵖ leg and uniqueness"]
+    ["wire W303/W304 fixed-cocone colimit input into W302/W276 mapping-cone comparison consumer",
+      "continue the remaining W318 topological/algebraic exactness frontier if mapping-cone comparison is fully consumed"]
   productSuccessClaimed := false
 
 theorem currentWppOpMappingConeUniversalState_productSuccess :
@@ -370,10 +397,12 @@ def wppOpMappingConeUniversalDeclarationNames : List String :=
     "walkingParallelPairOp_mappingCone_fixedCoconeUniqueMediatingInput",
     "walkingParallelPairOp_mappingCone_fixedCoconeUniversalInput_of_uniqueMediating",
     "walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_uniqueMediating",
+    "walkingParallelPairOp_mappingCone_fixedCoconeUniqueMediatingInput_of_includedColimits",
+    "walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_includedColimits",
     "currentWppOpMappingConeUniversalState"]
 
 theorem wppOpMappingConeUniversalDeclarationNames_count :
-    wppOpMappingConeUniversalDeclarationNames.length = 6 := rfl
+    wppOpMappingConeUniversalDeclarationNames.length = 8 := rfl
 
 section Checks
 
@@ -387,6 +416,8 @@ section Checks
 #check walkingParallelPairOp_mappingCone_fixedCoconeUniqueMediatingInput
 #check walkingParallelPairOp_mappingCone_fixedCoconeUniversalInput_of_uniqueMediating
 #check walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_uniqueMediating
+#check walkingParallelPairOp_mappingCone_fixedCoconeUniqueMediatingInput_of_includedColimits
+#check walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_includedColimits
 #check currentWppOpMappingConeUniversalState
 #check currentWppOpMappingConeUniversalState_productSuccess
 #check wppOpMappingConeUniversalDeclarationNames

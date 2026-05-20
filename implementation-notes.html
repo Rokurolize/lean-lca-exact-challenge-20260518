@@ -811,3 +811,15 @@
 <p><time>2026-05-20T18:47:00Z</time>: The parent verified <code>audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean</code>. It proves that WPP-op and WPP bounded colimits remain colimits after <code>BoundedComplexCategory.ι MetrizableLCA</code>, and that the evaluation functors preserve the included WPP-op/WPP cochain-complex colimits needed by W341.</p>
 <p>This removes the generic included-colimit input from the W308 left-cochain path. The remaining work is the concrete W308 instantiation with the actual WPP-op source diagram and the final uniqueness packaging. Product success remains false.</p>
 </section>
+
+<section id="v347-w308-left-uniqueness-assembly">
+<h2>v347 W308 left uniqueness assembly</h2>
+<p><time>2026-05-20T19:02:00Z</time>: The parent verified the extended <code>audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean</code> and <code>audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean</code>. W341 now includes <code>bounded_mappingCone_inr_naturality</code>, <code>arbitraryMediator_right_eq</code>, and <code>boundedMappingConeDesc_unique</code>, so the bounded-inclusion <code>mappingCone.desc</code> mediator is unique from included <code>c₁/c₂</code> colimit inputs, evaluation preservation, right-leg equations, and fixed test-leg fac equations.</p>
+<p>W308 now adds <code>ambientAssembledMediator_unique_of_left</code>, <code>AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData</code>, <code>AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData.toAmbientData</code>, and <code>uniqueMediatingInput_of_ambientDescAssemblyLeftUniqData</code>. This closes the abstract final-uniqueness packaging once the concrete WPP-op left-uniqueness assembly data is supplied. Product success remains false because the concrete WPP-op source instantiation and exact/topological preservation frontiers are still open.</p>
+</section>
+
+<section id="v349-w302-w304-included-colimit-consumer">
+<h2>v349 W302/W304 included-colimit consumer</h2>
+<p><time>2026-05-20T18:45:10Z</time>: The parent verified <code>audit/blockers/wpp_op_object_cone_boundary_w302.lean</code> and <code>audit/blockers/wpp_op_mapping_cone_universal_w304.lean</code> after connecting them to <code>WppOpMappingConeUniqueMediatorW308.uniqueMediatingInput_of_includedColimits</code>. W302 now obtains the fixed mapping-cone cocone colimit input, and the W276 mapping-cone comparison input, from included colimit data. W304 likewise obtains its fixed-cocone colimit input through the included-colimit unique-mediating route.</p>
+<p>This closes the mapping-cone fixed-cocone comparison route as an audit/proof frontier. Product success remains false because the W318 exact/topological preservation inputs, especially additive exactness, left closed embedding, and right open map preservation for WPP-op colimits, remain unproved.</p>
+</section>

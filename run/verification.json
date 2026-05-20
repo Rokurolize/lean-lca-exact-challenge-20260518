@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v344-bounded-mapping-cone-assembly",
-  "generated_utc": "2026-05-20T18:47:00Z",
-  "source_tree_hash": "5ffe6ab02c8e430aa0413e70cb2fae2bcb6f3c13a03372c8634fdf7ac97ac254",
-  "summary": "v344でW342 included colimit inputsとW341 bounded mapping-cone assembly fieldsを追加・検証した。product_completeはfalse。",
+  "schema": "lean-lca-exact-challenge-verification-v350-w271-mapping-cone-comparison-consumed",
+  "generated_utc": "2026-05-20T18:48:00Z",
+  "source_tree_hash": "3ca24e1e5df8dbde66a811afe8790d41d924c92b25e9d4d486ad8dd0b5289aa3",
+  "summary": "v350でW271 mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimitsとmetrizableLCA_directWalkingParallelPairOpColimitStability_of_exactAcyclicClosureを追加・検証した。product_completeはfalse。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -637,7 +637,7 @@
     {
       "command": "cd packets && sha256sum -c lean_lca_exact_category_challenge.zip.sha256",
       "status": "passed",
-      "evidence": "Packet sidecar verified against regenerated zip."
+      "evidence": "Packet SHA256 sidecar matches lean_lca_exact_category_challenge.zip."
     },
     {
       "command": "lake env lean audit/blockers/homotopy_weq_contains_identities_w292.lean",
@@ -662,7 +662,7 @@
     {
       "command": "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
       "status": "passed",
-      "evidence": "Focused W271 audit checked the mapping-cone comparison plus exact-acyclic WPP-op colimit closure boundary."
+      "evidence": "Focused W271 check passed after importing the connected WppOpMappingConeUniqueMediator source module."
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
@@ -742,12 +742,12 @@
     {
       "command": "lake env lean audit/blockers/wpp_op_object_cone_boundary_w302.lean",
       "status": "passed",
-      "evidence": "v302 focused WPP-op object cone boundary check passed in the parent target worktree."
+      "evidence": "Focused W302 check passed after adding included-colimit route to fixed-cocone colimit/comparison input."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_object_cone_boundary_w302.lean",
       "status": "passed",
-      "evidence": "v302 focused forbidden-token audit passed in the parent target worktree."
+      "evidence": "No forbidden Lean tokens found in W302 after included-colimit route update."
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_mapping_cone_fixed_cocone_w303.lean",
@@ -1187,22 +1187,22 @@
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Fresh baseline lake build passed after W337; warnings only."
+      "evidence": "Full lake build passed after W341/W308 updates; existing warnings only."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W337."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after v348 source-marker cleanup."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations Lean check passed after W337."
+      "evidence": "RequiredDeclarations check passed after W341/W308 updates."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations Lean check passed after W337."
+      "evidence": "ProductSuccessDeclarations check passed after W341/W308 updates."
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
@@ -1308,6 +1308,166 @@
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W341/W342; rg exited 1 because no matches were found."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
+      "status": "passed",
+      "evidence": "Focused W341 bounded mapping-cone left cochain/fac/left-uniqueness audit passed after adding arbitraryMediator_leftCochain_eq."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W341 after adding arbitraryMediator_leftCochain_eq."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON metadata parsed after v345 updates."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace/error diff check passed after v345 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "External audit reached the expected nonterminal product gate: terminal_outcome.outcome is blocked_nonterminal_frontier, not product_success."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
+      "status": "passed",
+      "evidence": "Focused W341 check passed after adding bounded_mappingCone_inr_naturality, arbitraryMediator_right_eq, and boundedMappingConeDesc_unique."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the updated W341 audit file."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON metadata parsed after v346 updates and manifest/source_tree_hash resync."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace/error diff check passed after v346 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "External audit reached the expected nonterminal product gate after v346: terminal_outcome.outcome is blocked_nonterminal_frontier, not product_success."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
+      "status": "passed",
+      "evidence": "Focused W308 check passed after adding ambientAssembledMediator_unique_of_left and the left-uniqueness assembly consumer; existing linter warnings only."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the updated W308 audit file."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpMappingConeBoundedLeftCochain",
+      "status": "passed",
+      "evidence": "Importable W341 bounded mapping-cone assembly module built successfully; output includes pre-existing dependency warnings."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
+      "status": "passed",
+      "evidence": "Focused W308 audit exited 0 after adding ambientDescAssemblyDataOfIncludedColimits and uniqueMediatingInput_of_includedColimits; output includes existing simp/unreachable-tactic lints."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W308 after v347."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
+      "status": "passed",
+      "evidence": "Forbidden-token literal scan returned no matches for the new source module and W308."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "All JSON metadata parsed after the v347 packet rebuild."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace/error diff check passed after v347 W341/W308 and packet refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Root external audit reached only the expected nonterminal product gate: terminal_outcome.outcome is blocked_nonterminal_frontier, not product_success."
+    },
+    {
+      "command": "clean extraction external audit for packets/lean_lca_exact_category_challenge.zip",
+      "status": "failed_expected",
+      "evidence": "Clean extraction external audit reached only the expected nonterminal product gate: terminal_outcome.outcome is blocked_nonterminal_frontier, not product_success."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpMappingConeUniqueMediator.lean",
+      "status": "passed",
+      "evidence": "Focused source module check passed after removing the forbidden product-facing placeholder word from a comment; existing linter warnings only."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpMappingConeUniqueMediator",
+      "status": "passed",
+      "evidence": "Importable W308 included-colimit unique mediator module built successfully; output includes pre-existing dependency warnings."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_mapping_cone_universal_w304.lean",
+      "status": "passed",
+      "evidence": "Focused W304 check passed after consuming W308 included-colimit unique-mediating input."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_universal_w304.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W304 after included-colimit route update."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/WppOpMappingConeUniqueMediator.lean audit/blockers/wpp_op_mapping_cone_universal_w304.lean",
+      "status": "passed",
+      "evidence": "Forbidden-token literal scan returned no matches for the W308 source module and W304."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_object_cone_boundary_w302.lean",
+      "status": "passed",
+      "evidence": "Focused W302 audit exited 0 after adding fixed-cocone colimit and mapping-cone comparison theorems from included-colimit inputs."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_object_cone_boundary_w302.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W302 after v349."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_object_cone_boundary_w302.lean LeanLCAExactChallenge/Derived/WppOpMappingConeUniqueMediator.lean",
+      "status": "passed",
+      "evidence": "Forbidden-token literal scan returned no matches for W302 and the W308 source module."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W271 after import update."
+    },
+    {
+      "command": "lake env lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+      "status": "passed",
+      "evidence": "Focused W271 audit exited 0 after consuming the included-colimit mapping-cone comparison theorem."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W271 after v350."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/direct_wpp_op_colimit_closure_w271.lean LeanLCAExactChallenge/Derived/WppOpMappingConeUniqueMediator.lean",
+      "status": "passed",
+      "evidence": "Forbidden-token literal scan returned no matches for W271 and the W308 source module."
     }
   ],
   "implemented_declarations_checked": [

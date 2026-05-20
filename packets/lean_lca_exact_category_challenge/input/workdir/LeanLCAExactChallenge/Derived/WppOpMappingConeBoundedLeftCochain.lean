@@ -606,21 +606,6 @@ def currentWppOpMappingConeBoundedLeftCochainState :
 theorem currentWppOpMappingConeBoundedLeftCochainState_productSuccess :
     currentWppOpMappingConeBoundedLeftCochainState.productSuccessClaimed = false := rfl
 
-section Checks
-
-#check leftCochainOfBoundedTestCocone
-#check leftCochainOfBoundedTestCocone_comp_fac
-#check globalDescEqOfBoundedTestCocone
-#check boundedMappingConeDesc_fac
-#check bounded_mappingCone_inr_naturality
-#check arbitraryMediator_leftCochain_eq
-#check arbitraryMediator_right_eq
-#check boundedMappingConeDesc_unique
-#check currentWppOpMappingConeBoundedLeftCochainState
-#check currentWppOpMappingConeBoundedLeftCochainState_productSuccess
-
-end Checks
-
 end WppOpMappingConeBoundedLeftCochainW341
 
 end LeanLCAExactChallenge

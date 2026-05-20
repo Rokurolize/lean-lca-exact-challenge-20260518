@@ -373,6 +373,29 @@ theorem bounded_mappingCone_inl_naturality {J : Type} [Category J]
               (hφ j).symm)).f q := by
   simp [mappingCone.map]
 
+/-- Naturality of `mappingCone.inr` for the bounded-inclusion mapping-cone map. -/
+theorem bounded_mappingCone_inr_naturality {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    (f : X₁ ⟶ X₂)
+    {c₁ : Cocone X₁} {c₂ : Cocone X₂}
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j)
+    (j : J) :
+    (BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.ι.app j) ≫
+        mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) =
+      mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)) ≫
+        mappingCone.map
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.ι.app j))
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.ι.app j))
+          (by
+            rw [← Functor.map_comp, ← Functor.map_comp]
+            exact congrArg
+              (fun g => (BoundedComplexCategory.ι MetrizableLCA.{0}).map g)
+              (hφ j).symm) := by
+  simp [mappingCone.map]
+
 /--
 An arbitrary mediator satisfying the fixed test-cocone fac equations has the
 same left `mappingCone.inl` cochain component as the descended W341 left
@@ -434,6 +457,137 @@ theorem arbitraryMediator_leftCochain_eq {J : Type} [Category J]
   rw [hfacq]
   exact h₄
 
+/--
+An arbitrary mediator satisfying the fixed test-cocone fac equations has the
+same right `mappingCone.inr` component as the W341 right mediator `β`.
+-/
+theorem arbitraryMediator_right_eq {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    {c₁ : Cocone X₁} {c₂ : Cocone X₂}
+    (hc₂i : IsColimit ((BoundedComplexCategory.ι MetrizableLCA.{0}).mapCocone c₂))
+    (f : X₁ ⟶ X₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j)
+    {T : CochainComplex MetrizableLCA.{0} ℤ}
+    (β : (BoundedComplexCategory.ι MetrizableLCA.{0}).obj c₂.pt ⟶ T)
+    (leg : ∀ j : J,
+      mappingCone ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)) ⟶ T)
+    (hβ : ∀ j : J,
+      (BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.ι.app j) ≫ β =
+        mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)) ≫ leg j)
+    (m : mappingCone ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ⟶ T)
+    (hm : ∀ j : J,
+      mappingCone.map
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.ι.app j))
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.ι.app j))
+          (by
+            rw [← Functor.map_comp, ← Functor.map_comp]
+            exact congrArg
+              (fun g => (BoundedComplexCategory.ι MetrizableLCA.{0}).map g)
+              (hφ j).symm) ≫ m = leg j) :
+    mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≫ m = β := by
+  apply hc₂i.hom_ext
+  intro j
+  calc
+    (BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.ι.app j) ≫
+        (mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≫ m) =
+        mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)) ≫
+          (mappingCone.map
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.ι.app j))
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.ι.app j))
+            (by
+              rw [← Functor.map_comp, ← Functor.map_comp]
+              exact congrArg
+                (fun g => (BoundedComplexCategory.ι MetrizableLCA.{0}).map g)
+                (hφ j).symm) ≫ m) := by
+          have hnat := congrArg (fun u => u ≫ m) (bounded_mappingCone_inr_naturality f φ hφ j)
+          simpa [Category.assoc] using hnat
+    _ = mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)) ≫ leg j := by
+          rw [hm j]
+    _ = (BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.ι.app j) ≫ β := by
+          exact (hβ j).symm
+
+/--
+The W341 bounded-inclusion `mappingCone.desc` is the unique mediator among maps
+that satisfy the fixed test-cocone fac equations.
+-/
+theorem boundedMappingConeDesc_unique {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    {c₁ : Cocone X₁}
+    (hc₁i : IsColimit ((BoundedComplexCategory.ι MetrizableLCA.{0}).mapCocone c₁))
+    [∀ p : ℤ, PreservesColimit (X₁ ⋙ BoundedComplexCategory.ι MetrizableLCA.{0})
+      (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) p)]
+    {c₂ : Cocone X₂}
+    (hc₂i : IsColimit ((BoundedComplexCategory.ι MetrizableLCA.{0}).mapCocone c₂))
+    (f : X₁ ⟶ X₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j)
+    {T : CochainComplex MetrizableLCA.{0} ℤ}
+    (β : (BoundedComplexCategory.ι MetrizableLCA.{0}).obj c₂.pt ⟶ T)
+    (leg : ∀ j : J,
+      mappingCone ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)) ⟶ T)
+    (hleg : BoundedMappingConeTestLegNaturality f leg)
+    (hβ : ∀ j : J,
+      (BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.ι.app j) ≫ β =
+        mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)) ≫ leg j)
+    (m : mappingCone ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ⟶ T)
+    (hm : ∀ j : J,
+      mappingCone.map
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.ι.app j))
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.ι.app j))
+          (by
+            rw [← Functor.map_comp, ← Functor.map_comp]
+            exact congrArg
+              (fun g => (BoundedComplexCategory.ι MetrizableLCA.{0}).map g)
+              (hφ j).symm) ≫ m = leg j) :
+    m =
+      mappingCone.desc
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+        (leftCochainOfBoundedTestCocone hc₁i f leg hleg)
+        β
+        (globalDescEqOfBoundedTestCocone hc₁i f φ hφ β leg hleg hβ) := by
+  let α := leftCochainOfBoundedTestCocone hc₁i f leg hleg
+  let eq := globalDescEqOfBoundedTestCocone hc₁i f φ hφ β leg hleg hβ
+  let desc :=
+    mappingCone.desc
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) α β eq
+  have hleft :
+      (mappingCone.inl ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).comp
+          (HomComplex.Cochain.ofHom m) (add_zero (-1)) = α := by
+    simpa [α] using arbitraryMediator_leftCochain_eq hc₁i f φ hφ leg hleg m hm
+  have hright :
+      mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≫ m = β := by
+    exact arbitraryMediator_right_eq hc₂i f φ hφ β leg hβ m hm
+  apply HomologicalComplex.hom_ext
+  intro p
+  apply mappingCone.ext_from
+    ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) (p + 1) p rfl
+  · have hdesc_left :
+        (mappingCone.inl ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).comp
+            (HomComplex.Cochain.ofHom desc) (add_zero (-1)) = α := by
+        simp [desc, α]
+    have hcochain :
+        (mappingCone.inl ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).comp
+            (HomComplex.Cochain.ofHom m) (add_zero (-1)) =
+          (mappingCone.inl ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).comp
+            (HomComplex.Cochain.ofHom desc) (add_zero (-1)) :=
+      hleft.trans hdesc_left.symm
+    replace hcochain := HomComplex.Cochain.congr_v hcochain (p + 1) p (by omega)
+    simpa [desc] using hcochain
+  · have hright' :
+        mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≫ m =
+          mappingCone.inr ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≫ desc := by
+        simpa [desc, α, eq] using hright.trans
+          (mappingCone.inr_desc
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) α β eq).symm
+    simpa [desc] using congrArg (fun q => q.f p) hright'
+
 /-- Machine-readable W341 state. -/
 structure WppOpMappingConeBoundedLeftCochainState : Type where
   checkedLemma : String
@@ -443,10 +597,10 @@ structure WppOpMappingConeBoundedLeftCochainState : Type where
 /-- Reproducible W341 state. -/
 def currentWppOpMappingConeBoundedLeftCochainState :
     WppOpMappingConeBoundedLeftCochainState where
-  checkedLemma := "arbitraryMediator_leftCochain_eq"
+  checkedLemma := "boundedMappingConeDesc_unique"
   remainingInputs :=
     ["derive hc₁i from W324's preservation of the included bounded c₁ colimit",
-      "package final uniqueness field using W330/right colimit equality"]
+      "instantiate the W341 bounded assembly with W308's concrete WPP-op source cocones"]
   productSuccessClaimed := false
 
 theorem currentWppOpMappingConeBoundedLeftCochainState_productSuccess :
@@ -458,7 +612,10 @@ section Checks
 #check leftCochainOfBoundedTestCocone_comp_fac
 #check globalDescEqOfBoundedTestCocone
 #check boundedMappingConeDesc_fac
+#check bounded_mappingCone_inr_naturality
 #check arbitraryMediator_leftCochain_eq
+#check arbitraryMediator_right_eq
+#check boundedMappingConeDesc_unique
 #check currentWppOpMappingConeBoundedLeftCochainState
 #check currentWppOpMappingConeBoundedLeftCochainState_productSuccess
 

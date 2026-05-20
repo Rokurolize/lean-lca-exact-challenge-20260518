@@ -708,7 +708,7 @@ theorem uniqueMediatingInput_of_includedColimits {J : Type} [Category J]
   uniqueMediatingInput_of_ambientDescAssemblyData
     (ambientDescAssemblyDataOfIncludedColimits hc₁i hc₂ φ hφ)
 
-/-- Machine-readable frontier state for W308. -/
+/-- Machine-readable W308 state. -/
 structure WppOpMappingConeUniqueMediatorState : Type where
   seed : String
   provedRightLeg : String
@@ -731,43 +731,6 @@ def currentWppOpMappingConeUniqueMediatorState :
 
 theorem currentWppOpMappingConeUniqueMediatorState_productSuccess :
     currentWppOpMappingConeUniqueMediatorState.productSuccessClaimed = false := rfl
-
-section Checks
-
-#check mappingConeDiagram
-#check MappingConeTestLegNaturality
-#check testCoconeLegNaturality
-#check mappingConeCocone
-#check FixedMappingConeCoconeUniqueMediatingInput
-#check TestCoconeBoundedRightLift
-#check rightLegMediator
-#check rightLegMediator_fac
-#check AmbientRightLegCoconeData
-#check ambientRightLegMediator
-#check ambientRightLegMediator_fac
-#check mappingConeDiagram_inr_naturality
-#check ambientRightLegCoconeDataOfTestCocone
-#check AmbientFixedMappingConeCoconeDescAssemblyData
-#check ambientAssembledMediator
-#check uniqueMediatingInput_of_ambientDescAssemblyData
-#check ambientAssembledMediator_unique_of_left
-#check AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData
-#check AmbientFixedMappingConeCoconeDescAssemblyLeftUniqData.toAmbientData
-#check uniqueMediatingInput_of_ambientDescAssemblyLeftUniqData
-#check FixedMappingConeCoconeDescAssemblyData
-#check assembledMediator
-#check uniqueMediatingInput_of_descAssemblyData
-#check ambientDescAssemblyDataOfIncludedColimits
-#check uniqueMediatingInput_of_includedColimits
-#check currentWppOpMappingConeUniqueMediatorState
-#check currentWppOpMappingConeUniqueMediatorState_productSuccess
-#check CochainComplex.mappingCone.desc
-#check CochainComplex.mappingCone.ext_from
-#check IsColimit.desc
-#check IsColimit.fac
-#check IsColimit.uniq
-
-end Checks
 
 end WppOpMappingConeUniqueMediatorW308
 

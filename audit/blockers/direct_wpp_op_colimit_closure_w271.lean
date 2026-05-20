@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Derived.BoundedFiniteProducts
+import LeanLCAExactChallenge.Derived.WppOpMappingConeUniqueMediator
 import Mathlib.CategoryTheory.MorphismProperty.Limits
 
 /-!
@@ -87,6 +88,33 @@ abbrev exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure : Prop :
           exactAcyclic MetrizableLCA ck.pt
 
 /--
+The W308 included-colimit mapping-cone construction supplies W271's comparison
+input directly.
+-/
+theorem mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimits :
+    mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison := by
+  intro X₁ X₂ c₁ c₂ hc₁ hc₂ f hf φ hφ
+  let K := WppOpMappingConeUniqueMediatorW308.mappingConeDiagram X₁ X₂ f
+  let ck := WppOpMappingConeUniqueMediatorW308.mappingConeCocone c₁ c₂ f φ hφ
+  have huniq :=
+    WppOpMappingConeUniqueMediatorW308.uniqueMediatingInput_of_includedColimits
+      (X₁ := X₁) (X₂ := X₂) (c₁ := c₁) (c₂ := c₂) (f := f)
+      (isColimitOfPreserves (BoundedComplexCategory.ι MetrizableLCA.{0}) hc₁)
+      hc₂ φ hφ
+  have hck : IsColimit ck :=
+    { desc := fun s => Classical.choose (huniq s)
+      fac := by
+        intro s j
+        exact (Classical.choose_spec (huniq s)).1 j
+      uniq := by
+        intro s m hm
+        exact (Classical.choose_spec (huniq s)).2 m hm }
+  refine ⟨K, ck, ⟨hck⟩, ?_, ?_⟩
+  · intro j
+    exact hf j
+  · exact ⟨Iso.refl _⟩
+
+/--
 The two lower-level inputs prove exact acyclicity of the mapping cone of the colimit comparison
 map selected by the WPP-op cocone data.
 -/
@@ -117,6 +145,14 @@ theorem directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closu
     exactAcyclic_mappingCone_of_walkingParallelPairOp_comparison_and_closure
       hcomparison hclosure X₁ X₂ c₁ c₂ hc₁ hc₂ f hf φ hφ
 
+/-- With the W308 comparison theorem, only the exact-acyclic colimit closure remains. -/
+theorem directWalkingParallelPairOpColimitConditionInput_of_includedComparison_and_closure
+    (hclosure : exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure) :
+    MetrizableLCADirectWalkingParallelPairOpColimitConditionInput :=
+  directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closure
+    mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimits
+    hclosure
+
 /-- The checked consumer from the lower-level W271 inputs to the direct WPP-op stability target. -/
 theorem metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure
     (hcomparison : mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison)
@@ -125,6 +161,14 @@ theorem metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_
   MorphismProperty.IsStableUnderColimitsOfShape.mk
     (directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closure
       hcomparison hclosure)
+
+/-- With the W308 comparison theorem, W271's direct WPP-op stability target has one input left. -/
+theorem metrizableLCA_directWalkingParallelPairOpColimitStability_of_exactAcyclicClosure
+    (hclosure : exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure) :
+    MetrizableLCADirectWalkingParallelPairOpColimitStabilityTarget :=
+  metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure
+    mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimits
+    hclosure
 
 /-- Machine-readable frontier state for W271. -/
 structure DirectWalkingParallelPairOpColimitClosureState : Type where
@@ -142,12 +186,11 @@ def currentDirectWalkingParallelPairOpColimitClosureState :
   selectedRoute :=
     "direct WPP-op colimit closure via mapping-cone comparison plus exact-acyclic colimit closure"
   checkedBoundary :=
-    "mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison + exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure"
+    "exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure"
   provedConsumer :=
-    "metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure"
+    "metrizableLCA_directWalkingParallelPairOpColimitStability_of_exactAcyclicClosure"
   remainingInputs :=
-    ["mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison",
-      "exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure"]
+    ["exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure"]
   productSuccessClaimed := false
 
 theorem currentDirectWalkingParallelPairOpColimitClosureState_productSuccess :
@@ -157,13 +200,16 @@ theorem currentDirectWalkingParallelPairOpColimitClosureState_productSuccess :
 def directWalkingParallelPairOpColimitClosureDeclarationNames : List String :=
   ["mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison",
     "exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure",
+    "mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimits",
     "exactAcyclic_mappingCone_of_walkingParallelPairOp_comparison_and_closure",
     "directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closure",
+    "directWalkingParallelPairOpColimitConditionInput_of_includedComparison_and_closure",
     "metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure",
+    "metrizableLCA_directWalkingParallelPairOpColimitStability_of_exactAcyclicClosure",
     "currentDirectWalkingParallelPairOpColimitClosureState"]
 
 theorem directWalkingParallelPairOpColimitClosureDeclarationNames_count :
-    directWalkingParallelPairOpColimitClosureDeclarationNames.length = 6 := rfl
+    directWalkingParallelPairOpColimitClosureDeclarationNames.length = 9 := rfl
 
 section Checks
 
@@ -172,9 +218,12 @@ section Checks
 #check MetrizableLCADirectWalkingParallelPairOpColimitConditionInput
 #check mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison
 #check exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure
+#check mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimits
 #check exactAcyclic_mappingCone_of_walkingParallelPairOp_comparison_and_closure
 #check directWalkingParallelPairOpColimitConditionInput_of_comparison_and_closure
+#check directWalkingParallelPairOpColimitConditionInput_of_includedComparison_and_closure
 #check metrizableLCA_directWalkingParallelPairOpColimitStability_of_comparison_and_closure
+#check metrizableLCA_directWalkingParallelPairOpColimitStability_of_exactAcyclicClosure
 #check currentDirectWalkingParallelPairOpColimitClosureState
 #check currentDirectWalkingParallelPairOpColimitClosureState_productSuccess
 #check directWalkingParallelPairOpColimitClosureDeclarationNames

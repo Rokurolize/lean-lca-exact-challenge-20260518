@@ -1,4 +1,5 @@
 import LeanLCAExactChallenge.Derived.MappingConeFiniteProduct
+import LeanLCAExactChallenge.Derived.WppOpMappingConeUniqueMediator
 import Mathlib.CategoryTheory.MorphismProperty.Limits
 
 /-!
@@ -180,6 +181,49 @@ abbrev walkingParallelPairOp_mappingCone_fixedCoconeColimitInput : Prop :=
       c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j),
         Nonempty (IsColimit (mappingConeCocone c₁ c₂ f φ hφ))
 
+/-- Local unique-mediating-map package for the fixed mapping-cone cocone. -/
+abbrev FixedMappingConeCoconeUniqueMediatingInput
+    {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    (c₁ : Cocone X₁) (c₂ : Cocone X₂) (f : X₁ ⟶ X₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j) : Prop :=
+  ∀ s : Cocone (mappingConeDiagram X₁ X₂ f),
+    ∃! m : (mappingConeCocone c₁ c₂ f φ hφ).pt ⟶ s.pt,
+      ∀ j : J, (mappingConeCocone c₁ c₂ f φ hφ).ι.app j ≫ m = s.ι.app j
+
+/-- Unique mediating maps build the fixed mapping-cone cocone colimit proof. -/
+noncomputable def isColimitOfFixedMappingConeCoconeUniqueMediating
+    {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    {c₁ : Cocone X₁} {c₂ : Cocone X₂} {f : X₁ ⟶ X₂}
+    {φ : c₁.pt ⟶ c₂.pt}
+    {hφ : ∀ j : J, c₁.ι.app j ≫ φ = f.app j ≫ c₂.ι.app j}
+    (huniq : FixedMappingConeCoconeUniqueMediatingInput c₁ c₂ f φ hφ) :
+    IsColimit (mappingConeCocone c₁ c₂ f φ hφ) where
+  desc s := Classical.choose (huniq s)
+  fac s j := (Classical.choose_spec (huniq s)).1 j
+  uniq s m hm := (Classical.choose_spec (huniq s)).2 m hm
+
+/-- The W308 included-colimit theorem supplies W302's fixed-cocone colimit input. -/
+theorem walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_includedColimits :
+    walkingParallelPairOp_mappingCone_fixedCoconeColimitInput := by
+  intro X₁ X₂ c₁ c₂ hc₁ hc₂ f φ hφ
+  have huniq308 :=
+    WppOpMappingConeUniqueMediatorW308.uniqueMediatingInput_of_includedColimits
+      (X₁ := X₁) (X₂ := X₂) (c₁ := c₁) (c₂ := c₂) (f := f)
+      (isColimitOfPreserves (BoundedComplexCategory.ι MetrizableLCA.{0}) hc₁)
+      hc₂ φ hφ
+  have huniq :
+      FixedMappingConeCoconeUniqueMediatingInput c₁ c₂ f φ hφ := by
+    simpa [FixedMappingConeCoconeUniqueMediatingInput,
+      WppOpMappingConeUniqueMediatorW308.FixedMappingConeCoconeUniqueMediatingInput,
+      mappingConeDiagram,
+      WppOpMappingConeUniqueMediatorW308.mappingConeDiagram,
+      mappingConeCocone,
+      WppOpMappingConeUniqueMediatorW308.mappingConeCocone] using huniq308
+  exact ⟨isColimitOfFixedMappingConeCoconeUniqueMediating huniq⟩
+
 /-- The fixed-cocone colimit input supplies the fixed-diagram colimit input. -/
 theorem walkingParallelPairOp_mappingCone_fixedDiagramColimitInput_of_fixedCoconeColimit
     (hfixed : walkingParallelPairOp_mappingCone_fixedCoconeColimitInput) :
@@ -238,6 +282,16 @@ theorem mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_o
         ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)))
     exact hf j)
 
+/--
+The W308 included-colimit theorem supplies W276's full mapping-cone comparison
+input through the W302 fixed-cocone route.
+-/
+theorem mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimits :
+    mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison :=
+  mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_fixedDiagramColimit
+    (walkingParallelPairOp_mappingCone_fixedDiagramColimitInput_of_fixedCoconeColimit
+      walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_includedColimits)
+
 /-- Machine-readable frontier state for W302. -/
 structure WppOpObjectConeBoundaryState : Type where
   seed : String
@@ -251,13 +305,14 @@ structure WppOpObjectConeBoundaryState : Type where
 def currentWppOpObjectConeBoundaryState : WppOpObjectConeBoundaryState where
   seed := "w302-parent-20260520T1620Z"
   selectedRoute :=
-    "fix the WPP-op objectwise mapping-cone diagram, leaving only its concrete cocone colimit proof"
+    "fixed WPP-op objectwise mapping-cone diagram and consumed included-colimit cocone proof"
   checkedBoundary :=
-    "walkingParallelPairOp_mappingCone_fixedCoconeColimitInput"
+    "mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison"
   provedConsumer :=
-    "mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_fixedDiagramColimit"
+    "mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimits"
   remainingInputs :=
-    ["prove IsColimit for mappingConeCocone c₁ c₂ f φ hφ in CochainComplex MetrizableLCA ℤ"]
+    ["consume this comparison theorem in the W271 exact-acyclic WPP-op colimit closure route",
+      "continue any remaining non-mapping-cone exactness/topology blockers"]
   productSuccessClaimed := false
 
 theorem currentWppOpObjectConeBoundaryState_productSuccess :
@@ -270,14 +325,18 @@ def wppOpObjectConeBoundaryDeclarationNames : List String :=
     "mappingConeCocone",
     "mappingConeCocone_pt",
     "walkingParallelPairOp_mappingCone_fixedCoconeColimitInput",
+    "FixedMappingConeCoconeUniqueMediatingInput",
+    "isColimitOfFixedMappingConeCoconeUniqueMediating",
+    "walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_includedColimits",
     "walkingParallelPairOp_mappingCone_fixedDiagramColimitInput_of_fixedCoconeColimit",
     "walkingParallelPairOp_mappingCone_fixedDiagramColimitInput",
     "walkingParallelPairOp_mappingCone_objectComparisonBoundary_of_fixedDiagramColimit",
     "mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_fixedDiagramColimit",
+    "mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimits",
     "currentWppOpObjectConeBoundaryState"]
 
 theorem wppOpObjectConeBoundaryDeclarationNames_count :
-    wppOpObjectConeBoundaryDeclarationNames.length = 10 := rfl
+    wppOpObjectConeBoundaryDeclarationNames.length = 14 := rfl
 
 section Checks
 
@@ -288,10 +347,14 @@ section Checks
 #check walkingParallelPairOp_mappingCone_objectComparisonBoundary
 #check walkingParallelPairOp_mappingCone_fixedDiagramColimitInput
 #check walkingParallelPairOp_mappingCone_fixedCoconeColimitInput
+#check FixedMappingConeCoconeUniqueMediatingInput
+#check isColimitOfFixedMappingConeCoconeUniqueMediating
+#check walkingParallelPairOp_mappingCone_fixedCoconeColimitInput_of_includedColimits
 #check walkingParallelPairOp_mappingCone_fixedDiagramColimitInput_of_fixedCoconeColimit
 #check walkingParallelPairOp_mappingCone_objectComparisonBoundary_of_fixedDiagramColimit
 #check mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison
 #check mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_fixedDiagramColimit
+#check mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison_of_includedColimits
 #check currentWppOpObjectConeBoundaryState
 #check currentWppOpObjectConeBoundaryState_productSuccess
 #check wppOpObjectConeBoundaryDeclarationNames
