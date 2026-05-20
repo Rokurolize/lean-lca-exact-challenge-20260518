@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T17:05:18Z",
-  "source_tree_hash": "8158c4f3c55b7f0937c77b123679215142c90f3354aaa52d39085b049e66fa53",
-  "summary": "v320でW319を親側検証し、W318のalgebraic exactness入力を純粋なadditive colimit kernel-exactness境界へ縮約した。product_completeはfalseのまま。",
+  "generated_utc": "2026-05-20T17:12:02Z",
+  "source_tree_hash": "4c186d9738d432f4a3ce17711bb2710c72da0d011c9033d73658de1b97ea8ecb",
+  "summary": "v322でW320 negative guardとROOT_BLOCKERS_W320を親側検証し、W319を自動exact colimitで閉じない制約を記録した。product_completeはfalseのまま。",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -212,27 +212,27 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "Product declaration audit checks the v268 epi bridge."
+      "evidence": "ProductSuccessDeclarations check passed in fresh baseline."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after v252 cokernel module import; only pre-existing warnings were emitted."
+      "evidence": "Fresh baseline lake build passed before W290/W320 audit-only additions; new audit files were checked separately."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after v268."
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "Required declarations still elaborate after v263 edits."
+      "evidence": "Required declarations check passed in fresh baseline."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after W319 artifact updates."
+      "evidence": "Whitespace diff check passed after W320 artifact updates."
     },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -262,7 +262,7 @@
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "Expected product gate remains failed_nonterminal because terminal_outcome.outcome is not product_success."
+      "evidence": "Failed expected because terminal_outcome.outcome is nonterminal_frontier, not product_success."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
@@ -928,6 +928,31 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/algebraic_exact_additive_colimit_boundary_w319.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W319."
+    },
+    {
+      "command": "lake env lean audit/blockers/metrizable_homology_preservation_w290.lean",
+      "status": "passed",
+      "evidence": "Focused W290 homology-preservation boundary passed."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_homology_preservation_w290.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W290."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_addcommgrp_exact_colimit_guard_w320.lean",
+      "status": "passed",
+      "evidence": "Focused W320 AddCommGrp exact-colimit negative guard passed."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_addcommgrp_exact_colimit_guard_w320.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W320."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/ROOT_BLOCKERS_W320.json",
+      "status": "passed",
+      "evidence": "ROOT_BLOCKERS_W320.json parsed successfully."
     }
   ],
   "implemented_declarations_checked": [
@@ -1485,6 +1510,8 @@
   ],
   "product_complete": false,
   "known_gaps": [
+    "W320でAddCommGrpCatのWalkingParallelPair/WPP-op exact colimit instanceは自動合成されないことをguardしたため、W319はAB5やconnectednessだけでは閉じられない。有限coequalizer/WPP colimit専用のkernel exactness保存証明が未供給である。",
+    "W290でglobal forget₂ PreservesHomologyは全てのkernel/cokernel保存へ、local routeはpreserved LeftHomologyData/RightHomologyDataへ縮約されたが、これらの保存入力はまだ未供給である。",
     "W319でW318のalgebraic exactness入力はadditiveKernelExact_wppOp_colimit_boundaryへ縮約されたが、このAddCommGrpCat側のWPP-op colimit kernel-exactness保存定理はまだ未供給である。",
     "W318でW271のexactAcyclic WPP-op colimit closureは、left closed embedding保存、component colimit open-map保存、algebraic exactness closureの三つへ統合されたが、これら三つのsource theoremはまだ未供給である。",
     "W303の固定mappingConeCocone universal入力は追加境界で一意なmediating mapの存在へ縮約されたが、そのmediating mapの実構成と可換性・一意性はまだ未供給である。",

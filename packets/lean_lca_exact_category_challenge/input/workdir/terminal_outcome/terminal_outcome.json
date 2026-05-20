@@ -2,7 +2,7 @@
   "outcome": "nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v320でW319を親側検証し、W318の代数的exactness入力をAddCommGrpCat側のWPP-op colimit kernel-exactness境界へ縮約した。product_completeはfalseのまま。",
+  "summary": "v322でW320 negative guardとROOT_BLOCKERS_W320を親側検証し、W319を自動exact colimitで閉じない制約を記録した。product_completeはfalseのまま。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -895,6 +895,8 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicFrontierConsolidatedState"
   ],
   "known_gaps": [
+    "W320でAddCommGrpCatのWalkingParallelPair/WPP-op exact colimit instanceは自動合成されないことをguardしたため、W319はAB5やconnectednessだけでは閉じられない。有限coequalizer/WPP colimit専用のkernel exactness保存証明がまだsource theoremとして未証明である。",
+    "W290でglobal forget₂ PreservesHomologyは全てのkernel/cokernel保存へ、local routeはpreserved LeftHomologyData/RightHomologyDataへ縮約されたが、これらの保存入力はまだsource theoremとして未証明である。",
     "W319でW318のalgebraic exactness入力はadditiveKernelExact_wppOp_colimit_boundaryへ縮約されたが、このAddCommGrpCat側のWPP-op colimit kernel-exactness保存定理はまだsource theoremとして未証明である。",
     "W318でW271 exactAcyclic WPP-op colimit closureは、closed-embedding保存、component colimit open-map境界、direct algebraic exactnessの三つへ統合されたが、これらはまだsource theoremとして未証明である。",
     "W317でexactAcyclic WPP-op colimit closureはleftClosedEmbedding、rightOpenMap、algebraicExactの三つの直接field closureへ縮約されたが、この三つのfield保存定理はまだ未供給である。",
@@ -958,11 +960,13 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "uncommitted-v320",
+  "git_commit": "uncommitted-v322",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W272によりopposite functor-category localizationはblueprint + diagram/model fac/uniq義務へ縮約。direct WPPᵒᵖ colimit stability、direct identity containmentまたはhomotopy-class assembly、bounded-derived infinity product obligationsは残る。 v300でW299のdegreewise short-complex colimit比較入力は閉じた。 v301で支援W277の有用部分を親側で再実装し、strictShortExactの4フィールド閉性へ縮約した。 v302で支援W278の有用部分を親側で再実装し、mappingConeCoconeのcolimit証明へ縮約した。 v303で支援W281の有用部分を親側で再実装し、固定mappingConeCoconeのcolimit入力をdesc/fac/uniq普遍性データへ縮約した。 v304で支援W282の有用部分を親側で再実装し、HomotopyEquiv輸送のsource exactness入力をexactAcyclic MetrizableLCA Kへ戻した。 v304-v308でHomotopyEquiv輸送、mapping-cone unique mediator、strict field split、opposite fixed-target境界を追加整理した。",
   "claim_review_result": "未実施。v293はproduct_success claimではなく、root/clean extraction external auditはいずれも想定どおりfailed_nonterminal product gateで停止した。",
   "remaining_gaps": [
+    "W320でAddCommGrpCatのWalkingParallelPair/WPP-op exact colimit instanceは自動合成されないことをguardしたため、W319はAB5やconnectednessだけでは閉じられない。有限coequalizer/WPP colimit専用のkernel exactness保存証明がまだsource theoremとして未証明である。",
+    "W290でglobal forget₂ PreservesHomologyは全てのkernel/cokernel保存へ、local routeはpreserved LeftHomologyData/RightHomologyDataへ縮約されたが、これらの保存入力はまだsource theoremとして未証明である。",
     "W319でW318のalgebraic exactness入力はadditiveKernelExact_wppOp_colimit_boundaryへ縮約されたが、このAddCommGrpCat側のWPP-op colimit kernel-exactness保存定理はまだsource theoremとして未証明である。",
     "W318でW271 exactAcyclic WPP-op colimit closureは、closed-embedding保存、component colimit open-map境界、direct algebraic exactnessの三つへ統合されたが、これらはまだsource theoremとして未証明である。",
     "W303の固定mappingConeCocone universal入力は追加境界で一意なmediating mapの存在へ縮約されたが、そのmediating mapの実構成と可換性・一意性はまだ未供給である。",
@@ -1012,7 +1016,7 @@
     "W317でW271 exactAcyclic WPP-op colimit closureはleft closed embedding、right open map、algebraic exactnessの3直接フィールドへ縮約されたが、これらはまだsource theoremとして未証明である。",
     "W318でW271 exactAcyclic WPP-op colimit closureは、closed-embedding保存、colimit-open-map境界、direct algebraic exactnessの3つへ集約されたが、これらはまだsource theoremとして未証明である。"
   ],
-  "next_recommended_goal": "次はW318/W319のsource入力を閉じる。代数側はadditiveKernelExact_wppOp_colimit_boundaryをAddCommGrpCatのcoequalizer/colimit表示から証明し、位相側はleft closed embedding保存とcomponent colimit open-map保存へ進める。",
+  "next_recommended_goal": "次はW319のadditiveKernelExact_wppOp_colimit_boundaryを、AddCommGrpCatの有限coequalizer/WPP colimit表示を使って形状専用に証明する。AB5/connectednessだけでは不可。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -1442,7 +1446,7 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_consolidated_frontier",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicFrontierConsolidatedState"
   ],
-  "generated_utc": "2026-05-20T17:05:18Z",
+  "generated_utc": "2026-05-20T17:12:02Z",
   "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
