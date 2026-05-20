@@ -584,6 +584,15 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W381 Ordinary Fields To Transported Fields
 2026-05-20T23:07:00Z: Worker support `w381-left-lca-ordinary-fields-to-transported-v370` was ported as `audit/blockers/wpp_op_left_lca_ordinary_fields_to_transported_v370_support_w381.lean`. It gives the adapter from ordinary W352-style descended fields to W378/W375 transported relation fields and records the required point/map identifications and field transports. Product success remains false because those six transport obligations remain open.
 
+## W384 Iso Field Transport
+2026-05-20T23:12:00Z: Parent support `audit/blockers/wpp_op_left_lca_iso_field_transport_v370_support_w384.lean` was added and verified. It proves that injectivity, `IsInducing`, and closed range transport across source and target point isomorphisms under descended-map conjugacy. Product success remains false because the point isomorphisms and conjugacy are still open.
+
+## W382/W383 Target Row And Relation Inputs
+2026-05-20T23:16:00Z: Worker support `w382-addcommgrp-forgotten-target-row-id-v370` and `w383-wpp-op-relation-pullback-target-lift-v370` were verified in the parent target. W382 bridges W379 canonical degreewise data into W376's schema and concentrates the AddCommGrp gap on the targetIso from the canonical cokernel row to the forgotten WPP-op colimit row. W383 packages W380's component closed-map result with W377's relation-field route, leaving relation-pullback equality and target relation lifting. Product success remains false.
+
+## W384 Transported Point Iso Package
+2026-05-20T23:17:00Z: Worker support `w384-left-lca-transported-point-iso-v370` was ported as `audit/blockers/wpp_op_left_lca_transported_point_iso_v370_support_w384.lean`. It packages source/target point isomorphisms, ordinary fields, and pointwise descended-map conjugacy into W378 transported fields and W375/W354 relation-input consumers. Product success remains false because those package inputs still need to be constructed for the actual quotient/cocone data.
+
 ## W357 Componentwise Target Iso
 2026-05-20T22:03:00Z: Parent-added support `audit/blockers/addcommgrp_componentwise_target_iso_v369_support_w357.lean` reduces the W356 target-row isomorphism to three component isomorphisms and two compatibility squares. It also transports the componentwise target presentation through the difference-cokernel SnakeInput API to produce `AddCommGrpStrictSnakeCokernelData` and `AddCommGrpKernelExact`. Product success remains false because the concrete component isomorphisms, compatibility squares, concrete cokernel row, and cokernel cofork proof are still missing.
 
