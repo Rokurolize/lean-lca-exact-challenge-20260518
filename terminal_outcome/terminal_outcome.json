@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v208時点で、空積base caseをW149で証明し、W151で評価後tail product点同型を証明した。これにより有限product routeから空積exactnessは外れたが、評価後Option複体fanとdegreewise limiting fanのBinaryFan/Cone比較、HomologicalComplex.isLimitOfEvalへの接続、OptionProductIsoBiprod、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が残るため、成果物は非終端である。",
+  "summary": "v209時点で、W149に exactAcyclic_optionProduct_of_optionProductIsoBiprod を追加し、空積base caseを外した新入力 FiniteProductOptionDecompositionInput からOption帰納stepを直接消費できるようにした。支援worker w161はv208で親側統合済みの evalTailProductPointIso routeと同等であり、新規移植なしとして分類した。OptionProductIsoBiprod、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造が残るため、成果物は非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -676,7 +676,7 @@
     "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
   ],
   "known_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v205でbinary mapping-cone比較入力は閉じ、v208で空積base caseと評価後tail product点同型も閉じたが、評価後のOption複体fanをdegreewise limiting fanへ比較するBinaryFan/Cone比較、HomologicalComplex.isLimitOfEvalへの接続、OptionProductIsoBiprod、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v209で空積base caseとOption帰納step消費補題は閉じたが、評価後のOption複体fanをdegreewise limiting fanへ比較するBinaryFan/Cone比較、HomologicalComplex.isLimitOfEvalへの接続、OptionProductIsoBiprod、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
     "Option product decomposition 本体は、transported complex fan、degreewise limiting fan、evalTailProductPointIsoを持つが、評価後fanをtransportして optionProductDegreeTransportedBinaryFan と同定する補題と、そこから二項product limitをbiproduct型の OptionProductIsoBiprod へ変換する証明が未完了。",
     "Dbounded equalizer/pullback transfer、有限colimit、pretriangulated/triangulated構造、stable infinity-category enhancement は未完了。"
   ],
@@ -685,14 +685,14 @@
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "v208 consumed completed support w158-w160 in parent-owned W149/W151. No duplicate target worker was launched. Remaining support value is now in the next Option evaluated-fan BinaryFan/Cone comparison, not in empty-product exactness.",
+  "worker_frontier_summary": "v209 classified w161 as already covered by parent v208. Support w162 is still active on the next Option complex fan IsLimit/BinaryFan comparison frontier; no duplicate target worker was launched.",
   "claim_review_result": "not_run_nonterminal",
   "remaining_gaps": [
-    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v205でbinary mapping-cone比較入力は閉じ、v208で空積base caseと評価後tail product点同型も閉じたが、評価後のOption複体fanをdegreewise limiting fanへ比較するBinaryFan/Cone比較、HomologicalComplex.isLimitOfEvalへの接続、OptionProductIsoBiprod、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
+    "boundedExactWeakEquivalence C の有限積安定性は FiniteProductMappingConeInput C へ上位境界化された。v209で空積base caseとOption帰納step消費補題は閉じたが、評価後のOption複体fanをdegreewise limiting fanへ比較するBinaryFan/Cone比較、HomologicalComplex.isLimitOfEvalへの接続、OptionProductIsoBiprod、有限family closure、および FiniteExactAcyclicProductClosure は未構成。",
     "Option product decomposition 本体は、transported complex fan、degreewise limiting fan、evalTailProductPointIsoを持つが、評価後fanをtransportして optionProductDegreeTransportedBinaryFan と同定する補題と、そこから二項product limitをbiproduct型の OptionProductIsoBiprod へ変換する証明が未完了。",
     "Dbounded equalizer/pullback transfer、有限colimit、pretriangulated/triangulated構造、stable infinity-category enhancement は未完了。"
   ],
-  "next_recommended_goal": "optionProductComplexTransportedBinaryFanを評価したconeをevalTailProductPointIsoでtransportし、optionProductDegreeTransportedBinaryFanとの左右射一致を証明する。次にoptionProductDegreeTransportedBinaryFanIsLimitをtransportしてHomologicalComplex.isLimitOfEvalへ渡し、OptionProductIsoBiprodへ変換する。",
+  "next_recommended_goal": "w162-option-complex-fan-islimit の正式結果を確認し、評価後Option fanを evalTailProductPointIso でtransportして optionProductDegreeTransportedBinaryFan と比較する左右射一致をW151へ統合する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -800,9 +800,10 @@
     "FiniteExactAcyclicProductClosureW149.FiniteProductOptionDecompositionInput",
     "FiniteExactAcyclicProductClosureW149.finiteProductDecompositionInput_of_optionProductIsoBiprod",
     "OptionProductDecompositionW151.evalTailProductPointIso",
-    "OptionProductDecompositionW151.evalTailProductPointIso_hom_π"
+    "OptionProductDecompositionW151.evalTailProductPointIso_hom_π",
+    "FiniteExactAcyclicProductClosureW149.exactAcyclic_optionProduct_of_optionProductIsoBiprod"
   ],
-  "generated_utc": "2026-05-20T05:50:20Z",
+  "generated_utc": "2026-05-20T05:56:44Z",
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave68_20260519T233000Z/workers/w126-stable-dbounded-certificate-provider-route/result.json",
@@ -951,6 +952,20 @@
         "FiniteExactAcyclicProductClosureW149.exactAcyclic_emptyProduct"
       ],
       "product_effect": "no_product_success_claim; empty product zero comparison proved directly in W149, removing separate empty-product exactness residual"
+    },
+    "w161-eval-tail-product-point-iso": {
+      "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave93_20260520T054400Z/workers/w161-eval-tail-product-point-iso/result.json",
+      "worker_status": "completed_without_product_success_claim",
+      "worker_changed_files": [
+        "audit/blockers/eval_tail_product_point_iso_w161.lean"
+      ],
+      "classification": "covered_by_parent_v208_no_new_port_v209",
+      "parent_file": "audit/blockers/option_product_decomposition_w151.lean",
+      "parent_declarations_covering_result": [
+        "OptionProductDecompositionW151.evalTailProductPointIso",
+        "OptionProductDecompositionW151.evalTailProductPointIso_hom_π"
+      ],
+      "product_effect": "no_product_success_claim; useful confirmation of the eval-tail product point-iso route, already integrated by parent v208"
     }
   },
   "implemented_declarations_checked": [
@@ -1006,6 +1021,7 @@
     "FiniteExactAcyclicProductClosureW149.FiniteProductOptionDecompositionInput",
     "FiniteExactAcyclicProductClosureW149.finiteProductDecompositionInput_of_optionProductIsoBiprod",
     "OptionProductDecompositionW151.evalTailProductPointIso",
-    "OptionProductDecompositionW151.evalTailProductPointIso_hom_π"
+    "OptionProductDecompositionW151.evalTailProductPointIso_hom_π",
+    "FiniteExactAcyclicProductClosureW149.exactAcyclic_optionProduct_of_optionProductIsoBiprod"
   ]
 }

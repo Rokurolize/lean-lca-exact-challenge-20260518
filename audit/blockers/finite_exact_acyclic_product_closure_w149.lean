@@ -121,6 +121,20 @@ theorem exactAcyclic_optionProduct_of_decomposition
     (MetrizableLCA.exactAcyclic_biprod (K none) (∏ᶜ (fun j : J => K (some j)))
       (hK none) hTail)
 
+/--
+The Option induction step after the empty-product base case has been removed from the input.
+-/
+theorem exactAcyclic_optionProduct_of_optionProductIsoBiprod
+    (input : FiniteProductOptionDecompositionInput.{u})
+    {J : Type u} [Finite J]
+    (K : Option J → CochainComplex MetrizableLCA.{u} ℤ)
+    [HasProduct K] [HasProduct (fun j : J => K (some j))]
+    (hK : ∀ j, exactAcyclic MetrizableLCA (K j))
+    (hTail : exactAcyclic MetrizableLCA (∏ᶜ (fun j : J => K (some j)))) :
+    exactAcyclic MetrizableLCA (∏ᶜ K) :=
+  exactAcyclic_optionProduct_of_decomposition
+    (finiteProductDecompositionInput_of_optionProductIsoBiprod input) K hK hTail
+
 /-- The earliest missing theorem isolated by this audit. -/
 def earliestMissingTheorem : String :=
   "FiniteProductDecompositionInput.optionProductIsoBiprod for cochain-complex products"
@@ -144,6 +158,7 @@ section Checks
 #check finiteProductDecompositionInput_of_optionProductIsoBiprod
 #check exactAcyclic_emptyProduct_of_decomposition
 #check exactAcyclic_optionProduct_of_decomposition
+#check exactAcyclic_optionProduct_of_optionProductIsoBiprod
 #check earliestMissingTheorem
 #check obstructionRouteMap
 #check obstructionRouteMap_count
