@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T11:01:52Z",
+  "generated_utc": "2026-05-20T11:05:34Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
@@ -1282,10 +1282,11 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "support w223/w226 were parent-reimplemented as functor-category localization and inverse-image left-calculus frontier reductions; support w224/w225 remain external/in progress if no result exists.",
-  "latest_parent_update": "v242-functor-category-and-inverse-image-left-calculus-boundaries",
-  "summary": "v242時点で、support w223/w226 の有用部分を親側で再実装し、audit/blockers/whiskering_right_localization_general_w223.lean と audit/blockers/inverse_image_left_calculus_transfer_w226.lean を追加した。WalkingParallelPair functor-category localization は、objectwise inversion が形式化され、Functor.IsLocalization.mk' に必要な2つの StrictUniversalPropertyFixedTarget 入力へ縮約された。boundedHomotopyExactWeakEquivalence C は (exactAcyclicHomotopyIsoClosure C).trW の BoundedComplexCategory.homotopyQuotient C 沿い inverse image と定義的に一致することも記録され、bounded homotopy left calculus の残り入力は inverse-image left-calculus transfer として明確化された。product successはまだ非完了である。",
+  "support_result_classification": "support w224 was parent-reimplemented as an opposite functor-category localization input normalization; support w225 remains external/in progress.",
+  "latest_parent_update": "v243-opposite-functor-localization-input",
+  "summary": "v243時点で、support w224 の有用部分を親側で再実装し、audit/blockers/opposite_functor_localization_input_w224.lean を追加した。反対側 WalkingParallelPair functor-category localization 入力は、w223 と同じ CategoryTheory.Localization.W224FunctorCategoryLocalizationInput 形へ正規化され、抽象 opposite localization と direct model (Dbounded.localization C).op の両方の条件付き consumer が記録された。これは finite-colimit route の frontier 縮約であり、非離散 functor-category localization 定理そのもの、opposite left calculus、有限product安定性、三角構造、stable infinity-category 構造はまだ未完了である。",
   "remaining_frontier": [
+    "Dbounded finite colimits: opposite WalkingParallelPair functor-category localization input is normalized to W224FunctorCategoryLocalizationInput; the non-discrete functor-category localization theorem remains missing.",
     "Dbounded finite products: bounded homotopy exact weak equivalence is definitionally an inverse image; inverse-image left-calculus transfer remains missing.",
     "Dbounded finite limits: WalkingParallelPair functor-category localization now reduces to two fixed-target universal properties after objectwise inversion.",
     "Dbounded finite products: exact-acyclic iso-closure collapse is reduced to exactAcyclic transport along HomotopyEquiv; the transport theorem remains missing.",
