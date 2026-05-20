@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v350-left-lca-descended-certificate-boundary",
-  "generated_utc": "2026-05-20T21:45:00Z",
-  "source_tree_hash": "f91a4bfc04f15084aeee0572ffa8e60e5c0ccb15b3137c17510709d49bf89230",
-  "summary": "v350 verifies W347/W348/W349 left LCA supports and extends W348: a global descended quotient certificate boundary now directly supplies W318 left LCA fields. product_complete remains false.",
+  "schema": "lean-lca-exact-challenge-verification-v352-relation-pullback-descended-fields",
+  "generated_utc": "2026-05-20T21:47:00Z",
+  "source_tree_hash": "ee887837b32cc84f60a4ab613c9114afffbb4288eab7ccb8a9fb40912f3f2fee",
+  "summary": "v352 verifies the relation-pullback descended-fields support: relation pullback plus quotient compatibility and a closed-map input yields the descended quotient-map fields consumed by the W348/W351 left LCA route. W350 also connects difference-Snake inputs to the W318/W271 exact-acyclic consumer. product_complete remains false.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -2038,6 +2038,16 @@
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_difference_snake_boundary_v369_support_w350.lean audit/blockers/wpp_op_descended_certificate_left_lca_consumer_v369_support_w351.lean",
       "status": "passed",
       "evidence": "Explicit forbidden-token rg scan returned no matches for W350/W351."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_relation_pullback_descended_fields_v369_support_w352.lean",
+      "status": "passed",
+      "evidence": "W352 relation pullback descended fields support checked."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_relation_pullback_descended_fields_v369_support_w352.lean",
+      "status": "passed",
+      "evidence": "Explicit forbidden-token rg scan returned no matches for W352."
     }
   ],
   "implemented_declarations_checked": [
@@ -2720,10 +2730,15 @@
     "LeanLCAExactChallenge.AddCommGrpDifferenceSnakeBoundaryV369SupportW350.addCommGrpDifferenceSnakeBoundary_for_metrizable",
     "LeanLCAExactChallenge.AddCommGrpDifferenceSnakeBoundaryV369SupportW350.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_differenceSnake",
     "LeanLCAExactChallenge.WppOpDescendedCertificateLeftLcaConsumerV369SupportW351.w318_fields_for_isColimitMap_of_single_certificate",
-    "LeanLCAExactChallenge.WppOpDescendedCertificateLeftLcaConsumerV369SupportW351.wppOp_lca_colimitMap_injective_inducing_closedImage_of_descended_certificates"
+    "LeanLCAExactChallenge.WppOpDescendedCertificateLeftLcaConsumerV369SupportW351.wppOp_lca_colimitMap_injective_inducing_closedImage_of_descended_certificates",
+    "LeanLCAExactChallenge.MetrizableLCA.RelationPullbackDescendedFieldsInputsW352",
+    "LeanLCAExactChallenge.MetrizableLCA.RelationPullbackDescendedFieldsInputsW352.descended_injective",
+    "LeanLCAExactChallenge.MetrizableLCA.RelationPullbackDescendedFieldsInputsW352.descended_closedEmbedding",
+    "LeanLCAExactChallenge.MetrizableLCA.RelationPullbackDescendedFieldsInputsW352.descended_fields"
   ],
   "product_complete": false,
   "known_gaps": [
+    "W352でrelation pullback/quotient compatibility/closed-map入力からdescended fieldsへの消費口は検証済みだが、具体quotient compatibility、relation pullback equality、descended closed-map theoremは未証明である。",
     "W351でdescended quotient certificateからW318 left LCA fieldsへの消費口は検証済みだが、具体quotient-presenting cocone、colimit証明、descended leg equation、descended closed-map fieldsは未構成である。",
     "W350でdifference Snake inputsからW318/W271 exact-acyclic consumerまでの消費口は検証済みだが、具体difference kernel row、difference cokernel row、colimit-row同型は未構成である。",
     "W348のglobal descended quotient certificate boundary consumerは検証済みだが、そのglobal certificate boundaryを具体quotient/coequalizer dataから構成する部分は未証明である。",

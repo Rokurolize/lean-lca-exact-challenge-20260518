@@ -500,3 +500,6 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ## W351 Descended Certificate Left LCA Consumer
 2026-05-20T21:45:00Z: Worker support `w351-descended-certificate-left-lca-consumer-v369` was ported as `audit/blockers/wpp_op_descended_certificate_left_lca_consumer_v369_support_w351.lean`. It shows that a descended quotient certificate for every componentwise closed-embedding natural transformation supplies W318's left LCA fields. Product success remains false because the concrete quotient-presenting cocones, colimit proofs, descended leg equations, and descended closed-map fields are still missing.
+
+## W352 Relation Pullback Descended Fields
+2026-05-20T21:47:00Z: Worker support `w352-relation-pullback-descended-fields-v369` was ported as `audit/blockers/wpp_op_relation_pullback_descended_fields_v369_support_w352.lean`. It packages relation pullback/reverse-preimage equivalences, quotient compatibility, and closed-map input into descended injectivity, closed embedding, and fields for the W348/W351 certificate route. Product success remains false because the concrete quotient compatibility, relation pullback equality, and closed-map theorem are still missing.
