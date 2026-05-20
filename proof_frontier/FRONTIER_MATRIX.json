@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T06:18:07Z",
+  "generated_utc": "2026-05-20T06:20:38Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v214 consumes completed consultant support w164 and records the remaining left/right leg frontiers for possible future partitioning.",
+  "worker_policy": "No workers were launched from the target worktree. v215 consumes completed consultant support w165; support w166 is active on the left-leg naturality calculation.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1340,10 +1340,10 @@
     }
   },
   "latest_parent_update": {
-    "version": "v214",
-    "timestamp_utc": "2026-05-20T06:18:07Z",
-    "summary": "v214 consumes completed support worker w164 and includes the v213 downstream assembly layer. W151 now has optionProductComplexTransportedBinaryFanIsLimit_of_eval and optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit, plus EvaluatedDegreeFanComparisonLeft, EvaluatedDegreeFanComparisonRight, and evaluatedDegreeFanComparison_of_left_right. The Option route is reduced to proving the two concrete leg equalities and then transporting the degreewise IsLimit proof into the evaluated-fan IsLimit family.",
-    "consumed_support_worker": "w164-evaluated-degree-fan-comparison",
-    "remaining_next_step": "prove EvaluatedDegreeFanComparisonLeft and EvaluatedDegreeFanComparisonRight, then use evaluatedDegreeFanComparison_of_left_right and the v213 consumer path."
+    "version": "v215",
+    "timestamp_utc": "2026-05-20T06:20:38Z",
+    "summary": "v215 consumes support worker w165 by adding binaryFanIsLimitOfEq and coneIsLimitOfEq to W151. These equality-transport helpers are the small post-comparison assembly API needed to turn a proved evaluated fan equality into the exact IsLimit shape consumed by HomologicalComplex.isLimitOfEval.",
+    "consumed_support_worker": "w165-option-islimit-assembly",
+    "remaining_next_step": "prove EvaluatedDegreeFanComparisonLeft and EvaluatedDegreeFanComparisonRight, then use equality transport and the v214 consumer path."
   }
 }

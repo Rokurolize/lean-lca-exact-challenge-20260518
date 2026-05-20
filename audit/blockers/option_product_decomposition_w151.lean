@@ -119,6 +119,19 @@ noncomputable def optionProductIsoBiprod_of_complexFanIsLimit
     ∏ᶜ K ≅ K none ⊞ ∏ᶜ (optionTail C K) :=
   (eqToIso hpt.symm).trans (binaryFanLimitPointIsoBiprod F hFan)
 
+/-- Transport a limiting binary fan across an equality of binary fans. -/
+def binaryFanIsLimitOfEq {X Y : CochainComplex C ℤ} {s t : BinaryFan X Y}
+    (h : s = t) (ht : IsLimit t) : IsLimit s := by
+  subst h
+  exact ht
+
+/-- Transport a limiting cone across an equality of cones. -/
+def coneIsLimitOfEq {J : Type w} [Category J]
+    {F : J ⥤ CochainComplex C ℤ} {s t : Cone F}
+    (h : s = t) (ht : IsLimit t) : IsLimit s := by
+  subst h
+  exact ht
+
 /--
 The degreewise product split exposed by mathlib's `PiProd` API.  It splits the product over
 `Option J` into the subproduct over entries equal to `none` and the complementary subproduct.
@@ -581,6 +594,8 @@ structure DegreewiseProductApiState : Type where
   remainingEvaluatedRightLeg : String
   evaluatedFanComparisonOfLeftRight : String
   binaryFanLimitPointIsoBiprod : String
+  binaryFanIsLimitOfEq : String
+  coneIsLimitOfEq : String
   complexTransportedFanIsLimitOfEval : String
   optionProductIsoBiprodOfComplexFanIsLimit : String
   optionProductIsoBiprodOfEvalIsLimit : String
@@ -605,6 +620,8 @@ def currentDegreewiseProductApiState : DegreewiseProductApiState where
   remainingEvaluatedRightLeg := "EvaluatedDegreeFanComparisonRight"
   evaluatedFanComparisonOfLeftRight := "evaluatedDegreeFanComparison_of_left_right"
   binaryFanLimitPointIsoBiprod := "binaryFanLimitPointIsoBiprod"
+  binaryFanIsLimitOfEq := "binaryFanIsLimitOfEq"
+  coneIsLimitOfEq := "coneIsLimitOfEq"
   complexTransportedFanIsLimitOfEval :=
     "optionProductComplexTransportedBinaryFanIsLimit_of_eval"
   optionProductIsoBiprodOfComplexFanIsLimit :=
@@ -639,6 +656,8 @@ section Checks
 #check OptionProductIsoBiprod
 #check binaryFanLimitPointIsoBiprod
 #check optionProductIsoBiprod_of_complexFanIsLimit
+#check binaryFanIsLimitOfEq
+#check coneIsLimitOfEq
 #check optionSomeComplementEquiv
 #check optionSomeComplementEquiv_apply_some
 #check optionSomeComplementEquiv_symm_apply

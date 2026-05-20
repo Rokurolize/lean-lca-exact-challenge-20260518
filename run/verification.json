@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v214-w164-left-right-frontier",
-  "generated_utc": "2026-05-20T06:18:07Z",
-  "source_tree_hash": "d9817cad2633d4fe6cabdf60df2ba1fab3e4055c5f93251e35977de9b56f7174",
-  "summary": "v214 consumes completed support worker w164 and includes the v213 downstream assembly layer. W151 now has optionProductComplexTransportedBinaryFanIsLimit_of_eval and optionProductIsoBiprod_of_optionProductComplexTransportedBinaryFanEvalIsLimit, plus EvaluatedDegreeFanComparisonLeft, EvaluatedDegreeFanComparisonRight, and evaluatedDegreeFanComparison_of_left_right. The Option route is reduced to proving the two concrete leg equalities and then transporting the degreewise IsLimit proof into the evaluated-fan IsLimit family. Product success remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-v215-w165-islimit-eq-transport",
+  "generated_utc": "2026-05-20T06:20:38Z",
+  "source_tree_hash": "29df8be12ef536ef02b7a5d3eb8852cead8b5cbfaf9dfd3f5dc4241385ea4e9d",
+  "summary": "v215 consumes support worker w165 by adding binaryFanIsLimitOfEq and coneIsLimitOfEq to W151. These equality-transport helpers are the small post-comparison assembly API needed to turn a proved evaluated fan equality into the exact IsLimit shape consumed by HomologicalComplex.isLimitOfEval. Product success remains nonterminal.",
   "commands": [
     {
       "command": "lake build",
@@ -408,6 +408,36 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "Whitespace diff check passed for v214 before commit."
+    },
+    {
+      "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
+      "status": "passed",
+      "evidence": "Focused W151 Lean check passed after adding w165 equality-transport helpers."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed for v215; output logged to /tmp/v215-lake-build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token audit passed for v215 product source."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed for v215; command output was logged because #check output is large."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations passed for v215; product success remains unclaimed."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed for v215 before commit."
     }
   ],
   "implemented_declarations_checked": [
