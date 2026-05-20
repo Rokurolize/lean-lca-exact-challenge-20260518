@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v184-shortcomplex-transport-object-isos",
-  "generated_utc": "2026-05-20T03:15:29Z",
-  "source_tree_hash": "22eda17071534374f1961285528e394e569d7519f23ad08d910a0f0baa263623",
-  "summary": "v185 discharges the short-complex biproduct transport compatibility squares. transportCompatibilitySquaresOfBiprodXIso proves comm12 and comm23 from biprodXIso projection lemmas, the Hom.comm naturality of biprod.fst/snd, and MetrizableLCA biprodObjIsoBiprod projection lemmas; exactAcyclic_biprod is now unconditional in the w138 audit file.",
+  "generated_utc": "2026-05-20T03:28:00Z",
+  "source_tree_hash": "d8a67aada471dca2f342ba108160268001df8a10a2c3ddb54ea8ed2dbbbd10a6",
+  "summary": "v186 ports and parent-verifies the W141 Dbounded equalizer-transfer audit. The audit packages EqualizerConeInput, turns it into IsStableUnderLimitsOfShape WalkingParallelPair, names the missing EqualizerLocalizationTransferTheorem, and gives a conditional HasFiniteLimits consumer.",
   "commands": [
     {
       "command": "lake build",
@@ -188,6 +188,11 @@
       "command": "lake env lean audit/blockers/dbounded_finite_limits_colimits_transfer_w139.lean",
       "status": "passed",
       "evidence": "Focused parent check passed for the w139 Dbounded finite-limit transfer frontier audit."
+    },
+    {
+      "command": "lake env lean audit/blockers/dbounded_equalizer_pullback_transfer_w141.lean",
+      "status": "passed",
+      "evidence": "Focused v186 W141 equalizer-transfer audit passed in the parent worktree."
     }
   ],
   "implemented_declarations_checked": [
@@ -393,13 +398,17 @@
     "Dbounded.hasFiniteProductsOfStableFiniteProducts",
     "ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
-    "ShortComplexBiprodTransportConstructorW138.exactAcyclic_biprod"
+    "ShortComplexBiprodTransportConstructorW138.exactAcyclic_biprod",
+    "DboundedEqualizerPullbackTransferW141.EqualizerConeInput",
+    "DboundedEqualizerPullbackTransferW141.isStableUnderEqualizers_of_equalizerConeInput",
+    "DboundedEqualizerPullbackTransferW141.EqualizerLocalizationTransferTheorem",
+    "DboundedEqualizerPullbackTransferW141.dboundedHasFiniteLimitsOfEqualizerTransfer"
   ],
   "product_complete": false,
   "known_gaps": [
-    "bounded側は、自明なdistinguished endpoint eligibility upgradeがIntModuleCat反例で拒否されたため拒否済みです。strict-selected eligibilityはarbitrary weak endpoint witnessを除外しますが、そのproviderはboundedHomotopyObjectTrianglehIso13Realizationと同値であり、残る本体証明を短絡しません。",
-    "stable側は、full single certificateからproduct-review-shaped readiness evidenceを経由してconsumer-side product-gate pass witnessへ変換する監査constructorは通ったが、ordinary Dbounded contextからfull stable four-projection certificateを構成する実装が未完成です。",
-    "packet auditはfailed_nonterminalを正しく拒否する状態であり、product_successのterminal outcomeやpacket zipはまだ作っていません。"
+    "Dbounded finite limits remain conditional on EqualizerConeInput C and EqualizerLocalizationTransferTheorem C after v186.",
+    "boundedExactWeakEquivalence C finite-product stability remains blocked by the mapping-cone finite-product comparison; short-complex transport and RespectsIso are proved.",
+    "finite colimits, pretriangulated structure, triangulated structure, and stable infinity-category product structure remain unproved."
   ],
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {

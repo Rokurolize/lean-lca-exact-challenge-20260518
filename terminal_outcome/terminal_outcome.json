@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v185時点で、短複体transportに必要だった3つのobject isoとcomm₁₂/comm₂₃の2つの可換条件をLeanで構成し、監査ファイル上ではexact acyclic complexの二項biproduct閉性が無条件になった。ただしmapping cone有限積比較、Dboundedのequalizer/pullback転送、有限余極限、三角構造、stable infinity-category構造は未完成であり、product_successではない。",
+  "summary": "v186時点で、短複体transportはv185で解消済みであり、w141を親worktreeへ移植してDbounded有限極限のequalizer経路をLeanで監査した。残る有限極限入力はEqualizerConeInputで表したboundedExactWeakEquivalence CのWalkingParallelPair安定性と、EqualizerLocalizationTransferTheoremで表したlocalization equalizer転送である。mapping cone有限積比較、有限余極限、三角構造、stable infinity-category構造は未完成であり、product_successではない。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -664,7 +664,7 @@
     "boundedHomotopyObjectTrianglehIso13Realization_of_restricted_endpoint_cochain_isos"
   ],
   "known_gaps": [
-    "Dbounded C の有限極限は有限積に加えてequalizerまたはpullback転送へ分解されたが、HasEqualizers (Dbounded C) / HasPullbacks (Dbounded C) は未構成。",
+    "Dbounded C の有限極限は、有限積、EqualizerConeInput C、EqualizerLocalizationTransferTheorem C へ分解されたが、equalizer安定性とlocalization equalizer転送は未構成。",
     "boundedExactWeakEquivalence C の有限積安定性は、FiniteProductMappingConeInput C へ上位境界化されたが、mapping cone有限積比較そのものは未証明。短複体transportとRespectsIsoは証明済み。",
     "`boundedExactWeakEquivalence C`の有限積安定性が未完成。",
     "`Dbounded C`の有限極限全体、有限余極限、pretriangulated構造、triangulated構造は未完成。",
@@ -762,7 +762,7 @@
     "DboundedSemanticStableInputAdapter.missingSemanticFieldNames_count",
     "DboundedSemanticStableInputAdapter.currentSemanticRouteState_semanticInput_not_supplied"
   ],
-  "generated_utc": "2026-05-20T03:15:29Z",
+  "generated_utc": "2026-05-20T03:28:00Z",
   "support_result_classification": {
     "w126-stable-dbounded-certificate-provider-route": {
       "result_json": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave68_20260519T233000Z/workers/w126-stable-dbounded-certificate-provider-route/result.json",
@@ -835,6 +835,10 @@
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
-    "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.exactAcyclic_biprod"
+    "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.exactAcyclic_biprod",
+    "LeanLCAExactChallenge.DboundedEqualizerPullbackTransferW141.EqualizerConeInput",
+    "LeanLCAExactChallenge.DboundedEqualizerPullbackTransferW141.isStableUnderEqualizers_of_equalizerConeInput",
+    "LeanLCAExactChallenge.DboundedEqualizerPullbackTransferW141.EqualizerLocalizationTransferTheorem",
+    "LeanLCAExactChallenge.DboundedEqualizerPullbackTransferW141.dboundedHasFiniteLimitsOfEqualizerTransfer"
   ]
 }
