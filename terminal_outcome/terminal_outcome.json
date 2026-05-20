@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v275ではベースラインoracleを再実行し、lake build、禁止トークン監査、RequiredDeclarations、ProductSuccessDeclarations、git diff --checkが通った。外部監査は現在のfailed_nonterminal product gateで期待どおり失敗しており、product successではない。",
+  "summary": "v276では支援結果w257を親側auditとして再実装し、factorized localized composite側の随伴・membership入力を分離し、それらがlocalized unit/counit membershipへ輸送されることをLeanで確認した。入力の実体constructorは未供給であり、product successではない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -74,7 +74,9 @@
     "lake env lean audit/blockers/verdier_comparison_adjunction_api_search_w254.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/verdier_comparison_adjunction_api_search_w254.lean",
     "lake env lean audit/blockers/localization_finite_limit_transfer_inputs_w255.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/localization_finite_limit_transfer_inputs_w255.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/localization_finite_limit_transfer_inputs_w255.lean",
+    "lake env lean audit/blockers/factorized_localized_adjunction_membership_w257.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/factorized_localized_adjunction_membership_w257.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -782,6 +784,7 @@
   "worker_frontier_summary": "v251で支援w235を消費し、MetrizableLCA有限余極限を有限余積プラス任意pushout/cokernelへ縮約した。product success は未主張である。",
   "claim_review_result": "not_requested_nonterminal; product success not claimed.",
   "remaining_gaps": [
+    "factorized localized composite側のright/left adjunctionとunit/counit membership入力は構造体として分離されたが、その実体constructorはまだ未供給である。",
     "反対圏finite-limit transferはsource factsとtransfer-input構造体に整理されたが、opposite WalkingParallelPair functor-category localization、opposite finite-product stability、opposite WalkingParallelPair stabilityはまだ未供給である。",
     "Verdier comparison routeはright/left calculus consumerまで形式化されたが、factorized right/left adjunctionとfactorized unit/counit membershipの実体はまだ未供給である。",
     "反対圏抽象局所化のequalizer/finite-limit constructorはW252で形式化されたが、opposite WalkingParallelPair stability、opposite functor-category localization、finite-product stability、identity条件はまだ未供給である。",

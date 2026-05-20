@@ -262,6 +262,12 @@
 <p><time>2026-05-20T15:22:00Z</time>: The parent reran the baseline oracle after v273-v274. <code>lake build</code> completed with existing linter warnings only. <code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code>, <code>lake env lean audit/RequiredDeclarations.lean</code>, <code>lake env lean audit/ProductSuccessDeclarations.lean</code>, and <code>git diff --check</code> passed. <code>python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json</code> failed only at the expected nonterminal product gate because <code>terminal_outcome.outcome</code> remains <code>failed_nonterminal</code>.</p>
 </section>
 
+<section id="v276-factorized-localized-adjunction-membership">
+<h2>v276 factorized localized adjunction membership</h2>
+<p><time>2026-05-20T15:34:00Z</time>: The parent consumed support result <code>w257-factorized-localized-adjunction-membership-v269</code> by adding <code>audit/blockers/factorized_localized_adjunction_membership_w257.lean</code>. The audit separates the factorized localized composite side into <code>FactorizedRightAdjunctionInput</code>, <code>FactorizedLeftAdjunctionInput</code>, <code>FactorizedUnitMembershipInput</code>, and <code>FactorizedCounitMembershipInput</code>, then proves that these inputs transport through <code>verdierComparisonLocalizationIso</code> to localized unit/counit membership.</p>
+<p>The result is still conditional: the local API does not provide the factorized right/left adjunctions or membership theorems. The shortest next theorem recorded by the audit is a concrete <code>FactorizedUnitMembershipInput C</code> constructor for the factorized composite.</p>
+</section>
+
 </body>
 </html>
 

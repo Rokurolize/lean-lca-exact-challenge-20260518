@@ -225,3 +225,7 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## v275 Update
 
 2026-05-20T15:22:00Z: The parent reran the baseline oracle. `lake build`, forbidden-token audit, `RequiredDeclarations`, `ProductSuccessDeclarations`, and `git diff --check` passed. The external audit reached the expected `failed_nonterminal` product gate. Product success remains nonterminal.
+
+## v276 Update
+
+2026-05-20T15:34:00Z: Support result w257 was reimplemented as `audit/blockers/factorized_localized_adjunction_membership_w257.lean`. It isolates the factorized localized composite inputs needed before the v253/v254 transport and calculus consumers can fire: right adjunction, left adjunction, unit membership, and counit membership. The audit proves these factorized inputs transport to localized unit/counit membership through `verdierComparisonLocalizationIso`. Product success remains nonterminal because the factorized adjunctions and membership constructors are not yet supplied.

@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T15:22:00Z",
+  "generated_utc": "2026-05-20T15:34:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No workers were launched from the target worktree. v273 is parent-side port of support w255 audit.",
   "frontiers": [
@@ -1455,9 +1455,16 @@
       "classification": "already_covered_by_parent_v252",
       "artifact": "LeanLCAExactChallenge/LCA/Cokernel.lean",
       "result": "Arbitrary MetrizableLCA cokernels and finite colimits are already implemented in parent v252; later v267-v270 strengthen the right-exactness interface. No new target code needed."
+    },
+    {
+      "id": "w257",
+      "classification": "manual_ported_frontier_reduction",
+      "artifact": "audit/blockers/factorized_localized_adjunction_membership_w257.lean",
+      "result": "Factorized adjunction and membership inputs are isolated and shown to transport to localized unit/counit membership; product success remains false."
     }
   ],
   "remaining_blockers": [
+    "Factorized localized composite inputs are isolated; missing constructors are FactorizedRightAdjunctionInput, FactorizedLeftAdjunctionInput, FactorizedUnitMembershipInput, and FactorizedCounitMembershipInput for the Verdier comparison route.",
     "Opposite finite-limit transfer now has explicit source-fact and transfer-input structures; missing inputs are opposite WalkingParallelPair functor-category localization, opposite finite-product stability, and opposite WalkingParallelPair stability.",
     "Verdier comparison route now has checked calculus consumers from RightRouteInput/LeftRouteInput; missing declarations are the factorized right/left adjunctions and factorized unit/counit membership for the comparison route.",
     "Opposite bounded localization finite limits now have a conditional equalizer/finite-limit constructor; missing inputs are opposite WalkingParallelPair stability, opposite functor-category localization, finite-product stability, and identities for the opposite localizer.",

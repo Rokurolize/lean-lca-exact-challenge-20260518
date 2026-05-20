@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v262-strict-forgetful-ab-exactness",
-  "generated_utc": "2026-05-20T15:22:00Z",
-  "source_tree_hash": "3c7b949620eeb1254d917e783e002a8a79db0aa9632cac452e381d1bd8e1b724",
-  "summary": "v275 refreshes baseline oracle evidence after v273-v274; all Lean/build/audit commands pass except the expected nonterminal product gate.",
+  "generated_utc": "2026-05-20T15:34:00Z",
+  "source_tree_hash": "b7e9f275a8a447c511583d25309fdb6cbedf7d2c33f9ae8e7301b5f988b8cda8",
+  "summary": "v276 consumes w257: factorized localized adjunction and membership inputs are isolated and transported to localized membership.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -403,6 +403,21 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "No whitespace errors in the clean target after v273-v274."
+    },
+    {
+      "command": "lake env lean audit/blockers/factorized_localized_adjunction_membership_w257.lean",
+      "status": "passed",
+      "evidence": "Focused Lean check passed for W257 factorized localized adjunction membership audit."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/factorized_localized_adjunction_membership_w257.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W257 audit file."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors after v276 edits."
     }
   ],
   "implemented_declarations_checked": [
@@ -910,10 +925,17 @@
     "LeanLCAExactChallenge.LocalizationFiniteLimitTransferInputsW255.metrizableLCA_oppositeLocalizationHasFiniteProducts_of_transferInputs",
     "LeanLCAExactChallenge.LocalizationFiniteLimitTransferInputsW255.metrizableLCA_oppositeLocalizationHasEqualizers_of_transferInputs",
     "LeanLCAExactChallenge.LocalizationFiniteLimitTransferInputsW255.metrizableLCA_oppositeLocalizationHasFiniteLimits_of_transferInputs",
-    "CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization_w255"
+    "CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization_w255",
+    "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.FactorizedRightAdjunctionInput",
+    "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.FactorizedLeftAdjunctionInput",
+    "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.FactorizedUnitMembershipInput",
+    "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.FactorizedCounitMembershipInput",
+    "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.localized_unit_mem_of_factorized_unit",
+    "LeanLCAExactChallenge.FactorizedLocalizedAdjunctionMembershipW257.localized_counit_mem_of_factorized_counit"
   ],
   "product_complete": false,
   "known_gaps": [
+    "factorized localized composite側のright/left adjunctionとunit/counit membership入力は構造体として分離されたが、その実体constructorはまだ未供給である。",
     "反対圏finite-limit transferはsource factsとtransfer-input構造体に整理されたが、opposite WalkingParallelPair functor-category localization、opposite finite-product stability、opposite WalkingParallelPair stabilityはまだ未供給である。",
     "Verdier comparison routeはright/left calculus consumerまで形式化されたが、factorized right/left adjunctionとfactorized unit/counit membershipの実体はまだ未供給である。",
     "反対圏抽象局所化のequalizer/finite-limit constructorはW252で形式化されたが、opposite WalkingParallelPair stability、opposite functor-category localization、finite-product stability、identity条件はまだ未供給である。",
