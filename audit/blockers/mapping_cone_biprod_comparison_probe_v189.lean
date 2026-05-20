@@ -95,6 +95,27 @@ theorem comp_biprod_total_f {A : C} {K L : CochainComplex C ℤ} (n : ℤ)
       g ≫ ((biprod.snd : K ⊞ L ⟶ L).f n ≫ (biprod.inr : L ⟶ K ⊞ L).f n) = g := by
   rw [← Preadditive.comp_add, HomologicalComplex.biprod_total_f, Category.comp_id]
 
+theorem coneBiprodMap_component_roundtrip (n : ℤ) :
+    coneBiprodMapToLeftComponent f₁ f₂ n ≫ leftComponentToConeBiprodMap f₁ f₂ n +
+      coneBiprodMapToRightComponent f₁ f₂ n ≫ rightComponentToConeBiprodMap f₁ f₂ n = 𝟙 _ := by
+  apply CochainComplex.mappingCone.ext_from (biprod.map f₁ f₂) (n + 1) n rfl
+  · simp [coneBiprodMapToLeftComponent, coneBiprodMapToRightComponent,
+      leftComponentToConeBiprodMap, rightComponentToConeBiprodMap,
+      Preadditive.add_comp, Category.assoc]
+    simpa [Category.assoc] using
+      biprod_total_f_comp (n + 1)
+        ((CochainComplex.mappingCone.inl (biprod.map f₁ f₂)).v (n + 1) n (by omega))
+  · simp [coneBiprodMapToLeftComponent, coneBiprodMapToRightComponent,
+      leftComponentToConeBiprodMap, rightComponentToConeBiprodMap,
+      Preadditive.add_comp, Category.assoc]
+    simpa [Category.assoc] using
+      biprod_total_f_comp n ((CochainComplex.mappingCone.inr (biprod.map f₁ f₂)).f n)
+
+theorem coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX (n : ℤ) :
+    coneBiprodMapToBiprodConeX f₁ f₂ n ≫ biprodConeToConeBiprodMapX f₁ f₂ n = 𝟙 _ := by
+  simp [coneBiprodMapToBiprodConeX, biprodConeToConeBiprodMapX,
+    coneBiprodMap_component_roundtrip]
+
 structure BinaryMappingConeBiprodDifferentialCompatibility : Prop where
   left_to_right :
     ∀ (n : ℤ),
@@ -132,6 +153,8 @@ section Checks
 #check biprodConeToConeBiprodMapX
 #check biprod_total_f_comp
 #check comp_biprod_total_f
+#check coneBiprodMap_component_roundtrip
+#check coneBiprodMapToBiprodConeX_comp_biprodConeToConeBiprodMapX
 #check BinaryMappingConeBiprodDifferentialCompatibility
 #check BinaryMappingConeBiprodInverseCompatibility
 #check v189ComponentMapFrontier
