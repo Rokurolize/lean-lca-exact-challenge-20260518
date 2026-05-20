@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-20T07:56:14Z",
+  "generated_utc": "2026-05-20T07:59:24Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
-  "worker_policy": "No workers were launched from the target worktree. v219 consumes completed support results w170-w177 by parent-side reimplementation; active/newer support remains read-only evidence.",
+  "worker_policy": "No workers were launched from the target worktree. v220 consumes completed support results w178-w179 by parent-side reimplementation.",
   "frontiers": [
     {
       "frontier_id": "frontier-left-yoneda-descent",
@@ -1242,11 +1242,11 @@
       "implemented_declarations": []
     }
   ],
-  "support_result_classification": "w170-w177 completed the evaluated-target IsLimit, mapCone, and finite call-site route; parent v219 integrates the fan/IsLimit route and records finite call-site instance packaging as next. w178-w179 are leads for that packaging boundary.",
+  "support_result_classification": "w178-w179 completed complement and degreewise complement product packaging; parent v220 integrates those conclusions. Next packaging gaps are singleton none, degreewise Option, degreewise singleton, and selected binary biproduct.",
   "latest_parent_update": {
-    "version": "v219",
-    "timestamp_utc": "2026-05-20T07:56:14Z",
-    "summary": "v219 closes the direct Option-product transported fan IsLimit route and adds optionProductIsoBiprod_finiteProductCallsite_of_direct in W151.",
-    "remaining_next_step": "derive finite Option-family subproduct, degreewise product, and selected binary biproduct instances so W149 can consume optionProductIsoBiprod_finiteProductCallsite_of_direct."
+    "version": "v220",
+    "timestamp_utc": "2026-05-20T07:59:24Z",
+    "summary": "v220 removes explicit complement and degreewise complement product assumptions from the finite Option call-site wrapper in W151.",
+    "remaining_next_step": "derive singleton none-subproduct, degreewise Option-product, degreewise singleton, and selected binary biproduct instances for the W149 finite Option-family call site."
   }
 }

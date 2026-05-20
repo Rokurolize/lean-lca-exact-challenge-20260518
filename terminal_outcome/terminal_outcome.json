@@ -2,7 +2,7 @@
   "outcome": "failed_nonterminal",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "v219時点で、W151に optionProductDegreeFanWithEvaluatedTargetsIsLimit、evaluatedOptionProductComplexBinaryFanIsLimit_direct、evaluatedOptionProductComplexBinaryFanIsLimitEquivEvalMapCone、optionProductComplexTransportedBinaryFanEvalIsLimit_direct、optionProductComplexTransportedBinaryFanIsLimit_direct、optionProductIsoBiprod_finiteProductCallsite_of_direct を追加し、Option product の transported fan IsLimit ルートを直接閉じた。残るOption product境界は有限Option familyのsubproduct、degreewise product、binary biproductインスタンス包装であり、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造も未完了のため、成果物は非終端である。",
+  "summary": "v220時点で、W151に optionTailHasProduct_of_someTail、complementSubproductHasProduct_of_someTail、optionTailDegreeHasProduct_of_someTailDegree、complementSubproductDegreeHasProduct_of_someTailDegree と対応する finite call-site wrapper を追加した。これにより、有限Option familyのsome-tail product仮定からcomplex levelとdegreewiseのcomplement subproduct productを再構成できる。残るOption product境界はnone singleton product、degreewise Option product、degreewise singleton product、選択binary biproductの包装であり、有限family closure、Dbounded transfer、有限colimit、三角構造、stable infinity-category構造も未完了のため、成果物は非終端である。",
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -676,8 +676,8 @@
     "LeanLCAExactChallenge.MetrizableLCA.exactAcyclic_biprod"
   ],
   "known_gaps": [
-    "Option product decomposition のfan IsLimit証明は閉じたが、W149の有限Option family call-siteへ渡すsubproduct、degreewise product、binary biproductインスタンス包装が未完了である。",
-    "有限family closure は optionProductIsoBiprod_finiteProductCallsite_of_direct を消費できる段階まで進んだが、一般有限積閉性としてはまだ閉じていない。",
+    "Option product decomposition のfan IsLimitとcomplement subproduct包装は閉じたが、none singleton subproduct、degreewise Option product、degreewise singleton subproduct、選択binary biproductの包装が未完了である。",
+    "有限family closure は optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct を消費できる段階まで進んだが、一般有限積閉性としてはまだ閉じていない。",
     "Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は依然として product_success に必要な未完了項目である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -685,14 +685,14 @@
   "packet_sha256_sidecar": "",
   "git_commit": "repository HEAD for this evidence commit (self-referential commit hash intentionally not embedded)",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "w170-w177の支援結果を親側v219で検証可能なW151ルートとして再実装した。w178-w179はinstance packaging周辺の後続支援として扱い、次の親フロンティアはW149有限Option family call-siteのインスタンス包装である。",
+  "worker_frontier_summary": "w178-w179の支援結果を親側v220で検証可能なW151包装補題として再実装した。次の親フロンティアはnone singleton product包装とdegreewise Option product包装である。",
   "claim_review_result": "not_run_nonterminal",
   "remaining_gaps": [
-    "Option product decomposition のfan IsLimit証明は閉じたが、W149の有限Option family call-siteへ渡すsubproduct、degreewise product、binary biproductインスタンス包装が未完了である。",
-    "有限family closure は optionProductIsoBiprod_finiteProductCallsite_of_direct を消費できる段階まで進んだが、一般有限積閉性としてはまだ閉じていない。",
+    "Option product decomposition のfan IsLimitとcomplement subproduct包装は閉じたが、none singleton subproduct、degreewise Option product、degreewise singleton subproduct、選択binary biproductの包装が未完了である。",
+    "有限family closure は optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct を消費できる段階まで進んだが、一般有限積閉性としてはまだ閉じていない。",
     "Dbounded transfer、有限colimit、三角構造、stable infinity-category構造は依然として product_success に必要な未完了項目である。"
   ],
-  "next_recommended_goal": "W149で有限Option familyの文脈からnone/complement subproduct、degreewise product、選択binary biproductの各インスタンスを構成し、optionProductIsoBiprod_finiteProductCallsite_of_directをFiniteProductOptionDecompositionInputへ接続する。",
+  "next_recommended_goal": "W151/W149でnone singleton subproduct product、degreewise Option product、degreewise singleton subproduct product、選択binary biproductを有限Option family文脈から構成し、FiniteProductOptionDecompositionInputへ接続する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -814,9 +814,17 @@
     "optionProductComplexTransportedBinaryFanEvalIsLimit_direct",
     "optionProductComplexTransportedBinaryFanIsLimit_direct",
     "optionProductIsoBiprod_finiteProductCallsite_of_direct",
-    "finiteProductCallsiteRemainingInstanceGaps"
+    "finiteProductCallsiteRemainingInstanceGaps",
+    "optionTailHasProduct_of_someTail",
+    "complementSubproductHasProduct_of_optionTail",
+    "complementSubproductHasProduct_of_someTail",
+    "optionTailDegreeHasProduct_of_someTailDegree",
+    "complementSubproductDegreeHasProduct_of_optionTailDegree",
+    "complementSubproductDegreeHasProduct_of_someTailDegree",
+    "optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct",
+    "optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct"
   ],
-  "generated_utc": "2026-05-20T07:56:14Z",
+  "generated_utc": "2026-05-20T07:59:24Z",
   "support_result_classification": "w167=merge_audit_only; w168=do_not_merge_blindly_into_current_live_target; w169=merge_canonical_w151_diff already reflected by parent v218.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",

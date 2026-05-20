@@ -1,43 +1,43 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v219-option-fan-islimit-direct",
-  "generated_utc": "2026-05-20T07:56:14Z",
-  "source_tree_hash": "f2197337ffaa015dcee49fa240561ae462c06cb57ac737e5cf54a5685d11110a",
-  "summary": "v219 closes the direct Option-product transported fan IsLimit route in W151. The degreewise fan limit is transported through evalProductPointIso/evalTailProductPointIso, rewritten by evaluatedDegreeFanComparison_direct, bridged to eval.mapCone by isLimitMapConeBinaryFanEquiv, and packaged by optionProductComplexTransportedBinaryFanIsLimit_direct. Product success remains nonterminal because finite call-site instance packaging and broader product obligations remain.",
+  "schema": "lean-lca-exact-challenge-verification-v220-tail-complement-packaging",
+  "generated_utc": "2026-05-20T07:59:24Z",
+  "source_tree_hash": "2ac756fbcc9928527cc0c7adb8562c1ef034ed94a1bf90d186fd880f76b43c34",
+  "summary": "v220 adds tail/complement HasProduct packaging in W151, both at complex level and degreewise. The finite Option call-site wrapper now reconstructs complement-subproduct and degreewise complement-subproduct products from displayed some-tail product hypotheses. Product success remains nonterminal.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/option_product_decomposition_w151.lean",
       "status": "passed",
-      "evidence": "Focused W151 passed for v219 after adding direct evaluated-target, evaluated BinaryFan, eval.mapCone, and complex transported fan IsLimit wrappers; warnings are existing unused-section-variable/unnecessarySimpa lints."
+      "evidence": "Focused W151 passed for v220 after adding complex-level and degreewise complement packaging; warnings are existing lints."
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed for v219; output logged to /tmp/v219-lake-build.log."
+      "evidence": "Full lake build passed for v220; output logged to /tmp/v220-lake-build.log."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden-token audit passed for v219 product source."
+      "evidence": "Forbidden-token audit passed for v220 product source."
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations passed for v219; output logged to /tmp/v219-required.log."
+      "evidence": "RequiredDeclarations passed for v220; output logged to /tmp/v220-required.log."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed for v219; output logged to /tmp/v219-product-success.log."
+      "evidence": "ProductSuccessDeclarations passed for v220; output logged to /tmp/v220-product-success.log."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "git diff --check passed for v219 before artifact refresh."
+      "evidence": "git diff --check passed for v220 before artifact refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check is expected to pass after v219 artifact refresh."
+      "evidence": "External audit self-check is expected to pass after v220 artifact refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",

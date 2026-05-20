@@ -83,6 +83,80 @@ noncomputable def complementTailReindexIso {J : Type w}
       ∏ᶜ (optionTail C K) :=
   Limits.Pi.reindex (optionSomeComplementEquiv J) (optionTail C K)
 
+omit [HasBinaryBiproducts C] in
+/-- W149's displayed tail family directly supplies W151's named `optionTail` product. -/
+theorem optionTailHasProduct_of_someTail {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct (fun j : J => K (some j))] :
+    HasProduct (optionTail C K) := by
+  simpa [optionTail] using (inferInstance : HasProduct (fun j : J => K (some j)))
+
+omit [HasBinaryBiproducts C] in
+/--
+The complement subproduct over `{x : Option J // x != none}` is available from the named tail
+product by reindexing along `optionSomeComplementEquiv`.
+-/
+theorem complementSubproductHasProduct_of_optionTail {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct (optionTail C K)] :
+    HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val) :=
+  hasProduct_of_equiv_of_iso (optionTail C K)
+    (fun i : {x : Option J // ¬ x = none} => K i.val)
+    (optionSomeComplementEquiv J)
+    (fun i => eqToIso (by
+      change K i.val = K (some ((optionSomeComplementEquiv J) i))
+      rw [optionSomeComplementEquiv_value_eq_some (J := J) i]))
+
+omit [HasBinaryBiproducts C] in
+/--
+Combined packaging used at W149-style call sites: the tail `HasProduct` hypothesis also provides
+the complement-subtype product required by the W151 fan construction.
+-/
+theorem complementSubproductHasProduct_of_someTail {J : Type w}
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct (fun j : J => K (some j))] :
+    HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val) := by
+  letI : HasProduct (optionTail C K) := optionTailHasProduct_of_someTail C K
+  exact complementSubproductHasProduct_of_optionTail C K
+
+omit [HasBinaryBiproducts C] in
+/-- W149's displayed degreewise tail family directly supplies W151's named tail-degree product. -/
+theorem optionTailDegreeHasProduct_of_someTailDegree {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun j : J => (K (some j)).X n)] :
+    HasProduct (optionTailDegree C K n) := by
+  simpa [optionTailDegree] using
+    (inferInstance : HasProduct (fun j : J => (K (some j)).X n))
+
+omit [HasBinaryBiproducts C] in
+/--
+The degreewise complement subproduct is available from the named tail-degree product by
+reindexing along `optionSomeComplementEquiv`.
+-/
+theorem complementSubproductDegreeHasProduct_of_optionTailDegree {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (optionTailDegree C K n)] :
+    HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n) :=
+  hasProduct_of_equiv_of_iso (optionTailDegree C K n)
+    (fun i : {x : Option J // ¬ x = none} => (K i.val).X n)
+    (optionSomeComplementEquiv J)
+    (fun i => eqToIso (by
+      change (K i.val).X n = (K (some ((optionSomeComplementEquiv J) i))).X n
+      rw [optionSomeComplementEquiv_value_eq_some (J := J) i]))
+
+omit [HasBinaryBiproducts C] in
+/--
+Degreewise call-site packaging: the displayed degreewise `some`-tail product hypothesis also
+provides the complement-subtype product required by the W151 fan construction.
+-/
+theorem complementSubproductDegreeHasProduct_of_someTailDegree {J : Type w}
+    (K : Option J → CochainComplex C ℤ) (n : ℤ)
+    [HasProduct (fun j : J => (K (some j)).X n)] :
+    HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X n) := by
+  letI : HasProduct (optionTailDegree C K n) :=
+    optionTailDegreeHasProduct_of_someTailDegree C K n
+  exact complementSubproductDegreeHasProduct_of_optionTailDegree C K n
+
 /--
 The product-object decomposition needed by the finite exact-acyclic product induction:
 an `Option J` product of cochain complexes should be the binary biproduct of the `none` complex
@@ -1039,20 +1113,62 @@ noncomputable def optionProductIsoBiprod_finiteProductCallsite_of_direct {J : Ty
     (optionProductComplexTransportedBinaryFanIsLimit_direct C K)
 
 /--
+Remove the explicit complement-subproduct `HasProduct` requirement from the finite call site.
+It is reconstructed from the tail product hypothesis by `optionSomeComplementEquiv`.
+-/
+noncomputable def optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct
+    {J : Type w}
+    [Finite J]
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun j : J => K (some j))]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // x = none} => (K i.val).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m)]
+    [∀ m : ℤ, HasProduct (fun j : J => (K (some j)).X m)]
+    [∀ x : Option J, Decidable (x = none)]
+    [HasBinaryBiproduct (K none) (∏ᶜ (fun j : J => K (some j)))] :
+    ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j : J => K (some j)) := by
+  letI : HasProduct (fun i : {x : Option J // ¬ x = none} => K i.val) :=
+    complementSubproductHasProduct_of_someTail C K
+  exact optionProductIsoBiprod_finiteProductCallsite_of_direct C K
+
+/--
+Remove the explicit degreewise complement-subproduct `HasProduct` family from the finite call
+site. It is reconstructed degree by degree from the displayed degreewise tail product hypothesis.
+-/
+noncomputable def optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct
+    {J : Type w}
+    [Finite J]
+    (K : Option J → CochainComplex C ℤ)
+    [HasProduct K]
+    [HasProduct (fun j : J => K (some j))]
+    [HasProduct (fun i : {x : Option J // x = none} => K i.val)]
+    [∀ m : ℤ, HasProduct (fun i : Option J => (K i).X m)]
+    [∀ m : ℤ, HasProduct (fun i : {x : Option J // x = none} => (K i.val).X m)]
+    [∀ m : ℤ, HasProduct (fun j : J => (K (some j)).X m)]
+    [∀ x : Option J, Decidable (x = none)]
+    [HasBinaryBiproduct (K none) (∏ᶜ (fun j : J => K (some j)))] :
+    ∏ᶜ K ≅ K none ⊞ ∏ᶜ (fun j : J => K (some j)) := by
+  letI : ∀ m : ℤ,
+      HasProduct (fun i : {x : Option J // ¬ x = none} => (K i.val).X m) :=
+    fun m => complementSubproductDegreeHasProduct_of_someTailDegree C K m
+  exact optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct C K
+
+/--
 The finite-product call site no longer needs a new fan proof after the direct IsLimit route.
 What remains is instance packaging from W149's leaner input hypotheses to the explicit W151
 consumer.
 -/
 def finiteProductCallsiteRemainingInstanceGaps : List String :=
   ["derive the singleton none-subproduct HasProduct from the finite Option product context",
-    "derive the complement subproduct HasProduct from the finite Option product context",
     "derive degreewise Option-product HasProduct instances for every cochain degree",
     "derive degreewise singleton subproduct HasProduct instances for every cochain degree",
-    "derive degreewise complement subproduct HasProduct instances for every cochain degree",
     "provide the selected HasBinaryBiproduct for the head complex and tail product complex"]
 
 theorem finiteProductCallsiteRemainingInstanceGaps_count :
-    finiteProductCallsiteRemainingInstanceGaps.length = 6 :=
+    finiteProductCallsiteRemainingInstanceGaps.length = 4 :=
   rfl
 
 /--
@@ -1151,6 +1267,12 @@ section Checks
 #check optionSomeComplementEquiv_symm_apply
 #check optionSomeComplementEquiv_value_eq_some
 #check complementTailReindexIso
+#check optionTailHasProduct_of_someTail
+#check complementSubproductHasProduct_of_optionTail
+#check complementSubproductHasProduct_of_someTail
+#check optionTailDegreeHasProduct_of_someTailDegree
+#check complementSubproductDegreeHasProduct_of_optionTailDegree
+#check complementSubproductDegreeHasProduct_of_someTailDegree
 #check optionProductBinaryFan
 #check noneSubproductIso
 #check complementSubproductReindexIso
@@ -1191,6 +1313,8 @@ section Checks
 #check optionProductComplexTransportedBinaryFanEvalIsLimit_direct
 #check optionProductComplexTransportedBinaryFanIsLimit_direct
 #check optionProductIsoBiprod_finiteProductCallsite_of_direct
+#check optionProductIsoBiprod_finiteProductCallsite_tailComplement_of_direct
+#check optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct
 #check finiteProductCallsiteRemainingInstanceGaps
 #check finiteProductCallsiteRemainingInstanceGaps_count
 #check DegreewiseProductApiState

@@ -93,3 +93,7 @@ v218 proves EvaluatedDegreeFanComparisonRight directly in W151 and adds evaluate
 ## v219 Update
 
 v219 closes the direct Option-product transported fan IsLimit route in W151. The new path transports optionProductDegreeTransportedBinaryFanIsLimit to optionProductDegreeFanWithEvaluatedTargetsIsLimit, rewrites by evaluatedDegreeFanComparison_direct, bridges the displayed evaluated BinaryFan to the exact eval.mapCone cone with isLimitMapConeBinaryFanEquiv, and feeds the resulting degree family to optionProductComplexTransportedBinaryFanIsLimit_of_eval. The finite-product call site now has optionProductIsoBiprod_finiteProductCallsite_of_direct; the remaining blocker is instance packaging for finite Option families, not a missing fan proof. Product success remains nonterminal.
+
+## v220 Update
+
+v220 consumes w178-w179 by adding complement-subproduct packaging from the displayed some-tail product, and the same construction degreewise. The strongest W151 call-site wrapper is now optionProductIsoBiprod_finiteProductCallsite_tailDegreeComplement_of_direct. The remaining finite Option-family packaging gaps are singleton none-subproduct products, degreewise Option products, degreewise singleton products, and the selected binary biproduct. Product success remains nonterminal.
