@@ -816,3 +816,21 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: strict rows plus W452-style componentwise selected cokernel colimit inputs now produce `AddCommGrpStrictSnakeCokernelData (cs.pt.map (forget₂ MetrizableLCA AddCommGrpCat))`.
 - remaining blockers: provide the remaining kernel row object `L₀`, kernel map `i`, zero equation `wi`, and `IsLimit (KernelFork.ofι i wi)` for the selected difference.
 - product_complete: false
+
+## W457 Component Closed Range To Projection IsColimit
+
+- timestamp: `2026-05-21T01:22:57Z`
+- artifact: `audit/blockers/addcommgrp_component_closed_range_to_projection_iscolimit_v370_support_w457.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_component_closed_range_to_projection_iscolimit_v370_support_w457.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_component_closed_range_to_projection_iscolimit_v370_support_w457.lean`; `git diff --check`
+- effect: projected mapped selected coforks are definitionally the AddCommGrp component coforks of the forgotten selected component differences; W452's exact projection `IsColimit` input shape is recorded.
+- remaining blockers: for each component, prove the selected component cofork is colimiting directly or identify its projection with the explicit LCA cokernel projection `MetrizableLCA.cokernelπ`; closed-range preservation alone only proves the explicit quotient cokernel, not an arbitrary selected cocone point.
+- product_complete: false
+
+## W458 W426 W390 Target Component Frontier
+
+- timestamp: `2026-05-21T01:22:57Z`
+- artifact: `audit/blockers/wpp_op_w426_w390_target_component_frontier_v370_support_w458.lean`
+- verified: `lake env lean audit/blockers/wpp_op_w426_w390_target_component_frontier_v370_support_w458.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/wpp_op_w426_w390_target_component_frontier_v370_support_w458.lean`; `git diff --check`
+- effect: W318 conjugated-leg compatibility for the concrete W451-style map is reduced to the ordinary-target component equation; the ordinary-source component then follows from WPP-op naturality.
+- remaining blockers: promote/import the W426 quotient-compatibility theorem and W387 point identifications, instantiate the W390 transported descended map, and prove the target-index equation from W390 pointwise conjugacy plus W426 quotient compatibility.
+- product_complete: false

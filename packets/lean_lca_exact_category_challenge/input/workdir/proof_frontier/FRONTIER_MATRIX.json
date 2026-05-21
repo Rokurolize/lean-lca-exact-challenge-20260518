@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T01:17:45Z",
+  "generated_utc": "2026-05-21T01:22:57Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -4335,13 +4335,27 @@
       "status": "verified_focused",
       "effect": "componentwise selected cokernel inputs plus strict rows produce AddCommGrpStrictSnakeCokernelData for cs.pt.map",
       "product_complete": false
+    },
+    {
+      "timestamp_utc": "2026-05-21T01:22:57Z",
+      "artifact": "audit/blockers/addcommgrp_component_closed_range_to_projection_iscolimit_v370_support_w457.lean",
+      "status": "verified_focused",
+      "effect": "projection IsColimit fields are reduced to selected component cofork colimit proofs or selected leg equals explicit cokernelπ",
+      "product_complete": false
+    },
+    {
+      "timestamp_utc": "2026-05-21T01:22:57Z",
+      "artifact": "audit/blockers/wpp_op_w426_w390_target_component_frontier_v370_support_w458.lean",
+      "status": "verified_focused",
+      "effect": "W318 conjugated-leg compatibility for concrete W451-style map is reduced to one ordinary-target component equation",
+      "product_complete": false
     }
   ],
   "current_primary_blockers": [
-    "Projection IsColimit fields for W452/W455 selected componentwise route remain unproved.",
+    "Selected component cofork IsColimit proofs or selected component leg equals explicit cokernelπ identifications remain unproved.",
     "W456 selected difference kernel row L₀/i/wi/h₀ remains unconstructed.",
     "W446 selected short-complex difference preservation instance remains unproved or must be bypassed by the componentwise route.",
-    "Selected target cofork must still be proved to be the required cokernel cofork and identified with cs.pt.map (forget₂ MetrizableLCA AddCommGrpCat).",
-    "W454 target-index equation for the concrete W451 map must still be proved from W390 pointwise conjugacy and W426 quotient compatibility."
+    "W458 target-index equation for the concrete W451 map must still be proved from W390 pointwise conjugacy and W426 quotient compatibility.",
+    "W426/W387/W390 concrete alignment declarations still need importable promotion into one namespace."
   ]
 }
