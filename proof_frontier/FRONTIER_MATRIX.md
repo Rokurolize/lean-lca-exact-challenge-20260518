@@ -789,3 +789,12 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: strict `MetrizableLCA` short exact rows supply AddCommGrp left injectivity, kernel exactness, right surjectivity, AddCommGrp short exactness, the forgotten right-map cokernel cofork colimit, and a W345 adapter for `ParallelPairDifferenceStrictCokernelData`.
 - remaining blockers: construct the concrete difference kernel row, construct the concrete difference cokernel row, and identify the WPP-op colimit short complex with that cokernel row.
 - product_complete: false
+
+## W453 Strict Rows W318 Input Wrapper
+
+- timestamp: `2026-05-21T01:08:39Z`
+- artifact: `audit/blockers/addcommgrp_strict_rows_w318_input_wrapper_v370_support_w453.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_strict_rows_w318_input_wrapper_v370_support_w453.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_strict_rows_w318_input_wrapper_v370_support_w453.lean`; `git diff --check`
+- effect: strict `MetrizableLCA` rows directly supply W318's AddCommGrp row-input family and a selected WPP-op `ParallelPairDifferenceStrictCokernelData`/SnakeInput adapter.
+- remaining blockers: construct the concrete difference kernel row and concrete difference cokernel row, prove the selected target cofork is the required cokernel cofork, and identify the difference cokernel row with `cs.pt.map (forget₂ MetrizableLCA AddCommGrpCat)`.
+- product_complete: false
