@@ -152,6 +152,37 @@ abbrev wppLimit_preserves_rightOpenMap : Prop :=
             IsOpenMap ((S.obj j).g : (S.obj j).X₂ → (S.obj j).X₃)) →
             IsOpenMap (cs.pt.g : cs.pt.X₂ → cs.pt.X₃)
 
+/-- Pure component-level LCA certificate for the right open-map WPP limit field. -/
+abbrev wppLimit_lca_limitMap_preserves_openMap : Prop :=
+  ∀ (X Y : WalkingParallelPair ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cone X) (cy : Cone Y) (φ : cx.pt ⟶ cy.pt),
+      IsLimit cx →
+        IsLimit cy →
+          (∀ j : WalkingParallelPair, IsOpenMap (α.app j : X.obj j → Y.obj j)) →
+            (∀ j : WalkingParallelPair, φ ≫ cy.π.app j = cx.π.app j ≫ α.app j) →
+              IsOpenMap (φ : cx.pt → cy.pt)
+
+/-- The pure LCA open-map certificate supplies the WPP limit right-open field. -/
+theorem wppLimit_preserves_rightOpenMap_of_lca_limitMap
+    (hlimit : wppLimit_lca_limitMap_preserves_openMap) :
+    wppLimit_preserves_rightOpenMap := by
+  intro S cs h₂ h₃ hopen
+  let α : S ⋙ (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤
+      MetrizableLCA.{0}) ⟶
+      S ⋙ (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤
+        MetrizableLCA.{0}) :=
+    { app := fun j => (S.obj j).g
+      naturality := fun _ _ f => (S.map f).comm₂₃ }
+  exact hlimit
+    (S ⋙ (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}))
+    (S ⋙ (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}))
+    α
+    ((ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCone cs)
+    ((ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCone cs)
+    cs.pt.g
+    h₂ h₃ hopen
+    (fun j => by simpa using (cs.π.app j).comm₂₃.symm)
+
 /-- WPP limits preserve right surjectivity for strict short complexes. -/
 abbrev rightSurjective_walkingParallelPair_limitClosure : Prop :=
   ∀ (S : WalkingParallelPair ⥤ ShortComplex MetrizableLCA.{0})
@@ -340,6 +371,9 @@ abbrev MetrizableWppLimitLeftClosedLcaInput : Prop :=
 abbrev MetrizableWppLimitRightOpenInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.wppLimit_preserves_rightOpenMap
 
+abbrev MetrizableWppLimitRightOpenLcaInput : Prop :=
+  DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_preserves_openMap
+
 abbrev MetrizableWppLimitRightSurjectiveInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitClosure
 
@@ -361,6 +395,12 @@ theorem metrizableWppLimitLeftClosedInput_of_lca
     MetrizableWppLimitLeftClosedInput :=
   wppLimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage hlimit
 
+/-- Build the WPP limit right open-map field from a pure LCA map certificate. -/
+theorem metrizableWppLimitRightOpenInput_of_lca
+    (hlimit : MetrizableWppLimitRightOpenLcaInput) :
+    MetrizableWppLimitRightOpenInput :=
+  wppLimit_preserves_rightOpenMap_of_lca_limitMap hlimit
+
 /-- Four short-complex field inputs for WPP exact-acyclic limit closure. -/
 structure MetrizableWalkingParallelPairLimitClosureFieldInputs : Type 1 where
   leftClosed : MetrizableWppLimitLeftClosedInput
@@ -376,12 +416,29 @@ structure MetrizableWalkingParallelPairLimitClosureFieldInputsFromLeftLca :
   rightSurjective : MetrizableWppLimitRightSurjectiveInput
   algebraicExact : MetrizableWppLimitAlgebraicExactInput
 
+/-- Four limit-closure fields with the left and right-open fields from pure LCA data. -/
+structure MetrizableWalkingParallelPairLimitClosureFieldInputsFromLeftRightLca :
+    Type 1 where
+  leftClosedLca : MetrizableWppLimitLeftClosedLcaInput
+  rightOpenLca : MetrizableWppLimitRightOpenLcaInput
+  rightSurjective : MetrizableWppLimitRightSurjectiveInput
+  algebraicExact : MetrizableWppLimitAlgebraicExactInput
+
 /-- Build the four WPP limit-closure field inputs from a pure LCA left field. -/
 def metrizableWalkingParallelPairLimitClosureFieldInputs_of_leftLca
     (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromLeftLca) :
     MetrizableWalkingParallelPairLimitClosureFieldInputs where
   leftClosed := metrizableWppLimitLeftClosedInput_of_lca inputs.leftClosedLca
   rightOpen := inputs.rightOpen
+  rightSurjective := inputs.rightSurjective
+  algebraicExact := inputs.algebraicExact
+
+/-- Build the four WPP limit-closure fields from pure LCA left and right-open data. -/
+def metrizableWalkingParallelPairLimitClosureFieldInputs_of_leftRightLca
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromLeftRightLca) :
+    MetrizableWalkingParallelPairLimitClosureFieldInputs where
+  leftClosed := metrizableWppLimitLeftClosedInput_of_lca inputs.leftClosedLca
+  rightOpen := metrizableWppLimitRightOpenInput_of_lca inputs.rightOpenLca
   rightSurjective := inputs.rightSurjective
   algebraicExact := inputs.algebraicExact
 
@@ -401,6 +458,13 @@ theorem metrizableWalkingParallelPairLimitClosure_of_leftLca
     MetrizableWppLimitClosureInput :=
   metrizableWalkingParallelPairLimitClosure_of_fieldInputs
     (metrizableWalkingParallelPairLimitClosureFieldInputs_of_leftLca inputs)
+
+/-- Build WPP exact-acyclic limit closure from pure LCA left and right-open data. -/
+theorem metrizableWalkingParallelPairLimitClosure_of_leftRightLca
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromLeftRightLca) :
+    MetrizableWppLimitClosureInput :=
+  metrizableWalkingParallelPairLimitClosure_of_fieldInputs
+    (metrizableWalkingParallelPairLimitClosureFieldInputs_of_leftRightLca inputs)
 
 theorem metrizableWalkingParallelPairLimitStability_of_comparison_and_closure
     (hcomparison : MetrizableWppLimitComparisonInput)
@@ -432,6 +496,16 @@ theorem metrizableWalkingParallelPairLimitStability_of_comparison_and_leftLca
   metrizableWalkingParallelPairLimitStability_of_comparison_and_fields
     hcomparison
     (metrizableWalkingParallelPairLimitClosureFieldInputs_of_leftLca inputs)
+
+/-- Build WPP limit stability from comparison plus pure LCA left and right-open data. -/
+theorem metrizableWalkingParallelPairLimitStability_of_comparison_and_leftRightLca
+    (hcomparison : MetrizableWppLimitComparisonInput)
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromLeftRightLca) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_comparison_and_fields
+    hcomparison
+    (metrizableWalkingParallelPairLimitClosureFieldInputs_of_leftRightLca inputs)
 
 /--
 W532 finite-shape transfer inputs with WPP limit stability supplied by direct

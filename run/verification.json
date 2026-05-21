@@ -1,9 +1,89 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w543-wpp-limit-left-field-lca",
-  "generated_utc": "2026-05-21T18:14:45Z",
-  "source_tree_hash": "09d34d4b9beeb8b848dc53d0d0f1fcdead5d764cfaeebe330ddff26ab0536f24",
-  "summary": "W543では、W542で分解したWPP limit left closed-embedding fieldを、WPP limit pointsのinduced LCA mapに対するinjectivity、induced topology、closed imageという三つの純粋な位相群入力へさらに分解した。これにより四つのWPP limit field入力のうちleft closed-embedding fieldはpure LCA limit-map certificateから供給できるようになった。ただしmapping-cone WPP limit comparison、そのpure LCA left-field certificate、right open-map field、right surjectivity field、algebraic exactness field、concrete W515/W516/W517 relation data、concrete W527 row provider、concrete normalized strict representative data、target/model uniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
+  "schema": "lean-lca-exact-challenge-verification-w544-wpp-limit-right-open-lca",
+  "generated_utc": "2026-05-21T18:25:30Z",
+  "source_tree_hash": "c1e25d75a764260ddce395788f21f94d391e671468f5e754c19a2d6acf33cd98",
+  "summary": "W544では、W542で分解したWPP limit right open-map fieldを、WPP limit pointsのinduced LCA mapがopen mapであるという純粋なLCA入力へ分解した。W543のleft-field LCA入力と合わせて、四つのWPP limit field入力のうちleft closed-embeddingとright open-mapはpure LCA limit-map certificatesから供給できる。ただしmapping-cone WPP limit comparison、そのpure LCA left/right certificates自体、right surjectivity field、algebraic exactness field、concrete W515/W516/W517 relation data、concrete W527 row provider、concrete normalized strict representative data、target/model uniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
+      "status": "passed",
+      "evidence": "Focused W544 direct WPP limit-transfer source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_direct_wpp_limit_transfer_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
+      "status": "passed",
+      "evidence": "Direct WPP limit-transfer module rebuilt with W544 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_direct_wpp_limit_transfer_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W544 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_product_success_declarations_retry.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import surface remains green after W544; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_root_import_lean.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W544; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_required_declarations.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Root package build passed after W544; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_root_build.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W544; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source tree scan passed after W544; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_audit_no_forbidden_tree.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file forbidden-token scan passed after W544; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_audit_no_forbidden_touched_all.log."
+    },
+    {
+      "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-facing placeholder regex returned no matches on W544-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_product_placeholder_touched.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W544 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "W544 terminal outcome JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "W544 verification JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "W544 manifest JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_json_parse.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W544; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product gate still rejects the nonterminal outcome after W544, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_external_product_gate.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
       "status": "passed",
@@ -3603,6 +3683,14 @@
     }
   ],
   "implemented_declarations_checked": [
+    "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_preserves_openMap",
+    "DirectWppLimitFiniteShapeTransfer.wppLimit_preserves_rightOpenMap_of_lca_limitMap",
+    "Dbounded.MetrizableWppLimitRightOpenLcaInput",
+    "Dbounded.metrizableWppLimitRightOpenInput_of_lca",
+    "Dbounded.MetrizableWalkingParallelPairLimitClosureFieldInputsFromLeftRightLca",
+    "Dbounded.metrizableWalkingParallelPairLimitClosureFieldInputs_of_leftRightLca",
+    "Dbounded.metrizableWalkingParallelPairLimitClosure_of_leftRightLca",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_comparison_and_leftRightLca",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_injective_inducing_closedImage",
     "DirectWppLimitFiniteShapeTransfer.closedEmbedding_of_injective_inducing_closedImage",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage",
@@ -5136,21 +5224,22 @@
   "known_gaps": [
     "WalkingParallelPairのmapping cone bounded-inclusion limit comparisonがまだ具体化されていない。",
     "WPP limit left closed-embedding fieldを供給するpure LCA induced-limit-map certificateがまだ具体化されていない。",
-    "WPP limit right open-map、right surjectivity、algebraic exactnessのfield入力がまだ具体化されていない。",
+    "WPP limit right open-map fieldを供給するpure LCA induced-limit-map open-map certificateがまだ具体化されていない。",
+    "WPP limit right surjectivityとalgebraic exactnessのfield入力がまだ具体化されていない。",
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
     "W527のComponentwiseClosedMapRowsProviderまたはComponentwiseClosedEmbeddingRowsProviderがまだ具体化されていない。",
     "WalkingParallelPair diagram targetとlocalization modelに対するcoherent/normalized strict representative dataおよびtarget/modelのuniqがまだ未構成である。",
     "pretriangulated/triangulated dataと最終的なbounded left-calculus instanceがまだ未構成である。"
   ],
-  "support_result_classification": "verified_nonterminal",
+  "support_result_classification": "verified_nonterminal_increment",
   "product_success": false,
   "remaining_work": [
     "Prove or package the mapping-cone WPP limit comparison for bounded inclusion. が未完了である。",
-    "Prove the pure LCA certificate for WPP limit left closed embeddings. が未完了である。",
-    "Prove WPP limit right open-map, right surjectivity, and algebraic exactness fields. が未完了である。",
+    "Prove the pure LCA certificates for WPP limit left closed embeddings and right open maps. が未完了である。",
+    "Prove WPP limit right surjectivity and algebraic exactness fields. が未完了である。",
     "Instantiate concrete W515/W516/W517 relation-data providers and W527 row providers. が未完了である。",
     "Construct normalized strict representative data and target/model uniqueness for the WPP localization route. が未完了である。",
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance. が未完了である。"
   ],
-  "summary_log_tail": "W543 verified nonterminal: the WPP limit left closed-embedding field now reduces to a pure LCA induced-limit-map certificate; the certificate and other WPP limit fields remain open."
+  "summary_log_tail": "W544 passed focused Lean, module build, ProductSuccessDeclarations, root import, RequiredDeclarations, root build, full build, forbidden-token scans, and metadata checks. The external product gate remains expected to fail because terminal_outcome is nonterminal."
 }
