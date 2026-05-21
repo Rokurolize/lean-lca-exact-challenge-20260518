@@ -8768,4 +8768,210 @@ end Checks
 
 end WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524
 
+namespace WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525
+
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpTopTargetRelationRepresentativeImageV370SupportW516
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+open WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W525 selected-difference closed-map route. -/
+def supportSeedW525 : String :=
+  "w525-selected-difference-closed-map-closed-range-only"
+
+/-- Closed-map surface for the three selected component difference maps. -/
+structure SelectedComponentwiseClosedMapInputsW525
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) : Type 1 where
+  hclosedMapπ₁ : IsClosedMap (selectedMetrizableDifferenceπ₁W481 S :
+    (S.obj ordinarySourceIndexW484).X₁ → (S.obj ordinaryTargetIndexW484).X₁)
+  hclosedMapπ₂ : IsClosedMap (selectedMetrizableDifferenceπ₂W481 S :
+    (S.obj ordinarySourceIndexW484).X₂ → (S.obj ordinaryTargetIndexW484).X₂)
+  hclosedMapπ₃ : IsClosedMap (selectedMetrizableDifferenceπ₃W481 S :
+    (S.obj ordinarySourceIndexW484).X₃ → (S.obj ordinaryTargetIndexW484).X₃)
+
+/-- Provider for selected component difference closed-map inputs. -/
+abbrev ComponentwiseClosedMapProviderW525 : Type 1 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs → SelectedComponentwiseClosedMapInputsW525 S cs
+
+/-- Closed-embedding surface for the three selected component difference maps. -/
+structure SelectedComponentwiseClosedEmbeddingInputsW525
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) : Type 1 where
+  hclosedEmbeddingπ₁ : IsClosedEmbedding (selectedMetrizableDifferenceπ₁W481 S :
+    (S.obj ordinarySourceIndexW484).X₁ → (S.obj ordinaryTargetIndexW484).X₁)
+  hclosedEmbeddingπ₂ : IsClosedEmbedding (selectedMetrizableDifferenceπ₂W481 S :
+    (S.obj ordinarySourceIndexW484).X₂ → (S.obj ordinaryTargetIndexW484).X₂)
+  hclosedEmbeddingπ₃ : IsClosedEmbedding (selectedMetrizableDifferenceπ₃W481 S :
+    (S.obj ordinarySourceIndexW484).X₃ → (S.obj ordinaryTargetIndexW484).X₃)
+
+/-- Provider for selected component difference closed-embedding inputs. -/
+abbrev ComponentwiseClosedEmbeddingProviderW525 : Type 1 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs →
+      SelectedComponentwiseClosedEmbeddingInputsW525 S cs
+
+/-- Selected closed maps supply W484's closed-range-only input surface. -/
+def closedRangeOnlyInputs_of_closedMap_w525
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (H : SelectedComponentwiseClosedMapInputsW525 S cs) :
+    SelectedComponentwiseClosedRangeOnlyInputsW484 S cs where
+  hclosedπ₁ := by
+    simpa [Set.image_univ] using H.hclosedMapπ₁ Set.univ isClosed_univ
+  hclosedπ₂ := by
+    simpa [Set.image_univ] using H.hclosedMapπ₂ Set.univ isClosed_univ
+  hclosedπ₃ := by
+    simpa [Set.image_univ] using H.hclosedMapπ₃ Set.univ isClosed_univ
+
+/-- Selected closed embeddings supply W484's closed-range-only input surface. -/
+def closedRangeOnlyInputs_of_closedEmbedding_w525
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (H : SelectedComponentwiseClosedEmbeddingInputsW525 S cs) :
+    SelectedComponentwiseClosedRangeOnlyInputsW484 S cs where
+  hclosedπ₁ := H.hclosedEmbeddingπ₁.isClosed_range
+  hclosedπ₂ := H.hclosedEmbeddingπ₂.isClosed_range
+  hclosedπ₃ := H.hclosedEmbeddingπ₃.isClosed_range
+
+/-- Provider-level adapter from selected closed maps to W484 closed-range-only fields. -/
+def closedRangeOnlyProvider_of_closedMap_w525
+    (hclosedMap : ComponentwiseClosedMapProviderW525) :
+    ComponentwiseClosedRangeOnlyProviderW484 :=
+  fun S cs hcs => closedRangeOnlyInputs_of_closedMap_w525 (hclosedMap S cs hcs)
+
+/-- Provider-level adapter from selected closed embeddings to W484 closed-range-only fields. -/
+def closedRangeOnlyProvider_of_closedEmbedding_w525
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :
+    ComponentwiseClosedRangeOnlyProviderW484 :=
+  fun S cs hcs =>
+    closedRangeOnlyInputs_of_closedEmbedding_w525 (hclosedEmbedding S cs hcs)
+
+/-- W525 representative-image endpoint using selected closed-map data. -/
+def exactAcyclic_of_representativeImage_closedMap_w525
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hclosedMap : ComponentwiseClosedMapProviderW525) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_closedRangeOnlyProjection_w524
+    hinputs (closedRangeOnlyProvider_of_closedMap_w525 hclosedMap)
+
+/-- W525 representative-image endpoint using selected closed-embedding data. -/
+def exactAcyclic_of_representativeImage_closedEmbedding_w525
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_closedRangeOnlyProjection_w524
+    hinputs (closedRangeOnlyProvider_of_closedEmbedding_w525 hclosedEmbedding)
+
+/-- W525 top-target endpoint using selected closed-map data. -/
+def exactAcyclic_of_topTargetRelation_closedMap_w525
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hclosedMap : ComponentwiseClosedMapProviderW525) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_topTargetRelation_and_closedRangeOnlyProjection_w524
+    hinputs (closedRangeOnlyProvider_of_closedMap_w525 hclosedMap)
+
+/-- W525 top-target endpoint using selected closed-embedding data. -/
+def exactAcyclic_of_topTargetRelation_closedEmbedding_w525
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_topTargetRelation_and_closedRangeOnlyProjection_w524
+    hinputs (closedRangeOnlyProvider_of_closedEmbedding_w525 hclosedEmbedding)
+
+/-- W525 compact-target endpoint using selected closed-map data. -/
+def exactAcyclic_of_compactTargetRelation_closedMap_w525
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hclosedMap : ComponentwiseClosedMapProviderW525) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyProjection_w524
+    hinputs (closedRangeOnlyProvider_of_closedMap_w525 hclosedMap)
+
+/-- W525 compact-target endpoint using selected closed-embedding data. -/
+def exactAcyclic_of_compactTargetRelation_closedEmbedding_w525
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyProjection_w524
+    hinputs (closedRangeOnlyProvider_of_closedEmbedding_w525 hclosedEmbedding)
+
+/-- W525 checked nonterminal state. -/
+structure SelectedDifferenceClosedMapClosedRangeOnlyStateW525 : Type where
+  seed : String
+  declarations : List String
+  closedMapAdapterResult : String
+  closedEmbeddingAdapterResult : String
+  representativeImageEndpointResult : String
+  topTargetEndpointResult : String
+  compactTargetEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W525 state. -/
+def currentSelectedDifferenceClosedMapClosedRangeOnlyStateW525 :
+    SelectedDifferenceClosedMapClosedRangeOnlyStateW525 where
+  seed := supportSeedW525
+  declarations :=
+    ["SelectedComponentwiseClosedMapInputsW525",
+      "ComponentwiseClosedMapProviderW525",
+      "SelectedComponentwiseClosedEmbeddingInputsW525",
+      "ComponentwiseClosedEmbeddingProviderW525",
+      "closedRangeOnlyInputs_of_closedMap_w525",
+      "closedRangeOnlyInputs_of_closedEmbedding_w525",
+      "closedRangeOnlyProvider_of_closedMap_w525",
+      "closedRangeOnlyProvider_of_closedEmbedding_w525",
+      "exactAcyclic_of_representativeImage_closedMap_w525",
+      "exactAcyclic_of_representativeImage_closedEmbedding_w525",
+      "exactAcyclic_of_topTargetRelation_closedMap_w525",
+      "exactAcyclic_of_topTargetRelation_closedEmbedding_w525",
+      "exactAcyclic_of_compactTargetRelation_closedMap_w525",
+      "exactAcyclic_of_compactTargetRelation_closedEmbedding_w525"]
+  closedMapAdapterResult := "proved"
+  closedEmbeddingAdapterResult := "proved"
+  representativeImageEndpointResult := "proved"
+  topTargetEndpointResult := "proved"
+  compactTargetEndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 " ++
+        "or W516/W517 relation provider data",
+      "construct concrete selected component difference closed-map " ++
+        "or closed-embedding provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW525State :
+    SelectedDifferenceClosedMapClosedRangeOnlyStateW525 :=
+  currentSelectedDifferenceClosedMapClosedRangeOnlyStateW525
+
+theorem currentW525State_productSuccess :
+    currentW525State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW525
+#check SelectedComponentwiseClosedMapInputsW525
+#check ComponentwiseClosedMapProviderW525
+#check SelectedComponentwiseClosedEmbeddingInputsW525
+#check ComponentwiseClosedEmbeddingProviderW525
+#check closedRangeOnlyInputs_of_closedMap_w525
+#check closedRangeOnlyInputs_of_closedEmbedding_w525
+#check closedRangeOnlyProvider_of_closedMap_w525
+#check closedRangeOnlyProvider_of_closedEmbedding_w525
+#check exactAcyclic_of_representativeImage_closedMap_w525
+#check exactAcyclic_of_representativeImage_closedEmbedding_w525
+#check exactAcyclic_of_topTargetRelation_closedMap_w525
+#check exactAcyclic_of_topTargetRelation_closedEmbedding_w525
+#check exactAcyclic_of_compactTargetRelation_closedMap_w525
+#check exactAcyclic_of_compactTargetRelation_closedEmbedding_w525
+#check currentW525State_productSuccess
+
+end Checks
+
+end WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525
+
 end LeanLCAExactChallenge

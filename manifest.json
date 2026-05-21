@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-21T14:09:05Z",
-  "content_hash_tree": "9d7e88fb0604a16aa5070d29082d357a7433ec93fc615e60e7f79636f5461ba1",
+  "generated_utc": "2026-05-21T14:17:10Z",
+  "content_hash_tree": "7b2432648c161d84e0f1783d42a27afc018d7c3c3065e131ea942a6563b8081b",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -89,8 +89,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "bytes": 432107,
-      "sha256": "ebaba8a82e9edd94830286a99923df3b821a0f4bfc9193e495d2c5b256ec998e"
+      "bytes": 442729,
+      "sha256": "4611c91162ecd024af1c6bc635d6528dfea49dc77c577e4711348cfc735fd300"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean",
@@ -179,8 +179,8 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 148627,
-      "sha256": "4f2bb3fc14dd30099c62ba4e8231d372d807e316a932b9752c751dc6cd9b6bac"
+      "bytes": 149571,
+      "sha256": "ca784c135fe92863f596029dc68400143f06334c22c8e3dbd45316d4f77fba65"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -1979,18 +1979,18 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 310528,
-      "sha256": "4fde3c558a0f265e4e75f082becf307d34b0cb97da6ff9b4cc1e01020ebc8fbb"
+      "bytes": 311128,
+      "sha256": "2f5e70ce7336d762067c4f33f69aaeb4b2f9950a49bb539755209d5bdd8bdbc2"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 332981,
-      "sha256": "e165663df5a7765671fbf3338e5f163f47c057d481ac02d48d165960842a7d25"
+      "bytes": 334793,
+      "sha256": "fa40efcbb134ed887bbecaf0896d404db42baba93d16f31be2ac564787ac7dbd"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "bytes": 214947,
-      "sha256": "cabf8bf0d1550f4f6e3a580893a88ee59d7d058d9da8a9686c4853fe898a506c"
+      "bytes": 216344,
+      "sha256": "cc5fff96e2d9e0f546b950f4bead4e494bb011c4e8a00e2dd5b08cc42b8021b5"
     },
     {
       "path": "proof_frontier/ROOT_BLOCKERS_W320.json",
@@ -2004,8 +2004,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 338678,
-      "sha256": "de42350d03c656fc6da70bcf5d19611f9e6393815bb83cdbff235d569a2e7873"
+      "bytes": 343393,
+      "sha256": "3e9a98cde9dbbf311b61e125d7bc74b856ed92b1391d5ea0c2bba4174a24f331"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -2019,8 +2019,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 409821,
-      "sha256": "113bef4012f177dec8aaa4d54b7180805a9a864c651373f2d0821c8c6bc27b17"
+      "bytes": 415591,
+      "sha256": "a514684364757b2b2171ae1e758379212463873f0d65ee3e4239a204f483f5f0"
     },
     {
       "path": "workers/README.md",
