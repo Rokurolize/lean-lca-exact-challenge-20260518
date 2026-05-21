@@ -807,3 +807,12 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: the selected short-complex difference projections are exposed, closed-range/closed-map/closed-embedding hypotheses produce the range-equality inputs, and those inputs are packaged in the W452 componentwise bridge shape.
 - remaining blockers: prove that each selected component closed-range equality yields the corresponding projection `IsColimit` field of `SelectedMappedCokernelComponentwiseInputs S cs`, then apply the W452/W446 selected target route to the actual WPP-op difference.
 - product_complete: false
+
+## W456 Strict Snake Data From Componentwise Cokernel
+
+- timestamp: `2026-05-21T01:17:45Z`
+- artifact: `audit/blockers/addcommgrp_strict_snake_data_from_componentwise_cokernel_v370_support_w456.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_strict_snake_data_from_componentwise_cokernel_v370_support_w456.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_strict_snake_data_from_componentwise_cokernel_v370_support_w456.lean`; `git diff --check`
+- effect: strict rows plus W452-style componentwise selected cokernel colimit inputs now produce `AddCommGrpStrictSnakeCokernelData (cs.pt.map (forget₂ MetrizableLCA AddCommGrpCat))`.
+- remaining blockers: provide the remaining kernel row object `L₀`, kernel map `i`, zero equation `wi`, and `IsLimit (KernelFork.ofι i wi)` for the selected difference.
+- product_complete: false

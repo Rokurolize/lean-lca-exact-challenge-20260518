@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-21T01:13:17Z",
-  "source_tree_hash": "efa71b376acf3d9b4d28e7283212d6aa74d57ee6074295d26e8e52f8f0f89a82",
-  "summary": "W454 and W455 support files were verified and recorded. Product success remains blocked by projection IsColimit construction, concrete difference rows, selected target identification, and target-component leg compatibility for the concrete W451 map.",
+  "generated_utc": "2026-05-21T01:17:45Z",
+  "source_tree_hash": "4938d598985e72f8a24b99f92afc34c44e0deea31c137e295d4468ed978346ab",
+  "summary": "W456 strict Snake data from componentwise selected cokernel support was verified and recorded. Product success remains blocked by projection IsColimit fields, selected kernel row construction, and concrete leg compatibility.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -2398,6 +2398,16 @@
       "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/wpp_op_w426_w390_leg_compatibility_components_v370_support_w454.lean audit/blockers/addcommgrp_selected_componentwise_closed_range_inputs_v370_support_w455.lean",
       "status": "passed",
       "evidence": "No forbidden proof placeholders were found in the W454/W455 support files."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_strict_snake_data_from_componentwise_cokernel_v370_support_w456.lean",
+      "status": "passed",
+      "evidence": "Focused W456 componentwise-selected-cokernel to strict Snake data support file passed; #check output confirms strictSnakeCokernelData_of_componentwiseSelectedCokernel."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_strict_snake_data_from_componentwise_cokernel_v370_support_w456.lean",
+      "status": "passed",
+      "evidence": "No forbidden proof placeholders were found in the W456 support file."
     }
   ],
   "implemented_declarations_checked": [
