@@ -361,6 +361,21 @@ def forgottenMappedExplicitCokernelCoconeIsColimit_of_isClosedEmbedding
     (cokernelIsColimit f)
     (forgottenMappedExplicitCokernelCoconeIsColimit_of_isClosed_range f hclosed)
 
+/-- Closed maps make the forgetful functor preserve the cokernel of `f`. -/
+@[reducible] def preservesCokernelOf_isClosedMap
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosedMap : IsClosedMap (f : X → Y)) :
+    PreservesColimit (parallelPair f 0) underlyingAddCommGrpFunctor :=
+  preservesCokernelOf_isClosed_range f
+    (by simpa [Set.image_univ] using hclosedMap Set.univ isClosed_univ)
+
+/-- Closed embeddings make the forgetful functor preserve the cokernel of `f`. -/
+@[reducible] def preservesCokernelOf_isClosedEmbedding
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosedEmbedding : IsClosedEmbedding (f : X → Y)) :
+    PreservesColimit (parallelPair f 0) underlyingAddCommGrpFunctor :=
+  preservesCokernelOf_isClosed_range f hclosedEmbedding.isClosed_range
+
 end MetrizableLCA
 
 end LeanLCAExactChallenge

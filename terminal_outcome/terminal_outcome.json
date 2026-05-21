@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W442/W443支援を検証して本体へ昇格し、閉レンジ仮定から忘却代数レンジとcokernel subgroupの一致、さらにW433型mapped explicit cokernel coconeのAddCommGrpCat colimit/preservationを使えるようにした。実際のWPP-op差分射に対する閉レンジまたはclosure-kernel入力、およびW426/W318のordinary対canonical map alignmentは未完了なのでproduct successは主張しない。",
+  "summary": "W445支援を検証し、閉写像・閉埋め込みからcokernel preservationを得る本体APIを追加した。実際のWPP-op差分射に対する閉レンジ等の入力と、短複体preservationへの持ち上げは未完了なのでproduct successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -614,7 +614,8 @@
     "lake build LeanLCAExactChallenge",
     "lake env lean audit/blockers/addcommgrp_w433_mapped_cocone_closed_range_bridge_v370_support_w442.lean",
     "lake env lean audit/blockers/addcommgrp_cokernel_range_equality_from_closed_map_v370_support_w443.lean",
-    "lake env lean audit/blockers/wpp_op_w426_w318_ordinary_equals_canonical_v370_support_w444.lean"
+    "lake env lean audit/blockers/wpp_op_w426_w318_ordinary_equals_canonical_v370_support_w444.lean",
+    "lake build LeanLCAExactChallenge.LCA.ForgottenCokernel LeanLCAExactChallenge"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1645,7 +1646,9 @@
     "実際のWPP-op差分射について、閉レンジ、閉写像、または同等のclosure-kernel入力をまだ証明していない。",
     "W433/W442/W443の忘却cokernel preservation routeを選択されたshort-complex target rowへ接続する統合定理がまだない。",
     "W426 ordinary descended quotient map packageとW318 canonical WPP-op colimit mapの同一性・輸送はまだ未完了。",
-    "W444はW426 ordinary descended mapとW318 canonical colimit mapの抽象等式ブリッジを与えるが、実際のW426 ordinary input packageの具体化と輸送はまだ未完了。"
+    "W444はW426 ordinary descended mapとW318 canonical colimit mapの抽象等式ブリッジを与えるが、実際のW426 ordinary input packageの具体化と輸送はまだ未完了。",
+    "選択されたWPP-op差分射について閉レンジ・閉写像・閉埋め込みのいずれかをまだ証明していない。",
+    "component cokernel preservationを選択short-complex preservation入力へ持ち上げる統合定理がまだない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
