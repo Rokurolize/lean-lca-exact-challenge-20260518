@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-21T00:43:15Z",
-  "source_tree_hash": "6f909c765a5d8e2779b2a74a652e2044d5a011db01aa8d8544ebfa5bf0c0f283",
+  "generated_utc": "2026-05-21T00:44:30Z",
+  "source_tree_hash": "c830c1565e5b9c7b0c01b6093a10dde820bf5d0e581f512a8a1d2eb9dce00967",
   "summary": "W445支援を親側で検証し、閉写像・閉埋め込みからforgetful functorのcokernel preservationを得る薄いimportable APIを追加した。product successはまだ主張しない。",
   "commands": [
     {

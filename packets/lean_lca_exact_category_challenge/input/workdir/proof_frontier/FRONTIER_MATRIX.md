@@ -735,3 +735,12 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W443's closed-range equality and W442's mapped explicit cokernel cocone bridge are now importable core API via `MetrizableLCA.forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosed_range`, `MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_isClosed_range`, and `MetrizableLCA.preservesCokernelOf_isClosed_range`.
 - remaining blockers: prove closed range, closed map, or an equivalent closure-kernel certificate for the actual WPP-op difference morphism; then connect it to the selected short-complex target row. The W426 ordinary descended map package still must be aligned with W318's canonical colimit map.
 - product_complete: false
+
+## W445 Closed Map Preservation Wrappers
+
+- timestamp: `2026-05-21T00:43:15Z`
+- artifacts: `LeanLCAExactChallenge/LCA/ForgottenCokernel.lean`, `audit/RequiredDeclarations.lean`, `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/LCA/ForgottenCokernel.lean`; `lake build LeanLCAExactChallenge.LCA.ForgottenCokernel LeanLCAExactChallenge`; `lake env lean audit/RequiredDeclarations.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge`; `git diff --check`
+- effect: W445's nonduplicate result is now core API as `MetrizableLCA.preservesCokernelOf_isClosedMap` and `MetrizableLCA.preservesCokernelOf_isClosedEmbedding`, both thin wrappers around `MetrizableLCA.preservesCokernelOf_isClosed_range`.
+- remaining blockers: prove the selected WPP-op component closed-map/closed-embedding/closed-range input and lift it into the selected short-complex preservation instance. W446's single-selected-colimit support result was still pending at this checkpoint.
+- product_complete: false
