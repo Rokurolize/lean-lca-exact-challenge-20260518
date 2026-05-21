@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W437のclosure-kernel境界を本体モジュールLeanLCAExactChallenge/LCA/ForgottenCokernel.leanへ昇格し、忘却されたLCA cokernel coforkがAddCommGrpCatでcolimitingになるための再利用可能なAPIを追加した。cofork方程式だけでは閉包されたcokernelSubgroupを殺すことは得られないため、実際のWPP-op差分射で閉像または証明書からclosure-kernel入力を供給する作業は未完了である。product successはまだ主張しない。",
+  "summary": "W438/W440支援を取り込み、W433型の忘却mapped explicit cokernel coconeがclosure-kernel入力からAddCommGrpCatでcolimitingになることを本体APIとして追加した。W439/W441はW426 ordinary map promotionとW318 canonical map alignmentの未完了frontierとして分類した。実際のWPP-op差分射に対するclosure-kernel入力とmap alignmentはまだ未証明なので、product successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -1636,14 +1636,16 @@
     "W426証明書境界をW318 exact-acyclic frontierへ接続したうえで、AddCommGrpまたはSnakeInputの代数的frontierを供給する必要がある。",
     "W399のdescended fieldsをW393/W390/W384のtransported fieldルートへ接続する必要がある。",
     "任意のMetrizableLCA射について閉像または忘却coequalizer保存を仮定するglobal主張は避ける必要がある。",
-    "四部構成の製品定理全体への統合はまだ完了していない。"
+    "四部構成の製品定理全体への統合はまだ完了していない。",
+    "実際のWPP-op差分射についてMetrizableLCA.ClosureKernelInputを閉像または証明書から供給する必要がある。",
+    "W441のordinary map promotion支援を精査し、W426 ordinary descended quotient map packageをimport可能なAPIへ昇格する必要がある。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "825e9cd",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W437 closure-kernel boundary is now importable as LeanLCAExactChallenge.LCA.ForgottenCokernel. Remaining AddCommGrp work is to supply the closure-kernel input for the actual WPP-op difference morphism and transport the objectwise cokernel colimit route into the selected short-complex target row; W426/W318 map alignment remains separate.",
+  "worker_frontier_summary": "W438/W440 consumed: closure-kernel input now feeds the W433-shaped forgottenMappedExplicitCokernelCocone directly. W439/W441 inspected: W426 ordinary map promotion remains partial and needs importable W426 map package plus equality to W318 canonical WPP-op colimit map after W387/W390 point identifications.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
     "W406後もselected ordinary CoforkのIsColimit証明が必要である。これは通常、WPP-op colimitをforgetful short-complex functorとwalkingParallelPairOpEquiv.functorで保存・transportする証明である。",
@@ -1652,7 +1654,7 @@
     "W401/W404 route後もtarget-relation lift certificate、すなわちW392/W386の具体証明が必要である。",
     "四部構成のproduct theorem、特に厳密MetrizableLCA exact categoryからYoneda-Extとbounded derived infinity-categoryまでの最終product-success接続はまだ完了していない。"
   ],
-  "next_recommended_goal": "実際のWPP-op差分射についてclosed-range/certificateからclosure-kernel入力を構成し、MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernelをW435の選択target cokernel routeへ接続する。",
+  "next_recommended_goal": "実際のWPP-op差分射についてMetrizableLCA.ClosureKernelInputを構成し、forgottenMappedExplicitCokernelCoconeIsColimit_of_closureKernelInputをW435の選択target routeへ接続する。並行してW441 support diffを精査し、W426 ordinary map packageの小さなimportable promotionを行う。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2482,9 +2484,15 @@
     "LeanLCAExactChallenge.MetrizableLCA.underlyingAddCommGrpFunctor",
     "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelπ",
     "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCofork",
-    "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel"
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenAlgebraicRangeSubgroup",
+    "LeanLCAExactChallenge.MetrizableLCA.ClosureKernelInput",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCocone",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCoforkMappedCoconeIso",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_closureKernelInput",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_forgottenAlgebraicRange_eq"
   ],
-  "generated_utc": "2026-05-21T00:20:46Z",
+  "generated_utc": "2026-05-21T00:27:14Z",
   "support_result_classification": "support W272 manually ported and parent-verified; no product success claim. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success. w377: parent-verified WPP-op closed-map remaining-fields support; target quotient closed-on-saturated theorem and W374/W371 packaging now yield descended closed-map from component closed-map, relation pullback equality, and target relation lifting. Product success remains false. w378: parent-verified partial transported relation-fields support; W375/W354 transported fields are fixed as injective, inducing, and closed-range data with a consumer adapter. Product success remains false. w379: parent-verified AddCommGrp degreewise cokernel data support; canonical componentwise cokernel short complex supplies concrete degreewise cofork data, component colimits, W376 target presentation, and difference Snake consumers. Product success remains false. w380: parent-verified component closed-map support; objectwise closed embedding supplies the W377 ordinary codomain component closed-map input, leaving relation-pullback equality and target relation lifting. Product success remains false. w381: parent-verified partial ordinary-to-transported relation-field support; ordinary W352-style fields can feed W378/W375 once point identifications, descended-map conjugacy, and injective/inducing/closed-range transports are proved. Product success remains false. w384: parent-verified iso field-transport support; injective, IsInducing, and closed-range fields now transport across source/target isomorphisms under descended-map conjugacy. Product success remains false. w382/w383/w384: parent-verified nonterminal support; no product success claim. w385/w386: parent-verified nonterminal support. w387: parent-verified nonterminal point-isomorphism support. W399 checked partial support consumed; not product success. W400/W401 checked partial support consumed; not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -3377,7 +3385,13 @@
     "LeanLCAExactChallenge.MetrizableLCA.underlyingAddCommGrpFunctor",
     "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelπ",
     "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCofork",
-    "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel"
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenAlgebraicRangeSubgroup",
+    "LeanLCAExactChallenge.MetrizableLCA.ClosureKernelInput",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCocone",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCoforkMappedCoconeIso",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_closureKernelInput",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_forgottenAlgebraicRange_eq"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
