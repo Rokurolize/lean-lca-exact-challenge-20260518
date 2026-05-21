@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W474を検証して記録した。W426 ordinary-map promotionとW472 selected component cofork endpointが合成され、W426 ordinary/canonical colimit-map equalityとselected component cofork IsColimit入力からexact-acyclic closureへ進む接続は閉じた。ただし実際の等式証明と三つのcofork colimit証明は未構成なのでproduct_successは主張しない。",
+  "summary": "W475を検証して記録した。W426 ordinary-map promotionとW464 projection-field exact-acyclic wrapperが合成された。ただし実call-siteのW426 promotion/equality入力とprojection fieldsは未構成なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -676,7 +676,10 @@
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_closed_range_exact_acyclic_v370_support_w473.lean",
     "lake env lean audit/blockers/addcommgrp_w426_left_closed_selected_component_exact_acyclic_v370_support_w474.lean",
     "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_w426_left_closed_selected_component_exact_acyclic_v370_support_w474.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_selected_component_exact_acyclic_v370_support_w474.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_selected_component_exact_acyclic_v370_support_w474.lean",
+    "lake env lean audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean",
+    "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1695,8 +1698,8 @@
     "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess"
   ],
   "known_gaps": [
-    "W474の実適用には、W426 ordinaryEqualsCanonicalColimitMap証明が必要である。",
-    "W474/W472の実適用には、selected component cofork IsColimit証明三つが必要である。",
+    "W475の実適用には、W426 promotion/equality inputsを実際のfinal call siteへinstantiateする必要がある。",
+    "W475の実適用には、projection component IsColimit fieldsを実際のfinal call siteへ供給する必要がある。",
     "W465の実適用には、W426 quotient compatibilityとW387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
@@ -1705,15 +1708,15 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "825e9cd",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W474 consumed: W426 promotion now composes with W472 selected component cofork endpoint; product_complete remains false pending ordinary/canonical equality and three cofork colimit proofs.",
+  "worker_frontier_summary": "W475 consumed: W426 promotion composes with W464 projection fields to exact-acyclic closure; product_complete remains false pending actual final call-site instantiation.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "W474の実適用には、W426 ordinaryEqualsCanonicalColimitMap証明が必要である。",
-    "W474/W472の実適用には、selected component cofork IsColimit証明三つが必要である。",
+    "W475の実適用には、W426 promotion/equality inputsを実際のfinal call siteへinstantiateする必要がある。",
+    "W475の実適用には、projection component IsColimit fieldsを実際のfinal call siteへ供給する必要がある。",
     "W465の実適用には、W426 quotient compatibilityとW387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
-  "next_recommended_goal": "W474のcall-site入力としてW426 ordinaryEqualsCanonicalColimitMap証明とselected component cofork IsColimit証明三つを構成し、W465のquotient compatibility/target-leg等式と同一importable namespaceで接続する。",
+  "next_recommended_goal": "W475のcall-site入力としてW426 promotion/equality dataとprojection component IsColimit fieldsをfinal importable namespaceで構成し、W465のquotient compatibility/target-leg等式と接続する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2566,10 +2569,12 @@
     "AddCommGrpW426LeftClosedClosedRangeExactAcyclicV370SupportW473.wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w473",
     "AddCommGrpW426LeftClosedClosedRangeExactAcyclicV370SupportW473.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_closedRangePointIdentifications_w473",
     "AddCommGrpW426LeftClosedSelectedComponentExactAcyclicV370SupportW474.wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w474",
-    "AddCommGrpW426LeftClosedSelectedComponentExactAcyclicV370SupportW474.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_selectedComponentCoforks_w474"
+    "AddCommGrpW426LeftClosedSelectedComponentExactAcyclicV370SupportW474.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_selectedComponentCoforks_w474",
+    "AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w475",
+    "AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_projectionFields_w475"
   ],
-  "generated_utc": "2026-05-21T02:51:00Z",
-  "support_result_classification": "W474 parent-consumed support is a verified nonterminal frontier reducer, not product success.",
+  "generated_utc": "2026-05-21T03:01:00Z",
+  "support_result_classification": "W475 parent-consumed support is a verified nonterminal frontier reducer, not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",

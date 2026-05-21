@@ -974,3 +974,13 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W426 promotion data supplies the left closed-embedding input and composes with W472 selected component cofork `IsColimit` inputs to the exact-acyclic WPP-op colimit closure endpoint.
 - remaining blockers: supply the actual W426 `ordinaryEqualsCanonicalColimitMap` proof and selected component cofork `IsColimit` inputs at the final call site.
 - product_complete: false
+
+
+## W475 W426 Left Closed Projection Fields Exact Acyclic
+
+- timestamp: `2026-05-21T03:01:00Z`
+- artifact: `audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean`; `git diff --check`
+- effect: W426 ordinary-map promotion supplies the left closed-embedding input and composes directly with W464 projection fields to the exact-acyclic WPP-op colimit closure endpoint.
+- remaining blockers: instantiate the W426 promotion/equality inputs and projection component `IsColimit` fields for the actual final call site.
+- product_complete: false
