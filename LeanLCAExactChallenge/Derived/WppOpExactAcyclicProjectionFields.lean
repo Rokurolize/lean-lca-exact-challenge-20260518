@@ -9554,6 +9554,8 @@ namespace Dbounded
 
 open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
 open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpTopTargetRelationRepresentativeImageV370SupportW516
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
 open WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526
 open WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527
 open WppOpW533FiniteShapeTransferFromRowsV370SupportW534
@@ -9809,6 +9811,108 @@ structure MetrizableWppTransferInputsFromDirectLimitRepImageClosedEmbeddingRowsN
   normalizedInputs :
     Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
 
+/--
+Direct WPP right fields plus a W516/W517 provider and W527 closed-map rows,
+with arbitrary functor-category localization.
+-/
+structure MetrizableWppTransferInputsFromDirectLimitClosedMapRows
+    (Provider : Type 1) : Type 1 where
+  rightOpen :
+    Dbounded.MetrizableWppLimitRightOpenInput
+  rightSurjective :
+    Dbounded.MetrizableWppLimitRightSurjectiveInput
+  provider :
+    Provider
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+Direct WPP right fields plus a W516/W517 provider and W527 closed-embedding rows,
+with arbitrary functor-category localization.
+-/
+structure MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRows
+    (Provider : Type 1) : Type 1 where
+  rightOpen :
+    Dbounded.MetrizableWppLimitRightOpenInput
+  rightSurjective :
+    Dbounded.MetrizableWppLimitRightSurjectiveInput
+  provider :
+    Provider
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+Direct WPP right fields plus a W516/W517 provider and W527 closed-map rows,
+with localization reduced to fixed-target data.
+-/
+structure MetrizableWppTransferInputsFromDirectLimitClosedMapRowsFixedTargets
+    (Provider : Type 1) : Type 1 where
+  rightOpen :
+    Dbounded.MetrizableWppLimitRightOpenInput
+  rightSurjective :
+    Dbounded.MetrizableWppLimitRightSurjectiveInput
+  provider :
+    Provider
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  fixedTargetInputs :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+
+/--
+Direct WPP right fields plus a W516/W517 provider and W527 closed-embedding rows,
+with localization reduced to fixed-target data.
+-/
+structure MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRowsFixedTargets
+    (Provider : Type 1) : Type 1 where
+  rightOpen :
+    Dbounded.MetrizableWppLimitRightOpenInput
+  rightSurjective :
+    Dbounded.MetrizableWppLimitRightSurjectiveInput
+  provider :
+    Provider
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  fixedTargetInputs :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+
+/--
+Direct WPP right fields plus a W516/W517 provider and W527 closed-map rows,
+with localization reduced to normalized fixed-target data.
+-/
+structure MetrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized
+    (Provider : Type 1) : Type 1 where
+  rightOpen :
+    Dbounded.MetrizableWppLimitRightOpenInput
+  rightSurjective :
+    Dbounded.MetrizableWppLimitRightSurjectiveInput
+  provider :
+    Provider
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/--
+Direct WPP right fields plus a W516/W517 provider and W527 closed-embedding rows,
+with localization reduced to normalized fixed-target data.
+-/
+structure MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRowsNormalized
+    (Provider : Type 1) : Type 1 where
+  rightOpen :
+    Dbounded.MetrizableWppLimitRightOpenInput
+  rightSurjective :
+    Dbounded.MetrizableWppLimitRightSurjectiveInput
+  provider :
+    Provider
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
 /-- Build W532's transfer record from W515 data and W527 row-aware closed-map rows. -/
 noncomputable def metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedMapRows
     (inputs :
@@ -9982,6 +10086,234 @@ def metrizableWppTransferInputs_of_directLimitRepImageClosedEmbeddingRowsNormali
   colimitStability :=
     walkingParallelPairColimitStability_of_representativeImage_and_closedEmbeddingRows_w535
       inputs.representativeImageProvider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+      inputs.normalizedInputs
+
+/--
+Build W532's transfer record from direct WPP right fields, W516 top-target data,
+and W527 closed-map rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitTopTargetRelationClosedMapRows
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedMapRows
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Build W532's transfer record from direct WPP right fields, W516 top-target data,
+and W527 closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitTopTargetRelationClosedEmbeddingRows
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRows
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Build W532's transfer record from direct WPP right fields, W517 compact-target
+data, and W527 closed-map rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitCompactTargetRelationClosedMapRows
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedMapRows
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Build W532's transfer record from direct WPP right fields, W517 compact-target
+data, and W527 closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitCompactTargetRelationClosedEmbeddingRows
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRows
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Build W532's transfer record from direct WPP right fields, W516 top-target data,
+W527 closed-map rows, and fixed-target localization data.
+-/
+def metrizableWppTransferInputs_of_directLimitTopTargetRelationClosedMapRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedMapRowsFixedTargets
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/--
+Build W532's transfer record from direct WPP right fields, W516 top-target data,
+W527 closed-embedding rows, and fixed-target localization data.
+-/
+def
+    metrizableWppTransferInputs_of_directLimitTopTargetRelationClosedEmbeddingRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRowsFixedTargets
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/--
+Build W532's transfer record from direct WPP right fields, W517 compact-target
+data, W527 closed-map rows, and fixed-target localization data.
+-/
+def metrizableWppTransferInputs_of_directLimitCompactTargetRelationClosedMapRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedMapRowsFixedTargets
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/--
+Build W532's transfer record from direct WPP right fields, W517 compact-target
+data, W527 closed-embedding rows, and fixed-target localization data.
+-/
+def
+    metrizableWppTransferInputs_of_directLimitCompactTargetRelationClosedEmbeddingRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRowsFixedTargets
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/--
+Build W532's transfer record from direct WPP right fields, W516 top-target data,
+W527 closed-map rows, and normalized localization data.
+-/
+def metrizableWppTransferInputs_of_directLimitTopTargetRelationClosedMapRowsNormalized
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+      inputs.normalizedInputs
+
+/--
+Build W532's transfer record from direct WPP right fields, W516 top-target data,
+W527 closed-embedding rows, and normalized localization data.
+-/
+def
+    metrizableWppTransferInputs_of_directLimitTopTargetRelationClosedEmbeddingRowsNormalized
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRowsNormalized
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+      inputs.normalizedInputs
+
+/--
+Build W532's transfer record from direct WPP right fields, W517 compact-target
+data, W527 closed-map rows, and normalized localization data.
+-/
+def metrizableWppTransferInputs_of_directLimitCompactTargetRelationClosedMapRowsNormalized
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+      inputs.normalizedInputs
+
+/--
+Build W532's transfer record from direct WPP right fields, W517 compact-target
+data, W527 closed-embedding rows, and normalized localization data.
+-/
+def
+    metrizableWppTransferInputs_of_directLimitCompactTargetRelationClosedEmbeddingRowsNormalized
+    (inputs :
+      MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRowsNormalized
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_directRightFields
+      inputs.rightOpen inputs.rightSurjective
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
   functorCategoryLocalization :=
     Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
       inputs.normalizedInputs
@@ -10180,6 +10512,118 @@ theorem
       6 :=
   rfl
 
+/--
+Input names for W516/W517 provider routes with direct WPP right fields,
+closed-map rows, and arbitrary functor-category localization.
+-/
+def metrizableWppTransferFromDirectLimitClosedMapRowsInputNames
+    (providerName : String) : List String :=
+  ["WPP limit right-open field",
+    "WPP limit right-surjective field",
+    providerName,
+    "ComponentwiseClosedMapRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem metrizableWppTransferFromDirectLimitClosedMapRowsInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromDirectLimitClosedMapRowsInputNames providerName).length =
+      5 :=
+  rfl
+
+/--
+Input names for W516/W517 provider routes with direct WPP right fields,
+closed-embedding rows, and arbitrary functor-category localization.
+-/
+def metrizableWppTransferFromDirectLimitClosedEmbeddingRowsInputNames
+    (providerName : String) : List String :=
+  ["WPP limit right-open field",
+    "WPP limit right-surjective field",
+    providerName,
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem metrizableWppTransferFromDirectLimitClosedEmbeddingRowsInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromDirectLimitClosedEmbeddingRowsInputNames providerName).length =
+      5 :=
+  rfl
+
+/--
+Input names for W516/W517 provider routes with direct WPP right fields,
+closed-map rows, and fixed-target localization data.
+-/
+def metrizableWppTransferFromDirectLimitClosedMapRowsFixedTargetInputNames
+    (providerName : String) : List String :=
+  ["WPP limit right-open field",
+    "WPP limit right-surjective field",
+    providerName,
+    "ComponentwiseClosedMapRowsProviderW527",
+    "fixed-target lift/fac/uniq for WalkingParallelPair to Dbounded MetrizableLCA",
+    "fixed-target lift/fac/uniq for the WalkingParallelPair localization model"]
+
+theorem metrizableWppTransferFromDirectLimitClosedMapRowsFixedTargetInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromDirectLimitClosedMapRowsFixedTargetInputNames providerName).length =
+      6 :=
+  rfl
+
+/--
+Input names for W516/W517 provider routes with direct WPP right fields,
+closed-embedding rows, and fixed-target localization data.
+-/
+def metrizableWppTransferFromDirectLimitClosedEmbeddingRowsFixedTargetInputNames
+    (providerName : String) : List String :=
+  ["WPP limit right-open field",
+    "WPP limit right-surjective field",
+    providerName,
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "fixed-target lift/fac/uniq for WalkingParallelPair to Dbounded MetrizableLCA",
+    "fixed-target lift/fac/uniq for the WalkingParallelPair localization model"]
+
+theorem metrizableWppTransferFromDirectLimitClosedEmbeddingRowsFixedTargetInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromDirectLimitClosedEmbeddingRowsFixedTargetInputNames providerName).length =
+      6 :=
+  rfl
+
+/--
+Input names for W516/W517 provider routes with direct WPP right fields,
+closed-map rows, and normalized localization data.
+-/
+def metrizableWppTransferFromDirectLimitClosedMapRowsNormalizedInputNames
+    (providerName : String) : List String :=
+  ["WPP limit right-open field",
+    "WPP limit right-surjective field",
+    providerName,
+    "ComponentwiseClosedMapRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness"]
+
+theorem metrizableWppTransferFromDirectLimitClosedMapRowsNormalizedInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromDirectLimitClosedMapRowsNormalizedInputNames providerName).length =
+      6 :=
+  rfl
+
+/--
+Input names for W516/W517 provider routes with direct WPP right fields,
+closed-embedding rows, and normalized localization data.
+-/
+def metrizableWppTransferFromDirectLimitClosedEmbeddingRowsNormalizedInputNames
+    (providerName : String) : List String :=
+  ["WPP limit right-open field",
+    "WPP limit right-surjective field",
+    providerName,
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness"]
+
+theorem metrizableWppTransferFromDirectLimitClosedEmbeddingRowsNormalizedInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromDirectLimitClosedEmbeddingRowsNormalizedInputNames providerName).length =
+      6 :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -10213,6 +10657,24 @@ section Checks
 #check
   MetrizableWppTransferInputsFromDirectLimitRepImageClosedEmbeddingRowsNormalized
 #check
+  MetrizableWppTransferInputsFromDirectLimitClosedMapRows
+#check
+  (MetrizableWppTransferInputsFromDirectLimitClosedMapRows
+    ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+#check
+  (MetrizableWppTransferInputsFromDirectLimitClosedMapRows
+    ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+#check
+  MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRows
+#check
+  MetrizableWppTransferInputsFromDirectLimitClosedMapRowsFixedTargets
+#check
+  MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRowsFixedTargets
+#check
+  MetrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized
+#check
+  MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRowsNormalized
+#check
   metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedMapRows
 #check
   metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedEmbeddingRows
@@ -10236,6 +10698,30 @@ section Checks
   metrizableWppTransferInputs_of_directLimitRepImageClosedMapRowsNormalized
 #check
   metrizableWppTransferInputs_of_directLimitRepImageClosedEmbeddingRowsNormalized
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitTopTargetRelationClosedMapRows
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitTopTargetRelationClosedEmbeddingRows
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitCompactTargetRelationClosedMapRows
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitCompactTargetRelationClosedEmbeddingRows
+#check
+  metrizableWppTransferInputs_of_directLimitTopTargetRelationClosedMapRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_directLimitTopTargetRelationClosedEmbeddingRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_directLimitCompactTargetRelationClosedMapRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_directLimitCompactTargetRelationClosedEmbeddingRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_directLimitTopTargetRelationClosedMapRowsNormalized
+#check
+  metrizableWppTransferInputs_of_directLimitTopTargetRelationClosedEmbeddingRowsNormalized
+#check
+  metrizableWppTransferInputs_of_directLimitCompactTargetRelationClosedMapRowsNormalized
+#check
+  metrizableWppTransferInputs_of_directLimitCompactTargetRelationClosedEmbeddingRowsNormalized
 #check
   metrizableWppTransferFromRepImageClosedMapRowsFixedTargetInputNames
 #check
@@ -10276,6 +10762,54 @@ section Checks
   metrizableWppTransferFromDirectLimitRepImageClosedEmbeddingRowsNormalizedInputNames
 #check
   metrizableWppTransferFromDirectLimitRepImageClosedEmbeddingRowsNormalizedInputNames_count
+#check
+  (metrizableWppTransferFromDirectLimitClosedMapRowsInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromDirectLimitClosedMapRowsInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromDirectLimitClosedMapRowsInputNames_count
+#check
+  (metrizableWppTransferFromDirectLimitClosedEmbeddingRowsInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromDirectLimitClosedEmbeddingRowsInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromDirectLimitClosedEmbeddingRowsInputNames_count
+#check
+  (metrizableWppTransferFromDirectLimitClosedMapRowsFixedTargetInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromDirectLimitClosedMapRowsFixedTargetInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromDirectLimitClosedMapRowsFixedTargetInputNames_count
+#check
+  (metrizableWppTransferFromDirectLimitClosedEmbeddingRowsFixedTargetInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromDirectLimitClosedEmbeddingRowsFixedTargetInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromDirectLimitClosedEmbeddingRowsFixedTargetInputNames_count
+#check
+  (metrizableWppTransferFromDirectLimitClosedMapRowsNormalizedInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromDirectLimitClosedMapRowsNormalizedInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromDirectLimitClosedMapRowsNormalizedInputNames_count
+#check
+  (metrizableWppTransferFromDirectLimitClosedEmbeddingRowsNormalizedInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromDirectLimitClosedEmbeddingRowsNormalizedInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromDirectLimitClosedEmbeddingRowsNormalizedInputNames_count
 
 end Checks
 
