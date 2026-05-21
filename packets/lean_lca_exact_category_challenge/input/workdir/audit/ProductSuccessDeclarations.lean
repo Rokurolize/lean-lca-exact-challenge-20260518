@@ -69,6 +69,10 @@ example : HasFiniteColimits MetrizableLCA := by infer_instance
 #check MetrizableLCA.strictShortExact_of_exact_of_topology
 #check MetrizableLCA.cokernelSubgroup_eq_top_of_surjective
 #check MetrizableLCA.cokernelSubgroup_eq_top_iff_cokernelObj_isZero
+#check MetrizableLCA.underlyingAddCommGrpFunctor
+#check MetrizableLCA.forgottenCokernelπ
+#check MetrizableLCA.forgottenCokernelCofork
+#check MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel
 #check MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap
 #check MetrizableLCA.surjective_iff_cokernelSubgroup_eq_top_of_isOpenMap
 #check MetrizableLCA.CokernelTopStrictInput

@@ -1420,3 +1420,9 @@
 <p><time>2026-05-21T10:01:00Z</time>: The parent ported and verified <code>audit/blockers/addcommgrp_short_complex_preservation_from_underlying_v370_support_w419.lean</code>. It proves that WPP-op colimit preservation for <code>forgottenShortComplexFunctor</code> follows from WPP-op preservation by <code>forget₂ MetrizableLCA AddCommGrpCat</code> and shape colimits in <code>MetrizableLCA</code>.</p>
 <p>The AddCommGrp colimit route now needs those underlying preservation and colimit instances supplied in the final route.</p>
 </section>
+
+<section id="importable-forgotten-cokernel-api">
+<h2>Importable forgotten cokernel API</h2>
+<p><time>2026-05-21T00:20:46Z</time>: The parent promoted W437's closure-kernel boundary into <code>LeanLCAExactChallenge/LCA/ForgottenCokernel.lean</code> and exposed it from <code>LeanLCAExactChallenge.lean</code>. The new importable declarations include <code>MetrizableLCA.underlyingAddCommGrpFunctor</code>, <code>MetrizableLCA.forgottenCokernelπ</code>, <code>MetrizableLCA.forgottenCokernelCofork</code>, and <code>MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel</code>.</p>
+<p>This does not prove product success: it records the exact missing AddCommGrp input as a reusable closure-kernel hypothesis, so the next route can supply it from closed range or a certificate for the actual WPP-op difference morphism.</p>
+</section>

@@ -6,6 +6,7 @@ import LeanLCAExactChallenge.LCA.Basic
 import LeanLCAExactChallenge.LCA.StrictExact
 import LeanLCAExactChallenge.LCA.Quotient
 import LeanLCAExactChallenge.LCA.Cokernel
+import LeanLCAExactChallenge.LCA.ForgottenCokernel
 import LeanLCAExactChallenge.LCA.Pullback
 import LeanLCAExactChallenge.LCA.Pushout
 import LeanLCAExactChallenge.LCA.ExactCategory

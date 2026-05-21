@@ -706,3 +706,12 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 
 ## W357 Left LCA Concrete Quotient Cocone
 2026-05-20T22:06:00Z: Worker support `w357-left-lca-concrete-quotient-cocone-v369` was ported as `audit/blockers/wpp_op_left_lca_concrete_quotient_cocone_v369_support_w357.lean`. It constructs the concrete quotient cofork for an ordinary parallel pair from `cokernelObj (f - g)` and `cokernelπ (f - g)`, proves colimitness via `cokernelIsColimit`, constructs the descended quotient map from compatible squares by `quotientLift`, proves projection compatibility and both cofork leg equations, and packages the WPP-op ordinary/inverse-whiskered concrete quotient cocones with colimit proofs. Product success remains false because the counit diagram-iso transport back to the original WPP-op diagram, the W354 `source.ι.app j` leg-equation rewrite, and the W352/W355 topological fields are still missing.
+
+## Importable Forgotten Cokernel API
+
+- time: 2026-05-21T00:20:46Z
+- artifact: `LeanLCAExactChallenge/LCA/ForgottenCokernel.lean`
+- verified: `lake env lean LeanLCAExactChallenge/LCA/ForgottenCokernel.lean`; `lake build LeanLCAExactChallenge.LCA.ForgottenCokernel`; `lake build LeanLCAExactChallenge`; `lake env lean audit/ProductSuccessDeclarations.lean`
+- effect: W437's closure-kernel boundary is now an importable project API: `MetrizableLCA.underlyingAddCommGrpFunctor`, `MetrizableLCA.forgottenCokernelπ`, `MetrizableLCA.forgottenCokernelCofork`, and `MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel`.
+- remaining blocker: supply the closure-kernel input for the actual WPP-op difference morphism from closed range or an equivalent certificate, then connect it through the selected short-complex target row.
+- product_complete: false

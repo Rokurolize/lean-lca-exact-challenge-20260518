@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T01:43:00Z",
+  "generated_utc": "2026-05-21T00:20:46Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -1375,7 +1375,8 @@
     "W407後も具体WPP-op morphismについてunfolded closed-range membership、またはより強いclosed-range preimage equalityの証明が必要である。",
     "W405後もordinary descended quotient mapのIsClosedMap証明が必要である。",
     "W401/W404 route後もtarget-relation lift certificate、すなわちW392/W386の具体証明が必要である。",
-    "四部構成のproduct theorem、特に厳密MetrizableLCA exact categoryからYoneda-Extとbounded derived infinity-categoryまでの最終product-success接続はまだ完了していない。"
+    "四部構成のproduct theorem、特に厳密MetrizableLCA exact categoryからYoneda-Extとbounded derived infinity-categoryまでの最終product-success接続はまだ完了していない。",
+    "実際のWPP-op差分射について、importableなMetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernelへ渡すclosure-kernel入力を閉像または証明書から構成する必要がある。"
   ],
   "open_blockers": [
     "W429 closes only the set-level closed-range adapter; the actual WPP-op closed-range proof and short-complex target-row transport remain open.",
@@ -1383,7 +1384,8 @@
     "W407後も具体WPP-op morphismについてunfolded closed-range membership、またはより強いclosed-range preimage equalityの証明が必要である。",
     "W405後もordinary descended quotient mapのIsClosedMap証明が必要である。",
     "W401/W404 route後もtarget-relation lift certificate、すなわちW392/W386の具体証明が必要である。",
-    "四部構成のproduct theorem、特に厳密MetrizableLCA exact categoryからYoneda-Extとbounded derived infinity-categoryまでの最終product-success接続はまだ完了していない。"
+    "四部構成のproduct theorem、特に厳密MetrizableLCA exact categoryからYoneda-Extとbounded derived infinity-categoryまでの最終product-success接続はまだ完了していない。",
+    "実際のWPP-op差分射について、importableなMetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernelへ渡すclosure-kernel入力を閉像または証明書から構成する必要がある。"
   ],
   "consumed_support_results": [
     {
@@ -1635,7 +1637,8 @@
     "W407後も具体WPP-op morphismについてunfolded closed-range membership、またはより強いclosed-range preimage equalityの証明が必要である。",
     "W405後もordinary descended quotient mapのIsClosedMap証明が必要である。",
     "W401/W404 route後もtarget-relation lift certificate、すなわちW392/W386の具体証明が必要である。",
-    "四部構成のproduct theorem、特に厳密MetrizableLCA exact categoryからYoneda-Extとbounded derived infinity-categoryまでの最終product-success接続はまだ完了していない。"
+    "四部構成のproduct theorem、特に厳密MetrizableLCA exact categoryからYoneda-Extとbounded derived infinity-categoryまでの最終product-success接続はまだ完了していない。",
+    "実際のWPP-op差分射について、importableなMetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernelへ渡すclosure-kernel入力を閉像または証明書から構成する必要がある。"
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -4109,5 +4112,23 @@
       "do not claim global forgetful cokernel preservation without closed-range/certificate input"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_importable_forgotten_cokernel_api": {
+    "status": "verified_importable_api",
+    "artifact": "LeanLCAExactChallenge/LCA/ForgottenCokernel.lean",
+    "verified_commands": [
+      "lake env lean LeanLCAExactChallenge/LCA/ForgottenCokernel.lean",
+      "lake build LeanLCAExactChallenge.LCA.ForgottenCokernel",
+      "lake build LeanLCAExactChallenge",
+      "lake env lean audit/ProductSuccessDeclarations.lean"
+    ],
+    "new_importable_declarations": [
+      "MetrizableLCA.underlyingAddCommGrpFunctor",
+      "MetrizableLCA.forgottenCokernelπ",
+      "MetrizableLCA.forgottenCokernelCofork",
+      "MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel"
+    ],
+    "frontier_effect": "W437のAddCommGrp closure-kernel境界をaudit-onlyから本体import可能APIへ昇格した。任意保存は未証明で、実際のWPP-op差分射に対するclosed-range/certificate入力が必要。",
+    "product_complete": false
   }
 }
