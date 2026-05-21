@@ -3824,4 +3824,167 @@ end Checks
 
 end WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
 
+namespace WppOpSelectedW461ProviderSelectedCokernelColimitV370SupportW498
+
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpProjectionFieldsFromSelectedCokernelColimitCurrentHeadV370SupportW491
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W498 selected-provider/cokernel-colimit route. -/
+def supportSeedW498 : String :=
+  "w498-selected-w461-provider-selected-cokernel-colimit"
+
+/--
+W498 endpoint: the single selected W461 provider from W483 can use W491's selected
+cokernel-colimit narrowing without the W480 split-provider surface.
+-/
+def exactAcyclic_of_selectedW461Provider_and_selectedCokernelColimit_w498
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_projectionFields_w483 hinputs
+    (projectionFieldsProvider_of_selectedCokernelColimitProvider_w491 hselected)
+
+/-- W498 checked nonterminal state. -/
+structure SelectedW461ProviderSelectedCokernelColimitV370SupportStateW498 : Type where
+  seed : String
+  declarations : List String
+  selectedProviderRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W498 state. -/
+def currentSelectedW461ProviderSelectedCokernelColimitV370SupportStateW498 :
+    SelectedW461ProviderSelectedCokernelColimitV370SupportStateW498 where
+  seed := supportSeedW498
+  declarations :=
+    ["exactAcyclic_of_selectedW461Provider_and_selectedCokernelColimit_w498"]
+  selectedProviderRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete SelectedW461PromotionInputsProviderW483",
+      "construct concrete SelectedCokernelColimitProviderW492"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW498State :
+    SelectedW461ProviderSelectedCokernelColimitV370SupportStateW498 :=
+  currentSelectedW461ProviderSelectedCokernelColimitV370SupportStateW498
+
+theorem currentSelectedW461ProviderSelectedCokernelColimitStateW498_productSuccess :
+    currentW498State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW498
+#check exactAcyclic_of_selectedW461Provider_and_selectedCokernelColimit_w498
+#check currentSelectedW461ProviderSelectedCokernelColimitStateW498_productSuccess
+
+end Checks
+
+end WppOpSelectedW461ProviderSelectedCokernelColimitV370SupportW498
+
+namespace WppOpSelectedW461ProviderPreservationRoutesV370SupportW499
+
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpSelectedW461ProviderSelectedCokernelColimitV370SupportW498
+open WppOpSelectedCokernelColimitFromPreservationV370SupportW493
+open WppOpShortComplexPreservationFromUnderlyingV370SupportW495
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for selected-provider preservation routes. -/
+def supportSeedW499 : String :=
+  "w499-selected-w461-provider-preservation-routes"
+
+/--
+W499 endpoint: a selected W461 provider plus WPP-op colimit preservation by the
+short-complex forgetful functor imply the current WPP-op exact-acyclic closure.
+-/
+def exactAcyclic_of_selectedW461Provider_and_shortComplexPreservesWppOpColimits_w499
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    [PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor] :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_selectedCokernelColimit_w498 hinputs
+    selectedCokernelColimitProvider_of_shortComplexPreservesWppOpColimits_w493
+
+/--
+Finite-colimit preservation by the underlying forgetful functor supplies the W499
+short-complex preservation endpoint.
+-/
+def exactAcyclic_of_selectedW461Provider_and_underlyingPreservesFiniteColimits_w499
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    [PreservesFiniteColimits underlyingForgetfulFunctorW495] :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure := by
+  haveI : PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor :=
+    forgottenShortComplexPreservesWppOpColimitsOfFiniteW495
+  exact
+    exactAcyclic_of_selectedW461Provider_and_shortComplexPreservesWppOpColimits_w499
+      hinputs
+
+/--
+The W497 mapped-explicit-cokernel input also feeds the selected-provider route,
+avoiding the W480 split-provider pair.
+-/
+def exactAcyclic_of_selectedW461Provider_and_mappedExplicitCokernelCoforks_w499
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure := by
+  haveI : PreservesFiniteColimits underlyingForgetfulFunctorW495 :=
+    underlyingForgetfulPreservesFiniteColimitsOfMappedExplicitCokernelCoforksW497 hMapped
+  exact
+    exactAcyclic_of_selectedW461Provider_and_underlyingPreservesFiniteColimits_w499
+      hinputs
+
+/-- W499 checked nonterminal state. -/
+structure SelectedW461ProviderPreservationRoutesV370SupportStateW499 : Type where
+  seed : String
+  declarations : List String
+  shortComplexPreservationRouteResult : String
+  finitePreservationRouteResult : String
+  mappedCokernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W499 state. -/
+def currentSelectedW461ProviderPreservationRoutesV370SupportStateW499 :
+    SelectedW461ProviderPreservationRoutesV370SupportStateW499 where
+  seed := supportSeedW499
+  declarations :=
+    ["exactAcyclic_of_selectedW461Provider_and_shortComplexPreservesWppOpColimits_w499",
+      "exactAcyclic_of_selectedW461Provider_and_underlyingPreservesFiniteColimits_w499",
+      "exactAcyclic_of_selectedW461Provider_and_mappedExplicitCokernelCoforks_w499"]
+  shortComplexPreservationRouteResult := "proved"
+  finitePreservationRouteResult := "proved"
+  mappedCokernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete SelectedW461PromotionInputsProviderW483",
+      "prove PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor, " ++
+        "or prove the underlying finite-colimit/mapped-cokernel input"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW499State :
+    SelectedW461ProviderPreservationRoutesV370SupportStateW499 :=
+  currentSelectedW461ProviderPreservationRoutesV370SupportStateW499
+
+theorem currentSelectedW461ProviderPreservationRoutesStateW499_productSuccess :
+    currentW499State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW499
+#check exactAcyclic_of_selectedW461Provider_and_shortComplexPreservesWppOpColimits_w499
+#check exactAcyclic_of_selectedW461Provider_and_underlyingPreservesFiniteColimits_w499
+#check exactAcyclic_of_selectedW461Provider_and_mappedExplicitCokernelCoforks_w499
+#check currentSelectedW461ProviderPreservationRoutesStateW499_productSuccess
+
+end Checks
+
+end WppOpSelectedW461ProviderPreservationRoutesV370SupportW499
+
 end LeanLCAExactChallenge

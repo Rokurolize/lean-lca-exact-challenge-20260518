@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w497-mapped-cokernel-preservation-route",
-  "generated_utc": "2026-05-21T08:56:00Z",
-  "source_tree_hash": "587512fbd809ad0ce0248d2a9e719ef738853bb1c99c7b5f842e9c6a2df5cc11",
-  "summary": "W495/W496 reduce the short-complex preservation input to finite-colimit preservation by the underlying forgetful functor, and W497 reduces that finite-preservation input to mapped explicit MetrizableLCA cokernel cofork colimit proofs. Product success remains false because the two W480 final-call-site providers and the mapped explicit cokernel colimit theorem remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w499-selected-provider-preservation-route",
+  "generated_utc": "2026-05-21T09:05:23Z",
+  "source_tree_hash": "1b8c34f0f4ade31b1e2082a36ce2656ee51067bf34dd7234141f7f2e1844ef62",
+  "summary": "W498 composes the single selected W461 provider with the selected cokernel-colimit provider, bypassing the W480 split-provider pair. W499 reuses the W493/W495/W497 preservation reductions on that selected-provider route. Product success remains false because the concrete selected W461 provider and preservation/mapped-cokernel inputs remain unproved.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3244,6 +3244,41 @@
       "status": "failed_expected",
       "evidence": "External audit is expected to reach the nonterminal product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w497_final_checks/external_audit_w497.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W498/W499 selected-W461 provider endpoints compiled directly from source."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Rebuilt the WppOpExactAcyclicProjectionFields module so downstream imports see W498/W499."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations checks the W498/W499 declarations and their productSuccess false markers."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W498/W499."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed after the W498/W499 increment."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors in the W498/W499 diff."
     }
   ],
   "implemented_declarations_checked": [
@@ -4371,22 +4406,28 @@
     "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.preservesAllCokernelsOfMappedExplicitCokernelCoconesW497",
     "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.underlyingForgetfulPreservesFiniteColimitsOfMappedExplicitCokernelCoforksW497",
     "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.exactAcyclic_of_w480_splitProviders_and_mappedExplicitCokernelCoforks_w497",
-    "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.currentForgetfulFinitePreservationFromCokernelsStateW497_productSuccess"
+    "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.currentForgetfulFinitePreservationFromCokernelsStateW497_productSuccess",
+    "supportSeedW498",
+    "exactAcyclic_of_selectedW461Provider_and_selectedCokernelColimit_w498",
+    "currentSelectedW461ProviderSelectedCokernelColimitStateW498_productSuccess",
+    "supportSeedW499",
+    "exactAcyclic_of_selectedW461Provider_and_shortComplexPreservesWppOpColimits_w499",
+    "exactAcyclic_of_selectedW461Provider_and_underlyingPreservesFiniteColimits_w499",
+    "exactAcyclic_of_selectedW461Provider_and_mappedExplicitCokernelCoforks_w499",
+    "currentSelectedW461ProviderPreservationRoutesStateW499_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct concrete W461ToW475PromotionInputsProviderW480 at final call sites.",
-    "Construct concrete W461ToW475OrdinaryMapProviderW480 at final call sites.",
-    "Prove every mapped explicit MetrizableLCA cokernel cofork is colimiting in AddCommGrpCat.",
-    "Do not update terminal_outcome to product_success until the final product theorem and audit pass."
+    "construct concrete SelectedW461PromotionInputsProviderW483",
+    "prove PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor, or the underlying finite-colimit/mapped-cokernel input",
+    "avoid claiming arbitrary all-morphism closed range for MetrizableLCA without proof"
   ],
-  "support_result_classification": "W495/W496/W497 were parent-integrated and verified; product_success is not claimed.",
+  "support_result_classification": "nonterminal route reduction",
   "product_success": false,
   "remaining_work": [
-    "construct concrete W461ToW475PromotionInputsProviderW480",
-    "construct concrete W461ToW475OrdinaryMapProviderW480",
-    "prove every mapped explicit MetrizableLCA cokernel cofork is colimiting in AddCommGrpCat",
-    "claim product_success only after final product theorem and terminal audit pass"
+    "construct concrete SelectedW461PromotionInputsProviderW483",
+    "prove PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor, or the underlying finite-colimit/mapped-cokernel input",
+    "avoid claiming arbitrary all-morphism closed range for MetrizableLCA without proof"
   ],
   "summary_log_tail": "Full build, required declarations, forbidden-token scan, and git diff check passed after W497 integration. External audit is expected to fail only at the nonterminal product gate."
 }
