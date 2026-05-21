@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W553では、MetrizableLCAのequalizerを閉部分群として明示構成し、任意のWalkingParallelPair limit coneのzero projectionがclosed embeddingであることを証明した。この結果から、WPP limitでclosed embeddingが左側に保存されるpure LCA certificateとDbounded側のleft-closed inputを直接供給できるようになった。一方で、right open、right surjective、algebraic exactnessの証明、W515/W516/W517 relation data、W527 row providers、normalized representative dataとuniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
+  "summary": "W555では、strict short exact complexからWalkingParallelPair limitのalgebraic exactnessを直接証明した。zero成分の代数的持ち上げ、one成分のclosed embeddingによる単射性、cone naturality、MetrizableLCAの明示的equalizer limitを組み合わせ、さらにzero projectionのclosed embeddingで持ち上げた元が元のx₂に一致することを示した。これによりWPP limit closureのleft closed embeddingとalgebraic exactnessは直接証明済みになった。一方で、right open、right surjective、W515/W516/W517 relation data、W527 row providers、normalized representative dataとuniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
     "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
@@ -1934,8 +1934,8 @@
     "Dbounded.metrizableWppLimitLeftClosedInput_direct"
   ],
   "known_gaps": [
-    "WPP limit right open-map、right-surjectivityを供給するpure LCA induced-limit-map certificatesがまだ具体化されていない。",
-    "WPP limit algebraic exactnessを供給するcomponent-level algebraic exactness certificateがまだ具体化されていない。",
+    "WPP limit right open-mapを供給するpure LCA induced-limit-map certificateがまだ具体化されていない。",
+    "WPP limit right-surjectivityを供給するpure LCA induced-limit-map certificateがまだ具体化されていない。",
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
     "W527のComponentwiseClosedMapRowsProviderまたはComponentwiseClosedEmbeddingRowsProviderがまだ具体化されていない。",
     "WalkingParallelPair diagram targetとlocalization modelに対するcoherent normalized representative dataおよびtarget/modelのuniqがまだ未構成である。",
@@ -1944,19 +1944,19 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "1bb07073e9ce8a4f114b3edcbd7641cb1cb62ec7",
+  "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W553 was integrated directly in the target tree; no worker was launched. It closes the WPP limit left closed-embedding certificate by explicit equalizers, but does not supply the remaining right-open, right-surjective, algebraic exactness, provider, representative, stable, or bounded left-calculus data.",
-  "claim_review_result": "未実施",
+  "worker_frontier_summary": "W555 closes direct WPP limit algebraic exactness. The nonterminal work is now concentrated in right-open/right-surjectivity for the WPP limit route or the W515/W527 provider route.",
+  "claim_review_result": "not_product_success; W555 closes the WPP limit algebraic exactness field but leaves right-open/right-surjectivity and provider data unconstructed.",
   "remaining_gaps": [
-    "WPP limit right open-map、right-surjectivityを供給するpure LCA induced-limit-map certificatesがまだ具体化されていない。",
-    "WPP limit algebraic exactnessを供給するcomponent-level algebraic exactness certificateがまだ具体化されていない。",
-    "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
-    "W527のComponentwiseClosedMapRowsProviderまたはComponentwiseClosedEmbeddingRowsProviderがまだ具体化されていない。",
-    "WalkingParallelPair diagram targetとlocalization modelに対するcoherent normalized representative dataおよびtarget/modelのuniqがまだ未構成である。",
-    "pretriangulated/triangulated dataと最終的なbounded left-calculus instanceがまだ未構成である。"
+    "WPP limit right open-map direct certificate",
+    "WPP limit right-surjectivity direct certificate",
+    "W515/W516/W517 relation provider data",
+    "W527 row providers",
+    "normalized representative/uniqueness data",
+    "triangulated data and bounded left-calculus instance"
   ],
-  "next_recommended_goal": "Construct the next remaining WPP exact-acyclic limit-closure certificate: right open-map, right surjectivity, or algebraic exactness.",
+  "next_recommended_goal": "Attack WPP limit right-open/right-surjectivity with explicit equalizer data and strict lifting; if under-hypothesized, pivot to W515/W527 provider construction.",
   "implemented_declarations": [
     "DirectWppLimitFiniteShapeTransfer.mappingConeCone",
     "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison",
@@ -3564,10 +3564,19 @@
     "DirectWppLimitFiniteShapeTransfer.walkingParallelPair_limit_π_zero_closedEmbedding",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_injective_inducing_closedImage_direct",
     "Dbounded.metrizableWppLimitLeftClosedLcaInput_direct",
-    "Dbounded.metrizableWppLimitLeftClosedInput_direct"
+    "Dbounded.metrizableWppLimitLeftClosedInput_direct",
+    "DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure_direct",
+    "DirectWppLimitFiniteShapeTransfer.exactAcyclic_walkingParallelPair_limitClosure_of_directLeftAlgebraic",
+    "DirectWppLimitFiniteShapeTransfer.directWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic",
+    "Dbounded.metrizableWppLimitAlgebraicExactInput_direct",
+    "Dbounded.MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitClosureFieldInputs_of_directLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitClosure_of_directLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_directLeftAlgebraic"
   ],
-  "generated_utc": "2026-05-21T21:03:30Z",
-  "support_result_classification": "verified_nonterminal_increment",
+  "generated_utc": "2026-05-21T21:43:20Z",
+  "support_result_classification": "nonterminal_support_increment",
   "implemented_declarations_checked": [
     "DirectWppLimitFiniteShapeTransfer.mappingConeCone",
     "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison",
@@ -5175,18 +5184,26 @@
     "DirectWppLimitFiniteShapeTransfer.walkingParallelPair_limit_π_zero_closedEmbedding",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_injective_inducing_closedImage_direct",
     "Dbounded.metrizableWppLimitLeftClosedLcaInput_direct",
-    "Dbounded.metrizableWppLimitLeftClosedInput_direct"
+    "Dbounded.metrizableWppLimitLeftClosedInput_direct",
+    "DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure_direct",
+    "DirectWppLimitFiniteShapeTransfer.exactAcyclic_walkingParallelPair_limitClosure_of_directLeftAlgebraic",
+    "DirectWppLimitFiniteShapeTransfer.directWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic",
+    "Dbounded.metrizableWppLimitAlgebraicExactInput_direct",
+    "Dbounded.MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitClosureFieldInputs_of_directLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitClosure_of_directLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_directLeftAlgebraic"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "WPP limit right open maps、right surjectivityのpure LCA certificatesを構成する。",
-    "WPP short-complex limitsのcomponent-level algebraic exactness certificateを構成する。",
-    "concrete W515/W516/W517 relation-data providersとW527 row providersを構成する。",
-    "WPP localization routeのnormalized representative dataとtarget/model uniquenessを構成する。",
-    "pretriangulated/triangulated dataとbounded left-calculus instanceを構成する。"
+    "Prove or supply right-open and right-surjective WPP limit certificates, or pivot to the W515/W527 provider route if these are under-hypothesized.",
+    "Construct concrete W515/W516/W517 relation data and W527 row providers.",
+    "Construct coherent normalized representative/uniqueness and final triangulated/bounded-left-calculus data."
   ],
-  "latest_verified_increment": "W553 direct WPP limit left closed-embedding certificate via explicit equalizers",
-  "source_tree_hash": "154747089c70cee2ba5e66d205487d20c77a93a2b15294d6fe268875d3ccf76e",
-  "summary_log_tail": "W553 passed focused Pullback and DirectWppLimitFiniteShapeTransfer Lean checks, their module builds, ProductSuccessDeclarations, RequiredDeclarations, root import, root build, full build, forbidden-token scans, placeholder scan, and diff check. The external product gate remains expected to fail because terminal_outcome is nonterminal."
+  "latest_verified_increment": "W555 direct WPP limit algebraic exactness certificate",
+  "source_tree_hash": "b1b6bd618f29014383ec45b4dda33ddb68a1665de4e3d671229783f7438078e1",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_external_product_gate.log",
+  "git_commit_note": "W555 terminal metadata intentionally avoids a self-referential enclosing commit hash; the verified target HEAD is recorded in external consultant artifacts and by git rev-parse HEAD."
 }

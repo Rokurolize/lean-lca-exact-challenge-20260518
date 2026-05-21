@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w553-wpp-limit-left-closed-direct",
-  "generated_utc": "2026-05-21T21:03:30Z",
-  "source_tree_hash": "154747089c70cee2ba5e66d205487d20c77a93a2b15294d6fe268875d3ccf76e",
-  "summary": "W553 adds explicit equalizers in MetrizableLCA as closed subgroups and uses them to prove that the zero projection of any limiting WalkingParallelPair cone is a closed embedding. This supplies the direct pure-LCA WPP limit left closed-embedding certificate and Dbounded left-closed input wrappers. Product success remains false because the right open-map, right-surjectivity, and algebraic exactness WPP limit certificates, concrete W515/W516/W517 relation data, W527 row providers, normalized representative/uniqueness data, triangulated data, and the bounded left-calculus instance remain unconstructed.",
+  "schema": "lean-lca-exact-challenge-verification-w555-wpp-limit-direct-algebraic-exactness",
+  "generated_utc": "2026-05-21T21:36:21Z",
+  "source_tree_hash": "b1b6bd618f29014383ec45b4dda33ddb68a1665de4e3d671229783f7438078e1",
+  "summary": "W555 proves WPP limit algebraic exactness directly from strict short exactness, using the explicit MetrizableLCA equalizer presentation and pointwise left closed-embedding injectivity. The WPP limit route now has direct left-closed and algebraic-exactness certificates; right open-map/right-surjectivity and the W515/W527 provider route remain nonterminal.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
@@ -4415,6 +4415,86 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Product gate still rejects the nonterminal outcome after W553, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w553_external_product_gate.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
+      "status": "passed",
+      "evidence": "Focused W555 direct WPP limit-transfer source check passed after the final comment fix; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_direct_wpp_limit_transfer_lean_final.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
+      "status": "passed",
+      "evidence": "Direct WPP limit-transfer module rebuilt after W555; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_direct_wpp_limit_transfer_build_final.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks the W555 direct algebraic exactness declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_product_success_declarations_final.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import surface passed after W555; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_root_import_lean_final_retry.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W555; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_required_declarations_final_retry.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Root package build passed after W555; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_root_build.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W555; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan over the source tree passed after W555; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_audit_no_forbidden_tree.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan over W555-touched files passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_audit_no_forbidden_touched.log."
+    },
+    {
+      "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-facing placeholder regex returned no matches on W555-touched files after the comment fix; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_product_placeholder_touched_final.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after final W555 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_git_diff_check_after_metadata.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "W555 terminal outcome JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "W555 verification JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "W555 manifest JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_json_parse.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W555 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product gate still rejects the nonterminal W555 outcome, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_external_product_gate.log."
     }
   ],
   "implemented_declarations_checked": [
@@ -6024,12 +6104,21 @@
     "DirectWppLimitFiniteShapeTransfer.walkingParallelPair_limit_π_zero_closedEmbedding",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_injective_inducing_closedImage_direct",
     "Dbounded.metrizableWppLimitLeftClosedLcaInput_direct",
-    "Dbounded.metrizableWppLimitLeftClosedInput_direct"
+    "Dbounded.metrizableWppLimitLeftClosedInput_direct",
+    "DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure_direct",
+    "DirectWppLimitFiniteShapeTransfer.exactAcyclic_walkingParallelPair_limitClosure_of_directLeftAlgebraic",
+    "DirectWppLimitFiniteShapeTransfer.directWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic",
+    "Dbounded.metrizableWppLimitAlgebraicExactInput_direct",
+    "Dbounded.MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitClosureFieldInputs_of_directLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitClosure_of_directLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_directLeftAlgebraic"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Pure LCA induced-limit-map certificates for WPP limit right open-map and right-surjectivity remain unproved.",
-    "The component-level algebraic exactness certificate for WPP short-complex limits remains unproved.",
+    "WPP limit right open-map certificate remains unproved.",
+    "WPP limit right-surjectivity certificate remains unproved.",
     "Concrete W515/W516/W517 representative-image, top-target, and compact-target relation data remain unconstructed.",
     "A W527 ComponentwiseClosedMapRowsProvider or ComponentwiseClosedEmbeddingRowsProvider remains unconstructed.",
     "Coherent normalized strict representative data and target/model uniqueness for the WalkingParallelPair localization route remain unconstructed.",
@@ -6038,12 +6127,11 @@
   "support_result_classification": "verified_nonterminal_increment",
   "product_success": false,
   "remaining_work": [
-    "Prove the pure LCA certificates for WPP limit right open maps and right surjectivity.",
-    "Prove the component-level algebraic exactness certificate for WPP short-complex limits.",
+    "Prove the WPP limit right open-map and right-surjectivity certificates.",
     "Instantiate concrete W515/W516/W517 relation-data providers and W527 row providers.",
     "Construct normalized strict representative data and target/model uniqueness for the WPP localization route.",
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance."
   ],
-  "summary_log_tail": "W553 passed focused Pullback and DirectWppLimitFiniteShapeTransfer Lean checks, their module builds, ProductSuccessDeclarations, RequiredDeclarations, root import, root build, full build, forbidden-token scans, placeholder scan, and diff check. The external product gate remains expected to fail because terminal_outcome is nonterminal.",
-  "latest_verified_increment": "W553 direct WPP limit left closed-embedding certificate via explicit equalizers"
+  "summary_log_tail": "W555 passed focused DirectWppLimitFiniteShapeTransfer Lean check, module build, ProductSuccessDeclarations, RequiredDeclarations, root import, root build, full build, forbidden-token scans, touched-file placeholder scan, JSON parse, diff check, and external self-check. The external product gate remains expected to fail because terminal_outcome is nonterminal.",
+  "latest_verified_increment": "W555 direct WPP limit algebraic exactness certificate from strict short exactness"
 }

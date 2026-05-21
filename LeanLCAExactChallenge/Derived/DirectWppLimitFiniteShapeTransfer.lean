@@ -1008,6 +1008,129 @@ theorem algebraicExact_walkingParallelPair_limitClosure_of_lca_limitShortComplex
       (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) hcs)
     (fun j => (hS j).algebraic_exact)
 
+/--
+Direct algebraic exactness at a WPP limit of strict short exact complexes.
+The pointwise left closed-embedding hypotheses supply the injectivity needed to
+make the componentwise algebraic lifts compatible with the two parallel arrows.
+-/
+theorem algebraicExact_walkingParallelPair_limitClosure_direct :
+    algebraicExact_walkingParallelPair_limitClosure := by
+  intro S cs hcs hS x₂ hx₂
+  let c₁ : Cone (S ⋙ (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤
+      MetrizableLCA.{0})) :=
+    (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCone cs
+  let c₂ : Cone (S ⋙ (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤
+      MetrizableLCA.{0})) :=
+    (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCone cs
+  have hc₁ : IsLimit c₁ := by
+    simpa [c₁] using
+      (isLimitOfPreserves
+        (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) hcs)
+  have hc₂ : IsLimit c₂ := by
+    simpa [c₂] using
+      (isLimitOfPreserves
+        (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) hcs)
+  let x₂₀ : (S.obj WalkingParallelPair.zero).X₂ :=
+    (cs.π.app WalkingParallelPair.zero).τ₂ x₂
+  have hx₂₀ : (S.obj WalkingParallelPair.zero).g x₂₀ = 0 := by
+    calc
+      (S.obj WalkingParallelPair.zero).g x₂₀ =
+          (cs.π.app WalkingParallelPair.zero).τ₃ (cs.pt.g x₂) := by
+          exact congrArg
+            (fun h : cs.pt.X₂ ⟶ (S.obj WalkingParallelPair.zero).X₃ => h x₂)
+            (cs.π.app WalkingParallelPair.zero).comm₂₃
+      _ = 0 := by
+        rw [hx₂]
+        simp
+  rcases (hS WalkingParallelPair.zero).algebraic_exact x₂₀ hx₂₀ with
+    ⟨x₁₀, hx₁₀⟩
+  have hx₁₀_equalizes :
+      ((S.map WalkingParallelPairHom.left).τ₁) x₁₀ =
+        ((S.map WalkingParallelPairHom.right).τ₁) x₁₀ := by
+    apply (hS WalkingParallelPair.one).closed_inclusion.injective
+    calc
+      (S.obj WalkingParallelPair.one).f
+          (((S.map WalkingParallelPairHom.left).τ₁) x₁₀) =
+          (S.map WalkingParallelPairHom.left).τ₂
+            ((S.obj WalkingParallelPair.zero).f x₁₀) := by
+          exact congrArg
+            (fun h : (S.obj WalkingParallelPair.zero).X₁ ⟶
+                (S.obj WalkingParallelPair.one).X₂ => h x₁₀)
+            (S.map WalkingParallelPairHom.left).comm₁₂
+      _ = (S.map WalkingParallelPairHom.left).τ₂ x₂₀ := by
+        rw [hx₁₀]
+      _ = (cs.π.app WalkingParallelPair.one).τ₂ x₂ := by
+        change ((cs.π.app WalkingParallelPair.zero ≫
+          S.map WalkingParallelPairHom.left).τ₂) x₂ =
+          (cs.π.app WalkingParallelPair.one).τ₂ x₂
+        exact congrArg (fun h : cs.pt ⟶ S.obj WalkingParallelPair.one => h.τ₂ x₂)
+          (cs.w WalkingParallelPairHom.left)
+      _ = (S.map WalkingParallelPairHom.right).τ₂ x₂₀ := by
+        change (cs.π.app WalkingParallelPair.one).τ₂ x₂ =
+          ((cs.π.app WalkingParallelPair.zero ≫
+            S.map WalkingParallelPairHom.right).τ₂) x₂
+        exact (congrArg (fun h : cs.pt ⟶ S.obj WalkingParallelPair.one => h.τ₂ x₂)
+          (cs.w WalkingParallelPairHom.right)).symm
+      _ = (S.map WalkingParallelPairHom.right).τ₂
+          ((S.obj WalkingParallelPair.zero).f x₁₀) := by
+        rw [hx₁₀]
+      _ = (S.obj WalkingParallelPair.one).f
+          (((S.map WalkingParallelPairHom.right).τ₁) x₁₀) := by
+          exact (congrArg
+            (fun h : (S.obj WalkingParallelPair.zero).X₁ ⟶
+                (S.obj WalkingParallelPair.one).X₂ => h x₁₀)
+            (S.map WalkingParallelPairHom.right).comm₁₂).symm
+  let z : MetrizableLCA.equalizerObj
+      (S.map WalkingParallelPairHom.left).τ₁
+      (S.map WalkingParallelPairHom.right).τ₁ :=
+    ⟨x₁₀, hx₁₀_equalizes⟩
+  let f₁ : Fork (S.map WalkingParallelPairHom.left).τ₁
+      (S.map WalkingParallelPairHom.right).τ₁ :=
+    Fork.ofCone c₁
+  have hf₁ : IsLimit f₁ := by
+    simpa [f₁, c₁] using forkOfConeIsLimit hc₁
+  let e₁ := IsLimit.conePointUniqueUpToIso hf₁
+    (MetrizableLCA.equalizerIsLimit
+      (S.map WalkingParallelPairHom.left).τ₁
+      (S.map WalkingParallelPairHom.right).τ₁)
+  let x₁ : cs.pt.X₁ := e₁.inv z
+  refine ⟨x₁, ?_⟩
+  have he₁_inv :
+      e₁.inv ≫ (Fork.ofCone c₁).ι =
+        MetrizableLCA.equalizerι
+          (S.map WalkingParallelPairHom.left).τ₁
+          (S.map WalkingParallelPairHom.right).τ₁ := by
+    simpa [e₁] using
+      (IsLimit.conePointUniqueUpToIso_inv_comp hf₁
+        (MetrizableLCA.equalizerIsLimit
+          (S.map WalkingParallelPairHom.left).τ₁
+          (S.map WalkingParallelPairHom.right).τ₁)
+        WalkingParallelPair.zero)
+  have hx₁π :
+      (cs.π.app WalkingParallelPair.zero).τ₁ x₁ = x₁₀ := by
+    change (e₁.inv ≫ (Fork.ofCone c₁).ι) z = x₁₀
+    rw [he₁_inv]
+    rfl
+  have hπ₂₀ : IsClosedEmbedding
+      ((cs.π.app WalkingParallelPair.zero).τ₂ :
+        cs.pt.X₂ → (S.obj WalkingParallelPair.zero).X₂) := by
+    simpa [c₂] using
+      walkingParallelPair_limit_π_zero_closedEmbedding (F :=
+        S ⋙ (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤
+          MetrizableLCA.{0})) hc₂
+  apply hπ₂₀.injective
+  calc
+    (cs.π.app WalkingParallelPair.zero).τ₂ (cs.pt.f x₁) =
+        (S.obj WalkingParallelPair.zero).f
+          ((cs.π.app WalkingParallelPair.zero).τ₁ x₁) := by
+        exact (congrArg
+          (fun h : cs.pt.X₁ ⟶ (S.obj WalkingParallelPair.zero).X₂ => h x₁)
+          (cs.π.app WalkingParallelPair.zero).comm₁₂).symm
+    _ = (S.obj WalkingParallelPair.zero).f x₁₀ := by
+      rw [hx₁π]
+    _ = x₂₀ := hx₁₀
+    _ = (cs.π.app WalkingParallelPair.zero).τ₂ x₂ := rfl
+
 /-- Left field consumer for the WPP limit-closure route. -/
 theorem leftClosedEmbedding_walkingParallelPair_limitClosure_of_preserves
     (hpres : wppLimit_preserves_leftClosedEmbedding) :
@@ -1087,6 +1210,21 @@ theorem exactAcyclic_walkingParallelPair_limitClosure_of_fields
   exact strictShortExact_walkingParallelPair_limitClosure_of_fields
     hleft hrightOpen hrightSurj halg S cs hcs hS
 
+/--
+WPP exact-acyclic limit closure with the left closed-embedding and algebraic
+exactness fields supplied directly. The remaining work is the right
+open-map and right-surjectivity behavior of WPP limits.
+-/
+theorem exactAcyclic_walkingParallelPair_limitClosure_of_directLeftAlgebraic
+    (hrightOpen : wppLimit_preserves_rightOpenMap)
+    (hrightSurj : rightSurjective_walkingParallelPair_limitClosure) :
+    exactAcyclic_metrizableLCA_walkingParallelPair_limitClosure :=
+  exactAcyclic_walkingParallelPair_limitClosure_of_fields
+    (wppLimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage
+      wppLimit_lca_limitMap_injective_inducing_closedImage_direct)
+    hrightOpen hrightSurj
+    algebraicExact_walkingParallelPair_limitClosure_direct
+
 /-- Comparison and closure prove exact acyclicity of a WPP limit comparison cone. -/
 theorem exactAcyclic_mappingCone_of_walkingParallelPair_comparison_and_limitClosure
     (hcomparison : mappingCone_boundedInclusion_walkingParallelPair_limitComparison)
@@ -1136,6 +1274,17 @@ theorem directWalkingParallelPairLimitStability_of_comparison_and_limitFields
     hcomparison
     (exactAcyclic_walkingParallelPair_limitClosure_of_fields
       hleft hrightOpen hrightSurj halg)
+
+/-- Direct WPP limit stability with direct left and algebraic fields. -/
+theorem directWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic
+    (hcomparison : mappingCone_boundedInclusion_walkingParallelPair_limitComparison)
+    (hrightOpen : wppLimit_preserves_rightOpenMap)
+    (hrightSurj : rightSurjective_walkingParallelPair_limitClosure) :
+    DirectWalkingParallelPairLimitStability :=
+  directWalkingParallelPairLimitStability_of_comparison_and_limitClosure
+    hcomparison
+    (exactAcyclic_walkingParallelPair_limitClosure_of_directLeftAlgebraic
+      hrightOpen hrightSurj)
 
 /-- Machine-readable state for the WPP limit transfer bridge. -/
 structure DirectWppLimitFiniteShapeTransferState : Type where
@@ -1248,6 +1397,11 @@ theorem metrizableWppLimitAlgebraicExactInput_of_lca
     MetrizableWppLimitAlgebraicExactInput :=
   algebraicExact_walkingParallelPair_limitClosure_of_lca_limitShortComplex hlimit
 
+/-- The direct WPP equalizer argument supplies algebraic exactness at WPP limits. -/
+theorem metrizableWppLimitAlgebraicExactInput_direct :
+    MetrizableWppLimitAlgebraicExactInput :=
+  algebraicExact_walkingParallelPair_limitClosure_direct
+
 /-- Build the WPP limit comparison input from a fixed mapping-cone diagram cone input. -/
 theorem metrizableWppLimitComparisonInput_of_limitConeComparison
     (hcomparison : MetrizableWppLimitConeComparisonInput) :
@@ -1326,6 +1480,16 @@ structure MetrizableWalkingParallelPairLimitClosureFieldInputsFromAllLca :
   rightSurjectiveLca : MetrizableWppLimitRightSurjectiveLcaInput
   algebraicExactLca : MetrizableWppLimitAlgebraicExactLcaInput
 
+/--
+WPP limit-closure fields with the left closed-embedding and algebraic exactness
+fields supplied by direct equalizer arguments. Only the two right-field inputs
+remain.
+-/
+structure MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraic :
+    Type 1 where
+  rightOpen : MetrizableWppLimitRightOpenInput
+  rightSurjective : MetrizableWppLimitRightSurjectiveInput
+
 /-- Build the four WPP limit-closure field inputs from a pure LCA left field. -/
 def metrizableWalkingParallelPairLimitClosureFieldInputs_of_leftLca
     (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromLeftLca) :
@@ -1366,6 +1530,15 @@ def metrizableWalkingParallelPairLimitClosureFieldInputs_of_allLca
   algebraicExact :=
     metrizableWppLimitAlgebraicExactInput_of_lca inputs.algebraicExactLca
 
+/-- Build the WPP limit-closure fields from direct left and algebraic proofs. -/
+def metrizableWalkingParallelPairLimitClosureFieldInputs_of_directLeftAlgebraic
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraic) :
+    MetrizableWalkingParallelPairLimitClosureFieldInputs where
+  leftClosed := metrizableWppLimitLeftClosedInput_direct
+  rightOpen := inputs.rightOpen
+  rightSurjective := inputs.rightSurjective
+  algebraicExact := metrizableWppLimitAlgebraicExactInput_direct
+
 /-- Build WPP exact-acyclic limit closure from the four short-complex field inputs. -/
 theorem metrizableWalkingParallelPairLimitClosure_of_fieldInputs
     (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputs) :
@@ -1404,6 +1577,13 @@ theorem metrizableWalkingParallelPairLimitClosure_of_allLca
     MetrizableWppLimitClosureInput :=
   metrizableWalkingParallelPairLimitClosure_of_fieldInputs
     (metrizableWalkingParallelPairLimitClosureFieldInputs_of_allLca inputs)
+
+/-- Build WPP exact-acyclic limit closure from direct left/algebraic fields. -/
+theorem metrizableWalkingParallelPairLimitClosure_of_directLeftAlgebraic
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraic) :
+    MetrizableWppLimitClosureInput :=
+  exactAcyclic_walkingParallelPair_limitClosure_of_directLeftAlgebraic
+    inputs.rightOpen inputs.rightSurjective
 
 theorem metrizableWalkingParallelPairLimitStability_of_comparison_and_closure
     (hcomparison : MetrizableWppLimitComparisonInput)
@@ -1467,6 +1647,15 @@ theorem metrizableWalkingParallelPairLimitStability_of_comparison_and_allLca
     hcomparison
     (metrizableWalkingParallelPairLimitClosureFieldInputs_of_allLca inputs)
 
+/-- Build WPP limit stability from direct comparison plus direct left/algebraic fields. -/
+theorem metrizableWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic
+    (hcomparison : MetrizableWppLimitComparisonInput)
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraic) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  directWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic
+    hcomparison inputs.rightOpen inputs.rightSurjective
+
 /-- Build WPP limit stability from fixed cone comparison plus LCA/component field data. -/
 theorem metrizableWalkingParallelPairLimitStability_of_limitConeComparison_and_allLca
     (hcomparison : MetrizableWppLimitConeComparisonInput)
@@ -1503,6 +1692,14 @@ theorem metrizableWalkingParallelPairLimitStability_of_allLca
     (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
       WalkingParallelPair :=
   metrizableWalkingParallelPairLimitStability_of_comparison_and_allLca
+    metrizableWppLimitComparisonInput_direct inputs
+
+/-- Build WPP limit stability from W551 comparison plus direct left/algebraic fields. -/
+theorem metrizableWalkingParallelPairLimitStability_of_directLeftAlgebraic
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraic) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic
     metrizableWppLimitComparisonInput_direct inputs
 
 /--
