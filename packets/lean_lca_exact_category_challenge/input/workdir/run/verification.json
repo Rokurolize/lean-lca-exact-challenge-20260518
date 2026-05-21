@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-21T01:28:00Z",
-  "source_tree_hash": "c69ddb6fc1aa325a8c39608b41a4569bf3163a35787e75e042d97442de003990",
+  "generated_utc": "2026-05-21T01:33:00Z",
+  "source_tree_hash": "928da5f8130527b38466591b80fb5ca437684d94def88d23ffeb2e255e6f2fd8",
   "summary": "W427でselected AddCommGrp cokernel/cofork colimit routeをhcsとunderlying forgetful WPP-op preservationだけに縮約し、W428でそのWPP-op preservationがPreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)から従うことを確認した。ただしfinite-colimit preservation自体は未解決で、閉像条件なしのglobal保存は引き続き危険である。product successはまだ主張しない。",
   "commands": [
     {
@@ -2913,6 +2913,21 @@
       "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/wpp_op_w426_to_w318_left_frontier_bridge_v370_support_w434.lean",
       "status": "passed",
       "evidence": "Focused W434 bridge support verification passed."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_selected_cokernel_colimit_from_coequalizer_preservation_v370_support_w432.lean",
+      "status": "passed",
+      "evidence": "Focused W432/W433 support verification passed."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_forgetful_preserves_walking_parallel_pair_v370_support_w433.lean",
+      "status": "passed",
+      "evidence": "Focused W432/W433 support verification passed."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_selected_cokernel_colimit_from_coequalizer_preservation_v370_support_w432.lean audit/blockers/addcommgrp_forgetful_preserves_walking_parallel_pair_v370_support_w433.lean",
+      "status": "passed",
+      "evidence": "Focused W432/W433 support verification passed."
     }
   ],
   "implemented_declarations_checked": [

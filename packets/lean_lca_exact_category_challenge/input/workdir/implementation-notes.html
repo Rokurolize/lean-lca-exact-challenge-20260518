@@ -222,6 +222,12 @@
 <p><time>2026-05-20T10:18:40Z</time>: The explicit pullback construction now exports <code>MetrizableLCA.instHasPullbacks</code>, and finite limits are synthesized as <code>MetrizableLCA.instHasFiniteLimits</code> from terminal objects plus pullbacks. <code>ProductSuccessDeclarations</code> checks both instances, and the bounded finite-products boundary no longer carries a separate <code>HasFiniteLimits MetrizableLCA</code> premise for its conditional <code>Dbounded</code> finite-products declaration. Remaining product work is the localization-transfer layer and the finite-colimit, triangulated, and stable infinity-category obligations.</p>
 </section>
 
+<section id="w432-w433-coequalizer-preservation-frontier">
+<h2>W432-W433 coequalizer frontier</h2>
+<p><time>2026-05-21T10:33:00Z</time>: The parent verified <code>audit/blockers/addcommgrp_selected_cokernel_colimit_from_coequalizer_preservation_v370_support_w432.lean</code> and <code>audit/blockers/addcommgrp_forgetful_preserves_walking_parallel_pair_v370_support_w433.lean</code>. W432 packages the selected target cokernel/cofork colimit route under the ordinary <code>WalkingParallelPair</code> preservation assumption. W433 reduces that preservation assumption to the exact explicit input that every mapped local <code>MetrizableLCA</code> cokernel cofork remains colimiting after applying <code>forget₂ MetrizableLCA AddCommGrpCat</code>.</p>
+<p>This confirms the remaining AddCommGrp preservation frontier: prove the mapped explicit cokernel cofork is an algebraic cokernel, preferably using the closed-range/objectwise comparison rather than an unsafe arbitrary global preservation claim.</p>
+</section>
+
 <section id="w434-w426-to-w318-frontier-bridge">
 <h2>W434 W426 to W318 bridge</h2>
 <p><time>2026-05-21T10:28:00Z</time>: The parent verified <code>audit/blockers/wpp_op_w426_to_w318_left_frontier_bridge_v370_support_w434.lean</code>. It records the bridge shape from promoted W426 certificate-only W399 inputs to W318's <code>wppOp_lca_colimitMap_injective_inducing_closedImage</code> and <code>wppOp_colimit_preserves_leftClosedEmbedding</code> frontier declarations.</p>
