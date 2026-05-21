@@ -744,3 +744,12 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W445's nonduplicate result is now core API as `MetrizableLCA.preservesCokernelOf_isClosedMap` and `MetrizableLCA.preservesCokernelOf_isClosedEmbedding`, both thin wrappers around `MetrizableLCA.preservesCokernelOf_isClosed_range`.
 - remaining blockers: prove the selected WPP-op component closed-map/closed-embedding/closed-range input and lift it into the selected short-complex preservation instance. W446's single-selected-colimit support result was still pending at this checkpoint.
 - product_complete: false
+
+## W446 Selected Cokernel Colimit From Single Preservation
+
+- timestamp: `2026-05-21T00:46:05Z`
+- artifact: `audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean`; `git diff --check`
+- effect: the selected AddCommGrp target cokernel cofork colimit is reduced from broad/global preservation to one selected short-complex difference preservation instance.
+- remaining blockers: provide `forgottenShortComplexFunctor.Additive`, `forgottenShortComplexFunctor.PreservesZeroMorphisms`, and `[PreservesColimit (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0) forgottenShortComplexFunctor]`; then connect W445's underlying component preservation to this short-complex preservation instance.
+- product_complete: false

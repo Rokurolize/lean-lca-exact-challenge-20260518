@@ -1450,3 +1450,9 @@
 <p><time>2026-05-21T00:43:15Z</time>: The parent consumed the completed W445 support result from the consultant stream. The useful nonduplicate part was promoted as two importable wrappers: <code>MetrizableLCA.preservesCokernelOf_isClosedMap</code> and <code>MetrizableLCA.preservesCokernelOf_isClosedEmbedding</code>. Both reduce to the already promoted closed-range preservation theorem.</p>
 <p>This is a small API improvement, not a product-success claim. The remaining mathematical input is still to prove the selected WPP-op difference morphism has the needed closed range, closed-map, or closed-embedding evidence, and then lift the component preservation into the selected short-complex preservation route. W446 was still pending at this checkpoint.</p>
 </section>
+
+<section id="w446-selected-cokernel-colimit-single-preservation">
+<h2>W446 selected cokernel colimit from single preservation</h2>
+<p><time>2026-05-21T00:46:05Z</time>: The parent consumed and ported W446 as <code>audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean</code>. It proves that an original <code>WalkingParallelPairᵒᵖ</code> colimit cocone gives the selected forgotten target cokernel cofork colimit once the selected short-complex difference cokernel is preserved by the short-complex forgetful functor.</p>
+<p>The result is explicitly partial. It still requires <code>forgottenShortComplexFunctor.Additive</code>, <code>forgottenShortComplexFunctor.PreservesZeroMorphisms</code>, and the selected short-complex preservation instance. W445 discharges only the underlying component cokernel preservation from closed-map/closed-range evidence, so the next integration step is the component-to-short-complex preservation lift.</p>
+</section>
