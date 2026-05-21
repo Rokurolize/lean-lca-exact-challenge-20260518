@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w506-selected-w461-transported-point-iso-provider",
-  "generated_utc": "2026-05-21T10:17:42Z",
-  "source_tree_hash": "4ece0e59f088fde8e2679aa60d933199d0e8cd657417e4ef8c115a5607243be2",
-  "summary": "W506 constructs transported concrete quotient cocones for WPP-op diagrams, uses colimit point uniqueness to build W505 point-identification fields, and reduces the selected W461 route to a concrete ordinary package, transported target-leg equations, and the remaining preservation input. Product success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w507-selected-w461-transported-target-leg",
+  "generated_utc": "2026-05-21T10:28:25Z",
+  "source_tree_hash": "2a8d635ee3f97e74e063dd62b483ea9011b4a4b8806cd0163808d2bd092cae56",
+  "summary": "W507 proves the transported concrete quotient cocone target-leg equation and reduces the selected W461 route to a concrete W426 ordinary package provider plus the remaining preservation input. Product success remains false.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -2995,6 +2995,60 @@
       "status": "failed_expected",
       "evidence": "External audit is expected to reach only the nonterminal product gate after W506 because product success remains false.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w506_verify/external_audit_w506.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W507 transported target-leg equation and ordinary-package provider route compiled in the importable projection-fields module.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w507_verify/source_wpp_projection_fields_w507.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Projection-fields module rebuilt after adding W507; warnings only from existing files.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w507_verify/lake_build_wpp_projection_fields_w507.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations checks W507 declarations and still records product success as false.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w507_verify/product_success_declarations_w507.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W507; warnings only from existing files.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w507_verify/lake_build_w507.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W507.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w507_verify/forbidden_tokens_source_w507.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations compiled after W507.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w507_verify/required_declarations_w507.log"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace check passed after W507 metadata refresh.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w507_verify/git_diff_check_w507_metadata.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W507 metadata refresh.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w507_verify/external_audit_self_check_w507.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W507)",
+      "status": "failed_expected",
+      "evidence": "External audit is expected to reach only the nonterminal product gate after W507 because product success remains false.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w507_verify/external_audit_w507.log"
     }
   ],
   "implemented_declarations_checked": [
@@ -4162,22 +4216,33 @@
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.exactAcyclic_of_selectedW461TransportedPointIso_and_selectedCokernelColimit_w506",
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.exactAcyclic_of_selectedW461TransportedPointIso_and_mappedExplicitCokernelCoforks_w506",
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.exactAcyclic_of_selectedW461TransportedPointIso_and_closureKernelProvider_w506",
-    "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.currentSelectedW461TransportedPointIsoProviderStateW506_productSuccess"
+    "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.currentSelectedW461TransportedPointIsoProviderStateW506_productSuccess",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.supportSeedW507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpTransportedConcreteQuotientCocone_ι_app_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpWhiskeredConcreteQuotientCocone_target_leg_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpWhiskeredDiagramIso_target_identity_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.transportedConcreteTargetLegEquation_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.SelectedW461OrdinaryPackageCallSiteInputsW507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.selectedTransportedPointIsoInputs_of_ordinaryPackage_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.SelectedW461OrdinaryPackageProviderW507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.selectedTransportedPointIsoProvider_of_ordinaryPackage_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_selectedCokernelColimit_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_mappedExplicitCokernelCoforks_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_closureKernelProvider_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.currentSelectedW461TransportedTargetLegStateW507_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "construct a concrete W426OrdinaryDescendedMapPackage for ordinaryMapOfWppOpNatTransW506",
-    "prove TransportedConcreteTargetLegEquationW506 for every WPP-op diagram",
+    "construct concrete SelectedW461OrdinaryPackageProviderW507",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
     "run final product audit only after terminal_outcome can be product_success"
   ],
-  "support_result_classification": "nonterminal transported point-isomorphism provider factoring",
+  "support_result_classification": "nonterminal transported target-leg proof and ordinary-package provider factoring",
   "product_success": false,
   "remaining_work": [
-    "construct a concrete W426OrdinaryDescendedMapPackage for ordinaryMapOfWppOpNatTransW506",
-    "prove TransportedConcreteTargetLegEquationW506 for every WPP-op diagram",
+    "construct concrete SelectedW461OrdinaryPackageProviderW507",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
     "run final product audit only after terminal_outcome can be product_success"
   ],
-  "summary_log_tail": "Full build, required declarations, forbidden-token scan, and git diff check passed after W506 integration. External audit is expected to fail only at the nonterminal product gate."
+  "summary_log_tail": "Full build, required declarations, forbidden-token scan, and git diff check passed after W507 integration. External audit is expected to fail only at the nonterminal product gate."
 }

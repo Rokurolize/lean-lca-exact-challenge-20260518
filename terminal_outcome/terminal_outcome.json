@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W506でWPP-op図式の具体quotient coconeをordinary図式からwhiskerし、counitで元の図式へtransportした。unique-up-to-isomorphismからW505のpoint-isomorphism target-leg入力を作れるようになったが、ordinaryMapOfWppOpNatTransW506のW426 ordinary package、TransportedConcreteTargetLegEquationW506、そしてclosure-kernelまたはselected cokernel-colimit入力がまだ未証明なのでproduct_successは主張しない。",
+  "summary": "W507でtransported concrete quotient coconeのtarget legがordinary quotient mapに等しいことを証明し、W506で残っていたTransportedConcreteTargetLegEquationW506を解消した。これでselected W461 routeは具体SelectedW461OrdinaryPackageProviderW507と、closure-kernelまたはselected cokernel-colimit側の保存入力まで縮んだ。まだそれらは未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -590,7 +590,8 @@
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W503)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W504)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W505)",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W506)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W506)",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W507)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1636,25 +1637,23 @@
     "LeanLCAExactChallenge.WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.currentForgetfulFinitePreservationFromCokernelsStateW497_productSuccess"
   ],
   "known_gaps": [
-    "ordinaryMapOfWppOpNatTransW506に対する具体W426OrdinaryDescendedMapPackageがまだない。",
-    "TransportedConcreteTargetLegEquationW506を任意のWPP-op図式で証明する必要がある。",
+    "具体SelectedW461OrdinaryPackageProviderW507がまだない。",
     "具体的なMappedExplicitCokernelClosureKernelProviderW503またはselected cokernel-colimit providerはまだ未証明。",
     "最終product auditを通すterminal_outcomeではない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "f48c31174d91",
+  "git_commit": "ad71c677623a",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W506 was integrated by the parent in the target tree; no new workers were launched. The selected W461 point-isomorphism route now has transported concrete quotient cocones and colimit-uniqueness point identifications, with target-leg and ordinary-package fields still open.",
+  "worker_frontier_summary": "W507 was integrated by the parent in the target tree; no new workers were launched. The selected W461 point-isomorphism route now has concrete transported target-leg equations, leaving the ordinary W426 package provider and preservation input.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "ordinaryMapOfWppOpNatTransW506に対する具体W426OrdinaryDescendedMapPackageがまだない。",
-    "TransportedConcreteTargetLegEquationW506を任意のWPP-op図式で証明する必要がある。",
+    "具体SelectedW461OrdinaryPackageProviderW507がまだない。",
     "具体的なMappedExplicitCokernelClosureKernelProviderW503またはselected cokernel-colimit providerはまだ未証明。",
     "最終product auditを通すterminal_outcomeではない。"
   ],
-  "next_recommended_goal": "Prove TransportedConcreteTargetLegEquationW506, then build the W426OrdinaryDescendedMapPackage for ordinaryMapOfWppOpNatTransW506 and connect the remaining preservation input.",
+  "next_recommended_goal": "Construct the concrete SelectedW461OrdinaryPackageProviderW507, then connect the remaining preservation input.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2607,10 +2606,23 @@
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.exactAcyclic_of_selectedW461TransportedPointIso_and_selectedCokernelColimit_w506",
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.exactAcyclic_of_selectedW461TransportedPointIso_and_mappedExplicitCokernelCoforks_w506",
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.exactAcyclic_of_selectedW461TransportedPointIso_and_closureKernelProvider_w506",
-    "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.currentSelectedW461TransportedPointIsoProviderStateW506_productSuccess"
+    "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.currentSelectedW461TransportedPointIsoProviderStateW506_productSuccess",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.supportSeedW507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpTransportedConcreteQuotientCocone_ι_app_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpWhiskeredConcreteQuotientCocone_target_leg_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpWhiskeredDiagramIso_target_identity_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.transportedConcreteTargetLegEquation_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.SelectedW461OrdinaryPackageCallSiteInputsW507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.selectedTransportedPointIsoInputs_of_ordinaryPackage_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.SelectedW461OrdinaryPackageProviderW507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.selectedTransportedPointIsoProvider_of_ordinaryPackage_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_selectedCokernelColimit_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_mappedExplicitCokernelCoforks_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_closureKernelProvider_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.currentSelectedW461TransportedTargetLegStateW507_productSuccess"
   ],
-  "generated_utc": "2026-05-21T10:17:42Z",
-  "support_result_classification": "nonterminal transported point-isomorphism provider factoring",
+  "generated_utc": "2026-05-21T10:28:25Z",
+  "support_result_classification": "nonterminal transported target-leg proof and ordinary-package provider factoring",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3630,13 +3642,25 @@
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.exactAcyclic_of_selectedW461TransportedPointIso_and_selectedCokernelColimit_w506",
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.exactAcyclic_of_selectedW461TransportedPointIso_and_mappedExplicitCokernelCoforks_w506",
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.exactAcyclic_of_selectedW461TransportedPointIso_and_closureKernelProvider_w506",
-    "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.currentSelectedW461TransportedPointIsoProviderStateW506_productSuccess"
+    "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.currentSelectedW461TransportedPointIsoProviderStateW506_productSuccess",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.supportSeedW507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpTransportedConcreteQuotientCocone_ι_app_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpWhiskeredConcreteQuotientCocone_target_leg_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpWhiskeredDiagramIso_target_identity_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.transportedConcreteTargetLegEquation_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.SelectedW461OrdinaryPackageCallSiteInputsW507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.selectedTransportedPointIsoInputs_of_ordinaryPackage_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.SelectedW461OrdinaryPackageProviderW507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.selectedTransportedPointIsoProvider_of_ordinaryPackage_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_selectedCokernelColimit_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_mappedExplicitCokernelCoforks_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_closureKernelProvider_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.currentSelectedW461TransportedTargetLegStateW507_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "construct a concrete W426OrdinaryDescendedMapPackage for ordinaryMapOfWppOpNatTransW506",
-    "prove TransportedConcreteTargetLegEquationW506 for every WPP-op diagram",
+    "construct concrete SelectedW461OrdinaryPackageProviderW507",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
     "run final product audit only after terminal_outcome can be product_success"
   ]
