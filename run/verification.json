@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w509-closed-nat-trans-ordinary-package-boundary",
-  "generated_utc": "2026-05-21T10:45:54Z",
-  "source_tree_hash": "fe306e58549b81f03b31f91ea33103e41891177bf261d5555fd8d04c0274a717",
-  "summary": "W509 factors the W507 ordinary-package provider through a closed-natural-transformation package boundary: the ordinary package now depends only on the WPP-op natural transformation and its componentwise closed-embedding hypothesis. Product success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w510-ordinary-descended-quotient-map-boundary",
+  "generated_utc": "2026-05-21T10:53:30Z",
+  "source_tree_hash": "405efb61f232e18b211c5372f1c8282c18131da264142f873ee35689821850b7",
+  "summary": "W510 constructs the ordinary descended quotient map for ordinaryMapOfWppOpNatTransW506 and proves quotient compatibility, reducing the W509 ordinary package to topology facts for that descended map plus preservation input. Product success remains false.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3149,6 +3149,56 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W509)",
       "status": "failed_expected",
       "evidence": "External audit reaches the expected nonterminal product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W510 ordinary descended quotient-map construction and topology-facts boundary compiled in the projection-fields module."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Focused module build passed after W510 integration."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-success declaration audit checks the W510 quotient-map and endpoint declarations while product_success remains false."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full Lake build passed after W510 integration."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W510."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declarations audit passed after W510 integration."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON review artifacts validate after W510 metadata refresh."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors after W510 source and metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W510 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W510)",
+      "status": "failed_expected",
+      "evidence": "External audit reaches the expected nonterminal product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier."
     }
   ],
   "implemented_declarations_checked": [
@@ -4343,20 +4393,36 @@
     "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_selectedCokernelColimit_w509",
     "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_mappedExplicitCokernelCoforks_w509",
     "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_closureKernelProvider_w509",
-    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.currentSelectedW461ClosedNatTransOrdinaryPackageStateW509_productSuccess"
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.currentSelectedW461ClosedNatTransOrdinaryPackageStateW509_productSuccess",
+    "MetrizableLCA.relationPreimageForwardOfSquaresW510",
+    "MetrizableLCA.ordinaryDescendedTargetKernel_leW510",
+    "MetrizableLCA.ordinaryDescendedQuotientMapW510",
+    "MetrizableLCA.ordinaryDescendedQuotientMap_quotient_compatW510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.supportSeedW510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.ordinarySquareLeftW510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.ordinarySquareRightW510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.ordinaryDescendedOfWppOpNatTransW510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.ordinaryDescendedOfWppOpNatTrans_quotient_compat_w510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.ClosedNatTransOrdinaryTopologyFactsW510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.ClosedNatTransOrdinaryTopologyFactsProviderW510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.closedNatTransOrdinaryPackageProvider_of_topologyFacts_w510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.exactAcyclic_of_topologyFacts_and_selectedCokernelColimit_w510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.exactAcyclic_of_topologyFacts_and_mappedExplicitCokernelCoforks_w510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.exactAcyclic_of_topologyFacts_and_closureKernelProvider_w510",
+    "WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510.currentClosedNatTransOrdinaryDescendedQuotientStateW510_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "construct concrete ClosedNatTransOrdinaryPackageProviderW509",
+    "construct concrete ClosedNatTransOrdinaryTopologyFactsProviderW510",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
     "run final product audit only after terminal_outcome can be product_success"
   ],
-  "support_result_classification": "nonterminal closed-natural-transformation ordinary-package boundary",
+  "support_result_classification": "nonterminal ordinary descended quotient-map construction and topology boundary",
   "product_success": false,
   "remaining_work": [
-    "construct concrete ClosedNatTransOrdinaryPackageProviderW509",
+    "construct concrete ClosedNatTransOrdinaryTopologyFactsProviderW510",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
     "run final product audit only after terminal_outcome can be product_success"
   ],
-  "summary_log_tail": "Full build, required declarations, forbidden-token scan, metadata validation, and external-audit self-check passed after W509 integration; external audit remains expected to fail only at the nonterminal product gate."
+  "summary_log_tail": "Full build, required declarations, forbidden-token scan, metadata validation, and external-audit self-check passed after W510 integration; external audit remains expected to fail only at the nonterminal product gate."
 }

@@ -5642,4 +5642,275 @@ end Checks
 
 end WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509
 
+namespace MetrizableLCA
+
+/-- Source closed relation maps forward to the target relation under compatible squares. -/
+theorem relationPreimageForwardOfSquaresW510
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iA : A ⟶ A') (iB : B ⟶ B')
+    (hsquare_left : f ≫ iB = iA ≫ f')
+    (hsquare_right : g ≫ iB = iA ≫ g') :
+    ∀ b : B, b ∈ cokernelSubgroup (f - g) →
+      iB b ∈ cokernelSubgroup (f' - g') := by
+  intro b hb
+  let targetPreimage : AddSubgroup B :=
+    AddSubgroup.comap iB.hom.toAddMonoidHom (cokernelSubgroup (f' - g'))
+  have hrange_le :
+      AddSubgroup.map (f - g).hom.toAddMonoidHom (⊤ : AddSubgroup A) ≤
+        targetPreimage := by
+    intro x hx
+    rcases hx with ⟨a, _ha, rfl⟩
+    change iB ((f - g) a) ∈ cokernelSubgroup (f' - g')
+    have hleft : iB (f a) = f' (iA a) := by
+      simpa using congrArg (fun q : A ⟶ B' => q a) hsquare_left
+    have hright : iB (g a) = g' (iA a) := by
+      simpa using congrArg (fun q : A ⟶ B' => q a) hsquare_right
+    have hval : iB ((f - g) a) = (f' - g') (iA a) := by
+      calc
+        iB ((f - g) a) = iB (f a - g a) := by rfl
+        _ = iB (f a) - iB (g a) := by
+          exact map_sub iB.hom.toAddMonoidHom (f a) (g a)
+        _ = f' (iA a) - g' (iA a) := by rw [hleft, hright]
+        _ = (f' - g') (iA a) := by rfl
+    rw [hval]
+    exact map_mem_cokernelSubgroup (f' - g') (iA a)
+  have htargetPreimage_closed : IsClosed (targetPreimage : Set B) := by
+    change IsClosed ((fun b : B => iB b) ⁻¹' (cokernelSubgroup (f' - g') : Set B'))
+    exact (AddSubgroup.isClosed_topologicalClosure _).preimage iB.hom.continuous
+  have hclosure_le : cokernelSubgroup (f - g) ≤ targetPreimage :=
+    AddSubgroup.topologicalClosure_minimal
+      (AddSubgroup.map (f - g).hom.toAddMonoidHom (⊤ : AddSubgroup A))
+      hrange_le htargetPreimage_closed
+  exact hclosure_le hb
+
+/-- Kernel condition needed to descend a compatible ordinary component map. -/
+theorem ordinaryDescendedTargetKernel_leW510
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iA : A ⟶ A') (iB : B ⟶ B')
+    (hsquare_left : f ≫ iB = iA ≫ f')
+    (hsquare_right : g ≫ iB = iA ≫ g') :
+    cokernelSubgroup (f - g) ≤
+      (iB ≫ quotientMap B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _)).hom.toAddMonoidHom.ker := by
+  intro b hb
+  change ((iB b : B') : B' ⧸ cokernelSubgroup (f' - g')) = 0
+  rw [QuotientAddGroup.eq_zero_iff]
+  exact relationPreimageForwardOfSquaresW510 iA iB hsquare_left hsquare_right b hb
+
+/-- The ordinary descended quotient map induced by compatible component squares. -/
+def ordinaryDescendedQuotientMapW510
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iA : A ⟶ A') (iB : B ⟶ B')
+    (hsquare_left : f ≫ iB = iA ≫ f')
+    (hsquare_right : g ≫ iB = iA ≫ g') :
+    quotientObj B (cokernelSubgroup (f - g)) (AddSubgroup.isClosed_topologicalClosure _) ⟶
+      quotientObj B' (cokernelSubgroup (f' - g')) (AddSubgroup.isClosed_topologicalClosure _) :=
+  quotientLift B (cokernelSubgroup (f - g)) (AddSubgroup.isClosed_topologicalClosure _)
+    (iB ≫ quotientMap B' (cokernelSubgroup (f' - g'))
+      (AddSubgroup.isClosed_topologicalClosure _))
+    (ordinaryDescendedTargetKernel_leW510 iA iB hsquare_left hsquare_right)
+
+/-- The ordinary descended quotient map satisfies quotient compatibility. -/
+theorem ordinaryDescendedQuotientMap_quotient_compatW510
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iA : A ⟶ A') (iB : B ⟶ B')
+    (hsquare_left : f ≫ iB = iA ≫ f')
+    (hsquare_right : g ≫ iB = iA ≫ g') :
+    quotientMap B (cokernelSubgroup (f - g)) (AddSubgroup.isClosed_topologicalClosure _) ≫
+        ordinaryDescendedQuotientMapW510 iA iB hsquare_left hsquare_right =
+      iB ≫ quotientMap B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _) :=
+  quotientLift_quotientMap B (cokernelSubgroup (f - g))
+    (AddSubgroup.isClosed_topologicalClosure _)
+    (iB ≫ quotientMap B' (cokernelSubgroup (f' - g'))
+      (AddSubgroup.isClosed_topologicalClosure _))
+    (ordinaryDescendedTargetKernel_leW510 iA iB hsquare_left hsquare_right)
+
+end MetrizableLCA
+
+namespace WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpSelectedW461TransportedTargetLegV370SupportW507
+open WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for W510 ordinary descended quotient-map construction. -/
+def supportSeedW510 : String :=
+  "w510-closed-nat-trans-ordinary-descended-quotient"
+
+/-- Naturality square for the ordinary left arrow. -/
+theorem ordinarySquareLeftW510
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) :
+    wppOpLeftW441 X ≫ (ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one =
+      (ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.zero ≫
+        wppOpLeftW441 Y := by
+  simpa [wppOpLeftW441] using
+    (ordinaryMapOfWppOpNatTransW506 α).naturality WalkingParallelPairHom.left
+
+/-- Naturality square for the ordinary right arrow. -/
+theorem ordinarySquareRightW510
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) :
+    wppOpRightW441 X ≫ (ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one =
+      (ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.zero ≫
+        wppOpRightW441 Y := by
+  simpa [wppOpRightW441] using
+    (ordinaryMapOfWppOpNatTransW506 α).naturality WalkingParallelPairHom.right
+
+/-- The ordinary descended quotient map induced by `ordinaryMapOfWppOpNatTransW506`. -/
+def ordinaryDescendedOfWppOpNatTransW510
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) :
+    wppOpOrdinaryQuotientPointW441 X ⟶ wppOpOrdinaryQuotientPointW441 Y :=
+  MetrizableLCA.ordinaryDescendedQuotientMapW510
+    ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.zero)
+    ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one)
+    (ordinarySquareLeftW510 α)
+    (ordinarySquareRightW510 α)
+
+/-- Quotient compatibility for the W510 ordinary descended quotient map. -/
+theorem ordinaryDescendedOfWppOpNatTrans_quotient_compat_w510
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) :
+    MetrizableLCA.quotientMap (wppOpCodomainW441 X)
+        (MetrizableLCA.cokernelSubgroup (wppOpLeftW441 X - wppOpRightW441 X))
+        (AddSubgroup.isClosed_topologicalClosure _) ≫
+        ordinaryDescendedOfWppOpNatTransW510 α =
+      (ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one ≫
+        MetrizableLCA.quotientMap (wppOpCodomainW441 Y)
+          (MetrizableLCA.cokernelSubgroup (wppOpLeftW441 Y - wppOpRightW441 Y))
+          (AddSubgroup.isClosed_topologicalClosure _) := by
+  simpa [ordinaryDescendedOfWppOpNatTransW510] using
+    MetrizableLCA.ordinaryDescendedQuotientMap_quotient_compatW510
+      ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.zero)
+      ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one)
+      (ordinarySquareLeftW510 α)
+      (ordinarySquareRightW510 α)
+
+/-- Remaining topology facts needed for the W510 descended quotient map. -/
+structure ClosedNatTransOrdinaryTopologyFactsW510
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) : Type 1 where
+  descended_injective :
+    Function.Injective (ordinaryDescendedOfWppOpNatTransW510 α :
+      wppOpOrdinaryQuotientPointW441 X → wppOpOrdinaryQuotientPointW441 Y)
+  descended_inducing :
+    IsInducing (ordinaryDescendedOfWppOpNatTransW510 α :
+      wppOpOrdinaryQuotientPointW441 X → wppOpOrdinaryQuotientPointW441 Y)
+  descended_range_closed :
+    IsClosed (Set.range (ordinaryDescendedOfWppOpNatTransW510 α :
+      wppOpOrdinaryQuotientPointW441 X → wppOpOrdinaryQuotientPointW441 Y))
+
+/-- Provider surface for the remaining W510 topology facts. -/
+abbrev ClosedNatTransOrdinaryTopologyFactsProviderW510 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      ClosedNatTransOrdinaryTopologyFactsW510 α
+
+/-- W510 topology facts complete W509's ordinary-package provider. -/
+def closedNatTransOrdinaryPackageProvider_of_topologyFacts_w510
+    (hfacts : ClosedNatTransOrdinaryTopologyFactsProviderW510) :
+    ClosedNatTransOrdinaryPackageProviderW509 :=
+  fun X Y α hclosed =>
+    let facts := hfacts X Y α hclosed
+    { ordinaryDescended := ordinaryDescendedOfWppOpNatTransW510 α
+      quotient_compat := ordinaryDescendedOfWppOpNatTrans_quotient_compat_w510 α
+      descended_injective := facts.descended_injective
+      descended_inducing := facts.descended_inducing
+      descended_range_closed := facts.descended_range_closed }
+
+/-- W510 endpoint with the selected cokernel-colimit provider. -/
+def exactAcyclic_of_topologyFacts_and_selectedCokernelColimit_w510
+    (hfacts : ClosedNatTransOrdinaryTopologyFactsProviderW510)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_closedNatTransPackage_and_selectedCokernelColimit_w509
+    (closedNatTransOrdinaryPackageProvider_of_topologyFacts_w510 hfacts) hselected
+
+/-- W510 endpoint with W499's mapped-explicit-cokernel preservation input. -/
+def exactAcyclic_of_topologyFacts_and_mappedExplicitCokernelCoforks_w510
+    (hfacts : ClosedNatTransOrdinaryTopologyFactsProviderW510)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_closedNatTransPackage_and_mappedExplicitCokernelCoforks_w509
+    (closedNatTransOrdinaryPackageProvider_of_topologyFacts_w510 hfacts) hMapped
+
+/-- W510 endpoint with W503's closure-kernel preservation input. -/
+def exactAcyclic_of_topologyFacts_and_closureKernelProvider_w510
+    (hfacts : ClosedNatTransOrdinaryTopologyFactsProviderW510)
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_closedNatTransPackage_and_closureKernelProvider_w509
+    (closedNatTransOrdinaryPackageProvider_of_topologyFacts_w510 hfacts) hClosure
+
+/-- W510 checked nonterminal state. -/
+structure ClosedNatTransOrdinaryDescendedQuotientV370SupportStateW510 : Type where
+  seed : String
+  declarations : List String
+  quotientMapConstructionResult : String
+  packageAdapterResult : String
+  selectedCokernelRouteResult : String
+  closureKernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W510 state. -/
+def currentClosedNatTransOrdinaryDescendedQuotientV370SupportStateW510 :
+    ClosedNatTransOrdinaryDescendedQuotientV370SupportStateW510 where
+  seed := supportSeedW510
+  declarations :=
+    ["ordinarySquareLeftW510",
+      "ordinarySquareRightW510",
+      "ordinaryDescendedOfWppOpNatTransW510",
+      "ordinaryDescendedOfWppOpNatTrans_quotient_compat_w510",
+      "ClosedNatTransOrdinaryTopologyFactsW510",
+      "ClosedNatTransOrdinaryTopologyFactsProviderW510",
+      "closedNatTransOrdinaryPackageProvider_of_topologyFacts_w510",
+      "exactAcyclic_of_topologyFacts_and_selectedCokernelColimit_w510",
+      "exactAcyclic_of_topologyFacts_and_mappedExplicitCokernelCoforks_w510",
+      "exactAcyclic_of_topologyFacts_and_closureKernelProvider_w510"]
+  quotientMapConstructionResult := "proved"
+  packageAdapterResult := "proved"
+  selectedCokernelRouteResult := "proved"
+  closureKernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryTopologyFactsProviderW510",
+      "construct concrete MappedExplicitCokernelClosureKernelProviderW503",
+      "or construct selected cokernel-colimit provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW510State :
+    ClosedNatTransOrdinaryDescendedQuotientV370SupportStateW510 :=
+  currentClosedNatTransOrdinaryDescendedQuotientV370SupportStateW510
+
+theorem currentClosedNatTransOrdinaryDescendedQuotientStateW510_productSuccess :
+    currentW510State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW510
+#check MetrizableLCA.relationPreimageForwardOfSquaresW510
+#check MetrizableLCA.ordinaryDescendedQuotientMapW510
+#check MetrizableLCA.ordinaryDescendedQuotientMap_quotient_compatW510
+#check ordinarySquareLeftW510
+#check ordinarySquareRightW510
+#check ordinaryDescendedOfWppOpNatTransW510
+#check ordinaryDescendedOfWppOpNatTrans_quotient_compat_w510
+#check ClosedNatTransOrdinaryTopologyFactsW510
+#check ClosedNatTransOrdinaryTopologyFactsProviderW510
+#check closedNatTransOrdinaryPackageProvider_of_topologyFacts_w510
+#check exactAcyclic_of_topologyFacts_and_selectedCokernelColimit_w510
+#check exactAcyclic_of_topologyFacts_and_mappedExplicitCokernelCoforks_w510
+#check exactAcyclic_of_topologyFacts_and_closureKernelProvider_w510
+#check currentClosedNatTransOrdinaryDescendedQuotientStateW510_productSuccess
+
+end Checks
+
+end WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510
+
 end LeanLCAExactChallenge
