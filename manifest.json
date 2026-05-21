@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-21T03:51:14Z",
-  "content_hash_tree": "90fb1c57ec49c7792de78ce73cefb9e0649144c586c620e376769fea8d0251dd",
+  "generated_utc": "2026-05-21T03:54:11Z",
+  "content_hash_tree": "5f40d2a124b816e8276ea82110057f68f34072a76530490040b23d2fa573a3da",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -26,6 +26,11 @@
       "path": "GOAL_IDENTITY.json",
       "bytes": 761,
       "sha256": "27afa95d342522c622651d69ccbe515d9904804b560d4a8cc5b4a81465c3b372"
+    },
+    {
+      "path": "LeanLCAExactChallenge.lean",
+      "bytes": 1251,
+      "sha256": "aba9c2637828ed9bbc871d88f0dfcaaaa0614e9d1a2ee728daf34b71ba776a17"
     },
     {
       "path": "LeanLCAExactChallenge/AlternatingTailExtendTransport.lean",
@@ -84,8 +89,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "bytes": 134739,
-      "sha256": "7bd88c23ecdad4be9fc76bd45ed5858588671ca2e527f8ca605638b9a190cb20"
+      "bytes": 134757,
+      "sha256": "ae423e5269fb07b137128e2fedaed90aafad2c5dbd206c35fdcd04b661102643"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean",
@@ -156,11 +161,6 @@
       "path": "LeanLCAExactChallenge/MathlibSurvey.lean",
       "bytes": 1065,
       "sha256": "af24a9485a9eea79ca8994e1fcc436d456b25fefe738277a1101f6de30d8cd72"
-    },
-    {
-      "path": "LeanLCAExactChallenge.lean",
-      "bytes": 1251,
-      "sha256": "aba9c2637828ed9bbc871d88f0dfcaaaa0614e9d1a2ee728daf34b71ba776a17"
     },
     {
       "path": "README.md",
@@ -1868,26 +1868,6 @@
       "sha256": "7f9a8997d2f91724697633fc51a392aa3f322a40b39060db06c580191e5b7f30"
     },
     {
-      "path": "codex-progress-thread-019e3c1e-ce8e-7190-9df0-18452cc5e187.tsv",
-      "bytes": 8265,
-      "sha256": "c7972ffe3e640f6c2d513eac76d649c9dbf3a436eb7e8bf87a5931ad70f8d7a7"
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260518T172459.256820896Z-pid2040222.tsv",
-      "bytes": 34218,
-      "sha256": "35b59974e76cc246ca0a0727d9bb6ce0a51575d6a51fbdf6d31866293f08646a"
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260520T040852.652420406Z-pid150823.tsv",
-      "bytes": 690,
-      "sha256": "a8efe9fe7ca3db9497ae059a339330a232718a75b7460ade61a73bd9448dd8be"
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260520T040956.104517288Z-pid153640.tsv",
-      "bytes": 690,
-      "sha256": "19d67d43d78ffc538571ca1a861d52e69d7e751267bac5579724b5d6b3f144a4"
-    },
-    {
       "path": "docs/research/alternating_tail_extend_transport_probe.md",
       "bytes": 2315,
       "sha256": "c0da8598eaa400ce21757669ada383168006601e016f6a8300a83c24fd81de26"
@@ -1989,13 +1969,13 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 300948,
-      "sha256": "a82817c7b51f861a9acc26dbcef9569a361eaabcdbd2fb41e0c2e61635a974d6"
+      "bytes": 302405,
+      "sha256": "c8cb5e56e1f8a45bf9ecab484906276af904d31ffeaf2cc0e156963470949b91"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 321877,
-      "sha256": "bfb73b1ae810cf9a4e5fcf4b2a399c615f8bdbb2fea6365ccc2fcf42e3fb5d4f"
+      "bytes": 322024,
+      "sha256": "77a33b08b8e2e8a1347d15d341b8d42be2c5939f4583fcfd85d55b8eeca5edf6"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
@@ -2014,8 +1994,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 261832,
-      "sha256": "cee3ca70f7abe97e29e3e6a3348fc8ade0f14a7816de1b7bfcd409b47f74d27c"
+      "bytes": 263686,
+      "sha256": "a846f26487308e872c6c7f2fb0245a6cca68381bfea0bec8996a230b768596c1"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -2029,8 +2009,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 333772,
-      "sha256": "91a161315b89abea02f6ee17ed9e4f1b2ba4bfc19228a50e249338c7a8fbc9b5"
+      "bytes": 333819,
+      "sha256": "b55165622c0e5aa09eba20da46cf1f190425b8ec9867617b0af21677dacab6f4"
     },
     {
       "path": "workers/README.md",
