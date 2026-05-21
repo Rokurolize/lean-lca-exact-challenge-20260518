@@ -9137,4 +9137,190 @@ end Checks
 
 end WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526
 
+namespace WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527
+
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525
+open WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpTopTargetRelationRepresentativeImageV370SupportW516
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W527 row-aware closed-map route. -/
+def supportSeedW527 : String :=
+  "w527-row-aware-closed-map-to-closed-range-only"
+
+/--
+Row-aware selected closed-map provider. This keeps W525's closed-map surface but
+localizes it to the strict AddCommGrp row boundary used by W526.
+-/
+abbrev ComponentwiseClosedMapRowsProviderW527 : Type 1 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs →
+      StrictRowInputsForSelectedDifferenceW526 S →
+        SelectedComponentwiseClosedMapInputsW525 S cs
+
+/--
+Row-aware selected closed-embedding provider. This is the closed-embedding
+variant of `ComponentwiseClosedMapRowsProviderW527`.
+-/
+abbrev ComponentwiseClosedEmbeddingRowsProviderW527 : Type 1 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs →
+      StrictRowInputsForSelectedDifferenceW526 S →
+        SelectedComponentwiseClosedEmbeddingInputsW525 S cs
+
+/-- Row-aware closed maps supply W526's row-aware closed-range-only provider. -/
+def closedRangeOnlyRowsProvider_of_closedMapRows_w527
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :
+    ComponentwiseClosedRangeOnlyRowsProviderW526 :=
+  fun S cs hcs hRows =>
+    closedRangeOnlyInputs_of_closedMap_w525 (hclosedMapRows S cs hcs hRows)
+
+/-- Row-aware closed embeddings supply W526's row-aware closed-range-only provider. -/
+def closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    ComponentwiseClosedRangeOnlyRowsProviderW526 :=
+  fun S cs hcs hRows =>
+    closedRangeOnlyInputs_of_closedEmbedding_w525
+      (hclosedEmbeddingRows S cs hcs hRows)
+
+/-- Selected W461 endpoint using row-aware selected closed-map data. -/
+def exactAcyclic_of_selectedW461Provider_closedMapRows_w527
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526 hinputs
+    (closedRangeOnlyRowsProvider_of_closedMapRows_w527 hclosedMapRows)
+
+/-- Selected W461 endpoint using row-aware selected closed-embedding data. -/
+def exactAcyclic_of_selectedW461Provider_closedEmbeddingRows_w527
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526 hinputs
+    (closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527 hclosedEmbeddingRows)
+
+/-- Representative-image endpoint using row-aware selected closed-map data. -/
+def exactAcyclic_of_representativeImage_closedMapRows_w527
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_closedRangeOnlyRows_w526 hinputs
+    (closedRangeOnlyRowsProvider_of_closedMapRows_w527 hclosedMapRows)
+
+/-- Representative-image endpoint using row-aware selected closed-embedding data. -/
+def exactAcyclic_of_representativeImage_closedEmbeddingRows_w527
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_closedRangeOnlyRows_w526 hinputs
+    (closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527 hclosedEmbeddingRows)
+
+/-- Top-target relation endpoint using row-aware selected closed-map data. -/
+def exactAcyclic_of_topTargetRelation_closedMapRows_w527
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_topTargetRelation_and_closedRangeOnlyRows_w526 hinputs
+    (closedRangeOnlyRowsProvider_of_closedMapRows_w527 hclosedMapRows)
+
+/-- Top-target relation endpoint using row-aware selected closed-embedding data. -/
+def exactAcyclic_of_topTargetRelation_closedEmbeddingRows_w527
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_topTargetRelation_and_closedRangeOnlyRows_w526 hinputs
+    (closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527 hclosedEmbeddingRows)
+
+/-- Compact-target relation endpoint using row-aware selected closed-map data. -/
+def exactAcyclic_of_compactTargetRelation_closedMapRows_w527
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyRows_w526 hinputs
+    (closedRangeOnlyRowsProvider_of_closedMapRows_w527 hclosedMapRows)
+
+/-- Compact-target relation endpoint using row-aware selected closed-embedding data. -/
+def exactAcyclic_of_compactTargetRelation_closedEmbeddingRows_w527
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyRows_w526 hinputs
+    (closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527 hclosedEmbeddingRows)
+
+/-- W527 checked nonterminal state. -/
+structure RowAwareClosedMapClosedRangeOnlyProjectionStateW527 : Type where
+  seed : String
+  declarations : List String
+  closedMapRowsAdapterResult : String
+  closedEmbeddingRowsAdapterResult : String
+  selectedW461EndpointResult : String
+  representativeImageEndpointResult : String
+  topTargetEndpointResult : String
+  compactTargetEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W527 state. -/
+def currentRowAwareClosedMapClosedRangeOnlyProjectionStateW527 :
+    RowAwareClosedMapClosedRangeOnlyProjectionStateW527 where
+  seed := supportSeedW527
+  declarations :=
+    ["ComponentwiseClosedMapRowsProviderW527",
+      "ComponentwiseClosedEmbeddingRowsProviderW527",
+      "closedRangeOnlyRowsProvider_of_closedMapRows_w527",
+      "closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527",
+      "exactAcyclic_of_selectedW461Provider_closedMapRows_w527",
+      "exactAcyclic_of_selectedW461Provider_closedEmbeddingRows_w527",
+      "exactAcyclic_of_representativeImage_closedMapRows_w527",
+      "exactAcyclic_of_representativeImage_closedEmbeddingRows_w527",
+      "exactAcyclic_of_topTargetRelation_closedMapRows_w527",
+      "exactAcyclic_of_topTargetRelation_closedEmbeddingRows_w527",
+      "exactAcyclic_of_compactTargetRelation_closedMapRows_w527",
+      "exactAcyclic_of_compactTargetRelation_closedEmbeddingRows_w527"]
+  closedMapRowsAdapterResult := "proved"
+  closedEmbeddingRowsAdapterResult := "proved"
+  selectedW461EndpointResult := "proved"
+  representativeImageEndpointResult := "proved"
+  topTargetEndpointResult := "proved"
+  compactTargetEndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 " ++
+        "or W516/W517 relation provider data",
+      "construct concrete row-aware selected component closed-map " ++
+        "or closed-embedding provider at the strict AddCommGrp boundary"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW527State :
+    RowAwareClosedMapClosedRangeOnlyProjectionStateW527 :=
+  currentRowAwareClosedMapClosedRangeOnlyProjectionStateW527
+
+theorem currentW527State_productSuccess :
+    currentW527State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW527
+#check ComponentwiseClosedMapRowsProviderW527
+#check ComponentwiseClosedEmbeddingRowsProviderW527
+#check closedRangeOnlyRowsProvider_of_closedMapRows_w527
+#check closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527
+#check exactAcyclic_of_selectedW461Provider_closedMapRows_w527
+#check exactAcyclic_of_selectedW461Provider_closedEmbeddingRows_w527
+#check exactAcyclic_of_representativeImage_closedMapRows_w527
+#check exactAcyclic_of_representativeImage_closedEmbeddingRows_w527
+#check exactAcyclic_of_topTargetRelation_closedMapRows_w527
+#check exactAcyclic_of_topTargetRelation_closedEmbeddingRows_w527
+#check exactAcyclic_of_compactTargetRelation_closedMapRows_w527
+#check exactAcyclic_of_compactTargetRelation_closedEmbeddingRows_w527
+#check currentW527State_productSuccess
+
+end Checks
+
+end WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527
+
 end LeanLCAExactChallenge

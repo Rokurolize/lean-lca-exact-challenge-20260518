@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T14:34:55Z",
+  "generated_utc": "2026-05-21T14:44:00Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -1626,19 +1626,19 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "W526 parent-integrated nonterminal row-aware closed-range-only projection route; product_success is not claimed.",
-  "latest_parent_update": "parent_update_w526_row_aware_closed_range_only_projection",
-  "summary": "W526では、選択成分のclosed-range条件をW318で実際に使うstrict AddCommGrp行境界だけに要求する、row-awareなclosed-range-only射影経路を追加した。W484の全図式向けproviderへ広げず、W524のrepresentative-image、top-target、compact-targetのselected-W461端点と合成している。ただしW515/W516/W517の具体provider dataと、選択成分difference mapのrow-awareなclosed-range dataが未証明なので、product_successはまだfalseである。",
-  "remaining_frontier": "Concrete W515/W516/W517 relation-provider data plus concrete row-aware selected component closed-range provider at the strict AddCommGrp boundary.",
+  "support_result_classification": "W527 parent-integrated nonterminal row-aware closed-map/closed-embedding adapter; product_success is not claimed.",
+  "latest_parent_update": "parent_update_w527_row_aware_closed_map_closed_range_only",
+  "summary": "W527では、W525のselected component difference closed-map/closed-embedding入力を、W526のstrict AddCommGrp行境界だけで使うrow-aware providerへ局所化した。これにより、closed mapまたはclosed embeddingがその行境界で与えられれば、W526のrow-aware closed-range-only providerを構成し、selected-W461、representative-image、top-target、compact-target各端点へ合成できる。ただし具体的なW515/W516/W517 provider dataと、具体的なrow-aware closed-map/closed-embedding dataは未証明なので、product_successはまだfalseである。",
+  "remaining_frontier": "Concrete W515/W516/W517 relation-provider data plus concrete row-aware selected component closed-map or closed-embedding provider at the strict AddCommGrp boundary.",
   "support_classification": "nonterminal_support",
   "remaining_blockers": [
-    "Concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515, or sufficient W516/W517 relation provider data, is still unproved.",
-    "Concrete row-aware selected component closed-range provider at the strict AddCommGrp boundary is still unproved.",
-    "Final product audit must not be run as product_success until both concrete provider groups are proved."
+    "final call siteでW515 representative-image provider、または同等のW516/W517 relation provider dataを具体的に構成する必要がある。",
+    "final call siteで、選択component difference mapがclosed mapまたはclosed embeddingであることを、strict AddCommGrp行境界に対応するrow-aware providerとして具体的に構成する必要がある。",
+    "W527はclosed-map/closed-embedding入力をW526のrow-aware closed-range providerへ渡すadapterであり、closed mapやclosed embedding自体はまだ証明していない。"
   ],
   "open_blockers": [
-    "construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 or a W516/W517 relation provider sufficient to supply it",
-    "construct concrete selected component difference closed-map or closed-embedding provider data sufficient for W525/W484",
+    "construct concrete W515/W516/W517 relation provider data",
+    "construct concrete row-aware selected component difference closed-map or closed-embedding provider data for W527/W526",
     "run final product audit only after both concrete final provider groups are proved"
   ],
   "consumed_support_results": [
@@ -1883,15 +1883,14 @@
     "w404-wpp-op-relation-pullback-equality-v370",
     "w405-left-lca-ordinary-descended-quotient-compat-v370",
     "w407-wpp-op-relation-reverse-preimage-v370",
-    "w406-addcommgrp-selected-target-cofork-colimit-v370"
+    "w406-addcommgrp-selected-target-cofork-colimit-v370",
+    "w527-row-aware-closed-map-closed-range-only"
   ],
   "known_gaps": [
-    "Concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515, or sufficient W516/W517 relation provider data, is still unproved.",
-    "Concrete row-aware selected component closed-range provider at the strict AddCommGrp boundary is still unproved.",
-    "Final product audit must not be run as product_success until both concrete provider groups are proved.",
-    "A concrete selected-W461 route is still needed, now narrowed to W515 representative-image or W516/W517 relation provider data via W524.",
-    "A concrete W484 preservation route is still needed, now narrowed to selected component difference closed-map or closed-embedding provider data via W525.",
-    "Do not update terminal outcome to product_success until those concrete providers are proved and audited."
+    "final call siteでW515 representative-image provider、または同等のW516/W517 relation provider dataを具体的に構成する必要がある。",
+    "final call siteで、選択component difference mapがclosed mapまたはclosed embeddingであることを、strict AddCommGrp行境界に対応するrow-aware providerとして具体的に構成する必要がある。",
+    "W527はclosed-map/closed-embedding入力をW526のrow-aware closed-range providerへ渡すadapterであり、closed mapやclosed embedding自体はまだ証明していない。",
+    "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施であり、product_successとして扱ってはいけない。"
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -4413,13 +4412,6 @@
   },
   "recent_frontier_updates": [
     {
-      "timestamp_utc": "2026-05-21T01:45:35Z",
-      "artifact": "audit/blockers/addcommgrp_quotient_identification_to_strict_snake_v370_support_w466.lean",
-      "status": "verified_focused",
-      "effect": "W463 quotient-identification inputs plus strict rows yield projection fields, strict Snake cokernel data, and AddCommGrp kernel exactness",
-      "product_complete": false
-    },
-    {
       "timestamp_utc": "2026-05-21T01:54:02Z",
       "artifact": "audit/blockers/addcommgrp_quotient_identification_exact_acyclic_boundary_v370_support_w467.lean",
       "status": "verified_focused",
@@ -4516,11 +4508,18 @@
       "status": "promoted_importable_parent_api_w525",
       "effect": "W525 narrows W484 to selected component difference closed-map or closed-embedding data and composes with W524 endpoints.",
       "product_complete": false
+    },
+    {
+      "timestamp_utc": "2026-05-21T14:44:00Z",
+      "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "promoted_importable_parent_api_w527",
+      "effect": "W527 narrows W526 row-aware closed-range rows to row-aware selected component closed-map or closed-embedding provider data.",
+      "product_complete": false
     }
   ],
   "current_primary_blockers": [
-    "construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 or a W516/W517 relation provider sufficient to supply it",
-    "construct concrete selected component difference closed-map or closed-embedding provider data sufficient for W525/W484",
+    "construct concrete W515/W516/W517 relation provider data",
+    "construct concrete row-aware selected component difference closed-map or closed-embedding provider data for W527/W526",
     "run final product audit only after both concrete final provider groups are proved"
   ],
   "parent_update_w467": {
@@ -5196,6 +5195,29 @@
       "Concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515, or sufficient W516/W517 relation provider data, is still unproved.",
       "Concrete row-aware selected component closed-range provider at the strict AddCommGrp boundary is still unproved.",
       "Final product audit must not be run as product_success until both concrete provider groups are proved."
+    ],
+    "product_complete": false
+  },
+  "parent_update_w527_row_aware_closed_map_closed_range_only": {
+    "timestamp_utc": "2026-05-21T14:44:00Z",
+    "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "audit_artifact": "audit/ProductSuccessDeclarations.lean",
+    "effect": "W527 localizes W525 selected closed-map and closed-embedding provider surfaces to W526 row-aware closed-range rows, then composes those providers through selected-W461, representative-image, top-target, and compact-target endpoints.",
+    "verified": [
+      "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "lake env lean audit/ProductSuccessDeclarations.lean",
+      "lake env lean audit/RequiredDeclarations.lean",
+      "lake build",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "git diff --check"
+    ],
+    "remaining_blockers": [
+      "final call siteでW515 representative-image provider、または同等のW516/W517 relation provider dataを具体的に構成する必要がある。",
+      "final call siteで、選択component difference mapがclosed mapまたはclosed embeddingであることを、strict AddCommGrp行境界に対応するrow-aware providerとして具体的に構成する必要がある。",
+      "W527はclosed-map/closed-embedding入力をW526のrow-aware closed-range providerへ渡すadapterであり、closed mapやclosed embedding自体はまだ証明していない。"
     ],
     "product_complete": false
   }

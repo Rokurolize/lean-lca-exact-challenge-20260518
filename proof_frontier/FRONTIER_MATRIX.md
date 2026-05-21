@@ -1206,3 +1206,14 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W526 exposes `WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526`. It replaces the overbroad all-diagrams W484 closed-range-only requirement with `ComponentwiseClosedRangeOnlyRowsProviderW526`, which receives the strict AddCommGrp row fields available at W318's algebraic boundary. W526 then uses W522 projection bridge fields and W483/W524 selected-provider routes to derive exact-acyclic closure from representative-image, top-target, or compact-target relation data plus row-aware closed-range data.
 - remaining blockers: construct concrete `ClosedNatTransOrdinaryRepresentativeImageProviderW515` or the corresponding W516/W517 relation provider data, and construct a concrete row-aware selected component closed-range provider at the strict AddCommGrp boundary.
 - product_complete: false
+
+
+## W527 Row-Aware Closed Map Closed Range Only
+
+- timestamp: `2026-05-21T14:44:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`; `lake build`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W527 exposes `WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527`. It turns row-aware selected component difference closed-map or closed-embedding providers into W526's `ComponentwiseClosedRangeOnlyRowsProviderW526`, then composes those providers through selected-W461, representative-image, top-target, and compact-target endpoints.
+- remaining blockers: construct concrete `ClosedNatTransOrdinaryRepresentativeImageProviderW515` or the corresponding W516/W517 relation provider data, and prove concrete row-aware selected component difference closed-map or closed-embedding data at the strict AddCommGrp boundary.
+- product_complete: false
