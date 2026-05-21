@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w504-selected-w461-target-leg-route",
-  "generated_utc": "2026-05-21T09:47:09Z",
-  "source_tree_hash": "6dae9554e90b8e327b5a81f539080d42e1f3ccca3a7f0759d87d8220cdbb8cf3",
-  "summary": "W504 promotes the target-component-to-full-W318-leg argument into the importable W461 route. The remaining selected-W461 input is now a concrete SelectedW461TargetLegProviderW504 plus either the W503 closure-kernel provider or a selected cokernel-colimit provider; product success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w505-selected-w461-point-iso-target-leg-route",
+  "generated_utc": "2026-05-21T09:54:44Z",
+  "source_tree_hash": "00992b08ff1bc1620ca777dfacc90e0e08f13f4f028ddb7f227abaa826c0b146",
+  "summary": "W505 derives the selected W461 target-leg route from W426 ordinary-package data plus point-identification target-leg equations. Product success remains false because the concrete point-isomorphism target-leg provider and preservation input remain unproved.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -2887,6 +2887,60 @@
       "status": "failed_expected",
       "evidence": "External audit is expected to reach only the nonterminal product gate after W504 because product success remains false.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/external_audit_w504.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W505 point-isomorphism target-leg route compiled in the importable projection-fields module.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w505_verify/source_wpp_projection_fields_w505.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Projection-fields module rebuilt after adding W505; warnings only from existing files.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w505_verify/lake_build_wpp_projection_fields_w505.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations checks W505 declarations and still records product success as false.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w505_verify/product_success_declarations_w505.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W505; warnings only from existing files.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w505_verify/lake_build_w505.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W505.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w505_verify/forbidden_tokens_source_w505.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations compiled after W505.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w505_verify/required_declarations_w505.log"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace check passed before W505 metadata refresh.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w505_verify/git_diff_check_w505_pre_metadata.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W505 metadata refresh.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w505_verify/external_audit_self_check_w505.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W505)",
+      "status": "failed_expected",
+      "evidence": "External audit is expected to reach only the nonterminal product gate after W505 because product success remains false.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w505_verify/external_audit_w505.log"
     }
   ],
   "implemented_declarations_checked": [

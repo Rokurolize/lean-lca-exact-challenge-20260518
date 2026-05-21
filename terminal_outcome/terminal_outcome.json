@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W504でtarget componentから全W318 leg compatibilityを導く補題をimportable routeへ昇格し、W461入力をtarget-leg dataまで縮めた。まだ具体SelectedW461TargetLegProviderW504とclosure-kernelまたはselected cokernel-colimit入力は未証明なのでproduct_successは主張しない。",
+  "summary": "W505でW426 ordinary packageからdescended mapとquotient compatibilityを取り出し、W461入力をpoint-isomorphism target-leg dataまで縮めた。まだ具体SelectedW461PointIsoTargetLegProviderW505とclosure-kernelまたはselected cokernel-colimit入力は未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -588,7 +588,8 @@
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W501)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W502)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W503)",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W504)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W504)",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W505)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1634,8 +1635,8 @@
     "LeanLCAExactChallenge.WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.currentForgetfulFinitePreservationFromCokernelsStateW497_productSuccess"
   ],
   "known_gaps": [
-    "具体的なSelectedW461TargetLegProviderW504がまだない。",
-    "W426/W387/W390のtarget-leg dataを同じimportable namespaceで接続する作業が残っている。",
+    "具体的なSelectedW461PointIsoTargetLegProviderW505がまだない。",
+    "W426/W387のpoint-identification target-leg dataを同じimportable namespaceで接続する作業が残っている。",
     "具体的なMappedExplicitCokernelClosureKernelProviderW503またはselected cokernel-colimit providerはまだ未証明。",
     "最終product auditを通すterminal_outcomeではない。"
   ],
@@ -1647,12 +1648,12 @@
   "worker_frontier_summary": "W495/W496/W497 were integrated by the parent in the target tree; no new workers were launched. The preservation route is reduced to mapped explicit cokernel cofork colimits.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "具体的なSelectedW461TargetLegProviderW504がまだない。",
-    "W426/W387/W390のtarget-leg dataを同じimportable namespaceで接続する作業が残っている。",
+    "具体的なSelectedW461PointIsoTargetLegProviderW505がまだない。",
+    "W426/W387のpoint-identification target-leg dataを同じimportable namespaceで接続する作業が残っている。",
     "具体的なMappedExplicitCokernelClosureKernelProviderW503またはselected cokernel-colimit providerはまだ未証明。",
     "最終product auditを通すterminal_outcomeではない。"
   ],
-  "next_recommended_goal": "Construct the concrete SelectedW461TargetLegProviderW504, then connect the preservation side with a concrete closure-kernel or selected cokernel-colimit provider.",
+  "next_recommended_goal": "Construct the concrete SelectedW461PointIsoTargetLegProviderW505, then connect the preservation side with a concrete closure-kernel or selected cokernel-colimit provider.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2574,10 +2575,17 @@
     "WppOpSelectedW461TargetLegRouteV370SupportW504.selectedPointIdentificationProvider_of_targetLeg_w504",
     "WppOpSelectedW461TargetLegRouteV370SupportW504.exactAcyclic_of_selectedW461TargetLeg_and_selectedCokernelColimit_w504",
     "WppOpSelectedW461TargetLegRouteV370SupportW504.exactAcyclic_of_selectedW461TargetLeg_and_mappedExplicitCokernelCoforks_w504",
-    "WppOpSelectedW461TargetLegRouteV370SupportW504.exactAcyclic_of_selectedW461TargetLeg_and_closureKernelProvider_w504"
+    "WppOpSelectedW461TargetLegRouteV370SupportW504.exactAcyclic_of_selectedW461TargetLeg_and_closureKernelProvider_w504",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.SelectedW461PointIsoTargetLegCallSiteInputsW505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.selectedTargetLegInputs_of_pointIsoTargetLeg_w505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.SelectedW461PointIsoTargetLegProviderW505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.selectedTargetLegProvider_of_pointIsoTargetLeg_w505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.exactAcyclic_of_selectedW461PointIsoTargetLeg_and_selectedCokernelColimit_w505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.exactAcyclic_of_selectedW461PointIsoTargetLeg_and_mappedExplicitCokernelCoforks_w505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.exactAcyclic_of_selectedW461PointIsoTargetLeg_and_closureKernelProvider_w505"
   ],
-  "generated_utc": "2026-05-21T09:47:09Z",
-  "support_result_classification": "nonterminal target-leg factoring",
+  "generated_utc": "2026-05-21T09:54:44Z",
+  "support_result_classification": "nonterminal point-isomorphism target-leg factoring",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3566,12 +3574,19 @@
     "WppOpSelectedW461TargetLegRouteV370SupportW504.selectedPointIdentificationProvider_of_targetLeg_w504",
     "WppOpSelectedW461TargetLegRouteV370SupportW504.exactAcyclic_of_selectedW461TargetLeg_and_selectedCokernelColimit_w504",
     "WppOpSelectedW461TargetLegRouteV370SupportW504.exactAcyclic_of_selectedW461TargetLeg_and_mappedExplicitCokernelCoforks_w504",
-    "WppOpSelectedW461TargetLegRouteV370SupportW504.exactAcyclic_of_selectedW461TargetLeg_and_closureKernelProvider_w504"
+    "WppOpSelectedW461TargetLegRouteV370SupportW504.exactAcyclic_of_selectedW461TargetLeg_and_closureKernelProvider_w504",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.SelectedW461PointIsoTargetLegCallSiteInputsW505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.selectedTargetLegInputs_of_pointIsoTargetLeg_w505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.SelectedW461PointIsoTargetLegProviderW505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.selectedTargetLegProvider_of_pointIsoTargetLeg_w505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.exactAcyclic_of_selectedW461PointIsoTargetLeg_and_selectedCokernelColimit_w505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.exactAcyclic_of_selectedW461PointIsoTargetLeg_and_mappedExplicitCokernelCoforks_w505",
+    "WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505.exactAcyclic_of_selectedW461PointIsoTargetLeg_and_closureKernelProvider_w505"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "construct concrete SelectedW461TargetLegProviderW504 from W426 quotient compatibility and W387 point-identification target-leg equations",
+    "construct concrete SelectedW461PointIsoTargetLegProviderW505 from W426 ordinary package and W387 point-identification target-leg equations",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
     "run final product audit only after terminal_outcome can be product_success"
   ]

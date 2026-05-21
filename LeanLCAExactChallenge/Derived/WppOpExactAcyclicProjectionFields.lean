@@ -4769,4 +4769,156 @@ end Checks
 
 end WppOpSelectedW461TargetLegRouteV370SupportW504
 
+namespace WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+open WppOpSelectedW461TargetLegRouteV370SupportW504
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W505 point-isomorphism target-leg route. -/
+def supportSeedW505 : String :=
+  "w505-selected-w461-point-iso-target-leg-route"
+
+/--
+Target-leg fields after using W426's ordinary descended package as the source
+of the descended map and quotient-compatibility proof.
+-/
+structure SelectedW461PointIsoTargetLegCallSiteInputsW505
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) : Type 1 where
+  ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y
+  ordinaryPackage : W426OrdinaryDescendedMapPackage ordinaryMap
+  sourcePointIdentification : wppOpOrdinaryQuotientPointW441 X ≅ cx.pt
+  targetPointIdentification : wppOpOrdinaryQuotientPointW441 Y ≅ cy.pt
+  sourcePointIdentification_target_leg :
+    cx.ι.app ordinaryTargetIndexW478 ≫ sourcePointIdentification.inv =
+      wppOpOrdinaryQuotientMapW478 X
+  targetPointIdentification_target_leg :
+    α.app ordinaryTargetIndexW478 ≫ cy.ι.app ordinaryTargetIndexW478 =
+      ordinaryMap.app WalkingParallelPair.one ≫
+        wppOpOrdinaryQuotientMapW478 Y ≫ targetPointIdentification.hom
+
+/-- W505 point-isomorphism target-leg fields build W504 target-leg fields. -/
+def selectedTargetLegInputs_of_pointIsoTargetLeg_w505
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y}
+    (H : SelectedW461PointIsoTargetLegCallSiteInputsW505 X Y α cx cy) :
+    SelectedW461TargetLegCallSiteInputsW504 X Y α cx cy where
+  ordinaryMap := H.ordinaryMap
+  ordinaryDescended := H.ordinaryPackage.ordinaryDescended
+  sourcePointIdentification := H.sourcePointIdentification
+  targetPointIdentification := H.targetPointIdentification
+  quotient_compat := by
+    simpa [wppOpOrdinaryQuotientMapW478] using H.ordinaryPackage.quotient_compat
+  sourcePointIdentification_target_leg := H.sourcePointIdentification_target_leg
+  targetPointIdentification_target_leg := H.targetPointIdentification_target_leg
+  ordinaryPackage := H.ordinaryPackage
+  ordinaryDescended_eq := rfl
+
+/-- Provider surface for W505 point-isomorphism target-leg inputs. -/
+abbrev SelectedW461PointIsoTargetLegProviderW505 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+      IsColimit cx →
+        IsColimit cy →
+          (∀ j : WalkingParallelPairᵒᵖ,
+            IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+            W318ColimitMapLegCompatibilityW441 X Y α cx cy φ →
+              SelectedW461PointIsoTargetLegCallSiteInputsW505 X Y α cx cy
+
+/-- W505 providers feed W504's target-leg provider surface. -/
+def selectedTargetLegProvider_of_pointIsoTargetLeg_w505
+    (hpointIso : SelectedW461PointIsoTargetLegProviderW505) :
+    SelectedW461TargetLegProviderW504 :=
+  fun X Y α cx cy φ hcx hcy hclosed hcompat =>
+    selectedTargetLegInputs_of_pointIsoTargetLeg_w505
+      (hpointIso X Y α cx cy φ hcx hcy hclosed hcompat)
+
+/--
+W505 endpoint: point-isomorphism target-leg fields plus the selected
+cokernel-colimit provider imply the current WPP-op exact-acyclic closure.
+-/
+def exactAcyclic_of_selectedW461PointIsoTargetLeg_and_selectedCokernelColimit_w505
+    (hpointIso : SelectedW461PointIsoTargetLegProviderW505)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461TargetLeg_and_selectedCokernelColimit_w504
+    (selectedTargetLegProvider_of_pointIsoTargetLeg_w505 hpointIso) hselected
+
+/-- W505 endpoint with W499's mapped-explicit-cokernel preservation input. -/
+def exactAcyclic_of_selectedW461PointIsoTargetLeg_and_mappedExplicitCokernelCoforks_w505
+    (hpointIso : SelectedW461PointIsoTargetLegProviderW505)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461TargetLeg_and_mappedExplicitCokernelCoforks_w504
+    (selectedTargetLegProvider_of_pointIsoTargetLeg_w505 hpointIso) hMapped
+
+/-- W505 endpoint with W503's closure-kernel preservation input. -/
+def exactAcyclic_of_selectedW461PointIsoTargetLeg_and_closureKernelProvider_w505
+    (hpointIso : SelectedW461PointIsoTargetLegProviderW505)
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461TargetLeg_and_closureKernelProvider_w504
+    (selectedTargetLegProvider_of_pointIsoTargetLeg_w505 hpointIso) hClosure
+
+/-- W505 checked nonterminal state. -/
+structure SelectedW461PointIsoTargetLegRouteV370SupportStateW505 : Type where
+  seed : String
+  declarations : List String
+  targetLegAdapterResult : String
+  selectedCokernelRouteResult : String
+  closureKernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W505 state. -/
+def currentSelectedW461PointIsoTargetLegRouteV370SupportStateW505 :
+    SelectedW461PointIsoTargetLegRouteV370SupportStateW505 where
+  seed := supportSeedW505
+  declarations :=
+    ["SelectedW461PointIsoTargetLegCallSiteInputsW505",
+      "selectedTargetLegInputs_of_pointIsoTargetLeg_w505",
+      "SelectedW461PointIsoTargetLegProviderW505",
+      "selectedTargetLegProvider_of_pointIsoTargetLeg_w505",
+      "exactAcyclic_of_selectedW461PointIsoTargetLeg_and_selectedCokernelColimit_w505",
+      "exactAcyclic_of_selectedW461PointIsoTargetLeg_and_mappedExplicitCokernelCoforks_w505",
+      "exactAcyclic_of_selectedW461PointIsoTargetLeg_and_closureKernelProvider_w505"]
+  targetLegAdapterResult := "proved"
+  selectedCokernelRouteResult := "proved"
+  closureKernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete SelectedW461PointIsoTargetLegProviderW505",
+      "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW505State :
+    SelectedW461PointIsoTargetLegRouteV370SupportStateW505 :=
+  currentSelectedW461PointIsoTargetLegRouteV370SupportStateW505
+
+theorem currentSelectedW461PointIsoTargetLegRouteStateW505_productSuccess :
+    currentW505State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW505
+#check SelectedW461PointIsoTargetLegCallSiteInputsW505
+#check selectedTargetLegInputs_of_pointIsoTargetLeg_w505
+#check SelectedW461PointIsoTargetLegProviderW505
+#check selectedTargetLegProvider_of_pointIsoTargetLeg_w505
+#check exactAcyclic_of_selectedW461PointIsoTargetLeg_and_selectedCokernelColimit_w505
+#check exactAcyclic_of_selectedW461PointIsoTargetLeg_and_mappedExplicitCokernelCoforks_w505
+#check exactAcyclic_of_selectedW461PointIsoTargetLeg_and_closureKernelProvider_w505
+#check currentSelectedW461PointIsoTargetLegRouteStateW505_productSuccess
+
+end Checks
+
+end WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505
+
 end LeanLCAExactChallenge
