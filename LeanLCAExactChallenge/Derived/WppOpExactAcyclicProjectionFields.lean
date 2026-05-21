@@ -7,6 +7,7 @@ import Mathlib.Algebra.Category.Grp.Colimits
 import Mathlib.Algebra.Homology.ShortComplex.Limits
 import Mathlib.Algebra.Homology.ShortComplex.Preadditive
 import Mathlib.CategoryTheory.Limits.Preserves.Basic
+import Mathlib.CategoryTheory.Limits.Preserves.Finite
 import Mathlib.CategoryTheory.Preadditive.LeftExact
 
 
@@ -3508,5 +3509,319 @@ section Checks
 end Checks
 
 end WppOpW480SplitProvidersShortComplexPreservationV370SupportW494
+
+namespace WppOpShortComplexPreservationFromUnderlyingV370SupportW495
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+
+/-- Reproducible support seed for the W495 preservation reduction. -/
+def supportSeedW495 : String :=
+  "w495-short-complex-preservation-from-underlying"
+
+/-- Local name for the underlying forgetful functor. -/
+abbrev underlyingForgetfulFunctorW495 : MetrizableLCA.{0} ⥤ AddCommGrpCat.{0} :=
+  forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}
+
+/--
+Generic bridge: colimit preservation by an underlying functor supplies colimit
+preservation by the induced short-complex functor.
+-/
+@[reducible]
+def mapShortComplexPreservesColimitsOfShapeOfUnderlyingW495
+    {J C D : Type*} [Category J] [Category C] [Category D]
+    [HasZeroMorphisms C] [HasZeroMorphisms D]
+    (F : C ⥤ D) [F.PreservesZeroMorphisms]
+    [HasColimitsOfShape J C] [HasColimitsOfShape J D]
+    [PreservesColimitsOfShape J F] :
+    PreservesColimitsOfShape J F.mapShortComplex where
+  preservesColimit {K} :=
+    preservesColimit_of_preserves_colimit_cocone
+      (ShortComplex.isColimitColimitCocone K)
+      (by
+        refine ShortComplex.isColimitOfIsColimitπ _ ?_ ?_ ?_
+        · change IsColimit (F.mapCocone (ShortComplex.π₁.mapCocone (ShortComplex.colimitCocone K)))
+          exact isColimitOfPreserves F
+            (isColimitOfPreserves (ShortComplex.π₁ : ShortComplex C ⥤ C)
+              (ShortComplex.isColimitColimitCocone K))
+        · change IsColimit (F.mapCocone (ShortComplex.π₂.mapCocone (ShortComplex.colimitCocone K)))
+          exact isColimitOfPreserves F
+            (isColimitOfPreserves (ShortComplex.π₂ : ShortComplex C ⥤ C)
+              (ShortComplex.isColimitColimitCocone K))
+        · change IsColimit (F.mapCocone (ShortComplex.π₃.mapCocone (ShortComplex.colimitCocone K)))
+          exact isColimitOfPreserves F
+            (isColimitOfPreserves (ShortComplex.π₃ : ShortComplex C ⥤ C)
+              (ShortComplex.isColimitColimitCocone K)))
+
+/--
+Underlying WPP-op colimit preservation supplies W493's short-complex
+preservation input.
+-/
+@[reducible]
+def forgottenShortComplexPreservesWppOpColimitsOfUnderlyingW495
+    [HasColimitsOfShape WalkingParallelPairᵒᵖ MetrizableLCA.{0}]
+    [PreservesColimitsOfShape WalkingParallelPairᵒᵖ underlyingForgetfulFunctorW495] :
+    PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor :=
+  mapShortComplexPreservesColimitsOfShapeOfUnderlyingW495
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})
+
+/-- Finite-colimit preservation implies the needed underlying WPP-op preservation. -/
+theorem underlyingForgetfulPreservesWppOpColimitsOfShapeOfFiniteW495
+    [PreservesFiniteColimits underlyingForgetfulFunctorW495] :
+    PreservesColimitsOfShape WalkingParallelPairᵒᵖ underlyingForgetfulFunctorW495 :=
+  inferInstance
+
+/-- Finite-colimit preservation supplies W493's short-complex preservation input. -/
+@[reducible]
+def forgottenShortComplexPreservesWppOpColimitsOfFiniteW495
+    [PreservesFiniteColimits underlyingForgetfulFunctorW495] :
+    PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor := by
+  haveI : PreservesColimitsOfShape WalkingParallelPairᵒᵖ underlyingForgetfulFunctorW495 :=
+    underlyingForgetfulPreservesWppOpColimitsOfShapeOfFiniteW495
+  exact forgottenShortComplexPreservesWppOpColimitsOfUnderlyingW495
+
+/-- W495 checked nonterminal state. -/
+structure ShortComplexPreservationFromUnderlyingV370SupportStateW495 : Type where
+  seed : String
+  declarations : List String
+  preservationReductionResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W495 state. -/
+def currentShortComplexPreservationFromUnderlyingV370SupportStateW495 :
+    ShortComplexPreservationFromUnderlyingV370SupportStateW495 where
+  seed := supportSeedW495
+  declarations :=
+    ["mapShortComplexPreservesColimitsOfShapeOfUnderlyingW495",
+      "forgottenShortComplexPreservesWppOpColimitsOfUnderlyingW495",
+      "underlyingForgetfulPreservesWppOpColimitsOfShapeOfFiniteW495",
+      "forgottenShortComplexPreservesWppOpColimitsOfFiniteW495"]
+  preservationReductionResult := "proved"
+  remainingInputs :=
+    ["prove PreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)",
+      "construct concrete W461ToW475PromotionInputsProviderW480",
+      "construct concrete W461ToW475OrdinaryMapProviderW480"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW495State :
+    ShortComplexPreservationFromUnderlyingV370SupportStateW495 :=
+  currentShortComplexPreservationFromUnderlyingV370SupportStateW495
+
+theorem currentShortComplexPreservationFromUnderlyingStateW495_productSuccess :
+    currentW495State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW495
+#check mapShortComplexPreservesColimitsOfShapeOfUnderlyingW495
+#check forgottenShortComplexPreservesWppOpColimitsOfUnderlyingW495
+#check underlyingForgetfulPreservesWppOpColimitsOfShapeOfFiniteW495
+#check forgottenShortComplexPreservesWppOpColimitsOfFiniteW495
+#check currentShortComplexPreservationFromUnderlyingStateW495_productSuccess
+
+end Checks
+
+end WppOpShortComplexPreservationFromUnderlyingV370SupportW495
+
+namespace WppOpW480SplitProvidersFinitePreservationV370SupportW496
+
+open WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+open WppOpW480SplitProvidersShortComplexPreservationV370SupportW494
+open WppOpShortComplexPreservationFromUnderlyingV370SupportW495
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W496 finite-preservation endpoint. -/
+def supportSeedW496 : String :=
+  "w496-w480-split-providers-finite-preservation"
+
+/--
+W496 endpoint: W480 split providers plus finite-colimit preservation by the
+underlying forgetful functor imply the current WPP-op exact-acyclic closure.
+-/
+def exactAcyclic_of_w480_splitProviders_and_underlyingPreservesFiniteColimits_w496
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480)
+    [PreservesFiniteColimits underlyingForgetfulFunctorW495] :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure := by
+  haveI : PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor :=
+    forgottenShortComplexPreservesWppOpColimitsOfFiniteW495
+  exact
+    exactAcyclic_of_w480_splitProviders_and_shortComplexPreservesWppOpColimits_w494
+      hinputs hordinaryMap
+
+/-- W496 checked nonterminal state. -/
+structure W480SplitProvidersFinitePreservationV370SupportStateW496 : Type where
+  seed : String
+  declarations : List String
+  finitePreservationEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W496 state. -/
+def currentW480SplitProvidersFinitePreservationV370SupportStateW496 :
+    W480SplitProvidersFinitePreservationV370SupportStateW496 where
+  seed := supportSeedW496
+  declarations :=
+    ["exactAcyclic_of_w480_splitProviders_and_underlyingPreservesFiniteColimits_w496"]
+  finitePreservationEndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete W461ToW475PromotionInputsProviderW480",
+      "construct concrete W461ToW475OrdinaryMapProviderW480",
+      "prove PreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW496State :
+    W480SplitProvidersFinitePreservationV370SupportStateW496 :=
+  currentW480SplitProvidersFinitePreservationV370SupportStateW496
+
+theorem currentW480SplitProvidersFinitePreservationStateW496_productSuccess :
+    currentW496State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW496
+#check exactAcyclic_of_w480_splitProviders_and_underlyingPreservesFiniteColimits_w496
+#check currentW480SplitProvidersFinitePreservationStateW496_productSuccess
+
+end Checks
+
+end WppOpW480SplitProvidersFinitePreservationV370SupportW496
+
+namespace WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+
+open WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+open WppOpShortComplexPreservationFromUnderlyingV370SupportW495
+open WppOpW480SplitProvidersFinitePreservationV370SupportW496
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W497 forgetful finite-preservation route. -/
+def supportSeedW497 : String :=
+  "w497-forgetful-finite-preservation-from-cokernels"
+
+/-- The explicit local cokernel cofork before forgetting topology. -/
+def explicitMetrizableCokernelCoforkW497 {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
+    CokernelCofork f :=
+  CokernelCofork.ofπ (MetrizableLCA.cokernelπ f) (MetrizableLCA.comp_cokernelπ f)
+
+/-- The existing quotient/cokernel API proves the explicit cofork is colimiting. -/
+def explicitMetrizableCokernelCoforkIsColimitW497
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
+    IsColimit (explicitMetrizableCokernelCoforkW497 f) :=
+  MetrizableLCA.cokernelIsColimit f
+
+/-- The mapped explicit cokernel cocone after forgetting topology. -/
+def mappedExplicitCokernelCoconeW497 {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
+    Cocone (parallelPair f 0 ⋙ underlyingForgetfulFunctorW495) :=
+  underlyingForgetfulFunctorW495.mapCocone (explicitMetrizableCokernelCoforkW497 f)
+
+/-- The mapped explicit cokernel leg at `one` is the forgotten quotient projection. -/
+theorem mappedExplicitCokernelCocone_ι_oneW497
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
+    (mappedExplicitCokernelCoconeW497 f).ι.app WalkingParallelPair.one =
+      underlyingForgetfulFunctorW495.map (MetrizableLCA.cokernelπ f) :=
+  rfl
+
+/-- Preservation of one cokernel follows from the mapped explicit cofork colimit proof. -/
+@[reducible]
+def preservesCokernelOfMappedExplicitCokernelCoconeIsColimitW497
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hMapped : IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    PreservesColimit (parallelPair f 0) underlyingForgetfulFunctorW495 :=
+  preservesColimit_of_preserves_colimit_cocone
+    (explicitMetrizableCokernelCoforkIsColimitW497 f) hMapped
+
+/-- If every mapped explicit cokernel cofork is colimiting, all cokernels are preserved. -/
+@[reducible]
+def preservesAllCokernelsOfMappedExplicitCokernelCoconesW497
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      PreservesColimit (parallelPair f 0) underlyingForgetfulFunctorW495 :=
+  fun f => preservesCokernelOfMappedExplicitCokernelCoconeIsColimitW497 f (hMapped f)
+
+/--
+The mapped explicit cokernel-cofork input supplies finite-colimit preservation by
+the underlying forgetful functor.
+-/
+theorem underlyingForgetfulPreservesFiniteColimitsOfMappedExplicitCokernelCoforksW497
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    PreservesFiniteColimits underlyingForgetfulFunctorW495 := by
+  haveI : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      PreservesColimit (parallelPair f 0) underlyingForgetfulFunctorW495 :=
+    preservesAllCokernelsOfMappedExplicitCokernelCoconesW497 hMapped
+  exact CategoryTheory.Functor.preservesFiniteColimits_of_preservesCokernels
+    underlyingForgetfulFunctorW495
+
+/--
+W497 endpoint: W480 split providers plus mapped explicit cokernel cofork
+colimit proofs imply the current WPP-op exact-acyclic closure.
+-/
+def exactAcyclic_of_w480_splitProviders_and_mappedExplicitCokernelCoforks_w497
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure := by
+  haveI : PreservesFiniteColimits underlyingForgetfulFunctorW495 :=
+    underlyingForgetfulPreservesFiniteColimitsOfMappedExplicitCokernelCoforksW497 hMapped
+  exact
+    exactAcyclic_of_w480_splitProviders_and_underlyingPreservesFiniteColimits_w496
+      hinputs hordinaryMap
+
+/-- W497 checked nonterminal state. -/
+structure ForgetfulFinitePreservationFromCokernelsV370SupportStateW497 : Type where
+  seed : String
+  declarations : List String
+  finitePreservationRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W497 state. -/
+def currentForgetfulFinitePreservationFromCokernelsV370SupportStateW497 :
+    ForgetfulFinitePreservationFromCokernelsV370SupportStateW497 where
+  seed := supportSeedW497
+  declarations :=
+    ["explicitMetrizableCokernelCoforkW497",
+      "mappedExplicitCokernelCoconeW497",
+      "underlyingForgetfulPreservesFiniteColimitsOfMappedExplicitCokernelCoforksW497",
+      "exactAcyclic_of_w480_splitProviders_and_mappedExplicitCokernelCoforks_w497"]
+  finitePreservationRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete W461ToW475PromotionInputsProviderW480",
+      "construct concrete W461ToW475OrdinaryMapProviderW480",
+      "prove every mapped explicit MetrizableLCA cokernel cofork is colimiting in AddCommGrpCat"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW497State :
+    ForgetfulFinitePreservationFromCokernelsV370SupportStateW497 :=
+  currentForgetfulFinitePreservationFromCokernelsV370SupportStateW497
+
+theorem currentForgetfulFinitePreservationFromCokernelsStateW497_productSuccess :
+    currentW497State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW497
+#check explicitMetrizableCokernelCoforkW497
+#check explicitMetrizableCokernelCoforkIsColimitW497
+#check mappedExplicitCokernelCoconeW497
+#check mappedExplicitCokernelCocone_ι_oneW497
+#check preservesCokernelOfMappedExplicitCokernelCoconeIsColimitW497
+#check preservesAllCokernelsOfMappedExplicitCokernelCoconesW497
+#check underlyingForgetfulPreservesFiniteColimitsOfMappedExplicitCokernelCoforksW497
+#check exactAcyclic_of_w480_splitProviders_and_mappedExplicitCokernelCoforks_w497
+#check currentForgetfulFinitePreservationFromCokernelsStateW497_productSuccess
+
+end Checks
+
+end WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
 
 end LeanLCAExactChallenge
