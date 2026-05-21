@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W469/W470を検証して記録した。W469はselected component cofork colimitとexplicit quotient cofork colimitからW463 point isomorphismとleg equationを導く。W470はclosed-range point-identification入力をW463/W467経由でAddCommGrp strict kernel boundaryとexact-acyclic closure wrapperへ送る。ただし実call-site入力、左closed-embedding入力、W465のW426/W387実入力は未構成なのでproduct_successは主張しない。",
+  "summary": "W471を検証して記録した。W469 component-colimit comparison入力からW467 quotient-identification wrapperを経由して、AddCommGrp strict kernel boundaryとexact-acyclic WPP-op colimit closure endpointへ進む接続は閉じた。ただし三つのselected component cofork colimit、三つのexplicit quotient cofork colimit、左closed-embedding入力は未構成なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -664,7 +664,10 @@
     "lake env lean audit/blockers/addcommgrp_closed_range_point_identification_exact_acyclic_v370_support_w470.lean",
     "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_component_colimit_comparison_quotient_identification_v370_support_w469.lean audit/blockers/addcommgrp_closed_range_point_identification_exact_acyclic_v370_support_w470.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_component_colimit_comparison_quotient_identification_v370_support_w469.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_closed_range_point_identification_exact_acyclic_v370_support_w470.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_closed_range_point_identification_exact_acyclic_v370_support_w470.lean",
+    "lake env lean audit/blockers/addcommgrp_component_colimit_comparison_exact_acyclic_v370_support_w471.lean",
+    "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_component_colimit_comparison_exact_acyclic_v370_support_w471.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_component_colimit_comparison_exact_acyclic_v370_support_w471.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1683,9 +1686,9 @@
     "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess"
   ],
   "known_gaps": [
-    "W469/W470の実適用には、selected component cofork colimit三つ、または対応するpoint-identification入力三つが必要である。",
-    "W469/W470の実適用には、選択component差分について明示quotient coforkのIsColimit証明三つ、またはclosed-range仮定三つが必要である。",
-    "W470のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
+    "W471の実適用には、selected component cofork IsColimit証明三つが必要である。",
+    "W471の実適用には、明示quotient cofork IsColimit証明三つが必要である。",
+    "W471のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
     "W465の実適用には、W426 ordinary descended map、W426 quotient compatibility、W387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
@@ -1694,16 +1697,16 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "825e9cd",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W469/W470 consumed: W463 quotient-identification inputs now reduce to component colimit comparison or closed-range point-identification data, and feed W467 exact-acyclic wrappers; product_complete remains false.",
+  "worker_frontier_summary": "W471 consumed: component-colimit comparison inputs now bridge to W467 exact-acyclic closure wrappers; product_complete remains false pending six colimit proofs and left closed-embedding input.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "W469/W470の実適用には、selected component cofork colimit三つ、または対応するpoint-identification入力三つが必要である。",
-    "W469/W470の実適用には、選択component差分について明示quotient coforkのIsColimit証明三つ、またはclosed-range仮定三つが必要である。",
-    "W470のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
+    "W471の実適用には、selected component cofork IsColimit証明三つが必要である。",
+    "W471の実適用には、明示quotient cofork IsColimit証明三つが必要である。",
+    "W471のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
     "W465の実適用には、W426 ordinary descended map、W426 quotient compatibility、W387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
-  "next_recommended_goal": "W469/W470のcall-site入力を実際のselected WPP-op colimit pointへ構成し、三つのcomponent closed-range/quotient colimit証明、左closed-embedding入力、W465のW426/W387 target-leg入力を同一importable namespaceで接続する。",
+  "next_recommended_goal": "W471のcall-site入力として三つのselected component cofork colimit証明、三つのexplicit quotient cofork colimit証明、W318/W464左closed-embedding入力を構成し、W465のW426/W387 target-leg入力と同一importable namespaceで接続する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2545,10 +2548,13 @@
     "AddCommGrpQuotientIdentificationExactAcyclicBoundaryV370SupportW467.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_quotientIdentifications_w467",
     "AddCommGrpComponentColimitComparisonQuotientIdentificationV370SupportW469.selectedComponentQuotientIdentificationInputs_of_colimitComparison_w469",
     "AddCommGrpClosedRangePointIdentificationExactAcyclicV370SupportW470.selectedComponentQuotientIdentificationInputs_of_closedRange_w470",
-    "AddCommGrpClosedRangePointIdentificationExactAcyclicV370SupportW470.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_closedRangePointIdentifications_w470"
+    "AddCommGrpClosedRangePointIdentificationExactAcyclicV370SupportW470.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_closedRangePointIdentifications_w470",
+    "AddCommGrpComponentColimitComparisonExactAcyclicV370SupportW471.selectedProjectionComponentIsColimitInputs_of_componentColimitComparison_w471",
+    "AddCommGrpComponentColimitComparisonExactAcyclicV370SupportW471.addCommGrpStrictKernelExactBoundary_of_componentColimitComparison_w471",
+    "AddCommGrpComponentColimitComparisonExactAcyclicV370SupportW471.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_componentColimitComparison_w471"
   ],
-  "generated_utc": "2026-05-21T02:10:00Z",
-  "support_result_classification": "W469/W470 parent-consumed support are verified nonterminal frontier reducers, not product success.",
+  "generated_utc": "2026-05-21T02:18:00Z",
+  "support_result_classification": "W471 parent-consumed support is a verified nonterminal frontier reducer, not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
