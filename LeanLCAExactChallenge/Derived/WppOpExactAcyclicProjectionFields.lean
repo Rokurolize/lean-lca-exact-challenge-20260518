@@ -7633,4 +7633,173 @@ end Checks
 
 end WppOpCompactTargetRelationPreservationExitsV370SupportW518
 
+namespace WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpShortComplexPreservationFromUnderlyingV370SupportW495
+open WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+open WppOpCompactTargetRelationPreservationExitsV370SupportW518
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W519 closed-range preservation route. -/
+def supportSeedW519 : String :=
+  "w519-closed-range-mapped-cokernel-preservation"
+
+/-- Closed range for every mapped explicit LCA cokernel input. -/
+structure MappedExplicitCokernelClosedRangeProviderW519 : Type 1 where
+  isClosedRange : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+    IsClosed (Set.range (f : X → Y))
+
+/-- Closed-map variant of the mapped explicit LCA cokernel preservation input. -/
+structure MappedExplicitCokernelClosedMapProviderW519 : Type 1 where
+  isClosedMap : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+    IsClosedMap (f : X → Y)
+
+/-- Closed-embedding variant of the mapped explicit LCA cokernel preservation input. -/
+structure MappedExplicitCokernelClosedEmbeddingProviderW519 : Type 1 where
+  isClosedEmbedding : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+    IsClosedEmbedding (f : X → Y)
+
+/-- Closed maps supply the closed-range provider surface used by W519. -/
+def closedRangeProvider_of_closedMapProvider_w519
+    (hMap : MappedExplicitCokernelClosedMapProviderW519) :
+    MappedExplicitCokernelClosedRangeProviderW519 where
+  isClosedRange := by
+    intro X Y f
+    simpa [Set.image_univ] using hMap.isClosedMap f Set.univ isClosed_univ
+
+/-- Closed embeddings supply the closed-range provider surface used by W519. -/
+def closedRangeProvider_of_closedEmbeddingProvider_w519
+    (hEmbedding : MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    MappedExplicitCokernelClosedRangeProviderW519 where
+  isClosedRange := by
+    intro X Y f
+    exact (hEmbedding.isClosedEmbedding f).isClosed_range
+
+/--
+Closed range identifies the algebraic and closed LCA cokernel subgroups, giving
+W503's closure-kernel provider surface.
+-/
+def closureKernelProvider_of_closedRangeProvider_w519
+    (hRange : MappedExplicitCokernelClosedRangeProviderW519) :
+    MappedExplicitCokernelClosureKernelProviderW503 where
+  closureKernel := by
+    intro X Y f
+    exact
+      MetrizableLCA.closureKernelInput_of_cokernelSubgroup_eq_forgottenAlgebraicRange f
+        (MetrizableLCA.cokernelSubgroup_eq_forgottenAlgebraicRangeSubgroup_of_isClosed_range
+          f (hRange.isClosedRange f))
+
+/--
+Closed range supplies the W497 mapped explicit cokernel cofork colimit input
+directly, without routing through the finite-colimit preservation typeclass.
+-/
+def mappedExplicitCokernelCoforks_of_closedRangeProvider_w519
+    (hRange : MappedExplicitCokernelClosedRangeProviderW519) :
+    ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f) := by
+  intro X Y f
+  simpa [mappedExplicitCokernelCoconeW497, explicitMetrizableCokernelCoforkW497,
+    underlyingForgetfulFunctorW495, MetrizableLCA.forgottenMappedExplicitCokernelCocone]
+    using
+      (MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_isClosed_range
+        f (hRange.isClosedRange f))
+
+/-- W519 endpoint using closed-range mapped explicit cokernel preservation. -/
+def exactAcyclic_of_compactTargetRelation_and_closedRangeMappedCokernels_w519
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hRange : MappedExplicitCokernelClosedRangeProviderW519) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_compactTargetRelation_and_mappedExplicitCokernelCoforks_w518
+    hinputs (mappedExplicitCokernelCoforks_of_closedRangeProvider_w519 hRange)
+
+/-- W519 endpoint using closed-map mapped explicit cokernel preservation. -/
+def exactAcyclic_of_compactTargetRelation_and_closedMapMappedCokernels_w519
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hMap : MappedExplicitCokernelClosedMapProviderW519) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_compactTargetRelation_and_closedRangeMappedCokernels_w519
+    hinputs (closedRangeProvider_of_closedMapProvider_w519 hMap)
+
+/-- W519 endpoint using closed-embedding mapped explicit cokernel preservation. -/
+def exactAcyclic_of_compactTargetRelation_and_closedEmbeddingMappedCokernels_w519
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hEmbedding : MappedExplicitCokernelClosedEmbeddingProviderW519) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_compactTargetRelation_and_closedRangeMappedCokernels_w519
+    hinputs (closedRangeProvider_of_closedEmbeddingProvider_w519 hEmbedding)
+
+/-- W519 endpoint using W503's closure-kernel route after closed-range conversion. -/
+def exactAcyclic_of_compactTargetRelation_and_closedRangeClosureKernel_w519
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hRange : MappedExplicitCokernelClosedRangeProviderW519) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_compactTargetRelation_and_closureKernelProvider_w518
+    hinputs (closureKernelProvider_of_closedRangeProvider_w519 hRange)
+
+/-- W519 checked nonterminal state. -/
+structure ClosedRangeMappedCokernelPreservationV370SupportStateW519 : Type where
+  seed : String
+  declarations : List String
+  closedRangeToClosureKernelResult : String
+  closedRangeToMappedCoforksResult : String
+  compactTargetClosedRangeEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W519 state. -/
+def currentClosedRangeMappedCokernelPreservationV370SupportStateW519 :
+    ClosedRangeMappedCokernelPreservationV370SupportStateW519 where
+  seed := supportSeedW519
+  declarations :=
+    ["MappedExplicitCokernelClosedRangeProviderW519",
+      "MappedExplicitCokernelClosedMapProviderW519",
+      "MappedExplicitCokernelClosedEmbeddingProviderW519",
+      "closedRangeProvider_of_closedMapProvider_w519",
+      "closedRangeProvider_of_closedEmbeddingProvider_w519",
+      "closureKernelProvider_of_closedRangeProvider_w519",
+      "mappedExplicitCokernelCoforks_of_closedRangeProvider_w519",
+      "exactAcyclic_of_compactTargetRelation_and_closedRangeMappedCokernels_w519",
+      "exactAcyclic_of_compactTargetRelation_and_closedMapMappedCokernels_w519",
+      "exactAcyclic_of_compactTargetRelation_and_closedEmbeddingMappedCokernels_w519",
+      "exactAcyclic_of_compactTargetRelation_and_closedRangeClosureKernel_w519"]
+  closedRangeToClosureKernelResult := "proved"
+  closedRangeToMappedCoforksResult := "proved"
+  compactTargetClosedRangeEndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+      "construct concrete mapped-explicit closed-range / closed-map / " ++
+        "closed-embedding preservation provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentClosedRangeMappedCokernelPreservationStateW519 :
+    ClosedRangeMappedCokernelPreservationV370SupportStateW519 :=
+  currentClosedRangeMappedCokernelPreservationV370SupportStateW519
+
+theorem currentClosedRangeMappedCokernelPreservationStateW519_productSuccess :
+    currentClosedRangeMappedCokernelPreservationStateW519.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW519
+#check MappedExplicitCokernelClosedRangeProviderW519
+#check MappedExplicitCokernelClosedMapProviderW519
+#check MappedExplicitCokernelClosedEmbeddingProviderW519
+#check closedRangeProvider_of_closedMapProvider_w519
+#check closedRangeProvider_of_closedEmbeddingProvider_w519
+#check closureKernelProvider_of_closedRangeProvider_w519
+#check mappedExplicitCokernelCoforks_of_closedRangeProvider_w519
+#check exactAcyclic_of_compactTargetRelation_and_closedRangeMappedCokernels_w519
+#check exactAcyclic_of_compactTargetRelation_and_closedMapMappedCokernels_w519
+#check exactAcyclic_of_compactTargetRelation_and_closedEmbeddingMappedCokernels_w519
+#check exactAcyclic_of_compactTargetRelation_and_closedRangeClosureKernel_w519
+#check currentClosedRangeMappedCokernelPreservationStateW519_productSuccess
+
+end Checks
+
+end WppOpClosedRangeMappedCokernelPreservationV370SupportW519
+
 end LeanLCAExactChallenge

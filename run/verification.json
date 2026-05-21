@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w518-compact-target-preservation-exits",
-  "generated_utc": "2026-05-21T12:52:50Z",
-  "source_tree_hash": "630f42f61ffe5cb4e05885e41cfae485bd86eb76a0259452f5980edcb7069421",
-  "summary": "W518 exposes the W517 compact-target relation route through W515/W511 preservation exits: selected cokernel colimits, quotient-identification data, mapped explicit cokernel coforks, and closure-kernel preservation. Product success remains false because a concrete compact/top/general relation provider and preservation input are still unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w519-closed-range-mapped-cokernel-preservation",
+  "generated_utc": "2026-05-21T13:10:26Z",
+  "source_tree_hash": "b20762e84e42cbdd9399e221de1cb83b6176e2dd0c7291f7c31021eb31a16b15",
+  "summary": "W519 adds closed-range, closed-map, and closed-embedding provider adapters for mapped explicit LCA cokernel preservation. Closed range now yields both W503 closure-kernel data and W497 mapped explicit cokernel cofork colimits, then composes with the W518 compact-target relation exits. Product success remains false because the concrete compact-target relation provider and concrete global closed-range preservation provider are still unproved.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3604,6 +3604,81 @@
       "command": "python3 audit/external_audit.py --root .",
       "status": "failed_expected",
       "evidence": "After metadata refresh this is expected to fail only at the nonterminal product gate; log: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_004_w518_verify/external_audit_terminal_w518.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W519 source check passed; log: outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_005_w519_verify/source_wpp_projection_fields_w519.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W519 projection-fields module built into olean before dependent audit checks."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations sees and checks W519 declarations after module build."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W519-edited projection-fields module."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the updated product declaration audit."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declarations audit still passes after W519."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Required Lean tree forbidden-token scan passed after W519."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit",
+      "status": "passed",
+      "evidence": "Full Lean/audit forbidden-token scan passed after W519."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W519."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W519 edits."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "terminal_outcome JSON validated after W519 nonterminal refresh."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "verification JSON validated after W519 refresh."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "manifest JSON validated after W519 hash refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W519."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Expected nonterminal product gate failure: terminal_outcome.outcome is blocked_nonterminal_frontier, not product_success."
     }
   ],
   "implemented_declarations_checked": [

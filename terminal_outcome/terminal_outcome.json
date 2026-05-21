@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W518でW517のcompact-target-relation経路を、selected cokernel colimit、quotient-identification、mapped explicit cokernel cofork、closure-kernel preservationの各保存経路へ接続した。これによりcompactなtarget relationが得られた後の出口は増えたが、具体的なcompact/top/general relation providerと保存入力はまだ未証明なのでproduct_successは主張しない。",
+  "summary": "W519でmapped explicit LCA cokernel保存側をclosed range、closed map、closed embeddingの各providerへ開いた。closed rangeからW503 closure-kernel providerとW497 mapped explicit cokernel cofork colimit入力の両方を作り、W518のcompact-target relation出口へ接続した。ただし具体的なcompact-target relation providerと具体的なglobal closed-range保存providerは未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -618,7 +618,8 @@
     "python3 audit/external_audit.py --root . --self-check-only",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W516)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W517)",
-    "python3 audit/external_audit.py --root . (expected failed_nonterminal product gate)"
+    "python3 audit/external_audit.py --root . (expected failed_nonterminal product gate)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
