@@ -1,3 +1,4 @@
+import LeanLCAExactChallenge.LCA.Pullback
 import LeanLCAExactChallenge.Derived.DirectWppOpColimitFiniteShapeTransfer
 
 /-!
@@ -658,6 +659,181 @@ abbrev wppLimit_lca_limitMap_injective_inducing_closedImage : Prop :=
                 IsInducing (φ : cx.pt → cy.pt) ∧
                   IsClosed (Set.range (φ : cx.pt → cy.pt))
 
+/-- A limiting WPP cone gives a limiting fork on the two parallel arrows. -/
+def forkOfConeIsLimit {C : Type*} [Category C] {F : WalkingParallelPair ⥤ C}
+    {c : Cone F} (hc : IsLimit c) : IsLimit (Fork.ofCone c) :=
+  Fork.IsLimit.mk (Fork.ofCone c)
+    (fun s => hc.lift (Cone.ofFork s))
+    (fun s => by
+      change hc.lift (Cone.ofFork s) ≫
+          (Fork.ofCone c).π.app WalkingParallelPair.zero =
+        s.π.app WalkingParallelPair.zero
+      simpa [Fork.ofCone, Cone.ofFork] using
+        (hc.fac (Cone.ofFork s) WalkingParallelPair.zero))
+    (fun s m hm => by
+      have hfac0 :
+          hc.lift (Cone.ofFork s) ≫ c.π.app WalkingParallelPair.zero =
+            s.π.app WalkingParallelPair.zero := by
+        simpa [Fork.ofCone, Cone.ofFork] using
+          (hc.fac (Cone.ofFork s) WalkingParallelPair.zero)
+      have hm0 : m ≫ c.π.app WalkingParallelPair.zero = s.π.app WalkingParallelPair.zero := by
+        have hm0' : m ≫ (Fork.ofCone c).π.app WalkingParallelPair.zero =
+            s.π.app WalkingParallelPair.zero := by
+          change m ≫ (Fork.ofCone c).ι = s.ι
+          exact hm
+        simpa [Fork.ofCone] using hm0'
+      apply hc.hom_ext
+      intro j
+      rcases j with (_ | _)
+      · change m ≫ c.π.app WalkingParallelPair.zero =
+          hc.lift (Cone.ofFork s) ≫ c.π.app WalkingParallelPair.zero
+        rw [hm0, hfac0]
+      · have hzero : m ≫ c.π.app WalkingParallelPair.zero =
+            hc.lift (Cone.ofFork s) ≫ c.π.app WalkingParallelPair.zero := by
+          change m ≫ c.π.app WalkingParallelPair.zero =
+            hc.lift (Cone.ofFork s) ≫ c.π.app WalkingParallelPair.zero
+          rw [hm0, hfac0]
+        calc
+          m ≫ c.π.app WalkingParallelPair.one =
+              (m ≫ c.π.app WalkingParallelPair.zero) ≫
+                F.map WalkingParallelPairHom.left := by
+                rw [Category.assoc]
+                exact congrArg (fun q => m ≫ q)
+                  (c.w WalkingParallelPairHom.left).symm
+          _ = (hc.lift (Cone.ofFork s) ≫ c.π.app WalkingParallelPair.zero) ≫
+              F.map WalkingParallelPairHom.left := by
+                exact congrArg (fun q => q ≫ F.map WalkingParallelPairHom.left) hzero
+          _ = hc.lift (Cone.ofFork s) ≫
+              (c.π.app WalkingParallelPair.zero ≫ F.map WalkingParallelPairHom.left) := by
+                rw [Category.assoc]
+          _ = hc.lift (Cone.ofFork s) ≫ c.π.app WalkingParallelPair.one := by
+                exact congrArg (fun q => hc.lift (Cone.ofFork s) ≫ q)
+                  (c.w WalkingParallelPairHom.left))
+
+/-- The zero projection of a limiting WPP cone in `MetrizableLCA` is a closed embedding. -/
+theorem walkingParallelPair_limit_π_zero_closedEmbedding
+    {F : WalkingParallelPair ⥤ MetrizableLCA.{0}} {c : Cone F}
+    (hc : IsLimit c) :
+    IsClosedEmbedding (c.π.app WalkingParallelPair.zero : c.pt → F.obj WalkingParallelPair.zero) := by
+  have hfork : IsLimit (Fork.ofCone c) := forkOfConeIsLimit hc
+  have hclosed := MetrizableLCA.isLimit_fork_ι_closedEmbedding
+    (F.map WalkingParallelPairHom.left) (F.map WalkingParallelPairHom.right) hfork
+  simpa [Fork.ofCone] using hclosed
+
+/-- Direct WPP limit certificate for preserving closed embeddings on induced maps. -/
+theorem wppLimit_lca_limitMap_injective_inducing_closedImage_direct :
+    wppLimit_lca_limitMap_injective_inducing_closedImage := by
+  intro X Y α cx cy φ hcx hcy hclosed hφ
+  let πx₀ : cx.pt ⟶ X.obj WalkingParallelPair.zero := cx.π.app WalkingParallelPair.zero
+  let πy₀ : cy.pt ⟶ Y.obj WalkingParallelPair.zero := cy.π.app WalkingParallelPair.zero
+  have hπx₀ : IsClosedEmbedding (πx₀ : cx.pt → X.obj WalkingParallelPair.zero) := by
+    simpa [πx₀] using walkingParallelPair_limit_π_zero_closedEmbedding (F := X) hcx
+  have hπy₀ : IsClosedEmbedding (πy₀ : cy.pt → Y.obj WalkingParallelPair.zero) := by
+    simpa [πy₀] using walkingParallelPair_limit_π_zero_closedEmbedding (F := Y) hcy
+  refine ⟨?_, ?_, ?_⟩
+  · intro a b hab
+    apply hπx₀.injective
+    apply (hclosed WalkingParallelPair.zero).injective
+    calc
+      (α.app WalkingParallelPair.zero) (πx₀ a) = πy₀ (φ a) := by
+        exact (congrArg (fun h : cx.pt ⟶ Y.obj WalkingParallelPair.zero => h a)
+          (hφ WalkingParallelPair.zero)).symm
+      _ = πy₀ (φ b) := by rw [hab]
+      _ = (α.app WalkingParallelPair.zero) (πx₀ b) := by
+        exact congrArg (fun h : cx.pt ⟶ Y.obj WalkingParallelPair.zero => h b)
+          (hφ WalkingParallelPair.zero)
+  · have hcomp_fun :
+        ((πy₀ : cy.pt → Y.obj WalkingParallelPair.zero) ∘ (φ : cx.pt → cy.pt)) =
+          ((α.app WalkingParallelPair.zero : X.obj WalkingParallelPair.zero →
+              Y.obj WalkingParallelPair.zero) ∘
+            (πx₀ : cx.pt → X.obj WalkingParallelPair.zero)) := by
+      funext x
+      exact congrArg (fun h : cx.pt ⟶ Y.obj WalkingParallelPair.zero => h x)
+        (hφ WalkingParallelPair.zero)
+    have hcomp_ind :
+        IsInducing
+          ((πy₀ : cy.pt → Y.obj WalkingParallelPair.zero) ∘ (φ : cx.pt → cy.pt)) := by
+      rw [hcomp_fun]
+      exact (hclosed WalkingParallelPair.zero).toIsEmbedding.toIsInducing.comp
+        hπx₀.toIsEmbedding.toIsInducing
+    exact hπy₀.toIsEmbedding.toIsInducing.of_comp_iff.mp hcomp_ind
+  · have hrange :
+        Set.range (φ : cx.pt → cy.pt) =
+          (πy₀ : cy.pt → Y.obj WalkingParallelPair.zero) ⁻¹'
+            Set.range (α.app WalkingParallelPair.zero :
+              X.obj WalkingParallelPair.zero → Y.obj WalkingParallelPair.zero) := by
+      ext y
+      constructor
+      · rintro ⟨x, rfl⟩
+        refine ⟨πx₀ x, ?_⟩
+        exact (congrArg (fun h : cx.pt ⟶ Y.obj WalkingParallelPair.zero => h x)
+          (hφ WalkingParallelPair.zero)).symm
+      · rintro ⟨x₀, hx₀⟩
+        have hx_eq :
+            (X.map WalkingParallelPairHom.left) x₀ =
+              (X.map WalkingParallelPairHom.right) x₀ := by
+          apply (hclosed WalkingParallelPair.one).injective
+          calc
+            (α.app WalkingParallelPair.one)
+                ((X.map WalkingParallelPairHom.left) x₀) =
+              (Y.map WalkingParallelPairHom.left)
+                ((α.app WalkingParallelPair.zero) x₀) := by
+                exact congrArg
+                  (fun h : X.obj WalkingParallelPair.zero ⟶
+                      Y.obj WalkingParallelPair.one => h x₀)
+                  (α.naturality WalkingParallelPairHom.left)
+            _ = (Y.map WalkingParallelPairHom.left) (πy₀ y) := by rw [hx₀]
+            _ = (cy.π.app WalkingParallelPair.one) y := by
+              exact congrArg
+                (fun h : cy.pt ⟶ Y.obj WalkingParallelPair.one => h y)
+                (cy.w WalkingParallelPairHom.left)
+            _ = (Y.map WalkingParallelPairHom.right) (πy₀ y) := by
+              exact (congrArg
+                (fun h : cy.pt ⟶ Y.obj WalkingParallelPair.one => h y)
+                (cy.w WalkingParallelPairHom.right)).symm
+            _ = (Y.map WalkingParallelPairHom.right)
+                ((α.app WalkingParallelPair.zero) x₀) := by rw [hx₀]
+            _ = (α.app WalkingParallelPair.one)
+                ((X.map WalkingParallelPairHom.right) x₀) := by
+                exact (congrArg
+                  (fun h : X.obj WalkingParallelPair.zero ⟶
+                      Y.obj WalkingParallelPair.one => h x₀)
+                  (α.naturality WalkingParallelPairHom.right)).symm
+        let z : MetrizableLCA.equalizerObj
+            (X.map WalkingParallelPairHom.left) (X.map WalkingParallelPairHom.right) :=
+          ⟨x₀, hx_eq⟩
+        let fx : Fork (X.map WalkingParallelPairHom.left) (X.map WalkingParallelPairHom.right) :=
+          Fork.ofCone cx
+        have hfx : IsLimit fx := by
+          simpa [fx] using forkOfConeIsLimit hcx
+        let ex := IsLimit.conePointUniqueUpToIso hfx
+          (MetrizableLCA.equalizerIsLimit
+            (X.map WalkingParallelPairHom.left) (X.map WalkingParallelPairHom.right))
+        let x : cx.pt := ex.inv z
+        have hex_inv :
+            ex.inv ≫ (Fork.ofCone cx).ι =
+              MetrizableLCA.equalizerι
+                (X.map WalkingParallelPairHom.left) (X.map WalkingParallelPairHom.right) := by
+          simpa [ex] using
+            (IsLimit.conePointUniqueUpToIso_inv_comp hfx
+              (MetrizableLCA.equalizerIsLimit
+                (X.map WalkingParallelPairHom.left) (X.map WalkingParallelPairHom.right))
+              WalkingParallelPair.zero)
+        have hxπ : πx₀ x = x₀ := by
+          change (ex.inv ≫ (Fork.ofCone cx).ι) z = x₀
+          rw [hex_inv]
+          rfl
+        refine ⟨x, ?_⟩
+        apply hπy₀.injective
+        calc
+          πy₀ (φ x) = (α.app WalkingParallelPair.zero) (πx₀ x) := by
+            exact congrArg (fun h : cx.pt ⟶ Y.obj WalkingParallelPair.zero => h x)
+              (hφ WalkingParallelPair.zero)
+          _ = (α.app WalkingParallelPair.zero) x₀ := by rw [hxπ]
+          _ = πy₀ y := hx₀
+    rw [hrange]
+    exact (hclosed WalkingParallelPair.zero).isClosed_range.preimage πy₀.hom.continuous
+
 /-- The three-part topological certificate is exactly enough for a closed embedding. -/
 theorem closedEmbedding_of_injective_inducing_closedImage
     {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y] (f : X → Y)
@@ -1042,6 +1218,17 @@ theorem metrizableWppLimitLeftClosedInput_of_lca
     (hlimit : MetrizableWppLimitLeftClosedLcaInput) :
     MetrizableWppLimitLeftClosedInput :=
   wppLimit_preserves_leftClosedEmbedding_of_injective_inducing_closedImage hlimit
+
+/-- The direct WPP equalizer argument supplies the pure LCA left closed-embedding input. -/
+theorem metrizableWppLimitLeftClosedLcaInput_direct :
+    MetrizableWppLimitLeftClosedLcaInput :=
+  wppLimit_lca_limitMap_injective_inducing_closedImage_direct
+
+/-- The direct WPP equalizer argument supplies the left closed-embedding field. -/
+theorem metrizableWppLimitLeftClosedInput_direct :
+    MetrizableWppLimitLeftClosedInput :=
+  metrizableWppLimitLeftClosedInput_of_lca
+    metrizableWppLimitLeftClosedLcaInput_direct
 
 /-- Build the WPP limit right open-map field from a pure LCA map certificate. -/
 theorem metrizableWppLimitRightOpenInput_of_lca

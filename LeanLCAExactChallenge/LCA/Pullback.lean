@@ -160,6 +160,153 @@ noncomputable instance instHasPullbacks : HasPullbacks MetrizableLCA.{u} :=
 noncomputable instance instHasFiniteLimits : HasFiniteLimits MetrizableLCA.{u} :=
   hasFiniteLimits_of_hasTerminal_and_pullbacks
 
+/-! ### Explicit equalizers -/
+
+section ExplicitEqualizer
+
+variable {E T : MetrizableLCA.{u}} (r s : E ⟶ T)
+
+/-- The closed additive subgroup cut out by an equalizer relation. -/
+def equalizerSubgroup : AddSubgroup E where
+  carrier := {x | r x = s x}
+  zero_mem' := by simp
+  add_mem' := by
+    intro x y hx hy
+    simp only [Set.mem_setOf_eq] at hx hy ⊢
+    calc
+      r (x + y) = r x + r y := (r.hom : E →+ T).map_add x y
+      _ = s x + s y := by rw [hx, hy]
+      _ = s (x + y) := ((s.hom : E →+ T).map_add x y).symm
+  neg_mem' := by
+    intro x hx
+    simp only [Set.mem_setOf_eq] at hx ⊢
+    calc
+      r (-x) = - r x := (r.hom : E →+ T).map_neg x
+      _ = - s x := by rw [hx]
+      _ = s (-x) := ((s.hom : E →+ T).map_neg x).symm
+
+lemma equalizerSubgroup_isClosed : IsClosed (equalizerSubgroup r s : Set E) := by
+  dsimp [equalizerSubgroup]
+  exact isClosed_eq r.hom.continuous s.hom.continuous
+
+/-- The explicit equalizer object in `MetrizableLCA`. -/
+def equalizerObj : MetrizableLCA.{u} where
+  carrier := equalizerSubgroup r s
+  locallyCompactSpace := by
+    change LocallyCompactSpace {x : E // x ∈ (equalizerSubgroup r s : Set E)}
+    exact (equalizerSubgroup_isClosed r s).locallyCompactSpace
+  metrizableSpace := by
+    change TopologicalSpace.MetrizableSpace {x : E // x ∈ (equalizerSubgroup r s : Set E)}
+    infer_instance
+
+/-- Inclusion of the explicit equalizer object. -/
+noncomputable def equalizerι : equalizerObj r s ⟶ E where
+  hom' :=
+    { toFun := fun x => x.1
+      map_zero' := rfl
+      map_add' := fun _ _ => rfl
+      continuous_toFun := continuous_subtype_val }
+
+lemma equalizerι_condition : equalizerι r s ≫ r = equalizerι r s ≫ s := by
+  ext x
+  exact x.2
+
+/-- The explicit equalizer fork. -/
+noncomputable def equalizerFork : Fork r s :=
+  Fork.ofι (equalizerι r s) (equalizerι_condition r s)
+
+/-- The universal lift into the explicit equalizer. -/
+noncomputable def equalizerLift {X : MetrizableLCA.{u}} (a : X ⟶ E)
+    (w : a ≫ r = a ≫ s) : X ⟶ equalizerObj r s where
+  hom' :=
+    { toFun := fun x => ⟨a x, congrArg (fun h : X ⟶ T => h x) w⟩
+      map_zero' := by
+        apply Subtype.ext
+        exact map_zero a.hom
+      map_add' := by
+        intro x y
+        apply Subtype.ext
+        exact map_add a.hom x y
+      continuous_toFun := by
+        apply Continuous.subtype_mk
+        exact a.hom.continuous }
+
+lemma equalizerLift_ι {X : MetrizableLCA.{u}} (a : X ⟶ E)
+    (w : a ≫ r = a ≫ s) : equalizerLift r s a w ≫ equalizerι r s = a := by
+  ext x
+  rfl
+
+lemma equalizer_hom_ext {X : MetrizableLCA.{u}} {k l : X ⟶ equalizerObj r s}
+    (hι : k ≫ equalizerι r s = l ≫ equalizerι r s) : k = l := by
+  apply MetrizableLCA.ext
+  intro x
+  apply Subtype.ext
+  exact congrArg (fun h : X ⟶ E => h x) hι
+
+/-- The explicit equalizer fork is limiting. -/
+noncomputable def equalizerIsLimit : IsLimit (equalizerFork r s) :=
+  Fork.IsLimit.mk (equalizerFork r s)
+    (fun t => equalizerLift r s t.ι t.condition)
+    (fun t => by
+      simpa [equalizerFork] using equalizerLift_ι r s t.ι t.condition)
+    (fun _t m hm => by
+      apply equalizer_hom_ext r s
+      simpa [equalizerFork] using hm)
+
+lemma equalizerι_closedEmbedding_explicit :
+    IsClosedEmbedding (equalizerι r s : equalizerObj r s → E) :=
+  (equalizerSubgroup_isClosed r s).isClosedEmbedding_subtypeVal
+
+/-- The chosen categorical equalizer is isomorphic to the explicit closed subgroup model. -/
+noncomputable def equalizerIsoEqualizerObj [HasEqualizer r s] :
+    equalizer r s ≅ equalizerObj r s :=
+  (equalizerIsEqualizer r s).conePointUniqueUpToIso (equalizerIsLimit r s)
+
+lemma equalizerIsoEqualizerObj_hom_ι [HasEqualizer r s] :
+    (equalizerIsoEqualizerObj r s).hom ≫ equalizerι r s = equalizer.ι r s := by
+  simpa [equalizerIsoEqualizerObj, equalizerFork] using
+    (IsLimit.conePointUniqueUpToIso_hom_comp
+      (equalizerIsEqualizer r s) (equalizerIsLimit r s) WalkingParallelPair.zero)
+
+/-- The chosen categorical equalizer inclusion is a closed embedding. -/
+lemma equalizer_ι_closedEmbedding [HasEqualizer r s] :
+    IsClosedEmbedding
+      (equalizer.ι r s : ((equalizer r s : MetrizableLCA.{u}) : Type u) → E) := by
+  let e : (equalizer r s : MetrizableLCA.{u}) ≃ₜ+ equalizerObj r s :=
+    isoToContinuousAddEquiv (equalizerIsoEqualizerObj r s)
+  have hcomp : IsClosedEmbedding
+      (fun x : ((equalizer r s : MetrizableLCA.{u}) : Type u) => (equalizerι r s) (e x)) :=
+    (equalizerι_closedEmbedding_explicit r s).comp e.toHomeomorph.isClosedEmbedding
+  have hfun :
+      (fun x : ((equalizer r s : MetrizableLCA.{u}) : Type u) => (equalizerι r s) (e x)) =
+        (equalizer.ι r s : ((equalizer r s : MetrizableLCA.{u}) : Type u) → E) := by
+    funext x
+    exact congrArg (fun h : equalizer r s ⟶ E => h x)
+      (equalizerIsoEqualizerObj_hom_ι r s)
+  rwa [hfun] at hcomp
+
+/-- Any limiting equalizer fork in `MetrizableLCA` has a closed-embedding inclusion. -/
+lemma isLimit_fork_ι_closedEmbedding {fork : Fork r s} (hfork : IsLimit fork) :
+    IsClosedEmbedding (fork.ι : fork.pt → E) := by
+  let eIso := IsLimit.conePointUniqueUpToIso hfork (equalizerIsEqualizer r s)
+  let e := isoToContinuousAddEquiv eIso
+  have hcomp : IsClosedEmbedding
+      (fun x : fork.pt => (equalizer.ι r s) (e x)) :=
+    (equalizer_ι_closedEmbedding r s).comp e.toHomeomorph.isClosedEmbedding
+  have hcomp_eq : eIso.hom ≫ equalizer.ι r s = fork.ι := by
+    simpa using
+      (IsLimit.conePointUniqueUpToIso_hom_comp
+        hfork (equalizerIsEqualizer r s) WalkingParallelPair.zero)
+  have hfun :
+      (fun x : fork.pt => (equalizer.ι r s) (e x)) =
+        (fork.ι : fork.pt → E) := by
+    funext x
+    change (eIso.hom ≫ equalizer.ι r s) x = fork.ι x
+    exact congrArg (fun h : fork.pt ⟶ E => h x) hcomp_eq
+  rwa [hfun] at hcomp
+
+end ExplicitEqualizer
+
 noncomputable def pullbackIsoPullbackObj : pullback f g ≅ pullbackObj f g :=
   limit.isoLimitCone ⟨pullbackCone f g, pullbackIsLimit f g⟩
 
