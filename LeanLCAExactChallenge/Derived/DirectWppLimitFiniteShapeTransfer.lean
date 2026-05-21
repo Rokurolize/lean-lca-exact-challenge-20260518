@@ -127,6 +127,27 @@ abbrev mappingCone_walkingParallelPair_limitCanonicalConeComparison : Prop :=
       φ ≫ c₂.π.app j = c₁.π.app j ≫ f.app j),
       Nonempty (IsLimit (mappingConeCone c₁ c₂ f φ hφ))
 
+/-- Degreewise limit input for the canonical WPP mapping-cone cone. -/
+abbrev mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison : Prop :=
+  ∀ (X₁ X₂ : WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0})
+    (c₁ : Cone X₁) (c₂ : Cone X₂)
+    (_ : IsLimit c₁) (_ : IsLimit c₂) (f : X₁ ⟶ X₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : WalkingParallelPair,
+      φ ≫ c₂.π.app j = c₁.π.app j ≫ f.app j)
+    (n : ℤ),
+      Nonempty (IsLimit
+        ((HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) n).mapCone
+          (mappingConeCone c₁ c₂ f φ hφ)))
+
+/-- Degreewise limit proofs supply the canonical mapping-cone cone limit input. -/
+theorem mappingCone_walkingParallelPair_limitCanonicalConeComparison_of_degreewise
+    (hcomparison : mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison) :
+    mappingCone_walkingParallelPair_limitCanonicalConeComparison := by
+  intro X₁ X₂ c₁ c₂ hc₁ hc₂ f φ hφ
+  exact ⟨HomologicalComplex.isLimitOfEval _ _ (fun n =>
+    Classical.choice (hcomparison X₁ X₂ c₁ c₂ hc₁ hc₂ f φ hφ n))⟩
+
 /-- A limit proof for the canonical cone supplies the WPP cone-comparison input. -/
 theorem mappingCone_walkingParallelPair_limitConeComparison_of_canonicalCone
     (hcomparison : mappingCone_walkingParallelPair_limitCanonicalConeComparison) :
@@ -515,6 +536,9 @@ abbrev MetrizableWppLimitConeComparisonInput : Prop :=
 abbrev MetrizableWppLimitCanonicalConeComparisonInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison
 
+abbrev MetrizableWppLimitCanonicalConeDegreewiseComparisonInput : Prop :=
+  DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison
+
 abbrev MetrizableWppLimitClosureInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.exactAcyclic_metrizableLCA_walkingParallelPair_limitClosure
 
@@ -587,6 +611,12 @@ theorem metrizableWppLimitConeComparisonInput_of_canonicalCone
     (hcomparison : MetrizableWppLimitCanonicalConeComparisonInput) :
     MetrizableWppLimitConeComparisonInput :=
   mappingCone_walkingParallelPair_limitConeComparison_of_canonicalCone hcomparison
+
+/-- Build the canonical cone comparison input from degreewise limit proofs. -/
+theorem metrizableWppLimitCanonicalConeComparisonInput_of_degreewise
+    (hcomparison : MetrizableWppLimitCanonicalConeDegreewiseComparisonInput) :
+    MetrizableWppLimitCanonicalConeComparisonInput :=
+  mappingCone_walkingParallelPair_limitCanonicalConeComparison_of_degreewise hcomparison
 
 /-- Four short-complex field inputs for WPP exact-acyclic limit closure. -/
 structure MetrizableWalkingParallelPairLimitClosureFieldInputs : Type 1 where
@@ -786,6 +816,16 @@ theorem metrizableWalkingParallelPairLimitStability_of_canonicalConeComparison_a
       WalkingParallelPair :=
   metrizableWalkingParallelPairLimitStability_of_limitConeComparison_and_allLca
     (metrizableWppLimitConeComparisonInput_of_canonicalCone hcomparison)
+    inputs
+
+/-- Build WPP limit stability from degreewise canonical cone limits plus LCA/component data. -/
+theorem metrizableWalkingParallelPairLimitStability_of_degreewiseConeComparison_and_allLca
+    (hcomparison : MetrizableWppLimitCanonicalConeDegreewiseComparisonInput)
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromAllLca) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_canonicalConeComparison_and_allLca
+    (metrizableWppLimitCanonicalConeComparisonInput_of_degreewise hcomparison)
     inputs
 
 /--

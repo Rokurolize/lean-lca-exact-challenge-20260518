@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W548では、W547のexistential cone comparison inputを、mapping cone of the induced limit mapを頂点にもつcanonical mapping-cone coneのIsLimit inputへ分解した。これによりWPP limit stabilityはcanonical cone limit proofと四つのconcrete LCA/component certificatesから供給できる形になった。ただしcanonical coneがlimitであること自体、四つのconcrete certificates、W515/W516/W517 relation data、W527 row provider、normalized strict representative data、target/model uniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
+  "summary": "W549では、HomologicalComplex.isLimitOfEvalを使い、WPPのcanonical mapping-cone coneがlimitであることを、各次数で評価したconeがlimitであることの入力へ分解した。これによりmapping-cone comparisonの残りはcomplex全体のIsLimitではなくdegreewiseなLCA cone limit証明になった。ただしdegreewise limit証明、四つのconcrete LCA/component certificates、W515/W516/W517 relation data、W527 row providers、normalized representative dataとuniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
     "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
@@ -656,7 +656,9 @@
     "python3 -m json.tool run/verification.json >/dev/null",
     "python3 -m json.tool manifest.json >/dev/null",
     "python3 audit/external_audit.py --root . --self-check-only",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+    "printf import LeanLCAExactChallenge | lake env lean /dev/stdin",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535.walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
@@ -1893,12 +1895,12 @@
     "WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525.currentW525State_productSuccess"
   ],
   "known_gaps": [
-    "WalkingParallelPairのcanonical mapping-cone coneがlimitであることがまだ具体化されていない。",
+    "canonical mapping-cone coneの各次数評価coneがlimitであることがまだ具体化されていない。",
     "WPP limit left closed-embedding、right open-map、right-surjectivityを供給するpure LCA induced-limit-map certificatesがまだ具体化されていない。",
     "WPP limit algebraic exactnessを供給するcomponent-level algebraic exactness certificateがまだ具体化されていない。",
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
     "W527のComponentwiseClosedMapRowsProviderまたはComponentwiseClosedEmbeddingRowsProviderがまだ具体化されていない。",
-    "WalkingParallelPair diagram targetとlocalization modelに対するcoherent/normalized strict representative dataおよびtarget/modelのuniqがまだ未構成である。",
+    "WalkingParallelPair diagram targetとlocalization modelに対するcoherent normalized representative dataおよびtarget/modelのuniqがまだ未構成である。",
     "pretriangulated/triangulated dataと最終的なbounded left-calculus instanceがまだ未構成である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -1906,18 +1908,18 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "95ef293bf6a3c6c602ebb1225d6af257e6617d23",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W548 was integrated directly in the target tree; no worker was launched. It reduces the WPP mapping-cone comparison obligation to proving that the canonical mapping-cone cone is a limit, but does not prove that limit property.",
+  "worker_frontier_summary": "W549 was integrated directly in the target tree; no worker was launched. It reduces the canonical WPP mapping-cone cone limit obligation to degreewise evaluated cone limit proofs, but does not prove those degreewise limits.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "WalkingParallelPairのcanonical mapping-cone coneがlimitであることがまだ具体化されていない。",
+    "canonical mapping-cone coneの各次数評価coneがlimitであることがまだ具体化されていない。",
     "WPP limit left closed-embedding、right open-map、right-surjectivityを供給するpure LCA induced-limit-map certificatesがまだ具体化されていない。",
     "WPP limit algebraic exactnessを供給するcomponent-level algebraic exactness certificateがまだ具体化されていない。",
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
     "W527のComponentwiseClosedMapRowsProviderまたはComponentwiseClosedEmbeddingRowsProviderがまだ具体化されていない。",
-    "WalkingParallelPair diagram targetとlocalization modelに対するcoherent/normalized strict representative dataおよびtarget/modelのuniqがまだ未構成である。",
+    "WalkingParallelPair diagram targetとlocalization modelに対するcoherent normalized representative dataおよびtarget/modelのuniqがまだ未構成である。",
     "pretriangulated/triangulated dataと最終的なbounded left-calculus instanceがまだ未構成である。"
   ],
-  "next_recommended_goal": "Prove that the canonical mapping-cone cone is a limit, or prove the concrete LCA/component certificates behind the reduced WPP limit fields.",
+  "next_recommended_goal": "Prove the degreewise evaluated cone limits for the canonical WPP mapping-cone cone, or prove the concrete LCA/component certificates behind the reduced WPP limit fields.",
   "implemented_declarations": [
     "DirectWppLimitFiniteShapeTransfer.mappingConeCone",
     "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison",
@@ -3481,9 +3483,14 @@
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_topTargetRelation_closedEmbeddingRows_w527",
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_compactTargetRelation_closedMapRows_w527",
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_compactTargetRelation_closedEmbeddingRows_w527",
-    "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.currentW527State_productSuccess"
+    "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.currentW527State_productSuccess",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison_of_degreewise",
+    "Dbounded.MetrizableWppLimitCanonicalConeDegreewiseComparisonInput",
+    "Dbounded.metrizableWppLimitCanonicalConeComparisonInput_of_degreewise",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_degreewiseConeComparison_and_allLca"
   ],
-  "generated_utc": "2026-05-21T19:20:32Z",
+  "generated_utc": "2026-05-21T19:32:12Z",
   "support_result_classification": "verified_nonterminal_increment",
   "implemented_declarations_checked": [
     "DirectWppLimitFiniteShapeTransfer.mappingConeCone",
@@ -5048,19 +5055,24 @@
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_topTargetRelation_closedEmbeddingRows_w527",
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_compactTargetRelation_closedMapRows_w527",
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_compactTargetRelation_closedEmbeddingRows_w527",
-    "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.currentW527State_productSuccess"
+    "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.currentW527State_productSuccess",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison_of_degreewise",
+    "Dbounded.MetrizableWppLimitCanonicalConeDegreewiseComparisonInput",
+    "Dbounded.metrizableWppLimitCanonicalConeComparisonInput_of_degreewise",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_degreewiseConeComparison_and_allLca"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Prove that the canonical mapping-cone cone is a limit for bounded inclusion. が未完了である。",
-    "Prove the pure LCA certificates for WPP limit left closed embeddings, right open maps, and right surjectivity. が未完了である。",
-    "Prove the component-level algebraic exactness certificate for WPP short-complex limits. が未完了である。",
-    "Instantiate concrete W515/W516/W517 relation-data providers and W527 row providers. が未完了である。",
-    "Construct normalized strict representative data and target/model uniqueness for the WPP localization route. が未完了である。",
-    "Construct pretriangulated/triangulated data and the bounded left-calculus instance. が未完了である。"
+    "canonical mapping-cone coneのdegreewise evaluated cone limit証明を構成する。",
+    "WPP limit left closed embeddings、right open maps、right surjectivityのpure LCA certificatesを構成する。",
+    "WPP short-complex limitsのcomponent-level algebraic exactness certificateを構成する。",
+    "concrete W515/W516/W517 relation-data providersとW527 row providersを構成する。",
+    "WPP localization routeのnormalized representative dataとtarget/model uniquenessを構成する。",
+    "pretriangulated/triangulated dataとbounded left-calculus instanceを構成する。"
   ],
-  "latest_verified_increment": "W548 WPP canonical mapping-cone cone reducer",
-  "source_tree_hash": "6fc62dfd515c34d83fc00401bb6aab1a0643b7dc447bbb41a163539600206ec5",
-  "summary_log_tail": "W548 passed focused Lean after a cone naturality orientation fix, module build, ProductSuccessDeclarations, root import, RequiredDeclarations, root build, full build, forbidden-token scans, and metadata checks. The external product gate remains expected to fail because terminal_outcome is nonterminal."
+  "latest_verified_increment": "W549 WPP canonical mapping-cone cone degreewise reducer",
+  "source_tree_hash": "e5fa58e91c22a29bfaccdf405a6e70a14ba6d16e1402ca4d57e7424acb5fa03a",
+  "summary_log_tail": "W549 passed focused Lean, module build, ProductSuccessDeclarations, root import, RequiredDeclarations, root build, full build, forbidden-token scans, placeholder scan, and diff check. The external product gate remains expected to fail because terminal_outcome is nonterminal."
 }
