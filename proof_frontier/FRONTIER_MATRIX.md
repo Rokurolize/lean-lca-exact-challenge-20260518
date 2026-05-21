@@ -994,3 +994,14 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W426 ordinary-map promotion supplies the left closed-embedding input and composes with W471 component-colimit comparison inputs to the exact-acyclic WPP-op colimit closure endpoint.
 - remaining blockers: instantiate W441 ordinary-map promotion fields, the W441 ordinary/canonical colimit-map equality field, and W471 component-colimit comparison inputs at the actual call sites.
 - product_complete: false
+
+
+## W475 Projection Fields Importable Derived API
+
+- timestamp: `2026-05-21T02:38:21Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- commit: `7799cb1`
+- verified: `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `git diff --check -- LeanLCAExactChallenge.lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean LeanLCAExactChallenge.lean`; `lake build`
+- effect: W475 projection-fields exact-acyclic route is now an importable `Derived` module and is included by the root `LeanLCAExactChallenge` module.
+- remaining blockers: instantiate W426 promotion/equality inputs and projection component `IsColimit` fields at the actual final call site, then connect this endpoint into the final consolidated product-success declaration.
+- product_complete: false
