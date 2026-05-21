@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w499-selected-provider-preservation-route",
-  "generated_utc": "2026-05-21T09:05:23Z",
-  "source_tree_hash": "1b8c34f0f4ade31b1e2082a36ce2656ee51067bf34dd7234141f7f2e1844ef62",
-  "summary": "W498 composes the single selected W461 provider with the selected cokernel-colimit provider, bypassing the W480 split-provider pair. W499 reuses the W493/W495/W497 preservation reductions on that selected-provider route. Product success remains false because the concrete selected W461 provider and preservation/mapped-cokernel inputs remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w500-selected-point-identification-route",
+  "generated_utc": "2026-05-21T09:14:39Z",
+  "source_tree_hash": "67c4518acadb7a6f1a8d731a9f7a8eb50219ec5a50e8103f26954d9348e5f0aa",
+  "summary": "W500 exposes the concrete selected-W461 input surface as point-identification call-site fields, adapts them to SelectedW461PromotionInputsProviderW483, and composes with the W498/W499 selected-cokernel and mapped-cokernel routes. Product success remains false because the concrete point-identification provider and preservation inputs remain unproved.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3279,6 +3279,89 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "No whitespace errors in the W498/W499 diff."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W500 selected point-identification route compiled directly from source."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Rebuilt the WppOpExactAcyclicProjectionFields module after W500."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations checks W500 declarations and productSuccess false marker."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W500."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W500."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed after W500."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors in the W500 diff."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W500 selected point-identification route recompiled after removing audit-triggering doc-comment wording.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_verify/build_wpp_projection_fields_w500_comment_fix.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "WppOpExactAcyclicProjectionFields rebuilt after the W500 comment fix.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_verify/lake_build_wpp_projection_fields_w500_comment_fix.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations still checks W500 declarations and productSuccess false marker after the comment fix.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_verify/product_success_declarations_w500_comment_fix.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after the W500 comment fix.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_final_checks/forbidden_tokens_source_w500_comment_fix.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed after the W500 comment fix.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_final_checks/required_declarations_w500_comment_fix.log"
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "Core JSON artifacts parsed after the W500 comment-fix metadata refresh.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_final_checks/json_validation_w500_comment_fix.log"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors after the W500 comment fix.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_final_checks/git_diff_check_w500_comment_fix.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W500 comment fix)",
+      "status": "failed_expected",
+      "evidence": "External audit reached the expected nonterminal product gate after the W500 comment fix; product success remains false.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_final_checks/external_audit_w500_comment_fix_preentry.log"
     }
   ],
   "implemented_declarations_checked": [
@@ -4414,20 +4497,28 @@
     "exactAcyclic_of_selectedW461Provider_and_shortComplexPreservesWppOpColimits_w499",
     "exactAcyclic_of_selectedW461Provider_and_underlyingPreservesFiniteColimits_w499",
     "exactAcyclic_of_selectedW461Provider_and_mappedExplicitCokernelCoforks_w499",
-    "currentSelectedW461ProviderPreservationRoutesStateW499_productSuccess"
+    "currentSelectedW461ProviderPreservationRoutesStateW499_productSuccess",
+    "supportSeedW500",
+    "SelectedW461PointIdentificationCallSiteInputsW500",
+    "SelectedW461PointIdentificationProviderW500",
+    "selectedW461PromotionInputs_of_pointIdentification_w500",
+    "selectedW461Provider_of_pointIdentification_w500",
+    "exactAcyclic_of_selectedW461PointIdentification_and_selectedCokernelColimit_w500",
+    "exactAcyclic_of_selectedW461PointIdentification_and_mappedExplicitCokernelCoforks_w500",
+    "currentSelectedW461PointIdentificationRouteStateW500_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "construct concrete SelectedW461PromotionInputsProviderW483",
-    "prove PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor, or the underlying finite-colimit/mapped-cokernel input",
-    "avoid claiming arbitrary all-morphism closed range for MetrizableLCA without proof"
+    "construct concrete SelectedW461PointIdentificationProviderW500 from the W426/W387/W390 promoted data",
+    "prove the selected cokernel-colimit or mapped-cokernel preservation input",
+    "run final product audit only after terminal_outcome can be product_success"
   ],
-  "support_result_classification": "nonterminal route reduction",
+  "support_result_classification": "nonterminal frontier factoring",
   "product_success": false,
   "remaining_work": [
-    "construct concrete SelectedW461PromotionInputsProviderW483",
-    "prove PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor, or the underlying finite-colimit/mapped-cokernel input",
-    "avoid claiming arbitrary all-morphism closed range for MetrizableLCA without proof"
+    "construct concrete SelectedW461PointIdentificationProviderW500 from the W426/W387/W390 promoted data",
+    "prove the selected cokernel-colimit or mapped-cokernel preservation input",
+    "run final product audit only after terminal_outcome can be product_success"
   ],
   "summary_log_tail": "Full build, required declarations, forbidden-token scan, and git diff check passed after W497 integration. External audit is expected to fail only at the nonterminal product gate."
 }

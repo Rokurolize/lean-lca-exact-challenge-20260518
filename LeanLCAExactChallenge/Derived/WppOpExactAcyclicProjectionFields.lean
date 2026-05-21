@@ -3987,4 +3987,145 @@ end Checks
 
 end WppOpSelectedW461ProviderPreservationRoutesV370SupportW499
 
+namespace WppOpSelectedW461PointIdentificationRouteV370SupportW500
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpSelectedW461ProviderSelectedCokernelColimitV370SupportW498
+open WppOpSelectedW461ProviderPreservationRoutesV370SupportW499
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W500 selected point-identification route. -/
+def supportSeedW500 : String :=
+  "w500-selected-w461-point-identification-route"
+
+/--
+Concrete call-site fields sufficient to build W483's selected W461 provider.
+This exposes the remaining W461 input surface as point identifications, one
+ordinary descended package, and the target-component-to-W318 leg theorem.
+-/
+structure SelectedW461PointIdentificationCallSiteInputsW500
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) : Type 1 where
+  pointIdentificationInputs :
+    W461TargetLegPointIdentificationInputsW478 X Y α cx cy
+  targetComponentImpliesW318 :
+    ordinaryTargetComponentEquationW478 X Y α cx cy
+        (concreteConjugatedDescendedW478 pointIdentificationInputs) →
+      W318ColimitMapLegCompatibilityW441 X Y α cx cy
+        (concreteConjugatedDescendedW478 pointIdentificationInputs)
+  ordinaryPackage :
+    W426OrdinaryDescendedMapPackage pointIdentificationInputs.ordinaryMap
+  ordinaryDescended_eq :
+    ordinaryPackage.ordinaryDescended =
+      pointIdentificationInputs.ordinaryDescended
+
+/-- Provider surface for W500's concrete point-identification call-site fields. -/
+abbrev SelectedW461PointIdentificationProviderW500 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+      IsColimit cx →
+        IsColimit cy →
+          (∀ j : WalkingParallelPairᵒᵖ,
+            IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+            W318ColimitMapLegCompatibilityW441 X Y α cx cy φ →
+              SelectedW461PointIdentificationCallSiteInputsW500 X Y α cx cy
+
+/-- W500 call-site fields build W478's selected promotion input package. -/
+def selectedW461PromotionInputs_of_pointIdentification_w500
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y}
+    (H : SelectedW461PointIdentificationCallSiteInputsW500 X Y α cx cy) :
+    W461ToW441PromotionInputsW478 X Y α cx cy where
+  pointIdentificationInputs := H.pointIdentificationInputs
+  targetComponentImpliesW318 := H.targetComponentImpliesW318
+  ordinaryPackage := H.ordinaryPackage
+  ordinaryDescended_eq := H.ordinaryDescended_eq
+
+/-- W500 point-identification providers feed W483's selected W461 provider surface. -/
+def selectedW461Provider_of_pointIdentification_w500
+    (hpoint : SelectedW461PointIdentificationProviderW500) :
+    SelectedW461PromotionInputsProviderW483 :=
+  fun X Y α cx cy φ hcx hcy hclosed hcompat =>
+    selectedW461PromotionInputs_of_pointIdentification_w500
+      (hpoint X Y α cx cy φ hcx hcy hclosed hcompat)
+
+/--
+W500 endpoint: point-identification call-site fields plus the selected cokernel
+colimit provider imply the current WPP-op exact-acyclic closure.
+-/
+def exactAcyclic_of_selectedW461PointIdentification_and_selectedCokernelColimit_w500
+    (hpoint : SelectedW461PointIdentificationProviderW500)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_selectedCokernelColimit_w498
+    (selectedW461Provider_of_pointIdentification_w500 hpoint) hselected
+
+/--
+W500 endpoint with W499's mapped-explicit-cokernel preservation input.
+-/
+def exactAcyclic_of_selectedW461PointIdentification_and_mappedExplicitCokernelCoforks_w500
+    (hpoint : SelectedW461PointIdentificationProviderW500)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_mappedExplicitCokernelCoforks_w499
+    (selectedW461Provider_of_pointIdentification_w500 hpoint) hMapped
+
+/-- W500 checked nonterminal state. -/
+structure SelectedW461PointIdentificationRouteV370SupportStateW500 : Type where
+  seed : String
+  declarations : List String
+  providerAdapterResult : String
+  selectedCokernelRouteResult : String
+  mappedCokernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W500 state. -/
+def currentSelectedW461PointIdentificationRouteV370SupportStateW500 :
+    SelectedW461PointIdentificationRouteV370SupportStateW500 where
+  seed := supportSeedW500
+  declarations :=
+    ["SelectedW461PointIdentificationCallSiteInputsW500",
+      "SelectedW461PointIdentificationProviderW500",
+      "selectedW461PromotionInputs_of_pointIdentification_w500",
+      "selectedW461Provider_of_pointIdentification_w500",
+      "exactAcyclic_of_selectedW461PointIdentification_and_selectedCokernelColimit_w500",
+      "exactAcyclic_of_selectedW461PointIdentification_and_mappedExplicitCokernelCoforks_w500"]
+  providerAdapterResult := "proved"
+  selectedCokernelRouteResult := "proved"
+  mappedCokernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete SelectedW461PointIdentificationProviderW500",
+      "prove the selected cokernel-colimit or mapped-cokernel preservation input"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW500State :
+    SelectedW461PointIdentificationRouteV370SupportStateW500 :=
+  currentSelectedW461PointIdentificationRouteV370SupportStateW500
+
+theorem currentSelectedW461PointIdentificationRouteStateW500_productSuccess :
+    currentW500State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW500
+#check SelectedW461PointIdentificationCallSiteInputsW500
+#check SelectedW461PointIdentificationProviderW500
+#check selectedW461PromotionInputs_of_pointIdentification_w500
+#check selectedW461Provider_of_pointIdentification_w500
+#check exactAcyclic_of_selectedW461PointIdentification_and_selectedCokernelColimit_w500
+#check exactAcyclic_of_selectedW461PointIdentification_and_mappedExplicitCokernelCoforks_w500
+#check currentSelectedW461PointIdentificationRouteStateW500_productSuccess
+
+end Checks
+
+end WppOpSelectedW461PointIdentificationRouteV370SupportW500
+
 end LeanLCAExactChallenge

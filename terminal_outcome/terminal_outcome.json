@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W498で単一のselected W461 providerをW491のselected cokernel-colimit providerへ接続し、W480のsplit-provider対を通らない経路を追加した。W499では同じ経路にW493/W495/W497のpreservation還元を接続した。ただし具体的なselected W461 providerとpreservationまたはmapped-cokernel入力は未証明なので、product_successは主張しない。",
+  "summary": "W500でselected W461 providerの残り入力を、point-identification call-site fieldsとして切り出した。W426/W387/W390由来の点同一視、ordinary descended package、target componentからW318全成分への定理をそろえれば、W498/W499の経路へ接続できる。まだ具体providerとpreservation入力は未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -583,7 +583,8 @@
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W491)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W492)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W494)",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W497)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W497)",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W500 comment fix)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1629,23 +1630,23 @@
     "LeanLCAExactChallenge.WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.currentForgetfulFinitePreservationFromCokernelsStateW497_productSuccess"
   ],
   "known_gaps": [
-    "具体的なselected W461 providerがまだない。",
-    "short-complex forgetful functorのWPP-op colimit preservationはまだ未証明。",
-    "underlying forgetful functorのfinite-colimit preservationまたはmapped explicit cokernel colimit入力がまだ未証明。",
-    "任意のMetrizableLCA射のclosed rangeは主張していない。"
+    "具体的なSelectedW461PointIdentificationProviderW500がまだない。",
+    "W426/W387/W390のpromoted dataを同じimportable namespaceで接続する作業が残っている。",
+    "selected cokernel-colimitまたはmapped-cokernel preservation入力はまだ未証明。",
+    "最終product auditを通すterminal_outcomeではない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "825e9cd",
+  "git_commit": "8f935894de22",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W495/W496/W497 were integrated by the parent in the target tree; no new workers were launched. The preservation route is reduced to mapped explicit cokernel cofork colimits.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "具体的なselected W461 providerがまだない。",
-    "short-complex forgetful functorのWPP-op colimit preservationはまだ未証明。",
-    "underlying forgetful functorのfinite-colimit preservationまたはmapped explicit cokernel colimit入力がまだ未証明。",
-    "任意のMetrizableLCA射のclosed rangeは主張していない。"
+    "具体的なSelectedW461PointIdentificationProviderW500がまだない。",
+    "W426/W387/W390のpromoted dataを同じimportable namespaceで接続する作業が残っている。",
+    "selected cokernel-colimitまたはmapped-cokernel preservation入力はまだ未証明。",
+    "最終product auditを通すterminal_outcomeではない。"
   ],
   "next_recommended_goal": "Construct concrete W461ToW475PromotionInputsProviderW480, W461ToW475OrdinaryMapProviderW480, and prove every mapped explicit MetrizableLCA cokernel cofork is colimiting in AddCommGrpCat.",
   "implemented_declarations": [
@@ -2551,10 +2552,18 @@
     "exactAcyclic_of_selectedW461Provider_and_shortComplexPreservesWppOpColimits_w499",
     "exactAcyclic_of_selectedW461Provider_and_underlyingPreservesFiniteColimits_w499",
     "exactAcyclic_of_selectedW461Provider_and_mappedExplicitCokernelCoforks_w499",
-    "currentSelectedW461ProviderPreservationRoutesStateW499_productSuccess"
+    "currentSelectedW461ProviderPreservationRoutesStateW499_productSuccess",
+    "supportSeedW500",
+    "SelectedW461PointIdentificationCallSiteInputsW500",
+    "SelectedW461PointIdentificationProviderW500",
+    "selectedW461PromotionInputs_of_pointIdentification_w500",
+    "selectedW461Provider_of_pointIdentification_w500",
+    "exactAcyclic_of_selectedW461PointIdentification_and_selectedCokernelColimit_w500",
+    "exactAcyclic_of_selectedW461PointIdentification_and_mappedExplicitCokernelCoforks_w500",
+    "currentSelectedW461PointIdentificationRouteStateW500_productSuccess"
   ],
-  "generated_utc": "2026-05-21T09:05:23Z",
-  "support_result_classification": "nonterminal route reduction",
+  "generated_utc": "2026-05-21T09:14:39Z",
+  "support_result_classification": "nonterminal frontier factoring",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3525,13 +3534,21 @@
     "exactAcyclic_of_selectedW461Provider_and_shortComplexPreservesWppOpColimits_w499",
     "exactAcyclic_of_selectedW461Provider_and_underlyingPreservesFiniteColimits_w499",
     "exactAcyclic_of_selectedW461Provider_and_mappedExplicitCokernelCoforks_w499",
-    "currentSelectedW461ProviderPreservationRoutesStateW499_productSuccess"
+    "currentSelectedW461ProviderPreservationRoutesStateW499_productSuccess",
+    "supportSeedW500",
+    "SelectedW461PointIdentificationCallSiteInputsW500",
+    "SelectedW461PointIdentificationProviderW500",
+    "selectedW461PromotionInputs_of_pointIdentification_w500",
+    "selectedW461Provider_of_pointIdentification_w500",
+    "exactAcyclic_of_selectedW461PointIdentification_and_selectedCokernelColimit_w500",
+    "exactAcyclic_of_selectedW461PointIdentification_and_mappedExplicitCokernelCoforks_w500",
+    "currentSelectedW461PointIdentificationRouteStateW500_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "construct concrete SelectedW461PromotionInputsProviderW483",
-    "prove PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor, or prove the underlying finite-colimit/mapped-cokernel input",
-    "audit whether the selected-provider route fully supersedes the older W480 split-provider frontier"
+    "construct concrete SelectedW461PointIdentificationProviderW500 from the W426/W387/W390 promoted data",
+    "prove the selected cokernel-colimit or mapped-cokernel preservation input",
+    "run final product audit only after terminal_outcome can be product_success"
   ]
 }
