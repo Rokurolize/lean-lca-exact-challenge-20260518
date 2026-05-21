@@ -9,6 +9,7 @@ import Mathlib.Algebra.Homology.ShortComplex.Preadditive
 import Mathlib.CategoryTheory.Limits.Preserves.Basic
 import Mathlib.CategoryTheory.Limits.Preserves.Finite
 import Mathlib.CategoryTheory.Preadditive.LeftExact
+import Mathlib.Topology.Maps.Basic
 
 
 /-!
@@ -6088,6 +6089,286 @@ theorem ordinaryDescendedQuotientMap_topologyFacts_of_relationPullback_closedMap
 
 end MetrizableLCA
 
+namespace MetrizableLCA
+
+/-- W512 target-relation lift input for a component map between relation quotients. -/
+abbrev relationTargetLiftsThroughComponentW512
+    {A B A' B' : MetrizableLCA.{0}} (_f _g : A ⟶ B) (f' g' : A' ⟶ B')
+    (iB : B ⟶ B') : Prop :=
+  ∀ n : B', n ∈ cokernelSubgroup (f' - g') → ∃ d : B, iB d = n
+
+/-- A set is saturated for a quotient-like map when it contains full fibers over its image. -/
+def IsSaturatedForW512 {α β : Type _} (q : α → β) (S : Set α) : Prop :=
+  q ⁻¹' (q '' S) ⊆ S
+
+/-- For any quotient map, closed saturated sets have closed images. -/
+theorem image_closed_of_isQuotientMap_and_saturatedW512
+    {α β : Type _} [TopologicalSpace α] [TopologicalSpace β]
+    {q : α → β} (hq : IsQuotientMap q) {S : Set α}
+    (hS : IsClosed S) (hsaturated : IsSaturatedForW512 q S) :
+    IsClosed (q '' S) := by
+  have hpre_eq : q ⁻¹' (q '' S) = S := by
+    apply le_antisymm hsaturated
+    intro x hx
+    exact ⟨x, hx, rfl⟩
+  have hpre_closed : IsClosed (q ⁻¹' (q '' S)) := by
+    simpa [hpre_eq] using hS
+  exact hq.1.isClosed_preimage.mp hpre_closed
+
+/-- The local quotient map is a topological quotient map. -/
+theorem quotientMap_isQuotientMapW512
+    (X : MetrizableLCA.{0}) (N : AddSubgroup X) (hN : IsClosed (N : Set X)) :
+    IsQuotientMap (quotientMap X N hN : X → quotientObj X N hN) := by
+  change IsQuotientMap (QuotientAddGroup.mk' N : X → X ⧸ N)
+  exact QuotientAddGroup.isQuotientMap_mk N
+
+/-- The quotient projection closes closed saturated representative sets. -/
+theorem quotientMap_image_closed_of_closed_saturatedW512
+    (X : MetrizableLCA.{0}) (N : AddSubgroup X) (hN : IsClosed (N : Set X))
+    {S : Set X} (hS : IsClosed S)
+    (hsaturated : IsSaturatedForW512 (quotientMap X N hN : X → quotientObj X N hN) S) :
+    IsClosed ((quotientMap X N hN : X → quotientObj X N hN) '' S) := by
+  exact image_closed_of_isQuotientMap_and_saturatedW512
+    (quotientMap_isQuotientMapW512 X N hN) hS hsaturated
+
+/-- Adding a source-relation element does not change the source quotient class. -/
+theorem quotientMap_add_relation_eqW512
+    {A B : MetrizableLCA.{0}} {f g : A ⟶ B} {x d : B}
+    (hd : d ∈ cokernelSubgroup (f - g)) :
+    quotientMap B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) (x + d) =
+      quotientMap B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) x := by
+  change ((x + d : B) : B ⧸ cokernelSubgroup (f - g)) =
+    ((x : B) : B ⧸ cokernelSubgroup (f - g))
+  rw [QuotientAddGroup.eq_iff_sub_mem]
+  simpa [add_sub_cancel_left] using hd
+
+/--
+Relation-pullback equality plus target-relation lifting proves saturation of
+the target representative image.
+-/
+theorem quotientRepresentativeImageSaturated_of_relationPullback_targetLiftsW512
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B')
+    (hpullback : relationPreimagePullbackConditionW511 f g f' g' iB)
+    (htarget : relationTargetLiftsThroughComponentW512 f g f' g' iB)
+    (C : Set (quotientObj B (cokernelSubgroup (f - g))
+      (AddSubgroup.isClosed_topologicalClosure _))) :
+    IsSaturatedForW512
+      (quotientMap B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _) :
+        B' → quotientObj B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _))
+      (((iB : B → B') ''
+        ((quotientMap B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) :
+          B → quotientObj B (cokernelSubgroup (f - g))
+            (AddSubgroup.isClosed_topologicalClosure _)) ⁻¹' C))) := by
+  intro y hy
+  rcases hy with ⟨z, hz, hqyz⟩
+  rcases hz with ⟨x, hxC, rfl⟩
+  have hrel_target : y - iB x ∈ cokernelSubgroup (f' - g') := by
+    change ((iB x : B') : B' ⧸ cokernelSubgroup (f' - g')) =
+      ((y : B') : B' ⧸ cokernelSubgroup (f' - g')) at hqyz
+    exact QuotientAddGroup.eq_iff_sub_mem.mp hqyz.symm
+  rcases htarget (y - iB x) hrel_target with ⟨d, hd_image⟩
+  have hd_target : iB d ∈ cokernelSubgroup (f' - g') := by
+    rw [hd_image]
+    exact hrel_target
+  have hd_source : d ∈ cokernelSubgroup (f - g) := by
+    have hd_comap :
+        d ∈ AddSubgroup.comap iB.hom.toAddMonoidHom (cokernelSubgroup (f' - g')) :=
+      hd_target
+    simpa [relationPreimagePullbackConditionW511] using (hpullback ▸ hd_comap)
+  refine ⟨x + d, ?_, ?_⟩
+  · change quotientMap B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) (x + d) ∈ C
+    rw [quotientMap_add_relation_eqW512 (f := f) (g := g) (x := x) (d := d) hd_source]
+    exact hxC
+  · calc
+      iB (x + d) = iB x + iB d := by
+        exact map_add iB.hom.toAddMonoidHom x d
+      _ = iB x + (y - iB x) := by
+        rw [hd_image]
+      _ = y := by abel
+
+/-- W512 saturation condition for mapped representative images. -/
+abbrev quotientRepresentativeImageSaturatedConditionW512
+    {A B A' B' : MetrizableLCA.{0}} (f g : A ⟶ B) (f' g' : A' ⟶ B')
+    (iB : B ⟶ B') : Prop :=
+  ∀ C : Set (quotientObj B (cokernelSubgroup (f - g))
+      (AddSubgroup.isClosed_topologicalClosure _)), IsClosed C →
+    IsSaturatedForW512
+      (quotientMap B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _) :
+        B' → quotientObj B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _))
+      (((iB : B → B') ''
+        ((quotientMap B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) :
+          B → quotientObj B (cokernelSubgroup (f - g))
+            (AddSubgroup.isClosed_topologicalClosure _)) ⁻¹' C)))
+
+/-- Relation-pullback plus target-lift fields prove representative-image saturation. -/
+theorem quotientRepresentativeImageSaturatedCondition_of_relationFieldsW512
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B')
+    (hpullback : relationPreimagePullbackConditionW511 f g f' g' iB)
+    (htarget : relationTargetLiftsThroughComponentW512 f g f' g' iB) :
+    quotientRepresentativeImageSaturatedConditionW512 f g f' g' iB := by
+  intro C _hC
+  exact quotientRepresentativeImageSaturated_of_relationPullback_targetLiftsW512
+    iB hpullback htarget C
+
+/-- W512 closedness condition for mapped representative images. -/
+abbrev quotientRepresentativeImageClosedConditionW512
+    {A B A' B' : MetrizableLCA.{0}} (f g : A ⟶ B) (f' g' : A' ⟶ B')
+    (iB : B ⟶ B') : Prop :=
+  ∀ C : Set (quotientObj B (cokernelSubgroup (f - g))
+      (AddSubgroup.isClosed_topologicalClosure _)), IsClosed C →
+    IsClosed
+      ((quotientMap B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _) :
+          B' → quotientObj B' (cokernelSubgroup (f' - g'))
+            (AddSubgroup.isClosed_topologicalClosure _)) ''
+        (((iB : B → B') ''
+          ((quotientMap B (cokernelSubgroup (f - g))
+            (AddSubgroup.isClosed_topologicalClosure _) :
+            B → quotientObj B (cokernelSubgroup (f - g))
+              (AddSubgroup.isClosed_topologicalClosure _)) ⁻¹' C))))
+
+/-- Component closed-map plus target saturation proves closed representative images. -/
+theorem quotientRepresentativeImageClosed_of_componentClosed_targetSaturatedW512
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B')
+    (hcomponent : IsClosedMap (iB : B → B'))
+    (hsaturated : quotientRepresentativeImageSaturatedConditionW512 f g f' g' iB) :
+    quotientRepresentativeImageClosedConditionW512 f g f' g' iB := by
+  intro C hC
+  let qsource :
+      B → quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) :=
+    quotientMap B (cokernelSubgroup (f - g)) (AddSubgroup.isClosed_topologicalClosure _)
+  let qtarget :
+      B' → quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _) :=
+    quotientMap B' (cokernelSubgroup (f' - g')) (AddSubgroup.isClosed_topologicalClosure _)
+  let representativeImage : Set B' := ((iB : B → B') '' (qsource ⁻¹' C))
+  have hpre_closed : IsClosed (qsource ⁻¹' C) := by
+    exact hC.preimage
+      (quotientMap B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _)).hom.continuous
+  have hrep_closed : IsClosed representativeImage := by
+    exact hcomponent (qsource ⁻¹' C) hpre_closed
+  have hrep_saturated : IsSaturatedForW512 qtarget representativeImage := by
+    exact hsaturated C hC
+  exact quotientMap_image_closed_of_closed_saturatedW512
+    B' (cokernelSubgroup (f' - g')) (AddSubgroup.isClosed_topologicalClosure _)
+    hrep_closed hrep_saturated
+
+/-- Relation fields prove closed representative images. -/
+theorem quotientRepresentativeImageClosed_of_componentClosed_relationFieldsW512
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B')
+    (hcomponent : IsClosedMap (iB : B → B'))
+    (hpullback : relationPreimagePullbackConditionW511 f g f' g' iB)
+    (htarget : relationTargetLiftsThroughComponentW512 f g f' g' iB) :
+    quotientRepresentativeImageClosedConditionW512 f g f' g' iB :=
+  quotientRepresentativeImageClosed_of_componentClosed_targetSaturatedW512
+    iB hcomponent
+    (quotientRepresentativeImageSaturatedCondition_of_relationFieldsW512
+      iB hpullback htarget)
+
+/-- Closed representative images prove that the descended quotient map is closed. -/
+theorem descendedQuotientMap_isClosedMap_of_representativeImageClosedW512
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B')
+    (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) ⟶
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _))
+    (hquotient :
+      quotientMap B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) ≫ descended =
+        iB ≫ quotientMap B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _))
+    (hclosed : quotientRepresentativeImageClosedConditionW512 f g f' g' iB) :
+    IsClosedMap (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) →
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _)) := by
+  intro C hC
+  have himage_eq :
+      ((descended :
+          quotientObj B (cokernelSubgroup (f - g))
+            (AddSubgroup.isClosed_topologicalClosure _) →
+          quotientObj B' (cokernelSubgroup (f' - g'))
+            (AddSubgroup.isClosed_topologicalClosure _)) '' C) =
+        ((quotientMap B' (cokernelSubgroup (f' - g'))
+            (AddSubgroup.isClosed_topologicalClosure _) :
+            B' → quotientObj B' (cokernelSubgroup (f' - g'))
+              (AddSubgroup.isClosed_topologicalClosure _)) ''
+          (((iB : B → B') ''
+            ((quotientMap B (cokernelSubgroup (f - g))
+              (AddSubgroup.isClosed_topologicalClosure _) :
+              B → quotientObj B (cokernelSubgroup (f - g))
+                (AddSubgroup.isClosed_topologicalClosure _)) ⁻¹' C)))) := by
+    ext y
+    constructor
+    · intro hy
+      rcases hy with ⟨x, hxC, rfl⟩
+      rcases quotientMap_surjective B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) x with ⟨b, rfl⟩
+      refine ⟨iB b, ?_, ?_⟩
+      · exact ⟨b, hxC, rfl⟩
+      · exact (congrArg
+          (fun q : B ⟶ quotientObj B' (cokernelSubgroup (f' - g'))
+            (AddSubgroup.isClosed_topologicalClosure _) => q b)
+          hquotient).symm
+    · intro hy
+      rcases hy with ⟨b', hb', rfl⟩
+      rcases hb' with ⟨b, hbC, rfl⟩
+      refine ⟨quotientMap B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) b, hbC, ?_⟩
+      exact congrArg
+        (fun q : B ⟶ quotientObj B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _) => q b)
+        hquotient
+  rw [himage_eq]
+  exact hclosed C hC
+
+/-- Component closedness, relation pullback, and target-relation lifts close the descended map. -/
+theorem ordinaryDescendedQuotientMap_isClosedMap_of_relationFieldsW512
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B')
+    (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) ⟶
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _))
+    (hquotient :
+      quotientMap B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) ≫ descended =
+        iB ≫ quotientMap B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _))
+    (hcomponent : IsClosedMap (iB : B → B'))
+    (hpullback : relationPreimagePullbackConditionW511 f g f' g' iB)
+    (htarget : relationTargetLiftsThroughComponentW512 f g f' g' iB) :
+    IsClosedMap (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) →
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _)) :=
+  descendedQuotientMap_isClosedMap_of_representativeImageClosedW512
+    iB descended hquotient
+    (quotientRepresentativeImageClosed_of_componentClosed_relationFieldsW512
+      iB hcomponent hpullback htarget)
+
+end MetrizableLCA
+
 namespace WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
 
 open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
@@ -6248,5 +6529,184 @@ section Checks
 end Checks
 
 end WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+
+namespace WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509
+open WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W512 relation-fields closed-map bridge. -/
+def supportSeedW512 : String :=
+  "w512-closed-nat-trans-relation-fields-closed-map-bridge"
+
+/-- Target-relation lift input for the concrete W510 ordinary codomain component. -/
+abbrev ClosedNatTransOrdinaryTargetRelationLiftsConditionW512
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) : Prop :=
+  MetrizableLCA.relationTargetLiftsThroughComponentW512
+    (wppOpLeftW441 X) (wppOpRightW441 X)
+    (wppOpLeftW441 Y) (wppOpRightW441 Y)
+    ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one)
+
+/-- W512 relation-field inputs; component closedness comes from the closed natural transformation. -/
+structure ClosedNatTransOrdinaryRelationFieldsInputsW512
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) : Type 1 where
+  relation_pullback : ClosedNatTransOrdinaryRelationPullbackConditionW511 α
+  target_relation_lifts : ClosedNatTransOrdinaryTargetRelationLiftsConditionW512 α
+
+/-- Provider surface for the W512 relation-pullback and target-lift inputs. -/
+abbrev ClosedNatTransOrdinaryRelationFieldsProviderW512 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      ClosedNatTransOrdinaryRelationFieldsInputsW512 α
+
+/-- W512 relation fields imply W511's relation-topology inputs. -/
+def closedNatTransOrdinaryRelationTopologyInputs_of_relationFields_w512
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    (hclosed : ∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j))
+    (hinputs : ClosedNatTransOrdinaryRelationFieldsInputsW512 α) :
+    ClosedNatTransOrdinaryRelationTopologyInputsW511 α := by
+  have hcomponentEmbedding :
+      IsClosedEmbedding (((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one) :
+        wppOpCodomainW441 X → wppOpCodomainW441 Y) := by
+    simpa [ordinaryMapOfWppOpNatTransW506, wppOpCodomainW441,
+      wppOpOrdinaryDiagramW441, ordinaryTargetIndexW478] using hclosed ordinaryTargetIndexW478
+  exact
+    { relation_pullback := hinputs.relation_pullback
+      descended_closedMap :=
+        MetrizableLCA.ordinaryDescendedQuotientMap_isClosedMap_of_relationFieldsW512
+          ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one)
+          (ordinaryDescendedOfWppOpNatTransW510 α)
+          (ordinaryDescendedOfWppOpNatTrans_quotient_compat_w510 α)
+          hcomponentEmbedding.isClosedMap
+          hinputs.relation_pullback
+          hinputs.target_relation_lifts }
+
+/-- W512 relation-fields provider supplies W511's relation-topology provider. -/
+def closedNatTransOrdinaryRelationTopologyProvider_of_relationFields_w512
+    (hinputs : ClosedNatTransOrdinaryRelationFieldsProviderW512) :
+    ClosedNatTransOrdinaryRelationTopologyProviderW511 :=
+  fun X Y α hclosed =>
+    closedNatTransOrdinaryRelationTopologyInputs_of_relationFields_w512
+      hclosed (hinputs X Y α hclosed)
+
+/-- W512 relation-fields provider completes W510's topology-facts provider. -/
+def closedNatTransOrdinaryTopologyFactsProvider_of_relationFields_w512
+    (hinputs : ClosedNatTransOrdinaryRelationFieldsProviderW512) :
+    ClosedNatTransOrdinaryTopologyFactsProviderW510 :=
+  closedNatTransOrdinaryTopologyFactsProvider_of_relationTopology_w511
+    (closedNatTransOrdinaryRelationTopologyProvider_of_relationFields_w512 hinputs)
+
+/-- W512 endpoint with the selected cokernel-colimit provider. -/
+def exactAcyclic_of_relationFields_and_selectedCokernelColimit_w512
+    (hinputs : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_relationTopology_and_selectedCokernelColimit_w511
+    (closedNatTransOrdinaryRelationTopologyProvider_of_relationFields_w512 hinputs) hselected
+
+/-- W512 endpoint with W499's mapped-explicit-cokernel preservation input. -/
+def exactAcyclic_of_relationFields_and_mappedExplicitCokernelCoforks_w512
+    (hinputs : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_relationTopology_and_mappedExplicitCokernelCoforks_w511
+    (closedNatTransOrdinaryRelationTopologyProvider_of_relationFields_w512 hinputs) hMapped
+
+/-- W512 endpoint with W503's closure-kernel preservation input. -/
+def exactAcyclic_of_relationFields_and_closureKernelProvider_w512
+    (hinputs : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_relationTopology_and_closureKernelProvider_w511
+    (closedNatTransOrdinaryRelationTopologyProvider_of_relationFields_w512 hinputs) hClosure
+
+/-- W512 checked nonterminal state. -/
+structure ClosedNatTransOrdinaryRelationFieldsV370SupportStateW512 : Type where
+  seed : String
+  declarations : List String
+  genericClosedMapBridgeResult : String
+  providerAdapterResult : String
+  selectedCokernelRouteResult : String
+  closureKernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W512 state. -/
+def currentClosedNatTransOrdinaryRelationFieldsV370SupportStateW512 :
+    ClosedNatTransOrdinaryRelationFieldsV370SupportStateW512 where
+  seed := supportSeedW512
+  declarations :=
+    ["MetrizableLCA.relationTargetLiftsThroughComponentW512",
+      "MetrizableLCA.quotientRepresentativeImageSaturated_of_relationPullback_targetLiftsW512",
+      "MetrizableLCA.quotientRepresentativeImageClosed_of_componentClosed_relationFieldsW512",
+      "MetrizableLCA.descendedQuotientMap_isClosedMap_of_representativeImageClosedW512",
+      "MetrizableLCA.ordinaryDescendedQuotientMap_isClosedMap_of_relationFieldsW512",
+      "ClosedNatTransOrdinaryRelationFieldsInputsW512",
+      "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "closedNatTransOrdinaryRelationTopologyInputs_of_relationFields_w512",
+      "closedNatTransOrdinaryRelationTopologyProvider_of_relationFields_w512",
+      "closedNatTransOrdinaryTopologyFactsProvider_of_relationFields_w512",
+      "exactAcyclic_of_relationFields_and_selectedCokernelColimit_w512",
+      "exactAcyclic_of_relationFields_and_mappedExplicitCokernelCoforks_w512",
+      "exactAcyclic_of_relationFields_and_closureKernelProvider_w512"]
+  genericClosedMapBridgeResult := "proved"
+  providerAdapterResult := "proved"
+  selectedCokernelRouteResult := "proved"
+  closureKernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "prove relation pullback equality for ordinaryMapOfWppOpNatTransW506",
+      "prove target-relation lifts for ordinaryMapOfWppOpNatTransW506",
+      "construct concrete MappedExplicitCokernelClosureKernelProviderW503",
+      "or construct selected cokernel-colimit provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW512State :
+    ClosedNatTransOrdinaryRelationFieldsV370SupportStateW512 :=
+  currentClosedNatTransOrdinaryRelationFieldsV370SupportStateW512
+
+theorem currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess :
+    currentW512State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW512
+#check MetrizableLCA.relationTargetLiftsThroughComponentW512
+#check MetrizableLCA.IsSaturatedForW512
+#check MetrizableLCA.image_closed_of_isQuotientMap_and_saturatedW512
+#check MetrizableLCA.quotientMap_isQuotientMapW512
+#check MetrizableLCA.quotientMap_image_closed_of_closed_saturatedW512
+#check MetrizableLCA.quotientMap_add_relation_eqW512
+#check MetrizableLCA.quotientRepresentativeImageSaturated_of_relationPullback_targetLiftsW512
+#check MetrizableLCA.quotientRepresentativeImageClosed_of_componentClosed_relationFieldsW512
+#check MetrizableLCA.descendedQuotientMap_isClosedMap_of_representativeImageClosedW512
+#check MetrizableLCA.ordinaryDescendedQuotientMap_isClosedMap_of_relationFieldsW512
+#check ClosedNatTransOrdinaryTargetRelationLiftsConditionW512
+#check ClosedNatTransOrdinaryRelationFieldsInputsW512
+#check ClosedNatTransOrdinaryRelationFieldsProviderW512
+#check closedNatTransOrdinaryRelationTopologyInputs_of_relationFields_w512
+#check closedNatTransOrdinaryRelationTopologyProvider_of_relationFields_w512
+#check closedNatTransOrdinaryTopologyFactsProvider_of_relationFields_w512
+#check exactAcyclic_of_relationFields_and_selectedCokernelColimit_w512
+#check exactAcyclic_of_relationFields_and_mappedExplicitCokernelCoforks_w512
+#check exactAcyclic_of_relationFields_and_closureKernelProvider_w512
+#check currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess
+
+end Checks
+
+end WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
 
 end LeanLCAExactChallenge
