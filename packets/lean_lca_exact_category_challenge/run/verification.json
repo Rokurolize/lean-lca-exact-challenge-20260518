@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v366-w466-quotient-identification-to-strict-snake",
-  "generated_utc": "2026-05-21T01:45:35Z",
-  "source_tree_hash": "41646dcef29ecd462b99f7c89dad6ec0a2955ca31ee5cf6e146d971579370de7",
-  "summary": "W466のquotient-identification-to-strict-Snake bridgeを検証して記録した。W463 quotient-identification入力とstrict rowsから、projection fields、strict Snake cokernel data、AddCommGrp kernel exactnessを得る接続は閉じた。ただしW463実入力とW465のW426/W387実入力は未構成なのでproduct_successは主張しない。",
+  "generated_utc": "2026-05-21T01:54:02Z",
+  "source_tree_hash": "cbaec6b75a50eadbf54b46d2eccf8898ad7f6c847948ab43207d5469cd0a8d69",
+  "summary": "W467 focused support verified and recorded as nonterminal frontier progress; product success remains false.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -2538,6 +2538,21 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_quotient_identification_to_strict_snake_v370_support_w466.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found under the W466 support file."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_quotient_identification_exact_acyclic_boundary_v370_support_w467.lean",
+      "status": "passed",
+      "evidence": "Focused W467 quotient-identification exact-acyclic boundary support file passed with exit=0."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_quotient_identification_exact_acyclic_boundary_v370_support_w467.lean",
+      "status": "passed",
+      "evidence": "No sorry/admit/axiom placeholders were found in the W467 support file."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_quotient_identification_exact_acyclic_boundary_v370_support_w467.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under the W467 support file."
     }
   ],
   "implemented_declarations_checked": [
@@ -3571,19 +3586,31 @@
     "MetrizableLCA.preservesCokernelOf_isClosedMap",
     "MetrizableLCA.preservesCokernelOf_isClosedEmbedding",
     "mapShortComplex_preservesZeroMorphisms",
-    "mapShortComplex_additive"
+    "mapShortComplex_additive",
+    "selectedProjectionComponentIsColimitInputs_of_quotientIdentifications_w467",
+    "addCommGrpStrictKernelExactBoundary_of_quotientIdentifications_w467",
+    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_quotientIdentifications_w467"
   ],
   "product_complete": false,
   "known_gaps": [
     "W463の実適用には、cs.pt.X₁/X₂/X₃から明示forgotten cokernel quotientへのpoint isomorphism三つが必要である。",
     "W463の実適用には、selected component legが各point isomorphism後に明示quotient projectionと一致する等式三つが必要である。",
     "W463の実適用には、選択component差分について明示quotient coforkのIsColimit証明三つが必要である。",
-    "W466を実際のselected WPP-op colimit coconeへ適用する統合がまだ必要である。",
+    "W467/W466を実際のselected WPP-op colimit coconeへ適用する統合がまだ必要である。",
+    "W467のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
     "W465の実適用には、W426 ordinary descended map、W426 quotient compatibility、W387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
-  "support_result_classification": "w272 manually ported as parent-verified audit boundary. v294: W271 was ported as a checked boundary, not product success. v295: W273 was ported as a checked boundary, not product success. v296: parent-added counterexample rejects the W229/W273 plain quasi-isomorphism conflation transport route; not product success. v297: W276 was ported as a checked boundary reducing W271 mapping-cone comparison to object-level WPP-op cone/colimit comparison; W275 was delayed because v296 refuted its plain quasi-isomorphism conflation transport bridge. Not product success. v298: W274 was ported as a checked schema refinement for opposite fixed-target fac/uniq obligations; not product success. v299: parent-added W271 exact-acyclic WPP-op colimit closure boundary reducing it to degreewise short-complex colimit comparison and short-complex Conflation colimit closure; not product success. v300: parent-added proof of the W299 degreewise short-complex colimit comparison using HomologicalComplex.eval colimit preservation and ShortComplex.isColimitOfIsColimitπ; not product success. v301: parent-inspected support W277 and reimplemented a boundary reducing WPP-op ShortComplex Conflation closure to four MetrizableLCA.strictShortExact field-closure inputs; not product success. v302: parent-inspected support W278 and reimplemented a boundary fixing the WPP-op object-level mapping-cone diagram and cocone; remaining input is IsColimit for mappingConeCocone; not product success. v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success. v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success. v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success. w377: parent-verified WPP-op closed-map remaining-fields support; target quotient closed-on-saturated theorem and W374/W371 packaging now yield descended closed-map from component closed-map, relation pullback equality, and target relation lifting. Product success remains false. w378: parent-verified partial transported relation-fields support; W375/W354 transported fields are fixed as injective, inducing, and closed-range data with a consumer adapter. Product success remains false. w379: parent-verified AddCommGrp degreewise cokernel data support; canonical componentwise cokernel short complex supplies concrete degreewise cofork data, component colimits, W376 target presentation, and difference Snake consumers. Product success remains false. w380: parent-verified component closed-map support; objectwise closed embedding supplies the W377 ordinary codomain component closed-map input, leaving relation-pullback equality and target relation lifting. Product success remains false. w381: parent-verified partial ordinary-to-transported relation-field support; ordinary W352-style fields can feed W378/W375 once point identifications, descended-map conjugacy, and injective/inducing/closed-range transports are proved. Product success remains false. w384: parent-verified iso field-transport support; injective, IsInducing, and closed-range fields now transport across source/target isomorphisms under descended-map conjugacy. Product success remains false. w382/w383/w384: parent-verified target-row bridge, relation pullback/target-lift boundary, iso field transport, and transported point package support. Product success remains false. w385/w386: parent-verified nonterminal reductions for AddCommGrp targetIso and WPP-op target relation lifting. Product success remains false. w387: parent-verified transported quotient point-isomorphism support; source/target point isomorphisms are available, leaving pointwise conjugacy and ordinary W352 fields. Product success remains false. w388: parent-verified C-identification support; W376 presentation equality branch for W385 is closed, but direct targetIso remains open. Product success remains false. w389/w390: parent-verified reducers; product success remains false. w391/w392: parent-verified final input reducers; product success remains false. w393: parent-verified ordinary descended fields adapter; product success remains false. parent-w352-to-w393: checked adapter; product success remains false. w394/w395: parent-verified composers; product success remains false. w396: parent-verified W352-to-W390 consumer; product success remains false. w398: parent-verified forgotten target cofork input shape; product success remains false. w397/w398: parent-verified input adapters; product success remains false. W399 checked partial support consumed; not product success. W400/W401 checked partial support consumed; not product success. w459: parent-verified nonterminal support; selected difference kernel row and W456 kernel-row input are proved, but product success remains false. w460: parent-verified nonterminal support; component projection cofork normalization and transport from selected component cofork IsColimit proofs are proved, but product success remains false. w461: parent-verified nonterminal support; no product success claim. w462: parent-verified nonterminal support; no product success claim. w463: parent-verified nonterminal support before worker result.json; quotient-identification bridge proved, but actual inputs remain and product success remains false. w464: parent-verified nonterminal support; W318 AddCommGrp strict kernel exact boundary reduced to projection component fields, but product success remains false. w465: parent-verified nonterminal support; W426/W387 inputs imply full W318 leg compatibility, but actual inputs remain and product success remains false. w466: parent-verified nonterminal support; W463 inputs plus strict rows imply strict Snake data and AddCommGrp kernel exactness, but actual quotient-identification inputs remain and product success remains false.",
+  "support_result_classification": "W467 is a checked quotient-identification-to-exact-acyclic-boundary reducer; it does not construct the actual W463 quotient-identification inputs or left closed-embedding input.",
   "product_success": false,
-  "remaining_work": "W463 quotient-identification実入力、W466実適用統合、W465 W426/W387実入力、W426/W387/W390 importable alignment、四部構成product theorem統合を証明する。",
+  "remaining_work": [
+    "W463の実適用には、cs.pt.X₁/X₂/X₃から明示forgotten cokernel quotientへのpoint isomorphism三つが必要である。",
+    "W463の実適用には、selected component legが各point isomorphism後に明示quotient projectionと一致する等式三つが必要である。",
+    "W463の実適用には、選択component差分について明示quotient coforkのIsColimit証明三つが必要である。",
+    "W467/W466を実際のselected WPP-op colimit coconeへ適用する統合がまだ必要である。",
+    "W467のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
+    "W465の実適用には、W426 ordinary descended map、W426 quotient compatibility、W387 source/target point-identification target-leg equationsがまだ必要である。",
+    "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
+  ],
   "summary_log_tail": " W408 checked partial support consumed; ordinary descended IsClosedMap is reduced to representative-image closedness, not product success."
 }
