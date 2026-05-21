@@ -1085,6 +1085,18 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - product_complete: false
 
 
+## W484 Closed Range Only Componentwise Projection Bridge
+
+- timestamp: `2026-05-21T03:32:02Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- support lead: `/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave185_20260520T163335Z/workers/w483-closed-range-only-componentwise-projection-current-head-v370/result.json`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`; `lake build`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W484 exposes `WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484`. It separates closed-range-only component inputs from the missing selected projection bridge, recovers W481's componentwise projection provider once that bridge is supplied, and composes through W483 via `exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyComponentwiseProjection_w484`.
+- remaining blockers: construct actual `SelectedW461PromotionInputsProviderW483`, `ComponentwiseClosedRangeOnlyProviderW484`, and `ComponentwiseClosedRangeOnlyProjectionBridgeW484`; the bridge is the isolated W457-style selected projected component cofork `IsColimit` input.
+- product_complete: false
+
+
 ## W479 W426 Left Closed Quotient Identification Exact Acyclic
 
 - timestamp: `2026-05-21T02:52:26Z`

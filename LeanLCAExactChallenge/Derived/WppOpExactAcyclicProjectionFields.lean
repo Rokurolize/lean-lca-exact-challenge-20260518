@@ -1948,4 +1948,177 @@ end Checks
 
 end WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
 
+namespace WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the parent W484 closed-range-only boundary. -/
+def supportSeedW484 : String :=
+  "w484-parent-closed-range-only-componentwise"
+
+/-- Short local name for W484's ordinary source index. -/
+abbrev ordinarySourceIndexW484 : WalkingParallelPairᵒᵖ :=
+  AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464.ordinarySourceIndex
+
+/-- Short local name for W484's ordinary target index. -/
+abbrev ordinaryTargetIndexW484 : WalkingParallelPairᵒᵖ :=
+  AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464.ordinaryTargetIndex
+
+/-- Short local alias for the selected target cokernel cofork used in W484 fields. -/
+abbrev selectedTargetCokernelCoforkW484
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :=
+  selectedMetrizableTargetCokernelCofork S cs
+
+/--
+Closed-range-only component input surface. These are the intended topological
+inputs, without hiding selected component projection `IsColimit` fields.
+-/
+structure SelectedComponentwiseClosedRangeOnlyInputsW484
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) : Type 1 where
+  hclosedπ₁ : IsClosed (Set.range (selectedMetrizableDifferenceπ₁W481 S :
+    (S.obj ordinarySourceIndexW484).X₁ → (S.obj ordinaryTargetIndexW484).X₁))
+  hclosedπ₂ : IsClosed (Set.range (selectedMetrizableDifferenceπ₂W481 S :
+    (S.obj ordinarySourceIndexW484).X₂ → (S.obj ordinaryTargetIndexW484).X₂))
+  hclosedπ₃ : IsClosed (Set.range (selectedMetrizableDifferenceπ₃W481 S :
+    (S.obj ordinarySourceIndexW484).X₃ → (S.obj ordinaryTargetIndexW484).X₃))
+
+/-- Provider for the closed-range-only component input surface. -/
+abbrev ComponentwiseClosedRangeOnlyProviderW484 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs → SelectedComponentwiseClosedRangeOnlyInputsW484 S cs
+
+/--
+The exact extra componentwise bridge still needed beyond closed range alone:
+each selected projected component cofork must be an `IsColimit`.
+-/
+structure SelectedComponentwiseProjectionBridgeInputsW484
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) : Type 1 where
+  hπ₁ :
+    IsColimit
+      ((ShortComplex.π₁ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedTargetCokernelCoforkW484 S cs).map forgottenShortComplexFunctor))
+  hπ₂ :
+    IsColimit
+      ((ShortComplex.π₂ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedTargetCokernelCoforkW484 S cs).map forgottenShortComplexFunctor))
+  hπ₃ :
+    IsColimit
+      ((ShortComplex.π₃ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedTargetCokernelCoforkW484 S cs).map forgottenShortComplexFunctor))
+
+/--
+Provider for the missing closed-range-to-selected-projection bridge. W484 keeps
+this separate so the closed-range-only provider does not smuggle in W481's
+projection fields.
+-/
+abbrev ComponentwiseClosedRangeOnlyProjectionBridgeW484 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs →
+      SelectedComponentwiseClosedRangeOnlyInputsW484 S cs →
+        SelectedComponentwiseProjectionBridgeInputsW484 S cs
+
+/-- Closed-range-only inputs plus the isolated bridge recover W481's surface. -/
+def selectedComponentwiseClosedRangeProjectionInputs_of_closedRangeOnly_w484
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hclosed : SelectedComponentwiseClosedRangeOnlyInputsW484 S cs)
+    (hbridge : SelectedComponentwiseProjectionBridgeInputsW484 S cs) :
+    SelectedComponentwiseClosedRangeProjectionInputsW481 S cs where
+  hclosedπ₁ := hclosed.hclosedπ₁
+  hclosedπ₂ := hclosed.hclosedπ₂
+  hclosedπ₃ := hclosed.hclosedπ₃
+  hπ₁ := hbridge.hπ₁
+  hπ₂ := hbridge.hπ₂
+  hπ₃ := hbridge.hπ₃
+
+/--
+Provider-level adapter from closed-range-only inputs to W481's projection
+surface, parameterized by the exact missing bridge.
+-/
+def componentwiseProjectionProvider_of_closedRangeOnly_w484
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484)
+    (hbridge : ComponentwiseClosedRangeOnlyProjectionBridgeW484) :
+    ComponentwiseClosedRangeProjectionProviderW481 := by
+  intro S cs hcs
+  let hclosed := hclosedOnly S cs hcs
+  exact selectedComponentwiseClosedRangeProjectionInputs_of_closedRangeOnly_w484 hclosed
+    (hbridge S cs hcs hclosed)
+
+/--
+W484 composition theorem: once the isolated component projection bridge is
+provided, the closed-range-only surface composes through W483.
+-/
+theorem exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyComponentwiseProjection_w484
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484)
+    (hbridge : ComponentwiseClosedRangeOnlyProjectionBridgeW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_componentwiseClosedRangeProjection_w483
+    hinputs
+    (componentwiseProjectionProvider_of_closedRangeOnly_w484 hclosedOnly hbridge)
+
+/-- Machine-readable blocked support state for W484. -/
+structure ClosedRangeOnlyComponentwiseProjectionV370SupportStateW484 : Type where
+  seed : String
+  declarations : List String
+  closedRangeOnlyProviderResult : String
+  adapterResult : String
+  composedExactAcyclicResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked support state: W484 is blocked exactly at the bridge fields. -/
+def currentClosedRangeOnlyComponentwiseProjectionV370SupportStateW484 :
+    ClosedRangeOnlyComponentwiseProjectionV370SupportStateW484 where
+  seed := supportSeedW484
+  declarations :=
+    ["SelectedComponentwiseClosedRangeOnlyInputsW484",
+      "ComponentwiseClosedRangeOnlyProviderW484",
+      "SelectedComponentwiseProjectionBridgeInputsW484",
+      "ComponentwiseClosedRangeOnlyProjectionBridgeW484",
+      "selectedComponentwiseClosedRangeProjectionInputs_of_closedRangeOnly_w484",
+      "componentwiseProjectionProvider_of_closedRangeOnly_w484",
+      "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyComponentwiseProjection_w484"]
+  closedRangeOnlyProviderResult := "proved"
+  adapterResult := "blocked-with-explicit-bridge"
+  composedExactAcyclicResult := "proved-assuming-bridge"
+  remainingInputs :=
+    ["prove projected selected target cokernel cofork IsColimit fields",
+      "identify selected component legs with explicit LCA cokernel projections"]
+  productSuccessClaimed := false
+
+theorem currentClosedRangeOnlyComponentwiseProjectionStateW484_productSuccess :
+    currentClosedRangeOnlyComponentwiseProjectionV370SupportStateW484.productSuccessClaimed =
+      false :=
+  rfl
+
+theorem currentClosedRangeOnlyComponentwiseProjectionStateW484_remainingInputs_count :
+    currentClosedRangeOnlyComponentwiseProjectionV370SupportStateW484.remainingInputs.length =
+      2 :=
+  rfl
+
+section Checks
+
+#check supportSeedW484
+#check SelectedComponentwiseClosedRangeOnlyInputsW484
+#check ComponentwiseClosedRangeOnlyProviderW484
+#check SelectedComponentwiseProjectionBridgeInputsW484
+#check ComponentwiseClosedRangeOnlyProjectionBridgeW484
+#check selectedComponentwiseClosedRangeProjectionInputs_of_closedRangeOnly_w484
+#check componentwiseProjectionProvider_of_closedRangeOnly_w484
+#check exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyComponentwiseProjection_w484
+#check currentClosedRangeOnlyComponentwiseProjectionStateW484_productSuccess
+#check currentClosedRangeOnlyComponentwiseProjectionStateW484_remainingInputs_count
+
+end Checks
+
+end WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+
 end LeanLCAExactChallenge

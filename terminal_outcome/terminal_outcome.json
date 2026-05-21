@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W483のselected-W461-provider routeをroot import済みsourceへ統合し、ProductSuccessDeclarationsでも公開APIを確認した。W483により、選択されたW461 promotion input providerからW318 left closed-image inputを直接証明し、W481 componentwise projection providerと合成できる。ただし実際のfinal call siteでSelectedW461PromotionInputsProviderW483とComponentwiseClosedRangeProjectionProviderW481はまだ未構成なのでproduct_successは主張しない。",
+  "summary": "W484のclosed-range-only componentwise projection bridgeをroot import済みsourceへ統合し、ProductSuccessDeclarationsでも公開APIを確認した。W484によりclosed-range-only component inputsは明示的なselected projection IsColimit bridgeと分離され、そのbridgeがあればW481 providerへ戻してW483と合成できる。ただしfinal call siteでSelectedW461PromotionInputsProviderW483、ComponentwiseClosedRangeOnlyProviderW484、ComponentwiseClosedRangeOnlyProjectionBridgeW484はまだ未構成なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -1708,9 +1708,10 @@
     "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess"
   ],
   "known_gaps": [
-    "final call siteのSelectedW461PromotionInputsProviderW483が未構成",
-    "final call siteのComponentwiseClosedRangeProjectionProviderW481が未構成",
-    "terminal_outcomeはproduct_successではなく、review packet auditはproduct-success gate未通過"
+    "final call siteでSelectedW461PromotionInputsProviderW483を構成する必要がある。",
+    "closed-range-only component inputを実際の対象へ与えるComponentwiseClosedRangeOnlyProviderW484が未構成。",
+    "selected projection IsColimit bridgeであるComponentwiseClosedRangeOnlyProjectionBridgeW484が未構成。",
+    "product-success declarationを実際に証明するまではterminal outcomeをproduct_successへ更新しない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
@@ -1720,12 +1721,12 @@
   "worker_frontier_summary": "W475 consumed: W426 promotion composes with W464 projection fields to exact-acyclic closure; product_complete remains false pending actual final call-site instantiation.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "W475の実適用には、W426 promotion/equality inputsを実際のfinal call siteへinstantiateする必要がある。",
-    "W475の実適用には、projection component IsColimit fieldsを実際のfinal call siteへ供給する必要がある。",
-    "W465の実適用には、W426 quotient compatibilityとW387 source/target point-identification target-leg equationsがまだ必要である。",
-    "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
+    "final call siteでSelectedW461PromotionInputsProviderW483を構成する必要がある。",
+    "closed-range-only component inputを実際の対象へ与えるComponentwiseClosedRangeOnlyProviderW484が未構成。",
+    "selected projection IsColimit bridgeであるComponentwiseClosedRangeOnlyProjectionBridgeW484が未構成。",
+    "product-success declarationを実際に証明するまではterminal outcomeをproduct_successへ更新しない。"
   ],
-  "next_recommended_goal": "W475のcall-site入力としてW426 promotion/equality dataとprojection component IsColimit fieldsをfinal importable namespaceで構成し、W465のquotient compatibility/target-leg等式と接続する。",
+  "next_recommended_goal": "Construct concrete SelectedW461PromotionInputsProviderW483 and the W484 closed-range-only projection bridge at the final WPP-op exact-acyclic call sites.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2582,8 +2583,8 @@
     "AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w475",
     "AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_projectionFields_w475"
   ],
-  "generated_utc": "2026-05-21T03:58:00Z",
-  "support_result_classification": "W475 parent-consumed support is a verified nonterminal frontier reducer, not product success.",
+  "generated_utc": "2026-05-21T04:34:00Z",
+  "support_result_classification": "W484 promoted the blocked W483 closed-range-only support result as a checked nonterminal boundary; it isolates the selected projection IsColimit bridge and does not claim product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3481,14 +3482,23 @@
     "LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCocone",
     "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCoforkMappedCoconeIso",
     "LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_closureKernelInput",
-    "LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_forgottenAlgebraicRange_eq"
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_forgottenAlgebraicRange_eq",
+    "SelectedComponentwiseClosedRangeOnlyInputsW484",
+    "ComponentwiseClosedRangeOnlyProviderW484",
+    "SelectedComponentwiseProjectionBridgeInputsW484",
+    "ComponentwiseClosedRangeOnlyProjectionBridgeW484",
+    "selectedComponentwiseClosedRangeProjectionInputs_of_closedRangeOnly_w484",
+    "componentwiseProjectionProvider_of_closedRangeOnly_w484",
+    "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyComponentwiseProjection_w484",
+    "currentClosedRangeOnlyComponentwiseProjectionStateW484_productSuccess",
+    "currentClosedRangeOnlyComponentwiseProjectionStateW484_remainingInputs_count"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "instantiate W461ToW475PromotionInputsProviderW480",
-    "instantiate W461ToW475OrdinaryMapProviderW480",
-    "supply concrete W477 componentwise provider",
-    "claim product_success only after final product theorem and terminal audit pass"
+    "final call siteでSelectedW461PromotionInputsProviderW483を構成する必要がある。",
+    "closed-range-only component inputを実際の対象へ与えるComponentwiseClosedRangeOnlyProviderW484が未構成。",
+    "selected projection IsColimit bridgeであるComponentwiseClosedRangeOnlyProjectionBridgeW484が未構成。",
+    "product-success declarationを実際に証明するまではterminal outcomeをproduct_successへ更新しない。"
   ]
 }

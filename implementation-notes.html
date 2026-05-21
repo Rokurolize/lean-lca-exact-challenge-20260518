@@ -1644,6 +1644,12 @@
 <p>This is still nonterminal. It reduces the final WPP-op exact-acyclic route to <code>SelectedW461PromotionInputsProviderW483</code> plus <code>ComponentwiseClosedRangeProjectionProviderW481</code>, but those concrete final-call-site providers are not yet constructed.</p>
 </section>
 
+<section id="w484-closed-range-only-componentwise-projection-bridge">
+<h2>W484 closed range only componentwise projection bridge</h2>
+<p><time>2026-05-21T03:32:02Z</time>: After inspecting the completed support W483 blocked result, the parent reimplemented its useful boundary under the noncolliding namespace <code>WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484</code> and exposed it through <code>audit/ProductSuccessDeclarations.lean</code>. W484 separates <code>ComponentwiseClosedRangeOnlyProviderW484</code> from <code>ComponentwiseClosedRangeOnlyProjectionBridgeW484</code>; once the bridge supplies the three selected projected component cofork <code>IsColimit</code> proofs, W484 recovers W481 and composes through W483.</p>
+<p>This remains nonterminal. Closed range alone still does not identify the selected component legs with the explicit LCA cokernel projections. The final call sites need <code>SelectedW461PromotionInputsProviderW483</code>, <code>ComponentwiseClosedRangeOnlyProviderW484</code>, and <code>ComponentwiseClosedRangeOnlyProjectionBridgeW484</code>.</p>
+</section>
+
 <section id="audit-marker-and-manifest-refresh-20260521">
 <h2>Audit marker and manifest refresh</h2>
 <p><time>2026-05-21T02:43:22Z</time>: The parent removed comment-only product-marker words from <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> and <code>audit/ProductSuccessDeclarations.lean</code>, refreshed <code>manifest.json</code> with packet and transient Codex progress paths excluded, and updated <code>run/verification.json</code>'s <code>source_tree_hash</code>. After this, <code>python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json</code> no longer fails on placeholder markers, manifest hashes, or stale source hash; it reaches the expected nonterminal product gate because <code>terminal_outcome.outcome</code> is still <code>blocked_nonterminal_frontier</code>.</p>
