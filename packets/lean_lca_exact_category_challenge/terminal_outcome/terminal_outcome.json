@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W472を検証して記録した。selected component cofork IsColimit入力三つからprojection fields、AddCommGrp strict kernel boundary、exact-acyclic WPP-op colimit closure endpointへ進む接続は閉じた。ただし実call-siteの三つのselected component cofork IsColimit証明と左closed-embedding入力は未構成なのでproduct_successは主張しない。",
+  "summary": "W473を検証して記録した。W426 promotion dataから左closed-embedding入力を得て、W470 closed-range point-identification dataと合成してexact-acyclic WPP-op colimit closure endpointへ進む接続は閉じた。ただし実際のW426 ordinary descended package、ordinary/canonical map equality、W470入力は未構成なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -670,7 +670,10 @@
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_component_colimit_comparison_exact_acyclic_v370_support_w471.lean",
     "lake env lean audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean",
     "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean",
+    "lake env lean audit/blockers/addcommgrp_w426_left_closed_closed_range_exact_acyclic_v370_support_w473.lean",
+    "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_w426_left_closed_closed_range_exact_acyclic_v370_support_w473.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_closed_range_exact_acyclic_v370_support_w473.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1689,9 +1692,10 @@
     "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess"
   ],
   "known_gaps": [
-    "W472の実適用には、selected component cofork IsColimit証明三つ（π₁/π₂/π₃）が必要である。",
-    "W472のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
-    "W465の実適用には、W426 ordinary descended map、W426 quotient compatibility、W387 source/target point-identification target-leg equationsがまだ必要である。",
+    "W473の実適用には、W426 ordinary descended map packageが必要である。",
+    "W473の実適用には、ordinary mapとcanonical WPP-op colimit mapの等式証明が必要である。",
+    "W473/W470の実適用には、各ShortComplex WPP-op colimit call siteでclosed-range point-identification dataが必要である。",
+    "W465の実適用には、W426 quotient compatibilityとW387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -1699,15 +1703,16 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "825e9cd",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W472 consumed: selected component cofork IsColimit inputs now bridge directly to exact-acyclic closure wrappers; product_complete remains false pending three concrete cofork colimit proofs and left closed-embedding input.",
+  "worker_frontier_summary": "W473 consumed: W426 promotion can supply the left closed-embedding input and compose with W470 closed-range point-identification data; product_complete remains false pending actual W426/W470 call-site inputs.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "W472の実適用には、selected component cofork IsColimit証明三つ（π₁/π₂/π₃）が必要である。",
-    "W472のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
-    "W465の実適用には、W426 ordinary descended map、W426 quotient compatibility、W387 source/target point-identification target-leg equationsがまだ必要である。",
+    "W473の実適用には、W426 ordinary descended map packageが必要である。",
+    "W473の実適用には、ordinary mapとcanonical WPP-op colimit mapの等式証明が必要である。",
+    "W473/W470の実適用には、各ShortComplex WPP-op colimit call siteでclosed-range point-identification dataが必要である。",
+    "W465の実適用には、W426 quotient compatibilityとW387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
-  "next_recommended_goal": "W472のcall-site入力としてselected component cofork IsColimit証明三つを実際のselected WPP-op colimit pointで構成し、W318/W464左closed-embedding入力およびW465のW426/W387 target-leg入力と接続する。",
+  "next_recommended_goal": "W473のcall-site入力としてW426 ordinary descended package、ordinary/canonical colimit-map equality、W470 closed-range point-identification dataを構成し、W465のquotient compatibility/target-leg等式と同一importable namespaceで接続する。",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2556,10 +2561,12 @@
     "AddCommGrpSelectedComponentCoforksExactAcyclicV370SupportW472.SelectedComponentCoforkIsColimitInputsW472",
     "AddCommGrpSelectedComponentCoforksExactAcyclicV370SupportW472.selectedProjectionComponentIsColimitInputs_of_selectedComponentCoforks_w472",
     "AddCommGrpSelectedComponentCoforksExactAcyclicV370SupportW472.addCommGrpStrictKernelExactBoundary_of_selectedComponentCoforks_w472",
-    "AddCommGrpSelectedComponentCoforksExactAcyclicV370SupportW472.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_selectedComponentCoforks_w472"
+    "AddCommGrpSelectedComponentCoforksExactAcyclicV370SupportW472.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_selectedComponentCoforks_w472",
+    "AddCommGrpW426LeftClosedClosedRangeExactAcyclicV370SupportW473.wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w473",
+    "AddCommGrpW426LeftClosedClosedRangeExactAcyclicV370SupportW473.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_closedRangePointIdentifications_w473"
   ],
-  "generated_utc": "2026-05-21T02:32:00Z",
-  "support_result_classification": "W472 parent-consumed support is a verified nonterminal frontier reducer, not product success.",
+  "generated_utc": "2026-05-21T02:42:00Z",
+  "support_result_classification": "W473 parent-consumed support is a verified nonterminal frontier reducer, not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",

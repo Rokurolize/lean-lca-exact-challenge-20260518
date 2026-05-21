@@ -954,3 +954,13 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: selected component cofork `IsColimit` inputs directly supply projection component fields, the AddCommGrp strict kernel exact boundary, and the exact-acyclic WPP-op colimit closure wrapper.
 - remaining blockers: prove the actual selected component cofork `IsColimit` statements for π₁, π₂, and π₃, and provide the W318/W464 left closed-embedding input.
 - product_complete: false
+
+
+## W473 W426 Left Closed Closed Range Exact Acyclic
+
+- timestamp: `2026-05-21T02:42:00Z`
+- artifact: `audit/blockers/addcommgrp_w426_left_closed_closed_range_exact_acyclic_v370_support_w473.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_w426_left_closed_closed_range_exact_acyclic_v370_support_w473.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_w426_left_closed_closed_range_exact_acyclic_v370_support_w473.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_closed_range_exact_acyclic_v370_support_w473.lean`; `git diff --check`
+- effect: W426 promotion data supplies `wppOp_lca_colimitMap_injective_inducing_closedImage`, and closed-range point-identification data then feed W470/W467 to the exact-acyclic WPP-op colimit closure endpoint.
+- remaining blockers: supply the actual W426 ordinary descended map package, ordinary/canonical colimit-map equality witness, and W470 closed-range point-identification data for each ShortComplex WPP-op colimit call site.
+- product_complete: false
