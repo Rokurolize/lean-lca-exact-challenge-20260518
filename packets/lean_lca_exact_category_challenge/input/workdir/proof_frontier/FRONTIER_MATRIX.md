@@ -854,3 +854,23 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: the three `ShortComplex.πᵢ.mapCocone` projection cofork inputs are transported from the selected component cokernel coforks by explicit cocone isomorphisms, and `selectedProjectionComponentIsColimitInputs_of_selectedComponentCoforks` packages the three component `IsColimit` proofs into W452's input shape.
 - remaining blockers: prove the actual `IsColimit` statements for `selectedForgottenComponentπ₁/π₂/π₃CokernelCofork S cs`, or identify those selected component coforks with the explicit closed-range quotient cokernels.
 - product_complete: false
+
+
+## W461 W426 quotient-compat target leg reduction
+
+- timestamp: `2026-05-21T01:31:33Z`
+- artifact: `audit/blockers/wpp_op_w426_quotient_compat_target_leg_reduction_v370_support_w461.lean`
+- verified: `lake env lean audit/blockers/wpp_op_w426_quotient_compat_target_leg_reduction_v370_support_w461.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/wpp_op_w426_quotient_compat_target_leg_reduction_v370_support_w461.lean`; `git diff --check`
+- effect: W426 quotient compatibility plus W387-style point identifications reduce the W458 target component equation to concrete target-leg inputs; W318 leg compatibility remains partial until W458 theorem/imports and actual W426/W387 instances are supplied.
+- remaining blockers: actual selected component cofork `IsColimit` proofs or explicit closed-range quotient-cokernel identifications remain required; W461 additionally needs W458 import/use, W426 ordinary descended and quotient compatibility instances, and W387 point-identification target-leg equations.
+- product_complete: false
+
+
+## W462 Projection Fields To Strict Snake Kernel Row
+
+- timestamp: `2026-05-21T01:33:24Z`
+- artifact: `audit/blockers/addcommgrp_projection_fields_to_strict_snake_kernel_row_v370_support_w462.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_projection_fields_to_strict_snake_kernel_row_v370_support_w462.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_projection_fields_to_strict_snake_kernel_row_v370_support_w462.lean`; `git diff --check`
+- effect: projection component IsColimit fields now feed componentwise selected cokernel inputs, strict Snake cokernel data, and AddCommGrp kernel exactness for the selected colimit point.
+- remaining blockers: actual selected component cofork `IsColimit` proofs or explicit closed-range quotient-cokernel identifications remain required; W461 additionally needs W458 import/use, W426 ordinary descended and quotient compatibility instances, and W387 point-identification target-leg equations.
+- product_complete: false
