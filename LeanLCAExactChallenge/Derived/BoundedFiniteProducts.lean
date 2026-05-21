@@ -14,7 +14,116 @@ bounded-complex inclusion functor.
 set_option autoImplicit false
 set_option maxHeartbeats 2000000
 
-universe w v u
+universe w v v1 v2 u u1 u2
+
+namespace CategoryTheory
+
+open Category Limits Functor
+
+namespace Localization
+
+variable {J : Type w} [Category.{v} J]
+variable {C : Type u1} {D : Type u2} [Category.{v1} C] [Category.{v2} D]
+  (L : C ⥤ D) (W : MorphismProperty C) [L.IsLocalization W]
+
+instance finiteShapeConstCatCommSq :
+    CatCommSq (Functor.const J) L
+      ((whiskeringRight J C D).obj L) (Functor.const J) where
+  iso := (Functor.compConstIso J L).symm
+
+namespace FiniteShapeLimitTransferAux
+
+variable (J) [HasLimitsOfShape J C] [W.IsStableUnderLimitsOfShape J]
+
+lemma inverts :
+    (W.functorCategory J).IsInvertedBy (lim ⋙ L) :=
+  fun _ _ f hf => Localization.inverts L W _ (MorphismProperty.limMap f hf)
+
+variable [((whiskeringRight J C D).obj L).IsLocalization (W.functorCategory J)]
+
+/-- The limit functor on the localized category induced by the source limit functor. -/
+noncomputable abbrev limitFunctor :
+    (J ⥤ D) ⥤ D :=
+  Localization.lift _ (inverts (L := L) (W := W) J) ((whiskeringRight J C D).obj L)
+
+/-- The localized limit functor is induced by `lim ⋙ L`. -/
+noncomputable def compLimitFunctorIso :
+    ((whiskeringRight J C D).obj L) ⋙ limitFunctor (L := L) (W := W) J ≅
+      lim ⋙ L := by
+  apply Localization.fac
+
+noncomputable instance :
+    CatCommSq lim ((whiskeringRight J C D).obj L) L
+      (limitFunctor (L := L) (W := W) J) where
+  iso := (compLimitFunctorIso (L := L) (W := W) J).symm
+
+/-- The source constant/limit adjunction descends through the localization functors. -/
+noncomputable def adj :
+    Functor.const J ⊣ limitFunctor (L := L) (W := W) J :=
+  constLimAdj.localization L W ((whiskeringRight J C D).obj L)
+    (W.functorCategory J) (Functor.const J) (limitFunctor (L := L) (W := W) J)
+
+end FiniteShapeLimitTransferAux
+
+namespace FiniteShapeColimitTransferAux
+
+variable (J) [HasColimitsOfShape J C] [W.IsStableUnderColimitsOfShape J]
+
+lemma inverts :
+    (W.functorCategory J).IsInvertedBy (colim ⋙ L) :=
+  fun _ _ f hf => Localization.inverts L W _ (MorphismProperty.colimMap f hf)
+
+variable [((whiskeringRight J C D).obj L).IsLocalization (W.functorCategory J)]
+
+/-- The colimit functor on the localized category induced by the source colimit functor. -/
+noncomputable abbrev colimitFunctor :
+    (J ⥤ D) ⥤ D :=
+  Localization.lift _ (inverts (L := L) (W := W) J) ((whiskeringRight J C D).obj L)
+
+/-- The localized colimit functor is induced by `colim ⋙ L`. -/
+noncomputable def compColimitFunctorIso :
+    ((whiskeringRight J C D).obj L) ⋙ colimitFunctor (L := L) (W := W) J ≅
+      colim ⋙ L := by
+  apply Localization.fac
+
+noncomputable instance :
+    CatCommSq colim ((whiskeringRight J C D).obj L) L
+      (colimitFunctor (L := L) (W := W) J) where
+  iso := (compColimitFunctorIso (L := L) (W := W) J).symm
+
+/-- The source colimit/constant adjunction descends through the localization functors. -/
+noncomputable def adj :
+    colimitFunctor (L := L) (W := W) J ⊣ Functor.const J :=
+  colimConstAdj.localization ((whiskeringRight J C D).obj L) (W.functorCategory J)
+    L W (colimitFunctor (L := L) (W := W) J) (Functor.const J)
+
+end FiniteShapeColimitTransferAux
+
+include L W in
+/-- Transfer limits of one shape through a localization from a functor-category
+localization input. -/
+lemma hasLimitsOfShape_of_functorCategoryLocalization
+    (J : Type w) [Category.{v} J]
+    [HasLimitsOfShape J C] [W.IsStableUnderLimitsOfShape J]
+    [((whiskeringRight J C D).obj L).IsLocalization (W.functorCategory J)] :
+    HasLimitsOfShape J D :=
+  hasLimitsOfShape_iff_isLeftAdjoint_const.2
+    (FiniteShapeLimitTransferAux.adj (L := L) (W := W) J).isLeftAdjoint
+
+include L W in
+/-- Transfer colimits of one shape through a localization from a functor-category
+localization input. -/
+lemma hasColimitsOfShape_of_functorCategoryLocalization
+    (J : Type w) [Category.{v} J]
+    [HasColimitsOfShape J C] [W.IsStableUnderColimitsOfShape J]
+    [((whiskeringRight J C D).obj L).IsLocalization (W.functorCategory J)] :
+    HasColimitsOfShape J D :=
+  hasColimitsOfShape_iff_isRightAdjoint_const.2
+    (FiniteShapeColimitTransferAux.adj (L := L) (W := W) J).isRightAdjoint
+
+end Localization
+
+end CategoryTheory
 
 namespace LeanLCAExactChallenge
 
@@ -239,7 +348,8 @@ theorem op_isStableUnderFiniteProducts_of_isStableUnderFiniteCoproducts
   isStableUnderProductsOfShape J _ :=
     op_isStableUnderProductsOfShape_of_isStableUnderCoproductsOfShape W (J := J)
 
-/-- Opposite bounded exact weak equivalences over `MetrizableLCA` are stable under finite products. -/
+/-- Opposite bounded exact weak equivalences over `MetrizableLCA` are stable under finite
+products. -/
 theorem isStableUnderFiniteProducts_op_metrizableLCA :
     ((boundedExactWeakEquivalence MetrizableLCA.{0}).op).IsStableUnderFiniteProducts := by
   letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderFiniteCoproducts :=
@@ -290,6 +400,67 @@ finite (co)limit inputs are therefore equalizers and coequalizers.
 structure Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus : Type 1 where
   equalizers : HasEqualizers (Dbounded MetrizableLCA.{0})
   coequalizers : HasCoequalizers (Dbounded MetrizableLCA.{0})
+
+/-- Functor-category localization input for the `WalkingParallelPair` finite-shape transfer. -/
+abbrev Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput : Prop :=
+  ((Functor.whiskeringRight WalkingParallelPair
+      (BoundedComplexCategory MetrizableLCA.{0})
+      (Dbounded MetrizableLCA.{0})).obj
+      (Dbounded.localization MetrizableLCA.{0})).IsLocalization
+    ((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory WalkingParallelPair)
+
+/--
+Inputs that transfer equalizers and coequalizers for `Dbounded MetrizableLCA` from the
+bounded-complex source category.
+-/
+structure Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs : Type 1 where
+  limitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair
+  colimitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+      WalkingParallelPair
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/-- Equalizers in `Dbounded MetrizableLCA` from finite-shape localization transfer. -/
+noncomputable abbrev Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer
+    (inputs : Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs) :
+    HasEqualizers (Dbounded MetrizableLCA.{0}) := by
+  letI :
+      (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+        WalkingParallelPair := inputs.limitStability
+  letI : Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput :=
+    inputs.functorCategoryLocalization
+  haveI : HasLimitsOfShape WalkingParallelPair
+      (BoundedComplexCategory MetrizableLCA.{0}) := by
+    infer_instance
+  exact CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization
+    (Dbounded.localization MetrizableLCA.{0})
+    (boundedExactWeakEquivalence MetrizableLCA.{0}) WalkingParallelPair
+
+/-- Coequalizers in `Dbounded MetrizableLCA` from finite-shape localization transfer. -/
+noncomputable abbrev Dbounded.metrizableHasCoequalizersOfWalkingParallelPairTransfer
+    (inputs : Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs) :
+    HasCoequalizers (Dbounded MetrizableLCA.{0}) := by
+  letI :
+      (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+        WalkingParallelPair := inputs.colimitStability
+  letI : Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput :=
+    inputs.functorCategoryLocalization
+  haveI : HasColimitsOfShape WalkingParallelPair
+      (BoundedComplexCategory MetrizableLCA.{0}) := by
+    infer_instance
+  exact CategoryTheory.Localization.hasColimitsOfShape_of_functorCategoryLocalization
+    (Dbounded.localization MetrizableLCA.{0})
+    (boundedExactWeakEquivalence MetrizableLCA.{0}) WalkingParallelPair
+
+/-- Build the W531 finite-limit/finite-colimit remainder from finite-shape transfer inputs. -/
+noncomputable def Dbounded.metrizableFiniteLimitColimitRemainderOfWalkingParallelPairTransfer
+    (inputs : Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs) :
+    Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus where
+  equalizers := Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer inputs
+  coequalizers := Dbounded.metrizableHasCoequalizersOfWalkingParallelPairTransfer inputs
 
 /-- Finite limits from the W530 left-calculus fields, finite products, and equalizers. -/
 noncomputable abbrev Dbounded.metrizableFiniteLimitsOfLeftCalculusProducts
@@ -366,5 +537,30 @@ def Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames : List String :
 theorem Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames_count :
     Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames.length = 4 :=
   rfl
+
+/-- Finite-shape transfer input names used by the equalizer/coequalizer constructor. -/
+def Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames : List String :=
+  ["IsStableUnderLimitsOfShape WalkingParallelPair",
+    "IsStableUnderColimitsOfShape WalkingParallelPair",
+    "WalkingParallelPair functor-category localization"]
+
+/-- Three inputs feed the finite-shape transfer constructor. -/
+theorem Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames_count :
+    Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames.length = 3 :=
+  rfl
+
+section DboundedFiniteShapeTransferChecks
+
+#check CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization
+#check CategoryTheory.Localization.hasColimitsOfShape_of_functorCategoryLocalization
+#check Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+#check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+#check Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer
+#check Dbounded.metrizableHasCoequalizersOfWalkingParallelPairTransfer
+#check Dbounded.metrizableFiniteLimitColimitRemainderOfWalkingParallelPairTransfer
+#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames
+#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames_count
+
+end DboundedFiniteShapeTransferChecks
 
 end LeanLCAExactChallenge

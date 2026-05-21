@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W531では、W530で残ったfinite limit/finite colimit入力を、既存のDbounded finite products routeとmathlibのproducts/equalizersおよびcoproducts/coequalizers構成へ接続した。direct bounded left calculusが使える場合、`Dbounded MetrizableLCA`のfinite productsは既存のBoundedFiniteProducts routeから得られ、W530のpreadditive fieldによりfinite coproductsも得られる。そのためfinite limitsはequalizersへ、finite colimitsはcoequalizersへ縮約され、残りのstable semantic fieldsはequalizers、coequalizers、Pretriangulated、IsTriangulatedとして記録された。ただしequalizers/coequalizers、triangulated data、bounded left calculus instance、およびW515/W516/W517 relation provider dataとrow-aware provider dataはまだ未証明なので、terminal outcomeは引き続きblocked_nonterminal_frontierでproduct_successではない。",
+  "summary": "W532では、W531で残ったDbounded MetrizableLCAのequalizers/coequalizers入力を、WalkingParallelPair形のlimit/colimit transferへ接続した。一般のlocalizationについて、functor-category localizationがある場合にlimit shapeとcolimit shapeを移送する補題を追加し、その補題からDboundedのHasEqualizersとHasCoequalizersを構成するWPP finite-shape transfer recordを追加した。これによりfinite limit/finite colimitの未解決部分は、bounded exact weak equivalenceのWPP limit/colimit stabilityとWalkingParallelPair functor-category localization入力に具体化された。ただしtriangulated data、bounded left calculus instance、final WPP provider dataはまだ未構成なのでproduct_successではない。",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
     "lake build LeanLCAExactChallenge.Derived.BoundedFiniteProducts",
@@ -1790,30 +1790,37 @@
     "WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525.currentW525State_productSuccess"
   ],
   "known_gaps": [
-    "W531でfinite limitsはequalizersへ、finite colimitsはcoequalizersへ縮約されたが、Dbounded MetrizableLCAのHasEqualizersとHasCoequalizersはまだ具体化が必要である。",
-    "W530/W531 routeからW528 ready certificateを得るにはPretriangulatedとIsTriangulatedも必要であり、そのtriangulated dataはまだ未構成である。",
-    "W531のfinite-product reducerはdirect bounded left calculusを使うため、そのbounded left calculus instanceを最終routeで実際に供給する必要がある。",
+    "W532でDbounded MetrizableLCAのHasEqualizersとHasCoequalizersはWPP finite-shape transferから得られる形になったが、WPP limit stability、WPP colimit stability、functor-category localization入力の具体化がまだ必要である。",
+    "W530/W531/W532 routeからW528 ready certificateを得るにはPretriangulatedとIsTriangulatedも必要であり、そのtriangulated dataはまだ未構成である。",
+    "W531/W532のfinite-product/finite-shape routeはdirect bounded left calculusを使うため、そのbounded left calculus instanceを最終routeで実際に供給する必要がある。",
     "final call siteでW515 representative-image provider、または同等のW516/W517 relation provider dataを具体的に構成する必要がある。",
-    "final call siteで、選択component difference mapがclosed mapまたはclosed embeddingであることを、strict AddCommGrp行境界に対応するrow-aware providerとして具体的に構成する必要がある。",
-    "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施であり、product_successとして扱ってはいけない。"
+    "final call siteで、選択component differenceに対するrow-aware closed-mapまたはclosed-embedding dataを具体化する必要がある。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "490151a9b40ea1e69f04f7cb0b825643400ac7d3",
+  "git_commit": "c5919c96eadd3323ffc1bb5186dd04f2ab182c8a",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W529 was integrated by the parent in the target tree; no worker was launched. It converts concrete ordinary Dbounded MetrizableLCA semantic fields into the W528 four-projection certificate, but it does not construct those fields.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "W531でfinite limitsはequalizersへ、finite colimitsはcoequalizersへ縮約されたが、Dbounded MetrizableLCAのHasEqualizersとHasCoequalizersはまだ具体化が必要である。",
-    "W530/W531 routeからW528 ready certificateを得るにはPretriangulatedとIsTriangulatedも必要であり、そのtriangulated dataはまだ未構成である。",
-    "W531のfinite-product reducerはdirect bounded left calculusを使うため、そのbounded left calculus instanceを最終routeで実際に供給する必要がある。",
+    "W532でDbounded MetrizableLCAのHasEqualizersとHasCoequalizersはWPP finite-shape transferから得られる形になったが、WPP limit stability、WPP colimit stability、functor-category localization入力の具体化がまだ必要である。",
+    "W530/W531/W532 routeからW528 ready certificateを得るにはPretriangulatedとIsTriangulatedも必要であり、そのtriangulated dataはまだ未構成である。",
+    "W531/W532のfinite-product/finite-shape routeはdirect bounded left calculusを使うため、そのbounded left calculus instanceを最終routeで実際に供給する必要がある。",
     "final call siteでW515 representative-image provider、または同等のW516/W517 relation provider dataを具体的に構成する必要がある。",
-    "final call siteで、選択component difference mapがclosed mapまたはclosed embeddingであることを、strict AddCommGrp行境界に対応するrow-aware providerとして具体的に構成する必要がある。",
-    "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施であり、product_successとして扱ってはいけない。"
+    "final call siteで、選択component differenceに対するrow-aware closed-mapまたはclosed-embedding dataを具体化する必要がある。"
   ],
-  "next_recommended_goal": "Construct HasEqualizers/HasCoequalizers or the triangulated data for Dbounded MetrizableLCA, or pivot to the shorter concrete WPP provider route.",
+  "next_recommended_goal": "Prove the W532 WalkingParallelPair stability and functor-category localization inputs, or continue the triangulated-data route if that has lower expected cost.",
   "implemented_declarations": [
+    "CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization",
+    "CategoryTheory.Localization.hasColimitsOfShape_of_functorCategoryLocalization",
+    "LeanLCAExactChallenge.Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput",
+    "LeanLCAExactChallenge.Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs",
+    "LeanLCAExactChallenge.Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer",
+    "LeanLCAExactChallenge.Dbounded.metrizableHasCoequalizersOfWalkingParallelPairTransfer",
+    "LeanLCAExactChallenge.Dbounded.metrizableFiniteLimitColimitRemainderOfWalkingParallelPairTransfer",
+    "LeanLCAExactChallenge.Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames",
+    "LeanLCAExactChallenge.Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames_count",
     "LeanLCAExactChallenge.Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus",
     "LeanLCAExactChallenge.Dbounded.metrizableFiniteLimitsOfLeftCalculusProducts",
     "LeanLCAExactChallenge.Dbounded.metrizableFiniteColimitsOfLeftCalculusProducts",
@@ -2035,7 +2042,6 @@
     "BoundedHomotopyLeftCalculusW217.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_transfer",
     "BoundedHomotopyLeftCalculusW217.BoundedHomotopyLeftCalculusSufficientPackage",
     "BoundedHomotopyLeftCalculusW217.metrizableLCABoundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_package",
-    "CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization",
     "OppositeEqualizerLocalizationTransferW220.OppositeWalkingParallelPairFunctorCategoryLocalizationInput",
     "OppositeEqualizerLocalizationTransferW220.oppositeLocalizationHasWalkingParallelPairLimits_of_functorCategoryLocalization",
     "OppositeEqualizerLocalizationTransferW220.oppositeLocalizationHasEqualizers_of_functorCategoryLocalization",
@@ -2962,9 +2968,18 @@
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_compactTargetRelation_closedEmbeddingRows_w527",
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.currentW527State_productSuccess"
   ],
-  "generated_utc": "2026-05-21T15:38:08Z",
-  "support_result_classification": "verified_nonterminal_support_increment",
+  "generated_utc": "2026-05-21T15:50:44Z",
+  "support_result_classification": "verified_nonterminal",
   "implemented_declarations_checked": [
+    "CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization",
+    "CategoryTheory.Localization.hasColimitsOfShape_of_functorCategoryLocalization",
+    "LeanLCAExactChallenge.Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput",
+    "LeanLCAExactChallenge.Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs",
+    "LeanLCAExactChallenge.Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer",
+    "LeanLCAExactChallenge.Dbounded.metrizableHasCoequalizersOfWalkingParallelPairTransfer",
+    "LeanLCAExactChallenge.Dbounded.metrizableFiniteLimitColimitRemainderOfWalkingParallelPairTransfer",
+    "LeanLCAExactChallenge.Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames",
+    "LeanLCAExactChallenge.Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames_count",
     "LeanLCAExactChallenge.Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus",
     "LeanLCAExactChallenge.Dbounded.metrizableFiniteLimitsOfLeftCalculusProducts",
     "LeanLCAExactChallenge.Dbounded.metrizableFiniteColimitsOfLeftCalculusProducts",
@@ -3325,7 +3340,6 @@
     "BoundedHomotopyLeftCalculusW217.boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_closed2_and_transfer",
     "BoundedHomotopyLeftCalculusW217.BoundedHomotopyLeftCalculusSufficientPackage",
     "BoundedHomotopyLeftCalculusW217.metrizableLCABoundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_package",
-    "CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization",
     "OppositeEqualizerLocalizationTransferW220.OppositeWalkingParallelPairFunctorCategoryLocalizationInput",
     "OppositeEqualizerLocalizationTransferW220.oppositeLocalizationHasWalkingParallelPairLimits_of_functorCategoryLocalization",
     "OppositeEqualizerLocalizationTransferW220.oppositeLocalizationHasEqualizers_of_functorCategoryLocalization",
@@ -4183,12 +4197,12 @@
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Construct HasEqualizers and HasCoequalizers for Dbounded MetrizableLCA after W531 reduces finite limits and finite colimits to those fields.",
-    "Construct Pretriangulated and IsTriangulated structure for Dbounded MetrizableLCA, and ensure the bounded left-calculus instance needed by W530/W531 is available at the final route.",
+    "Discharge the W532 WalkingParallelPair finite-shape transfer inputs: WPP limit stability, WPP colimit stability, and functor-category localization for the direct bounded exact weak equivalence localization.",
+    "Construct Pretriangulated and IsTriangulated structure for Dbounded MetrizableLCA, and ensure the bounded left-calculus instance needed by W530-W532 is available at the final route.",
     "Prove concrete W515 representative-image provider data, or equivalent W516/W517 relation provider data, at the final call site.",
     "Prove row-aware selected component difference closed-map or closed-embedding data at the strict AddCommGrp boundary used by W318.",
     "Only after these close the broad product gates, rerun the final product audit and packet review as a product_success claim."
   ],
-  "latest_verified_increment": "W531 finite-limit/finite-colimit Dbounded reducer",
-  "source_tree_hash": "c837ce8e5886237c67d5c9cdbcedf13718d4fc3e02b8ea5f6cd6025de5c85c13"
+  "latest_verified_increment": "W532 finite-shape localization transfer for Dbounded equalizers/coequalizers",
+  "source_tree_hash": "84245f24287532a4fbe4b5c5598fd1b8686c020122a4a6ebd73790729c8519f0"
 }
