@@ -383,6 +383,11 @@
     <p>2026-05-21T01:37:42Z時点で、support worker w463の生成済み成果物<code>audit/blockers/addcommgrp_selected_component_quotient_identification_v370_support_w463.lean</code>をtarget worktreeへ取り込み、<code>lake env lean audit/blockers/addcommgrp_selected_component_quotient_identification_v370_support_w463.lean</code>、禁止トークン検索、<code>scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_component_quotient_identification_v370_support_w463.lean</code>、<code>git diff --check</code>を通した。workerの<code>result.json</code>は確認時点では未作成だったため、完了claimとしてではなく、親側で読んで再検証した非terminal supportとして採用した。</p>
     <p>W463は、選択component coforkの<code>IsColimit</code>を、三つのpoint isomorphism、三つのselected legから明示quotient projectionへの等式、三つの明示quotient <code>IsColimit</code>証明へ縮約する。これはproduct successではなく、実際の同一視入力とclosed-range quotient証明はまだ必要である。</p>
   </section>
+  <section>
+    <h2>W464 AddCommGrp row fields projection boundary</h2>
+    <p>2026-05-21T01:39:52Z時点で、support worker w464の成果物<code>audit/blockers/addcommgrp_row_fields_projection_kernel_boundary_v370_support_w464.lean</code>をtarget worktreeへ取り込み、<code>lake env lean audit/blockers/addcommgrp_row_fields_projection_kernel_boundary_v370_support_w464.lean</code>、禁止トークン検索、<code>scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_row_fields_projection_kernel_boundary_v370_support_w464.lean</code>、<code>git diff --check</code>を通した。W318のAddCommGrp strict kernel exact boundaryとexact-acyclic wrapperは、projection component <code>IsColimit</code> fieldsとrow algebraic fieldsを消費する形まで縮約された。</p>
+    <p>これはproduct successではない。残りはW463のquotient-identification実入力、closed-rangeからの明示quotient <code>IsColimit</code>、およびW461/W426/W387/W390 target-leg接続である。</p>
+  </section>
 </body>
 </html>
 
