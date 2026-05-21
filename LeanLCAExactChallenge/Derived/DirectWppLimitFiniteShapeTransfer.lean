@@ -247,6 +247,176 @@ lemma comp_mappingConeCone_π_snd {J : Type} [Category J]
           (hφ j))
       n g
 
+/-- Source projection cone associated to a degreewise test cone over the WPP mapping-cone diagram. -/
+noncomputable def mappingConeDegreewiseSourceCone
+    {X₁ X₂ : WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    (f : X₁ ⟶ X₂) (n : ℤ)
+    (s : Cone (WppOpMappingConeUniqueMediatorW308.mappingConeDiagram X₁ X₂ f ⋙
+      HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) n)) :
+    Cone (X₁ ⋙ BoundedComplexCategory.ι MetrizableLCA.{0} ⋙
+      HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) (n + 1)) where
+  pt := s.pt
+  π :=
+    { app := fun j =>
+        s.π.app j ≫
+          (CochainComplex.mappingCone.fst
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).1.v
+              n (n + 1) rfl
+      naturality := by
+        intro j j' α
+        dsimp [WppOpMappingConeUniqueMediatorW308.mappingConeDiagram]
+        symm
+        have hmap :
+            (CochainComplex.mappingCone.map
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₁.map α))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₂.map α))
+                (by
+                  rw [← Functor.map_comp, ← Functor.map_comp]
+                  exact congrArg
+                    (fun q => (BoundedComplexCategory.ι MetrizableLCA.{0}).map q)
+                    (f.naturality α).symm)).f n ≫
+              (CochainComplex.mappingCone.fst
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))).1.v
+                  n (n + 1) rfl =
+            (CochainComplex.mappingCone.fst
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).1.v
+                  n (n + 1) rfl ≫
+              ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₁.map α)).f
+                (n + 1) := by
+          exact mappingCone_map_f_fst _ _ _ _ _ n
+        calc
+          (s.π.app j ≫
+              (CochainComplex.mappingCone.fst
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).1.v
+                  n (n + 1) rfl) ≫
+              ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₁.map α)).f
+                (n + 1) =
+            s.π.app j ≫
+              ((CochainComplex.mappingCone.map
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₁.map α))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₂.map α))
+                (by
+                  rw [← Functor.map_comp, ← Functor.map_comp]
+                  exact congrArg
+                    (fun q => (BoundedComplexCategory.ι MetrizableLCA.{0}).map q)
+                    (f.naturality α).symm)).f n ≫
+              (CochainComplex.mappingCone.fst
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))).1.v
+                  n (n + 1) rfl) := by
+              simpa [Category.assoc] using congrArg (fun q => s.π.app j ≫ q) hmap.symm
+          _ = (s.π.app j ≫
+              (CochainComplex.mappingCone.map
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₁.map α))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₂.map α))
+                (by
+                  rw [← Functor.map_comp, ← Functor.map_comp]
+                  exact congrArg
+                    (fun q => (BoundedComplexCategory.ι MetrizableLCA.{0}).map q)
+                    (f.naturality α).symm)).f n) ≫
+              (CochainComplex.mappingCone.fst
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))).1.v
+                  n (n + 1) rfl := by simp [Category.assoc]
+          _ = s.π.app j' ≫
+              (CochainComplex.mappingCone.fst
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))).1.v
+                  n (n + 1) rfl := by
+              simpa [WppOpMappingConeUniqueMediatorW308.mappingConeDiagram, Category.assoc]
+                using congrArg
+                  (fun q => q ≫
+                    (CochainComplex.mappingCone.fst
+                      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))).1.v
+                        n (n + 1) rfl) (s.w α) }
+
+/-- Target projection cone associated to a degreewise test cone over the WPP mapping-cone diagram. -/
+noncomputable def mappingConeDegreewiseTargetCone
+    {X₁ X₂ : WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    (f : X₁ ⟶ X₂) (n : ℤ)
+    (s : Cone (WppOpMappingConeUniqueMediatorW308.mappingConeDiagram X₁ X₂ f ⋙
+      HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) n)) :
+    Cone (X₂ ⋙ BoundedComplexCategory.ι MetrizableLCA.{0} ⋙
+      HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) n) where
+  pt := s.pt
+  π :=
+    { app := fun j =>
+        s.π.app j ≫
+          (CochainComplex.mappingCone.snd
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).v
+              n n (add_zero n)
+      naturality := by
+        intro j j' α
+        dsimp [WppOpMappingConeUniqueMediatorW308.mappingConeDiagram]
+        symm
+        have hmap :
+            (CochainComplex.mappingCone.map
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₁.map α))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₂.map α))
+                (by
+                  rw [← Functor.map_comp, ← Functor.map_comp]
+                  exact congrArg
+                    (fun q => (BoundedComplexCategory.ι MetrizableLCA.{0}).map q)
+                    (f.naturality α).symm)).f n ≫
+              (CochainComplex.mappingCone.snd
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))).v
+                  n n (add_zero n) =
+            (CochainComplex.mappingCone.snd
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).v
+                  n n (add_zero n) ≫
+              ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₂.map α)).f n := by
+          exact mappingCone_map_f_snd _ _ _ _ _ n
+        calc
+          (s.π.app j ≫
+              (CochainComplex.mappingCone.snd
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).v
+                  n n (add_zero n)) ≫
+              ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₂.map α)).f n =
+            s.π.app j ≫
+              ((CochainComplex.mappingCone.map
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₁.map α))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₂.map α))
+                (by
+                  rw [← Functor.map_comp, ← Functor.map_comp]
+                  exact congrArg
+                    (fun q => (BoundedComplexCategory.ι MetrizableLCA.{0}).map q)
+                    (f.naturality α).symm)).f n ≫
+              (CochainComplex.mappingCone.snd
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))).v
+                  n n (add_zero n)) := by
+              simpa [Category.assoc] using congrArg (fun q => s.π.app j ≫ q) hmap.symm
+          _ = (s.π.app j ≫
+              (CochainComplex.mappingCone.map
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₁.map α))
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (X₂.map α))
+                (by
+                  rw [← Functor.map_comp, ← Functor.map_comp]
+                  exact congrArg
+                    (fun q => (BoundedComplexCategory.ι MetrizableLCA.{0}).map q)
+                    (f.naturality α).symm)).f n) ≫
+              (CochainComplex.mappingCone.snd
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))).v
+                  n n (add_zero n) := by simp [Category.assoc]
+          _ = s.π.app j' ≫
+              (CochainComplex.mappingCone.snd
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))).v
+                  n n (add_zero n) := by
+              simpa [WppOpMappingConeUniqueMediatorW308.mappingConeDiagram, Category.assoc]
+                using congrArg
+                  (fun q => q ≫
+                    (CochainComplex.mappingCone.snd
+                      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j'))).v
+                        n n (add_zero n)) (s.w α) }
+
 /-- Canonical-cone limit input for WPP mapping-cone comparison. -/
 abbrev mappingCone_walkingParallelPair_limitCanonicalConeComparison : Prop :=
   ∀ (X₁ X₂ : WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0})
@@ -269,6 +439,150 @@ abbrev mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison : 
       Nonempty (IsLimit
         ((HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) n).mapCone
           (mappingConeCone c₁ c₂ f φ hφ)))
+
+/-- Direct degreewise limit proof for the canonical WPP mapping-cone cone. -/
+theorem mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison_direct :
+    mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison := by
+  intro X₁ X₂ c₁ c₂ hc₁ hc₂ f φ hφ n
+  let φc := (BoundedComplexCategory.ι MetrizableLCA.{0}).map φ
+  let inlφ := (CochainComplex.mappingCone.inl φc).v (n + 1) n (by omega)
+  let inrφ := (CochainComplex.mappingCone.inr φc).f n
+  let fstφ := (CochainComplex.mappingCone.fst φc).1.v n (n + 1) rfl
+  let sndφ := (CochainComplex.mappingCone.snd φc).v n n (add_zero n)
+  have hc₁n : IsLimit
+      ((HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) (n + 1)).mapCone
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).mapCone c₁)) := by
+    exact isLimitOfPreserves
+      (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) (n + 1))
+      (isLimitOfPreserves (BoundedComplexCategory.ι MetrizableLCA.{0}) hc₁)
+  have hc₂n : IsLimit
+      ((HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) n).mapCone
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).mapCone c₂)) := by
+    exact isLimitOfPreserves (HomologicalComplex.eval MetrizableLCA.{0} (ComplexShape.up ℤ) n)
+      (isLimitOfPreserves (BoundedComplexCategory.ι MetrizableLCA.{0}) hc₂)
+  refine ⟨?_⟩
+  refine
+    { lift := fun s =>
+        let a : s.pt ⟶ ((BoundedComplexCategory.ι MetrizableLCA.{0}).obj c₁.pt).X (n + 1) :=
+          hc₁n.lift (mappingConeDegreewiseSourceCone f n s)
+        let b : s.pt ⟶ ((BoundedComplexCategory.ι MetrizableLCA.{0}).obj c₂.pt).X n :=
+          hc₂n.lift (mappingConeDegreewiseTargetCone f n s)
+        a ≫ inlφ + b ≫ inrφ
+      fac := ?_
+      uniq := ?_ }
+  · intro s j
+    let a : s.pt ⟶ ((BoundedComplexCategory.ι MetrizableLCA.{0}).obj c₁.pt).X (n + 1) :=
+      hc₁n.lift (mappingConeDegreewiseSourceCone f n s)
+    let b : s.pt ⟶ ((BoundedComplexCategory.ι MetrizableLCA.{0}).obj c₂.pt).X n :=
+      hc₂n.lift (mappingConeDegreewiseTargetCone f n s)
+    have hfst : (a ≫ inlφ + b ≫ inrφ) ≫ fstφ = a := by
+      simpa [φc, inlφ, inrφ, fstφ] using mappingCone_inl_inr_fst φc n a b
+    have hsnd : (a ≫ inlφ + b ≫ inrφ) ≫ sndφ = b := by
+      simpa [φc, inlφ, inrφ, sndφ] using mappingCone_inl_inr_snd φc n a b
+    apply CochainComplex.mappingCone.ext_to
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j)) n (n + 1) rfl
+    · calc
+        ((a ≫ inlφ + b ≫ inrφ) ≫
+            ((mappingConeCone c₁ c₂ f φ hφ).π.app j).f n) ≫
+            (CochainComplex.mappingCone.fst
+              ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).1.v
+                n (n + 1) rfl =
+          (a ≫ inlφ + b ≫ inrφ) ≫
+            fstφ ≫
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.π.app j)).f (n + 1) := by
+            simpa [Category.assoc, φc, fstφ] using
+              comp_mappingConeCone_π_fst c₁ c₂ f φ hφ j n
+                (g := a ≫ inlφ + b ≫ inrφ)
+        _ = a ≫ ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.π.app j)).f
+              (n + 1) := by
+            rw [← Category.assoc, hfst]
+        _ = s.π.app j ≫
+            (CochainComplex.mappingCone.fst
+              ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).1.v
+                n (n + 1) rfl := by
+            simpa [a, mappingConeDegreewiseSourceCone] using
+              hc₁n.fac (mappingConeDegreewiseSourceCone f n s) j
+    · calc
+        ((a ≫ inlφ + b ≫ inrφ) ≫
+            ((mappingConeCone c₁ c₂ f φ hφ).π.app j).f n) ≫
+            (CochainComplex.mappingCone.snd
+              ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).v
+                n n (add_zero n) =
+          (a ≫ inlφ + b ≫ inrφ) ≫
+            sndφ ≫
+            ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.π.app j)).f n := by
+            simpa [Category.assoc, φc, sndφ] using
+              comp_mappingConeCone_π_snd c₁ c₂ f φ hφ j n
+                (g := a ≫ inlφ + b ≫ inrφ)
+        _ = b ≫ ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.π.app j)).f n := by
+            rw [← Category.assoc, hsnd]
+        _ = s.π.app j ≫
+            (CochainComplex.mappingCone.snd
+              ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).v
+                n n (add_zero n) := by
+            simpa [b, mappingConeDegreewiseTargetCone] using
+              hc₂n.fac (mappingConeDegreewiseTargetCone f n s) j
+  · intro s m hm
+    let a : s.pt ⟶ ((BoundedComplexCategory.ι MetrizableLCA.{0}).obj c₁.pt).X (n + 1) :=
+      hc₁n.lift (mappingConeDegreewiseSourceCone f n s)
+    let b : s.pt ⟶ ((BoundedComplexCategory.ι MetrizableLCA.{0}).obj c₂.pt).X n :=
+      hc₂n.lift (mappingConeDegreewiseTargetCone f n s)
+    have hfst : (a ≫ inlφ + b ≫ inrφ) ≫ fstφ = a := by
+      simpa [φc, inlφ, inrφ, fstφ] using mappingCone_inl_inr_fst φc n a b
+    have hsnd : (a ≫ inlφ + b ≫ inrφ) ≫ sndφ = b := by
+      simpa [φc, inlφ, inrφ, sndφ] using mappingCone_inl_inr_snd φc n a b
+    apply CochainComplex.mappingCone.ext_to φc n (n + 1) rfl
+    · have hm₁ : m ≫ fstφ = a := by
+        dsimp [a]
+        apply hc₁n.uniq (mappingConeDegreewiseSourceCone f n s)
+        intro j
+        calc
+          (m ≫ fstφ) ≫
+              ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.π.app j)).f
+                (n + 1) =
+            m ≫ ((mappingConeCone c₁ c₂ f φ hφ).π.app j).f n ≫
+              (CochainComplex.mappingCone.fst
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).1.v
+                  n (n + 1) rfl := by
+              simpa [Category.assoc, φc, fstφ] using
+                (comp_mappingConeCone_π_fst c₁ c₂ f φ hφ j n (g := m)).symm
+          _ = s.π.app j ≫
+              (CochainComplex.mappingCone.fst
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).1.v
+                  n (n + 1) rfl := by
+              simpa [Category.assoc] using congrArg
+                (fun q => q ≫
+                  (CochainComplex.mappingCone.fst
+                    ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).1.v
+                      n (n + 1) rfl) (hm j)
+      calc
+        m ≫ fstφ = a := hm₁
+        _ = (a ≫ inlφ + b ≫ inrφ) ≫ fstφ := hfst.symm
+    · have hm₂ : m ≫ sndφ = b := by
+        dsimp [b]
+        apply hc₂n.uniq (mappingConeDegreewiseTargetCone f n s)
+        intro j
+        calc
+          (m ≫ sndφ) ≫
+              ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.π.app j)).f n =
+            m ≫ ((mappingConeCone c₁ c₂ f φ hφ).π.app j).f n ≫
+              (CochainComplex.mappingCone.snd
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).v
+                  n n (add_zero n) := by
+              simpa [Category.assoc, φc, sndφ] using
+                (comp_mappingConeCone_π_snd c₁ c₂ f φ hφ j n (g := m)).symm
+          _ = s.π.app j ≫
+              (CochainComplex.mappingCone.snd
+                ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).v
+                  n n (add_zero n) := by
+              simpa [Category.assoc] using congrArg
+                (fun q => q ≫
+                  (CochainComplex.mappingCone.snd
+                    ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).v
+                      n n (add_zero n)) (hm j)
+      calc
+        m ≫ sndφ = b := hm₂
+        _ = (a ≫ inlφ + b ≫ inrφ) ≫ sndφ := hsnd.symm
 
 /-- Degreewise limit proofs supply the canonical mapping-cone cone limit input. -/
 theorem mappingCone_walkingParallelPair_limitCanonicalConeComparison_of_degreewise
