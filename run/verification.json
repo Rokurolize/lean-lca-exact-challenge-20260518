@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w514-selected-closed-range-colimit-route",
-  "generated_utc": "2026-05-21T11:54:41Z",
-  "source_tree_hash": "fdfbc8ce00978888a4e1bf927d1dd8ae072a2421bc58921d0b99387ef3539e65",
-  "summary": "W514 turns selected quotient-identification and selected closed-range/componentwise projection data into W492 selected cokernel-colimit providers, then combines that narrower selected preservation route with W512 relation fields. Product success remains false because the concrete W512 relation fields and selected closed-range inputs are still unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w515-representative-image-selected-colimit-route",
+  "generated_utc": "2026-05-21T12:15:17Z",
+  "source_tree_hash": "e82245899ede8f6cc0ec63c8220458e691917d6324ce12a1995b963f285f605d",
+  "summary": "W515 replaces the W512 target-relation-lift route at the endpoint with the exact representative-image closedness condition already sufficient for W511 relation topology, then composes that relation side with W514 selected quotient-identification/closed-range preservation. Product success remains false because concrete representative-image closedness and selected closed-range inputs are still unproved.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3414,6 +3414,56 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "External audit reaches only the expected product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W515 representative-image closedness route compiled in the importable projection-fields module."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Projection-fields module rebuilt so downstream audit imports see W515 declarations."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit sees W515 declarations and keeps product success false."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full Lake build passed after W515 source and declaration updates."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in source after W515."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W515."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON artifacts parse after W515 metadata refresh."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors after W515 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W515 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "External audit reaches only the expected product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier."
     }
   ],
   "implemented_declarations_checked": [
@@ -4670,22 +4720,32 @@
     "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_quotientIdentification_w514",
     "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_closedRangeQuotientIdentification_w514",
     "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_componentwiseProjection_w514",
-    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.currentSelectedCokernelColimitFromClosedRangeQuotientIdentificationStateW514_productSuccess"
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.currentSelectedCokernelColimitFromClosedRangeQuotientIdentificationStateW514_productSuccess",
+    "WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515.ClosedNatTransOrdinaryRepresentativeImageClosedConditionW515",
+    "WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515.ClosedNatTransOrdinaryRepresentativeImageInputsW515",
+    "WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515.ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+    "WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515.closedNatTransOrdinaryRelationTopologyInputs_of_representativeImage_w515",
+    "WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515.closedNatTransOrdinaryRelationTopologyProvider_of_representativeImage_w515",
+    "WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515.exactAcyclic_of_representativeImage_and_selectedCokernelColimit_w515",
+    "WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515.exactAcyclic_of_representativeImage_and_quotientIdentification_w515",
+    "WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515.exactAcyclic_of_representativeImage_and_closedRangeQuotientIdentification_w515",
+    "WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515.exactAcyclic_of_representativeImage_and_componentwiseProjection_w515",
+    "WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515.currentRepresentativeImageClosedSelectedCokernelColimitStateW515_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
-    "prove the concrete relation-pullback equality and target-relation lift input for ordinaryMapOfWppOpNatTransW506",
+    "construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+    "prove concrete relation-pullback equality and representative-image closedness for ordinaryMapOfWppOpNatTransW506",
     "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487 or ComponentwiseClosedRangeProjectionProviderW481",
-    "run final product audit only after terminal_outcome can be product_success"
+    "run final product audit only after terminal_outcome can truthfully be product_success"
   ],
-  "support_result_classification": "nonterminal_support_increment_selected_preservation_adapter",
+  "support_result_classification": "nonterminal_support_increment_representative_image_selected_colimit_route",
   "product_success": false,
   "remaining_work": [
-    "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
-    "prove the concrete relation-pullback equality and target-relation lift input for ordinaryMapOfWppOpNatTransW506",
+    "construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+    "prove concrete relation-pullback equality and representative-image closedness for ordinaryMapOfWppOpNatTransW506",
     "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487 or ComponentwiseClosedRangeProjectionProviderW481",
-    "run final product audit only after terminal_outcome can be product_success"
+    "run final product audit only after terminal_outcome can truthfully be product_success"
   ],
-  "summary_log_tail": "W512 is verified as a nonterminal support increment. It does not claim product_success and leaves update_goal forbidden."
+  "summary_log_tail": "W515 is verified as a nonterminal support increment. It avoids requiring W512 target-relation lifts but still does not claim product_success, and update_goal remains forbidden."
 }

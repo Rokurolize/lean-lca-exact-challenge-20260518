@@ -7017,4 +7017,166 @@ end Checks
 
 end WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514
 
+namespace WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpQuotientIdentificationProjectionProviderV370SupportW485
+open WppOpComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportW489
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+open WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/--
+Reproducible support seed for the W515 representative-image closedness route.
+This route avoids requiring W512's stronger target-relation lift field.
+-/
+def supportSeedW515 : String :=
+  "w515-representative-image-closed-selected-colimit-route"
+
+/-- Closedness of all representative images for the concrete W510 ordinary codomain component. -/
+abbrev ClosedNatTransOrdinaryRepresentativeImageClosedConditionW515
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) : Prop :=
+  MetrizableLCA.quotientRepresentativeImageClosedConditionW512
+    (wppOpLeftW441 X) (wppOpRightW441 X)
+    (wppOpLeftW441 Y) (wppOpRightW441 Y)
+    ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one)
+
+/--
+W515 relation-topology inputs: relation pullback plus the exact
+representative-image closedness condition sufficient to close the descended map.
+-/
+structure ClosedNatTransOrdinaryRepresentativeImageInputsW515
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) : Type 1 where
+  relation_pullback : ClosedNatTransOrdinaryRelationPullbackConditionW511 α
+  representative_image_closed : ClosedNatTransOrdinaryRepresentativeImageClosedConditionW515 α
+
+/-- Provider surface for W515 representative-image inputs. -/
+abbrev ClosedNatTransOrdinaryRepresentativeImageProviderW515 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      ClosedNatTransOrdinaryRepresentativeImageInputsW515 α
+
+/-- W515 representative-image closedness supplies W511's relation-topology inputs. -/
+def closedNatTransOrdinaryRelationTopologyInputs_of_representativeImage_w515
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    (_hclosed : ∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j))
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageInputsW515 α) :
+    ClosedNatTransOrdinaryRelationTopologyInputsW511 α where
+  relation_pullback := hinputs.relation_pullback
+  descended_closedMap :=
+    MetrizableLCA.descendedQuotientMap_isClosedMap_of_representativeImageClosedW512
+      ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one)
+      (ordinaryDescendedOfWppOpNatTransW510 α)
+      (ordinaryDescendedOfWppOpNatTrans_quotient_compat_w510 α)
+      hinputs.representative_image_closed
+
+/-- W515 representative-image provider supplies W511's relation-topology provider. -/
+def closedNatTransOrdinaryRelationTopologyProvider_of_representativeImage_w515
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    ClosedNatTransOrdinaryRelationTopologyProviderW511 :=
+  fun X Y α hclosed =>
+    closedNatTransOrdinaryRelationTopologyInputs_of_representativeImage_w515
+      hclosed (hinputs X Y α hclosed)
+
+/-- W515 endpoint with the selected cokernel-colimit provider. -/
+def exactAcyclic_of_representativeImage_and_selectedCokernelColimit_w515
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_relationTopology_and_selectedCokernelColimit_w511
+    (closedNatTransOrdinaryRelationTopologyProvider_of_representativeImage_w515 hinputs)
+    hselected
+
+/-- W515 endpoint with selected quotient-identification preservation data. -/
+def exactAcyclic_of_representativeImage_and_quotientIdentification_w515
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hquot : QuotientIdentificationProjectionProviderW485) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_selectedCokernelColimit_w515 hinputs
+    (selectedCokernelColimitProvider_of_quotientIdentification_w514 hquot)
+
+/-- W515 endpoint with selected closed-range quotient-identification data. -/
+def exactAcyclic_of_representativeImage_and_closedRangeQuotientIdentification_w515
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hclosed : ClosedRangeQuotientIdentificationProjectionProviderW487) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_selectedCokernelColimit_w515 hinputs
+    (selectedCokernelColimitProvider_of_closedRangeQuotientIdentification_w514 hclosed)
+
+/-- W515 endpoint with selected componentwise closed-range projection data. -/
+def exactAcyclic_of_representativeImage_and_componentwiseProjection_w515
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_selectedCokernelColimit_w515 hinputs
+    (selectedCokernelColimitProvider_of_componentwiseProjection_w514 hcomponentwise)
+
+/-- W515 checked nonterminal state. -/
+structure RepresentativeImageClosedSelectedCokernelColimitV370SupportStateW515 :
+    Type where
+  seed : String
+  declarations : List String
+  representativeImageRouteResult : String
+  selectedPreservationRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W515 state. -/
+def currentRepresentativeImageClosedSelectedCokernelColimitV370SupportStateW515 :
+    RepresentativeImageClosedSelectedCokernelColimitV370SupportStateW515 where
+  seed := supportSeedW515
+  declarations :=
+    ["ClosedNatTransOrdinaryRepresentativeImageClosedConditionW515",
+      "ClosedNatTransOrdinaryRepresentativeImageInputsW515",
+      "ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+      "closedNatTransOrdinaryRelationTopologyInputs_of_representativeImage_w515",
+      "closedNatTransOrdinaryRelationTopologyProvider_of_representativeImage_w515",
+      "exactAcyclic_of_representativeImage_and_selectedCokernelColimit_w515",
+      "exactAcyclic_of_representativeImage_and_quotientIdentification_w515",
+      "exactAcyclic_of_representativeImage_and_closedRangeQuotientIdentification_w515",
+      "exactAcyclic_of_representativeImage_and_componentwiseProjection_w515"]
+  representativeImageRouteResult := "proved"
+  selectedPreservationRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+      "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487",
+      "or construct concrete ComponentwiseClosedRangeProjectionProviderW481"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentRepresentativeImageClosedSelectedCokernelColimitStateW515 :
+    RepresentativeImageClosedSelectedCokernelColimitV370SupportStateW515 :=
+  currentRepresentativeImageClosedSelectedCokernelColimitV370SupportStateW515
+
+theorem currentRepresentativeImageClosedSelectedCokernelColimitStateW515_productSuccess :
+    currentRepresentativeImageClosedSelectedCokernelColimitStateW515.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW515
+#check ClosedNatTransOrdinaryRepresentativeImageClosedConditionW515
+#check ClosedNatTransOrdinaryRepresentativeImageInputsW515
+#check ClosedNatTransOrdinaryRepresentativeImageProviderW515
+#check closedNatTransOrdinaryRelationTopologyInputs_of_representativeImage_w515
+#check closedNatTransOrdinaryRelationTopologyProvider_of_representativeImage_w515
+#check exactAcyclic_of_representativeImage_and_selectedCokernelColimit_w515
+#check exactAcyclic_of_representativeImage_and_quotientIdentification_w515
+#check exactAcyclic_of_representativeImage_and_closedRangeQuotientIdentification_w515
+#check exactAcyclic_of_representativeImage_and_componentwiseProjection_w515
+#check currentRepresentativeImageClosedSelectedCokernelColimitStateW515_productSuccess
+
+end Checks
+
+end WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+
 end LeanLCAExactChallenge
