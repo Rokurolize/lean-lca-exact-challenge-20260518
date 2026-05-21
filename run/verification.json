@@ -1,9 +1,79 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w539-normalized-lift-fac-strictification-reducer",
-  "generated_utc": "2026-05-21T17:29:04Z",
-  "source_tree_hash": "798ffca0f569bc0d0d0d0ad54b72afd50c5b798c8fd42918e1f69c812541e21a",
-  "summary": "W539では、W538で自然同型として得たnormalized fixed-target lift factorizationを、Functor.extとnormalized.map_imageにより等式レベルのfacへstrictificationした。これによりNormalizedFixedTargetInputsからW537 FixedTargetBlueprintInputs、WalkingParallelPair functor-category localization input、finite-shape transfer inputへ進むsurfaceを追加した。normalized representativesにtarget/modelのuniqを添えればfac fieldは追加仮定なしで供給できる。ただしconcrete W515/W516/W517 relation data、concrete W527 row provider、WPP limit stability、coherent/normalized strict representativesとtarget/model uniqの実データ、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
+  "schema": "lean-lca-exact-challenge-verification-w540-normalized-row-transfer-adapter",
+  "generated_utc": "2026-05-21T17:39:53Z",
+  "source_tree_hash": "e207c40813c65689fb157e0435a11f41d4b036a8d07755c47d16cdf204904135",
+  "summary": "W540では、W539で得たnormalized fixed-target localization入力を、W515 representative-image dataとW527 row-aware closed-map/closed-embedding rowsから作るDbounded WPP finite-shape transfer routeへ接続した。これによりW515+W527 branchは、古いfixed-target lift/fac/uniq packageではなく、normalized representativesとtarget/model uniqを直接要求するsurfaceを持つ。ただしconcrete W515/W516/W517 relation data、concrete W527 row provider、WPP limit stability、concrete normalized strict representative data、target/model uniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W540 projection-fields source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_projection_fields_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "ProjectionFields rebuilt with W540 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_projection_fields_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W540 declarations after dependent module rebuild; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_product_success_declarations_retry.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W540; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_required_declarations.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W540; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source tree scan passed after W540; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_audit_no_forbidden_tree.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file forbidden-token scan passed after W540; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_audit_no_forbidden_touched_all.log."
+    },
+    {
+      "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-facing placeholder regex returned no matches on W540-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_rg_forbidden.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W540 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "W540 terminal outcome JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "W540 verification JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "W540 manifest JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_json_parse.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W540; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product-success gate still rejects the nonterminal W540 outcome as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_external_product_gate.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
       "status": "passed",
@@ -3313,6 +3383,14 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.MetrizableWppTransferInputsFromRepImageClosedMapRowsNormalized",
+    "Dbounded.MetrizableWppTransferInputsFromRepImageClosedEmbeddingRowsNormalized",
+    "Dbounded.metrizableWppTransferInputs_of_repImageClosedMapRowsNormalized",
+    "Dbounded.metrizableWppTransferInputs_of_repImageClosedEmbeddingRowsNormalized",
+    "Dbounded.metrizableWppTransferFromRepImageClosedMapRowsNormalizedInputNames",
+    "Dbounded.metrizableWppTransferFromRepImageClosedMapRowsNormalizedInputNames_count",
+    "Dbounded.metrizableWppTransferFromRepImageClosedEmbeddingRowsNormalizedInputNames",
+    "Dbounded.metrizableWppTransferFromRepImageClosedEmbeddingRowsNormalizedInputNames_count",
     "Dbounded.MetrizableWalkingParallelPairStrictPreimageData",
     "Dbounded.MetrizableWalkingParallelPairStrictPreimageData.diagram",
     "Dbounded.MetrizableWalkingParallelPairStrictPreimageData.comparisonIso",
@@ -4793,5 +4871,5 @@
     "Construct Pretriangulated and IsTriangulated structure for Dbounded MetrizableLCA and provide the bounded left-calculus instance at the final route.",
     "Only after these close the broad product gates, rerun the final product audit and packet review as a product_success claim."
   ],
-  "summary_log_tail": "W539 verified nonterminal: normalized strict representative data now supplies equality-level fixed-target fac, so the remaining WPP localization surface needs concrete normalized representatives plus target/model uniqueness and the broader finite-shape/product inputs."
+  "summary_log_tail": "W540 verified nonterminal: W515+W527 representative-image row transfer routes now consume normalized fixed-target localization inputs; concrete providers, WPP limit stability, normalized representatives, uniq, triangulated data, and bounded left calculus remain."
 }
