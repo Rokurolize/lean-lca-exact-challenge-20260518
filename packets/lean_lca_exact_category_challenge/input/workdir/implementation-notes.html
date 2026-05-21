@@ -222,6 +222,18 @@
 <p><time>2026-05-20T10:18:40Z</time>: The explicit pullback construction now exports <code>MetrizableLCA.instHasPullbacks</code>, and finite limits are synthesized as <code>MetrizableLCA.instHasFiniteLimits</code> from terminal objects plus pullbacks. <code>ProductSuccessDeclarations</code> checks both instances, and the bounded finite-products boundary no longer carries a separate <code>HasFiniteLimits MetrizableLCA</code> premise for its conditional <code>Dbounded</code> finite-products declaration. Remaining product work is the localization-transfer layer and the finite-colimit, triangulated, and stable infinity-category obligations.</p>
 </section>
 
+<section id="w434-w426-to-w318-frontier-bridge">
+<h2>W434 W426 to W318 bridge</h2>
+<p><time>2026-05-21T10:28:00Z</time>: The parent verified <code>audit/blockers/wpp_op_w426_to_w318_left_frontier_bridge_v370_support_w434.lean</code>. It records the bridge shape from promoted W426 certificate-only W399 inputs to W318's <code>wppOp_lca_colimitMap_injective_inducing_closedImage</code> and <code>wppOp_colimit_preserves_leftClosedEmbedding</code> frontier declarations.</p>
+<p>The exact bridge is still blocked by promotion work: W426's standalone W399 quotient-field package must become an importable API, and the ordinary descended quotient map must be identified with the canonical WPP-op colimit-point map used by W318.</p>
+</section>
+
+<section id="w429-w430-w431-support">
+<h2>W429-W431 support</h2>
+<p><time>2026-05-21T10:25:00Z</time>: The parent verified three completed support files: <code>audit/blockers/addcommgrp_selected_cokernel_colimit_from_finite_preservation_v370_support_w429.lean</code>, <code>audit/blockers/addcommgrp_forgetful_preserves_finite_colimits_frontier_v370_support_w430.lean</code>, and <code>audit/blockers/wpp_op_exact_frontier_from_certificates_v370_support_w431.lean</code>. W429 packages the finite-colimit-preservation route into selected target cokernel/cofork colimits. W430 shows finite-colimit preservation is reduced to coequalizer or cokernel preservation after finite coproduct preservation synthesizes. W431 records the checked boundary from promoted W426 certificate-only W399 inputs to the W318 exact-acyclic frontier.</p>
+<p>These remain nonterminal reducers. W430 makes clear that the unsafe arbitrary coequalizer/cokernel preservation issue is still the mathematical core, and W431 still requires promotion of standalone audit scripts plus the remaining algebraic AddCommGrp/SnakeInput frontier.</p>
+</section>
+
 <section id="w429-closed-range-set-input">
 <h2>W429 closed range set input</h2>
 <p><time>2026-05-21T10:22:00Z</time>: The parent added and verified <code>audit/blockers/addcommgrp_cokernel_closed_range_set_input_v370_support_parent.lean</code>. It converts the usual set-level hypothesis <code>IsClosed (Set.range (f : A → B))</code> into the algebraic-range closure input used by W334, then proves that the forgotten local <code>MetrizableLCA</code> cokernel cofork is an <code>AddCommGrpCat</code> cokernel.</p>

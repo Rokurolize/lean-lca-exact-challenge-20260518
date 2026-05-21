@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-21T01:22:00Z",
-  "source_tree_hash": "87b52c6f7583516b7fc4bea4d23239beb675149e9b03f8247cf526175d1ea6b9",
+  "generated_utc": "2026-05-21T01:28:00Z",
+  "source_tree_hash": "c69ddb6fc1aa325a8c39608b41a4569bf3163a35787e75e042d97442de003990",
   "summary": "W427でselected AddCommGrp cokernel/cofork colimit routeをhcsとunderlying forgetful WPP-op preservationだけに縮約し、W428でそのWPP-op preservationがPreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)から従うことを確認した。ただしfinite-colimit preservation自体は未解決で、閉像条件なしのglobal保存は引き続き危険である。product successはまだ主張しない。",
   "commands": [
     {
@@ -2883,6 +2883,36 @@
       "status": "passed",
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_cokernel_closed_range_set_input_v370_support_parent.lean",
       "evidence": "No forbidden Lean tokens found in the W429 parent support file."
+    },
+    {
+      "status": "passed",
+      "command": "lake env lean audit/blockers/addcommgrp_selected_cokernel_colimit_from_finite_preservation_v370_support_w429.lean",
+      "evidence": "Focused W429-W431 support verification passed."
+    },
+    {
+      "status": "passed",
+      "command": "lake env lean audit/blockers/addcommgrp_forgetful_preserves_finite_colimits_frontier_v370_support_w430.lean",
+      "evidence": "Focused W429-W431 support verification passed."
+    },
+    {
+      "status": "passed",
+      "command": "lake env lean audit/blockers/wpp_op_exact_frontier_from_certificates_v370_support_w431.lean",
+      "evidence": "Focused W429-W431 support verification passed."
+    },
+    {
+      "status": "passed",
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_selected_cokernel_colimit_from_finite_preservation_v370_support_w429.lean audit/blockers/addcommgrp_forgetful_preserves_finite_colimits_frontier_v370_support_w430.lean audit/blockers/wpp_op_exact_frontier_from_certificates_v370_support_w431.lean",
+      "evidence": "Focused W429-W431 support verification passed."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_w426_to_w318_left_frontier_bridge_v370_support_w434.lean",
+      "status": "passed",
+      "evidence": "Focused W434 bridge support verification passed."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/wpp_op_w426_to_w318_left_frontier_bridge_v370_support_w434.lean",
+      "status": "passed",
+      "evidence": "Focused W434 bridge support verification passed."
     }
   ],
   "implemented_declarations_checked": [
