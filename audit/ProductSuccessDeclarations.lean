@@ -2885,6 +2885,13 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
 #check Dbounded.metrizableLeftCalculusSemanticFieldNames_count
 #check Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus
 #check Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus_count
+#check Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus
+#check Dbounded.metrizableFiniteLimitsOfLeftCalculusProducts
+#check Dbounded.metrizableFiniteColimitsOfLeftCalculusProducts
+#check Dbounded.MetrizablePostFiniteLimitColimitRemainingStableSemanticFields
+#check Dbounded.metrizableRemainingStableSemanticFieldsOfFiniteLimitColimitRemainder
+#check Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames
+#check Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames_count
 
 noncomputable example : SSet.QCat :=
   BoundedDerivedInfinityCategory (C := MetrizableLCA)

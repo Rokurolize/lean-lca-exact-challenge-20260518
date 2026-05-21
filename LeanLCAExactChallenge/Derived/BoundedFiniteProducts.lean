@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Derived.Bounded
 import LeanLCAExactChallenge.Derived.MappingConeFiniteProduct
+import Mathlib.CategoryTheory.Limits.Constructions.LimitsOfProductsAndEqualizers
 import Mathlib.CategoryTheory.Limits.Shapes.Opposites.Products
 import Mathlib.CategoryTheory.Preadditive.Biproducts
 
@@ -277,5 +278,93 @@ section Checks
 end Checks
 
 end BoundedFiniteProducts
+
+/--
+Finite-limit and finite-colimit data still needed after W530 and the finite-product route.
+
+Finite products in `Dbounded MetrizableLCA` are supplied by
+`BoundedFiniteProducts.dboundedHasFiniteProducts_metrizableLCA` under direct bounded left
+calculus; preadditivity then turns those finite products into finite coproducts. The remaining
+finite (co)limit inputs are therefore equalizers and coequalizers.
+-/
+structure Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus : Type 1 where
+  equalizers : HasEqualizers (Dbounded MetrizableLCA.{0})
+  coequalizers : HasCoequalizers (Dbounded MetrizableLCA.{0})
+
+/-- Finite limits from the W530 left-calculus fields, finite products, and equalizers. -/
+noncomputable abbrev Dbounded.metrizableFiniteLimitsOfLeftCalculusProducts
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (remaining : Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus) :
+    HasFiniteLimits (Dbounded MetrizableLCA.{0}) := by
+  letI : HasFiniteProducts (Dbounded MetrizableLCA.{0}) :=
+    BoundedFiniteProducts.dboundedHasFiniteProducts_metrizableLCA
+  letI : HasEqualizers (Dbounded MetrizableLCA.{0}) := remaining.equalizers
+  exact hasFiniteLimits_of_hasEqualizers_and_finite_products
+
+/-- Finite colimits from W530 preadditivity, finite products, and coequalizers. -/
+noncomputable abbrev Dbounded.metrizableFiniteColimitsOfLeftCalculusProducts
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (remaining : Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus) :
+    HasFiniteColimits (Dbounded MetrizableLCA.{0}) := by
+  let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+    Dbounded.metrizableLeftCalculusSemanticFields
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+  letI : HasFiniteProducts (Dbounded MetrizableLCA.{0}) :=
+    BoundedFiniteProducts.dboundedHasFiniteProducts_metrizableLCA
+  haveI : HasFiniteBiproducts (Dbounded MetrizableLCA.{0}) :=
+    HasFiniteBiproducts.of_hasFiniteProducts
+  letI : HasFiniteCoproducts (Dbounded MetrizableLCA.{0}) := inferInstance
+  letI : HasCoequalizers (Dbounded MetrizableLCA.{0}) := remaining.coequalizers
+  exact hasFiniteColimits_of_hasCoequalizers_and_finite_coproducts
+
+/--
+Remaining stable semantic fields after W530 and the finite-product finite-(co)limit reducer.
+-/
+structure Dbounded.MetrizablePostFiniteLimitColimitRemainingStableSemanticFields
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields) : Type 1 where
+  finiteLimitColimitRemainder :
+    Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus
+  pretriangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/--
+Build the W530 remaining-field record once equalizers, coequalizers, and triangulated data exist.
+-/
+noncomputable def Dbounded.metrizableRemainingStableSemanticFieldsOfFiniteLimitColimitRemainder
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (remaining :
+      Dbounded.MetrizablePostFiniteLimitColimitRemainingStableSemanticFields
+        Dbounded.metrizableLeftCalculusSemanticFields) :
+    Dbounded.MetrizableRemainingStableSemanticFields
+      Dbounded.metrizableLeftCalculusSemanticFields where
+  finiteLimits :=
+    Dbounded.metrizableFiniteLimitsOfLeftCalculusProducts
+      remaining.finiteLimitColimitRemainder
+  finiteColimits :=
+    Dbounded.metrizableFiniteColimitsOfLeftCalculusProducts
+      remaining.finiteLimitColimitRemainder
+  pretriangulated := remaining.pretriangulated
+  triangulated := remaining.triangulated
+
+/-- Field names remaining after W530 plus finite-product finite-(co)limit reduction. -/
+def Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames : List String :=
+  ["HasEqualizers (Dbounded MetrizableLCA)", "HasCoequalizers (Dbounded MetrizableLCA)",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+/-- Four fields remain after finite products reduce the finite-limit and finite-colimit inputs. -/
+theorem Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames_count :
+    Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames.length = 4 :=
+  rfl
 
 end LeanLCAExactChallenge
