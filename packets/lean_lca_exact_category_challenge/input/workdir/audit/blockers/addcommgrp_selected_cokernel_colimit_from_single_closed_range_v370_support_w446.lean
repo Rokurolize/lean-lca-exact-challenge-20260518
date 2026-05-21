@@ -203,8 +203,6 @@ selected metrizable cokernel cofork is the selected forgotten cokernel cofork.
 -/
 def precomposeSelectedForgottenCokernelCoforkIsoMap
     (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
-    [forgottenShortComplexFunctor.Additive]
-    [forgottenShortComplexFunctor.PreservesZeroMorphisms]
     (cs : Cocone S) :
     let p : parallelPair
         (forgottenShortComplexFunctor.map
@@ -226,8 +224,6 @@ difference cokernel.
 def selectedForgottenTargetCokernelColimitOfOriginalSinglePreservation
     (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
     (cs : Cocone S)
-    [forgottenShortComplexFunctor.Additive]
-    [forgottenShortComplexFunctor.PreservesZeroMorphisms]
     [PreservesColimit (parallelPair
       (selectedMetrizableLeft S - selectedMetrizableRight S) 0) forgottenShortComplexFunctor]
     (hcs : IsColimit cs) :

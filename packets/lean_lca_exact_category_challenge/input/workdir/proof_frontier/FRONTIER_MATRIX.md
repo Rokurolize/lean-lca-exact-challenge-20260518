@@ -751,5 +751,23 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - artifact: `audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean`
 - verified: `lake env lean audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean`; `git diff --check`
 - effect: the selected AddCommGrp target cokernel cofork colimit is reduced from broad/global preservation to one selected short-complex difference preservation instance.
-- remaining blockers: provide `forgottenShortComplexFunctor.Additive`, `forgottenShortComplexFunctor.PreservesZeroMorphisms`, and `[PreservesColimit (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0) forgottenShortComplexFunctor]`; then connect W445's underlying component preservation to this short-complex preservation instance.
+- remaining blockers: provide `[PreservesColimit (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0) forgottenShortComplexFunctor]`; then connect W445's underlying component preservation to this short-complex preservation instance. The later `mapShortComplex` instance update resolved the explicit additivity and zero-morphism assumptions.
+- product_complete: false
+
+## mapShortComplex Additive And Zero Instances
+
+- timestamp: `2026-05-21T00:51:06Z`
+- artifacts: `LeanLCAExactChallenge/Derived/AddCommGrpSnakeInputDifferenceCokernel.lean`, `audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/AddCommGrpSnakeInputDifferenceCokernel.lean`; `lake build LeanLCAExactChallenge.Derived.AddCommGrpSnakeInputDifferenceCokernel`; `lake env lean audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean`
+- effect: `mapShortComplex` now has local general `PreservesZeroMorphisms` and `Additive` instances, so W446's selected colimit theorem only carries the single selected short-complex difference preservation input.
+- remaining blockers: prove `[PreservesColimit (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0) forgottenShortComplexFunctor]` from the componentwise W445 preservation theorem and selected closedness evidence.
+- product_complete: false
+
+## W448 Closed Embedding Cokernel Preservation Package
+
+- timestamp: `2026-05-21T00:54:41Z`
+- artifact: `audit/blockers/addcommgrp_closed_embedding_cokernel_preservation_package_v370_support_w448.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_closed_embedding_cokernel_preservation_package_v370_support_w448.lean`
+- effect: strict short exact and `CokernelTopStrictInput` hypotheses now have a checked support package feeding closed-embedding/closed-map/closed-range component cokernel preservation.
+- remaining blockers: lift W448/W445 component preservation into W446's selected short-complex preservation instance and apply it to the actual selected WPP-op difference row.
 - product_complete: false

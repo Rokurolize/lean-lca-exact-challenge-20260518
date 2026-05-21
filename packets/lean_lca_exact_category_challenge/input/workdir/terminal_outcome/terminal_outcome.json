@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W446支援を追加し、選択target cokernel colimitの残入力を単一のshort-complex difference preservationへ狭めた。component preservationからshort-complex preservationへの持ち上げは未完了なのでproduct successは主張しない。",
+  "summary": "W448のcomponent preservation packageも確認したが、W446の選択short-complex preservationへ持ち上げる統合定理が残るためproduct successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -616,7 +616,11 @@
     "lake env lean audit/blockers/addcommgrp_cokernel_range_equality_from_closed_map_v370_support_w443.lean",
     "lake env lean audit/blockers/wpp_op_w426_w318_ordinary_equals_canonical_v370_support_w444.lean",
     "lake build LeanLCAExactChallenge.LCA.ForgottenCokernel LeanLCAExactChallenge",
-    "lake env lean audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean"
+    "lake env lean audit/blockers/addcommgrp_selected_cokernel_colimit_from_single_closed_range_v370_support_w446.lean",
+    "lake env lean LeanLCAExactChallenge/Derived/AddCommGrpSnakeInputDifferenceCokernel.lean",
+    "lake build LeanLCAExactChallenge.Derived.AddCommGrpSnakeInputDifferenceCokernel LeanLCAExactChallenge",
+    "lake env lean audit/blockers/wpp_op_w426_w387_w390_conjugated_leg_inputs_v370_support_w447.lean",
+    "lake env lean audit/blockers/addcommgrp_closed_embedding_cokernel_preservation_package_v370_support_w448.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1651,7 +1655,10 @@
     "選択されたWPP-op差分射について閉レンジ・閉写像・閉埋め込みのいずれかをまだ証明していない。",
     "component cokernel preservationを選択short-complex preservation入力へ持ち上げる統合定理がまだない。",
     "short-complex forgetful functorのAdditive/PreservesZeroMorphisms入力をW446 routeへ供給する必要がある。",
-    "W445のcomponent cokernel preservationをW446の選択short-complex difference preservationへ持ち上げる証明がまだない。"
+    "W445のcomponent cokernel preservationをW446の選択short-complex difference preservationへ持ち上げる証明がまだない。",
+    "W446 routeの単一PreservesColimit入力をW445 component preservationから構成する証明がまだない。",
+    "W447はconjugated-leg互換性frontierを整理したが、W426 ordinary packageとW318 canonical mapの最終統合はまだ未完了。",
+    "W448/W445のcomponent cokernel preservationをW446の選択short-complex preservationへ持ち上げる統合定理が未完了。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
