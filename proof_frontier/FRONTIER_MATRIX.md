@@ -944,3 +944,13 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W469 component-colimit comparison inputs compose through W467 quotient-identification wrappers to the AddCommGrp strict kernel exact boundary and exact-acyclic WPP-op colimit closure theorem.
 - remaining blockers: supply actual selected component cofork `IsColimit` proofs, explicit quotient cofork `IsColimit` proofs, and the W318/W464 left closed-embedding input `wppOp_lca_colimitMap_injective_inducing_closedImage`.
 - product_complete: false
+
+
+## W472 Selected Component Coforks Exact Acyclic
+
+- timestamp: `2026-05-21T02:32:00Z`
+- artifact: `audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean`; `git diff --check`
+- effect: selected component cofork `IsColimit` inputs directly supply projection component fields, the AddCommGrp strict kernel exact boundary, and the exact-acyclic WPP-op colimit closure wrapper.
+- remaining blockers: prove the actual selected component cofork `IsColimit` statements for π₁, π₂, and π₃, and provide the W318/W464 left closed-embedding input.
+- product_complete: false
