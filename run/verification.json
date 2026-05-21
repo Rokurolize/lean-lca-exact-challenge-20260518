@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w484-closed-range-only-componentwise-projection-bridge",
-  "generated_utc": "2026-05-21T03:32:02Z",
-  "source_tree_hash": "d8b0c540e289f806d535e9f754de951f08128c3248efcb4f5c87da3c8f7a311b",
-  "summary": "W484 closed-range-only componentwise projection bridge compiles in the importable Derived module and ProductSuccessDeclarations; full lake build and RequiredDeclarations also pass. product_complete remains false pending concrete SelectedW461PromotionInputsProviderW483, ComponentwiseClosedRangeOnlyProviderW484, and ComponentwiseClosedRangeOnlyProjectionBridgeW484.",
+  "schema": "lean-lca-exact-challenge-verification-w487-closed-range-quotient-identification-route",
+  "generated_utc": "2026-05-21T03:50:38Z",
+  "source_tree_hash": "0b14511dbef70c06e848eba64b2e62b074761e5872081fbfe12012bfe29a1da4",
+  "summary": "W486 adapts W478 providers to W483 selected-W461 providers; W485 supplies quotient-identification projection fields; W487 now derives W485 explicit quotient cofork IsColimit proofs from closed range via the W433 mapped-cocone transport. The WPP-op exact-acyclic branch is reduced to concrete W461PromotionInputProviderW478 and closed-range quotient-identification data at final call sites. product_complete remains false.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -2731,11 +2731,6 @@
       "evidence": "forbidden-token scan passed for W481 source and product checks"
     },
     {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "git diff whitespace check passed"
-    },
-    {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
       "evidence": "JSON artifacts parsed after W480 metadata refresh."
@@ -2761,11 +2756,6 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "forbidden-token scan passed for W482 source and product checks"
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "git diff whitespace check passed"
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
@@ -2909,7 +2899,7 @@
     {
       "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
       "status": "passed",
-      "evidence": "Focused module build completed successfully with W484 declarations present and no long-line warnings after cleanup."
+      "evidence": "Focused module build passed after W487 integration."
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -2927,19 +2917,84 @@
       "evidence": "Full lake build completed successfully after W484 integration."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "command": "git diff --check",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W484 integration."
+      "evidence": "Whitespace diff check passed after W484 adapter and notes updates."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Importable W485 quotient-identification projection provider checks inside WppOpExactAcyclicProjectionFields."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations exposes W485 declarations."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in W484-touched files."
+      "evidence": "No forbidden Lean tokens found in W485-touched files."
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after W484 adapter and notes updates."
+      "evidence": "Whitespace diff check passed after W485 integration."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON artifacts parsed before W485 manifest refresh."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON artifacts parsed after W485 final manifest refresh."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Derived WppOpExactAcyclicProjectionFields passed after W487 integration."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations checks W486, W485, W487, and the closed-range quotient-identification route; product success remains false."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W487 closed-range quotient-identification transport integration."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W487 integration."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "W486/W487 verification command passed or was re-run in this checkpoint."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed after W487 integration."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "git diff --check passed after W487 integration."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_w485_closed_range_projection_transport_parent_w487.lean",
+      "status": "passed",
+      "evidence": "Focused W487 audit support file passed."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w485_closed_range_projection_transport_parent_w487.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in focused W487 audit support file."
     }
   ],
   "implemented_declarations_checked": [
@@ -4004,22 +4059,39 @@
     "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyComponentwiseProjection_w484",
     "currentClosedRangeOnlyComponentwiseProjectionStateW484_productSuccess",
     "currentClosedRangeOnlyComponentwiseProjectionStateW484_remainingInputs_count",
-    "supportSeedW484"
+    "supportSeedW484",
+    "supportSeedW485",
+    "underlyingForgetfulFunctorW485",
+    "selectedMetrizableDifferenceπ₁W485",
+    "selectedMetrizableDifferenceπ₂W485",
+    "selectedMetrizableDifferenceπ₃W485",
+    "SelectedComponentQuotientIdentificationInputsW485",
+    "QuotientIdentificationProjectionProviderW485",
+    "selectedProjectionComponentIsColimitInputs_of_quotientIdentifications_w485",
+    "projectionFieldsProvider_of_quotientIdentifications_w485",
+    "exactAcyclic_of_selectedW461Provider_and_quotientIdentificationProjection_w485",
+    "selectedW461Provider_of_w461PromotionInputProvider_w486",
+    "leftClosedImage_of_w461PromotionInputProvider_w486",
+    "exactAcyclic_of_w461PromotionInputProvider_and_projectionFields_w486",
+    "exactAcyclic_of_w461PromotionInputProvider_and_quotientIdentificationProjection_w487",
+    "currentW478ProviderQuotientIdentificationProjectionStateW487_productSuccess",
+    "forgottenCokernelCoforkIsColimit_of_closedRange_w487",
+    "forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487",
+    "SelectedComponentClosedRangeQuotientIdentificationInputsW487",
+    "ClosedRangeQuotientIdentificationProjectionProviderW487",
+    "quotientIdentificationInputs_of_closedRange_w487",
+    "quotientIdentificationProvider_of_closedRange_w487",
+    "exactAcyclic_of_selectedW461Provider_and_closedRangeQuotientIdentification_w487"
   ],
   "product_complete": false,
   "known_gaps": [
-    "final call siteのSelectedW461PromotionInputsProviderW483が未構成",
-    "final call siteのComponentwiseClosedRangeOnlyProviderW484が未構成",
-    "final call siteのComponentwiseClosedRangeOnlyProjectionBridgeW484（三つのprojection IsColimit証明）が未構成",
-    "terminal_outcomeはproduct_successではなく、review packet auditはproduct-success gate未通過"
+    "final call siteでW461PromotionInputProviderW478を構成する必要がある。",
+    "final call siteでClosedRangeQuotientIdentificationProjectionProviderW487を構成する必要がある。",
+    "ClosedRangeQuotientIdentificationProjectionProviderW487には三つのpoint isomorphism、三つのleg-to-explicit-quotient equation、三つのclosed-range証明が必要である。",
+    "product-success declarationを実際に証明するまではterminal outcomeをproduct_successへ更新しない。"
   ],
-  "support_result_classification": "W484 promoted the blocked W483 closed-range-only support result as a checked nonterminal boundary; it isolates the selected projection IsColimit bridge and does not claim product success.",
+  "support_result_classification": "Support W484 quotient-identification provider result was used as a lead; parent verified W485 in the target tree. product_success is not claimed.",
   "product_success": false,
-  "remaining_work": [
-    "instantiate SelectedW461PromotionInputsProviderW483",
-    "instantiate ComponentwiseClosedRangeOnlyProviderW484",
-    "instantiate ComponentwiseClosedRangeOnlyProjectionBridgeW484",
-    "claim product_success only after final product theorem and terminal audit pass"
-  ],
-  "summary_log_tail": "W484 checked partial support consumed; closed range alone is separated from the remaining projection cofork IsColimit bridge, not product success."
+  "remaining_work": "Construct concrete W461PromotionInputProviderW478 and ClosedRangeQuotientIdentificationProjectionProviderW487 at final call sites, then rerun the product-success audit.",
+  "summary_log_tail": "W487 checked route consumed; W478 provider plus W485 quotient-identification provider remain concrete call-site inputs."
 }

@@ -1,6 +1,7 @@
 import LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated
 import LeanLCAExactChallenge.Derived.AddCommGrpSnakeInputDifferenceCokernel
 import LeanLCAExactChallenge.LCA.Cokernel
+import LeanLCAExactChallenge.LCA.ForgottenCokernel
 import LeanLCAExactChallenge.LCA.StrictExact
 import Mathlib.Algebra.Category.Grp.Colimits
 import Mathlib.Algebra.Homology.ShortComplex.Limits
@@ -258,26 +259,26 @@ theorem w441CheckedDeclarationNames_count :
     w441CheckedDeclarationNames.length = 10 := rfl
 
 def w441ConcreteW426DeclarationNames : List String :=
-  ["WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.ordinaryDescendedOfOrdinaryMapW418",
-    "WppOpW399InputsFromReverseMembershipAndQuotientV370SupportW418.ordinaryDescendedOfOrdinaryMap_quotient_compatW418",
-    "WppOpW399InputsFromReverseMembershipAndCertificatesV370SupportW423.ordinaryDescendedOfOrdinaryMapW417_eq_W418",
-    "WppOpW399InputsFromCertificatesOnlyV370SupportW426.relationPullbackDescendedFieldsInputsW399_of_certificateRelationFieldsW395",
-    "WppOpW399InputsFromCertificatesOnlyV370SupportW426.relationPullbackDescendedFieldsInputsW399_of_w380_w389_w386"]
+  ["W418 ordinaryDescendedOfOrdinaryMap",
+    "W418 ordinaryDescended quotient compatibility",
+    "W423 ordinaryDescended W417/W418 equality",
+    "W426 certificate relation fields to W399",
+    "W426 W380/W389/W386 fields to W399"]
 
 theorem w441ConcreteW426DeclarationNames_count :
     w441ConcreteW426DeclarationNames.length = 5 := rfl
 
 def missingInputsW441 : List String :=
-  ["promote W426's ordinaryDescendedOfOrdinaryMapW418 and quotient compatibility theorem from standalone audit code to an importable module",
-    "construct the W318 canonical WPP-op colimit-point map in the same namespace as W426's ordinary quotient map",
-    "prove ordinaryEqualsCanonicalColimitMap after the W387/W390 source and target point identifications",
-    "transport W426's ordinary descended injective/inducing/closed-image facts across that equality to the W318 colimit map"]
+  ["promote W426 ordinary descended map and quotient compatibility",
+    "construct W318 canonical WPP-op colimit-point map",
+    "prove ordinaryEqualsCanonicalColimitMap after W387/W390 identifications",
+    "transport W426 topology facts across that equality"]
 
 theorem missingInputsW441_count :
     missingInputsW441.length = 4 := rfl
 
 def nextTheoremToPortW441 : String :=
-  "ordinaryEqualsCanonicalColimitMap: identify W426's ordinaryDescendedOfOrdinaryMapW418, after W387/W390 point identifications, with W318's canonical compatible colimit-point map"
+  "ordinaryEqualsCanonicalColimitMap for W426/W318 after W387/W390 identifications"
 
 structure WppOpW426OrdinaryMapPromotionV370StateW441 : Type where
   seed : String
@@ -297,7 +298,7 @@ def currentWppOpW426OrdinaryMapPromotionV370StateW441 :
   missingInputs := missingInputsW441
   nextTheoremToPort := nextTheoremToPortW441
   promotionResult :=
-    "partial: checked package now carries the actual ordinary descended morphism, quotient compatibility, and topology facts; the ordinary/canonical equality remains the missing importable bridge"
+    "partial: package carries descended map, compatibility, and topology facts"
   exactOrdinaryEqualsCanonicalProved := false
   productSuccessClaimed := false
 
@@ -1948,6 +1949,83 @@ end Checks
 
 end WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
 
+namespace WppOpW478ProviderToSelectedW461ProviderCurrentHeadV370SupportW486
+
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible seed for the W486 W478-to-W483 provider adapter. -/
+def supportSeedW486 : String :=
+  "u8ruwzvh"
+
+/-- Adapter from W478's bundled provider surface to W483's selected W461 provider surface. -/
+def selectedW461Provider_of_w461PromotionInputProvider_w486
+    (hinputs : W461PromotionInputProviderW478) :
+    SelectedW461PromotionInputsProviderW483 :=
+  fun X Y α cx cy φ hcx hcy hclosed hcompat =>
+    hinputs.inputs X Y
+      (hinputs.ordinaryMapProvider X Y α cx cy φ hcx hcy hclosed hcompat)
+      α cx cy φ hcx hcy hclosed hcompat
+
+/-- W478 input packages prove W318's left closed-image input through W483. -/
+theorem leftClosedImage_of_w461PromotionInputProvider_w486
+    (hinputs : W461PromotionInputProviderW478) :
+    wppOp_lca_colimitMap_injective_inducing_closedImage :=
+  wppOp_lca_colimitMap_injective_inducing_closedImage_of_selectedW461Provider_w483
+    (selectedW461Provider_of_w461PromotionInputProvider_w486 hinputs)
+
+/-- W478 input packages compose with any W475 projection-field provider through W483. -/
+theorem exactAcyclic_of_w461PromotionInputProvider_and_projectionFields_w486
+    (hinputs : W461PromotionInputProviderW478)
+    (hproj : ProjectionFieldsProviderW475) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_projectionFields_w483
+    (selectedW461Provider_of_w461PromotionInputProvider_w486 hinputs)
+    hproj
+
+/-- W486 checked support state. -/
+structure W478ProviderToSelectedW461ProviderCurrentHeadV370SupportStateW486 : Type where
+  seed : String
+  declarations : List String
+  adapterResult : String
+  leftClosedImageResult : String
+  exactAcyclicResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked support state for W486. -/
+def currentW478ProviderToSelectedW461ProviderCurrentHeadV370SupportStateW486 :
+    W478ProviderToSelectedW461ProviderCurrentHeadV370SupportStateW486 where
+  seed := supportSeedW486
+  declarations :=
+    ["selectedW461Provider_of_w461PromotionInputProvider_w486",
+      "leftClosedImage_of_w461PromotionInputProvider_w486",
+      "exactAcyclic_of_w461PromotionInputProvider_and_projectionFields_w486"]
+  adapterResult := "proved"
+  leftClosedImageResult := "proved"
+  exactAcyclicResult := "proved"
+  remainingInputs := []
+  productSuccessClaimed := false
+
+theorem currentW478ProviderToSelectedW461ProviderCurrentHeadStateW486_productSuccess :
+    currentW478ProviderToSelectedW461ProviderCurrentHeadV370SupportStateW486.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW486
+#check selectedW461Provider_of_w461PromotionInputProvider_w486
+#check leftClosedImage_of_w461PromotionInputProvider_w486
+#check exactAcyclic_of_w461PromotionInputProvider_and_projectionFields_w486
+#check currentW478ProviderToSelectedW461ProviderCurrentHeadStateW486_productSuccess
+
+end Checks
+
+end WppOpW478ProviderToSelectedW461ProviderCurrentHeadV370SupportW486
+
 namespace WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
 
 open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
@@ -2120,5 +2198,566 @@ section Checks
 end Checks
 
 end WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+
+namespace WppOpQuotientIdentificationProjectionProviderV370SupportW485
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpExactAcyclicFrontierConsolidatedW318
+open MetrizableLCA
+
+/-- Reproducible seed for the W485 quotient-identification projection provider. -/
+def supportSeedW485 : String :=
+  "w485-quotient-identification-provider"
+
+/-- The underlying forgetful functor used by the component quotient wrappers. -/
+abbrev underlyingForgetfulFunctorW485 : MetrizableLCA.{0} ⥤ AddCommGrpCat.{0} :=
+  forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}
+
+/-- First component of the selected short-complex difference map. -/
+abbrev selectedMetrizableDifferenceπ₁W485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    (S.obj ordinarySourceIndex).X₁ ⟶ (S.obj ordinaryTargetIndex).X₁ :=
+  (selectedMetrizableLeft S - selectedMetrizableRight S).τ₁
+
+/-- Second component of the selected short-complex difference map. -/
+abbrev selectedMetrizableDifferenceπ₂W485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    (S.obj ordinarySourceIndex).X₂ ⟶ (S.obj ordinaryTargetIndex).X₂ :=
+  (selectedMetrizableLeft S - selectedMetrizableRight S).τ₂
+
+/-- Third component of the selected short-complex difference map. -/
+abbrev selectedMetrizableDifferenceπ₃W485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    (S.obj ordinarySourceIndex).X₃ ⟶ (S.obj ordinaryTargetIndex).X₃ :=
+  (selectedMetrizableLeft S - selectedMetrizableRight S).τ₃
+
+/-- The selected component difference kills the first component target leg. -/
+theorem selectedMetrizableDifferenceπ₁_comp_target_w485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    selectedMetrizableDifferenceπ₁W485 S ≫ (selectedMetrizableTargetCoconeLeg S cs).τ₁ = 0 := by
+  have h :
+      (selectedMetrizableLeft S - selectedMetrizableRight S) ≫
+          selectedMetrizableTargetCoconeLeg S cs = 0 := by
+    rw [Preadditive.sub_comp, sub_eq_zero]
+    exact selectedMetrizableTargetCoconeLeg_parallel_pair S cs
+  exact congrArg ShortComplex.Hom.τ₁ h
+
+/-- The selected component difference kills the second component target leg. -/
+theorem selectedMetrizableDifferenceπ₂_comp_target_w485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    selectedMetrizableDifferenceπ₂W485 S ≫ (selectedMetrizableTargetCoconeLeg S cs).τ₂ = 0 := by
+  have h :
+      (selectedMetrizableLeft S - selectedMetrizableRight S) ≫
+          selectedMetrizableTargetCoconeLeg S cs = 0 := by
+    rw [Preadditive.sub_comp, sub_eq_zero]
+    exact selectedMetrizableTargetCoconeLeg_parallel_pair S cs
+  exact congrArg ShortComplex.Hom.τ₂ h
+
+/-- The selected component difference kills the third component target leg. -/
+theorem selectedMetrizableDifferenceπ₃_comp_target_w485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    selectedMetrizableDifferenceπ₃W485 S ≫ (selectedMetrizableTargetCoconeLeg S cs).τ₃ = 0 := by
+  have h :
+      (selectedMetrizableLeft S - selectedMetrizableRight S) ≫
+          selectedMetrizableTargetCoconeLeg S cs = 0 := by
+    rw [Preadditive.sub_comp, sub_eq_zero]
+    exact selectedMetrizableTargetCoconeLeg_parallel_pair S cs
+  exact congrArg ShortComplex.Hom.τ₃ h
+
+/-- The first selected component cofork after forgetting topology. -/
+def selectedForgottenComponentπ₁CokernelCoforkW485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    CokernelCofork (underlyingForgetfulFunctorW485.map (selectedMetrizableDifferenceπ₁W485 S)) :=
+  CokernelCofork.ofπ
+    (underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₁) (by
+      rw [← underlyingForgetfulFunctorW485.map_comp,
+        selectedMetrizableDifferenceπ₁_comp_target_w485 S cs]
+      rfl)
+
+/-- The second selected component cofork after forgetting topology. -/
+def selectedForgottenComponentπ₂CokernelCoforkW485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    CokernelCofork (underlyingForgetfulFunctorW485.map (selectedMetrizableDifferenceπ₂W485 S)) :=
+  CokernelCofork.ofπ
+    (underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₂) (by
+      rw [← underlyingForgetfulFunctorW485.map_comp,
+        selectedMetrizableDifferenceπ₂_comp_target_w485 S cs]
+      rfl)
+
+/-- The third selected component cofork after forgetting topology. -/
+def selectedForgottenComponentπ₃CokernelCoforkW485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    CokernelCofork (underlyingForgetfulFunctorW485.map (selectedMetrizableDifferenceπ₃W485 S)) :=
+  CokernelCofork.ofπ
+    (underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₃) (by
+      rw [← underlyingForgetfulFunctorW485.map_comp,
+        selectedMetrizableDifferenceπ₃_comp_target_w485 S cs]
+      rfl)
+
+/-- The forgotten explicit cokernel projection, phrased as an AddCommGrp morphism. -/
+abbrev forgottenCokernelπW485 {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
+    underlyingForgetfulFunctorW485.obj Y ⟶ underlyingForgetfulFunctorW485.obj (cokernelObj f) :=
+  AddCommGrpCat.ofHom (QuotientAddGroup.mk' (cokernelSubgroup f))
+
+/-- The forgotten explicit cokernel projection kills the forgotten source map. -/
+theorem forgottenCokernelπ_conditionW485 {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
+    underlyingForgetfulFunctorW485.map f ≫ forgottenCokernelπW485 f = 0 := by
+  ext x
+  change ((f x : Y) : Y ⧸ cokernelSubgroup f) = 0
+  rw [QuotientAddGroup.eq_zero_iff]
+  exact map_mem_cokernelSubgroup f x
+
+/-- The forgotten explicit AddCommGrp cokernel cofork. -/
+def forgottenExplicitCokernelCoforkW485 {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
+    CokernelCofork (underlyingForgetfulFunctorW485.map f) :=
+  CokernelCofork.ofπ (forgottenCokernelπW485 f) (forgottenCokernelπ_conditionW485 f)
+
+/-- Transport the W433-shaped mapped cokernel colimit back to the typed AddCommGrp cofork. -/
+def forgottenCokernelCoforkIsColimit_of_closedRange_w487
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosed : IsClosed (Set.range (f : X → Y))) :
+    IsColimit (MetrizableLCA.forgottenCokernelCofork f) :=
+  (IsColimit.equivOfNatIsoOfIso
+    (MetrizableLCA.forgottenCokernelParallelPairIso f)
+    (MetrizableLCA.forgottenCokernelCofork f)
+    (MetrizableLCA.forgottenMappedExplicitCokernelCocone f)
+    (MetrizableLCA.forgottenCokernelCoforkMappedCoconeIso f)).symm
+      (MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_isClosed_range
+        f hclosed)
+
+/-- Closed range gives the W485 duplicate explicit AddCommGrp cokernel cofork. -/
+def forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosed : IsClosed (Set.range (f : X → Y))) :
+    IsColimit (forgottenExplicitCokernelCoforkW485 f) := by
+  simpa [
+    forgottenExplicitCokernelCoforkW485,
+    forgottenCokernelπW485,
+    forgottenCokernelπ_conditionW485,
+    underlyingForgetfulFunctorW485,
+    MetrizableLCA.forgottenCokernelCofork,
+    MetrizableLCA.forgottenCokernelπ,
+    MetrizableLCA.forgottenCokernelπ_condition] using
+    (forgottenCokernelCoforkIsColimit_of_closedRange_w487 f hclosed)
+
+/-- Transport data identifying the selected component coforks with explicit quotient coforks. -/
+structure SelectedComponentQuotientIdentificationInputsW485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) : Type 1 where
+  pointIsoπ₁ :
+    underlyingForgetfulFunctorW485.obj (cs.pt.X₁) ≅
+      underlyingForgetfulFunctorW485.obj (cokernelObj (selectedMetrizableDifferenceπ₁W485 S))
+  pointIsoπ₂ :
+    underlyingForgetfulFunctorW485.obj (cs.pt.X₂) ≅
+      underlyingForgetfulFunctorW485.obj (cokernelObj (selectedMetrizableDifferenceπ₂W485 S))
+  pointIsoπ₃ :
+    underlyingForgetfulFunctorW485.obj (cs.pt.X₃) ≅
+      underlyingForgetfulFunctorW485.obj (cokernelObj (selectedMetrizableDifferenceπ₃W485 S))
+  legπ₁ :
+    underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₁ ≫
+      pointIsoπ₁.hom =
+        forgottenCokernelπW485 (selectedMetrizableDifferenceπ₁W485 S)
+  legπ₂ :
+    underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₂ ≫
+      pointIsoπ₂.hom =
+        forgottenCokernelπW485 (selectedMetrizableDifferenceπ₂W485 S)
+  legπ₃ :
+    underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₃ ≫
+      pointIsoπ₃.hom =
+        forgottenCokernelπW485 (selectedMetrizableDifferenceπ₃W485 S)
+  explicitπ₁CokernelIsColimit :
+    IsColimit (forgottenExplicitCokernelCoforkW485 (selectedMetrizableDifferenceπ₁W485 S))
+  explicitπ₂CokernelIsColimit :
+    IsColimit (forgottenExplicitCokernelCoforkW485 (selectedMetrizableDifferenceπ₂W485 S))
+  explicitπ₃CokernelIsColimit :
+    IsColimit (forgottenExplicitCokernelCoforkW485 (selectedMetrizableDifferenceπ₃W485 S))
+
+/-- Closed-range quotient-identification data; the explicit cokernel colimits are derived. -/
+structure SelectedComponentClosedRangeQuotientIdentificationInputsW487
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) : Type 1 where
+  pointIsoπ₁ :
+    underlyingForgetfulFunctorW485.obj (cs.pt.X₁) ≅
+      underlyingForgetfulFunctorW485.obj (cokernelObj (selectedMetrizableDifferenceπ₁W485 S))
+  pointIsoπ₂ :
+    underlyingForgetfulFunctorW485.obj (cs.pt.X₂) ≅
+      underlyingForgetfulFunctorW485.obj (cokernelObj (selectedMetrizableDifferenceπ₂W485 S))
+  pointIsoπ₃ :
+    underlyingForgetfulFunctorW485.obj (cs.pt.X₃) ≅
+      underlyingForgetfulFunctorW485.obj (cokernelObj (selectedMetrizableDifferenceπ₃W485 S))
+  legπ₁ :
+    underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₁ ≫
+      pointIsoπ₁.hom =
+        forgottenCokernelπW485 (selectedMetrizableDifferenceπ₁W485 S)
+  legπ₂ :
+    underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₂ ≫
+      pointIsoπ₂.hom =
+        forgottenCokernelπW485 (selectedMetrizableDifferenceπ₂W485 S)
+  legπ₃ :
+    underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₃ ≫
+      pointIsoπ₃.hom =
+        forgottenCokernelπW485 (selectedMetrizableDifferenceπ₃W485 S)
+  closedRangeπ₁ :
+    IsClosed (Set.range
+      (selectedMetrizableDifferenceπ₁W485 S :
+        (S.obj ordinarySourceIndex).X₁ → (S.obj ordinaryTargetIndex).X₁))
+  closedRangeπ₂ :
+    IsClosed (Set.range
+      (selectedMetrizableDifferenceπ₂W485 S :
+        (S.obj ordinarySourceIndex).X₂ → (S.obj ordinaryTargetIndex).X₂))
+  closedRangeπ₃ :
+    IsClosed (Set.range
+      (selectedMetrizableDifferenceπ₃W485 S :
+        (S.obj ordinarySourceIndex).X₃ → (S.obj ordinaryTargetIndex).X₃))
+
+/-- Closed-range quotient-identification inputs derive the W485 explicit-colimit package. -/
+def quotientIdentificationInputs_of_closedRange_w487
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : SelectedComponentClosedRangeQuotientIdentificationInputsW487 S cs) :
+    SelectedComponentQuotientIdentificationInputsW485 S cs where
+  pointIsoπ₁ := h.pointIsoπ₁
+  pointIsoπ₂ := h.pointIsoπ₂
+  pointIsoπ₃ := h.pointIsoπ₃
+  legπ₁ := h.legπ₁
+  legπ₂ := h.legπ₂
+  legπ₃ := h.legπ₃
+  explicitπ₁CokernelIsColimit :=
+    forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
+      (selectedMetrizableDifferenceπ₁W485 S) h.closedRangeπ₁
+  explicitπ₂CokernelIsColimit :=
+    forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
+      (selectedMetrizableDifferenceπ₂W485 S) h.closedRangeπ₂
+  explicitπ₃CokernelIsColimit :=
+    forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
+      (selectedMetrizableDifferenceπ₃W485 S) h.closedRangeπ₃
+
+/-- Provider for selected component quotient-identification inputs. -/
+abbrev QuotientIdentificationProjectionProviderW485 : Type 1 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs → SelectedComponentQuotientIdentificationInputsW485 S cs
+
+/-- Provider for closed-range selected component quotient-identification inputs. -/
+abbrev ClosedRangeQuotientIdentificationProjectionProviderW487 : Type 1 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs →
+      SelectedComponentClosedRangeQuotientIdentificationInputsW487 S cs
+
+/-- Closed-range quotient-identification provider adapted to W485's projection-field surface. -/
+def quotientIdentificationProvider_of_closedRange_w487
+    (hclosed : ClosedRangeQuotientIdentificationProjectionProviderW487) :
+    QuotientIdentificationProjectionProviderW485 :=
+  fun S cs hcs => quotientIdentificationInputs_of_closedRange_w487 (hclosed S cs hcs)
+
+/-- The selected first-component cofork is isomorphic to the explicit quotient cofork. -/
+def selectedComponentπ₁CoforkIso_of_quotientIdentification_w485
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : SelectedComponentQuotientIdentificationInputsW485 S cs) :
+    selectedForgottenComponentπ₁CokernelCoforkW485 S cs ≅
+      forgottenExplicitCokernelCoforkW485 (selectedMetrizableDifferenceπ₁W485 S) :=
+  Cocone.ext h.pointIsoπ₁ (by
+    rintro (_ | _)
+    · have hzero := congrArg
+        (fun q => underlyingForgetfulFunctorW485.map (selectedMetrizableDifferenceπ₁W485 S) ≫ q)
+        h.legπ₁
+      simpa [Category.assoc, selectedForgottenComponentπ₁CokernelCoforkW485,
+        forgottenExplicitCokernelCoforkW485] using hzero
+    · simpa [selectedForgottenComponentπ₁CokernelCoforkW485,
+        forgottenExplicitCokernelCoforkW485] using h.legπ₁)
+
+/-- The selected second-component cofork is isomorphic to the explicit quotient cofork. -/
+def selectedComponentπ₂CoforkIso_of_quotientIdentification_w485
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : SelectedComponentQuotientIdentificationInputsW485 S cs) :
+    selectedForgottenComponentπ₂CokernelCoforkW485 S cs ≅
+      forgottenExplicitCokernelCoforkW485 (selectedMetrizableDifferenceπ₂W485 S) :=
+  Cocone.ext h.pointIsoπ₂ (by
+    rintro (_ | _)
+    · have hzero := congrArg
+        (fun q => underlyingForgetfulFunctorW485.map (selectedMetrizableDifferenceπ₂W485 S) ≫ q)
+        h.legπ₂
+      simpa [Category.assoc, selectedForgottenComponentπ₂CokernelCoforkW485,
+        forgottenExplicitCokernelCoforkW485] using hzero
+    · simpa [selectedForgottenComponentπ₂CokernelCoforkW485,
+        forgottenExplicitCokernelCoforkW485] using h.legπ₂)
+
+/-- The selected third-component cofork is isomorphic to the explicit quotient cofork. -/
+def selectedComponentπ₃CoforkIso_of_quotientIdentification_w485
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : SelectedComponentQuotientIdentificationInputsW485 S cs) :
+    selectedForgottenComponentπ₃CokernelCoforkW485 S cs ≅
+      forgottenExplicitCokernelCoforkW485 (selectedMetrizableDifferenceπ₃W485 S) :=
+  Cocone.ext h.pointIsoπ₃ (by
+    rintro (_ | _)
+    · have hzero := congrArg
+        (fun q => underlyingForgetfulFunctorW485.map (selectedMetrizableDifferenceπ₃W485 S) ≫ q)
+        h.legπ₃
+      simpa [Category.assoc, selectedForgottenComponentπ₃CokernelCoforkW485,
+        forgottenExplicitCokernelCoforkW485] using hzero
+    · simpa [selectedForgottenComponentπ₃CokernelCoforkW485,
+        forgottenExplicitCokernelCoforkW485] using h.legπ₃)
+
+/-- Quotient-identification data transports the explicit first-component cokernel proof. -/
+def selectedComponentπ₁_isColimit_of_quotientIdentification_w485
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : SelectedComponentQuotientIdentificationInputsW485 S cs) :
+    IsColimit (selectedForgottenComponentπ₁CokernelCoforkW485 S cs) :=
+  IsColimit.ofIsoColimit h.explicitπ₁CokernelIsColimit
+    (selectedComponentπ₁CoforkIso_of_quotientIdentification_w485 h).symm
+
+/-- Quotient-identification data transports the explicit second-component cokernel proof. -/
+def selectedComponentπ₂_isColimit_of_quotientIdentification_w485
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : SelectedComponentQuotientIdentificationInputsW485 S cs) :
+    IsColimit (selectedForgottenComponentπ₂CokernelCoforkW485 S cs) :=
+  IsColimit.ofIsoColimit h.explicitπ₂CokernelIsColimit
+    (selectedComponentπ₂CoforkIso_of_quotientIdentification_w485 h).symm
+
+/-- Quotient-identification data transports the explicit third-component cokernel proof. -/
+def selectedComponentπ₃_isColimit_of_quotientIdentification_w485
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : SelectedComponentQuotientIdentificationInputsW485 S cs) :
+    IsColimit (selectedForgottenComponentπ₃CokernelCoforkW485 S cs) :=
+  IsColimit.ofIsoColimit h.explicitπ₃CokernelIsColimit
+    (selectedComponentπ₃CoforkIso_of_quotientIdentification_w485 h).symm
+
+/-- The projected `π₁` parallel-pair diagram is the selected component diagram. -/
+def selectedProjectionπ₁DiagramIsoW485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    parallelPair (underlyingForgetfulFunctorW485.map (selectedMetrizableDifferenceπ₁W485 S)) 0 ≅
+      (parallelPair (forgottenShortComplexFunctor.map
+          (selectedMetrizableLeft S - selectedMetrizableRight S)) 0) ⋙
+        (ShortComplex.π₁ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}) :=
+  parallelPair.ext (Iso.refl _) (Iso.refl _) (by
+    exact (congrArg ShortComplex.Hom.τ₁
+      (forgottenShortComplexFunctor.map_sub
+        (f := selectedMetrizableLeft S) (g := selectedMetrizableRight S))).symm)
+    (by rfl)
+
+/-- The projected `π₂` parallel-pair diagram is the selected component diagram. -/
+def selectedProjectionπ₂DiagramIsoW485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    parallelPair (underlyingForgetfulFunctorW485.map (selectedMetrizableDifferenceπ₂W485 S)) 0 ≅
+      (parallelPair (forgottenShortComplexFunctor.map
+          (selectedMetrizableLeft S - selectedMetrizableRight S)) 0) ⋙
+        (ShortComplex.π₂ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}) :=
+  parallelPair.ext (Iso.refl _) (Iso.refl _) (by
+    exact (congrArg ShortComplex.Hom.τ₂
+      (forgottenShortComplexFunctor.map_sub
+        (f := selectedMetrizableLeft S) (g := selectedMetrizableRight S))).symm)
+    (by rfl)
+
+/-- The projected `π₃` parallel-pair diagram is the selected component diagram. -/
+def selectedProjectionπ₃DiagramIsoW485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    parallelPair (underlyingForgetfulFunctorW485.map (selectedMetrizableDifferenceπ₃W485 S)) 0 ≅
+      (parallelPair (forgottenShortComplexFunctor.map
+          (selectedMetrizableLeft S - selectedMetrizableRight S)) 0) ⋙
+        (ShortComplex.π₃ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}) :=
+  parallelPair.ext (Iso.refl _) (Iso.refl _) (by
+    exact (congrArg ShortComplex.Hom.τ₃
+      (forgottenShortComplexFunctor.map_sub
+        (f := selectedMetrizableLeft S) (g := selectedMetrizableRight S))).symm)
+    (by rfl)
+
+/-- The first selected component cofork is the precomposed projected cofork. -/
+def selectedProjectionπ₁CoforkIsoW485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    (Cocone.precompose (selectedProjectionπ₁DiagramIsoW485 S).inv).obj
+        (selectedForgottenComponentπ₁CokernelCoforkW485 S cs) ≅
+      ((ShortComplex.π₁ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor)) :=
+  Cocone.ext (Iso.refl _) (by
+    rintro (_ | _) <;> rfl)
+
+/-- The second selected component cofork is the precomposed projected cofork. -/
+def selectedProjectionπ₂CoforkIsoW485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    (Cocone.precompose (selectedProjectionπ₂DiagramIsoW485 S).inv).obj
+        (selectedForgottenComponentπ₂CokernelCoforkW485 S cs) ≅
+      ((ShortComplex.π₂ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor)) :=
+  Cocone.ext (Iso.refl _) (by
+    rintro (_ | _) <;> rfl)
+
+/-- The third selected component cofork is the precomposed projected cofork. -/
+def selectedProjectionπ₃CoforkIsoW485
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    (Cocone.precompose (selectedProjectionπ₃DiagramIsoW485 S).inv).obj
+        (selectedForgottenComponentπ₃CokernelCoforkW485 S cs) ≅
+      ((ShortComplex.π₃ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor)) :=
+  Cocone.ext (Iso.refl _) (by
+    rintro (_ | _) <;> rfl)
+
+/-- Transport a selected first-component `IsColimit` proof to the projected cofork. -/
+def projectionπ₁_isColimit_of_selectedComponentπ₁_w485
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : IsColimit (selectedForgottenComponentπ₁CokernelCoforkW485 S cs)) :
+    IsColimit
+      ((ShortComplex.π₁ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor)) :=
+  (IsColimit.equivOfNatIsoOfIso (selectedProjectionπ₁DiagramIsoW485 S)
+    (selectedForgottenComponentπ₁CokernelCoforkW485 S cs)
+    _
+    (selectedProjectionπ₁CoforkIsoW485 S cs)) h
+
+/-- Transport a selected second-component `IsColimit` proof to the projected cofork. -/
+def projectionπ₂_isColimit_of_selectedComponentπ₂_w485
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : IsColimit (selectedForgottenComponentπ₂CokernelCoforkW485 S cs)) :
+    IsColimit
+      ((ShortComplex.π₂ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor)) :=
+  (IsColimit.equivOfNatIsoOfIso (selectedProjectionπ₂DiagramIsoW485 S)
+    (selectedForgottenComponentπ₂CokernelCoforkW485 S cs)
+    _
+    (selectedProjectionπ₂CoforkIsoW485 S cs)) h
+
+/-- Transport a selected third-component `IsColimit` proof to the projected cofork. -/
+def projectionπ₃_isColimit_of_selectedComponentπ₃_w485
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : IsColimit (selectedForgottenComponentπ₃CokernelCoforkW485 S cs)) :
+    IsColimit
+      ((ShortComplex.π₃ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor)) :=
+  (IsColimit.equivOfNatIsoOfIso (selectedProjectionπ₃DiagramIsoW485 S)
+    (selectedForgottenComponentπ₃CokernelCoforkW485 S cs)
+    _
+    (selectedProjectionπ₃CoforkIsoW485 S cs)) h
+
+/-- Quotient-identification inputs provide all projected component `IsColimit` fields. -/
+def selectedProjectionComponentIsColimitInputs_of_quotientIdentifications_w485
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h : SelectedComponentQuotientIdentificationInputsW485 S cs) :
+    SelectedProjectionComponentIsColimitInputs S cs :=
+  ⟨projectionπ₁_isColimit_of_selectedComponentπ₁_w485
+      (selectedComponentπ₁_isColimit_of_quotientIdentification_w485 h),
+    projectionπ₂_isColimit_of_selectedComponentπ₂_w485
+      (selectedComponentπ₂_isColimit_of_quotientIdentification_w485 h),
+    projectionπ₃_isColimit_of_selectedComponentπ₃_w485
+      (selectedComponentπ₃_isColimit_of_quotientIdentification_w485 h)⟩
+
+/-- A quotient-identification provider supplies W475 projection fields. -/
+def projectionFieldsProvider_of_quotientIdentifications_w485
+    (hquot : QuotientIdentificationProjectionProviderW485) :
+    ProjectionFieldsProviderW475 :=
+  fun S cs hcs =>
+    selectedProjectionComponentIsColimitInputs_of_quotientIdentifications_w485
+      (hquot S cs hcs)
+
+/-- W483 composition using one selected W461 provider and W485 quotient-identification inputs. -/
+theorem exactAcyclic_of_selectedW461Provider_and_quotientIdentificationProjection_w485
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hquot : QuotientIdentificationProjectionProviderW485) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_projectionFields_w483
+    hinputs
+    (projectionFieldsProvider_of_quotientIdentifications_w485 hquot)
+
+/-- W487 composition using selected W461 inputs and closed-range quotient identifications. -/
+theorem exactAcyclic_of_selectedW461Provider_and_closedRangeQuotientIdentification_w487
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hclosed : ClosedRangeQuotientIdentificationProjectionProviderW487) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_quotientIdentificationProjection_w485
+    hinputs
+    (quotientIdentificationProvider_of_closedRange_w487 hclosed)
+
+end WppOpQuotientIdentificationProjectionProviderV370SupportW485
+
+namespace WppOpW478ProviderQuotientIdentificationProjectionV370SupportW487
+
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW478ProviderToSelectedW461ProviderCurrentHeadV370SupportW486
+open WppOpQuotientIdentificationProjectionProviderV370SupportW485
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible seed for the W487 W478-provider plus quotient-identification route. -/
+def supportSeedW487 : String :=
+  "w487-w478-quotient-identification"
+
+/--
+W487 combines W486 and W485: a W478 provider supplies the selected W461 input,
+and quotient-identification data supply the W475 projection fields.
+-/
+theorem exactAcyclic_of_w461PromotionInputProvider_and_quotientIdentificationProjection_w487
+    (hinputs : W461PromotionInputProviderW478)
+    (hquot : QuotientIdentificationProjectionProviderW485) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_w461PromotionInputProvider_and_projectionFields_w486
+    hinputs
+    (projectionFieldsProvider_of_quotientIdentifications_w485 hquot)
+
+/--
+W487 closed-range route: closed-range quotient-identification data are adapted to
+W485 before composing with the W478 provider.
+-/
+theorem exactAcyclic_of_w461PromotionInputProvider_and_closedRangeQuotientIdentification_w487
+    (hinputs : W461PromotionInputProviderW478)
+    (hclosed : ClosedRangeQuotientIdentificationProjectionProviderW487) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_w461PromotionInputProvider_and_quotientIdentificationProjection_w487
+    hinputs
+    (quotientIdentificationProvider_of_closedRange_w487 hclosed)
+
+/-- W487 checked support state. -/
+structure W478ProviderQuotientIdentificationProjectionV370SupportStateW487 : Type where
+  seed : String
+  declarations : List String
+  exactAcyclicResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked support state for W487. -/
+def currentW478ProviderQuotientIdentificationProjectionV370SupportStateW487 :
+    W478ProviderQuotientIdentificationProjectionV370SupportStateW487 where
+  seed := supportSeedW487
+  declarations :=
+    ["exactAcyclic_of_w461PromotionInputProvider_and_quotientIdentificationProjection_w487",
+      "exactAcyclic_of_w461PromotionInputProvider_and_closedRangeQuotientIdentification_w487"]
+  exactAcyclicResult := "proved"
+  remainingInputs :=
+    ["construct concrete W461PromotionInputProviderW478",
+      "construct concrete QuotientIdentificationProjectionProviderW485",
+      "or construct the closed-range provider surface adapted to it"]
+  productSuccessClaimed := false
+
+theorem currentW478ProviderQuotientIdentificationProjectionStateW487_productSuccess :
+    currentW478ProviderQuotientIdentificationProjectionV370SupportStateW487.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW487
+#check exactAcyclic_of_w461PromotionInputProvider_and_quotientIdentificationProjection_w487
+#check exactAcyclic_of_w461PromotionInputProvider_and_closedRangeQuotientIdentification_w487
+#check currentW478ProviderQuotientIdentificationProjectionStateW487_productSuccess
+
+end Checks
+
+end WppOpW478ProviderQuotientIdentificationProjectionV370SupportW487
 
 end LeanLCAExactChallenge
