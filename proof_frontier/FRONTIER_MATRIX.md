@@ -715,3 +715,14 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W437's closure-kernel boundary is now an importable project API: `MetrizableLCA.underlyingAddCommGrpFunctor`, `MetrizableLCA.forgottenCokernelπ`, `MetrizableLCA.forgottenCokernelCofork`, and `MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel`.
 - remaining blocker: supply the closure-kernel input for the actual WPP-op difference morphism from closed range or an equivalent certificate, then connect it through the selected short-complex target row.
 - product_complete: false
+
+## W438 W440 W441 Frontier Update
+
+- time: 2026-05-21T00:27:14Z
+- consumed support: `w438-addcommgrp-cokernel-quotient-comparison-v370`, `w440-mapped-explicit-cokernel-cocone-closed-range-v370`
+- classified support: `w439-w426-w318-leg-compatibility-alignment-v370`, `w441-w426-ordinary-map-promotion-v370`
+- artifact: `LeanLCAExactChallenge/LCA/ForgottenCokernel.lean`
+- verified: `lake env lean LeanLCAExactChallenge/LCA/ForgottenCokernel.lean`; `lake build LeanLCAExactChallenge.LCA.ForgottenCokernel`; `lake build LeanLCAExactChallenge`; `lake env lean audit/RequiredDeclarations.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`
+- effect: W433's mapped explicit cokernel cocone now has an importable `IsColimit` theorem from `MetrizableLCA.ClosureKernelInput`.
+- remaining blockers: build `ClosureKernelInput` for the actual WPP-op difference morphism, then connect it through W435; separately promote W426's ordinary map package and prove equality to the W318 canonical WPP-op colimit map.
+- product_complete: false
