@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W486でW478 providerをW483 selected-W461 providerへ変換し、W485でquotient-identification projection fieldsを供給し、W487でclosed rangeからexplicit quotient cofork IsColimit証明を導出してW478 plus closed-range routeを公開した。WPP-op exact-acyclic branchは具体的なW461PromotionInputProviderW478とClosedRangeQuotientIdentificationProjectionProviderW487の構成へ縮約された。ただしこれらはfinal call siteで未構成なのでproduct_successは主張しない。",
+  "summary": "W489でW481 componentwise closed-range projection dataをW487 closed-range quotient-identification providerへ変換し、exactAcyclic_of_w461PromotionInputProvider_and_componentwiseProjection_w489でW478とW481を合成した。WPP-op exact-acyclic branchは具体的なW461PromotionInputProviderW478とComponentwiseClosedRangeProjectionProviderW481の構成へ縮約された。ただしこれらはfinal call siteで未構成なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -1596,8 +1596,8 @@
   ],
   "known_gaps": [
     "final call siteでW461PromotionInputProviderW478を構成する必要がある。",
-    "final call siteでClosedRangeQuotientIdentificationProjectionProviderW487を構成する必要がある。",
-    "ClosedRangeQuotientIdentificationProjectionProviderW487には三つのpoint isomorphism、三つのleg-to-explicit-quotient equation、三つのclosed-range証明が必要である。",
+    "final call siteでComponentwiseClosedRangeProjectionProviderW481を構成する必要がある。",
+    "ComponentwiseClosedRangeProjectionProviderW481には三つのselected component differenceのclosed-range証明と三つのprojected component IsColimit証明が必要である。",
     "product-success declarationを実際に証明するまではterminal outcomeをproduct_successへ更新しない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -1605,7 +1605,7 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "825e9cd",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W486/W487 consumed: exact-acyclic WPP-op branch now reduces to W461PromotionInputProviderW478 plus ClosedRangeQuotientIdentificationProjectionProviderW487; product_complete remains false.",
+  "worker_frontier_summary": "W489 consumed: exact-acyclic WPP-op branch now reduces to W461PromotionInputProviderW478 plus ComponentwiseClosedRangeProjectionProviderW481; product_complete remains false.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
     "final call siteでW461PromotionInputProviderW478を構成する必要がある。",
@@ -2470,7 +2470,7 @@
     "AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w475",
     "AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_projectionFields_w475"
   ],
-  "generated_utc": "2026-05-21T03:54:11Z",
+  "generated_utc": "2026-05-21T04:05:11Z",
   "support_result_classification": "Support W484 quotient-identification projection-provider result was used only as a lead; parent verified W485 in the target worktree and did not claim product_success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -3399,7 +3399,7 @@
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
     "construct concrete W461PromotionInputProviderW478",
-    "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487",
+    "construct concrete ComponentwiseClosedRangeProjectionProviderW481",
     "claim product_success only after final product theorem and terminal audit pass"
   ]
 }

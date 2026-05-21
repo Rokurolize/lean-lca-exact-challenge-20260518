@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w487-closed-range-quotient-identification-route",
-  "generated_utc": "2026-05-21T03:53:12Z",
-  "source_tree_hash": "bf6e6b75abab2182bb94f37a3b3e11d99dc0d8d814f653281e349b1eafbc5e20",
-  "summary": "W486 adapts W478 providers to W483 selected-W461 providers; W485 supplies quotient-identification projection fields; W487 derives W485 explicit quotient cofork IsColimit proofs from closed range and exposes the W478 plus closed-range route. The WPP-op exact-acyclic branch is reduced to concrete W461PromotionInputProviderW478 and closed-range quotient-identification data at final call sites. product_complete remains false.",
+  "generated_utc": "2026-05-21T04:05:11Z",
+  "source_tree_hash": "5a3dcf18ad11d09695f0f56819f2acfe2b2c8e897352d321c0629205baa851ef",
+  "summary": "W489 now adapts W481 componentwise closed-range projection data into the W487 closed-range quotient-identification provider, then composes W478 with W481 through exactAcyclic_of_w461PromotionInputProvider_and_componentwiseProjection_w489. The WPP-op exact-acyclic branch is reduced to concrete W461PromotionInputProviderW478 and ComponentwiseClosedRangeProjectionProviderW481 at final call sites. product_complete remains false.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3035,6 +3035,51 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Read-only external audit reaches the expected product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "lake build passed after W489 componentwise-to-closed-range quotient bridge integration."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Derived WPP-op exact-acyclic projection fields passed with W489 importable route."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed after W489 integration."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations passed and checks W489 declarations."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_closed_range_quotient_identification_provider_current_head_v370_support_w489.lean",
+      "status": "passed",
+      "evidence": "Focused W489 audit support file passed after namespace fix."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_closed_range_quotient_identification_provider_current_head_v370_support_w489.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the focused W489 support file."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "git diff --check passed after W489 integration."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Read-only external audit reaches the expected product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success."
     }
   ],
   "implemented_declarations_checked": [
@@ -4126,16 +4171,24 @@
   "product_complete": false,
   "known_gaps": [
     "final call siteでW461PromotionInputProviderW478を構成する必要がある。",
-    "final call siteでClosedRangeQuotientIdentificationProjectionProviderW487を構成する必要がある。",
-    "ClosedRangeQuotientIdentificationProjectionProviderW487には三つのpoint isomorphism、三つのleg-to-explicit-quotient equation、三つのclosed-range証明が必要である。",
+    "final call siteでComponentwiseClosedRangeProjectionProviderW481を構成する必要がある。",
+    "ComponentwiseClosedRangeProjectionProviderW481には三つのselected component differenceのclosed-range証明と三つのprojected component IsColimit証明が必要である。",
     "product-success declarationを実際に証明するまではterminal outcomeをproduct_successへ更新しない。"
   ],
   "support_result_classification": "Support W484 quotient-identification provider result was used as a lead; parent verified W485 in the target tree. product_success is not claimed.",
   "product_success": false,
   "remaining_work": [
     "construct concrete W461PromotionInputProviderW478",
-    "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487",
+    "construct concrete ComponentwiseClosedRangeProjectionProviderW481",
     "claim product_success only after final product theorem and terminal audit pass"
   ],
-  "summary_log_tail": "W487 checked route consumed; W478 provider plus W485 quotient-identification provider remain concrete call-site inputs."
+  "summary_log_tail": [
+    {
+      "ts_utc": "2026-05-21T04:05:11Z",
+      "status": "blocked_nonterminal_frontier",
+      "artifact": "w489-componentwise-to-closed-range-quotient-identification",
+      "evidence": "W489 now adapts W481 componentwise closed-range projection data into the W487 closed-range quotient-identification provider, then composes W478 with W481 through exactAcyclic_of_w461PromotionInputProvider_and_componentwiseProjection_w489. The WPP-op exact-acyclic branch is reduced to concrete W461PromotionInputProviderW478 and ComponentwiseClosedRangeProjectionProviderW481 at final call sites. product_complete remains false.",
+      "next": "construct concrete W461PromotionInputProviderW478 and ComponentwiseClosedRangeProjectionProviderW481"
+    }
+  ]
 }

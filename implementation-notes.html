@@ -1662,6 +1662,12 @@
 <p>Product success remains false. This route narrows the exact-acyclic WPP-op branch to concrete <code>W461PromotionInputProviderW478</code> plus either <code>QuotientIdentificationProjectionProviderW485</code> or the closed-range provider surface adapted to it.</p>
 </section>
 
+<section id="w489-componentwise-to-closed-range-quotient">
+<h2>W489 componentwise to closed-range quotient bridge</h2>
+<p><time>2026-05-21T04:02:51Z</time>: The parent worked with the target-side W489 draft and fixed the missing namespace import. The importable namespace <code>WppOpComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportW489</code> now transports W481 projected component <code>IsColimit</code> proofs back to the selected component coforks, obtains point isomorphisms and leg equations by colimit uniqueness against the explicit closed-range cokernel coforks, and builds <code>closedRangeQuotientIdentificationProvider_of_componentwiseProjection_w489</code>.</p>
+<p>The new endpoint <code>exactAcyclic_of_w461PromotionInputProvider_and_componentwiseProjection_w489</code> composes W478 with a W481 componentwise projection provider. This is not product success: the remaining WPP-op exact-acyclic inputs are now concrete <code>W461PromotionInputProviderW478</code> and concrete <code>ComponentwiseClosedRangeProjectionProviderW481</code> at final call sites.</p>
+</section>
+
 <section id="audit-marker-and-manifest-refresh-20260521">
 <h2>Audit marker and manifest refresh</h2>
 <p><time>2026-05-21T02:43:22Z</time>: The parent removed comment-only product-marker words from <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> and <code>audit/ProductSuccessDeclarations.lean</code>, refreshed <code>manifest.json</code> with packet and transient Codex progress paths excluded, and updated <code>run/verification.json</code>'s <code>source_tree_hash</code>. After this, <code>python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json</code> no longer fails on placeholder markers, manifest hashes, or stale source hash; it reaches the expected nonterminal product gate because <code>terminal_outcome.outcome</code> is still <code>blocked_nonterminal_frontier</code>.</p>

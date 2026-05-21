@@ -2760,4 +2760,229 @@ end Checks
 
 end WppOpW478ProviderQuotientIdentificationProjectionV370SupportW487
 
+namespace WppOpComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportW489
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpQuotientIdentificationProjectionProviderV370SupportW485
+open WppOpW478ProviderQuotientIdentificationProjectionV370SupportW487
+open WppOpExactAcyclicFrontierConsolidatedW318
+open MetrizableLCA
+
+def supportSeedW489 : String :=
+  "w489-componentwise-to-closed-range-quotient"
+
+def selectedComponentπ₁_isColimit_of_projection_w489
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hπ₁ :
+      IsColimit
+        ((ShortComplex.π₁ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+          ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor))) :
+    IsColimit (selectedForgottenComponentπ₁CokernelCoforkW485 S cs) :=
+  (IsColimit.equivOfNatIsoOfIso (selectedProjectionπ₁DiagramIsoW485 S)
+    (selectedForgottenComponentπ₁CokernelCoforkW485 S cs)
+    _
+    (selectedProjectionπ₁CoforkIsoW485 S cs)).symm hπ₁
+
+def selectedComponentπ₂_isColimit_of_projection_w489
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hπ₂ :
+      IsColimit
+        ((ShortComplex.π₂ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+          ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor))) :
+    IsColimit (selectedForgottenComponentπ₂CokernelCoforkW485 S cs) :=
+  (IsColimit.equivOfNatIsoOfIso (selectedProjectionπ₂DiagramIsoW485 S)
+    (selectedForgottenComponentπ₂CokernelCoforkW485 S cs)
+    _
+    (selectedProjectionπ₂CoforkIsoW485 S cs)).symm hπ₂
+
+def selectedComponentπ₃_isColimit_of_projection_w489
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hπ₃ :
+      IsColimit
+        ((ShortComplex.π₃ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+          ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor))) :
+    IsColimit (selectedForgottenComponentπ₃CokernelCoforkW485 S cs) :=
+  (IsColimit.equivOfNatIsoOfIso (selectedProjectionπ₃DiagramIsoW485 S)
+    (selectedForgottenComponentπ₃CokernelCoforkW485 S cs)
+    _
+    (selectedProjectionπ₃CoforkIsoW485 S cs)).symm hπ₃
+
+def selectedComponentπ₁PointIso_of_componentwiseProjection_w489
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (H : SelectedComponentwiseClosedRangeProjectionInputsW481 S cs) :
+    underlyingForgetfulFunctorW485.obj (cs.pt.X₁) ≅
+      underlyingForgetfulFunctorW485.obj (cokernelObj (selectedMetrizableDifferenceπ₁W485 S)) :=
+  (selectedComponentπ₁_isColimit_of_projection_w489 H.hπ₁).coconePointUniqueUpToIso
+    (forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
+      (selectedMetrizableDifferenceπ₁W485 S) (by
+        simpa [selectedMetrizableDifferenceπ₁W481, selectedMetrizableDifferenceπ₁W485]
+          using H.hclosedπ₁))
+
+def selectedComponentπ₂PointIso_of_componentwiseProjection_w489
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (H : SelectedComponentwiseClosedRangeProjectionInputsW481 S cs) :
+    underlyingForgetfulFunctorW485.obj (cs.pt.X₂) ≅
+      underlyingForgetfulFunctorW485.obj (cokernelObj (selectedMetrizableDifferenceπ₂W485 S)) :=
+  (selectedComponentπ₂_isColimit_of_projection_w489 H.hπ₂).coconePointUniqueUpToIso
+    (forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
+      (selectedMetrizableDifferenceπ₂W485 S) (by
+        simpa [selectedMetrizableDifferenceπ₂W481, selectedMetrizableDifferenceπ₂W485]
+          using H.hclosedπ₂))
+
+def selectedComponentπ₃PointIso_of_componentwiseProjection_w489
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (H : SelectedComponentwiseClosedRangeProjectionInputsW481 S cs) :
+    underlyingForgetfulFunctorW485.obj (cs.pt.X₃) ≅
+      underlyingForgetfulFunctorW485.obj (cokernelObj (selectedMetrizableDifferenceπ₃W485 S)) :=
+  (selectedComponentπ₃_isColimit_of_projection_w489 H.hπ₃).coconePointUniqueUpToIso
+    (forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
+      (selectedMetrizableDifferenceπ₃W485 S) (by
+        simpa [selectedMetrizableDifferenceπ₃W481, selectedMetrizableDifferenceπ₃W485]
+          using H.hclosedπ₃))
+
+theorem selectedComponentπ₁Leg_eq_of_componentwiseProjection_w489
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (H : SelectedComponentwiseClosedRangeProjectionInputsW481 S cs) :
+    underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₁ ≫
+      (selectedComponentπ₁PointIso_of_componentwiseProjection_w489 H).hom =
+        forgottenCokernelπW485 (selectedMetrizableDifferenceπ₁W485 S) := by
+  simpa [selectedComponentπ₁PointIso_of_componentwiseProjection_w489,
+    selectedForgottenComponentπ₁CokernelCoforkW485, forgottenExplicitCokernelCoforkW485] using
+      (IsColimit.comp_coconePointUniqueUpToIso_hom
+        (selectedComponentπ₁_isColimit_of_projection_w489 H.hπ₁)
+        (forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
+          (selectedMetrizableDifferenceπ₁W485 S) (by
+            simpa [selectedMetrizableDifferenceπ₁W481, selectedMetrizableDifferenceπ₁W485]
+              using H.hclosedπ₁))
+        WalkingParallelPair.one)
+
+theorem selectedComponentπ₂Leg_eq_of_componentwiseProjection_w489
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (H : SelectedComponentwiseClosedRangeProjectionInputsW481 S cs) :
+    underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₂ ≫
+      (selectedComponentπ₂PointIso_of_componentwiseProjection_w489 H).hom =
+        forgottenCokernelπW485 (selectedMetrizableDifferenceπ₂W485 S) := by
+  simpa [selectedComponentπ₂PointIso_of_componentwiseProjection_w489,
+    selectedForgottenComponentπ₂CokernelCoforkW485, forgottenExplicitCokernelCoforkW485] using
+      (IsColimit.comp_coconePointUniqueUpToIso_hom
+        (selectedComponentπ₂_isColimit_of_projection_w489 H.hπ₂)
+        (forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
+          (selectedMetrizableDifferenceπ₂W485 S) (by
+            simpa [selectedMetrizableDifferenceπ₂W481, selectedMetrizableDifferenceπ₂W485]
+              using H.hclosedπ₂))
+        WalkingParallelPair.one)
+
+theorem selectedComponentπ₃Leg_eq_of_componentwiseProjection_w489
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (H : SelectedComponentwiseClosedRangeProjectionInputsW481 S cs) :
+    underlyingForgetfulFunctorW485.map (selectedMetrizableTargetCoconeLeg S cs).τ₃ ≫
+      (selectedComponentπ₃PointIso_of_componentwiseProjection_w489 H).hom =
+        forgottenCokernelπW485 (selectedMetrizableDifferenceπ₃W485 S) := by
+  simpa [selectedComponentπ₃PointIso_of_componentwiseProjection_w489,
+    selectedForgottenComponentπ₃CokernelCoforkW485, forgottenExplicitCokernelCoforkW485] using
+      (IsColimit.comp_coconePointUniqueUpToIso_hom
+        (selectedComponentπ₃_isColimit_of_projection_w489 H.hπ₃)
+        (forgottenExplicitCokernelCoforkW485_isColimit_of_closedRange_w487
+          (selectedMetrizableDifferenceπ₃W485 S) (by
+            simpa [selectedMetrizableDifferenceπ₃W481, selectedMetrizableDifferenceπ₃W485]
+              using H.hclosedπ₃))
+        WalkingParallelPair.one)
+
+def closedRangeQuotientIdentificationInputs_of_componentwiseProjection_w489
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (H : SelectedComponentwiseClosedRangeProjectionInputsW481 S cs) :
+    SelectedComponentClosedRangeQuotientIdentificationInputsW487 S cs where
+  pointIsoπ₁ := selectedComponentπ₁PointIso_of_componentwiseProjection_w489 H
+  pointIsoπ₂ := selectedComponentπ₂PointIso_of_componentwiseProjection_w489 H
+  pointIsoπ₃ := selectedComponentπ₃PointIso_of_componentwiseProjection_w489 H
+  legπ₁ := selectedComponentπ₁Leg_eq_of_componentwiseProjection_w489 H
+  legπ₂ := selectedComponentπ₂Leg_eq_of_componentwiseProjection_w489 H
+  legπ₃ := selectedComponentπ₃Leg_eq_of_componentwiseProjection_w489 H
+  closedRangeπ₁ := by
+    simpa [selectedMetrizableDifferenceπ₁W481, selectedMetrizableDifferenceπ₁W485]
+      using H.hclosedπ₁
+  closedRangeπ₂ := by
+    simpa [selectedMetrizableDifferenceπ₂W481, selectedMetrizableDifferenceπ₂W485]
+      using H.hclosedπ₂
+  closedRangeπ₃ := by
+    simpa [selectedMetrizableDifferenceπ₃W481, selectedMetrizableDifferenceπ₃W485]
+      using H.hclosedπ₃
+
+def closedRangeQuotientIdentificationProvider_of_componentwiseProjection_w489
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    ClosedRangeQuotientIdentificationProjectionProviderW487 :=
+  fun S cs hcs =>
+    closedRangeQuotientIdentificationInputs_of_componentwiseProjection_w489
+      (hcomponentwise S cs hcs)
+
+theorem exactAcyclic_of_w461PromotionInputProvider_and_componentwiseProjection_w489
+    (hinputs : W461PromotionInputProviderW478)
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_w461PromotionInputProvider_and_closedRangeQuotientIdentification_w487
+    hinputs
+    (closedRangeQuotientIdentificationProvider_of_componentwiseProjection_w489 hcomponentwise)
+
+structure ComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportStateW489 :
+    Type where
+  seed : String
+  declarations : List String
+  providerAdapterResult : String
+  exactAcyclicResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+def currentComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportStateW489 :
+    ComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportStateW489 where
+  seed := supportSeedW489
+  declarations :=
+    ["selectedComponentπ₁_isColimit_of_projection_w489",
+      "selectedComponentπ₂_isColimit_of_projection_w489",
+      "selectedComponentπ₃_isColimit_of_projection_w489",
+      "closedRangeQuotientIdentificationInputs_of_componentwiseProjection_w489",
+      "closedRangeQuotientIdentificationProvider_of_componentwiseProjection_w489",
+      "exactAcyclic_of_w461PromotionInputProvider_and_componentwiseProjection_w489"]
+  providerAdapterResult := "proved"
+  exactAcyclicResult := "proved"
+  remainingInputs :=
+    ["construct concrete W461PromotionInputProviderW478",
+      "construct concrete ComponentwiseClosedRangeProjectionProviderW481"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW489State :
+    ComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportStateW489 :=
+  currentComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportStateW489
+
+theorem currentComponentwiseProjectionToClosedRangeQuotientIdentificationStateW489_productSuccess :
+    currentW489State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW489
+#check selectedComponentπ₁_isColimit_of_projection_w489
+#check selectedComponentπ₂_isColimit_of_projection_w489
+#check selectedComponentπ₃_isColimit_of_projection_w489
+#check closedRangeQuotientIdentificationInputs_of_componentwiseProjection_w489
+#check closedRangeQuotientIdentificationProvider_of_componentwiseProjection_w489
+#check exactAcyclic_of_w461PromotionInputProvider_and_componentwiseProjection_w489
+#check currentComponentwiseProjectionToClosedRangeQuotientIdentificationStateW489_productSuccess
+
+end Checks
+
+end WppOpComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportW489
+
 end LeanLCAExactChallenge
