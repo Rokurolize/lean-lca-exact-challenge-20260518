@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W537では、W231のWalkingParallelPair strict-preimage blueprintをproduct codeへ移し、fixed-target localizationのlift fieldを、各diagram/objectと自然変換に対するbounded-complex strict representativesとfunctorialityから作るcandidate liftへ分解した。MetrizableWalkingParallelPairFixedTargetBlueprintInputsからW536のfixed-target dataとW532 finite-shape transfer inputsを構成するconstructorを追加した。ただしcoherent strict representativesの具体構成、target/modelそれぞれのfac/uniq、concrete W515/W516/W517 relation data、concrete W527 row provider、WPP limit stability、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
+  "summary": "W538では、W537のstrict representative blueprintにsource-image normalizationを追加し、そのnormalizationからfixed-target liftのfactorizationを自然同型として構成した。具体的には、sourceから来たWalkingParallelPair diagramとmapに対するobject/map normalizationから、任意のtarget functor Fについて objectwise localization functorを通したliftFunctorとFの間のnatural isoを作る。ただしFunctor.IsLocalization.mk'が要求する等式としてのfacへのstrictification、target/modelのuniq、coherent representatives自体、WPP limit stability、concrete W515/W516/W517 relation data、concrete W527 row provider、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
     "lake build LeanLCAExactChallenge.Derived.BoundedFiniteProducts",
@@ -1855,7 +1855,7 @@
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
     "W527のComponentwiseClosedMapRowsProviderまたはComponentwiseClosedEmbeddingRowsProviderがまだ具体化されていない。",
     "boundedExactWeakEquivalence MetrizableLCAのWalkingParallelPair limit stabilityがまだ未証明である。",
-    "WalkingParallelPairのfixed-target liftはstrict representative blueprintへ分解済みだが、coherent representativesとtarget/modelのfac/uniqはまだ未構成である。",
+    "WalkingParallelPair fixed-target liftはnormalizationからnatural isoまで構成済みだが、mk'用の等式facへのstrictificationとtarget/modelのuniqはまだ未構成である。",
     "pretriangulated/triangulated dataと最終的なbounded left-calculus instanceがまだ未構成である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",

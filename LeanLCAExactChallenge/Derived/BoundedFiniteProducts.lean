@@ -664,6 +664,45 @@ abbrev Dbounded.MetrizableWalkingParallelPairFixedTargetFacObligation
     Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙
         blueprint.liftFunctor F = F
 
+/--
+Strict-representative lift data normalized on diagrams already coming from the bounded-complex
+source category.
+-/
+structure Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint where
+  blueprint : Dbounded.MetrizableWalkingParallelPairLiftBlueprint
+  obj_image :
+    ∀ (X : WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}),
+      (blueprint.objData
+        (Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor.obj X)).diagram = X
+  map_image :
+    ∀ {X Y : WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}} (τ : X ⟶ Y),
+      (blueprint.mapData
+          (Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor.map τ)).natTrans ≫
+        eqToHom (obj_image Y) =
+      eqToHom (obj_image X) ≫ τ
+
+namespace Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint
+
+/-- Normalization on the source image supplies a natural-isomorphism factorization. -/
+noncomputable def facNatIso {E : Type*} [Category E]
+    (normalized : Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint)
+    (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E) :
+    Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙
+        normalized.blueprint.liftFunctor F ≅ F :=
+  NatIso.ofComponents
+    (fun X => F.mapIso (eqToIso (normalized.obj_image X)))
+    (fun {X Y} τ => by
+      dsimp [Functor.comp_map,
+        Dbounded.MetrizableWalkingParallelPairLiftBlueprint.liftFunctor]
+      change F.map
+            ((normalized.blueprint.mapData
+              (Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor.map τ)).natTrans) ≫
+          F.map (eqToHom (normalized.obj_image Y)) =
+        F.map (eqToHom (normalized.obj_image X)) ≫ F.map τ
+      rw [← F.map_comp, normalized.map_image, F.map_comp])
+
+end Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint
+
 /-- Fixed-target uniqueness equation for the objectwise localization functor. -/
 abbrev Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
     (E : Type*) [Category E] : Prop :=
@@ -942,6 +981,17 @@ theorem Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames_count :
     Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames.length = 4 :=
   rfl
 
+/-- Input names for the normalized strict-representative lift route. -/
+def Dbounded.metrizableWppNormalizedLiftBlueprintInputNames : List String :=
+  ["coherent strict representatives for WalkingParallelPair diagrams and maps",
+    "source-image object normalization",
+    "source-image map normalization",
+    "strictification of the natural-isomorphism factorization to fixed-target fac"]
+
+theorem Dbounded.metrizableWppNormalizedLiftBlueprintInputNames_count :
+    Dbounded.metrizableWppNormalizedLiftBlueprintInputNames.length = 4 :=
+  rfl
+
 section DboundedFiniteShapeTransferChecks
 
 #check CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization
@@ -961,6 +1011,8 @@ section DboundedFiniteShapeTransferChecks
 #check Dbounded.MetrizableWalkingParallelPairLiftBlueprint
 #check Dbounded.MetrizableWalkingParallelPairLiftBlueprint.liftFunctor
 #check Dbounded.MetrizableWalkingParallelPairFixedTargetFacObligation
+#check Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint
+#check Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint.facNatIso
 #check Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
 #check Dbounded.MetrizableWalkingParallelPairFixedTargetBlueprintInputs
 #check Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_blueprint
@@ -983,6 +1035,8 @@ section DboundedFiniteShapeTransferChecks
 #check Dbounded.metrizableWppFunctorCategoryBlueprintInputNames_count
 #check Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames
 #check Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames_count
+#check Dbounded.metrizableWppNormalizedLiftBlueprintInputNames
+#check Dbounded.metrizableWppNormalizedLiftBlueprintInputNames_count
 
 end DboundedFiniteShapeTransferChecks
 
