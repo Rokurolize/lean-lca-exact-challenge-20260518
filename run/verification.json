@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w503-selected-w451-style-closure-kernel-route",
-  "generated_utc": "2026-05-21T09:35:59Z",
-  "source_tree_hash": "7d203e7f6014ae05d97791d463477909570ff56dacfffc0b71514c9852bfbba1",
-  "summary": "W503 connects the existing ForgottenCokernel closure-kernel API to W497 mapped explicit cokernel cofork colimits, then composes that preservation route with W502. Product success remains false because the concrete W451-style provider and closure-kernel provider remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w504-selected-w461-target-leg-route",
+  "generated_utc": "2026-05-21T09:47:09Z",
+  "source_tree_hash": "6dae9554e90b8e327b5a81f539080d42e1f3ccca3a7f0759d87d8220cdbb8cf3",
+  "summary": "W504 promotes the target-component-to-full-W318-leg argument into the importable W461 route. The remaining selected-W461 input is now a concrete SelectedW461TargetLegProviderW504 plus either the W503 closure-kernel provider or a selected cokernel-colimit provider; product success remains false.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -23,17 +23,6 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W479 quotient-identification exact-acyclic support."
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "Importable W475/W477 projection-fields module compiled after the componentwise closed-range projection provider extension.",
-      "log_path": "/tmp/lean_lca_w478_importable_provider_source_20260521T025824Z.log"
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks the W477 componentwise projection endpoint and still records product success as false."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -251,33 +240,6 @@
       "evidence": "Focused BoundedFiniteProducts check passed after adding source-level finite-coproduct and opposite finite-product stability theorems."
     },
     {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed with W480 checks; log /tmp/lean_lca_product_success_w480_projection_bridge_20260521T030826Z.log",
-      "log_path": "/tmp/lean_lca_product_success_w480_projection_bridge_20260521T030826Z.log"
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "full lake build passed; log /tmp/lean_lca_lake_build_w482_w477_w481_adapter_20260521T.log",
-      "log_path": "/tmp/lean_lca_lake_build_w482_w477_w481_adapter_20260521T.log"
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found after mapShortComplex instance update."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations still compiles after mapShortComplex instance update."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "Whitespace diff check passed after mapShortComplex instance update."
-    },
-    {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
       "evidence": "terminal_outcome JSON parsed after v252 refresh."
@@ -296,11 +258,6 @@
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
       "evidence": "manifest JSON parsed after v252 refresh."
-    },
-    {
-      "command": "python3 audit/external_audit.py --root . --self-check-only",
-      "status": "passed",
-      "evidence": "Root external audit self-check passed after v362 metadata refresh."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -2478,11 +2435,6 @@
       "evidence": "No forbidden proof placeholders were found in the W459 support file."
     },
     {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "Whitespace diff check passed after W459 support intake."
-    },
-    {
       "command": "lake env lean audit/blockers/addcommgrp_component_projection_cofork_normalization_v370_support_w460.lean",
       "status": "passed",
       "evidence": "Focused W460 component projection cofork normalization support file passed; #check output confirms selectedProjectionπ₁/π₂/π₃CoforkIso and selectedProjectionComponentIsColimitInputs_of_selectedComponentCoforks."
@@ -2496,11 +2448,6 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_component_projection_cofork_normalization_v370_support_w460.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found under the W460 support file."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "git diff whitespace check passed"
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_w426_quotient_compat_target_leg_reduction_v370_support_w461.lean",
@@ -2698,32 +2645,9 @@
       "evidence": "No forbidden Lean tokens found under W475 support file."
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "log_path": "/tmp/lean_lca_w480_projection_bridge_module_build_20260521T030826Z.log",
-      "evidence": "module build passed; log /tmp/lean_lca_w480_projection_bridge_module_build_20260521T030826Z.log"
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "forbidden-token scan passed for W480 source and product checks"
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "Importable W480 split-provider adapter checks in WppOpExactAcyclicProjectionFields; W461ToW475PromotionInputsProviderW480 plus W461ToW475OrdinaryMapProviderW480 compose through W478/W475 to exact-acyclic closure."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed with W481 checks; log /tmp/lean_lca_product_success_w481_componentwise_projection_20260521T.log",
-      "log_path": "/tmp/lean_lca_product_success_w481_componentwise_projection_20260521T.log"
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "module build passed with W481; log /tmp/lean_lca_w481_componentwise_projection_module_build_20260521T.log",
-      "log_path": "/tmp/lean_lca_w481_componentwise_projection_module_build_20260521T.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
@@ -2736,23 +2660,6 @@
       "evidence": "JSON artifacts parsed after W480 metadata refresh."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "Importable W481 componentwise closed-range projection wrapper checks in WppOpExactAcyclicProjectionFields; it supplies ProjectionFieldsProviderW475 and composes with the W480 exact-acyclic bridge."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed with W482 checks; log /tmp/lean_lca_product_success_w482_adapter_20260521T.log",
-      "log_path": "/tmp/lean_lca_product_success_w482_adapter_20260521T.log"
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "module build passed with W482; log /tmp/lean_lca_w482_w477_w481_adapter_module_build_20260521T.log",
-      "log_path": "/tmp/lean_lca_w482_w477_w481_adapter_module_build_20260521T.log"
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "forbidden-token scan passed for W482 source and product checks"
@@ -2763,44 +2670,9 @@
       "evidence": "JSON artifacts parsed after W481 metadata refresh."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "Importable W482 adapter checks in WppOpExactAcyclicProjectionFields; W477 componentwise provider feeds the W481/W480 exact-acyclic bridge."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations exposes W482 adapter declarations and still records productSuccessClaimed = false."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "Focused module build completed successfully with W482 declarations present."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations still compiles after W482 adapter integration."
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full lake build completed successfully after W482 adapter integration."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W482 integration."
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W482-touched files."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "Whitespace diff check passed after W482 adapter and notes updates."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
@@ -2808,44 +2680,9 @@
       "evidence": "JSON artifacts parsed before W482 manifest refresh."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "Importable W483 selected-W461-provider route checks in WppOpExactAcyclicProjectionFields."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "Focused module build completed successfully with W483 declarations present."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations exposes W483 declarations and still records productSuccessClaimed = false."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations still compiles after W483 integration."
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full lake build completed successfully after W483 integration."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W483 integration."
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W483-touched files."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "Whitespace diff check passed after W483 adapter and notes updates."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
@@ -2853,93 +2690,14 @@
       "evidence": "JSON artifacts parsed before W483 manifest refresh."
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "Focused module build completed successfully with W484 declarations present; log /tmp/lean_lca_w484_closed_range_only_module_build_20260521T.log",
-      "log_path": "/tmp/lean_lca_w484_closed_range_only_module_build_20260521T.log"
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations exposes W484 closed-range-only bridge declarations and still records productSuccessClaimed = false; log /tmp/lean_lca_product_success_w484_closed_range_only_20260521T.log",
-      "log_path": "/tmp/lean_lca_product_success_w484_closed_range_only_20260521T.log"
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations still compiles after W484 integration; log /tmp/lean_lca_required_w484_closed_range_only_20260521T.log",
-      "log_path": "/tmp/lean_lca_required_w484_closed_range_only_20260521T.log"
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full lake build completed successfully after W484 integration; log /tmp/lean_lca_lake_build_w484_closed_range_only_20260521T.log",
-      "log_path": "/tmp/lean_lca_lake_build_w484_closed_range_only_20260521T.log"
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W484 integration."
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W484-touched files."
     },
     {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "Whitespace diff check passed after W484 source and notes updates."
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "Importable W484 closed-range-only componentwise projection bridge checks in WppOpExactAcyclicProjectionFields."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "Focused module build passed after W487 integration."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations exposes W484 declarations and still records productSuccessClaimed = false."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations still compiles after W484 integration."
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full lake build completed successfully after W484 integration."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "Whitespace diff check passed after W484 adapter and notes updates."
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "Importable W485 quotient-identification projection provider checks inside WppOpExactAcyclicProjectionFields."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations exposes W485 declarations."
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in W485-touched files."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "Whitespace diff check passed after W485 integration."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
@@ -2952,39 +2710,9 @@
       "evidence": "JSON artifacts parsed after W485 final manifest refresh."
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "Derived WppOpExactAcyclicProjectionFields passed after W487 integration."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks W486, W485, W487, and the closed-range quotient-identification route; product success remains false."
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full lake build passed after W487 closed-range quotient-identification transport integration."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W487 integration."
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "W486/W487 verification command passed or was re-run in this checkpoint."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W487 integration."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "git diff --check passed after W487 integration."
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_w485_closed_range_projection_transport_parent_w487.lean",
@@ -2997,26 +2725,6 @@
       "evidence": "No forbidden Lean tokens found in focused W487 audit support file."
     },
     {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "lake build passed after W487 closed-range route integration."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W487 closed-range route integration."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed and checks W487 quotient and closed-range route declarations."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w485_closed_range_projection_transport_parent_w487.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the focused W487 blocker certificate."
@@ -3027,34 +2735,9 @@
       "evidence": "Focused W487 closed-range transport blocker certificate passed."
     },
     {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "git diff --check passed after W487 closed-range route integration."
-    },
-    {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "After W490 artifact refresh, read-only external audit reaches the expected product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success."
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "lake build passed after W490 split-provider composition route integration."
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "ProjectionFields module passed and checks W490 declarations."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W490 integration."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed and checks W490 declarations."
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_closed_range_quotient_identification_provider_current_head_v370_support_w489.lean",
@@ -3062,19 +2745,9 @@
       "evidence": "Focused W489 audit support file passed after namespace fix."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W490 integration."
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_closed_range_quotient_identification_provider_current_head_v370_support_w489.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the focused W489 support file."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "git diff --check passed after W489 integration."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -3082,34 +2755,9 @@
       "evidence": "After W490 artifact refresh, read-only external audit reaches the expected product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success."
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "W491 build passed after adding selected cokernel-colimit projection-field narrowing."
-    },
-    {
       "command": "lake env lean audit/blockers/wpp_op_projection_fields_from_selected_cokernel_colimit_current_head_v370_support_w491.lean",
       "status": "passed",
       "evidence": "Focused W491 support file passed."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations passed after rebuilding the Wpp projection-fields module with W491 declarations."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W491 integration."
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full lake build passed after W491 integration."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W491 integration."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_projection_fields_from_selected_cokernel_colimit_current_head_v370_support_w491.lean",
@@ -3117,85 +2765,14 @@
       "evidence": "No forbidden Lean tokens found in W491 support file."
     },
     {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "git diff --check passed after W491 integration and metadata refresh."
-    },
-    {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "After W491 metadata refresh, read-only external audit reaches the expected nonterminal product gate: terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success."
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "W492 composition route built successfully."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks W492 declarations."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W492 integration."
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full lake build passed after W492 integration."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W492 integration."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "git diff --check passed after W492 integration."
-    },
-    {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "After W492 metadata refresh, read-only external audit reaches the expected nonterminal product gate: terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "W493/W494 importable WPP-op projection-fields endpoint built successfully.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w494_verify/build_wpp_projection_fields_w494_retry1.log"
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks W493/W494 declarations and keeps product_success false.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w494_verify/product_success_declarations_w494_retry1.log"
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full lake build passed after W494 integration.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w494_final_checks/lake_build_w494.log"
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W494 integration.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w494_final_checks/required_declarations_w494.log"
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W494 integration.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w494_final_checks/forbidden_tokens_source_w494.log"
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "No whitespace errors after W494 integration.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w494_final_checks/git_diff_check_w494.log"
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W494)",
@@ -3204,146 +2781,10 @@
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w494_final_checks/external_audit_w494.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "W495/W496/W497 importable WPP-op preservation route built successfully.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w497_verify/build_wpp_projection_fields_w497_retry1.log"
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks W495/W496/W497 declarations and keeps product_success false.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w497_verify/product_success_declarations_w497.log"
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full lake build passed after W497 integration.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w497_final_checks/lake_build_w497.log"
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W497 integration.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w497_final_checks/required_declarations_w497.log"
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W497 integration.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w497_final_checks/forbidden_tokens_source_w497.log"
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "No whitespace errors after W497 integration.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w497_final_checks/git_diff_check_w497.log"
-    },
-    {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W497)",
       "status": "failed_expected",
       "evidence": "External audit is expected to reach the nonterminal product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w497_final_checks/external_audit_w497.log"
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "W498/W499 selected-W461 provider endpoints compiled directly from source."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "Rebuilt the WppOpExactAcyclicProjectionFields module so downstream imports see W498/W499."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks the W498/W499 declarations and their productSuccess false markers."
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full project build passed after W498/W499."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after the W498/W499 increment."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "No whitespace errors in the W498/W499 diff."
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "W500 selected point-identification route compiled directly from source."
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "Rebuilt the WppOpExactAcyclicProjectionFields module after W500."
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks W500 declarations and productSuccess false marker."
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full project build passed after W500."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W500."
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W500."
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "No whitespace errors in the W500 diff."
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "W500 selected point-identification route recompiled after removing audit-triggering doc-comment wording.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_verify/build_wpp_projection_fields_w500_comment_fix.log"
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "WppOpExactAcyclicProjectionFields rebuilt after the W500 comment fix.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_verify/lake_build_wpp_projection_fields_w500_comment_fix.log"
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations still checks W500 declarations and productSuccess false marker after the comment fix.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_verify/product_success_declarations_w500_comment_fix.log"
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after the W500 comment fix.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_final_checks/forbidden_tokens_source_w500_comment_fix.log"
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after the W500 comment fix.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_final_checks/required_declarations_w500_comment_fix.log"
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
@@ -3352,58 +2793,10 @@
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_final_checks/json_validation_w500_comment_fix.log"
     },
     {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "No whitespace errors after the W500 comment fix.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_final_checks/git_diff_check_w500_comment_fix.log"
-    },
-    {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W500 comment fix)",
       "status": "failed_expected",
       "evidence": "External audit reached the expected nonterminal product gate after the W500 comment fix; product success remains false.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w500_fix_final_checks/external_audit_w500_comment_fix_preentry.log"
-    },
-    {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "W501 selected concrete-leg route compiled directly from source after namespace-scope fix.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w501_verify/build_wpp_projection_fields_w501_retry1.log"
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "WppOpExactAcyclicProjectionFields rebuilt after W501.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w501_verify/lake_build_wpp_projection_fields_w501.log"
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks W501 declarations and productSuccess false marker after module rebuild.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w501_verify/product_success_declarations_w501_retry1.log"
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full project build passed after W501.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w501_final_checks/lake_build_w501.log"
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W501.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w501_final_checks/required_declarations_w501.log"
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W501.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w501_final_checks/forbidden_tokens_source_w501.log"
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "No whitespace errors in the W501 diff.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w501_final_checks/git_diff_check_w501.log"
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
@@ -3418,48 +2811,6 @@
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_000_w501_final_checks/external_audit_w501.log"
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "W502 W451-style selected route compiled directly from source.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w502_verify/build_wpp_projection_fields_w502.log"
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "WppOpExactAcyclicProjectionFields rebuilt after W502.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w502_verify/lake_build_wpp_projection_fields_w502.log"
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks W502 declarations and productSuccess false marker.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w502_verify/product_success_declarations_w502.log"
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full project build passed after W502.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w502_final_checks/lake_build_w502.log"
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W502.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w502_final_checks/required_declarations_w502.log"
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W502.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w502_final_checks/forbidden_tokens_source_w502.log"
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "No whitespace errors in the W502 diff.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w502_final_checks/git_diff_check_w502.log"
-    },
-    {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
       "evidence": "Core JSON artifacts parsed after W502 metadata refresh.",
@@ -3472,48 +2823,6 @@
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w502_final_checks/external_audit_w502.log"
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "status": "passed",
-      "evidence": "W503 closure-kernel preservation route compiled directly from source after provider-structure fix.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_verify/build_wpp_projection_fields_w503_retry1.log"
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
-      "status": "passed",
-      "evidence": "WppOpExactAcyclicProjectionFields rebuilt after W503.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_verify/lake_build_wpp_projection_fields_w503.log"
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks W503 declarations and productSuccess false marker.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_verify/product_success_declarations_w503.log"
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "Full project build passed after W503.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/lake_build_w503.log"
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "RequiredDeclarations passed after W503.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/required_declarations_w503.log"
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W503.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/forbidden_tokens_source_w503.log"
-    },
-    {
-      "command": "git diff --check",
-      "status": "passed",
-      "evidence": "No whitespace errors in the W503 diff.",
-      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/git_diff_check_w503.log"
-    },
-    {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
       "evidence": "Core JSON artifacts parsed after W503 metadata refresh.",
@@ -3524,6 +2833,60 @@
       "status": "failed_expected",
       "evidence": "External audit reached the expected nonterminal product gate after W503; product success remains false.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/external_audit_w503.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W504 target-leg route compiled in the importable projection-fields module.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/source_wpp_projection_fields_w504.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Projection-fields module rebuilt after adding W504; warnings only from existing files.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/lake_build_wpp_projection_fields_w504.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations checks W504 declarations and still records product success as false.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/product_success_declarations_w504.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W504; warnings only from existing files.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/lake_build_w504.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W504.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/forbidden_tokens_source_w504.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations compiled after W504.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/required_declarations_w504.log"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace check passed after W504 metadata refresh.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/git_diff_check_w504_metadata.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W504 metadata refresh.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/external_audit_self_check_w504.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W504)",
+      "status": "failed_expected",
+      "evidence": "External audit is expected to reach only the nonterminal product gate after W504 because product success remains false.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/external_audit_w504.log"
     }
   ],
   "implemented_declarations_checked": [

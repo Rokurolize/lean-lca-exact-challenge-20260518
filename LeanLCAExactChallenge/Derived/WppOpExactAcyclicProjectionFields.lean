@@ -4526,4 +4526,247 @@ end Checks
 
 end WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
 
+namespace WppOpSelectedW461TargetLegRouteV370SupportW504
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461PointIdentificationRouteV370SupportW500
+open WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W504 target-leg route. -/
+def supportSeedW504 : String :=
+  "w504-selected-w461-target-leg-route"
+
+/-- The ordinary source object of a WPP diagram, transported into `WalkingParallelPairᵒᵖ`. -/
+abbrev ordinarySourceIndexW504 : WalkingParallelPairᵒᵖ :=
+  walkingParallelPairOpEquiv.functor.obj WalkingParallelPair.zero
+
+/-- The WPP-op image of the ordinary left arrow. -/
+abbrev ordinaryLeftHomW504 : ordinarySourceIndexW504 ⟶ ordinaryTargetIndexW478 :=
+  walkingParallelPairOpEquiv.functor.map WalkingParallelPairHom.left
+
+/-- The ordinary-source component equation for a map between WPP-op colimit points. -/
+abbrev ordinarySourceComponentEquationW504
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt) : Prop :=
+  cx.ι.app ordinarySourceIndexW504 ≫ φ =
+    α.app ordinarySourceIndexW504 ≫ cy.ι.app ordinarySourceIndexW504
+
+/--
+The ordinary source equation follows from the ordinary target equation by
+using cocone naturality and naturality of the WPP-op map.
+-/
+theorem source_component_of_target_component_w504
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y} {φ : cx.pt ⟶ cy.pt}
+    (htarget : ordinaryTargetComponentEquationW478 X Y α cx cy φ) :
+    ordinarySourceComponentEquationW504 X Y α cx cy φ := by
+  change cx.ι.app ordinarySourceIndexW504 ≫ φ =
+    α.app ordinarySourceIndexW504 ≫ cy.ι.app ordinarySourceIndexW504
+  have h0 :
+      cx.ι.app ordinarySourceIndexW504 ≫ φ =
+        (X.map ordinaryLeftHomW504 ≫ cx.ι.app ordinaryTargetIndexW478) ≫ φ :=
+    congrArg (fun f => f ≫ φ) (cx.w ordinaryLeftHomW504).symm
+  have h1 :
+      (X.map ordinaryLeftHomW504 ≫ cx.ι.app ordinaryTargetIndexW478) ≫ φ =
+        (X.map ordinaryLeftHomW504 ≫ α.app ordinaryTargetIndexW478) ≫
+          cy.ι.app ordinaryTargetIndexW478 := by
+    simpa only [Category.assoc] using
+      congrArg (fun f => X.map ordinaryLeftHomW504 ≫ f) htarget
+  have h2 :
+      (X.map ordinaryLeftHomW504 ≫ α.app ordinaryTargetIndexW478) ≫
+          cy.ι.app ordinaryTargetIndexW478 =
+        (α.app ordinarySourceIndexW504 ≫ Y.map ordinaryLeftHomW504) ≫
+          cy.ι.app ordinaryTargetIndexW478 :=
+    congrArg (fun f => f ≫ cy.ι.app ordinaryTargetIndexW478)
+      (α.naturality ordinaryLeftHomW504)
+  have h3 :
+      (α.app ordinarySourceIndexW504 ≫ Y.map ordinaryLeftHomW504) ≫
+          cy.ι.app ordinaryTargetIndexW478 =
+        α.app ordinarySourceIndexW504 ≫ cy.ι.app ordinarySourceIndexW504 := by
+    simpa only [Category.assoc] using
+      congrArg (fun f => α.app ordinarySourceIndexW504 ≫ f) (cy.w ordinaryLeftHomW504)
+  exact h0.trans (h1.trans (h2.trans h3))
+
+/-- A target-index component equation supplies the full W318 leg compatibility. -/
+theorem w318ColimitMapLegCompatibility_of_target_component_w504
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y} {φ : cx.pt ⟶ cy.pt}
+    (htarget : ordinaryTargetComponentEquationW478 X Y α cx cy φ) :
+    W318ColimitMapLegCompatibilityW441 X Y α cx cy φ := by
+  intro j
+  cases j using Opposite.rec
+  rename_i j
+  cases j
+  · simpa [ordinaryTargetIndexW478] using htarget
+  · simpa [ordinarySourceIndexW504] using
+      source_component_of_target_component_w504 htarget
+
+/--
+Raw target-leg call-site fields for the selected W461 map. W504 removes the
+need to supply full concrete W318 leg compatibility as an input.
+-/
+structure SelectedW461TargetLegCallSiteInputsW504
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) : Type 1 where
+  ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y
+  ordinaryDescended :
+    wppOpOrdinaryQuotientPointW441 X ⟶ wppOpOrdinaryQuotientPointW441 Y
+  sourcePointIdentification : wppOpOrdinaryQuotientPointW441 X ≅ cx.pt
+  targetPointIdentification : wppOpOrdinaryQuotientPointW441 Y ≅ cy.pt
+  quotient_compat :
+    wppOpOrdinaryQuotientMapW478 X ≫ ordinaryDescended =
+      ordinaryMap.app WalkingParallelPair.one ≫ wppOpOrdinaryQuotientMapW478 Y
+  sourcePointIdentification_target_leg :
+    cx.ι.app ordinaryTargetIndexW478 ≫ sourcePointIdentification.inv =
+      wppOpOrdinaryQuotientMapW478 X
+  targetPointIdentification_target_leg :
+    α.app ordinaryTargetIndexW478 ≫ cy.ι.app ordinaryTargetIndexW478 =
+      ordinaryMap.app WalkingParallelPair.one ≫
+        wppOpOrdinaryQuotientMapW478 Y ≫ targetPointIdentification.hom
+  ordinaryPackage : W426OrdinaryDescendedMapPackage ordinaryMap
+  ordinaryDescended_eq :
+    ordinaryPackage.ordinaryDescended = ordinaryDescended
+
+/-- Build W478 point-identification inputs from W504's target-leg fields. -/
+def pointIdentificationInputs_of_targetLeg_w504
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y}
+    (H : SelectedW461TargetLegCallSiteInputsW504 X Y α cx cy) :
+    W461TargetLegPointIdentificationInputsW478 X Y α cx cy where
+  ordinaryMap := H.ordinaryMap
+  ordinaryDescended := H.ordinaryDescended
+  sourcePointIdentification := H.sourcePointIdentification
+  targetPointIdentification := H.targetPointIdentification
+  quotient_compat := H.quotient_compat
+  sourcePointIdentification_target_leg := H.sourcePointIdentification_target_leg
+  targetPointIdentification_target_leg := H.targetPointIdentification_target_leg
+
+/-- W504 target-leg fields build W500 point-identification call-site fields. -/
+def selectedPointIdentificationInputs_of_targetLeg_w504
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y}
+    (H : SelectedW461TargetLegCallSiteInputsW504 X Y α cx cy) :
+    SelectedW461PointIdentificationCallSiteInputsW500 X Y α cx cy where
+  pointIdentificationInputs := pointIdentificationInputs_of_targetLeg_w504 H
+  targetComponentImpliesW318 := fun htarget =>
+    w318ColimitMapLegCompatibility_of_target_component_w504 htarget
+  ordinaryPackage := H.ordinaryPackage
+  ordinaryDescended_eq := H.ordinaryDescended_eq
+
+/-- Provider surface for W504 target-leg inputs. -/
+abbrev SelectedW461TargetLegProviderW504 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+      IsColimit cx →
+        IsColimit cy →
+          (∀ j : WalkingParallelPairᵒᵖ,
+            IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+            W318ColimitMapLegCompatibilityW441 X Y α cx cy φ →
+              SelectedW461TargetLegCallSiteInputsW504 X Y α cx cy
+
+/-- W504 target-leg providers feed W500's selected point-identification route. -/
+def selectedPointIdentificationProvider_of_targetLeg_w504
+    (htarget : SelectedW461TargetLegProviderW504) :
+    SelectedW461PointIdentificationProviderW500 :=
+  fun X Y α cx cy φ hcx hcy hclosed hcompat =>
+    selectedPointIdentificationInputs_of_targetLeg_w504
+      (htarget X Y α cx cy φ hcx hcy hclosed hcompat)
+
+/--
+W504 endpoint: target-leg fields plus the selected cokernel-colimit provider
+imply the current WPP-op exact-acyclic closure.
+-/
+def exactAcyclic_of_selectedW461TargetLeg_and_selectedCokernelColimit_w504
+    (htarget : SelectedW461TargetLegProviderW504)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461PointIdentification_and_selectedCokernelColimit_w500
+    (selectedPointIdentificationProvider_of_targetLeg_w504 htarget) hselected
+
+/-- W504 endpoint with W499's mapped-explicit-cokernel preservation input. -/
+def exactAcyclic_of_selectedW461TargetLeg_and_mappedExplicitCokernelCoforks_w504
+    (htarget : SelectedW461TargetLegProviderW504)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461PointIdentification_and_mappedExplicitCokernelCoforks_w500
+    (selectedPointIdentificationProvider_of_targetLeg_w504 htarget) hMapped
+
+/-- W504 endpoint with W503's closure-kernel preservation input. -/
+def exactAcyclic_of_selectedW461TargetLeg_and_closureKernelProvider_w504
+    (htarget : SelectedW461TargetLegProviderW504)
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461TargetLeg_and_mappedExplicitCokernelCoforks_w504
+    htarget (mappedExplicitCokernelCoforks_of_closureKernelProvider_w503 hClosure)
+
+/-- W504 checked nonterminal state. -/
+structure SelectedW461TargetLegRouteV370SupportStateW504 : Type where
+  seed : String
+  declarations : List String
+  targetToW318Result : String
+  providerAdapterResult : String
+  selectedCokernelRouteResult : String
+  closureKernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W504 state. -/
+def currentSelectedW461TargetLegRouteV370SupportStateW504 :
+    SelectedW461TargetLegRouteV370SupportStateW504 where
+  seed := supportSeedW504
+  declarations :=
+    ["source_component_of_target_component_w504",
+      "w318ColimitMapLegCompatibility_of_target_component_w504",
+      "SelectedW461TargetLegCallSiteInputsW504",
+      "pointIdentificationInputs_of_targetLeg_w504",
+      "selectedPointIdentificationInputs_of_targetLeg_w504",
+      "SelectedW461TargetLegProviderW504",
+      "selectedPointIdentificationProvider_of_targetLeg_w504",
+      "exactAcyclic_of_selectedW461TargetLeg_and_selectedCokernelColimit_w504",
+      "exactAcyclic_of_selectedW461TargetLeg_and_mappedExplicitCokernelCoforks_w504",
+      "exactAcyclic_of_selectedW461TargetLeg_and_closureKernelProvider_w504"]
+  targetToW318Result := "proved"
+  providerAdapterResult := "proved"
+  selectedCokernelRouteResult := "proved"
+  closureKernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete SelectedW461TargetLegProviderW504",
+      "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW504State :
+    SelectedW461TargetLegRouteV370SupportStateW504 :=
+  currentSelectedW461TargetLegRouteV370SupportStateW504
+
+theorem currentSelectedW461TargetLegRouteStateW504_productSuccess :
+    currentW504State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW504
+#check ordinarySourceIndexW504
+#check ordinaryLeftHomW504
+#check source_component_of_target_component_w504
+#check w318ColimitMapLegCompatibility_of_target_component_w504
+#check SelectedW461TargetLegCallSiteInputsW504
+#check pointIdentificationInputs_of_targetLeg_w504
+#check selectedPointIdentificationInputs_of_targetLeg_w504
+#check SelectedW461TargetLegProviderW504
+#check selectedPointIdentificationProvider_of_targetLeg_w504
+#check exactAcyclic_of_selectedW461TargetLeg_and_selectedCokernelColimit_w504
+#check exactAcyclic_of_selectedW461TargetLeg_and_mappedExplicitCokernelCoforks_w504
+#check exactAcyclic_of_selectedW461TargetLeg_and_closureKernelProvider_w504
+#check currentSelectedW461TargetLegRouteStateW504_productSuccess
+
+end Checks
+
+end WppOpSelectedW461TargetLegRouteV370SupportW504
+
 end LeanLCAExactChallenge
