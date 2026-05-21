@@ -706,6 +706,16 @@ namespace WppOpSinglePreservationFromClosedRangeOnlyV370SupportW521
 
 end WppOpSinglePreservationFromClosedRangeOnlyV370SupportW521
 
+namespace WppOpClosedRangeOnlyProjectionBridgeV370SupportW522
+
+#check selectedComponentwiseProjectionBridgeInputs_of_closedRangeOnly_w522
+#check componentwiseClosedRangeOnlyProjectionBridge_of_w521_w522
+#check componentwiseClosedRangeProjectionProvider_of_closedRangeOnly_w522
+#check exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522
+#check currentClosedRangeOnlyProjectionBridgeStateW522_productSuccess
+
+end WppOpClosedRangeOnlyProjectionBridgeV370SupportW522
+
 /-
 Exact-category Ext is defined directly from the local conflation interface and
 positive degrees are quotient groups of formal Yoneda chains by local relation

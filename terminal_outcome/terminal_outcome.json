@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W521でW484のclosed-range-only component fieldsからW520のselected single-preservation providerを構成した。元のWPP-op colimitを各成分へ射影し、closed rangeによるforgetful cokernel保存でmapped component colimitへ移し、W485のprojection isoでselected mapped short-complex cokernel colimitへ戻す経路を証明した。ただし具体的なrelation providerと具体的なW484 closed-range-only providerは未証明なのでproduct_successは主張しない。",
+  "summary": "W522でW521の成分colimit補題からW484のprojection bridgeを構成した。これによりComponentwiseClosedRangeOnlyProviderW484からW481のcomponentwise projection providerを得て、SelectedW461PromotionInputsProviderW483と合わせる直接経路ができた。ただし具体的なSelected W461 providerと具体的なW484 closed-range-only providerは未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -1769,24 +1769,23 @@
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess"
   ],
   "known_gaps": [
-    "具体的なClosedNatTransOrdinaryCompactTargetRelationProviderW517、またはW516/W515相当のrelation providerがまだない。",
-    "具体的なComponentwiseClosedRangeOnlyProviderW484がまだない。W521により、この入力があればselected short-complex difference cokernel preservationは不要になった。",
-    "最終的なexactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closureの無条件証明には、上記relation providerとclosed-range-only providerの両方を同じcall siteで供給する必要がある。"
+    "final call siteでSelectedW461PromotionInputsProviderW483または同等のW478/W480 provider packageを構成する必要がある。",
+    "final call siteでComponentwiseClosedRangeOnlyProviderW484を構成する必要がある。",
+    "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "be53bab",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W517 was integrated by the parent in the target tree; no worker was launched. It proves compact target relation plus component closedness implies W515 representative-image closedness through a closed compact-subgroup quotient projection, then exposes W514 selected-preservation endpoints.",
+  "worker_frontier_summary": "W522 was integrated by the parent in the target tree; no worker was launched. It proves W484's projection bridge from W521 and exposes a direct selected-W461 plus closed-range-only exact-acyclic endpoint.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517、ClosedNatTransOrdinaryTopTargetRelationProviderW516、またはClosedNatTransOrdinaryRepresentativeImageProviderW515の具体証明がまだない。",
-    "ordinaryMapOfWppOpNatTransW506のrelation pullback equalityとcompact/top/general representative-image closednessの具体証明がまだない。",
-    "ClosedRangeQuotientIdentificationProjectionProviderW487またはComponentwiseClosedRangeProjectionProviderW481の具体証明がまだない。",
-    "W517はcompact-target-relationの場合を扱う接続であり、最終product_successそのものではない。"
+    "final call siteでSelectedW461PromotionInputsProviderW483または同等のW478/W480 provider packageを構成する必要がある。",
+    "final call siteでComponentwiseClosedRangeOnlyProviderW484を構成する必要がある。",
+    "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施である。"
   ],
-  "next_recommended_goal": "Prove the concrete W517 compact-target relation provider, or otherwise prove the concrete W516 top-target/W515 representative-image provider, together with W487/W481 selected closed-range input.",
+  "next_recommended_goal": "Prove the concrete SelectedW461PromotionInputsProviderW483, or equivalent W478/W480 package, and prove the concrete ComponentwiseClosedRangeOnlyProviderW484.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2855,9 +2854,15 @@
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.representativeImageProvider_of_compactTargetRelation_w517",
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_closedRangeQuotientIdentification_w517",
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_componentwiseProjection_w517",
-    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess"
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess",
+    "supportSeedW522",
+    "selectedComponentwiseProjectionBridgeInputs_of_closedRangeOnly_w522",
+    "componentwiseClosedRangeOnlyProjectionBridge_of_w521_w522",
+    "componentwiseClosedRangeProjectionProvider_of_closedRangeOnly_w522",
+    "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522",
+    "currentClosedRangeOnlyProjectionBridgeStateW522_productSuccess"
   ],
-  "generated_utc": "2026-05-21T12:52:50Z",
+  "generated_utc": "2026-05-21T13:48:45Z",
   "support_result_classification": "verified_nonterminal_support_increment",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -3994,14 +3999,19 @@
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.representativeImageProvider_of_compactTargetRelation_w517",
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_closedRangeQuotientIdentification_w517",
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_componentwiseProjection_w517",
-    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess"
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess",
+    "supportSeedW522",
+    "selectedComponentwiseProjectionBridgeInputs_of_closedRangeOnly_w522",
+    "componentwiseClosedRangeOnlyProjectionBridge_of_w521_w522",
+    "componentwiseClosedRangeProjectionProvider_of_closedRangeOnly_w522",
+    "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522",
+    "currentClosedRangeOnlyProjectionBridgeStateW522_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517, ClosedNatTransOrdinaryTopTargetRelationProviderW516, or ClosedNatTransOrdinaryRepresentativeImageProviderW515",
-    "prove concrete relation-pullback equality plus compact/top/general representative-image closedness for ordinaryMapOfWppOpNatTransW506",
-    "construct concrete SelectedCokernelColimitProviderW492, QuotientIdentificationProjectionProviderW485, mapped-explicit-cokernel preservation input, closure-kernel provider, ClosedRangeQuotientIdentificationProjectionProviderW487, or ComponentwiseClosedRangeProjectionProviderW481",
-    "run final product audit only after terminal_outcome can truthfully be product_success"
+    "Prove the concrete selected-W461 or equivalent W478/W480 provider package.",
+    "Prove the concrete W484 closed-range-only component provider.",
+    "Only after those close the WPP-op frontier, run the final product audit and packet review."
   ]
 }

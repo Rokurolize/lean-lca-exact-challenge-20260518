@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-21T13:38:32Z",
-  "content_hash_tree": "0e3d7889a70a3b7ef3ec02fffe0b6120c5411acc48367072a16684128062cbe7",
+  "generated_utc": "2026-05-21T13:48:45Z",
+  "content_hash_tree": "7792dd43fe84b308b9feac1c50df4a049419dd2b2d7331df3cf18f9ca0ab4743",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -89,8 +89,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "bytes": 413169,
-      "sha256": "82c803e29cd29a620eef747d6b619ee683fe86bda80dea3be7c75eed0322566b"
+      "bytes": 418143,
+      "sha256": "9de82548da4db4965c81264f15e567a4fca6e3856edd36b2a0a4023751f45592"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean",
@@ -179,8 +179,8 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 146748,
-      "sha256": "b2545686484b404af47e0032aa3f5990abb9fd8bf3ebd5ddae6cb934a52f69de"
+      "bytes": 147232,
+      "sha256": "99306e11ac5cdd1126582d2dfd112a956a69f56d20d31df42db80d344b5d3f1e"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -1548,6 +1548,11 @@
       "sha256": "238fcde9a79b403cefde4db070882bd79b226dac863959829031b2d6730b6794"
     },
     {
+      "path": "audit/blockers/wpp_op_projection_fields_from_selected_cokernel_colimit_current_head_v370_support_w491.lean",
+      "bytes": 6627,
+      "sha256": "95787ff00b6e963b99a73382e70f5ed50c1362df40457e4093ffa8758a0924c6"
+    },
+    {
       "path": "audit/blockers/wpp_op_quotient_closed_map_composer_v369_support_w365.lean",
       "bytes": 17761,
       "sha256": "780d590fa94665cc3e0b08b621df07b5888b581b9917edc34c5fd81b6587d1cf"
@@ -1974,18 +1979,18 @@
     },
     {
       "path": "progress.tsv",
-      "bytes": 308848,
-      "sha256": "d7e40e71268a490793172798445f764aa7fecffff2fa8e9acd01580e1537b85e"
+      "bytes": 309362,
+      "sha256": "f661f0941fa338e08d3819b3c3d49134f5948d0e5647e9f94112571a7ff94912"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 328676,
-      "sha256": "6f4e1d4e3cb4a49349176f2faace704613ec13c1045cbaeace9b69739289b008"
+      "bytes": 329804,
+      "sha256": "e6898c448d5a64d2f1630065bbb555e8c41e9dd20d67e6c95d4c3b621938db46"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "bytes": 210566,
-      "sha256": "1b0f6d095ea2b5d4efa474f5db1901ffbd9793281990d938173723ea3ebdc4fd"
+      "bytes": 211992,
+      "sha256": "dd8d34bc43121d5e1bf98aa4a13633063653f6f0886da580e9ded3647f1118f9"
     },
     {
       "path": "proof_frontier/ROOT_BLOCKERS_W320.json",
@@ -1999,8 +2004,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 327856,
-      "sha256": "1d7a4d140b2ef0c58126ff1e8c96ddd3d7e3007fcbe57e60ec21280e6a6ae29a"
+      "bytes": 330696,
+      "sha256": "136c33fcfeb5d06a1f6af8c94628a3cea85eb9ec7084966f209a21698dc8fc36"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -2014,18 +2019,13 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 404018,
-      "sha256": "f34064ceb0d316cac175bb32c086a56b8ad473292c1d5d72655839874cfb1352"
+      "bytes": 403651,
+      "sha256": "35f1c88acb40f82b8c492cd91b0b816a87ca8efdae5821decdf1ed3da47d5b0e"
     },
     {
       "path": "workers/README.md",
       "bytes": 131,
       "sha256": "b4ba0be0ad31f2118f67d860388b64931659bd96742e8b5c73a1b92846040191"
-    },
-    {
-      "path": "audit/blockers/wpp_op_projection_fields_from_selected_cokernel_colimit_current_head_v370_support_w491.lean",
-      "bytes": 6627,
-      "sha256": "95787ff00b6e963b99a73382e70f5ed50c1362df40457e4093ffa8758a0924c6"
     }
   ]
 }

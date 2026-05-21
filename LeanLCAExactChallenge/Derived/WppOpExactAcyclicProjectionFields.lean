@@ -8384,4 +8384,111 @@ end Checks
 
 end WppOpSinglePreservationFromClosedRangeOnlyV370SupportW521
 
+namespace WppOpClosedRangeOnlyProjectionBridgeV370SupportW522
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpSinglePreservationFromClosedRangeOnlyV370SupportW521
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W522 closed-range-only projection bridge. -/
+def supportSeedW522 : String :=
+  "w522-closed-range-only-projection-bridge"
+
+/--
+W521 supplies the projection bridge that W484 originally kept separate:
+closed range on the three selected components is enough to prove the three
+projected mapped cokernel colimits.
+-/
+def selectedComponentwiseProjectionBridgeInputs_of_closedRangeOnly_w522
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hcs : IsColimit cs)
+    (hclosed : SelectedComponentwiseClosedRangeOnlyInputsW484 S cs) :
+    SelectedComponentwiseProjectionBridgeInputsW484 S cs where
+  hπ₁ := selectedMappedCokernelComponentπ₁_isColimit_of_closedRangeOnly_w521 hcs hclosed
+  hπ₂ := selectedMappedCokernelComponentπ₂_isColimit_of_closedRangeOnly_w521 hcs hclosed
+  hπ₃ := selectedMappedCokernelComponentπ₃_isColimit_of_closedRangeOnly_w521 hcs hclosed
+
+/-- Provider-level W484 projection bridge obtained from W521. -/
+def componentwiseClosedRangeOnlyProjectionBridge_of_w521_w522 :
+    ComponentwiseClosedRangeOnlyProjectionBridgeW484 :=
+  fun _S _cs hcs hclosed =>
+    selectedComponentwiseProjectionBridgeInputs_of_closedRangeOnly_w522 hcs hclosed
+
+/-- Closed-range-only component providers now supply W481's full componentwise surface. -/
+def componentwiseClosedRangeProjectionProvider_of_closedRangeOnly_w522
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    ComponentwiseClosedRangeProjectionProviderW481 :=
+  fun S cs hcs =>
+    let hclosed := hclosedOnly S cs hcs
+    selectedComponentwiseClosedRangeProjectionInputs_of_closedRangeOnly_w484 hclosed
+      (selectedComponentwiseProjectionBridgeInputs_of_closedRangeOnly_w522 hcs hclosed)
+
+/--
+W522 endpoint: selected W461 left-field data plus closed-range-only component
+fields imply exact-acyclic WPP-op colimit closure, with no separate W484
+projection bridge and no W517 compact-target relation provider.
+-/
+theorem exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_componentwiseClosedRangeProjection_w483
+    hinputs
+    (componentwiseClosedRangeProjectionProvider_of_closedRangeOnly_w522 hclosedOnly)
+
+/-- W522 checked nonterminal state. -/
+structure ClosedRangeOnlyProjectionBridgeV370SupportStateW522 : Type where
+  seed : String
+  declarations : List String
+  bridgeResult : String
+  componentwiseProjectionProviderResult : String
+  selectedW461EndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W522 state. -/
+def currentClosedRangeOnlyProjectionBridgeV370SupportStateW522 :
+    ClosedRangeOnlyProjectionBridgeV370SupportStateW522 where
+  seed := supportSeedW522
+  declarations :=
+    ["selectedComponentwiseProjectionBridgeInputs_of_closedRangeOnly_w522",
+      "componentwiseClosedRangeOnlyProjectionBridge_of_w521_w522",
+      "componentwiseClosedRangeProjectionProvider_of_closedRangeOnly_w522",
+      "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522"]
+  bridgeResult := "proved"
+  componentwiseProjectionProviderResult := "proved"
+  selectedW461EndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete SelectedW461PromotionInputsProviderW483 " ++
+        "or the equivalent W478/W480 provider package",
+      "construct concrete ComponentwiseClosedRangeOnlyProviderW484"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentClosedRangeOnlyProjectionBridgeStateW522 :
+    ClosedRangeOnlyProjectionBridgeV370SupportStateW522 :=
+  currentClosedRangeOnlyProjectionBridgeV370SupportStateW522
+
+theorem currentClosedRangeOnlyProjectionBridgeStateW522_productSuccess :
+    currentClosedRangeOnlyProjectionBridgeStateW522.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW522
+#check selectedComponentwiseProjectionBridgeInputs_of_closedRangeOnly_w522
+#check componentwiseClosedRangeOnlyProjectionBridge_of_w521_w522
+#check componentwiseClosedRangeProjectionProvider_of_closedRangeOnly_w522
+#check exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522
+#check currentClosedRangeOnlyProjectionBridgeStateW522_productSuccess
+
+end Checks
+
+end WppOpClosedRangeOnlyProjectionBridgeV370SupportW522
+
 end LeanLCAExactChallenge

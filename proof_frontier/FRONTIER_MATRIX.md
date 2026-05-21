@@ -1151,3 +1151,14 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W426 ordinary-map promotion supplies the left closed-image input and composes with W463 selected component quotient-identification data to the exact-acyclic WPP-op colimit closure endpoint.
 - remaining blockers: instantiate concrete W426 ordinary descended map package, ordinary/canonical colimit-map equality, and W463 selected component quotient-identification data at the final call sites.
 - product_complete: false
+
+
+## W522 Closed Range Only Projection Bridge
+
+- timestamp: `2026-05-21T13:48:45Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`; `lake build`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`
+- effect: W522 exposes `WppOpClosedRangeOnlyProjectionBridgeV370SupportW522`. It uses W521's component colimit lemmas to construct `SelectedComponentwiseProjectionBridgeInputsW484` from W484 closed-range-only fields, upgrades `ComponentwiseClosedRangeOnlyProviderW484` to W481's full componentwise projection provider, and composes with W483 through `exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522`.
+- remaining blockers: construct actual `SelectedW461PromotionInputsProviderW483` or the equivalent W478/W480 provider package, and construct concrete `ComponentwiseClosedRangeOnlyProviderW484` at the final WPP-op exact-acyclic call sites.
+- product_complete: false

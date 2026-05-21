@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w521-single-preservation-from-closed-range-only",
-  "generated_utc": "2026-05-21T13:38:32Z",
-  "source_tree_hash": "dc7d0bf3702f57ea0d83d376dda5af49ca825dacca4c41b81749563916e42fe9",
-  "summary": "W521 proves that W484 closed-range-only component fields, together with the original WPP-op colimit, make the short-complex forgetful functor preserve the selected difference cokernel. This supplies W520's SelectedShortComplexDifferenceCokernelPreservationProvider and composes with W515/W518 endpoints. Product success remains false because concrete relation-provider data and concrete W484 closed-range-only data are still unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w522-closed-range-only-projection-bridge",
+  "generated_utc": "2026-05-21T13:48:45Z",
+  "source_tree_hash": "21e68cdbfa6f50caeadac29d2e34d56010d23aedc31a03efddd424a1b84aac0b",
+  "summary": "W522 proves that W521 component colimit lemmas supply W484's missing projection bridge. A ComponentwiseClosedRangeOnlyProviderW484 now yields W481 componentwise projection data, and selected W461 data plus closed-range-only component fields imply exact-acyclic WPP-op colimit closure through W483. Product success remains false because the concrete selected-W461 provider and concrete closed-range-only component provider are still unproved.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3759,6 +3759,76 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W521-touched audit/source files."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W522 source check passed; W521 component colimit lemmas fill the W484 projection bridge and expose the W483 closed-range-only endpoint."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Importable WppOpExactAcyclicProjectionFields module rebuilt after W522."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations checks the W522 declarations and keeps productSuccessClaimed false."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W522 source/audit files."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit still passes after W522."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full repository build passed after W522."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in product Lean sources after W522."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W522 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "terminal_outcome JSON is syntactically valid after W522."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "proof frontier JSON is syntactically valid after W522."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "verification JSON is syntactically valid after W522."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "manifest JSON is syntactically valid after W522."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passes with refreshed W522 hash and manifest."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Expected nonterminal product gate failure: terminal_outcome remains blocked_nonterminal_frontier, not product_success."
     }
   ],
   "implemented_declarations_checked": [
@@ -5049,22 +5119,27 @@
     "WppOpCompactTargetRelationPreservationExitsV370SupportW518.exactAcyclic_of_compactTargetRelation_and_quotientIdentification_w518",
     "WppOpCompactTargetRelationPreservationExitsV370SupportW518.exactAcyclic_of_compactTargetRelation_and_mappedExplicitCokernelCoforks_w518",
     "WppOpCompactTargetRelationPreservationExitsV370SupportW518.exactAcyclic_of_compactTargetRelation_and_closureKernelProvider_w518",
-    "WppOpCompactTargetRelationPreservationExitsV370SupportW518.currentCompactTargetRelationPreservationExitsStateW518_productSuccess"
+    "WppOpCompactTargetRelationPreservationExitsV370SupportW518.currentCompactTargetRelationPreservationExitsStateW518_productSuccess",
+    "supportSeedW522",
+    "selectedComponentwiseProjectionBridgeInputs_of_closedRangeOnly_w522",
+    "componentwiseClosedRangeOnlyProjectionBridge_of_w521_w522",
+    "componentwiseClosedRangeProjectionProvider_of_closedRangeOnly_w522",
+    "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522",
+    "currentClosedRangeOnlyProjectionBridgeStateW522_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517, ClosedNatTransOrdinaryTopTargetRelationProviderW516, or ClosedNatTransOrdinaryRepresentativeImageProviderW515",
-    "prove concrete relation-pullback equality plus compact/top/general representative-image closedness for ordinaryMapOfWppOpNatTransW506",
-    "construct concrete SelectedCokernelColimitProviderW492, QuotientIdentificationProjectionProviderW485, mapped-explicit-cokernel preservation input, closure-kernel provider, ClosedRangeQuotientIdentificationProjectionProviderW487, or ComponentwiseClosedRangeProjectionProviderW481",
-    "run final product audit only after terminal_outcome can truthfully be product_success"
+    "Concrete SelectedW461PromotionInputsProviderW483, or an equivalent W478/W480 provider package, is still unproved at the final WPP-op call sites.",
+    "Concrete ComponentwiseClosedRangeOnlyProviderW484 is still unproved at the final WPP-op call sites.",
+    "The repository must still pass a final product audit mapping all four original challenge components to evidence before product_success can be claimed.",
+    "update_goal(status=\"complete\") remains forbidden while terminal_outcome is blocked_nonterminal_frontier."
   ],
   "support_result_classification": "verified_nonterminal_support_increment",
   "product_success": false,
   "remaining_work": [
-    "construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517, ClosedNatTransOrdinaryTopTargetRelationProviderW516, or ClosedNatTransOrdinaryRepresentativeImageProviderW515",
-    "prove concrete relation-pullback equality plus compact/top/general representative-image closedness for ordinaryMapOfWppOpNatTransW506",
-    "construct concrete SelectedCokernelColimitProviderW492, QuotientIdentificationProjectionProviderW485, mapped-explicit-cokernel preservation input, closure-kernel provider, ClosedRangeQuotientIdentificationProjectionProviderW487, or ComponentwiseClosedRangeProjectionProviderW481",
-    "run final product audit only after terminal_outcome can truthfully be product_success"
+    "Prove the concrete selected-W461 provider or equivalent W478/W480 promotion package.",
+    "Prove the concrete W484 closed-range-only component provider for selected difference maps.",
+    "Run final product audit and clean review packet only after the concrete providers close the WPP-op exact-acyclic frontier."
   ],
-  "summary_log_tail": "W518 is verified as a nonterminal support increment. It widens W517 preservation exits but still does not claim product_success, and update_goal remains forbidden."
+  "summary_log_tail": "W522 is verified as a nonterminal support increment. It closes the W484 projection-bridge sub-blocker but does not prove the concrete selected-W461 or closed-range-only providers."
 }
