@@ -601,6 +601,24 @@ theorem mappingCone_walkingParallelPair_limitConeComparison_of_canonicalCone
   · exact hcomparison X₁ X₂ c₁ c₂ hc₁ hc₂ f φ hφ
   · exact ⟨Iso.refl _⟩
 
+/-- The W551 direct degreewise proof supplies the canonical cone comparison input. -/
+theorem mappingCone_walkingParallelPair_limitCanonicalConeComparison_direct :
+    mappingCone_walkingParallelPair_limitCanonicalConeComparison :=
+  mappingCone_walkingParallelPair_limitCanonicalConeComparison_of_degreewise
+    mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison_direct
+
+/-- The W551 direct proof supplies the fixed mapping-cone diagram cone comparison input. -/
+theorem mappingCone_walkingParallelPair_limitConeComparison_direct :
+    mappingCone_walkingParallelPair_limitConeComparison :=
+  mappingCone_walkingParallelPair_limitConeComparison_of_canonicalCone
+    mappingCone_walkingParallelPair_limitCanonicalConeComparison_direct
+
+/-- The W551 direct proof supplies the full WPP mapping-cone comparison input. -/
+theorem mappingCone_boundedInclusion_walkingParallelPair_limitComparison_direct :
+    mappingCone_boundedInclusion_walkingParallelPair_limitComparison :=
+  mappingCone_boundedInclusion_walkingParallelPair_limitComparison_of_limitConeComparison
+    mappingCone_walkingParallelPair_limitConeComparison_direct
+
 /-- Exact-acyclic WPP limit closure input for cochain complexes. -/
 abbrev exactAcyclic_metrizableLCA_walkingParallelPair_limitClosure : Prop :=
   ∀ (K : WalkingParallelPair ⥤ CochainComplex MetrizableLCA.{0} ℤ)
@@ -1062,6 +1080,26 @@ theorem metrizableWppLimitCanonicalConeComparisonInput_of_degreewise
     MetrizableWppLimitCanonicalConeComparisonInput :=
   mappingCone_walkingParallelPair_limitCanonicalConeComparison_of_degreewise hcomparison
 
+/-- The W551 proof is the direct degreewise canonical cone comparison input. -/
+theorem metrizableWppLimitCanonicalConeDegreewiseComparisonInput_direct :
+    MetrizableWppLimitCanonicalConeDegreewiseComparisonInput :=
+  mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison_direct
+
+/-- The W551 proof supplies the canonical cone comparison input. -/
+theorem metrizableWppLimitCanonicalConeComparisonInput_direct :
+    MetrizableWppLimitCanonicalConeComparisonInput :=
+  mappingCone_walkingParallelPair_limitCanonicalConeComparison_direct
+
+/-- The W551 proof supplies the fixed mapping-cone diagram cone comparison input. -/
+theorem metrizableWppLimitConeComparisonInput_direct :
+    MetrizableWppLimitConeComparisonInput :=
+  mappingCone_walkingParallelPair_limitConeComparison_direct
+
+/-- The W551 proof supplies the full WPP mapping-cone comparison input. -/
+theorem metrizableWppLimitComparisonInput_direct :
+    MetrizableWppLimitComparisonInput :=
+  mappingCone_boundedInclusion_walkingParallelPair_limitComparison_direct
+
 /-- Four short-complex field inputs for WPP exact-acyclic limit closure. -/
 structure MetrizableWalkingParallelPairLimitClosureFieldInputs : Type 1 where
   leftClosed : MetrizableWppLimitLeftClosedInput
@@ -1271,6 +1309,14 @@ theorem metrizableWalkingParallelPairLimitStability_of_degreewiseConeComparison_
   metrizableWalkingParallelPairLimitStability_of_canonicalConeComparison_and_allLca
     (metrizableWppLimitCanonicalConeComparisonInput_of_degreewise hcomparison)
     inputs
+
+/-- Build WPP limit stability from the W551 direct comparison and LCA/component data. -/
+theorem metrizableWalkingParallelPairLimitStability_of_allLca
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromAllLca) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_comparison_and_allLca
+    metrizableWppLimitComparisonInput_direct inputs
 
 /--
 W532 finite-shape transfer inputs with WPP limit stability supplied by direct

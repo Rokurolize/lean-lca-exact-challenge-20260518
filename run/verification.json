@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w551-wpp-canonical-degreewise-limit",
-  "generated_utc": "2026-05-21T20:31:59Z",
-  "source_tree_hash": "f721b8798b6f58910077c527ab63fadce47345e365a71a738eaf654cbf649de7",
-  "summary": "W551 proves the canonical WPP mapping-cone cone degreewise limit route directly. It adds source and target projection cones from an evaluated mapping-cone test cone, then constructs the unique mediator degreewise by recombining the source/target limit lifts through mappingCone.inl/inr. Together with the W549/W548/W547 reducers, this closes the mapping-cone comparison input route. Product success remains false because the WPP exact-acyclic limit closure still needs the left-closed, right-open, right-surjective, and algebraic-exactness certificates, plus concrete W515/W516/W517 relation data, W527 row providers, normalized representative/uniqueness data, triangulated data, and the bounded left-calculus instance.",
+  "schema": "lean-lca-exact-challenge-verification-w552-direct-wpp-comparison-wrappers",
+  "generated_utc": "2026-05-21T20:40:59Z",
+  "source_tree_hash": "317af75a0359fb6683f65e7014148b6cba4371561d4207cb09ecb0b4f4ba04a9",
+  "summary": "W552 packages the W551 direct degreewise proof into reusable direct comparison declarations. The target now exposes direct canonical-cone comparison, fixed mapping-cone cone comparison, full WPP mapping-cone comparison, Dbounded comparison inputs, and WPP limit stability from only the remaining all-LCA/component closure fields. Product success remains false because those exact-acyclic closure certificates, W515/W516/W517 relation data, W527 row providers, normalized representative/uniqueness data, triangulated data, and the bounded left-calculus instance remain unconstructed.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
@@ -4245,6 +4245,86 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Product gate still rejects the nonterminal outcome after W551, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w551_external_product_gate.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
+      "status": "passed",
+      "evidence": "Focused W552 direct WPP limit-transfer wrapper check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_direct_wpp_limit_transfer_direct_wrappers_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
+      "status": "passed",
+      "evidence": "Direct WPP limit-transfer module rebuilt with W552 direct wrapper declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_direct_wpp_limit_transfer_direct_wrappers_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W552 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_product_success_declarations.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import surface remains green after W552; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_root_import_lean.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W552; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_required_declarations.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Root package build passed after W552; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_root_build.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W552; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source tree scan passed after W552; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_audit_no_forbidden_lean_tokens_tree.log."
+    },
+    {
+      "command": "for f in LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean; do scripts/audit_no_forbidden_lean_tokens.sh \"$f\"; done",
+      "status": "passed",
+      "evidence": "Touched-file forbidden-token scan passed after W552; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_audit_no_forbidden_lean_tokens_touched.log."
+    },
+    {
+      "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-facing placeholder regex returned no matches on W552-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_product_placeholder_touched.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W552 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_git_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "W552 terminal outcome JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "W552 verification JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "W552 manifest JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_json_parse.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W552; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product gate still rejects the nonterminal outcome after W552, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w552_external_product_gate.log."
     }
   ],
   "implemented_declarations_checked": [
@@ -5826,7 +5906,15 @@
     "DirectWppLimitFiniteShapeTransfer.comp_mappingConeCone_π_snd",
     "DirectWppLimitFiniteShapeTransfer.mappingConeDegreewiseSourceCone",
     "DirectWppLimitFiniteShapeTransfer.mappingConeDegreewiseTargetCone",
-    "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison_direct"
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison_direct",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison_direct",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitConeComparison_direct",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_boundedInclusion_walkingParallelPair_limitComparison_direct",
+    "Dbounded.metrizableWppLimitCanonicalConeDegreewiseComparisonInput_direct",
+    "Dbounded.metrizableWppLimitCanonicalConeComparisonInput_direct",
+    "Dbounded.metrizableWppLimitConeComparisonInput_direct",
+    "Dbounded.metrizableWppLimitComparisonInput_direct",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_allLca"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -5846,6 +5934,6 @@
     "Construct normalized strict representative data and target/model uniqueness for the WPP localization route.",
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance."
   ],
-  "summary_log_tail": "W551 passed focused Lean, module build, ProductSuccessDeclarations, root import, RequiredDeclarations, root build, full build, forbidden-token scans, placeholder scan, and diff check. The external product gate remains expected to fail because terminal_outcome is nonterminal.",
-  "latest_verified_increment": "W551 WPP canonical mapping-cone degreewise limit proof"
+  "summary_log_tail": "W552 passed focused Lean, module build, ProductSuccessDeclarations, root import, RequiredDeclarations, root build, full build, forbidden-token scans, placeholder scan, and diff check. The external product gate remains expected to fail because terminal_outcome is nonterminal.",
+  "latest_verified_increment": "W552 direct WPP comparison wrappers from W551 proof"
 }
