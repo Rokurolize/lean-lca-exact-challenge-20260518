@@ -144,7 +144,7 @@ structure W426OrdinaryMapPromotionToW318Fields
         IsInducing (φ : cx.pt → cy.pt) ∧
         IsClosed (Set.range (φ : cx.pt → cy.pt))
 
-/-- The exact equality frontier supplies W318's leg compatibility. -/
+/-- The exact equality input supplies W318's leg compatibility. -/
 theorem w318_legCompatibility_of_w426_ordinaryMapPromotion
     {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}}
     {ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y}
@@ -154,7 +154,7 @@ theorem w318_legCompatibility_of_w426_ordinaryMapPromotion
     W318ColimitMapLegCompatibilityW441 X Y α cx cy φ :=
   fields.ordinaryEqualsCanonicalImpliesLegCompatibility heq
 
-/-- The same equality frontier transports W426's ordinary topology facts to W318's colimit map. -/
+/-- The same equality input transports W426's ordinary topology facts to W318's colimit map. -/
 theorem w318_colimitMap_topologyFacts_of_w426_ordinaryMapPromotion
     {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}}
     {ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y}
@@ -167,7 +167,7 @@ theorem w318_colimitMap_topologyFacts_of_w426_ordinaryMapPromotion
   fields.ordinaryTopologyTransportsToColimitMap heq
 
 /--
-Checked W318 left-frontier consumer from the promoted W426 ordinary map
+Checked W318 left-side consumer from the promoted W426 ordinary map
 package. This is the importable declaration W318 can use once the caller
 constructs the promoted fields for each compatible colimit map.
 -/
@@ -207,7 +207,7 @@ theorem wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426_ordinaryMapP
   exact fields.ordinaryTopologyTransportsToColimitMap
     (heq X Y α cx cy φ hcx hcy hclosed hcompat)
 
-/-- Closed-embedding preservation consumer obtained from the W441 W318 left-frontier declaration. -/
+/-- Closed-embedding preservation consumer obtained from the W441 W318 left-side declaration. -/
 theorem wppOp_colimit_preserves_leftClosedEmbedding_of_w426_ordinaryMapPromotion
     (hfields :
       ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0})
@@ -861,7 +861,7 @@ abbrev W426OrdinaryMapProviderW475 : Type 1 :=
             W318ColimitMapLegCompatibilityW441 X Y α cx cy φ →
               ((wppOpOrdinaryDiagramW441 X) ⟶ (wppOpOrdinaryDiagramW441 Y))
 
-/-- W441 equality frontier identifying the ordinary descended map with W318's colimit map. -/
+/-- W441 equality input identifying the ordinary descended map with W318's colimit map. -/
 abbrev W426OrdinaryEqualsCanonicalProviderW475
     (hfields : W426PromotionFieldsProviderW475)
     (hordinaryMap : W426OrdinaryMapProviderW475) : Prop :=
@@ -1066,10 +1066,14 @@ def currentW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370Suppo
   remainingInputs := []
   productSuccessClaimed := false
 
+/-- Short alias used by checks to avoid long projection lines. -/
+def currentStateW477 :
+    W426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportStateW477 :=
+  currentW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportStateW477
+
 theorem
     currentW426LeftClosedComponentwiseClosedRangeProjectionStateW477_productSuccess :
-    (currentW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportStateW477).productSuccessClaimed =
-      false :=
+    currentStateW477.productSuccessClaimed = false :=
   rfl
 
 section Checks

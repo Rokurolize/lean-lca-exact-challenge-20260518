@@ -147,7 +147,7 @@ example (K L : CochainComplex MetrizableLCA ℤ)
     exactAcyclic MetrizableLCA (K ⊞ L) :=
   MetrizableLCA.exactAcyclic_biprod K L hK hL
 
-/- WPP-op exact-acyclic frontier support is root-importable, but still conditional. -/
+/- WPP-op exact-acyclic support is root-importable, but still conditional. -/
 namespace WppOpExactAcyclicFrontierConsolidatedW318
 
 #check exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure
