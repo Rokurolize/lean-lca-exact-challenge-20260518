@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w546-wpp-limit-algebraic-exactness-lca",
-  "generated_utc": "2026-05-21T18:42:20Z",
-  "source_tree_hash": "b902a3096d3b5536449d4a49fdefda0e724190fa3134167a78d4685c074fbe3a",
-  "summary": "W546では、W542で分解したWPP limit algebraic exactness fieldを、WPP short-complex limitに対するcomponent-level algebraic exactness certificateへ分解した。W543-W545の三つのLCA limit-map入力と合わせて、四つのWPP limit field入力すべてを小さなLCA/component limit certificatesから供給できる形になった。ただしmapping-cone WPP limit comparison、それらのconcrete certificates自体、concrete W515/W516/W517 relation data、concrete W527 row provider、concrete normalized strict representative data、target/model uniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
+  "schema": "lean-lca-exact-challenge-verification-w547-wpp-limit-cone-comparison",
+  "generated_utc": "2026-05-21T18:47:25Z",
+  "source_tree_hash": "1bc6d5fce4d76af1c09bd909bf884901f55282dfc69e6b3fd2bd85dc67393c70",
+  "summary": "W547では、WPP mapping-cone bounded-inclusion limit comparisonを、固定されたmapping-cone diagramに対するlimit cone comparison inputへ分解した。既存のW543-W546で得たLCA/component limit field入力と合わせると、WPP limit stabilityはfixed cone comparisonと四つのconcrete certificatesから供給できる形になった。ただしfixed cone comparison自体、四つのconcrete certificates、W515/W516/W517 relation data、W527 row provider、normalized strict representative data、target/model uniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
@@ -3840,9 +3840,94 @@
       "status": "passed",
       "cycle": "cycle_007_w527_verify",
       "evidence": "W527 verification at 2026-05-21T14:45:07Z; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w527_verify/json_parse.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
+      "status": "passed",
+      "evidence": "Focused W547 direct WPP limit-transfer source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_direct_wpp_limit_transfer_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
+      "status": "passed",
+      "evidence": "Direct WPP limit-transfer module rebuilt with W547 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_direct_wpp_limit_transfer_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W547 declarations; initial concurrent run saw stale compiled names, serial retry passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_product_success_declarations_retry.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import surface remains green after W547; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_root_import_lean.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W547; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_required_declarations.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Root package build passed after W547; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_root_build.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W547; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source tree scan passed after W547; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_audit_no_forbidden_tree.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file forbidden-token scan passed after W547; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_audit_no_forbidden_touched.log."
+    },
+    {
+      "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file product-placeholder regex returned no matches; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_placeholder_regex_touched.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace check passed after W547; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_git_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "terminal_outcome/terminal_outcome.json parses as JSON after W547 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "run/verification.json parses as JSON after W547 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "manifest.json parses as JSON after W547 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W547; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product gate still fails only because terminal_outcome.outcome is blocked_nonterminal_frontier; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_external_product_gate.log."
     }
   ],
   "implemented_declarations_checked": [
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitConeComparison",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_boundedInclusion_walkingParallelPair_limitComparison_of_limitConeComparison",
+    "Dbounded.MetrizableWppLimitConeComparisonInput",
+    "Dbounded.metrizableWppLimitComparisonInput_of_limitConeComparison",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_limitConeComparison_and_allLca",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitShortComplex_algebraicExact",
     "DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure_of_lca_limitShortComplex",
     "Dbounded.MetrizableWppLimitAlgebraicExactLcaInput",
@@ -5398,7 +5483,7 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "WalkingParallelPairのmapping cone bounded-inclusion limit comparisonがまだ具体化されていない。",
+    "WalkingParallelPairのfixed mapping-cone diagram limit cone comparisonがまだ具体化されていない。",
     "WPP limit left closed-embedding、right open-map、right-surjectivityを供給するpure LCA induced-limit-map certificatesがまだ具体化されていない。",
     "WPP limit algebraic exactnessを供給するcomponent-level algebraic exactness certificateがまだ具体化されていない。",
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
@@ -5409,12 +5494,13 @@
   "support_result_classification": "verified_nonterminal_increment",
   "product_success": false,
   "remaining_work": [
-    "Prove or package the mapping-cone WPP limit comparison for bounded inclusion. が未完了である。",
+    "Prove or package the fixed mapping-cone diagram limit cone comparison for bounded inclusion. が未完了である。",
     "Prove the pure LCA certificates for WPP limit left closed embeddings, right open maps, and right surjectivity. が未完了である。",
     "Prove the component-level algebraic exactness certificate for WPP short-complex limits. が未完了である。",
     "Instantiate concrete W515/W516/W517 relation-data providers and W527 row providers. が未完了である。",
     "Construct normalized strict representative data and target/model uniqueness for the WPP localization route. が未完了である。",
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance. が未完了である。"
   ],
-  "summary_log_tail": "W546 passed focused Lean, module build, ProductSuccessDeclarations, root import, RequiredDeclarations, root build, full build, forbidden-token scans, and metadata checks. The external product gate remains expected to fail because terminal_outcome is nonterminal."
+  "summary_log_tail": "W547 passed focused Lean, module build, ProductSuccessDeclarations retry, root import, RequiredDeclarations, root build, full build, and forbidden-token scans. The external product gate remains expected to fail because terminal_outcome is nonterminal.",
+  "latest_verified_increment": "W547 WPP mapping-cone limit-cone comparison reducer"
 }

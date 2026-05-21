@@ -58,6 +58,33 @@ abbrev mappingCone_boundedInclusion_walkingParallelPair_limitComparison : Prop :
                     (CochainComplex.mappingCone
                         ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≅ ck.pt)
 
+/-- Fixed-diagram limit-cone comparison input for WPP mapping cones. -/
+abbrev mappingCone_walkingParallelPair_limitConeComparison : Prop :=
+  ∀ (X₁ X₂ : WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0})
+    (c₁ : Cone X₁) (c₂ : Cone X₂)
+    (_ : IsLimit c₁) (_ : IsLimit c₂) (f : X₁ ⟶ X₂)
+    (φ : c₁.pt ⟶ c₂.pt),
+      (∀ j : WalkingParallelPair,
+        φ ≫ c₂.π.app j = c₁.π.app j ≫ f.app j) →
+          ∃ (ck : Cone
+            (WppOpMappingConeUniqueMediatorW308.mappingConeDiagram X₁ X₂ f)),
+              Nonempty (IsLimit ck) ∧
+                Nonempty
+                  (CochainComplex.mappingCone
+                      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ) ≅ ck.pt)
+
+/-- The fixed mapping-cone diagram comparison supplies the full WPP comparison input. -/
+theorem mappingCone_boundedInclusion_walkingParallelPair_limitComparison_of_limitConeComparison
+    (hcomparison : mappingCone_walkingParallelPair_limitConeComparison) :
+    mappingCone_boundedInclusion_walkingParallelPair_limitComparison := by
+  intro X₁ X₂ c₁ c₂ hc₁ hc₂ f hf φ hφ
+  rcases hcomparison X₁ X₂ c₁ c₂ hc₁ hc₂ f φ hφ with
+    ⟨ck, hck, hiso⟩
+  refine
+    ⟨WppOpMappingConeUniqueMediatorW308.mappingConeDiagram X₁ X₂ f, ck, hck, ?_, hiso⟩
+  intro j
+  exact hf j
+
 /-- Exact-acyclic WPP limit closure input for cochain complexes. -/
 abbrev exactAcyclic_metrizableLCA_walkingParallelPair_limitClosure : Prop :=
   ∀ (K : WalkingParallelPair ⥤ CochainComplex MetrizableLCA.{0} ℤ)
@@ -431,6 +458,9 @@ open WppOpExactAcyclicFrontierConsolidatedW318
 abbrev MetrizableWppLimitComparisonInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.mappingCone_boundedInclusion_walkingParallelPair_limitComparison
 
+abbrev MetrizableWppLimitConeComparisonInput : Prop :=
+  DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitConeComparison
+
 abbrev MetrizableWppLimitClosureInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.exactAcyclic_metrizableLCA_walkingParallelPair_limitClosure
 
@@ -490,6 +520,13 @@ theorem metrizableWppLimitAlgebraicExactInput_of_lca
     (hlimit : MetrizableWppLimitAlgebraicExactLcaInput) :
     MetrizableWppLimitAlgebraicExactInput :=
   algebraicExact_walkingParallelPair_limitClosure_of_lca_limitShortComplex hlimit
+
+/-- Build the WPP limit comparison input from a fixed mapping-cone diagram cone input. -/
+theorem metrizableWppLimitComparisonInput_of_limitConeComparison
+    (hcomparison : MetrizableWppLimitConeComparisonInput) :
+    MetrizableWppLimitComparisonInput :=
+  mappingCone_boundedInclusion_walkingParallelPair_limitComparison_of_limitConeComparison
+    hcomparison
 
 /-- Four short-complex field inputs for WPP exact-acyclic limit closure. -/
 structure MetrizableWalkingParallelPairLimitClosureFieldInputs : Type 1 where
@@ -670,6 +707,16 @@ theorem metrizableWalkingParallelPairLimitStability_of_comparison_and_allLca
   metrizableWalkingParallelPairLimitStability_of_comparison_and_fields
     hcomparison
     (metrizableWalkingParallelPairLimitClosureFieldInputs_of_allLca inputs)
+
+/-- Build WPP limit stability from fixed cone comparison plus LCA/component field data. -/
+theorem metrizableWalkingParallelPairLimitStability_of_limitConeComparison_and_allLca
+    (hcomparison : MetrizableWppLimitConeComparisonInput)
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromAllLca) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_comparison_and_allLca
+    (metrizableWppLimitComparisonInput_of_limitConeComparison hcomparison)
+    inputs
 
 /--
 W532 finite-shape transfer inputs with WPP limit stability supplied by direct
