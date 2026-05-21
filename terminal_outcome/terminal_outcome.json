@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W549では、HomologicalComplex.isLimitOfEvalを使い、WPPのcanonical mapping-cone coneがlimitであることを、各次数で評価したconeがlimitであることの入力へ分解した。これによりmapping-cone comparisonの残りはcomplex全体のIsLimitではなくdegreewiseなLCA cone limit証明になった。ただしdegreewise limit証明、四つのconcrete LCA/component certificates、W515/W516/W517 relation data、W527 row providers、normalized representative dataとuniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
+  "summary": "W550では、WPP canonical mapping-cone coneのdegreewise limit証明に必要な射影計算を小さな補題として切り出した。mappingCone.mapのfst/snd射影、inl/inrで再合成した射のfst/snd射影、canonical cone legのfst/snd射影がLeanで検証された。直接のuniversal property証明はwhnf/isDefEqのtimeoutが反復したため保持せず、次はこれらの補題を使ってdegreewise test coneのsource/target cone構成をより小さな補題へ分割する。degreewise limit証明、四つのconcrete LCA/component certificates、W515/W516/W517 relation data、W527 row providers、normalized representative dataとuniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
     "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
@@ -1895,7 +1895,7 @@
     "WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525.currentW525State_productSuccess"
   ],
   "known_gaps": [
-    "canonical mapping-cone coneの各次数評価coneがlimitであることがまだ具体化されていない。",
+    "canonical mapping-cone coneの各次数評価coneがlimitであることはまだ未証明である。W550の射影補題はその前段であり、degreewise test coneから一意射を構成する証明は残っている。",
     "WPP limit left closed-embedding、right open-map、right-surjectivityを供給するpure LCA induced-limit-map certificatesがまだ具体化されていない。",
     "WPP limit algebraic exactnessを供給するcomponent-level algebraic exactness certificateがまだ具体化されていない。",
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
@@ -1906,12 +1906,12 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "95ef293bf6a3c6c602ebb1225d6af257e6617d23",
+  "git_commit": "96cbb8e413272d59eba445b754a9c474b273bce2",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W549 was integrated directly in the target tree; no worker was launched. It reduces the canonical WPP mapping-cone cone limit obligation to degreewise evaluated cone limit proofs, but does not prove those degreewise limits.",
+  "worker_frontier_summary": "W550 was integrated directly in the target tree; no worker was launched. It verifies mapping-cone projection helpers needed by the canonical WPP degreewise route, but it does not prove the degreewise cone limits.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "canonical mapping-cone coneの各次数評価coneがlimitであることがまだ具体化されていない。",
+    "canonical mapping-cone coneの各次数評価coneがlimitであることはまだ未証明である。W550の射影補題はその前段であり、degreewise test coneから一意射を構成する証明は残っている。",
     "WPP limit left closed-embedding、right open-map、right-surjectivityを供給するpure LCA induced-limit-map certificatesがまだ具体化されていない。",
     "WPP limit algebraic exactnessを供給するcomponent-level algebraic exactness certificateがまだ具体化されていない。",
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
@@ -1919,7 +1919,7 @@
     "WalkingParallelPair diagram targetとlocalization modelに対するcoherent normalized representative dataおよびtarget/modelのuniqがまだ未構成である。",
     "pretriangulated/triangulated dataと最終的なbounded left-calculus instanceがまだ未構成である。"
   ],
-  "next_recommended_goal": "Prove the degreewise evaluated cone limits for the canonical WPP mapping-cone cone, or prove the concrete LCA/component certificates behind the reduced WPP limit fields.",
+  "next_recommended_goal": "Use the W550 mapping-cone projection lemmas to build the degreewise evaluated canonical cone limit proof in small source/target component lemmas, or switch to the remaining concrete LCA/component certificates if that route stalls again.",
   "implemented_declarations": [
     "DirectWppLimitFiniteShapeTransfer.mappingConeCone",
     "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison",
@@ -3488,9 +3488,17 @@
     "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison_of_degreewise",
     "Dbounded.MetrizableWppLimitCanonicalConeDegreewiseComparisonInput",
     "Dbounded.metrizableWppLimitCanonicalConeComparisonInput_of_degreewise",
-    "Dbounded.metrizableWalkingParallelPairLimitStability_of_degreewiseConeComparison_and_allLca"
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_degreewiseConeComparison_and_allLca",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_map_f_fst",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_map_f_snd",
+    "DirectWppLimitFiniteShapeTransfer.comp_mappingCone_map_f_fst",
+    "DirectWppLimitFiniteShapeTransfer.comp_mappingCone_map_f_snd",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_inl_inr_fst",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_inl_inr_snd",
+    "DirectWppLimitFiniteShapeTransfer.comp_mappingConeCone_π_fst",
+    "DirectWppLimitFiniteShapeTransfer.comp_mappingConeCone_π_snd"
   ],
-  "generated_utc": "2026-05-21T19:32:12Z",
+  "generated_utc": "2026-05-21T20:12:15Z",
   "support_result_classification": "verified_nonterminal_increment",
   "implemented_declarations_checked": [
     "DirectWppLimitFiniteShapeTransfer.mappingConeCone",
@@ -5060,19 +5068,27 @@
     "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison_of_degreewise",
     "Dbounded.MetrizableWppLimitCanonicalConeDegreewiseComparisonInput",
     "Dbounded.metrizableWppLimitCanonicalConeComparisonInput_of_degreewise",
-    "Dbounded.metrizableWalkingParallelPairLimitStability_of_degreewiseConeComparison_and_allLca"
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_degreewiseConeComparison_and_allLca",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_map_f_fst",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_map_f_snd",
+    "DirectWppLimitFiniteShapeTransfer.comp_mappingCone_map_f_fst",
+    "DirectWppLimitFiniteShapeTransfer.comp_mappingCone_map_f_snd",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_inl_inr_fst",
+    "DirectWppLimitFiniteShapeTransfer.mappingCone_inl_inr_snd",
+    "DirectWppLimitFiniteShapeTransfer.comp_mappingConeCone_π_fst",
+    "DirectWppLimitFiniteShapeTransfer.comp_mappingConeCone_π_snd"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "canonical mapping-cone coneのdegreewise evaluated cone limit証明を構成する。",
+    "W550のprojection lemmasを使い、canonical mapping-cone coneのdegreewise source/target test-cone mapsと一意性証明を小さな補題に分けて構成する。",
     "WPP limit left closed embeddings、right open maps、right surjectivityのpure LCA certificatesを構成する。",
     "WPP short-complex limitsのcomponent-level algebraic exactness certificateを構成する。",
     "concrete W515/W516/W517 relation-data providersとW527 row providersを構成する。",
     "WPP localization routeのnormalized representative dataとtarget/model uniquenessを構成する。",
     "pretriangulated/triangulated dataとbounded left-calculus instanceを構成する。"
   ],
-  "latest_verified_increment": "W549 WPP canonical mapping-cone cone degreewise reducer",
-  "source_tree_hash": "e5fa58e91c22a29bfaccdf405a6e70a14ba6d16e1402ca4d57e7424acb5fa03a",
-  "summary_log_tail": "W549 passed focused Lean, module build, ProductSuccessDeclarations, root import, RequiredDeclarations, root build, full build, forbidden-token scans, placeholder scan, and diff check. The external product gate remains expected to fail because terminal_outcome is nonterminal."
+  "latest_verified_increment": "W550 WPP canonical mapping-cone projection lemmas",
+  "source_tree_hash": "87278e9febe24ead732e66c593c806592ac36370291b0d55210e96a282fd5555",
+  "summary_log_tail": "W550 passed focused Lean without maxHeartbeats, module build, ProductSuccessDeclarations, root import, RequiredDeclarations, root build, full build, forbidden-token scans, placeholder scan, and diff check. The external product gate remains expected to fail because terminal_outcome is nonterminal."
 }

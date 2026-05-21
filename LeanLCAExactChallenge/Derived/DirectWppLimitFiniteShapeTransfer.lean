@@ -117,6 +117,136 @@ noncomputable def mappingConeCone {J : Type} [Category J]
         · exact congrArg (fun g => g.hom) (c₁.w α)
         · exact congrArg (fun g => g.hom) (c₂.w α) }
 
+/-- Projection of `mappingCone.map` to the shifted source summand. -/
+@[reassoc]
+lemma mappingCone_map_f_fst {K₁ L₁ K₂ L₂ : CochainComplex MetrizableLCA.{0} ℤ}
+    (φ₁ : K₁ ⟶ L₁) (φ₂ : K₂ ⟶ L₂)
+    (a : K₁ ⟶ K₂) (b : L₁ ⟶ L₂) (comm : φ₁ ≫ b = a ≫ φ₂)
+    (n : ℤ) :
+    (CochainComplex.mappingCone.map φ₁ φ₂ a b comm).f n ≫
+        (CochainComplex.mappingCone.fst φ₂).1.v n (n + 1) rfl =
+      (CochainComplex.mappingCone.fst φ₁).1.v n (n + 1) rfl ≫ a.f (n + 1) := by
+  unfold CochainComplex.mappingCone.map
+  rw [CochainComplex.mappingCone.desc_f _ _ _ _ n (n + 1) rfl]
+  simp [Category.assoc]
+
+/-- Precomposed projection of `mappingCone.map` to the shifted source summand. -/
+lemma comp_mappingCone_map_f_fst {K₁ L₁ K₂ L₂ : CochainComplex MetrizableLCA.{0} ℤ}
+    (φ₁ : K₁ ⟶ L₁) (φ₂ : K₂ ⟶ L₂)
+    (a : K₁ ⟶ K₂) (b : L₁ ⟶ L₂) (comm : φ₁ ≫ b = a ≫ φ₂)
+    (n : ℤ) {Z : MetrizableLCA.{0}} (g : Z ⟶ (CochainComplex.mappingCone φ₁).X n) :
+    g ≫ (CochainComplex.mappingCone.map φ₁ φ₂ a b comm).f n ≫
+        (CochainComplex.mappingCone.fst φ₂).1.v n (n + 1) rfl =
+      g ≫ (CochainComplex.mappingCone.fst φ₁).1.v n (n + 1) rfl ≫ a.f (n + 1) := by
+  rw [mappingCone_map_f_fst]
+
+/-- Projection of `mappingCone.map` to the target summand. -/
+@[reassoc]
+lemma mappingCone_map_f_snd {K₁ L₁ K₂ L₂ : CochainComplex MetrizableLCA.{0} ℤ}
+    (φ₁ : K₁ ⟶ L₁) (φ₂ : K₂ ⟶ L₂)
+    (a : K₁ ⟶ K₂) (b : L₁ ⟶ L₂) (comm : φ₁ ≫ b = a ≫ φ₂)
+    (n : ℤ) :
+    (CochainComplex.mappingCone.map φ₁ φ₂ a b comm).f n ≫
+        (CochainComplex.mappingCone.snd φ₂).v n n (add_zero n) =
+      (CochainComplex.mappingCone.snd φ₁).v n n (add_zero n) ≫ b.f n := by
+  unfold CochainComplex.mappingCone.map
+  rw [CochainComplex.mappingCone.desc_f _ _ _ _ n (n + 1) rfl]
+  simp [Category.assoc]
+
+/-- Precomposed projection of `mappingCone.map` to the target summand. -/
+lemma comp_mappingCone_map_f_snd {K₁ L₁ K₂ L₂ : CochainComplex MetrizableLCA.{0} ℤ}
+    (φ₁ : K₁ ⟶ L₁) (φ₂ : K₂ ⟶ L₂)
+    (a : K₁ ⟶ K₂) (b : L₁ ⟶ L₂) (comm : φ₁ ≫ b = a ≫ φ₂)
+    (n : ℤ) {Z : MetrizableLCA.{0}} (g : Z ⟶ (CochainComplex.mappingCone φ₁).X n) :
+    g ≫ (CochainComplex.mappingCone.map φ₁ φ₂ a b comm).f n ≫
+        (CochainComplex.mappingCone.snd φ₂).v n n (add_zero n) =
+      g ≫ (CochainComplex.mappingCone.snd φ₁).v n n (add_zero n) ≫ b.f n := by
+  rw [mappingCone_map_f_snd]
+
+/-- Recombining mapping-cone source and target components then projecting by `fst`. -/
+lemma mappingCone_inl_inr_fst {K L : CochainComplex MetrizableLCA.{0} ℤ}
+    (φ : K ⟶ L) (n : ℤ) {Z : MetrizableLCA.{0}}
+    (a : Z ⟶ K.X (n + 1)) (b : Z ⟶ L.X n) :
+    (a ≫ (CochainComplex.mappingCone.inl φ).v (n + 1) n (by omega) +
+        b ≫ (CochainComplex.mappingCone.inr φ).f n) ≫
+      (CochainComplex.mappingCone.fst φ).1.v n (n + 1) rfl = a := by
+  rw [Preadditive.add_comp]
+  simp [Category.assoc]
+
+/-- Recombining mapping-cone source and target components then projecting by `snd`. -/
+lemma mappingCone_inl_inr_snd {K L : CochainComplex MetrizableLCA.{0} ℤ}
+    (φ : K ⟶ L) (n : ℤ) {Z : MetrizableLCA.{0}}
+    (a : Z ⟶ K.X (n + 1)) (b : Z ⟶ L.X n) :
+    (a ≫ (CochainComplex.mappingCone.inl φ).v (n + 1) n (by omega) +
+        b ≫ (CochainComplex.mappingCone.inr φ).f n) ≫
+      (CochainComplex.mappingCone.snd φ).v n n (add_zero n) = b := by
+  rw [Preadditive.add_comp]
+  simp [Category.assoc]
+
+/-- The canonical cone leg projected to the shifted source summand. -/
+lemma comp_mappingConeCone_π_fst {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    (c₁ : Cone X₁) (c₂ : Cone X₂) (f : X₁ ⟶ X₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : J, φ ≫ c₂.π.app j = c₁.π.app j ≫ f.app j)
+    (j : J) (n : ℤ) {Z : MetrizableLCA.{0}}
+    (g : Z ⟶
+      (CochainComplex.mappingCone
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).X n) :
+    g ≫ ((mappingConeCone c₁ c₂ f φ hφ).π.app j).f n ≫
+        (CochainComplex.mappingCone.fst
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).1.v
+            n (n + 1) rfl =
+      g ≫
+        (CochainComplex.mappingCone.fst
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).1.v
+            n (n + 1) rfl ≫
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.π.app j)).f (n + 1) := by
+  simpa [mappingConeCone] using
+    comp_mappingCone_map_f_fst
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.π.app j))
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.π.app j))
+      (by
+        rw [← Functor.map_comp, ← Functor.map_comp]
+        exact congrArg
+          (fun q => (BoundedComplexCategory.ι MetrizableLCA.{0}).map q)
+          (hφ j))
+      n g
+
+/-- The canonical cone leg projected to the target summand. -/
+lemma comp_mappingConeCone_π_snd {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    (c₁ : Cone X₁) (c₂ : Cone X₂) (f : X₁ ⟶ X₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : J, φ ≫ c₂.π.app j = c₁.π.app j ≫ f.app j)
+    (j : J) (n : ℤ) {Z : MetrizableLCA.{0}}
+    (g : Z ⟶
+      (CochainComplex.mappingCone
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).X n) :
+    g ≫ ((mappingConeCone c₁ c₂ f φ hφ).π.app j).f n ≫
+        (CochainComplex.mappingCone.snd
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))).v
+            n n (add_zero n) =
+      g ≫
+        (CochainComplex.mappingCone.snd
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)).v
+            n n (add_zero n) ≫
+        ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.π.app j)).f n := by
+  simpa [mappingConeCone] using
+    comp_mappingCone_map_f_snd
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.π.app j))
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.π.app j))
+      (by
+        rw [← Functor.map_comp, ← Functor.map_comp]
+        exact congrArg
+          (fun q => (BoundedComplexCategory.ι MetrizableLCA.{0}).map q)
+          (hφ j))
+      n g
+
 /-- Canonical-cone limit input for WPP mapping-cone comparison. -/
 abbrev mappingCone_walkingParallelPair_limitCanonicalConeComparison : Prop :=
   ∀ (X₁ X₂ : WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0})
