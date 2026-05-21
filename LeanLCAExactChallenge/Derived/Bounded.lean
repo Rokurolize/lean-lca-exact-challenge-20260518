@@ -3449,6 +3449,104 @@ theorem Dbounded.currentMetrizableSemanticStableRouteState_productSuccess :
     Dbounded.currentMetrizableSemanticStableRouteState.productSuccessClaimed = false :=
   rfl
 
+/-- Ordinary semantic fields supplied by direct bounded left calculus. -/
+structure Dbounded.MetrizableLeftCalculusSemanticFields : Type 1 where
+  preadditive : Preadditive (Dbounded MetrizableLCA.{0})
+  zeroObject : HasZeroObject (Dbounded MetrizableLCA.{0})
+  shiftAdditiveAll :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive
+  suspensionAdditive :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      shiftAdditiveAll
+    (shiftFunctor (Dbounded MetrizableLCA.{0}) (1 : ℤ)).Additive
+
+/-- Assemble the semantic fields already supplied by direct bounded left calculus. -/
+noncomputable def Dbounded.metrizableLeftCalculusSemanticFields
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Dbounded.MetrizableLeftCalculusSemanticFields where
+  preadditive := Dbounded.preadditiveOfHasLeftCalculusOfFractions MetrizableLCA.{0}
+  zeroObject := Dbounded.hasZeroObjectOfHasLeftCalculusOfFractions MetrizableLCA.{0}
+  shiftAdditiveAll := by
+    intro n
+    exact Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions MetrizableLCA.{0} n
+  suspensionAdditive := by
+    change (shiftFunctor (Dbounded MetrizableLCA.{0}) (1 : ℤ)).Additive
+    exact Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions MetrizableLCA.{0} 1
+
+/-- Remaining ordinary semantic fields after direct bounded left calculus supplies its part. -/
+structure Dbounded.MetrizableRemainingStableSemanticFields
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields) : Type 1 where
+  finiteLimits : HasFiniteLimits (Dbounded MetrizableLCA.{0})
+  finiteColimits : HasFiniteColimits (Dbounded MetrizableLCA.{0})
+  pretriangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Build the full W529 semantic input from left-calculus fields plus the remaining fields. -/
+def Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields available) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput where
+  preadditive := available.preadditive
+  finiteLimits := remaining.finiteLimits
+  finiteColimits := remaining.finiteColimits
+  zeroObject := available.zeroObject
+  shiftAdditiveAll := available.shiftAdditiveAll
+  suspensionAdditive := available.suspensionAdditive
+  pretriangulated := remaining.pretriangulated
+  triangulated := remaining.triangulated
+
+/-- Left-calculus route constructor for the full W529 semantic input. -/
+noncomputable def Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculus
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      Dbounded.metrizableLeftCalculusSemanticFields) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields
+    Dbounded.metrizableLeftCalculusSemanticFields remaining
+
+/-- The left-calculus route produces a ready W528 certificate once the remaining fields exist. -/
+theorem Dbounded.stableCertificateOfMetrizableLeftCalculusInput_ready
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (remaining : Dbounded.MetrizableRemainingStableSemanticFields
+      Dbounded.metrizableLeftCalculusSemanticFields) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculus remaining)).ready := by
+  exact Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready _
+
+/-- Semantic fields supplied by direct bounded left calculus. -/
+def Dbounded.metrizableLeftCalculusSemanticFieldNames : List String :=
+  ["Preadditive (Dbounded MetrizableLCA)", "HasZeroObject (Dbounded MetrizableLCA)",
+    "forall n, (shiftFunctor (Dbounded MetrizableLCA) n).Additive",
+    "(shiftFunctor (Dbounded MetrizableLCA) 1).Additive"]
+
+/-- Direct bounded left calculus supplies four semantic fields. -/
+theorem Dbounded.metrizableLeftCalculusSemanticFieldNames_count :
+    Dbounded.metrizableLeftCalculusSemanticFieldNames.length = 4 :=
+  rfl
+
+/-- Remaining semantic fields after direct bounded left calculus supplies its part. -/
+def Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus : List String :=
+  ["HasFiniteLimits (Dbounded MetrizableLCA)", "HasFiniteColimits (Dbounded MetrizableLCA)",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+/-- Four semantic fields remain after direct bounded left calculus supplies its part. -/
+theorem Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus_count :
+    Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus.length = 4 :=
+  rfl
+
 /-- Checked abelian-category comparison target provided by mathlib. -/
 abbrev abelianDerivedCategory (A : Type u) [Category.{v} A] [Abelian A]
     [HasDerivedCategory.{v} A] : Type (max u v) :=

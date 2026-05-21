@@ -2875,6 +2875,16 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
 #check Dbounded.currentMetrizableSemanticStableRouteState
 #check Dbounded.currentMetrizableSemanticStableRouteState_semanticInput_not_supplied
 #check Dbounded.currentMetrizableSemanticStableRouteState_productSuccess
+#check Dbounded.MetrizableLeftCalculusSemanticFields
+#check Dbounded.metrizableLeftCalculusSemanticFields
+#check Dbounded.MetrizableRemainingStableSemanticFields
+#check Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields
+#check Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculus
+#check Dbounded.stableCertificateOfMetrizableLeftCalculusInput_ready
+#check Dbounded.metrizableLeftCalculusSemanticFieldNames
+#check Dbounded.metrizableLeftCalculusSemanticFieldNames_count
+#check Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus
+#check Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus_count
 
 noncomputable example : SSet.QCat :=
   BoundedDerivedInfinityCategory (C := MetrizableLCA)
