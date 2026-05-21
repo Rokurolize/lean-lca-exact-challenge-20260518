@@ -1073,6 +1073,18 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - product_complete: false
 
 
+## W483 Single W461 Provider Componentwise Projection
+
+- timestamp: `2026-05-21T04:05:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- support lead: `/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave185_20260520T163335Z/workers/w482-single-w461-provider-componentwise-projection-current-head-v370/result.json`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W483 exposes `WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483`. It uses `SelectedW461PromotionInputsProviderW483` to prove W318's left closed-image input directly, then composes it with W475 projection fields or W481 componentwise projection inputs through `exactAcyclic_of_selectedW461Provider_and_componentwiseClosedRangeProjection_w483`.
+- remaining blockers: construct actual `SelectedW461PromotionInputsProviderW483` and `ComponentwiseClosedRangeProjectionProviderW481` at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
 ## W479 W426 Left Closed Quotient Identification Exact Acyclic
 
 - timestamp: `2026-05-21T02:52:26Z`

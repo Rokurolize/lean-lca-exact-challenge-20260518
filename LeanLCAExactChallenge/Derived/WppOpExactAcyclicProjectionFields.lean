@@ -1844,4 +1844,108 @@ end Checks
 
 end WppOpW477ToW481ComponentwiseProjectionAdapterV370SupportW482
 
+namespace WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the parent W483 importable adapter. -/
+def supportSeedW483 : String :=
+  "w483-parent-single-w461-provider"
+
+/--
+Single selected W461 input provider for each W318 call site. This package avoids
+requiring a separate W475 ordinary-map provider when the selected W461 data can
+directly identify the W318 colimit map.
+-/
+abbrev SelectedW461PromotionInputsProviderW483 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0})
+    (α : X ⟶ Y) (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+      IsColimit cx →
+        IsColimit cy →
+          (∀ j : WalkingParallelPairᵒᵖ,
+            IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+            W318ColimitMapLegCompatibilityW441 X Y α cx cy φ →
+              W461ToW441PromotionInputsW478 X Y α cx cy
+
+/-- A single selected W461 provider proves W318's left closed-image input directly. -/
+theorem wppOp_lca_colimitMap_injective_inducing_closedImage_of_selectedW461Provider_w483
+    (hinputs : SelectedW461PromotionInputsProviderW483) :
+    wppOp_lca_colimitMap_injective_inducing_closedImage := by
+  intro X Y α cx cy φ hcx hcy hclosed hcompat
+  let data := hinputs X Y α cx cy φ hcx hcy hclosed hcompat
+  have hclosedConcrete :=
+    concreteConjugatedDescended_closedEmbedding_of_w461_to_w441_w478 data
+  have hφ : IsClosedEmbedding (φ : cx.pt → cy.pt) := by
+    have hEq := eq_concreteConjugatedDescended_of_w461_compat_w478 hcx data hcompat
+    simpa [hEq] using hclosedConcrete
+  exact ⟨hφ.injective, hφ.isInducing, hφ.isClosed_range⟩
+
+/-- W483 composition into the W475 projection-field exact-acyclic endpoint. -/
+theorem exactAcyclic_of_selectedW461Provider_and_projectionFields_w483
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hproj : ProjectionFieldsProviderW475) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_projectionComponentFields
+    (wppOp_lca_colimitMap_injective_inducing_closedImage_of_selectedW461Provider_w483
+      hinputs)
+    hproj
+
+/-- W483 support theorem using one selected W461 provider and W481 projection inputs. -/
+theorem exactAcyclic_of_selectedW461Provider_and_componentwiseClosedRangeProjection_w483
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_projectionFields_w483
+    hinputs
+    (projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w481
+      hcomponentwise)
+
+/-- W483 checked support state. -/
+structure SingleW461ProviderComponentwiseProjectionV370SupportStateW483 : Type where
+  seed : String
+  declarations : List String
+  leftClosedInputResult : String
+  projectionFieldsCompositionResult : String
+  componentwiseProjectionResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked support state for W483. -/
+def currentSingleW461ProviderComponentwiseProjectionV370SupportStateW483 :
+    SingleW461ProviderComponentwiseProjectionV370SupportStateW483 where
+  seed := supportSeedW483
+  declarations :=
+    ["SelectedW461PromotionInputsProviderW483",
+      "wppOp_lca_colimitMap_injective_inducing_closedImage_of_selectedW461Provider_w483",
+      "exactAcyclic_of_selectedW461Provider_and_projectionFields_w483",
+      "exactAcyclic_of_selectedW461Provider_and_componentwiseClosedRangeProjection_w483"]
+  leftClosedInputResult := "proved"
+  projectionFieldsCompositionResult := "proved"
+  componentwiseProjectionResult := "proved"
+  remainingInputs := []
+  productSuccessClaimed := false
+
+theorem currentSingleW461ProviderComponentwiseProjectionStateW483_productSuccess :
+    currentSingleW461ProviderComponentwiseProjectionV370SupportStateW483.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW483
+#check SelectedW461PromotionInputsProviderW483
+#check wppOp_lca_colimitMap_injective_inducing_closedImage_of_selectedW461Provider_w483
+#check exactAcyclic_of_selectedW461Provider_and_projectionFields_w483
+#check exactAcyclic_of_selectedW461Provider_and_componentwiseClosedRangeProjection_w483
+#check currentSingleW461ProviderComponentwiseProjectionStateW483_productSuccess
+
+end Checks
+
+end WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+
 end LeanLCAExactChallenge

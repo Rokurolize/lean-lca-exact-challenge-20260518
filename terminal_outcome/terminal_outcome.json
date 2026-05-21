@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W482のW477-to-W481 componentwise projection adapterをroot import済みsourceへ統合し、ProductSuccessDeclarationsでも公開APIを確認した。W482により既存のW477 componentwise closed-range projection providerをW481 surfaceへ変換し、W480のW461 bridgeと合成できる。ただし実際のfinal call siteでW461ToW475PromotionInputsProviderW480、W461ToW475OrdinaryMapProviderW480、W477 componentwise closed-range projection providerはまだ未構成なのでproduct_successは主張しない。",
+  "summary": "W483のselected-W461-provider routeをroot import済みsourceへ統合し、ProductSuccessDeclarationsでも公開APIを確認した。W483により、選択されたW461 promotion input providerからW318 left closed-image inputを直接証明し、W481 componentwise projection providerと合成できる。ただし実際のfinal call siteでSelectedW461PromotionInputsProviderW483とComponentwiseClosedRangeProjectionProviderW481はまだ未構成なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -1708,9 +1708,8 @@
     "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess"
   ],
   "known_gaps": [
-    "final call siteのW461ToW475PromotionInputsProviderW480が未構成",
-    "final call siteのW461ToW475OrdinaryMapProviderW480が未構成",
-    "final call siteのW477 componentwise closed-range projection providerが未構成",
+    "final call siteのSelectedW461PromotionInputsProviderW483が未構成",
+    "final call siteのComponentwiseClosedRangeProjectionProviderW481が未構成",
     "terminal_outcomeはproduct_successではなく、review packet auditはproduct-success gate未通過"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",

@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w482-w477-to-w481-componentwise-projection-adapter",
-  "generated_utc": "2026-05-21T03:58:00Z",
-  "source_tree_hash": "cd178580d1186a40cc76be03d830a177535a01e3b405d89efd5926a9d3bf0a99",
-  "summary": "W482 W477-to-W481 componentwise projection adapter compiles in the importable Derived module and ProductSuccessDeclarations; full lake build and RequiredDeclarations also pass. product_complete remains false pending concrete W461-to-W475 inputs, ordinary-map provider, and final W477 componentwise provider.",
+  "schema": "lean-lca-exact-challenge-verification-w483-single-w461-provider-componentwise-projection",
+  "generated_utc": "2026-05-21T04:05:00Z",
+  "source_tree_hash": "fc176441a4d572348b7edc6c0c0dcd58db70cf8e6dccd3e92d23c33ab37a9832",
+  "summary": "W483 selected-W461-provider route compiles in the importable Derived module and ProductSuccessDeclarations; full lake build and RequiredDeclarations also pass. product_complete remains false pending concrete SelectedW461PromotionInputsProviderW483 and ComponentwiseClosedRangeProjectionProviderW481.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -2816,6 +2816,51 @@
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
       "evidence": "JSON artifacts parsed before W482 manifest refresh."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Importable W483 selected-W461-provider route checks in WppOpExactAcyclicProjectionFields."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Focused module build completed successfully with W483 declarations present."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations exposes W483 declarations and still records productSuccessClaimed = false."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations still compiles after W483 integration."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build completed successfully after W483 integration."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W483 integration."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W483-touched files."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W483 adapter and notes updates."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON artifacts parsed before W483 manifest refresh."
     }
   ],
   "implemented_declarations_checked": [
