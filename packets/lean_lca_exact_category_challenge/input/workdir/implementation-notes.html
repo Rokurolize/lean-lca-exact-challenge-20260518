@@ -1468,3 +1468,15 @@
 <p><time>2026-05-21T00:54:41Z</time>: The parent verified <code>audit/blockers/addcommgrp_closed_embedding_cokernel_preservation_package_v370_support_w448.lean</code> after it landed in the target worktree. It packages closed-embedding/closed-map/closed-range cokernel preservation inputs, including routes from <code>strictShortExact</code> and <code>CokernelTopStrictInput</code> to component cokernel preservation.</p>
 <p>This strengthens the component side of the selected cokernel route. It is still nonterminal because the component preservation has not yet been lifted into W446's selected <code>ShortComplex</code> preservation instance, and the actual selected short-complex input remains to be proved.</p>
 </section>
+
+<section id="w449-forgotten-short-complex-functor-additive-zero">
+<h2>W449 forgotten short complex functor additive zero</h2>
+<p><time>2026-05-21T00:55:40Z</time>: The parent recorded and verified <code>audit/blockers/addcommgrp_forgotten_short_complex_functor_additive_zero_v370_support_w449.lean</code>. It discharges the additive and zero-morphism support for <code>forgottenShortComplexFunctor</code>, proves the W446 theorem with those inputs no longer explicit, and records the componentwise mapped cokernel input structure.</p>
+<p>This remains a frontier result: W446 still needs the selected short-complex difference preservation instance, or equivalently the three componentwise mapped cokernel colimit inputs plus the bridge to the selected forgotten cofork.</p>
+</section>
+
+<section id="w450-addcommgrp-cokernel-cofork-from-strict-short-exact">
+<h2>W450 AddCommGrp cokernel cofork from strict short exact</h2>
+<p><time>2026-05-21T01:01:41Z</time>: The parent recorded and verified <code>audit/blockers/addcommgrp_cokernel_cofork_from_strict_short_exact_v370_support_w450.lean</code>. The checked declarations show that a strict <code>MetrizableLCA</code> short exact sequence becomes AddCommGrp short exact after forgetting topology, and that its forgotten right map is a cokernel cofork of its forgotten left map.</p>
+<p>The support also provides a W345 adapter for <code>ParallelPairDifferenceStrictCokernelData</code>. Product success remains false because the concrete difference kernel row, concrete difference cokernel row, and identification of the WPP-op colimit short complex with that cokernel row are still missing.</p>
+</section>
