@@ -3200,4 +3200,81 @@ end Checks
 
 end WppOpProjectionFieldsFromSelectedCokernelColimitCurrentHeadV370SupportW491
 
+namespace WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+
+open WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+open WppOpProjectionFieldsFromSelectedCokernelColimitCurrentHeadV370SupportW491
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W492 W480/W491 composition route. -/
+def supportSeedW492 : String :=
+  "w492-w480-split-provider-selected-cokernel-colimit"
+
+/-- Provider for the selected forgotten-target cokernel colimit used by W491. -/
+abbrev SelectedCokernelColimitProviderW492 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs →
+      IsColimit
+        (AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464.selectedForgottenTargetCokernelCofork
+          S cs)
+
+/--
+W492 endpoint: W480 split providers supply W475's W426 promotion data, while
+W491 turns one selected forgotten-target cokernel colimit provider into the
+projection fields consumed by W475.
+-/
+theorem exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_w426Promotion_and_selectedCokernelColimitProvider_w491
+    (w426PromotionFieldsProvider_of_w480 hinputs hordinaryMap)
+    (w426OrdinaryMapProvider_of_w480 hinputs hordinaryMap)
+    (w426OrdinaryEqualsCanonicalProvider_of_w480 hinputs hordinaryMap)
+    (fun S cs hcs => hselected S cs hcs)
+
+/-- Checked nonterminal state for W492. -/
+structure W480SplitProvidersSelectedCokernelColimitV370SupportStateW492 : Type where
+  seed : String
+  declarations : List String
+  exactAcyclicResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W492 state. -/
+def currentW480SplitProvidersSelectedCokernelColimitV370SupportStateW492 :
+    W480SplitProvidersSelectedCokernelColimitV370SupportStateW492 where
+  seed := supportSeedW492
+  declarations :=
+    ["SelectedCokernelColimitProviderW492",
+      "exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492"]
+  exactAcyclicResult := "proved"
+  remainingInputs :=
+    ["construct concrete W461ToW475PromotionInputsProviderW480",
+      "construct concrete W461ToW475OrdinaryMapProviderW480",
+      "construct concrete SelectedCokernelColimitProviderW492"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW492State :
+    W480SplitProvidersSelectedCokernelColimitV370SupportStateW492 :=
+  currentW480SplitProvidersSelectedCokernelColimitV370SupportStateW492
+
+theorem currentW480SplitProvidersSelectedCokernelColimitStateW492_productSuccess :
+    currentW492State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW492
+#check SelectedCokernelColimitProviderW492
+#check exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492
+#check currentW480SplitProvidersSelectedCokernelColimitStateW492_productSuccess
+
+end Checks
+
+end WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+
 end LeanLCAExactChallenge

@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w491-selected-cokernel-colimit-route",
-  "generated_utc": "2026-05-21T08:33:30Z",
-  "source_tree_hash": "8dc2673cea36e8829606e147d8d4f29252dc866c8df7ff7ef8c20ad93f6cb180",
-  "summary": "W491 narrows the projection-field route: a selected forgotten-target cokernel colimit provider now supplies all three W475 projection fields, and the W491 endpoint composes that provider with W426 promotion data. This is verified but nonterminal; final call sites still need concrete W426/W480 promotion providers and selected cokernel-colimit evidence.",
+  "schema": "lean-lca-exact-challenge-verification-w492-w480-selected-cokernel-colimit-route",
+  "generated_utc": "2026-05-21T08:43:00Z",
+  "source_tree_hash": "ab9ebe24907ca0bbe038d07023fb74d6830c35cc60cfd793046c4e387aa665ad",
+  "summary": "W492 composes W480 split providers with W491 selected cokernel-colimit projection fields. This verified endpoint reduces the current WPP-op exact-acyclic branch to concrete W480 promotion/ordinary providers and a SelectedCokernelColimitProviderW492. Product success remains false.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3125,6 +3125,41 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "After W491 metadata refresh, read-only external audit reaches the expected nonterminal product gate: terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W492 composition route built successfully."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations checks W492 declarations."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed after W492 integration."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W492 integration."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W492 integration."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "git diff --check passed after W492 integration."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "After W492 metadata refresh, read-only external audit reaches the expected nonterminal product gate: terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success."
     }
   ],
   "implemented_declarations_checked": [
@@ -4221,27 +4256,30 @@
     "selectedProjectionComponentIsColimitInputs_of_selectedCokernelColimit_w491",
     "projectionFieldsProvider_of_selectedCokernelColimitProvider_w491",
     "exactAcyclic_of_w426Promotion_and_selectedCokernelColimitProvider_w491",
-    "currentProjectionFieldsFromSelectedCokernelColimitStateW491_productSuccess"
+    "currentProjectionFieldsFromSelectedCokernelColimitStateW491_productSuccess",
+    "supportSeedW492",
+    "SelectedCokernelColimitProviderW492",
+    "exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492",
+    "currentW480SplitProvidersSelectedCokernelColimitStateW492_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "Construct concrete W461ToW475PromotionInputsProviderW480 at final call sites.",
     "Construct concrete W461ToW475OrdinaryMapProviderW480 at final call sites.",
-    "Construct a selected forgotten-target cokernel colimit provider at final call sites.",
-    "Add a thin importable W480+W491 composition wrapper or instantiate W426 providers directly.",
+    "Construct concrete SelectedCokernelColimitProviderW492 at final call sites.",
+    "Connect the selected forgotten-target cokernel colimit proof to the current final WPP-op diagram.",
     "Do not update terminal_outcome to product_success until the final product theorem and audit pass."
   ],
-  "support_result_classification": "W491 was parent-integrated and verified as an importable narrowing theorem. It does not claim product_success.",
+  "support_result_classification": "W492 was parent-integrated and verified; product_success is not claimed.",
   "product_success": false,
   "remaining_work": [
-    "compose W491 with W480 split providers",
     "construct concrete W461ToW475PromotionInputsProviderW480",
     "construct concrete W461ToW475OrdinaryMapProviderW480",
-    "construct selected forgotten-target cokernel colimit provider",
+    "construct concrete SelectedCokernelColimitProviderW492",
     "claim product_success only after final product theorem and terminal audit pass"
   ],
   "summary_log_tail": [
-    "W491 selected cokernel-colimit route verified and recorded as nonterminal.",
+    "W492 route verified and recorded as nonterminal.",
     "Product success remains false pending concrete final-call-site providers."
   ]
 }

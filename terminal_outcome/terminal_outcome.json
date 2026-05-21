@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W491でselected forgotten-target cokernel colimit providerからW475の三つのprojection IsColimit fieldsを構成できるようになった。WPP-op exact-acyclic branchはより狭いselected cokernel-colimit入力へ進んだが、final call siteの具体プロバイダは未構成なのでproduct_successは主張しない。",
+  "summary": "W492でW480 split providersとW491 selected cokernel-colimit projection fieldsを合成した。WPP-op exact-acyclic branchはfinal call siteのW461ToW475PromotionInputsProviderW480、W461ToW475OrdinaryMapProviderW480、SelectedCokernelColimitProviderW492へ縮小したが、具体プロバイダは未構成なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -580,7 +580,8 @@
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W490)",
     "lake env lean audit/blockers/wpp_op_projection_fields_from_selected_cokernel_colimit_current_head_v370_support_w491.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_projection_fields_from_selected_cokernel_colimit_current_head_v370_support_w491.lean",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W491)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W491)",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W492)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1601,8 +1602,8 @@
   "known_gaps": [
     "final call siteでW461ToW475PromotionInputsProviderW480を構成する必要がある。",
     "final call siteでW461ToW475OrdinaryMapProviderW480を構成する必要がある。",
-    "final call siteでselected forgotten-target cokernel colimit providerを構成する必要がある。",
-    "W491 routeをW480 split-provider routeへ合成する薄いimportable wrapperがまだ必要である。",
+    "final call siteでSelectedCokernelColimitProviderW492を構成する必要がある。",
+    "selected forgotten-target cokernel colimit proofを現行のfinal WPP-op diagramへ接続する必要がある。",
     "product-success declarationを実際に証明するまではterminal outcomeをproduct_successへ更新しない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -1610,16 +1611,16 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "825e9cd",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W491 was integrated by the parent in the target tree; no new workers were launched. It narrows projection fields to one selected forgotten-target cokernel colimit provider.",
+  "worker_frontier_summary": "W492 was integrated by the parent in the target tree; no new workers were launched. It reduces the branch to three concrete final-call-site providers.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
     "final call siteでW461ToW475PromotionInputsProviderW480を構成する必要がある。",
     "final call siteでW461ToW475OrdinaryMapProviderW480を構成する必要がある。",
-    "final call siteでselected forgotten-target cokernel colimit providerを構成する必要がある。",
-    "W491 routeをW480 split-provider routeへ合成する薄いimportable wrapperがまだ必要である。",
+    "final call siteでSelectedCokernelColimitProviderW492を構成する必要がある。",
+    "selected forgotten-target cokernel colimit proofを現行のfinal WPP-op diagramへ接続する必要がある。",
     "product-success declarationを実際に証明するまではterminal outcomeをproduct_successへ更新しない。"
   ],
-  "next_recommended_goal": "Compose W491 with the W480 split-provider route, then construct concrete W461ToW475PromotionInputsProviderW480, W461ToW475OrdinaryMapProviderW480, and selected forgotten-target cokernel colimit provider at the final WPP-op exact-acyclic call sites.",
+  "next_recommended_goal": "Construct concrete W461ToW475PromotionInputsProviderW480, W461ToW475OrdinaryMapProviderW480, and SelectedCokernelColimitProviderW492 at the final WPP-op exact-acyclic call sites.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2484,10 +2485,14 @@
     "selectedProjectionComponentIsColimitInputs_of_selectedCokernelColimit_w491",
     "projectionFieldsProvider_of_selectedCokernelColimitProvider_w491",
     "exactAcyclic_of_w426Promotion_and_selectedCokernelColimitProvider_w491",
-    "currentProjectionFieldsFromSelectedCokernelColimitStateW491_productSuccess"
+    "currentProjectionFieldsFromSelectedCokernelColimitStateW491_productSuccess",
+    "supportSeedW492",
+    "SelectedCokernelColimitProviderW492",
+    "exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492",
+    "currentW480SplitProvidersSelectedCokernelColimitStateW492_productSuccess"
   ],
-  "generated_utc": "2026-05-21T08:33:30Z",
-  "support_result_classification": "W491 was parent-integrated as an importable narrowing theorem; product_success is not claimed.",
+  "generated_utc": "2026-05-21T08:43:00Z",
+  "support_result_classification": "W492 was parent-integrated and verified; product_success is not claimed.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3419,15 +3424,18 @@
     "selectedProjectionComponentIsColimitInputs_of_selectedCokernelColimit_w491",
     "projectionFieldsProvider_of_selectedCokernelColimitProvider_w491",
     "exactAcyclic_of_w426Promotion_and_selectedCokernelColimitProvider_w491",
-    "currentProjectionFieldsFromSelectedCokernelColimitStateW491_productSuccess"
+    "currentProjectionFieldsFromSelectedCokernelColimitStateW491_productSuccess",
+    "supportSeedW492",
+    "SelectedCokernelColimitProviderW492",
+    "exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492",
+    "currentW480SplitProvidersSelectedCokernelColimitStateW492_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "compose W491 with W480 split providers",
     "construct concrete W461ToW475PromotionInputsProviderW480",
     "construct concrete W461ToW475OrdinaryMapProviderW480",
-    "construct selected forgotten-target cokernel colimit provider",
+    "construct concrete SelectedCokernelColimitProviderW492",
     "claim product_success only after final product theorem and terminal audit pass"
   ]
 }

@@ -1680,6 +1680,12 @@
 <p>The new endpoint <code>exactAcyclic_of_w426Promotion_and_selectedCokernelColimitProvider_w491</code> composes W426 promotion providers with one selected cokernel-colimit provider. This is not product success: the next proof step is to compose W491 with the W480 split-provider route or instantiate the W426 providers directly, then construct the concrete selected cokernel-colimit provider at the final call sites.</p>
 </section>
 
+<section id="w492-w480-selected-cokernel-colimit">
+<h2>W492 W480 selected cokernel colimit</h2>
+<p><time>2026-05-21T08:42:00Z</time>: The parent added <code>WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492</code> to the importable derived module and exposed it through <code>audit/ProductSuccessDeclarations.lean</code>. The new endpoint <code>exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492</code> composes W480 split providers with W491's selected forgotten-target cokernel colimit provider.</p>
+<p>This is still nonterminal. The current WPP-op exact-acyclic branch is reduced to concrete <code>W461ToW475PromotionInputsProviderW480</code>, <code>W461ToW475OrdinaryMapProviderW480</code>, and <code>SelectedCokernelColimitProviderW492</code> at the final call sites.</p>
+</section>
+
 <section id="audit-marker-and-manifest-refresh-20260521">
 <h2>Audit marker and manifest refresh</h2>
 <p><time>2026-05-21T02:43:22Z</time>: The parent removed comment-only product-marker words from <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> and <code>audit/ProductSuccessDeclarations.lean</code>, refreshed <code>manifest.json</code> with packet and transient Codex progress paths excluded, and updated <code>run/verification.json</code>'s <code>source_tree_hash</code>. After this, <code>python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json</code> no longer fails on placeholder markers, manifest hashes, or stale source hash; it reaches the expected nonterminal product gate because <code>terminal_outcome.outcome</code> is still <code>blocked_nonterminal_frontier</code>.</p>
