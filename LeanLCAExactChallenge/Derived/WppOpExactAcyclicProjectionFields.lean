@@ -9439,11 +9439,124 @@ end Checks
 
 end WppOpW533FiniteShapeTransferFromRowsV370SupportW534
 
+namespace WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535
+
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpTopTargetRelationRepresentativeImageV370SupportW516
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+open WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524
+open WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527
+open WppOpW533FiniteShapeTransferFromRowsV370SupportW534
+open DirectWppOpColimitFiniteShapeTransfer
+
+/-- W515 representative-image data plus row-aware closed-map rows supply W533's WPP stability. -/
+theorem walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :
+    directWeakEquivalence.IsStableUnderColimitsOfShape WalkingParallelPair :=
+  walkingParallelPairColimitStability_of_selectedW461Provider_and_closedMapRows_w534
+    (selectedW461Provider_of_representativeImage_w524 hinputs) hclosedMapRows
+
+/-- W515 representative-image data plus row-aware closed-embedding rows supply W533 stability. -/
+theorem walkingParallelPairColimitStability_of_representativeImage_and_closedEmbeddingRows_w535
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    directWeakEquivalence.IsStableUnderColimitsOfShape WalkingParallelPair :=
+  walkingParallelPairColimitStability_of_selectedW461Provider_and_closedEmbeddingRows_w534
+    (selectedW461Provider_of_representativeImage_w524 hinputs) hclosedEmbeddingRows
+
+/-- W516 top-target data plus row-aware closed-map rows supply W533's WPP stability. -/
+theorem walkingParallelPairColimitStability_of_topTargetRelation_and_closedMapRows_w535
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :
+    directWeakEquivalence.IsStableUnderColimitsOfShape WalkingParallelPair :=
+  walkingParallelPairColimitStability_of_selectedW461Provider_and_closedMapRows_w534
+    (selectedW461Provider_of_topTargetRelation_w524 hinputs) hclosedMapRows
+
+/-- W516 top-target data plus row-aware closed-embedding rows supply W533's WPP stability. -/
+theorem walkingParallelPairColimitStability_of_topTargetRelation_and_closedEmbeddingRows_w535
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    directWeakEquivalence.IsStableUnderColimitsOfShape WalkingParallelPair :=
+  walkingParallelPairColimitStability_of_selectedW461Provider_and_closedEmbeddingRows_w534
+    (selectedW461Provider_of_topTargetRelation_w524 hinputs) hclosedEmbeddingRows
+
+/-- W517 compact-target data plus row-aware closed-map rows supply W533's WPP stability. -/
+theorem walkingParallelPairColimitStability_of_compactTargetRelation_and_closedMapRows_w535
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :
+    directWeakEquivalence.IsStableUnderColimitsOfShape WalkingParallelPair :=
+  walkingParallelPairColimitStability_of_selectedW461Provider_and_closedMapRows_w534
+    (selectedW461Provider_of_compactTargetRelation_w524 hinputs) hclosedMapRows
+
+/-- W517 compact-target data plus row-aware closed-embedding rows supply W533's WPP stability. -/
+theorem walkingParallelPairColimitStability_of_compactTargetRelation_and_closedEmbeddingRows_w535
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    directWeakEquivalence.IsStableUnderColimitsOfShape WalkingParallelPair :=
+  walkingParallelPairColimitStability_of_selectedW461Provider_and_closedEmbeddingRows_w534
+    (selectedW461Provider_of_compactTargetRelation_w524 hinputs) hclosedEmbeddingRows
+
+/-- W535 checked nonterminal state. -/
+structure W533FiniteShapeTransferConcreteRowsStateW535 : Type where
+  seed : String
+  declarations : List String
+  selectedProviderRemovedResult : String
+  closedRangeRowsStrengthenedResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W535 state. -/
+def currentW533FiniteShapeTransferConcreteRowsStateW535 :
+    W533FiniteShapeTransferConcreteRowsStateW535 where
+  seed := "w535-concrete-representative-image-row-finite-shape-transfer"
+  declarations :=
+    ["walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
+      "walkingParallelPairColimitStability_of_representativeImage_and_closedEmbeddingRows_w535",
+      "walkingParallelPairColimitStability_of_topTargetRelation_and_closedMapRows_w535",
+      "walkingParallelPairColimitStability_of_topTargetRelation_and_closedEmbeddingRows_w535",
+      "walkingParallelPairColimitStability_of_compactTargetRelation_and_closedMapRows_w535",
+      "walkingParallelPairColimitStability_of_compactTargetRelation_and_closedEmbeddingRows_w535"]
+  selectedProviderRemovedResult :=
+    "W524 feeds W534 from W515/W516/W517 instead of an abstract SelectedW461 provider"
+  closedRangeRowsStrengthenedResult :=
+    "W527 feeds W534 from row-aware closed-map or closed-embedding rows"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 " ++
+        "or W516/W517 relation provider data",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 " ++
+        "or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "prove WPP limit stability",
+      "prove WalkingParallelPair functor-category localization"]
+  productSuccessClaimed := false
+
+theorem currentW533FiniteShapeTransferConcreteRowsStateW535_productSuccess :
+    currentW533FiniteShapeTransferConcreteRowsStateW535.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535
+#check walkingParallelPairColimitStability_of_representativeImage_and_closedEmbeddingRows_w535
+#check walkingParallelPairColimitStability_of_topTargetRelation_and_closedMapRows_w535
+#check walkingParallelPairColimitStability_of_topTargetRelation_and_closedEmbeddingRows_w535
+#check walkingParallelPairColimitStability_of_compactTargetRelation_and_closedMapRows_w535
+#check walkingParallelPairColimitStability_of_compactTargetRelation_and_closedEmbeddingRows_w535
+#check currentW533FiniteShapeTransferConcreteRowsStateW535
+#check currentW533FiniteShapeTransferConcreteRowsStateW535_productSuccess
+
+end Checks
+
+end WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535
+
 namespace Dbounded
 
 open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
 open WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526
+open WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527
 open WppOpW533FiniteShapeTransferFromRowsV370SupportW534
+open WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535
 
 /-- W532 finite-shape transfer inputs with WPP colimit stability supplied by W534 row data. -/
 structure MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows :
@@ -9480,12 +9593,100 @@ theorem metrizableWalkingParallelPairFiniteShapeTransferFromSelectedW461RowsInpu
     metrizableWalkingParallelPairFiniteShapeTransferFromSelectedW461RowsInputNames.length = 4 :=
   rfl
 
+/--
+W532 finite-shape transfer inputs with WPP colimit stability supplied by W515
+representative-image data and W527 row-aware closed-map rows.
+-/
+structure MetrizableWalkingParallelPairFiniteShapeTransferInputsFromRepresentativeImageClosedMapRows :
+    Type 1 where
+  limitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair
+  representativeImageProvider :
+    ClosedNatTransOrdinaryRepresentativeImageProviderW515
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+W532 finite-shape transfer inputs with WPP colimit stability supplied by W515
+representative-image data and W527 row-aware closed-embedding rows.
+-/
+structure MetrizableWalkingParallelPairFiniteShapeTransferInputsFromRepresentativeImageClosedEmbeddingRows :
+    Type 1 where
+  limitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair
+  representativeImageProvider :
+    ClosedNatTransOrdinaryRepresentativeImageProviderW515
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/-- Build W532's transfer record from W515 data and W527 row-aware closed-map rows. -/
+noncomputable def metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedMapRows
+    (inputs :
+      MetrizableWalkingParallelPairFiniteShapeTransferInputsFromRepresentativeImageClosedMapRows) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability := inputs.limitStability
+  colimitStability :=
+    walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535
+      inputs.representativeImageProvider inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/-- Build W532's transfer record from W515 data and W527 row-aware closed-embedding rows. -/
+noncomputable def metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedEmbeddingRows
+    (inputs :
+      MetrizableWalkingParallelPairFiniteShapeTransferInputsFromRepresentativeImageClosedEmbeddingRows) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability := inputs.limitStability
+  colimitStability :=
+    walkingParallelPairColimitStability_of_representativeImage_and_closedEmbeddingRows_w535
+      inputs.representativeImageProvider inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/-- Input names for the representative-image closed-map-row form of W532 finite-shape transfer. -/
+def metrizableWalkingParallelPairFiniteShapeTransferFromRepresentativeImageClosedMapRowsInputNames :
+    List String :=
+  ["IsStableUnderLimitsOfShape WalkingParallelPair",
+    "ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+    "ComponentwiseClosedMapRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem metrizableWalkingParallelPairFiniteShapeTransferFromRepresentativeImageClosedMapRowsInputNames_count :
+    metrizableWalkingParallelPairFiniteShapeTransferFromRepresentativeImageClosedMapRowsInputNames.length =
+      4 :=
+  rfl
+
+/-- Input names for the representative-image closed-embedding-row form of W532 transfer. -/
+def metrizableWalkingParallelPairFiniteShapeTransferFromRepresentativeImageClosedEmbeddingRowsInputNames :
+    List String :=
+  ["IsStableUnderLimitsOfShape WalkingParallelPair",
+    "ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem metrizableWalkingParallelPairFiniteShapeTransferFromRepresentativeImageClosedEmbeddingRowsInputNames_count :
+    metrizableWalkingParallelPairFiniteShapeTransferFromRepresentativeImageClosedEmbeddingRowsInputNames.length =
+      4 :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
 #check metrizableWalkingParallelPairFiniteShapeTransferInputs_of_selectedW461Rows
 #check metrizableWalkingParallelPairFiniteShapeTransferFromSelectedW461RowsInputNames
 #check metrizableWalkingParallelPairFiniteShapeTransferFromSelectedW461RowsInputNames_count
+#check
+  MetrizableWalkingParallelPairFiniteShapeTransferInputsFromRepresentativeImageClosedMapRows
+#check
+  MetrizableWalkingParallelPairFiniteShapeTransferInputsFromRepresentativeImageClosedEmbeddingRows
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedMapRows
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedEmbeddingRows
 
 end Checks
 
