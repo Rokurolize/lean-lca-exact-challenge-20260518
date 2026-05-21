@@ -2,10 +2,12 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W478を検証して記録した。W461型のtarget-leg point-identification入力とW426 ordinary packageから、W441型promotion fieldsとcolimit mapへのtopology transportを構成する橋を追加した。ただしimportable namespaceへの昇格、具体call-site入力、W471 component-colimit comparison入力は未構成なのでproduct_successは主張しない。",
+  "summary": "W478/W479を検証して記録した。W478はW461型target-leg point-identification入力とW426 ordinary packageからW441型promotion fieldsを構成する橋で、W479はW426 ordinary-map promotion left closednessをW467 quotient-identification exact-acyclic wrapperへ合成する。ただし具体call-site入力とfinal product theoremは未構成なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
+    "lake env lean audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean",
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",

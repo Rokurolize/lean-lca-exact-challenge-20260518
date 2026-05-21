@@ -1020,18 +1020,28 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 ## W478 W461 To W441 Promotion Fields
 
 - timestamp: `2026-05-21T02:43:22Z`
-- artifact: `audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean`
-- verified: `lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean`
+- artifact: `audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w479.lean`
+- verified: `lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w479.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w479.lean`
 - effect: W461-shaped quotient-compatibility and point-identification target-leg data, with a matching W426 ordinary descended package, now construct W441-shaped promotion fields and transport ordinary closed-embedding facts to the W318 colimit map.
 - remaining blockers: promote or reimplement the bridge in an importable namespace, instantiate the concrete W461 point-identification inputs and W426 ordinary package, and supply W471 component-colimit comparison inputs at the final call site.
 - product_complete: false
 
 
-## W478 W426 Left Closed Quotient Identification Exact Acyclic
+## W479 W426 Left Closed Quotient Identification Exact Acyclic
+
+- timestamp: `2026-05-21T02:43:22Z`
+- artifact: `audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`
+- effect: W426 ordinary-map promotion left closedness composes with W467 selected component quotient-identification data to the exact-acyclic WPP-op colimit closure endpoint.
+- remaining blockers: instantiate concrete W426 ordinary descended packages, ordinary/canonical equality witnesses, and W463 selected component quotient-identification inputs at the final call sites.
+- product_complete: false
+
+
+## W479 W426 Left Closed Quotient Identification Exact Acyclic
 
 - timestamp: `2026-05-21T02:44:22Z`
-- artifact: `audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w478.lean`
-- verified: `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w478.lean`; `git diff --check -- audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w478.lean`; `lake env lean audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w478.lean`
+- artifact: `audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`
+- verified: `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`; `git diff --check -- audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`; `lake env lean audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean`
 - effect: W426 ordinary-map promotion supplies the left closed-image input and composes with W463 selected component quotient-identification data to the exact-acyclic WPP-op colimit closure endpoint.
 - remaining blockers: instantiate concrete W426 ordinary descended map package, ordinary/canonical colimit-map equality, and W463 selected component quotient-identification data at the final call sites.
 - product_complete: false

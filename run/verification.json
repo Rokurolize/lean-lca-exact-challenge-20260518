@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v478-w461-to-w441-promotion-fields",
+  "schema": "lean-lca-exact-challenge-verification-v479-quotient-identification-exact-acyclic",
   "generated_utc": "2026-05-21T02:43:22Z",
-  "source_tree_hash": "795177f4d618fbcec6cd326518aaed55c69fa43c1748c1bda8fb01a4a301f988",
-  "summary": "W478 focused support verified and recorded as nonterminal frontier progress; product success remains false.",
+  "source_tree_hash": "9f8e069c6e4ac498a2e06ab85d6113e27bbe33de52c3ca06d9e0c0253544ca26",
+  "summary": "W478 and W479 focused support verified and recorded as nonterminal frontier progress; product success remains false.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -13,6 +13,16 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found in the W478 standalone audit bridge."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean",
+      "status": "passed",
+      "evidence": "W479 composition from W426 ordinary-map promotion left closedness to W467 quotient-identification exact-acyclic wrapper compiled."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_quotient_identification_exact_acyclic_v370_support_w479.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W479 quotient-identification exact-acyclic support."
     },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",

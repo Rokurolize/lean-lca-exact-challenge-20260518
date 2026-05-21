@@ -1719,46 +1719,46 @@ end Checks
 
 end AddCommGrpW426LeftClosedClosedRangeExactAcyclicV370SupportW473
 
-namespace AddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportW478
+namespace AddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportW479
 
 open WppOpExactAcyclicFrontierConsolidatedW318
 
 /-!
-W478: compose W441/W426 ordinary-map-promotion left closedness with W467's
+W479: compose W441/W426 ordinary-map-promotion left closedness with W467's
 quotient-identification exact-acyclic wrapper.
 
-Seed: `478c0de185`.
+Seed: `479c0de185`.
 
 The seed is recorded only for worker diversity; it is not mathematical evidence.
 -/
 
-/-- Worker seed recorded before W478 edits. -/
+/-- Worker seed recorded before W479 edits. -/
 def supportSeed : String :=
-  "478c0de185"
+  "479c0de185"
 
 /-- Ordinary diagram associated to a `WalkingParallelPairᵒᵖ` diagram. -/
-abbrev wppOpOrdinaryDiagramW478 (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+abbrev wppOpOrdinaryDiagramW479 (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
     WalkingParallelPair ⥤ MetrizableLCA.{0} :=
   AddCommGrpW426LeftClosedClosedRangeExactAcyclicV370SupportW473.wppOpOrdinaryDiagramW473 X
 
 /-- W318's per-object colimit-map compatibility equation. -/
-abbrev W318ColimitMapLegCompatibilityW478
+abbrev W318ColimitMapLegCompatibilityW479
     (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
     (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt) : Prop :=
   AddCommGrpW426LeftClosedClosedRangeExactAcyclicV370SupportW473.W318ColimitMapLegCompatibilityW473
     X Y α cx cy φ
 
-/-- W478 alias for the W473/W426 ordinary descended quotient-map package. -/
-abbrev W426OrdinaryDescendedMapPackageW478
+/-- W479 alias for the W473/W426 ordinary descended quotient-map package. -/
+abbrev W426OrdinaryDescendedMapPackageW479
     {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}}
-    (ordinaryMap : wppOpOrdinaryDiagramW478 X ⟶ wppOpOrdinaryDiagramW478 Y) : Type 1 :=
+    (ordinaryMap : wppOpOrdinaryDiagramW479 X ⟶ wppOpOrdinaryDiagramW479 Y) : Type 1 :=
   AddCommGrpW426LeftClosedClosedRangeExactAcyclicV370SupportW473.W426OrdinaryDescendedMapPackageW473
     ordinaryMap
 
-/-- W478 alias for the W426 ordinary-map promotion fields used by W473. -/
-abbrev W426OrdinaryMapPromotionToW318FieldsW478
+/-- W479 alias for the W426 ordinary-map promotion fields used by W473. -/
+abbrev W426OrdinaryMapPromotionToW318FieldsW479
     {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}}
-    (ordinaryMap : wppOpOrdinaryDiagramW478 X ⟶ wppOpOrdinaryDiagramW478 Y)
+    (ordinaryMap : wppOpOrdinaryDiagramW479 X ⟶ wppOpOrdinaryDiagramW479 Y)
     (α : X ⟶ Y) (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt) : Type 1 :=
   AddCommGrpW426LeftClosedClosedRangeExactAcyclicV370SupportW473.W426OrdinaryMapPromotionToW318FieldsW473
     ordinaryMap α cx cy φ
@@ -1766,17 +1766,17 @@ abbrev W426OrdinaryMapPromotionToW318FieldsW478
 /--
 W426 promotion fields derive W318's left closed-range colimit-map hypothesis.
 -/
-theorem wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w478
+theorem wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w479
     (hfields :
       ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0})
-        (ordinaryMap : (wppOpOrdinaryDiagramW478 X) ⟶ (wppOpOrdinaryDiagramW478 Y))
+        (ordinaryMap : (wppOpOrdinaryDiagramW479 X) ⟶ (wppOpOrdinaryDiagramW479 Y))
         (α : X ⟶ Y) (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
           IsColimit cx →
             IsColimit cy →
               (∀ j : WalkingParallelPairᵒᵖ,
                 IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
-                W318ColimitMapLegCompatibilityW478 X Y α cx cy φ →
-                  W426OrdinaryMapPromotionToW318FieldsW478 ordinaryMap α cx cy φ)
+                W318ColimitMapLegCompatibilityW479 X Y α cx cy φ →
+                  W426OrdinaryMapPromotionToW318FieldsW479 ordinaryMap α cx cy φ)
     (hordinaryMap :
       ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
         (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
@@ -1784,15 +1784,15 @@ theorem wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w47
             IsColimit cy →
               (∀ j : WalkingParallelPairᵒᵖ,
                 IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
-                W318ColimitMapLegCompatibilityW478 X Y α cx cy φ →
-                  ((wppOpOrdinaryDiagramW478 X) ⟶ (wppOpOrdinaryDiagramW478 Y)))
+                W318ColimitMapLegCompatibilityW479 X Y α cx cy φ →
+                  ((wppOpOrdinaryDiagramW479 X) ⟶ (wppOpOrdinaryDiagramW479 Y)))
     (heq :
       ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
         (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt)
         (hcx : IsColimit cx) (hcy : IsColimit cy)
         (hclosed : ∀ j : WalkingParallelPairᵒᵖ,
           IsClosedEmbedding (α.app j : X.obj j → Y.obj j))
-        (hcompat : W318ColimitMapLegCompatibilityW478 X Y α cx cy φ),
+        (hcompat : W318ColimitMapLegCompatibilityW479 X Y α cx cy φ),
           (hfields X Y (hordinaryMap X Y α cx cy φ hcx hcy hclosed hcompat)
             α cx cy φ hcx hcy hclosed hcompat).ordinaryEqualsCanonicalColimitMap) :
     wppOp_lca_colimitMap_injective_inducing_closedImage :=
@@ -1800,20 +1800,20 @@ theorem wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w47
     hfields hordinaryMap heq
 
 /--
-W478 composition theorem: derive W318 left closedness from W426 promotion fields,
+W479 composition theorem: derive W318 left closedness from W426 promotion fields,
 then feed W467 quotient-identification data to the exact-acyclic closure theorem.
 -/
-theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_quotientIdentifications_w478
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_quotientIdentifications_w479
     (hfields :
       ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0})
-        (ordinaryMap : (wppOpOrdinaryDiagramW478 X) ⟶ (wppOpOrdinaryDiagramW478 Y))
+        (ordinaryMap : (wppOpOrdinaryDiagramW479 X) ⟶ (wppOpOrdinaryDiagramW479 Y))
         (α : X ⟶ Y) (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
           IsColimit cx →
             IsColimit cy →
               (∀ j : WalkingParallelPairᵒᵖ,
                 IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
-                W318ColimitMapLegCompatibilityW478 X Y α cx cy φ →
-                  W426OrdinaryMapPromotionToW318FieldsW478 ordinaryMap α cx cy φ)
+                W318ColimitMapLegCompatibilityW479 X Y α cx cy φ →
+                  W426OrdinaryMapPromotionToW318FieldsW479 ordinaryMap α cx cy φ)
     (hordinaryMap :
       ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
         (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
@@ -1821,15 +1821,15 @@ theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_
             IsColimit cy →
               (∀ j : WalkingParallelPairᵒᵖ,
                 IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
-                W318ColimitMapLegCompatibilityW478 X Y α cx cy φ →
-                  ((wppOpOrdinaryDiagramW478 X) ⟶ (wppOpOrdinaryDiagramW478 Y)))
+                W318ColimitMapLegCompatibilityW479 X Y α cx cy φ →
+                  ((wppOpOrdinaryDiagramW479 X) ⟶ (wppOpOrdinaryDiagramW479 Y)))
     (heq :
       ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
         (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt)
         (hcx : IsColimit cx) (hcy : IsColimit cy)
         (hclosed : ∀ j : WalkingParallelPairᵒᵖ,
           IsClosedEmbedding (α.app j : X.obj j → Y.obj j))
-        (hcompat : W318ColimitMapLegCompatibilityW478 X Y α cx cy φ),
+        (hcompat : W318ColimitMapLegCompatibilityW479 X Y α cx cy φ),
           (hfields X Y (hordinaryMap X Y α cx cy φ hcx hcy hclosed hcompat)
             α cx cy φ hcx hcy hclosed hcompat).ordinaryEqualsCanonicalColimitMap)
     (hquotientIdentifications :
@@ -1839,23 +1839,23 @@ theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_
             S cs) :
     exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
   _root_.LeanLCAExactChallenge.AddCommGrpQuotientIdentificationExactAcyclicBoundaryV370SupportW467.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_quotientIdentifications_w467
-    (wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w478
+    (wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w479
       hfields hordinaryMap heq)
     hquotientIdentifications
 
-def checkedDeclarationsW478 : List String :=
+def checkedDeclarationsW479 : List String :=
   ["supportSeed",
-    "W426OrdinaryDescendedMapPackageW478",
-    "W426OrdinaryMapPromotionToW318FieldsW478",
-    "wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w478",
-    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_quotientIdentifications_w478"]
+    "W426OrdinaryDescendedMapPackageW479",
+    "W426OrdinaryMapPromotionToW318FieldsW479",
+    "wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w479",
+    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_quotientIdentifications_w479"]
 
-def remainingInputsW478 : List String :=
+def remainingInputsW479 : List String :=
   ["For each compatible WPP-op colimit map, provide the W426 ordinary descended map package.",
     "For each compatible WPP-op colimit map, provide the ordinary map and ordinary/canonical colimit-map equality witness.",
     "For each ShortComplex WPP-op colimit call site, provide W463 selected component quotient-identification data."]
 
-structure AddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW478 :
+structure AddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW479 :
     Type where
   seed : String
   checkedDeclarations : List String
@@ -1864,31 +1864,31 @@ structure AddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportS
   exactAcyclicWrapperResult : String
   productSuccessClaimed : Bool
 
-def currentAddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW478 :
-    AddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW478 where
+def currentAddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW479 :
+    AddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW479 where
   seed := supportSeed
-  checkedDeclarations := checkedDeclarationsW478
-  remainingInputs := remainingInputsW478
+  checkedDeclarations := checkedDeclarationsW479
+  remainingInputs := remainingInputsW479
   leftClosedResult := "proved from W426 ordinary-map promotion inputs"
   exactAcyclicWrapperResult := "proved by composing W426 promotion with W467 quotient-identification wrapper"
   productSuccessClaimed := false
 
-theorem currentAddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW478_productSuccess :
-    currentAddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW478.productSuccessClaimed =
+theorem currentAddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW479_productSuccess :
+    currentAddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW479.productSuccessClaimed =
       false :=
   rfl
 
 section Checks
 
 #check supportSeed
-#check W426OrdinaryDescendedMapPackageW478
-#check W426OrdinaryMapPromotionToW318FieldsW478
-#check wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w478
-#check exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_quotientIdentifications_w478
-#check currentAddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW478_productSuccess
+#check W426OrdinaryDescendedMapPackageW479
+#check W426OrdinaryMapPromotionToW318FieldsW479
+#check wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w479
+#check exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_quotientIdentifications_w479
+#check currentAddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportStateW479_productSuccess
 
 end Checks
 
-end AddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportW478
+end AddCommGrpW426LeftClosedQuotientIdentificationExactAcyclicV370SupportW479
 
 end LeanLCAExactChallenge
