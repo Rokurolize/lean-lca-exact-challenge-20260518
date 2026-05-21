@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W480のsplit-provider adapterをroot import済みsourceへ統合し、ProductSuccessDeclarationsでも公開APIを確認した。W461-to-W475 promotion inputsとordinary-map providerからW478 providerを再構成し、W475 projection fieldsと合成する経路は検証済み。ただし実際のfinal call siteでそれらのprovider実体はまだ未構成なのでproduct_successは主張しない。",
+  "summary": "W481のcomponentwise closed-range projection wrapperをroot import済みsourceへ統合し、ProductSuccessDeclarationsでも公開APIを確認した。W481はcomponentwise closed-range evidenceとW475 projection IsColimit fieldsをまとめ、W480のW461 bridgeと合成する経路を与える。ただし実際のfinal call siteでW461ToW475PromotionInputsProviderW480、W461ToW475OrdinaryMapProviderW480、componentwise projection-field inputsはまだ未構成なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -2583,7 +2583,7 @@
     "AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w475",
     "AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_projectionFields_w475"
   ],
-  "generated_utc": "2026-05-21T03:08:26Z",
+  "generated_utc": "2026-05-21T03:13:15Z",
   "support_result_classification": "W475 parent-consumed support is a verified nonterminal frontier reducer, not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -3489,7 +3489,7 @@
   "remaining_work": [
     "instantiate W461ToW475PromotionInputsProviderW480",
     "instantiate W461ToW475OrdinaryMapProviderW480",
-    "instantiate ProjectionFieldsProviderW475",
+    "instantiate componentwise projection-field inputs",
     "claim product_success only after final product theorem and terminal audit pass"
   ]
 }

@@ -1626,6 +1626,12 @@
 <p>This remains nonterminal. The final call sites still need actual <code>W461ToW475PromotionInputsProviderW480</code>, <code>W461ToW475OrdinaryMapProviderW480</code>, and <code>ProjectionFieldsProviderW475</code> instances.</p>
 </section>
 
+<section id="w481-w461-bridge-componentwise-closed-range-projection">
+<h2>W481 W461 bridge componentwise closed range projection</h2>
+<p><time>2026-05-21T03:55:00Z</time>: The parent promoted the W481 componentwise closed-range projection wrapper into <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> and exposed it through <code>audit/ProductSuccessDeclarations.lean</code>. W481 packages componentwise closed-range evidence together with the projection <code>IsColimit</code> fields consumed by W475, then composes W480's W461 bridge with those projection fields.</p>
+<p>This remains nonterminal. The wrapper does not prove the closed-range-to-projection bridge; final call sites still need actual <code>W461ToW475PromotionInputsProviderW480</code>, <code>W461ToW475OrdinaryMapProviderW480</code>, and componentwise projection fields.</p>
+</section>
+
 <section id="audit-marker-and-manifest-refresh-20260521">
 <h2>Audit marker and manifest refresh</h2>
 <p><time>2026-05-21T02:43:22Z</time>: The parent removed comment-only product-marker words from <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> and <code>audit/ProductSuccessDeclarations.lean</code>, refreshed <code>manifest.json</code> with packet and transient Codex progress paths excluded, and updated <code>run/verification.json</code>'s <code>source_tree_hash</code>. After this, <code>python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json</code> no longer fails on placeholder markers, manifest hashes, or stale source hash; it reaches the expected nonterminal product gate because <code>terminal_outcome.outcome</code> is still <code>blocked_nonterminal_frontier</code>.</p>

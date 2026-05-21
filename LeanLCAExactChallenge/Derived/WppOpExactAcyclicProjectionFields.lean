@@ -1604,4 +1604,133 @@ end Checks
 
 end WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
 
+namespace WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475
+open WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed recorded for the worker result contract. -/
+def supportSeedW481 : String :=
+  "fa8174f2e9"
+
+/-- First component of the selected difference map. -/
+abbrev selectedMetrizableDifferenceπ₁W481
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    (S.obj ordinarySourceIndex).X₁ ⟶ (S.obj ordinaryTargetIndex).X₁ :=
+  (selectedMetrizableLeft S - selectedMetrizableRight S).τ₁
+
+/-- Second component of the selected difference map. -/
+abbrev selectedMetrizableDifferenceπ₂W481
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    (S.obj ordinarySourceIndex).X₂ ⟶ (S.obj ordinaryTargetIndex).X₂ :=
+  (selectedMetrizableLeft S - selectedMetrizableRight S).τ₂
+
+/-- Third component of the selected difference map. -/
+abbrev selectedMetrizableDifferenceπ₃W481
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    (S.obj ordinarySourceIndex).X₃ ⟶ (S.obj ordinaryTargetIndex).X₃ :=
+  (selectedMetrizableLeft S - selectedMetrizableRight S).τ₃
+
+/--
+Componentwise closed-range surface plus the projection colimit fields consumed
+by W475. The closed-range fields record the stronger intended input surface;
+the projection fields remain explicit because the closed-range-to-projection
+bridge is not part of this wrapper.
+-/
+structure SelectedComponentwiseClosedRangeProjectionInputsW481
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) : Type 1 where
+  hclosedπ₁ : IsClosed (Set.range (selectedMetrizableDifferenceπ₁W481 S :
+    (S.obj ordinarySourceIndex).X₁ → (S.obj ordinaryTargetIndex).X₁))
+  hclosedπ₂ : IsClosed (Set.range (selectedMetrizableDifferenceπ₂W481 S :
+    (S.obj ordinarySourceIndex).X₂ → (S.obj ordinaryTargetIndex).X₂))
+  hclosedπ₃ : IsClosed (Set.range (selectedMetrizableDifferenceπ₃W481 S :
+    (S.obj ordinarySourceIndex).X₃ → (S.obj ordinaryTargetIndex).X₃))
+  hπ₁ :
+    IsColimit
+      ((ShortComplex.π₁ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor))
+  hπ₂ :
+    IsColimit
+      ((ShortComplex.π₂ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor))
+  hπ₃ :
+    IsColimit
+      ((ShortComplex.π₃ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor))
+
+/-- Provider for componentwise closed-range projection inputs. -/
+abbrev ComponentwiseClosedRangeProjectionProviderW481 : Type 1 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs → SelectedComponentwiseClosedRangeProjectionInputsW481 S cs
+
+/-- Forget the closed-range fields and keep exactly the projection fields W475 consumes. -/
+def projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w481
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    ProjectionFieldsProviderW475 :=
+  fun S cs hcs =>
+    let H := hcomponentwise S cs hcs
+    (H.hπ₁, H.hπ₂, H.hπ₃)
+
+/--
+W481 composition theorem: W461 promotion inputs supply W480's W475 bridge, and
+the componentwise closed-range projection provider supplies W475's projection
+fields.
+-/
+theorem exactAcyclic_of_w461_to_w441_and_componentwiseClosedRangeProjection_w481
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480)
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_w461_bridge_to_w475_projection_w480
+    hinputs hordinaryMap
+    (projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w481
+      hcomponentwise)
+
+/-- W481 checked support state. -/
+structure W461BridgeComponentwiseClosedRangeProjectionV370SupportStateW481 : Type where
+  seed : String
+  declarations : List String
+  componentwiseProjectionProviderResult : String
+  composedExactAcyclicResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked support state for W481. -/
+def currentW461BridgeComponentwiseClosedRangeProjectionV370SupportStateW481 :
+    W461BridgeComponentwiseClosedRangeProjectionV370SupportStateW481 where
+  seed := supportSeedW481
+  declarations :=
+    ["SelectedComponentwiseClosedRangeProjectionInputsW481",
+      "ComponentwiseClosedRangeProjectionProviderW481",
+      "projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w481",
+      "exactAcyclic_of_w461_to_w441_and_componentwiseClosedRangeProjection_w481"]
+  componentwiseProjectionProviderResult := "proved"
+  composedExactAcyclicResult := "proved"
+  remainingInputs := []
+  productSuccessClaimed := false
+
+theorem currentW461BridgeComponentwiseClosedRangeProjectionV370SupportStateW481_productSuccess :
+    currentW461BridgeComponentwiseClosedRangeProjectionV370SupportStateW481.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW481
+#check selectedMetrizableDifferenceπ₁W481
+#check selectedMetrizableDifferenceπ₂W481
+#check selectedMetrizableDifferenceπ₃W481
+#check SelectedComponentwiseClosedRangeProjectionInputsW481
+#check ComponentwiseClosedRangeProjectionProviderW481
+#check projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w481
+#check exactAcyclic_of_w461_to_w441_and_componentwiseClosedRangeProjection_w481
+#check currentW461BridgeComponentwiseClosedRangeProjectionV370SupportStateW481_productSuccess
+
+end Checks
+
+end WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+
 end LeanLCAExactChallenge
