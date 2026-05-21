@@ -7179,4 +7179,174 @@ end Checks
 
 end WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
 
+namespace MetrizableLCA
+
+/-- Quotienting by the top subgroup produces a subsingleton quotient object. -/
+theorem quotientObj_subsingleton_of_subgroup_eq_topW516
+    (X : MetrizableLCA.{0}) (N : AddSubgroup X) (hN : IsClosed (N : Set X))
+    (htop : N = ⊤) :
+    Subsingleton (quotientObj X N hN) := by
+  refine ⟨?_⟩
+  intro x y
+  rcases quotientMap_surjective X N hN x with ⟨a, rfl⟩
+  rcases quotientMap_surjective X N hN y with ⟨b, rfl⟩
+  change ((a : X) : X ⧸ N) = ((b : X) : X ⧸ N)
+  rw [QuotientAddGroup.eq_iff_sub_mem]
+  rw [htop]
+  trivial
+
+/--
+If the target relation is all of the target component, every representative
+image in the target quotient is closed. This gives W515 a top-target-relation
+route that does not require the stronger W512 target-lift/surjectivity field.
+-/
+theorem quotientRepresentativeImageClosed_of_targetRelationTopW516
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B') (htop : cokernelSubgroup (f' - g') = ⊤) :
+    quotientRepresentativeImageClosedConditionW512 f g f' g' iB := by
+  intro C _hC
+  let targetImage : Set
+      (quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _)) :=
+    ((quotientMap B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _) :
+        B' → quotientObj B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _)) ''
+      (((iB : B → B') ''
+        ((quotientMap B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) :
+          B → quotientObj B (cokernelSubgroup (f - g))
+            (AddSubgroup.isClosed_topologicalClosure _)) ⁻¹' C))))
+  have hsub :
+      Subsingleton
+        (quotientObj B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _)) :=
+    quotientObj_subsingleton_of_subgroup_eq_topW516 B'
+      (cokernelSubgroup (f' - g')) (AddSubgroup.isClosed_topologicalClosure _)
+      htop
+  classical
+  simp
+
+end MetrizableLCA
+
+namespace WppOpTopTargetRelationRepresentativeImageV370SupportW516
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpQuotientIdentificationProjectionProviderV370SupportW485
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W516 top-target relation route. -/
+def supportSeedW516 : String :=
+  "w516-top-target-relation-representative-image-route"
+
+/-- W516 inputs: relation pullback plus a top target relation. -/
+structure ClosedNatTransOrdinaryTopTargetRelationInputsW516
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) : Type 1 where
+  relation_pullback : ClosedNatTransOrdinaryRelationPullbackConditionW511 α
+  target_relation_top :
+    MetrizableLCA.cokernelSubgroup (wppOpLeftW441 Y - wppOpRightW441 Y) = ⊤
+
+/-- Provider surface for W516 top-target relation inputs. -/
+abbrev ClosedNatTransOrdinaryTopTargetRelationProviderW516 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      ClosedNatTransOrdinaryTopTargetRelationInputsW516 α
+
+/-- W516 top-target inputs supply W515 representative-image inputs. -/
+def representativeImageInputs_of_topTargetRelation_w516
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    (H : ClosedNatTransOrdinaryTopTargetRelationInputsW516 α) :
+    ClosedNatTransOrdinaryRepresentativeImageInputsW515 α where
+  relation_pullback := H.relation_pullback
+  representative_image_closed :=
+    MetrizableLCA.quotientRepresentativeImageClosed_of_targetRelationTopW516
+      ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one)
+      H.target_relation_top
+
+/-- W516 top-target provider supplies W515's representative-image provider. -/
+def representativeImageProvider_of_topTargetRelation_w516
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    ClosedNatTransOrdinaryRepresentativeImageProviderW515 :=
+  fun X Y α hclosed =>
+    representativeImageInputs_of_topTargetRelation_w516 (hinputs X Y α hclosed)
+
+/-- W516 endpoint with selected closed-range quotient-identification data. -/
+def exactAcyclic_of_topTargetRelation_and_closedRangeQuotientIdentification_w516
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hclosed : ClosedRangeQuotientIdentificationProjectionProviderW487) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_closedRangeQuotientIdentification_w515
+    (representativeImageProvider_of_topTargetRelation_w516 hinputs) hclosed
+
+/-- W516 endpoint with selected componentwise closed-range projection data. -/
+def exactAcyclic_of_topTargetRelation_and_componentwiseProjection_w516
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_componentwiseProjection_w515
+    (representativeImageProvider_of_topTargetRelation_w516 hinputs) hcomponentwise
+
+/-- W516 checked nonterminal state. -/
+structure TopTargetRelationRepresentativeImageV370SupportStateW516 : Type where
+  seed : String
+  declarations : List String
+  topTargetRouteResult : String
+  selectedPreservationRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W516 state. -/
+def currentTopTargetRelationRepresentativeImageV370SupportStateW516 :
+    TopTargetRelationRepresentativeImageV370SupportStateW516 where
+  seed := supportSeedW516
+  declarations :=
+    ["MetrizableLCA.quotientObj_subsingleton_of_subgroup_eq_topW516",
+      "MetrizableLCA.quotientRepresentativeImageClosed_of_targetRelationTopW516",
+      "ClosedNatTransOrdinaryTopTargetRelationInputsW516",
+      "ClosedNatTransOrdinaryTopTargetRelationProviderW516",
+      "representativeImageInputs_of_topTargetRelation_w516",
+      "representativeImageProvider_of_topTargetRelation_w516",
+      "exactAcyclic_of_topTargetRelation_and_closedRangeQuotientIdentification_w516",
+      "exactAcyclic_of_topTargetRelation_and_componentwiseProjection_w516"]
+  topTargetRouteResult := "proved"
+  selectedPreservationRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryTopTargetRelationProviderW516",
+      "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487",
+      "or construct concrete ComponentwiseClosedRangeProjectionProviderW481"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentTopTargetRelationRepresentativeImageStateW516 :
+    TopTargetRelationRepresentativeImageV370SupportStateW516 :=
+  currentTopTargetRelationRepresentativeImageV370SupportStateW516
+
+theorem currentTopTargetRelationRepresentativeImageStateW516_productSuccess :
+    currentTopTargetRelationRepresentativeImageStateW516.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW516
+#check MetrizableLCA.quotientObj_subsingleton_of_subgroup_eq_topW516
+#check MetrizableLCA.quotientRepresentativeImageClosed_of_targetRelationTopW516
+#check ClosedNatTransOrdinaryTopTargetRelationInputsW516
+#check ClosedNatTransOrdinaryTopTargetRelationProviderW516
+#check representativeImageInputs_of_topTargetRelation_w516
+#check representativeImageProvider_of_topTargetRelation_w516
+#check exactAcyclic_of_topTargetRelation_and_closedRangeQuotientIdentification_w516
+#check exactAcyclic_of_topTargetRelation_and_componentwiseProjection_w516
+#check currentTopTargetRelationRepresentativeImageStateW516_productSuccess
+
+end Checks
+
+end WppOpTopTargetRelationRepresentativeImageV370SupportW516
+
 end LeanLCAExactChallenge
