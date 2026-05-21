@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W545では、W542で分解したWPP limit right-surjectivity fieldを、WPP limit pointsのinduced LCA mapがsurjectiveであるという純粋なLCA入力へ分解した。W543のleft-field LCA入力とW544のright-open LCA入力と合わせて、四つのWPP limit field入力のうちleft closed-embedding、right open-map、right-surjectivityはpure LCA limit-map certificatesから供給できる。ただしmapping-cone WPP limit comparison、そのpure LCA certificates自体、algebraic exactness field、concrete W515/W516/W517 relation data、concrete W527 row provider、concrete normalized strict representative data、target/model uniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
+  "summary": "W546では、W542で分解したWPP limit algebraic exactness fieldを、WPP short-complex limitに対するcomponent-level algebraic exactness certificateへ分解した。W543-W545の三つのLCA limit-map入力と合わせて、四つのWPP limit field入力すべてを小さなLCA/component limit certificatesから供給できる形になった。ただしmapping-cone WPP limit comparison、それらのconcrete certificates自体、concrete W515/W516/W517 relation data、concrete W527 row provider、concrete normalized strict representative data、target/model uniq、triangulated data、bounded left calculus instanceはまだ未構成なのでproduct_successではない。",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
     "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
@@ -1863,7 +1863,7 @@
   "known_gaps": [
     "WalkingParallelPairのmapping cone bounded-inclusion limit comparisonがまだ具体化されていない。",
     "WPP limit left closed-embedding、right open-map、right-surjectivityを供給するpure LCA induced-limit-map certificatesがまだ具体化されていない。",
-    "WPP limit algebraic exactness fieldがまだ具体化されていない。",
+    "WPP limit algebraic exactnessを供給するcomponent-level algebraic exactness certificateがまだ具体化されていない。",
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
     "W527のComponentwiseClosedMapRowsProviderまたはComponentwiseClosedEmbeddingRowsProviderがまだ具体化されていない。",
     "WalkingParallelPair diagram targetとlocalization modelに対するcoherent/normalized strict representative dataおよびtarget/modelのuniqがまだ未構成である。",
@@ -1872,21 +1872,29 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "4e905f194b0cb1921d609a1905b18b0b9cde9760",
+  "git_commit": "bc5324e73efa7a415a4381c31e823e2eedc94c2b",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W529 was integrated by the parent in the target tree; no worker was launched. It converts concrete ordinary Dbounded MetrizableLCA semantic fields into the W528 four-projection certificate, but it does not construct those fields.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
     "WalkingParallelPairのmapping cone bounded-inclusion limit comparisonがまだ具体化されていない。",
     "WPP limit left closed-embedding、right open-map、right-surjectivityを供給するpure LCA induced-limit-map certificatesがまだ具体化されていない。",
-    "WPP limit algebraic exactness fieldがまだ具体化されていない。",
+    "WPP limit algebraic exactnessを供給するcomponent-level algebraic exactness certificateがまだ具体化されていない。",
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
     "W527のComponentwiseClosedMapRowsProviderまたはComponentwiseClosedEmbeddingRowsProviderがまだ具体化されていない。",
     "WalkingParallelPair diagram targetとlocalization modelに対するcoherent/normalized strict representative dataおよびtarget/modelのuniqがまだ未構成である。",
     "pretriangulated/triangulated dataと最終的なbounded left-calculus instanceがまだ未構成である。"
   ],
-  "next_recommended_goal": "Continue with mapping-cone WPP limit comparison, prove the pure LCA limit-map certificates, or reduce algebraic exactness to concrete AddCommGrp/LCA data.",
+  "next_recommended_goal": "Continue with mapping-cone WPP limit comparison or prove the concrete LCA/component certificates behind the four reduced WPP limit fields.",
   "implemented_declarations": [
+    "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitShortComplex_algebraicExact",
+    "DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure_of_lca_limitShortComplex",
+    "Dbounded.MetrizableWppLimitAlgebraicExactLcaInput",
+    "Dbounded.metrizableWppLimitAlgebraicExactInput_of_lca",
+    "Dbounded.MetrizableWalkingParallelPairLimitClosureFieldInputsFromAllLca",
+    "Dbounded.metrizableWalkingParallelPairLimitClosureFieldInputs_of_allLca",
+    "Dbounded.metrizableWalkingParallelPairLimitClosure_of_allLca",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_comparison_and_allLca",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_preserves_surjective",
     "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitClosure_of_lca_limitMap",
     "Dbounded.MetrizableWppLimitRightSurjectiveLcaInput",
@@ -3432,9 +3440,17 @@
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_compactTargetRelation_closedEmbeddingRows_w527",
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.currentW527State_productSuccess"
   ],
-  "generated_utc": "2026-05-21T18:34:10Z",
+  "generated_utc": "2026-05-21T18:42:20Z",
   "support_result_classification": "verified_nonterminal_increment",
   "implemented_declarations_checked": [
+    "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitShortComplex_algebraicExact",
+    "DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure_of_lca_limitShortComplex",
+    "Dbounded.MetrizableWppLimitAlgebraicExactLcaInput",
+    "Dbounded.metrizableWppLimitAlgebraicExactInput_of_lca",
+    "Dbounded.MetrizableWalkingParallelPairLimitClosureFieldInputsFromAllLca",
+    "Dbounded.metrizableWalkingParallelPairLimitClosureFieldInputs_of_allLca",
+    "Dbounded.metrizableWalkingParallelPairLimitClosure_of_allLca",
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_comparison_and_allLca",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_preserves_surjective",
     "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitClosure_of_lca_limitMap",
     "Dbounded.MetrizableWppLimitRightSurjectiveLcaInput",
@@ -4985,12 +5001,12 @@
   "remaining_work": [
     "Prove or package the mapping-cone WPP limit comparison for bounded inclusion. が未完了である。",
     "Prove the pure LCA certificates for WPP limit left closed embeddings, right open maps, and right surjectivity. が未完了である。",
-    "Prove WPP limit algebraic exactness. が未完了である。",
+    "Prove the component-level algebraic exactness certificate for WPP short-complex limits. が未完了である。",
     "Instantiate concrete W515/W516/W517 relation-data providers and W527 row providers. が未完了である。",
     "Construct normalized strict representative data and target/model uniqueness for the WPP localization route. が未完了である。",
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance. が未完了である。"
   ],
-  "latest_verified_increment": "W545 WPP limit right-surjectivity LCA reducer",
-  "source_tree_hash": "d01ab71486af37d1103f96e412db3df8f5a39818d04e6a0d713b7c16764641c5",
-  "summary_log_tail": "W545 passed focused Lean, module build, ProductSuccessDeclarations, root import, RequiredDeclarations, root build, full build, forbidden-token scans, and metadata checks. The external product gate remains expected to fail because terminal_outcome is nonterminal."
+  "latest_verified_increment": "W546 WPP limit algebraic-exactness component reducer",
+  "source_tree_hash": "b902a3096d3b5536449d4a49fdefda0e724190fa3134167a78d4685c074fbe3a",
+  "summary_log_tail": "W546 passed focused Lean, module build, ProductSuccessDeclarations, root import, RequiredDeclarations, root build, full build, forbidden-token scans, and metadata checks. The external product gate remains expected to fail because terminal_outcome is nonterminal."
 }
