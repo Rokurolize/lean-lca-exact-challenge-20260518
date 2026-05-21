@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W435で、W433のmappedExplicitCokernelCocone fが、Set.range (f : X → Y)の閉性の下でAddCommGrpCatのcolimitになることを証明した。これは閉像付きobjectwise cokernel比較をWPP/coequalizer保存frontierへ接続する成果である。ただし任意のMetrizableLCA射が閉像とは限らないため、実際のWPP-op差分射または証明書付き状況で閉像入力を供給する必要がある。product successはまだ主張しない。",
+  "summary": "W437で、忘却された明示的LCA cokernel coforkはclosure-kernel入力の下でAddCommGrpCatのcolimitになること、またそのmapped colimitがW433のWalkingParallelPair保存へ渡ることを検証した。一方、cofork方程式だけでは代数的rangeのkernel包含しか得られず、MetrizableLCA.cokernelSubgroupはその閉包なので、閉像または証明書入力なしの任意忘却cokernel保存はproduct routeとして使えない。product successはまだ主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -606,7 +606,9 @@
     "lake env lean audit/blockers/addcommgrp_forgetful_preserves_walking_parallel_pair_v370_support_w433.lean",
     "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_selected_cokernel_colimit_from_coequalizer_preservation_v370_support_w432.lean audit/blockers/addcommgrp_forgetful_preserves_walking_parallel_pair_v370_support_w433.lean",
     "lake env lean audit/blockers/addcommgrp_mapped_explicit_cokernel_closed_range_v370_support_parent.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_mapped_explicit_cokernel_closed_range_v370_support_parent.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_mapped_explicit_cokernel_closed_range_v370_support_parent.lean",
+    "lake env lean audit/blockers/addcommgrp_mapped_explicit_cokernel_cocone_iscolimit_v370_support_w437.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_mapped_explicit_cokernel_cocone_iscolimit_v370_support_w437.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1625,8 +1627,8 @@
     "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess"
   ],
   "known_gaps": [
-    "実際のWPP-op差分射または証明書付き状況で、必要な閉像条件を選択的に供給する必要がある。",
-    "W435の閉像付きobjectwise colimit結果を、選択されたshort-complex target rowへtransportする必要がある。",
+    "実際のWPP-op差分射または証明書付き状況で、closure-kernel入力を閉像または同等の証明書から供給する必要がある。",
+    "W435/W437のobjectwise colimit結果を、選択されたshort-complex target rowへtransportする必要がある。",
     "W426のstandalone証明書パッケージをimport可能なAPIへ昇格し、W399のordinary descended quotient mapをW318のcanonical WPP-op colimit-point mapと同定する必要がある。",
     "W426証明書境界をW318 exact-acyclic frontierへ接続したうえで、AddCommGrpまたはSnakeInputの代数的frontierを供給する必要がある。",
     "W399のdescended fieldsをW393/W390/W384のtransported fieldルートへ接続する必要がある。",
