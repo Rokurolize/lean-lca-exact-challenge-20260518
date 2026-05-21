@@ -1620,6 +1620,12 @@
 <p>This changes the next frontier: “promote W478” is no longer open. The remaining product-relevant inputs are the concrete <code>W461PromotionInputProviderW478</code> and <code>ProjectionFieldsProviderW475</code> at the final WPP-op exact-acyclic call sites. Product success is still false.</p>
 </section>
 
+<section id="w480-w461-bridge-to-w475-projection-exact-acyclic">
+<h2>W480 W461 bridge to W475 projection exact acyclic</h2>
+<p><time>2026-05-21T03:45:00Z</time>: The parent integrated the W480 split-provider adapter in <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> and exposed it through <code>audit/ProductSuccessDeclarations.lean</code>. W480 separates the W461-to-W475 input provider from the ordinary-map provider, then reconstructs the W478 provider and composes it with W475 projection fields through <code>exactAcyclic_of_w461_bridge_to_w475_projection_w480</code>.</p>
+<p>This remains nonterminal. The final call sites still need actual <code>W461ToW475PromotionInputsProviderW480</code>, <code>W461ToW475OrdinaryMapProviderW480</code>, and <code>ProjectionFieldsProviderW475</code> instances.</p>
+</section>
+
 <section id="audit-marker-and-manifest-refresh-20260521">
 <h2>Audit marker and manifest refresh</h2>
 <p><time>2026-05-21T02:43:22Z</time>: The parent removed comment-only product-marker words from <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> and <code>audit/ProductSuccessDeclarations.lean</code>, refreshed <code>manifest.json</code> with packet and transient Codex progress paths excluded, and updated <code>run/verification.json</code>'s <code>source_tree_hash</code>. After this, <code>python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json</code> no longer fails on placeholder markers, manifest hashes, or stale source hash; it reaches the expected nonterminal product gate because <code>terminal_outcome.outcome</code> is still <code>blocked_nonterminal_frontier</code>.</p>

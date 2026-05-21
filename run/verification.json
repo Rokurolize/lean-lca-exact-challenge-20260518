@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w478-importable-provider-w479-quotient-identification",
-  "generated_utc": "2026-05-21T03:36:00Z",
-  "source_tree_hash": "99f3e99ff28ad3ac0528787a2e963d3bf5232aa031681a8534ef5aa5008b1c25",
-  "summary": "W478 importable provider bridge compiles after explicit ordinaryMap W426 package input; W479 support remains nonterminal; product_complete remains false pending concrete final call-site inputs.",
+  "schema": "lean-lca-exact-challenge-verification-w480-projection-bridge",
+  "generated_utc": "2026-05-21T03:08:26Z",
+  "source_tree_hash": "a2d4fe0bc673b0ffb958c093911711617fe1fd03f578d7547ddf3f8ff1726cbe",
+  "summary": "W480 split-provider adapter is importable and verified; product_complete remains false pending concrete provider instances.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -253,14 +253,14 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations still compiles after mapShortComplex instance update.",
-      "log_path": "/tmp/lean_lca_product_success_w478_importable_provider_recheck2_20260521T025824Z.log"
+      "evidence": "ProductSuccessDeclarations passed with W480 checks; log /tmp/lean_lca_product_success_w480_projection_bridge_20260521T030826Z.log",
+      "log_path": "/tmp/lean_lca_product_success_w480_projection_bridge_20260521T030826Z.log"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "First-barrier baseline build passed after the previous checkpoint; warnings only.",
-      "log_path": "/tmp/lean_lca_lake_build_w478_importable_provider_20260521T025824Z.log"
+      "evidence": "full lake build passed; log /tmp/lean_lca_lake_build_w480_projection_bridge_20260521T030826Z.log",
+      "log_path": "/tmp/lean_lca_lake_build_w480_projection_bridge_20260521T030826Z.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -2500,7 +2500,7 @@
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after W460 support intake."
+      "evidence": "git diff whitespace check passed"
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_w426_quotient_compat_target_leg_reduction_v370_support_w461.lean",
@@ -2700,8 +2700,13 @@
     {
       "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
       "status": "passed",
-      "log_path": "/tmp/lean_lca_w478_importable_provider_module_build_recheck_20260521T025824Z.log",
-      "evidence": "module build passed; log /tmp/lean_lca_w478_importable_provider_module_build_recheck_20260521T025824Z.log"
+      "log_path": "/tmp/lean_lca_w480_projection_bridge_module_build_20260521T030826Z.log",
+      "evidence": "module build passed; log /tmp/lean_lca_w480_projection_bridge_module_build_20260521T030826Z.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "forbidden-token scan passed for W480 source and product checks"
     }
   ],
   "implemented_declarations_checked": [
@@ -3768,10 +3773,10 @@
   "support_result_classification": "W475 is a checked W426-promotion plus W464-projection-fields reducer; it does not construct the actual final call-site inputs.",
   "product_success": false,
   "remaining_work": [
-    "instantiate concrete W461 target-leg point-identification inputs at final call sites",
-    "provide matching W426 ordinary descended packages and equality witnesses",
-    "provide projection/component-colimit inputs for each final WPP-op colimit call site",
-    "update terminal_outcome only after a final product-success theorem is constructed and audited"
+    "instantiate W461ToW475PromotionInputsProviderW480",
+    "instantiate W461ToW475OrdinaryMapProviderW480",
+    "instantiate ProjectionFieldsProviderW475",
+    "claim product_success only after final product theorem and terminal audit pass"
   ],
   "summary_log_tail": " W408 checked partial support consumed; ordinary descended IsClosedMap is reduced to representative-image closedness, not product success."
 }

@@ -1039,6 +1039,17 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - product_complete: false
 
 
+## W480 W461 Bridge To W475 Projection Exact Acyclic
+
+- timestamp: `2026-05-21T03:45:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W480 exposes the split-provider adapter `WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480`. It reconstructs the W478 provider from `W461ToW475PromotionInputsProviderW480` plus `W461ToW475OrdinaryMapProviderW480`, then composes with W475 projection fields through `exactAcyclic_of_w461_bridge_to_w475_projection_w480`.
+- remaining blockers: instantiate actual `W461ToW475PromotionInputsProviderW480`, `W461ToW475OrdinaryMapProviderW480`, and `ProjectionFieldsProviderW475` at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
 ## W479 W426 Left Closed Quotient Identification Exact Acyclic
 
 - timestamp: `2026-05-21T02:52:26Z`

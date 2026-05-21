@@ -1471,4 +1471,137 @@ end Checks
 
 end WppOpW461ToW441PromotionProviderV370SupportW478
 
+namespace WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+
+open AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible seed for the W480 importable adapter. -/
+def supportSeedW480 : String :=
+  "w480-current-head-importable-adapter"
+
+/--
+W461-shaped inputs whose ordinary descended package is already stated for the
+ordinary map currently requested by W475.
+-/
+structure W461ToW475PromotionInputsAtOrdinaryMapW480
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}}
+    (ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y)
+    (α : X ⟶ Y) (cx : Cocone X) (cy : Cocone Y) : Type 1 where
+  inputs : W461ToW441PromotionInputsW478 X Y α cx cy
+  ordinaryPackage : W426OrdinaryDescendedMapPackage ordinaryMap
+  ordinaryDescended_eq :
+    ordinaryPackage.ordinaryDescended =
+      W461TargetLegPointIdentificationInputsW478.ordinaryDescended
+        inputs.pointIdentificationInputs
+
+/-- Promotion-field provider surface matching each W475 ordinary-map argument. -/
+abbrev W461ToW475PromotionInputsProviderW480 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0})
+    (ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y)
+    (α : X ⟶ Y) (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+      IsColimit cx →
+        IsColimit cy →
+          (∀ j : WalkingParallelPairᵒᵖ,
+            IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+            W318ColimitMapLegCompatibilityW441 X Y α cx cy φ →
+              W461ToW475PromotionInputsAtOrdinaryMapW480 ordinaryMap α cx cy
+
+/-- Ordinary-map provider surface used to choose W475's ordinary map. -/
+abbrev W461ToW475OrdinaryMapProviderW480 : Type 1 :=
+  W426OrdinaryMapProviderW475
+
+/-- W480 split providers assemble the W478 provider contract. -/
+def w461PromotionInputProvider_of_w480
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480) :
+    W461PromotionInputProviderW478 where
+  ordinaryMapProvider := hordinaryMap
+  inputs := fun X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat =>
+    (hinputs X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat).inputs
+  ordinaryPackage := fun X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat =>
+    (hinputs X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat).ordinaryPackage
+  ordinaryDescended_eq := fun X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat =>
+    (hinputs X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat).ordinaryDescended_eq
+
+/-- W480 split providers supply W475 promotion fields through the importable W478 adapter. -/
+def w426PromotionFieldsProvider_of_w480
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480) :
+    W426PromotionFieldsProviderW475 :=
+  w426PromotionFieldsProvider_of_w461Inputs_w478
+    (w461PromotionInputProvider_of_w480 hinputs hordinaryMap)
+
+/-- W480 split providers supply W475 ordinary maps. -/
+def w426OrdinaryMapProvider_of_w480
+    (_hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480) :
+    W426OrdinaryMapProviderW475 :=
+  hordinaryMap
+
+/-- W480 split providers supply W475's ordinary/canonical equality provider. -/
+theorem w426OrdinaryEqualsCanonicalProvider_of_w480
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480) :
+    W426OrdinaryEqualsCanonicalProviderW475
+      (w426PromotionFieldsProvider_of_w480 hinputs hordinaryMap)
+      (w426OrdinaryMapProvider_of_w480 hinputs hordinaryMap) :=
+  w426OrdinaryEqualsCanonicalProvider_of_w461Inputs_w478
+    (w461PromotionInputProvider_of_w480 hinputs hordinaryMap)
+
+/-- W480 composition into W475's projection-field exact-acyclic endpoint. -/
+theorem exactAcyclic_of_w461_bridge_to_w475_projection_w480
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480)
+    (hproj : ProjectionFieldsProviderW475) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_w461PromotionInputs_and_projectionFields_w478
+    (w461PromotionInputProvider_of_w480 hinputs hordinaryMap) hproj
+
+/-- W480 checked support state. -/
+structure W461BridgeToW475ProjectionExactAcyclicV370SupportStateW480 : Type where
+  seed : String
+  declarations : List String
+  exactAcyclicWrapperResult : String
+  productSuccessClaimed : Bool
+
+/-- Current checked support state for W480. -/
+def currentW461BridgeToW475ProjectionExactAcyclicV370SupportStateW480 :
+    W461BridgeToW475ProjectionExactAcyclicV370SupportStateW480 where
+  seed := supportSeedW480
+  declarations :=
+    ["W461ToW475PromotionInputsAtOrdinaryMapW480",
+      "W461ToW475PromotionInputsProviderW480",
+      "W461ToW475OrdinaryMapProviderW480",
+      "w461PromotionInputProvider_of_w480",
+      "w426PromotionFieldsProvider_of_w480",
+      "w426OrdinaryMapProvider_of_w480",
+      "w426OrdinaryEqualsCanonicalProvider_of_w480",
+      "exactAcyclic_of_w461_bridge_to_w475_projection_w480"]
+  exactAcyclicWrapperResult := "proved"
+  productSuccessClaimed := false
+
+theorem currentW461BridgeToW475ProjectionExactAcyclicStateW480_productSuccess :
+    currentW461BridgeToW475ProjectionExactAcyclicV370SupportStateW480.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check W461ToW475PromotionInputsAtOrdinaryMapW480
+#check W461ToW475PromotionInputsProviderW480
+#check W461ToW475OrdinaryMapProviderW480
+#check w461PromotionInputProvider_of_w480
+#check w426PromotionFieldsProvider_of_w480
+#check w426OrdinaryMapProvider_of_w480
+#check w426OrdinaryEqualsCanonicalProvider_of_w480
+#check exactAcyclic_of_w461_bridge_to_w475_projection_w480
+#check currentW461BridgeToW475ProjectionExactAcyclicStateW480_productSuccess
+
+end Checks
+
+end WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+
 end LeanLCAExactChallenge
