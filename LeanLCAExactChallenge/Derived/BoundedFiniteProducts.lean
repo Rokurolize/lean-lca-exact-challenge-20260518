@@ -537,6 +537,178 @@ theorem Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fix
     inputs.targetData.toFields.toStrictUniversalProperty
     inputs.modelData.toFields.toStrictUniversalProperty
 
+/-- Strict source data representing one localized `WalkingParallelPair` diagram. -/
+structure Dbounded.MetrizableWalkingParallelPairStrictPreimageData
+    (Y : WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}) where
+  zeroSrc : BoundedComplexCategory MetrizableLCA.{0}
+  oneSrc : BoundedComplexCategory MetrizableLCA.{0}
+  zeroIso :
+    (Dbounded.localization MetrizableLCA.{0}).obj zeroSrc ≅
+      Y.obj WalkingParallelPair.zero
+  oneIso :
+    (Dbounded.localization MetrizableLCA.{0}).obj oneSrc ≅
+      Y.obj WalkingParallelPair.one
+  leftSrc : zeroSrc ⟶ oneSrc
+  rightSrc : zeroSrc ⟶ oneSrc
+  left_fac :
+    (Dbounded.localization MetrizableLCA.{0}).map leftSrc =
+      zeroIso.hom ≫ Y.map WalkingParallelPairHom.left ≫ oneIso.inv
+  right_fac :
+    (Dbounded.localization MetrizableLCA.{0}).map rightSrc =
+      zeroIso.hom ≫ Y.map WalkingParallelPairHom.right ≫ oneIso.inv
+
+namespace Dbounded.MetrizableWalkingParallelPairStrictPreimageData
+
+/-- The source parallel-pair diagram represented by strict preimage data. -/
+def diagram {Y : WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}}
+    (data : Dbounded.MetrizableWalkingParallelPairStrictPreimageData Y) :
+    WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0} :=
+  parallelPair data.leftSrc data.rightSrc
+
+/-- The objectwise comparison from the localized strict preimage to the target diagram. -/
+noncomputable def comparisonIso {Y : WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}}
+    (data : Dbounded.MetrizableWalkingParallelPairStrictPreimageData Y) :
+    Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor.obj data.diagram ≅ Y :=
+  parallelPairIsoMk data.zeroIso data.oneIso
+    (by
+      dsimp [diagram]
+      rw [data.left_fac]
+      simp [Category.assoc])
+    (by
+      dsimp [diagram]
+      rw [data.right_fac]
+      simp [Category.assoc])
+
+end Dbounded.MetrizableWalkingParallelPairStrictPreimageData
+
+/-- Strict source data representing one natural transformation after localization. -/
+structure Dbounded.MetrizableWalkingParallelPairStrictPreimageMapData
+    {Y Z : WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}}
+    (dataY : Dbounded.MetrizableWalkingParallelPairStrictPreimageData Y)
+    (dataZ : Dbounded.MetrizableWalkingParallelPairStrictPreimageData Z)
+    (τ : Y ⟶ Z) where
+  zeroMap : dataY.zeroSrc ⟶ dataZ.zeroSrc
+  oneMap : dataY.oneSrc ⟶ dataZ.oneSrc
+  zero_fac :
+    (Dbounded.localization MetrizableLCA.{0}).map zeroMap =
+      dataY.zeroIso.hom ≫ τ.app WalkingParallelPair.zero ≫ dataZ.zeroIso.inv
+  one_fac :
+    (Dbounded.localization MetrizableLCA.{0}).map oneMap =
+      dataY.oneIso.hom ≫ τ.app WalkingParallelPair.one ≫ dataZ.oneIso.inv
+  left_naturality : dataY.leftSrc ≫ oneMap = zeroMap ≫ dataZ.leftSrc
+  right_naturality : dataY.rightSrc ≫ oneMap = zeroMap ≫ dataZ.rightSrc
+
+namespace Dbounded.MetrizableWalkingParallelPairStrictPreimageMapData
+
+/-- The source natural transformation represented by strict map data. -/
+def natTrans {Y Z : WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}}
+    {dataY : Dbounded.MetrizableWalkingParallelPairStrictPreimageData Y}
+    {dataZ : Dbounded.MetrizableWalkingParallelPairStrictPreimageData Z}
+    {τ : Y ⟶ Z}
+    (mapData :
+      Dbounded.MetrizableWalkingParallelPairStrictPreimageMapData dataY dataZ τ) :
+    dataY.diagram ⟶ dataZ.diagram :=
+  parallelPairHomMk mapData.zeroMap mapData.oneMap
+    (by
+      dsimp [Dbounded.MetrizableWalkingParallelPairStrictPreimageData.diagram]
+      exact mapData.left_naturality)
+    (by
+      dsimp [Dbounded.MetrizableWalkingParallelPairStrictPreimageData.diagram]
+      exact mapData.right_naturality)
+
+end Dbounded.MetrizableWalkingParallelPairStrictPreimageMapData
+
+/-- Coherent strict representatives for all localized `WalkingParallelPair` diagrams. -/
+structure Dbounded.MetrizableWalkingParallelPairLiftBlueprint where
+  objData : ∀ (Y : WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}),
+    Dbounded.MetrizableWalkingParallelPairStrictPreimageData Y
+  mapData :
+    ∀ {Y Z : WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}} (τ : Y ⟶ Z),
+      Dbounded.MetrizableWalkingParallelPairStrictPreimageMapData
+        (objData Y) (objData Z) τ
+  map_id : ∀ (Y : WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}),
+    (mapData (𝟙 Y)).natTrans = 𝟙 (objData Y).diagram
+  map_comp :
+    ∀ {Y Z T : WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}}
+      (τ : Y ⟶ Z) (σ : Z ⟶ T),
+      (mapData (τ ≫ σ)).natTrans = (mapData τ).natTrans ≫ (mapData σ).natTrans
+
+namespace Dbounded.MetrizableWalkingParallelPairLiftBlueprint
+
+/-- Candidate fixed-target `lift` functor from coherent strict representatives. -/
+@[simps obj map]
+def liftFunctor (blueprint : Dbounded.MetrizableWalkingParallelPairLiftBlueprint)
+    {E : Type*} [Category E]
+    (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E) :
+    (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}) ⥤ E where
+  obj Y := F.obj (blueprint.objData Y).diagram
+  map {Y Z} τ := F.map ((blueprint.mapData τ).natTrans)
+  map_id Y := by
+    rw [blueprint.map_id Y]
+    exact F.map_id _
+  map_comp τ σ := by
+    rw [blueprint.map_comp τ σ]
+    exact F.map_comp _ _
+
+end Dbounded.MetrizableWalkingParallelPairLiftBlueprint
+
+/-- Fixed-target factorization equation left after the strict-representative lift is chosen. -/
+abbrev Dbounded.MetrizableWalkingParallelPairFixedTargetFacObligation
+    (blueprint : Dbounded.MetrizableWalkingParallelPairLiftBlueprint)
+    (E : Type*) [Category E] : Prop :=
+  ∀ (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E)
+    (_hF :
+      MorphismProperty.IsInvertedBy
+        ((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory WalkingParallelPair)
+        F),
+    Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙
+        blueprint.liftFunctor F = F
+
+/-- Fixed-target uniqueness equation for the objectwise localization functor. -/
+abbrev Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+    (E : Type*) [Category E] : Prop :=
+  ∀ (F₁ F₂ : (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}) ⥤ E),
+    Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙ F₁ =
+      Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙ F₂ →
+    F₁ = F₂
+
+structure Dbounded.MetrizableWalkingParallelPairFixedTargetBlueprintInputs : Type 1 where
+  blueprint : Dbounded.MetrizableWalkingParallelPairLiftBlueprint
+  target_fac :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetFacObligation blueprint
+      (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0})
+  target_uniq :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+      (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0})
+  model_fac :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetFacObligation blueprint
+      (((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair).Localization)
+  model_uniq :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+      (((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair).Localization)
+
+/-- Build the two fixed-target packages from one strict-representative lift blueprint. -/
+def Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_blueprint
+    (inputs : Dbounded.MetrizableWalkingParallelPairFixedTargetBlueprintInputs) :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs where
+  targetData :=
+    { lift := fun F _ => inputs.blueprint.liftFunctor F
+      fac := inputs.target_fac
+      uniq := inputs.target_uniq }
+  modelData :=
+    { lift := fun F _ => inputs.blueprint.liftFunctor F
+      fac := inputs.model_fac
+      uniq := inputs.model_uniq }
+
+/-- Build functor-category localization from strict representatives plus `fac` and `uniq`. -/
+theorem Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_blueprint
+    (inputs : Dbounded.MetrizableWalkingParallelPairFixedTargetBlueprintInputs) :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput :=
+  Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+    (Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_blueprint inputs)
+
 /--
 Inputs that transfer equalizers and coequalizers for `Dbounded MetrizableLCA` from the
 bounded-complex source category.
@@ -575,6 +747,31 @@ def Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_fixedTarg
   functorCategoryLocalization :=
     Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
       inputs.fixedTargetInputs
+
+/--
+Finite-shape transfer inputs with functor-category localization supplied by strict
+representatives and the fixed-target `fac`/`uniq` equations.
+-/
+structure Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromBlueprint :
+    Type 1 where
+  limitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair
+  colimitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+      WalkingParallelPair
+  blueprintInputs :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetBlueprintInputs
+
+/-- Build W532 transfer inputs from strict-representative fixed-target data. -/
+def Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_blueprint
+    (inputs : Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromBlueprint) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability := inputs.limitStability
+  colimitStability := inputs.colimitStability
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_blueprint
+      inputs.blueprintInputs
 
 /-- Equalizers in `Dbounded MetrizableLCA` from finite-shape localization transfer. -/
 noncomputable abbrev Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer
@@ -722,6 +919,29 @@ theorem Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames_coun
     Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames.length = 4 :=
   rfl
 
+/-- Fixed-target data when the `lift` field is supplied by strict representatives. -/
+def Dbounded.metrizableWppFunctorCategoryBlueprintInputNames : List String :=
+  ["coherent strict representatives for WalkingParallelPair diagrams and maps",
+    "fac for WalkingParallelPair ⥤ Dbounded MetrizableLCA",
+    "uniq for WalkingParallelPair ⥤ Dbounded MetrizableLCA",
+    "fac for the WalkingParallelPair localization model",
+    "uniq for the WalkingParallelPair localization model"]
+
+theorem Dbounded.metrizableWppFunctorCategoryBlueprintInputNames_count :
+    Dbounded.metrizableWppFunctorCategoryBlueprintInputNames.length = 5 :=
+  rfl
+
+/-- Finite-shape transfer input names when localization comes from strict representatives. -/
+def Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames : List String :=
+  ["IsStableUnderLimitsOfShape WalkingParallelPair",
+    "IsStableUnderColimitsOfShape WalkingParallelPair",
+    "coherent strict representatives for fixed-target lift",
+    "fixed-target fac/uniq equations for the target and localization model"]
+
+theorem Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames_count :
+    Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames.length = 4 :=
+  rfl
+
 section DboundedFiniteShapeTransferChecks
 
 #check CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization
@@ -733,9 +953,23 @@ section DboundedFiniteShapeTransferChecks
 #check Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetData
 #check Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
 #check Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+#check Dbounded.MetrizableWalkingParallelPairStrictPreimageData
+#check Dbounded.MetrizableWalkingParallelPairStrictPreimageData.diagram
+#check Dbounded.MetrizableWalkingParallelPairStrictPreimageData.comparisonIso
+#check Dbounded.MetrizableWalkingParallelPairStrictPreimageMapData
+#check Dbounded.MetrizableWalkingParallelPairStrictPreimageMapData.natTrans
+#check Dbounded.MetrizableWalkingParallelPairLiftBlueprint
+#check Dbounded.MetrizableWalkingParallelPairLiftBlueprint.liftFunctor
+#check Dbounded.MetrizableWalkingParallelPairFixedTargetFacObligation
+#check Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+#check Dbounded.MetrizableWalkingParallelPairFixedTargetBlueprintInputs
+#check Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_blueprint
+#check Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_blueprint
 #check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
 #check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromFixedTargets
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_fixedTargets
+#check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromBlueprint
+#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_blueprint
 #check Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer
 #check Dbounded.metrizableHasCoequalizersOfWalkingParallelPairTransfer
 #check Dbounded.metrizableFiniteLimitColimitRemainderOfWalkingParallelPairTransfer
@@ -745,6 +979,10 @@ section DboundedFiniteShapeTransferChecks
 #check Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames_count
 #check Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames
 #check Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames_count
+#check Dbounded.metrizableWppFunctorCategoryBlueprintInputNames
+#check Dbounded.metrizableWppFunctorCategoryBlueprintInputNames_count
+#check Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames
+#check Dbounded.metrizableWppFiniteShapeTransferFromBlueprintInputNames_count
 
 end DboundedFiniteShapeTransferChecks
 
