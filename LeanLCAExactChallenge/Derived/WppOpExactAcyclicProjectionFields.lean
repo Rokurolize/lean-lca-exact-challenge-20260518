@@ -8491,4 +8491,163 @@ end Checks
 
 end WppOpClosedRangeOnlyProjectionBridgeV370SupportW522
 
+namespace WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523
+
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpSelectedW461PointIdentificationRouteV370SupportW500
+open WppOpSelectedW461TargetLegRouteV370SupportW504
+open WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpSelectedW461TransportedTargetLegV370SupportW507
+open WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509
+open WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+open WppOpClosedRangeOnlyProjectionBridgeV370SupportW522
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W523 selected-provider bridge. -/
+def supportSeedW523 : String :=
+  "w523-closed-nat-trans-selected-provider-closed-range-only-projection"
+
+/--
+Closed-natural-transformation ordinary packages supply W483's single selected
+W461 provider by following the already verified W507/W506/W505/W504/W500
+adapter chain.
+-/
+def selectedW461Provider_of_closedNatTransPackage_w523
+    (hpkg : ClosedNatTransOrdinaryPackageProviderW509) :
+    SelectedW461PromotionInputsProviderW483 :=
+  selectedW461Provider_of_pointIdentification_w500
+    (selectedPointIdentificationProvider_of_targetLeg_w504
+      (selectedTargetLegProvider_of_pointIsoTargetLeg_w505
+        (selectedPointIsoTargetLegProvider_of_transportedPointIso_w506
+          (selectedTransportedPointIsoProvider_of_ordinaryPackage_w507
+            (selectedOrdinaryPackageProvider_of_closedNatTransPackage_w509 hpkg)))))
+
+/-- W510 topology facts supply W483's single selected W461 provider. -/
+def selectedW461Provider_of_topologyFacts_w523
+    (hfacts : ClosedNatTransOrdinaryTopologyFactsProviderW510) :
+    SelectedW461PromotionInputsProviderW483 :=
+  selectedW461Provider_of_closedNatTransPackage_w523
+    (closedNatTransOrdinaryPackageProvider_of_topologyFacts_w510 hfacts)
+
+/-- W511 relation-topology data supply W483's single selected W461 provider. -/
+def selectedW461Provider_of_relationTopology_w523
+    (hinputs : ClosedNatTransOrdinaryRelationTopologyProviderW511) :
+    SelectedW461PromotionInputsProviderW483 :=
+  selectedW461Provider_of_topologyFacts_w523
+    (closedNatTransOrdinaryTopologyFactsProvider_of_relationTopology_w511 hinputs)
+
+/-- W512 relation-field data supply W483's single selected W461 provider. -/
+def selectedW461Provider_of_relationFields_w523
+    (hinputs : ClosedNatTransOrdinaryRelationFieldsProviderW512) :
+    SelectedW461PromotionInputsProviderW483 :=
+  selectedW461Provider_of_topologyFacts_w523
+    (closedNatTransOrdinaryTopologyFactsProvider_of_relationFields_w512 hinputs)
+
+/-!
+W523 combines the selected-W461 provider adapters above with W522's
+closed-range-only projection bridge. These endpoints still require concrete
+ordinary-package/topology/relation data and concrete closed-range-only component
+fields; no final provider is claimed here.
+-/
+
+/-- Closed-natural-transformation ordinary packages plus W484 fields imply WPP-op exactness. -/
+def exactAcyclic_of_closedNatTransPackage_and_closedRangeOnlyProjection_w523
+    (hpkg : ClosedNatTransOrdinaryPackageProviderW509)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522
+    (selectedW461Provider_of_closedNatTransPackage_w523 hpkg) hclosedOnly
+
+/-- W510 topology facts plus W484 fields imply WPP-op exactness. -/
+def exactAcyclic_of_topologyFacts_and_closedRangeOnlyProjection_w523
+    (hfacts : ClosedNatTransOrdinaryTopologyFactsProviderW510)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_closedNatTransPackage_and_closedRangeOnlyProjection_w523
+    (closedNatTransOrdinaryPackageProvider_of_topologyFacts_w510 hfacts)
+    hclosedOnly
+
+/-- W511 relation-topology data plus W484 fields imply WPP-op exactness. -/
+def exactAcyclic_of_relationTopology_and_closedRangeOnlyProjection_w523
+    (hinputs : ClosedNatTransOrdinaryRelationTopologyProviderW511)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_topologyFacts_and_closedRangeOnlyProjection_w523
+    (closedNatTransOrdinaryTopologyFactsProvider_of_relationTopology_w511 hinputs)
+    hclosedOnly
+
+/-- W512 relation-field data plus W484 fields imply WPP-op exactness. -/
+def exactAcyclic_of_relationFields_and_closedRangeOnlyProjection_w523
+    (hinputs : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_topologyFacts_and_closedRangeOnlyProjection_w523
+    (closedNatTransOrdinaryTopologyFactsProvider_of_relationFields_w512 hinputs)
+    hclosedOnly
+
+/-- W523 checked nonterminal state. -/
+structure ClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportStateW523 :
+    Type where
+  seed : String
+  declarations : List String
+  selectedProviderAdapterResult : String
+  topologyFactsAdapterResult : String
+  closedRangeOnlyEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W523 state. -/
+def currentClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportStateW523 :
+    ClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportStateW523 where
+  seed := supportSeedW523
+  declarations :=
+    ["selectedW461Provider_of_closedNatTransPackage_w523",
+      "selectedW461Provider_of_topologyFacts_w523",
+      "selectedW461Provider_of_relationTopology_w523",
+      "selectedW461Provider_of_relationFields_w523",
+      "exactAcyclic_of_closedNatTransPackage_and_closedRangeOnlyProjection_w523",
+      "exactAcyclic_of_topologyFacts_and_closedRangeOnlyProjection_w523",
+      "exactAcyclic_of_relationTopology_and_closedRangeOnlyProjection_w523",
+      "exactAcyclic_of_relationFields_and_closedRangeOnlyProjection_w523"]
+  selectedProviderAdapterResult := "proved"
+  topologyFactsAdapterResult := "proved"
+  closedRangeOnlyEndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryPackageProviderW509 " ++
+        "or ClosedNatTransOrdinaryTopologyFactsProviderW510 " ++
+        "or W511/W512 relation provider data",
+      "construct concrete ComponentwiseClosedRangeOnlyProviderW484"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentClosedNatTransSelectedProviderClosedRangeOnlyProjectionStateW523 :
+    ClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportStateW523 :=
+  currentClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportStateW523
+
+theorem currentClosedNatTransSelectedProviderClosedRangeOnlyProjectionStateW523_productSuccess :
+    currentClosedNatTransSelectedProviderClosedRangeOnlyProjectionStateW523.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW523
+#check selectedW461Provider_of_closedNatTransPackage_w523
+#check selectedW461Provider_of_topologyFacts_w523
+#check selectedW461Provider_of_relationTopology_w523
+#check selectedW461Provider_of_relationFields_w523
+#check exactAcyclic_of_closedNatTransPackage_and_closedRangeOnlyProjection_w523
+#check exactAcyclic_of_topologyFacts_and_closedRangeOnlyProjection_w523
+#check exactAcyclic_of_relationTopology_and_closedRangeOnlyProjection_w523
+#check exactAcyclic_of_relationFields_and_closedRangeOnlyProjection_w523
+#check currentClosedNatTransSelectedProviderClosedRangeOnlyProjectionStateW523_productSuccess
+
+end Checks
+
+end WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523
+
 end LeanLCAExactChallenge

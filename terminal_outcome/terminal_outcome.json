@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W522でW521の成分colimit補題からW484のprojection bridgeを構成した。これによりComponentwiseClosedRangeOnlyProviderW484からW481のcomponentwise projection providerを得て、SelectedW461PromotionInputsProviderW483と合わせる直接経路ができた。ただし具体的なSelected W461 providerと具体的なW484 closed-range-only providerは未証明なのでproduct_successは主張しない。",
+  "summary": "W523では、閉自然変換のordinary package、W510 topology facts、W511 relation-topology、W512 relation-fieldの各provider面からW483のSelectedW461PromotionInputsProviderへ到達する橋を追加し、さらにW522のclosed-range-only projection経路と合成した。ただし具体的なordinary-package/topology/relation providerとComponentwiseClosedRangeOnlyProviderW484は未証明なので、product_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -1769,8 +1769,8 @@
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess"
   ],
   "known_gaps": [
-    "final call siteでSelectedW461PromotionInputsProviderW483または同等のW478/W480 provider packageを構成する必要がある。",
-    "final call siteでComponentwiseClosedRangeOnlyProviderW484を構成する必要がある。",
+    "final call siteでW523が要求するClosedNatTransOrdinaryPackageProviderW509、またはW510/W511/W512の具体provider dataを構成する必要がある。",
+    "final call siteでComponentwiseClosedRangeOnlyProviderW484を具体的に構成する必要がある。",
     "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施である。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -2862,7 +2862,7 @@
     "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522",
     "currentClosedRangeOnlyProjectionBridgeStateW522_productSuccess"
   ],
-  "generated_utc": "2026-05-21T13:48:45Z",
+  "generated_utc": "2026-05-21T13:58:22Z",
   "support_result_classification": "verified_nonterminal_support_increment",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",

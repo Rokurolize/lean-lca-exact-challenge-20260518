@@ -1,9 +1,69 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w522-closed-range-only-projection-bridge",
-  "generated_utc": "2026-05-21T13:48:45Z",
-  "source_tree_hash": "21e68cdbfa6f50caeadac29d2e34d56010d23aedc31a03efddd424a1b84aac0b",
-  "summary": "W522 proves that W521 component colimit lemmas supply W484's missing projection bridge. A ComponentwiseClosedRangeOnlyProviderW484 now yields W481 componentwise projection data, and selected W461 data plus closed-range-only component fields imply exact-acyclic WPP-op colimit closure through W483. Product success remains false because the concrete selected-W461 provider and concrete closed-range-only component provider are still unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w523-closed-nat-trans-selected-provider-closed-range-only",
+  "generated_utc": "2026-05-21T13:58:22Z",
+  "source_tree_hash": "d0cd9b382926a31c1d4b93166b39dd822f7399840af700a245d6e2dfe60d2e92",
+  "summary": "W523 exposes a direct adapter from W509/W510/W511/W512 ordinary-package/topology/relation provider data to W483 selected-W461 data, then composes that selected provider with W522 closed-range-only projection fields. Product success remains false because concrete ordinary-package/topology/relation provider data and concrete ComponentwiseClosedRangeOnlyProviderW484 are still unproved.",
   "commands": [
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "All W523 JSON evidence files parse after metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit negative-fixture self-check passed after W523."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "External audit reached the expected nonterminal product gate because terminal_outcome remains blocked_nonterminal_frontier, not product_success."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W523 metadata refresh."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused source check passed for W523 selected-provider and closed-range-only endpoint declarations."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Importable projection-fields module rebuilt after W523."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W523 declarations and the nonterminal product-success marker."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W523."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W523."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under source tree after W523."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W523-touched Lean files."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed before W523 metadata refresh."
+    },
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
       "status": "passed",
