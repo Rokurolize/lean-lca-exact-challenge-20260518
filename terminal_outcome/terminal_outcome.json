@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W516でtarget relationがtopならtarget quotientがsubsingletonになり、W515のrepresentative-image closednessが自動的に成り立つことをimportableにした。これによりW513で露出したtop-target-relationの場合をW515の経路へ接続できるが、具体的なtop-target入力とselected closed-range入力は未証明なのでproduct_successは主張しない。",
+  "summary": "W517でtarget relationがcompactならtarget quotient projectionがclosed mapになり、component closednessからW515のrepresentative-image closednessが成り立つことをimportableにした。これによりW516のtop-targetの場合より広いcompact-target-relationの場合をW515の経路へ接続できるが、具体的なcompact/top/general relation入力とselected closed-range入力は未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -616,7 +616,8 @@
     "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
     "git diff --check",
     "python3 audit/external_audit.py --root . --self-check-only",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W516)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W516)",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W517)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1754,28 +1755,36 @@
     "WppOpTopTargetRelationRepresentativeImageV370SupportW516.representativeImageProvider_of_topTargetRelation_w516",
     "WppOpTopTargetRelationRepresentativeImageV370SupportW516.exactAcyclic_of_topTargetRelation_and_closedRangeQuotientIdentification_w516",
     "WppOpTopTargetRelationRepresentativeImageV370SupportW516.exactAcyclic_of_topTargetRelation_and_componentwiseProjection_w516",
-    "WppOpTopTargetRelationRepresentativeImageV370SupportW516.currentTopTargetRelationRepresentativeImageStateW516_productSuccess"
+    "WppOpTopTargetRelationRepresentativeImageV370SupportW516.currentTopTargetRelationRepresentativeImageStateW516_productSuccess",
+    "MetrizableLCA.quotientRepresentativeImageClosed_of_componentClosed_targetCompactW517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.ClosedNatTransOrdinaryCompactTargetRelationInputsW517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.representativeImageInputs_of_compactTargetRelation_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.representativeImageProvider_of_compactTargetRelation_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_closedRangeQuotientIdentification_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_componentwiseProjection_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess"
   ],
   "known_gaps": [
-    "ClosedNatTransOrdinaryTopTargetRelationProviderW516またはClosedNatTransOrdinaryRepresentativeImageProviderW515の具体証明がまだない。",
-    "ordinaryMapOfWppOpNatTransW506のrelation pullback equalityとtarget relation topまたはrepresentative-image closednessの具体証明がまだない。",
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517、ClosedNatTransOrdinaryTopTargetRelationProviderW516、またはClosedNatTransOrdinaryRepresentativeImageProviderW515の具体証明がまだない。",
+    "ordinaryMapOfWppOpNatTransW506のrelation pullback equalityとcompact/top/general representative-image closednessの具体証明がまだない。",
     "ClosedRangeQuotientIdentificationProjectionProviderW487またはComponentwiseClosedRangeProjectionProviderW481の具体証明がまだない。",
-    "W516はtop-target-relationの場合を扱う接続であり、最終product_successそのものではない。"
+    "W517はcompact-target-relationの場合を扱う接続であり、最終product_successそのものではない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "be53bab",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W516 was integrated by the parent in the target tree; no worker was launched. It proves top target relation implies W515 representative-image closedness through a subsingleton target quotient, then exposes W514 selected-preservation endpoints.",
+  "worker_frontier_summary": "W517 was integrated by the parent in the target tree; no worker was launched. It proves compact target relation plus component closedness implies W515 representative-image closedness through a closed compact-subgroup quotient projection, then exposes W514 selected-preservation endpoints.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "ClosedNatTransOrdinaryTopTargetRelationProviderW516またはClosedNatTransOrdinaryRepresentativeImageProviderW515の具体証明がまだない。",
-    "ordinaryMapOfWppOpNatTransW506のrelation pullback equalityとtarget relation topまたはrepresentative-image closednessの具体証明がまだない。",
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517、ClosedNatTransOrdinaryTopTargetRelationProviderW516、またはClosedNatTransOrdinaryRepresentativeImageProviderW515の具体証明がまだない。",
+    "ordinaryMapOfWppOpNatTransW506のrelation pullback equalityとcompact/top/general representative-image closednessの具体証明がまだない。",
     "ClosedRangeQuotientIdentificationProjectionProviderW487またはComponentwiseClosedRangeProjectionProviderW481の具体証明がまだない。",
-    "W516はtop-target-relationの場合を扱う接続であり、最終product_successそのものではない。"
+    "W517はcompact-target-relationの場合を扱う接続であり、最終product_successそのものではない。"
   ],
-  "next_recommended_goal": "Prove the concrete W516 top-target relation provider, or otherwise prove the concrete W515 representative-image provider, together with W487/W481 selected closed-range input.",
+  "next_recommended_goal": "Prove the concrete W517 compact-target relation provider, or otherwise prove the concrete W516 top-target/W515 representative-image provider, together with W487/W481 selected closed-range input.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2836,10 +2845,18 @@
     "WppOpTopTargetRelationRepresentativeImageV370SupportW516.representativeImageProvider_of_topTargetRelation_w516",
     "WppOpTopTargetRelationRepresentativeImageV370SupportW516.exactAcyclic_of_topTargetRelation_and_closedRangeQuotientIdentification_w516",
     "WppOpTopTargetRelationRepresentativeImageV370SupportW516.exactAcyclic_of_topTargetRelation_and_componentwiseProjection_w516",
-    "WppOpTopTargetRelationRepresentativeImageV370SupportW516.currentTopTargetRelationRepresentativeImageStateW516_productSuccess"
+    "WppOpTopTargetRelationRepresentativeImageV370SupportW516.currentTopTargetRelationRepresentativeImageStateW516_productSuccess",
+    "MetrizableLCA.quotientRepresentativeImageClosed_of_componentClosed_targetCompactW517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.ClosedNatTransOrdinaryCompactTargetRelationInputsW517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.representativeImageInputs_of_compactTargetRelation_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.representativeImageProvider_of_compactTargetRelation_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_closedRangeQuotientIdentification_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_componentwiseProjection_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess"
   ],
-  "generated_utc": "2026-05-21T12:31:30Z",
-  "support_result_classification": "nonterminal_support_increment_top_target_representative_image_route",
+  "generated_utc": "2026-05-21T12:43:00Z",
+  "support_result_classification": "verified_nonterminal_support_increment",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3967,13 +3984,21 @@
     "WppOpTopTargetRelationRepresentativeImageV370SupportW516.representativeImageProvider_of_topTargetRelation_w516",
     "WppOpTopTargetRelationRepresentativeImageV370SupportW516.exactAcyclic_of_topTargetRelation_and_closedRangeQuotientIdentification_w516",
     "WppOpTopTargetRelationRepresentativeImageV370SupportW516.exactAcyclic_of_topTargetRelation_and_componentwiseProjection_w516",
-    "WppOpTopTargetRelationRepresentativeImageV370SupportW516.currentTopTargetRelationRepresentativeImageStateW516_productSuccess"
+    "WppOpTopTargetRelationRepresentativeImageV370SupportW516.currentTopTargetRelationRepresentativeImageStateW516_productSuccess",
+    "MetrizableLCA.quotientRepresentativeImageClosed_of_componentClosed_targetCompactW517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.ClosedNatTransOrdinaryCompactTargetRelationInputsW517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.representativeImageInputs_of_compactTargetRelation_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.representativeImageProvider_of_compactTargetRelation_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_closedRangeQuotientIdentification_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_componentwiseProjection_w517",
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "construct concrete ClosedNatTransOrdinaryTopTargetRelationProviderW516 or ClosedNatTransOrdinaryRepresentativeImageProviderW515",
-    "prove concrete relation-pullback equality and target relation top/representative-image closedness for ordinaryMapOfWppOpNatTransW506",
+    "construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517, ClosedNatTransOrdinaryTopTargetRelationProviderW516, or ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+    "prove concrete relation-pullback equality plus compact/top/general representative-image closedness for ordinaryMapOfWppOpNatTransW506",
     "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487 or ComponentwiseClosedRangeProjectionProviderW481",
     "run final product audit only after terminal_outcome can truthfully be product_success"
   ]

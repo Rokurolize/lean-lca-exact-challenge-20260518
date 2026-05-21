@@ -7349,4 +7349,173 @@ end Checks
 
 end WppOpTopTargetRelationRepresentativeImageV370SupportW516
 
+namespace MetrizableLCA
+
+/--
+If the target relation subgroup is compact, the target quotient projection is a
+closed map. Together with component closedness, this proves W515's
+representative-image closedness condition without target-relation lift fields.
+-/
+theorem quotientRepresentativeImageClosed_of_componentClosed_targetCompactW517
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B')
+    (hcomponent : IsClosedMap (iB : B → B'))
+    (hcompact : IsCompact (cokernelSubgroup (f' - g') : Set B')) :
+    quotientRepresentativeImageClosedConditionW512 f g f' g' iB := by
+  intro C hC
+  let qsource :
+      B → quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) :=
+    quotientMap B (cokernelSubgroup (f - g)) (AddSubgroup.isClosed_topologicalClosure _)
+  let qtarget :
+      B' → quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _) :=
+    quotientMap B' (cokernelSubgroup (f' - g')) (AddSubgroup.isClosed_topologicalClosure _)
+  let representativeImage : Set B' := ((iB : B → B') '' (qsource ⁻¹' C))
+  have hpre_closed : IsClosed (qsource ⁻¹' C) := by
+    exact hC.preimage
+      (quotientMap B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _)).hom.continuous
+  have hrep_closed : IsClosed representativeImage := by
+    exact hcomponent (qsource ⁻¹' C) hpre_closed
+  have hqtarget_closed : IsClosedMap qtarget := by
+    change IsClosedMap
+      (QuotientAddGroup.mk' (cokernelSubgroup (f' - g')) :
+        B' → B' ⧸ cokernelSubgroup (f' - g'))
+    exact QuotientAddGroup.isClosedMap_coe hcompact
+  exact hqtarget_closed representativeImage hrep_closed
+
+end MetrizableLCA
+
+namespace WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpQuotientIdentificationProjectionProviderV370SupportW485
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W517 compact-target relation route. -/
+def supportSeedW517 : String :=
+  "w517-compact-target-relation-representative-image-route"
+
+/-- W517 inputs: relation pullback plus compact target relation. -/
+structure ClosedNatTransOrdinaryCompactTargetRelationInputsW517
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) :
+    Type 1 where
+  relation_pullback : ClosedNatTransOrdinaryRelationPullbackConditionW511 α
+  target_relation_compact :
+    IsCompact
+      (MetrizableLCA.cokernelSubgroup (wppOpLeftW441 Y - wppOpRightW441 Y) :
+        Set (wppOpCodomainW441 Y))
+
+/-- Provider surface for W517 compact-target relation inputs. -/
+abbrev ClosedNatTransOrdinaryCompactTargetRelationProviderW517 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      ClosedNatTransOrdinaryCompactTargetRelationInputsW517 α
+
+/-- W517 compact-target inputs supply W515 representative-image inputs. -/
+def representativeImageInputs_of_compactTargetRelation_w517
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    (hclosed : ∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j))
+    (H : ClosedNatTransOrdinaryCompactTargetRelationInputsW517 α) :
+    ClosedNatTransOrdinaryRepresentativeImageInputsW515 α := by
+  have hcomponentEmbedding :
+      IsClosedEmbedding (((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one) :
+        wppOpCodomainW441 X → wppOpCodomainW441 Y) := by
+    simpa [ordinaryMapOfWppOpNatTransW506, wppOpCodomainW441,
+      wppOpOrdinaryDiagramW441, ordinaryTargetIndexW478] using hclosed ordinaryTargetIndexW478
+  exact
+    { relation_pullback := H.relation_pullback
+      representative_image_closed :=
+        MetrizableLCA.quotientRepresentativeImageClosed_of_componentClosed_targetCompactW517
+          ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one)
+          hcomponentEmbedding.isClosedMap
+          H.target_relation_compact }
+
+/-- W517 compact-target provider supplies W515's representative-image provider. -/
+def representativeImageProvider_of_compactTargetRelation_w517
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    ClosedNatTransOrdinaryRepresentativeImageProviderW515 :=
+  fun X Y α hclosed =>
+    representativeImageInputs_of_compactTargetRelation_w517 hclosed
+      (hinputs X Y α hclosed)
+
+/-- W517 endpoint with selected closed-range quotient-identification data. -/
+def exactAcyclic_of_compactTargetRelation_and_closedRangeQuotientIdentification_w517
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hclosed : ClosedRangeQuotientIdentificationProjectionProviderW487) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_closedRangeQuotientIdentification_w515
+    (representativeImageProvider_of_compactTargetRelation_w517 hinputs) hclosed
+
+/-- W517 endpoint with selected componentwise closed-range projection data. -/
+def exactAcyclic_of_compactTargetRelation_and_componentwiseProjection_w517
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_componentwiseProjection_w515
+    (representativeImageProvider_of_compactTargetRelation_w517 hinputs) hcomponentwise
+
+/-- W517 checked nonterminal state. -/
+structure CompactTargetRelationRepresentativeImageV370SupportStateW517 : Type where
+  seed : String
+  declarations : List String
+  compactTargetRouteResult : String
+  selectedPreservationRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W517 state. -/
+def currentCompactTargetRelationRepresentativeImageV370SupportStateW517 :
+    CompactTargetRelationRepresentativeImageV370SupportStateW517 where
+  seed := supportSeedW517
+  declarations :=
+    ["MetrizableLCA.quotientRepresentativeImageClosed_of_componentClosed_targetCompactW517",
+      "ClosedNatTransOrdinaryCompactTargetRelationInputsW517",
+      "ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+      "representativeImageInputs_of_compactTargetRelation_w517",
+      "representativeImageProvider_of_compactTargetRelation_w517",
+      "exactAcyclic_of_compactTargetRelation_and_closedRangeQuotientIdentification_w517",
+      "exactAcyclic_of_compactTargetRelation_and_componentwiseProjection_w517"]
+  compactTargetRouteResult := "proved"
+  selectedPreservationRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+      "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487",
+      "or construct concrete ComponentwiseClosedRangeProjectionProviderW481"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentCompactTargetRelationRepresentativeImageStateW517 :
+    CompactTargetRelationRepresentativeImageV370SupportStateW517 :=
+  currentCompactTargetRelationRepresentativeImageV370SupportStateW517
+
+theorem currentCompactTargetRelationRepresentativeImageStateW517_productSuccess :
+    currentCompactTargetRelationRepresentativeImageStateW517.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW517
+#check MetrizableLCA.quotientRepresentativeImageClosed_of_componentClosed_targetCompactW517
+#check ClosedNatTransOrdinaryCompactTargetRelationInputsW517
+#check ClosedNatTransOrdinaryCompactTargetRelationProviderW517
+#check representativeImageInputs_of_compactTargetRelation_w517
+#check representativeImageProvider_of_compactTargetRelation_w517
+#check exactAcyclic_of_compactTargetRelation_and_closedRangeQuotientIdentification_w517
+#check exactAcyclic_of_compactTargetRelation_and_componentwiseProjection_w517
+#check currentCompactTargetRelationRepresentativeImageStateW517_productSuccess
+
+end Checks
+
+end WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+
 end LeanLCAExactChallenge
