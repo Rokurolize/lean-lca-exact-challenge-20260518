@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W508で既存のW480 promotion input provider surfaceからW507のSelectedW461OrdinaryPackageProviderW507を作るbridgeを追加した。これでcurrent routeは具体W461ToW475PromotionInputsProviderW480と、closure-kernelまたはselected cokernel-colimit側の保存入力まで縮んだ。まだそれらは未証明なのでproduct_successは主張しない。",
+  "summary": "W509でW507のordinary package providerを、WPP-op natural transformationとcomponentwise closed-embedding仮説だけに依存するClosedNatTransOrdinaryPackageProviderW509へ切り出した。選んだcolimit cocone、φ、leg-compatibilityには依存しない境界まで縮んだが、具体providerと保存入力はまだ未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -592,7 +592,8 @@
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W505)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W506)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W507)",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W508)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W508)",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W509)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1641,26 +1642,34 @@
     "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_selectedCokernelColimit_w508",
     "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_mappedExplicitCokernelCoforks_w508",
     "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_closureKernelProvider_w508",
-    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.currentSelectedW461OrdinaryPackageFromW480StateW508_productSuccess"
+    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.currentSelectedW461OrdinaryPackageFromW480StateW508_productSuccess",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.supportSeedW509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.ordinaryMapProvider_of_wppOpNatTrans_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.ClosedNatTransOrdinaryPackageProviderW509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.selectedOrdinaryPackageProvider_of_closedNatTransPackage_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_selectedCokernelColimit_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_mappedExplicitCokernelCoforks_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_closureKernelProvider_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.currentSelectedW461ClosedNatTransOrdinaryPackageStateW509_productSuccess"
   ],
   "known_gaps": [
-    "具体W461ToW475PromotionInputsProviderW480がまだない。",
+    "具体ClosedNatTransOrdinaryPackageProviderW509がまだない。",
     "closure-kernelまたはselected cokernel-colimit側の保存入力がまだ未証明。",
     "最終product auditを通すterminal_outcomeではない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "72a63d9",
+  "git_commit": "c9710aa",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W508 was integrated by the parent in the target tree; no new workers were launched. The selected W461 route now has a bridge from W480 promotion inputs to the W507 ordinary-package provider, but the concrete W480 input provider and preservation provider remain open.",
+  "worker_frontier_summary": "W509 was integrated by the parent in the target tree; no new workers were launched. The selected W461 route now needs a closed-natural-transformation ordinary-package theorem plus the preservation provider.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "具体W461ToW475PromotionInputsProviderW480がまだない。",
+    "具体ClosedNatTransOrdinaryPackageProviderW509がまだない。",
     "closure-kernelまたはselected cokernel-colimit側の保存入力がまだ未証明。",
     "最終product auditを通すterminal_outcomeではない。"
   ],
-  "next_recommended_goal": "Construct concrete W461ToW475PromotionInputsProviderW480, then connect the remaining preservation provider route to discharge the W508 endpoints.",
+  "next_recommended_goal": "Construct concrete ClosedNatTransOrdinaryPackageProviderW509: a componentwise closed embedding of WPP-op diagrams should induce injective, inducing, closed-image ordinary quotient map facts for ordinaryMapOfWppOpNatTransW506.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2632,10 +2641,18 @@
     "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_selectedCokernelColimit_w508",
     "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_mappedExplicitCokernelCoforks_w508",
     "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_closureKernelProvider_w508",
-    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.currentSelectedW461OrdinaryPackageFromW480StateW508_productSuccess"
+    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.currentSelectedW461OrdinaryPackageFromW480StateW508_productSuccess",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.supportSeedW509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.ordinaryMapProvider_of_wppOpNatTrans_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.ClosedNatTransOrdinaryPackageProviderW509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.selectedOrdinaryPackageProvider_of_closedNatTransPackage_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_selectedCokernelColimit_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_mappedExplicitCokernelCoforks_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_closureKernelProvider_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.currentSelectedW461ClosedNatTransOrdinaryPackageStateW509_productSuccess"
   ],
-  "generated_utc": "2026-05-21T10:37:35Z",
-  "support_result_classification": "nonterminal W480-to-W507 ordinary-package bridge",
+  "generated_utc": "2026-05-21T10:45:54Z",
+  "support_result_classification": "nonterminal closed-natural-transformation ordinary-package boundary",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3674,12 +3691,20 @@
     "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_selectedCokernelColimit_w508",
     "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_mappedExplicitCokernelCoforks_w508",
     "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_closureKernelProvider_w508",
-    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.currentSelectedW461OrdinaryPackageFromW480StateW508_productSuccess"
+    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.currentSelectedW461OrdinaryPackageFromW480StateW508_productSuccess",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.supportSeedW509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.ordinaryMapProvider_of_wppOpNatTrans_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.ClosedNatTransOrdinaryPackageProviderW509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.selectedOrdinaryPackageProvider_of_closedNatTransPackage_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_selectedCokernelColimit_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_mappedExplicitCokernelCoforks_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.exactAcyclic_of_closedNatTransPackage_and_closureKernelProvider_w509",
+    "WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.currentSelectedW461ClosedNatTransOrdinaryPackageStateW509_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "construct concrete W461ToW475PromotionInputsProviderW480",
+    "construct concrete ClosedNatTransOrdinaryPackageProviderW509",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
     "run final product audit only after terminal_outcome can be product_success"
   ]

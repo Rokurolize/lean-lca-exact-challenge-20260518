@@ -5517,4 +5517,129 @@ end Checks
 
 end WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508
 
+namespace WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpSelectedW461TransportedTargetLegV370SupportW507
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W509 ordinary-package boundary. -/
+def supportSeedW509 : String :=
+  "w509-selected-w461-closed-nat-trans-ordinary-package"
+
+/--
+The canonical ordinary-map provider used by the older W480 split-provider
+route: choose the ordinary natural transformation induced by the WPP-op map.
+-/
+def ordinaryMapProvider_of_wppOpNatTrans_w509 :
+    W461ToW475OrdinaryMapProviderW480 :=
+  fun _X _Y α _cx _cy _φ _hcx _hcy _hclosed _hcompat =>
+    ordinaryMapOfWppOpNatTransW506 α
+
+/--
+Core ordinary-package boundary after W509.
+
+The W426 ordinary package depends on the WPP-op natural transformation and the
+componentwise closed-embedding hypothesis, but not on the chosen colimit
+cocones, the induced colimit map, or the leg-compatibility proof.
+-/
+abbrev ClosedNatTransOrdinaryPackageProviderW509 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      W426OrdinaryDescendedMapPackage (ordinaryMapOfWppOpNatTransW506 α)
+
+/-- W509 closed-natural-transformation ordinary packages feed W507. -/
+def selectedOrdinaryPackageProvider_of_closedNatTransPackage_w509
+    (hpkg : ClosedNatTransOrdinaryPackageProviderW509) :
+    SelectedW461OrdinaryPackageProviderW507 :=
+  fun X Y α _cx _cy _φ _hcx _hcy hclosed _hcompat =>
+    { ordinaryPackage := hpkg X Y α hclosed }
+
+/-- W509 endpoint with the selected cokernel-colimit provider. -/
+def exactAcyclic_of_closedNatTransPackage_and_selectedCokernelColimit_w509
+    (hpkg : ClosedNatTransOrdinaryPackageProviderW509)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461OrdinaryPackage_and_selectedCokernelColimit_w507
+    (selectedOrdinaryPackageProvider_of_closedNatTransPackage_w509 hpkg) hselected
+
+/-- W509 endpoint with W499's mapped-explicit-cokernel preservation input. -/
+def exactAcyclic_of_closedNatTransPackage_and_mappedExplicitCokernelCoforks_w509
+    (hpkg : ClosedNatTransOrdinaryPackageProviderW509)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461OrdinaryPackage_and_mappedExplicitCokernelCoforks_w507
+    (selectedOrdinaryPackageProvider_of_closedNatTransPackage_w509 hpkg) hMapped
+
+/-- W509 endpoint with W503's closure-kernel preservation input. -/
+def exactAcyclic_of_closedNatTransPackage_and_closureKernelProvider_w509
+    (hpkg : ClosedNatTransOrdinaryPackageProviderW509)
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461OrdinaryPackage_and_closureKernelProvider_w507
+    (selectedOrdinaryPackageProvider_of_closedNatTransPackage_w509 hpkg) hClosure
+
+/-- W509 checked nonterminal state. -/
+structure SelectedW461ClosedNatTransOrdinaryPackageV370SupportStateW509 : Type where
+  seed : String
+  declarations : List String
+  ordinaryMapProviderResult : String
+  providerAdapterResult : String
+  selectedCokernelRouteResult : String
+  closureKernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W509 state. -/
+def currentSelectedW461ClosedNatTransOrdinaryPackageV370SupportStateW509 :
+    SelectedW461ClosedNatTransOrdinaryPackageV370SupportStateW509 where
+  seed := supportSeedW509
+  declarations :=
+    ["ordinaryMapProvider_of_wppOpNatTrans_w509",
+      "ClosedNatTransOrdinaryPackageProviderW509",
+      "selectedOrdinaryPackageProvider_of_closedNatTransPackage_w509",
+      "exactAcyclic_of_closedNatTransPackage_and_selectedCokernelColimit_w509",
+      "exactAcyclic_of_closedNatTransPackage_and_mappedExplicitCokernelCoforks_w509",
+      "exactAcyclic_of_closedNatTransPackage_and_closureKernelProvider_w509"]
+  ordinaryMapProviderResult := "proved"
+  providerAdapterResult := "proved"
+  selectedCokernelRouteResult := "proved"
+  closureKernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryPackageProviderW509",
+      "construct concrete MappedExplicitCokernelClosureKernelProviderW503",
+      "or construct selected cokernel-colimit provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW509State :
+    SelectedW461ClosedNatTransOrdinaryPackageV370SupportStateW509 :=
+  currentSelectedW461ClosedNatTransOrdinaryPackageV370SupportStateW509
+
+theorem currentSelectedW461ClosedNatTransOrdinaryPackageStateW509_productSuccess :
+    currentW509State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW509
+#check ordinaryMapProvider_of_wppOpNatTrans_w509
+#check ClosedNatTransOrdinaryPackageProviderW509
+#check selectedOrdinaryPackageProvider_of_closedNatTransPackage_w509
+#check exactAcyclic_of_closedNatTransPackage_and_selectedCokernelColimit_w509
+#check exactAcyclic_of_closedNatTransPackage_and_mappedExplicitCokernelCoforks_w509
+#check exactAcyclic_of_closedNatTransPackage_and_closureKernelProvider_w509
+#check currentSelectedW461ClosedNatTransOrdinaryPackageStateW509_productSuccess
+
+end Checks
+
+end WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509
+
 end LeanLCAExactChallenge
