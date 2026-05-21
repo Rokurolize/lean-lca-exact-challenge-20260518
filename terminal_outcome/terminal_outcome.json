@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W520でW446のselected single-preservation経路をimportable moduleへ昇格した。元のWPP-op colimitと、選択されたshort-complex差分cokernelをforgetful functorが保存するという1点の保存入力から、W492のselected forgotten-target cokernel colimit providerを作り、W515代表像経路とW518 compact-target経路へ接続した。ただし具体的なrelation providerと具体的なselected single-preservation providerは未証明なのでproduct_successは主張しない。",
+  "summary": "W521でW484のclosed-range-only component fieldsからW520のselected single-preservation providerを構成した。元のWPP-op colimitを各成分へ射影し、closed rangeによるforgetful cokernel保存でmapped component colimitへ移し、W485のprojection isoでselected mapped short-complex cokernel colimitへ戻す経路を証明した。ただし具体的なrelation providerと具体的なW484 closed-range-only providerは未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -619,7 +619,8 @@
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W516)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W517)",
     "python3 audit/external_audit.py --root . (expected failed_nonterminal product gate)",
-    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit"
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1768,10 +1769,9 @@
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess"
   ],
   "known_gaps": [
-    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517、ClosedNatTransOrdinaryTopTargetRelationProviderW516、またはClosedNatTransOrdinaryRepresentativeImageProviderW515の具体証明がまだない。",
-    "ordinaryMapOfWppOpNatTransW506のrelation pullback equalityとcompact/top/general representative-image closednessの具体証明がまだない。",
-    "ClosedRangeQuotientIdentificationProjectionProviderW487またはComponentwiseClosedRangeProjectionProviderW481の具体証明がまだない。",
-    "W517はcompact-target-relationの場合を扱う接続であり、最終product_successそのものではない。"
+    "具体的なClosedNatTransOrdinaryCompactTargetRelationProviderW517、またはW516/W515相当のrelation providerがまだない。",
+    "具体的なComponentwiseClosedRangeOnlyProviderW484がまだない。W521により、この入力があればselected short-complex difference cokernel preservationは不要になった。",
+    "最終的なexactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closureの無条件証明には、上記relation providerとclosed-range-only providerの両方を同じcall siteで供給する必要がある。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",

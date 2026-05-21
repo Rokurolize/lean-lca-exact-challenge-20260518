@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w520-selected-cokernel-colimit-from-single-preservation",
-  "generated_utc": "2026-05-21T13:19:39Z",
-  "source_tree_hash": "83a19b676e6763cbc27215b3fca4a20926427d86b3e3c4d7c68b0aee9d38e172",
-  "summary": "W520 promotes the W446 selected single-preservation route: an original WPP-op colimit plus preservation of only the selected short-complex difference cokernel supplies W492 selected forgotten-target cokernel colimits, then composes with W515 representative-image and W518 compact-target exits. Product success remains false because the concrete relation provider and concrete selected single-preservation provider are still unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w521-single-preservation-from-closed-range-only",
+  "generated_utc": "2026-05-21T13:38:32Z",
+  "source_tree_hash": "dc7d0bf3702f57ea0d83d376dda5af49ca825dacca4c41b81749563916e42fe9",
+  "summary": "W521 proves that W484 closed-range-only component fields, together with the original WPP-op colimit, make the short-complex forgetful functor preserve the selected difference cokernel. This supplies W520's SelectedShortComplexDifferenceCokernelPreservationProvider and composes with W515/W518 endpoints. Product success remains false because concrete relation-provider data and concrete W484 closed-range-only data are still unproved.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -242,27 +242,27 @@
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
-      "evidence": "terminal_outcome JSON parsed after v252 refresh."
+      "evidence": "terminal_outcome JSON validated after W521 metadata update."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
       "status": "passed",
-      "evidence": "proof_frontier JSON parsed after v252 refresh."
+      "evidence": "proof frontier JSON remains valid after W521."
     },
     {
       "command": "python3 -m json.tool run/verification.json >/dev/null",
       "status": "passed",
-      "evidence": "verification JSON parsed after v252 refresh."
+      "evidence": "verification JSON validated after W521 metadata update."
     },
     {
       "command": "python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
-      "evidence": "manifest JSON parsed after v252 refresh."
+      "evidence": "manifest JSON validated after W521 metadata update."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "After W490 artifact refresh, read-only external audit reaches the expected product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier, not product_success."
+      "evidence": "External audit reached the terminal product gate and failed as expected because terminal_outcome remains blocked_nonterminal_frontier, not product_success."
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
@@ -2837,49 +2837,49 @@
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
-      "evidence": "W504 target-leg route compiled in the importable projection-fields module.",
+      "evidence": "Focused W521 source check passed after adding closed-range-only to selected single-preservation bridge.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/source_wpp_projection_fields_w504.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
       "status": "passed",
-      "evidence": "Projection-fields module rebuilt after adding W504; warnings only from existing files.",
+      "evidence": "Importable WppOpExactAcyclicProjectionFields module rebuilt successfully with W521 declarations.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/lake_build_wpp_projection_fields_w504.log"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations checks W504 declarations and still records product success as false.",
+      "evidence": "ProductSuccessDeclarations checks W521 helper coforks, projection isomorphisms, provider adapter, endpoints, and non-product-success marker.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/product_success_declarations_w504.log"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "Full lake build passed after W504; warnings only from existing files.",
+      "evidence": "Full lake build passed after W521.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/lake_build_w504.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W504.",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W521.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/forbidden_tokens_source_w504.log"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "RequiredDeclarations compiled after W504.",
+      "evidence": "Required declarations audit passed after W521 changes.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/required_declarations_w504.log"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace check passed after W504 metadata refresh.",
+      "evidence": "No whitespace errors after W521.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/git_diff_check_w504_metadata.log"
     },
     {
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
-      "evidence": "External audit self-check passed after W504 metadata refresh.",
+      "evidence": "External audit self-check passed after W521 metadata refresh.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w504_verify/external_audit_self_check_w504.log"
     },
     {
@@ -3754,6 +3754,11 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Expected nonterminal product gate failure after W520: terminal_outcome.outcome is blocked_nonterminal_frontier, not product_success."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W521-touched audit/source files."
     }
   ],
   "implemented_declarations_checked": [

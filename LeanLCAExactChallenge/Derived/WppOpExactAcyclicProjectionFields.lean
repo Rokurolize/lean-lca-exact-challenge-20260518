@@ -8011,4 +8011,377 @@ end Checks
 
 end WppOpSelectedCokernelColimitFromSinglePreservationV370SupportW520
 
+namespace WppOpSinglePreservationFromClosedRangeOnlyV370SupportW521
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpQuotientIdentificationProjectionProviderV370SupportW485
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+open WppOpCompactTargetRelationPreservationExitsV370SupportW518
+open WppOpSelectedCokernelColimitFromSinglePreservationV370SupportW520
+open WppOpExactAcyclicFrontierConsolidatedW318
+open MetrizableLCA
+
+/-- Reproducible support seed for the W521 closed-range-only preservation route. -/
+def supportSeedW521 : String :=
+  "w521-single-preservation-from-closed-range-only"
+
+/-- The source-level first selected component cofork. -/
+def selectedMetrizableComponentπ₁CokernelCoforkW521
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    CokernelCofork (selectedMetrizableDifferenceπ₁W485 S) :=
+  CokernelCofork.ofπ (selectedMetrizableTargetCoconeLeg S cs).τ₁
+    (selectedMetrizableDifferenceπ₁_comp_target_w485 S cs)
+
+/-- The source-level second selected component cofork. -/
+def selectedMetrizableComponentπ₂CokernelCoforkW521
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    CokernelCofork (selectedMetrizableDifferenceπ₂W485 S) :=
+  CokernelCofork.ofπ (selectedMetrizableTargetCoconeLeg S cs).τ₂
+    (selectedMetrizableDifferenceπ₂_comp_target_w485 S cs)
+
+/-- The source-level third selected component cofork. -/
+def selectedMetrizableComponentπ₃CokernelCoforkW521
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    CokernelCofork (selectedMetrizableDifferenceπ₃W485 S) :=
+  CokernelCofork.ofπ (selectedMetrizableTargetCoconeLeg S cs).τ₃
+    (selectedMetrizableDifferenceπ₃_comp_target_w485 S cs)
+
+/-- The source-level projected `π₁` parallel-pair diagram is the selected component diagram. -/
+def selectedMetrizableProjectionπ₁DiagramIsoW521
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    parallelPair (selectedMetrizableDifferenceπ₁W485 S) 0 ≅
+      (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0) ⋙
+        (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) :=
+  parallelPair.ext (Iso.refl _) (Iso.refl _) (by rfl) (by rfl)
+
+/-- The source-level projected `π₂` parallel-pair diagram is the selected component diagram. -/
+def selectedMetrizableProjectionπ₂DiagramIsoW521
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    parallelPair (selectedMetrizableDifferenceπ₂W485 S) 0 ≅
+      (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0) ⋙
+        (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) :=
+  parallelPair.ext (Iso.refl _) (Iso.refl _) (by rfl) (by rfl)
+
+/-- The source-level projected `π₃` parallel-pair diagram is the selected component diagram. -/
+def selectedMetrizableProjectionπ₃DiagramIsoW521
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    parallelPair (selectedMetrizableDifferenceπ₃W485 S) 0 ≅
+      (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0) ⋙
+        (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) :=
+  parallelPair.ext (Iso.refl _) (Iso.refl _) (by rfl) (by rfl)
+
+/-- The first source component cofork is the precomposed projected cofork. -/
+def selectedMetrizableProjectionπ₁CoforkIsoW521
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    (Cocone.precompose (selectedMetrizableProjectionπ₁DiagramIsoW521 S).inv).obj
+        (selectedMetrizableComponentπ₁CokernelCoforkW521 S cs) ≅
+      ((ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCocone
+        (selectedMetrizableTargetCokernelCofork S cs)) :=
+  Cocone.ext (Iso.refl _) (by
+    rintro (_ | _) <;> rfl)
+
+/-- The second source component cofork is the precomposed projected cofork. -/
+def selectedMetrizableProjectionπ₂CoforkIsoW521
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    (Cocone.precompose (selectedMetrizableProjectionπ₂DiagramIsoW521 S).inv).obj
+        (selectedMetrizableComponentπ₂CokernelCoforkW521 S cs) ≅
+      ((ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCocone
+        (selectedMetrizableTargetCokernelCofork S cs)) :=
+  Cocone.ext (Iso.refl _) (by
+    rintro (_ | _) <;> rfl)
+
+/-- The third source component cofork is the precomposed projected cofork. -/
+def selectedMetrizableProjectionπ₃CoforkIsoW521
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    (Cocone.precompose (selectedMetrizableProjectionπ₃DiagramIsoW521 S).inv).obj
+        (selectedMetrizableComponentπ₃CokernelCoforkW521 S cs) ≅
+      ((ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCocone
+        (selectedMetrizableTargetCokernelCofork S cs)) :=
+  Cocone.ext (Iso.refl _) (by
+    rintro (_ | _) <;> rfl)
+
+/-- The first selected projected mapped cokernel colimit follows from closed range alone. -/
+def selectedMappedCokernelComponentπ₁_isColimit_of_closedRangeOnly_w521
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hcs : IsColimit cs)
+    (hclosed : SelectedComponentwiseClosedRangeOnlyInputsW484 S cs) :
+    IsColimit
+      ((ShortComplex.π₁ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor)) := by
+  have hclosedπ₁ : IsClosed (Set.range
+      (selectedMetrizableDifferenceπ₁W485 S :
+        (S.obj ordinarySourceIndex).X₁ → (S.obj ordinaryTargetIndex).X₁)) := by
+    simpa [selectedMetrizableDifferenceπ₁W481, selectedMetrizableDifferenceπ₁W485,
+      ordinarySourceIndexW484, ordinaryTargetIndexW484] using hclosed.hclosedπ₁
+  letI :
+      PreservesColimit (parallelPair (selectedMetrizableDifferenceπ₁W485 S) 0)
+        underlyingForgetfulFunctorW485 :=
+    MetrizableLCA.preservesCokernelOf_isClosed_range
+      (selectedMetrizableDifferenceπ₁W485 S) hclosedπ₁
+  have hOrig :
+      IsColimit
+        ((ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCocone
+          (selectedMetrizableTargetCokernelCofork S cs)) :=
+    isColimitOfPreserves
+      (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0})
+      (selectedMetrizableTargetCokernelColimitOfOriginal_w520 S cs hcs)
+  have hOrigπ₁ :
+      IsColimit (selectedMetrizableComponentπ₁CokernelCoforkW521 S cs) :=
+    ((IsColimit.equivOfNatIsoOfIso (selectedMetrizableProjectionπ₁DiagramIsoW521 S)
+      (selectedMetrizableComponentπ₁CokernelCoforkW521 S cs)
+      _
+      (selectedMetrizableProjectionπ₁CoforkIsoW521 S cs))).symm hOrig
+  have hSelected :
+      IsColimit (selectedForgottenComponentπ₁CokernelCoforkW485 S cs) := by
+    have hMap :
+        IsColimit
+          ((selectedMetrizableComponentπ₁CokernelCoforkW521 S cs).map
+            underlyingForgetfulFunctorW485) :=
+      (selectedMetrizableComponentπ₁CokernelCoforkW521 S cs).mapIsColimit
+        hOrigπ₁ underlyingForgetfulFunctorW485
+    simpa [selectedMetrizableComponentπ₁CokernelCoforkW521,
+      selectedForgottenComponentπ₁CokernelCoforkW485,
+      underlyingForgetfulFunctorW485, selectedMetrizableDifferenceπ₁W485] using hMap
+  exact projectionπ₁_isColimit_of_selectedComponentπ₁_w485 hSelected
+
+/-- The second selected projected mapped cokernel colimit follows from closed range alone. -/
+def selectedMappedCokernelComponentπ₂_isColimit_of_closedRangeOnly_w521
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hcs : IsColimit cs)
+    (hclosed : SelectedComponentwiseClosedRangeOnlyInputsW484 S cs) :
+    IsColimit
+      ((ShortComplex.π₂ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor)) := by
+  have hclosedπ₂ : IsClosed (Set.range
+      (selectedMetrizableDifferenceπ₂W485 S :
+        (S.obj ordinarySourceIndex).X₂ → (S.obj ordinaryTargetIndex).X₂)) := by
+    simpa [selectedMetrizableDifferenceπ₂W481, selectedMetrizableDifferenceπ₂W485,
+      ordinarySourceIndexW484, ordinaryTargetIndexW484] using hclosed.hclosedπ₂
+  letI :
+      PreservesColimit (parallelPair (selectedMetrizableDifferenceπ₂W485 S) 0)
+        underlyingForgetfulFunctorW485 :=
+    MetrizableLCA.preservesCokernelOf_isClosed_range
+      (selectedMetrizableDifferenceπ₂W485 S) hclosedπ₂
+  have hOrig :
+      IsColimit
+        ((ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCocone
+          (selectedMetrizableTargetCokernelCofork S cs)) :=
+    isColimitOfPreserves
+      (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0})
+      (selectedMetrizableTargetCokernelColimitOfOriginal_w520 S cs hcs)
+  have hOrigπ₂ :
+      IsColimit (selectedMetrizableComponentπ₂CokernelCoforkW521 S cs) :=
+    ((IsColimit.equivOfNatIsoOfIso (selectedMetrizableProjectionπ₂DiagramIsoW521 S)
+      (selectedMetrizableComponentπ₂CokernelCoforkW521 S cs)
+      _
+      (selectedMetrizableProjectionπ₂CoforkIsoW521 S cs))).symm hOrig
+  have hSelected :
+      IsColimit (selectedForgottenComponentπ₂CokernelCoforkW485 S cs) := by
+    have hMap :
+        IsColimit
+          ((selectedMetrizableComponentπ₂CokernelCoforkW521 S cs).map
+            underlyingForgetfulFunctorW485) :=
+      (selectedMetrizableComponentπ₂CokernelCoforkW521 S cs).mapIsColimit
+        hOrigπ₂ underlyingForgetfulFunctorW485
+    simpa [selectedMetrizableComponentπ₂CokernelCoforkW521,
+      selectedForgottenComponentπ₂CokernelCoforkW485,
+      underlyingForgetfulFunctorW485, selectedMetrizableDifferenceπ₂W485] using hMap
+  exact projectionπ₂_isColimit_of_selectedComponentπ₂_w485 hSelected
+
+/-- The third selected projected mapped cokernel colimit follows from closed range alone. -/
+def selectedMappedCokernelComponentπ₃_isColimit_of_closedRangeOnly_w521
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hcs : IsColimit cs)
+    (hclosed : SelectedComponentwiseClosedRangeOnlyInputsW484 S cs) :
+    IsColimit
+      ((ShortComplex.π₃ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor)) := by
+  have hclosedπ₃ : IsClosed (Set.range
+      (selectedMetrizableDifferenceπ₃W485 S :
+        (S.obj ordinarySourceIndex).X₃ → (S.obj ordinaryTargetIndex).X₃)) := by
+    simpa [selectedMetrizableDifferenceπ₃W481, selectedMetrizableDifferenceπ₃W485,
+      ordinarySourceIndexW484, ordinaryTargetIndexW484] using hclosed.hclosedπ₃
+  letI :
+      PreservesColimit (parallelPair (selectedMetrizableDifferenceπ₃W485 S) 0)
+        underlyingForgetfulFunctorW485 :=
+    MetrizableLCA.preservesCokernelOf_isClosed_range
+      (selectedMetrizableDifferenceπ₃W485 S) hclosedπ₃
+  have hOrig :
+      IsColimit
+        ((ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCocone
+          (selectedMetrizableTargetCokernelCofork S cs)) :=
+    isColimitOfPreserves
+      (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0})
+      (selectedMetrizableTargetCokernelColimitOfOriginal_w520 S cs hcs)
+  have hOrigπ₃ :
+      IsColimit (selectedMetrizableComponentπ₃CokernelCoforkW521 S cs) :=
+    ((IsColimit.equivOfNatIsoOfIso (selectedMetrizableProjectionπ₃DiagramIsoW521 S)
+      (selectedMetrizableComponentπ₃CokernelCoforkW521 S cs)
+      _
+      (selectedMetrizableProjectionπ₃CoforkIsoW521 S cs))).symm hOrig
+  have hSelected :
+      IsColimit (selectedForgottenComponentπ₃CokernelCoforkW485 S cs) := by
+    have hMap :
+        IsColimit
+          ((selectedMetrizableComponentπ₃CokernelCoforkW521 S cs).map
+            underlyingForgetfulFunctorW485) :=
+      (selectedMetrizableComponentπ₃CokernelCoforkW521 S cs).mapIsColimit
+        hOrigπ₃ underlyingForgetfulFunctorW485
+    simpa [selectedMetrizableComponentπ₃CokernelCoforkW521,
+      selectedForgottenComponentπ₃CokernelCoforkW485,
+      underlyingForgetfulFunctorW485, selectedMetrizableDifferenceπ₃W485] using hMap
+  exact projectionπ₃_isColimit_of_selectedComponentπ₃_w485 hSelected
+
+/-- Closed-range-only component fields give the selected mapped short-complex cokernel colimit. -/
+def selectedMappedCokernelColimit_of_closedRangeOnly_w521
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hcs : IsColimit cs)
+    (hclosed : SelectedComponentwiseClosedRangeOnlyInputsW484 S cs) :
+    IsColimit
+      ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor) :=
+  ShortComplex.isColimitOfIsColimitπ
+    ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor)
+    (selectedMappedCokernelComponentπ₁_isColimit_of_closedRangeOnly_w521 hcs hclosed)
+    (selectedMappedCokernelComponentπ₂_isColimit_of_closedRangeOnly_w521 hcs hclosed)
+    (selectedMappedCokernelComponentπ₃_isColimit_of_closedRangeOnly_w521 hcs hclosed)
+
+/--
+Closed-range-only component fields make the short-complex forgetful functor
+preserve the selected cokernel.
+-/
+@[reducible]
+def selectedShortComplexDifferenceCokernelPreserves_of_closedRangeOnly_w521
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hcs : IsColimit cs)
+    (hclosed : SelectedComponentwiseClosedRangeOnlyInputsW484 S cs) :
+    PreservesColimit
+      (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0)
+      forgottenShortComplexFunctor :=
+  let hMapCocone :
+      IsColimit
+        (forgottenShortComplexFunctor.mapCocone
+          (selectedMetrizableTargetCokernelCofork S cs)) :=
+    ((selectedMetrizableTargetCokernelCofork S cs).isColimitMapCoconeEquiv
+      forgottenShortComplexFunctor).symm
+        (selectedMappedCokernelColimit_of_closedRangeOnly_w521 hcs hclosed)
+  preservesColimit_of_preserves_colimit_cocone
+    (selectedMetrizableTargetCokernelColimitOfOriginal_w520 S cs hcs)
+    hMapCocone
+
+/-- Provider-level adapter from W484 closed-range-only fields to W520 single preservation. -/
+@[reducible]
+def singleDifferencePreservationProvider_of_closedRangeOnly_w521
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    SelectedShortComplexDifferenceCokernelPreservationProviderW520 :=
+  fun S cs hcs =>
+    selectedShortComplexDifferenceCokernelPreserves_of_closedRangeOnly_w521 hcs
+      (hclosedOnly S cs hcs)
+
+/-- W521 endpoint with representative-image data and closed-range-only component fields. -/
+def exactAcyclic_of_representativeImage_and_closedRangeOnlySinglePreservation_w521
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_singleDifferencePreservation_w520 hinputs
+    (singleDifferencePreservationProvider_of_closedRangeOnly_w521 hclosedOnly)
+
+/-- W521 endpoint with compact-target data and closed-range-only component fields. -/
+def exactAcyclic_of_compactTargetRelation_and_closedRangeOnlySinglePreservation_w521
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_compactTargetRelation_and_singleDifferencePreservation_w520 hinputs
+    (singleDifferencePreservationProvider_of_closedRangeOnly_w521 hclosedOnly)
+
+/-- W521 checked nonterminal state. -/
+structure SinglePreservationFromClosedRangeOnlyV370SupportStateW521 : Type where
+  seed : String
+  declarations : List String
+  componentProjectionResult : String
+  selectedPreservationProviderResult : String
+  compactTargetEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W521 state. -/
+def currentSinglePreservationFromClosedRangeOnlyV370SupportStateW521 :
+    SinglePreservationFromClosedRangeOnlyV370SupportStateW521 where
+  seed := supportSeedW521
+  declarations :=
+    ["selectedMetrizableComponentπ₁CokernelCoforkW521",
+      "selectedMetrizableComponentπ₂CokernelCoforkW521",
+      "selectedMetrizableComponentπ₃CokernelCoforkW521",
+      "selectedMetrizableProjectionπ₁DiagramIsoW521",
+      "selectedMetrizableProjectionπ₂DiagramIsoW521",
+      "selectedMetrizableProjectionπ₃DiagramIsoW521",
+      "selectedMetrizableProjectionπ₁CoforkIsoW521",
+      "selectedMetrizableProjectionπ₂CoforkIsoW521",
+      "selectedMetrizableProjectionπ₃CoforkIsoW521",
+      "selectedMappedCokernelComponentπ₁_isColimit_of_closedRangeOnly_w521",
+      "selectedMappedCokernelComponentπ₂_isColimit_of_closedRangeOnly_w521",
+      "selectedMappedCokernelComponentπ₃_isColimit_of_closedRangeOnly_w521",
+      "selectedMappedCokernelColimit_of_closedRangeOnly_w521",
+      "selectedShortComplexDifferenceCokernelPreserves_of_closedRangeOnly_w521",
+      "singleDifferencePreservationProvider_of_closedRangeOnly_w521",
+      "exactAcyclic_of_representativeImage_and_closedRangeOnlySinglePreservation_w521",
+      "exactAcyclic_of_compactTargetRelation_and_closedRangeOnlySinglePreservation_w521"]
+  componentProjectionResult := "proved"
+  selectedPreservationProviderResult := "proved"
+  compactTargetEndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517 " ++
+        "or ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+      "construct concrete ComponentwiseClosedRangeOnlyProviderW484"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentSinglePreservationFromClosedRangeOnlyStateW521 :
+    SinglePreservationFromClosedRangeOnlyV370SupportStateW521 :=
+  currentSinglePreservationFromClosedRangeOnlyV370SupportStateW521
+
+theorem currentSinglePreservationFromClosedRangeOnlyStateW521_productSuccess :
+    currentSinglePreservationFromClosedRangeOnlyStateW521.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW521
+#check selectedMetrizableComponentπ₁CokernelCoforkW521
+#check selectedMetrizableComponentπ₂CokernelCoforkW521
+#check selectedMetrizableComponentπ₃CokernelCoforkW521
+#check selectedMetrizableProjectionπ₁DiagramIsoW521
+#check selectedMetrizableProjectionπ₂DiagramIsoW521
+#check selectedMetrizableProjectionπ₃DiagramIsoW521
+#check selectedMetrizableProjectionπ₁CoforkIsoW521
+#check selectedMetrizableProjectionπ₂CoforkIsoW521
+#check selectedMetrizableProjectionπ₃CoforkIsoW521
+#check selectedMappedCokernelComponentπ₁_isColimit_of_closedRangeOnly_w521
+#check selectedMappedCokernelComponentπ₂_isColimit_of_closedRangeOnly_w521
+#check selectedMappedCokernelComponentπ₃_isColimit_of_closedRangeOnly_w521
+#check selectedMappedCokernelColimit_of_closedRangeOnly_w521
+#check selectedShortComplexDifferenceCokernelPreserves_of_closedRangeOnly_w521
+#check singleDifferencePreservationProvider_of_closedRangeOnly_w521
+#check exactAcyclic_of_representativeImage_and_closedRangeOnlySinglePreservation_w521
+#check exactAcyclic_of_compactTargetRelation_and_closedRangeOnlySinglePreservation_w521
+#check currentSinglePreservationFromClosedRangeOnlyStateW521_productSuccess
+
+end Checks
+
+end WppOpSinglePreservationFromClosedRangeOnlyV370SupportW521
+
 end LeanLCAExactChallenge
