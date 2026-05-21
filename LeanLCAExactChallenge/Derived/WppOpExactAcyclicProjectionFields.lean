@@ -6869,4 +6869,152 @@ end Checks
 
 end WppOpClosedNatTransOrdinaryRelationFieldObstructionV370SupportW513
 
+namespace WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpQuotientIdentificationProjectionProviderV370SupportW485
+open WppOpComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportW489
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W514 selected closed-range preservation adapter. -/
+def supportSeedW514 : String :=
+  "w514-selected-cokernel-colimit-from-closed-range-quotient-identification"
+
+/--
+Quotient-identification data give the three projected component colimits, hence
+the componentwise input package used by the selected forgotten-target cokernel.
+-/
+def selectedMappedCokernelComponentwiseInputs_of_quotientIdentification_w514
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hquot : SelectedComponentQuotientIdentificationInputsW485 S cs) :
+    SelectedMappedCokernelComponentwiseInputs S cs :=
+  selectedMappedCokernelComponentwiseInputsOfProjectionFields
+    (selectedProjectionComponentIsColimitInputs_of_quotientIdentifications_w485 hquot)
+
+/-- Quotient-identification data directly supply the selected forgotten-target cokernel colimit. -/
+def selectedCokernelColimit_of_quotientIdentification_w514
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hquot : SelectedComponentQuotientIdentificationInputsW485 S cs) :
+    IsColimit (selectedForgottenTargetCokernelCofork S cs) :=
+  selectedForgottenTargetCokernelColimitOfComponentwise
+    (selectedMappedCokernelComponentwiseInputs_of_quotientIdentification_w514 hquot)
+
+/-- Provider form: quotient-identification data supply W492's selected colimit provider. -/
+def selectedCokernelColimitProvider_of_quotientIdentification_w514
+    (hquot : QuotientIdentificationProjectionProviderW485) :
+    SelectedCokernelColimitProviderW492 :=
+  fun S cs hcs =>
+    selectedCokernelColimit_of_quotientIdentification_w514 (hquot S cs hcs)
+
+/--
+Closed-range quotient-identification data supply W492's selected colimit
+provider without requiring global forgetful-cokernel preservation.
+-/
+def selectedCokernelColimitProvider_of_closedRangeQuotientIdentification_w514
+    (hclosed : ClosedRangeQuotientIdentificationProjectionProviderW487) :
+    SelectedCokernelColimitProviderW492 :=
+  selectedCokernelColimitProvider_of_quotientIdentification_w514
+    (quotientIdentificationProvider_of_closedRange_w487 hclosed)
+
+/--
+Componentwise closed-range projection data supply the same selected colimit
+provider through W489's quotient-identification adapter.
+-/
+def selectedCokernelColimitProvider_of_componentwiseProjection_w514
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    SelectedCokernelColimitProviderW492 :=
+  selectedCokernelColimitProvider_of_closedRangeQuotientIdentification_w514
+    (closedRangeQuotientIdentificationProvider_of_componentwiseProjection_w489 hcomponentwise)
+
+/-- W512 relation fields plus selected quotient-identification data imply exact acyclicity. -/
+def exactAcyclic_of_relationFields_and_quotientIdentification_w514
+    (hfields : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (hquot : QuotientIdentificationProjectionProviderW485) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_relationFields_and_selectedCokernelColimit_w512 hfields
+    (selectedCokernelColimitProvider_of_quotientIdentification_w514 hquot)
+
+/--
+W512 relation fields plus selected closed-range quotient-identification data
+imply exact acyclicity.
+-/
+def exactAcyclic_of_relationFields_and_closedRangeQuotientIdentification_w514
+    (hfields : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (hclosed : ClosedRangeQuotientIdentificationProjectionProviderW487) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_relationFields_and_selectedCokernelColimit_w512 hfields
+    (selectedCokernelColimitProvider_of_closedRangeQuotientIdentification_w514 hclosed)
+
+/-- W512 relation fields plus componentwise closed-range projection data imply exact acyclicity. -/
+def exactAcyclic_of_relationFields_and_componentwiseProjection_w514
+    (hfields : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_relationFields_and_selectedCokernelColimit_w512 hfields
+    (selectedCokernelColimitProvider_of_componentwiseProjection_w514 hcomponentwise)
+
+/-- W514 checked nonterminal state. -/
+structure SelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportStateW514 :
+    Type where
+  seed : String
+  declarations : List String
+  selectedColimitProviderResult : String
+  exactAcyclicClosedRangeRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W514 state. -/
+def currentSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportStateW514 :
+    SelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportStateW514 where
+  seed := supportSeedW514
+  declarations :=
+    ["selectedMappedCokernelComponentwiseInputs_of_quotientIdentification_w514",
+      "selectedCokernelColimit_of_quotientIdentification_w514",
+      "selectedCokernelColimitProvider_of_quotientIdentification_w514",
+      "selectedCokernelColimitProvider_of_closedRangeQuotientIdentification_w514",
+      "selectedCokernelColimitProvider_of_componentwiseProjection_w514",
+      "exactAcyclic_of_relationFields_and_quotientIdentification_w514",
+      "exactAcyclic_of_relationFields_and_closedRangeQuotientIdentification_w514",
+      "exactAcyclic_of_relationFields_and_componentwiseProjection_w514"]
+  selectedColimitProviderResult := "proved"
+  exactAcyclicClosedRangeRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487",
+      "or construct concrete ComponentwiseClosedRangeProjectionProviderW481",
+      "do not use the global closure-kernel provider unless its stronger hypotheses are available"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW514State :
+    SelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportStateW514 :=
+  currentSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportStateW514
+
+theorem
+    currentSelectedCokernelColimitFromClosedRangeQuotientIdentificationStateW514_productSuccess :
+    currentW514State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW514
+#check selectedMappedCokernelComponentwiseInputs_of_quotientIdentification_w514
+#check selectedCokernelColimit_of_quotientIdentification_w514
+#check selectedCokernelColimitProvider_of_quotientIdentification_w514
+#check selectedCokernelColimitProvider_of_closedRangeQuotientIdentification_w514
+#check selectedCokernelColimitProvider_of_componentwiseProjection_w514
+#check exactAcyclic_of_relationFields_and_quotientIdentification_w514
+#check exactAcyclic_of_relationFields_and_closedRangeQuotientIdentification_w514
+#check exactAcyclic_of_relationFields_and_componentwiseProjection_w514
+#check currentSelectedCokernelColimitFromClosedRangeQuotientIdentificationStateW514_productSuccess
+
+end Checks
+
+end WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514
+
 end LeanLCAExactChallenge

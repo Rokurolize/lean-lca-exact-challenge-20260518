@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w513-relation-field-obstruction-boundary",
-  "generated_utc": "2026-05-21T11:42:12Z",
-  "source_tree_hash": "6feb2e4ac0ec5005dbf1eddaa87d83699110a0acf418cc1bfccbf535962be180",
-  "summary": "W513 records the exact strength of W512 relation fields in the top-target-relation case: target-relation lifts are equivalent to surjectivity of the ordinary target component, and relation pullback collapses the source relation to top. Product success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w514-selected-closed-range-colimit-route",
+  "generated_utc": "2026-05-21T11:54:41Z",
+  "source_tree_hash": "fdfbc8ce00978888a4e1bf927d1dd8ae072a2421bc58921d0b99387ef3539e65",
+  "summary": "W514 turns selected quotient-identification and selected closed-range/componentwise projection data into W492 selected cokernel-colimit providers, then combines that narrower selected preservation route with W512 relation fields. Product success remains false because the concrete W512 relation fields and selected closed-range inputs are still unproved.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3364,6 +3364,56 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "External audit reaches only the expected product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W514 selected closed-range quotient-identification adapter compiled in the importable projection-fields module."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Projection-fields module rebuilt so downstream audit imports see W514 declarations."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit sees W514 declarations and keeps product success false."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full Lake build passed after W514 source and declaration updates."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in source after W514."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W514."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON artifacts parse after W514 metadata refresh."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors after W514 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W514 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "External audit reaches only the expected product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier."
     }
   ],
   "implemented_declarations_checked": [
@@ -4611,21 +4661,30 @@
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_selectedCokernelColimit_w512",
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_mappedExplicitCokernelCoforks_w512",
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_closureKernelProvider_w512",
-    "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess"
+    "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedMappedCokernelComponentwiseInputs_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimit_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_closedRangeQuotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_componentwiseProjection_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_closedRangeQuotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_componentwiseProjection_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.currentSelectedCokernelColimitFromClosedRangeQuotientIdentificationStateW514_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
     "prove the concrete relation-pullback equality and target-relation lift input for ordinaryMapOfWppOpNatTransW506",
-    "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
+    "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487 or ComponentwiseClosedRangeProjectionProviderW481",
     "run final product audit only after terminal_outcome can be product_success"
   ],
-  "support_result_classification": "nonterminal_support_increment",
+  "support_result_classification": "nonterminal_support_increment_selected_preservation_adapter",
   "product_success": false,
   "remaining_work": [
     "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
     "prove the concrete relation-pullback equality and target-relation lift input for ordinaryMapOfWppOpNatTransW506",
-    "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
+    "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487 or ComponentwiseClosedRangeProjectionProviderW481",
     "run final product audit only after terminal_outcome can be product_success"
   ],
   "summary_log_tail": "W512 is verified as a nonterminal support increment. It does not claim product_success and leaves update_goal forbidden."

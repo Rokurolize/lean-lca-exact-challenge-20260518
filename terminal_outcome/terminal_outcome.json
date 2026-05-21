@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W513でW512のrelation fieldsがtop target relationの場合にsurjectivity相当の強さを持つことをimportableにした。target-relation liftだけでordinary target componentの全射性が出るため、closed embeddingだけからW512 providerは導けない。product_successは主張しない。",
+  "summary": "W514でselected closed-range/quotient-identification入力からW492のselected cokernel-colimit providerを作り、W512 relation fieldsと組み合わせる経路をimportableにした。global closure-kernel providerを要求しない狭い保存経路だが、W512 relation fields本体とclosed-range quotient-identification入力は未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -595,7 +595,8 @@
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W508)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W509)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W510)",
-    "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null"
+    "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W514)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1705,32 +1706,41 @@
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_selectedCokernelColimit_w512",
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_mappedExplicitCokernelCoforks_w512",
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_closureKernelProvider_w512",
-    "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess"
+    "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedMappedCokernelComponentwiseInputs_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimit_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_closedRangeQuotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_componentwiseProjection_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_closedRangeQuotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_componentwiseProjection_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.currentSelectedCokernelColimitFromClosedRangeQuotientIdentificationStateW514_productSuccess"
   ],
   "known_gaps": [
-    "具体ClosedNatTransOrdinaryRelationFieldsProviderW512がまだない。",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512の具体証明がまだない。",
     "relation pullback equalityとtarget-relation liftの具体証明がまだない。",
-    "closure-kernelまたはselected cokernel-colimit側の保存入力がまだ未証明。",
+    "ClosedRangeQuotientIdentificationProjectionProviderW487またはComponentwiseClosedRangeProjectionProviderW481の具体証明がまだない。",
     "product_successを主張できる最終監査パケットがまだない。",
-    "ClosedNatTransOrdinaryRelationFieldsProviderW512はclosed embeddingだけからは導けず、top relation caseではsurjectivity相当の入力が必要。",
-    "selected preservationまたはclosed-range側へ仮説を正しく弱める経路の検証がまだ必要。"
+    "W513により、closed embeddingだけからW512 relation fieldsを導く経路は使えない。",
+    "W514はglobal closure-kernel providerを避ける接続であり、選択されたclosed-range入力そのものは未解決。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "be53bab",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W510 was integrated by the parent in the target tree; no new workers were launched. The ordinary descended map and quotient compatibility are now concrete, leaving topology facts plus preservation.",
+  "worker_frontier_summary": "W514 was integrated by the parent in the target tree; no worker was launched. The route now avoids the global closure-kernel provider by adapting selected quotient-identification/closed-range data into the W492 selected cokernel-colimit provider.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
-    "prove the concrete relation-pullback equality and target-relation lift input for ordinaryMapOfWppOpNatTransW506",
-    "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
-    "run final product audit only after terminal_outcome can be product_success",
-    "avoid deriving W512 relation fields from closed embeddings alone; provide a genuine surjectivity-level target-relation lift input or pivot to selected preservation",
-    "re-evaluate completion estimate downward from the previous 99% +/- 1 because W513 exposes W512 as an over-strong universal route"
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512の具体証明がまだない。",
+    "relation pullback equalityとtarget-relation liftの具体証明がまだない。",
+    "ClosedRangeQuotientIdentificationProjectionProviderW487またはComponentwiseClosedRangeProjectionProviderW481の具体証明がまだない。",
+    "product_successを主張できる最終監査パケットがまだない。",
+    "W513により、closed embeddingだけからW512 relation fieldsを導く経路は使えない。",
+    "W514はglobal closure-kernel providerを避ける接続であり、選択されたclosed-range入力そのものは未解決。"
   ],
-  "next_recommended_goal": "Pivot from the universal W512 relation-fields provider to a valid selected-preservation or closed-range route, or supply a genuine surjectivity-level target-relation lift hypothesis at the final call site.",
+  "next_recommended_goal": "Prove either the concrete W512 relation-field provider with genuine target-lift evidence or the concrete selected closed-range quotient-identification/componentwise projection input used by W514.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2763,10 +2773,19 @@
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_selectedCokernelColimit_w512",
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_mappedExplicitCokernelCoforks_w512",
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_closureKernelProvider_w512",
-    "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess"
+    "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedMappedCokernelComponentwiseInputs_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimit_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_closedRangeQuotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_componentwiseProjection_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_closedRangeQuotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_componentwiseProjection_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.currentSelectedCokernelColimitFromClosedRangeQuotientIdentificationStateW514_productSuccess"
   ],
-  "generated_utc": "2026-05-21T11:42:12Z",
-  "support_result_classification": "nonterminal_support_increment_obstruction_boundary",
+  "generated_utc": "2026-05-21T11:54:41Z",
+  "support_result_classification": "nonterminal_support_increment_selected_preservation_adapter",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3866,16 +3885,24 @@
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_selectedCokernelColimit_w512",
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_mappedExplicitCokernelCoforks_w512",
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_closureKernelProvider_w512",
-    "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess"
+    "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedMappedCokernelComponentwiseInputs_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimit_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_closedRangeQuotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.selectedCokernelColimitProvider_of_componentwiseProjection_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_quotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_closedRangeQuotientIdentification_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.exactAcyclic_of_relationFields_and_componentwiseProjection_w514",
+    "WppOpSelectedCokernelColimitFromClosedRangeQuotientIdentificationV370SupportW514.currentSelectedCokernelColimitFromClosedRangeQuotientIdentificationStateW514_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
     "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
     "prove the concrete relation-pullback equality and target-relation lift input for ordinaryMapOfWppOpNatTransW506",
-    "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
+    "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487 or ComponentwiseClosedRangeProjectionProviderW481",
     "run final product audit only after terminal_outcome can be product_success",
-    "avoid deriving W512 relation fields from closed embeddings alone; provide a genuine surjectivity-level target-relation lift input or pivot to selected preservation",
-    "re-evaluate completion estimate downward from the previous 99% +/- 1 because W513 exposes W512 as an over-strong universal route"
+    "avoid deriving W512 relation fields from closed embeddings alone; provide genuine relation-field input or keep the selected preservation route narrow"
   ]
 }
