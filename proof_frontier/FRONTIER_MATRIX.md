@@ -771,3 +771,21 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: strict short exact and `CokernelTopStrictInput` hypotheses now have a checked support package feeding closed-embedding/closed-map/closed-range component cokernel preservation.
 - remaining blockers: lift W448/W445 component preservation into W446's selected short-complex preservation instance and apply it to the actual selected WPP-op difference row.
 - product_complete: false
+
+## W449 Forgotten Short Complex Functor Additive Zero
+
+- timestamp: `2026-05-21T00:55:40Z`
+- artifact: `audit/blockers/addcommgrp_forgotten_short_complex_functor_additive_zero_v370_support_w449.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_forgotten_short_complex_functor_additive_zero_v370_support_w449.lean`; `git diff --check`; forbidden-token scan on the W449 support file
+- effect: `forgottenShortComplexFunctor` has checked local additive and zero-morphism support, W446's additive/zero boundary is discharged, and the componentwise mapped cokernel input structure is recorded.
+- remaining blockers: provide the selected short-complex difference preservation instance, or provide the three componentwise mapped cokernel colimit inputs and bridge them to W446's selected forgotten cofork.
+- product_complete: false
+
+## W450 AddCommGrp Cokernel Cofork From Strict Short Exact
+
+- timestamp: `2026-05-21T01:01:41Z`
+- artifact: `audit/blockers/addcommgrp_cokernel_cofork_from_strict_short_exact_v370_support_w450.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_cokernel_cofork_from_strict_short_exact_v370_support_w450.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_cokernel_cofork_from_strict_short_exact_v370_support_w450.lean`; `git diff --check`
+- effect: strict `MetrizableLCA` short exact rows supply AddCommGrp left injectivity, kernel exactness, right surjectivity, AddCommGrp short exactness, the forgotten right-map cokernel cofork colimit, and a W345 adapter for `ParallelPairDifferenceStrictCokernelData`.
+- remaining blockers: construct the concrete difference kernel row, construct the concrete difference cokernel row, and identify the WPP-op colimit short complex with that cokernel row.
+- product_complete: false

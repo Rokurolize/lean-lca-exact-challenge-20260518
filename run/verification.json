@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-21T00:54:41Z",
-  "source_tree_hash": "8c14a3620da35646905a5a19668d84309ed20348e97afdc26aa8ad05a11218d8",
-  "summary": "W448 component cokernel preservation package was verified alongside the mapShortComplex instance reduction. Product success remains blocked by the component-to-short-complex preservation lift.",
+  "generated_utc": "2026-05-21T01:01:41Z",
+  "source_tree_hash": "af3e233372a0300dbfbc64807c6f877dc95d9689a8bfb2b91016576d85eb3a09",
+  "summary": "W449 and W450 support files were verified and recorded. Product success remains blocked by the selected short-complex preservation lift and concrete difference row identification.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -2348,6 +2348,26 @@
       "command": "lake env lean audit/blockers/addcommgrp_closed_embedding_cokernel_preservation_package_v370_support_w448.lean",
       "status": "passed",
       "evidence": "W448 support file compiles and packages closed-embedding/closed-map component cokernel preservation routes."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_forgotten_short_complex_functor_additive_zero_v370_support_w449.lean",
+      "status": "passed",
+      "evidence": "Focused W449 additive/zero and componentwise-input support file passed; #check output confirms declarations."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_forgotten_short_complex_functor_additive_zero_v370_support_w449.lean",
+      "status": "passed",
+      "evidence": "No forbidden proof placeholders were found in the W449 support file."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_cokernel_cofork_from_strict_short_exact_v370_support_w450.lean",
+      "status": "passed",
+      "evidence": "Focused W450 strict short exact to AddCommGrp cokernel cofork support file passed; #check output confirms declarations."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_cokernel_cofork_from_strict_short_exact_v370_support_w450.lean",
+      "status": "passed",
+      "evidence": "No forbidden proof placeholders were found in the W450 support file."
     }
   ],
   "implemented_declarations_checked": [
