@@ -1062,17 +1062,6 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - product_complete: false
 
 
-## W481 W461 Bridge Componentwise Closed Range Projection
-
-- timestamp: `2026-05-21T03:55:00Z`
-- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
-- audit artifact: `audit/ProductSuccessDeclarations.lean`
-- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
-- effect: W481 exposes `WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481`, which packages componentwise closed-range evidence together with the three projection `IsColimit` fields consumed by W475 and composes them with W480 through `exactAcyclic_of_w461_to_w441_and_componentwiseClosedRangeProjection_w481`.
-- remaining blockers: instantiate actual `W461ToW475PromotionInputsProviderW480`, `W461ToW475OrdinaryMapProviderW480`, and concrete componentwise projection fields at the final WPP-op exact-acyclic call sites.
-- product_complete: false
-
-
 ## W479 W426 Left Closed Quotient Identification Exact Acyclic
 
 - timestamp: `2026-05-21T02:52:26Z`

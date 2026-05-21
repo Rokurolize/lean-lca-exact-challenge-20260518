@@ -1,6 +1,6 @@
 {
   "generated_utc": "2026-05-21T03:13:15Z",
-  "content_hash_tree": "327d4b6c8ec4ed91667660b5c060c7a5a96ba965d12c36ac965c6d3187c9ee6f",
+  "content_hash_tree": "d7e4b353e9d7cee5a9753fb7c725314a8959fe6397b8beb263c03ed50d400273",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -1965,17 +1965,17 @@
     {
       "path": "progress.tsv",
       "bytes": 297055,
-      "sha256": "adcfde23aab2d425ab39fc37178c3f3301e1acf04eba24fc962304b26f17466c"
+      "sha256": "2afb595dac380a971043817d3034cb9c9c768e2c3396aee8a9194f43c96d7a4d"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 314521,
-      "sha256": "2bdddb8a20bb7fcf653b8a4cb9fdefad24c97c7c6113ce0efd5e0184cd2bda2f"
+      "bytes": 316005,
+      "sha256": "06b9d85941b9f77e23a185ab58f5911412a650ff64a4d9862b5a6345c8ac0bec"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
-      "bytes": 199575,
-      "sha256": "9eb361bac825e2387f7f3a101a2d01b0cba2f46559c1567fba7d6a7ecaf12b95"
+      "bytes": 198374,
+      "sha256": "96a939da79369161070165f00b984c7d08b2377e39ba83eff475fca889337816"
     },
     {
       "path": "proof_frontier/ROOT_BLOCKERS_W320.json",
@@ -1989,8 +1989,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 246874,
-      "sha256": "1a27088d621ebc21c5f134143ac04b14faf7fb7ba79741e194bcc745890ad01d"
+      "bytes": 248701,
+      "sha256": "e072313d27596433bb7aae80d253b88f3da93db18f6a720a8092f44e2359bf0c"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",

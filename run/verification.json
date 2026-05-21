@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w481-componentwise-projection-bridge",
-  "generated_utc": "2026-05-21T03:13:15Z",
+  "schema": "lean-lca-exact-challenge-verification-w481-w461-bridge-componentwise-closed-range-projection",
+  "generated_utc": "2026-05-21T03:55:00Z",
   "source_tree_hash": "c568a6ae903b0d3f0516412da9f3fe44fdff660a0e966cd76e63e96443a7db46",
-  "summary": "W481 componentwise closed-range projection wrapper is importable and verified; product_complete remains false pending concrete final provider instances.",
+  "summary": "W481 componentwise closed-range projection wrapper compiles in the importable Derived module and ProductSuccessDeclarations; product_complete remains false pending concrete W461-to-W475 inputs, ordinary-map provider, and final componentwise projection fields.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -2739,6 +2739,36 @@
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
       "evidence": "JSON artifacts parsed after W480 metadata refresh."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Importable W481 componentwise closed-range projection wrapper checks in WppOpExactAcyclicProjectionFields; it supplies ProjectionFieldsProviderW475 and composes with the W480 exact-acyclic bridge."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations exposes W481 wrapper declarations and still records productSuccessClaimed = false."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Module build completed successfully with W480/W481 declarations present."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W481-touched importable module and product declarations audit file."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W481 wrapper and notes updates."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON artifacts parsed after W481 metadata refresh."
     }
   ],
   "implemented_declarations_checked": [
