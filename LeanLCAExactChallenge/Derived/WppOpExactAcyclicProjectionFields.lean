@@ -4128,4 +4128,143 @@ end Checks
 
 end WppOpSelectedW461PointIdentificationRouteV370SupportW500
 
+namespace WppOpSelectedW461ConcreteLegRouteV370SupportW501
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpSelectedW461ProviderSelectedCokernelColimitV370SupportW498
+open WppOpSelectedW461ProviderPreservationRoutesV370SupportW499
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461PointIdentificationRouteV370SupportW500
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W501 concrete-leg route. -/
+def supportSeedW501 : String :=
+  "w501-selected-w461-concrete-leg-route"
+
+/--
+Concrete point-identification fields plus the full W318 leg theorem for the
+conjugated descended map.
+-/
+structure SelectedW461ConcreteLegCallSiteInputsW501
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) : Type 1 where
+  pointIdentificationInputs :
+    W461TargetLegPointIdentificationInputsW478 X Y α cx cy
+  concreteLegCompatibility :
+    W318ColimitMapLegCompatibilityW441 X Y α cx cy
+      (concreteConjugatedDescendedW478 pointIdentificationInputs)
+  ordinaryPackage :
+    W426OrdinaryDescendedMapPackage pointIdentificationInputs.ordinaryMap
+  ordinaryDescended_eq :
+    ordinaryPackage.ordinaryDescended =
+      pointIdentificationInputs.ordinaryDescended
+
+/-- Provider surface for W501 concrete W318 leg-compatibility inputs. -/
+abbrev SelectedW461ConcreteLegProviderW501 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+      IsColimit cx →
+        IsColimit cy →
+          (∀ j : WalkingParallelPairᵒᵖ,
+            IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+            W318ColimitMapLegCompatibilityW441 X Y α cx cy φ →
+              SelectedW461ConcreteLegCallSiteInputsW501 X Y α cx cy
+
+/-- W501 concrete-leg fields build W500 point-identification call-site fields. -/
+def selectedPointIdentificationInputs_of_concreteLeg_w501
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y}
+    (H : SelectedW461ConcreteLegCallSiteInputsW501 X Y α cx cy) :
+    SelectedW461PointIdentificationCallSiteInputsW500 X Y α cx cy where
+  pointIdentificationInputs := H.pointIdentificationInputs
+  targetComponentImpliesW318 := fun _htarget => H.concreteLegCompatibility
+  ordinaryPackage := H.ordinaryPackage
+  ordinaryDescended_eq := H.ordinaryDescended_eq
+
+/-- W501 concrete-leg providers feed W500's selected point-identification route. -/
+def selectedPointIdentificationProvider_of_concreteLeg_w501
+    (hleg : SelectedW461ConcreteLegProviderW501) :
+    SelectedW461PointIdentificationProviderW500 :=
+  fun X Y α cx cy φ hcx hcy hclosed hcompat =>
+    selectedPointIdentificationInputs_of_concreteLeg_w501
+      (hleg X Y α cx cy φ hcx hcy hclosed hcompat)
+
+/--
+W501 endpoint: concrete point-identification leg compatibility plus the selected
+cokernel-colimit provider imply the current WPP-op exact-acyclic closure.
+-/
+def exactAcyclic_of_selectedW461ConcreteLeg_and_selectedCokernelColimit_w501
+    (hleg : SelectedW461ConcreteLegProviderW501)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461PointIdentification_and_selectedCokernelColimit_w500
+    (selectedPointIdentificationProvider_of_concreteLeg_w501 hleg) hselected
+
+/--
+W501 endpoint with W499's mapped-explicit-cokernel preservation input.
+-/
+def exactAcyclic_of_selectedW461ConcreteLeg_and_mappedExplicitCokernelCoforks_w501
+    (hleg : SelectedW461ConcreteLegProviderW501)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461PointIdentification_and_mappedExplicitCokernelCoforks_w500
+    (selectedPointIdentificationProvider_of_concreteLeg_w501 hleg) hMapped
+
+/-- W501 checked nonterminal state. -/
+structure SelectedW461ConcreteLegRouteV370SupportStateW501 : Type where
+  seed : String
+  declarations : List String
+  pointIdentificationAdapterResult : String
+  selectedCokernelRouteResult : String
+  mappedCokernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W501 state. -/
+def currentSelectedW461ConcreteLegRouteV370SupportStateW501 :
+    SelectedW461ConcreteLegRouteV370SupportStateW501 where
+  seed := supportSeedW501
+  declarations :=
+    ["SelectedW461ConcreteLegCallSiteInputsW501",
+      "SelectedW461ConcreteLegProviderW501",
+      "selectedPointIdentificationInputs_of_concreteLeg_w501",
+      "selectedPointIdentificationProvider_of_concreteLeg_w501",
+      "exactAcyclic_of_selectedW461ConcreteLeg_and_selectedCokernelColimit_w501",
+      "exactAcyclic_of_selectedW461ConcreteLeg_and_mappedExplicitCokernelCoforks_w501"]
+  pointIdentificationAdapterResult := "proved"
+  selectedCokernelRouteResult := "proved"
+  mappedCokernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete SelectedW461ConcreteLegProviderW501",
+      "prove the selected cokernel-colimit or mapped-cokernel preservation input"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW501State :
+    SelectedW461ConcreteLegRouteV370SupportStateW501 :=
+  currentSelectedW461ConcreteLegRouteV370SupportStateW501
+
+theorem currentSelectedW461ConcreteLegRouteStateW501_productSuccess :
+    currentW501State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW501
+#check SelectedW461ConcreteLegCallSiteInputsW501
+#check SelectedW461ConcreteLegProviderW501
+#check selectedPointIdentificationInputs_of_concreteLeg_w501
+#check selectedPointIdentificationProvider_of_concreteLeg_w501
+#check exactAcyclic_of_selectedW461ConcreteLeg_and_selectedCokernelColimit_w501
+#check exactAcyclic_of_selectedW461ConcreteLeg_and_mappedExplicitCokernelCoforks_w501
+#check currentSelectedW461ConcreteLegRouteStateW501_productSuccess
+
+end Checks
+
+end WppOpSelectedW461ConcreteLegRouteV370SupportW501
+
 end LeanLCAExactChallenge
