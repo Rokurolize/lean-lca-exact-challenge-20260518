@@ -401,13 +401,141 @@ structure Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus : Type
   equalizers : HasEqualizers (Dbounded MetrizableLCA.{0})
   coequalizers : HasCoequalizers (Dbounded MetrizableLCA.{0})
 
-/-- Functor-category localization input for the `WalkingParallelPair` finite-shape transfer. -/
-abbrev Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput : Prop :=
+/-- Objectwise localization functor for `WalkingParallelPair` diagrams. -/
+noncomputable abbrev Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor :
+    (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤
+      (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}) :=
   ((Functor.whiskeringRight WalkingParallelPair
       (BoundedComplexCategory MetrizableLCA.{0})
       (Dbounded MetrizableLCA.{0})).obj
-      (Dbounded.localization MetrizableLCA.{0})).IsLocalization
+      (Dbounded.localization MetrizableLCA.{0}))
+
+/-- Functor-category localization input for the `WalkingParallelPair` finite-shape transfer. -/
+abbrev Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput : Prop :=
+  Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor.IsLocalization
     ((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory WalkingParallelPair)
+
+/--
+The objectwise functor inverts objectwise bounded exact weak equivalences. After this formal
+field, the non-discrete functor-category localization input is reduced to fixed-target
+`lift`, `fac`, and `uniq` data.
+-/
+lemma Dbounded.metrizableWalkingParallelPairObjectwiseLocalization_inverts :
+    MorphismProperty.IsInvertedBy
+      ((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory WalkingParallelPair)
+      Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor :=
+  fun _ _ f hf => by
+    haveI :
+        ∀ j : WalkingParallelPair,
+          IsIso
+            ((Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor.map f).app j) :=
+      fun j =>
+        CategoryTheory.Localization.inverts
+          (Dbounded.localization MetrizableLCA.{0})
+          (boundedExactWeakEquivalence MetrizableLCA.{0})
+          (f.app j) (hf j)
+    exact NatIso.isIso_of_isIso_app _
+
+/-- Expanded fixed-target fields for the `WalkingParallelPair` objectwise localization. -/
+structure Dbounded.MetrizableWalkingParallelPairFunctorCategoryFixedTargetFields
+    (E : Type*) [Category E] where
+  inverts :
+    MorphismProperty.IsInvertedBy
+      ((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory WalkingParallelPair)
+      Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor
+  lift :
+    ∀ (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E),
+      MorphismProperty.IsInvertedBy
+        ((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory WalkingParallelPair)
+        F →
+        (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}) ⥤ E
+  fac :
+    ∀ (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E)
+      (hF :
+        MorphismProperty.IsInvertedBy
+          ((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory WalkingParallelPair)
+          F),
+      Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙ lift F hF = F
+  uniq :
+    ∀ (F₁ F₂ : (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}) ⥤ E),
+      Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙ F₁ =
+        Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙ F₂ →
+      F₁ = F₂
+
+/-- Convert the expanded fixed-target package into mathlib's localization input. -/
+def Dbounded.MetrizableWalkingParallelPairFunctorCategoryFixedTargetFields.toStrictUniversalProperty
+    {E : Type*} [Category E]
+    (fields : Dbounded.MetrizableWalkingParallelPairFunctorCategoryFixedTargetFields E) :
+    CategoryTheory.Localization.StrictUniversalPropertyFixedTarget
+      Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor
+      ((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory WalkingParallelPair)
+      E where
+  inverts := fields.inverts
+  lift := fields.lift
+  fac := fields.fac
+  uniq := fields.uniq
+
+/--
+Remaining fixed-target data after the formal objectwise inversion field has been proved.
+These are the two universal-property targets required by `Functor.IsLocalization.mk'`.
+-/
+structure Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetData
+    (E : Type*) [Category E] where
+  lift :
+    ∀ (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E),
+      MorphismProperty.IsInvertedBy
+        ((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory WalkingParallelPair)
+        F →
+        (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}) ⥤ E
+  fac :
+    ∀ (F : (WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0}) ⥤ E)
+      (hF :
+        MorphismProperty.IsInvertedBy
+          ((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory WalkingParallelPair)
+          F),
+      Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙ lift F hF = F
+  uniq :
+    ∀ (F₁ F₂ : (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0}) ⥤ E),
+      Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙ F₁ =
+        Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor ⋙ F₂ →
+      F₁ = F₂
+
+/-- Add the formal inversion field to a remaining fixed-target package. -/
+def Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetData.toFields
+    {E : Type*} [Category E]
+    (data :
+      Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetData E) :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryFixedTargetFields E where
+  inverts := Dbounded.metrizableWalkingParallelPairObjectwiseLocalization_inverts
+  lift := data.lift
+  fac := data.fac
+  uniq := data.uniq
+
+/--
+The two fixed targets sufficient to prove the `WalkingParallelPair` functor-category
+localization: the diagram target category and the canonical localization model.
+-/
+structure Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs :
+    Type 1 where
+  targetData :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetData
+      (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0})
+  modelData :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetData
+      (((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair).Localization)
+
+/-- Build the W532 functor-category localization input from the two fixed-target packages. -/
+theorem Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs) :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput :=
+  Functor.IsLocalization.mk'
+    (L := Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor)
+    (W := (boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+      WalkingParallelPair)
+    inputs.targetData.toFields.toStrictUniversalProperty
+    inputs.modelData.toFields.toStrictUniversalProperty
 
 /--
 Inputs that transfer equalizers and coequalizers for `Dbounded MetrizableLCA` from the
@@ -422,6 +550,31 @@ structure Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs : Type
       WalkingParallelPair
   functorCategoryLocalization :
     Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+Finite-shape transfer inputs with the functor-category localization supplied by the two
+fixed-target universal-property packages instead of as an opaque instance.
+-/
+structure Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromFixedTargets :
+    Type 1 where
+  limitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair
+  colimitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderColimitsOfShape
+      WalkingParallelPair
+  fixedTargetInputs :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+
+/-- Build W532 transfer inputs from fixed-target functor-category localization data. -/
+def Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_fixedTargets
+    (inputs : Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromFixedTargets) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability := inputs.limitStability
+  colimitStability := inputs.colimitStability
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
 
 /-- Equalizers in `Dbounded MetrizableLCA` from finite-shape localization transfer. -/
 noncomputable abbrev Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer
@@ -549,17 +702,49 @@ theorem Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames_coun
     Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames.length = 3 :=
   rfl
 
+/-- Fixed-target data replacing the opaque WPP functor-category localization input. -/
+def Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames : List String :=
+  ["lift/fac/uniq for WalkingParallelPair ⥤ Dbounded MetrizableLCA",
+    "lift/fac/uniq for the WalkingParallelPair localization model"]
+
+theorem Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames_count :
+    Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames.length = 2 :=
+  rfl
+
+/-- Finite-shape transfer input names when localization is supplied by fixed targets. -/
+def Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames : List String :=
+  ["IsStableUnderLimitsOfShape WalkingParallelPair",
+    "IsStableUnderColimitsOfShape WalkingParallelPair",
+    "fixed-target lift/fac/uniq for WalkingParallelPair ⥤ Dbounded MetrizableLCA",
+    "fixed-target lift/fac/uniq for the WalkingParallelPair localization model"]
+
+theorem Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames_count :
+    Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames.length = 4 :=
+  rfl
+
 section DboundedFiniteShapeTransferChecks
 
 #check CategoryTheory.Localization.hasLimitsOfShape_of_functorCategoryLocalization
 #check CategoryTheory.Localization.hasColimitsOfShape_of_functorCategoryLocalization
+#check Dbounded.metrizableWalkingParallelPairObjectwiseLocalizationFunctor
 #check Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+#check Dbounded.metrizableWalkingParallelPairObjectwiseLocalization_inverts
+#check Dbounded.MetrizableWalkingParallelPairFunctorCategoryFixedTargetFields
+#check Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetData
+#check Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+#check Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
 #check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+#check Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromFixedTargets
+#check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_fixedTargets
 #check Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer
 #check Dbounded.metrizableHasCoequalizersOfWalkingParallelPairTransfer
 #check Dbounded.metrizableFiniteLimitColimitRemainderOfWalkingParallelPairTransfer
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames_count
+#check Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames
+#check Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames_count
+#check Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames
+#check Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames_count
 
 end DboundedFiniteShapeTransferChecks
 

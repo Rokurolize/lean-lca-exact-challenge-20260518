@@ -9625,6 +9625,38 @@ structure MetrizableWalkingParallelPairFiniteShapeTransferInputsFromRepresentati
   functorCategoryLocalization :
     Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
 
+/--
+W532 finite-shape transfer inputs with WPP colimit stability supplied by W515/W527 and
+functor-category localization reduced to the two fixed-target `lift/fac/uniq` packages.
+-/
+structure MetrizableWppTransferInputsFromRepImageClosedMapRowsFixedTargets :
+    Type 1 where
+  limitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair
+  representativeImageProvider :
+    ClosedNatTransOrdinaryRepresentativeImageProviderW515
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  fixedTargetInputs :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+
+/--
+W532 finite-shape transfer inputs with W515/W527 closed-embedding rows and fixed-target
+functor-category localization data.
+-/
+structure MetrizableWppTransferInputsFromRepImageClosedEmbeddingRowsFixedTargets :
+    Type 1 where
+  limitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair
+  representativeImageProvider :
+    ClosedNatTransOrdinaryRepresentativeImageProviderW515
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  fixedTargetInputs :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+
 /-- Build W532's transfer record from W515 data and W527 row-aware closed-map rows. -/
 noncomputable def metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedMapRows
     (inputs :
@@ -9646,6 +9678,32 @@ noncomputable def metrizableWalkingParallelPairFiniteShapeTransferInputs_of_repr
     walkingParallelPairColimitStability_of_representativeImage_and_closedEmbeddingRows_w535
       inputs.representativeImageProvider inputs.closedEmbeddingRows
   functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/-- Build W532's transfer record from W515/W527 closed-map rows and fixed-target data. -/
+def metrizableWppTransferInputs_of_repImageClosedMapRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromRepImageClosedMapRowsFixedTargets) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability := inputs.limitStability
+  colimitStability :=
+    walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535
+      inputs.representativeImageProvider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/-- Build W532's transfer record from W515/W527 closed-embedding rows and fixed-target data. -/
+def metrizableWppTransferInputs_of_repImageClosedEmbeddingRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromRepImageClosedEmbeddingRowsFixedTargets) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability := inputs.limitStability
+  colimitStability :=
+    walkingParallelPairColimitStability_of_representativeImage_and_closedEmbeddingRows_w535
+      inputs.representativeImageProvider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
 
 /-- Input names for the representative-image closed-map-row form of W532 finite-shape transfer. -/
 def metrizableWalkingParallelPairFiniteShapeTransferFromRepresentativeImageClosedMapRowsInputNames :
@@ -9673,6 +9731,34 @@ theorem metrizableWalkingParallelPairFiniteShapeTransferFromRepresentativeImageC
       4 :=
   rfl
 
+/-- Input names for the W515/W527 closed-map route with fixed-target localization data. -/
+def metrizableWppTransferFromRepImageClosedMapRowsFixedTargetInputNames :
+    List String :=
+  ["IsStableUnderLimitsOfShape WalkingParallelPair",
+    "ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+    "ComponentwiseClosedMapRowsProviderW527",
+    "fixed-target lift/fac/uniq for WalkingParallelPair ⥤ Dbounded MetrizableLCA",
+    "fixed-target lift/fac/uniq for the WalkingParallelPair localization model"]
+
+theorem metrizableWppTransferFromRepImageClosedMapRowsFixedTargetInputNames_count :
+    metrizableWppTransferFromRepImageClosedMapRowsFixedTargetInputNames.length =
+      5 :=
+  rfl
+
+/-- Input names for the W515/W527 closed-embedding route with fixed-target localization data. -/
+def metrizableWppTransferFromRepImageClosedEmbeddingRowsFixedTargetInputNames :
+    List String :=
+  ["IsStableUnderLimitsOfShape WalkingParallelPair",
+    "ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "fixed-target lift/fac/uniq for WalkingParallelPair ⥤ Dbounded MetrizableLCA",
+    "fixed-target lift/fac/uniq for the WalkingParallelPair localization model"]
+
+theorem metrizableWppTransferFromRepImageClosedEmbeddingRowsFixedTargetInputNames_count :
+    metrizableWppTransferFromRepImageClosedEmbeddingRowsFixedTargetInputNames.length =
+      5 :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -9684,9 +9770,25 @@ section Checks
 #check
   MetrizableWalkingParallelPairFiniteShapeTransferInputsFromRepresentativeImageClosedEmbeddingRows
 #check
+  MetrizableWppTransferInputsFromRepImageClosedMapRowsFixedTargets
+#check
+  MetrizableWppTransferInputsFromRepImageClosedEmbeddingRowsFixedTargets
+#check
   metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedMapRows
 #check
   metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedEmbeddingRows
+#check
+  metrizableWppTransferInputs_of_repImageClosedMapRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_repImageClosedEmbeddingRowsFixedTargets
+#check
+  metrizableWppTransferFromRepImageClosedMapRowsFixedTargetInputNames
+#check
+  metrizableWppTransferFromRepImageClosedMapRowsFixedTargetInputNames_count
+#check
+  metrizableWppTransferFromRepImageClosedEmbeddingRowsFixedTargetInputNames
+#check
+  metrizableWppTransferFromRepImageClosedEmbeddingRowsFixedTargetInputNames_count
 
 end Checks
 
