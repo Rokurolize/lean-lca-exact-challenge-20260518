@@ -874,3 +874,13 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: projection component IsColimit fields now feed componentwise selected cokernel inputs, strict Snake cokernel data, and AddCommGrp kernel exactness for the selected colimit point.
 - remaining blockers: actual selected component cofork `IsColimit` proofs or explicit closed-range quotient-cokernel identifications remain required; W461 additionally needs W458 import/use, W426 ordinary descended and quotient compatibility instances, and W387 point-identification target-leg equations.
 - product_complete: false
+
+
+## W463 Selected Component Quotient Identification
+
+- timestamp: `2026-05-21T01:37:42Z`
+- artifact: `audit/blockers/addcommgrp_selected_component_quotient_identification_v370_support_w463.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_selected_component_quotient_identification_v370_support_w463.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_selected_component_quotient_identification_v370_support_w463.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_component_quotient_identification_v370_support_w463.lean`; `git diff --check`
+- effect: selected component cofork `IsColimit` proofs are reduced to `SelectedComponentQuotientIdentificationInputsW463`: three point isomorphisms from `cs.pt.Xᵢ` to explicit forgotten cokernel quotients, three equations identifying selected component legs with explicit quotient projections after those isomorphisms, and three explicit quotient `IsColimit` proofs.
+- remaining blockers: construct the actual point isomorphisms and leg equations for the selected colimit point, and provide the explicit quotient `IsColimit` proofs from closed-range quotient support for the three selected component differences.
+- product_complete: false
