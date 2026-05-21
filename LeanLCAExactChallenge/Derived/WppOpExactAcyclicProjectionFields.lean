@@ -8974,4 +8974,167 @@ end Checks
 
 end WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525
 
+namespace WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpExactAcyclicFrontierConsolidatedW318
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpClosedRangeOnlyProjectionBridgeV370SupportW522
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpTopTargetRelationRepresentativeImageV370SupportW516
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+open WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524
+
+/-- Reproducible support seed for the W526 row-aware closed-range route. -/
+def supportSeedW526 : String :=
+  "w526-row-aware-closed-range-only-projection"
+
+/--
+The strict AddCommGrp row fields available at the actual W318 algebraic
+boundary. W526 uses these fields to avoid asking for closed-range data for
+arbitrary short-complex WPP-op diagrams.
+-/
+abbrev StrictRowInputsForSelectedDifferenceW526
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) : Prop :=
+  ∀ j : WalkingParallelPairᵒᵖ,
+    AddCommGrpLeftInjective
+        ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})) ∧
+      AddCommGrpKernelExact ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})) ∧
+        AddCommGrpRightSurjective
+          ((S.obj j).map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}))
+
+/--
+Row-aware closed-range-only provider for the selected component difference
+maps. This is weaker than W484's all-diagrams provider and matches the
+strict-row call site used to prove the algebraic exactness boundary.
+-/
+abbrev ComponentwiseClosedRangeOnlyRowsProviderW526 : Type 1 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs →
+      StrictRowInputsForSelectedDifferenceW526 S →
+        SelectedComponentwiseClosedRangeOnlyInputsW484 S cs
+
+/-- W526 row-aware closed-range fields supply the selected projection fields. -/
+def selectedProjectionComponentInputs_of_closedRangeOnlyRows_w526
+    (hclosedRows : ComponentwiseClosedRangeOnlyRowsProviderW526)
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (hcs : IsColimit cs)
+    (hRows : StrictRowInputsForSelectedDifferenceW526 S) :
+    SelectedProjectionComponentIsColimitInputs S cs := by
+  let hclosed := hclosedRows S cs hcs hRows
+  let Hbridge := selectedComponentwiseProjectionBridgeInputs_of_closedRangeOnly_w522
+    hcs hclosed
+  exact (Hbridge.hπ₁, Hbridge.hπ₂, Hbridge.hπ₃)
+
+/--
+Row-aware closed-range fields prove W318's strict AddCommGrp algebraic boundary
+without requiring W484's overbroad closed-range provider.
+-/
+theorem addCommGrpStrictKernelExactBoundary_of_closedRangeOnlyRows_w526
+    (hclosedRows : ComponentwiseClosedRangeOnlyRowsProviderW526) :
+    addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable := by
+  intro S cs hcs hRows
+  exact addCommGrpKernelExact_of_projectionComponentFields_addCommGrpRows hRows
+    (selectedProjectionComponentInputs_of_closedRangeOnlyRows_w526 hclosedRows hcs hRows)
+
+/--
+Selected W461 left-field data plus row-aware closed-range fields imply the
+WPP-op exact-acyclic colimit closure.
+-/
+theorem exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hclosedRows : ComponentwiseClosedRangeOnlyRowsProviderW526) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict
+    (wppOp_lca_colimitMap_injective_inducing_closedImage_of_selectedW461Provider_w483
+      hinputs)
+    (addCommGrpStrictKernelExactBoundary_of_closedRangeOnlyRows_w526 hclosedRows)
+
+/-- Representative-image endpoint with row-aware closed-range fields. -/
+def exactAcyclic_of_representativeImage_and_closedRangeOnlyRows_w526
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hclosedRows : ComponentwiseClosedRangeOnlyRowsProviderW526) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526
+    (selectedW461Provider_of_representativeImage_w524 hinputs) hclosedRows
+
+/-- Top-target relation endpoint with row-aware closed-range fields. -/
+def exactAcyclic_of_topTargetRelation_and_closedRangeOnlyRows_w526
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hclosedRows : ComponentwiseClosedRangeOnlyRowsProviderW526) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526
+    (selectedW461Provider_of_topTargetRelation_w524 hinputs) hclosedRows
+
+/-- Compact-target relation endpoint with row-aware closed-range fields. -/
+def exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyRows_w526
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hclosedRows : ComponentwiseClosedRangeOnlyRowsProviderW526) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526
+    (selectedW461Provider_of_compactTargetRelation_w524 hinputs) hclosedRows
+
+/-- W526 checked nonterminal state. -/
+structure RowAwareClosedRangeOnlyProjectionStateW526 : Type where
+  seed : String
+  declarations : List String
+  rowAwareProjectionResult : String
+  algebraicBoundaryResult : String
+  selectedW461EndpointResult : String
+  representativeImageEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W526 state. -/
+def currentRowAwareClosedRangeOnlyProjectionStateW526 :
+    RowAwareClosedRangeOnlyProjectionStateW526 where
+  seed := supportSeedW526
+  declarations :=
+    ["StrictRowInputsForSelectedDifferenceW526",
+      "ComponentwiseClosedRangeOnlyRowsProviderW526",
+      "selectedProjectionComponentInputs_of_closedRangeOnlyRows_w526",
+      "addCommGrpStrictKernelExactBoundary_of_closedRangeOnlyRows_w526",
+      "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526",
+      "exactAcyclic_of_representativeImage_and_closedRangeOnlyRows_w526",
+      "exactAcyclic_of_topTargetRelation_and_closedRangeOnlyRows_w526",
+      "exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyRows_w526"]
+  rowAwareProjectionResult := "proved"
+  algebraicBoundaryResult := "proved"
+  selectedW461EndpointResult := "proved"
+  representativeImageEndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 " ++
+        "or W516/W517 relation provider data",
+      "construct concrete row-aware selected component closed-range provider " ++
+        "at the strict AddCommGrp boundary"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW526State :
+    RowAwareClosedRangeOnlyProjectionStateW526 :=
+  currentRowAwareClosedRangeOnlyProjectionStateW526
+
+theorem currentW526State_productSuccess :
+    currentW526State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW526
+#check StrictRowInputsForSelectedDifferenceW526
+#check ComponentwiseClosedRangeOnlyRowsProviderW526
+#check selectedProjectionComponentInputs_of_closedRangeOnlyRows_w526
+#check addCommGrpStrictKernelExactBoundary_of_closedRangeOnlyRows_w526
+#check exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526
+#check exactAcyclic_of_representativeImage_and_closedRangeOnlyRows_w526
+#check exactAcyclic_of_topTargetRelation_and_closedRangeOnlyRows_w526
+#check exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyRows_w526
+#check currentW526State_productSuccess
+
+end Checks
+
+end WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526
+
 end LeanLCAExactChallenge

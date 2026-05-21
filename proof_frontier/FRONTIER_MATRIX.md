@@ -1195,3 +1195,14 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W525 exposes `WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525`. It reduces W484's closed-range-only provider to selected component difference closed-map or closed-embedding provider surfaces, then composes those providers through the W524 representative-image, top-target, and compact-target endpoints.
 - remaining blockers: construct concrete `ClosedNatTransOrdinaryRepresentativeImageProviderW515` or the corresponding W516/W517 relation provider data, and prove selected component difference closed-map or closed-embedding data at the final WPP-op exact-acyclic call sites.
 - product_complete: false
+
+
+## W526 Row-Aware Closed Range Only Projection
+
+- timestamp: `2026-05-21T14:31:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/RequiredDeclarations.lean`
+- effect: W526 exposes `WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526`. It replaces the overbroad all-diagrams W484 closed-range-only requirement with `ComponentwiseClosedRangeOnlyRowsProviderW526`, which receives the strict AddCommGrp row fields available at W318's algebraic boundary. W526 then uses W522 projection bridge fields and W483/W524 selected-provider routes to derive exact-acyclic closure from representative-image, top-target, or compact-target relation data plus row-aware closed-range data.
+- remaining blockers: construct concrete `ClosedNatTransOrdinaryRepresentativeImageProviderW515` or the corresponding W516/W517 relation provider data, and construct a concrete row-aware selected component closed-range provider at the strict AddCommGrp boundary.
+- product_complete: false

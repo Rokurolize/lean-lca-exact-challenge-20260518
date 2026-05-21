@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W525では、W484のclosed-range-only providerを、選択された3つのcomponent difference mapがclosed mapまたはclosed embeddingであるという入力から構成する経路を追加し、W524のrepresentative-image、top-target、compact-target各endpointへ合成した。ただし具体的なW515/W516/W517 provider dataと、選択component difference mapのclosed-map/closed-embedding dataは未証明なので、product_successは主張しない。",
+  "summary": "W526では、選択成分のclosed-range条件をW318で実際に使うstrict AddCommGrp行境界だけに要求する、row-awareなclosed-range-only射影経路を追加した。W484の全図式向けproviderへ広げず、W524のrepresentative-image、top-target、compact-targetのselected-W461端点と合成している。ただしW515/W516/W517の具体provider dataと、選択成分difference mapのrow-awareなclosed-range dataが未証明なので、product_successはまだfalseである。",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -1785,9 +1785,10 @@
     "WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525.currentW525State_productSuccess"
   ],
   "known_gaps": [
-    "final call siteでW515 representative-image provider、またはW516/W517 relation provider dataを具体的に構成する必要がある。",
-    "final call siteで選択component difference mapがclosed mapまたはclosed embeddingであることを具体的に構成し、W525経由でW484 closed-range-only providerを与える必要がある。",
-    "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施である。"
+    "final call siteでW515 representative-image provider、または同等のW516/W517 relation provider dataを具体的に構成する必要がある。",
+    "final call siteで、選択component difference mapがclosed mapまたはclosed embeddingであることを、strict AddCommGrp行境界に対応する形で具体的に構成する必要がある。",
+    "W526はW484の全図式providerを避ける経路を作ったが、row-aware selected component closed-range provider自体はまだ証明されていない。",
+    "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施であり、product_successとして扱ってはいけない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
@@ -1797,9 +1798,10 @@
   "worker_frontier_summary": "W525 was integrated by the parent in the target tree; no worker was launched. It narrows the W484 preservation-side input to selected component difference closed-map or closed-embedding providers and composes those with the W524 selected-provider endpoints.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "final call siteでW515 representative-image provider、またはW516/W517 relation provider dataを具体的に構成する必要がある。",
-    "final call siteで選択component difference mapがclosed mapまたはclosed embeddingであることを具体的に構成し、W525経由でW484 closed-range-only providerを与える必要がある。",
-    "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施である。"
+    "final call siteでW515 representative-image provider、または同等のW516/W517 relation provider dataを具体的に構成する必要がある。",
+    "final call siteで、選択component difference mapがclosed mapまたはclosed embeddingであることを、strict AddCommGrp行境界に対応する形で具体的に構成する必要がある。",
+    "W526はW484の全図式providerを避ける経路を作ったが、row-aware selected component closed-range provider自体はまだ証明されていない。",
+    "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施であり、product_successとして扱ってはいけない。"
   ],
   "next_recommended_goal": "Prove concrete W515/W516/W517 relation provider data and prove selected component difference closed-map or closed-embedding data sufficient for W525/W484.",
   "implemented_declarations": [
@@ -2912,7 +2914,7 @@
     "WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525.exactAcyclic_of_compactTargetRelation_closedEmbedding_w525",
     "WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525.currentW525State_productSuccess"
   ],
-  "generated_utc": "2026-05-21T14:17:10Z",
+  "generated_utc": "2026-05-21T14:34:55Z",
   "support_result_classification": "verified_nonterminal_support_increment",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -4094,8 +4096,10 @@
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Prove the concrete W515 representative-image provider or equivalent W516/W517 relation provider data.",
-    "Prove selected component difference closed-map or closed-embedding data for W525.",
-    "Only after those close the WPP-op frontier, run the final product audit and packet review."
-  ]
+    "Prove concrete W515 representative-image provider data, or equivalent W516/W517 relation provider data, at the final call site.",
+    "Prove row-aware selected component difference closed-map or closed-embedding data at the strict AddCommGrp boundary used by W318.",
+    "Only after those close the WPP-op frontier, rerun the final product audit and packet review as a product_success claim."
+  ],
+  "latest_verified_increment": "W526 row-aware closed-range-only projection route",
+  "source_tree_hash": "bd6045a29812b1d1b86471957fe4971cc45a446af18736dd2f63df709a0b6027"
 }
