@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w502-selected-w451-style-route",
-  "generated_utc": "2026-05-21T09:29:53Z",
-  "source_tree_hash": "34bd51d0af7c23aa82baaebf7050ee4bcbfe944b5af1530bc9d610c137e62443",
-  "summary": "W502 accepts raw W451-style quotient-map, point-identification, and concrete W318 leg-compatibility fields, builds the W478 point-identification package, feeds W501, and composes with the selected-cokernel and mapped-cokernel routes. Product success remains false because the concrete W451-style provider and preservation input remain unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w503-selected-w451-style-closure-kernel-route",
+  "generated_utc": "2026-05-21T09:35:59Z",
+  "source_tree_hash": "7d203e7f6014ae05d97791d463477909570ff56dacfffc0b71514c9852bfbba1",
+  "summary": "W503 connects the existing ForgottenCokernel closure-kernel API to W497 mapped explicit cokernel cofork colimits, then composes that preservation route with W502. Product success remains false because the concrete W451-style provider and closure-kernel provider remain unproved.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3470,6 +3470,60 @@
       "status": "failed_expected",
       "evidence": "External audit reached the expected nonterminal product gate after W502; product success remains false.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w502_final_checks/external_audit_w502.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W503 closure-kernel preservation route compiled directly from source after provider-structure fix.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_verify/build_wpp_projection_fields_w503_retry1.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "WppOpExactAcyclicProjectionFields rebuilt after W503.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_verify/lake_build_wpp_projection_fields_w503.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations checks W503 declarations and productSuccess false marker.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_verify/product_success_declarations_w503.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W503.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/lake_build_w503.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations passed after W503.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/required_declarations_w503.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W503.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/forbidden_tokens_source_w503.log"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors in the W503 diff.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/git_diff_check_w503.log"
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "Core JSON artifacts parsed after W503 metadata refresh.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/json_validation_w503.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W503)",
+      "status": "failed_expected",
+      "evidence": "External audit reached the expected nonterminal product gate after W503; product success remains false.",
+      "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w503_final_checks/external_audit_w503.log"
     }
   ],
   "implemented_declarations_checked": [

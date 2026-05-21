@@ -4437,4 +4437,93 @@ end Checks
 
 end WppOpSelectedW461W451StyleRouteV370SupportW502
 
+namespace WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpShortComplexPreservationFromUnderlyingV370SupportW495
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461W451StyleRouteV370SupportW502
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W503 closure-kernel preservation route. -/
+def supportSeedW503 : String :=
+  "w503-selected-w461-w451-style-closure-kernel-route"
+
+/-- Closure-kernel inputs for every mapped explicit LCA cokernel. -/
+structure MappedExplicitCokernelClosureKernelProviderW503 : Type 1 where
+  closureKernel : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+    MetrizableLCA.ClosureKernelInput f
+
+/--
+The existing forgotten-cokernel API supplies the W497 mapped explicit cokernel
+colimit input from closure-kernel data.
+-/
+def mappedExplicitCokernelCoforks_of_closureKernelProvider_w503
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f) := by
+  intro X Y f
+  simpa [mappedExplicitCokernelCoconeW497, explicitMetrizableCokernelCoforkW497,
+    underlyingForgetfulFunctorW495, MetrizableLCA.forgottenMappedExplicitCokernelCocone]
+    using
+      (MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_closureKernelInput
+        f (hClosure.closureKernel f))
+
+/--
+W503 endpoint: W502 raw selected-W461 fields plus closure-kernel data for every
+mapped explicit cokernel imply the current WPP-op exact-acyclic closure.
+-/
+def exactAcyclic_of_selectedW461W451Style_and_closureKernelProvider_w503
+    (hstyle : SelectedW461W451StyleProviderW502)
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461W451Style_and_mappedExplicitCokernelCoforks_w502
+    hstyle (mappedExplicitCokernelCoforks_of_closureKernelProvider_w503 hClosure)
+
+/-- W503 checked nonterminal state. -/
+structure SelectedW461W451StyleClosureKernelRouteV370SupportStateW503 : Type where
+  seed : String
+  declarations : List String
+  closureKernelRouteResult : String
+  exactAcyclicRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W503 state. -/
+def currentSelectedW461W451StyleClosureKernelRouteV370SupportStateW503 :
+    SelectedW461W451StyleClosureKernelRouteV370SupportStateW503 where
+  seed := supportSeedW503
+  declarations :=
+    ["MappedExplicitCokernelClosureKernelProviderW503",
+      "mappedExplicitCokernelCoforks_of_closureKernelProvider_w503",
+      "exactAcyclic_of_selectedW461W451Style_and_closureKernelProvider_w503"]
+  closureKernelRouteResult := "proved"
+  exactAcyclicRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete SelectedW461W451StyleProviderW502",
+      "construct concrete MappedExplicitCokernelClosureKernelProviderW503"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW503State :
+    SelectedW461W451StyleClosureKernelRouteV370SupportStateW503 :=
+  currentSelectedW461W451StyleClosureKernelRouteV370SupportStateW503
+
+theorem currentSelectedW461W451StyleClosureKernelRouteStateW503_productSuccess :
+    currentW503State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW503
+#check MappedExplicitCokernelClosureKernelProviderW503
+#check mappedExplicitCokernelCoforks_of_closureKernelProvider_w503
+#check exactAcyclic_of_selectedW461W451Style_and_closureKernelProvider_w503
+#check currentSelectedW461W451StyleClosureKernelRouteStateW503_productSuccess
+
+end Checks
+
+end WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+
 end LeanLCAExactChallenge
