@@ -884,3 +884,13 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: selected component cofork `IsColimit` proofs are reduced to `SelectedComponentQuotientIdentificationInputsW463`: three point isomorphisms from `cs.pt.Xᵢ` to explicit forgotten cokernel quotients, three equations identifying selected component legs with explicit quotient projections after those isomorphisms, and three explicit quotient `IsColimit` proofs.
 - remaining blockers: construct the actual point isomorphisms and leg equations for the selected colimit point, and provide the explicit quotient `IsColimit` proofs from closed-range quotient support for the three selected component differences.
 - product_complete: false
+
+
+## W464 AddCommGrp Row Fields Projection Kernel Boundary
+
+- timestamp: `2026-05-21T01:39:52Z`
+- artifact: `audit/blockers/addcommgrp_row_fields_projection_kernel_boundary_v370_support_w464.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_row_fields_projection_kernel_boundary_v370_support_w464.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_row_fields_projection_kernel_boundary_v370_support_w464.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_row_fields_projection_kernel_boundary_v370_support_w464.lean`; `git diff --check`
+- effect: W318's AddCommGrp strict kernel exact boundary and the exact-acyclic wrapper now consume projection component `IsColimit` fields together with row algebraic fields; the wrapper `exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_projectionComponentFields` leaves the left LCA closed-embedding route and projection fields as the visible inputs.
+- remaining blockers: construct the actual projection component fields from W463 quotient-identification inputs, supply closed-range explicit quotient colimits, and complete the W461/W426/W387/W390 target-leg integration.
+- product_complete: false
