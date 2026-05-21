@@ -1,9 +1,94 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w555-wpp-limit-direct-algebraic-exactness",
-  "generated_utc": "2026-05-21T21:36:21Z",
-  "source_tree_hash": "b1b6bd618f29014383ec45b4dda33ddb68a1665de4e3d671229783f7438078e1",
-  "summary": "W555 proves WPP limit algebraic exactness directly from strict short exactness, using the explicit MetrizableLCA equalizer presentation and pointwise left closed-embedding injectivity. The WPP limit route now has direct left-closed and algebraic-exactness certificates; right open-map/right-surjectivity and the W515/W527 provider route remain nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-w556-direct-limit-provider-bridge",
+  "generated_utc": "2026-05-21T22:07:57Z",
+  "source_tree_hash": "41634d880b97d78d2541a39c34d4dae661405d55fb10df79d2acf75c3b80c6c7",
+  "summary": "W556 integrates the W555 direct WPP limit theorem with the W515/W527 concrete provider route. The representative-image/row transfer wrappers no longer need an abstract full WPP limit-stability input; they build it from only the direct right-open and right-surjective fields plus the W555 direct left/algebraic certificates. Product completion remains false because the two right fields and concrete provider data are still not constructed.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W556 WPP projection-field source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_projection_fields_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W556 WPP projection-field module rebuilt; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_projection_fields_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W556 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_product_declarations_lean.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import surface remains green after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_root_import_lean.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_required_declarations.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Root package build passed after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_root_build.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source tree scan passed after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_audit_no_forbidden_tree.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file forbidden-token scan passed after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_audit_no_forbidden_touched.log."
+    },
+    {
+      "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-facing placeholder regex returned no matches on W556-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_product_placeholder_touched.log."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file sorry/admit/axiom/unsafe scan returned no matches after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_sorry_axiom_touched.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W556 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "W556 terminal outcome JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "W556 verification JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "W556 manifest JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_json_parse.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product gate still rejects the nonterminal outcome after W556, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_external_product_gate.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
       "status": "passed",
@@ -4498,6 +4583,31 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
+    "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
+    "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedEmbeddingRows",
+    "Dbounded.MetrizableWppTransferInputsFromDirectLimitRepImageClosedMapRowsFixedTargets",
+    "Dbounded.MetrizableWppTransferInputsFromDirectLimitRepImageClosedEmbeddingRowsFixedTargets",
+    "Dbounded.MetrizableWppTransferInputsFromDirectLimitRepImageClosedMapRowsNormalized",
+    "Dbounded.MetrizableWppTransferInputsFromDirectLimitRepImageClosedEmbeddingRowsNormalized",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitRepresentativeImageClosedMapRows",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitRepresentativeImageClosedEmbeddingRows",
+    "Dbounded.metrizableWppTransferInputs_of_directLimitRepImageClosedMapRowsFixedTargets",
+    "Dbounded.metrizableWppTransferInputs_of_directLimitRepImageClosedEmbeddingRowsFixedTargets",
+    "Dbounded.metrizableWppTransferInputs_of_directLimitRepImageClosedMapRowsNormalized",
+    "Dbounded.metrizableWppTransferInputs_of_directLimitRepImageClosedEmbeddingRowsNormalized",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromDirectLimitRepresentativeImageClosedMapRowsInputNames",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromDirectLimitRepresentativeImageClosedMapRowsInputNames_count",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromDirectLimitRepresentativeImageClosedEmbeddingRowsInputNames",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromDirectLimitRepresentativeImageClosedEmbeddingRowsInputNames_count",
+    "Dbounded.metrizableWppTransferFromDirectLimitRepImageClosedMapRowsFixedTargetInputNames",
+    "Dbounded.metrizableWppTransferFromDirectLimitRepImageClosedMapRowsFixedTargetInputNames_count",
+    "Dbounded.metrizableWppTransferFromDirectLimitRepImageClosedEmbeddingRowsFixedTargetInputNames",
+    "Dbounded.metrizableWppTransferFromDirectLimitRepImageClosedEmbeddingRowsFixedTargetInputNames_count",
+    "Dbounded.metrizableWppTransferFromDirectLimitRepImageClosedMapRowsNormalizedInputNames",
+    "Dbounded.metrizableWppTransferFromDirectLimitRepImageClosedMapRowsNormalizedInputNames_count",
+    "Dbounded.metrizableWppTransferFromDirectLimitRepImageClosedEmbeddingRowsNormalizedInputNames",
+    "Dbounded.metrizableWppTransferFromDirectLimitRepImageClosedEmbeddingRowsNormalizedInputNames_count",
     "DirectWppLimitFiniteShapeTransfer.mappingConeCone",
     "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison",
     "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitConeComparison_of_canonicalCone",
@@ -6124,14 +6234,14 @@
     "Coherent normalized strict representative data and target/model uniqueness for the WalkingParallelPair localization route remain unconstructed.",
     "Pretriangulated/triangulated data and the final bounded left-calculus instance remain unconstructed."
   ],
-  "support_result_classification": "verified_nonterminal_increment",
+  "support_result_classification": "nonterminal_support_increment",
   "product_success": false,
   "remaining_work": [
-    "Prove the WPP limit right open-map and right-surjectivity certificates.",
+    "Prove or supply the WPP limit right open-map and right-surjectivity certificates consumed by the W556 direct bridge.",
     "Instantiate concrete W515/W516/W517 relation-data providers and W527 row providers.",
     "Construct normalized strict representative data and target/model uniqueness for the WPP localization route.",
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance."
   ],
-  "summary_log_tail": "W555 passed focused DirectWppLimitFiniteShapeTransfer Lean check, module build, ProductSuccessDeclarations, RequiredDeclarations, root import, root build, full build, forbidden-token scans, touched-file placeholder scan, JSON parse, diff check, and external self-check. The external product gate remains expected to fail because terminal_outcome is nonterminal.",
-  "latest_verified_increment": "W555 direct WPP limit algebraic exactness certificate from strict short exactness"
+  "summary_log_tail": "W556 passed focused WppOpExactAcyclicProjectionFields Lean check, module build, ProductSuccessDeclarations, RequiredDeclarations, root import, root build, full build, forbidden-token scans, touched-file placeholder scan, touched-file sorry/admit/axiom/unsafe scan, and diff check. JSON parse and external audit are recorded in the W556 command entries and remain nonterminal.",
+  "latest_verified_increment": "W556 direct WPP limit right-field bridge into W515/W527 transfer wrappers"
 }
