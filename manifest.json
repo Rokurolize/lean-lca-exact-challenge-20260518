@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-21T15:51:55Z",
-  "content_hash_tree": "1d63bbd2b54fa18508a9062dc3f5dc3ef5642c3c05c48c77c0a44a209ccdf3ba",
+  "generated_utc": "2026-05-21T16:07:13Z",
+  "content_hash_tree": "74fa440025146386a3053b35419a0dbfac51eaad128a1de117aee6093e1764a8",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -29,8 +29,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "bytes": 1251,
-      "sha256": "aba9c2637828ed9bbc871d88f0dfcaaaa0614e9d1a2ee728daf34b71ba776a17"
+      "bytes": 1326,
+      "sha256": "41dd4b59fb4ec375ee1794e13e400f7db6465eed4acf3d4fbdc6ddb77e7d5a24"
     },
     {
       "path": "LeanLCAExactChallenge/AlternatingTailExtendTransport.lean",
@@ -61,6 +61,11 @@
       "path": "LeanLCAExactChallenge/Derived/ContractibleTail.lean",
       "bytes": 6425,
       "sha256": "1d4dab4b12f6123b2133e9992bd68aa89a2249bd274c956130ac57ec2979fa8d"
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/DirectWppOpColimitFiniteShapeTransfer.lean",
+      "bytes": 17161,
+      "sha256": "2706f34cfc79d9ba9daa6bbf33b52f87ff11495ddc97f2e7effa4b63f66abda1"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/FiniteProductExactness.lean",
@@ -179,8 +184,8 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 154591,
-      "sha256": "56a35972fe192d7990559b37669b66896cecfdb0dc5fbcda2668d2c939f0bddd"
+      "bytes": 156265,
+      "sha256": "ee5bd165a05baa452b2122a69ab61a03a84c22313d2a17a5e1c262e53e69ce66"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -2004,8 +2009,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 389061,
-      "sha256": "78679c4d3aaf3e3a82126a192f979770ecba327352fde9abc8d3030d208ff401"
+      "bytes": 329383,
+      "sha256": "af320b2cd071e0b0162c913e63bea52f5d290f7477369dfc974d33652a234fe9"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -2019,8 +2024,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 428014,
-      "sha256": "817597b8db96deab8adf0c74a47472202f9c6bf81605cfc74d818267dce52b47"
+      "bytes": 437661,
+      "sha256": "828b151830db4eb4b99fa782a1320748cb72d520ceb1e4a1817d619dd12e2694"
     },
     {
       "path": "workers/README.md",
