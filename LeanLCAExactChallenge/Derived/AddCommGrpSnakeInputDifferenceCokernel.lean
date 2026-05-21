@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated
 import Mathlib.Algebra.Homology.ShortComplex.SnakeLemma
+import Mathlib.Algebra.Homology.ShortComplex.Preadditive
 
 /-!
 AddCommGrp SnakeInput support for difference-cokernel rows.
@@ -19,6 +20,27 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+
+/-- Mapping short complexes by a zero-morphism-preserving functor preserves zero morphisms. -/
+instance mapShortComplex_preservesZeroMorphisms
+    {C D : Type*} [Category C] [Category D] [Preadditive C] [Preadditive D]
+    (F : C ⥤ D) [F.PreservesZeroMorphisms] :
+    F.mapShortComplex.PreservesZeroMorphisms where
+  map_zero S T := by
+    ext <;> simp only [Functor.mapShortComplex_map_τ₁, Functor.mapShortComplex_map_τ₂,
+      Functor.mapShortComplex_map_τ₃, ShortComplex.zero_τ₁, ShortComplex.zero_τ₂,
+      ShortComplex.zero_τ₃, Functor.map_zero] <;> rfl
+
+/-- Mapping short complexes by an additive functor is additive. -/
+instance mapShortComplex_additive
+    {C D : Type*} [Category C] [Category D] [Preadditive C] [Preadditive D]
+    (F : C ⥤ D) [F.PreservesZeroMorphisms] [F.Additive] :
+    F.mapShortComplex.Additive where
+  map_add := by
+    intro S T f g
+    ext <;> simp only [Functor.mapShortComplex_map_τ₁, Functor.mapShortComplex_map_τ₂,
+      Functor.mapShortComplex_map_τ₃, ShortComplex.add_τ₁, ShortComplex.add_τ₂,
+      ShortComplex.add_τ₃, Functor.map_add] <;> rfl
 
 namespace AddCommGrpSnakeInputDifferenceCokernel
 
