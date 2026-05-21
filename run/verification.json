@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w507-selected-w461-transported-target-leg",
-  "generated_utc": "2026-05-21T10:28:25Z",
-  "source_tree_hash": "2a8d635ee3f97e74e063dd62b483ea9011b4a4b8806cd0163808d2bd092cae56",
-  "summary": "W507 proves the transported concrete quotient cocone target-leg equation and reduces the selected W461 route to a concrete W426 ordinary package provider plus the remaining preservation input. Product success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w508-selected-w461-ordinary-package-from-w480",
+  "generated_utc": "2026-05-21T10:37:35Z",
+  "source_tree_hash": "9237c71e0ee4d9eab2aa3bfc17b34be5a1b1b553791e778b1261a50d803bc4ed",
+  "summary": "W508 connects the existing W480 promotion input provider surface to W507 SelectedW461OrdinaryPackageProviderW507, leaving only the concrete W480 input provider plus the remaining preservation provider path. Product success remains false.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3049,6 +3049,56 @@
       "status": "failed_expected",
       "evidence": "External audit is expected to reach only the nonterminal product gate after W507 because product success remains false.",
       "log_path": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_001_w507_verify/external_audit_w507.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W508 W480-to-W507 ordinary-package bridge compiled in the projection-fields module."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Focused module build passed after W508 integration."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-success declaration audit checks the W508 provider and endpoint declarations while product_success remains false."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full Lake build passed after W508 integration."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W508."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declarations audit passed after W508 integration."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON review artifacts validate after W508 metadata refresh."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors after W508 source and metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W508 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W508)",
+      "status": "failed_expected",
+      "evidence": "External audit reaches the expected nonterminal product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier."
     }
   ],
   "implemented_declarations_checked": [
@@ -4229,20 +4279,26 @@
     "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_selectedCokernelColimit_w507",
     "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_mappedExplicitCokernelCoforks_w507",
     "WppOpSelectedW461TransportedTargetLegV370SupportW507.exactAcyclic_of_selectedW461OrdinaryPackage_and_closureKernelProvider_w507",
-    "WppOpSelectedW461TransportedTargetLegV370SupportW507.currentSelectedW461TransportedTargetLegStateW507_productSuccess"
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.currentSelectedW461TransportedTargetLegStateW507_productSuccess",
+    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.supportSeedW508",
+    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.selectedOrdinaryPackageProvider_of_w480Inputs_w508",
+    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_selectedCokernelColimit_w508",
+    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_mappedExplicitCokernelCoforks_w508",
+    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.exactAcyclic_of_w480Inputs_and_closureKernelProvider_w508",
+    "WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508.currentSelectedW461OrdinaryPackageFromW480StateW508_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "construct concrete SelectedW461OrdinaryPackageProviderW507",
+    "construct concrete W461ToW475PromotionInputsProviderW480",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
     "run final product audit only after terminal_outcome can be product_success"
   ],
-  "support_result_classification": "nonterminal transported target-leg proof and ordinary-package provider factoring",
+  "support_result_classification": "nonterminal W480-to-W507 ordinary-package bridge",
   "product_success": false,
   "remaining_work": [
-    "construct concrete SelectedW461OrdinaryPackageProviderW507",
+    "construct concrete W461ToW475PromotionInputsProviderW480",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
     "run final product audit only after terminal_outcome can be product_success"
   ],
-  "summary_log_tail": "Full build, required declarations, forbidden-token scan, and git diff check passed after W507 integration. External audit is expected to fail only at the nonterminal product gate."
+  "summary_log_tail": "Full build, required declarations, forbidden-token scan, metadata validation, and external-audit self-check passed after W508 integration; external audit remains expected to fail only at the nonterminal product gate."
 }

@@ -5415,4 +5415,106 @@ end Checks
 
 end WppOpSelectedW461TransportedTargetLegV370SupportW507
 
+namespace WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508
+
+open WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpSelectedW461TransportedTargetLegV370SupportW507
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W508 W480-to-W507 bridge. -/
+def supportSeedW508 : String :=
+  "w508-selected-w461-ordinary-package-from-w480"
+
+/--
+W480's call-site input provider supplies the W426 ordinary package now required
+by W507, specialized to the ordinary map induced by the WPP-op natural
+transformation.
+-/
+def selectedOrdinaryPackageProvider_of_w480Inputs_w508
+    (hinputs : W461ToW475PromotionInputsProviderW480) :
+    SelectedW461OrdinaryPackageProviderW507 :=
+  fun X Y α cx cy φ hcx hcy hclosed hcompat =>
+    { ordinaryPackage :=
+        (hinputs X Y (ordinaryMapOfWppOpNatTransW506 α) α cx cy φ
+          hcx hcy hclosed hcompat).ordinaryPackage }
+
+/-- W508 endpoint with the selected cokernel-colimit provider. -/
+def exactAcyclic_of_w480Inputs_and_selectedCokernelColimit_w508
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461OrdinaryPackage_and_selectedCokernelColimit_w507
+    (selectedOrdinaryPackageProvider_of_w480Inputs_w508 hinputs) hselected
+
+/-- W508 endpoint with W499's mapped-explicit-cokernel preservation input. -/
+def exactAcyclic_of_w480Inputs_and_mappedExplicitCokernelCoforks_w508
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461OrdinaryPackage_and_mappedExplicitCokernelCoforks_w507
+    (selectedOrdinaryPackageProvider_of_w480Inputs_w508 hinputs) hMapped
+
+/-- W508 endpoint with W503's closure-kernel preservation input. -/
+def exactAcyclic_of_w480Inputs_and_closureKernelProvider_w508
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461OrdinaryPackage_and_closureKernelProvider_w507
+    (selectedOrdinaryPackageProvider_of_w480Inputs_w508 hinputs) hClosure
+
+/-- W508 checked nonterminal state. -/
+structure SelectedW461OrdinaryPackageFromW480V370SupportStateW508 : Type where
+  seed : String
+  declarations : List String
+  providerAdapterResult : String
+  selectedCokernelRouteResult : String
+  closureKernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W508 state. -/
+def currentSelectedW461OrdinaryPackageFromW480V370SupportStateW508 :
+    SelectedW461OrdinaryPackageFromW480V370SupportStateW508 where
+  seed := supportSeedW508
+  declarations :=
+    ["selectedOrdinaryPackageProvider_of_w480Inputs_w508",
+      "exactAcyclic_of_w480Inputs_and_selectedCokernelColimit_w508",
+      "exactAcyclic_of_w480Inputs_and_mappedExplicitCokernelCoforks_w508",
+      "exactAcyclic_of_w480Inputs_and_closureKernelProvider_w508"]
+  providerAdapterResult := "proved"
+  selectedCokernelRouteResult := "proved"
+  closureKernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete W461ToW475PromotionInputsProviderW480",
+      "construct concrete MappedExplicitCokernelClosureKernelProviderW503",
+      "or construct selected cokernel-colimit provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW508State :
+    SelectedW461OrdinaryPackageFromW480V370SupportStateW508 :=
+  currentSelectedW461OrdinaryPackageFromW480V370SupportStateW508
+
+theorem currentSelectedW461OrdinaryPackageFromW480StateW508_productSuccess :
+    currentW508State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW508
+#check selectedOrdinaryPackageProvider_of_w480Inputs_w508
+#check exactAcyclic_of_w480Inputs_and_selectedCokernelColimit_w508
+#check exactAcyclic_of_w480Inputs_and_mappedExplicitCokernelCoforks_w508
+#check exactAcyclic_of_w480Inputs_and_closureKernelProvider_w508
+#check currentSelectedW461OrdinaryPackageFromW480StateW508_productSuccess
+
+end Checks
+
+end WppOpSelectedW461OrdinaryPackageFromW480V370SupportW508
+
 end LeanLCAExactChallenge
