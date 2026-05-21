@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w481-w461-bridge-componentwise-closed-range-projection",
-  "generated_utc": "2026-05-21T03:55:00Z",
-  "source_tree_hash": "c568a6ae903b0d3f0516412da9f3fe44fdff660a0e966cd76e63e96443a7db46",
-  "summary": "W481 componentwise closed-range projection wrapper compiles in the importable Derived module and ProductSuccessDeclarations; product_complete remains false pending concrete W461-to-W475 inputs, ordinary-map provider, and final componentwise projection fields.",
+  "schema": "lean-lca-exact-challenge-verification-w482-w477-to-w481-componentwise-projection-adapter",
+  "generated_utc": "2026-05-21T03:58:00Z",
+  "source_tree_hash": "cd178580d1186a40cc76be03d830a177535a01e3b405d89efd5926a9d3bf0a99",
+  "summary": "W482 W477-to-W481 componentwise projection adapter compiles in the importable Derived module and ProductSuccessDeclarations; full lake build and RequiredDeclarations also pass. product_complete remains false pending concrete W461-to-W475 inputs, ordinary-map provider, and final W477 componentwise provider.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -259,8 +259,8 @@
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "full lake build passed; log /tmp/lean_lca_lake_build_w481_componentwise_projection_20260521T031315Z.log",
-      "log_path": "/tmp/lean_lca_lake_build_w481_componentwise_projection_20260521T031315Z.log"
+      "evidence": "full lake build passed; log /tmp/lean_lca_lake_build_w482_w477_w481_adapter_20260521T.log",
+      "log_path": "/tmp/lean_lca_lake_build_w482_w477_w481_adapter_20260521T.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
@@ -2748,27 +2748,74 @@
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "ProductSuccessDeclarations exposes W481 wrapper declarations and still records productSuccessClaimed = false."
+      "evidence": "ProductSuccessDeclarations passed with W482 checks; log /tmp/lean_lca_product_success_w482_adapter_20260521T.log",
+      "log_path": "/tmp/lean_lca_product_success_w482_adapter_20260521T.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
       "status": "passed",
-      "evidence": "Module build completed successfully with W480/W481 declarations present."
+      "evidence": "module build passed with W482; log /tmp/lean_lca_w482_w477_w481_adapter_module_build_20260521T.log",
+      "log_path": "/tmp/lean_lca_w482_w477_w481_adapter_module_build_20260521T.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in the W481-touched importable module and product declarations audit file."
+      "evidence": "forbidden-token scan passed for W482 source and product checks"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "Whitespace diff check passed after W481 wrapper and notes updates."
+      "evidence": "git diff whitespace check passed"
     },
     {
       "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
       "evidence": "JSON artifacts parsed after W481 metadata refresh."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Importable W482 adapter checks in WppOpExactAcyclicProjectionFields; W477 componentwise provider feeds the W481/W480 exact-acyclic bridge."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations exposes W482 adapter declarations and still records productSuccessClaimed = false."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Focused module build completed successfully with W482 declarations present."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "RequiredDeclarations still compiles after W482 adapter integration."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build completed successfully after W482 adapter integration."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under LeanLCAExactChallenge after W482 integration."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W482-touched files."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W482 adapter and notes updates."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON artifacts parsed before W482 manifest refresh."
     }
   ],
   "implemented_declarations_checked": [
@@ -3837,7 +3884,7 @@
   "remaining_work": [
     "instantiate W461ToW475PromotionInputsProviderW480",
     "instantiate W461ToW475OrdinaryMapProviderW480",
-    "instantiate componentwise projection-field inputs",
+    "supply concrete W477 componentwise provider",
     "claim product_success only after final product theorem and terminal audit pass"
   ],
   "summary_log_tail": " W408 checked partial support consumed; ordinary descended IsClosedMap is reduced to representative-image closedness, not product success."

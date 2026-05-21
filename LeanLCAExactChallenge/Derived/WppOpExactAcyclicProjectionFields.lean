@@ -1733,4 +1733,115 @@ end Checks
 
 end WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
 
+namespace WppOpW477ToW481ComponentwiseProjectionAdapterV370SupportW482
+
+open AddCommGrpW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportW477
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W477-to-W481 adapter. -/
+def supportSeedW482 : String :=
+  "482c0de-current-head"
+
+/-- W477 and W481 use the same first selected difference component. -/
+theorem selectedMetrizableDifferenceπ₁_w477_eq_w481
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    selectedMetrizableDifferenceπ₁W477 S =
+      selectedMetrizableDifferenceπ₁W481 S :=
+  rfl
+
+/-- W477 and W481 use the same second selected difference component. -/
+theorem selectedMetrizableDifferenceπ₂_w477_eq_w481
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    selectedMetrizableDifferenceπ₂W477 S =
+      selectedMetrizableDifferenceπ₂W481 S :=
+  rfl
+
+/-- W477 and W481 use the same third selected difference component. -/
+theorem selectedMetrizableDifferenceπ₃_w477_eq_w481
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    selectedMetrizableDifferenceπ₃W477 S =
+      selectedMetrizableDifferenceπ₃W481 S :=
+  rfl
+
+/-- Convert W477 componentwise projection inputs into the W481 input surface. -/
+def componentwiseClosedRangeProjectionInputsW481_of_w477
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (H : SelectedComponentwiseClosedRangeProjectionInputsW477 S cs) :
+    SelectedComponentwiseClosedRangeProjectionInputsW481 S cs where
+  hclosedπ₁ := by
+    simpa [selectedMetrizableDifferenceπ₁W481, selectedMetrizableDifferenceπ₁W477]
+      using H.hclosedπ₁
+  hclosedπ₂ := by
+    simpa [selectedMetrizableDifferenceπ₂W481, selectedMetrizableDifferenceπ₂W477]
+      using H.hclosedπ₂
+  hclosedπ₃ := by
+    simpa [selectedMetrizableDifferenceπ₃W481, selectedMetrizableDifferenceπ₃W477]
+      using H.hclosedπ₃
+  hπ₁ := H.hπ₁
+  hπ₂ := H.hπ₂
+  hπ₃ := H.hπ₃
+
+/-- Convert a W477 provider into the W481 provider surface. -/
+def componentwiseClosedRangeProjectionProviderW481_of_w477
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW477) :
+    ComponentwiseClosedRangeProjectionProviderW481 :=
+  fun S cs hcs =>
+    componentwiseClosedRangeProjectionInputsW481_of_w477 (hcomponentwise S cs hcs)
+
+/--
+W482 composition theorem: the already importable W477 componentwise provider can
+feed W481, which then feeds W480's W461-to-W475 bridge.
+-/
+theorem exactAcyclic_of_w461_bridge_and_w477_componentwiseProjection_w482
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480)
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW477) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_w461_to_w441_and_componentwiseClosedRangeProjection_w481
+    hinputs hordinaryMap
+    (componentwiseClosedRangeProjectionProviderW481_of_w477 hcomponentwise)
+
+/-- W482 checked support state. -/
+structure W477ToW481ComponentwiseProjectionAdapterV370SupportStateW482 : Type where
+  seed : String
+  declarations : List String
+  adapterResult : String
+  composedExactAcyclicResult : String
+  productSuccessClaimed : Bool
+
+/-- Current checked support state for W482. -/
+def currentW477ToW481ComponentwiseProjectionAdapterV370SupportStateW482 :
+    W477ToW481ComponentwiseProjectionAdapterV370SupportStateW482 where
+  seed := supportSeedW482
+  declarations :=
+    ["componentwiseClosedRangeProjectionInputsW481_of_w477",
+      "componentwiseClosedRangeProjectionProviderW481_of_w477",
+      "exactAcyclic_of_w461_bridge_and_w477_componentwiseProjection_w482"]
+  adapterResult := "proved"
+  composedExactAcyclicResult := "proved"
+  productSuccessClaimed := false
+
+theorem currentW477ToW481ComponentwiseProjectionAdapterStateW482_productSuccess :
+    currentW477ToW481ComponentwiseProjectionAdapterV370SupportStateW482.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW482
+#check selectedMetrizableDifferenceπ₁_w477_eq_w481
+#check selectedMetrizableDifferenceπ₂_w477_eq_w481
+#check selectedMetrizableDifferenceπ₃_w477_eq_w481
+#check componentwiseClosedRangeProjectionInputsW481_of_w477
+#check componentwiseClosedRangeProjectionProviderW481_of_w477
+#check exactAcyclic_of_w461_bridge_and_w477_componentwiseProjection_w482
+#check currentW477ToW481ComponentwiseProjectionAdapterStateW482_productSuccess
+
+end Checks
+
+end WppOpW477ToW481ComponentwiseProjectionAdapterV370SupportW482
+
 end LeanLCAExactChallenge

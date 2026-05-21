@@ -1062,6 +1062,17 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - product_complete: false
 
 
+## W482 W477 To W481 Componentwise Projection Adapter
+
+- timestamp: `2026-05-21T03:58:00Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- audit artifact: `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean`; `git diff --check`
+- effect: W482 exposes `WppOpW477ToW481ComponentwiseProjectionAdapterV370SupportW482`. It proves the W477/W481 selected-difference components are definitionally the same, converts W477 componentwise projection inputs into W481 inputs, and composes the W477 provider with the W480 W461 bridge through `exactAcyclic_of_w461_bridge_and_w477_componentwiseProjection_w482`.
+- remaining blockers: instantiate actual `W461ToW475PromotionInputsProviderW480`, `W461ToW475OrdinaryMapProviderW480`, and the concrete W477 componentwise provider at the final WPP-op exact-acyclic call sites.
+- product_complete: false
+
+
 ## W479 W426 Left Closed Quotient Identification Exact Acyclic
 
 - timestamp: `2026-05-21T02:52:26Z`

@@ -1632,6 +1632,12 @@
 <p>This remains nonterminal. The wrapper does not prove the closed-range-to-projection bridge; final call sites still need actual <code>W461ToW475PromotionInputsProviderW480</code>, <code>W461ToW475OrdinaryMapProviderW480</code>, and componentwise projection fields.</p>
 </section>
 
+<section id="w482-w477-to-w481-componentwise-projection-adapter">
+<h2>W482 W477 to W481 componentwise projection adapter</h2>
+<p><time>2026-05-21T03:58:00Z</time>: The parent verified and retained the W482 adapter in <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code>, with exposure through <code>audit/ProductSuccessDeclarations.lean</code>. W482 proves that W477 and W481 use the same selected difference components, converts <code>SelectedComponentwiseClosedRangeProjectionInputsW477</code> to <code>SelectedComponentwiseClosedRangeProjectionInputsW481</code>, and composes the existing W477 componentwise provider with W480 through <code>exactAcyclic_of_w461_bridge_and_w477_componentwiseProjection_w482</code>.</p>
+<p>Coordination decision: because an active Codex process is still attached to the target worktree, the parent did not launch new workers. The currently running support W482 process under the consultant tree is treated only as a lead; the target mutation remains parent-owned and independently checked. Product success remains false until the actual W461-to-W475 promotion inputs and ordinary-map provider are instantiated at the final call sites.</p>
+</section>
+
 <section id="audit-marker-and-manifest-refresh-20260521">
 <h2>Audit marker and manifest refresh</h2>
 <p><time>2026-05-21T02:43:22Z</time>: The parent removed comment-only product-marker words from <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> and <code>audit/ProductSuccessDeclarations.lean</code>, refreshed <code>manifest.json</code> with packet and transient Codex progress paths excluded, and updated <code>run/verification.json</code>'s <code>source_tree_hash</code>. After this, <code>python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json</code> no longer fails on placeholder markers, manifest hashes, or stale source hash; it reaches the expected nonterminal product gate because <code>terminal_outcome.outcome</code> is still <code>blocked_nonterminal_frontier</code>.</p>
