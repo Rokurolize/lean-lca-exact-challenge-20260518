@@ -85,6 +85,57 @@ theorem mappingCone_boundedInclusion_walkingParallelPair_limitComparison_of_limi
   intro j
   exact hf j
 
+/-- The canonical mapping-cone cone induced by compatible WPP limit cones. -/
+noncomputable def mappingConeCone {J : Type} [Category J]
+    {X₁ X₂ : J ⥤ BoundedComplexCategory MetrizableLCA.{0}}
+    (c₁ : Cone X₁) (c₂ : Cone X₂) (f : X₁ ⟶ X₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : J, φ ≫ c₂.π.app j = c₁.π.app j ≫ f.app j) :
+    Cone (WppOpMappingConeUniqueMediatorW308.mappingConeDiagram X₁ X₂ f) where
+  pt :=
+    CochainComplex.mappingCone
+      ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+  π :=
+    { app := fun j =>
+        CochainComplex.mappingCone.map
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map φ)
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (f.app j))
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₁.π.app j))
+          ((BoundedComplexCategory.ι MetrizableLCA.{0}).map (c₂.π.app j))
+          (by
+            rw [← Functor.map_comp, ← Functor.map_comp]
+            exact congrArg
+              (fun g => (BoundedComplexCategory.ι MetrizableLCA.{0}).map g)
+              (hφ j))
+      naturality := by
+        intro j j' α
+        dsimp [WppOpMappingConeUniqueMediatorW308.mappingConeDiagram]
+        rw [← CochainComplex.mappingCone.map_comp]
+        simp only [Category.id_comp]
+        symm
+        congr 2
+        · exact congrArg (fun g => g.hom) (c₁.w α)
+        · exact congrArg (fun g => g.hom) (c₂.w α) }
+
+/-- Canonical-cone limit input for WPP mapping-cone comparison. -/
+abbrev mappingCone_walkingParallelPair_limitCanonicalConeComparison : Prop :=
+  ∀ (X₁ X₂ : WalkingParallelPair ⥤ BoundedComplexCategory MetrizableLCA.{0})
+    (c₁ : Cone X₁) (c₂ : Cone X₂)
+    (_ : IsLimit c₁) (_ : IsLimit c₂) (f : X₁ ⟶ X₂)
+    (φ : c₁.pt ⟶ c₂.pt)
+    (hφ : ∀ j : WalkingParallelPair,
+      φ ≫ c₂.π.app j = c₁.π.app j ≫ f.app j),
+      Nonempty (IsLimit (mappingConeCone c₁ c₂ f φ hφ))
+
+/-- A limit proof for the canonical cone supplies the WPP cone-comparison input. -/
+theorem mappingCone_walkingParallelPair_limitConeComparison_of_canonicalCone
+    (hcomparison : mappingCone_walkingParallelPair_limitCanonicalConeComparison) :
+    mappingCone_walkingParallelPair_limitConeComparison := by
+  intro X₁ X₂ c₁ c₂ hc₁ hc₂ f φ hφ
+  refine ⟨mappingConeCone c₁ c₂ f φ hφ, ?_, ?_⟩
+  · exact hcomparison X₁ X₂ c₁ c₂ hc₁ hc₂ f φ hφ
+  · exact ⟨Iso.refl _⟩
+
 /-- Exact-acyclic WPP limit closure input for cochain complexes. -/
 abbrev exactAcyclic_metrizableLCA_walkingParallelPair_limitClosure : Prop :=
   ∀ (K : WalkingParallelPair ⥤ CochainComplex MetrizableLCA.{0} ℤ)
@@ -461,6 +512,9 @@ abbrev MetrizableWppLimitComparisonInput : Prop :=
 abbrev MetrizableWppLimitConeComparisonInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitConeComparison
 
+abbrev MetrizableWppLimitCanonicalConeComparisonInput : Prop :=
+  DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeComparison
+
 abbrev MetrizableWppLimitClosureInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.exactAcyclic_metrizableLCA_walkingParallelPair_limitClosure
 
@@ -527,6 +581,12 @@ theorem metrizableWppLimitComparisonInput_of_limitConeComparison
     MetrizableWppLimitComparisonInput :=
   mappingCone_boundedInclusion_walkingParallelPair_limitComparison_of_limitConeComparison
     hcomparison
+
+/-- Build the WPP cone-comparison input from the canonical mapping-cone cone. -/
+theorem metrizableWppLimitConeComparisonInput_of_canonicalCone
+    (hcomparison : MetrizableWppLimitCanonicalConeComparisonInput) :
+    MetrizableWppLimitConeComparisonInput :=
+  mappingCone_walkingParallelPair_limitConeComparison_of_canonicalCone hcomparison
 
 /-- Four short-complex field inputs for WPP exact-acyclic limit closure. -/
 structure MetrizableWalkingParallelPairLimitClosureFieldInputs : Type 1 where
@@ -716,6 +776,16 @@ theorem metrizableWalkingParallelPairLimitStability_of_limitConeComparison_and_a
       WalkingParallelPair :=
   metrizableWalkingParallelPairLimitStability_of_comparison_and_allLca
     (metrizableWppLimitComparisonInput_of_limitConeComparison hcomparison)
+    inputs
+
+/-- Build WPP limit stability from canonical cone comparison plus LCA/component data. -/
+theorem metrizableWalkingParallelPairLimitStability_of_canonicalConeComparison_and_allLca
+    (hcomparison : MetrizableWppLimitCanonicalConeComparisonInput)
+    (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromAllLca) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_limitConeComparison_and_allLca
+    (metrizableWppLimitConeComparisonInput_of_canonicalCone hcomparison)
     inputs
 
 /--
