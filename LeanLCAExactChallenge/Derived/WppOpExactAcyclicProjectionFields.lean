@@ -3277,4 +3277,236 @@ end Checks
 
 end WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
 
+namespace WppOpSelectedCokernelColimitFromPreservationV370SupportW493
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+
+/-- Reproducible support seed for the W493 selected-cokernel preservation route. -/
+def supportSeedW493 : String :=
+  "w493-selected-cokernel-colimit-from-shortcomplex-preservation"
+
+/-- The ordinary forgotten diagram associated to the WPP-op short-complex diagram. -/
+abbrev selectedForgottenTargetOrdinaryDiagramW493
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    WalkingParallelPair ⥤ ShortComplex AddCommGrpCat.{0} :=
+  walkingParallelPairOpEquiv.functor ⋙ S ⋙ forgottenShortComplexFunctor
+
+/-- The selected forgotten target cofork before turning it into a cokernel cofork. -/
+def selectedForgottenTargetCoforkW493
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    Cofork (selectedForgottenLeft S) (selectedForgottenRight S) :=
+  Cofork.ofπ (selectedForgottenTargetCoconeLeg S cs) (by
+    change
+      forgottenShortComplexFunctor.map (selectedMetrizableLeft S) ≫
+          forgottenShortComplexFunctor.map (selectedMetrizableTargetCoconeLeg S cs) =
+        forgottenShortComplexFunctor.map (selectedMetrizableRight S) ≫
+          forgottenShortComplexFunctor.map (selectedMetrizableTargetCoconeLeg S cs)
+    rw [← forgottenShortComplexFunctor.map_comp, ← forgottenShortComplexFunctor.map_comp,
+      selectedMetrizableTargetCoconeLeg_parallel_pair S cs])
+
+/-- The forgotten cocone over the ordinary `WalkingParallelPair`. -/
+def selectedForgottenTargetMappedCoconeW493
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    Cocone (selectedForgottenTargetOrdinaryDiagramW493 S) where
+  pt := cs.pt.map (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0})
+  ι :=
+    { app := fun j =>
+        forgottenShortComplexFunctor.map
+          (cs.ι.app (walkingParallelPairOpEquiv.functor.obj j))
+      naturality := fun {j j'} f => by
+        simpa only [Functor.comp_obj, Functor.comp_map, Functor.const_obj_obj,
+          Functor.const_obj_map, Category.comp_id] using
+          congrArg forgottenShortComplexFunctor.map
+            (cs.w (walkingParallelPairOpEquiv.functor.map f)) }
+
+/-- The mapped ordinary cocone is the selected cofork after the parallel-pair iso. -/
+def selectedForgottenTargetMappedCoconeIsoPrecomposeCoforkW493
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    selectedForgottenTargetMappedCoconeW493 S cs ≅
+      (Cocone.precompose
+        (diagramIsoParallelPair (selectedForgottenTargetOrdinaryDiagramW493 S)).hom).obj
+        (selectedForgottenTargetCoforkW493 S cs) :=
+  Cocone.ext (Iso.refl _) (fun j => by
+    cases j
+    · simp only [Iso.refl_hom]
+      change
+        forgottenShortComplexFunctor.map
+            (cs.ι.app (walkingParallelPairOpEquiv.functor.obj WalkingParallelPair.zero)) =
+          forgottenShortComplexFunctor.map
+              (S.map (walkingParallelPairOpEquiv.functor.map WalkingParallelPairHom.left)) ≫
+            forgottenShortComplexFunctor.map
+              (cs.ι.app (walkingParallelPairOpEquiv.functor.obj WalkingParallelPair.one))
+      rw [← forgottenShortComplexFunctor.map_comp]
+      exact congrArg forgottenShortComplexFunctor.map
+        (cs.w (walkingParallelPairOpEquiv.functor.map WalkingParallelPairHom.left)).symm
+    · rfl)
+
+/-- A colimit proof for the mapped ordinary cocone gives the selected cofork colimit. -/
+def selectedForgottenTargetCoforkColimitOfMappedCoconeW493
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S)
+    (hMapped : IsColimit (selectedForgottenTargetMappedCoconeW493 S cs)) :
+    IsColimit (selectedForgottenTargetCoforkW493 S cs) := by
+  let hPre :
+      IsColimit
+        ((Cocone.precompose
+          (diagramIsoParallelPair (selectedForgottenTargetOrdinaryDiagramW493 S)).hom).obj
+          (selectedForgottenTargetCoforkW493 S cs)) :=
+    IsColimit.ofIsoColimit hMapped
+      (selectedForgottenTargetMappedCoconeIsoPrecomposeCoforkW493 S cs)
+  exact
+    (IsColimit.precomposeHomEquiv
+      (diagramIsoParallelPair (selectedForgottenTargetOrdinaryDiagramW493 S))
+      (selectedForgottenTargetCoforkW493 S cs)) hPre
+
+/-- A mapped-cocone colimit proof gives the selected forgotten-target cokernel colimit. -/
+def selectedForgottenTargetCokernelColimitOfMappedCoconeW493
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S)
+    (hMapped : IsColimit (selectedForgottenTargetMappedCoconeW493 S cs)) :
+    IsColimit (selectedForgottenTargetCokernelCofork S cs) :=
+  IsColimit.ofIsoColimit
+    (Preadditive.isColimitCokernelCoforkOfCofork
+      (selectedForgottenTargetCoforkColimitOfMappedCoconeW493 S cs hMapped))
+    (Cofork.ext (Iso.refl _) (by
+      simp [selectedForgottenTargetCokernelCofork, selectedForgottenTargetCoforkW493]))
+
+/-- The mapped ordinary cocone is colimit if the short-complex forgetful functor preserves `S`. -/
+def selectedForgottenTargetMappedCoconeIsColimitOfPreservesW493
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S)
+    [PreservesColimit S forgottenShortComplexFunctor]
+    (hcs : IsColimit cs) :
+    IsColimit (selectedForgottenTargetMappedCoconeW493 S cs) := by
+  change
+    IsColimit
+      ((forgottenShortComplexFunctor.mapCocone cs).whisker
+        walkingParallelPairOpEquiv.functor)
+  exact
+    (PreservesColimit.preserves (F := forgottenShortComplexFunctor) hcs).some.whiskerEquivalence
+      walkingParallelPairOpEquiv
+
+/--
+W493 provider: shape-level preservation by the short-complex forgetful functor
+supplies W492's selected forgotten-target cokernel colimit provider.
+-/
+def selectedCokernelColimitProvider_of_shortComplexPreservesWppOpColimits_w493
+    [PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor] :
+    SelectedCokernelColimitProviderW492 :=
+  fun S cs hcs =>
+    selectedForgottenTargetCokernelColimitOfMappedCoconeW493 S cs
+      (selectedForgottenTargetMappedCoconeIsColimitOfPreservesW493 S cs hcs)
+
+/-- W493 checked nonterminal state. -/
+structure SelectedCokernelColimitFromPreservationV370SupportStateW493 : Type where
+  seed : String
+  declarations : List String
+  selectedProviderResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W493 state. -/
+def currentSelectedCokernelColimitFromPreservationV370SupportStateW493 :
+    SelectedCokernelColimitFromPreservationV370SupportStateW493 where
+  seed := supportSeedW493
+  declarations :=
+    ["selectedForgottenTargetCokernelColimitOfMappedCoconeW493",
+      "selectedForgottenTargetMappedCoconeIsColimitOfPreservesW493",
+      "selectedCokernelColimitProvider_of_shortComplexPreservesWppOpColimits_w493"]
+  selectedProviderResult := "proved"
+  remainingInputs :=
+    ["prove PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor",
+      "construct concrete W480 promotion and ordinary-map providers"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW493State :
+    SelectedCokernelColimitFromPreservationV370SupportStateW493 :=
+  currentSelectedCokernelColimitFromPreservationV370SupportStateW493
+
+theorem currentSelectedCokernelColimitFromPreservationStateW493_productSuccess :
+    currentW493State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW493
+#check selectedForgottenTargetCokernelColimitOfMappedCoconeW493
+#check selectedForgottenTargetMappedCoconeIsColimitOfPreservesW493
+#check selectedCokernelColimitProvider_of_shortComplexPreservesWppOpColimits_w493
+#check currentSelectedCokernelColimitFromPreservationStateW493_productSuccess
+
+end Checks
+
+end WppOpSelectedCokernelColimitFromPreservationV370SupportW493
+
+namespace WppOpW480SplitProvidersShortComplexPreservationV370SupportW494
+
+open WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpSelectedCokernelColimitFromPreservationV370SupportW493
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W494 preservation endpoint. -/
+def supportSeedW494 : String :=
+  "w494-w480-split-providers-short-complex-preservation"
+
+/--
+W494 endpoint: W480 split providers plus WPP-op colimit preservation by the
+short-complex forgetful functor imply the current WPP-op exact-acyclic closure.
+-/
+def exactAcyclic_of_w480_splitProviders_and_shortComplexPreservesWppOpColimits_w494
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480)
+    [PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor] :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492
+    hinputs hordinaryMap
+    selectedCokernelColimitProvider_of_shortComplexPreservesWppOpColimits_w493
+
+/-- W494 checked nonterminal state. -/
+structure W480SplitProvidersShortComplexPreservationV370SupportStateW494 : Type where
+  seed : String
+  declarations : List String
+  preservationEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W494 state. -/
+def currentW480SplitProvidersShortComplexPreservationV370SupportStateW494 :
+    W480SplitProvidersShortComplexPreservationV370SupportStateW494 where
+  seed := supportSeedW494
+  declarations :=
+    ["exactAcyclic_of_w480_splitProviders_and_shortComplexPreservesWppOpColimits_w494"]
+  preservationEndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete W461ToW475PromotionInputsProviderW480",
+      "construct concrete W461ToW475OrdinaryMapProviderW480",
+      "prove PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW494State :
+    W480SplitProvidersShortComplexPreservationV370SupportStateW494 :=
+  currentW480SplitProvidersShortComplexPreservationV370SupportStateW494
+
+theorem currentW480SplitProvidersShortComplexPreservationStateW494_productSuccess :
+    currentW494State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW494
+#check exactAcyclic_of_w480_splitProviders_and_shortComplexPreservesWppOpColimits_w494
+#check currentW480SplitProvidersShortComplexPreservationStateW494_productSuccess
+
+end Checks
+
+end WppOpW480SplitProvidersShortComplexPreservationV370SupportW494
+
 end LeanLCAExactChallenge

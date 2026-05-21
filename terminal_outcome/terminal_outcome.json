@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W492でW480 split providersとW491 selected cokernel-colimit projection fieldsを合成した。WPP-op exact-acyclic branchはfinal call siteのW461ToW475PromotionInputsProviderW480、W461ToW475OrdinaryMapProviderW480、SelectedCokernelColimitProviderW492へ縮小したが、具体プロバイダは未構成なのでproduct_successは主張しない。",
+  "summary": "W493でforgottenShortComplexFunctorのWPP-op colimit preservationからSelectedCokernelColimitProviderW492を構成し、W494でそれをW480 split providersと合成した。WPP-op exact-acyclic branchはfinal call siteのW461ToW475PromotionInputsProviderW480、W461ToW475OrdinaryMapProviderW480、およびforgottenShortComplexFunctorのWPP-op preservationへ縮小したが、具体プロバイダは未構成なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -581,7 +581,8 @@
     "lake env lean audit/blockers/wpp_op_projection_fields_from_selected_cokernel_colimit_current_head_v370_support_w491.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_projection_fields_from_selected_cokernel_colimit_current_head_v370_support_w491.lean",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W491)",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W492)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W492)",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W494)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1597,13 +1598,20 @@
     "WppOpConcreteQuotientClosedMapRelationFieldsW377.to_w395_relation_fields",
     "WppOpConcreteQuotientClosedMapRelationFieldsW377.to_w389_relation_pullback_certificate",
     "WppOpConcreteQuotientClosedMapRelationFieldsW377.to_w386_target_relation_lift_certificate",
-    "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess"
+    "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.supportSeedW493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.selectedForgottenTargetCokernelColimitOfMappedCoconeW493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.selectedForgottenTargetMappedCoconeIsColimitOfPreservesW493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.selectedCokernelColimitProvider_of_shortComplexPreservesWppOpColimits_w493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.currentSelectedCokernelColimitFromPreservationStateW493_productSuccess",
+    "LeanLCAExactChallenge.WppOpW480SplitProvidersShortComplexPreservationV370SupportW494.supportSeedW494",
+    "LeanLCAExactChallenge.WppOpW480SplitProvidersShortComplexPreservationV370SupportW494.exactAcyclic_of_w480_splitProviders_and_shortComplexPreservesWppOpColimits_w494",
+    "LeanLCAExactChallenge.WppOpW480SplitProvidersShortComplexPreservationV370SupportW494.currentW480SplitProvidersShortComplexPreservationStateW494_productSuccess"
   ],
   "known_gaps": [
     "final call siteでW461ToW475PromotionInputsProviderW480を構成する必要がある。",
     "final call siteでW461ToW475OrdinaryMapProviderW480を構成する必要がある。",
-    "final call siteでSelectedCokernelColimitProviderW492を構成する必要がある。",
-    "selected forgotten-target cokernel colimit proofを現行のfinal WPP-op diagramへ接続する必要がある。",
+    "forgottenShortComplexFunctorについてWalkingParallelPairᵒᵖ shapeのcolimit preservationを証明する必要がある。",
     "product-success declarationを実際に証明するまではterminal outcomeをproduct_successへ更新しない。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -1611,16 +1619,15 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "825e9cd",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W492 was integrated by the parent in the target tree; no new workers were launched. It reduces the branch to three concrete final-call-site providers.",
+  "worker_frontier_summary": "W493/W494 were integrated by the parent in the target tree; no new workers were launched. The selected cokernel-colimit provider is reduced to short-complex WPP-op colimit preservation.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
     "final call siteでW461ToW475PromotionInputsProviderW480を構成する必要がある。",
     "final call siteでW461ToW475OrdinaryMapProviderW480を構成する必要がある。",
-    "final call siteでSelectedCokernelColimitProviderW492を構成する必要がある。",
-    "selected forgotten-target cokernel colimit proofを現行のfinal WPP-op diagramへ接続する必要がある。",
+    "forgottenShortComplexFunctorについてWalkingParallelPairᵒᵖ shapeのcolimit preservationを証明する必要がある。",
     "product-success declarationを実際に証明するまではterminal outcomeをproduct_successへ更新しない。"
   ],
-  "next_recommended_goal": "Construct concrete W461ToW475PromotionInputsProviderW480, W461ToW475OrdinaryMapProviderW480, and SelectedCokernelColimitProviderW492 at the final WPP-op exact-acyclic call sites.",
+  "next_recommended_goal": "Construct concrete W461ToW475PromotionInputsProviderW480, W461ToW475OrdinaryMapProviderW480, and PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor at the final WPP-op exact-acyclic call sites.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2489,10 +2496,18 @@
     "supportSeedW492",
     "SelectedCokernelColimitProviderW492",
     "exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492",
-    "currentW480SplitProvidersSelectedCokernelColimitStateW492_productSuccess"
+    "currentW480SplitProvidersSelectedCokernelColimitStateW492_productSuccess",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.supportSeedW493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.selectedForgottenTargetCokernelColimitOfMappedCoconeW493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.selectedForgottenTargetMappedCoconeIsColimitOfPreservesW493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.selectedCokernelColimitProvider_of_shortComplexPreservesWppOpColimits_w493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.currentSelectedCokernelColimitFromPreservationStateW493_productSuccess",
+    "LeanLCAExactChallenge.WppOpW480SplitProvidersShortComplexPreservationV370SupportW494.supportSeedW494",
+    "LeanLCAExactChallenge.WppOpW480SplitProvidersShortComplexPreservationV370SupportW494.exactAcyclic_of_w480_splitProviders_and_shortComplexPreservesWppOpColimits_w494",
+    "LeanLCAExactChallenge.WppOpW480SplitProvidersShortComplexPreservationV370SupportW494.currentW480SplitProvidersShortComplexPreservationStateW494_productSuccess"
   ],
-  "generated_utc": "2026-05-21T08:43:00Z",
-  "support_result_classification": "W492 was parent-integrated and verified; product_success is not claimed.",
+  "generated_utc": "2026-05-21T08:48:00Z",
+  "support_result_classification": "W493/W494 were parent-integrated and verified; product_success is not claimed.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3428,14 +3443,22 @@
     "supportSeedW492",
     "SelectedCokernelColimitProviderW492",
     "exactAcyclic_of_w480_splitProviders_and_selectedCokernelColimit_w492",
-    "currentW480SplitProvidersSelectedCokernelColimitStateW492_productSuccess"
+    "currentW480SplitProvidersSelectedCokernelColimitStateW492_productSuccess",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.supportSeedW493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.selectedForgottenTargetCokernelColimitOfMappedCoconeW493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.selectedForgottenTargetMappedCoconeIsColimitOfPreservesW493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.selectedCokernelColimitProvider_of_shortComplexPreservesWppOpColimits_w493",
+    "LeanLCAExactChallenge.WppOpSelectedCokernelColimitFromPreservationV370SupportW493.currentSelectedCokernelColimitFromPreservationStateW493_productSuccess",
+    "LeanLCAExactChallenge.WppOpW480SplitProvidersShortComplexPreservationV370SupportW494.supportSeedW494",
+    "LeanLCAExactChallenge.WppOpW480SplitProvidersShortComplexPreservationV370SupportW494.exactAcyclic_of_w480_splitProviders_and_shortComplexPreservesWppOpColimits_w494",
+    "LeanLCAExactChallenge.WppOpW480SplitProvidersShortComplexPreservationV370SupportW494.currentW480SplitProvidersShortComplexPreservationStateW494_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
     "construct concrete W461ToW475PromotionInputsProviderW480",
     "construct concrete W461ToW475OrdinaryMapProviderW480",
-    "construct concrete SelectedCokernelColimitProviderW492",
+    "prove PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor",
     "claim product_success only after final product theorem and terminal audit pass"
   ]
 }
