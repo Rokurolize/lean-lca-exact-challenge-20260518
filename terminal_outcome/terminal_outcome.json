@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W512でW511のdescended closed-map入力を、component closed-map（closed natural transformationから得る）、relation pullback equality、target-relation liftから導く汎用quotient-image閉写像橋としてimportableにした。残りは具体ClosedNatTransOrdinaryRelationFieldsProviderW512と保存入力であり、product_successは主張しない。",
+  "summary": "W513でW512のrelation fieldsがtop target relationの場合にsurjectivity相当の強さを持つことをimportableにした。target-relation liftだけでordinary target componentの全射性が出るため、closed embeddingだけからW512 providerは導けない。product_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -594,7 +594,8 @@
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W507)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W508)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W509)",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W510)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W510)",
+    "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1710,7 +1711,9 @@
     "具体ClosedNatTransOrdinaryRelationFieldsProviderW512がまだない。",
     "relation pullback equalityとtarget-relation liftの具体証明がまだない。",
     "closure-kernelまたはselected cokernel-colimit側の保存入力がまだ未証明。",
-    "product_successを主張できる最終監査パケットがまだない。"
+    "product_successを主張できる最終監査パケットがまだない。",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512はclosed embeddingだけからは導けず、top relation caseではsurjectivity相当の入力が必要。",
+    "selected preservationまたはclosed-range側へ仮説を正しく弱める経路の検証がまだ必要。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
@@ -1723,9 +1726,11 @@
     "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
     "prove the concrete relation-pullback equality and target-relation lift input for ordinaryMapOfWppOpNatTransW506",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
-    "run final product audit only after terminal_outcome can be product_success"
+    "run final product audit only after terminal_outcome can be product_success",
+    "avoid deriving W512 relation fields from closed embeddings alone; provide a genuine surjectivity-level target-relation lift input or pivot to selected preservation",
+    "re-evaluate completion estimate downward from the previous 99% +/- 1 because W513 exposes W512 as an over-strong universal route"
   ],
-  "next_recommended_goal": "Prove concrete ClosedNatTransOrdinaryRelationFieldsProviderW512, especially relation pullback equality and target-relation lift for ordinaryMapOfWppOpNatTransW506, then close the remaining preservation input.",
+  "next_recommended_goal": "Pivot from the universal W512 relation-fields provider to a valid selected-preservation or closed-range route, or supply a genuine surjectivity-level target-relation lift hypothesis at the final call site.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2760,8 +2765,8 @@
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.exactAcyclic_of_relationFields_and_closureKernelProvider_w512",
     "WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512.currentClosedNatTransOrdinaryRelationFieldsStateW512_productSuccess"
   ],
-  "generated_utc": "2026-05-21T11:22:23Z",
-  "support_result_classification": "nonterminal_support_increment",
+  "generated_utc": "2026-05-21T11:42:12Z",
+  "support_result_classification": "nonterminal_support_increment_obstruction_boundary",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3869,6 +3874,8 @@
     "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
     "prove the concrete relation-pullback equality and target-relation lift input for ordinaryMapOfWppOpNatTransW506",
     "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider",
-    "run final product audit only after terminal_outcome can be product_success"
+    "run final product audit only after terminal_outcome can be product_success",
+    "avoid deriving W512 relation fields from closed embeddings alone; provide a genuine surjectivity-level target-relation lift input or pivot to selected preservation",
+    "re-evaluate completion estimate downward from the previous 99% +/- 1 because W513 exposes W512 as an over-strong universal route"
   ]
 }

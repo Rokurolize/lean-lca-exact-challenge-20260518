@@ -6709,4 +6709,164 @@ end Checks
 
 end WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
 
+namespace MetrizableLCA
+
+/-- A surjective component map supplies the W512 target-relation lift field. -/
+theorem relationTargetLiftsThroughComponent_of_surjectiveW513
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B') (hsurj : Function.Surjective (iB : B → B')) :
+    relationTargetLiftsThroughComponentW512 f g f' g' iB := by
+  intro n _hn
+  exact hsurj n
+
+/--
+If the target relation is all of the target component, W512 target-relation
+lifts force the component map to be surjective.
+-/
+theorem relationTargetLiftsThroughComponent_surjective_of_targetRelationTopW513
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B') (htop : cokernelSubgroup (f' - g') = ⊤)
+    (hlifts : relationTargetLiftsThroughComponentW512 f g f' g' iB) :
+    Function.Surjective (iB : B → B') := by
+  intro n
+  have hn : n ∈ cokernelSubgroup (f' - g') := by
+    rw [htop]
+    trivial
+  exact hlifts n hn
+
+/-- In the top-relation case, W512 target-relation lifts are exactly surjectivity. -/
+theorem relationTargetLiftsThroughComponent_iff_surjective_of_targetRelationTopW513
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B') (htop : cokernelSubgroup (f' - g') = ⊤) :
+    relationTargetLiftsThroughComponentW512 f g f' g' iB ↔
+      Function.Surjective (iB : B → B') :=
+  ⟨relationTargetLiftsThroughComponent_surjective_of_targetRelationTopW513 iB htop,
+    relationTargetLiftsThroughComponent_of_surjectiveW513 iB⟩
+
+/--
+If W511's pullback equality holds and the target relation is top, then the
+source relation is top too. This records another exact consequence of the W512
+relation-field surface.
+-/
+theorem relationPreimagePullbackCondition_sourceRelationTop_of_targetRelationTopW513
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B')
+    (hpullback : relationPreimagePullbackConditionW511 f g f' g' iB)
+    (htop : cokernelSubgroup (f' - g') = ⊤) :
+    cokernelSubgroup (f - g) = ⊤ := by
+  calc
+    cokernelSubgroup (f - g) =
+        AddSubgroup.comap iB.hom.toAddMonoidHom (cokernelSubgroup (f' - g')) :=
+      hpullback.symm
+    _ = ⊤ := by
+      simp [htop]
+
+end MetrizableLCA
+
+namespace WppOpClosedNatTransOrdinaryRelationFieldObstructionV370SupportW513
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpClosedNatTransOrdinaryRelationFieldsV370SupportW512
+
+/-- Reproducible support seed for the W513 relation-field obstruction boundary. -/
+def supportSeedW513 : String :=
+  "w513-relation-field-top-relation-obstruction"
+
+/--
+For the concrete W510 ordinary component, the W512 target-relation lift field
+forces surjectivity whenever the target relation is top.
+-/
+theorem closedNatTransOrdinaryTargetRelationLifts_surjective_of_targetRelationTop_w513
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y)
+    (htop :
+      MetrizableLCA.cokernelSubgroup (wppOpLeftW441 Y - wppOpRightW441 Y) = ⊤)
+    (hlifts : ClosedNatTransOrdinaryTargetRelationLiftsConditionW512 α) :
+    Function.Surjective
+      (((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one) :
+        wppOpCodomainW441 X → wppOpCodomainW441 Y) :=
+  MetrizableLCA.relationTargetLiftsThroughComponent_surjective_of_targetRelationTopW513
+    ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one) htop hlifts
+
+/--
+For the concrete W510 ordinary component, W511 relation-pullback equality
+collapses the source relation whenever the target relation is top.
+-/
+theorem closedNatTransOrdinaryRelationPullback_sourceRelationTop_of_targetRelationTop_w513
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y)
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackConditionW511 α)
+    (htop :
+      MetrizableLCA.cokernelSubgroup (wppOpLeftW441 Y - wppOpRightW441 Y) = ⊤) :
+    MetrizableLCA.cokernelSubgroup (wppOpLeftW441 X - wppOpRightW441 X) = ⊤ :=
+  MetrizableLCA.relationPreimagePullbackCondition_sourceRelationTop_of_targetRelationTopW513
+    ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one) hpullback htop
+
+/-- Top-relation consequences of a full W512 relation-field package. -/
+theorem closedNatTransOrdinaryRelationFields_topRelationConsequences_w513
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    (hfields : ClosedNatTransOrdinaryRelationFieldsInputsW512 α)
+    (htop :
+      MetrizableLCA.cokernelSubgroup (wppOpLeftW441 Y - wppOpRightW441 Y) = ⊤) :
+    Function.Surjective
+        (((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one) :
+          wppOpCodomainW441 X → wppOpCodomainW441 Y) ∧
+      MetrizableLCA.cokernelSubgroup (wppOpLeftW441 X - wppOpRightW441 X) = ⊤ :=
+  ⟨closedNatTransOrdinaryTargetRelationLifts_surjective_of_targetRelationTop_w513
+      α htop hfields.target_relation_lifts,
+    closedNatTransOrdinaryRelationPullback_sourceRelationTop_of_targetRelationTop_w513
+      α hfields.relation_pullback htop⟩
+
+/-- W513 checked nonterminal state. -/
+structure ClosedNatTransOrdinaryRelationFieldObstructionV370SupportStateW513 : Type where
+  seed : String
+  declarations : List String
+  obstructionResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W513 state. -/
+def currentClosedNatTransOrdinaryRelationFieldObstructionV370SupportStateW513 :
+    ClosedNatTransOrdinaryRelationFieldObstructionV370SupportStateW513 where
+  seed := supportSeedW513
+  declarations :=
+    ["MetrizableLCA.relationTargetLiftsThroughComponent_of_surjectiveW513",
+      "MetrizableLCA.relationTargetLiftsThroughComponent_surjective_of_targetRelationTopW513",
+      "MetrizableLCA.relationTargetLiftsThroughComponent_iff_surjective_of_targetRelationTopW513",
+      "MetrizableLCA.relationPreimagePullbackCondition_sourceRelationTop_of_targetRelationTopW513",
+      "closedNatTransOrdinaryTargetRelationLifts_surjective_of_targetRelationTop_w513",
+      "closedNatTransOrdinaryRelationPullback_sourceRelationTop_of_targetRelationTop_w513",
+      "closedNatTransOrdinaryRelationFields_topRelationConsequences_w513"]
+  obstructionResult := "proved"
+  remainingInputs :=
+    ["do not derive ClosedNatTransOrdinaryRelationFieldsProviderW512 from closed embeddings alone",
+      "supply a real surjectivity-level target-relation lift input where applicable",
+      "or pivot to a selected preservation / closed-range theorem with valid hypotheses"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW513State :
+    ClosedNatTransOrdinaryRelationFieldObstructionV370SupportStateW513 :=
+  currentClosedNatTransOrdinaryRelationFieldObstructionV370SupportStateW513
+
+theorem currentClosedNatTransOrdinaryRelationFieldObstructionStateW513_productSuccess :
+    currentW513State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW513
+#check MetrizableLCA.relationTargetLiftsThroughComponent_of_surjectiveW513
+#check MetrizableLCA.relationTargetLiftsThroughComponent_surjective_of_targetRelationTopW513
+#check MetrizableLCA.relationTargetLiftsThroughComponent_iff_surjective_of_targetRelationTopW513
+#check MetrizableLCA.relationPreimagePullbackCondition_sourceRelationTop_of_targetRelationTopW513
+#check closedNatTransOrdinaryTargetRelationLifts_surjective_of_targetRelationTop_w513
+#check closedNatTransOrdinaryRelationPullback_sourceRelationTop_of_targetRelationTop_w513
+#check closedNatTransOrdinaryRelationFields_topRelationConsequences_w513
+#check currentClosedNatTransOrdinaryRelationFieldObstructionStateW513_productSuccess
+
+end Checks
+
+end WppOpClosedNatTransOrdinaryRelationFieldObstructionV370SupportW513
+
 end LeanLCAExactChallenge

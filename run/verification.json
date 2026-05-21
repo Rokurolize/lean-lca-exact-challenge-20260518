@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w512-relation-fields-closed-map-bridge",
-  "generated_utc": "2026-05-21T11:22:23Z",
-  "source_tree_hash": "584129b549a555a24670609bef1fbf92e4b866d7a532ea58f0ea97cc610f7074",
-  "summary": "W512 promotes a checked quotient representative-image closed-map bridge into the importable projection-fields source. W511 topology inputs now follow from component closedness, relation pullback equality, and target-relation lift input; product success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w513-relation-field-obstruction-boundary",
+  "generated_utc": "2026-05-21T11:42:12Z",
+  "source_tree_hash": "6feb2e4ac0ec5005dbf1eddaa87d83699110a0acf418cc1bfccbf535962be180",
+  "summary": "W513 records the exact strength of W512 relation fields in the top-target-relation case: target-relation lifts are equivalent to surjectivity of the ordinary target component, and relation pullback collapses the source relation to top. Product success remains false.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3314,6 +3314,56 @@
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
       "evidence": "External audit self-check passed after W512."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W513 relation-field obstruction boundary compiled in the importable projection-fields module."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Projection-fields module rebuilt so downstream audit imports see W513 declarations."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit sees W513 obstruction declarations and keeps product success false."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full Lake build passed after W513 and metadata refresh."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in source after W513."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W513."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON artifacts parse after W513 metadata refresh."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "No whitespace errors after W513 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W513 metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "External audit reaches only the expected product gate because terminal_outcome.outcome remains blocked_nonterminal_frontier."
     }
   ],
   "implemented_declarations_checked": [
