@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
   "generated_utc": "2026-05-21T01:01:41Z",
-  "source_tree_hash": "af3e233372a0300dbfbc64807c6f877dc95d9689a8bfb2b91016576d85eb3a09",
+  "source_tree_hash": "2edc5ffd395e7dc0db9f5cf7cd29a3266b8a7ad0340825cd32ed63d9ff0cc69a",
   "summary": "W449 and W450 support files were verified and recorded. Product success remains blocked by the selected short-complex preservation lift and concrete difference row identification.",
   "commands": [
     {
