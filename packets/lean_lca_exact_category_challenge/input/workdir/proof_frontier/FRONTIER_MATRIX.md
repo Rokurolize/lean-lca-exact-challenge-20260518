@@ -844,3 +844,13 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: the selected difference kernel row is now the categorical kernel of `selectedForgottenLeft S - selectedForgottenRight S`; `selectedDifferenceKernelι_condition` and `selectedDifferenceKernelIsLimit` discharge W456's `L₀/i/wi/h₀` input, yielding `strictSnakeCokernelData_of_componentwiseSelectedCokernel_kernelRow`.
 - remaining blockers: prove selected component cofork `IsColimit` fields or selected-leg-to-explicit-`MetrizableLCA.cokernelπ` normalizations; finish the W446 componentwise selected route; prove W458's target-index equation from W390 pointwise conjugacy plus W426 quotient compatibility; promote W426/W387/W390 alignment declarations into one importable namespace.
 - product_complete: false
+
+
+## W460 Component Projection Cofork Normalization
+
+- timestamp: `2026-05-21T01:29:55Z`
+- artifact: `audit/blockers/addcommgrp_component_projection_cofork_normalization_v370_support_w460.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_component_projection_cofork_normalization_v370_support_w460.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_component_projection_cofork_normalization_v370_support_w460.lean`; `git diff --check`
+- effect: the three `ShortComplex.πᵢ.mapCocone` projection cofork inputs are transported from the selected component cokernel coforks by explicit cocone isomorphisms, and `selectedProjectionComponentIsColimitInputs_of_selectedComponentCoforks` packages the three component `IsColimit` proofs into W452's input shape.
+- remaining blockers: prove the actual `IsColimit` statements for `selectedForgottenComponentπ₁/π₂/π₃CokernelCofork S cs`, or identify those selected component coforks with the explicit closed-range quotient cokernels.
+- product_complete: false
