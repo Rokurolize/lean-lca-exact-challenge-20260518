@@ -2,8 +2,22 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W528では、Bounded.leanにDbounded.infinityCategory用のStableFourProjectionCertificate gateを追加し、finiteLimits、finiteColimits、suspensionLoopEquivalence、pushoutPullbackCompatibilityの4射影を1つのcertificateから消費する形にした。audit/ProductSuccessDeclarations.leanはそのgateと、現在のordinary Dbounded contextだけではaccepted=falseであることを確認する。ただし実際のstable four-projection certificateはまだ構成しておらず、BoundedDerivedInfinityCategoryもordinary nerveのままである。W515/W516/W517 relation provider dataとrow-aware closed-map/closed-embedding provider dataも未証明なので、product_successはまだfalseである。",
+  "summary": "W529では、W528のStableFourProjectionCertificate gateに対し、Dbounded MetrizableLCA用のordinary semantic input adapterを追加した。このadapterはPreadditive、HasFiniteLimits、HasFiniteColimits、HasZeroObject、全shiftのAdditive性、suspension additive、Pretriangulated、IsTriangulatedを1つの入力recordとして受け取り、finiteLimits、finiteColimits、suspensionLoopEquivalence、pushoutPullbackCompatibilityの4射影を持つready certificateへ変換する。ただしそのordinary semantic input record自体はまだ構成しておらず、現在状態ではsemanticInput = noneでproduct_successはfalseである。W515/W516/W517 relation provider dataとrow-aware closed-map/closed-embedding provider dataも未証明なので、全体のterminal outcomeは引き続きblocked_nonterminal_frontierである。",
   "verified_commands": [
+    "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+    "lake build LeanLCAExactChallenge.Derived.Bounded",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "lake build",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
+    "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
+    "git diff --check",
+    "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+    "python3 -m json.tool run/verification.json >/dev/null",
+    "python3 -m json.tool manifest.json >/dev/null",
+    "python3 audit/external_audit.py --root . --self-check-only",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
     "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
     "lake build LeanLCAExactChallenge.Derived.Bounded",
     "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -1799,7 +1813,8 @@
     "WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525.currentW525State_productSuccess"
   ],
   "known_gaps": [
-    "Dbounded.infinityCategoryに対する実際のstable four-projection certificateを構成し、ordinary nerveだけではない形に進める必要がある。",
+    "Dbounded MetrizableLCAに対するordinary semantic input recordを実際に構成する必要がある。特にHasFiniteLimits、HasFiniteColimits、Pretriangulated、IsTriangulatedの未解決入力が残っている。",
+    "Dbounded.infinityCategoryに対するstable four-projection certificateはW529 adapterから得られるが、その入力recordが未構成なのでproduct_successではない。",
     "final call siteでW515 representative-image provider、または同等のW516/W517 relation provider dataを具体的に構成する必要がある。",
     "final call siteで、選択component difference mapがclosed mapまたはclosed embeddingであることを、strict AddCommGrp行境界に対応するrow-aware providerとして具体的に構成する必要がある。",
     "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施であり、product_successとして扱ってはいけない。"
@@ -1807,17 +1822,18 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "a7a5a5e3dfc322873238ea06f1ec014ac6c43dd1",
+  "git_commit": "967260b47999b5fe06e49fa975f936913b955e8c",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W528 was integrated by the parent in the target tree; no worker was launched. It exposes the stable Dbounded four-projection gate in product code and checks that the current ordinary Dbounded context is rejected, but does not construct the stable certificate.",
+  "worker_frontier_summary": "W529 was integrated by the parent in the target tree; no worker was launched. It converts concrete ordinary Dbounded MetrizableLCA semantic fields into the W528 four-projection certificate, but it does not construct those fields.",
   "claim_review_result": "未実施",
   "remaining_gaps": [
-    "Dbounded.infinityCategoryに対する実際のstable four-projection certificateを構成し、ordinary nerveだけではない形に進める必要がある。",
+    "Dbounded MetrizableLCAに対するordinary semantic input recordを実際に構成する必要がある。特にHasFiniteLimits、HasFiniteColimits、Pretriangulated、IsTriangulatedの未解決入力が残っている。",
+    "Dbounded.infinityCategoryに対するstable four-projection certificateはW529 adapterから得られるが、その入力recordが未構成なのでproduct_successではない。",
     "final call siteでW515 representative-image provider、または同等のW516/W517 relation provider dataを具体的に構成する必要がある。",
     "final call siteで、選択component difference mapがclosed mapまたはclosed embeddingであることを、strict AddCommGrp行境界に対応するrow-aware providerとして具体的に構成する必要がある。",
     "元の4つの課題要件をすべて証拠へ対応させる最終product auditはまだ未実施であり、product_successとして扱ってはいけない。"
   ],
-  "next_recommended_goal": "Construct a real stable Dbounded four-projection certificate or continue concrete WPP provider work, choosing whichever removes the broad product gate faster.",
+  "next_recommended_goal": "Construct Dbounded.MetrizableOrdinaryStableSemanticInput fields or return to concrete WPP provider work, choosing the shorter route to product success.",
   "implemented_declarations": [
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_strictRepresentative",
     "LeanLCAExactChallenge.boundedHomotopyQuotientBounded_preimage_sourceEquation_mapped",
@@ -2950,7 +2966,7 @@
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_compactTargetRelation_closedEmbeddingRows_w527",
     "WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.currentW527State_productSuccess"
   ],
-  "generated_utc": "2026-05-21T15:06:23Z",
+  "generated_utc": "2026-05-21T15:15:12Z",
   "support_result_classification": "verified_nonterminal_support_increment",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -4154,11 +4170,11 @@
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Construct a real stable four-projection certificate for Dbounded.infinityCategory, or replace the ordinary nerve route with a semantic stable infinity-category construction accepted by the product gate.",
+    "Construct Dbounded.MetrizableOrdinaryStableSemanticInput, especially finite limits, finite colimits, pretriangulated structure, and triangulated structure for Dbounded MetrizableLCA.",
     "Prove concrete W515 representative-image provider data, or equivalent W516/W517 relation provider data, at the final call site.",
     "Prove row-aware selected component difference closed-map or closed-embedding data at the strict AddCommGrp boundary used by W318.",
     "Only after these close the broad product gates, rerun the final product audit and packet review as a product_success claim."
   ],
-  "latest_verified_increment": "W528 stable Dbounded four-projection gate reducer",
-  "source_tree_hash": "80ba4bed734b1069baa7a662456a95902da448563c3bf6defa33968226517841"
+  "latest_verified_increment": "W529 semantic Dbounded stable input adapter",
+  "source_tree_hash": "270c3a11824e798ce5ee7c94c0943cd3c8d495dd70093a2de244635571a61c76"
 }

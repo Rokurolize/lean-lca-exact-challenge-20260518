@@ -3335,6 +3335,120 @@ theorem Dbounded.requiredStableProjectionFieldNames_count :
     Dbounded.requiredStableProjectionFieldNames.length = 4 :=
   rfl
 
+/--
+Concrete ordinary-category inputs that would make the W528 stable gate reviewable for
+`Dbounded MetrizableLCA.{0}`.
+-/
+structure Dbounded.MetrizableOrdinaryStableSemanticInput : Type 1 where
+  preadditive : Preadditive (Dbounded MetrizableLCA.{0})
+  finiteLimits : HasFiniteLimits (Dbounded MetrizableLCA.{0})
+  finiteColimits : HasFiniteColimits (Dbounded MetrizableLCA.{0})
+  zeroObject : HasZeroObject (Dbounded MetrizableLCA.{0})
+  shiftAdditiveAll :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive
+  suspensionAdditive :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      shiftAdditiveAll
+    (shiftFunctor (Dbounded MetrizableLCA.{0}) (1 : ℤ)).Additive
+  pretriangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Suspension-loop readiness represented by ordinary `Dbounded MetrizableLCA` data. -/
+def Dbounded.metrizableSemanticSuspensionLoopReady
+    (data : Dbounded.MetrizableOrdinaryStableSemanticInput) : Prop :=
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := data.preadditive
+  letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+    data.shiftAdditiveAll
+  Nonempty (HasZeroObject (Dbounded MetrizableLCA.{0})) ∧
+    Nonempty ((shiftFunctor (Dbounded MetrizableLCA.{0}) (1 : ℤ)).Additive)
+
+/-- Pushout-pullback readiness represented by ordinary triangulated `Dbounded` data. -/
+def Dbounded.metrizableSemanticPushoutPullbackReady
+    (data : Dbounded.MetrizableOrdinaryStableSemanticInput) : Prop :=
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := data.preadditive
+  letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := data.zeroObject
+  letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+    data.shiftAdditiveAll
+  letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := data.pretriangulated
+  Nonempty (IsTriangulated (Dbounded MetrizableLCA.{0}))
+
+/--
+Convert concrete ordinary `Dbounded MetrizableLCA` semantic inputs into the W528
+four-projection stable certificate shape.
+-/
+def Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+    (input : Dbounded.MetrizableOrdinaryStableSemanticInput) :
+    Dbounded.StableFourProjectionCertificate MetrizableLCA.{0} where
+  stableCertificate := Unit
+  certificate := ()
+  finiteLimits := fun _data => Nonempty (HasFiniteLimits (Dbounded MetrizableLCA.{0}))
+  finiteColimits := fun _data => Nonempty (HasFiniteColimits (Dbounded MetrizableLCA.{0}))
+  suspensionLoopEquivalence := fun _data =>
+    Dbounded.metrizableSemanticSuspensionLoopReady input
+  pushoutPullbackCompatibility := fun _data =>
+    Dbounded.metrizableSemanticPushoutPullbackReady input
+  finiteLimits_ready := ⟨input.finiteLimits⟩
+  finiteColimits_ready := ⟨input.finiteColimits⟩
+  suspensionLoopEquivalence_ready := ⟨⟨input.zeroObject⟩, ⟨input.suspensionAdditive⟩⟩
+  pushoutPullbackCompatibility_ready := ⟨input.triangulated⟩
+
+/-- The semantic ordinary-input adapter produces a ready W528 certificate. -/
+theorem Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready
+    (input : Dbounded.MetrizableOrdinaryStableSemanticInput) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput input).ready := by
+  exact StableFourProjectionCertificate.ready_of_fields _
+
+/-- Concrete ordinary fields required by the semantic adapter for `Dbounded MetrizableLCA`. -/
+def Dbounded.metrizableSemanticStableRequiredFieldNames : List String :=
+  ["Preadditive (Dbounded MetrizableLCA)", "HasFiniteLimits (Dbounded MetrizableLCA)",
+    "HasFiniteColimits (Dbounded MetrizableLCA)", "HasZeroObject (Dbounded MetrizableLCA)",
+    "forall n, (shiftFunctor (Dbounded MetrizableLCA) n).Additive",
+    "(shiftFunctor (Dbounded MetrizableLCA) 1).Additive",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+/-- The semantic adapter names eight ordinary-category fields. -/
+theorem Dbounded.metrizableSemanticStableRequiredFieldNames_count :
+    Dbounded.metrizableSemanticStableRequiredFieldNames.length = 8 :=
+  rfl
+
+/-- Current semantic route state for the metrizable LCA bounded-derived gate. -/
+structure Dbounded.MetrizableSemanticStableRouteState : Type 2 where
+  ordinaryContext : Dbounded.OrdinaryInfinityContext MetrizableLCA.{0}
+  semanticInput : Option Dbounded.MetrizableOrdinaryStableSemanticInput
+  requiredFields : List String
+  productSuccessClaimed : Bool
+
+/-- Current state: ordinary context is present, semantic input has not been supplied. -/
+noncomputable def Dbounded.currentMetrizableSemanticStableRouteState :
+    Dbounded.MetrizableSemanticStableRouteState where
+  ordinaryContext := Dbounded.currentOrdinaryInfinityContext MetrizableLCA.{0}
+  semanticInput := none
+  requiredFields := Dbounded.metrizableSemanticStableRequiredFieldNames
+  productSuccessClaimed := false
+
+/-- The current semantic route does not supply the ordinary semantic input record. -/
+theorem Dbounded.currentMetrizableSemanticStableRouteState_semanticInput_not_supplied :
+    Dbounded.currentMetrizableSemanticStableRouteState.semanticInput = none :=
+  rfl
+
+/-- The current semantic route does not claim product success. -/
+theorem Dbounded.currentMetrizableSemanticStableRouteState_productSuccess :
+    Dbounded.currentMetrizableSemanticStableRouteState.productSuccessClaimed = false :=
+  rfl
+
 /-- Checked abelian-category comparison target provided by mathlib. -/
 abbrev abelianDerivedCategory (A : Type u) [Category.{v} A] [Abelian A]
     [HasDerivedCategory.{v} A] : Type (max u v) :=

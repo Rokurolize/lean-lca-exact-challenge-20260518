@@ -1,9 +1,79 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w528-stable-dbounded-gate-reducer",
-  "generated_utc": "2026-05-21T15:06:23Z",
-  "source_tree_hash": "80ba4bed734b1069baa7a662456a95902da448563c3bf6defa33968226517841",
-  "summary": "W528では、Bounded.leanにDbounded.infinityCategory用のStableFourProjectionCertificate gateを追加し、finiteLimits、finiteColimits、suspensionLoopEquivalence、pushoutPullbackCompatibilityの4射影を1つのcertificateから消費する形にした。audit/ProductSuccessDeclarations.leanはそのgateと、現在のordinary Dbounded contextだけではaccepted=falseであることを確認する。ただし実際のstable four-projection certificateはまだ構成しておらず、BoundedDerivedInfinityCategoryもordinary nerveのままである。W515/W516/W517 relation provider dataとrow-aware closed-map/closed-embedding provider dataも未証明なので、product_successはまだfalseである。",
+  "schema": "lean-lca-exact-challenge-verification-w529-semantic-dbounded-stable-input-adapter",
+  "generated_utc": "2026-05-21T15:15:12Z",
+  "source_tree_hash": "270c3a11824e798ce5ee7c94c0943cd3c8d495dd70093a2de244635571a61c76",
+  "summary": "W529では、W528のStableFourProjectionCertificate gateに対し、Dbounded MetrizableLCA用のordinary semantic input adapterを追加した。このadapterはPreadditive、HasFiniteLimits、HasFiniteColimits、HasZeroObject、全shiftのAdditive性、suspension additive、Pretriangulated、IsTriangulatedを1つの入力recordとして受け取り、finiteLimits、finiteColimits、suspensionLoopEquivalence、pushoutPullbackCompatibilityの4射影を持つready certificateへ変換する。ただしそのordinary semantic input record自体はまだ構成しておらず、現在状態ではsemanticInput = noneでproduct_successはfalseである。W515/W516/W517 relation provider dataとrow-aware closed-map/closed-embedding provider dataも未証明なので、全体のterminal outcomeは引き続きblocked_nonterminal_frontierである。",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "Focused source check passed for W529 semantic Dbounded stable input adapter; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_bounded_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "Importable bounded-derived module rebuilt after W529; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_bounded_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W529 semantic adapter declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_product_success_declarations.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W529; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_required_declarations.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W529; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token scan passed for product source tree after W529; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_forbidden_source_tree.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file forbidden-token scan passed after W529; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_forbidden_tokens.log."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Literal forbidden-token rg check on W529-touched files returned no matches; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_rg_forbidden.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W529; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "W529 terminal outcome JSON parses after metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "W529 verification JSON parses after metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "W529 manifest JSON parses after metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W529; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product gate is expected to fail because terminal_outcome remains blocked_nonterminal_frontier/product_success=false; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_external_product_gate.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
       "status": "passed",
