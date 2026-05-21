@@ -834,3 +834,13 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W318 conjugated-leg compatibility for the concrete W451-style map is reduced to the ordinary-target component equation; the ordinary-source component then follows from WPP-op naturality.
 - remaining blockers: promote/import the W426 quotient-compatibility theorem and W387 point identifications, instantiate the W390 transported descended map, and prove the target-index equation from W390 pointwise conjugacy plus W426 quotient compatibility.
 - product_complete: false
+
+
+## W459 Selected Difference Kernel Row Frontier
+
+- timestamp: `2026-05-21T01:25:21Z`
+- artifact: `audit/blockers/addcommgrp_selected_difference_kernel_row_frontier_v370_support_w459.lean`
+- verified: `lake env lean audit/blockers/addcommgrp_selected_difference_kernel_row_frontier_v370_support_w459.lean`; `rg -n '\b(sorry|admit|axiom)\b' audit/blockers/addcommgrp_selected_difference_kernel_row_frontier_v370_support_w459.lean`; `git diff --check`
+- effect: the selected difference kernel row is now the categorical kernel of `selectedForgottenLeft S - selectedForgottenRight S`; `selectedDifferenceKernelι_condition` and `selectedDifferenceKernelIsLimit` discharge W456's `L₀/i/wi/h₀` input, yielding `strictSnakeCokernelData_of_componentwiseSelectedCokernel_kernelRow`.
+- remaining blockers: prove selected component cofork `IsColimit` fields or selected-leg-to-explicit-`MetrizableLCA.cokernelπ` normalizations; finish the W446 componentwise selected route; prove W458's target-index equation from W390 pointwise conjugacy plus W426 quotient compatibility; promote W426/W387/W390 alignment declarations into one importable namespace.
+- product_complete: false
