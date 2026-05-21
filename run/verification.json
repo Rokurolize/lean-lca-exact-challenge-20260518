@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-21T01:38:00Z",
-  "source_tree_hash": "aeb15e66da117931ff20925a817f77565d7b9b3657cc26a748dae9d673680279",
+  "generated_utc": "2026-05-21T01:43:00Z",
+  "source_tree_hash": "0a5c077e9cde89229758979a4250e365d623f4db3bde4b68c010d05db5177d2d",
   "summary": "W427でselected AddCommGrp cokernel/cofork colimit routeをhcsとunderlying forgetful WPP-op preservationだけに縮約し、W428でそのWPP-op preservationがPreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)から従うことを確認した。ただしfinite-colimit preservation自体は未解決で、閉像条件なしのglobal保存は引き続き危険である。product successはまだ主張しない。",
   "commands": [
     {
@@ -2938,6 +2938,16 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_mapped_explicit_cokernel_closed_range_v370_support_parent.lean",
       "status": "passed",
       "evidence": "Focused W435 closed-range mapped-explicit cokernel bridge verification passed."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_mapped_explicit_cokernel_cocone_iscolimit_v370_support_w437.lean",
+      "status": "passed",
+      "evidence": "Focused W437 mapped explicit cokernel boundary verification passed."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_mapped_explicit_cokernel_cocone_iscolimit_v370_support_w437.lean",
+      "status": "passed",
+      "evidence": "Focused W437 mapped explicit cokernel boundary verification passed."
     }
   ],
   "implemented_declarations_checked": [

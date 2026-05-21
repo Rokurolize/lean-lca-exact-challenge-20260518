@@ -222,6 +222,12 @@
 <p><time>2026-05-20T10:18:40Z</time>: The explicit pullback construction now exports <code>MetrizableLCA.instHasPullbacks</code>, and finite limits are synthesized as <code>MetrizableLCA.instHasFiniteLimits</code> from terminal objects plus pullbacks. <code>ProductSuccessDeclarations</code> checks both instances, and the bounded finite-products boundary no longer carries a separate <code>HasFiniteLimits MetrizableLCA</code> premise for its conditional <code>Dbounded</code> finite-products declaration. Remaining product work is the localization-transfer layer and the finite-colimit, triangulated, and stable infinity-category obligations.</p>
 </section>
 
+<section id="w437-mapped-explicit-cokernel-cocone-boundary">
+<h2>W437 mapped explicit cokernel boundary</h2>
+<p><time>2026-05-21T10:43:00Z</time>: The parent manually ported and verified <code>audit/blockers/addcommgrp_mapped_explicit_cokernel_cocone_iscolimit_v370_support_w437.lean</code> from the support worktree before <code>result.json</code> was available. It proves the forgotten explicit local cokernel cofork is colimiting once every AddCommGrp target map killing <code>f</code> also kills <code>MetrizableLCA.cokernelSubgroup f</code>. It also checks that such mapped colimits feed W433's ordinary <code>WalkingParallelPair</code> preservation.</p>
+<p>The file records the obstruction precisely: a cofork equation in <code>AddCommGrpCat</code> gives algebraic range containment in the target kernel, while <code>MetrizableLCA.cokernelSubgroup f</code> is the topological closure of that range. Therefore arbitrary forgetful cokernel preservation is not a valid product route without closed-range or closure-kernel input.</p>
+</section>
+
 <section id="w435-mapped-explicit-cokernel-closed-range">
 <h2>W435 mapped explicit cokernel closed range</h2>
 <p><time>2026-05-21T10:38:00Z</time>: The parent added and verified <code>audit/blockers/addcommgrp_mapped_explicit_cokernel_closed_range_v370_support_parent.lean</code>. It proves that W433's <code>mappedExplicitCokernelCocone f</code> is colimiting in <code>AddCommGrpCat</code> when <code>Set.range (f : X → Y)</code> is closed, by reindexing the forgotten explicit cokernel cofork and applying the W429-style closure-kernel argument.</p>
