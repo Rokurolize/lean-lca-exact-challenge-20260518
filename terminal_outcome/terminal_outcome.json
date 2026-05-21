@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W519でmapped explicit LCA cokernel保存側をclosed range、closed map、closed embeddingの各providerへ開いた。closed rangeからW503 closure-kernel providerとW497 mapped explicit cokernel cofork colimit入力の両方を作り、W518のcompact-target relation出口へ接続した。ただし具体的なcompact-target relation providerと具体的なglobal closed-range保存providerは未証明なのでproduct_successは主張しない。",
+  "summary": "W520でW446のselected single-preservation経路をimportable moduleへ昇格した。元のWPP-op colimitと、選択されたshort-complex差分cokernelをforgetful functorが保存するという1点の保存入力から、W492のselected forgotten-target cokernel colimit providerを作り、W515代表像経路とW518 compact-target経路へ接続した。ただし具体的なrelation providerと具体的なselected single-preservation providerは未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",

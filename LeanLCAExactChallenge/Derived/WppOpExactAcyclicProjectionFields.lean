@@ -7802,4 +7802,213 @@ end Checks
 
 end WppOpClosedRangeMappedCokernelPreservationV370SupportW519
 
+namespace WppOpSelectedCokernelColimitFromSinglePreservationV370SupportW520
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+open WppOpCompactTargetRelationPreservationExitsV370SupportW518
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W520 single-preservation selected-colimit route. -/
+def supportSeedW520 : String :=
+  "w520-selected-cokernel-colimit-from-single-preservation"
+
+/-- The ordinary diagram associated to the WPP-op short-complex diagram. -/
+abbrev selectedMetrizableTargetOrdinaryDiagramW520
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    WalkingParallelPair ⥤ ShortComplex MetrizableLCA.{0} :=
+  walkingParallelPairOpEquiv.functor ⋙ S
+
+/-- The cocone over the ordinary diagram obtained from the WPP-op cocone. -/
+def selectedMetrizableTargetMappedCoconeW520
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    Cocone (selectedMetrizableTargetOrdinaryDiagramW520 S) where
+  pt := cs.pt
+  ι :=
+    { app := fun j => cs.ι.app (walkingParallelPairOpEquiv.functor.obj j)
+      naturality := fun {j j'} f => by
+        simpa only [Functor.comp_obj, Functor.comp_map, Functor.const_obj_obj,
+          Functor.const_obj_map, Category.comp_id] using
+          cs.w (walkingParallelPairOpEquiv.functor.map f) }
+
+/--
+The ordinary mapped cocone is the selected cofork precomposed along
+`diagramIsoParallelPair`.
+-/
+def selectedMetrizableTargetMappedCoconeIsoPrecomposeCoforkW520
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) :
+    selectedMetrizableTargetMappedCoconeW520 S cs ≅
+      (Cocone.precompose
+        (diagramIsoParallelPair (selectedMetrizableTargetOrdinaryDiagramW520 S)).hom).obj
+        (selectedMetrizableTargetCofork S cs) :=
+  Cocone.ext (Iso.refl _) (fun j => by
+    cases j
+    · simp only [Iso.refl_hom]
+      change
+        cs.ι.app (walkingParallelPairOpEquiv.functor.obj WalkingParallelPair.zero) =
+          S.map (walkingParallelPairOpEquiv.functor.map WalkingParallelPairHom.left) ≫
+            cs.ι.app (walkingParallelPairOpEquiv.functor.obj WalkingParallelPair.one)
+      exact (cs.w (walkingParallelPairOpEquiv.functor.map WalkingParallelPairHom.left)).symm
+    · rfl)
+
+/-- An original WPP-op colimit gives a colimit proof for the selected metrizable cofork. -/
+def selectedMetrizableTargetCoforkColimitOfOriginal_w520
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S)
+    (hcs : IsColimit cs) :
+    IsColimit (selectedMetrizableTargetCofork S cs) := by
+  let hMapped : IsColimit (selectedMetrizableTargetMappedCoconeW520 S cs) :=
+    hcs.whiskerEquivalence walkingParallelPairOpEquiv
+  let hPre :
+      IsColimit
+        ((Cocone.precompose
+          (diagramIsoParallelPair (selectedMetrizableTargetOrdinaryDiagramW520 S)).hom).obj
+          (selectedMetrizableTargetCofork S cs)) :=
+    IsColimit.ofIsoColimit hMapped
+      (selectedMetrizableTargetMappedCoconeIsoPrecomposeCoforkW520 S cs)
+  exact
+    (IsColimit.precomposeHomEquiv
+      (diagramIsoParallelPair (selectedMetrizableTargetOrdinaryDiagramW520 S))
+      (selectedMetrizableTargetCofork S cs)) hPre
+
+/-- The original WPP-op colimit gives the selected single-difference cokernel colimit. -/
+def selectedMetrizableTargetCokernelColimitOfOriginal_w520
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S)
+    (hcs : IsColimit cs) :
+    IsColimit (selectedMetrizableTargetCokernelCofork S cs) :=
+  Preadditive.isColimitCokernelCoforkOfCofork
+    (selectedMetrizableTargetCoforkColimitOfOriginal_w520 S cs hcs)
+
+/--
+An original WPP-op colimit cocone induces the selected forgotten-target
+cokernel colimit from preservation of only the selected short-complex
+difference cokernel.
+-/
+def selectedForgottenTargetCokernelColimitOfOriginalSinglePreservation_w520
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S)
+    [PreservesColimit
+      (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0)
+      forgottenShortComplexFunctor]
+    (hcs : IsColimit cs) :
+    IsColimit (selectedForgottenTargetCokernelCofork S cs) := by
+  let p : parallelPair
+      (forgottenShortComplexFunctor.map
+        (selectedMetrizableLeft S - selectedMetrizableRight S)) 0 ≅
+      parallelPair (selectedForgottenLeft S - selectedForgottenRight S) 0 :=
+    parallelPair.eqOfHomEq forgottenShortComplexFunctor.map_sub rfl
+  let hMap :
+      IsColimit
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor) :=
+    CokernelCofork.mapIsColimit (selectedMetrizableTargetCokernelCofork S cs)
+      (selectedMetrizableTargetCokernelColimitOfOriginal_w520 S cs hcs)
+      forgottenShortComplexFunctor
+  let hPre :
+      IsColimit
+        ((Cocone.precompose p.hom).obj (selectedForgottenTargetCokernelCofork S cs)) :=
+    IsColimit.ofIsoColimit hMap
+      (precomposeSelectedForgottenCokernelCoforkIsoMap S cs).symm
+  exact (IsColimit.precomposeHomEquiv p (selectedForgottenTargetCokernelCofork S cs)) hPre
+
+/-- Provider for preserving the one selected short-complex difference cokernel at each call site. -/
+abbrev SelectedShortComplexDifferenceCokernelPreservationProviderW520 : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) (cs : Cocone S),
+    IsColimit cs →
+      PreservesColimit
+        (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0)
+        forgottenShortComplexFunctor
+
+/-- Single selected difference-cokernel preservation supplies W492's selected colimit provider. -/
+def selectedCokernelColimitProvider_of_singleDifferencePreservation_w520
+    (hpres : SelectedShortComplexDifferenceCokernelPreservationProviderW520) :
+    SelectedCokernelColimitProviderW492 :=
+  fun S cs hcs =>
+    letI :
+        PreservesColimit
+          (parallelPair (selectedMetrizableLeft S - selectedMetrizableRight S) 0)
+          forgottenShortComplexFunctor :=
+      hpres S cs hcs
+    selectedForgottenTargetCokernelColimitOfOriginalSinglePreservation_w520 S cs hcs
+
+/-- W520 endpoint with W515 representative-image data and one selected preservation provider. -/
+def exactAcyclic_of_representativeImage_and_singleDifferencePreservation_w520
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hpres : SelectedShortComplexDifferenceCokernelPreservationProviderW520) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_selectedCokernelColimit_w515 hinputs
+    (selectedCokernelColimitProvider_of_singleDifferencePreservation_w520 hpres)
+
+/-- W520 endpoint with W517 compact-target data and one selected preservation provider. -/
+def exactAcyclic_of_compactTargetRelation_and_singleDifferencePreservation_w520
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hpres : SelectedShortComplexDifferenceCokernelPreservationProviderW520) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_compactTargetRelation_and_selectedCokernelColimit_w518 hinputs
+    (selectedCokernelColimitProvider_of_singleDifferencePreservation_w520 hpres)
+
+/-- W520 checked nonterminal state. -/
+structure SelectedCokernelColimitFromSinglePreservationV370SupportStateW520 : Type where
+  seed : String
+  declarations : List String
+  originalColimitToSelectedCokernelResult : String
+  selectedProviderResult : String
+  compactTargetEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W520 state. -/
+def currentSelectedCokernelColimitFromSinglePreservationV370SupportStateW520 :
+    SelectedCokernelColimitFromSinglePreservationV370SupportStateW520 where
+  seed := supportSeedW520
+  declarations :=
+    ["selectedMetrizableTargetCoforkColimitOfOriginal_w520",
+      "selectedMetrizableTargetCokernelColimitOfOriginal_w520",
+      "selectedForgottenTargetCokernelColimitOfOriginalSinglePreservation_w520",
+      "SelectedShortComplexDifferenceCokernelPreservationProviderW520",
+      "selectedCokernelColimitProvider_of_singleDifferencePreservation_w520",
+      "exactAcyclic_of_representativeImage_and_singleDifferencePreservation_w520",
+      "exactAcyclic_of_compactTargetRelation_and_singleDifferencePreservation_w520"]
+  originalColimitToSelectedCokernelResult := "proved"
+  selectedProviderResult := "proved"
+  compactTargetEndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517 " ++
+        "or ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+      "construct concrete SelectedShortComplexDifferenceCokernelPreservationProviderW520"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentSelectedCokernelColimitFromSinglePreservationStateW520 :
+    SelectedCokernelColimitFromSinglePreservationV370SupportStateW520 :=
+  currentSelectedCokernelColimitFromSinglePreservationV370SupportStateW520
+
+theorem currentSelectedCokernelColimitFromSinglePreservationStateW520_productSuccess :
+    currentSelectedCokernelColimitFromSinglePreservationStateW520.productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW520
+#check selectedMetrizableTargetOrdinaryDiagramW520
+#check selectedMetrizableTargetMappedCoconeW520
+#check selectedMetrizableTargetMappedCoconeIsoPrecomposeCoforkW520
+#check selectedMetrizableTargetCoforkColimitOfOriginal_w520
+#check selectedMetrizableTargetCokernelColimitOfOriginal_w520
+#check selectedForgottenTargetCokernelColimitOfOriginalSinglePreservation_w520
+#check SelectedShortComplexDifferenceCokernelPreservationProviderW520
+#check selectedCokernelColimitProvider_of_singleDifferencePreservation_w520
+#check exactAcyclic_of_representativeImage_and_singleDifferencePreservation_w520
+#check exactAcyclic_of_compactTargetRelation_and_singleDifferencePreservation_w520
+#check currentSelectedCokernelColimitFromSinglePreservationStateW520_productSuccess
+
+end Checks
+
+end WppOpSelectedCokernelColimitFromSinglePreservationV370SupportW520
+
 end LeanLCAExactChallenge
