@@ -1668,6 +1668,18 @@
 <p>The new endpoint <code>exactAcyclic_of_w461PromotionInputProvider_and_componentwiseProjection_w489</code> composes W478 with a W481 componentwise projection provider. This is not product success: the remaining WPP-op exact-acyclic inputs are now concrete <code>W461PromotionInputProviderW478</code> and concrete <code>ComponentwiseClosedRangeProjectionProviderW481</code> at final call sites.</p>
 </section>
 
+<section id="w490-w480-split-provider-componentwise-projection">
+<h2>W490 W480 split provider componentwise projection</h2>
+<p><time>2026-05-21T04:20:00Z</time>: The parent inspected completed support result <code>w488-w480-w478-closed-range-quotient-route-current-head-v370</code> and found that the useful target-side contribution is a thin composition layer, not new lower-level mathematics. It was reimplemented under the noncolliding namespace <code>WppOpW480SplitProvidersComponentwiseProjectionV370SupportW490</code> in <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> and exposed through <code>audit/ProductSuccessDeclarations.lean</code>.</p>
+<p>W490 provides <code>exactAcyclic_of_w480_splitProviders_and_closedRangeQuotientIdentification_w490</code> and <code>exactAcyclic_of_w480_splitProviders_and_componentwiseProjection_w490</code>. The first composes W480 split providers with the W487 closed-range quotient-identification route; the second composes the same split providers with W489's componentwise projection adapter. Product success remains false: the final call sites still need concrete <code>W461ToW475PromotionInputsProviderW480</code>, <code>W461ToW475OrdinaryMapProviderW480</code>, and <code>ComponentwiseClosedRangeProjectionProviderW481</code>.</p>
+</section>
+
+<section id="w491-selected-cokernel-colimit-projection-fields">
+<h2>W491 selected cokernel colimit projection fields</h2>
+<p><time>2026-05-21T08:32:30Z</time>: The parent verified <code>audit/blockers/wpp_op_projection_fields_from_selected_cokernel_colimit_current_head_v370_support_w491.lean</code> and promoted the same route into <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code>. W491 transports a selected forgotten-target cokernel colimit proof across the existing precomposition iso, obtains the mapped short-complex cokernel colimit, and applies the three ShortComplex projection functors to recover the W475 projection fields.</p>
+<p>The new endpoint <code>exactAcyclic_of_w426Promotion_and_selectedCokernelColimitProvider_w491</code> composes W426 promotion providers with one selected cokernel-colimit provider. This is not product success: the next proof step is to compose W491 with the W480 split-provider route or instantiate the W426 providers directly, then construct the concrete selected cokernel-colimit provider at the final call sites.</p>
+</section>
+
 <section id="audit-marker-and-manifest-refresh-20260521">
 <h2>Audit marker and manifest refresh</h2>
 <p><time>2026-05-21T02:43:22Z</time>: The parent removed comment-only product-marker words from <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> and <code>audit/ProductSuccessDeclarations.lean</code>, refreshed <code>manifest.json</code> with packet and transient Codex progress paths excluded, and updated <code>run/verification.json</code>'s <code>source_tree_hash</code>. After this, <code>python3 audit/external_audit.py --root "$PWD" --terminal-outcome terminal_outcome/terminal_outcome.json</code> no longer fails on placeholder markers, manifest hashes, or stale source hash; it reaches the expected nonterminal product gate because <code>terminal_outcome.outcome</code> is still <code>blocked_nonterminal_frontier</code>.</p>

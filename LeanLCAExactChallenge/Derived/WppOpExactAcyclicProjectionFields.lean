@@ -2985,4 +2985,219 @@ end Checks
 
 end WppOpComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportW489
 
+namespace WppOpW480SplitProvidersComponentwiseProjectionV370SupportW490
+
+open WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480
+open WppOpQuotientIdentificationProjectionProviderV370SupportW485
+open WppOpW478ProviderQuotientIdentificationProjectionV370SupportW487
+open WppOpComponentwiseProjectionToClosedRangeQuotientIdentificationV370SupportW489
+open WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible seed for the W490 W480-split-provider composition route. -/
+def supportSeedW490 : String :=
+  "w490-w480-split-provider-componentwise-projection"
+
+/--
+W490 composes the W480 split-provider adapter with the W487 closed-range
+quotient-identification route.
+-/
+theorem exactAcyclic_of_w480_splitProviders_and_closedRangeQuotientIdentification_w490
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480)
+    (hclosed : ClosedRangeQuotientIdentificationProjectionProviderW487) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_w461PromotionInputProvider_and_closedRangeQuotientIdentification_w487
+    (w461PromotionInputProvider_of_w480 hinputs hordinaryMap)
+    hclosed
+
+/--
+W490 endpoint using W480 split providers and W489's componentwise closed-range
+projection adapter.
+-/
+theorem exactAcyclic_of_w480_splitProviders_and_componentwiseProjection_w490
+    (hinputs : W461ToW475PromotionInputsProviderW480)
+    (hordinaryMap : W461ToW475OrdinaryMapProviderW480)
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW481) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_w461PromotionInputProvider_and_componentwiseProjection_w489
+    (w461PromotionInputProvider_of_w480 hinputs hordinaryMap)
+    hcomponentwise
+
+structure W480SplitProvidersComponentwiseProjectionV370SupportStateW490 : Type where
+  seed : String
+  declarations : List String
+  exactAcyclicClosedRangeResult : String
+  exactAcyclicComponentwiseResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+def currentW480SplitProvidersComponentwiseProjectionV370SupportStateW490 :
+    W480SplitProvidersComponentwiseProjectionV370SupportStateW490 where
+  seed := supportSeedW490
+  declarations :=
+    ["exactAcyclic_of_w480_splitProviders_and_closedRangeQuotientIdentification_w490",
+      "exactAcyclic_of_w480_splitProviders_and_componentwiseProjection_w490"]
+  exactAcyclicClosedRangeResult := "proved"
+  exactAcyclicComponentwiseResult := "proved"
+  remainingInputs :=
+    ["construct concrete W461ToW475PromotionInputsProviderW480",
+      "construct concrete W461ToW475OrdinaryMapProviderW480",
+      "construct concrete ComponentwiseClosedRangeProjectionProviderW481"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW490State :
+    W480SplitProvidersComponentwiseProjectionV370SupportStateW490 :=
+  currentW480SplitProvidersComponentwiseProjectionV370SupportStateW490
+
+theorem currentW480SplitProvidersComponentwiseProjectionStateW490_productSuccess :
+    currentW490State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW490
+#check exactAcyclic_of_w480_splitProviders_and_closedRangeQuotientIdentification_w490
+#check exactAcyclic_of_w480_splitProviders_and_componentwiseProjection_w490
+#check currentW480SplitProvidersComponentwiseProjectionStateW490_productSuccess
+
+end Checks
+
+end WppOpW480SplitProvidersComponentwiseProjectionV370SupportW490
+
+namespace WppOpProjectionFieldsFromSelectedCokernelColimitCurrentHeadV370SupportW491
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W491 projection-field narrowing. -/
+def supportSeedW491 : String :=
+  "w491-selected-cokernel-colimit-to-projection-fields"
+
+/--
+Transport a selected forgotten-target cokernel colimit proof across the
+precomposition iso to the mapped short-complex cokernel cofork used by W475.
+-/
+def selectedMappedCokernelColimitOfSelectedForgottenTargetCokernel_w491
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h :
+      IsColimit (selectedForgottenTargetCokernelCofork S cs)) :
+    IsColimit
+      ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor) := by
+  let p : parallelPair
+      (forgottenShortComplexFunctor.map
+        (selectedMetrizableLeft S - selectedMetrizableRight S)) 0 ≅
+      parallelPair (selectedForgottenLeft S - selectedForgottenRight S) 0 :=
+    parallelPair.eqOfHomEq forgottenShortComplexFunctor.map_sub rfl
+  let hPre :
+      IsColimit
+        ((Cocone.precompose p.hom).obj (selectedForgottenTargetCokernelCofork S cs)) :=
+    (IsColimit.precomposeHomEquiv p (selectedForgottenTargetCokernelCofork S cs)).symm h
+  exact
+    IsColimit.ofIsoColimit hPre
+      (precomposeSelectedForgottenCokernelCoforkIsoMap S cs)
+
+/--
+One selected forgotten-target cokernel colimit proof supplies all three W475
+projection fields by applying the short-complex projection functors.
+-/
+def selectedProjectionComponentIsColimitInputs_of_selectedCokernelColimit_w491
+    {S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}}
+    {cs : Cocone S}
+    (h :
+      IsColimit (selectedForgottenTargetCokernelCofork S cs)) :
+    SelectedProjectionComponentIsColimitInputs S cs :=
+  let hMapped :=
+    selectedMappedCokernelColimitOfSelectedForgottenTargetCokernel_w491 h
+  ⟨isColimitOfPreserves
+      (ShortComplex.π₁ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0})
+      hMapped,
+    isColimitOfPreserves
+      (ShortComplex.π₂ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0})
+      hMapped,
+    isColimitOfPreserves
+      (ShortComplex.π₃ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0})
+      hMapped⟩
+
+/-- Provider form of the W491 narrowing. -/
+def projectionFieldsProvider_of_selectedCokernelColimitProvider_w491
+    (hselected :
+      ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+        (cs : Cocone S), IsColimit cs →
+          IsColimit (selectedForgottenTargetCokernelCofork S cs)) :
+    ProjectionFieldsProviderW475 :=
+  fun S cs hcs =>
+    selectedProjectionComponentIsColimitInputs_of_selectedCokernelColimit_w491
+      (hselected S cs hcs)
+
+/--
+W491 composition endpoint: a selected cokernel-colimit provider can replace the
+component projection-field provider in W475.
+-/
+theorem exactAcyclic_of_w426Promotion_and_selectedCokernelColimitProvider_w491
+    (hfields : W426PromotionFieldsProviderW475)
+    (hordinaryMap : W426OrdinaryMapProviderW475)
+    (heq : W426OrdinaryEqualsCanonicalProviderW475 hfields hordinaryMap)
+    (hselected :
+      ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+        (cs : Cocone S), IsColimit cs →
+          IsColimit (selectedForgottenTargetCokernelCofork S cs)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_projectionFields_w475
+    hfields hordinaryMap heq
+    (projectionFieldsProvider_of_selectedCokernelColimitProvider_w491 hselected)
+
+/-- Checked nonterminal state for W491. -/
+structure ProjectionFieldsFromSelectedCokernelColimitCurrentHeadV370SupportStateW491 :
+    Type where
+  seed : String
+  declarations : List String
+  projectionFieldNarrowingResult : String
+  exactAcyclicWrapperResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W491 state. -/
+def currentProjectionFieldsFromSelectedCokernelColimitCurrentHeadV370SupportStateW491 :
+    ProjectionFieldsFromSelectedCokernelColimitCurrentHeadV370SupportStateW491 where
+  seed := supportSeedW491
+  declarations :=
+    ["selectedMappedCokernelColimitOfSelectedForgottenTargetCokernel_w491",
+      "selectedProjectionComponentIsColimitInputs_of_selectedCokernelColimit_w491",
+      "projectionFieldsProvider_of_selectedCokernelColimitProvider_w491",
+      "exactAcyclic_of_w426Promotion_and_selectedCokernelColimitProvider_w491"]
+  projectionFieldNarrowingResult := "proved"
+  exactAcyclicWrapperResult := "proved"
+  remainingInputs :=
+    ["construct W426PromotionFieldsProviderW475",
+      "construct W426OrdinaryMapProviderW475",
+      "construct W426OrdinaryEqualsCanonicalProviderW475",
+      "construct selected forgotten-target cokernel colimit provider, e.g. from W435 preservation"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW491State :
+    ProjectionFieldsFromSelectedCokernelColimitCurrentHeadV370SupportStateW491 :=
+  currentProjectionFieldsFromSelectedCokernelColimitCurrentHeadV370SupportStateW491
+
+theorem currentProjectionFieldsFromSelectedCokernelColimitStateW491_productSuccess :
+    currentW491State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW491
+#check selectedMappedCokernelColimitOfSelectedForgottenTargetCokernel_w491
+#check selectedProjectionComponentIsColimitInputs_of_selectedCokernelColimit_w491
+#check projectionFieldsProvider_of_selectedCokernelColimitProvider_w491
+#check exactAcyclic_of_w426Promotion_and_selectedCokernelColimitProvider_w491
+#check currentProjectionFieldsFromSelectedCokernelColimitStateW491_productSuccess
+
+end Checks
+
+end WppOpProjectionFieldsFromSelectedCokernelColimitCurrentHeadV370SupportW491
+
 end LeanLCAExactChallenge
