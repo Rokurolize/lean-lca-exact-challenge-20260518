@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W478/W479を検証して記録した。W478はW461型target-leg point-identification入力とW426 ordinary packageからW441型promotion fieldsを構成する橋で、W479はW426 ordinary-map promotion left closednessをW467 quotient-identification exact-acyclic wrapperへ合成する。ただし具体call-site入力とfinal product theoremは未構成なのでproduct_successは主張しない。",
+  "summary": "W478はstandaloneなW461-to-W441橋から、root import済みのWppOpExactAcyclicProjectionFields provider APIへ昇格した。W479のquotient-identification supportも検証済みのまま残っている。ただし最終call siteで具体的なW461 target-leg point-identification入力、W426 ordinary package、projectionまたはcomponent-colimit入力がまだ未構成なので、product_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -687,7 +687,8 @@
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_selected_component_exact_acyclic_v370_support_w474.lean",
     "lake env lean audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean",
     "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean",
+    "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -2581,7 +2582,7 @@
     "AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w475",
     "AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_projectionFields_w475"
   ],
-  "generated_utc": "2026-05-21T03:01:00Z",
+  "generated_utc": "2026-05-21T02:58:24Z",
   "support_result_classification": "W475 parent-consumed support is a verified nonterminal frontier reducer, not product success.",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -3484,5 +3485,10 @@
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
-  "remaining_work": "W463 quotient-identification実入力、W466実適用統合、W465 W426/W387実入力、W426/W387/W390 importable alignment、四部構成product theorem統合を証明する。"
+  "remaining_work": [
+    "instantiate concrete W461 target-leg point-identification inputs at final call sites",
+    "provide matching W426 ordinary descended packages and equality witnesses",
+    "provide projection/component-colimit inputs for each final WPP-op colimit call site",
+    "update terminal_outcome only after a final product-success theorem is constructed and audited"
+  ]
 }

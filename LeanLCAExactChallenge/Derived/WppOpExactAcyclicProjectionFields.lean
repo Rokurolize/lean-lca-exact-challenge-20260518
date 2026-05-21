@@ -1092,4 +1092,383 @@ end Checks
 
 end AddCommGrpW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportW477
 
+/-
+W478: W461-style target-leg data as an importable W441/W475 promotion provider.
+
+Seed: `478c0de-current-head`.
+-/
+
+namespace WppOpW461ToW441PromotionProviderV370SupportW478
+
+open AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475
+open WppOpExactAcyclicFrontierConsolidatedW318
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+
+/-- Reproducible seed recorded for this importable provider. -/
+def supportSeedW478 : String :=
+  "478c0de-current-head"
+
+/-- Ordinary quotient map used by the W426 quotient-compatibility equation. -/
+abbrev wppOpOrdinaryQuotientMapW478
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+    wppOpCodomainW441 X ⟶ wppOpOrdinaryQuotientPointW441 X :=
+  MetrizableLCA.quotientMap (wppOpCodomainW441 X)
+    (MetrizableLCA.cokernelSubgroup (wppOpLeftW441 X - wppOpRightW441 X))
+    (AddSubgroup.isClosed_topologicalClosure _)
+
+/-- The ordinary target object of a WPP diagram, transported into `WalkingParallelPairᵒᵖ`. -/
+abbrev ordinaryTargetIndexW478 : WalkingParallelPairᵒᵖ :=
+  walkingParallelPairOpEquiv.functor.obj WalkingParallelPair.one
+
+/-- W461-style target-leg point-identification input shape. -/
+structure W461TargetLegPointIdentificationInputsW478
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) : Type 1 where
+  ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y
+  ordinaryDescended :
+    wppOpOrdinaryQuotientPointW441 X ⟶ wppOpOrdinaryQuotientPointW441 Y
+  sourcePointIdentification : wppOpOrdinaryQuotientPointW441 X ≅ cx.pt
+  targetPointIdentification : wppOpOrdinaryQuotientPointW441 Y ≅ cy.pt
+  quotient_compat :
+    wppOpOrdinaryQuotientMapW478 X ≫ ordinaryDescended =
+      ordinaryMap.app WalkingParallelPair.one ≫ wppOpOrdinaryQuotientMapW478 Y
+  sourcePointIdentification_target_leg :
+    cx.ι.app ordinaryTargetIndexW478 ≫ sourcePointIdentification.inv =
+      wppOpOrdinaryQuotientMapW478 X
+  targetPointIdentification_target_leg :
+    α.app ordinaryTargetIndexW478 ≫ cy.ι.app ordinaryTargetIndexW478 =
+      ordinaryMap.app WalkingParallelPair.one ≫
+        wppOpOrdinaryQuotientMapW478 Y ≫ targetPointIdentification.hom
+
+/-- Conjugate an ordinary descended map across point identifications. -/
+def concreteConjugatedDescendedW478
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y}
+    (inputs : W461TargetLegPointIdentificationInputsW478 X Y α cx cy) :
+    cx.pt ⟶ cy.pt :=
+  inputs.sourcePointIdentification.inv ≫
+    inputs.ordinaryDescended ≫ inputs.targetPointIdentification.hom
+
+/-- The ordinary-target component equation of W318's leg compatibility. -/
+abbrev ordinaryTargetComponentEquationW478
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt) : Prop :=
+  cx.ι.app ordinaryTargetIndexW478 ≫ φ =
+    α.app ordinaryTargetIndexW478 ≫ cy.ι.app ordinaryTargetIndexW478
+
+/-- W426 quotient compatibility plus point-identification legs gives the target component. -/
+theorem target_component_of_quotient_compat_and_point_identifications_w478
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y}
+    (inputs : W461TargetLegPointIdentificationInputsW478 X Y α cx cy) :
+    ordinaryTargetComponentEquationW478 X Y α cx cy
+      (concreteConjugatedDescendedW478 inputs) := by
+  have hcalc :
+      ((cx.ι.app ordinaryTargetIndexW478 ≫ inputs.sourcePointIdentification.inv) ≫
+          inputs.ordinaryDescended) ≫ inputs.targetPointIdentification.hom =
+        α.app ordinaryTargetIndexW478 ≫ cy.ι.app ordinaryTargetIndexW478 := by
+    have hsource :
+        ((cx.ι.app ordinaryTargetIndexW478 ≫ inputs.sourcePointIdentification.inv) ≫
+            inputs.ordinaryDescended) ≫ inputs.targetPointIdentification.hom =
+          (wppOpOrdinaryQuotientMapW478 X ≫
+            inputs.ordinaryDescended) ≫ inputs.targetPointIdentification.hom :=
+      congrArg
+        (fun f => (f ≫ inputs.ordinaryDescended) ≫ inputs.targetPointIdentification.hom)
+        inputs.sourcePointIdentification_target_leg
+    have hquotient :
+        (wppOpOrdinaryQuotientMapW478 X ≫
+            inputs.ordinaryDescended) ≫ inputs.targetPointIdentification.hom =
+          (inputs.ordinaryMap.app WalkingParallelPair.one ≫
+            wppOpOrdinaryQuotientMapW478 Y) ≫
+              inputs.targetPointIdentification.hom :=
+      congrArg (fun f => f ≫ inputs.targetPointIdentification.hom) inputs.quotient_compat
+    have htarget :
+        (inputs.ordinaryMap.app WalkingParallelPair.one ≫
+            wppOpOrdinaryQuotientMapW478 Y) ≫
+              inputs.targetPointIdentification.hom =
+          α.app ordinaryTargetIndexW478 ≫ cy.ι.app ordinaryTargetIndexW478 := by
+      simpa only [Category.assoc] using inputs.targetPointIdentification_target_leg.symm
+    exact hsource.trans (hquotient.trans htarget)
+  simpa only [concreteConjugatedDescendedW478, Category.assoc] using hcalc
+
+/-- W461-style input package for W441 promotion fields. -/
+structure W461ToW441PromotionInputsW478
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) : Type 1 where
+  pointIdentificationInputs :
+    W461TargetLegPointIdentificationInputsW478 X Y α cx cy
+  targetComponentImpliesW318 :
+    ordinaryTargetComponentEquationW478 X Y α cx cy
+        (concreteConjugatedDescendedW478 pointIdentificationInputs) →
+      W318ColimitMapLegCompatibilityW441 X Y α cx cy
+        (concreteConjugatedDescendedW478 pointIdentificationInputs)
+  ordinaryPackage :
+    W426OrdinaryDescendedMapPackage pointIdentificationInputs.ordinaryMap
+  ordinaryDescended_eq :
+    ordinaryPackage.ordinaryDescended =
+      pointIdentificationInputs.ordinaryDescended
+
+/-- The conjugated descended map is a closed embedding. -/
+theorem concreteConjugatedDescended_closedEmbedding_of_w461_to_w441_w478
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y}
+    (inputs : W461ToW441PromotionInputsW478 X Y α cx cy) :
+    IsClosedEmbedding (concreteConjugatedDescendedW478
+      inputs.pointIdentificationInputs : cx.pt → cy.pt) := by
+  let p := inputs.pointIdentificationInputs
+  have hordinary :
+      IsClosedEmbedding (p.ordinaryDescended :
+        wppOpOrdinaryQuotientPointW441 X → wppOpOrdinaryQuotientPointW441 Y) := by
+    have hclosed :
+        IsClosedEmbedding (inputs.ordinaryPackage.ordinaryDescended :
+          wppOpOrdinaryQuotientPointW441 X → wppOpOrdinaryQuotientPointW441 Y) :=
+      closedEmbedding_of_injective_inducing_closedImage
+        (inputs.ordinaryPackage.ordinaryDescended :
+          wppOpOrdinaryQuotientPointW441 X → wppOpOrdinaryQuotientPointW441 Y)
+        inputs.ordinaryPackage.descended_injective
+        inputs.ordinaryPackage.descended_inducing
+        inputs.ordinaryPackage.descended_range_closed
+    simpa [inputs.ordinaryDescended_eq] using hclosed
+  let sourceHomeomorph : cx.pt ≃ₜ+ wppOpOrdinaryQuotientPointW441 X :=
+    MetrizableLCA.isoToContinuousAddEquiv p.sourcePointIdentification.symm
+  let targetHomeomorph : wppOpOrdinaryQuotientPointW441 Y ≃ₜ+ cy.pt :=
+    MetrizableLCA.isoToContinuousAddEquiv p.targetPointIdentification
+  have hcomp :
+      IsClosedEmbedding
+        (fun x : cx.pt => targetHomeomorph (p.ordinaryDescended (sourceHomeomorph x))) :=
+    targetHomeomorph.toHomeomorph.isClosedEmbedding.comp
+      (hordinary.comp sourceHomeomorph.toHomeomorph.isClosedEmbedding)
+  have hfun :
+      (fun x : cx.pt => targetHomeomorph (p.ordinaryDescended (sourceHomeomorph x))) =
+        (concreteConjugatedDescendedW478 p : cx.pt → cy.pt) := by
+    funext x
+    rfl
+  simpa [hfun] using hcomp
+
+/-- The W461-shaped concrete map and any W318-compatible map out of `cx` are equal. -/
+theorem eq_concreteConjugatedDescended_of_w461_compat_w478
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y} {φ : cx.pt ⟶ cy.pt}
+    (hcx : IsColimit cx)
+    (inputs : W461ToW441PromotionInputsW478 X Y α cx cy)
+    (hcompat : W318ColimitMapLegCompatibilityW441 X Y α cx cy φ) :
+    φ = concreteConjugatedDescendedW478 inputs.pointIdentificationInputs := by
+  apply hcx.hom_ext
+  intro j
+  have hconcrete :
+      cx.ι.app j ≫ concreteConjugatedDescendedW478 inputs.pointIdentificationInputs =
+        α.app j ≫ cy.ι.app j :=
+    inputs.targetComponentImpliesW318
+      (target_component_of_quotient_compat_and_point_identifications_w478
+        inputs.pointIdentificationInputs) j
+  exact (hcompat j).trans hconcrete.symm
+
+/-- W461-style data supplies W441 promotion fields. -/
+def w441PromotionFields_of_w461_to_w441_w478
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y} {φ : cx.pt ⟶ cy.pt}
+    (hcx : IsColimit cx)
+    (inputs : W461ToW441PromotionInputsW478 X Y α cx cy)
+    (hcompat : W318ColimitMapLegCompatibilityW441 X Y α cx cy φ) :
+    W426OrdinaryMapPromotionToW318Fields
+      inputs.pointIdentificationInputs.ordinaryMap α cx cy φ where
+  ordinaryPackage := inputs.ordinaryPackage
+  ordinaryDescendedMapName := "W478 ordinaryDescended"
+  quotientCompatibilityName := "W478 quotient_compat"
+  sourcePointIdentificationName := "W478 sourcePointIdentification"
+  targetPointIdentificationName := "W478 targetPointIdentification"
+  canonicalWppOpColimitMapName := "IsColimit.map"
+  ordinaryEqualsCanonicalColimitMap := True
+  ordinaryEqualsCanonicalColimitMapName := "W478 supplied leg compatibility"
+  ordinaryEqualsCanonicalImpliesLegCompatibility := by
+    intro _heq
+    exact hcompat
+  ordinaryTopologyTransportsToColimitMap := by
+    intro _heq
+    have hclosedConcrete :=
+      concreteConjugatedDescended_closedEmbedding_of_w461_to_w441_w478 inputs
+    have hφ :
+        IsClosedEmbedding (φ : cx.pt → cy.pt) := by
+      have hEq := eq_concreteConjugatedDescended_of_w461_compat_w478 hcx inputs hcompat
+      simpa [hEq] using hclosedConcrete
+    exact ⟨hφ.injective, hφ.isInducing, hφ.isClosed_range⟩
+
+/-- W461-style data supplies W441 promotion fields for a specified ordinary map. -/
+def w441PromotionFields_of_w461_to_w441_for_ordinaryMap_w478
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y} {φ : cx.pt ⟶ cy.pt}
+    (hcx : IsColimit cx)
+    (ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y)
+    (inputs : W461ToW441PromotionInputsW478 X Y α cx cy)
+    (ordinaryPackage : W426OrdinaryDescendedMapPackage ordinaryMap)
+    (ordinaryDescended_eq :
+      ordinaryPackage.ordinaryDescended =
+        inputs.pointIdentificationInputs.ordinaryDescended)
+    (hcompat : W318ColimitMapLegCompatibilityW441 X Y α cx cy φ) :
+    W426OrdinaryMapPromotionToW318Fields ordinaryMap α cx cy φ where
+  ordinaryPackage := ordinaryPackage
+  ordinaryDescendedMapName := "W478 ordinaryDescended"
+  quotientCompatibilityName := "W478 quotient_compat"
+  sourcePointIdentificationName := "W478 sourcePointIdentification"
+  targetPointIdentificationName := "W478 targetPointIdentification"
+  canonicalWppOpColimitMapName := "IsColimit.map"
+  ordinaryEqualsCanonicalColimitMap := True
+  ordinaryEqualsCanonicalColimitMapName := "W478 supplied leg compatibility"
+  ordinaryEqualsCanonicalImpliesLegCompatibility := by
+    intro _heq
+    exact hcompat
+  ordinaryTopologyTransportsToColimitMap := by
+    intro _heq
+    let p := inputs.pointIdentificationInputs
+    have hordinary :
+        IsClosedEmbedding (p.ordinaryDescended :
+          wppOpOrdinaryQuotientPointW441 X → wppOpOrdinaryQuotientPointW441 Y) := by
+      have hclosed :
+          IsClosedEmbedding (ordinaryPackage.ordinaryDescended :
+            wppOpOrdinaryQuotientPointW441 X →
+              wppOpOrdinaryQuotientPointW441 Y) :=
+        closedEmbedding_of_injective_inducing_closedImage
+          (ordinaryPackage.ordinaryDescended :
+            wppOpOrdinaryQuotientPointW441 X →
+              wppOpOrdinaryQuotientPointW441 Y)
+          ordinaryPackage.descended_injective
+          ordinaryPackage.descended_inducing
+          ordinaryPackage.descended_range_closed
+      simpa [ordinaryDescended_eq] using hclosed
+    let sourceHomeomorph : cx.pt ≃ₜ+ wppOpOrdinaryQuotientPointW441 X :=
+      MetrizableLCA.isoToContinuousAddEquiv p.sourcePointIdentification.symm
+    let targetHomeomorph : wppOpOrdinaryQuotientPointW441 Y ≃ₜ+ cy.pt :=
+      MetrizableLCA.isoToContinuousAddEquiv p.targetPointIdentification
+    have hcomp :
+        IsClosedEmbedding
+          (fun x : cx.pt => targetHomeomorph (p.ordinaryDescended (sourceHomeomorph x))) :=
+      targetHomeomorph.toHomeomorph.isClosedEmbedding.comp
+        (hordinary.comp sourceHomeomorph.toHomeomorph.isClosedEmbedding)
+    have hfun :
+        (fun x : cx.pt => targetHomeomorph (p.ordinaryDescended (sourceHomeomorph x))) =
+          (concreteConjugatedDescendedW478 p : cx.pt → cy.pt) := by
+      funext x
+      rfl
+    have hclosedConcrete :
+        IsClosedEmbedding (concreteConjugatedDescendedW478 p : cx.pt → cy.pt) := by
+      simpa [hfun] using hcomp
+    have hφ :
+        IsClosedEmbedding (φ : cx.pt → cy.pt) := by
+      have hEq := eq_concreteConjugatedDescended_of_w461_compat_w478 hcx inputs hcompat
+      simpa [hEq] using hclosedConcrete
+    exact ⟨hφ.injective, hφ.isInducing, hφ.isClosed_range⟩
+
+/-- Provider for W461-style input packages at every W475 call site. -/
+structure W461PromotionInputProviderW478 : Type 1 where
+  ordinaryMapProvider : W426OrdinaryMapProviderW475
+  inputs :
+    ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0})
+      (_ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y)
+      (α : X ⟶ Y) (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+        IsColimit cx →
+          IsColimit cy →
+            (∀ j : WalkingParallelPairᵒᵖ,
+              IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+              W318ColimitMapLegCompatibilityW441 X Y α cx cy φ →
+                W461ToW441PromotionInputsW478 X Y α cx cy
+  ordinaryPackage :
+    ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0})
+      (ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y)
+      (α : X ⟶ Y) (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt)
+      (_hcx : IsColimit cx) (_hcy : IsColimit cy)
+      (_hclosed : ∀ j : WalkingParallelPairᵒᵖ,
+        IsClosedEmbedding (α.app j : X.obj j → Y.obj j))
+      (_hcompat : W318ColimitMapLegCompatibilityW441 X Y α cx cy φ),
+        W426OrdinaryDescendedMapPackage ordinaryMap
+  ordinaryDescended_eq :
+    ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0})
+      (ordinaryMap : wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y)
+      (α : X ⟶ Y) (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt)
+      (hcx : IsColimit cx) (hcy : IsColimit cy)
+      (hclosed : ∀ j : WalkingParallelPairᵒᵖ,
+        IsClosedEmbedding (α.app j : X.obj j → Y.obj j))
+      (hcompat : W318ColimitMapLegCompatibilityW441 X Y α cx cy φ),
+        (ordinaryPackage X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat).ordinaryDescended =
+          W461TargetLegPointIdentificationInputsW478.ordinaryDescended
+            ((inputs X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat).pointIdentificationInputs)
+
+/-- W478 input packages provide W475 promotion fields. -/
+def w426PromotionFieldsProvider_of_w461Inputs_w478
+    (hinputs : W461PromotionInputProviderW478) :
+    W426PromotionFieldsProviderW475 :=
+  fun X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat => by
+    let input := hinputs.inputs X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat
+    exact w441PromotionFields_of_w461_to_w441_for_ordinaryMap_w478 hcx ordinaryMap
+      input
+      (hinputs.ordinaryPackage X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat)
+      (hinputs.ordinaryDescended_eq X Y ordinaryMap α cx cy φ hcx hcy hclosed hcompat)
+      hcompat
+
+/-- W478 input packages provide W475 ordinary maps. -/
+def w426OrdinaryMapProvider_of_w461Inputs_w478
+    (hinputs : W461PromotionInputProviderW478) :
+    W426OrdinaryMapProviderW475 :=
+  hinputs.ordinaryMapProvider
+
+/-- W478 input packages provide W475 ordinary/canonical equality witnesses. -/
+theorem w426OrdinaryEqualsCanonicalProvider_of_w461Inputs_w478
+    (hinputs : W461PromotionInputProviderW478) :
+    W426OrdinaryEqualsCanonicalProviderW475
+      (w426PromotionFieldsProvider_of_w461Inputs_w478 hinputs)
+      (w426OrdinaryMapProvider_of_w461Inputs_w478 hinputs) := by
+  intro X Y α cx cy φ hcx hcy hclosed hcompat
+  trivial
+
+/-- W478 input packages and W475 projection fields imply exact-acyclic WPP-op colimit closure. -/
+theorem exactAcyclic_of_w461PromotionInputs_and_projectionFields_w478
+    (hinputs : W461PromotionInputProviderW478)
+    (hproj : ProjectionFieldsProviderW475) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_projectionFields_w475
+    (w426PromotionFieldsProvider_of_w461Inputs_w478 hinputs)
+    (w426OrdinaryMapProvider_of_w461Inputs_w478 hinputs)
+    (w426OrdinaryEqualsCanonicalProvider_of_w461Inputs_w478 hinputs)
+    hproj
+
+/-- W478 checked support state. -/
+structure W461ToW441PromotionProviderV370SupportStateW478 : Type where
+  seed : String
+  declarations : List String
+  promotionProviderResult : String
+  exactAcyclicWrapperResult : String
+  productSuccessClaimed : Bool
+
+/-- Current checked support state for W478. -/
+def currentW461ToW441PromotionProviderV370SupportStateW478 :
+    W461ToW441PromotionProviderV370SupportStateW478 where
+  seed := supportSeedW478
+  declarations :=
+    ["W461TargetLegPointIdentificationInputsW478",
+      "W461ToW441PromotionInputsW478",
+      "w441PromotionFields_of_w461_to_w441_w478",
+      "w426PromotionFieldsProvider_of_w461Inputs_w478",
+      "exactAcyclic_of_w461PromotionInputs_and_projectionFields_w478"]
+  promotionProviderResult := "proved"
+  exactAcyclicWrapperResult := "proved"
+  productSuccessClaimed := false
+
+theorem currentW461ToW441PromotionProviderStateW478_productSuccess :
+    currentW461ToW441PromotionProviderV370SupportStateW478.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check W461TargetLegPointIdentificationInputsW478
+#check W461ToW441PromotionInputsW478
+#check w441PromotionFields_of_w461_to_w441_w478
+#check w426PromotionFieldsProvider_of_w461Inputs_w478
+#check w426OrdinaryMapProvider_of_w461Inputs_w478
+#check w426OrdinaryEqualsCanonicalProvider_of_w461Inputs_w478
+#check exactAcyclic_of_w461PromotionInputs_and_projectionFields_w478
+#check currentW461ToW441PromotionProviderStateW478_productSuccess
+
+end Checks
+
+end WppOpW461ToW441PromotionProviderV370SupportW478
+
 end LeanLCAExactChallenge

@@ -175,6 +175,19 @@ namespace AddCommGrpW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclic
 
 end AddCommGrpW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportW477
 
+namespace WppOpW461ToW441PromotionProviderV370SupportW478
+
+#check W461TargetLegPointIdentificationInputsW478
+#check W461ToW441PromotionInputsW478
+#check w441PromotionFields_of_w461_to_w441_w478
+#check w426PromotionFieldsProvider_of_w461Inputs_w478
+#check w426OrdinaryMapProvider_of_w461Inputs_w478
+#check w426OrdinaryEqualsCanonicalProvider_of_w461Inputs_w478
+#check exactAcyclic_of_w461PromotionInputs_and_projectionFields_w478
+#check currentW461ToW441PromotionProviderStateW478_productSuccess
+
+end WppOpW461ToW441PromotionProviderV370SupportW478
+
 /-
 Exact-category Ext is defined directly from the local conflation interface and
 positive degrees are quotient groups of formal Yoneda chains by local relation
