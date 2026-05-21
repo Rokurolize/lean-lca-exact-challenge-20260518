@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T01:08:39Z",
+  "generated_utc": "2026-05-21T01:13:17Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -4314,12 +4314,27 @@
       "status": "verified_focused",
       "effect": "strict MetrizableLCA rows feed W318 AddCommGrp row-input families and selected ParallelPairDifferenceStrictCokernelData/SnakeInput adapters",
       "product_complete": false
+    },
+    {
+      "timestamp_utc": "2026-05-21T01:13:17Z",
+      "artifact": "audit/blockers/addcommgrp_selected_componentwise_closed_range_inputs_v370_support_w455.lean",
+      "status": "verified_focused",
+      "effect": "selected short-complex difference projections and closed-range/range-equality inputs are packaged for W452 componentwise bridge",
+      "product_complete": false
+    },
+    {
+      "timestamp_utc": "2026-05-21T01:12:41Z",
+      "artifact": "audit/blockers/wpp_op_w426_w390_leg_compatibility_components_v370_support_w454.lean",
+      "status": "verified_focused",
+      "effect": "W426/W390/W451 concrete leg compatibility is reduced to one ordinary-target component equation; ordinary-source equation follows",
+      "product_complete": false
     }
   ],
   "current_primary_blockers": [
+    "Projection IsColimit fields for W452/W455 selected componentwise route remain unproved.",
     "W446 selected short-complex difference preservation instance remains unproved.",
     "W453/W450 concrete difference kernel row and cokernel row remain unconstructed.",
     "Selected target cofork must still be proved to be the required cokernel cofork and identified with cs.pt.map (forget₂ MetrizableLCA AddCommGrpCat).",
-    "W426 ordinary descended map package still must align with W318 canonical colimit map."
+    "W454 target-index equation for the concrete W451 map must still be proved from W390 pointwise conjugacy and W426 quotient compatibility."
   ]
 }

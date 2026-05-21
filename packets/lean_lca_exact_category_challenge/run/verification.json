@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v359-left-lca-concrete-quotient-cocone",
-  "generated_utc": "2026-05-21T01:08:39Z",
-  "source_tree_hash": "59ca082301b3b259c7acd4b8799c7653c00942401e0f578c2c62f756d496281e",
-  "summary": "W453 strict-row W318 input wrapper was verified and recorded. Product success remains blocked by concrete difference rows, selected cofork/cokernel identification, and selected short-complex preservation.",
+  "generated_utc": "2026-05-21T01:13:17Z",
+  "source_tree_hash": "efa71b376acf3d9b4d28e7283212d6aa74d57ee6074295d26e8e52f8f0f89a82",
+  "summary": "W454 and W455 support files were verified and recorded. Product success remains blocked by projection IsColimit construction, concrete difference rows, selected target identification, and target-component leg compatibility for the concrete W451 map.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -2378,6 +2378,26 @@
       "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_strict_rows_w318_input_wrapper_v370_support_w453.lean",
       "status": "passed",
       "evidence": "No forbidden proof placeholders were found in the W453 support file."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_selected_componentwise_closed_range_inputs_v370_support_w455.lean",
+      "status": "passed",
+      "evidence": "Focused W455 selected componentwise closed-range input support file passed; #check output confirms projection names, range-equality wrappers, and W452 consumer declarations."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_selected_componentwise_closed_range_inputs_v370_support_w455.lean",
+      "status": "passed",
+      "evidence": "No forbidden proof placeholders were found in the W455 support file."
+    },
+    {
+      "command": "lake env lean audit/blockers/wpp_op_w426_w390_leg_compatibility_components_v370_support_w454.lean",
+      "status": "passed",
+      "evidence": "Focused W454 W426/W390 leg compatibility component-reduction support file passed; #check output confirms target-component and W318 compatibility declarations."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/wpp_op_w426_w390_leg_compatibility_components_v370_support_w454.lean audit/blockers/addcommgrp_selected_componentwise_closed_range_inputs_v370_support_w455.lean",
+      "status": "passed",
+      "evidence": "No forbidden proof placeholders were found in the W454/W455 support files."
     }
   ],
   "implemented_declarations_checked": [
