@@ -8650,4 +8650,122 @@ end Checks
 
 end WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523
 
+namespace WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524
+
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpTopTargetRelationRepresentativeImageV370SupportW516
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+open WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W524 representative-image selected-provider bridge. -/
+def supportSeedW524 : String :=
+  "w524-representative-image-selected-provider-closed-range-only"
+
+/-- W515 representative-image data supply W483's single selected W461 provider. -/
+def selectedW461Provider_of_representativeImage_w524
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    SelectedW461PromotionInputsProviderW483 :=
+  selectedW461Provider_of_relationTopology_w523
+    (closedNatTransOrdinaryRelationTopologyProvider_of_representativeImage_w515 hinputs)
+
+/-- W516 top-target-relation data supply W483's single selected W461 provider. -/
+def selectedW461Provider_of_topTargetRelation_w524
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    SelectedW461PromotionInputsProviderW483 :=
+  selectedW461Provider_of_representativeImage_w524
+    (representativeImageProvider_of_topTargetRelation_w516 hinputs)
+
+/-- W517 compact-target-relation data supply W483's single selected W461 provider. -/
+def selectedW461Provider_of_compactTargetRelation_w524
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    SelectedW461PromotionInputsProviderW483 :=
+  selectedW461Provider_of_representativeImage_w524
+    (representativeImageProvider_of_compactTargetRelation_w517 hinputs)
+
+/--
+W524 representative-image endpoint: W515 data plus W484 closed-range-only fields
+compose through the W523/W522 selected-provider route.
+-/
+def exactAcyclic_of_representativeImage_and_closedRangeOnlyProjection_w524
+    (hinputs : ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_relationTopology_and_closedRangeOnlyProjection_w523
+    (closedNatTransOrdinaryRelationTopologyProvider_of_representativeImage_w515 hinputs)
+    hclosedOnly
+
+/-- W516 top-target-relation endpoint with W484 closed-range-only fields. -/
+def exactAcyclic_of_topTargetRelation_and_closedRangeOnlyProjection_w524
+    (hinputs : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_closedRangeOnlyProjection_w524
+    (representativeImageProvider_of_topTargetRelation_w516 hinputs) hclosedOnly
+
+/-- W517 compact-target-relation endpoint with W484 closed-range-only fields. -/
+def exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyProjection_w524
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hclosedOnly : ComponentwiseClosedRangeOnlyProviderW484) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_closedRangeOnlyProjection_w524
+    (representativeImageProvider_of_compactTargetRelation_w517 hinputs) hclosedOnly
+
+/-- W524 checked nonterminal state. -/
+structure RepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportStateW524 :
+    Type where
+  seed : String
+  declarations : List String
+  representativeImageAdapterResult : String
+  topTargetEndpointResult : String
+  compactTargetEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W524 state. -/
+def currentRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportStateW524 :
+    RepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportStateW524 where
+  seed := supportSeedW524
+  declarations :=
+    ["selectedW461Provider_of_representativeImage_w524",
+      "selectedW461Provider_of_topTargetRelation_w524",
+      "selectedW461Provider_of_compactTargetRelation_w524",
+      "exactAcyclic_of_representativeImage_and_closedRangeOnlyProjection_w524",
+      "exactAcyclic_of_topTargetRelation_and_closedRangeOnlyProjection_w524",
+      "exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyProjection_w524"]
+  representativeImageAdapterResult := "proved"
+  topTargetEndpointResult := "proved"
+  compactTargetEndpointResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 " ++
+        "or W516/W517 relation provider data",
+      "construct concrete ComponentwiseClosedRangeOnlyProviderW484"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW524State :
+    RepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportStateW524 :=
+  currentRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportStateW524
+
+theorem currentW524State_productSuccess :
+    currentW524State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW524
+#check selectedW461Provider_of_representativeImage_w524
+#check selectedW461Provider_of_topTargetRelation_w524
+#check selectedW461Provider_of_compactTargetRelation_w524
+#check exactAcyclic_of_representativeImage_and_closedRangeOnlyProjection_w524
+#check exactAcyclic_of_topTargetRelation_and_closedRangeOnlyProjection_w524
+#check exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyProjection_w524
+#check currentW524State_productSuccess
+
+end Checks
+
+end WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524
+
 end LeanLCAExactChallenge

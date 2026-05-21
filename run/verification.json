@@ -1,9 +1,79 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w523-closed-nat-trans-selected-provider-closed-range-only",
-  "generated_utc": "2026-05-21T13:58:22Z",
-  "source_tree_hash": "d0cd9b382926a31c1d4b93166b39dd822f7399840af700a245d6e2dfe60d2e92",
-  "summary": "W523 exposes a direct adapter from W509/W510/W511/W512 ordinary-package/topology/relation provider data to W483 selected-W461 data, then composes that selected provider with W522 closed-range-only projection fields. Product success remains false because concrete ordinary-package/topology/relation provider data and concrete ComponentwiseClosedRangeOnlyProviderW484 are still unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w524-representative-image-selected-provider-closed-range-only",
+  "generated_utc": "2026-05-21T14:09:05Z",
+  "source_tree_hash": "3bb6ea5a4381cfb9ee3952693ef150cbf138184dd92eabd604bd3803e14b3c33",
+  "summary": "W524 exposes adapters from W515 representative-image, W516 top-target relation, and W517 compact-target relation provider data to W523 selected-W461 data, then composes those selected providers with W522 closed-range-only projection fields. Product success remains false because concrete W515/W516/W517 provider data and concrete ComponentwiseClosedRangeOnlyProviderW484 are still unproved.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused source check passed for W524 representative-image/top-target/compact-target selected-provider and closed-range-only endpoint declarations."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "Importable projection-fields module rebuilt after W524."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W524 declarations and the nonterminal product-success marker."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W524."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W524."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under source tree after W524."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in W524-touched Lean files."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W524 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "terminal_outcome JSON is syntactically valid after W524."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "proof frontier JSON is syntactically valid after W524."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "verification JSON is syntactically valid after W524."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "manifest JSON is syntactically valid after W524."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit negative-fixture self-check passes with refreshed W524 hash and manifest."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Expected nonterminal product gate failure: terminal_outcome remains blocked_nonterminal_frontier, not product_success."
+    },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
@@ -3884,11 +3954,6 @@
       "command": "python3 audit/external_audit.py --root . --self-check-only",
       "status": "passed",
       "evidence": "External audit self-check passes with refreshed W522 hash and manifest."
-    },
-    {
-      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "status": "failed_expected",
-      "evidence": "Expected nonterminal product gate failure: terminal_outcome remains blocked_nonterminal_frontier, not product_success."
     }
   ],
   "implemented_declarations_checked": [
@@ -5185,11 +5250,29 @@
     "componentwiseClosedRangeOnlyProjectionBridge_of_w521_w522",
     "componentwiseClosedRangeProjectionProvider_of_closedRangeOnly_w522",
     "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522",
-    "currentClosedRangeOnlyProjectionBridgeStateW522_productSuccess"
+    "currentClosedRangeOnlyProjectionBridgeStateW522_productSuccess",
+    "WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.supportSeedW523",
+    "WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.selectedW461Provider_of_closedNatTransPackage_w523",
+    "WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.selectedW461Provider_of_topologyFacts_w523",
+    "WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.selectedW461Provider_of_relationTopology_w523",
+    "WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.selectedW461Provider_of_relationFields_w523",
+    "WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.exactAcyclic_of_closedNatTransPackage_and_closedRangeOnlyProjection_w523",
+    "WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.exactAcyclic_of_topologyFacts_and_closedRangeOnlyProjection_w523",
+    "WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.exactAcyclic_of_relationTopology_and_closedRangeOnlyProjection_w523",
+    "WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.exactAcyclic_of_relationFields_and_closedRangeOnlyProjection_w523",
+    "WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.currentClosedNatTransSelectedProviderClosedRangeOnlyProjectionStateW523_productSuccess",
+    "WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524.supportSeedW524",
+    "WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524.selectedW461Provider_of_representativeImage_w524",
+    "WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524.selectedW461Provider_of_topTargetRelation_w524",
+    "WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524.selectedW461Provider_of_compactTargetRelation_w524",
+    "WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524.exactAcyclic_of_representativeImage_and_closedRangeOnlyProjection_w524",
+    "WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524.exactAcyclic_of_topTargetRelation_and_closedRangeOnlyProjection_w524",
+    "WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524.exactAcyclic_of_compactTargetRelation_and_closedRangeOnlyProjection_w524",
+    "WppOpRepresentativeImageSelectedProviderClosedRangeOnlyProjectionV370SupportW524.currentW524State_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Concrete SelectedW461PromotionInputsProviderW483, or an equivalent W478/W480 provider package, is still unproved at the final WPP-op call sites.",
+    "Concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515, or equivalent W516/W517 relation provider data, is still unproved at the final WPP-op call sites.",
     "Concrete ComponentwiseClosedRangeOnlyProviderW484 is still unproved at the final WPP-op call sites.",
     "The repository must still pass a final product audit mapping all four original challenge components to evidence before product_success can be claimed.",
     "update_goal(status=\"complete\") remains forbidden while terminal_outcome is blocked_nonterminal_frontier."
@@ -5197,9 +5280,9 @@
   "support_result_classification": "verified_nonterminal_support_increment",
   "product_success": false,
   "remaining_work": [
-    "Prove the concrete selected-W461 provider or equivalent W478/W480 promotion package.",
+    "Prove the concrete W515 representative-image provider or equivalent W516/W517 relation provider data.",
     "Prove the concrete W484 closed-range-only component provider for selected difference maps.",
     "Run final product audit and clean review packet only after the concrete providers close the WPP-op exact-acyclic frontier."
   ],
-  "summary_log_tail": "W522 is verified as a nonterminal support increment. It closes the W484 projection-bridge sub-blocker but does not prove the concrete selected-W461 or closed-range-only providers."
+  "summary_log_tail": "W524 is verified as a nonterminal support increment. It reuses W515/W516/W517 representative-image routes to supply W523 selected-W461 data, but does not prove the concrete relation provider data or the W484 closed-range-only provider."
 }

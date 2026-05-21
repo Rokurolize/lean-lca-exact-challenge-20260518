@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-21T13:58:22Z",
+  "generated_utc": "2026-05-21T14:09:05Z",
   "active_thread": "019e3c1e-ce8e-7190-9df0-18452cc5e187",
   "worker_policy": "No new workers were launched by the parent for v331/v332. The parent only consumed completed support-stream evidence and verified focused Lean files in the target worktree.",
   "frontiers": [
@@ -1626,18 +1626,18 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "W513 parent-integrated nonterminal obstruction boundary; product_success is not claimed.",
-  "latest_parent_update": "parent_update_w523_closed_nat_trans_selected_provider_closed_range_only",
-  "summary": "W523 bridges W509/W510/W511/W512 closed-natural-transformation provider data into W483 selected-W461 provider data and composes it with W522 closed-range-only projection fields; product success remains false.",
-  "remaining_frontier": "Concrete ClosedNatTransOrdinaryPackageProviderW509/topology/relation provider data, plus concrete ComponentwiseClosedRangeOnlyProviderW484.",
+  "support_result_classification": "W524 parent-integrated nonterminal selected-provider bridge; product_success is not claimed.",
+  "latest_parent_update": "parent_update_w524_representative_image_selected_provider_closed_range_only",
+  "summary": "W524 bridges W515/W516/W517 representative-image relation provider data into W523 selected-W461 provider data and composes it with W522 closed-range-only projection fields; product success remains false.",
+  "remaining_frontier": "Concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 or W516/W517 relation provider data, plus concrete ComponentwiseClosedRangeOnlyProviderW484.",
   "support_classification": "[{'id': 'parent-v248', 'classification': 'source_hypothesis_reduction', 'artifact': 'audit/blockers/opposite_source_finite_limits_w234.lean', 'result': 'HasFiniteColimits C now supplies the opposite source HasFiniteLimits/HasFiniteProducts/HasEqualizers inputs conditionally; product success remains false.'}, {'id': 'w231', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/walking_parallel_pair_lift_fields_w231.lean', 'result': 'Strict-preimage blueprint builds candidate fixed-target lift; existence, fac, and uniq remain open.'}, {'id': 'w232', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/shortcomplex_quasiiso_conflation_w232.lean', 'result': 'HomotopyEquiv-to-ShortComplex.QuasiIso route reduces exactAcyclic transport to ShortComplexQuasiIsoConflationTransport.'}, {'id': 'w233', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/bounded_homotopy_localized_adjunction_w233.lean', 'result': 'Localized-adjunction input implies boundedHomotopyExactWeakEquivalence left calculus conditionally.'}, {'id': 'parent-v250', 'classification': 'right_calculus_frontier_reduction', 'artifact': 'audit/blockers/bounded_homotopy_localized_left_adjoint_w250.lean', 'result': 'Mathlib hasRightCalculusOfFractions reduces boundedExactWeakEquivalence right calculus to localized left-adjoint and counit-membership input plus iso-closedness.'}, {'id': 'w235', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/metrizable_lca_finite_colimits_w235.lean', 'result': 'HasFiniteCoproducts MetrizableLCA is packaged; HasFiniteColimits reduces to HasPushouts or HasCokernels.'}, {'id': 'w245', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/localized_comparison_factor_adjunction_w245.lean', 'result': 'Comparison factorization of the bounded homotopy localized composite is recorded, but it still requires transported localized adjunction plus unit/counit membership; product success remains false.'}, {'id': 'w243', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/shortcomplex_quasiiso_homology_map_api_w243.lean', 'result': 'ShortComplex.QuasiIso.exact_iff transports categorical exactness; concrete MetrizableLCA exactness-to-kernel/surjectivity extraction remains missing.'}, {'id': 'w234', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/inverse_image_right_calculus_transfer_w234.lean', 'result': 'Right calculus for boundedHomotopyExactWeakEquivalence is reduced to direct inverse-image transfer or localized left-adjoint/counit-membership input; product success remains false.'}, {'id': 'w246', 'classification': 'manual_ported_counterexample_frontier', 'artifact': 'audit/blockers/shortcomplex_exactness_homology_zero_w246.lean', 'result': 'ShortComplex.Exact plus element/topology fields can build strictShortExact, but ShortComplex.Exact alone cannot imply target g surjectivity; product success remains false.'}, {'id': 'parent-v262', 'classification': 'parent_implementation_bridge', 'artifact': 'LeanLCAExactChallenge/LCA/StrictExact.lean', 'result': 'MetrizableLCA.strictShortExact now implies exactness of S.map MetrizableLCA.forgetToAddCommGrpCat; product success remains false.'}, {'id': 'w251', 'classification': 'promoted_parent_api_bridge', 'artifact': 'LeanLCAExactChallenge/LCA/Cokernel.lean; LeanLCAExactChallenge/LCA/StrictExact.lean', 'result': 'Concrete cokernel-subgroup-top is equivalent to zero categorical cokernel object and, under open-map hypothesis, equivalent to surjectivity; CokernelTopStrictInput packages the strict-exact consumer. Product success remains false.'}, {'id': 'w252', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/bounded_opposite_localization_equalizer_w252.lean', 'result': 'Concrete finite limits/products/equalizers on the opposite bounded-complex source feed conditional equalizer and finite-limit constructors on the abstract opposite localization; product success remains false.'}, {'id': 'w254', 'classification': 'manual_ported_api_frontier', 'artifact': 'audit/blockers/verdier_comparison_adjunction_api_search_w254.lean', 'result': 'RightRouteInput and LeftRouteInput package the exact missing Verdier comparison adjunction API needed to derive left/right calculus; product success remains false.'}, {'id': 'w255', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/localization_finite_limit_transfer_inputs_w255.lean', 'result': 'Concrete source finite-limit facts and finite-product/equalizer/finite-limit transfer inputs are packaged for the opposite localization route; product success remains false.'}, {'id': 'w244', 'classification': 'already_covered_by_parent_v252', 'artifact': 'LeanLCAExactChallenge/LCA/Cokernel.lean', 'result': 'Arbitrary MetrizableLCA cokernels and finite colimits are already implemented in parent v252; later v267-v270 strengthen the right-exactness interface. No new target code needed.'}, {'id': 'w257', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/factorized_localized_adjunction_membership_w257.lean', 'result': 'Factorized adjunction and membership inputs are isolated and shown to transport to localized unit/counit membership; product success remains false.'}, {'id': 'parent-v277', 'classification': 'parent_frontier_reduction', 'artifact': 'audit/blockers/opposite_finite_product_stability_input_w258.lean', 'result': 'Direct finite-product stability is available but insufficient for the opposite route; finite-coproduct stability plus formal op transport is isolated as the remaining bridge. Product success remains false.'}, {'id': 'w259', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/opposite_weak_equivalence_stability_w259.lean', 'result': 'Opposite finite-product and WalkingParallelPair stability fields are packaged and reduced to direct finite-coproduct/coequalizer closure plus op transport; product success remains false.'}, {'id': 'w258', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/shortcomplex_right_exactness_extraction_w258.lean', 'result': 'ShortComplex.Exact plus homology/forgetful-preservation inputs gives kernel equality; topology plus v270 cokernel/epi right inputs constructs strictShortExact. Product success remains false.'}, {'id': 'w256', 'classification': 'manual_ported_counterexample_frontier', 'artifact': 'audit/blockers/shortcomplex_exact_epi_kernel_bridge_w256.lean', 'result': 'Exactness-to-kernel is available under homology/forgetful-preservation inputs, but exactness-to-Epi and quasiIso-exactness-to-Epi are formally refuted by an exact 0->0->ZMod2 target. Product success remains false.'}, {'id': 'parent-v281', 'classification': 'parent_proof_progress', 'artifact': 'audit/blockers/opposite_finite_product_transport_w281.lean', 'result': 'Generic finite-coproduct stability of W now transports to finite-product stability of W.op. Direct finite-coproduct stability remains open; product success remains false.'}, {'id': 'w262', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/shortcomplex_right_homology_cokernel_bridge_w262.lean', 'result': 'ShortExact supplies Epi and cokernel-zero/top endpoints; right-homology zero requires a comparison to local cokernelObj, and a generic rightHomologyZero-to-Epi principle is refuted by the ZMod2 endpoint.'}, {'id': 'w260', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/factorized_localized_adjunction_constructor_w260.lean', 'result': 'Flattened W257 localized comparison inputs into FactorizedRightUnitBoundary and FactorizedLeftCounitBoundary; consumers transport adjunction and unit/counit membership across verdierComparisonLocalizationIso, but concrete constructors remain missing.'}, {'id': 'w261', 'classification': 'superseded_by_parent_source_theorems', 'artifact': 'support:w261-opposite-finite-coproduct-op-transport-v277', 'result': 'Its finite-coproduct and opposite finite-product transport route was superseded by v284/v285 source declarations in LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean.'}, {'id': 'w265', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/direct_wpp_op_colimit_stability_w265.lean', 'result': 'Direct WalkingParallelPairᵒᵖ colimit stability is isolated as the remaining nonformal stability input; W265 records mapping-cone colimit comparison and exact-acyclic closure as the needed constructors.'}, {'id': 'w266', 'classification': 'parent_verified_artifact_without_worker_result', 'artifact': 'audit/blockers/opposite_finite_limit_assembly_w266.lean', 'result': 'Opposite finite-limit assembly produces HasFiniteLimits for the opposite localization from identity containment, WPPᵒᵖ colimit stability, and opposite functor-category localization; parent updated an obsolete import path before verification.'}, {'id': 'w267', 'classification': 'covered_by_parent_v287', 'artifact': 'support:w267-factorized-localized-adjunction-api-scout-v283', 'result': 'API scout confirmed no concrete factorized adjunction constructors beyond W260; v287 already records the checked boundary, so no separate port was needed.'}, {'id': 'w269', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/opposite_functor_category_localization_w269.lean', 'result': 'Specializes objectwise WalkingParallelPair functor-category localization for the opposite bounded weak-equivalence property; two fixed-target lift/fac/uniq packages imply the localization input, with objectwise inverts and blueprint-to-lift checked.'}, {'id': 'w268', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/right_homology_cokernel_comparison_w268.lean', 'result': 'Shows T.rightHomology is Kernel T.fromOpcycles and MetrizableLCA.cokernelπ T.g is Cokernel T.fromOpcycles; Epi T.fromOpcycles is a positive endpoint input, while rightHomology zero alone is insufficient.'}, {'id': 'v291-parent', 'classification': 'parent_source_progress_frontier_reduction', 'artifact': 'audit/blockers/opposite_contains_identities_of_iso_closed_w291.lean', 'result': 'Adds a source instance proving boundedExactWeakEquivalence C contains identities from exactAcyclicHomotopyObject iso-closedness, and applies mathlib op ContainsIdentities to the MetrizableLCA opposite class.'}, {'id': 'v292-parent', 'classification': 'parent_source_progress_frontier_reduction', 'artifact': 'audit/blockers/homotopy_weq_contains_identities_w292.lean', 'result': 'Adds unconditional ContainsIdentities for boundedHomotopyExactWeakEquivalence and its opposite; records that direct boundedExactWeakEquivalence still needs identity-cone exactness or a homotopy-class finite-limit assembly.'}, {'id': 'w272', 'classification': 'manual_ported_frontier_reduction', 'artifact': 'audit/blockers/opposite_fixed_target_fac_uniq_w272.lean', 'result': 'Refines W269 to a checked blueprint plus four fixed-target fac/uniq obligations proving the MetrizableLCA opposite WalkingParallelPair functor-category localization input.'}, 'v303: parent-inspected support W281 and reimplemented the fixed mappingConeCocone colimit input as an explicit desc/fac/uniq universal boundary; not product success.', 'v304: parent-inspected support W282 and reimplemented the safe HomotopyEquiv target-data boundary; source categorical exactness now follows from exactAcyclic MetrizableLCA K under homology inputs, but target topology/right-end/homology-preservation data remain open; not product success.', 'v304-v308: parent verified W282-derived HomotopyEquiv target data plus additional generated WPP-op mapping-cone, strict field, and opposite fixed-target audit boundaries; W306 was repaired to remove a failed uniformization/sorry and conservatively retain the two-target boundary; not product success.', {'id': 'w333-descended-quotient-relation-range-v358', 'classification': 'delayed_duplicate_audit_boundary', 'result': 'Self-contained audit duplicates W330 theorem names; parent retained W330/W361 route instead of adding a second duplicate file.'}] W399 was ported as a checked input reducer from W352 relation-pullback inputs to ordinary descended topology fields; not product success. W400/W401 were parent-verified input reducers; not product success.",
   "remaining_blockers": [
-    "construct concrete ClosedNatTransOrdinaryPackageProviderW509 or a W510/W511/W512 provider sufficient to supply it",
+    "construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 or a W516/W517 relation provider sufficient to supply it",
     "construct concrete ComponentwiseClosedRangeOnlyProviderW484",
     "run final product audit only after both concrete final providers are proved"
   ],
   "open_blockers": [
-    "construct concrete ClosedNatTransOrdinaryPackageProviderW509 or a W510/W511/W512 provider sufficient to supply it",
+    "construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 or a W516/W517 relation provider sufficient to supply it",
     "construct concrete ComponentwiseClosedRangeOnlyProviderW484",
     "run final product audit only after both concrete final providers are proved"
   ],
@@ -1886,7 +1886,7 @@
     "w406-addcommgrp-selected-target-cofork-colimit-v370"
   ],
   "known_gaps": [
-    "A concrete selected-W461 route is still needed, now narrowed to closed-natural-transformation ordinary-package/topology/relation provider data via W523.",
+    "A concrete selected-W461 route is still needed, now narrowed to W515 representative-image or W516/W517 relation provider data via W524.",
     "A concrete ComponentwiseClosedRangeOnlyProviderW484 is still needed at the final WPP-op exact-acyclic call sites.",
     "Do not update terminal outcome to product_success until those concrete providers are proved and audited."
   ],
@@ -4410,13 +4410,6 @@
   },
   "recent_frontier_updates": [
     {
-      "timestamp_utc": "2026-05-21T01:39:52Z",
-      "artifact": "audit/blockers/addcommgrp_row_fields_projection_kernel_boundary_v370_support_w464.lean",
-      "status": "verified_focused",
-      "effect": "W318 AddCommGrp strict kernel exact boundary and exact-acyclic wrapper consume projection component IsColimit fields plus row algebraic fields",
-      "product_complete": false
-    },
-    {
       "timestamp_utc": "2026-05-21T01:41:27Z",
       "artifact": "audit/blockers/wpp_op_w426_quotient_compat_full_w318_leg_v370_support_w465.lean",
       "status": "verified_focused",
@@ -4513,12 +4506,19 @@
       "status": "promoted_importable_parent_api",
       "effect": "W522 closes W484 projection bridge using W521 and composes W483 selected-W461 data with closed-range-only component fields.",
       "product_complete": false
+    },
+    {
+      "timestamp_utc": "2026-05-21T14:09:05Z",
+      "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "promoted_importable_parent_api_w524",
+      "effect": "W524 composes W515/W516/W517 representative-image selected-provider routes with W522 closed-range-only projection fields.",
+      "product_complete": false
     }
   ],
   "current_primary_blockers": [
-    "construct concrete SelectedW461PromotionInputsProviderW483 or equivalent W478/W480 provider package",
+    "construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 or a W516/W517 relation provider sufficient to supply it",
     "construct concrete ComponentwiseClosedRangeOnlyProviderW484",
-    "run final product audit only after the WPP-op exact-acyclic frontier is concretely closed"
+    "run final product audit only after both concrete final providers are proved"
   ],
   "parent_update_w467": {
     "timestamp_utc": "2026-05-21T01:54:02Z",
@@ -5124,6 +5124,28 @@
     ],
     "remaining_blockers": [
       "construct concrete ClosedNatTransOrdinaryPackageProviderW509 or a W510/W511/W512 provider sufficient to supply it",
+      "construct concrete ComponentwiseClosedRangeOnlyProviderW484",
+      "run final product audit only after both concrete final providers are proved"
+    ],
+    "product_complete": false
+  },
+  "parent_update_w524_representative_image_selected_provider_closed_range_only": {
+    "timestamp_utc": "2026-05-21T14:09:05Z",
+    "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "audit_artifact": "audit/ProductSuccessDeclarations.lean",
+    "effect": "W524 routes W515 representative-image data, W516 top-target relation data, and W517 compact-target relation data into W523 selected-W461 provider data, then composes those selected-provider routes with exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyProjection_w522.",
+    "verified": [
+      "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "lake env lean audit/ProductSuccessDeclarations.lean",
+      "lake env lean audit/RequiredDeclarations.lean",
+      "lake build",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "git diff --check"
+    ],
+    "remaining_blockers": [
+      "construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 or a W516/W517 relation provider sufficient to supply it",
       "construct concrete ComponentwiseClosedRangeOnlyProviderW484",
       "run final product audit only after both concrete final providers are proved"
     ],
