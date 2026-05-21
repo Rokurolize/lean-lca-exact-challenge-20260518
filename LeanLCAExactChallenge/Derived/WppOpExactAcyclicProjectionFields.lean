@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated
 import LeanLCAExactChallenge.Derived.AddCommGrpSnakeInputDifferenceCokernel
+import LeanLCAExactChallenge.Derived.DirectWppOpColimitFiniteShapeTransfer
 import LeanLCAExactChallenge.LCA.Cokernel
 import LeanLCAExactChallenge.LCA.ForgottenCokernel
 import LeanLCAExactChallenge.LCA.StrictExact
@@ -729,6 +730,15 @@ theorem addCommGrpStrictKernelExactBoundary_of_projectionComponentFields
   intro S cs hcs hRows
   exact addCommGrpKernelExact_of_projectionComponentFields_addCommGrpRows hRows
     (hproj S cs hcs)
+
+/-- Projection component fields supply W318's strict SnakeInput cokernel-row boundary. -/
+theorem addCommGrpStrictSnakeCokernelBoundary_of_projectionComponentFields
+    (hproj : ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+      (cs : Cocone S), IsColimit cs → SelectedProjectionComponentIsColimitInputs S cs) :
+    addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable := by
+  intro S cs hcs hRows
+  exact ⟨strictSnakeCokernelData_of_projectionComponentFields_addCommGrpRows hRows
+    (hproj S cs hcs)⟩
 
 /-- Projection component fields plus the left strictness boundary imply exact acyclicity. -/
 theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_projectionComponentFields
@@ -9039,6 +9049,14 @@ theorem addCommGrpStrictKernelExactBoundary_of_closedRangeOnlyRows_w526
   exact addCommGrpKernelExact_of_projectionComponentFields_addCommGrpRows hRows
     (selectedProjectionComponentInputs_of_closedRangeOnlyRows_w526 hclosedRows hcs hRows)
 
+/-- Row-aware closed-range fields supply the strict SnakeInput cokernel-row boundary. -/
+theorem addCommGrpStrictSnakeCokernelBoundary_of_closedRangeOnlyRows_w526
+    (hclosedRows : ComponentwiseClosedRangeOnlyRowsProviderW526) :
+    addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable := by
+  intro S cs hcs hRows
+  exact ⟨strictSnakeCokernelData_of_projectionComponentFields_addCommGrpRows hRows
+    (selectedProjectionComponentInputs_of_closedRangeOnlyRows_w526 hclosedRows hcs hRows)⟩
+
 /--
 Selected W461 left-field data plus row-aware closed-range fields imply the
 WPP-op exact-acyclic colimit closure.
@@ -9096,6 +9114,7 @@ def currentRowAwareClosedRangeOnlyProjectionStateW526 :
       "ComponentwiseClosedRangeOnlyRowsProviderW526",
       "selectedProjectionComponentInputs_of_closedRangeOnlyRows_w526",
       "addCommGrpStrictKernelExactBoundary_of_closedRangeOnlyRows_w526",
+      "addCommGrpStrictSnakeCokernelBoundary_of_closedRangeOnlyRows_w526",
       "exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526",
       "exactAcyclic_of_representativeImage_and_closedRangeOnlyRows_w526",
       "exactAcyclic_of_topTargetRelation_and_closedRangeOnlyRows_w526",
@@ -9127,6 +9146,7 @@ section Checks
 #check ComponentwiseClosedRangeOnlyRowsProviderW526
 #check selectedProjectionComponentInputs_of_closedRangeOnlyRows_w526
 #check addCommGrpStrictKernelExactBoundary_of_closedRangeOnlyRows_w526
+#check addCommGrpStrictSnakeCokernelBoundary_of_closedRangeOnlyRows_w526
 #check exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526
 #check exactAcyclic_of_representativeImage_and_closedRangeOnlyRows_w526
 #check exactAcyclic_of_topTargetRelation_and_closedRangeOnlyRows_w526
@@ -9185,6 +9205,20 @@ def closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527
   fun S cs hcs hRows =>
     closedRangeOnlyInputs_of_closedEmbedding_w525
       (hclosedEmbeddingRows S cs hcs hRows)
+
+/-- Row-aware selected closed-map data supply the strict SnakeInput cokernel-row boundary. -/
+theorem addCommGrpStrictSnakeCokernelBoundary_of_closedMapRows_w527
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :
+    addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable :=
+  addCommGrpStrictSnakeCokernelBoundary_of_closedRangeOnlyRows_w526
+    (closedRangeOnlyRowsProvider_of_closedMapRows_w527 hclosedMapRows)
+
+/-- Row-aware selected closed-embedding data supply the strict SnakeInput cokernel-row boundary. -/
+theorem addCommGrpStrictSnakeCokernelBoundary_of_closedEmbeddingRows_w527
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable :=
+  addCommGrpStrictSnakeCokernelBoundary_of_closedRangeOnlyRows_w526
+    (closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527 hclosedEmbeddingRows)
 
 /-- Selected W461 endpoint using row-aware selected closed-map data. -/
 def exactAcyclic_of_selectedW461Provider_closedMapRows_w527
@@ -9272,6 +9306,8 @@ def currentRowAwareClosedMapClosedRangeOnlyProjectionStateW527 :
       "ComponentwiseClosedEmbeddingRowsProviderW527",
       "closedRangeOnlyRowsProvider_of_closedMapRows_w527",
       "closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527",
+      "addCommGrpStrictSnakeCokernelBoundary_of_closedMapRows_w527",
+      "addCommGrpStrictSnakeCokernelBoundary_of_closedEmbeddingRows_w527",
       "exactAcyclic_of_selectedW461Provider_closedMapRows_w527",
       "exactAcyclic_of_selectedW461Provider_closedEmbeddingRows_w527",
       "exactAcyclic_of_representativeImage_closedMapRows_w527",
@@ -9309,6 +9345,8 @@ section Checks
 #check ComponentwiseClosedEmbeddingRowsProviderW527
 #check closedRangeOnlyRowsProvider_of_closedMapRows_w527
 #check closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527
+#check addCommGrpStrictSnakeCokernelBoundary_of_closedMapRows_w527
+#check addCommGrpStrictSnakeCokernelBoundary_of_closedEmbeddingRows_w527
 #check exactAcyclic_of_selectedW461Provider_closedMapRows_w527
 #check exactAcyclic_of_selectedW461Provider_closedEmbeddingRows_w527
 #check exactAcyclic_of_representativeImage_closedMapRows_w527
@@ -9322,5 +9360,135 @@ section Checks
 end Checks
 
 end WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527
+
+namespace WppOpW533FiniteShapeTransferFromRowsV370SupportW534
+
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526
+open WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527
+open DirectWppOpColimitFiniteShapeTransfer
+
+/-- Selected W461 data plus row-aware closed-range rows supply W533's WPP colimit stability. -/
+theorem walkingParallelPairColimitStability_of_selectedW461Provider_and_closedRangeOnlyRows_w534
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hclosedRows : ComponentwiseClosedRangeOnlyRowsProviderW526) :
+    directWeakEquivalence.IsStableUnderColimitsOfShape WalkingParallelPair :=
+  walkingParallelPairColimitStability_of_left_and_snakeCokernel
+    (wppOp_lca_colimitMap_injective_inducing_closedImage_of_selectedW461Provider_w483
+      hinputs)
+    (addCommGrpStrictSnakeCokernelBoundary_of_closedRangeOnlyRows_w526 hclosedRows)
+
+/-- Selected W461 data plus row-aware closed-map rows supply W533's WPP colimit stability. -/
+theorem walkingParallelPairColimitStability_of_selectedW461Provider_and_closedMapRows_w534
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :
+    directWeakEquivalence.IsStableUnderColimitsOfShape WalkingParallelPair :=
+  walkingParallelPairColimitStability_of_selectedW461Provider_and_closedRangeOnlyRows_w534
+    hinputs (closedRangeOnlyRowsProvider_of_closedMapRows_w527 hclosedMapRows)
+
+/-- Selected W461 data plus row-aware closed-embedding rows supply W533's WPP colimit stability. -/
+theorem walkingParallelPairColimitStability_of_selectedW461Provider_and_closedEmbeddingRows_w534
+    (hinputs : SelectedW461PromotionInputsProviderW483)
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    directWeakEquivalence.IsStableUnderColimitsOfShape WalkingParallelPair :=
+  walkingParallelPairColimitStability_of_selectedW461Provider_and_closedRangeOnlyRows_w534
+    hinputs (closedRangeOnlyRowsProvider_of_closedEmbeddingRows_w527 hclosedEmbeddingRows)
+
+/-- W534 checked nonterminal state. -/
+structure W533FiniteShapeTransferFromRowsStateW534 : Type where
+  seed : String
+  declarations : List String
+  snakeBoundaryResult : String
+  colimitStabilityResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W534 state. -/
+def currentW533FiniteShapeTransferFromRowsStateW534 :
+    W533FiniteShapeTransferFromRowsStateW534 where
+  seed := "w534-w533-finite-shape-transfer-from-rows"
+  declarations :=
+    ["addCommGrpStrictSnakeCokernelBoundary_of_closedRangeOnlyRows_w526",
+      "addCommGrpStrictSnakeCokernelBoundary_of_closedMapRows_w527",
+      "addCommGrpStrictSnakeCokernelBoundary_of_closedEmbeddingRows_w527",
+      "walkingParallelPairColimitStability_of_selectedW461Provider_and_closedRangeOnlyRows_w534",
+      "walkingParallelPairColimitStability_of_selectedW461Provider_and_closedMapRows_w534",
+      "walkingParallelPairColimitStability_of_selectedW461Provider_and_closedEmbeddingRows_w534"]
+  snakeBoundaryResult := "proved from W526/W527 row providers"
+  colimitStabilityResult := "proved from selected W461 provider plus row provider"
+  remainingInputs :=
+    ["construct concrete SelectedW461PromotionInputsProviderW483",
+      "construct concrete row-aware selected closed-map or closed-embedding provider",
+      "prove WPP limit stability",
+      "prove WalkingParallelPair functor-category localization"]
+  productSuccessClaimed := false
+
+theorem currentW533FiniteShapeTransferFromRowsStateW534_productSuccess :
+    currentW533FiniteShapeTransferFromRowsStateW534.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check walkingParallelPairColimitStability_of_selectedW461Provider_and_closedRangeOnlyRows_w534
+#check walkingParallelPairColimitStability_of_selectedW461Provider_and_closedMapRows_w534
+#check walkingParallelPairColimitStability_of_selectedW461Provider_and_closedEmbeddingRows_w534
+#check currentW533FiniteShapeTransferFromRowsStateW534
+#check currentW533FiniteShapeTransferFromRowsStateW534_productSuccess
+
+end Checks
+
+end WppOpW533FiniteShapeTransferFromRowsV370SupportW534
+
+namespace Dbounded
+
+open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526
+open WppOpW533FiniteShapeTransferFromRowsV370SupportW534
+
+/-- W532 finite-shape transfer inputs with WPP colimit stability supplied by W534 row data. -/
+structure MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows :
+    Type 1 where
+  limitStability :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair
+  selectedW461Provider :
+    SelectedW461PromotionInputsProviderW483
+  closedRangeRows :
+    ComponentwiseClosedRangeOnlyRowsProviderW526
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/-- Build W532's transfer record from selected W461 data and row-aware closed-range rows. -/
+noncomputable def metrizableWalkingParallelPairFiniteShapeTransferInputs_of_selectedW461Rows
+    (inputs : MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability := inputs.limitStability
+  colimitStability :=
+    walkingParallelPairColimitStability_of_selectedW461Provider_and_closedRangeOnlyRows_w534
+      inputs.selectedW461Provider inputs.closedRangeRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/-- Input names for the selected-W461 row form of W532 finite-shape transfer. -/
+def metrizableWalkingParallelPairFiniteShapeTransferFromSelectedW461RowsInputNames :
+    List String :=
+  ["IsStableUnderLimitsOfShape WalkingParallelPair",
+    "SelectedW461PromotionInputsProviderW483",
+    "ComponentwiseClosedRangeOnlyRowsProviderW526",
+    "WalkingParallelPair functor-category localization"]
+
+theorem metrizableWalkingParallelPairFiniteShapeTransferFromSelectedW461RowsInputNames_count :
+    metrizableWalkingParallelPairFiniteShapeTransferFromSelectedW461RowsInputNames.length = 4 :=
+  rfl
+
+section Checks
+
+#check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
+#check metrizableWalkingParallelPairFiniteShapeTransferInputs_of_selectedW461Rows
+#check metrizableWalkingParallelPairFiniteShapeTransferFromSelectedW461RowsInputNames
+#check metrizableWalkingParallelPairFiniteShapeTransferFromSelectedW461RowsInputNames_count
+
+end Checks
+
+end Dbounded
 
 end LeanLCAExactChallenge
