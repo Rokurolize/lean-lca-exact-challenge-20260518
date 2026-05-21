@@ -950,4 +950,142 @@ end Checks
 
 end AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475
 
+/-
+W477: W426 ordinary-map promotion plus componentwise closed-range projection
+inputs.
+
+Seed: `c477c0de20260521`.
+-/
+
+namespace AddCommGrpW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportW477
+
+open AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464
+open AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed recorded for the worker result contract. -/
+def supportSeedW477 : String :=
+  "c477c0de20260521"
+
+/-- First component of the selected difference map. -/
+abbrev selectedMetrizableDifferenceπ₁W477
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    (S.obj ordinarySourceIndex).X₁ ⟶ (S.obj ordinaryTargetIndex).X₁ :=
+  (selectedMetrizableLeft S - selectedMetrizableRight S).τ₁
+
+/-- Second component of the selected difference map. -/
+abbrev selectedMetrizableDifferenceπ₂W477
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    (S.obj ordinarySourceIndex).X₂ ⟶ (S.obj ordinaryTargetIndex).X₂ :=
+  (selectedMetrizableLeft S - selectedMetrizableRight S).τ₂
+
+/-- Third component of the selected difference map. -/
+abbrev selectedMetrizableDifferenceπ₃W477
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}) :
+    (S.obj ordinarySourceIndex).X₃ ⟶ (S.obj ordinaryTargetIndex).X₃ :=
+  (selectedMetrizableLeft S - selectedMetrizableRight S).τ₃
+
+/--
+Componentwise closed-range surface plus the projection colimit fields consumed
+by W475. The closed-range fields record the stronger intended input surface;
+the projection fields remain explicit because the closed-range-to-projection
+bridge is not part of this wrapper.
+-/
+structure SelectedComponentwiseClosedRangeProjectionInputsW477
+    (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S) : Type 1 where
+  hclosedπ₁ : IsClosed (Set.range (selectedMetrizableDifferenceπ₁W477 S :
+    (S.obj ordinarySourceIndex).X₁ → (S.obj ordinaryTargetIndex).X₁))
+  hclosedπ₂ : IsClosed (Set.range (selectedMetrizableDifferenceπ₂W477 S :
+    (S.obj ordinarySourceIndex).X₂ → (S.obj ordinaryTargetIndex).X₂))
+  hclosedπ₃ : IsClosed (Set.range (selectedMetrizableDifferenceπ₃W477 S :
+    (S.obj ordinarySourceIndex).X₃ → (S.obj ordinaryTargetIndex).X₃))
+  hπ₁ :
+    IsColimit
+      ((ShortComplex.π₁ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor))
+  hπ₂ :
+    IsColimit
+      ((ShortComplex.π₂ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor))
+  hπ₃ :
+    IsColimit
+      ((ShortComplex.π₃ : ShortComplex AddCommGrpCat.{0} ⥤ AddCommGrpCat.{0}).mapCocone
+        ((selectedMetrizableTargetCokernelCofork S cs).map forgottenShortComplexFunctor))
+
+/-- Provider for componentwise closed-range projection inputs. -/
+abbrev ComponentwiseClosedRangeProjectionProviderW477 : Type 1 :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cocone S), IsColimit cs → SelectedComponentwiseClosedRangeProjectionInputsW477 S cs
+
+/-- Forget the closed-range fields and keep exactly the projection fields W475 consumes. -/
+def projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w477
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW477) :
+    ProjectionFieldsProviderW475 :=
+  fun S cs hcs =>
+    let H := hcomponentwise S cs hcs
+    (H.hπ₁, H.hπ₂, H.hπ₃)
+
+/--
+W477 composition theorem: W426 ordinary-map promotion supplies W318's left
+closed-image input, and the componentwise closed-range projection provider
+supplies W475's projection fields.
+-/
+theorem
+    exactAcyclic_of_w426Promotion_and_componentwiseClosedRangeProjection_w477
+    (hfields : W426PromotionFieldsProviderW475)
+    (hordinaryMap : W426OrdinaryMapProviderW475)
+    (heq : W426OrdinaryEqualsCanonicalProviderW475 hfields hordinaryMap)
+    (hcomponentwise : ComponentwiseClosedRangeProjectionProviderW477) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_projectionFields_w475
+    hfields hordinaryMap heq
+    (projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w477 hcomponentwise)
+
+/-- W477 checked support state. -/
+structure W426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportStateW477 :
+    Type where
+  seed : String
+  declarations : List String
+  componentwiseProjectionProviderResult : String
+  composedExactAcyclicResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked support state for W477. -/
+def currentW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportStateW477 :
+    W426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportStateW477 where
+  seed := supportSeedW477
+  declarations :=
+    ["SelectedComponentwiseClosedRangeProjectionInputsW477",
+      "ComponentwiseClosedRangeProjectionProviderW477",
+      "projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w477",
+      "exactAcyclic_of_w426Promotion_and_componentwiseClosedRangeProjection_w477"]
+  componentwiseProjectionProviderResult := "proved"
+  composedExactAcyclicResult := "proved"
+  remainingInputs := []
+  productSuccessClaimed := false
+
+theorem
+    currentW426LeftClosedComponentwiseClosedRangeProjectionStateW477_productSuccess :
+    (currentW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportStateW477).productSuccessClaimed =
+      false :=
+  rfl
+
+section Checks
+
+#check supportSeedW477
+#check selectedMetrizableDifferenceπ₁W477
+#check selectedMetrizableDifferenceπ₂W477
+#check selectedMetrizableDifferenceπ₃W477
+#check SelectedComponentwiseClosedRangeProjectionInputsW477
+#check ComponentwiseClosedRangeProjectionProviderW477
+#check projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w477
+#check exactAcyclic_of_w426Promotion_and_componentwiseClosedRangeProjection_w477
+#check currentW426LeftClosedComponentwiseClosedRangeProjectionStateW477_productSuccess
+
+end Checks
+
+end AddCommGrpW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportW477
+
 end LeanLCAExactChallenge

@@ -4565,5 +4565,38 @@
       "connect the endpoint into the final consolidated product-success declaration"
     ],
     "product_success_claimed": false
+  },
+  "parent_update_w477_importable_componentwise_projection": {
+    "timestamp_utc": "2026-05-21T02:43:22Z",
+    "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "verified_commands": [
+      "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "lake env lean audit/ProductSuccessDeclarations.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean"
+    ],
+    "result": "W426 promotion/equality data now composes with a componentwise closed-range projection provider through the importable W475 projection-fields exact-acyclic route.",
+    "remaining": [
+      "instantiate concrete W426 promotion/equality data at the final call site",
+      "supply actual projection IsColimit fields from componentwise closed-range/projection inputs",
+      "connect the endpoint into the final consolidated product-success declaration"
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w478": {
+    "timestamp_utc": "2026-05-21T02:43:22Z",
+    "artifact": "audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
+    "verified_commands": [
+      "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean"
+    ],
+    "result": "W461-shaped quotient-compatibility and point-identification target-leg data, paired with a matching W426 ordinary descended package, construct W441-shaped promotion fields and transport ordinary closed-embedding facts to the W318 colimit map.",
+    "remaining": [
+      "promote or reimplement the W478 bridge in an importable W441/W461 namespace",
+      "instantiate concrete W461 point-identification inputs at the final call site",
+      "provide the matching W426 ordinary descended package and equality to the W461 ordinary descended map",
+      "provide W471 component-colimit comparison inputs at the final call site"
+    ],
+    "product_success_claimed": false
   }
 }

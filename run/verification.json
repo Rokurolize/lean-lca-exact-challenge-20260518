@@ -1,9 +1,39 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-v366-w466-quotient-identification-to-strict-snake",
-  "generated_utc": "2026-05-21T03:01:00Z",
+  "schema": "lean-lca-exact-challenge-verification-v478-w461-to-w441-promotion-fields",
+  "generated_utc": "2026-05-21T02:43:22Z",
   "source_tree_hash": "795177f4d618fbcec6cd326518aaed55c69fa43c1748c1bda8fb01a4a301f988",
-  "summary": "W475 focused support verified and recorded as nonterminal frontier progress; product success remains false.",
+  "summary": "W478 focused support verified and recorded as nonterminal frontier progress; product success remains false.",
   "commands": [
+    {
+      "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
+      "status": "passed",
+      "evidence": "W478 standalone bridge from W461-shaped target-leg data to W441-shaped promotion fields compiled."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the W478 standalone audit bridge."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Importable W475/W477 projection-fields module compiled after the componentwise closed-range projection provider extension."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "ProductSuccessDeclarations checks the W477 componentwise projection endpoint and still records product success as false."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in the importable W475/W477 projection-fields module."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found in ProductSuccessDeclarations."
+    },
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
       "status": "passed",

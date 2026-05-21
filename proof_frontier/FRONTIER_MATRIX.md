@@ -1005,3 +1005,23 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W475 projection-fields exact-acyclic route is now an importable `Derived` module and is included by the root `LeanLCAExactChallenge` module.
 - remaining blockers: instantiate W426 promotion/equality inputs and projection component `IsColimit` fields at the actual final call site, then connect this endpoint into the final consolidated product-success declaration.
 - product_complete: false
+
+
+## W477 Componentwise Closed Range Projection Fields
+
+- timestamp: `2026-05-21T02:43:22Z`
+- artifact: `LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`
+- verified: `lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean`
+- effect: W426 promotion/equality data now composes with a componentwise closed-range projection provider through the importable W475 projection-fields exact-acyclic route.
+- remaining blockers: instantiate concrete W426 promotion/equality data and actual projection `IsColimit` fields at the final call site.
+- product_complete: false
+
+
+## W478 W461 To W441 Promotion Fields
+
+- timestamp: `2026-05-21T02:43:22Z`
+- artifact: `audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean`
+- verified: `lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean`; `scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean`
+- effect: W461-shaped quotient-compatibility and point-identification target-leg data, with a matching W426 ordinary descended package, now construct W441-shaped promotion fields and transport ordinary closed-embedding facts to the W318 colimit map.
+- remaining blockers: promote or reimplement the bridge in an importable namespace, instantiate the concrete W461 point-identification inputs and W426 ordinary package, and supply W471 component-colimit comparison inputs at the final call site.
+- product_complete: false
