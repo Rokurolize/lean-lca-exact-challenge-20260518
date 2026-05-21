@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W517でtarget relationがcompactならtarget quotient projectionがclosed mapになり、component closednessからW515のrepresentative-image closednessが成り立つことをimportableにした。これによりW516のtop-targetの場合より広いcompact-target-relationの場合をW515の経路へ接続できるが、具体的なcompact/top/general relation入力とselected closed-range入力は未証明なのでproduct_successは主張しない。",
+  "summary": "W518でW517のcompact-target-relation経路を、selected cokernel colimit、quotient-identification、mapped explicit cokernel cofork、closure-kernel preservationの各保存経路へ接続した。これによりcompactなtarget relationが得られた後の出口は増えたが、具体的なcompact/top/general relation providerと保存入力はまだ未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -617,7 +617,8 @@
     "git diff --check",
     "python3 audit/external_audit.py --root . --self-check-only",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W516)",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W517)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W517)",
+    "python3 audit/external_audit.py --root . (expected failed_nonterminal product gate)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -2855,7 +2856,7 @@
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_componentwiseProjection_w517",
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess"
   ],
-  "generated_utc": "2026-05-21T12:43:00Z",
+  "generated_utc": "2026-05-21T12:52:50Z",
   "support_result_classification": "verified_nonterminal_support_increment",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
@@ -3999,7 +4000,7 @@
   "remaining_work": [
     "construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517, ClosedNatTransOrdinaryTopTargetRelationProviderW516, or ClosedNatTransOrdinaryRepresentativeImageProviderW515",
     "prove concrete relation-pullback equality plus compact/top/general representative-image closedness for ordinaryMapOfWppOpNatTransW506",
-    "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487 or ComponentwiseClosedRangeProjectionProviderW481",
+    "construct concrete SelectedCokernelColimitProviderW492, QuotientIdentificationProjectionProviderW485, mapped-explicit-cokernel preservation input, closure-kernel provider, ClosedRangeQuotientIdentificationProjectionProviderW487, or ComponentwiseClosedRangeProjectionProviderW481",
     "run final product audit only after terminal_outcome can truthfully be product_success"
   ]
 }

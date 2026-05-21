@@ -7518,4 +7518,119 @@ end Checks
 
 end WppOpCompactTargetRelationRepresentativeImageV370SupportW517
 
+namespace WppOpCompactTargetRelationPreservationExitsV370SupportW518
+
+open WppOpQuotientIdentificationProjectionProviderV370SupportW485
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
+open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W518 compact-target preservation exits. -/
+def supportSeedW518 : String :=
+  "w518-compact-target-relation-preservation-exits"
+
+/--
+W517 compact-target relation data also provide the lower-level W511
+relation-topology provider. This exposes W511's existing preservation exits
+without changing W517's hypotheses.
+-/
+def relationTopologyProvider_of_compactTargetRelation_w518
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    ClosedNatTransOrdinaryRelationTopologyProviderW511 :=
+  closedNatTransOrdinaryRelationTopologyProvider_of_representativeImage_w515
+    (representativeImageProvider_of_compactTargetRelation_w517 hinputs)
+
+/-- W518 endpoint with an arbitrary selected cokernel-colimit provider. -/
+def exactAcyclic_of_compactTargetRelation_and_selectedCokernelColimit_w518
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_selectedCokernelColimit_w515
+    (representativeImageProvider_of_compactTargetRelation_w517 hinputs) hselected
+
+/-- W518 endpoint with selected quotient-identification data. -/
+def exactAcyclic_of_compactTargetRelation_and_quotientIdentification_w518
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hquot : QuotientIdentificationProjectionProviderW485) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_representativeImage_and_quotientIdentification_w515
+    (representativeImageProvider_of_compactTargetRelation_w517 hinputs) hquot
+
+/--
+W518 endpoint with W499/W497-style mapped explicit cokernel preservation.
+This goes through W511 after W517 supplies the relation-topology provider.
+-/
+def exactAcyclic_of_compactTargetRelation_and_mappedExplicitCokernelCoforks_w518
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_relationTopology_and_mappedExplicitCokernelCoforks_w511
+    (relationTopologyProvider_of_compactTargetRelation_w518 hinputs) hMapped
+
+/-- W518 endpoint with W503 closure-kernel preservation data. -/
+def exactAcyclic_of_compactTargetRelation_and_closureKernelProvider_w518
+    (hinputs : ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_relationTopology_and_closureKernelProvider_w511
+    (relationTopologyProvider_of_compactTargetRelation_w518 hinputs) hClosure
+
+/-- W518 checked nonterminal state. -/
+structure CompactTargetRelationPreservationExitsV370SupportStateW518 : Type where
+  seed : String
+  declarations : List String
+  relationTopologyAdapterResult : String
+  selectedPreservationExitsResult : String
+  globalPreservationExitsResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W518 state. -/
+def currentCompactTargetRelationPreservationExitsV370SupportStateW518 :
+    CompactTargetRelationPreservationExitsV370SupportStateW518 where
+  seed := supportSeedW518
+  declarations :=
+    ["relationTopologyProvider_of_compactTargetRelation_w518",
+      "exactAcyclic_of_compactTargetRelation_and_selectedCokernelColimit_w518",
+      "exactAcyclic_of_compactTargetRelation_and_quotientIdentification_w518",
+      "exactAcyclic_of_compactTargetRelation_and_mappedExplicitCokernelCoforks_w518",
+      "exactAcyclic_of_compactTargetRelation_and_closureKernelProvider_w518"]
+  relationTopologyAdapterResult := "proved"
+  selectedPreservationExitsResult := "proved"
+  globalPreservationExitsResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+      "construct concrete SelectedCokernelColimitProviderW492 " ++
+        "or QuotientIdentificationProjectionProviderW485",
+      "or construct concrete mapped-explicit-cokernel / closure-kernel preservation input"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentCompactTargetRelationPreservationExitsStateW518 :
+    CompactTargetRelationPreservationExitsV370SupportStateW518 :=
+  currentCompactTargetRelationPreservationExitsV370SupportStateW518
+
+theorem currentCompactTargetRelationPreservationExitsStateW518_productSuccess :
+    currentCompactTargetRelationPreservationExitsStateW518.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW518
+#check relationTopologyProvider_of_compactTargetRelation_w518
+#check exactAcyclic_of_compactTargetRelation_and_selectedCokernelColimit_w518
+#check exactAcyclic_of_compactTargetRelation_and_quotientIdentification_w518
+#check exactAcyclic_of_compactTargetRelation_and_mappedExplicitCokernelCoforks_w518
+#check exactAcyclic_of_compactTargetRelation_and_closureKernelProvider_w518
+#check currentCompactTargetRelationPreservationExitsStateW518_productSuccess
+
+end Checks
+
+end WppOpCompactTargetRelationPreservationExitsV370SupportW518
+
 end LeanLCAExactChallenge

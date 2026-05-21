@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w517-compact-target-representative-image-route",
-  "generated_utc": "2026-05-21T12:43:00Z",
-  "source_tree_hash": "9dc07c75569e29429cea48e3b25ff24e5743136adfa97d8a04da96fcb38a40d3",
-  "summary": "W517 proves that component closedness plus compact target relation makes W515 representative images closed, using the closed-map property of quotient projections by compact subgroups. It composes with W515 and W514 selected preservation. Product success remains false because concrete W517/W516/W515 relation inputs and selected closed-range inputs are still unproved.",
+  "schema": "lean-lca-exact-challenge-verification-w518-compact-target-preservation-exits",
+  "generated_utc": "2026-05-21T12:52:50Z",
+  "source_tree_hash": "630f42f61ffe5cb4e05885e41cfae485bd86eb76a0259452f5980edcb7069421",
+  "summary": "W518 exposes the W517 compact-target relation route through W515/W511 preservation exits: selected cokernel colimits, quotient-identification data, mapped explicit cokernel coforks, and closure-kernel preservation. Product success remains false because a concrete compact/top/general relation provider and preservation input are still unproved.",
   "commands": [
     {
       "command": "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -3544,6 +3544,66 @@
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
       "evidence": "Required declaration audit passed after W517."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W518 focused source check passed; log: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_004_w518_verify/source_wpp_projection_fields_w518.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W518 module build passed; log: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_004_w518_verify/lake_build_wpp_projection_fields_w518.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "W518 product declaration audit passed; log: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_004_w518_verify/product_success_declarations_w518.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "W518 full build passed; log: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_004_w518_verify/lake_build_w518.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "W518 forbidden-token scan passed; log: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_004_w518_verify/audit_no_forbidden_lean_tokens_full_w518.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "W518 required declarations audit passed; log: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_004_w518_verify/required_declarations_w518.log"
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "run/verification.json parses after W518 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "terminal_outcome/terminal_outcome.json parses after W518 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "manifest.json parses after W518 metadata refresh."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "W518 diff whitespace check passed; log: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_004_w518_verify/git_diff_check_w518.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "W518 external audit self-check passed; log: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_004_w518_verify/external_audit_self_check_w518.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root .",
+      "status": "failed_expected",
+      "evidence": "After metadata refresh this is expected to fail only at the nonterminal product gate; log: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_004_w518_verify/external_audit_terminal_w518.log"
     }
   ],
   "implemented_declarations_checked": [
@@ -4827,13 +4887,20 @@
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.representativeImageProvider_of_compactTargetRelation_w517",
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_closedRangeQuotientIdentification_w517",
     "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.exactAcyclic_of_compactTargetRelation_and_componentwiseProjection_w517",
-    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess"
+    "WppOpCompactTargetRelationRepresentativeImageV370SupportW517.currentCompactTargetRelationRepresentativeImageStateW517_productSuccess",
+    "WppOpCompactTargetRelationPreservationExitsV370SupportW518.supportSeedW518",
+    "WppOpCompactTargetRelationPreservationExitsV370SupportW518.relationTopologyProvider_of_compactTargetRelation_w518",
+    "WppOpCompactTargetRelationPreservationExitsV370SupportW518.exactAcyclic_of_compactTargetRelation_and_selectedCokernelColimit_w518",
+    "WppOpCompactTargetRelationPreservationExitsV370SupportW518.exactAcyclic_of_compactTargetRelation_and_quotientIdentification_w518",
+    "WppOpCompactTargetRelationPreservationExitsV370SupportW518.exactAcyclic_of_compactTargetRelation_and_mappedExplicitCokernelCoforks_w518",
+    "WppOpCompactTargetRelationPreservationExitsV370SupportW518.exactAcyclic_of_compactTargetRelation_and_closureKernelProvider_w518",
+    "WppOpCompactTargetRelationPreservationExitsV370SupportW518.currentCompactTargetRelationPreservationExitsStateW518_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517, ClosedNatTransOrdinaryTopTargetRelationProviderW516, or ClosedNatTransOrdinaryRepresentativeImageProviderW515",
     "prove concrete relation-pullback equality plus compact/top/general representative-image closedness for ordinaryMapOfWppOpNatTransW506",
-    "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487 or ComponentwiseClosedRangeProjectionProviderW481",
+    "construct concrete SelectedCokernelColimitProviderW492, QuotientIdentificationProjectionProviderW485, mapped-explicit-cokernel preservation input, closure-kernel provider, ClosedRangeQuotientIdentificationProjectionProviderW487, or ComponentwiseClosedRangeProjectionProviderW481",
     "run final product audit only after terminal_outcome can truthfully be product_success"
   ],
   "support_result_classification": "verified_nonterminal_support_increment",
@@ -4841,8 +4908,8 @@
   "remaining_work": [
     "construct concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517, ClosedNatTransOrdinaryTopTargetRelationProviderW516, or ClosedNatTransOrdinaryRepresentativeImageProviderW515",
     "prove concrete relation-pullback equality plus compact/top/general representative-image closedness for ordinaryMapOfWppOpNatTransW506",
-    "construct concrete ClosedRangeQuotientIdentificationProjectionProviderW487 or ComponentwiseClosedRangeProjectionProviderW481",
+    "construct concrete SelectedCokernelColimitProviderW492, QuotientIdentificationProjectionProviderW485, mapped-explicit-cokernel preservation input, closure-kernel provider, ClosedRangeQuotientIdentificationProjectionProviderW487, or ComponentwiseClosedRangeProjectionProviderW481",
     "run final product audit only after terminal_outcome can truthfully be product_success"
   ],
-  "summary_log_tail": "W517 is verified as a nonterminal support increment. It handles compact-target relation representative-image closedness but still does not claim product_success, and update_goal remains forbidden."
+  "summary_log_tail": "W518 is verified as a nonterminal support increment. It widens W517 preservation exits but still does not claim product_success, and update_goal remains forbidden."
 }
