@@ -4893,7 +4893,8 @@ def currentSelectedW461PointIsoTargetLegRouteV370SupportStateW505 :
   closureKernelRouteResult := "proved"
   remainingInputs :=
     ["construct concrete SelectedW461PointIsoTargetLegProviderW505",
-      "construct concrete MappedExplicitCokernelClosureKernelProviderW503 or selected cokernel-colimit provider"]
+      "construct concrete MappedExplicitCokernelClosureKernelProviderW503",
+      "or construct selected cokernel-colimit provider"]
   productSuccessClaimed := false
 
 /-- Short alias used by the checked product-success marker. -/
@@ -4920,5 +4921,321 @@ section Checks
 end Checks
 
 end WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505
+
+namespace WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW461ToW441PromotionProviderV370SupportW478
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+open WppOpSelectedW461PointIsoTargetLegRouteV370SupportW505
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W506 transported point-isomorphism route. -/
+def supportSeedW506 : String :=
+  "w506-selected-w461-transported-point-iso-provider"
+
+namespace ConcreteMetrizableLCA
+
+variable {A B : MetrizableLCA.{0}}
+
+/-- Concrete quotient cofork for a parallel pair, presented as the cokernel of `f - g`. -/
+def concreteQuotientCoforkW506 (f g : A ⟶ B) : Cofork f g :=
+  Preadditive.coforkOfCokernelCofork
+    (CokernelCofork.ofπ (MetrizableLCA.cokernelπ (f - g))
+      (MetrizableLCA.comp_cokernelπ (f - g)))
+
+/-- The concrete quotient cofork is a colimit by the local cokernel construction. -/
+def concreteQuotientCoforkIsColimitW506 (f g : A ⟶ B) :
+    IsColimit (concreteQuotientCoforkW506 f g) :=
+  Preadditive.isColimitCoforkOfCokernelCofork
+    (MetrizableLCA.cokernelIsColimit (f - g))
+
+end ConcreteMetrizableLCA
+
+/-- Concrete quotient cocone on the ordinary diagram associated to a WPP-op diagram. -/
+def wppOpConcreteQuotientCoconeOnOrdinaryW506
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+    Cocone (wppOpOrdinaryDiagramW441 X) :=
+  (Cocone.precompose (diagramIsoParallelPair (wppOpOrdinaryDiagramW441 X)).hom).obj
+    (ConcreteMetrizableLCA.concreteQuotientCoforkW506
+      (wppOpLeftW441 X) (wppOpRightW441 X))
+
+/-- The ordinary concrete quotient cocone associated to a WPP-op diagram is a colimit. -/
+def wppOpConcreteQuotientCoconeOnOrdinaryIsColimitW506
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+    IsColimit (wppOpConcreteQuotientCoconeOnOrdinaryW506 X) :=
+  (IsColimit.precomposeHomEquiv
+    (diagramIsoParallelPair (wppOpOrdinaryDiagramW441 X))
+    (ConcreteMetrizableLCA.concreteQuotientCoforkW506
+      (wppOpLeftW441 X) (wppOpRightW441 X))).symm
+    (ConcreteMetrizableLCA.concreteQuotientCoforkIsColimitW506
+      (wppOpLeftW441 X) (wppOpRightW441 X))
+
+/-- Concrete quotient cocone after whiskering through the inverse equivalence. -/
+def wppOpWhiskeredConcreteQuotientCoconeW506
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+    Cocone (walkingParallelPairOpEquiv.inverse ⋙ wppOpOrdinaryDiagramW441 X) :=
+  Cocone.whisker walkingParallelPairOpEquiv.inverse
+    (wppOpConcreteQuotientCoconeOnOrdinaryW506 X)
+
+/-- The whiskered concrete quotient cocone is still a colimit. -/
+def wppOpWhiskeredConcreteQuotientCoconeIsColimitW506
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+    IsColimit (wppOpWhiskeredConcreteQuotientCoconeW506 X) :=
+  IsColimit.whiskerEquivalence
+    (wppOpConcreteQuotientCoconeOnOrdinaryIsColimitW506 X)
+    walkingParallelPairOpEquiv.symm
+
+/-- Counit-based diagram isomorphism from the whiskered ordinary diagram back to `X`. -/
+def wppOpWhiskeredDiagramIsoW506
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+    walkingParallelPairOpEquiv.inverse ⋙ wppOpOrdinaryDiagramW441 X ≅ X :=
+  (Functor.associator walkingParallelPairOpEquiv.inverse
+    walkingParallelPairOpEquiv.functor X).symm ≪≫
+    Functor.isoWhiskerRight walkingParallelPairOpEquiv.counitIso X ≪≫
+      Functor.leftUnitor X
+
+/-- The concrete quotient cocone transported to an actual cocone over `X`. -/
+def wppOpTransportedConcreteQuotientCoconeW506
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) : Cocone X :=
+  (Cocone.precompose (wppOpWhiskeredDiagramIsoW506 X).symm.hom).obj
+    (wppOpWhiskeredConcreteQuotientCoconeW506 X)
+
+/-- The transported concrete quotient cocone is a colimit. -/
+def wppOpTransportedConcreteQuotientCoconeIsColimitW506
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) :
+    IsColimit (wppOpTransportedConcreteQuotientCoconeW506 X) :=
+  (IsColimit.precomposeHomEquiv
+    (wppOpWhiskeredDiagramIsoW506 X).symm
+    (wppOpWhiskeredConcreteQuotientCoconeW506 X)).symm
+    (wppOpWhiskeredConcreteQuotientCoconeIsColimitW506 X)
+
+/-- Ordinary natural transformation associated to a WPP-op natural transformation. -/
+def ordinaryMapOfWppOpNatTransW506
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) :
+    wppOpOrdinaryDiagramW441 X ⟶ wppOpOrdinaryDiagramW441 Y :=
+  Functor.whiskerLeft walkingParallelPairOpEquiv.functor α
+
+/--
+Concrete transported target-leg equation still needed to identify the
+transported quotient cocone's target leg with the ordinary quotient map.
+-/
+abbrev TransportedConcreteTargetLegEquationW506
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) : Prop :=
+  (wppOpTransportedConcreteQuotientCoconeW506 X).ι.app ordinaryTargetIndexW478 =
+    wppOpOrdinaryQuotientMapW478 X
+
+/--
+Point identification from the ordinary quotient point to any colimit point,
+obtained by first using the transported concrete quotient cocone and then the
+unique colimit-point isomorphism.
+-/
+def transportedPointIdentificationW506
+    (X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (cx : Cocone X)
+    (hcx : IsColimit cx) : wppOpOrdinaryQuotientPointW441 X ≅ cx.pt :=
+  Iso.refl _ ≪≫
+    (wppOpTransportedConcreteQuotientCoconeIsColimitW506 X).coconePointUniqueUpToIso hcx
+
+/-- The inverse point-identification target leg follows from the concrete target-leg equation. -/
+theorem transportedPointIdentification_target_leg_inv_w506
+    {X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {cx : Cocone X}
+    (hcx : IsColimit cx) (hleg : TransportedConcreteTargetLegEquationW506 X) :
+    cx.ι.app ordinaryTargetIndexW478 ≫
+        (transportedPointIdentificationW506 X cx hcx).inv =
+      wppOpOrdinaryQuotientMapW478 X := by
+  have huniq :
+      cx.ι.app ordinaryTargetIndexW478 ≫
+          (IsColimit.coconePointUniqueUpToIso
+            (wppOpTransportedConcreteQuotientCoconeIsColimitW506 X) hcx).inv =
+        (wppOpTransportedConcreteQuotientCoconeW506 X).ι.app ordinaryTargetIndexW478 :=
+    IsColimit.comp_coconePointUniqueUpToIso_inv
+      (wppOpTransportedConcreteQuotientCoconeIsColimitW506 X) hcx ordinaryTargetIndexW478
+  simpa [transportedPointIdentificationW506, hleg] using huniq
+
+/-- The forward point-identification target leg follows from the concrete target-leg equation. -/
+theorem transportedPointIdentification_target_leg_hom_w506
+    {X : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {cx : Cocone X}
+    (hcx : IsColimit cx) (hleg : TransportedConcreteTargetLegEquationW506 X) :
+    wppOpOrdinaryQuotientMapW478 X ≫
+        (transportedPointIdentificationW506 X cx hcx).hom =
+      cx.ι.app ordinaryTargetIndexW478 := by
+  have huniq :
+      (wppOpTransportedConcreteQuotientCoconeW506 X).ι.app ordinaryTargetIndexW478 ≫
+          (IsColimit.coconePointUniqueUpToIso
+            (wppOpTransportedConcreteQuotientCoconeIsColimitW506 X) hcx).hom =
+        cx.ι.app ordinaryTargetIndexW478 :=
+    IsColimit.comp_coconePointUniqueUpToIso_hom
+      (wppOpTransportedConcreteQuotientCoconeIsColimitW506 X) hcx ordinaryTargetIndexW478
+  simpa [transportedPointIdentificationW506, hleg] using huniq
+
+/--
+The target point-identification equation required by W505 follows from the
+target concrete quotient-cocone leg and the ordinary natural transformation
+induced by `α`.
+-/
+theorem targetPointIdentification_target_leg_of_transport_w506
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cy : Cocone Y} (hcy : IsColimit cy)
+    (hlegY : TransportedConcreteTargetLegEquationW506 Y) :
+    α.app ordinaryTargetIndexW478 ≫ cy.ι.app ordinaryTargetIndexW478 =
+      (ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one ≫
+        wppOpOrdinaryQuotientMapW478 Y ≫
+          (transportedPointIdentificationW506 Y cy hcy).hom := by
+  have htarget := transportedPointIdentification_target_leg_hom_w506 hcy hlegY
+  simpa [ordinaryMapOfWppOpNatTransW506, Category.assoc] using
+    congrArg (fun f => α.app ordinaryTargetIndexW478 ≫ f) htarget.symm
+
+/--
+Call-site fields after W506 constructs the point identifications from the
+transported concrete quotient cocones.
+-/
+structure SelectedW461TransportedPointIsoCallSiteInputsW506
+    (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y) : Type 1 where
+  ordinaryPackage : W426OrdinaryDescendedMapPackage (ordinaryMapOfWppOpNatTransW506 α)
+  source_concrete_target_leg : TransportedConcreteTargetLegEquationW506 X
+  target_concrete_target_leg : TransportedConcreteTargetLegEquationW506 Y
+
+/-- W506 transported point-isomorphism fields build W505 point-isomorphism target-leg fields. -/
+def selectedPointIsoTargetLegInputs_of_transportedPointIso_w506
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    {cx : Cocone X} {cy : Cocone Y}
+    (hcx : IsColimit cx) (hcy : IsColimit cy)
+    (H : SelectedW461TransportedPointIsoCallSiteInputsW506 X Y α) :
+    SelectedW461PointIsoTargetLegCallSiteInputsW505 X Y α cx cy where
+  ordinaryMap := ordinaryMapOfWppOpNatTransW506 α
+  ordinaryPackage := H.ordinaryPackage
+  sourcePointIdentification := transportedPointIdentificationW506 X cx hcx
+  targetPointIdentification := transportedPointIdentificationW506 Y cy hcy
+  sourcePointIdentification_target_leg :=
+    transportedPointIdentification_target_leg_inv_w506 hcx H.source_concrete_target_leg
+  targetPointIdentification_target_leg :=
+    targetPointIdentification_target_leg_of_transport_w506 hcy H.target_concrete_target_leg
+
+/-- Provider surface for W506's transported point-isomorphism route. -/
+abbrev SelectedW461TransportedPointIsoProviderW506 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cocone X) (cy : Cocone Y) (φ : cx.pt ⟶ cy.pt),
+      IsColimit cx →
+        IsColimit cy →
+          (∀ j : WalkingParallelPairᵒᵖ,
+            IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+            W318ColimitMapLegCompatibilityW441 X Y α cx cy φ →
+              SelectedW461TransportedPointIsoCallSiteInputsW506 X Y α
+
+/-- W506 providers feed W505's point-isomorphism target-leg provider surface. -/
+def selectedPointIsoTargetLegProvider_of_transportedPointIso_w506
+    (htransported : SelectedW461TransportedPointIsoProviderW506) :
+    SelectedW461PointIsoTargetLegProviderW505 :=
+  fun X Y α cx cy φ hcx hcy hclosed hcompat =>
+    selectedPointIsoTargetLegInputs_of_transportedPointIso_w506 hcx hcy
+      (htransported X Y α cx cy φ hcx hcy hclosed hcompat)
+
+/--
+W506 endpoint: transported point-isomorphism fields plus the selected
+cokernel-colimit provider imply the current WPP-op exact-acyclic closure.
+-/
+def exactAcyclic_of_selectedW461TransportedPointIso_and_selectedCokernelColimit_w506
+    (htransported : SelectedW461TransportedPointIsoProviderW506)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461PointIsoTargetLeg_and_selectedCokernelColimit_w505
+    (selectedPointIsoTargetLegProvider_of_transportedPointIso_w506 htransported) hselected
+
+/-- W506 endpoint with W499's mapped-explicit-cokernel preservation input. -/
+def exactAcyclic_of_selectedW461TransportedPointIso_and_mappedExplicitCokernelCoforks_w506
+    (htransported : SelectedW461TransportedPointIsoProviderW506)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461PointIsoTargetLeg_and_mappedExplicitCokernelCoforks_w505
+    (selectedPointIsoTargetLegProvider_of_transportedPointIso_w506 htransported) hMapped
+
+/-- W506 endpoint with W503's closure-kernel preservation input. -/
+def exactAcyclic_of_selectedW461TransportedPointIso_and_closureKernelProvider_w506
+    (htransported : SelectedW461TransportedPointIsoProviderW506)
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_selectedW461PointIsoTargetLeg_and_closureKernelProvider_w505
+    (selectedPointIsoTargetLegProvider_of_transportedPointIso_w506 htransported) hClosure
+
+/-- W506 checked nonterminal state. -/
+structure SelectedW461TransportedPointIsoProviderV370SupportStateW506 : Type where
+  seed : String
+  declarations : List String
+  transportedCoconeResult : String
+  pointIdentificationResult : String
+  providerAdapterResult : String
+  selectedCokernelRouteResult : String
+  closureKernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W506 state. -/
+def currentSelectedW461TransportedPointIsoProviderV370SupportStateW506 :
+    SelectedW461TransportedPointIsoProviderV370SupportStateW506 where
+  seed := supportSeedW506
+  declarations :=
+    ["wppOpTransportedConcreteQuotientCoconeW506",
+      "wppOpTransportedConcreteQuotientCoconeIsColimitW506",
+      "ordinaryMapOfWppOpNatTransW506",
+      "TransportedConcreteTargetLegEquationW506",
+      "transportedPointIdentificationW506",
+      "transportedPointIdentification_target_leg_inv_w506",
+      "transportedPointIdentification_target_leg_hom_w506",
+      "targetPointIdentification_target_leg_of_transport_w506",
+      "SelectedW461TransportedPointIsoCallSiteInputsW506",
+      "selectedPointIsoTargetLegInputs_of_transportedPointIso_w506",
+      "SelectedW461TransportedPointIsoProviderW506",
+      "selectedPointIsoTargetLegProvider_of_transportedPointIso_w506",
+      "exactAcyclic_of_selectedW461TransportedPointIso_and_selectedCokernelColimit_w506",
+      "exactAcyclic_of_selectedW461TransportedPointIso_and_mappedExplicitCokernelCoforks_w506",
+      "exactAcyclic_of_selectedW461TransportedPointIso_and_closureKernelProvider_w506"]
+  transportedCoconeResult := "proved"
+  pointIdentificationResult :=
+    "proved from unique-up-to-isomorphism and concrete target-leg equations"
+  providerAdapterResult := "proved"
+  selectedCokernelRouteResult := "proved"
+  closureKernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete W426OrdinaryDescendedMapPackage for ordinaryMapOfWppOpNatTransW506",
+      "prove TransportedConcreteTargetLegEquationW506 for every WPP-op diagram",
+      "construct concrete MappedExplicitCokernelClosureKernelProviderW503",
+      "or construct selected cokernel-colimit provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW506State :
+    SelectedW461TransportedPointIsoProviderV370SupportStateW506 :=
+  currentSelectedW461TransportedPointIsoProviderV370SupportStateW506
+
+theorem currentSelectedW461TransportedPointIsoProviderStateW506_productSuccess :
+    currentW506State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW506
+#check wppOpTransportedConcreteQuotientCoconeW506
+#check wppOpTransportedConcreteQuotientCoconeIsColimitW506
+#check ordinaryMapOfWppOpNatTransW506
+#check TransportedConcreteTargetLegEquationW506
+#check transportedPointIdentificationW506
+#check transportedPointIdentification_target_leg_inv_w506
+#check transportedPointIdentification_target_leg_hom_w506
+#check targetPointIdentification_target_leg_of_transport_w506
+#check SelectedW461TransportedPointIsoCallSiteInputsW506
+#check selectedPointIsoTargetLegInputs_of_transportedPointIso_w506
+#check SelectedW461TransportedPointIsoProviderW506
+#check selectedPointIsoTargetLegProvider_of_transportedPointIso_w506
+#check exactAcyclic_of_selectedW461TransportedPointIso_and_selectedCokernelColimit_w506
+#check exactAcyclic_of_selectedW461TransportedPointIso_and_mappedExplicitCokernelCoforks_w506
+#check exactAcyclic_of_selectedW461TransportedPointIso_and_closureKernelProvider_w506
+#check currentSelectedW461TransportedPointIsoProviderStateW506_productSuccess
+
+end Checks
+
+end WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
 
 end LeanLCAExactChallenge
