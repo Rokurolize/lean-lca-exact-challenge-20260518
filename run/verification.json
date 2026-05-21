@@ -1,9 +1,79 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w527-row-aware-closed-map-closed-range-only",
-  "generated_utc": "2026-05-21T14:45:07Z",
-  "source_tree_hash": "20315b5362bd91b55df4549f42c08d56e83901bbe7a17f4c8aa2d56e103300ba",
-  "summary": "W527では、W525のselected component difference closed-map/closed-embedding入力を、W526のstrict AddCommGrp行境界だけで使うrow-aware providerへ局所化した。これにより、closed mapまたはclosed embeddingがその行境界で与えられれば、W526のrow-aware closed-range-only providerを構成し、selected-W461、representative-image、top-target、compact-target各端点へ合成できる。ただし具体的なW515/W516/W517 provider dataと、具体的なrow-aware closed-map/closed-embedding dataは未証明なので、product_successはまだfalseである。",
+  "schema": "lean-lca-exact-challenge-verification-w528-stable-dbounded-gate-reducer",
+  "generated_utc": "2026-05-21T15:06:23Z",
+  "source_tree_hash": "80ba4bed734b1069baa7a662456a95902da448563c3bf6defa33968226517841",
+  "summary": "W528では、Bounded.leanにDbounded.infinityCategory用のStableFourProjectionCertificate gateを追加し、finiteLimits、finiteColimits、suspensionLoopEquivalence、pushoutPullbackCompatibilityの4射影を1つのcertificateから消費する形にした。audit/ProductSuccessDeclarations.leanはそのgateと、現在のordinary Dbounded contextだけではaccepted=falseであることを確認する。ただし実際のstable four-projection certificateはまだ構成しておらず、BoundedDerivedInfinityCategoryもordinary nerveのままである。W515/W516/W517 relation provider dataとrow-aware closed-map/closed-embedding provider dataも未証明なので、product_successはまだfalseである。",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "Focused source check passed for W528 stable Dbounded four-projection gate declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_bounded_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "Importable bounded-derived module rebuilt after W528; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_bounded_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W528 stable gate declarations and ordinary-route rejection; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_product_success_declarations.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W528; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_required_declarations.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W528; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token scan passed for product source tree after W528; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_forbidden_source_tree.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file forbidden-token scan passed after W528; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_forbidden_tokens.log."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Literal forbidden-token rg check on W528-touched files returned no matches; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_rg_forbidden.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W528; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "W528 terminal outcome JSON parses after metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "W528 verification JSON parses after metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "W528 manifest JSON parses after metadata refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W528; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product gate is expected to fail because terminal_outcome remains blocked_nonterminal_frontier/product_success=false; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_external_product_gate.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",

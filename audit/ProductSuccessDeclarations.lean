@@ -2844,6 +2844,27 @@ recovers the localized ordinary category.
 #check (Dbounded.infinityNerve_quasicategory (C := MetrizableLCA))
 #check (Dbounded.homotopyCategoryIso (C := MetrizableLCA))
 
+/-
+The stable bounded-derived gate is exposed as a four-projection certificate interface. The
+ordinary `Dbounded` context is checked separately and remains rejected by that gate.
+-/
+#check StableFourProjectionCertificate
+#check StableFourProjectionCertificate.ready
+#check StableFourProjectionCertificate.ready_of_fields
+#check Dbounded.OrdinaryInfinityContext
+#check Dbounded.currentOrdinaryInfinityContext
+#check Dbounded.StableFourProjectionCertificate
+#check Dbounded.StableRouteAttempt
+#check Dbounded.StableRouteAttempt.accepted
+#check Dbounded.currentOrdinaryStableRouteAttempt
+#check Dbounded.currentOrdinaryStableRouteAttempt_rejected
+#check Dbounded.fullStableCertificateRoute_accepted
+#check Dbounded.requiredStableProjectionFieldNames
+#check Dbounded.requiredStableProjectionFieldNames_count
+#check (Dbounded.currentOrdinaryInfinityContext (C := MetrizableLCA))
+#check (Dbounded.currentOrdinaryStableRouteAttempt (C := MetrizableLCA))
+#check (Dbounded.currentOrdinaryStableRouteAttempt_rejected (C := MetrizableLCA))
+
 noncomputable example : SSet.QCat :=
   BoundedDerivedInfinityCategory (C := MetrizableLCA)
 

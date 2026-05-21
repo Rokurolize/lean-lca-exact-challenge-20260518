@@ -3231,6 +3231,110 @@ noncomputable def Dbounded.homotopyCategoryIso [HasBinaryBiproducts C] :
     SSet.hoFunctor.obj (Dbounded.infinityNerve C) ≅ Cat.of (Dbounded C) :=
   CategoryTheory.nerveFunctorCompHoFunctorIso.app (Cat.of (Dbounded C))
 
+/--
+A single stable certificate shape carrying the four projections that the bounded derived
+infinity-category review gate has to consume. The predicates remain abstract here so that this
+file records the gate without inventing a semantic stable-quasicategory API.
+-/
+structure StableFourProjectionCertificate (Q : SSet.QCat) : Type 2 where
+  stableCertificate : Type
+  certificate : stableCertificate
+  finiteLimits : stableCertificate → Prop
+  finiteColimits : stableCertificate → Prop
+  suspensionLoopEquivalence : stableCertificate → Prop
+  pushoutPullbackCompatibility : stableCertificate → Prop
+  finiteLimits_ready : finiteLimits certificate
+  finiteColimits_ready : finiteColimits certificate
+  suspensionLoopEquivalence_ready : suspensionLoopEquivalence certificate
+  pushoutPullbackCompatibility_ready : pushoutPullbackCompatibility certificate
+
+/-- Product-gate readiness of one four-projection stable certificate. -/
+def StableFourProjectionCertificate.ready
+    {Q : SSet.QCat} (cert : StableFourProjectionCertificate Q) : Prop :=
+  cert.finiteLimits cert.certificate ∧
+    cert.finiteColimits cert.certificate ∧
+    cert.suspensionLoopEquivalence cert.certificate ∧
+    cert.pushoutPullbackCompatibility cert.certificate
+
+/-- The four readiness fields of a stable certificate imply its product-gate readiness. -/
+theorem StableFourProjectionCertificate.ready_of_fields
+    {Q : SSet.QCat} (cert : StableFourProjectionCertificate Q) :
+    cert.ready := by
+  exact ⟨cert.finiteLimits_ready, cert.finiteColimits_ready,
+    cert.suspensionLoopEquivalence_ready, cert.pushoutPullbackCompatibility_ready⟩
+
+/-- The ordinary infinity-category evidence currently exposed for `Dbounded`. -/
+structure Dbounded.OrdinaryInfinityContext
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type (max u v) where
+  quasicategory : SSet.Quasicategory (Dbounded.infinityNerve C)
+  homotopyCategoryIso : SSet.hoFunctor.obj (Dbounded.infinityNerve C) ≅ Cat.of (Dbounded C)
+
+/-- Assemble the current ordinary `Dbounded` infinity-category context. -/
+noncomputable def Dbounded.currentOrdinaryInfinityContext
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    Dbounded.OrdinaryInfinityContext C where
+  quasicategory := Dbounded.infinityNerve_quasicategory (C := C)
+  homotopyCategoryIso := Dbounded.homotopyCategoryIso (C := C)
+
+/-- A four-projection stable certificate specifically for `Dbounded.infinityCategory`. -/
+abbrev Dbounded.StableFourProjectionCertificate
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type 2 :=
+  LeanLCAExactChallenge.StableFourProjectionCertificate (Dbounded.infinityCategory C)
+
+/--
+Stable route attempts for the bounded derived infinity-category gate. The current ordinary
+context is kept separate from a full four-projection certificate so that ordinary nerve evidence
+does not automatically satisfy the stable gate.
+-/
+inductive Dbounded.StableRouteAttempt
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type (max (max u v) 2) where
+  | ordinaryOnly : Dbounded.OrdinaryInfinityContext C → Dbounded.StableRouteAttempt C
+  | fullCertificate :
+      Dbounded.StableFourProjectionCertificate C → Dbounded.StableRouteAttempt C
+
+/-- Boolean review gate for stable route attempts. -/
+def Dbounded.StableRouteAttempt.accepted
+    {C : Type u} [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    Dbounded.StableRouteAttempt C → Bool
+  | .ordinaryOnly _ => false
+  | .fullCertificate _ => true
+
+/-- The current local route is the ordinary-context branch. -/
+noncomputable def Dbounded.currentOrdinaryStableRouteAttempt
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    Dbounded.StableRouteAttempt C :=
+  .ordinaryOnly (Dbounded.currentOrdinaryInfinityContext C)
+
+/-- The current ordinary-context route is not accepted by the stable gate. -/
+theorem Dbounded.currentOrdinaryStableRouteAttempt_rejected
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] :
+    Dbounded.StableRouteAttempt.accepted (Dbounded.currentOrdinaryStableRouteAttempt C) = false :=
+  rfl
+
+/-- A full four-projection certificate is accepted by the stable gate. -/
+theorem Dbounded.fullStableCertificateRoute_accepted
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] (cert : Dbounded.StableFourProjectionCertificate C) :
+    Dbounded.StableRouteAttempt.accepted (C := C) (.fullCertificate cert) = true :=
+  rfl
+
+/-- Names of the four stable projection fields consumed by the gate. -/
+def Dbounded.requiredStableProjectionFieldNames : List String :=
+  ["finiteLimits", "finiteColimits", "suspensionLoopEquivalence",
+    "pushoutPullbackCompatibility"]
+
+/-- The stable `Dbounded` gate consumes exactly four projection fields. -/
+theorem Dbounded.requiredStableProjectionFieldNames_count :
+    Dbounded.requiredStableProjectionFieldNames.length = 4 :=
+  rfl
+
 /-- Checked abelian-category comparison target provided by mathlib. -/
 abbrev abelianDerivedCategory (A : Type u) [Category.{v} A] [Abelian A]
     [HasDerivedCategory.{v} A] : Type (max u v) :=
