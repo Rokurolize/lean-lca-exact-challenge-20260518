@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v366-w466-quotient-identification-to-strict-snake",
-  "generated_utc": "2026-05-21T02:51:00Z",
-  "source_tree_hash": "ff0dca2332d84b77c1cbfd21e0c04fd7ac8cab2b09eaad89ecdb85b467a775bc",
-  "summary": "W474 focused support verified and recorded as nonterminal frontier progress; product success remains false.",
+  "generated_utc": "2026-05-21T03:01:00Z",
+  "source_tree_hash": "795177f4d618fbcec6cd326518aaed55c69fa43c1748c1bda8fb01a4a301f988",
+  "summary": "W475 focused support verified and recorded as nonterminal frontier progress; product success remains false.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -2638,6 +2638,21 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_selected_component_exact_acyclic_v370_support_w474.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found under W474 support file."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean",
+      "status": "passed",
+      "evidence": "Focused W475 support file passed with exit=0."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean",
+      "status": "passed",
+      "evidence": "No sorry/admit/axiom placeholders were found in W475 support file."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_w426_left_closed_projection_fields_exact_acyclic_v370_support_w475.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under W475 support file."
     }
   ],
   "implemented_declarations_checked": [
@@ -3690,20 +3705,22 @@
     "wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w473",
     "exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_closedRangePointIdentifications_w473",
     "wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w474",
-    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_selectedComponentCoforks_w474"
+    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_selectedComponentCoforks_w474",
+    "wppOp_lca_colimitMap_injective_inducing_closedImage_of_w426Promotion_w475",
+    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_w426Promotion_and_projectionFields_w475"
   ],
   "product_complete": false,
   "known_gaps": [
-    "W474の実適用には、W426 ordinaryEqualsCanonicalColimitMap証明が必要である。",
-    "W474/W472の実適用には、selected component cofork IsColimit証明三つが必要である。",
+    "W475の実適用には、W426 promotion/equality inputsを実際のfinal call siteへinstantiateする必要がある。",
+    "W475の実適用には、projection component IsColimit fieldsを実際のfinal call siteへ供給する必要がある。",
     "W465の実適用には、W426 quotient compatibilityとW387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
-  "support_result_classification": "W474 is a checked W426-promotion plus W472-selected-component reducer; it does not construct the actual ordinary/canonical equality or selected component cofork colimits.",
+  "support_result_classification": "W475 is a checked W426-promotion plus W464-projection-fields reducer; it does not construct the actual final call-site inputs.",
   "product_success": false,
   "remaining_work": [
-    "W474の実適用には、W426 ordinaryEqualsCanonicalColimitMap証明が必要である。",
-    "W474/W472の実適用には、selected component cofork IsColimit証明三つが必要である。",
+    "W475の実適用には、W426 promotion/equality inputsを実際のfinal call siteへinstantiateする必要がある。",
+    "W475の実適用には、projection component IsColimit fieldsを実際のfinal call siteへ供給する必要がある。",
     "W465の実適用には、W426 quotient compatibilityとW387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
