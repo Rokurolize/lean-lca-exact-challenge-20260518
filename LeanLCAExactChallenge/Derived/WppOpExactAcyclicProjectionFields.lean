@@ -5913,4 +5913,340 @@ end Checks
 
 end WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510
 
+namespace MetrizableLCA
+
+/-- W511 relation-pullback equality for descended quotient topology facts. -/
+abbrev relationPreimagePullbackConditionW511
+    {A B A' B' : MetrizableLCA.{0}} (f g : A ⟶ B) (f' g' : A' ⟶ B')
+    (iB : B ⟶ B') : Prop :=
+  AddSubgroup.comap iB.hom.toAddMonoidHom (cokernelSubgroup (f' - g')) =
+    cokernelSubgroup (f - g)
+
+/-- The relation-pullback equality gives the reverse preimage direction. -/
+theorem relationPreimageReverseOfPullbackConditionW511
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iB : B ⟶ B')
+    (hpullback : relationPreimagePullbackConditionW511 f g f' g' iB) :
+    ∀ b : B, iB b ∈ cokernelSubgroup (f' - g') →
+      b ∈ cokernelSubgroup (f - g) := by
+  intro b hb
+  have hbcomap :
+      b ∈ AddSubgroup.comap iB.hom.toAddMonoidHom (cokernelSubgroup (f' - g')) := hb
+  simpa [relationPreimagePullbackConditionW511] using (hpullback ▸ hbcomap)
+
+/-- Compatible squares plus relation pullback give exact relation preimage. -/
+theorem relationPreimageExactOfPullbackAndSquaresW511
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iA : A ⟶ A') (iB : B ⟶ B')
+    (hsquare_left : f ≫ iB = iA ≫ f')
+    (hsquare_right : g ≫ iB = iA ≫ g')
+    (hpullback : relationPreimagePullbackConditionW511 f g f' g' iB) :
+    ∀ b : B, iB b ∈ cokernelSubgroup (f' - g') ↔
+      b ∈ cokernelSubgroup (f - g) := by
+  intro b
+  exact
+    ⟨relationPreimageReverseOfPullbackConditionW511 iB hpullback b,
+      relationPreimageForwardOfSquaresW510 iA iB hsquare_left hsquare_right b⟩
+
+/-- Relation pullback and quotient compatibility make the descended quotient map injective. -/
+theorem ordinaryDescendedQuotientMap_injective_of_relationPullbackW511
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iA : A ⟶ A') (iB : B ⟶ B')
+    (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) ⟶
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _))
+    (hsquare_left : f ≫ iB = iA ≫ f')
+    (hsquare_right : g ≫ iB = iA ≫ g')
+    (hquotient :
+      quotientMap B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) ≫ descended =
+        iB ≫ quotientMap B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _))
+    (hpullback : relationPreimagePullbackConditionW511 f g f' g' iB) :
+    Function.Injective (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) →
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _)) := by
+  intro x y hxy
+  rcases quotientMap_surjective B (cokernelSubgroup (f - g))
+      (AddSubgroup.isClosed_topologicalClosure _) x with ⟨b, rfl⟩
+  rcases quotientMap_surjective B (cokernelSubgroup (f - g))
+      (AddSubgroup.isClosed_topologicalClosure _) y with ⟨c, rfl⟩
+  have hb :
+      descended
+          (quotientMap B (cokernelSubgroup (f - g))
+            (AddSubgroup.isClosed_topologicalClosure _) b) =
+        quotientMap B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _) (iB b) := by
+    exact congrArg (fun q : B ⟶ quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _) => q b) hquotient
+  have hc :
+      descended
+          (quotientMap B (cokernelSubgroup (f - g))
+            (AddSubgroup.isClosed_topologicalClosure _) c) =
+        quotientMap B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _) (iB c) := by
+    exact congrArg (fun q : B ⟶ quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _) => q c) hquotient
+  have htarget :
+      ((iB b : B') : B' ⧸ cokernelSubgroup (f' - g')) =
+        ((iB c : B') : B' ⧸ cokernelSubgroup (f' - g')) := by
+    simpa [quotientMap_apply] using hb.symm.trans (hxy.trans hc)
+  have htarget_sub :
+      ((iB (b - c) : B') : B' ⧸ cokernelSubgroup (f' - g')) = 0 := by
+    have hsub :
+        ((iB b : B') : B' ⧸ cokernelSubgroup (f' - g')) -
+            ((iB c : B') : B' ⧸ cokernelSubgroup (f' - g')) = 0 :=
+      sub_eq_zero.mpr htarget
+    simpa [map_sub] using hsub
+  have htarget_mem : iB (b - c) ∈ cokernelSubgroup (f' - g') := by
+    exact (QuotientAddGroup.eq_zero_iff (iB (b - c))).mp htarget_sub
+  have hsource_mem : b - c ∈ cokernelSubgroup (f - g) :=
+    (relationPreimageExactOfPullbackAndSquaresW511
+      iA iB hsquare_left hsquare_right hpullback (b - c)).mp htarget_mem
+  exact QuotientAddGroup.eq_iff_sub_mem.mpr hsource_mem
+
+/-- A closed descended quotient map is a closed embedding once relation pullback gives injectivity. -/
+theorem ordinaryDescendedQuotientMap_closedEmbedding_of_relationPullback_closedMapW511
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iA : A ⟶ A') (iB : B ⟶ B')
+    (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) ⟶
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _))
+    (hsquare_left : f ≫ iB = iA ≫ f')
+    (hsquare_right : g ≫ iB = iA ≫ g')
+    (hquotient :
+      quotientMap B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) ≫ descended =
+        iB ≫ quotientMap B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _))
+    (hpullback : relationPreimagePullbackConditionW511 f g f' g' iB)
+    (hclosedMap : IsClosedMap (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) →
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _))) :
+    IsClosedEmbedding (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) →
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _)) :=
+  IsClosedEmbedding.of_continuous_injective_isClosedMap descended.hom.continuous
+    (ordinaryDescendedQuotientMap_injective_of_relationPullbackW511
+      iA iB descended hsquare_left hsquare_right hquotient hpullback)
+    hclosedMap
+
+/-- Relation pullback plus closed-map input gives the three topology facts for a descended quotient map. -/
+theorem ordinaryDescendedQuotientMap_topologyFacts_of_relationPullback_closedMapW511
+    {A B A' B' : MetrizableLCA.{0}} {f g : A ⟶ B} {f' g' : A' ⟶ B'}
+    (iA : A ⟶ A') (iB : B ⟶ B')
+    (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) ⟶
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _))
+    (hsquare_left : f ≫ iB = iA ≫ f')
+    (hsquare_right : g ≫ iB = iA ≫ g')
+    (hquotient :
+      quotientMap B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) ≫ descended =
+        iB ≫ quotientMap B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _))
+    (hpullback : relationPreimagePullbackConditionW511 f g f' g' iB)
+    (hclosedMap : IsClosedMap (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) →
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _))) :
+    Function.Injective (descended :
+      quotientObj B (cokernelSubgroup (f - g))
+        (AddSubgroup.isClosed_topologicalClosure _) →
+      quotientObj B' (cokernelSubgroup (f' - g'))
+        (AddSubgroup.isClosed_topologicalClosure _)) ∧
+      IsInducing (descended :
+        quotientObj B (cokernelSubgroup (f - g))
+          (AddSubgroup.isClosed_topologicalClosure _) →
+        quotientObj B' (cokernelSubgroup (f' - g'))
+          (AddSubgroup.isClosed_topologicalClosure _)) ∧
+        IsClosed (Set.range (descended :
+          quotientObj B (cokernelSubgroup (f - g))
+            (AddSubgroup.isClosed_topologicalClosure _) →
+          quotientObj B' (cokernelSubgroup (f' - g'))
+            (AddSubgroup.isClosed_topologicalClosure _))) := by
+  have hclosedEmbedding :=
+    ordinaryDescendedQuotientMap_closedEmbedding_of_relationPullback_closedMapW511
+      iA iB descended hsquare_left hsquare_right hquotient hpullback hclosedMap
+  exact
+    ⟨ordinaryDescendedQuotientMap_injective_of_relationPullbackW511
+        iA iB descended hsquare_left hsquare_right hquotient hpullback,
+      hclosedEmbedding.toIsEmbedding.toIsInducing, hclosedEmbedding.isClosed_range⟩
+
+end MetrizableLCA
+
+namespace WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpW480SplitProvidersSelectedCokernelColimitV370SupportW492
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+open WppOpSelectedW461W451StyleClosureKernelRouteV370SupportW503
+open WppOpSelectedW461TransportedPointIsoProviderV370SupportW506
+open WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509
+open WppOpClosedNatTransOrdinaryDescendedQuotientV370SupportW510
+open WppOpExactAcyclicFrontierConsolidatedW318
+
+/-- Reproducible support seed for the W511 relation-pullback topology bridge. -/
+def supportSeedW511 : String :=
+  "w511-closed-nat-trans-relation-topology-boundary"
+
+/-- Relation-pullback equality needed for the concrete W510 descended quotient map. -/
+abbrev ClosedNatTransOrdinaryRelationPullbackConditionW511
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) : Prop :=
+  MetrizableLCA.relationPreimagePullbackConditionW511
+    (wppOpLeftW441 X) (wppOpRightW441 X)
+    (wppOpLeftW441 Y) (wppOpRightW441 Y)
+    ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one)
+
+/-- W511 separated inputs for the topology facts of the concrete W510 descended map. -/
+structure ClosedNatTransOrdinaryRelationTopologyInputsW511
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (α : X ⟶ Y) : Type 1 where
+  relation_pullback : ClosedNatTransOrdinaryRelationPullbackConditionW511 α
+  descended_closedMap :
+    IsClosedMap (ordinaryDescendedOfWppOpNatTransW510 α :
+      wppOpOrdinaryQuotientPointW441 X → wppOpOrdinaryQuotientPointW441 Y)
+
+/-- Provider surface for the remaining W511 relation-pullback and closed-map inputs. -/
+abbrev ClosedNatTransOrdinaryRelationTopologyProviderW511 : Type 1 :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      ClosedNatTransOrdinaryRelationTopologyInputsW511 α
+
+/-- W511 relation-pullback and closed-map inputs imply W510's topology facts. -/
+def closedNatTransOrdinaryTopologyFacts_of_relationTopology_w511
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+    (hinputs : ClosedNatTransOrdinaryRelationTopologyInputsW511 α) :
+    ClosedNatTransOrdinaryTopologyFactsW510 α := by
+  have htop :=
+    MetrizableLCA.ordinaryDescendedQuotientMap_topologyFacts_of_relationPullback_closedMapW511
+      ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.zero)
+      ((ordinaryMapOfWppOpNatTransW506 α).app WalkingParallelPair.one)
+      (ordinaryDescendedOfWppOpNatTransW510 α)
+      (ordinarySquareLeftW510 α)
+      (ordinarySquareRightW510 α)
+      (ordinaryDescendedOfWppOpNatTrans_quotient_compat_w510 α)
+      hinputs.relation_pullback
+      hinputs.descended_closedMap
+  exact
+    { descended_injective := htop.1
+      descended_inducing := htop.2.1
+      descended_range_closed := htop.2.2 }
+
+/-- W511 relation-topology provider completes W510's topology-facts provider. -/
+def closedNatTransOrdinaryTopologyFactsProvider_of_relationTopology_w511
+    (hinputs : ClosedNatTransOrdinaryRelationTopologyProviderW511) :
+    ClosedNatTransOrdinaryTopologyFactsProviderW510 :=
+  fun X Y α hclosed =>
+    closedNatTransOrdinaryTopologyFacts_of_relationTopology_w511
+      (hinputs X Y α hclosed)
+
+/-- W511 endpoint with the selected cokernel-colimit provider. -/
+def exactAcyclic_of_relationTopology_and_selectedCokernelColimit_w511
+    (hinputs : ClosedNatTransOrdinaryRelationTopologyProviderW511)
+    (hselected : SelectedCokernelColimitProviderW492) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_topologyFacts_and_selectedCokernelColimit_w510
+    (closedNatTransOrdinaryTopologyFactsProvider_of_relationTopology_w511 hinputs) hselected
+
+/-- W511 endpoint with W499's mapped-explicit-cokernel preservation input. -/
+def exactAcyclic_of_relationTopology_and_mappedExplicitCokernelCoforks_w511
+    (hinputs : ClosedNatTransOrdinaryRelationTopologyProviderW511)
+    (hMapped : ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_topologyFacts_and_mappedExplicitCokernelCoforks_w510
+    (closedNatTransOrdinaryTopologyFactsProvider_of_relationTopology_w511 hinputs) hMapped
+
+/-- W511 endpoint with W503's closure-kernel preservation input. -/
+def exactAcyclic_of_relationTopology_and_closureKernelProvider_w511
+    (hinputs : ClosedNatTransOrdinaryRelationTopologyProviderW511)
+    (hClosure : MappedExplicitCokernelClosureKernelProviderW503) :
+    exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_of_topologyFacts_and_closureKernelProvider_w510
+    (closedNatTransOrdinaryTopologyFactsProvider_of_relationTopology_w511 hinputs) hClosure
+
+/-- W511 checked nonterminal state. -/
+structure ClosedNatTransOrdinaryRelationTopologyV370SupportStateW511 : Type where
+  seed : String
+  declarations : List String
+  genericTopologyBridgeResult : String
+  providerAdapterResult : String
+  selectedCokernelRouteResult : String
+  closureKernelRouteResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W511 state. -/
+def currentClosedNatTransOrdinaryRelationTopologyV370SupportStateW511 :
+    ClosedNatTransOrdinaryRelationTopologyV370SupportStateW511 where
+  seed := supportSeedW511
+  declarations :=
+    ["MetrizableLCA.relationPreimagePullbackConditionW511",
+      "MetrizableLCA.relationPreimageExactOfPullbackAndSquaresW511",
+      "MetrizableLCA.ordinaryDescendedQuotientMap_injective_of_relationPullbackW511",
+      "MetrizableLCA.ordinaryDescendedQuotientMap_closedEmbedding_of_relationPullback_closedMapW511",
+      "MetrizableLCA.ordinaryDescendedQuotientMap_topologyFacts_of_relationPullback_closedMapW511",
+      "ClosedNatTransOrdinaryRelationTopologyInputsW511",
+      "ClosedNatTransOrdinaryRelationTopologyProviderW511",
+      "closedNatTransOrdinaryTopologyFacts_of_relationTopology_w511",
+      "closedNatTransOrdinaryTopologyFactsProvider_of_relationTopology_w511",
+      "exactAcyclic_of_relationTopology_and_selectedCokernelColimit_w511",
+      "exactAcyclic_of_relationTopology_and_mappedExplicitCokernelCoforks_w511",
+      "exactAcyclic_of_relationTopology_and_closureKernelProvider_w511"]
+  genericTopologyBridgeResult := "proved"
+  providerAdapterResult := "proved"
+  selectedCokernelRouteResult := "proved"
+  closureKernelRouteResult := "proved"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRelationTopologyProviderW511",
+      "construct concrete MappedExplicitCokernelClosureKernelProviderW503",
+      "or construct selected cokernel-colimit provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentW511State :
+    ClosedNatTransOrdinaryRelationTopologyV370SupportStateW511 :=
+  currentClosedNatTransOrdinaryRelationTopologyV370SupportStateW511
+
+theorem currentClosedNatTransOrdinaryRelationTopologyStateW511_productSuccess :
+    currentW511State.productSuccessClaimed = false :=
+  rfl
+
+section Checks
+
+#check supportSeedW511
+#check MetrizableLCA.relationPreimagePullbackConditionW511
+#check MetrizableLCA.relationPreimageReverseOfPullbackConditionW511
+#check MetrizableLCA.relationPreimageExactOfPullbackAndSquaresW511
+#check MetrizableLCA.ordinaryDescendedQuotientMap_injective_of_relationPullbackW511
+#check MetrizableLCA.ordinaryDescendedQuotientMap_closedEmbedding_of_relationPullback_closedMapW511
+#check MetrizableLCA.ordinaryDescendedQuotientMap_topologyFacts_of_relationPullback_closedMapW511
+#check ClosedNatTransOrdinaryRelationPullbackConditionW511
+#check ClosedNatTransOrdinaryRelationTopologyInputsW511
+#check ClosedNatTransOrdinaryRelationTopologyProviderW511
+#check closedNatTransOrdinaryTopologyFacts_of_relationTopology_w511
+#check closedNatTransOrdinaryTopologyFactsProvider_of_relationTopology_w511
+#check exactAcyclic_of_relationTopology_and_selectedCokernelColimit_w511
+#check exactAcyclic_of_relationTopology_and_mappedExplicitCokernelCoforks_w511
+#check exactAcyclic_of_relationTopology_and_closureKernelProvider_w511
+#check currentClosedNatTransOrdinaryRelationTopologyStateW511_productSuccess
+
+end Checks
+
+end WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
+
 end LeanLCAExactChallenge
