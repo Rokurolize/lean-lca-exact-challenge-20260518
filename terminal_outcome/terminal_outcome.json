@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W501でselected W461 providerの入力を、具体的なW318 leg compatibility付きpoint-identification call-site fieldsへさらに縮約した。W500のpoint-identification providerへ接続し、W498/W499の経路へ合成できる。まだ具体leg providerとpreservation入力は未証明なのでproduct_successは主張しない。",
+  "summary": "W502でW451-styleのquotient-map compatibility、point identification、具体W318 leg compatibility fieldsからW478 point-identification packageを構成し、W501とW498/W499の経路へ接続した。まだ具体W451-style providerとpreservation入力は未証明なのでproduct_successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_w461_to_w441_promotion_fields_v370_support_w478.lean",
@@ -585,7 +585,8 @@
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W494)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W497)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W500 comment fix)",
-    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W501)"
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W501)",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (expected failed_nonterminal product gate after W502)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1639,7 +1640,7 @@
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
-  "git_commit": "18be898e2629",
+  "git_commit": "590c331c8138",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W495/W496/W497 were integrated by the parent in the target tree; no new workers were launched. The preservation route is reduced to mapped explicit cokernel cofork colimits.",
   "claim_review_result": "未実施",
@@ -2563,8 +2564,8 @@
     "exactAcyclic_of_selectedW461PointIdentification_and_mappedExplicitCokernelCoforks_w500",
     "currentSelectedW461PointIdentificationRouteStateW500_productSuccess"
   ],
-  "generated_utc": "2026-05-21T09:20:14Z",
-  "support_result_classification": "nonterminal concrete-leg factoring",
+  "generated_utc": "2026-05-21T09:29:53Z",
+  "support_result_classification": "nonterminal W451-style factoring",
   "implemented_declarations_checked": [
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportCompatibilitySquaresOfBiprodXIso",
     "LeanLCAExactChallenge.ShortComplexBiprodTransportConstructorW138.transportConstructorFieldsOfBiprodXIso",
@@ -3548,7 +3549,7 @@
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "construct concrete SelectedW461ConcreteLegProviderW501 from W426/W387/W390/W451-style data",
+    "construct concrete SelectedW461W451StyleProviderW502 from W426/W387/W390/W451-style data",
     "prove the selected cokernel-colimit or mapped explicit cokernel cofork colimit preservation input",
     "run final product audit only after terminal_outcome can be product_success"
   ]

@@ -405,6 +405,19 @@ namespace WppOpSelectedW461ConcreteLegRouteV370SupportW501
 
 end WppOpSelectedW461ConcreteLegRouteV370SupportW501
 
+namespace WppOpSelectedW461W451StyleRouteV370SupportW502
+
+#check SelectedW461W451StyleCallSiteInputsW502
+#check pointIdentificationInputs_of_w451Style_w502
+#check selectedConcreteLegInputs_of_w451Style_w502
+#check SelectedW461W451StyleProviderW502
+#check selectedConcreteLegProvider_of_w451Style_w502
+#check exactAcyclic_of_selectedW461W451Style_and_selectedCokernelColimit_w502
+#check exactAcyclic_of_selectedW461W451Style_and_mappedExplicitCokernelCoforks_w502
+#check currentSelectedW461W451StyleRouteStateW502_productSuccess
+
+end WppOpSelectedW461W451StyleRouteV370SupportW502
+
 /-
 Exact-category Ext is defined directly from the local conflation interface and
 positive degrees are quotient groups of formal Yoneda chains by local relation
