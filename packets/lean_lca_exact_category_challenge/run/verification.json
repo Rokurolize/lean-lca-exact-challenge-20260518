@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-v366-w466-quotient-identification-to-strict-snake",
-  "generated_utc": "2026-05-21T02:18:00Z",
-  "source_tree_hash": "61848aeece1ac8822a99f3991e4c16ea138f1b412f63aca46cc9cd5a8c839e8f",
-  "summary": "W471 focused support verified and recorded as nonterminal frontier progress; product success remains false.",
+  "generated_utc": "2026-05-21T02:32:00Z",
+  "source_tree_hash": "86e3645436279e26a5bb9da5cc5d78ef81cf82dd6eefe888cac91c7d6a1826dc",
+  "summary": "W472 focused support verified and recorded as nonterminal frontier progress; product success remains false.",
   "commands": [
     {
       "command": "lake build LeanLCAExactChallenge.LCA.StrictExact",
@@ -2593,6 +2593,21 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_component_colimit_comparison_exact_acyclic_v370_support_w471.lean",
       "status": "passed",
       "evidence": "No forbidden Lean tokens found under W471 support file."
+    },
+    {
+      "command": "lake env lean audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean",
+      "status": "passed",
+      "evidence": "Focused W472 selected-component-coforks exact-acyclic support file passed with exit=0."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean",
+      "status": "passed",
+      "evidence": "No sorry/admit/axiom placeholders were found in W472 support file."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_selected_component_coforks_exact_acyclic_v370_support_w472.lean",
+      "status": "passed",
+      "evidence": "No forbidden Lean tokens found under W472 support file."
     }
   ],
   "implemented_declarations_checked": [
@@ -3637,22 +3652,24 @@
     "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_closedRangePointIdentifications_w470",
     "selectedProjectionComponentIsColimitInputs_of_componentColimitComparison_w471",
     "addCommGrpStrictKernelExactBoundary_of_componentColimitComparison_w471",
-    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_componentColimitComparison_w471"
+    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_componentColimitComparison_w471",
+    "SelectedComponentCoforkIsColimitInputsW472",
+    "selectedProjectionComponentIsColimitInputs_of_selectedComponentCoforks_w472",
+    "addCommGrpStrictKernelExactBoundary_of_selectedComponentCoforks_w472",
+    "exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_selectedComponentCoforks_w472"
   ],
   "product_complete": false,
   "known_gaps": [
-    "W471の実適用には、selected component cofork IsColimit証明三つが必要である。",
-    "W471の実適用には、明示quotient cofork IsColimit証明三つが必要である。",
-    "W471のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
+    "W472の実適用には、selected component cofork IsColimit証明三つ（π₁/π₂/π₃）が必要である。",
+    "W472のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
     "W465の実適用には、W426 ordinary descended map、W426 quotient compatibility、W387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
-  "support_result_classification": "W471 is a checked component-colimit-comparison-to-exact-acyclic reducer; it does not construct the actual six colimit proofs or left closed-embedding input.",
+  "support_result_classification": "W472 is a checked selected-component-coforks-to-exact-acyclic reducer; it does not construct the actual three cofork colimit proofs or left closed-embedding input.",
   "product_success": false,
   "remaining_work": [
-    "W471の実適用には、selected component cofork IsColimit証明三つが必要である。",
-    "W471の実適用には、明示quotient cofork IsColimit証明三つが必要である。",
-    "W471のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
+    "W472の実適用には、selected component cofork IsColimit証明三つ（π₁/π₂/π₃）が必要である。",
+    "W472のexact-acyclic closure theoremにはW318/W464左LCA closed-embedding入力wppOp_lca_colimitMap_injective_inducing_closedImageがまだ必要である。",
     "W465の実適用には、W426 ordinary descended map、W426 quotient compatibility、W387 source/target point-identification target-leg equationsがまだ必要である。",
     "W426/W387/W390 concrete alignment declarationsをfinal importable namespaceへ昇格・接続する作業が残っている。"
   ],
