@@ -1,6 +1,8 @@
 import LeanLCAExactChallenge.LCA.Cokernel
 import Mathlib.Algebra.Category.Grp.Colimits
 import Mathlib.Algebra.Category.Grp.Kernels
+import Mathlib.CategoryTheory.Preadditive.LeftExact
+import Mathlib.Topology.Defs.Induced
 
 /-!
 Forgetting an LCA cokernel to abelian groups.
@@ -19,6 +21,7 @@ namespace LeanLCAExactChallenge
 
 open CategoryTheory
 open CategoryTheory.Limits
+open Topology
 
 namespace MetrizableLCA
 
@@ -45,6 +48,60 @@ theorem forgottenAlgebraicRange_le_cokernelSubgroup {X Y : MetrizableLCA.{0}}
   intro y hy
   rw [cokernelSubgroup_eq_forgottenAlgebraicRange_closure f]
   exact AddSubgroup.le_topologicalClosure _ hy
+
+/-- The forgotten algebraic range subgroup has carrier `Set.range f`. -/
+theorem mem_forgottenAlgebraicRangeSubgroup_iff {X Y : MetrizableLCA.{0}}
+    (f : X ⟶ Y) (y : Y) :
+    y ∈ forgottenAlgebraicRangeSubgroup f ↔ y ∈ Set.range (f : X → Y) := by
+  constructor
+  · intro hy
+    rcases hy with ⟨x, _hx, rfl⟩
+    exact ⟨x, rfl⟩
+  · rintro ⟨x, rfl⟩
+    exact ⟨x, trivial, rfl⟩
+
+/-- Closedness of the underlying set range gives closedness of the forgotten algebraic range. -/
+theorem isClosed_forgottenAlgebraicRangeSubgroup_of_isClosed_range
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosed : IsClosed (Set.range (f : X → Y))) :
+    IsClosed (forgottenAlgebraicRangeSubgroup f : Set Y) := by
+  rwa [Set.ext_iff.mpr (mem_forgottenAlgebraicRangeSubgroup_iff f)]
+
+/-- A closed underlying range identifies the algebraic and closed LCA cokernel subgroups. -/
+theorem forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosed_range
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosed : IsClosed (Set.range (f : X → Y))) :
+    forgottenAlgebraicRangeSubgroup f = cokernelSubgroup f := by
+  apply le_antisymm
+  · exact forgottenAlgebraicRange_le_cokernelSubgroup f
+  · rw [cokernelSubgroup_eq_forgottenAlgebraicRange_closure f]
+    apply AddSubgroup.topologicalClosure_minimal
+    · intro y hy
+      exact hy
+    · exact isClosed_forgottenAlgebraicRangeSubgroup_of_isClosed_range f hclosed
+
+/-- Reversed orientation of the closed-range equality. -/
+theorem cokernelSubgroup_eq_forgottenAlgebraicRangeSubgroup_of_isClosed_range
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosed : IsClosed (Set.range (f : X → Y))) :
+    cokernelSubgroup f = forgottenAlgebraicRangeSubgroup f :=
+  (forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosed_range f hclosed).symm
+
+/-- A closed map has closed full image, hence supplies the closed-range equality. -/
+theorem forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosedMap
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosedMap : IsClosedMap (f : X → Y)) :
+    forgottenAlgebraicRangeSubgroup f = cokernelSubgroup f := by
+  refine forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosed_range f ?_
+  simpa [Set.image_univ] using hclosedMap Set.univ isClosed_univ
+
+/-- A closed embedding supplies the closed-range equality. -/
+theorem forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosedEmbedding
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosedEmbedding : IsClosedEmbedding (f : X → Y)) :
+    forgottenAlgebraicRangeSubgroup f = cokernelSubgroup f :=
+  forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosed_range f
+    hclosedEmbedding.isClosed_range
 
 /-- The forgotten explicit LCA cokernel projection. -/
 abbrev forgottenCokernelπ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
@@ -270,6 +327,39 @@ def forgottenMappedExplicitCokernelCoconeIsColimit_of_forgottenAlgebraicRange_eq
   forgottenMappedExplicitCokernelCoconeIsColimit_of_closureKernelInput f
     { closure_le_ker_of_comp_zero := fun k hk =>
         closureKernel_of_forgottenAlgebraicRange_eq_cokernelSubgroup f hRange k hk }
+
+/-- Closed range gives the W433-shaped mapped explicit cokernel cocone colimit. -/
+def forgottenMappedExplicitCokernelCoconeIsColimit_of_isClosed_range
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosed : IsClosed (Set.range (f : X → Y))) :
+    IsColimit (forgottenMappedExplicitCokernelCocone f) :=
+  forgottenMappedExplicitCokernelCoconeIsColimit_of_forgottenAlgebraicRange_eq f
+    (forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosed_range f hclosed)
+
+/-- Closed-map variant of the W433-shaped mapped explicit cokernel cocone colimit. -/
+def forgottenMappedExplicitCokernelCoconeIsColimit_of_isClosedMap
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosedMap : IsClosedMap (f : X → Y)) :
+    IsColimit (forgottenMappedExplicitCokernelCocone f) :=
+  forgottenMappedExplicitCokernelCoconeIsColimit_of_forgottenAlgebraicRange_eq f
+    (forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosedMap f hclosedMap)
+
+/-- Closed-embedding variant of the W433-shaped mapped explicit cokernel cocone colimit. -/
+def forgottenMappedExplicitCokernelCoconeIsColimit_of_isClosedEmbedding
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosedEmbedding : IsClosedEmbedding (f : X → Y)) :
+    IsColimit (forgottenMappedExplicitCokernelCocone f) :=
+  forgottenMappedExplicitCokernelCoconeIsColimit_of_forgottenAlgebraicRange_eq f
+    (forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosedEmbedding f hclosedEmbedding)
+
+/-- Closed range makes the forgetful functor preserve the cokernel of `f`. -/
+@[reducible] def preservesCokernelOf_isClosed_range
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hclosed : IsClosed (Set.range (f : X → Y))) :
+    PreservesColimit (parallelPair f 0) underlyingAddCommGrpFunctor :=
+  preservesColimit_of_preserves_colimit_cocone
+    (cokernelIsColimit f)
+    (forgottenMappedExplicitCokernelCoconeIsColimit_of_isClosed_range f hclosed)
 
 end MetrizableLCA
 

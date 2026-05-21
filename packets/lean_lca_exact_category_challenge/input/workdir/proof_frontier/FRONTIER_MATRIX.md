@@ -726,3 +726,12 @@ v228 closes the two concrete transported-fan projection naturality equations in 
 - effect: W433's mapped explicit cokernel cocone now has an importable `IsColimit` theorem from `MetrizableLCA.ClosureKernelInput`.
 - remaining blockers: build `ClosureKernelInput` for the actual WPP-op difference morphism, then connect it through W435; separately promote W426's ordinary map package and prove equality to the W318 canonical WPP-op colimit map.
 - product_complete: false
+
+## W442 W443 Closed Range Forgotten Cokernel API
+
+- timestamp: `2026-05-21T00:36:45Z`
+- artifacts: `LeanLCAExactChallenge/LCA/ForgottenCokernel.lean`, `audit/RequiredDeclarations.lean`, `audit/ProductSuccessDeclarations.lean`
+- verified: `lake env lean LeanLCAExactChallenge/LCA/ForgottenCokernel.lean`; `lake build LeanLCAExactChallenge.LCA.ForgottenCokernel`; `lake build LeanLCAExactChallenge`; `lake env lean audit/RequiredDeclarations.lean`; `lake env lean audit/ProductSuccessDeclarations.lean`; `lake env lean audit/blockers/addcommgrp_w433_mapped_cocone_closed_range_bridge_v370_support_w442.lean`; `lake env lean audit/blockers/addcommgrp_cokernel_range_equality_from_closed_map_v370_support_w443.lean`
+- effect: W443's closed-range equality and W442's mapped explicit cokernel cocone bridge are now importable core API via `MetrizableLCA.forgottenAlgebraicRangeSubgroup_eq_cokernelSubgroup_of_isClosed_range`, `MetrizableLCA.forgottenMappedExplicitCokernelCoconeIsColimit_of_isClosed_range`, and `MetrizableLCA.preservesCokernelOf_isClosed_range`.
+- remaining blockers: prove closed range, closed map, or an equivalent closure-kernel certificate for the actual WPP-op difference morphism; then connect it to the selected short-complex target row. The W426 ordinary descended map package still must be aligned with W318's canonical colimit map.
+- product_complete: false

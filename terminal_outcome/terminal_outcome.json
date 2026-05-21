@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W438/W440支援を取り込み、W433型の忘却mapped explicit cokernel coconeがclosure-kernel入力からAddCommGrpCatでcolimitingになることを本体APIとして追加した。W439/W441はW426 ordinary map promotionとW318 canonical map alignmentの未完了frontierとして分類した。実際のWPP-op差分射に対するclosure-kernel入力とmap alignmentはまだ未証明なので、product successは主張しない。",
+  "summary": "W442/W443支援を検証して本体へ昇格し、閉レンジ仮定から忘却代数レンジとcokernel subgroupの一致、さらにW433型mapped explicit cokernel coconeのAddCommGrpCat colimit/preservationを使えるようにした。実際のWPP-op差分射に対する閉レンジまたはclosure-kernel入力、およびW426/W318のordinary対canonical map alignmentは未完了なのでproduct successは主張しない。",
   "verified_commands": [
     "lake env lean audit/blockers/equalizer_localization_transfer_boundary.lean",
     "lake env lean audit/blockers/opposite_localization_finite_colimits_boundary.lean",
@@ -611,7 +611,10 @@
     "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_mapped_explicit_cokernel_cocone_iscolimit_v370_support_w437.lean",
     "lake env lean LeanLCAExactChallenge/LCA/ForgottenCokernel.lean",
     "lake build LeanLCAExactChallenge.LCA.ForgottenCokernel",
-    "lake build LeanLCAExactChallenge"
+    "lake build LeanLCAExactChallenge",
+    "lake env lean audit/blockers/addcommgrp_w433_mapped_cocone_closed_range_bridge_v370_support_w442.lean",
+    "lake env lean audit/blockers/addcommgrp_cokernel_range_equality_from_closed_map_v370_support_w443.lean",
+    "lake env lean audit/blockers/wpp_op_w426_w318_ordinary_equals_canonical_v370_support_w444.lean"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.QuillenExactCategory",
@@ -1638,7 +1641,11 @@
     "任意のMetrizableLCA射について閉像または忘却coequalizer保存を仮定するglobal主張は避ける必要がある。",
     "四部構成の製品定理全体への統合はまだ完了していない。",
     "実際のWPP-op差分射についてMetrizableLCA.ClosureKernelInputを閉像または証明書から供給する必要がある。",
-    "W441のordinary map promotion支援を精査し、W426 ordinary descended quotient map packageをimport可能なAPIへ昇格する必要がある。"
+    "W441のordinary map promotion支援を精査し、W426 ordinary descended quotient map packageをimport可能なAPIへ昇格する必要がある。",
+    "実際のWPP-op差分射について、閉レンジ、閉写像、または同等のclosure-kernel入力をまだ証明していない。",
+    "W433/W442/W443の忘却cokernel preservation routeを選択されたshort-complex target rowへ接続する統合定理がまだない。",
+    "W426 ordinary descended quotient map packageとW318 canonical WPP-op colimit mapの同一性・輸送はまだ未完了。",
+    "W444はW426 ordinary descended mapとW318 canonical colimit mapの抽象等式ブリッジを与えるが、実際のW426 ordinary input packageの具体化と輸送はまだ未完了。"
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
