@@ -1498,3 +1498,15 @@
 <p><time>2026-05-21T01:17:45Z</time>: The parent recorded and verified <code>audit/blockers/addcommgrp_strict_snake_data_from_componentwise_cokernel_v370_support_w456.lean</code>. It composes the W452 componentwise selected cokernel route with the W453 strict-row adapter and produces <code>AddCommGrpStrictSnakeCokernelData (cs.pt.map (forget₂ MetrizableLCA AddCommGrpCat))</code>.</p>
 <p>This narrows the SnakeInput side: after the selected componentwise cokernel inputs are available, the remaining explicit data are the selected difference kernel row object, kernel map, zero equation, and <code>KernelFork</code> limit proof. Product success remains false until those are constructed and the componentwise projection-colimit inputs are proved.</p>
 </section>
+
+<section id="w457-component-closed-range-to-projection-iscolimit">
+<h2>W457 component closed range to projection IsColimit</h2>
+<p><time>2026-05-21T01:22:57Z</time>: The parent recorded and verified <code>audit/blockers/addcommgrp_component_closed_range_to_projection_iscolimit_v370_support_w457.lean</code>. It proves that the three projected mapped selected coforks have the expected AddCommGrp component projections and records the exact <code>SelectedProjectionComponentIsColimitInputs</code> shape needed by W455/W452.</p>
+<p>The result is intentionally partial. Closed-range preservation gives an explicit quotient cokernel, but W455 needs the selected cocone point <code>cs.pt.Xᵢ</code>. The remaining proof is therefore either a direct <code>IsColimit</code> proof for each selected component cofork or an identification of the selected component leg with <code>MetrizableLCA.cokernelπ</code> for the corresponding component difference.</p>
+</section>
+
+<section id="w458-w426-w390-target-component-frontier">
+<h2>W458 W426 W390 target component frontier</h2>
+<p><time>2026-05-21T01:22:57Z</time>: The parent recorded and verified <code>audit/blockers/wpp_op_w426_w390_target_component_frontier_v370_support_w458.lean</code>. It reduces W318 conjugated-leg compatibility for the concrete W451-style transported descended map to a single ordinary-target component equation; the ordinary-source component follows by WPP-op naturality.</p>
+<p>This tightens the W426/W390 map-alignment frontier. Product success still needs importable W426 quotient compatibility, W387 point identifications, the concrete W390 transported descended map, and the target-index equation derived from W390 pointwise conjugacy plus W426 quotient compatibility.</p>
+</section>
