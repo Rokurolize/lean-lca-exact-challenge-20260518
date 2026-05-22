@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
-  "generated_utc": "2026-05-22T16:04:57Z",
-  "source_tree_hash": "13213b91ad670b6c3772e33e43a82e342726a65d27fdd084956cd44c4f6d2b20",
-  "summary": "W585 propagates the W584 homotopy-equivalence invariance input into the direct bounded weak-equivalence consumers. It adds a direct equality theorem for boundedExactWeakEquivalence as the exact-acyclic homotopy trW inverse image using ExactAcyclicHomotopyEquivInvarianceInput, and adds direct left/right calculus theorems for boundedExactWeakEquivalence from the localized right/left adjunction routes without requiring callers to provide the opaque exactAcyclicHomotopyObject iso-closed typeclass. This is verified nonterminal support only: it does not prove homotopy-equivalence invariance, construct localized adjoints or unit/counit membership, prove isoClosure triangulated-closedness, close WPP boundary/provider data, or construct Dbounded triangulated fields.",
+  "generated_utc": "2026-05-22T16:14:05Z",
+  "source_tree_hash": "e53c3d82d9da30fa98053b73207cceaed4d024476123b241c720d4ea88973c87",
+  "summary": "W586 reduces exactAcyclic homotopy-equivalence invariance to homology detection of exact acyclicity. It adds ExactAcyclicHomologyDetectionInput, which requires homology existence, exactAcyclic implies zero homology, and zero homology implies exactAcyclic. Using HomotopyEquiv.toHomologyIso, it proves this input supplies ExactAcyclicHomotopyEquivInvarianceInput. This is verified nonterminal support only: it does not construct the homology-detection fields, prove strict topological exactness from zero homology, construct localized adjunction membership, prove isoClosure triangulated-closedness, close WPP boundary/provider data, or construct Dbounded triangulated fields.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -6790,6 +6790,21 @@
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "cycle_034_w585_product_success_declarations_lean.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "cycle_035_w586_bounded_source_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "cycle_035_w586_bounded_lake_build.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "cycle_035_w586_product_success_declarations_lean.log"
     }
   ],
   "implemented_declarations_checked": [
@@ -8843,7 +8858,11 @@
     "boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint",
     "boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_homotopyEquivLeftAdjoint",
     "Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585",
-    "Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585_count"
+    "Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585_count",
+    "ExactAcyclicHomologyDetectionInput",
+    "exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection",
+    "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586",
+    "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -8852,13 +8871,13 @@
     "construct concrete W517 compact-target provider data for the selected normalized route",
     "construct concrete W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data",
     "construct normalized strict-representative fixed-target localization data",
-    "prove exactAcyclic is invariant under homotopy equivalences of cochain complexes",
+    "construct homology existence/detection fields for exactAcyclic MetrizableLCA cochain complexes",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "support_result_classification": "nonterminal_homotopy_equiv_input_propagation",
+  "support_result_classification": "nonterminal_homology_detection_input_reduction",
   "product_success": false,
   "remaining_work": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
@@ -8866,14 +8885,14 @@
     "construct concrete W517 compact-target provider data for the selected normalized route",
     "construct concrete W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data",
     "construct normalized strict-representative fixed-target localization data",
-    "prove exactAcyclic is invariant under homotopy equivalences of cochain complexes",
+    "construct homology existence/detection fields for exactAcyclic MetrizableLCA cochain complexes",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W585 propagates the homotopy-equivalence invariance input to direct bounded weak-equivalence equality and left/right calculus consumers; product flags remain false.",
-  "latest_verified_increment": "W585 homotopy-equivalence input propagation to bounded calculus",
+  "summary_log_tail": "W586 uses HomotopyEquiv.toHomologyIso to reduce exact-acyclic homotopy-equivalence invariance to explicit homology-detection fields; product flags remain false.",
+  "latest_verified_increment": "W586 homology-detection route to exact-acyclic homotopy invariance",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -9169,6 +9188,13 @@
       "refreshed_utc": "2026-05-22T16:04:57Z",
       "source_tree_hash": "13213b91ad670b6c3772e33e43a82e342726a65d27fdd084956cd44c4f6d2b20",
       "latest_verified_increment": "W585 homotopy-equivalence input propagation to bounded calculus",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "Bounded source/build and ProductSuccessDeclarations passed before metadata refresh; full verifier is run after this refresh."
+    },
+    "w586_homology_detection_invariance_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T16:14:05Z",
+      "source_tree_hash": "e53c3d82d9da30fa98053b73207cceaed4d024476123b241c720d4ea88973c87",
+      "latest_verified_increment": "W586 homology-detection route to exact-acyclic homotopy invariance",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "Bounded source/build and ProductSuccessDeclarations passed before metadata refresh; full verifier is run after this refresh."
     }

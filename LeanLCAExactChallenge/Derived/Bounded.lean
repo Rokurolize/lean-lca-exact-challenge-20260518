@@ -441,6 +441,32 @@ structure ExactAcyclicHomotopyEquivInvarianceInput : Prop where
   exactAcyclic_of_homotopyEquiv :
     ∀ {K L : CochainComplex C ℤ}, HomotopyEquiv K L → exactAcyclic C K → exactAcyclic C L
 
+/-- Homology-level detection input for exact acyclicity. This separates the homotopy-invariant
+homology part from the strict exact-category/topological part. -/
+structure ExactAcyclicHomologyDetectionInput : Prop where
+  hasHomology : ∀ (K : CochainComplex C ℤ) (i : ℤ), K.HasHomology i
+  isZero_homology_of_exactAcyclic :
+    ∀ (K : CochainComplex C ℤ), exactAcyclic C K →
+      ∀ i : ℤ, letI : K.HasHomology i := hasHomology K i; IsZero (K.homology i)
+  exactAcyclic_of_isZero_homology :
+    ∀ (K : CochainComplex C ℤ),
+      (∀ i : ℤ, letI : K.HasHomology i := hasHomology K i; IsZero (K.homology i)) →
+        exactAcyclic C K
+
+/-- Homology detection of exact acyclicity implies invariance under homotopy equivalences:
+homotopy equivalences induce isomorphisms on homology. -/
+theorem exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (H : ExactAcyclicHomologyDetectionInput C) :
+    ExactAcyclicHomotopyEquivInvarianceInput C where
+  exactAcyclic_of_homotopyEquiv := by
+    intro K L e hK
+    apply H.exactAcyclic_of_isZero_homology
+    intro i
+    letI : K.HasHomology i := H.hasHomology K i
+    letI : L.HasHomology i := H.hasHomology L i
+    exact IsZero.of_iso (H.isZero_homology_of_exactAcyclic K hK i)
+      (HomotopyEquiv.toHomologyIso e i).symm
+
 /-- Homotopy-equivalence invariance of exact acyclicity implies that the homotopy-category
 exact-acyclic object predicate is closed under isomorphisms. -/
 theorem exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
@@ -3874,6 +3900,17 @@ def Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585 : 
 
 theorem Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585_count :
     Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585.length = 4 :=
+  rfl
+
+/-- MetrizableLCA homology-detection input names for proving homotopy-equivalence invariance
+of exact acyclicity. -/
+def Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "exactAcyclic implies zero homology in every degree",
+    "zero homology in every degree implies exactAcyclic"]
+
+theorem Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count :
+    Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586.length = 3 :=
   rfl
 
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/
