@@ -9796,6 +9796,111 @@ theorem
     sourceDifferenceLca
 
 /--
+Generic source-boundary form of the quotient/equalizer-cover W568
+limit-stability route. The boundary adapter can be any checked constructor of
+the pure LCA source-difference input, such as the W566 cokernel-top,
+cokernel-pi-zero, or Epi adapters.
+-/
+theorem metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceBoundary
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (rightOpenBoundary : Dbounded.MetrizableWppLimitRightOpenQuotientBoundary)
+    (sourceBoundary : SourceBoundary) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceDifference
+    rightOpenBoundary (sourceBoundaryToLca sourceBoundary)
+
+/--
+Generic source-boundary form of the closed quotient-cover W568
+limit-stability route.
+-/
+theorem
+    metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceBoundary
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (rightOpenBoundary :
+      Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary)
+    (sourceBoundary : SourceBoundary) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientCoverSourceDifference
+    rightOpenBoundary (sourceBoundaryToLca sourceBoundary)
+
+/-- Cokernel-top source-difference data supply the quotient-boundary W568 limit field. -/
+theorem
+    metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceDifferenceCokernelTopBoundary
+    (rightOpenBoundary : Dbounded.MetrizableWppLimitRightOpenQuotientBoundary)
+    (sourceBoundary : Dbounded.MetrizableWppLimitSourceDifferenceCokernelTopBoundary) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceBoundary
+    Dbounded.metrizableWppLimitSourceDifferenceLcaInput_of_cokernelTopBoundary
+    rightOpenBoundary sourceBoundary
+
+/-- Cokernel-pi-zero source-difference data supply the quotient-boundary W568 limit field. -/
+theorem
+    metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceDifferenceCokernelPiZeroBoundary
+    (rightOpenBoundary : Dbounded.MetrizableWppLimitRightOpenQuotientBoundary)
+    (sourceBoundary :
+      Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceBoundary
+    Dbounded.metrizableWppLimitSourceDifferenceLcaInput_of_cokernelPiZeroBoundary
+    rightOpenBoundary sourceBoundary
+
+/-- Epi source-difference data supply the quotient-boundary W568 limit field. -/
+theorem
+    metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceDifferenceEpiBoundary
+    (rightOpenBoundary : Dbounded.MetrizableWppLimitRightOpenQuotientBoundary)
+    (sourceBoundary : Dbounded.MetrizableWppLimitSourceDifferenceEpiBoundary) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceBoundary
+    Dbounded.metrizableWppLimitSourceDifferenceLcaInput_of_epiBoundary
+    rightOpenBoundary sourceBoundary
+
+/-- Cokernel-top source-difference data supply the closed-quotient W568 limit field. -/
+theorem
+    metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceDifferenceCokernelTopBoundary
+    (rightOpenBoundary :
+      Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary)
+    (sourceBoundary : Dbounded.MetrizableWppLimitSourceDifferenceCokernelTopBoundary) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceBoundary
+    Dbounded.metrizableWppLimitSourceDifferenceLcaInput_of_cokernelTopBoundary
+    rightOpenBoundary sourceBoundary
+
+/-- Cokernel-pi-zero source-difference data supply the closed-quotient W568 limit field. -/
+theorem
+    metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceDifferenceCokernelPiZeroBoundary
+    (rightOpenBoundary :
+      Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary)
+    (sourceBoundary :
+      Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceBoundary
+    Dbounded.metrizableWppLimitSourceDifferenceLcaInput_of_cokernelPiZeroBoundary
+    rightOpenBoundary sourceBoundary
+
+/-- Epi source-difference data supply the closed-quotient W568 limit field. -/
+theorem
+    metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceDifferenceEpiBoundary
+    (rightOpenBoundary :
+      Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary)
+    (sourceBoundary : Dbounded.MetrizableWppLimitSourceDifferenceEpiBoundary) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceBoundary
+    Dbounded.metrizableWppLimitSourceDifferenceLcaInput_of_epiBoundary
+    rightOpenBoundary sourceBoundary
+
+/--
 W532 finite-shape transfer inputs with WPP limit stability supplied by the W555
 direct limit theorem and WPP colimit stability supplied by W515/W527 closed-map
 rows.
@@ -10216,6 +10321,153 @@ structure
     ComponentwiseClosedEmbeddingRowsProviderW527
   functorCategoryLocalization :
     Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+Quotient/equalizer-cover right-open boundary data plus a named
+source-difference boundary, a W515/W516/W517 provider, W527 closed-map rows,
+and arbitrary functor-category localization.
+-/
+structure MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedMapRows
+    (SourceBoundary : Prop) (Provider : Type 1) : Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenQuotientBoundary
+  sourceBoundary :
+    SourceBoundary
+  provider :
+    Provider
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+Quotient/equalizer-cover right-open boundary data plus a named
+source-difference boundary, a W515/W516/W517 provider, W527 closed-embedding
+rows, and arbitrary functor-category localization.
+-/
+structure
+    MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedEmbeddingRows
+    (SourceBoundary : Prop) (Provider : Type 1) : Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenQuotientBoundary
+  sourceBoundary :
+    SourceBoundary
+  provider :
+    Provider
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+Closed quotient-cover right-open boundary data plus a named source-difference
+boundary, a W515/W516/W517 provider, W527 closed-map rows, and arbitrary
+functor-category localization.
+-/
+structure
+    MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedMapRows
+    (SourceBoundary : Prop) (Provider : Type 1) : Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourceBoundary :
+    SourceBoundary
+  provider :
+    Provider
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+Closed quotient-cover right-open boundary data plus a named source-difference
+boundary, a W515/W516/W517 provider, W527 closed-embedding rows, and arbitrary
+functor-category localization.
+-/
+structure
+    MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRows
+    (SourceBoundary : Prop) (Provider : Type 1) : Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourceBoundary :
+    SourceBoundary
+  provider :
+    Provider
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceCokernelTopClosedMapRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedMapRows
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelTopBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceCokernelTopClosedEmbeddingRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedEmbeddingRows
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelTopBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceCokernelPiZeroClosedMapRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedMapRows
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceCokernelPiZeroClosedEmbeddingRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedEmbeddingRows
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceEpiClosedMapRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedMapRows
+    Dbounded.MetrizableWppLimitSourceDifferenceEpiBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceEpiClosedEmbeddingRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedEmbeddingRows
+    Dbounded.MetrizableWppLimitSourceDifferenceEpiBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceCokernelTopClosedMapRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedMapRows
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelTopBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceCokernelTopClosedEmbeddingRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRows
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelTopBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceCokernelPiZeroClosedMapRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedMapRows
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceCokernelPiZeroClosedEmbeddingRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRows
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceEpiClosedMapRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedMapRows
+    Dbounded.MetrizableWppLimitSourceDifferenceEpiBoundary Provider
+
+abbrev
+    MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceEpiClosedEmbeddingRows
+    (Provider : Type 1) : Type 1 :=
+  MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRows
+    Dbounded.MetrizableWppLimitSourceDifferenceEpiBoundary Provider
 
 /-- Build W532's transfer record from W515 data and W527 row-aware closed-map rows. -/
 noncomputable def metrizableWalkingParallelPairFiniteShapeTransferInputs_of_representativeImageClosedMapRows
@@ -10814,6 +11066,87 @@ def
   functorCategoryLocalization := inputs.functorCategoryLocalization
 
 /--
+Convert quotient/equalizer-cover right-open data plus a named
+source-difference boundary to the W568 source-difference closed-map package.
+-/
+def
+    metrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedMapRows_of_sourceBoundary
+    {SourceBoundary : Prop} {Provider : Type 1}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedMapRows
+        SourceBoundary Provider) :
+    MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedMapRows
+      Provider where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourceDifferenceLca := sourceBoundaryToLca inputs.sourceBoundary
+  provider := inputs.provider
+  closedMapRows := inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Convert quotient/equalizer-cover right-open data plus a named
+source-difference boundary to the W568 source-difference closed-embedding
+package.
+-/
+def
+    metrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedEmbeddingRows_of_sourceBoundary
+    {SourceBoundary : Prop} {Provider : Type 1}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedEmbeddingRows
+        SourceBoundary Provider) :
+    MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedEmbeddingRows
+      Provider where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourceDifferenceLca := sourceBoundaryToLca inputs.sourceBoundary
+  provider := inputs.provider
+  closedEmbeddingRows := inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Convert closed quotient-cover right-open data plus a named source-difference
+boundary to the W568 source-difference closed-map package.
+-/
+def
+    metrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedMapRows_of_sourceBoundary
+    {SourceBoundary : Prop} {Provider : Type 1}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedMapRows
+        SourceBoundary Provider) :
+    MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedMapRows
+      Provider where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourceDifferenceLca := sourceBoundaryToLca inputs.sourceBoundary
+  provider := inputs.provider
+  closedMapRows := inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Convert closed quotient-cover right-open data plus a named source-difference
+boundary to the W568 source-difference closed-embedding package.
+-/
+def
+    metrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedEmbeddingRows_of_sourceBoundary
+    {SourceBoundary : Prop} {Provider : Type 1}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRows
+        SourceBoundary Provider) :
+    MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedEmbeddingRows
+      Provider where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourceDifferenceLca := sourceBoundaryToLca inputs.sourceBoundary
+  provider := inputs.provider
+  closedEmbeddingRows := inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
 Build W532's transfer record from quotient/equalizer-cover right-open data, W566
 source-difference surjectivity, W515 representative-image data, and W527
 closed-map rows.
@@ -10990,6 +11323,222 @@ def
   metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightSourceDifferenceCompactTargetRelationClosedEmbeddingRows
     (metrizableWppTransferInputsFromLcaRightSourceDifferenceClosedEmbeddingRows_of_rightOpenClosedQuotient
       inputs)
+
+/--
+Build W532's transfer record from quotient/equalizer-cover right-open data, a
+named source-difference boundary, W515 representative-image data, and W527
+closed-map rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryRepresentativeImageClosedMapRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedMapRows
+        SourceBoundary ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceDifferenceRepresentativeImageClosedMapRows
+    (metrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedMapRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from quotient/equalizer-cover right-open data, a
+named source-difference boundary, W515 representative-image data, and W527
+closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryRepresentativeImageClosedEmbeddingRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedEmbeddingRows
+        SourceBoundary ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceDifferenceRepresentativeImageClosedEmbeddingRows
+    (metrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedEmbeddingRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from quotient/equalizer-cover right-open data, a
+named source-difference boundary, W516 top-target data, and W527 closed-map
+rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryTopTargetRelationClosedMapRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedMapRows
+        SourceBoundary ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceDifferenceTopTargetRelationClosedMapRows
+    (metrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedMapRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from quotient/equalizer-cover right-open data, a
+named source-difference boundary, W516 top-target data, and W527
+closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryTopTargetRelationClosedEmbeddingRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedEmbeddingRows
+        SourceBoundary ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceDifferenceTopTargetRelationClosedEmbeddingRows
+    (metrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedEmbeddingRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from quotient/equalizer-cover right-open data, a
+named source-difference boundary, W517 compact-target data, and W527 closed-map
+rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryCompactTargetRelationClosedMapRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedMapRows
+        SourceBoundary ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceDifferenceCompactTargetRelationClosedMapRows
+    (metrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedMapRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from quotient/equalizer-cover right-open data, a
+named source-difference boundary, W517 compact-target data, and W527
+closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryCompactTargetRelationClosedEmbeddingRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedEmbeddingRows
+        SourceBoundary ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceDifferenceCompactTargetRelationClosedEmbeddingRows
+    (metrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedEmbeddingRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from closed quotient-cover right-open data, a
+named source-difference boundary, W515 representative-image data, and W527
+closed-map rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryRepresentativeImageClosedMapRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedMapRows
+        SourceBoundary ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceDifferenceRepresentativeImageClosedMapRows
+    (metrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedMapRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from closed quotient-cover right-open data, a
+named source-difference boundary, W515 representative-image data, and W527
+closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryRepresentativeImageClosedEmbeddingRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRows
+        SourceBoundary ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceDifferenceRepresentativeImageClosedEmbeddingRows
+    (metrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedEmbeddingRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from closed quotient-cover right-open data, a
+named source-difference boundary, W516 top-target data, and W527 closed-map
+rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryTopTargetRelationClosedMapRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedMapRows
+        SourceBoundary ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceDifferenceTopTargetRelationClosedMapRows
+    (metrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedMapRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from closed quotient-cover right-open data, a
+named source-difference boundary, W516 top-target data, and W527
+closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryTopTargetRelationClosedEmbeddingRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRows
+        SourceBoundary ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceDifferenceTopTargetRelationClosedEmbeddingRows
+    (metrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedEmbeddingRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from closed quotient-cover right-open data, a
+named source-difference boundary, W517 compact-target data, and W527 closed-map
+rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryCompactTargetRelationClosedMapRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedMapRows
+        SourceBoundary ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceDifferenceCompactTargetRelationClosedMapRows
+    (metrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedMapRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
+
+/--
+Build W532's transfer record from closed quotient-cover right-open data, a
+named source-difference boundary, W517 compact-target data, and W527
+closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryCompactTargetRelationClosedEmbeddingRows
+    {SourceBoundary : Prop}
+    (sourceBoundaryToLca :
+      SourceBoundary → Dbounded.MetrizableWppLimitSourceDifferenceLcaInput)
+    (inputs :
+      MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRows
+        SourceBoundary ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceDifferenceCompactTargetRelationClosedEmbeddingRows
+    (metrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedEmbeddingRows_of_sourceBoundary
+      sourceBoundaryToLca inputs)
 
 /--
 Build W532's transfer record from pure LCA right fields, W515 representative-image
@@ -11868,6 +12417,89 @@ theorem
       providerName).length = 5 :=
   rfl
 
+/--
+Input names for W515/W516/W517 provider routes with quotient/equalizer-cover
+right-open data, a named source-difference boundary, closed-map rows, and
+arbitrary functor-category localization.
+-/
+def metrizableWppTransferFromRightOpenQuotientSourceBoundaryClosedMapRowsInputNames
+    (sourceBoundaryName providerName : String) : List String :=
+  ["WPP limit right-open quotient/equalizer-cover boundary",
+    sourceBoundaryName,
+    providerName,
+    "ComponentwiseClosedMapRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWppTransferFromRightOpenQuotientSourceBoundaryClosedMapRowsInputNames_count
+    (sourceBoundaryName providerName : String) :
+    (metrizableWppTransferFromRightOpenQuotientSourceBoundaryClosedMapRowsInputNames
+      sourceBoundaryName providerName).length = 5 :=
+  rfl
+
+/--
+Input names for W515/W516/W517 provider routes with quotient/equalizer-cover
+right-open data, a named source-difference boundary, closed-embedding rows,
+and arbitrary functor-category localization.
+-/
+def
+    metrizableWppTransferFromRightOpenQuotientSourceBoundaryClosedEmbeddingRowsInputNames
+    (sourceBoundaryName providerName : String) : List String :=
+  ["WPP limit right-open quotient/equalizer-cover boundary",
+    sourceBoundaryName,
+    providerName,
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWppTransferFromRightOpenQuotientSourceBoundaryClosedEmbeddingRowsInputNames_count
+    (sourceBoundaryName providerName : String) :
+    (metrizableWppTransferFromRightOpenQuotientSourceBoundaryClosedEmbeddingRowsInputNames
+      sourceBoundaryName providerName).length = 5 :=
+  rfl
+
+/--
+Input names for W515/W516/W517 provider routes with closed quotient-cover
+right-open data, a named source-difference boundary, closed-map rows, and
+arbitrary functor-category localization.
+-/
+def
+    metrizableWppTransferFromRightOpenClosedQuotientSourceBoundaryClosedMapRowsInputNames
+    (sourceBoundaryName providerName : String) : List String :=
+  ["WPP limit right-open closed quotient-cover boundary",
+    sourceBoundaryName,
+    providerName,
+    "ComponentwiseClosedMapRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWppTransferFromRightOpenClosedQuotientSourceBoundaryClosedMapRowsInputNames_count
+    (sourceBoundaryName providerName : String) :
+    (metrizableWppTransferFromRightOpenClosedQuotientSourceBoundaryClosedMapRowsInputNames
+      sourceBoundaryName providerName).length = 5 :=
+  rfl
+
+/--
+Input names for W515/W516/W517 provider routes with closed quotient-cover
+right-open data, a named source-difference boundary, closed-embedding rows,
+and arbitrary functor-category localization.
+-/
+def
+    metrizableWppTransferFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRowsInputNames
+    (sourceBoundaryName providerName : String) : List String :=
+  ["WPP limit right-open closed quotient-cover boundary",
+    sourceBoundaryName,
+    providerName,
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWppTransferFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRowsInputNames_count
+    (sourceBoundaryName providerName : String) :
+    (metrizableWppTransferFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRowsInputNames
+      sourceBoundaryName providerName).length = 5 :=
+  rfl
+
 /-- Current checked W567 state for the W566 source-difference transfer bridge. -/
 structure MetrizableWppSourceDifferenceFiniteShapeTransferStateW567 : Type where
   seed : String
@@ -11986,6 +12618,91 @@ abbrev currentMetrizableWppRightOpenQuotientSourceDifferenceTransferStateW568 :
 theorem
     currentMetrizableWppRightOpenQuotientSourceDifferenceTransferStateW568_productSuccess :
     currentMetrizableWppRightOpenQuotientSourceDifferenceTransferStateW568.productSuccessClaimed =
+      false :=
+  rfl
+
+/--
+Current checked W569 state for replacing W568's pure LCA source-difference
+input by named source-boundary data.
+-/
+structure MetrizableWppRightOpenQuotientSourceBoundaryTransferStateW569 :
+    Type where
+  seed : String
+  declarations : List String
+  sourceBoundaryAdapterResult : String
+  transferEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W569 state. -/
+def currentMetrizableWppRightOpenQuotientSourceBoundaryFiniteShapeTransferStateW569 :
+    MetrizableWppRightOpenQuotientSourceBoundaryTransferStateW569 where
+  seed := "w569-right-open-quotient-source-boundary-transfer-bridge"
+  declarations :=
+    ["metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceBoundary",
+      "metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceBoundary",
+      "metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceDifferenceCokernelTopBoundary",
+      "metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceDifferenceCokernelPiZeroBoundary",
+      "metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceDifferenceEpiBoundary",
+      "metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceDifferenceCokernelTopBoundary",
+      "metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceDifferenceCokernelPiZeroBoundary",
+      "metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientSourceDifferenceEpiBoundary",
+      "MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedMapRows",
+      "MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedEmbeddingRows",
+      "MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedMapRows",
+      "MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceBoundaryClosedEmbeddingRows",
+      "MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceCokernelTopClosedMapRows",
+      "MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceCokernelTopClosedEmbeddingRows",
+      "MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceCokernelPiZeroClosedMapRows",
+      "MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceCokernelPiZeroClosedEmbeddingRows",
+      "MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceEpiClosedMapRows",
+      "MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceEpiClosedEmbeddingRows",
+      "MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceCokernelTopClosedMapRows",
+      "MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceCokernelTopClosedEmbeddingRows",
+      "MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceCokernelPiZeroClosedMapRows",
+      "MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceCokernelPiZeroClosedEmbeddingRows",
+      "MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceEpiClosedMapRows",
+      "MetrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceEpiClosedEmbeddingRows",
+      "metrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedMapRows_of_sourceBoundary",
+      "metrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceClosedEmbeddingRows_of_sourceBoundary",
+      "metrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedMapRows_of_sourceBoundary",
+      "metrizableWppTransferInputsFromRightOpenClosedQuotientSourceDifferenceClosedEmbeddingRows_of_sourceBoundary",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryRepresentativeImageClosedMapRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryRepresentativeImageClosedEmbeddingRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryTopTargetRelationClosedMapRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryTopTargetRelationClosedEmbeddingRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryCompactTargetRelationClosedMapRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryCompactTargetRelationClosedEmbeddingRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryRepresentativeImageClosedMapRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryRepresentativeImageClosedEmbeddingRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryTopTargetRelationClosedMapRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryTopTargetRelationClosedEmbeddingRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryCompactTargetRelationClosedMapRows",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientSourceBoundaryCompactTargetRelationClosedEmbeddingRows"]
+  sourceBoundaryAdapterResult :=
+    "proved for generic source-boundary adapters and checked cokernel-top/cokernel-pi-zero/Epi specializations"
+  transferEndpointResult :=
+    "proved for W515/W516/W517 providers with quotient or closed quotient right-open data, source-boundary data, and W527 rows"
+  remainingInputs :=
+    ["construct quotient/equalizer-cover or closed quotient-cover WPP limit " ++
+        "right-open boundary data",
+      "construct one source-degree source-difference boundary instance " ++
+        "(cokernel-top, cokernel-pi-zero, Epi, or another adapter)",
+      "construct concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 " ++
+        "or W516/W517 relation provider data",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 " ++
+        "or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct WalkingParallelPair functor-category localization"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRightOpenQuotientSourceBoundaryTransferStateW569 :
+    MetrizableWppRightOpenQuotientSourceBoundaryTransferStateW569 :=
+  currentMetrizableWppRightOpenQuotientSourceBoundaryFiniteShapeTransferStateW569
+
+theorem
+    currentMetrizableWppRightOpenQuotientSourceBoundaryTransferStateW569_productSuccess :
+    currentMetrizableWppRightOpenQuotientSourceBoundaryTransferStateW569.productSuccessClaimed =
       false :=
   rfl
 
