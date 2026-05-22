@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
-  "generated_utc": "2026-05-22T15:22:13Z",
-  "source_tree_hash": "90576cd1709f56eb67b38e5c734a3b5e0190075c2a543fba156852911961fb03",
-  "summary": "W582 moves the localized-right-adjoint route for the bounded homotopy/Verdier pullback left calculus into the main Lean development. It proves that an ambient Verdier left calculus plus a right adjoint to the localized homotopy quotient composite, with unit membership in the pullback weak-equivalence class, gives HasLeftCalculusOfFractions for boundedHomotopyExactWeakEquivalence. It also adds closed2 and direct-bounded transfer specializations and a MetrizableLCA semantic-field adapter, reducing the previously opaque bounded homotopy left-calculus premise to exact-acyclic homotopy-object iso-closedness, exactAcyclicHomotopyIsoClosure triangulated closedness, and localized right-adjoint/unit-membership data. This is verified nonterminal support only: it does not construct the localized right adjoint, prove the unit membership, prove homotopy-category isomorphism invariance, or close the remaining WPP finite-shape/provider/frontier data.",
+  "generated_utc": "2026-05-22T15:35:40Z",
+  "source_tree_hash": "3684150818614b632d6961ea35d8d01e69cbe0081eb426d2d2bd1afa01177d4a",
+  "summary": "W583 adds the dual localized-adjunction bridge for the bounded homotopy/Verdier pullback right calculus. It proves that an ambient Verdier right calculus plus a left adjoint to the localized homotopy quotient composite, with counit membership in the pullback weak-equivalence class, gives HasRightCalculusOfFractions for boundedHomotopyExactWeakEquivalence. It also adds closed2 and direct-bounded transfer specializations and names the MetrizableLCA right-calculus localized-left-adjoint inputs. This is verified nonterminal support only: it does not construct the localized left adjoint, prove the counit membership, prove homotopy-category isomorphism invariance, or close the remaining WPP finite-shape/provider/frontier data.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -6735,6 +6735,31 @@
       "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
       "status": "passed",
       "evidence": "cycle_031_w582_wpp_lake_build.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "cycle_032_w583_bounded_source_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "cycle_032_w583_bounded_lake_build.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "cycle_032_w583_product_success_declarations_lean.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "cycle_032_w583_wpp_source_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "cycle_032_w583_wpp_lake_build.log"
     }
   ],
   "implemented_declarations_checked": [
@@ -8772,7 +8797,14 @@
     "boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2",
     "Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyLocalizedRightAdjointClosed2",
     "Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames",
-    "Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames_count"
+    "Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames_count",
+    "inverseImage_hasRightCalculusOfFractions_of_localizedLeftAdjoint",
+    "BoundedHomotopyLocalizedLeftAdjointInput",
+    "boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjoint",
+    "boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjointClosed2",
+    "boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjointClosed2",
+    "Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames",
+    "Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames_count"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -8783,10 +8815,11 @@
     "construct normalized strict-representative fixed-target localization data",
     "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
-    "construct bounded homotopy localized right adjoint plus unit membership, or otherwise prove bounded homotopy/Verdier pullback left calculus of fractions",
+    "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
+    "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "support_result_classification": "nonterminal_left_calculus_input_reduction",
+  "support_result_classification": "nonterminal_right_calculus_input_reduction",
   "product_success": false,
   "remaining_work": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
@@ -8796,11 +8829,12 @@
     "construct normalized strict-representative fixed-target localization data",
     "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
-    "construct bounded homotopy localized right adjoint plus unit membership, or otherwise prove bounded homotopy/Verdier pullback left calculus of fractions",
+    "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
+    "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W582 adds a checked localized-right-adjoint bridge for bounded homotopy/Verdier left calculus and a MetrizableLCA semantic adapter; product flags remain false.",
-  "latest_verified_increment": "W582 localized right-adjoint bridge for bounded homotopy left calculus",
+  "summary_log_tail": "W583 adds the dual checked localized-left-adjoint bridge for bounded homotopy/Verdier right calculus; product flags remain false.",
+  "latest_verified_increment": "W583 localized left-adjoint bridge for bounded homotopy right calculus",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -9075,6 +9109,13 @@
       "refreshed_utc": "2026-05-22T15:22:13Z",
       "source_tree_hash": "90576cd1709f56eb67b38e5c734a3b5e0190075c2a543fba156852911961fb03",
       "latest_verified_increment": "W582 localized right-adjoint bridge for bounded homotopy left calculus",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "Focused Lean checks and dependent WPP module build passed before metadata refresh; full verifier is run after this refresh."
+    },
+    "w583_localized_left_adjoint_right_calculus_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T15:35:40Z",
+      "source_tree_hash": "3684150818614b632d6961ea35d8d01e69cbe0081eb426d2d2bd1afa01177d4a",
+      "latest_verified_increment": "W583 localized left-adjoint bridge for bounded homotopy right calculus",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "Focused Lean checks and dependent WPP module build passed before metadata refresh; full verifier is run after this refresh."
     }
