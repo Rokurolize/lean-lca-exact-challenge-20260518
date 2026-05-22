@@ -17146,6 +17146,178 @@ theorem currentMetrizableWppSplitTopTargetCompactSpaceRowsStableRouteStateW600_p
       false :=
   rfl
 
+/-- W601 provider for surjectivity of the ordinary target difference map. -/
+abbrev TargetDifferenceSurjectiveProviderW601 : Prop :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      Function.Surjective
+        (((wppOpLeftW441 Y - wppOpRightW441 Y) :
+          wppOpDomainW441 Y ⟶ wppOpCodomainW441 Y) :
+          wppOpDomainW441 Y → wppOpCodomainW441 Y)
+
+/-- W601 provider for compactness of every ordinary WPP-op target codomain. -/
+abbrev TargetCodomainCompactSpaceProviderW601 : Prop :=
+  ∀ (Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}),
+    CompactSpace (wppOpCodomainW441 Y)
+
+/-- Surjective target differences supply the W600 target-relation-top provider. -/
+def targetTopProvider_of_targetSurjective_w601
+    (hsurj : TargetDifferenceSurjectiveProviderW601) :
+    ClosedNatTransOrdinaryTargetRelationTopProviderW600 :=
+  fun X Y α hclosed =>
+    MetrizableLCA.cokernelSubgroup_eq_top_of_surjective
+      (wppOpLeftW441 Y - wppOpRightW441 Y) (hsurj X Y α hclosed)
+
+/-- Codomain compactness supplies the W597 target compact-space provider. -/
+def targetCompactSpaceProvider_of_targetCodomainCompact_w601
+    (hcompact : TargetCodomainCompactSpaceProviderW601) :
+    ClosedNatTransOrdinaryTargetCompactSpaceProviderW597 :=
+  fun _X Y _α _hclosed => hcompact Y
+
+/-- Relation pullback plus target-difference surjectivity reconstruct W516. -/
+def topTargetProvider_of_pullback_targetSurjective_w601
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hsurj : TargetDifferenceSurjectiveProviderW601) :
+    ClosedNatTransOrdinaryTopTargetRelationProviderW516 :=
+  topTargetRelationProvider_of_splitFields_w600 hpullback
+    (targetTopProvider_of_targetSurjective_w601 hsurj)
+
+/--
+Relation pullback, target-difference surjectivity, and compact target codomains
+reconstruct W517 compact-target data.
+-/
+def compactTargetProvider_of_pullback_targetSurjective_compactCodomain_w601
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hsurj : TargetDifferenceSurjectiveProviderW601)
+    (hcompact : TargetCodomainCompactSpaceProviderW601) :
+    ClosedNatTransOrdinaryCompactTargetRelationProviderW517 :=
+  compactTargetRelationProvider_of_splitTopTarget_targetCompactSpace_w600 hpullback
+    (targetTopProvider_of_targetSurjective_w601 hsurj)
+    (targetCompactSpaceProvider_of_targetCodomainCompact_w601 hcompact)
+
+/--
+W601 exact-acyclic endpoint: target-difference surjectivity plus compact target
+codomains feed the split top-target W600 closed-map endpoint.
+-/
+def exactAcyclic_of_targetSurjectiveCompact_closedMap_w601
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hsurj : TargetDifferenceSurjectiveProviderW601)
+    (hcompact : TargetCodomainCompactSpaceProviderW601)
+    (hclosedMap : ComponentwiseClosedMapProviderW525) :=
+  exactAcyclic_of_splitTopTarget_targetCompactSpace_closedMap_w600 hpullback
+    (targetTopProvider_of_targetSurjective_w601 hsurj)
+    (targetCompactSpaceProvider_of_targetCodomainCompact_w601 hcompact)
+    hclosedMap
+
+/--
+W601 exact-acyclic endpoint: target-difference surjectivity plus compact target
+codomains feed the split top-target W600 closed-embedding endpoint.
+-/
+def exactAcyclic_of_targetSurjectiveCompact_closedEmbedding_w601
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hsurj : TargetDifferenceSurjectiveProviderW601)
+    (hcompact : TargetCodomainCompactSpaceProviderW601)
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :=
+  exactAcyclic_of_splitTopTarget_targetCompactSpace_closedEmbedding_w600 hpullback
+    (targetTopProvider_of_targetSurjective_w601 hsurj)
+    (targetCompactSpaceProvider_of_targetCodomainCompact_w601 hcompact)
+    hclosedEmbedding
+
+/--
+W601 colimit-stability endpoint: target-difference surjectivity plus compact
+target codomains feed the W600 closed-map-row endpoint.
+-/
+def colimitStability_of_targetSurjectiveCompact_closedMapRows_w601
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hsurj : TargetDifferenceSurjectiveProviderW601)
+    (hcompact : TargetCodomainCompactSpaceProviderW601)
+    (hclosedMapRows : ComponentwiseClosedMapRowsProviderW527) :=
+  walkingParallelPairColimitStability_of_splitTopTargetCompactSpace_closedMapRows_w600
+    hpullback
+    (targetTopProvider_of_targetSurjective_w601 hsurj)
+    (targetCompactSpaceProvider_of_targetCodomainCompact_w601 hcompact)
+    hclosedMapRows
+
+/--
+W601 colimit-stability endpoint: target-difference surjectivity plus compact
+target codomains feed the W600 closed-embedding-row endpoint.
+-/
+def colimitStability_of_targetSurjectiveCompact_closedEmbeddingRows_w601
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hsurj : TargetDifferenceSurjectiveProviderW601)
+    (hcompact : TargetCodomainCompactSpaceProviderW601)
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :=
+  walkingParallelPairColimitStability_of_splitTopTargetCompactSpace_closedEmbeddingRows_w600
+    hpullback
+    (targetTopProvider_of_targetSurjective_w601 hsurj)
+    (targetCompactSpaceProvider_of_targetCodomainCompact_w601 hcompact)
+    hclosedEmbeddingRows
+
+/-- Input names for the W601 target-surjective compact-codomain adapters. -/
+def metrizableWppTargetSurjectiveCompactInputNamesW601 : List String :=
+  ["ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527"]
+
+theorem metrizableWppTargetSurjectiveCompactInputNamesW601_count :
+    metrizableWppTargetSurjectiveCompactInputNamesW601.length = 4 :=
+  rfl
+
+/-- Current checked W601 state for target-surjective compact-codomain adapters. -/
+structure MetrizableWppTargetSurjectiveCompactAdapterStateW601 : Type where
+  seed : String
+  declarations : List String
+  targetTopResult : String
+  targetCompactResult : String
+  exactAcyclicEndpointResult : String
+  colimitStabilityEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W601 state. -/
+def currentMetrizableWppTargetSurjectiveCompactAdapterSupportStateW601 :
+    MetrizableWppTargetSurjectiveCompactAdapterStateW601 where
+  seed := "w601-target-surjective-compact-codomain-adapter"
+  declarations :=
+    ["TargetDifferenceSurjectiveProviderW601",
+      "TargetCodomainCompactSpaceProviderW601",
+      "targetTopProvider_of_targetSurjective_w601",
+      "targetCompactSpaceProvider_of_targetCodomainCompact_w601",
+      "topTargetProvider_of_pullback_targetSurjective_w601",
+      "compactTargetProvider_of_pullback_targetSurjective_compactCodomain_w601",
+      "exactAcyclic_of_targetSurjectiveCompact_closedMap_w601",
+      "exactAcyclic_of_targetSurjectiveCompact_closedEmbedding_w601",
+      "colimitStability_of_targetSurjectiveCompact_closedMapRows_w601",
+      "colimitStability_of_targetSurjectiveCompact_closedEmbeddingRows_w601",
+      "metrizableWppTargetSurjectiveCompactInputNamesW601",
+      "metrizableWppTargetSurjectiveCompactInputNamesW601_count"]
+  targetTopResult :=
+    "proved: target-difference surjectivity supplies the W600 target-relation-top provider"
+  targetCompactResult :=
+    "proved: compact target codomains supply the W597 target compact-space provider"
+  exactAcyclicEndpointResult :=
+    "proved: target-surjective compact-codomain data feed the W600 exact-acyclic endpoints"
+  colimitStabilityEndpointResult :=
+    "proved: target-surjective compact-codomain data feed the W600 row colimit-stability endpoints"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppTargetSurjectiveCompactAdapterStateW601 :
+    MetrizableWppTargetSurjectiveCompactAdapterStateW601 :=
+  currentMetrizableWppTargetSurjectiveCompactAdapterSupportStateW601
+
+theorem currentMetrizableWppTargetSurjectiveCompactAdapterStateW601_productSuccess :
+    currentMetrizableWppTargetSurjectiveCompactAdapterStateW601.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -18063,6 +18235,21 @@ section Checks
 #check currentMetrizableWppSplitTopTargetCompactSpaceRowsStableRouteSupportStateW600
 #check currentMetrizableWppSplitTopTargetCompactSpaceRowsStableRouteStateW600
 #check currentMetrizableWppSplitTopTargetCompactSpaceRowsStableRouteStateW600_productSuccess
+#check TargetDifferenceSurjectiveProviderW601
+#check TargetCodomainCompactSpaceProviderW601
+#check targetTopProvider_of_targetSurjective_w601
+#check targetCompactSpaceProvider_of_targetCodomainCompact_w601
+#check topTargetProvider_of_pullback_targetSurjective_w601
+#check compactTargetProvider_of_pullback_targetSurjective_compactCodomain_w601
+#check exactAcyclic_of_targetSurjectiveCompact_closedMap_w601
+#check exactAcyclic_of_targetSurjectiveCompact_closedEmbedding_w601
+#check colimitStability_of_targetSurjectiveCompact_closedMapRows_w601
+#check colimitStability_of_targetSurjectiveCompact_closedEmbeddingRows_w601
+#check metrizableWppTargetSurjectiveCompactInputNamesW601
+#check metrizableWppTargetSurjectiveCompactInputNamesW601_count
+#check currentMetrizableWppTargetSurjectiveCompactAdapterSupportStateW601
+#check currentMetrizableWppTargetSurjectiveCompactAdapterStateW601
+#check currentMetrizableWppTargetSurjectiveCompactAdapterStateW601_productSuccess
 
 end Checks
 
