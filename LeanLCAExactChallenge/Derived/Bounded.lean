@@ -5,6 +5,7 @@ import Mathlib.Algebra.Homology.HomotopyCategory.MappingCone
 import Mathlib.AlgebraicTopology.Quasicategory.Nerve
 import Mathlib.AlgebraicTopology.Quasicategory.StrictBicategory
 import Mathlib.AlgebraicTopology.SimplicialSet.NerveAdjunction
+import Mathlib.CategoryTheory.Localization.CalculusOfFractions.OfAdjunction
 import Mathlib.CategoryTheory.Localization.CalculusOfFractions.Preadditive
 import Mathlib.CategoryTheory.Localization.FiniteProducts
 import Mathlib.CategoryTheory.Localization.HasLocalization
@@ -1865,6 +1866,72 @@ abbrev boundedHomotopyExactWeakEquivalence [HasZeroObject C] [HasBinaryBiproduct
   (exactAcyclicHomotopyIsoClosure C).trW.inverseImage
     (BoundedComplexCategory.homotopyQuotient C)
 
+/--
+For an ambient weak-equivalence class `W`, the localized composite inverts the
+inverse-image class along `F`.
+-/
+theorem inverseImage_isInvertedBy_localizedFunctor
+    {D : Type*} {E : Type*} [Category D] [Category E]
+    (F : D ⥤ E) (W : MorphismProperty E) :
+    (W.inverseImage F).IsInvertedBy (F ⋙ W.Q) := by
+  intro X Y f hf
+  exact Localization.inverts W.Q W (F.map f) hf
+
+/--
+If the localized composite `F ⋙ W.Q` has a right adjoint whose unit lies in the
+inverse-image class, mathlib's adjunction theorem gives left calculus for that
+inverse-image class.
+-/
+theorem inverseImage_hasLeftCalculusOfFractions_of_localizedRightAdjoint
+    {D : Type*} {E : Type*} [Category D] [Category E]
+    (F : D ⥤ E) (W : MorphismProperty E) [W.HasLeftCalculusOfFractions]
+    (R : MorphismProperty.Localization W ⥤ D)
+    (adj : F ⋙ W.Q ⊣ R)
+    (hunit : (W.inverseImage F).functorCategory D adj.unit) :
+    (W.inverseImage F).HasLeftCalculusOfFractions :=
+  CategoryTheory.Adjunction.hasLeftCalculusOfFractions adj (W.inverseImage F)
+    (inverseImage_isInvertedBy_localizedFunctor F W) hunit
+
+/-- The bounded-complex functor into the exact-acyclic homotopy Verdier quotient. -/
+noncomputable abbrev boundedHomotopyLocalizedVerdierFunctor [HasZeroObject C]
+    [HasBinaryBiproducts C] :
+    BoundedComplexCategory C ⥤
+      MorphismProperty.Localization ((exactAcyclicHomotopyIsoClosure C).trW) :=
+  BoundedComplexCategory.homotopyQuotient C ⋙
+    (exactAcyclicHomotopyIsoClosure C).trW.Q
+
+/--
+Concrete input replacing the opaque bounded homotopy/Verdier pullback left-calculus
+assumption: a right adjoint to the localized Verdier composite, plus unit membership
+in the pullback weak-equivalence class.
+-/
+structure BoundedHomotopyLocalizedRightAdjointInput
+    [HasZeroObject C] [HasBinaryBiproducts C] : Type (max u v) where
+  rightAdjoint :
+    MorphismProperty.Localization ((exactAcyclicHomotopyIsoClosure C).trW) ⥤
+      BoundedComplexCategory C
+  adjunction :
+    boundedHomotopyLocalizedVerdierFunctor C ⊣ rightAdjoint
+  unit_mem :
+    (boundedHomotopyExactWeakEquivalence C).functorCategory
+      (BoundedComplexCategory C) adjunction.unit
+
+/--
+A localized right adjoint plus unit membership gives the bounded homotopy/Verdier
+pullback weak equivalences a left calculus of fractions, once the ambient Verdier
+class has a left calculus.
+-/
+theorem
+    boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjoint
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [((exactAcyclicHomotopyIsoClosure C).trW).HasLeftCalculusOfFractions]
+    (I : BoundedHomotopyLocalizedRightAdjointInput C) :
+    (boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+  inverseImage_hasLeftCalculusOfFractions_of_localizedRightAdjoint
+    (BoundedComplexCategory.homotopyQuotient C)
+    ((exactAcyclicHomotopyIsoClosure C).trW)
+    I.rightAdjoint I.adjunction I.unit_mem
+
 /-- The isomorphism-closed homotopy/Verdier bounded weak equivalences contain all
 identities without any separate homotopy-invariance hypothesis. -/
 noncomputable instance boundedHomotopyExactWeakEquivalence_containsIdentities
@@ -2132,6 +2199,40 @@ theorem exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTrian
   haveI : (exactAcyclicHomotopyIsoClosure C).IsTriangulated :=
     exactAcyclicHomotopyIsoClosure_isTriangulated_of_isTriangulatedClosed2 C
   infer_instance
+
+/--
+The localized-right-adjoint input gives left calculus for the bounded
+homotopy/Verdier pullback class when the ambient exact-acyclic isomorphism
+closure is triangulated closed.
+-/
+theorem
+    boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (I : BoundedHomotopyLocalizedRightAdjointInput C) :
+    (boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions := by
+  haveI : ((exactAcyclicHomotopyIsoClosure C).trW).HasLeftCalculusOfFractions :=
+    exactAcyclicHomotopyIsoClosure_trW_hasLeftCalculusOfFractions_of_isTriangulatedClosed2 C
+  exact
+    boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjoint
+      C I
+
+/--
+After exact-acyclic homotopy objects are isomorphism-invariant, the same
+localized-right-adjoint input transfers left calculus to the direct bounded
+exact weak equivalences.
+-/
+theorem
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (I : BoundedHomotopyLocalizedRightAdjointInput C) :
+    (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions := by
+  haveI : (boundedHomotopyExactWeakEquivalence C).HasLeftCalculusOfFractions :=
+    boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      C I
+  exact boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
 
 /-- Once the isomorphism closure is triangulated, mathlib supplies the Verdier right calculus
 directly for the isomorphism-closed homotopy-category `trW` class. -/
@@ -3487,6 +3588,22 @@ noncomputable def Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClos
     boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed MetrizableLCA.{0}
   exact Dbounded.metrizableLeftCalculusSemanticFields
 
+/--
+Localized-right-adjoint data for the homotopy/Verdier quotient, together with the ambient
+isomorphism-closure triangulatedness and homotopy-category isomorphism invariance, supplies
+the same direct-left-calculus semantic fields.
+-/
+noncomputable def
+    Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyLocalizedRightAdjointClosed2
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (I : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    Dbounded.MetrizableLeftCalculusSemanticFields := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      MetrizableLCA.{0} I
+  exact Dbounded.metrizableLeftCalculusSemanticFields
+
 /-- Remaining ordinary semantic fields after direct bounded left calculus supplies its part. -/
 structure Dbounded.MetrizableRemainingStableSemanticFields
     (available : Dbounded.MetrizableLeftCalculusSemanticFields) : Type 1 where
@@ -3557,6 +3674,26 @@ def Dbounded.metrizableHomotopyIsoClosedLeftCalculusSemanticInputNames : List St
 /-- Two homotopy/Verdier inputs replace the direct bounded-left-calculus semantic-field input. -/
 theorem Dbounded.metrizableHomotopyIsoClosedLeftCalculusSemanticInputNames_count :
     Dbounded.metrizableHomotopyIsoClosedLeftCalculusSemanticInputNames.length = 2 :=
+  rfl
+
+/--
+Concrete homotopy/Verdier inputs that replace the opaque pullback left-calculus premise via
+the localized-right-adjoint bridge.
+-/
+def Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames :
+    List String :=
+  ["exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "exactAcyclicHomotopyIsoClosure is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership"]
+
+/--
+The localized-right-adjoint route names the three remaining concrete inputs for the
+homotopy/Verdier left-calculus semantic-field bridge.
+-/
+theorem
+    Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames_count :
+    Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames.length =
+      3 :=
   rfl
 
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/

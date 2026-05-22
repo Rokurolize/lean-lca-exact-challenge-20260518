@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
-  "generated_utc": "2026-05-22T15:05:26Z",
-  "source_tree_hash": "a560f616d205c40bd60d53b7b0d8f4cec8d98200aecce7543684ac7f5ae48e48",
-  "summary": "W581 adds a checked provider-narrowing bridge from the older global W525 selected-difference closed-map and closed-embedding provider surfaces to the row-aware W527 providers. It proves that a global W525 closed-map provider supplies `ComponentwiseClosedMapRowsProviderW527`, that a global W525 closed-embedding provider supplies both `ComponentwiseClosedEmbeddingRowsProviderW527` and, via W580, the closed-map row provider, then threads the global closed-embedding surface into the W580 compact-target normalized finite-shape route. This is verified nonterminal support only: it does not construct the global provider, the weaker row provider, or the remaining WPP boundary/provider/localization data.",
+  "generated_utc": "2026-05-22T15:22:13Z",
+  "source_tree_hash": "90576cd1709f56eb67b38e5c734a3b5e0190075c2a543fba156852911961fb03",
+  "summary": "W582 moves the localized-right-adjoint route for the bounded homotopy/Verdier pullback left calculus into the main Lean development. It proves that an ambient Verdier left calculus plus a right adjoint to the localized homotopy quotient composite, with unit membership in the pullback weak-equivalence class, gives HasLeftCalculusOfFractions for boundedHomotopyExactWeakEquivalence. It also adds closed2 and direct-bounded transfer specializations and a MetrizableLCA semantic-field adapter, reducing the previously opaque bounded homotopy left-calculus premise to exact-acyclic homotopy-object iso-closedness, exactAcyclicHomotopyIsoClosure triangulated closedness, and localized right-adjoint/unit-membership data. This is verified nonterminal support only: it does not construct the localized right adjoint, prove the unit membership, prove homotopy-category isomorphism invariance, or close the remaining WPP finite-shape/provider/frontier data.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -6710,6 +6710,31 @@
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_030_w581_product_success_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "cycle_031_w582_bounded_source_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "cycle_031_w582_bounded_lake_build.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "cycle_031_w582_product_success_declarations_lean.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "cycle_031_w582_wpp_source_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "cycle_031_w582_wpp_lake_build.log"
     }
   ],
   "implemented_declarations_checked": [
@@ -8737,33 +8762,45 @@
     "Dbounded.metrizableWppGlobalClosedEmbeddingProviderNarrowingInputNamesW581_count",
     "Dbounded.currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingSupportStateW581",
     "Dbounded.currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581",
-    "Dbounded.currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581_productSuccess"
+    "Dbounded.currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581_productSuccess",
+    "inverseImage_isInvertedBy_localizedFunctor",
+    "inverseImage_hasLeftCalculusOfFractions_of_localizedRightAdjoint",
+    "boundedHomotopyLocalizedVerdierFunctor",
+    "BoundedHomotopyLocalizedRightAdjointInput",
+    "boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjoint",
+    "boundedHomotopyExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2",
+    "boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2",
+    "Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyLocalizedRightAdjointClosed2",
+    "Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames",
+    "Dbounded.metrizableHomotopyLocalizedRightAdjointLeftCalculusSemanticInputNames_count"
   ],
   "product_complete": false,
   "known_gaps": [
-    "A concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary is still unconstructed.",
-    "A concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary is still unconstructed.",
-    "Concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517 data are still unconstructed for the selected normalized route.",
-    "Concrete ComponentwiseClosedEmbeddingProviderW525 data are still unconstructed, and the weaker ComponentwiseClosedEmbeddingRowsProviderW527 data are also still unconstructed.",
-    "Normalized strict-representative fixed-target localization data are still unconstructed.",
-    "The exactAcyclicHomotopyObject homotopy-category isomorphism-invariance input is still unconstructed.",
-    "The bounded homotopy/Verdier pullback left calculus of fractions input is still unconstructed.",
-    "Pretriangulated and IsTriangulated data for Dbounded MetrizableLCA are still unconstructed."
+    "construct concrete closed quotient-cover WPP limit right-open boundary data",
+    "construct concrete source-difference cokernel-pi-zero boundary data",
+    "construct concrete W517 compact-target provider data for the selected normalized route",
+    "construct concrete W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data",
+    "construct normalized strict-representative fixed-target localization data",
+    "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
+    "construct bounded homotopy localized right adjoint plus unit membership, or otherwise prove bounded homotopy/Verdier pullback left calculus of fractions",
+    "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_pending_periodic_claim_review",
+  "support_result_classification": "nonterminal_left_calculus_input_reduction",
   "product_success": false,
   "remaining_work": [
-    "Construct concrete closed quotient-cover WPP limit right-open boundary data.",
-    "Construct concrete source-difference cokernel-pi-zero boundary data.",
-    "Construct the W517 compact-target provider for the selected normalized route.",
-    "Construct W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data.",
-    "Construct normalized strict-representative fixed-target localization data.",
-    "Prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms.",
-    "Construct bounded homotopy/Verdier pullback left calculus of fractions.",
-    "Construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA."
+    "construct concrete closed quotient-cover WPP limit right-open boundary data",
+    "construct concrete source-difference cokernel-pi-zero boundary data",
+    "construct concrete W517 compact-target provider data for the selected normalized route",
+    "construct concrete W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data",
+    "construct normalized strict-representative fixed-target localization data",
+    "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
+    "construct bounded homotopy localized right adjoint plus unit membership, or otherwise prove bounded homotopy/Verdier pullback left calculus of fractions",
+    "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_030_w581_product_success_declarations_lean.log",
-  "latest_verified_increment": "W581 global selected-difference provider narrowing to W527 row providers",
+  "summary_log_tail": "W582 adds a checked localized-right-adjoint bridge for bounded homotopy/Verdier left calculus and a MetrizableLCA semantic adapter; product flags remain false.",
+  "latest_verified_increment": "W582 localized right-adjoint bridge for bounded homotopy left calculus",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -9033,6 +9070,13 @@
       "latest_verified_increment": "W581 global selected-difference provider narrowing to W527 row providers",
       "claim_review_status": "deterministic_accepted_pending_periodic_claim_review_loop_v3",
       "note": "W581 WppOpExactAcyclicProjectionFields source check passed; the WPP module was rebuilt before the ProductSuccessDeclarations audit check. The full serial verifier is expected to pass all deterministic gates and reject the terminal outcome at the nonterminal product gate."
+    },
+    "w582_localized_right_adjoint_left_calculus_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T15:22:13Z",
+      "source_tree_hash": "90576cd1709f56eb67b38e5c734a3b5e0190075c2a543fba156852911961fb03",
+      "latest_verified_increment": "W582 localized right-adjoint bridge for bounded homotopy left calculus",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "Focused Lean checks and dependent WPP module build passed before metadata refresh; full verifier is run after this refresh."
     }
   }
 }
