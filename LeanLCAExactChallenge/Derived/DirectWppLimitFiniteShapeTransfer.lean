@@ -1939,6 +1939,30 @@ abbrev MetrizableWppLimitRightOpenInput : Prop :=
 abbrev MetrizableWppLimitRightOpenLcaInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_preserves_openMap
 
+abbrev MetrizableWppLimitRightOpenQuotientBoundary : Prop :=
+  ∀ (X Y : WalkingParallelPair ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cone X) (cy : Cone Y) (φ : cx.pt ⟶ cy.pt),
+      IsLimit cx →
+        IsLimit cy →
+          (∀ j : WalkingParallelPair, IsOpenMap (α.app j : X.obj j → Y.obj j)) →
+            (∀ j : WalkingParallelPair,
+              φ ≫ cy.π.app j = cx.π.app j ≫ α.app j) →
+              Nonempty
+                (DirectWppLimitFiniteShapeTransfer.WppLimitLcaQuotientOpenMapData
+                  X Y α cx cy φ)
+
+abbrev MetrizableWppLimitRightOpenClosedQuotientCoverBoundary : Prop :=
+  ∀ (X Y : WalkingParallelPair ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cone X) (cy : Cone Y) (φ : cx.pt ⟶ cy.pt),
+      IsLimit cx →
+        IsLimit cy →
+          (∀ j : WalkingParallelPair, IsOpenMap (α.app j : X.obj j → Y.obj j)) →
+            (∀ j : WalkingParallelPair,
+              φ ≫ cy.π.app j = cx.π.app j ≫ α.app j) →
+              Nonempty
+                (DirectWppLimitFiniteShapeTransfer.WppLimitLcaClosedQuotientCoverData
+                  X Y α cx cy φ)
+
 abbrev MetrizableWppLimitRightSurjectiveInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitClosure
 
@@ -2003,6 +2027,32 @@ theorem metrizableWppLimitRightOpenInput_of_lca
     (hlimit : MetrizableWppLimitRightOpenLcaInput) :
     MetrizableWppLimitRightOpenInput :=
   wppLimit_preserves_rightOpenMap_of_lca_limitMap hlimit
+
+/-- Build the pure LCA right-open input from quotient/equalizer-cover boundary data. -/
+theorem metrizableWppLimitRightOpenLcaInput_of_quotientBoundary
+    (hboundary : MetrizableWppLimitRightOpenQuotientBoundary) :
+    MetrizableWppLimitRightOpenLcaInput :=
+  wppLimit_lca_limitMap_preserves_openMap_of_quotientBoundary hboundary
+
+/-- Build the pure LCA right-open input from closed quotient-cover boundary data. -/
+theorem metrizableWppLimitRightOpenLcaInput_of_closedQuotientCoverBoundary
+    (hboundary : MetrizableWppLimitRightOpenClosedQuotientCoverBoundary) :
+    MetrizableWppLimitRightOpenLcaInput :=
+  wppLimit_lca_limitMap_preserves_openMap_of_closedQuotientCoverBoundary hboundary
+
+/-- Build the WPP limit right-open field from quotient/equalizer-cover boundary data. -/
+theorem metrizableWppLimitRightOpenInput_of_quotientBoundary
+    (hboundary : MetrizableWppLimitRightOpenQuotientBoundary) :
+    MetrizableWppLimitRightOpenInput :=
+  metrizableWppLimitRightOpenInput_of_lca
+    (metrizableWppLimitRightOpenLcaInput_of_quotientBoundary hboundary)
+
+/-- Build the WPP limit right-open field from closed quotient-cover boundary data. -/
+theorem metrizableWppLimitRightOpenInput_of_closedQuotientCoverBoundary
+    (hboundary : MetrizableWppLimitRightOpenClosedQuotientCoverBoundary) :
+    MetrizableWppLimitRightOpenInput :=
+  metrizableWppLimitRightOpenInput_of_lca
+    (metrizableWppLimitRightOpenLcaInput_of_closedQuotientCoverBoundary hboundary)
 
 /-- Build the WPP limit right-surjectivity field from a pure LCA map certificate. -/
 theorem metrizableWppLimitRightSurjectiveInput_of_lca
