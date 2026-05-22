@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w558-pure-lca-right-field-provider-bridge",
-  "generated_utc": "2026-05-22T00:58:38Z",
+  "generated_utc": "2026-05-22T01:15:42Z",
   "source_tree_hash": "7c23014daa5c8011d096427d3980923ef52d07df1c5f67a868dbe55382694982",
   "summary": "W558 adds a pure-LCA right-field bridge on top of the W551/W555 direct WPP limit left/algebraic proofs. DirectWppLimitFiniteShapeTransfer now packages pure LCA right-open and right-surjectivity certificates into the direct-left/algebraic WPP limit-stability boundary. WppOpExactAcyclicProjectionFields threads that boundary into W515 representative-image, W516 top-target, and W517 compact-target provider transfer routes for closed-map rows, closed-embedding rows, fixed-target localization, and normalized localization. Product completion remains false because the pure LCA right-open/right-surjective certificates, concrete providers, W527 row providers, normalized representative data, triangulated data, and bounded left-calculus instance remain unconstructed.",
   "commands": [
@@ -4760,6 +4760,31 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Product gate still rejects the nonterminal outcome after W558, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_010_w558_external_product_gate.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "W558 metadata-fix JSON parse passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_010_w558_metadata_fix_json_parse.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W558 terminal metadata fix; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_010_w558_metadata_fix_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product gate still rejects the corrected W558 nonterminal outcome, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_010_w558_metadata_fix_external_product_gate.log."
+    },
+    {
+      "command": "if rg -n 'W557|261301|cycle_009_w557' terminal_outcome/terminal_outcome.json; then exit 1; else echo no_stale_w557_terminal_metadata; fi",
+      "status": "passed",
+      "evidence": "Stale W557 terminal metadata scan returned no matches; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_010_w558_metadata_fix_no_stale_terminal.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W558 terminal metadata fix; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_010_w558_metadata_fix_diff_check.log."
     }
   ],
   "implemented_declarations_checked": [
@@ -6482,6 +6507,6 @@
     "Construct normalized strict representative data and target/model uniqueness for the WPP localization route.",
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance."
   ],
-  "summary_log_tail": "W558 passed focused DirectWppLimitFiniteShapeTransfer Lean check, direct module build, focused WppOpExactAcyclicProjectionFields Lean check, WppOp module build, ProductSuccessDeclarations, RequiredDeclarations, root import, root build, full build, forbidden-token scans, touched-file placeholder scan, touched-file sorry/admit/axiom/unsafe scan, and diff check. JSON parse and external audit are recorded separately and remain nonterminal.",
+  "summary_log_tail": "W558 metadata fix refreshed terminal_outcome W558 identity/hash/frontier fields after v3 reviewers found stale W557 terminal metadata; JSON parse, external self-check, stale-terminal scan, diff check, and expected nonterminal product gate were rerun.",
   "latest_verified_increment": "W558 pure-LCA right-field bridge for W515/W516/W517 provider transfer routes"
 }
