@@ -12706,6 +12706,124 @@ theorem
       false :=
   rfl
 
+/--
+W570 selected route bundle for the quotient/equalizer-cover, Epi source-boundary,
+W515 representative-image, and W527 closed-map-row path through the W569 bridge.
+-/
+structure MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleW570 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenQuotientBoundary
+  sourceBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceEpiBoundary
+  representativeImageProvider :
+    ClosedNatTransOrdinaryRepresentativeImageProviderW515
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+W570 selected route bundles are exactly the W569 quotient/Epi/representative-image
+closed-map input surface with the route choices fixed.
+-/
+def
+    metrizableWppTransferInputsFromRightOpenQuotientEpiRepresentativeImageClosedMapRows_of_bundleW570
+    (inputs :
+      MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleW570) :
+    MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceEpiClosedMapRows
+      ClosedNatTransOrdinaryRepresentativeImageProviderW515 where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourceBoundary := inputs.sourceBoundary
+  provider := inputs.representativeImageProvider
+  closedMapRows := inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/-- W570 selected route bundles supply the W532 limit-stability field. -/
+theorem
+    metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientEpiRepresentativeImageClosedMapBundleW570
+    (inputs :
+      MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleW570) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientSourceDifferenceEpiBoundary
+    inputs.rightOpenBoundary inputs.sourceBoundary
+
+/--
+W570 endpoint: a selected quotient/Epi/representative-image/closed-map bundle
+feeds the W569 source-boundary finite-shape transfer bridge.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientEpiRepresentativeImageClosedMapBundleW570
+    (inputs :
+      MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleW570) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryRepresentativeImageClosedMapRows
+    Dbounded.metrizableWppLimitSourceDifferenceLcaInput_of_epiBoundary
+    (metrizableWppTransferInputsFromRightOpenQuotientEpiRepresentativeImageClosedMapRows_of_bundleW570
+      inputs)
+
+/-- Input names for the selected W570 quotient/Epi/representative-image route. -/
+def
+    metrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleInputNamesW570 :
+    List String :=
+  metrizableWppTransferFromRightOpenQuotientSourceBoundaryClosedMapRowsInputNames
+    "MetrizableWppLimitSourceDifferenceEpiBoundary"
+    "ClosedNatTransOrdinaryRepresentativeImageProviderW515"
+
+theorem
+    metrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleInputNamesW570_count :
+    metrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleInputNamesW570.length =
+      5 :=
+  rfl
+
+/-- Current checked W570 state for the selected quotient/Epi representative-image bundle. -/
+structure
+    MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570 :
+    Type where
+  seed : String
+  declarations : List String
+  selectedBundleResult : String
+  limitStabilityResult : String
+  transferEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W570 state. -/
+def
+    currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleSupportStateW570 :
+    MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570 where
+  seed := "w570-right-open-quotient-epi-representative-image-closed-map-bundle"
+  declarations :=
+    ["MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleW570",
+      "metrizableWppTransferInputsFromRightOpenQuotientEpiRepresentativeImageClosedMapRows_of_bundleW570",
+      "metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientEpiRepresentativeImageClosedMapBundleW570",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientEpiRepresentativeImageClosedMapBundleW570",
+      "metrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleInputNamesW570",
+      "metrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleInputNamesW570_count"]
+  selectedBundleResult :=
+    "proved: fixed quotient/equalizer-cover + Epi + W515 representative-image + W527 closed-map route"
+  limitStabilityResult := "proved from the W569 quotient/Epi source-boundary adapter"
+  transferEndpointResult := "proved through the W569 source-boundary transfer endpoint"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenQuotientBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceEpiBoundary",
+      "construct a concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527",
+      "construct WalkingParallelPair functor-category localization"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570 :
+    MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570 :=
+  currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleSupportStateW570
+
+theorem
+    currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570_productSuccess :
+    currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -13123,6 +13241,27 @@ section Checks
   currentMetrizableWppRightOpenQuotientSourceDifferenceTransferStateW568
 #check
   currentMetrizableWppRightOpenQuotientSourceDifferenceTransferStateW568_productSuccess
+#check MetrizableWppTransferInputsFromRightOpenQuotientSourceBoundaryClosedMapRows
+#check
+  MetrizableWppTransferInputsFromRightOpenQuotientSourceDifferenceEpiClosedMapRows
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientSourceBoundaryRepresentativeImageClosedMapRows
+#check currentMetrizableWppRightOpenQuotientSourceBoundaryTransferStateW569
+#check currentMetrizableWppRightOpenQuotientSourceBoundaryTransferStateW569_productSuccess
+#check MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleW570
+#check
+  metrizableWppTransferInputsFromRightOpenQuotientEpiRepresentativeImageClosedMapRows_of_bundleW570
+#check
+  metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientEpiRepresentativeImageClosedMapBundleW570
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientEpiRepresentativeImageClosedMapBundleW570
+#check
+  metrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleInputNamesW570
+#check
+  metrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleInputNamesW570_count
+#check currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570
+#check
+  currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570_productSuccess
 
 end Checks
 

@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-22T10:35:00Z",
-  "content_hash_tree": "69f41e9d8061a63c995a3fb5055b0d9461e7d925e9a42c034df73ef230940c5d",
+  "generated_utc": "2026-05-22T10:56:15Z",
+  "content_hash_tree": "f705c59c0452b3da281b0dd3ef55ba73875e259569bf6f9a701000d0e2c1ab40",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -99,8 +99,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "bytes": 641710,
-      "sha256": "e995693a8451bdd616d57e99522c03979181734864caef99ad0aa3702e763009"
+      "bytes": 648992,
+      "sha256": "d7f9d24ae6b1c09c5fab02430ef58cfc1e8b89225f9bb1d38d33384a3c73f16b"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean",
@@ -189,8 +189,8 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 208049,
-      "sha256": "6a3e334b57d7681ea8d2f5f8577a1c9d1be56db4fe2d87030c0d6906a918abde"
+      "bytes": 208937,
+      "sha256": "eed88b848f486127a6db4ea9152522c5ba924d1093388650bac8058940fc8529"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -1794,8 +1794,8 @@
     },
     {
       "path": "audit/external_audit.py",
-      "bytes": 23760,
-      "sha256": "e6cf180c87555cf165bc2a2a5cd04bde32af1c596703aebdebe2ab3903da4956"
+      "bytes": 24194,
+      "sha256": "973467ff63482f0f32dc4a670924949990435c93aa69e90e548265fdf34f3603"
     },
     {
       "path": "audit/negative_fixtures/comment_only_stable_marker_claimed_product_success/LeanLCAExactChallenge/Derived/Bounded.lean",
@@ -4159,8 +4159,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 590083,
-      "sha256": "8aba9a1c27598745dc06861d0768d8f89b734f6a13193a50d9230ce83058c846"
+      "bytes": 596274,
+      "sha256": "8aebfe592546d31aa025da69d7b34ecf88705bf454da491ee03b4d6dd0e5d55c"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -4174,8 +4174,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 621132,
-      "sha256": "fca605d8f050d1f662a3d710ec101a165257c3c3622eb75d283ed83110d56806"
+      "bytes": 627694,
+      "sha256": "ea1a1076d83210bd85ef38777018da5729317c1b30e2699d260ba1f32f1c7f75"
     },
     {
       "path": "workers/README.md",

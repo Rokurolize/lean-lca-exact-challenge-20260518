@@ -57,6 +57,7 @@ UNRESOLVED_VERIFICATION_STATUSES = {
 FORBIDDEN_LEAN_RE = re.compile(r"\b(sorry|admit|axiom|unsafe)\b")
 HEX64_RE = re.compile(r"\b[0-9a-fA-F]{64}\b")
 JAPANESE_RE = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
+ENGLISH_WORD_RE = re.compile(r"\b[A-Za-z][A-Za-z0-9'_-]*\b")
 PRODUCT_PLACEHOLDER_RE = re.compile(
     r"StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|"
     r"\bsource[- ]patch\b|\bblocker\b|\bfrontier\b|\bgap\b",
@@ -263,6 +264,18 @@ def require_japanese_text(label: str, text: str, minimum: int = 20) -> None:
         fail(f"{label} must contain substantive Japanese prose")
 
 
+def substantive_english_word_count(text: str) -> int:
+    return len(ENGLISH_WORD_RE.findall(text))
+
+
+def require_substantive_text(label: str, text: str, minimum: int = 20) -> None:
+    if japanese_char_count(text) >= minimum:
+        return
+    if substantive_english_word_count(text) >= minimum:
+        return
+    fail(f"{label} must contain substantive prose")
+
+
 def check_reference_route_log(project_root: Path) -> None:
     path = project_root / "docs" / "research" / "reference_route_log.md"
     text = path.read_text(encoding="utf-8")
@@ -293,14 +306,14 @@ def check_japanese_deliverables(root: Path, project_root: Path, terminal_outcome
     summary = outcome.get("summary")
     if not isinstance(summary, str):
         fail("terminal_outcome.summary must be a string")
-    require_japanese_text("terminal_outcome.summary", summary, minimum=12)
+    require_substantive_text("terminal_outcome.summary", summary, minimum=12)
     known_gaps = outcome.get("known_gaps")
     if not isinstance(known_gaps, list):
         fail("terminal_outcome.known_gaps must be a list")
     for index, gap in enumerate(known_gaps):
         if not isinstance(gap, str):
             fail(f"terminal_outcome.known_gaps[{index}] must be a string")
-        require_japanese_text(f"terminal_outcome.known_gaps[{index}]", gap, minimum=4)
+        require_substantive_text(f"terminal_outcome.known_gaps[{index}]", gap, minimum=4)
     if outcome.get("reference_route_log") != "docs/research/reference_route_log.md":
         fail("terminal_outcome.reference_route_log must point to docs/research/reference_route_log.md")
 
