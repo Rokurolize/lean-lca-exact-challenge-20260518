@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W586 reduces exactAcyclic homotopy-equivalence invariance to homology detection of exact acyclicity. It adds ExactAcyclicHomologyDetectionInput, which requires homology existence, exactAcyclic implies zero homology, and zero homology implies exactAcyclic. Using HomotopyEquiv.toHomologyIso, it proves this input supplies ExactAcyclicHomotopyEquivInvarianceInput. This is verified nonterminal support only: it does not construct the homology-detection fields, prove strict topological exactness from zero homology, construct localized adjunction membership, prove isoClosure triangulated-closedness, close WPP boundary/provider data, or construct Dbounded triangulated fields.",
+  "summary": "W587 reduces the remaining exactAcyclic homology-detection obligation to a degreewise ExactAt comparison. It adds ExactAcyclicExactAtDetectionInput, whose fields require homology existence, exactAcyclic implies categorical ExactAt in every degree, and categorical ExactAt in every degree implies exactAcyclic. The new theorem exactAcyclicHomologyDetectionInput_of_exactAtDetection uses mathlib's exactAt_iff_isZero_homology to produce the existing ExactAcyclicHomologyDetectionInput. This is verified nonterminal support only: it does not construct the MetrizableLCA ExactAt comparison fields, prove topological strict exactness from categorical ExactAt, construct localized adjunction membership, prove isoClosure triangulated-closedness, close WPP boundary/provider data, or construct Dbounded triangulated fields.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -948,7 +948,16 @@
     "lake env lean audit/ProductSuccessDeclarations.lean (passed: cycle_034_w585_product_success_declarations_lean.log)",
     "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean (passed: cycle_035_w586_bounded_source_lean.log)",
     "lake build LeanLCAExactChallenge.Derived.Bounded (passed: cycle_035_w586_bounded_lake_build.log)",
-    "lake env lean audit/ProductSuccessDeclarations.lean (passed: cycle_035_w586_product_success_declarations_lean.log)"
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: cycle_035_w586_product_success_declarations_lean.log)",
+    "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_036_w587_source_lean.log exit_code=0)",
+    "lake build LeanLCAExactChallenge.Derived.Bounded (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_036_w587_lake_build_source.log exit_code=0)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_036_w587_product_declarations_lean.log exit_code=0)",
+    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_036_w587_required_declarations_lean.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_036_w587_external_audit_self_check.log exit_code=0)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_036_w587_full_lake_build.log exit_code=0)",
+    "python3 json validation for manifest/run/terminal_outcome (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_036_w587_json_validation.log exit_code=0)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_036_w587_git_diff_check.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_036_w587_external_audit_terminal_expected_nonterminal.log exit_code=1)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535.walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
@@ -2511,7 +2520,13 @@
     "ExactAcyclicHomologyDetectionInput",
     "exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection",
     "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586",
-    "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count"
+    "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count",
+    "ExactAcyclicExactAtDetectionInput",
+    "exactAcyclicHomologyDetectionInput_of_exactAtDetection",
+    "Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587",
+    "Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587_count",
+    "Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587",
+    "Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587_count"
   ],
   "known_gaps": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
@@ -2519,7 +2534,7 @@
     "construct concrete W517 compact-target provider data for the selected normalized route",
     "construct concrete W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data",
     "construct normalized strict-representative fixed-target localization data",
-    "construct homology existence/detection fields for exactAcyclic MetrizableLCA cochain complexes",
+    "construct homology existence plus ExactAt comparison fields for exactAcyclic MetrizableLCA cochain complexes",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
@@ -2530,7 +2545,7 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W586 reduces homotopy-equivalence invariance to homology detection and strict exactness recovery; no concrete homology-detection theorem, WPP provider/boundary, localized adjunction, or triangulated-field input was constructed.",
+  "worker_frontier_summary": "W587 replaces raw zero-homology manipulation with a smaller ExactAt comparison route; no concrete MetrizableLCA ExactAt comparison theorem, WPP provider/boundary, localized adjunction, or triangulated-field input was constructed.",
   "claim_review_result": "not_run_nonterminal_support_increment",
   "remaining_gaps": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
@@ -2538,13 +2553,13 @@
     "construct concrete W517 compact-target provider data for the selected normalized route",
     "construct concrete W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data",
     "construct normalized strict-representative fixed-target localization data",
-    "construct homology existence/detection fields for exactAcyclic MetrizableLCA cochain complexes",
+    "construct homology existence plus ExactAt comparison fields for exactAcyclic MetrizableLCA cochain complexes",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "next_recommended_goal": "Prefer concrete construction of exactAcyclic homology-detection fields, exact-acyclic isoClosure closed2/triangle realization, WPP closed quotient/source pi-zero boundary data, W517/W527 provider data, normalized fixed-target localization data, localized adjunction membership inputs, or Dbounded triangulated fields.",
+  "next_recommended_goal": "Prefer concrete construction of MetrizableLCA homology existence plus ExactAt comparison fields, exact-acyclic isoClosure closed2/triangle realization, WPP closed quotient/source pi-zero boundary data, W517/W527 provider data, normalized fixed-target localization data, localized adjunction membership inputs, or Dbounded triangulated fields.",
   "implemented_declarations": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -4564,10 +4579,16 @@
     "ExactAcyclicHomologyDetectionInput",
     "exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection",
     "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586",
-    "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count"
+    "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count",
+    "ExactAcyclicExactAtDetectionInput",
+    "exactAcyclicHomologyDetectionInput_of_exactAtDetection",
+    "Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587",
+    "Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587_count",
+    "Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587",
+    "Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587_count"
   ],
-  "generated_utc": "2026-05-22T16:14:05Z",
-  "support_result_classification": "nonterminal_homology_detection_input_reduction",
+  "generated_utc": "2026-05-22T16:24:51Z",
+  "support_result_classification": "nonterminal_exact_at_detection_input_reduction",
   "implemented_declarations_checked": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -6623,7 +6644,13 @@
     "ExactAcyclicHomologyDetectionInput",
     "exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection",
     "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586",
-    "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count"
+    "Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count",
+    "ExactAcyclicExactAtDetectionInput",
+    "exactAcyclicHomologyDetectionInput_of_exactAtDetection",
+    "Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587",
+    "Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587_count",
+    "Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587",
+    "Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587_count"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
@@ -6633,16 +6660,16 @@
     "construct concrete W517 compact-target provider data for the selected normalized route",
     "construct concrete W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data",
     "construct normalized strict-representative fixed-target localization data",
-    "construct homology existence/detection fields for exactAcyclic MetrizableLCA cochain complexes",
+    "construct homology existence plus ExactAt comparison fields for exactAcyclic MetrizableLCA cochain complexes",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "latest_verified_increment": "W586 homology-detection route to exact-acyclic homotopy invariance",
-  "source_tree_hash": "e53c3d82d9da30fa98053b73207cceaed4d024476123b241c720d4ea88973c87",
-  "summary_log_tail": "W586 uses HomotopyEquiv.toHomologyIso to reduce exact-acyclic homotopy-equivalence invariance to explicit homology-detection fields; product flags remain false.",
-  "git_commit_note": "W586 homology-detection route should be committed only after full verifier passes with product flags false.",
+  "latest_verified_increment": "W587 exact-at detection route to exact-acyclic homology detection",
+  "source_tree_hash": "7f87f9baa41ae2842f604a9f43a4483fdd128d7ea80876ecdf3999a6b600a9fc",
+  "summary_log_tail": "W587 uses HomologicalComplex.exactAt_iff_isZero_homology to reduce exact-acyclic homology detection to homology existence plus degreewise ExactAt comparison fields; product flags remain false.",
+  "git_commit_note": "W587 exact-at detection route should be committed only after metadata refresh and final verification pass with product flags false.",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -7037,6 +7064,16 @@
       "refreshed_utc": "2026-05-22T16:14:05Z",
       "source_tree_hash": "e53c3d82d9da30fa98053b73207cceaed4d024476123b241c720d4ea88973c87",
       "latest_verified_increment": "W586 homology-detection route to exact-acyclic homotopy invariance",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "Nonterminal support increment only; do not call update_goal(status=\"complete\")."
+    },
+    "w587_exact_at_detection_route_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T16:24:51Z",
+      "source_tree_hash": "7f87f9baa41ae2842f604a9f43a4483fdd128d7ea80876ecdf3999a6b600a9fc",
+      "latest_verified_increment": "W587 exact-at detection route to exact-acyclic homology detection",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "product_success": false,
       "product_complete": false,

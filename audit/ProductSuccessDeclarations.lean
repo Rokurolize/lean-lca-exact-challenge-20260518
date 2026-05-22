@@ -3856,6 +3856,16 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586
 #check
   Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count
+#check ExactAcyclicExactAtDetectionInput
+#check exactAcyclicHomologyDetectionInput_of_exactAtDetection
+#check
+  Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587
+#check
+  Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587_count
+#check
+  Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587
+#check
+  Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587_count
 #check
   Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed
 #check

@@ -453,6 +453,34 @@ structure ExactAcyclicHomologyDetectionInput : Prop where
       (∀ i : ℤ, letI : K.HasHomology i := hasHomology K i; IsZero (K.homology i)) →
         exactAcyclic C K
 
+/-- Degreewise exactness detection input for exact acyclicity. This is often the smaller
+remaining target than raw homology object manipulation because mathlib already proves
+`K.ExactAt i ↔ IsZero (K.homology i)` once homology exists. -/
+structure ExactAcyclicExactAtDetectionInput : Prop where
+  hasHomology : ∀ (K : CochainComplex C ℤ) (i : ℤ), K.HasHomology i
+  exactAt_of_exactAcyclic :
+    ∀ (K : CochainComplex C ℤ), exactAcyclic C K → ∀ i : ℤ, K.ExactAt i
+  exactAcyclic_of_exactAt :
+    ∀ (K : CochainComplex C ℤ), (∀ i : ℤ, K.ExactAt i) → exactAcyclic C K
+
+/-- Degreewise exactness detection supplies homology detection of exact acyclicity. -/
+theorem exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (E : ExactAcyclicExactAtDetectionInput C) :
+    ExactAcyclicHomologyDetectionInput C where
+  hasHomology := E.hasHomology
+  isZero_homology_of_exactAcyclic := by
+    intro K hK i
+    letI : K.HasHomology i := E.hasHomology K i
+    exact (HomologicalComplex.exactAt_iff_isZero_homology (K := K) (i := i)).mp
+      (E.exactAt_of_exactAcyclic K hK i)
+  exactAcyclic_of_isZero_homology := by
+    intro K hK
+    apply E.exactAcyclic_of_exactAt
+    intro i
+    letI : K.HasHomology i := E.hasHomology K i
+    exact (HomologicalComplex.exactAt_iff_isZero_homology (K := K) (i := i)).mpr
+      (hK i)
+
 /-- Homology detection of exact acyclicity implies invariance under homotopy equivalences:
 homotopy equivalences induce isomorphisms on homology. -/
 theorem exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
@@ -3911,6 +3939,27 @@ def Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586 : List String
 
 theorem Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586_count :
     Dbounded.metrizableExactAcyclicHomologyDetectionInputNamesW586.length = 3 :=
+  rfl
+
+/-- MetrizableLCA exact-at route for constructing the homology-detection input. -/
+def Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "exactAcyclic MetrizableLCA implies categorical ExactAt in every degree",
+    "categorical ExactAt in every degree implies exactAcyclic MetrizableLCA"]
+
+theorem Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587_count :
+    Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW587.length = 3 :=
+  rfl
+
+/-- The W587 route replaces the raw zero-homology target by exactness-at-each-degree plus
+the existing mathlib homology comparison theorem. -/
+def Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587 : List String :=
+  ["ExactAcyclicExactAtDetectionInput MetrizableLCA",
+    "exactAcyclicHomologyDetectionInput_of_exactAtDetection",
+    "exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection"]
+
+theorem Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587_count :
+    Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587.length = 3 :=
   rfl
 
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/
