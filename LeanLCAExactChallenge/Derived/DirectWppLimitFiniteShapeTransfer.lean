@@ -1186,8 +1186,68 @@ abbrev rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary : Prop :=
                   (cs.π.app WalkingParallelPair.zero).τ₃ y₃ ∧
                   (S.map WalkingParallelPairHom.left).τ₂
                       (x₂₀ - (S.obj WalkingParallelPair.zero).f u₁₀) =
-                    (S.map WalkingParallelPairHom.right).τ₂
+                  (S.map WalkingParallelPairHom.right).τ₂
                       (x₂₀ - (S.obj WalkingParallelPair.zero).f u₁₀)
+
+/--
+Difference-form correction data for the WPP limit right-surjectivity field.  The
+chosen zero-component lift is corrected when its left/right difference is the
+image of a source-degree-one difference.
+-/
+abbrev rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary : Prop :=
+  ∀ (S : WalkingParallelPair ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cone S),
+      IsLimit cs →
+        (∀ j : WalkingParallelPair, MetrizableLCA.strictShortExact (S.obj j)) →
+          ∀ y₃ : cs.pt.X₃,
+            ∃ (x₂₀ : (S.obj WalkingParallelPair.zero).X₂)
+              (u₁₀ : (S.obj WalkingParallelPair.zero).X₁),
+                (S.obj WalkingParallelPair.zero).g x₂₀ =
+                  (cs.π.app WalkingParallelPair.zero).τ₃ y₃ ∧
+                  (S.map WalkingParallelPairHom.left).τ₂ x₂₀ -
+                      (S.map WalkingParallelPairHom.right).τ₂ x₂₀ =
+                    (S.obj WalkingParallelPair.one).f
+                      ((S.map WalkingParallelPairHom.left).τ₁ u₁₀ -
+                        (S.map WalkingParallelPairHom.right).τ₁ u₁₀)
+
+/--
+The difference-form correction boundary supplies the concrete zero-component
+correction boundary used by the WPP limit equalizer argument.
+-/
+theorem rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary_of_differenceCorrectionBoundary
+    (hboundary : rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary) :
+    rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary := by
+  intro S cs hcs hS y₃
+  rcases hboundary S cs hcs hS y₃ with ⟨x₂₀, u₁₀, hx₂₀, hdiff⟩
+  refine ⟨x₂₀, u₁₀, hx₂₀, ?_⟩
+  have hleft_f :
+      (S.map WalkingParallelPairHom.left).τ₂
+          ((S.obj WalkingParallelPair.zero).f u₁₀) =
+        (S.obj WalkingParallelPair.one).f
+          ((S.map WalkingParallelPairHom.left).τ₁ u₁₀) := by
+    exact (congrArg
+      (fun h : (S.obj WalkingParallelPair.zero).X₁ ⟶
+          (S.obj WalkingParallelPair.one).X₂ => h u₁₀)
+      (S.map WalkingParallelPairHom.left).comm₁₂).symm
+  have hright_f :
+      (S.map WalkingParallelPairHom.right).τ₂
+          ((S.obj WalkingParallelPair.zero).f u₁₀) =
+        (S.obj WalkingParallelPair.one).f
+          ((S.map WalkingParallelPairHom.right).τ₁ u₁₀) := by
+    exact (congrArg
+      (fun h : (S.obj WalkingParallelPair.zero).X₁ ⟶
+          (S.obj WalkingParallelPair.one).X₂ => h u₁₀)
+      (S.map WalkingParallelPairHom.right).comm₁₂).symm
+  have hdiff' :
+      (S.map WalkingParallelPairHom.left).τ₂ x₂₀ -
+          (S.map WalkingParallelPairHom.right).τ₂ x₂₀ =
+        (S.obj WalkingParallelPair.one).f
+            ((S.map WalkingParallelPairHom.left).τ₁ u₁₀) -
+          (S.obj WalkingParallelPair.one).f
+            ((S.map WalkingParallelPairHom.right).τ₁ u₁₀) := by
+    simpa [map_sub] using hdiff
+  rw [map_sub, map_sub, hleft_f, hright_f]
+  exact sub_eq_sub_iff_sub_eq_sub.mpr hdiff'
 
 /--
 The zero-component correction boundary supplies the WPP limit
@@ -1274,6 +1334,17 @@ theorem rightSurjective_walkingParallelPair_limitClosure_of_zeroCorrectionBounda
             (S.obj WalkingParallelPair.zero).zero
         simp [map_sub, hzero]
     _ = (cs.π.app WalkingParallelPair.zero).τ₃ y₃ := hx₂₀
+
+/--
+The difference-form correction boundary supplies the WPP limit
+right-surjectivity field via the zero-component correction argument.
+-/
+theorem rightSurjective_walkingParallelPair_limitClosure_of_differenceCorrectionBoundary
+    (hboundary : rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary) :
+    rightSurjective_walkingParallelPair_limitClosure :=
+  rightSurjective_walkingParallelPair_limitClosure_of_zeroCorrectionBoundary
+    (rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary_of_differenceCorrectionBoundary
+      hboundary)
 
 /-- Direct algebraic exactness at the WPP limit point. -/
 abbrev algebraicExact_walkingParallelPair_limitClosure : Prop :=
@@ -1655,6 +1726,9 @@ abbrev MetrizableWppLimitRightSurjectiveLcaInput : Prop :=
 abbrev MetrizableWppLimitRightSurjectiveZeroCorrectionBoundary : Prop :=
   DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary
 
+abbrev MetrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary : Prop :=
+  DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary
+
 abbrev MetrizableWppLimitAlgebraicExactInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure
 
@@ -1706,6 +1780,25 @@ theorem metrizableWppLimitRightSurjectiveInput_of_zeroCorrectionBoundary
     (hboundary : MetrizableWppLimitRightSurjectiveZeroCorrectionBoundary) :
     MetrizableWppLimitRightSurjectiveInput :=
   rightSurjective_walkingParallelPair_limitClosure_of_zeroCorrectionBoundary hboundary
+
+/--
+Build the zero-component correction boundary from difference-form correction
+data.
+-/
+theorem metrizableWppLimitRightSurjectiveZeroCorrectionBoundary_of_differenceCorrectionBoundary
+    (hboundary : MetrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary) :
+    MetrizableWppLimitRightSurjectiveZeroCorrectionBoundary :=
+  rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary_of_differenceCorrectionBoundary
+    hboundary
+
+/--
+Build the WPP limit right-surjectivity field from difference-form correction
+data.
+-/
+theorem metrizableWppLimitRightSurjectiveInput_of_differenceCorrectionBoundary
+    (hboundary : MetrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary) :
+    MetrizableWppLimitRightSurjectiveInput :=
+  rightSurjective_walkingParallelPair_limitClosure_of_differenceCorrectionBoundary hboundary
 
 /-- Build the WPP limit algebraic-exactness field from component limit data. -/
 theorem metrizableWppLimitAlgebraicExactInput_of_lca

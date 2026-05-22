@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W562では、direct WPP limitのright-surjectivity fieldについて、open/Epi/cokernelを仮定する経路ではなく、zero componentで持ち上げた元をsource boundaryで補正し、WPP limitのequalizer表示から実際のlimit元を作る補正境界を追加した。ただし、この補正データ自体はW515/W516/W517 relation dataやW527 row providerからまだ具体化されていないため、product_successではない。",
+  "summary": "W563では、direct WPP limitのright-surjectivity fieldについて、W562のzero-component correction boundaryをさらに差分形式に分解した。zero componentで持ち上げた元のleft/right差が、source degree-oneのleft/right差をobject oneのfで送ったものに等しい、というデータからW562の補正境界を導く。ただし、このdifference-correction data自体はW515/W516/W517 relation dataやW527 row providerからまだ具体化されていないため、product_successではない。",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -688,7 +688,21 @@
     "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null (passed: Updated JSON artifacts parse after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_json_parse.log.)",
     "python3 audit/external_audit.py --root . --self-check-only (passed: External audit self-check passed after W562 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_external_self_check.log.)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: External audit reaches expected nonterminal product gate after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_external_audit_expected_nonterminal.log.)",
-    "scripts/audit_no_forbidden_lean_tokens.sh audit"
+    "scripts/audit_no_forbidden_lean_tokens.sh audit",
+    "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+    "python3 audit/external_audit.py --root . --self-check-only",
+    "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean (passed: Focused W563 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_direct_wpp_limit_file.log.)",
+    "lake build (passed: Full project build passed after W563; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_lake_build.log.)",
+    "lake env lean audit/RequiredDeclarations.lean (passed: Required declarations audit passed after W563; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_required_declarations.log.)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: Product declarations audit passed after W563 #check coverage; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_product_success_declarations.log.)",
+    "lake env lean LeanLCAExactChallenge.lean (passed: Root import check passed after W563; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_root_import.log.)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: Full Lean source forbidden-token scan passed after W563; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_forbidden_tokens_full_source.log.)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean (passed: Touched source-file forbidden-token scan passed after W563; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_forbidden_tokens_direct_file.log.)",
+    "scripts/audit_no_forbidden_lean_tokens.sh audit (passed: Audit-root forbidden-token scan passed after W563; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_forbidden_tokens_audit.log.)",
+    "git diff --check (passed: Whitespace diff check passed after W563; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_git_diff_check.log.)",
+    "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null (passed: Updated JSON artifacts parse after W563; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_json_parse.log.)",
+    "python3 audit/external_audit.py --root . --self-check-only (passed: External audit self-check passed after W563 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_external_self_check.log.)",
+    "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: External audit reaches expected nonterminal product gate after W563; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_external_audit_expected_nonterminal.log.)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535.walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
@@ -1945,7 +1959,7 @@
     "Dbounded.metrizableWppLimitLeftClosedInput_direct"
   ],
   "known_gaps": [
-    "W562のzero-component correction dataはright-surjectivityの十分条件として証明済みだが、W515/W516/W517 relation providerやW527 row providerからはまだ具体化されていない。",
+    "W563のdifference-correction dataはW562のzero-component correction dataを導く十分条件として証明済みだが、W515/W516/W517 relation providerやW527 row providerからはまだ具体化されていない。",
     "pure LCAのWPP limit right open-map certificateはまだ証明されていない。W559はそのためのclosed quotient/equalizer cover routeだけを追加した。",
     "pure LCAのWPP limit right-surjectivity certificateはまだ証明されていない。W560とW561はopen-map/cokernelおよびopen-map/Epiの境界だけを追加した。",
     "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
@@ -1958,18 +1972,18 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W562 adds a zero-component correction route for the pure LCA WPP limit right-surjectivity input. Remaining nonterminal work is to instantiate the W562 correction data from W515/W516/W517 relation/provider data or W527-style row providers, or prove a relation-to-correction bridge; W559 right-open cover data and concrete provider rows also remain open.",
-  "claim_review_result": "not_product_success; W562 adds a zero-component correction boundary and constructs the WPP limit preimage from that data, but the correction data is not instantiated and product_success remains false.",
+  "worker_frontier_summary": "W563 adds a difference-form bridge into the W562 zero-component correction route for the WPP limit right-surjectivity input. Remaining nonterminal work is to instantiate the W563 difference-correction data from W515/W516/W517 relation/provider data or W527-style row providers; W559 right-open cover data and concrete provider rows also remain open.",
+  "claim_review_result": "not_product_success; W563 adds a difference-correction bridge into the W562 zero-correction route, but the correction data is not instantiated and product_success remains false.",
   "remaining_gaps": [
-    "W562 correction data is proved as a sufficient direct WPP limit right-surjectivity boundary, but it is not yet instantiated from W515/W516/W517 relation providers or W527 row providers.",
+    "W563 difference-correction data is proved as a sufficient route to W562 zero-component correction data, but it is not yet instantiated from W515/W516/W517 relation providers or W527 row providers.",
     "Pure LCA WPP limit right open-map certificate remains unproved; W559 only adds a quotient/equalizer-cover route to it.",
-    "Pure LCA WPP limit right-surjectivity certificate remains unproved.",
+    "Pure LCA WPP limit right-surjectivity certificate remains unproved; W560 and W561 only add open-map/cokernel and open-map/epi boundary routes.",
     "Concrete W515/W516/W517 representative-image, top-target, and compact-target relation data remain unconstructed.",
     "A W527 ComponentwiseClosedMapRowsProvider or ComponentwiseClosedEmbeddingRowsProvider remains unconstructed.",
     "Coherent normalized strict representative data and target/model uniqueness for the WalkingParallelPair localization route remain unconstructed.",
     "Pretriangulated/triangulated data and the final bounded left-calculus instance remain unconstructed."
   ],
-  "next_recommended_goal": "Instantiate the W562 zero-component correction boundary from concrete W515/W516/W517 relation data and W527-style row providers, or prove a narrower relation-to-correction bridge.",
+  "next_recommended_goal": "Instantiate the W563 difference-correction boundary from concrete W515/W516/W517 relation data and W527-style row providers, or prove a narrower relation-to-difference bridge.",
   "implemented_declarations": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -3656,9 +3670,15 @@
     "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary",
     "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitClosure_of_zeroCorrectionBoundary",
     "Dbounded.MetrizableWppLimitRightSurjectiveZeroCorrectionBoundary",
-    "Dbounded.metrizableWppLimitRightSurjectiveInput_of_zeroCorrectionBoundary"
+    "Dbounded.metrizableWppLimitRightSurjectiveInput_of_zeroCorrectionBoundary",
+    "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary",
+    "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary_of_differenceCorrectionBoundary",
+    "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitClosure_of_differenceCorrectionBoundary",
+    "Dbounded.MetrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary",
+    "Dbounded.metrizableWppLimitRightSurjectiveZeroCorrectionBoundary_of_differenceCorrectionBoundary",
+    "Dbounded.metrizableWppLimitRightSurjectiveInput_of_differenceCorrectionBoundary"
   ],
-  "generated_utc": "2026-05-22T04:53:13Z",
+  "generated_utc": "2026-05-22T05:24:31Z",
   "support_result_classification": "nonterminal_support_increment",
   "implemented_declarations_checked": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
@@ -5382,21 +5402,27 @@
     "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary",
     "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitClosure_of_zeroCorrectionBoundary",
     "Dbounded.MetrizableWppLimitRightSurjectiveZeroCorrectionBoundary",
-    "Dbounded.metrizableWppLimitRightSurjectiveInput_of_zeroCorrectionBoundary"
+    "Dbounded.metrizableWppLimitRightSurjectiveInput_of_zeroCorrectionBoundary",
+    "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary",
+    "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary_of_differenceCorrectionBoundary",
+    "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitClosure_of_differenceCorrectionBoundary",
+    "Dbounded.MetrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary",
+    "Dbounded.metrizableWppLimitRightSurjectiveZeroCorrectionBoundary_of_differenceCorrectionBoundary",
+    "Dbounded.metrizableWppLimitRightSurjectiveInput_of_differenceCorrectionBoundary"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Instantiate W562 zero-component correction data from relation/provider rows, or reduce it to existing W515/W516/W517/W527 data.",
+    "Instantiate W563 difference-correction data from relation/provider rows, or reduce it to existing W515/W516/W517/W527 data.",
     "Instantiate closed quotient/equalizer-cover data for the pure LCA WPP limit right open-map certificate, or prove the certificate directly.",
     "Instantiate open-map plus epi, cokernel-top, or cokernel-pi-zero data for the pure LCA WPP limit right-surjectivity certificate, or prove the certificate directly.",
     "Instantiate concrete W515/W516/W517 relation-data providers and W527 row providers.",
     "Construct normalized strict representative data and target/model uniqueness for the WPP localization route.",
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance."
   ],
-  "latest_verified_increment": "W562 WPP limit right-surjective zero-component correction boundary",
-  "source_tree_hash": "01fcf33cc97b7d1034d35c4994361d0725eadccdc465ef62d14c42248a2bd989",
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_lake_build.log",
+  "latest_verified_increment": "W563 WPP limit right-surjective difference-correction bridge",
+  "source_tree_hash": "32c3a91db72bb10937b21732c75bbe5978935e06fd7d8c0130d9f36d20cad92b",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w563_lake_build.log",
   "git_commit_note": "W561 terminal metadata intentionally avoids a self-referential enclosing commit hash; the verified target HEAD is recorded in external consultant artifacts and by git rev-parse HEAD.",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
@@ -5406,6 +5432,12 @@
       "corrected_terminal_non_command_strings": 0,
       "current_w562_source_root_scan": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
       "current_w562_audit_root_scan": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+    },
+    "w563_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T05:24:31Z",
+      "source_tree_hash": "32c3a91db72bb10937b21732c75bbe5978935e06fd7d8c0130d9f36d20cad92b",
+      "latest_verified_increment": "W563 WPP limit right-surjective difference-correction bridge",
+      "note": "verified_commands records W563 commands and product flags remain false."
     }
   }
 }
