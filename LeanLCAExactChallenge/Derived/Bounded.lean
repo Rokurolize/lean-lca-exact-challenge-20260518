@@ -481,6 +481,23 @@ theorem exactAcyclicHomologyDetectionInput_of_exactAtDetection
     exact (HomologicalComplex.exactAt_iff_isZero_homology (K := K) (i := i)).mpr
       (hK i)
 
+/-- For the strict MetrizableLCA exact structure, exact acyclicity gives categorical
+exactness at each degree once the forgetful functor preserves homology. -/
+theorem exactAt_of_exactAcyclic_metrizableLCA
+    (hhom :
+      ∀ (K : CochainComplex MetrizableLCA.{u} ℤ) (i : ℤ), K.HasHomology i)
+    (hpres : (forget₂ MetrizableLCA.{u} AddCommGrpCat.{u}).PreservesHomology)
+    {K : CochainComplex MetrizableLCA.{u} ℤ}
+    (hK : exactAcyclic MetrizableLCA.{u} K) :
+    ∀ i : ℤ, K.ExactAt i := by
+  intro i
+  letI : K.HasHomology i := hhom K i
+  letI : (forget₂ MetrizableLCA.{u} AddCommGrpCat.{u}).PreservesHomology := hpres
+  rw [HomologicalComplex.exactAt_iff]
+  rw [ShortComplex.exact_iff_exact_map_forget₂]
+  change ((K.sc i).map MetrizableLCA.forgetToAddCommGrpCat).Exact
+  exact MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict (hK i)
+
 /-- Homology detection of exact acyclicity implies invariance under homotopy equivalences:
 homotopy equivalences induce isomorphisms on homology. -/
 theorem exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
@@ -3960,6 +3977,55 @@ def Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587 : List String
 
 theorem Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587_count :
     Dbounded.metrizableExactAcyclicHomologyDetectionRouteNamesW587.length = 3 :=
+  rfl
+
+/-- MetrizableLCA fields that now suffice to construct the exact-at detection input. -/
+structure Dbounded.MetrizableExactAcyclicExactAtDetectionInputs : Prop where
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  exactAcyclic_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ),
+      (∀ i : ℤ, K.ExactAt i) → exactAcyclic MetrizableLCA.{0} K
+
+/-- The W588 MetrizableLCA inputs construct the W587 exact-at detection input. -/
+theorem Dbounded.exactAcyclicExactAtDetectionInput_metrizableLCA_of_inputs
+    (I : Dbounded.MetrizableExactAcyclicExactAtDetectionInputs) :
+    ExactAcyclicExactAtDetectionInput MetrizableLCA.{0} where
+  hasHomology := I.hasHomology
+  exactAt_of_exactAcyclic := by
+    intro K hK i
+    exact exactAt_of_exactAcyclic_metrizableLCA I.hasHomology
+      I.forgetPreservesHomology hK i
+  exactAcyclic_of_exactAt := I.exactAcyclic_of_exactAt
+
+/-- The same inputs construct homology detection of exact acyclicity. -/
+theorem Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_exactAtInputs
+    (I : Dbounded.MetrizableExactAcyclicExactAtDetectionInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.exactAcyclicExactAtDetectionInput_metrizableLCA_of_inputs I)
+
+/-- W588 input names after proving the strict-exact to categorical-exact direction. -/
+def Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW588 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "forget₂ MetrizableLCA AddCommGrpCat preserves homology",
+    "degreewise categorical ExactAt implies exactAcyclic MetrizableLCA"]
+
+theorem Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW588_count :
+    Dbounded.metrizableExactAcyclicExactAtDetectionInputNamesW588.length = 3 :=
+  rfl
+
+/-- W588 route names from strict exactness to homology detection. -/
+def Dbounded.metrizableExactAcyclicExactAtDetectionRouteNamesW588 : List String :=
+  ["exactAt_of_exactAcyclic_metrizableLCA",
+    "Dbounded.exactAcyclicExactAtDetectionInput_metrizableLCA_of_inputs",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_exactAtInputs"]
+
+theorem Dbounded.metrizableExactAcyclicExactAtDetectionRouteNamesW588_count :
+    Dbounded.metrizableExactAcyclicExactAtDetectionRouteNamesW588.length = 3 :=
   rfl
 
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/
