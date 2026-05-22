@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w580-closed-embedding-row-dominance",
-  "generated_utc": "2026-05-22T14:58:31Z",
-  "source_tree_hash": "872097bf60fbd0d32c1722b36ed7e5254440297fc9a8c2a5666d9bfe67b81856",
-  "summary": "W580 adds a checked row-dominance bridge for the WPP compact-target stable route. It proves that W527 closed-embedding row data supplies the W527 closed-map-row provider, then threads that stronger row surface through the W577 normalized compact-target closed-map endpoint and the W579 homotopy/Verdier stable-certificate route. This is verified nonterminal support only: it reduces the row-branch duplication but does not construct the remaining WPP boundary/provider data, normalized fixed-target localization data, homotopy isomorphism-invariance input, bounded homotopy/Verdier left calculus input, or Dbounded triangulated fields.",
+  "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
+  "generated_utc": "2026-05-22T15:05:26Z",
+  "source_tree_hash": "a560f616d205c40bd60d53b7b0d8f4cec8d98200aecce7543684ac7f5ae48e48",
+  "summary": "W581 adds a checked provider-narrowing bridge from the older global W525 selected-difference closed-map and closed-embedding provider surfaces to the row-aware W527 providers. It proves that a global W525 closed-map provider supplies `ComponentwiseClosedMapRowsProviderW527`, that a global W525 closed-embedding provider supplies both `ComponentwiseClosedEmbeddingRowsProviderW527` and, via W580, the closed-map row provider, then threads the global closed-embedding surface into the W580 compact-target normalized finite-shape route. This is verified nonterminal support only: it does not construct the global provider, the weaker row provider, or the remaining WPP boundary/provider/localization data.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -6695,6 +6695,21 @@
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_029_w580_product_success_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_030_w581_wpp_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_030_w581_wpp_lake_build.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_030_w581_product_success_declarations_lean.log exit_code=0"
     }
   ],
   "implemented_declarations_checked": [
@@ -8711,14 +8726,25 @@
     "Dbounded.metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580_count",
     "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceSupportStateW580",
     "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceStateW580",
-    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceStateW580_productSuccess"
+    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceStateW580_productSuccess",
+    "Dbounded.componentwiseClosedMapRowsProvider_of_globalClosedMapProvider_w581",
+    "Dbounded.componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581",
+    "Dbounded.componentwiseClosedMapRowsProvider_of_globalClosedEmbeddingProvider_w581",
+    "Dbounded.MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundleW581",
+    "Dbounded.metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundle_of_globalClosedEmbeddingProviderW581",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingBundleW581",
+    "Dbounded.metrizableWppGlobalClosedEmbeddingProviderNarrowingInputNamesW581",
+    "Dbounded.metrizableWppGlobalClosedEmbeddingProviderNarrowingInputNamesW581_count",
+    "Dbounded.currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingSupportStateW581",
+    "Dbounded.currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581",
+    "Dbounded.currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "A concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary is still unconstructed.",
     "A concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary is still unconstructed.",
     "Concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517 data are still unconstructed for the selected normalized route.",
-    "Concrete ComponentwiseClosedEmbeddingRowsProviderW527 data are still unconstructed.",
+    "Concrete ComponentwiseClosedEmbeddingProviderW525 data are still unconstructed, and the weaker ComponentwiseClosedEmbeddingRowsProviderW527 data are also still unconstructed.",
     "Normalized strict-representative fixed-target localization data are still unconstructed.",
     "The exactAcyclicHomotopyObject homotopy-category isomorphism-invariance input is still unconstructed.",
     "The bounded homotopy/Verdier pullback left calculus of fractions input is still unconstructed.",
@@ -8730,14 +8756,14 @@
     "Construct concrete closed quotient-cover WPP limit right-open boundary data.",
     "Construct concrete source-difference cokernel-pi-zero boundary data.",
     "Construct the W517 compact-target provider for the selected normalized route.",
-    "Construct W527 ComponentwiseClosedEmbeddingRowsProvider data for the selected route.",
+    "Construct W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data.",
     "Construct normalized strict-representative fixed-target localization data.",
     "Prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms.",
     "Construct bounded homotopy/Verdier pullback left calculus of fractions.",
     "Construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA."
   ],
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_029_w580_product_success_declarations_lean.log",
-  "latest_verified_increment": "W580 closed-embedding-row dominance bridge for the compact-target stable route",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_030_w581_product_success_declarations_lean.log",
+  "latest_verified_increment": "W581 global selected-difference provider narrowing to W527 row providers",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -9000,6 +9026,13 @@
       "latest_verified_increment": "W580 closed-embedding-row dominance bridge for the compact-target stable route",
       "claim_review_status": "deterministic_accepted_pending_periodic_claim_review_loop_v3",
       "note": "W580 WppOpExactAcyclicProjectionFields source check passed; the WPP module was rebuilt before the ProductSuccessDeclarations audit check. The full serial verifier is expected to pass all deterministic gates and reject the terminal outcome at the nonterminal product gate."
+    },
+    "w581_global_provider_row_narrowing_metadata": {
+      "refreshed_utc": "2026-05-22T15:05:26Z",
+      "source_tree_hash": "a560f616d205c40bd60d53b7b0d8f4cec8d98200aecce7543684ac7f5ae48e48",
+      "latest_verified_increment": "W581 global selected-difference provider narrowing to W527 row providers",
+      "claim_review_status": "deterministic_accepted_pending_periodic_claim_review_loop_v3",
+      "note": "W581 WppOpExactAcyclicProjectionFields source check passed; the WPP module was rebuilt before the ProductSuccessDeclarations audit check. The full serial verifier is expected to pass all deterministic gates and reject the terminal outcome at the nonterminal product gate."
     }
   }
 }

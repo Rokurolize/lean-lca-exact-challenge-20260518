@@ -14672,6 +14672,146 @@ theorem currentMetrizableWppClosedEmbeddingRowsDominanceStateW580_productSuccess
       false :=
   rfl
 
+open WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525
+
+/--
+W581 provider narrowing: a global selected closed-map provider supplies the
+row-aware W527 closed-map provider by ignoring the strict-row argument.
+-/
+def componentwiseClosedMapRowsProvider_of_globalClosedMapProvider_w581
+    (hclosedMap : ComponentwiseClosedMapProviderW525) :
+    ComponentwiseClosedMapRowsProviderW527 :=
+  fun S cs hcs _hRows => hclosedMap S cs hcs
+
+/--
+W581 provider narrowing: a global selected closed-embedding provider supplies
+the row-aware W527 closed-embedding provider.
+-/
+def componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :
+    ComponentwiseClosedEmbeddingRowsProviderW527 :=
+  fun S cs hcs _hRows => hclosedEmbedding S cs hcs
+
+/--
+Global selected closed-embedding data also supplies the row-aware closed-map
+provider through W580's closed-embedding dominance bridge.
+-/
+def componentwiseClosedMapRowsProvider_of_globalClosedEmbeddingProvider_w581
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :
+    ComponentwiseClosedMapRowsProviderW527 :=
+  componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580
+    (componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581
+      hclosedEmbedding)
+
+/--
+W581 compact-target normalized bundle whose row data is supplied by the older
+global W525 closed-embedding provider surface.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundleW581 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  compactTargetProvider :
+    ClosedNatTransOrdinaryCompactTargetRelationProviderW517
+  closedEmbeddingProvider :
+    ComponentwiseClosedEmbeddingProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/-- Convert the W581 global-provider bundle to the W577 row-aware closed-embedding bundle. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundle_of_globalClosedEmbeddingProviderW581
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundleW581) :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW577 where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  compactTargetProvider := inputs.compactTargetProvider
+  closedEmbeddingRows :=
+    componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581
+      inputs.closedEmbeddingProvider
+  normalizedInputs := inputs.normalizedInputs
+
+/--
+W581 endpoint: the W525 global closed-embedding provider surface feeds the W580
+closed-embedding-via-closed-map finite-shape route.
+-/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingBundleW581
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundleW581) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapBundleW580
+    (metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundle_of_globalClosedEmbeddingProviderW581
+      inputs)
+
+/-- Input names for the W581 global-provider narrowing route. -/
+def metrizableWppGlobalClosedEmbeddingProviderNarrowingInputNamesW581 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "ComponentwiseClosedEmbeddingProviderW525",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness"]
+
+theorem metrizableWppGlobalClosedEmbeddingProviderNarrowingInputNamesW581_count :
+    metrizableWppGlobalClosedEmbeddingProviderNarrowingInputNamesW581.length =
+      6 :=
+  rfl
+
+/-- Current checked W581 state for narrowing global selected-difference providers to W527 rows. -/
+structure MetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapProviderNarrowingResult : String
+  closedEmbeddingProviderNarrowingResult : String
+  compactTargetEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W581 state. -/
+def currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingSupportStateW581 :
+    MetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581 where
+  seed := "w581-global-selected-difference-provider-to-row-provider"
+  declarations :=
+    ["componentwiseClosedMapRowsProvider_of_globalClosedMapProvider_w581",
+      "componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581",
+      "componentwiseClosedMapRowsProvider_of_globalClosedEmbeddingProvider_w581",
+      "MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundleW581",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundle_of_globalClosedEmbeddingProviderW581",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingBundleW581",
+      "metrizableWppGlobalClosedEmbeddingProviderNarrowingInputNamesW581",
+      "metrizableWppGlobalClosedEmbeddingProviderNarrowingInputNamesW581_count"]
+  closedMapProviderNarrowingResult :=
+    "proved: W525 global closed-map providers supply W527 row-aware closed-map providers"
+  closedEmbeddingProviderNarrowingResult :=
+    "proved: W525 global closed-embedding providers supply W527 row-aware closed-embedding and closed-map providers"
+  compactTargetEndpointResult :=
+    "proved: global W525 closed-embedding data feeds the W580 compact-target normalized finite-shape route"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct a concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+      "construct concrete ComponentwiseClosedEmbeddingProviderW525 or the weaker W527 row provider",
+      "construct normalized strict-representative fixed-target localization data"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581 :
+    MetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581 :=
+  currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingSupportStateW581
+
+theorem
+    currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581_productSuccess :
+    currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -15337,6 +15477,20 @@ section Checks
 #check currentMetrizableWppClosedEmbeddingRowsDominanceSupportStateW580
 #check currentMetrizableWppClosedEmbeddingRowsDominanceStateW580
 #check currentMetrizableWppClosedEmbeddingRowsDominanceStateW580_productSuccess
+#check componentwiseClosedMapRowsProvider_of_globalClosedMapProvider_w581
+#check componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581
+#check componentwiseClosedMapRowsProvider_of_globalClosedEmbeddingProvider_w581
+#check
+  MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundleW581
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundle_of_globalClosedEmbeddingProviderW581
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingBundleW581
+#check metrizableWppGlobalClosedEmbeddingProviderNarrowingInputNamesW581
+#check metrizableWppGlobalClosedEmbeddingProviderNarrowingInputNamesW581_count
+#check currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingSupportStateW581
+#check currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581
+#check currentMetrizableWppGlobalClosedEmbeddingProviderNarrowingStateW581_productSuccess
 
 end Checks
 
