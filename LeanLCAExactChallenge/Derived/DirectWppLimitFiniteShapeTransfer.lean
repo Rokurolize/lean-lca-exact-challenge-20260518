@@ -1211,6 +1211,111 @@ abbrev rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary : P
                         (S.map WalkingParallelPairHom.right).τ₁ u₁₀)
 
 /--
+Source-difference data for the WPP limit right-surjectivity field.  It asks
+that every degree-one element at object one be a left/right difference of a
+degree-one element at object zero.
+-/
+abbrev rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary :
+    Prop :=
+  ∀ (S : WalkingParallelPair ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cone S),
+      IsLimit cs →
+        (∀ j : WalkingParallelPair, MetrizableLCA.strictShortExact (S.obj j)) →
+          Function.Surjective
+            (fun u₁₀ : (S.obj WalkingParallelPair.zero).X₁ =>
+              (S.map WalkingParallelPairHom.left).τ₁ u₁₀ -
+                (S.map WalkingParallelPairHom.right).τ₁ u₁₀)
+
+/--
+Surjectivity of the source degree-one left/right difference map supplies the
+difference-form correction boundary.
+-/
+theorem
+    rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary_of_sourceDifferenceSurjectiveBoundary
+    (hboundary :
+      rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary) :
+    rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary := by
+  intro S cs hcs hS y₃
+  rcases (hS WalkingParallelPair.zero).surjective
+      ((cs.π.app WalkingParallelPair.zero).τ₃ y₃) with
+    ⟨x₂₀, hx₂₀⟩
+  let d₂ : (S.obj WalkingParallelPair.one).X₂ :=
+    (S.map WalkingParallelPairHom.left).τ₂ x₂₀ -
+      (S.map WalkingParallelPairHom.right).τ₂ x₂₀
+  have hleft_g :
+      (S.obj WalkingParallelPair.one).g
+          ((S.map WalkingParallelPairHom.left).τ₂ x₂₀) =
+        (S.map WalkingParallelPairHom.left).τ₃
+          ((S.obj WalkingParallelPair.zero).g x₂₀) := by
+    exact congrArg
+      (fun h : (S.obj WalkingParallelPair.zero).X₂ ⟶
+          (S.obj WalkingParallelPair.one).X₃ => h x₂₀)
+      (S.map WalkingParallelPairHom.left).comm₂₃
+  have hright_g :
+      (S.obj WalkingParallelPair.one).g
+          ((S.map WalkingParallelPairHom.right).τ₂ x₂₀) =
+        (S.map WalkingParallelPairHom.right).τ₃
+          ((S.obj WalkingParallelPair.zero).g x₂₀) := by
+    exact congrArg
+      (fun h : (S.obj WalkingParallelPair.zero).X₂ ⟶
+          (S.obj WalkingParallelPair.one).X₃ => h x₂₀)
+      (S.map WalkingParallelPairHom.right).comm₂₃
+  have hleftπ :
+      (S.map WalkingParallelPairHom.left).τ₃
+          ((cs.π.app WalkingParallelPair.zero).τ₃ y₃) =
+        (cs.π.app WalkingParallelPair.one).τ₃ y₃ := by
+    change ((cs.π.app WalkingParallelPair.zero ≫
+      S.map WalkingParallelPairHom.left).τ₃) y₃ =
+        (cs.π.app WalkingParallelPair.one).τ₃ y₃
+    exact congrArg
+      (fun h : cs.pt ⟶ S.obj WalkingParallelPair.one => h.τ₃ y₃)
+      (cs.w WalkingParallelPairHom.left)
+  have hrightπ :
+      (S.map WalkingParallelPairHom.right).τ₃
+          ((cs.π.app WalkingParallelPair.zero).τ₃ y₃) =
+        (cs.π.app WalkingParallelPair.one).τ₃ y₃ := by
+    change ((cs.π.app WalkingParallelPair.zero ≫
+      S.map WalkingParallelPairHom.right).τ₃) y₃ =
+        (cs.π.app WalkingParallelPair.one).τ₃ y₃
+    exact congrArg
+      (fun h : cs.pt ⟶ S.obj WalkingParallelPair.one => h.τ₃ y₃)
+      (cs.w WalkingParallelPairHom.right)
+  have hd₂_zero : (S.obj WalkingParallelPair.one).g d₂ = 0 := by
+    calc
+      (S.obj WalkingParallelPair.one).g d₂ =
+          (S.obj WalkingParallelPair.one).g
+              ((S.map WalkingParallelPairHom.left).τ₂ x₂₀) -
+            (S.obj WalkingParallelPair.one).g
+              ((S.map WalkingParallelPairHom.right).τ₂ x₂₀) := by
+          simp [d₂, map_sub]
+      _ = (S.map WalkingParallelPairHom.left).τ₃
+            ((S.obj WalkingParallelPair.zero).g x₂₀) -
+          (S.map WalkingParallelPairHom.right).τ₃
+            ((S.obj WalkingParallelPair.zero).g x₂₀) := by
+          rw [hleft_g, hright_g]
+      _ = (S.map WalkingParallelPairHom.left).τ₃
+            ((cs.π.app WalkingParallelPair.zero).τ₃ y₃) -
+          (S.map WalkingParallelPairHom.right).τ₃
+            ((cs.π.app WalkingParallelPair.zero).τ₃ y₃) := by
+          rw [hx₂₀]
+      _ = (cs.π.app WalkingParallelPair.one).τ₃ y₃ -
+          (cs.π.app WalkingParallelPair.one).τ₃ y₃ := by
+          rw [hleftπ, hrightπ]
+      _ = 0 := sub_self _
+  rcases (hS WalkingParallelPair.one).algebraic_exact d₂ hd₂_zero with
+    ⟨v₁, hv₁⟩
+  rcases hboundary S cs hcs hS v₁ with ⟨u₁₀, hu₁₀⟩
+  refine ⟨x₂₀, u₁₀, hx₂₀, ?_⟩
+  calc
+    (S.map WalkingParallelPairHom.left).τ₂ x₂₀ -
+        (S.map WalkingParallelPairHom.right).τ₂ x₂₀ = d₂ := rfl
+    _ = (S.obj WalkingParallelPair.one).f v₁ := hv₁.symm
+    _ = (S.obj WalkingParallelPair.one).f
+        ((S.map WalkingParallelPairHom.left).τ₁ u₁₀ -
+          (S.map WalkingParallelPairHom.right).τ₁ u₁₀) := by
+        rw [← hu₁₀]
+
+/--
 The difference-form correction boundary supplies the concrete zero-component
 correction boundary used by the WPP limit equalizer argument.
 -/
@@ -1345,6 +1450,17 @@ theorem rightSurjective_walkingParallelPair_limitClosure_of_differenceCorrection
   rightSurjective_walkingParallelPair_limitClosure_of_zeroCorrectionBoundary
     (rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary_of_differenceCorrectionBoundary
       hboundary)
+
+/--
+Source-difference surjectivity supplies the WPP limit right-surjectivity field.
+-/
+theorem rightSurjective_walkingParallelPair_limitClosure_of_sourceDifferenceSurjectiveBoundary
+    (hboundary :
+      rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary) :
+    rightSurjective_walkingParallelPair_limitClosure :=
+  rightSurjective_walkingParallelPair_limitClosure_of_differenceCorrectionBoundary
+    (rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary_of_sourceDifferenceSurjectiveBoundary
+        hboundary)
 
 /-- Direct algebraic exactness at the WPP limit point. -/
 abbrev algebraicExact_walkingParallelPair_limitClosure : Prop :=
@@ -1729,6 +1845,9 @@ abbrev MetrizableWppLimitRightSurjectiveZeroCorrectionBoundary : Prop :=
 abbrev MetrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary : Prop :=
   DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary
 
+abbrev MetrizableWppLimitRightSurjectiveSourceDifferenceSurjectiveBoundary : Prop :=
+  rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary
+
 abbrev MetrizableWppLimitAlgebraicExactInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure
 
@@ -1792,6 +1911,18 @@ theorem metrizableWppLimitRightSurjectiveZeroCorrectionBoundary_of_differenceCor
     hboundary
 
 /--
+Build the difference-form correction boundary from source-difference
+surjectivity.
+-/
+theorem
+    metrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary_of_sourceDifferenceSurjectiveBoundary
+    (hboundary :
+      MetrizableWppLimitRightSurjectiveSourceDifferenceSurjectiveBoundary) :
+    MetrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary :=
+  rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary_of_sourceDifferenceSurjectiveBoundary
+    hboundary
+
+/--
 Build the WPP limit right-surjectivity field from difference-form correction
 data.
 -/
@@ -1799,6 +1930,17 @@ theorem metrizableWppLimitRightSurjectiveInput_of_differenceCorrectionBoundary
     (hboundary : MetrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary) :
     MetrizableWppLimitRightSurjectiveInput :=
   rightSurjective_walkingParallelPair_limitClosure_of_differenceCorrectionBoundary hboundary
+
+/--
+Build the WPP limit right-surjectivity field from source-difference
+surjectivity.
+-/
+theorem metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceSurjectiveBoundary
+    (hboundary :
+      MetrizableWppLimitRightSurjectiveSourceDifferenceSurjectiveBoundary) :
+    MetrizableWppLimitRightSurjectiveInput :=
+  rightSurjective_walkingParallelPair_limitClosure_of_sourceDifferenceSurjectiveBoundary
+    hboundary
 
 /-- Build the WPP limit algebraic-exactness field from component limit data. -/
 theorem metrizableWppLimitAlgebraicExactInput_of_lca
