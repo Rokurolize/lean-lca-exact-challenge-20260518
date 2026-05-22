@@ -15781,6 +15781,179 @@ theorem
       false :=
   rfl
 
+/-- W597 provider for compactness of the ordinary target object. -/
+abbrev ClosedNatTransOrdinaryTargetCompactSpaceProviderW597 : Prop :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      CompactSpace (wppOpCodomainW441 Y)
+
+/-- A W516 top-target provider supplies the W593 relation-pullback provider. -/
+def relationPullbackProvider_of_topTargetRelation_w597
+    (htop : ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    ClosedNatTransOrdinaryRelationPullbackProviderW593 :=
+  fun X Y α hclosed => (htop X Y α hclosed).relation_pullback
+
+/--
+W597 derives the W593 target-relation compactness provider from W516 top-target
+data plus compactness of the ordinary target object.
+-/
+def targetRelationCompactProvider_of_topTargetRelation_targetCompactSpace_w597
+    (htop : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hcompactSpace : ClosedNatTransOrdinaryTargetCompactSpaceProviderW597) :
+    ClosedNatTransOrdinaryTargetRelationCompactProviderW593 :=
+  fun X Y α hclosed => by
+    have H := htop X Y α hclosed
+    letI : CompactSpace (wppOpCodomainW441 Y) := hcompactSpace X Y α hclosed
+    have htargetSet :
+        ((MetrizableLCA.cokernelSubgroup (wppOpLeftW441 Y - wppOpRightW441 Y) :
+          AddSubgroup (wppOpCodomainW441 Y)) : Set (wppOpCodomainW441 Y)) =
+          ((⊤ : AddSubgroup (wppOpCodomainW441 Y)) : Set (wppOpCodomainW441 Y)) :=
+      congrArg
+        (fun S : AddSubgroup (wppOpCodomainW441 Y) =>
+          (S : Set (wppOpCodomainW441 Y)))
+        H.target_relation_top
+    change IsCompact
+      ((MetrizableLCA.cokernelSubgroup (wppOpLeftW441 Y - wppOpRightW441 Y) :
+        AddSubgroup (wppOpCodomainW441 Y)) : Set (wppOpCodomainW441 Y))
+    rw [htargetSet]
+    simpa using
+      (isCompact_univ : IsCompact (Set.univ : Set (wppOpCodomainW441 Y)))
+
+/--
+Top-target W516 data plus target compactness reconstruct the compact-target W517
+provider through the split W593 fields.
+-/
+def compactTargetRelationProvider_of_topTargetRelation_targetCompactSpace_w597
+    (htop : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hcompactSpace : ClosedNatTransOrdinaryTargetCompactSpaceProviderW597) :
+    ClosedNatTransOrdinaryCompactTargetRelationProviderW517 :=
+  compactTargetRelationProvider_of_splitFields_w593
+    (relationPullbackProvider_of_topTargetRelation_w597 htop)
+    (targetRelationCompactProvider_of_topTargetRelation_targetCompactSpace_w597
+      htop hcompactSpace)
+
+/--
+W597 exact-acyclic endpoint: W516 top-target data plus target compactness and
+global W525 closed-map provider data feed the split compact-target endpoint.
+-/
+def exactAcyclic_of_topTargetRelation_targetCompactSpace_closedMap_w597
+    (htop : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hcompactSpace : ClosedNatTransOrdinaryTargetCompactSpaceProviderW597)
+    (hclosedMap : ComponentwiseClosedMapProviderW525) :=
+  exactAcyclic_of_splitCompactTargetRelation_closedMap_w595
+    (relationPullbackProvider_of_topTargetRelation_w597 htop)
+    (targetRelationCompactProvider_of_topTargetRelation_targetCompactSpace_w597
+      htop hcompactSpace)
+    hclosedMap
+
+/--
+W597 exact-acyclic endpoint: W516 top-target data plus target compactness and
+global W525 closed-embedding provider data feed the split compact-target endpoint.
+-/
+def exactAcyclic_of_topTargetRelation_targetCompactSpace_closedEmbedding_w597
+    (htop : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hcompactSpace : ClosedNatTransOrdinaryTargetCompactSpaceProviderW597)
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :=
+  exactAcyclic_of_splitCompactTargetRelation_closedEmbedding_w595
+    (relationPullbackProvider_of_topTargetRelation_w597 htop)
+    (targetRelationCompactProvider_of_topTargetRelation_targetCompactSpace_w597
+      htop hcompactSpace)
+    hclosedEmbedding
+
+/--
+W597 colimit-stability endpoint: W516 top-target data plus target compactness and
+global W525 closed-map provider data feed the W596 stability route.
+-/
+def walkingParallelPairColimitStability_of_topTargetRelation_targetCompactSpace_globalClosedMap_w597
+    (htop : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hcompactSpace : ClosedNatTransOrdinaryTargetCompactSpaceProviderW597)
+    (hclosedMap : ComponentwiseClosedMapProviderW525) :=
+  walkingParallelPairColimitStability_of_splitCompactTargetRelation_globalClosedMap_w596
+    (relationPullbackProvider_of_topTargetRelation_w597 htop)
+    (targetRelationCompactProvider_of_topTargetRelation_targetCompactSpace_w597
+      htop hcompactSpace)
+    hclosedMap
+
+/--
+W597 colimit-stability endpoint: W516 top-target data plus target compactness and
+global W525 closed-embedding provider data feed the W596 stability route.
+-/
+def
+    walkingParallelPairColimitStability_of_topTargetRelation_targetCompactSpace_globalClosedEmbedding_w597
+    (htop : ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+    (hcompactSpace : ClosedNatTransOrdinaryTargetCompactSpaceProviderW597)
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :=
+  walkingParallelPairColimitStability_of_splitCompactTargetRelation_globalClosedEmbedding_w596
+    (relationPullbackProvider_of_topTargetRelation_w597 htop)
+    (targetRelationCompactProvider_of_topTargetRelation_targetCompactSpace_w597
+      htop hcompactSpace)
+    hclosedEmbedding
+
+/-- Input names for the W597 top-target compact-space adapter. -/
+def metrizableWppTopTargetCompactSpaceSplitCompactTargetInputNamesW597 :
+    List String :=
+  ["ClosedNatTransOrdinaryTopTargetRelationProviderW516",
+    "ClosedNatTransOrdinaryTargetCompactSpaceProviderW597",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525"]
+
+theorem metrizableWppTopTargetCompactSpaceSplitCompactTargetInputNamesW597_count :
+    metrizableWppTopTargetCompactSpaceSplitCompactTargetInputNamesW597.length =
+      3 :=
+  rfl
+
+/-- Current checked W597 state for the top-target compact-space adapter. -/
+structure MetrizableWppTopTargetCompactSpaceSplitCompactTargetStateW597 :
+    Type where
+  seed : String
+  declarations : List String
+  relationPullbackResult : String
+  targetCompactnessResult : String
+  exactAcyclicEndpointResult : String
+  colimitStabilityEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W597 state. -/
+def currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetSupportStateW597 :
+    MetrizableWppTopTargetCompactSpaceSplitCompactTargetStateW597 where
+  seed := "w597-top-target-compact-space-split-compact-target"
+  declarations :=
+    ["ClosedNatTransOrdinaryTargetCompactSpaceProviderW597",
+      "relationPullbackProvider_of_topTargetRelation_w597",
+      "targetRelationCompactProvider_of_topTargetRelation_targetCompactSpace_w597",
+      "compactTargetRelationProvider_of_topTargetRelation_targetCompactSpace_w597",
+      "exactAcyclic_of_topTargetRelation_targetCompactSpace_closedMap_w597",
+      "exactAcyclic_of_topTargetRelation_targetCompactSpace_closedEmbedding_w597",
+      "walkingParallelPairColimitStability_of_topTargetRelation_targetCompactSpace_globalClosedMap_w597",
+      "walkingParallelPairColimitStability_of_topTargetRelation_targetCompactSpace_globalClosedEmbedding_w597",
+      "metrizableWppTopTargetCompactSpaceSplitCompactTargetInputNamesW597",
+      "metrizableWppTopTargetCompactSpaceSplitCompactTargetInputNamesW597_count"]
+  relationPullbackResult :=
+    "proved: W516 top-target provider data supplies the W593 relation-pullback provider"
+  targetCompactnessResult :=
+    "proved: W516 top-target data plus compact target object data supply W593 target-relation compactness"
+  exactAcyclicEndpointResult :=
+    "proved: top-target compact-space data feed the W595 split compact-target exact-acyclic endpoints"
+  colimitStabilityEndpointResult :=
+    "proved: top-target compact-space data feed the W596 split compact-target colimit-stability endpoints"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryTopTargetRelationProviderW516",
+      "construct concrete ClosedNatTransOrdinaryTargetCompactSpaceProviderW597",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetStateW597 :
+    MetrizableWppTopTargetCompactSpaceSplitCompactTargetStateW597 :=
+  currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetSupportStateW597
+
+theorem
+    currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetStateW597_productSuccess :
+    currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetStateW597.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -16563,6 +16736,19 @@ section Checks
 #check currentMetrizableWppSplitCompactTargetColimitStabilitySupportStateW596
 #check currentMetrizableWppSplitCompactTargetColimitStabilityStateW596
 #check currentMetrizableWppSplitCompactTargetColimitStabilityStateW596_productSuccess
+#check ClosedNatTransOrdinaryTargetCompactSpaceProviderW597
+#check relationPullbackProvider_of_topTargetRelation_w597
+#check targetRelationCompactProvider_of_topTargetRelation_targetCompactSpace_w597
+#check compactTargetRelationProvider_of_topTargetRelation_targetCompactSpace_w597
+#check exactAcyclic_of_topTargetRelation_targetCompactSpace_closedMap_w597
+#check exactAcyclic_of_topTargetRelation_targetCompactSpace_closedEmbedding_w597
+#check walkingParallelPairColimitStability_of_topTargetRelation_targetCompactSpace_globalClosedMap_w597
+#check walkingParallelPairColimitStability_of_topTargetRelation_targetCompactSpace_globalClosedEmbedding_w597
+#check metrizableWppTopTargetCompactSpaceSplitCompactTargetInputNamesW597
+#check metrizableWppTopTargetCompactSpaceSplitCompactTargetInputNamesW597_count
+#check currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetSupportStateW597
+#check currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetStateW597
+#check currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetStateW597_productSuccess
 
 end Checks
 

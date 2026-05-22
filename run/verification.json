@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
-  "generated_utc": "2026-05-22T17:41:20Z",
-  "source_tree_hash": "0706ba655cfc88826e30d34a3b750eda9db6748077213b7b9270661d450ee26c",
-  "summary": "W596 lets W535 WPP colimit-stability endpoints consume the W593 split compact-target fields plus global W525 closed-map or closed-embedding provider data directly: relation-pullback and target-relation compactness providers reconstruct W517, then W581 narrows global W525 provider data to W527 row provider data for the existing compact-target colimit-stability routes. This is verified nonterminal support only: it does not construct the closed quotient-cover boundary data, source cokernel-pi-zero boundary data, concrete split compact-target provider proofs, concrete W525 provider data, normalized fixed-target localization data, homotopy iso-closedness, homotopy/Verdier left calculus, or Dbounded triangulated fields.",
+  "generated_utc": "2026-05-22T17:52:11Z",
+  "source_tree_hash": "679fe2ade67dbec7823e019d0b408ed6034dfe36402018d99bf4ae22fe4c6ac8",
+  "summary": "W597 derives the W593 split compact-target provider surface from W516 top-target relation data plus an explicit compact-space provider for the ordinary target object. The top-target provider supplies relation pullback, and the top target relation becomes compact only under the separate compact target-object hypothesis. W597 then feeds the W595 exact-acyclic endpoints and W596 colimit-stability endpoints through the split compact-target route. This is verified nonterminal support only: it does not construct concrete W516 top-target provider data, compact target-object data, W525 closed-map or closed-embedding provider data, boundary data, normalized localization data, homotopy iso-closedness, homotopy/Verdier left calculus, or Dbounded triangulated fields.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -7255,6 +7255,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_045_w596_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_046_w597_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_046_w597_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_046_w597_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_046_w597_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_046_w597_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_046_w597_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_046_w597_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_046_w597_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_046_w597_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -9410,14 +9455,27 @@
     "Dbounded.metrizableWppSplitCompactTargetColimitStabilityInputNamesW596_count",
     "Dbounded.currentMetrizableWppSplitCompactTargetColimitStabilitySupportStateW596",
     "Dbounded.currentMetrizableWppSplitCompactTargetColimitStabilityStateW596",
-    "Dbounded.currentMetrizableWppSplitCompactTargetColimitStabilityStateW596_productSuccess"
+    "Dbounded.currentMetrizableWppSplitCompactTargetColimitStabilityStateW596_productSuccess",
+    "Dbounded.ClosedNatTransOrdinaryTargetCompactSpaceProviderW597",
+    "Dbounded.relationPullbackProvider_of_topTargetRelation_w597",
+    "Dbounded.targetRelationCompactProvider_of_topTargetRelation_targetCompactSpace_w597",
+    "Dbounded.compactTargetRelationProvider_of_topTargetRelation_targetCompactSpace_w597",
+    "Dbounded.exactAcyclic_of_topTargetRelation_targetCompactSpace_closedMap_w597",
+    "Dbounded.exactAcyclic_of_topTargetRelation_targetCompactSpace_closedEmbedding_w597",
+    "Dbounded.walkingParallelPairColimitStability_of_topTargetRelation_targetCompactSpace_globalClosedMap_w597",
+    "Dbounded.walkingParallelPairColimitStability_of_topTargetRelation_targetCompactSpace_globalClosedEmbedding_w597",
+    "Dbounded.metrizableWppTopTargetCompactSpaceSplitCompactTargetInputNamesW597",
+    "Dbounded.metrizableWppTopTargetCompactSpaceSplitCompactTargetInputNamesW597_count",
+    "Dbounded.currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetSupportStateW597",
+    "Dbounded.currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetStateW597",
+    "Dbounded.currentMetrizableWppTopTargetCompactSpaceSplitCompactTargetStateW597_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
     "construct concrete source-difference cokernel-pi-zero boundary data",
-    "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593 data for the selected normalized route",
-    "construct concrete ClosedNatTransOrdinaryTargetRelationCompactProviderW593 data for the selected normalized route",
+    "construct concrete ClosedNatTransOrdinaryTopTargetRelationProviderW516 data for the selected normalized route",
+    "construct concrete ClosedNatTransOrdinaryTargetCompactSpaceProviderW597 data for the selected normalized route",
     "construct concrete W525 ComponentwiseClosedMapProvider data, W525 ComponentwiseClosedEmbeddingProvider data, or directly construct W527 row provider data",
     "construct normalized strict-representative fixed-target localization data",
     "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
@@ -9430,13 +9488,13 @@
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it"
   ],
-  "support_result_classification": "nonterminal_wpp_split_compact_target_colimit_stability_endpoints",
+  "support_result_classification": "nonterminal_wpp_top_target_compact_space_split_compact_target_adapter",
   "product_success": false,
   "remaining_work": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
     "construct concrete source-difference cokernel-pi-zero boundary data",
-    "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593 data for the selected normalized route",
-    "construct concrete ClosedNatTransOrdinaryTargetRelationCompactProviderW593 data for the selected normalized route",
+    "construct concrete ClosedNatTransOrdinaryTopTargetRelationProviderW516 data for the selected normalized route",
+    "construct concrete ClosedNatTransOrdinaryTargetCompactSpaceProviderW597 data for the selected normalized route",
     "construct concrete W525 ComponentwiseClosedMapProvider data, W525 ComponentwiseClosedEmbeddingProvider data, or directly construct W527 row provider data",
     "construct normalized strict-representative fixed-target localization data",
     "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
@@ -9449,8 +9507,8 @@
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it"
   ],
-  "summary_log_tail": "W596 lets W535 colimit-stability endpoints consume split W593 compact-target fields and global W525 provider data directly; product flags remain false.",
-  "latest_verified_increment": "W596 split compact-target colimit-stability endpoints",
+  "summary_log_tail": "W597 converts W516 top-target plus explicit compact target-object data into W593 split compact-target data, then feeds W595 and W596 endpoints; product flags remain false.",
+  "latest_verified_increment": "W597 top-target compact-space split compact-target adapter",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -9823,6 +9881,13 @@
       "refreshed_utc": "2026-05-22T17:41:20Z",
       "source_tree_hash": "0706ba655cfc88826e30d34a3b750eda9db6748077213b7b9270661d450ee26c",
       "latest_verified_increment": "W596 split compact-target colimit-stability endpoints",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "The reusable verifier passed focused WPP source, WPP module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
+    },
+    "w597_top_target_compact_space_split_compact_target_adapter_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T17:52:11Z",
+      "source_tree_hash": "679fe2ade67dbec7823e019d0b408ed6034dfe36402018d99bf4ae22fe4c6ac8",
+      "latest_verified_increment": "W597 top-target compact-space split compact-target adapter",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "The reusable verifier passed focused WPP source, WPP module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
     }
