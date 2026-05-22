@@ -13397,6 +13397,140 @@ theorem
       false :=
   rfl
 
+/--
+W575 closed-embedding-row variant of the W574 top-target route. This keeps the
+same closed quotient-cover/cokernel-pi-zero right-side boundary data and W516
+top-target provider, but uses W527 closed-embedding rows when those are the
+shorter row-level proof.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  topTargetProvider :
+    ClosedNatTransOrdinaryTopTargetRelationProviderW516
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/-- Extract the W573 direct right fields from the W575 closed-embedding bundle. -/
+def metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575) :
+    MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571 where
+  rightOpen :=
+    Dbounded.metrizableWppLimitRightOpenInput_of_closedQuotientCoverBoundary
+      inputs.rightOpenBoundary
+  rightSurjective :=
+    Dbounded.metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceCokernelPiZeroBoundary
+      inputs.sourcePiZeroBoundary
+
+/--
+Convert the W575 selected bundle to the direct-limit W516 top-target
+closed-embedding input surface.
+-/
+def
+    metrizableWppTransferInputsFromDirectLimitTopTargetRelationClosedEmbeddingRows_of_rightOpenClosedQuotientPiZeroBundleW575
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575) :
+    MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRows
+      ClosedNatTransOrdinaryTopTargetRelationProviderW516 where
+  rightOpen :=
+    (metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575
+      inputs).rightOpen
+  rightSurjective :=
+    (metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575
+      inputs).rightSurjective
+  provider := inputs.topTargetProvider
+  closedEmbeddingRows := inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+W575 endpoint: the W574 top-target route also accepts W527 closed-embedding
+rows as the colimit-stability input.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitTopTargetRelationClosedEmbeddingRows
+    (metrizableWppTransferInputsFromDirectLimitTopTargetRelationClosedEmbeddingRows_of_rightOpenClosedQuotientPiZeroBundleW575
+      inputs)
+
+/-- Input names for the W575 top-target closed-embedding-row route. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleInputNamesW575 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516",
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleInputNamesW575_count :
+    metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleInputNamesW575.length =
+      5 :=
+  rfl
+
+/--
+Current checked W575 state for the closed quotient/cokernel-pi-zero
+top-target closed-embedding-row route.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575 :
+    Type where
+  seed : String
+  declarations : List String
+  rowVariantResult : String
+  directRightFieldsResult : String
+  transferEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W575 state. -/
+def
+    currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleSupportStateW575 :
+    MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575 where
+  seed := "w575-right-open-closed-quotient-cokernel-pi-zero-top-target-closed-embedding-bundle"
+  declarations :=
+    ["MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575",
+      "metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575",
+      "metrizableWppTransferInputsFromDirectLimitTopTargetRelationClosedEmbeddingRows_of_rightOpenClosedQuotientPiZeroBundleW575",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575",
+      "metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleInputNamesW575",
+      "metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleInputNamesW575_count"]
+  rowVariantResult :=
+    "proved: the selected W574 top-target route also accepts W527 closed-embedding rows"
+  directRightFieldsResult :=
+    "proved: closed quotient-cover right-open boundary plus cokernel-pi-zero source-difference boundary yield W555 direct right fields"
+  transferEndpointResult :=
+    "proved: closed quotient/cokernel-pi-zero/top-target closed-embedding bundle feeds the W532 finite-shape transfer route"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct a concrete ClosedNatTransOrdinaryTopTargetRelationProviderW516",
+      "construct concrete ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct WalkingParallelPair functor-category localization"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575 :
+    MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575 :=
+  currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleSupportStateW575
+
+theorem
+    currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575_productSuccess :
+    currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -13901,6 +14035,23 @@ section Checks
   currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574
 #check
   currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574_productSuccess
+#check MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575
+#check
+  metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575
+#check
+  metrizableWppTransferInputsFromDirectLimitTopTargetRelationClosedEmbeddingRows_of_rightOpenClosedQuotientPiZeroBundleW575
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleInputNamesW575
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleInputNamesW575_count
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleSupportStateW575
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575_productSuccess
 
 end Checks
 

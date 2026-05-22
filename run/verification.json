@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w574-top-target-closed-map-route",
-  "generated_utc": "2026-05-22T13:48:30Z",
-  "source_tree_hash": "938584a32928ed25440d8e41c23eec96b2d3b316784fc133f75b0917f90e19c5",
-  "summary": "W574 adds a selected top-target route for the W573 closed quotient-cover/cokernel-pi-zero direct-right-field boundary package. The new bundle keeps the same closed quotient-cover right-open boundary and source-difference cokernel-pi-zero boundary, extracts the direct WPP right fields, and feeds the existing direct-limit W516 top-target relation closed-map-row finite-shape transfer endpoint. This gives the selected path a more concrete W516 provider alternative to the opaque W515 representative-image provider. This is verified nonterminal support only: concrete boundary data, concrete top-target provider data, closed-map rows, localization data, triangulated data, and bounded left-calculus data remain unconstructed.",
+  "schema": "lean-lca-exact-challenge-verification-w575-top-target-closed-embedding-route",
+  "generated_utc": "2026-05-22T13:57:17Z",
+  "source_tree_hash": "0986681612002dad9af0622c1af291cebd084a06be09f745256fd8156d2a52c9",
+  "summary": "W575 adds the closed-embedding-row variant of the W574 top-target route. The new bundle keeps the same closed quotient-cover right-open boundary, source-difference cokernel-pi-zero boundary, and W516 top-target provider, but feeds the direct-limit W516 closed-embedding-row finite-shape transfer endpoint through W527 closed-embedding rows. This gives the selected path a closed-map-row or closed-embedding-row alternative while preserving the W573 right-side boundary frontier. This is verified nonterminal support only: concrete boundary data, concrete top-target provider data, row data, localization data, triangulated data, and bounded left-calculus data remain unconstructed.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -6485,6 +6485,41 @@
       "command": "lake build",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_023_w574_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_024_w575_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_024_w575_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_024_w575_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_024_w575_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_024_w575_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_024_w575_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "no whitespace errors after W575 source insertion"
     }
   ],
   "implemented_declarations_checked": [
@@ -8398,14 +8433,23 @@
     "metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleInputNamesW574_count",
     "currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleSupportStateW574",
     "currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574",
-    "currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574_productSuccess"
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574_productSuccess",
+    "MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575",
+    "metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575",
+    "metrizableWppTransferInputsFromDirectLimitTopTargetRelationClosedEmbeddingRows_of_rightOpenClosedQuotientPiZeroBundleW575",
+    "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleW575",
+    "metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleInputNamesW575",
+    "metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleInputNamesW575_count",
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleSupportStateW575",
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575",
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "A concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary is still unconstructed.",
     "A concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary is still unconstructed.",
-    "A concrete ClosedNatTransOrdinaryTopTargetRelationProviderW516 is still unconstructed for the W574 selected route.",
-    "Concrete ComponentwiseClosedMapRowsProviderW527 data are still unconstructed.",
+    "A concrete ClosedNatTransOrdinaryTopTargetRelationProviderW516 is still unconstructed for the W574/W575 selected routes.",
+    "Concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527 data are still unconstructed.",
     "WalkingParallelPair functor-category localization data are still unconstructed.",
     "Triangulated data and bounded left-calculus data remain unconnected to product success."
   ],
@@ -8414,13 +8458,13 @@
   "remaining_work": [
     "Construct concrete closed quotient-cover WPP limit right-open boundary data.",
     "Construct concrete source-difference cokernel-pi-zero boundary data.",
-    "Construct the W516 top-target provider for the selected W574 route, or justify returning to W515/W517.",
-    "Construct W527 ComponentwiseClosedMapRowsProvider data for the selected route.",
+    "Construct the W516 top-target provider for the selected W574/W575 routes, or justify returning to W515/W517.",
+    "Construct W527 ComponentwiseClosedMapRowsProvider or ComponentwiseClosedEmbeddingRowsProvider data for the selected route.",
     "Construct WalkingParallelPair functor-category localization.",
     "Connect the selected finite-shape transfer package to the remaining triangulated and bounded left-calculus product-success obligations."
   ],
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_023_w574_full_lake_build.log",
-  "latest_verified_increment": "W574 closed quotient-cover/cokernel-pi-zero top-target finite-shape transfer bridge",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_024_w575_full_lake_build.log",
+  "latest_verified_increment": "W575 closed quotient-cover/cokernel-pi-zero top-target closed-embedding finite-shape transfer bridge",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -8641,6 +8685,13 @@
       "latest_verified_increment": "W574 closed quotient-cover/cokernel-pi-zero top-target finite-shape transfer bridge",
       "claim_review_status": "deterministic_accepted_pending_periodic_claim_review_loop_v3",
       "note": "W574 deterministic source check, module build, product declaration audit, required declaration audit, external-audit self-check, full lake build, and diff check passed. The product-success external audit was not used as a pass gate because W574 intentionally leaves product_success=false; immediate full v3 is intentionally skipped under the lighter cadence for routine nonterminal increments."
+    },
+    "w575_top_target_closed_embedding_route_metadata": {
+      "refreshed_utc": "2026-05-22T13:57:17Z",
+      "source_tree_hash": "0986681612002dad9af0622c1af291cebd084a06be09f745256fd8156d2a52c9",
+      "latest_verified_increment": "W575 closed quotient-cover/cokernel-pi-zero top-target closed-embedding finite-shape transfer bridge",
+      "claim_review_status": "deterministic_accepted_pending_periodic_claim_review_loop_v3",
+      "note": "W575 deterministic source check, module build, product declaration audit, required declaration audit, external-audit self-check, full lake build, and diff check passed. Immediate full v3 is intentionally skipped under the lighter cadence for routine nonterminal increments."
     }
   }
 }
