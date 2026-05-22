@@ -435,6 +435,23 @@ theorem exactAcyclicHomotopyObject_quotient_obj_iff (K : CochainComplex C ℤ) :
       exactAcyclic C K := by
   rfl
 
+/-- Object-level input for proving that exact acyclicity descends through homotopy-category
+isomorphisms: it is enough to show invariance under homotopy equivalences of complexes. -/
+structure ExactAcyclicHomotopyEquivInvarianceInput : Prop where
+  exactAcyclic_of_homotopyEquiv :
+    ∀ {K L : CochainComplex C ℤ}, HomotopyEquiv K L → exactAcyclic C K → exactAcyclic C L
+
+/-- Homotopy-equivalence invariance of exact acyclicity implies that the homotopy-category
+exact-acyclic object predicate is closed under isomorphisms. -/
+theorem exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    (I : ExactAcyclicHomotopyEquivInvarianceInput C) :
+    (exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms where
+  of_iso := by
+    intro X Y e hX
+    obtain ⟨K, rfl⟩ := HomotopyCategory.quotient_obj_surjective X
+    obtain ⟨L, rfl⟩ := HomotopyCategory.quotient_obj_surjective Y
+    exact I.exactAcyclic_of_homotopyEquiv (HomotopyCategory.homotopyEquivOfIso e) hX
+
 /-- Exact acyclic homotopy objects contain a zero object. -/
 instance exactAcyclicHomotopyObject_containsZero [HasZeroObject C] :
     (exactAcyclicHomotopyObject C).ContainsZero where
@@ -3793,6 +3810,15 @@ homotopy/Verdier right-calculus bridge.
 -/
 theorem Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames_count :
     Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames.length = 3 :=
+  rfl
+
+/-- MetrizableLCA input name for replacing homotopy-category iso-closedness by the concrete
+homotopy-equivalence invariance obligation. -/
+def Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584 : List String :=
+  ["∀ homotopy equivalence K ≃h L, exactAcyclic MetrizableLCA K → exactAcyclic MetrizableLCA L"]
+
+theorem Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584_count :
+    Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584.length = 1 :=
   rfl
 
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/

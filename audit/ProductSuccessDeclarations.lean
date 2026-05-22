@@ -2318,6 +2318,8 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
 #check boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed
 #check boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_isoClosed
 #check boundedHomotopyExactWeakEquivalence_iff_exactAcyclic_mappingCone_of_isoClosed
+#check ExactAcyclicHomotopyEquivInvarianceInput
+#check exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
 #check inverseImage_isInvertedBy_localizedFunctor
 #check inverseImage_hasLeftCalculusOfFractions_of_localizedRightAdjoint
 #check inverseImage_hasRightCalculusOfFractions_of_localizedLeftAdjoint
@@ -3834,6 +3836,10 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames
 #check
   Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames_count
+#check
+  Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584
+#check
+  Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584_count
 #check
   Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed
 #check

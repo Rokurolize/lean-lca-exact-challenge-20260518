@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
-  "generated_utc": "2026-05-22T15:35:40Z",
-  "source_tree_hash": "3684150818614b632d6961ea35d8d01e69cbe0081eb426d2d2bd1afa01177d4a",
-  "summary": "W583 adds the dual localized-adjunction bridge for the bounded homotopy/Verdier pullback right calculus. It proves that an ambient Verdier right calculus plus a left adjoint to the localized homotopy quotient composite, with counit membership in the pullback weak-equivalence class, gives HasRightCalculusOfFractions for boundedHomotopyExactWeakEquivalence. It also adds closed2 and direct-bounded transfer specializations and names the MetrizableLCA right-calculus localized-left-adjoint inputs. This is verified nonterminal support only: it does not construct the localized left adjoint, prove the counit membership, prove homotopy-category isomorphism invariance, or close the remaining WPP finite-shape/provider/frontier data.",
+  "generated_utc": "2026-05-22T15:55:56Z",
+  "source_tree_hash": "85402c91162b49eb7e6943e68882edad454df5cc104e95068664c08b8460a309",
+  "summary": "W584 reduces the remaining homotopy-category isomorphism-invariance premise for exactAcyclicHomotopyObject to a concrete object-level input: exactAcyclic must be invariant under HomotopyEquiv of cochain complexes. The new proof uses HomotopyCategory.homotopyEquivOfIso to turn an isomorphism in the homotopy category between quotient objects into a homotopy equivalence of representatives. This is verified nonterminal support only: it does not prove the homotopy-equivalence invariance theorem itself, nor does it close the WPP boundary/provider frontier, triangulated-closedness, localized adjunction membership, or Dbounded triangulated fields.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -6760,6 +6760,21 @@
       "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
       "status": "passed",
       "evidence": "cycle_032_w583_wpp_lake_build.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "cycle_033_w584_bounded_source_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "cycle_033_w584_bounded_lake_build.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "cycle_033_w584_product_success_declarations_lean.log"
     }
   ],
   "implemented_declarations_checked": [
@@ -8804,7 +8819,11 @@
     "boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjointClosed2",
     "boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjointClosed2",
     "Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames",
-    "Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames_count"
+    "Dbounded.metrizableHomotopyLocalizedLeftAdjointRightCalculusInputNames_count",
+    "ExactAcyclicHomotopyEquivInvarianceInput",
+    "exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance",
+    "Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584",
+    "Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584_count"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -8813,13 +8832,13 @@
     "construct concrete W517 compact-target provider data for the selected normalized route",
     "construct concrete W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data",
     "construct normalized strict-representative fixed-target localization data",
-    "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "prove exactAcyclic is invariant under homotopy equivalences of cochain complexes",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "support_result_classification": "nonterminal_right_calculus_input_reduction",
+  "support_result_classification": "nonterminal_iso_closed_input_reduction",
   "product_success": false,
   "remaining_work": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
@@ -8827,14 +8846,14 @@
     "construct concrete W517 compact-target provider data for the selected normalized route",
     "construct concrete W525 ComponentwiseClosedEmbeddingProvider data or directly construct W527 ComponentwiseClosedEmbeddingRowsProvider data",
     "construct normalized strict-representative fixed-target localization data",
-    "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "prove exactAcyclic is invariant under homotopy equivalences of cochain complexes",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W583 adds the dual checked localized-left-adjoint bridge for bounded homotopy/Verdier right calculus; product flags remain false.",
-  "latest_verified_increment": "W583 localized left-adjoint bridge for bounded homotopy right calculus",
+  "summary_log_tail": "W584 adds the checked homotopy-equivalence input reduction for exact-acyclic homotopy iso-closedness; product flags remain false.",
+  "latest_verified_increment": "W584 homotopy-equivalence reduction for exact-acyclic homotopy iso-closedness",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -9118,6 +9137,13 @@
       "latest_verified_increment": "W583 localized left-adjoint bridge for bounded homotopy right calculus",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "Focused Lean checks and dependent WPP module build passed before metadata refresh; full verifier is run after this refresh."
+    },
+    "w584_homotopy_equivalence_iso_closed_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T15:55:56Z",
+      "source_tree_hash": "85402c91162b49eb7e6943e68882edad454df5cc104e95068664c08b8460a309",
+      "latest_verified_increment": "W584 homotopy-equivalence reduction for exact-acyclic homotopy iso-closedness",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "Bounded source/build and ProductSuccessDeclarations passed before metadata refresh; full verifier is run after this refresh."
     }
   }
 }
