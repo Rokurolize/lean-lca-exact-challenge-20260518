@@ -498,6 +498,35 @@ theorem exactAt_of_exactAcyclic_metrizableLCA
   change ((K.sc i).map MetrizableLCA.forgetToAddCommGrpCat).Exact
   exact MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict (hK i)
 
+/-- Topological short-complex fields that turn categorical exactness at every degree into
+strict exact acyclicity for MetrizableLCA cochain complexes. -/
+structure MetrizableExactAtTopologyInputs : Prop where
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  surjective :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+
+/-- Categorical exactness at every degree gives strict exact acyclicity once the
+degreewise MetrizableLCA topology fields are supplied. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_topology
+    (I : MetrizableExactAtTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K := by
+  intro i
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    (I.hasHomology K i) I.forgetPreservesHomology (hK i)
+    (I.closedEmbedding K i) (I.openMap K i) (I.surjective K i)
+
 /-- Homology detection of exact acyclicity implies invariance under homotopy equivalences:
 homotopy equivalences induce isomorphisms on homology. -/
 theorem exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
@@ -4026,6 +4055,46 @@ def Dbounded.metrizableExactAcyclicExactAtDetectionRouteNamesW588 : List String 
 
 theorem Dbounded.metrizableExactAcyclicExactAtDetectionRouteNamesW588_count :
     Dbounded.metrizableExactAcyclicExactAtDetectionRouteNamesW588.length = 3 :=
+  rfl
+
+/-- The W589 topological exact-at fields construct the W588 MetrizableLCA input bundle. -/
+theorem Dbounded.metrizableExactAcyclicExactAtDetectionInputs_of_topology
+    (I : MetrizableExactAtTopologyInputs) :
+    Dbounded.MetrizableExactAcyclicExactAtDetectionInputs where
+  hasHomology := I.hasHomology
+  forgetPreservesHomology := I.forgetPreservesHomology
+  exactAcyclic_of_exactAt := by
+    intro K hK
+    exact exactAcyclic_of_exactAt_metrizableLCA_of_topology I K hK
+
+/-- The W589 topological route constructs homology detection of exact acyclicity. -/
+theorem Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_topology
+    (I : MetrizableExactAtTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_exactAtInputs
+    (Dbounded.metrizableExactAcyclicExactAtDetectionInputs_of_topology I)
+
+/-- W589 input names for converting categorical ExactAt into strict exact acyclicity. -/
+def Dbounded.metrizableExactAtTopologyInputNamesW589 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "forget₂ MetrizableLCA AddCommGrpCat preserves homology",
+    "each degreewise incoming differential is a closed embedding",
+    "each degreewise outgoing differential is an open map",
+    "each degreewise outgoing differential is surjective"]
+
+theorem Dbounded.metrizableExactAtTopologyInputNamesW589_count :
+    Dbounded.metrizableExactAtTopologyInputNamesW589.length = 5 :=
+  rfl
+
+/-- W589 route names from degreewise topology data to homology detection. -/
+def Dbounded.metrizableExactAtTopologyRouteNamesW589 : List String :=
+  ["MetrizableExactAtTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_topology",
+    "Dbounded.metrizableExactAcyclicExactAtDetectionInputs_of_topology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_topology"]
+
+theorem Dbounded.metrizableExactAtTopologyRouteNamesW589_count :
+    Dbounded.metrizableExactAtTopologyRouteNamesW589.length = 4 :=
   rfl
 
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/
