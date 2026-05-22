@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W570 fixes one concrete route shape through the W569 transfer bridge: quotient/equalizer-cover right-open boundary data, Epi source-boundary data, a W515 representative-image provider, W527 closed-map rows, and WalkingParallelPair functor-category localization are packaged into a single selected bundle. The bundle is converted to the W569 quotient/Epi representative-image closed-map input surface, proves the corresponding W532 limit-stability field, and produces finite-shape transfer inputs through the W569 source-boundary endpoint. W570 also aligns the terminal-outcome prose gate in audit/external_audit.py with the current goal language policy by allowing substantive English terminal summaries and known gaps while leaving the existing Japanese research-document checks intact. This is a verified nonterminal support increment, not product success: it still requires concrete values for each selected bundle field and does not construct the final exact-category, Yoneda Ext, or bounded derived infinity-category proof data.",
+  "summary": "W570 fixes one concrete route shape through the W569 transfer bridge: quotient/equalizer-cover right-open boundary data, Epi source-boundary data, a W515 representative-image provider, W527 closed-map rows, and WalkingParallelPair functor-category localization are packaged into a single selected bundle. The bundle is converted to the W569 quotient/Epi representative-image closed-map input surface, proves the corresponding W532 limit-stability field, and produces finite-shape transfer inputs through the W569 source-boundary endpoint. W570 also aligns the terminal-outcome prose gate in audit/external_audit.py with the active acceleration goal language policy by allowing substantive English terminal summaries and known gaps while leaving the existing Japanese research-document checks intact; the independent policy evidence is /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_hourly_strategy_acceleration_goal_20260521.md lines 37 and 90-94, which require English planning, review packets, progress notes, and final reporting for this goal unless quoting source artifacts. This is a verified nonterminal support increment, not product success: it still requires concrete values for each selected bundle field and does not construct the final exact-category, Yoneda Ext, or bounded derived infinity-category proof data.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -811,7 +811,8 @@
     "python3 -m json.tool run/verification.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_019_w570_verification_json_parse.log)",
     "python3 -m json.tool terminal_outcome/terminal_outcome.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_019_w570_terminal_outcome_json_parse.log)",
     "python3 product flags false check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_019_w570_product_flags_false_check.log)",
-    "python3 -m py_compile audit/external_audit.py (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_019_w570_external_audit_py_compile.log)"
+    "python3 -m py_compile audit/external_audit.py (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_019_w570_external_audit_py_compile.log)",
+    "nl -ba active acceleration goal language policy lines (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_019_w570_active_goal_language_policy.log)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535.walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
@@ -2201,7 +2202,7 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W570 removes route-choice ambiguity for one W569 path, aligns terminal audit prose with the English goal policy, and leaves all selected boundary/provider/localization values as explicit remaining inputs.",
+  "worker_frontier_summary": "W570 removes route-choice ambiguity for one W569 path, aligns terminal audit prose with the active acceleration goal's English language policy at lean_lca_hourly_strategy_acceleration_goal_20260521.md lines 37 and 90-94, and leaves all selected boundary/provider/localization values as explicit remaining inputs.",
   "claim_review_result": "pending_claim_review_loop_v3; W570 source and metadata are not accepted until review passes",
   "remaining_gaps": [
     "A concrete value of MetrizableWppLimitRightOpenQuotientBoundary is still unconstructed.",
