@@ -15426,6 +15426,213 @@ theorem
       false :=
   rfl
 
+/--
+W594 compact-target normalized bundle with split W517 fields and a global W525
+closed-embedding provider.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingNormalizedBundleW594 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationPullbackProvider :
+    ClosedNatTransOrdinaryRelationPullbackProviderW593
+  targetCompactProvider :
+    ClosedNatTransOrdinaryTargetRelationCompactProviderW593
+  closedEmbeddingProvider :
+    ComponentwiseClosedEmbeddingProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/-- Convert the W594 split-provider bundle to the W581 global closed-embedding bundle. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundle_of_splitCompactTargetW594
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingNormalizedBundleW594) :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundleW581 where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  compactTargetProvider :=
+    compactTargetRelationProvider_of_splitFields_w593
+      inputs.relationPullbackProvider inputs.targetCompactProvider
+  closedEmbeddingProvider := inputs.closedEmbeddingProvider
+  normalizedInputs := inputs.normalizedInputs
+
+/--
+W594 endpoint: split W517 fields plus global W525 closed-embedding provider data
+feed the W581 finite-shape route.
+-/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitCompactTargetGlobalClosedEmbeddingBundleW594
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingNormalizedBundleW594) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingBundleW581
+    (metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundle_of_splitCompactTargetW594
+      inputs)
+
+/--
+W594 homotopy/Verdier stable bundle with split W517 fields and global W525
+closed-embedding provider data.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundleW594
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Type 1 where
+  compactTargetBundle :
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingNormalizedBundleW594
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert the W594 split-provider stable bundle to the W592 stable bundle. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundle_of_splitCompactTargetW594
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundleW594) :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundleW592 where
+  compactTargetBundle :=
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundle_of_splitCompactTargetW594
+      inputs.compactTargetBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/--
+W594 homotopy/Verdier stable-semantic input: split W517 fields drive the W592
+global closed-embedding stable route.
+-/
+def
+    metrizableWppTransferStableSemanticInputs_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundleW594) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed :=
+  metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW592
+    (metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundle_of_splitCompactTargetW594
+      inputs)
+
+/-- W594 split compact-target closed-embedding route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundleW594) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
+    (metrizableWppTransferStableSemanticInputs_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594
+      inputs)
+
+/-- The W594 split compact-target closed-embedding route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594_ready
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundleW594) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotopyIsoClosed_ready
+    (metrizableWppTransferStableSemanticInputs_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594
+      inputs)
+
+/-- Input names for the W594 split compact-target global closed-embedding stable route. -/
+def metrizableWppSplitCompactTargetGlobalClosedEmbeddingStableInputNamesW594 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "ClosedNatTransOrdinaryTargetRelationCompactProviderW593",
+    "ComponentwiseClosedEmbeddingProviderW525",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableWppSplitCompactTargetGlobalClosedEmbeddingStableInputNamesW594_count :
+    metrizableWppSplitCompactTargetGlobalClosedEmbeddingStableInputNamesW594.length =
+      11 :=
+  rfl
+
+/-- Current checked W594 state for split compact-target closed-embedding stable routes. -/
+structure MetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594 :
+    Type where
+  seed : String
+  declarations : List String
+  splitProviderResult : String
+  stableBundleResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W594 state. -/
+def currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteSupportStateW594 :
+    MetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594 where
+  seed := "w594-split-compact-target-global-closed-embedding-stable-route"
+  declarations :=
+    ["MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingNormalizedBundleW594",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundle_of_splitCompactTargetW594",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitCompactTargetGlobalClosedEmbeddingBundleW594",
+      "MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundleW594",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundle_of_splitCompactTargetW594",
+      "metrizableWppTransferStableSemanticInputs_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594",
+      "metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594",
+      "metrizableStableCertificate_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594_ready",
+      "metrizableWppSplitCompactTargetGlobalClosedEmbeddingStableInputNamesW594",
+      "metrizableWppSplitCompactTargetGlobalClosedEmbeddingStableInputNamesW594_count"]
+  splitProviderResult :=
+    "proved: split W593 compact-target fields reconstruct the W517 provider for the W581 global closed-embedding bundle"
+  stableBundleResult :=
+    "proved: split W517 fields feed the W592 global closed-embedding homotopy/Verdier stable route"
+  stableCertificateResult :=
+    "proved: the split compact-target global closed-embedding route produces the ready W528 stable certificate"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationCompactProviderW593",
+      "construct concrete ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict-representative fixed-target localization data",
+      "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+      "construct bounded homotopy/Verdier pullback left calculus of fractions",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594 :
+    MetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594 :=
+  currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteSupportStateW594
+
+theorem
+    currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594_productSuccess :
+    currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -16171,6 +16378,29 @@ section Checks
 #check currentMetrizableWppSplitCompactTargetGlobalClosedMapStableRouteStateW593
 #check
   currentMetrizableWppSplitCompactTargetGlobalClosedMapStableRouteStateW593_productSuccess
+#check
+  MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingNormalizedBundleW594
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingNormalizedBundle_of_splitCompactTargetW594
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitCompactTargetGlobalClosedEmbeddingBundleW594
+#check
+  MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundleW594
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedEmbeddingHomotopyIsoClosedStableBundle_of_splitCompactTargetW594
+#check
+  metrizableWppTransferStableSemanticInputs_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594
+#check
+  metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594
+#check
+  metrizableStableCertificate_of_splitCompactTargetGlobalClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW594_ready
+#check metrizableWppSplitCompactTargetGlobalClosedEmbeddingStableInputNamesW594
+#check metrizableWppSplitCompactTargetGlobalClosedEmbeddingStableInputNamesW594_count
+#check
+  currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteSupportStateW594
+#check currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594
+#check
+  currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594_productSuccess
 
 end Checks
 
