@@ -853,7 +853,12 @@
     "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_021_w572_diff_check.log)",
     "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_021_w572_lake_build.log)",
     "python3 audit/external_audit.py --root . --self-check-only (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_021_w572_external_self_check.log)",
-    "python3 audit/external_audit.py --root . (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_021_w572_external_audit_expected_fail.log)"
+    "python3 audit/external_audit.py --root . (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_021_w572_external_audit_expected_fail.log)",
+    "PYTHONDONTWRITEBYTECODE=1 python3 scripts/claim_review_v3.py validate-contract <W572 review-contract-round2.json> --run-checks (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w572_claim_review_v3/validate-contract-result-round2.json)",
+    "PYTHONDONTWRITEBYTECODE=1 python3 scripts/claim_review_v3.py validate-round <W572 review_round_02> --require-launched --require-results (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w572_claim_review_v3/validate-round-result-round2.json)",
+    "PYTHONDONTWRITEBYTECODE=1 python3 sanitize_review_rollouts.py --root <W572 review root> --check-only (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w572_claim_review_v3/rollout_hygiene_after_round2_final_check.json)",
+    "PYTHONDONTWRITEBYTECODE=1 python3 owned stale-process cleanup for W572 review_round_02 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w572_claim_review_v3/round2_owned_process_cleanup.json)",
+    "PYTHONDONTWRITEBYTECODE=1 python3 scripts/review_ready_preflight.py validate <W572 review_ready_preflight_round2_config.json> (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w572_claim_review_v3/review_ready_preflight_round2_result.json)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535.walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
@@ -2264,7 +2269,7 @@
   "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
   "worker_frontier_summary": "W572 gives the W571 direct route a closed quotient-cover right-open boundary surface, but all selected boundary/provider/row/localization values remain explicit inputs.",
-  "claim_review_result": "pending_claim_review_loop_v3; W572 source and metadata are not accepted until review passes",
+  "claim_review_result": "accepted_claim_review_loop_v3_round2; round 1 worker-boundary blocker was fixed by replacing worker self-test with parent self-test evidence; round 2 had 10/10 reviewers accepted with zero blocking findings; validate-round and final hygiene checks passed; owned stale-process cleanup evidence recorded. Product flags remain false.",
   "remaining_gaps": [
     "A concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary is still unconstructed.",
     "A concrete value of MetrizableWppLimitSourceDifferenceEpiBoundary is still unconstructed.",
@@ -2273,7 +2278,7 @@
     "WalkingParallelPair functor-category localization data are still unconstructed.",
     "Triangulated data and bounded left-calculus data remain unconnected to product success."
   ],
-  "next_recommended_goal": "Run claim-review-loop-v3 for W572; after acceptance, construct concrete closed quotient-cover or Epi source-difference boundary data rather than adding another adapter layer.",
+  "next_recommended_goal": "Construct concrete closed quotient-cover or Epi source-difference boundary data for the selected W572 route rather than adding another adapter layer.",
   "implemented_declarations": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -4127,8 +4132,8 @@
     "currentMetrizableWppRightOpenClosedQuotientEpiDirectRightFieldsBundleStateW572_productSuccess",
     "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleSupportStateW571"
   ],
-  "generated_utc": "2026-05-22T11:59:46Z",
-  "support_result_classification": "verified_nonterminal_support_increment_pending_claim_review",
+  "generated_utc": "2026-05-22T12:20:18Z",
+  "support_result_classification": "verified_nonterminal_support_increment_review_accepted",
   "implemented_declarations_checked": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -6031,7 +6036,7 @@
   "latest_verified_increment": "W572 closed quotient-cover/Epi direct-right-field transfer bridge",
   "source_tree_hash": "5ad8e28533c9ed5975f3a8ff4f449624ac10e6be30d5d184d5366aed9c663faf",
   "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_021_w572_lake_build.log",
-  "git_commit_note": "W572 closed quotient-cover/Epi direct-right-field bridge pending claim review",
+  "git_commit_note": "W572 source/metadata commit under review: 119a519e52ec30a21991265fb4597268a63f2d0e. This acceptance metadata is a later nonterminal metadata update and does not imply product success.",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -6271,6 +6276,16 @@
       "product_complete": false,
       "update_goal_allowed": false,
       "note": "W572 is a nonterminal support increment; product_success, product_complete, and update_goal_allowed remain false."
+    },
+    "w572_claim_review_acceptance": {
+      "refreshed_utc": "2026-05-22T12:20:18Z",
+      "source_tree_hash": "5ad8e28533c9ed5975f3a8ff4f449624ac10e6be30d5d184d5366aed9c663faf",
+      "latest_verified_increment": "W572 closed quotient-cover/Epi direct-right-field transfer bridge",
+      "claim_review_status": "accepted_claim_review_loop_v3_round2",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "Accepted as nonterminal support only after W572 claim-review-loop-v3 round 2 and final hygiene/preflight checks. product_success=false, product_complete=false, update_goal_allowed=false."
     }
   }
 }
