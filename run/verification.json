@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w570-selected-quotient-epi-representative-image-closed-map-bundle",
-  "generated_utc": "2026-05-22T11:28:16Z",
-  "source_tree_hash": "82d6670d15825ade23310f4e3760909a6198048b1a808c6647fe7ac197a39076",
-  "summary": "W570 fixes one concrete route shape through the W569 transfer bridge: quotient/equalizer-cover right-open boundary data, Epi source-boundary data, a W515 representative-image provider, W527 closed-map rows, and WalkingParallelPair functor-category localization are packaged into a single selected bundle. The bundle is converted to the W569 quotient/Epi representative-image closed-map input surface, proves the corresponding W532 limit-stability field, and produces finite-shape transfer inputs through the W569 source-boundary endpoint. W570 also aligns the terminal-outcome prose gate in audit/external_audit.py with the active acceleration goal language policy by allowing substantive English terminal summaries and known gaps while leaving the existing Japanese research-document checks intact; the independent policy evidence is /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_hourly_strategy_acceleration_goal_20260521.md lines 37 and 90-94. claim-review-loop-v3 round 2 accepted W570 with 10/10 reviewers, zero blocking findings, valid final round validation, and final review-artifact hygiene after owned-process cleanup plus targeted secret-shape redaction. This is accepted nonterminal support, not product success: it still requires concrete values for each selected bundle field and does not construct the final exact-category, Yoneda Ext, or bounded derived infinity-category proof data.",
+  "schema": "lean-lca-exact-challenge-verification-w571-selected-quotient-epi-direct-right-fields-bridge",
+  "generated_utc": "2026-05-22T11:36:02Z",
+  "source_tree_hash": "1b8c4ad11f1aff1f8d89458378d757c8c4157a59ccd5a424ef90d1b6edcea8b9",
+  "summary": "W571 converts the accepted W570 selected quotient/Epi representative-image closed-map bundle into W555-style direct WPP right fields. The quotient/equalizer-cover right-open boundary is adapted to MetrizableWppLimitRightOpenInput, and the Epi source-difference boundary is adapted to MetrizableWppLimitRightSurjectiveInput. These fields prove the direct-right-field limit-stability route and feed the existing W515/W527 direct-limit representative-image closed-map transfer surface, giving a second checked endpoint for the same selected bundle alongside the W569 source-boundary endpoint. This is verified nonterminal support only: the concrete quotient boundary, Epi source-difference boundary, representative-image provider, closed-map rows, localization data, triangulated data, and bounded left-calculus data remain unconstructed.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -6155,6 +6155,91 @@
       "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/review_ready_preflight.py validate <W570 review_ready_preflight_round2_config.json>",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w570_claim_review_v3/review_ready_preflight_round2_result.json"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_wpp_op_projection_fields_build.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_product_success_declarations_lean.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_root_import_lean.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_required_declarations_lean.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_forbidden_tokens_source.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh <W571 touched files>",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_forbidden_tokens_touched.log"
+    },
+    {
+      "command": "rg -n product-success true patterns <W571 touched files>",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_product_placeholder_touched.log"
+    },
+    {
+      "command": "rg -n sorry/admit/axiom/unsafe <W571 touched files>",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_sorry_axiom_touched.log"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_diff_check.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_lake_build.log"
+    },
+    {
+      "command": "python3 -m json.tool manifest.json",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_manifest_json_parse.log"
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_verification_json_parse.log"
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_terminal_outcome_json_parse.log"
+    },
+    {
+      "command": "python3 product flags false check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_product_flags_false_check.log"
+    },
+    {
+      "command": "git diff --check after W571 metadata refresh",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_metadata_diff_check.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_external_self_check.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root .",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_external_audit_expected_fail.log"
     }
   ],
   "implemented_declarations_checked": [
@@ -8024,7 +8109,16 @@
     "currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570",
     "currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570_productSuccess",
     "audit.external_audit.require_substantive_text",
-    "audit.external_audit.terminal_outcome_substantive_english_gate"
+    "audit.external_audit.terminal_outcome_substantive_english_gate",
+    "MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571",
+    "metrizableWppDirectRightFields_of_rightOpenQuotientEpiBundleW571",
+    "metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientEpiDirectRightFieldsBundleW571",
+    "metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenQuotientEpiBundleW571",
+    "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientEpiDirectRightFieldsBundleW571",
+    "metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571",
+    "metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571_count",
+    "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571",
+    "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -8035,7 +8129,7 @@
     "WalkingParallelPair functor-category localization data are still unconstructed.",
     "Triangulated data and bounded left-calculus data remain unconnected to product success."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_review_accepted",
+  "support_result_classification": "verified_nonterminal_support_increment_pending_claim_review",
   "product_success": false,
   "remaining_work": [
     "Construct concrete quotient/equalizer-cover WPP limit right-open boundary data.",
@@ -8045,8 +8139,8 @@
     "Construct WalkingParallelPair functor-category localization.",
     "Connect the selected finite-shape transfer package to the remaining triangulated and bounded left-calculus product-success obligations."
   ],
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_019_w570_lake_build.log",
-  "latest_verified_increment": "W570 selected right-open quotient Epi representative-image closed-map bundle with English terminal audit alignment",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_lake_build.log",
+  "latest_verified_increment": "W571 selected quotient/Epi direct-right-field transfer bridge",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -8218,6 +8312,13 @@
       "latest_verified_increment": "W570 selected right-open quotient Epi representative-image closed-map bundle with English terminal audit alignment",
       "claim_review_status": "accepted_claim_review_loop_v3_round2",
       "note": "Accepted W570 after claim-review-loop-v3 round 2. review_root=/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w570_claim_review_v3; validate_round=validate-round-result-round2.json; hygiene=rollout_hygiene_after_round2_final_check.json; preflight=review_ready_preflight_round2_result.json; process_cleanup=round2_owned_process_cleanup.json; secret_redaction=round2_secret_shape_redaction.json; accepted_reviewers=10; blocking_findings=0."
+    },
+    "w571_direct_right_fields_bridge_metadata": {
+      "refreshed_utc": "2026-05-22T11:36:02Z",
+      "source_tree_hash": "1b8c4ad11f1aff1f8d89458378d757c8c4157a59ccd5a424ef90d1b6edcea8b9",
+      "latest_verified_increment": "W571 selected quotient/Epi direct-right-field transfer bridge",
+      "claim_review_status": "pending_claim_review_loop_v3",
+      "note": "W571 source metadata refreshed after focused module build, product declaration audit, required declarations, root import, forbidden-token scans, product-false scans, diff check, full lake build, external self-check, and expected product-false audit. Product flags remain false."
     }
   }
 }

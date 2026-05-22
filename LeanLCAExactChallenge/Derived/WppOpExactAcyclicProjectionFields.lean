@@ -12824,6 +12824,137 @@ theorem
       false :=
   rfl
 
+/--
+W571 direct-right-field package extracted from the W570 selected quotient/Epi
+bundle.  The quotient/equalizer-cover boundary supplies the WPP right-open
+field, while the Epi source-difference boundary supplies the WPP
+right-surjective field.
+-/
+structure MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571 : Type where
+  rightOpen :
+    Dbounded.MetrizableWppLimitRightOpenInput
+  rightSurjective :
+    Dbounded.MetrizableWppLimitRightSurjectiveInput
+
+/-- Extract W555 direct right fields from the W570 selected bundle. -/
+def metrizableWppDirectRightFields_of_rightOpenQuotientEpiBundleW571
+    (inputs :
+      MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleW570) :
+    MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571 where
+  rightOpen :=
+    Dbounded.metrizableWppLimitRightOpenInput_of_quotientBoundary
+      inputs.rightOpenBoundary
+  rightSurjective :=
+    Dbounded.metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceEpiBoundary
+      inputs.sourceBoundary
+
+/-- W571 direct-right-field extraction supplies the W532 limit-stability field. -/
+theorem
+    metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientEpiDirectRightFieldsBundleW571
+    (inputs :
+      MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleW570) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  let directFields :=
+    metrizableWppDirectRightFields_of_rightOpenQuotientEpiBundleW571 inputs
+  metrizableWalkingParallelPairLimitStability_of_directRightFields
+    directFields.rightOpen directFields.rightSurjective
+
+/--
+Convert the W570 selected bundle to the existing W515/W527 direct-limit
+representative-image closed-map input surface.
+-/
+def
+    metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenQuotientEpiBundleW571
+    (inputs :
+      MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleW570) :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows where
+  rightOpen :=
+    (metrizableWppDirectRightFields_of_rightOpenQuotientEpiBundleW571
+      inputs).rightOpen
+  rightSurjective :=
+    (metrizableWppDirectRightFields_of_rightOpenQuotientEpiBundleW571
+      inputs).rightSurjective
+  representativeImageProvider := inputs.representativeImageProvider
+  closedMapRows := inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+W571 endpoint: the W570 selected quotient/Epi bundle also feeds the W555
+direct-right-field transfer route, independently of the W569 source-boundary
+adapter endpoint.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientEpiDirectRightFieldsBundleW571
+    (inputs :
+      MetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleW570) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitRepresentativeImageClosedMapRows
+    (metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenQuotientEpiBundleW571
+      inputs)
+
+/-- Input names for the W571 selected quotient/Epi direct-right-field route. -/
+def
+    metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571 :
+    List String :=
+  ["MetrizableWppLimitRightOpenQuotientBoundary",
+    "MetrizableWppLimitSourceDifferenceEpiBoundary",
+    "ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+    "ComponentwiseClosedMapRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571_count :
+    metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571.length =
+      5 :=
+  rfl
+
+/-- Current checked W571 state for the selected quotient/Epi direct-right-field route. -/
+structure
+    MetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571 :
+    Type where
+  seed : String
+  declarations : List String
+  directRightFieldsResult : String
+  transferEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W571 state. -/
+def currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleSupportStateW571 :
+    MetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571 where
+  seed := "w571-right-open-quotient-epi-direct-right-fields-bundle"
+  declarations :=
+    ["MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571",
+      "metrizableWppDirectRightFields_of_rightOpenQuotientEpiBundleW571",
+      "metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientEpiDirectRightFieldsBundleW571",
+      "metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenQuotientEpiBundleW571",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientEpiDirectRightFieldsBundleW571",
+      "metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571",
+      "metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571_count"]
+  directRightFieldsResult :=
+    "proved: quotient/equalizer-cover right-open boundary plus Epi source-difference boundary yield W555 direct right fields"
+  transferEndpointResult :=
+    "proved: selected W570 bundle feeds the W515/W527 direct-limit representative-image closed-map route"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenQuotientBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceEpiBoundary",
+      "construct a concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527",
+      "construct WalkingParallelPair functor-category localization"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571 :
+    MetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571 :=
+  currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleSupportStateW571
+
+theorem
+    currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571_productSuccess :
+    currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows

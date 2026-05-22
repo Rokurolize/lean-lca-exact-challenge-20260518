@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W570 fixes one concrete route shape through the W569 transfer bridge: quotient/equalizer-cover right-open boundary data, Epi source-boundary data, a W515 representative-image provider, W527 closed-map rows, and WalkingParallelPair functor-category localization are packaged into a single selected bundle. The bundle is converted to the W569 quotient/Epi representative-image closed-map input surface, proves the corresponding W532 limit-stability field, and produces finite-shape transfer inputs through the W569 source-boundary endpoint. W570 also aligns the terminal-outcome prose gate in audit/external_audit.py with the active acceleration goal language policy by allowing substantive English terminal summaries and known gaps while leaving the existing Japanese research-document checks intact; the independent policy evidence is /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_hourly_strategy_acceleration_goal_20260521.md lines 37 and 90-94. claim-review-loop-v3 round 2 accepted W570 with 10/10 reviewers, zero blocking findings, valid final round validation, and final review-artifact hygiene after owned-process cleanup plus targeted secret-shape redaction. This is accepted nonterminal support, not product success: it still requires concrete values for each selected bundle field and does not construct the final exact-category, Yoneda Ext, or bounded derived infinity-category proof data.",
+  "summary": "W571 converts the accepted W570 selected quotient/Epi representative-image closed-map bundle into W555-style direct WPP right fields. The quotient/equalizer-cover right-open boundary is adapted to MetrizableWppLimitRightOpenInput, and the Epi source-difference boundary is adapted to MetrizableWppLimitRightSurjectiveInput. These fields prove the direct-right-field limit-stability route and feed the existing W515/W527 direct-limit representative-image closed-map transfer surface, giving a second checked endpoint for the same selected bundle alongside the W569 source-boundary endpoint. This is verified nonterminal support only: the concrete quotient boundary, Epi source-difference boundary, representative-image provider, closed-map rows, localization data, triangulated data, and bounded left-calculus data remain unconstructed.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -818,7 +818,24 @@
     "PYTHONDONTWRITEBYTECODE=1 python3 sanitize_review_rollouts.py --root <W570 review root> --check-only (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w570_claim_review_v3/rollout_hygiene_after_round2_final_check.json)",
     "PYTHONDONTWRITEBYTECODE=1 python3 targeted secret-shape redaction for W570 review root (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w570_claim_review_v3/round2_secret_shape_redaction.json)",
     "PYTHONDONTWRITEBYTECODE=1 python3 owned stale-process cleanup for W570 review_round_02 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w570_claim_review_v3/round2_owned_process_cleanup.json)",
-    "PYTHONDONTWRITEBYTECODE=1 python3 scripts/review_ready_preflight.py validate <W570 review_ready_preflight_round2_config.json> (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w570_claim_review_v3/review_ready_preflight_round2_result.json)"
+    "PYTHONDONTWRITEBYTECODE=1 python3 scripts/review_ready_preflight.py validate <W570 review_ready_preflight_round2_config.json> (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w570_claim_review_v3/review_ready_preflight_round2_result.json)",
+    "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_wpp_op_projection_fields_build.log)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_product_success_declarations_lean.log)",
+    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_root_import_lean.log)",
+    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_required_declarations_lean.log)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_forbidden_tokens_source.log)",
+    "scripts/audit_no_forbidden_lean_tokens.sh <W571 touched files> (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_forbidden_tokens_touched.log)",
+    "rg -n product-success true patterns <W571 touched files> (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_product_placeholder_touched.log)",
+    "rg -n sorry/admit/axiom/unsafe <W571 touched files> (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_sorry_axiom_touched.log)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_diff_check.log)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_lake_build.log)",
+    "python3 -m json.tool manifest.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_manifest_json_parse.log)",
+    "python3 -m json.tool run/verification.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_verification_json_parse.log)",
+    "python3 -m json.tool terminal_outcome/terminal_outcome.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_terminal_outcome_json_parse.log)",
+    "python3 product flags false check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_product_flags_false_check.log)",
+    "git diff --check after W571 metadata refresh (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_metadata_diff_check.log)",
+    "python3 audit/external_audit.py --root . --self-check-only (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_external_self_check.log)",
+    "python3 audit/external_audit.py --root . (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_external_audit_expected_fail.log)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535.walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
@@ -2193,7 +2210,16 @@
     "currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570",
     "currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570_productSuccess",
     "audit.external_audit.require_substantive_text",
-    "audit.external_audit.terminal_outcome_substantive_english_gate"
+    "audit.external_audit.terminal_outcome_substantive_english_gate",
+    "MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571",
+    "metrizableWppDirectRightFields_of_rightOpenQuotientEpiBundleW571",
+    "metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientEpiDirectRightFieldsBundleW571",
+    "metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenQuotientEpiBundleW571",
+    "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientEpiDirectRightFieldsBundleW571",
+    "metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571",
+    "metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571_count",
+    "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571",
+    "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571_productSuccess"
   ],
   "known_gaps": [
     "A concrete value of MetrizableWppLimitRightOpenQuotientBoundary is still unconstructed.",
@@ -2208,8 +2234,8 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W570 removes route-choice ambiguity for one W569 path, aligns terminal audit prose with the active acceleration goal's English language policy at lean_lca_hourly_strategy_acceleration_goal_20260521.md lines 37 and 90-94, and leaves all selected boundary/provider/localization values as explicit remaining inputs.",
-  "claim_review_result": "accepted_claim_review_loop_v3_round2; 10/10 reviewers accepted with zero blocking findings; validate-round and final hygiene checks passed; owned stale-process cleanup and targeted secret-shape redaction evidence recorded. Product flags remain false.",
+  "worker_frontier_summary": "W571 shows the W570 selected quotient/Epi bundle feeds both the W569 source-boundary endpoint and the W555 direct-right-field transfer endpoint, but all selected boundary/provider/row/localization values remain explicit inputs.",
+  "claim_review_result": "pending_claim_review_loop_v3; W571 source and metadata are not accepted until review passes",
   "remaining_gaps": [
     "A concrete value of MetrizableWppLimitRightOpenQuotientBoundary is still unconstructed.",
     "A concrete value of MetrizableWppLimitSourceDifferenceEpiBoundary is still unconstructed.",
@@ -2218,7 +2244,7 @@
     "WalkingParallelPair functor-category localization data are still unconstructed.",
     "Triangulated data and bounded left-calculus data remain unconnected to product success."
   ],
-  "next_recommended_goal": "Construct concrete values for the selected W570 bundle fields, starting with the quotient/equalizer-cover right-open boundary and Epi source-boundary certificates.",
+  "next_recommended_goal": "Run claim-review-loop-v3 for W571; after acceptance, construct one concrete selected W570/W571 bundle field, preferably the quotient/equalizer-cover right-open boundary or the Epi source-difference boundary.",
   "implemented_declarations": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -4050,10 +4076,19 @@
     "currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570",
     "currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570_productSuccess",
     "audit.external_audit.require_substantive_text",
-    "audit.external_audit.terminal_outcome_substantive_english_gate"
+    "audit.external_audit.terminal_outcome_substantive_english_gate",
+    "MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571",
+    "metrizableWppDirectRightFields_of_rightOpenQuotientEpiBundleW571",
+    "metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientEpiDirectRightFieldsBundleW571",
+    "metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenQuotientEpiBundleW571",
+    "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientEpiDirectRightFieldsBundleW571",
+    "metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571",
+    "metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571_count",
+    "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571",
+    "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571_productSuccess"
   ],
-  "generated_utc": "2026-05-22T11:28:16Z",
-  "support_result_classification": "verified_nonterminal_support_increment_review_accepted",
+  "generated_utc": "2026-05-22T11:36:02Z",
+  "support_result_classification": "verified_nonterminal_support_increment_pending_claim_review",
   "implemented_declarations_checked": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -5921,7 +5956,16 @@
     "currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570",
     "currentMetrizableWppRightOpenQuotientEpiRepresentativeImageClosedMapBundleStateW570_productSuccess",
     "audit.external_audit.require_substantive_text",
-    "audit.external_audit.terminal_outcome_substantive_english_gate"
+    "audit.external_audit.terminal_outcome_substantive_english_gate",
+    "MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571",
+    "metrizableWppDirectRightFields_of_rightOpenQuotientEpiBundleW571",
+    "metrizableWalkingParallelPairLimitStability_of_rightOpenQuotientEpiDirectRightFieldsBundleW571",
+    "metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenQuotientEpiBundleW571",
+    "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenQuotientEpiDirectRightFieldsBundleW571",
+    "metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571",
+    "metrizableWppRightOpenQuotientEpiDirectRightFieldsBundleInputNamesW571_count",
+    "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571",
+    "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleStateW571_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
@@ -5933,10 +5977,10 @@
     "Construct WalkingParallelPair functor-category localization.",
     "Connect the selected finite-shape transfer package to the remaining triangulated and bounded left-calculus product-success obligations."
   ],
-  "latest_verified_increment": "W570 selected right-open quotient Epi representative-image closed-map bundle with English terminal audit alignment",
-  "source_tree_hash": "82d6670d15825ade23310f4e3760909a6198048b1a808c6647fe7ac197a39076",
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_019_w570_lake_build.log",
-  "git_commit_note": "W570 source/metadata commit under review: fcc5da36ccce5bb7c50b09ccd359314fd1498b0a. This acceptance metadata is a later nonterminal metadata update and does not imply product success.",
+  "latest_verified_increment": "W571 selected quotient/Epi direct-right-field transfer bridge",
+  "source_tree_hash": "1b8c4ad11f1aff1f8d89458378d757c8c4157a59ccd5a424ef90d1b6edcea8b9",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_020_w571_lake_build.log",
+  "git_commit_note": "W571 selected quotient/Epi direct-right-field bridge pending claim review",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -6146,6 +6190,16 @@
       "product_complete": false,
       "update_goal_allowed": false,
       "note": "Accepted as nonterminal support only after W570 claim-review-loop-v3 round 2 and final hygiene/preflight checks. product_success=false, product_complete=false, update_goal_allowed=false."
+    },
+    "w571_direct_right_fields_bridge_metadata": {
+      "refreshed_utc": "2026-05-22T11:36:02Z",
+      "source_tree_hash": "1b8c4ad11f1aff1f8d89458378d757c8c4157a59ccd5a424ef90d1b6edcea8b9",
+      "latest_verified_increment": "W571 selected quotient/Epi direct-right-field transfer bridge",
+      "claim_review_status": "pending_claim_review_loop_v3",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "W571 is a nonterminal support increment; product_success, product_complete, and update_goal_allowed remain false."
     }
   }
 }
