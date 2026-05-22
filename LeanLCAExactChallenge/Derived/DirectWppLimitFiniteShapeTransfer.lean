@@ -1077,6 +1077,45 @@ abbrev wppLimit_lca_limitMap_preserves_surjective : Prop :=
             (∀ j : WalkingParallelPair, φ ≫ cy.π.app j = cx.π.app j ≫ α.app j) →
               Function.Surjective (φ : cx.pt → cy.pt)
 
+/-- Cokernel-top and open-map data for the induced WPP limit map. -/
+abbrev WppLimitLcaRightSurjectiveCokernelTopBoundary : Prop :=
+  ∀ (X Y : WalkingParallelPair ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cone X) (cy : Cone Y) (φ : cx.pt ⟶ cy.pt),
+      IsLimit cx →
+        IsLimit cy →
+          (∀ j : WalkingParallelPair,
+            Function.Surjective (α.app j : X.obj j → Y.obj j)) →
+            (∀ j : WalkingParallelPair, φ ≫ cy.π.app j = cx.π.app j ≫ α.app j) →
+              IsOpenMap (φ : cx.pt → cy.pt) ∧ MetrizableLCA.cokernelSubgroup φ = ⊤
+
+/-- Cokernel-pi-zero and open-map data for the induced WPP limit map. -/
+abbrev WppLimitLcaRightSurjectiveCokernelPiZeroBoundary : Prop :=
+  ∀ (X Y : WalkingParallelPair ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cone X) (cy : Cone Y) (φ : cx.pt ⟶ cy.pt),
+      IsLimit cx →
+        IsLimit cy →
+          (∀ j : WalkingParallelPair,
+            Function.Surjective (α.app j : X.obj j → Y.obj j)) →
+            (∀ j : WalkingParallelPair, φ ≫ cy.π.app j = cx.π.app j ≫ α.app j) →
+              IsOpenMap (φ : cx.pt → cy.pt) ∧ MetrizableLCA.cokernelπ φ = 0
+
+/-- The cokernel-top boundary supplies the pure WPP limit right-surjectivity input. -/
+theorem wppLimit_lca_limitMap_preserves_surjective_of_cokernelTopBoundary
+    (hboundary : WppLimitLcaRightSurjectiveCokernelTopBoundary) :
+    wppLimit_lca_limitMap_preserves_surjective := by
+  intro X Y α cx cy φ hcx hcy hsurj hcompat
+  rcases hboundary X Y α cx cy φ hcx hcy hsurj hcompat with ⟨hopen, hcok⟩
+  exact MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap φ hcok hopen
+
+/-- Cokernel-pi-zero data supplies the pure WPP limit right-surjectivity input. -/
+theorem wppLimit_lca_limitMap_preserves_surjective_of_cokernelPiZeroBoundary
+    (hboundary : WppLimitLcaRightSurjectiveCokernelPiZeroBoundary) :
+    wppLimit_lca_limitMap_preserves_surjective :=
+  wppLimit_lca_limitMap_preserves_surjective_of_cokernelTopBoundary
+    (fun X Y α cx cy φ hcx hcy hsurj hcompat => by
+      rcases hboundary X Y α cx cy φ hcx hcy hsurj hcompat with ⟨hopen, hπ⟩
+      exact ⟨hopen, MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero φ hπ⟩)
+
 /-- The pure LCA surjectivity certificate supplies the WPP limit right-surjective field. -/
 theorem rightSurjective_walkingParallelPair_limitClosure_of_lca_limitMap
     (hlimit : wppLimit_lca_limitMap_preserves_surjective) :
