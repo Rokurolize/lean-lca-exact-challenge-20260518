@@ -13974,6 +13974,264 @@ theorem
       false :=
   rfl
 
+/--
+W578 stable-semantic bridge for the W577 compact-target closed-map route.
+
+The W577 bundle supplies WPP finite-shape transfer.  This bundle adds the
+remaining direct-bounded-left-calculus stable-semantic fields, so the route can
+feed W528's ordinary stable certificate adapter.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleW578
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields) : Type 1 where
+  compactTargetBundle :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW577
+  pretriangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert the W578 closed-map bundle to the generic WPP-transfer stable-semantic input. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578
+    {available : Dbounded.MetrizableLeftCalculusSemanticFields}
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleW578
+        available) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs available where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW577
+      inputs.compactTargetBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W578 closed-map route supplies the post finite-limit/finite-colimit stable field record. -/
+noncomputable def
+    metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578
+    {available : Dbounded.MetrizableLeftCalculusSemanticFields}
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleW578
+        available) :
+    Dbounded.MetrizablePostFiniteLimitColimitRemainingStableSemanticFields available :=
+  Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578
+      inputs)
+
+/-- W578 closed-map route builds the ordinary stable-semantic input under left calculus. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleW578
+        Dbounded.metrizableLeftCalculusSemanticFields) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578
+      inputs)
+
+/-- The W578 closed-map route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578_ready
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleW578
+        Dbounded.metrizableLeftCalculusSemanticFields) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578
+      inputs)
+
+/-- Closed-embedding-row variant of the W578 stable-semantic bridge. -/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleW578
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields) : Type 1 where
+  compactTargetBundle :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW577
+  pretriangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert the W578 closed-embedding bundle to the generic WPP-transfer stable-semantic input. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578
+    {available : Dbounded.MetrizableLeftCalculusSemanticFields}
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleW578
+        available) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs available where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW577
+      inputs.compactTargetBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W578 closed-embedding route supplies the post finite-limit/finite-colimit stable field record. -/
+noncomputable def
+    metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578
+    {available : Dbounded.MetrizableLeftCalculusSemanticFields}
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleW578
+        available) :
+    Dbounded.MetrizablePostFiniteLimitColimitRemainingStableSemanticFields available :=
+  Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578
+      inputs)
+
+/-- W578 closed-embedding route builds the ordinary stable-semantic input under left calculus. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleW578
+        Dbounded.metrizableLeftCalculusSemanticFields) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578
+      inputs)
+
+/-- The W578 closed-embedding route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578_ready
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleW578
+        Dbounded.metrizableLeftCalculusSemanticFields) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578
+      inputs)
+
+/-- Input names for the W578 compact-target closed-map stable-semantic bridge. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleInputNamesW578 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "ComponentwiseClosedMapRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "direct bounded left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleInputNamesW578_count :
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleInputNamesW578.length =
+      9 :=
+  rfl
+
+/-- Input names for the W578 compact-target closed-embedding stable-semantic bridge. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleInputNamesW578 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "direct bounded left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleInputNamesW578_count :
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleInputNamesW578.length =
+      9 :=
+  rfl
+
+/--
+Current checked W578 state for connecting the W577 compact-target normalized route to W528's
+ordinary stable-semantic certificate gate.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578 :
+    Type where
+  seed : String
+  declarations : List String
+  finiteLimitColimitRemainderResult : String
+  ordinaryStableInputResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W578 state. -/
+def
+    currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleSupportStateW578 :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578 where
+  seed :=
+    "w578-right-open-closed-quotient-cokernel-pi-zero-compact-target-normalized-stable-bundle"
+  declarations :=
+    ["Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs",
+      "Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer",
+      "Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransfer",
+      "Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer",
+      "Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready",
+      "MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleW578",
+      "metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578",
+      "metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578",
+      "metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578",
+      "metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578_ready",
+      "MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleW578",
+      "metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578",
+      "metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578",
+      "metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578",
+      "metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578_ready",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleInputNamesW578",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleInputNamesW578_count",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleInputNamesW578",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleInputNamesW578_count"]
+  finiteLimitColimitRemainderResult :=
+    "proved: W577 WPP finite-shape transfer supplies the equalizer/coequalizer remainder"
+  ordinaryStableInputResult :=
+    "proved under direct bounded left calculus plus triangulated fields"
+  stableCertificateResult :=
+    "proved: the resulting ordinary stable input feeds W528's ready stable-certificate adapter"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct a concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct normalized strict-representative fixed-target localization data",
+      "construct direct bounded left calculus of fractions",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578 :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578 :=
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleSupportStateW578
+
+theorem
+    currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578_productSuccess :
+    currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -14553,6 +14811,40 @@ section Checks
   currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedBundleStateW577
 #check
   currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedBundleStateW577_productSuccess
+#check
+  MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleW578
+#check
+  metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578
+#check
+  metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578
+#check
+  metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578
+#check
+  metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578_ready
+#check
+  MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleW578
+#check
+  metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578
+#check
+  metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578
+#check
+  metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578
+#check
+  metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578_ready
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleInputNamesW578
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleInputNamesW578_count
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleInputNamesW578
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleInputNamesW578_count
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleSupportStateW578
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578_productSuccess
 
 end Checks
 

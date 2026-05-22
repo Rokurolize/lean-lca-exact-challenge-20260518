@@ -985,6 +985,78 @@ noncomputable def Dbounded.metrizableRemainingStableSemanticFieldsOfFiniteLimitC
   pretriangulated := remaining.pretriangulated
   triangulated := remaining.triangulated
 
+/--
+WPP finite-shape transfer plus the triangulated fields left after direct bounded left
+calculus supplies the additive, zero, shift-additive, and finite-product data.
+-/
+structure Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields) : Type 1 where
+  transferInputs :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+  pretriangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- WPP transfer supplies the equalizer/coequalizer part of the remaining stable fields. -/
+noncomputable def
+    Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer
+    {available : Dbounded.MetrizableLeftCalculusSemanticFields}
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs available) :
+    Dbounded.MetrizablePostFiniteLimitColimitRemainingStableSemanticFields available where
+  finiteLimitColimitRemainder :=
+    Dbounded.metrizableFiniteLimitColimitRemainderOfWalkingParallelPairTransfer
+      inputs.transferInputs
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/--
+Under direct bounded left calculus, WPP finite-shape transfer plus triangulated fields supplies
+the remaining stable semantic fields.
+-/
+noncomputable def Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransfer
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        Dbounded.metrizableLeftCalculusSemanticFields) :
+    Dbounded.MetrizableRemainingStableSemanticFields
+      Dbounded.metrizableLeftCalculusSemanticFields :=
+  Dbounded.metrizableRemainingStableSemanticFieldsOfFiniteLimitColimitRemainder
+    (Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer
+      inputs)
+
+/-- Full ordinary stable semantic input from WPP transfer and the remaining triangulated fields. -/
+noncomputable def Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        Dbounded.metrizableLeftCalculusSemanticFields) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculus
+    (Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransfer
+      inputs)
+
+/-- WPP transfer route produces a ready stable certificate once the remaining fields exist. -/
+theorem Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        Dbounded.metrizableLeftCalculusSemanticFields) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        inputs)).ready := by
+  exact Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready _
+
 /-- Field names remaining after W530 plus finite-product finite-(co)limit reduction. -/
 def Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames : List String :=
   ["HasEqualizers (Dbounded MetrizableLCA)", "HasCoequalizers (Dbounded MetrizableLCA)",
@@ -993,6 +1065,16 @@ def Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames : List String :
 /-- Four fields remain after finite products reduce the finite-limit and finite-colimit inputs. -/
 theorem Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames_count :
     Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames.length = 4 :=
+  rfl
+
+/-- Final inputs for the WPP-transfer stable semantic route after direct bounded left calculus. -/
+def Dbounded.metrizableWppTransferStableSemanticInputNames : List String :=
+  ["MetrizableWalkingParallelPairFiniteShapeTransferInputs",
+    "direct bounded left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem Dbounded.metrizableWppTransferStableSemanticInputNames_count :
+    Dbounded.metrizableWppTransferStableSemanticInputNames.length = 4 :=
   rfl
 
 /-- Finite-shape transfer input names used by the equalizer/coequalizer constructor. -/
@@ -1111,8 +1193,16 @@ section DboundedFiniteShapeTransferChecks
 #check Dbounded.metrizableHasEqualizersOfWalkingParallelPairTransfer
 #check Dbounded.metrizableHasCoequalizersOfWalkingParallelPairTransfer
 #check Dbounded.metrizableFiniteLimitColimitRemainderOfWalkingParallelPairTransfer
+#check Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+#check
+  Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer
+#check Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransfer
+#check Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+#check Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames_count
+#check Dbounded.metrizableWppTransferStableSemanticInputNames
+#check Dbounded.metrizableWppTransferStableSemanticInputNames_count
 #check Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames
 #check Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames_count
 #check Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames

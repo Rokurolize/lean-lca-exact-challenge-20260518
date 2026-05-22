@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w577-compact-target-normalized-route",
-  "generated_utc": "2026-05-22T14:15:10Z",
-  "source_tree_hash": "454d97046d7808541b5b9e4b8fa7ac6c94ccd9d638f1802dd07ae3d6bed4fe2e",
-  "summary": "W577 adds a normalized-localization variant of the W576 compact-target selected route. The new closed-map and closed-embedding bundles keep the W573 closed quotient-cover right-open boundary, source-difference cokernel-pi-zero boundary, W517 compact-target provider, and W527 row data, but replace arbitrary functor-category localization with normalized fixed-target localization data. This is verified nonterminal support only: concrete boundary data, concrete compact-target provider data, row data, normalized fixed-target data, triangulated data, and bounded left-calculus data remain unconstructed.",
+  "schema": "lean-lca-exact-challenge-verification-w578-compact-target-normalized-stable-route",
+  "generated_utc": "2026-05-22T14:30:35Z",
+  "source_tree_hash": "d0232eab2cd1c735cf62f6ddad76e2c3b168a974d3a973e03dd312c85d2ec89f",
+  "summary": "W578 connects the W577 compact-target normalized finite-shape transfer route to the bounded stable-semantic gate. It adds reusable WPP-transfer-to-stable-semantic helpers in BoundedFiniteProducts and closed-map/closed-embedding W578 adapters that turn W577 transfer inputs plus direct bounded left calculus and triangulated fields into a ready W528 stable certificate. This is verified nonterminal support only: concrete closed quotient-cover data, source cokernel-pi-zero data, compact-target provider data, row data, normalized fixed-target localization data, bounded left calculus, and triangulated data remain unconstructed.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -6595,6 +6595,56 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_026_w577_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_bounded_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.BoundedFiniteProducts",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_bounded_lake_build.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_git_diff_check.log exit_code=0"
     }
   ],
   "implemented_declarations_checked": [
@@ -8547,7 +8597,31 @@
     "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleInputNamesW577_count",
     "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedBundleSupportStateW577",
     "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedBundleStateW577",
-    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedBundleStateW577_productSuccess"
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedBundleStateW577_productSuccess",
+    "Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs",
+    "Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer",
+    "Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransfer",
+    "Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer",
+    "Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready",
+    "Dbounded.metrizableWppTransferStableSemanticInputNames",
+    "Dbounded.metrizableWppTransferStableSemanticInputNames_count",
+    "MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleW578",
+    "metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578",
+    "metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578",
+    "metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578",
+    "metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW578_ready",
+    "MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleW578",
+    "metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578",
+    "metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578",
+    "metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578",
+    "metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW578_ready",
+    "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleInputNamesW578",
+    "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedStableBundleInputNamesW578_count",
+    "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleInputNamesW578",
+    "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedStableBundleInputNamesW578_count",
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleSupportStateW578",
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578",
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -8556,7 +8630,8 @@
     "Concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517 data are still unconstructed for the selected normalized route.",
     "Concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527 data are still unconstructed.",
     "Normalized strict-representative fixed-target localization data are still unconstructed.",
-    "Triangulated data and bounded left-calculus data remain unconnected to product success."
+    "Direct bounded left calculus of fractions is still unconstructed for the W578 stable-semantic endpoint.",
+    "Pretriangulated and IsTriangulated data for Dbounded MetrizableLCA are still unconstructed."
   ],
   "support_result_classification": "verified_nonterminal_support_increment_pending_periodic_claim_review",
   "product_success": false,
@@ -8566,10 +8641,11 @@
     "Construct the W517 compact-target provider for the selected normalized route.",
     "Construct W527 ComponentwiseClosedMapRowsProvider or ComponentwiseClosedEmbeddingRowsProvider data for the selected route.",
     "Construct normalized strict-representative fixed-target localization data.",
-    "Connect the selected finite-shape transfer package to the remaining triangulated and bounded left-calculus product-success obligations."
+    "Construct direct bounded left calculus of fractions.",
+    "Construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA."
   ],
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_026_w577_verification_result.json",
-  "latest_verified_increment": "W577 closed quotient-cover/cokernel-pi-zero compact-target normalized-localization finite-shape transfer bridge",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_027_w578_verification_result.json",
+  "latest_verified_increment": "W578 compact-target normalized finite-shape transfer to stable-semantic bridge",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -8811,6 +8887,13 @@
       "latest_verified_increment": "W577 closed quotient-cover/cokernel-pi-zero compact-target normalized-localization finite-shape transfer bridge",
       "claim_review_status": "deterministic_accepted_pending_periodic_claim_review_loop_v3",
       "note": "W577 source check, module build, product declaration audit, required declaration audit, external-audit self-check, full lake build, JSON validation, and diff check passed through scripts/lean_lca_increment_verifier.py. Full terminal audit reached the expected nonterminal product gate. Immediate full v3 is intentionally skipped under the lighter cadence for routine nonterminal increments."
+    },
+    "w578_compact_target_normalized_stable_route_metadata": {
+      "refreshed_utc": "2026-05-22T14:30:35Z",
+      "source_tree_hash": "d0232eab2cd1c735cf62f6ddad76e2c3b168a974d3a973e03dd312c85d2ec89f",
+      "latest_verified_increment": "W578 compact-target normalized finite-shape transfer to stable-semantic bridge",
+      "claim_review_status": "deterministic_accepted_pending_periodic_claim_review_loop_v3",
+      "note": "W578 BoundedFiniteProducts source check and module build passed, then WppOpExactAcyclicProjectionFields source check, module build, product declaration audit, required declaration audit, external-audit self-check, full lake build, JSON validation, and diff check passed through scripts/lean_lca_increment_verifier.py. Full terminal audit reached the expected nonterminal product gate. Immediate full v3 is intentionally skipped under the lighter cadence for routine nonterminal increments."
     }
   }
 }
