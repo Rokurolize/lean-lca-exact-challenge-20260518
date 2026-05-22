@@ -1168,6 +1168,113 @@ theorem rightSurjective_walkingParallelPair_limitClosure_of_lca_limitMap
     h₂ h₃ (fun j => (hS j).surjective)
     (fun j => by simpa using (cs.π.app j).comm₂₃.symm)
 
+/--
+Concrete correction data for the WPP limit right-surjectivity field.  A target
+limit element is lifted at the zero component and then corrected by a source
+degree-one boundary so that the corrected zero-component lift equalizes the two
+parallel arrows.
+-/
+abbrev rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary : Prop :=
+  ∀ (S : WalkingParallelPair ⥤ ShortComplex MetrizableLCA.{0})
+    (cs : Cone S),
+      IsLimit cs →
+        (∀ j : WalkingParallelPair, MetrizableLCA.strictShortExact (S.obj j)) →
+          ∀ y₃ : cs.pt.X₃,
+            ∃ (x₂₀ : (S.obj WalkingParallelPair.zero).X₂)
+              (u₁₀ : (S.obj WalkingParallelPair.zero).X₁),
+                (S.obj WalkingParallelPair.zero).g x₂₀ =
+                  (cs.π.app WalkingParallelPair.zero).τ₃ y₃ ∧
+                  (S.map WalkingParallelPairHom.left).τ₂
+                      (x₂₀ - (S.obj WalkingParallelPair.zero).f u₁₀) =
+                    (S.map WalkingParallelPairHom.right).τ₂
+                      (x₂₀ - (S.obj WalkingParallelPair.zero).f u₁₀)
+
+/--
+The zero-component correction boundary supplies the WPP limit
+right-surjectivity field.  This uses the equalizer model of a WPP limit to turn
+the corrected zero-component lift into an actual element of the limit.
+-/
+theorem rightSurjective_walkingParallelPair_limitClosure_of_zeroCorrectionBoundary
+    (hboundary : rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary) :
+    rightSurjective_walkingParallelPair_limitClosure := by
+  intro S cs hcs hS y₃
+  rcases hboundary S cs hcs hS y₃ with ⟨x₂₀, u₁₀, hx₂₀, hcorr⟩
+  let c₂ : Cone (S ⋙ (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤
+      MetrizableLCA.{0})) :=
+    (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCone cs
+  let c₃ : Cone (S ⋙ (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤
+      MetrizableLCA.{0})) :=
+    (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCone cs
+  have hc₂ : IsLimit c₂ := by
+    simpa [c₂] using
+      (isLimitOfPreserves
+        (ShortComplex.π₂ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) hcs)
+  have hc₃ : IsLimit c₃ := by
+    simpa [c₃] using
+      (isLimitOfPreserves
+        (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) hcs)
+  let z : MetrizableLCA.equalizerObj
+      (S.map WalkingParallelPairHom.left).τ₂
+      (S.map WalkingParallelPairHom.right).τ₂ :=
+    ⟨x₂₀ - (S.obj WalkingParallelPair.zero).f u₁₀, hcorr⟩
+  let f₂ : Fork (S.map WalkingParallelPairHom.left).τ₂
+      (S.map WalkingParallelPairHom.right).τ₂ :=
+    Fork.ofCone c₂
+  have hf₂ : IsLimit f₂ := by
+    simpa [f₂, c₂] using forkOfConeIsLimit hc₂
+  let e₂ := IsLimit.conePointUniqueUpToIso hf₂
+    (MetrizableLCA.equalizerIsLimit
+      (S.map WalkingParallelPairHom.left).τ₂
+      (S.map WalkingParallelPairHom.right).τ₂)
+  let x₂ : cs.pt.X₂ := e₂.inv z
+  refine ⟨x₂, ?_⟩
+  have he₂_inv :
+      e₂.inv ≫ (Fork.ofCone c₂).ι =
+        MetrizableLCA.equalizerι
+          (S.map WalkingParallelPairHom.left).τ₂
+          (S.map WalkingParallelPairHom.right).τ₂ := by
+    simpa [e₂] using
+      (IsLimit.conePointUniqueUpToIso_inv_comp hf₂
+        (MetrizableLCA.equalizerIsLimit
+          (S.map WalkingParallelPairHom.left).τ₂
+          (S.map WalkingParallelPairHom.right).τ₂)
+        WalkingParallelPair.zero)
+  have hx₂π :
+      (cs.π.app WalkingParallelPair.zero).τ₂ x₂ =
+        x₂₀ - (S.obj WalkingParallelPair.zero).f u₁₀ := by
+    change (e₂.inv ≫ (Fork.ofCone c₂).ι) z =
+      x₂₀ - (S.obj WalkingParallelPair.zero).f u₁₀
+    rw [he₂_inv]
+    rfl
+  have hπ₃₀ : IsClosedEmbedding
+      ((cs.π.app WalkingParallelPair.zero).τ₃ :
+        cs.pt.X₃ → (S.obj WalkingParallelPair.zero).X₃) := by
+    simpa [c₃] using
+      walkingParallelPair_limit_π_zero_closedEmbedding (F :=
+        S ⋙ (ShortComplex.π₃ : ShortComplex MetrizableLCA.{0} ⥤
+          MetrizableLCA.{0})) hc₃
+  apply hπ₃₀.injective
+  calc
+    (cs.π.app WalkingParallelPair.zero).τ₃ (cs.pt.g x₂) =
+        (S.obj WalkingParallelPair.zero).g
+          ((cs.π.app WalkingParallelPair.zero).τ₂ x₂) := by
+        exact congrArg
+          (fun h : cs.pt.X₂ ⟶ (S.obj WalkingParallelPair.zero).X₃ => h x₂)
+          (cs.π.app WalkingParallelPair.zero).comm₂₃.symm
+    _ = (S.obj WalkingParallelPair.zero).g
+        (x₂₀ - (S.obj WalkingParallelPair.zero).f u₁₀) := by
+        rw [hx₂π]
+    _ = (S.obj WalkingParallelPair.zero).g x₂₀ := by
+        have hzero :
+            (S.obj WalkingParallelPair.zero).g
+              ((S.obj WalkingParallelPair.zero).f u₁₀) = 0 := by
+          exact congrArg
+            (fun h : (S.obj WalkingParallelPair.zero).X₁ ⟶
+                (S.obj WalkingParallelPair.zero).X₃ => h u₁₀)
+            (S.obj WalkingParallelPair.zero).zero
+        simp [map_sub, hzero]
+    _ = (cs.π.app WalkingParallelPair.zero).τ₃ y₃ := hx₂₀
+
 /-- Direct algebraic exactness at the WPP limit point. -/
 abbrev algebraicExact_walkingParallelPair_limitClosure : Prop :=
   ∀ (S : WalkingParallelPair ⥤ ShortComplex MetrizableLCA.{0})
@@ -1545,6 +1652,9 @@ abbrev MetrizableWppLimitRightSurjectiveInput : Prop :=
 abbrev MetrizableWppLimitRightSurjectiveLcaInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_preserves_surjective
 
+abbrev MetrizableWppLimitRightSurjectiveZeroCorrectionBoundary : Prop :=
+  DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitZeroCorrectionBoundary
+
 abbrev MetrizableWppLimitAlgebraicExactInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure
 
@@ -1588,6 +1698,14 @@ theorem metrizableWppLimitRightSurjectiveInput_of_lca
     (hlimit : MetrizableWppLimitRightSurjectiveLcaInput) :
     MetrizableWppLimitRightSurjectiveInput :=
   rightSurjective_walkingParallelPair_limitClosure_of_lca_limitMap hlimit
+
+/--
+Build the WPP limit right-surjectivity field from zero-component correction data.
+-/
+theorem metrizableWppLimitRightSurjectiveInput_of_zeroCorrectionBoundary
+    (hboundary : MetrizableWppLimitRightSurjectiveZeroCorrectionBoundary) :
+    MetrizableWppLimitRightSurjectiveInput :=
+  rightSurjective_walkingParallelPair_limitClosure_of_zeroCorrectionBoundary hboundary
 
 /-- Build the WPP limit algebraic-exactness field from component limit data. -/
 theorem metrizableWppLimitAlgebraicExactInput_of_lca
