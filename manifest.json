@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-22T03:29:29Z",
-  "content_hash_tree": "83dc71222009f236d17d3c8c1b43dd8cf52dc3977446ebe6bbf71403153c6cd4",
+  "generated_utc": "2026-05-22T03:44:19Z",
+  "content_hash_tree": "95c854d25b259878a97592bd22f9ee89966abf82a33e36aac3218e164c2c0ad0",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -4159,8 +4159,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 478467,
-      "sha256": "49d44c5bbbfab17323efaab449dbd5776f505ab7db9bc904df58b4673f943834"
+      "bytes": 478817,
+      "sha256": "3200fdd2561fc045017edc50446015c893fcac540066b9ca64b832bb1bbe28c9"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -4174,8 +4174,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 534756,
-      "sha256": "6571539fa4cd5e40f99bac67aa32da2dd2836c0cc8239a8042f2cca7c90bf9c2"
+      "bytes": 534978,
+      "sha256": "9f97438e90e9e7d7eea77ddf10bae21636e141bd54ade777e880a364797a8794"
     },
     {
       "path": "workers/README.md",

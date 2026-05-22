@@ -19,7 +19,6 @@
     "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
     "python3 -m json.tool run/verification.json >/dev/null",
     "python3 -m json.tool manifest.json >/dev/null",
-    "python3 audit/external_audit.py --root . --self-check-only",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
     "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
     "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
@@ -676,6 +675,7 @@
     "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean (passed: Forbidden-token regex returned no matches on W561-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w561_sorry_admit_axiom_unsafe_touched.log.)",
     "git diff --check (passed: Whitespace diff check passed after W561; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w561_git_diff_check.log.)",
     "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null (passed: Updated JSON artifacts parse after W561; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w561_json_parse.log.)",
+    "python3 audit/external_audit.py --root . --self-check-only (passed: External audit self-check passed after W561 evidence refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w561_external_self_check.log.)",
     "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: External audit reaches expected nonterminal product gate after W561; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w561_external_audit_expected_nonterminal.log.)"
   ],
   "required_declarations_checked": [
@@ -3640,7 +3640,7 @@
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_preserves_openMap_of_quotientBoundary",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_preserves_openMap_of_closedQuotientCoverBoundary"
   ],
-  "generated_utc": "2026-05-22T03:29:29Z",
+  "generated_utc": "2026-05-22T03:44:19Z",
   "support_result_classification": "nonterminal_support_increment",
   "implemented_declarations_checked": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",

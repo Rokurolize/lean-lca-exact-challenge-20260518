@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w561-wpp-limit-right-surjective-epi-boundary",
-  "generated_utc": "2026-05-22T03:29:29Z",
+  "generated_utc": "2026-05-22T03:44:19Z",
   "source_tree_hash": "6ae1e84116d2579ef7d90a040ff5f6f61c41391574d0c943c7f87a02990e9a77",
   "summary": "W561 adds an epi/open-map route for the pure LCA WPP limit right-surjectivity input. The new boundary proves that the induced WPP limit map is surjective when it is open and categorically epi, by converting Epi to cokernelπ = 0 via MetrizableLCA.cokernelπ_eq_zero_of_epi and then reusing W560. This remains nonterminal because the required open/epi data is not instantiated.",
   "commands": [
@@ -4975,6 +4975,11 @@
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
       "status": "passed",
       "evidence": "Updated JSON artifacts parse after W561; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w561_json_parse.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W561 evidence refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w561_external_self_check.log."
     },
     {
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
