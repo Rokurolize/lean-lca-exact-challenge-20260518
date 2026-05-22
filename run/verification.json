@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
-  "generated_utc": "2026-05-22T18:45:52Z",
-  "source_tree_hash": "ac7ae528a640dd2f03b4ab5634a469756e4634cf0890183cff43ee015cc7c7a7",
-  "summary": "W602 narrows the W590 reverse ExactAt-to-strict-exact route by replacing raw degreewise surjectivity with endpoint epi data plus open maps, using the local cokernel API to recover surjectivity. It also adds a ShortExact wrapper because ShortComplex.ShortExact supplies the separate outgoing epi datum. This remains nonterminal: it does not construct global homology existence, forgetful homology preservation, degreewise closed-embedding/open-map topology facts, endpoint epi or ShortExact facts for the relevant complexes, WPP boundary data, normalized localization data, homotopy iso-closedness, homotopy/Verdier calculus, or Dbounded triangulated fields.",
+  "generated_utc": "2026-05-22T18:57:16Z",
+  "source_tree_hash": "2674154f999d74cf3fdd293e8511d7ef7a7f2aaee1192ea5418d1a34da7ce150",
+  "summary": "W603 wires the W602 endpoint-epi and ShortExact exact-at topology routes through the existing homology-detection theorem to produce explicit MetrizableLCA homotopy-equivalence invariance and exact-acyclic homotopy-object iso-closedness wrappers. This remains nonterminal: it does not construct the homology existence, forgetful homology preservation, topology, endpoint epi, or ShortExact data needed to instantiate those wrappers, and it does not construct WPP boundary data, normalized localization data, homotopy/Verdier calculus, or Dbounded triangulated fields.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -7525,6 +7525,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_051_w602_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_052_w603_pre_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_052_w603_pre_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_052_w603_pre_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_052_w603_pre_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_052_w603_pre_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_052_w603_pre_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_052_w603_pre_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_052_w603_pre_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_052_w603_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -9798,7 +9843,21 @@
     "Dbounded.MetrizableExactAtEndpointTopologyRouteStateW602",
     "Dbounded.currentMetrizableExactAtEndpointTopologyRouteSupportStateW602",
     "Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602",
-    "Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602_productSuccess"
+    "Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602_productSuccess",
+    "Dbounded.homologyDetection_of_endpointTopology_w603",
+    "Dbounded.homologyDetection_of_shortExactTopology_w603",
+    "Dbounded.homotopyEquivInvariance_of_endpointTopology_w603",
+    "Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603",
+    "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointTopology_w603",
+    "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactTopology_w603",
+    "Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603",
+    "Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603_count",
+    "Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603",
+    "Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603_count",
+    "Dbounded.MetrizableExactAcyclicIsoClosedEndpointRouteStateW603",
+    "Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteSupportStateW603",
+    "Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603",
+    "Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -9809,7 +9868,7 @@
     "construct concrete TargetCodomainCompactSpaceProviderW601 data for ordinary WPP-op target codomains",
     "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527 data",
     "construct normalized strict-representative fixed-target localization data",
-    "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "construct the homology existence and W602 endpoint or ShortExact data needed to instantiate exactAcyclicHomotopyObject iso-closedness",
     "construct bounded homotopy/Verdier pullback left calculus of fractions",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
@@ -9820,7 +9879,7 @@
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it"
   ],
-  "support_result_classification": "nonterminal_exact_at_endpoint_epi_shortexact_topology_route",
+  "support_result_classification": "nonterminal_exact_at_endpoint_iso_closed_wrappers",
   "product_success": false,
   "remaining_work": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
@@ -9830,7 +9889,7 @@
     "construct concrete TargetCodomainCompactSpaceProviderW601 data for ordinary WPP-op target codomains",
     "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527 data",
     "construct normalized strict-representative fixed-target localization data",
-    "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "construct the homology existence and W602 endpoint or ShortExact data needed to instantiate exactAcyclicHomotopyObject iso-closedness",
     "construct bounded homotopy/Verdier pullback left calculus of fractions",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
@@ -9841,8 +9900,8 @@
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it"
   ],
-  "summary_log_tail": "W602 replaces raw ExactAt-route surjectivity with endpoint epi or ShortExact data plus open maps; product flags remain false.",
-  "latest_verified_increment": "W602 exact-at endpoint epi ShortExact topology route",
+  "summary_log_tail": "W603 turns W602 homology-detection data into homotopy-equivalence invariance and exact-acyclic homotopy-object iso-closedness wrappers; product flags remain false.",
+  "latest_verified_increment": "W603 endpoint route to homotopy iso-closedness",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -10257,6 +10316,13 @@
       "refreshed_utc": "2026-05-22T18:45:52Z",
       "source_tree_hash": "ac7ae528a640dd2f03b4ab5634a469756e4634cf0890183cff43ee015cc7c7a7",
       "latest_verified_increment": "W602 exact-at endpoint epi ShortExact topology route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "The reusable verifier passed focused Bounded source, Bounded module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
+    },
+    "w603_endpoint_route_to_homotopy_iso_closedness_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T18:57:16Z",
+      "source_tree_hash": "2674154f999d74cf3fdd293e8511d7ef7a7f2aaee1192ea5418d1a34da7ce150",
+      "latest_verified_increment": "W603 endpoint route to homotopy iso-closedness",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "The reusable verifier passed focused Bounded source, Bounded module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
     }

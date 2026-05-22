@@ -4352,6 +4352,139 @@ theorem Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602_productS
       false :=
   rfl
 
+namespace Dbounded
+
+/-- Short W603 alias for the W602 endpoint homology-detection route. -/
+theorem homologyDetection_of_endpointTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointStrictTopology
+    hasHomology I
+
+/-- Short W603 alias for the W602 ShortExact homology-detection route. -/
+theorem homologyDetection_of_shortExactTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactTopology
+    hasHomology I
+
+end Dbounded
+
+/-- W603 endpoint route from W602 homology detection to homotopy-equivalence invariance. -/
+theorem
+    Dbounded.homotopyEquivInvariance_of_endpointTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs) :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
+  exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.homologyDetection_of_endpointTopology_w603 hasHomology I)
+
+/-- W603 ShortExact route from W602 homology detection to homotopy-equivalence invariance. -/
+theorem
+    Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs) :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
+  exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.homologyDetection_of_shortExactTopology_w603 hasHomology I)
+
+/-- W603 endpoint route discharging exact-acyclic homotopy-object iso-closedness. -/
+theorem
+    Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs) :
+    (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+  exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_endpointTopology_w603 hasHomology I)
+
+/-- W603 ShortExact route discharging exact-acyclic homotopy-object iso-closedness. -/
+theorem
+    Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactTopology_w603
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs) :
+    (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+  exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603 hasHomology I)
+
+/-- W603 input names for making exact-acyclic homotopy objects iso-closed through W602. -/
+def Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "W602 endpoint-epi or ShortExact exact-at topology data"]
+
+theorem Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603_count :
+    Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603.length = 2 :=
+  rfl
+
+/-- W603 route names from W602 endpoint data to homotopy-object iso-closedness. -/
+def Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603 : List String :=
+  ["Dbounded.homologyDetection_of_endpointTopology_w603",
+    "Dbounded.homotopyEquivInvariance_of_endpointTopology_w603",
+    "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointTopology_w603",
+    "Dbounded.homologyDetection_of_shortExactTopology_w603",
+    "Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603",
+    "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactTopology_w603"]
+
+theorem Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603_count :
+    Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603.length = 6 :=
+  rfl
+
+/-- Current checked W603 state for W602-to-iso-closedness wrappers. -/
+structure Dbounded.MetrizableExactAcyclicIsoClosedEndpointRouteStateW603 : Type where
+  seed : String
+  declarations : List String
+  homotopyEquivResult : String
+  isoClosedResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W603 state. -/
+def Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteSupportStateW603 :
+    Dbounded.MetrizableExactAcyclicIsoClosedEndpointRouteStateW603 where
+  seed := "w603-exact-acyclic-iso-closed-endpoint-route"
+  declarations :=
+    ["Dbounded.homologyDetection_of_endpointTopology_w603",
+      "Dbounded.homologyDetection_of_shortExactTopology_w603",
+      "Dbounded.homotopyEquivInvariance_of_endpointTopology_w603",
+      "Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603",
+      "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointTopology_w603",
+      "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactTopology_w603",
+      "Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603",
+      "Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603_count",
+      "Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603",
+      "Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603_count"]
+  homotopyEquivResult :=
+    "proved: W602 homology detection supplies homotopy-equivalence invariance"
+  isoClosedResult :=
+    "proved: W602 endpoint or ShortExact data discharge homotopy-object iso-closedness"
+  remainingInputs :=
+    ["construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W602 endpoint-epi or ShortExact exact-at topology data",
+      "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply triangle realization",
+      "construct bounded homotopy localized adjunction data for calculus"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603 :
+    Dbounded.MetrizableExactAcyclicIsoClosedEndpointRouteStateW603 :=
+  Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteSupportStateW603
+
+theorem Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603_productSuccess :
+    Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603.productSuccessClaimed =
+      false :=
+  rfl
+
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/
 def Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus : List String :=
   ["HasFiniteLimits (Dbounded MetrizableLCA)", "HasFiniteColimits (Dbounded MetrizableLCA)",

@@ -3936,6 +3936,34 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
 #check
   Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602_productSuccess
 #check
+  Dbounded.homologyDetection_of_endpointTopology_w603
+#check
+  Dbounded.homologyDetection_of_shortExactTopology_w603
+#check
+  Dbounded.homotopyEquivInvariance_of_endpointTopology_w603
+#check
+  Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603
+#check
+  Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointTopology_w603
+#check
+  Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactTopology_w603
+#check
+  Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603
+#check
+  Dbounded.metrizableExactAcyclicIsoClosedEndpointInputNamesW603_count
+#check
+  Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603
+#check
+  Dbounded.metrizableExactAcyclicIsoClosedEndpointRouteNamesW603_count
+#check
+  Dbounded.MetrizableExactAcyclicIsoClosedEndpointRouteStateW603
+#check
+  Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteSupportStateW603
+#check
+  Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603
+#check
+  Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603_productSuccess
+#check
   Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed
 #check
   Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
