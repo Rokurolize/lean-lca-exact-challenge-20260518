@@ -14232,6 +14232,254 @@ theorem
       false :=
   rfl
 
+/--
+W579 homotopy/Verdier stable-semantic bridge for the W577 compact-target closed-map route.
+
+This variant replaces the primitive direct-bounded-left-calculus input by the checked
+homotopy/Verdier route: exact acyclicity isomorphism invariance plus homotopy/Verdier left
+calculus supply the direct-left-calculus semantic fields used by W578.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleW579
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Type 1 where
+  compactTargetBundle :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW577
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert the W579 closed-map bundle to the homotopy/Verdier WPP-transfer input. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleW579) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW577
+      inputs.compactTargetBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W579 closed-map route builds the ordinary stable-semantic input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleW579) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579
+      inputs)
+
+/-- The W579 closed-map route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579_ready
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleW579) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotopyIsoClosed_ready
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579
+      inputs)
+
+/-- Closed-embedding-row variant of the W579 homotopy/Verdier stable-semantic bridge. -/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleW579
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Type 1 where
+  compactTargetBundle :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW577
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert the W579 closed-embedding bundle to the homotopy/Verdier WPP-transfer input. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleW579) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW577
+      inputs.compactTargetBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W579 closed-embedding route builds the ordinary stable-semantic input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleW579) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579
+      inputs)
+
+/-- The W579 closed-embedding route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579_ready
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleW579) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotopyIsoClosed_ready
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579
+      inputs)
+
+/-- Input names for the W579 compact-target closed-map homotopy/Verdier stable bridge. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleInputNamesW579 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "ComponentwiseClosedMapRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleInputNamesW579_count :
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleInputNamesW579.length =
+      10 :=
+  rfl
+
+/-- Input names for the W579 compact-target closed-embedding homotopy/Verdier stable bridge. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleInputNamesW579 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleInputNamesW579_count :
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleInputNamesW579.length =
+      10 :=
+  rfl
+
+/--
+Current checked W579 state for replacing the primitive direct-left-calculus input in W578 by
+the homotopy/Verdier semantic-field bridge.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579 :
+    Type where
+  seed : String
+  declarations : List String
+  leftCalculusSemanticBridgeResult : String
+  ordinaryStableInputResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W579 state. -/
+def
+    currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleSupportStateW579 :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579 where
+  seed :=
+    "w579-right-open-closed-quotient-cokernel-pi-zero-compact-target-homotopy-iso-closed-stable-bundle"
+  declarations :=
+    ["Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed",
+      "Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed",
+      "Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed",
+      "Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotopyIsoClosed_ready",
+      "MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleW579",
+      "metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579",
+      "metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579",
+      "metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579_ready",
+      "MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleW579",
+      "metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579",
+      "metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579",
+      "metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579_ready",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleInputNamesW579",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleInputNamesW579_count",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleInputNamesW579",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleInputNamesW579_count"]
+  leftCalculusSemanticBridgeResult :=
+    "proved: iso-closed exact acyclicity plus homotopy/Verdier left calculus supplies direct-left-calculus semantic fields"
+  ordinaryStableInputResult :=
+    "proved under W577 transfer plus homotopy/Verdier left-calculus semantic bridge and triangulated fields"
+  stableCertificateResult :=
+    "proved: the resulting ordinary stable input feeds W528's ready stable-certificate adapter"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct a concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct normalized strict-representative fixed-target localization data",
+      "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+      "construct bounded homotopy/Verdier pullback left calculus of fractions",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579 :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579 :=
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleSupportStateW579
+
+theorem
+    currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579_productSuccess :
+    currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -14845,6 +15093,36 @@ section Checks
   currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578
 #check
   currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetNormalizedStableBundleStateW578_productSuccess
+#check
+  MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleW579
+#check
+  metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579
+#check
+  metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579
+#check
+  metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedBundleW579_ready
+#check
+  MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleW579
+#check
+  metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579
+#check
+  metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579
+#check
+  metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedBundleW579_ready
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleInputNamesW579
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapHomotopyIsoClosedStableBundleInputNamesW579_count
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleInputNamesW579
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleInputNamesW579_count
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleSupportStateW579
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579_productSuccess
 
 end Checks
 

@@ -3475,6 +3475,18 @@ noncomputable def Dbounded.metrizableLeftCalculusSemanticFields
     change (shiftFunctor (Dbounded MetrizableLCA.{0}) (1 : ℤ)).Additive
     exact Dbounded.shiftFunctor_additiveOfHasLeftCalculusOfFractions MetrizableLCA.{0} 1
 
+/--
+Homotopy/Verdier left calculus plus homotopy-category isomorphism invariance supplies the
+same semantic fields as direct bounded left calculus, via equality of the weak equivalences.
+-/
+noncomputable def Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Dbounded.MetrizableLeftCalculusSemanticFields := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed MetrizableLCA.{0}
+  exact Dbounded.metrizableLeftCalculusSemanticFields
+
 /-- Remaining ordinary semantic fields after direct bounded left calculus supplies its part. -/
 structure Dbounded.MetrizableRemainingStableSemanticFields
     (available : Dbounded.MetrizableLeftCalculusSemanticFields) : Type 1 where
@@ -3535,6 +3547,16 @@ def Dbounded.metrizableLeftCalculusSemanticFieldNames : List String :=
 /-- Direct bounded left calculus supplies four semantic fields. -/
 theorem Dbounded.metrizableLeftCalculusSemanticFieldNames_count :
     Dbounded.metrizableLeftCalculusSemanticFieldNames.length = 4 :=
+  rfl
+
+/-- Homotopy/Verdier hypotheses that supply the direct-left-calculus semantic fields. -/
+def Dbounded.metrizableHomotopyIsoClosedLeftCalculusSemanticInputNames : List String :=
+  ["exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions"]
+
+/-- Two homotopy/Verdier inputs replace the direct bounded-left-calculus semantic-field input. -/
+theorem Dbounded.metrizableHomotopyIsoClosedLeftCalculusSemanticInputNames_count :
+    Dbounded.metrizableHomotopyIsoClosedLeftCalculusSemanticInputNames.length = 2 :=
   rfl
 
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/

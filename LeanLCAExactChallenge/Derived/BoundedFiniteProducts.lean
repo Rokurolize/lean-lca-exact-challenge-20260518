@@ -945,6 +945,29 @@ noncomputable abbrev Dbounded.metrizableFiniteColimitsOfLeftCalculusProducts
   letI : HasCoequalizers (Dbounded MetrizableLCA.{0}) := remaining.coequalizers
   exact hasFiniteColimits_of_hasCoequalizers_and_finite_coproducts
 
+/-- Finite limits from a chosen left-calculus semantic-field record plus WPP equalizers. -/
+noncomputable abbrev Dbounded.metrizableFiniteLimitsOfLeftCalculusProductsForAvailable
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (_available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus) :
+    HasFiniteLimits (Dbounded MetrizableLCA.{0}) :=
+  Dbounded.metrizableFiniteLimitsOfLeftCalculusProducts remaining
+
+/-- Finite colimits from a chosen left-calculus semantic-field record plus WPP coequalizers. -/
+noncomputable abbrev Dbounded.metrizableFiniteColimitsOfLeftCalculusProductsForAvailable
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (available : Dbounded.MetrizableLeftCalculusSemanticFields)
+    (remaining : Dbounded.MetrizableFiniteLimitColimitRemainderAfterLeftCalculus) :
+    HasFiniteColimits (Dbounded MetrizableLCA.{0}) := by
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+  letI : HasFiniteProducts (Dbounded MetrizableLCA.{0}) :=
+    BoundedFiniteProducts.dboundedHasFiniteProducts_metrizableLCA
+  haveI : HasFiniteBiproducts (Dbounded MetrizableLCA.{0}) :=
+    HasFiniteBiproducts.of_hasFiniteProducts
+  letI : HasFiniteCoproducts (Dbounded MetrizableLCA.{0}) := inferInstance
+  letI : HasCoequalizers (Dbounded MetrizableLCA.{0}) := remaining.coequalizers
+  exact hasFiniteColimits_of_hasCoequalizers_and_finite_coproducts
+
 /--
 Remaining stable semantic fields after W530 and the finite-product finite-(co)limit reducer.
 -/
@@ -981,6 +1004,26 @@ noncomputable def Dbounded.metrizableRemainingStableSemanticFieldsOfFiniteLimitC
       remaining.finiteLimitColimitRemainder
   finiteColimits :=
     Dbounded.metrizableFiniteColimitsOfLeftCalculusProducts
+      remaining.finiteLimitColimitRemainder
+  pretriangulated := remaining.pretriangulated
+  triangulated := remaining.triangulated
+
+/--
+Build remaining stable semantic fields from any left-calculus semantic-field record, not only
+the canonical direct-left-calculus record.
+-/
+noncomputable def
+    Dbounded.metrizableRemainingStableSemanticFieldsOfFiniteLimitColimitRemainderForAvailable
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    {available : Dbounded.MetrizableLeftCalculusSemanticFields}
+    (remaining :
+      Dbounded.MetrizablePostFiniteLimitColimitRemainingStableSemanticFields available) :
+    Dbounded.MetrizableRemainingStableSemanticFields available where
+  finiteLimits :=
+    Dbounded.metrizableFiniteLimitsOfLeftCalculusProductsForAvailable available
+      remaining.finiteLimitColimitRemainder
+  finiteColimits :=
+    Dbounded.metrizableFiniteColimitsOfLeftCalculusProductsForAvailable available
       remaining.finiteLimitColimitRemainder
   pretriangulated := remaining.pretriangulated
   triangulated := remaining.triangulated
@@ -1035,6 +1078,38 @@ noncomputable def Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParal
     (Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer
       inputs)
 
+/--
+Under direct bounded left calculus, WPP finite-shape transfer plus triangulated fields supplies
+remaining stable semantic fields for any chosen left-calculus semantic-field record.
+-/
+noncomputable def Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    {available : Dbounded.MetrizableLeftCalculusSemanticFields}
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs available) :
+    Dbounded.MetrizableRemainingStableSemanticFields available :=
+  Dbounded.metrizableRemainingStableSemanticFieldsOfFiniteLimitColimitRemainderForAvailable
+    (Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer
+      inputs)
+
+/--
+Homotopy/Verdier left calculus plus isomorphism invariance supplies the left-calculus semantic
+fields used by the WPP transfer route.
+-/
+noncomputable def
+    Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed) :
+    Dbounded.MetrizableRemainingStableSemanticFields
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed MetrizableLCA.{0}
+  exact Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+    inputs
+
 /-- Full ordinary stable semantic input from WPP transfer and the remaining triangulated fields. -/
 noncomputable def Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
     [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
@@ -1046,6 +1121,23 @@ noncomputable def Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParalle
     (Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransfer
       inputs)
 
+/--
+Full ordinary stable semantic input from WPP transfer using the homotopy/Verdier route to
+direct-left-calculus semantic fields.
+-/
+noncomputable def
+    Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields
+    Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    (Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed
+      inputs)
+
 /-- WPP transfer route produces a ready stable certificate once the remaining fields exist. -/
 theorem Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready
     [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
@@ -1054,6 +1146,18 @@ theorem Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready
         Dbounded.metrizableLeftCalculusSemanticFields) :
     (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
       (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+        inputs)).ready := by
+  exact Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready _
+
+/-- Homotopy/Verdier WPP transfer route produces a ready stable certificate. -/
+theorem Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotopyIsoClosed_ready
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
         inputs)).ready := by
   exact Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready _
 
@@ -1075,6 +1179,17 @@ def Dbounded.metrizableWppTransferStableSemanticInputNames : List String :=
 
 theorem Dbounded.metrizableWppTransferStableSemanticInputNames_count :
     Dbounded.metrizableWppTransferStableSemanticInputNames.length = 4 :=
+  rfl
+
+/-- Final inputs for the homotopy/Verdier WPP-transfer stable semantic route. -/
+def Dbounded.metrizableWppTransferHomotopyIsoClosedStableSemanticInputNames : List String :=
+  ["MetrizableWalkingParallelPairFiniteShapeTransferInputs",
+    "exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem Dbounded.metrizableWppTransferHomotopyIsoClosedStableSemanticInputNames_count :
+    Dbounded.metrizableWppTransferHomotopyIsoClosedStableSemanticInputNames.length = 5 :=
   rfl
 
 /-- Finite-shape transfer input names used by the equalizer/coequalizer constructor. -/
@@ -1194,15 +1309,27 @@ section DboundedFiniteShapeTransferChecks
 #check Dbounded.metrizableHasCoequalizersOfWalkingParallelPairTransfer
 #check Dbounded.metrizableFiniteLimitColimitRemainderOfWalkingParallelPairTransfer
 #check Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+#check Dbounded.metrizableFiniteLimitsOfLeftCalculusProductsForAvailable
+#check Dbounded.metrizableFiniteColimitsOfLeftCalculusProductsForAvailable
+#check
+  Dbounded.metrizableRemainingStableSemanticFieldsOfFiniteLimitColimitRemainderForAvailable
 #check
   Dbounded.metrizablePostFiniteLimitColimitRemainingStableSemanticFields_of_wppTransfer
 #check Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransfer
+#check Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+#check
+  Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed
 #check Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransfer
+#check
+  Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
 #check Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready
+#check Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotopyIsoClosed_ready
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames_count
 #check Dbounded.metrizableWppTransferStableSemanticInputNames
 #check Dbounded.metrizableWppTransferStableSemanticInputNames_count
+#check Dbounded.metrizableWppTransferHomotopyIsoClosedStableSemanticInputNames
+#check Dbounded.metrizableWppTransferHomotopyIsoClosedStableSemanticInputNames_count
 #check Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames
 #check Dbounded.metrizableWppFunctorCategoryFixedTargetInputNames_count
 #check Dbounded.metrizableWppFiniteShapeTransferFromFixedTargetsInputNames
