@@ -542,6 +542,37 @@ structure MetrizableExactAtStrictTopologyInputs : Prop where
     ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
       Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
 
+/-- Right-endpoint form of the reverse ExactAt route.  It keeps the endpoint datum
+categorical: ExactAt must imply the outgoing differential is epi, and openness then
+recovers the topological surjectivity used by strict exactness. -/
+structure MetrizableExactAtEndpointStrictTopologyInputs : Prop where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  epi_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Epi ((K.sc i).g)
+
+/-- `ShortExact` is the positive bridge from categorical exactness to the separate
+right-endpoint epi datum consumed by the W602 endpoint route. -/
+structure MetrizableExactAtShortExactTopologyInputs : Prop where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  shortExact_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → (K.sc i).ShortExact
+
 /-- Categorical exactness at every degree gives strict exact acyclicity from only the
 degreewise topology fields plus forgetful homology preservation. -/
 theorem exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology
@@ -554,6 +585,46 @@ theorem exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology
   exact MetrizableLCA.strictShortExact_of_exact_of_topology
     hhom I.forgetPreservesHomology (hK i)
     (I.closedEmbedding K i) (I.openMap K i) (I.surjective K i)
+
+/-- Categorical exactness at every degree gives strict exact acyclicity from endpoint
+epi data, closed incoming differentials, and open outgoing differentials. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology
+    (I : MetrizableExactAtEndpointStrictTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K := by
+  intro i
+  have hhom : (K.sc i).HasHomology := (show (K.sc i).Exact from hK i).hasHomology
+  haveI : Epi ((K.sc i).g) := I.epi_of_exactAt K i (hK i)
+  have hsurj :
+      Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃) :=
+    MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap ((K.sc i).g)
+      (MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero ((K.sc i).g)
+        (MetrizableLCA.cokernelπ_eq_zero_of_epi ((K.sc i).g)))
+      (I.openMap K i)
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    hhom I.forgetPreservesHomology (hK i)
+    (I.closedEmbedding K i) (I.openMap K i) hsurj
+
+/-- ShortExact endpoint data supplies the endpoint-epi route. -/
+theorem endpointStrictTopologyInputs_of_shortExactTopology
+    (I : MetrizableExactAtShortExactTopologyInputs) :
+    MetrizableExactAtEndpointStrictTopologyInputs where
+  forgetPreservesHomology := I.forgetPreservesHomology
+  closedEmbedding := I.closedEmbedding
+  openMap := I.openMap
+  epi_of_exactAt := by
+    intro K i hK
+    exact (I.shortExact_of_exactAt K i hK).epi_g
+
+/-- The ShortExact endpoint route is a convenient wrapper around the endpoint-epi route. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_shortExactTopology
+    (I : MetrizableExactAtShortExactTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K :=
+  exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology
+    (endpointStrictTopologyInputs_of_shortExactTopology I) K hK
 
 /-- Homology detection of exact acyclicity implies invariance under homotopy equivalences:
 homotopy equivalences induce isomorphisms on homology. -/
@@ -4161,6 +4232,124 @@ def Dbounded.metrizableExactAtStrictTopologyRouteNamesW590 : List String :=
 
 theorem Dbounded.metrizableExactAtStrictTopologyRouteNamesW590_count :
     Dbounded.metrizableExactAtStrictTopologyRouteNamesW590.length = 3 :=
+  rfl
+
+/-- W602 combines global homology existence with the endpoint-epi reverse ExactAt route. -/
+theorem
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointStrictTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (C := MetrizableLCA.{0})
+    { hasHomology := hasHomology
+      exactAt_of_exactAcyclic := by
+        intro K hK i
+        exact exactAt_of_exactAcyclic_metrizableLCA
+          hasHomology I.forgetPreservesHomology hK i
+      exactAcyclic_of_exactAt := by
+        intro K hK
+        exact exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology I K hK }
+
+/-- W602 ShortExact wrapper for the endpoint route to homology detection. -/
+theorem Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointStrictTopology
+    hasHomology (endpointStrictTopologyInputs_of_shortExactTopology I)
+
+/-- W602 endpoint input names for the reverse ExactAt-to-strict-exact route. -/
+def Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602 : List String :=
+  ["forget₂ MetrizableLCA AddCommGrpCat preserves homology",
+    "each degreewise incoming differential is a closed embedding",
+    "each degreewise outgoing differential is an open map",
+    "categorical ExactAt implies the outgoing differential is epi"]
+
+theorem Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602_count :
+    Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602.length = 4 :=
+  rfl
+
+/-- W602 ShortExact input names for obtaining the endpoint epi datum. -/
+def Dbounded.metrizableExactAtShortExactTopologyInputNamesW602 : List String :=
+  ["forget₂ MetrizableLCA AddCommGrpCat preserves homology",
+    "each degreewise incoming differential is a closed embedding",
+    "each degreewise outgoing differential is an open map",
+    "categorical ExactAt upgrades the degreewise short complex to ShortExact"]
+
+theorem Dbounded.metrizableExactAtShortExactTopologyInputNamesW602_count :
+    Dbounded.metrizableExactAtShortExactTopologyInputNamesW602.length = 4 :=
+  rfl
+
+/-- W602 route names for replacing raw surjectivity with endpoint epi/ShortExact data. -/
+def Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602 : List String :=
+  ["MetrizableExactAtEndpointStrictTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology",
+    "MetrizableExactAtShortExactTopologyInputs",
+    "endpointStrictTopologyInputs_of_shortExactTopology",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_shortExactTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+endpointStrictTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+shortExactTopology"]
+
+theorem Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602_count :
+    Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602.length = 7 :=
+  rfl
+
+/-- Current checked W602 state for the endpoint-epi exact-at route. -/
+structure Dbounded.MetrizableExactAtEndpointTopologyRouteStateW602 : Type where
+  seed : String
+  declarations : List String
+  endpointResult : String
+  shortExactResult : String
+  homologyDetectionResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W602 state. -/
+def Dbounded.currentMetrizableExactAtEndpointTopologyRouteSupportStateW602 :
+    Dbounded.MetrizableExactAtEndpointTopologyRouteStateW602 where
+  seed := "w602-exact-at-endpoint-epi-shortexact-topology-route"
+  declarations :=
+    ["MetrizableExactAtEndpointStrictTopologyInputs",
+      "MetrizableExactAtShortExactTopologyInputs",
+      "exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology",
+      "endpointStrictTopologyInputs_of_shortExactTopology",
+      "exactAcyclic_of_exactAt_metrizableLCA_of_shortExactTopology",
+      "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+endpointStrictTopology",
+      "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+shortExactTopology",
+      "Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602",
+      "Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602_count",
+      "Dbounded.metrizableExactAtShortExactTopologyInputNamesW602",
+      "Dbounded.metrizableExactAtShortExactTopologyInputNamesW602_count",
+      "Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602",
+      "Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602_count"]
+  endpointResult :=
+    "proved: endpoint epi plus openness recover strict-exact surjectivity"
+  shortExactResult :=
+    "proved: ShortExact supplies the separate outgoing epi datum for the endpoint route"
+  homologyDetectionResult :=
+    "proved: homology detection can use endpoint epi or ShortExact instead of raw surjectivity"
+  remainingInputs :=
+    ["construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
+      "construct degreewise closed-embedding/open-map topology facts for ExactAt complexes",
+      "prove ExactAt implies outgoing epi or ShortExact for the relevant complexes"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602 :
+    Dbounded.MetrizableExactAtEndpointTopologyRouteStateW602 :=
+  Dbounded.currentMetrizableExactAtEndpointTopologyRouteSupportStateW602
+
+theorem Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602_productSuccess :
+    Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602.productSuccessClaimed =
+      false :=
   rfl
 
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/

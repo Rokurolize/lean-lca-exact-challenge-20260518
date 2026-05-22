@@ -3906,6 +3906,35 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   Dbounded.metrizableExactAtStrictTopologyRouteNamesW590
 #check
   Dbounded.metrizableExactAtStrictTopologyRouteNamesW590_count
+#check MetrizableExactAtEndpointStrictTopologyInputs
+#check MetrizableExactAtShortExactTopologyInputs
+#check exactAcyclic_of_exactAt_metrizableLCA_of_endpointStrictTopology
+#check endpointStrictTopologyInputs_of_shortExactTopology
+#check exactAcyclic_of_exactAt_metrizableLCA_of_shortExactTopology
+#check
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointStrictTopology
+#check
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactTopology
+#check
+  Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602
+#check
+  Dbounded.metrizableExactAtEndpointStrictTopologyInputNamesW602_count
+#check
+  Dbounded.metrizableExactAtShortExactTopologyInputNamesW602
+#check
+  Dbounded.metrizableExactAtShortExactTopologyInputNamesW602_count
+#check
+  Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602
+#check
+  Dbounded.metrizableExactAtEndpointTopologyRouteNamesW602_count
+#check
+  Dbounded.MetrizableExactAtEndpointTopologyRouteStateW602
+#check
+  Dbounded.currentMetrizableExactAtEndpointTopologyRouteSupportStateW602
+#check
+  Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602
+#check
+  Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602_productSuccess
 #check
   Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed
 #check
