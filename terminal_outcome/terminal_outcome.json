@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W579 adds a checked homotopy/Verdier route for the direct-left-calculus semantic fields used by the W578 stable-semantic bridge. It proves that exact-acyclic homotopy-object isomorphism invariance plus bounded homotopy/Verdier pullback left calculus supplies the same Dbounded MetrizableLCA preadditive, zero-object, and shift-additive fields as direct bounded left calculus, then threads those fields through the WPP transfer stable-certificate route and the W577 compact-target closed-map/closed-embedding adapters. This is verified nonterminal support only: it does not construct the homotopy isomorphism-invariance input, the bounded homotopy/Verdier left calculus input, concrete WPP boundary/provider data, normalized fixed-target localization data, or the Dbounded triangulated fields.",
+  "summary": "W580 adds a checked row-dominance bridge for the WPP compact-target stable route. It proves that W527 closed-embedding row data supplies the W527 closed-map-row provider, then threads that stronger row surface through the W577 normalized compact-target closed-map endpoint and the W579 homotopy/Verdier stable-certificate route. This is verified nonterminal support only: it reduces the row-branch duplication but does not construct the remaining WPP boundary/provider data, normalized fixed-target localization data, homotopy isomorphism-invariance input, bounded homotopy/Verdier left calculus input, or Dbounded triangulated fields.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -923,7 +923,10 @@
     "lake build LeanLCAExactChallenge.Derived.BoundedFiniteProducts (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_028_w579_bounded_finite_products_lake_build.log exit_code=0)",
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_028_w579_wpp_source_lean.log exit_code=0)",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_028_w579_wpp_lake_build.log exit_code=0)",
-    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_028_w579_product_success_declarations_lean.log exit_code=0)"
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_028_w579_product_success_declarations_lean.log exit_code=0)",
+    "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_029_w580_wpp_source_lean.log exit_code=0)",
+    "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_029_w580_wpp_lake_build.log exit_code=0)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_029_w580_product_success_declarations_lean.log exit_code=0)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535.walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
@@ -2432,13 +2435,26 @@
     "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleInputNamesW579_count",
     "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleSupportStateW579",
     "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579",
-    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579_productSuccess"
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579_productSuccess",
+    "Dbounded.componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580",
+    "Dbounded.metrizableWppTransferInputsFromDirectLimitClosedMapRows_of_closedEmbeddingRows_w580",
+    "Dbounded.metrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized_of_closedEmbeddingRows_w580",
+    "Dbounded.metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundle_of_closedEmbeddingNormalizedBundleW580",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapBundleW580",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580",
+    "Dbounded.metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580_ready",
+    "Dbounded.metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580",
+    "Dbounded.metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580_count",
+    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceSupportStateW580",
+    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceStateW580",
+    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceStateW580_productSuccess"
   ],
   "known_gaps": [
     "A concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary is still unconstructed.",
     "A concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary is still unconstructed.",
     "Concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517 data are still unconstructed for the selected normalized route.",
-    "Concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527 data are still unconstructed.",
+    "Concrete ComponentwiseClosedEmbeddingRowsProviderW527 data are still unconstructed.",
     "Normalized strict-representative fixed-target localization data are still unconstructed.",
     "The exactAcyclicHomotopyObject homotopy-category isomorphism-invariance input is still unconstructed.",
     "The bounded homotopy/Verdier pullback left calculus of fractions input is still unconstructed.",
@@ -2449,19 +2465,19 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W579 replaces the primitive direct bounded-left-calculus semantic-field bottleneck by a homotopy/Verdier route. The frontier is now concrete closed quotient-cover boundary, source cokernel-pi-zero boundary, W517 compact-target provider data, one W527 row provider, normalized fixed-target localization data, exact-acyclic homotopy-object isomorphism invariance, bounded homotopy/Verdier pullback left calculus, and Dbounded triangulated fields.",
-  "claim_review_result": "deterministic Lean gates passed for the edited dependency modules, WPP adapter, and product declaration audit; routine nonterminal W579 increment is batched for periodic claim-review-loop-v3 under the lighter cadence; product_success=false; update_goal_allowed=false",
+  "worker_frontier_summary": "W580 makes ComponentwiseClosedEmbeddingRowsProviderW527 the stronger row route for the W577/W579 compact-target stable path by deriving the closed-map row provider from it. The frontier is now concrete closed quotient-cover boundary, source cokernel-pi-zero boundary, W517 compact-target provider data, closed-embedding row data, normalized fixed-target localization data, exact-acyclic homotopy-object isomorphism invariance, bounded homotopy/Verdier pullback left calculus, and Dbounded triangulated fields.",
+  "claim_review_result": "deterministic Lean gates passed for the WPP adapter and product declaration audit; routine nonterminal W580 increment is batched for periodic claim-review-loop-v3 under the lighter cadence; product_success=false; update_goal_allowed=false",
   "remaining_gaps": [
     "A concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary is still unconstructed.",
     "A concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary is still unconstructed.",
     "Concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517 data are still unconstructed for the selected normalized route.",
-    "Concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527 data are still unconstructed.",
+    "Concrete ComponentwiseClosedEmbeddingRowsProviderW527 data are still unconstructed.",
     "Normalized strict-representative fixed-target localization data are still unconstructed.",
     "The exactAcyclicHomotopyObject homotopy-category isomorphism-invariance input is still unconstructed.",
     "The bounded homotopy/Verdier pullback left calculus of fractions input is still unconstructed.",
     "Pretriangulated and IsTriangulated data for Dbounded MetrizableLCA are still unconstructed."
   ],
-  "next_recommended_goal": "Prioritize concrete inputs over more wrapper routes: construct the closed quotient-cover boundary, source cokernel-pi-zero boundary, and one W527 row provider; in parallel inspect whether existing exact-acyclic homotopy invariance or bounded homotopy/Verdier left-calculus blockers can now be closed by a short route. Use scripts/lean_lca_increment_verifier.py for the next deterministic gate run.",
+  "next_recommended_goal": "Prioritize concrete inputs over more wrapper routes: construct the closed quotient-cover boundary, source cokernel-pi-zero boundary, W517 compact-target provider, and the W527 closed-embedding row provider; separately keep the exact-acyclic homotopy invariance and bounded homotopy/Verdier left-calculus blockers out of the short-increment path unless a new local theorem appears. Use scripts/lean_lca_increment_verifier.py for the next deterministic gate run.",
   "implemented_declarations": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -4427,9 +4443,22 @@
     "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleInputNamesW579_count",
     "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleSupportStateW579",
     "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579",
-    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579_productSuccess"
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579_productSuccess",
+    "Dbounded.componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580",
+    "Dbounded.metrizableWppTransferInputsFromDirectLimitClosedMapRows_of_closedEmbeddingRows_w580",
+    "Dbounded.metrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized_of_closedEmbeddingRows_w580",
+    "Dbounded.metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundle_of_closedEmbeddingNormalizedBundleW580",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapBundleW580",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580",
+    "Dbounded.metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580_ready",
+    "Dbounded.metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580",
+    "Dbounded.metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580_count",
+    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceSupportStateW580",
+    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceStateW580",
+    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceStateW580_productSuccess"
   ],
-  "generated_utc": "2026-05-22T14:46:54Z",
+  "generated_utc": "2026-05-22T14:58:31Z",
   "support_result_classification": "verified_nonterminal_support_increment_pending_periodic_claim_review",
   "implemented_declarations_checked": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
@@ -6432,7 +6461,20 @@
     "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleInputNamesW579_count",
     "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleSupportStateW579",
     "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579",
-    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579_productSuccess"
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579_productSuccess",
+    "Dbounded.componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580",
+    "Dbounded.metrizableWppTransferInputsFromDirectLimitClosedMapRows_of_closedEmbeddingRows_w580",
+    "Dbounded.metrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized_of_closedEmbeddingRows_w580",
+    "Dbounded.metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundle_of_closedEmbeddingNormalizedBundleW580",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapBundleW580",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580",
+    "Dbounded.metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580_ready",
+    "Dbounded.metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580",
+    "Dbounded.metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580_count",
+    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceSupportStateW580",
+    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceStateW580",
+    "Dbounded.currentMetrizableWppClosedEmbeddingRowsDominanceStateW580_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
@@ -6440,16 +6482,16 @@
     "Construct concrete closed quotient-cover WPP limit right-open boundary data.",
     "Construct concrete source-difference cokernel-pi-zero boundary data.",
     "Construct the W517 compact-target provider for the selected normalized route.",
-    "Construct W527 ComponentwiseClosedMapRowsProvider or ComponentwiseClosedEmbeddingRowsProvider data for the selected route.",
+    "Construct W527 ComponentwiseClosedEmbeddingRowsProvider data for the selected route.",
     "Construct normalized strict-representative fixed-target localization data.",
     "Prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms.",
     "Construct bounded homotopy/Verdier pullback left calculus of fractions.",
     "Construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA."
   ],
-  "latest_verified_increment": "W579 homotopy/Verdier left-calculus semantic bridge for the compact-target stable route",
-  "source_tree_hash": "42eb17995e3711210c2cb9b2946964c96f85793ad2181275d2d94959e0bb9ded",
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_028_w579_product_success_declarations_lean.log",
-  "git_commit_note": "W579 deterministic nonterminal support; batched for periodic review, no product-success claim.",
+  "latest_verified_increment": "W580 closed-embedding-row dominance bridge for the compact-target stable route",
+  "source_tree_hash": "872097bf60fbd0d32c1722b36ed7e5254440297fc9a8c2a5666d9bfe67b81856",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_029_w580_product_success_declarations_lean.log",
+  "git_commit_note": "W580 deterministic nonterminal support; batched for periodic review, no product-success claim.",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -6779,6 +6821,16 @@
       "product_complete": false,
       "update_goal_allowed": false,
       "note": "W579 is deterministic nonterminal support pending periodic claim review; product_success, product_complete, and update_goal_allowed remain false."
+    },
+    "w580_closed_embedding_row_dominance_metadata": {
+      "refreshed_utc": "2026-05-22T14:58:31Z",
+      "source_tree_hash": "872097bf60fbd0d32c1722b36ed7e5254440297fc9a8c2a5666d9bfe67b81856",
+      "latest_verified_increment": "W580 closed-embedding-row dominance bridge for the compact-target stable route",
+      "claim_review_status": "deterministic_accepted_pending_periodic_claim_review_loop_v3",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "W580 is deterministic nonterminal support pending periodic claim review; product_success, product_complete, and update_goal_allowed remain false."
     }
   }
 }

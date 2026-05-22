@@ -14480,6 +14480,198 @@ theorem
       false :=
   rfl
 
+/--
+W580 row-dominance adapter: closed-embedding rows are strong enough to supply
+the corresponding closed-map-row surface.
+-/
+def componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580
+    (hclosedEmbeddingRows : ComponentwiseClosedEmbeddingRowsProviderW527) :
+    ComponentwiseClosedMapRowsProviderW527 :=
+  fun S cs hcs hRows =>
+    let H := hclosedEmbeddingRows S cs hcs hRows
+    { hclosedMapπ₁ := H.hclosedEmbeddingπ₁.isClosedMap
+      hclosedMapπ₂ := H.hclosedEmbeddingπ₂.isClosedMap
+      hclosedMapπ₃ := H.hclosedEmbeddingπ₃.isClosedMap }
+
+/--
+Direct-limit closed-embedding transfer inputs can be reused through the
+closed-map-row route.
+-/
+def metrizableWppTransferInputsFromDirectLimitClosedMapRows_of_closedEmbeddingRows_w580
+    {Provider : Type 1}
+    (inputs : MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRows Provider) :
+    MetrizableWppTransferInputsFromDirectLimitClosedMapRows Provider where
+  rightOpen := inputs.rightOpen
+  rightSurjective := inputs.rightSurjective
+  provider := inputs.provider
+  closedMapRows :=
+    componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580
+      inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Normalized closed-embedding transfer inputs can be reused through the
+normalized closed-map-row route.
+-/
+def metrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized_of_closedEmbeddingRows_w580
+    {Provider : Type 1}
+    (inputs : MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRowsNormalized Provider) :
+    MetrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized Provider where
+  rightOpen := inputs.rightOpen
+  rightSurjective := inputs.rightSurjective
+  provider := inputs.provider
+  closedMapRows :=
+    componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580
+      inputs.closedEmbeddingRows
+  normalizedInputs := inputs.normalizedInputs
+
+/--
+The W577 compact-target normalized closed-embedding bundle also feeds the W577
+closed-map normalized route.
+-/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundle_of_closedEmbeddingNormalizedBundleW580
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW577) :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW577 where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  compactTargetProvider := inputs.compactTargetProvider
+  closedMapRows :=
+    componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580
+      inputs.closedEmbeddingRows
+  normalizedInputs := inputs.normalizedInputs
+
+/--
+W580 endpoint: a W577 compact-target normalized closed-embedding bundle can be
+run through the closed-map finite-shape transfer endpoint.
+-/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapBundleW580
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingNormalizedBundleW577) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundleW577
+    (metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundle_of_closedEmbeddingNormalizedBundleW580
+      inputs)
+
+/--
+W580 homotopy/Verdier stable-semantic input: closed-embedding rows drive the
+closed-map stable route after row-dominance conversion.
+-/
+def
+    metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleW579) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapBundleW580
+      inputs.compactTargetBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W580 closed-embedding-via-closed-map route builds the ordinary stable-semantic input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleW579) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580
+      inputs)
+
+/-- The W580 closed-embedding-via-closed-map route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580_ready
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingHomotopyIsoClosedStableBundleW579) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotopyIsoClosed_ready
+    (metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580
+      inputs)
+
+/-- Input names for the W580 closed-embedding-row dominance route. -/
+def
+    metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580_count :
+    metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580.length =
+      10 :=
+  rfl
+
+/-- Current checked W580 state for closed-embedding-row dominance. -/
+structure MetrizableWppClosedEmbeddingRowsDominanceStateW580 : Type where
+  seed : String
+  declarations : List String
+  rowDominanceResult : String
+  normalizedRouteResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W580 state. -/
+def currentMetrizableWppClosedEmbeddingRowsDominanceSupportStateW580 :
+    MetrizableWppClosedEmbeddingRowsDominanceStateW580 where
+  seed := "w580-closed-embedding-rows-dominate-closed-map-rows"
+  declarations :=
+    ["componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580",
+      "metrizableWppTransferInputsFromDirectLimitClosedMapRows_of_closedEmbeddingRows_w580",
+      "metrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized_of_closedEmbeddingRows_w580",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundle_of_closedEmbeddingNormalizedBundleW580",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapBundleW580",
+      "metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580",
+      "metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580",
+      "metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580_ready",
+      "metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580",
+      "metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580_count"]
+  rowDominanceResult :=
+    "proved: W527 closed-embedding rows imply the W527 closed-map-row provider"
+  normalizedRouteResult :=
+    "proved: W577 closed-embedding normalized bundles feed the closed-map normalized endpoint"
+  stableCertificateResult :=
+    "proved: the W579 homotopy/Verdier stable route accepts closed-embedding rows through the closed-map path"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct a concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+      "construct concrete ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct normalized strict-representative fixed-target localization data",
+      "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+      "construct bounded homotopy/Verdier pullback left calculus of fractions",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppClosedEmbeddingRowsDominanceStateW580 :
+    MetrizableWppClosedEmbeddingRowsDominanceStateW580 :=
+  currentMetrizableWppClosedEmbeddingRowsDominanceSupportStateW580
+
+theorem currentMetrizableWppClosedEmbeddingRowsDominanceStateW580_productSuccess :
+    currentMetrizableWppClosedEmbeddingRowsDominanceStateW580.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -15123,6 +15315,28 @@ section Checks
   currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579
 #check
   currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetHomotopyIsoClosedStableBundleStateW579_productSuccess
+#check componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580
+#check
+  metrizableWppTransferInputsFromDirectLimitClosedMapRows_of_closedEmbeddingRows_w580
+#check
+  metrizableWppTransferInputsFromDirectLimitClosedMapRowsNormalized_of_closedEmbeddingRows_w580
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapNormalizedBundle_of_closedEmbeddingNormalizedBundleW580
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapBundleW580
+#check
+  metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580
+#check
+  metrizableOrdinaryStableSemanticInput_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580
+#check
+  metrizableStableCertificate_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingViaClosedMapHomotopyIsoClosedBundleW580_ready
+#check
+  metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580
+#check
+  metrizableWppClosedEmbeddingRowsDominanceHomotopyIsoClosedStableBundleInputNamesW580_count
+#check currentMetrizableWppClosedEmbeddingRowsDominanceSupportStateW580
+#check currentMetrizableWppClosedEmbeddingRowsDominanceStateW580
+#check currentMetrizableWppClosedEmbeddingRowsDominanceStateW580_productSuccess
 
 end Checks
 
