@@ -920,6 +920,144 @@ theorem wppLimit_preserves_rightOpenMap_of_lca_limitMap
     h₂ h₃ hopen
     (fun j => by simpa using (cs.π.app j).comm₂₃.symm)
 
+/-- Quotient/equalizer-cover data for the pure component open-map input. -/
+structure WppLimitLcaQuotientOpenMapData
+    (X Y : WalkingParallelPair ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cone X) (cy : Cone Y) (φ : cx.pt ⟶ cy.pt) : Type 2 where
+  QX : MetrizableLCA.{0}
+  QY : MetrizableLCA.{0}
+  qX : QX ⟶ cx.pt
+  qY : QY ⟶ cy.pt
+  G : QX ⟶ QY
+  qX_surjective : Function.Surjective (qX : QX → cx.pt)
+  qY_open : IsOpenMap (qY : QY → cy.pt)
+  aggregate_open : IsOpenMap (G : QX → QY)
+  quotient_comm : qX ≫ φ = G ≫ qY
+
+/-- Closed-subgroup quotient-cover data supplying the quotient open-map package. -/
+structure WppLimitLcaClosedQuotientCoverData
+    (X Y : WalkingParallelPair ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+    (cx : Cone X) (cy : Cone Y) (φ : cx.pt ⟶ cy.pt) : Type 2 where
+  AX : MetrizableLCA.{0}
+  AY : MetrizableLCA.{0}
+  NX : AddSubgroup AX
+  NY : AddSubgroup AY
+  NX_closed : IsClosed (NX : Set AX)
+  NY_closed : IsClosed (NY : Set AY)
+  qX : MetrizableLCA.quotientObj AX NX NX_closed ⟶ cx.pt
+  qY : MetrizableLCA.quotientObj AY NY NY_closed ⟶ cy.pt
+  aggregate :
+    MetrizableLCA.quotientObj AX NX NX_closed ⟶
+      MetrizableLCA.quotientObj AY NY NY_closed
+  qX_surjective : Function.Surjective
+    (qX : MetrizableLCA.quotientObj AX NX NX_closed → cx.pt)
+  qY_open : IsOpenMap
+    (qY : MetrizableLCA.quotientObj AY NY NY_closed → cy.pt)
+  aggregate_open : IsOpenMap
+    (aggregate :
+      MetrizableLCA.quotientObj AX NX NX_closed →
+        MetrizableLCA.quotientObj AY NY NY_closed)
+  quotient_comm : qX ≫ φ = aggregate ≫ qY
+
+namespace WppLimitLcaClosedQuotientCoverData
+
+variable {X Y : WalkingParallelPair ⥤ MetrizableLCA.{0}} {α : X ⟶ Y}
+variable {cx : Cone X} {cy : Cone Y} {φ : cx.pt ⟶ cy.pt}
+
+/-- The canonical source quotient map attached to closed quotient-cover data. -/
+def sourceQuotientMap
+    (d : WppLimitLcaClosedQuotientCoverData X Y α cx cy φ) :
+    d.AX ⟶ MetrizableLCA.quotientObj d.AX d.NX d.NX_closed :=
+  MetrizableLCA.quotientMap d.AX d.NX d.NX_closed
+
+/-- The canonical target quotient map attached to closed quotient-cover data. -/
+def targetQuotientMap
+    (d : WppLimitLcaClosedQuotientCoverData X Y α cx cy φ) :
+    d.AY ⟶ MetrizableLCA.quotientObj d.AY d.NY d.NY_closed :=
+  MetrizableLCA.quotientMap d.AY d.NY d.NY_closed
+
+theorem sourceQuotientMap_surjective
+    (d : WppLimitLcaClosedQuotientCoverData X Y α cx cy φ) :
+    Function.Surjective
+      (d.sourceQuotientMap :
+        d.AX → MetrizableLCA.quotientObj d.AX d.NX d.NX_closed) :=
+  MetrizableLCA.quotientMap_surjective d.AX d.NX d.NX_closed
+
+theorem sourceQuotientMap_open
+    (d : WppLimitLcaClosedQuotientCoverData X Y α cx cy φ) :
+    IsOpenMap
+      (d.sourceQuotientMap :
+        d.AX → MetrizableLCA.quotientObj d.AX d.NX d.NX_closed) :=
+  MetrizableLCA.quotientMap_openMap d.AX d.NX d.NX_closed
+
+theorem targetQuotientMap_surjective
+    (d : WppLimitLcaClosedQuotientCoverData X Y α cx cy φ) :
+    Function.Surjective
+      (d.targetQuotientMap :
+        d.AY → MetrizableLCA.quotientObj d.AY d.NY d.NY_closed) :=
+  MetrizableLCA.quotientMap_surjective d.AY d.NY d.NY_closed
+
+theorem targetQuotientMap_open
+    (d : WppLimitLcaClosedQuotientCoverData X Y α cx cy φ) :
+    IsOpenMap
+      (d.targetQuotientMap :
+        d.AY → MetrizableLCA.quotientObj d.AY d.NY d.NY_closed) :=
+  MetrizableLCA.quotientMap_openMap d.AY d.NY d.NY_closed
+
+/-- Closed quotient-cover data constructs quotient open-map data. -/
+def toQuotientOpenMapData
+    (d : WppLimitLcaClosedQuotientCoverData X Y α cx cy φ) :
+    WppLimitLcaQuotientOpenMapData X Y α cx cy φ where
+  QX := MetrizableLCA.quotientObj d.AX d.NX d.NX_closed
+  QY := MetrizableLCA.quotientObj d.AY d.NY d.NY_closed
+  qX := d.qX
+  qY := d.qY
+  G := d.aggregate
+  qX_surjective := d.qX_surjective
+  qY_open := d.qY_open
+  aggregate_open := d.aggregate_open
+  quotient_comm := d.quotient_comm
+
+end WppLimitLcaClosedQuotientCoverData
+
+/-- Quotient/equalizer-cover open-map data proves the pure component open-map input. -/
+theorem wppLimit_lca_limitMap_preserves_openMap_of_quotientBoundary
+    (hboundary :
+      ∀ (X Y : WalkingParallelPair ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+        (cx : Cone X) (cy : Cone Y) (φ : cx.pt ⟶ cy.pt),
+          IsLimit cx →
+            IsLimit cy →
+              (∀ j : WalkingParallelPair, IsOpenMap (α.app j : X.obj j → Y.obj j)) →
+                (∀ j : WalkingParallelPair,
+                  φ ≫ cy.π.app j = cx.π.app j ≫ α.app j) →
+                  Nonempty (WppLimitLcaQuotientOpenMapData X Y α cx cy φ)) :
+    wppLimit_lca_limitMap_preserves_openMap := by
+  intro X Y α cx cy φ hcx hcy hopen hcompat
+  rcases hboundary X Y α cx cy φ hcx hcy hopen hcompat with ⟨hdata⟩
+  have hcomp : IsOpenMap ((hdata.qX ≫ φ : hdata.QX ⟶ cy.pt) :
+      hdata.QX → cy.pt) := by
+    rw [hdata.quotient_comm]
+    exact hdata.qY_open.comp hdata.aggregate_open
+  exact MetrizableLCA.isOpenMap_of_comp_surjective hdata.qX φ
+    hdata.qX_surjective hcomp
+
+/-- Closed quotient-cover data proves the pure component open-map input. -/
+theorem wppLimit_lca_limitMap_preserves_openMap_of_closedQuotientCoverBoundary
+    (hboundary :
+      ∀ (X Y : WalkingParallelPair ⥤ MetrizableLCA.{0}) (α : X ⟶ Y)
+        (cx : Cone X) (cy : Cone Y) (φ : cx.pt ⟶ cy.pt),
+          IsLimit cx →
+            IsLimit cy →
+              (∀ j : WalkingParallelPair, IsOpenMap (α.app j : X.obj j → Y.obj j)) →
+                (∀ j : WalkingParallelPair,
+                  φ ≫ cy.π.app j = cx.π.app j ≫ α.app j) →
+                  Nonempty (WppLimitLcaClosedQuotientCoverData X Y α cx cy φ)) :
+    wppLimit_lca_limitMap_preserves_openMap :=
+  wppLimit_lca_limitMap_preserves_openMap_of_quotientBoundary
+    (fun X Y α cx cy φ hcx hcy hopen hcompat => by
+      rcases hboundary X Y α cx cy φ hcx hcy hopen hcompat with ⟨d⟩
+      exact ⟨d.toQuotientOpenMapData⟩)
+
 /-- WPP limits preserve right surjectivity for strict short complexes. -/
 abbrev rightSurjective_walkingParallelPair_limitClosure : Prop :=
   ∀ (S : WalkingParallelPair ⥤ ShortComplex MetrizableLCA.{0})

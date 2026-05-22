@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w558-pure-lca-right-field-provider-bridge",
-  "generated_utc": "2026-05-22T01:15:42Z",
-  "source_tree_hash": "7c23014daa5c8011d096427d3980923ef52d07df1c5f67a868dbe55382694982",
-  "summary": "W558 adds a pure-LCA right-field bridge on top of the W551/W555 direct WPP limit left/algebraic proofs. DirectWppLimitFiniteShapeTransfer now packages pure LCA right-open and right-surjectivity certificates into the direct-left/algebraic WPP limit-stability boundary. WppOpExactAcyclicProjectionFields threads that boundary into W515 representative-image, W516 top-target, and W517 compact-target provider transfer routes for closed-map rows, closed-embedding rows, fixed-target localization, and normalized localization. Product completion remains false because the pure LCA right-open/right-surjective certificates, concrete providers, W527 row providers, normalized representative data, triangulated data, and bounded left-calculus instance remain unconstructed.",
+  "schema": "lean-lca-exact-challenge-verification-w559-wpp-limit-right-open-quotient-boundary",
+  "generated_utc": "2026-05-22T01:56:17Z",
+  "source_tree_hash": "969450d41b942c85e64e963e10caa2076396f684ca9e36bf497a8ec738a57bf9",
+  "summary": "W559 adds a quotient/equalizer-cover route for the pure LCA WPP limit right open-map input. The new data structures package a surjective cover of the source limit, an open map to the target limit, an open aggregate map, and the commuting square needed to use MetrizableLCA.isOpenMap_of_comp_surjective. This is verified support for the right-open boundary, not a proof of the pure LCA right-open certificate itself and not product success.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -4785,6 +4785,61 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "Whitespace diff check passed after W558 terminal metadata fix; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_010_w558_metadata_fix_diff_check.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
+      "status": "passed",
+      "evidence": "Focused W559 direct WPP limit transfer check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_direct_wpp_limit_transfer_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
+      "status": "passed",
+      "evidence": "W559 direct WPP limit transfer module rebuilt; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_direct_wpp_limit_transfer_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W559 declarations after rebuilding the touched module; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_product_declarations_lean_rerun.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import surface remains green after W559; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_root_import_lean.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W559; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_full_lake_build.log."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file sorry/admit/axiom/unsafe scan returned no matches; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_sorry_axiom_touched.log."
+    },
+    {
+      "command": "rg -n 'placeholder|TODO|FIXME' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file placeholder/TODO/FIXME scan returned no matches; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_product_placeholder_touched.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W559; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool manifest.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "W559 metadata JSON parse passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_json_parse_metadata.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W559; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product gate still rejects the W559 nonterminal outcome, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_external_product_gate.log."
     }
   ],
   "implemented_declarations_checked": [
@@ -6488,11 +6543,22 @@
     "Dbounded.metrizableWppTransferFromLcaRightClosedMapRowsInputNames",
     "Dbounded.metrizableWppTransferFromLcaRightClosedMapRowsInputNames_count",
     "Dbounded.metrizableWppTransferFromLcaRightClosedEmbeddingRowsInputNames",
-    "Dbounded.metrizableWppTransferFromLcaRightClosedEmbeddingRowsInputNames_count"
+    "Dbounded.metrizableWppTransferFromLcaRightClosedEmbeddingRowsInputNames_count",
+    "DirectWppLimitFiniteShapeTransfer.WppLimitLcaQuotientOpenMapData",
+    "DirectWppLimitFiniteShapeTransfer.WppLimitLcaClosedQuotientCoverData",
+    "DirectWppLimitFiniteShapeTransfer.WppLimitLcaClosedQuotientCoverData.sourceQuotientMap",
+    "DirectWppLimitFiniteShapeTransfer.WppLimitLcaClosedQuotientCoverData.sourceQuotientMap_surjective",
+    "DirectWppLimitFiniteShapeTransfer.WppLimitLcaClosedQuotientCoverData.sourceQuotientMap_open",
+    "DirectWppLimitFiniteShapeTransfer.WppLimitLcaClosedQuotientCoverData.targetQuotientMap",
+    "DirectWppLimitFiniteShapeTransfer.WppLimitLcaClosedQuotientCoverData.targetQuotientMap_surjective",
+    "DirectWppLimitFiniteShapeTransfer.WppLimitLcaClosedQuotientCoverData.targetQuotientMap_open",
+    "DirectWppLimitFiniteShapeTransfer.WppLimitLcaClosedQuotientCoverData.toQuotientOpenMapData",
+    "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_preserves_openMap_of_quotientBoundary",
+    "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_preserves_openMap_of_closedQuotientCoverBoundary"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Pure LCA WPP limit right open-map certificate remains unproved.",
+    "Pure LCA WPP limit right open-map certificate remains unproved; W559 only adds a quotient/equalizer-cover route to it.",
     "Pure LCA WPP limit right-surjectivity certificate remains unproved.",
     "Concrete W515/W516/W517 representative-image, top-target, and compact-target relation data remain unconstructed.",
     "A W527 ComponentwiseClosedMapRowsProvider or ComponentwiseClosedEmbeddingRowsProvider remains unconstructed.",
@@ -6502,11 +6568,12 @@
   "support_result_classification": "nonterminal_support_increment",
   "product_success": false,
   "remaining_work": [
-    "Prove or supply the pure LCA WPP limit right open-map and right-surjectivity certificates consumed by the W558 bridge.",
+    "Instantiate closed quotient/equalizer-cover data for the pure LCA WPP limit right open-map certificate, or prove the certificate directly.",
+    "Prove or supply the pure LCA WPP limit right-surjectivity certificate consumed by the W558 bridge.",
     "Instantiate concrete W515/W516/W517 relation-data providers and W527 row providers.",
     "Construct normalized strict representative data and target/model uniqueness for the WPP localization route.",
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance."
   ],
-  "summary_log_tail": "W558 metadata fix refreshed terminal_outcome W558 identity/hash/frontier fields after v3 reviewers found stale W557 terminal metadata; JSON parse, external self-check, stale-terminal scan, diff check, and expected nonterminal product gate were rerun.",
-  "latest_verified_increment": "W558 pure-LCA right-field bridge for W515/W516/W517 provider transfer routes"
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_011_w559_full_lake_build.log",
+  "latest_verified_increment": "W559 WPP limit right-open quotient/equalizer-cover boundary"
 }
