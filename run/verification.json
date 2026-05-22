@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w562-wpp-limit-right-surjective-zero-correction-boundary",
-  "generated_utc": "2026-05-22T04:35:40Z",
+  "generated_utc": "2026-05-22T04:53:13Z",
   "source_tree_hash": "01fcf33cc97b7d1034d35c4994361d0725eadccdc465ef62d14c42248a2bd989",
   "summary": "W562 adds a concrete zero-component correction route for the direct WPP limit right-surjectivity field. The new boundary lifts each target limit element at the zero component, corrects that lift by a source boundary so it equalizes the two WPP arrows, and then constructs the actual limit preimage through the equalizer model of the WPP limit. This remains nonterminal because the correction data itself is not yet instantiated from relation/provider data.",
   "commands": [
@@ -45,9 +45,19 @@
       "evidence": "Forbidden-token source tree scan passed after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_audit_no_forbidden_touched.log."
+      "evidence": "Touched-file forbidden-token scan passed after W556; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w556_audit_no_forbidden_touched.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
@@ -530,9 +540,19 @@
       "evidence": "Forbidden-token source tree scan passed after W541; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w541_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean LeanLCAExactChallenge.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W541; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w541_audit_no_forbidden_touched_all.log."
+      "evidence": "Touched-file forbidden-token scan passed after W541; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w541_audit_no_forbidden_touched_all.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
+        "omitted_extra_tokens_count": 2,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean LeanLCAExactChallenge.lean audit/ProductSuccessDeclarations.lean",
@@ -600,9 +620,19 @@
       "evidence": "Forbidden-token source tree scan passed after W540; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W540; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_audit_no_forbidden_touched_all.log."
+      "evidence": "Touched-file forbidden-token scan passed after W540; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w540_audit_no_forbidden_touched_all.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
@@ -670,9 +700,19 @@
       "evidence": "Forbidden-token source tree scan passed after W539; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w539_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W539; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w539_audit_no_forbidden_touched_all.log."
+      "evidence": "Touched-file forbidden-token scan passed after W539; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w539_audit_no_forbidden_touched_all.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean audit/ProductSuccessDeclarations.lean",
@@ -740,9 +780,19 @@
       "evidence": "Forbidden-token source tree scan passed after W538; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w538_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W538; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w538_audit_no_forbidden_touched_all.log."
+      "evidence": "Touched-file forbidden-token scan passed after W538; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w538_audit_no_forbidden_touched_all.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(gap|blocker|frontier|source[- ]patch|StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption)\\b' LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean audit/ProductSuccessDeclarations.lean",
@@ -810,9 +860,19 @@
       "evidence": "Forbidden-token source tree scan passed after W537; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w537_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W537; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w537_audit_no_forbidden_touched_all.log."
+      "evidence": "Touched-file forbidden-token scan passed after W537; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w537_audit_no_forbidden_touched_all.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(gap|blocker|frontier|source[- ]patch|StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption)\\b' LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean audit/ProductSuccessDeclarations.lean",
@@ -930,9 +990,19 @@
       "evidence": "Focused W535 source check passed after parser/style fixes; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w535_projection_fields_lean_rerun3.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W535; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w535_audit_no_forbidden_touched.log."
+      "evidence": "Touched-file forbidden-token scan passed after W535; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w535_audit_no_forbidden_touched.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
@@ -945,9 +1015,19 @@
       "evidence": "Focused W534 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w534_projection_fields_lean_rerun.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W534; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w534_audit_no_forbidden_touched.log."
+      "evidence": "Touched-file forbidden-token scan passed after W534; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w534_audit_no_forbidden_touched.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
@@ -970,9 +1050,19 @@
       "evidence": "Root import rebuilt after adding the W533 module; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w533_root_build.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppOpColimitFiniteShapeTransfer.lean LeanLCAExactChallenge.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppOpColimitFiniteShapeTransfer.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W533; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w533_audit_no_forbidden_touched.log."
+      "evidence": "Touched-file forbidden-token scan passed after W533; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w533_audit_no_forbidden_touched.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/DirectWppOpColimitFiniteShapeTransfer.lean",
+        "omitted_extra_tokens_count": 2,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/DirectWppOpColimitFiniteShapeTransfer.lean LeanLCAExactChallenge.lean audit/ProductSuccessDeclarations.lean",
@@ -980,9 +1070,19 @@
       "evidence": "Literal forbidden-token rg check on W533-touched files returned no matches; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w533_rg_forbidden.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W532; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w532_audit_no_forbidden_touched.log."
+      "evidence": "Touched-file forbidden-token scan passed after W532; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w532_audit_no_forbidden_touched.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean audit/ProductSuccessDeclarations.lean",
@@ -1000,9 +1100,19 @@
       "evidence": "Importable bounded-derived module rebuilt after W530; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w530_bounded_build.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W530; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w530_forbidden_tokens.log."
+      "evidence": "Touched-file forbidden-token scan passed after W530; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w530_forbidden_tokens.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/Bounded.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
@@ -1020,9 +1130,19 @@
       "evidence": "Importable bounded-derived module rebuilt after W529; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_bounded_build.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W529; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_forbidden_tokens.log."
+      "evidence": "Touched-file forbidden-token scan passed after W529; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w529_forbidden_tokens.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/Bounded.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
@@ -1040,9 +1160,19 @@
       "evidence": "Importable bounded-derived module rebuilt after W528; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_bounded_build.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/Bounded.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W528; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_forbidden_tokens.log."
+      "evidence": "Touched-file forbidden-token scan passed after W528; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_007_w528_forbidden_tokens.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/Bounded.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/Bounded.lean audit/ProductSuccessDeclarations.lean",
@@ -1305,9 +1435,19 @@
       "evidence": "Focused Lean check passed for W247 localized comparison membership audit."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/adjunction_transport_unit_equality_w250.lean audit/blockers/localized_comparison_unit_membership_w247.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/adjunction_transport_unit_equality_w250.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in the v265 audit files."
+      "evidence": "No forbidden Lean tokens found in the v265 audit files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/adjunction_transport_unit_equality_w250.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/bounded_opposite_concrete_finite_limits_w248.lean",
@@ -1715,9 +1855,19 @@
       "evidence": "v308 focused WPP-op strict short exact field equivalence check passed."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_universal_w304.lean audit/blockers/wpp_op_strict_short_exact_colimit_field_w305.lean audit/blockers/opposite_functor_category_localization_w306.lean audit/blockers/wpp_op_strict_short_exact_colimit_fields_iff_w307.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_universal_w304.lean",
       "status": "passed",
-      "evidence": "Focused forbidden-token audit passed for v305-v308 additional boundaries."
+      "evidence": "Focused forbidden-token audit passed for v305-v308 additional boundaries. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/wpp_op_mapping_cone_universal_w304.lean",
+        "omitted_extra_tokens_count": 3,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
@@ -1740,9 +1890,19 @@
       "evidence": "Focused W311 right-open-map cover boundary passed after parent fixed the Type universe level."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean audit/blockers/wpp_op_right_map_epi_open_w309.lean audit/blockers/wpp_op_right_surjective_of_open_w310.lean audit/blockers/wpp_op_right_open_map_w311.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in the W308-W311 audit files."
+      "evidence": "No forbidden Lean tokens found in the W308-W311 audit files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
+        "omitted_extra_tokens_count": 3,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_right_open_cover_w312.lean",
@@ -1785,9 +1945,19 @@
       "evidence": "Focused W287 algebraic-exactness from ShortComplex.Exact boundary passed after parent verification."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/right_open_map_wpp_op_colimit_w286.lean audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in the W286/W287 audit files."
+      "evidence": "No forbidden Lean tokens found in the W286/W287 audit files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/metrizable_lca_category_with_homology_w315.lean",
@@ -1810,9 +1980,19 @@
       "evidence": "No forbidden Lean tokens found in W316."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_lca_category_with_homology_w315.lean audit/blockers/metrizable_lca_forget_preserves_homology_w316.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/metrizable_lca_category_with_homology_w315.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in the W315/W316 audit files."
+      "evidence": "No forbidden Lean tokens found in the W315/W316 audit files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/metrizable_lca_category_with_homology_w315.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/left_closed_embedding_wpp_op_colimit_w289.lean",
@@ -1900,9 +2080,19 @@
       "evidence": "No forbidden Lean tokens found in W324."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean audit/blockers/bounded_inclusion_wpp_colimit_preservation_w324.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in W308 or W324."
+      "evidence": "No forbidden Lean tokens found in W308 or W324. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean",
@@ -1915,14 +2105,34 @@
       "evidence": "Focused W297 component closed-embedding coequalizer boundary check passed."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean audit/blockers/component_closed_embedding_coequalizer_support_w297.lean audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in W296/W297/W308."
+      "evidence": "No forbidden Lean tokens found in W296/W297/W308. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean",
+        "omitted_extra_tokens_count": 2,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean audit/blockers/component_closed_embedding_coequalizer_support_w297.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in W296/W297 support files."
+      "evidence": "No forbidden Lean tokens found in W296/W297 support files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/addcommgrp_wpp_op_kernel_exactness_support_w296.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_mapping_cone_fac_split_w327.lean",
@@ -2215,9 +2425,19 @@
       "evidence": "Forbidden-token literal scan returned no matches for W271 and the W308 source module."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/right_open_map_wpp_op_colimit_w286.lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in the updated W286/W318 audit files."
+      "evidence": "No forbidden Lean tokens found in the updated W286/W318 audit files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/right_open_map_wpp_op_colimit_w286.lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean",
@@ -2280,9 +2500,19 @@
       "evidence": "Packet external audit failed only at the expected product_success terminal gate."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean",
       "status": "passed",
-      "evidence": "Focused forbidden-token script reported no forbidden Lean tokens for the v362 source path; rg scan over all three v362 files also returned no matches."
+      "evidence": "Focused forbidden-token script reported no forbidden Lean tokens for the v362 source path; rg scan over all three v362 files also returned no matches. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean",
+        "omitted_extra_tokens_count": 2,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean audit/blockers/wpp_op_exact_acyclic_frontier_consolidated_w318.lean audit/blockers/direct_wpp_op_colimit_closure_w271.lean",
@@ -2325,9 +2555,19 @@
       "evidence": "Focused Lean check passed for the v366 AddCommGrp degenerate SnakeInput support file."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_degenerate_snake_support_w366.lean audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_degenerate_snake_support_w366.lean",
       "status": "passed",
-      "evidence": "Focused forbidden-token scan reported no forbidden Lean tokens for the v365/v366 support files."
+      "evidence": "Focused forbidden-token scan reported no forbidden Lean tokens for the v365/v366 support files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/addcommgrp_degenerate_snake_support_w366.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_degenerate_snake_support_w366.lean audit/blockers/wpp_op_left_lca_colimit_transport_w365.lean",
@@ -2440,9 +2680,19 @@
       "evidence": "W345 audit blocker imported the source module and #checked the public API."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean LeanLCAExactChallenge/Derived/AddCommGrpSnakeInputDifferenceCokernel.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in the W345 source/audit files."
+      "evidence": "No forbidden Lean tokens found in the W345 source/audit files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/addcommgrp_snakeinput_difference_strict_source_w345.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -2475,9 +2725,19 @@
       "evidence": "Explicit forbidden-token rg scan returned no matches for W347-W349."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_iscolimit_map_closed_embedding_v368_support_w347.lean audit/blockers/wpp_op_descended_quotient_iscolimit_map_v368_support_w348.lean audit/blockers/wpp_op_relation_pullback_condition_v368_support_w349.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_iscolimit_map_closed_embedding_v368_support_w347.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in W347/W348/W349 support files."
+      "evidence": "No forbidden Lean tokens found in W347/W348/W349 support files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/wpp_op_iscolimit_map_closed_embedding_v368_support_w347.lean",
+        "omitted_extra_tokens_count": 2,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/addcommgrp_difference_snake_boundary_v369_support_w350.lean",
@@ -2885,9 +3145,19 @@
       "evidence": "lake env lean audit/blockers/wpp_op_left_lca_transported_descended_conjugacy_v370_support_w390.lean passed for focused W389/W390 support verification."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_relation_pullback_equality_v370_support_w389.lean audit/blockers/wpp_op_left_lca_transported_descended_conjugacy_v370_support_w390.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_relation_pullback_equality_v370_support_w389.lean",
       "status": "passed",
-      "evidence": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_relation_pullback_equality_v370_support_w389.lean audit/blockers/wpp_op_left_lca_transported_descended_conjugacy_v370_support_w390.lean passed for focused W389/W390 support verification."
+      "evidence": "Metadata-corrected note: scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_relation_pullback_equality_v370_support_w389.lean is the first-root invocation represented here; historical extra tokens after the first root were not treated as additional roots by the script.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/wpp_op_relation_pullback_equality_v370_support_w389.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/addcommgrp_forgotten_target_iso_construction_v370_support_w391.lean",
@@ -2900,9 +3170,19 @@
       "evidence": "lake env lean audit/blockers/wpp_op_target_relation_lift_certificate_v370_support_w392.lean passed for focused W391/W392 support verification."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_iso_construction_v370_support_w391.lean audit/blockers/wpp_op_target_relation_lift_certificate_v370_support_w392.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_iso_construction_v370_support_w391.lean",
       "status": "passed",
-      "evidence": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_iso_construction_v370_support_w391.lean audit/blockers/wpp_op_target_relation_lift_certificate_v370_support_w392.lean passed for focused W391/W392 support verification."
+      "evidence": "Metadata-corrected note: scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_iso_construction_v370_support_w391.lean is the first-root invocation represented here; historical extra tokens after the first root were not treated as additional roots by the script.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/addcommgrp_forgotten_target_iso_construction_v370_support_w391.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_left_lca_ordinary_descended_fields_v370_support_w393.lean",
@@ -2912,7 +3192,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_fields_v370_support_w393.lean",
       "status": "passed",
-      "evidence": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_fields_v370_support_w393.lean passed for focused W393 support verification."
+      "evidence": "Metadata-corrected note: scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_fields_v370_support_w393.lean is the first-root invocation represented here; historical extra tokens after the first root were not treated as additional roots by the script."
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean",
@@ -2922,7 +3202,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean",
       "status": "passed",
-      "evidence": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean passed for parent W352-to-W393 adapter verification."
+      "evidence": "Metadata-corrected note: scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_w352_to_w393_adapter_v370_support_parent.lean is the first-root invocation represented here; historical extra tokens after the first root were not treated as additional roots by the script."
     },
     {
       "command": "lake env lean audit/blockers/addcommgrp_forgotten_target_colimit_iso_v370_support_w394.lean",
@@ -2935,9 +3215,19 @@
       "evidence": "lake env lean audit/blockers/wpp_op_relation_fields_composer_v370_support_w395.lean passed for focused W394/W395 support verification."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_colimit_iso_v370_support_w394.lean audit/blockers/wpp_op_relation_fields_composer_v370_support_w395.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_colimit_iso_v370_support_w394.lean",
       "status": "passed",
-      "evidence": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_colimit_iso_v370_support_w394.lean audit/blockers/wpp_op_relation_fields_composer_v370_support_w395.lean passed for focused W394/W395 support verification."
+      "evidence": "Metadata-corrected note: scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_colimit_iso_v370_support_w394.lean is the first-root invocation represented here; historical extra tokens after the first root were not treated as additional roots by the script.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/addcommgrp_forgotten_target_colimit_iso_v370_support_w394.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_left_lca_ordinary_descended_fields_from_w352_v370_support_w396.lean",
@@ -2947,7 +3237,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_fields_from_w352_v370_support_w396.lean",
       "status": "passed",
-      "evidence": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_fields_from_w352_v370_support_w396.lean passed for focused W396 support verification."
+      "evidence": "Metadata-corrected note: scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_left_lca_ordinary_descended_fields_from_w352_v370_support_w396.lean is the first-root invocation represented here; historical extra tokens after the first root were not treated as additional roots by the script."
     },
     {
       "command": "lake env lean audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean",
@@ -2957,7 +3247,7 @@
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean",
       "status": "passed",
-      "evidence": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean passed for focused W398 support verification."
+      "evidence": "Metadata-corrected note: scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean is the first-root invocation represented here; historical extra tokens after the first root were not treated as additional roots by the script."
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_relation_fields_from_w371_v370_support_w397.lean",
@@ -2965,9 +3255,19 @@
       "evidence": "lake env lean audit/blockers/wpp_op_relation_fields_from_w371_v370_support_w397.lean passed for focused W397/W398 support verification."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean audit/blockers/wpp_op_relation_fields_from_w371_v370_support_w397.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean",
       "status": "passed",
-      "evidence": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean audit/blockers/wpp_op_relation_fields_from_w371_v370_support_w397.lean passed for focused W397/W398 support verification."
+      "evidence": "Metadata-corrected note: scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean is the first-root invocation represented here; historical extra tokens after the first root were not treated as additional roots by the script.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_left_lca_ordinary_descended_topology_fields_v370_support_w399.lean",
@@ -2990,9 +3290,19 @@
       "evidence": "Focused W401 support file checked successfully in parent target."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_concrete_q_v370_support_w400.lean audit/blockers/wpp_op_relation_fields_from_certificates_v370_support_w401.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_concrete_q_v370_support_w400.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in W400/W401 support files."
+      "evidence": "No forbidden Lean tokens found in W400/W401 support files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/addcommgrp_forgotten_target_concrete_q_v370_support_w400.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_left_lca_ordinary_descended_concrete_inputs_v370_support_w402.lean",
@@ -3015,9 +3325,19 @@
       "evidence": "Focused W404 support file checked successfully in parent target."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cocone_leg_v370_support_w403.lean audit/blockers/wpp_op_relation_pullback_equality_v370_support_w404.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cocone_leg_v370_support_w403.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in W403/W404 support files."
+      "evidence": "No forbidden Lean tokens found in W403/W404 support files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/blockers/addcommgrp_forgotten_target_cocone_leg_v370_support_w403.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_left_lca_ordinary_descended_quotient_compat_v370_support_w405.lean",
@@ -3884,9 +4204,19 @@
       "evidence": "No forbidden Lean tokens found in the updated product declaration audit."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Full Lean/audit forbidden-token scan passed after W519."
+      "evidence": "Full Lean/audit forbidden-token scan passed after W519. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -3899,14 +4229,34 @@
       "evidence": "No forbidden Lean tokens found in the updated product declaration audit after W520."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Full Lean/audit forbidden-token scan passed after W520."
+      "evidence": "Full Lean/audit forbidden-token scan passed after W520. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "No forbidden Lean tokens found in the W521-touched audit/source files."
+      "evidence": "No forbidden Lean tokens found in the W521-touched audit/source files. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "audit/ProductSuccessDeclarations.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -4457,14 +4807,34 @@
       "evidence": "Full project build passed after W553; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w553_lake_build.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge audit",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "Forbidden Lean token scan over source/audit tree passed after W553; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w553_audit_no_forbidden_lean_tokens_tree.log."
+      "evidence": "Forbidden Lean token scan over source/audit tree passed after W553; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w553_audit_no_forbidden_lean_tokens_tree.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/LCA/Pullback.lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/LCA/Pullback.lean",
       "status": "passed",
-      "evidence": "Forbidden Lean token scan over W553-touched files passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w553_audit_no_forbidden_lean_tokens_touched.log."
+      "evidence": "Forbidden Lean token scan over W553-touched files passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w553_audit_no_forbidden_lean_tokens_touched.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/LCA/Pullback.lean",
+        "omitted_extra_tokens_count": 2,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/LCA/Pullback.lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
@@ -4622,9 +4992,19 @@
       "evidence": "Forbidden-token source tree scan passed after W557; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_009_w557_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
-      "evidence": "Touched-file forbidden-token scan passed after W557; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_009_w557_audit_no_forbidden_touched.log."
+      "evidence": "Touched-file forbidden-token scan passed after W557; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_009_w557_audit_no_forbidden_touched.log. Metadata correction 2026-05-22: audit_no_forbidden_lean_tokens.sh evaluates one root argument. This historical entry now records only the first evaluated root; current W562 source-root and audit-root scans are recorded separately.",
+      "metadata_correction": {
+        "corrected_utc": "2026-05-22T04:53:13Z",
+        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
+        "first_evaluated_root": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "omitted_extra_tokens_count": 1,
+        "current_w562_single_root_evidence": [
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+        ]
+      }
     },
     {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
@@ -6792,5 +7172,15 @@
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance."
   ],
   "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_lake_build.log",
-  "latest_verified_increment": "W562 WPP limit right-surjective zero-component correction boundary"
+  "latest_verified_increment": "W562 WPP limit right-surjective zero-component correction boundary",
+  "metadata_corrections": {
+    "forbidden_token_scan_command_metadata_w562": {
+      "corrected_utc": "2026-05-22T04:53:13Z",
+      "reason": "The forbidden-token audit script accepts one root argument; historical command metadata listing additional roots was narrowed to first-root evidence and superseded by current W562 single-root source/audit scans.",
+      "corrected_run_command_entries": 38,
+      "corrected_run_non_command_strings": 8,
+      "current_w562_source_root_scan": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
+      "current_w562_audit_root_scan": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
+    }
+  }
 }
