@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w564-wpp-limit-source-difference-surjective-boundary",
-  "generated_utc": "2026-05-22T06:04:17Z",
-  "source_tree_hash": "c6ea257ba76900ce946523b4f47c39a940d2e2d7cb4e79438f6b664ccff1b76a",
-  "summary": "W564 reduces the W563 difference-correction data to surjectivity of the source degree-one WPP difference map. Given a zero-component lift, pointwise algebraic exactness at object one supplies a degree-one preimage of the left/right X2 difference, and source-difference surjectivity lifts that degree-one element back to object zero. This proves the W563 difference-correction boundary and therefore the WPP limit right-surjectivity input, but the source-difference surjectivity data is not yet instantiated from relation/provider rows.",
+  "schema": "lean-lca-exact-challenge-verification-w565-lca-source-difference-provider-boundary",
+  "generated_utc": "2026-05-22T06:36:08Z",
+  "source_tree_hash": "8fd57cfc0aaf34a8d78d7abb377e4227e24e0d4d6edb746275bd43e9fef8002d",
+  "summary": "W565 adds a pure LCA source-degree WPP difference-map surjectivity input and proves that it supplies the W564 source-difference boundary, hence the WPP limit right-surjectivity input. This is a narrower provider-facing reduction: the pure LCA source-difference surjectivity itself is still not instantiated from W515/W516/W517 relation-provider data or W527 row providers, so product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -5550,6 +5550,96 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "External audit reached only the expected nonterminal product gate after W564; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w564_external_product_gate_expected.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
+      "status": "passed",
+      "evidence": "Focused W565 direct WPP limit-transfer source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_direct_wpp_limit_transfer_lean_final.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
+      "status": "passed",
+      "evidence": "Direct WPP limit-transfer module rebuilt with W565 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_direct_wpp_limit_transfer_build_final.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W565 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_product_success_declarations_lean_final.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import surface remains green after W565; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_root_import_lean.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W565; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_required_declarations_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Root package build passed after W565; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_root_build.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W565; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source tree scan passed after W565; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_forbidden_tokens_source.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
+      "status": "passed",
+      "evidence": "Touched source-file forbidden-token scan passed after W565; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_forbidden_tokens_touched_source.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched audit-file forbidden-token scan passed after W565; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_forbidden_tokens_product_declarations.log."
+    },
+    {
+      "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-facing placeholder regex returned no matches on W565-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_product_placeholder_touched.log."
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file sorry/admit/axiom/unsafe scan returned no matches after W565; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_sorry_axiom_touched.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W565; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "W565 terminal outcome JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "W565 verification JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_json_parse.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "W565 manifest JSON parses; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_json_parse.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W565 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Product gate still rejects the nonterminal outcome after W565, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_external_product_gate.log."
     }
   ],
   "implemented_declarations_checked": [
@@ -7286,30 +7376,36 @@
     "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitClosure_of_sourceDifferenceSurjectiveBoundary",
     "Dbounded.MetrizableWppLimitRightSurjectiveSourceDifferenceSurjectiveBoundary",
     "Dbounded.metrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary_of_sourceDifferenceSurjectiveBoundary",
-    "Dbounded.metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceSurjectiveBoundary"
+    "Dbounded.metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceSurjectiveBoundary",
+    "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_sourceDifferenceMap_surjective",
+    "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary_of_lca_sourceDifference",
+    "DirectWppLimitFiniteShapeTransfer.rightSurjective_walkingParallelPair_limitClosure_of_lca_sourceDifference",
+    "Dbounded.MetrizableWppLimitSourceDifferenceLcaInput",
+    "Dbounded.metrizableWppLimitRightSurjectiveSourceDifferenceBoundary_of_lcaSourceDifference",
+    "Dbounded.metrizableWppLimitRightSurjectiveInput_of_lcaSourceDifference"
   ],
   "product_complete": false,
   "known_gaps": [
-    "W564 proves that source degree-one WPP difference-map surjectivity supplies W563 difference-correction data, but that source-difference surjectivity is not yet instantiated from W515/W516/W517 relation providers or W527 row providers.",
-    "Pure LCA WPP limit right open-map certificate remains unproved; W559 only adds a quotient/equalizer-cover route to it.",
-    "Pure LCA WPP limit right-surjectivity certificate remains unproved; W560 and W561 only add open-map/cokernel and open-map/epi boundary routes.",
-    "Concrete W515/W516/W517 representative-image, top-target, and compact-target relation data remain unconstructed.",
-    "A W527 ComponentwiseClosedMapRowsProvider or ComponentwiseClosedEmbeddingRowsProvider remains unconstructed.",
-    "Coherent normalized strict representative data and target/model uniqueness for the WalkingParallelPair localization route remain unconstructed.",
-    "Pretriangulated/triangulated data and the final bounded left-calculus instance remain unconstructed."
+    "W565でpure LCA source-degreeのWPP差分写像全射性からW564のsource-difference boundaryが出ることは証明したが、そのpure LCA source-difference surjectivityはW515/W516/W517 relation providerやW527 row providerからまだ具体化されていない。",
+    "pure LCAのWPP limit right open-map certificateはまだ証明されていない。W559はそのためのclosed quotient/equalizer cover routeだけを追加した。",
+    "pure LCAのWPP limit right-surjectivity certificateはまだ証明されていない。W560とW561はopen-map/cokernelおよびopen-map/Epiの境界だけを追加した。",
+    "W515/W516/W517のrepresentative-image、top-target、compact-target relation dataがまだ具体化されていない。",
+    "W527のComponentwiseClosedMapRowsProviderまたはComponentwiseClosedEmbeddingRowsProviderがまだ具体化されていない。",
+    "WalkingParallelPair localization routeのnormalized strict representative dataとtarget/model uniquenessがまだ具体化されていない。",
+    "pretriangulated/triangulated dataとbounded left-calculus instanceがまだ構成されていない。"
   ],
-  "support_result_classification": "verified_nonterminal_support_increment",
+  "support_result_classification": "verified_nonterminal_support_increment_pending_claim_review",
   "product_success": false,
   "remaining_work": [
-    "Instantiate W564 source-difference surjectivity from relation/provider rows, or reduce it to existing W515/W516/W517/W527 data.",
+    "Instantiate W565 pure LCA source-difference surjectivity from relation/provider rows, or reduce it to existing W515/W516/W517/W527 data.",
     "Instantiate closed quotient/equalizer-cover data for the pure LCA WPP limit right open-map certificate, or prove the certificate directly.",
     "Instantiate open-map plus epi, cokernel-top, or cokernel-pi-zero data for the pure LCA WPP limit right-surjectivity certificate, or prove the certificate directly.",
     "Instantiate concrete W515/W516/W517 relation-data providers and W527 row providers.",
     "Construct normalized strict representative data and target/model uniqueness for the WPP localization route.",
     "Construct pretriangulated/triangulated data and the bounded left-calculus instance."
   ],
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_014_w564_lake_build.log",
-  "latest_verified_increment": "W564 WPP limit source-difference surjectivity boundary",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_lake_build.log",
+  "latest_verified_increment": "W565 pure LCA source-difference provider boundary",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -7330,6 +7426,13 @@
       "source_tree_hash": "c6ea257ba76900ce946523b4f47c39a940d2e2d7cb4e79438f6b664ccff1b76a",
       "latest_verified_increment": "W564 WPP limit source-difference surjectivity boundary",
       "note": "W564 refresh records source-difference boundary checks and leaves product_success/product_complete false while preserving historical command evidence."
+    },
+    "w565_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T06:36:08Z",
+      "source_tree_hash": "8fd57cfc0aaf34a8d78d7abb377e4227e24e0d4d6edb746275bd43e9fef8002d",
+      "latest_verified_increment": "W565 pure LCA source-difference provider boundary",
+      "claim_review_status": "pending_claim_review_loop_v3",
+      "note": "W565 source and audit declarations are verified locally, but claim-review-loop-v3 has not yet accepted this increment."
     }
   }
 }

@@ -1227,6 +1227,40 @@ abbrev rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBounda
                 (S.map WalkingParallelPairHom.right).τ₁ u₁₀)
 
 /--
+Pure LCA source-degree input for WPP limit right-surjectivity.  It asks for
+surjectivity of the left/right difference map on the source-degree WPP diagram,
+separated from the surrounding short-complex data.
+-/
+abbrev wppLimit_lca_sourceDifferenceMap_surjective : Prop :=
+  ∀ (X : WalkingParallelPair ⥤ MetrizableLCA.{0}) (cx : Cone X),
+    IsLimit cx →
+      Function.Surjective
+        (fun x₀ : X.obj WalkingParallelPair.zero =>
+          X.map WalkingParallelPairHom.left x₀ -
+            X.map WalkingParallelPairHom.right x₀)
+
+/--
+Pure LCA source-degree difference surjectivity supplies the source-difference
+boundary used by the WPP limit right-surjectivity argument.
+-/
+theorem
+    rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary_of_lca_sourceDifference
+    (hsource : wppLimit_lca_sourceDifferenceMap_surjective) :
+    rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary := by
+  intro S cs hcs _hS
+  let c₁ : Cone (S ⋙
+      (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0})) :=
+    (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}).mapCone cs
+  have hc₁ : IsLimit c₁ := by
+    simpa [c₁] using
+      (isLimitOfPreserves
+        (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}) hcs)
+  simpa [c₁] using
+    hsource
+      (S ⋙ (ShortComplex.π₁ : ShortComplex MetrizableLCA.{0} ⥤ MetrizableLCA.{0}))
+      c₁ hc₁
+
+/--
 Surjectivity of the source degree-one left/right difference map supplies the
 difference-form correction boundary.
 -/
@@ -1461,6 +1495,17 @@ theorem rightSurjective_walkingParallelPair_limitClosure_of_sourceDifferenceSurj
   rightSurjective_walkingParallelPair_limitClosure_of_differenceCorrectionBoundary
     (rightSurjective_walkingParallelPair_limitDifferenceCorrectionBoundary_of_sourceDifferenceSurjectiveBoundary
         hboundary)
+
+/--
+Pure LCA source-degree difference surjectivity supplies the WPP limit
+right-surjectivity field.
+-/
+theorem rightSurjective_walkingParallelPair_limitClosure_of_lca_sourceDifference
+    (hsource : wppLimit_lca_sourceDifferenceMap_surjective) :
+    rightSurjective_walkingParallelPair_limitClosure :=
+  rightSurjective_walkingParallelPair_limitClosure_of_sourceDifferenceSurjectiveBoundary
+    (rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary_of_lca_sourceDifference
+      hsource)
 
 /-- Direct algebraic exactness at the WPP limit point. -/
 abbrev algebraicExact_walkingParallelPair_limitClosure : Prop :=
@@ -1848,6 +1893,9 @@ abbrev MetrizableWppLimitRightSurjectiveDifferenceCorrectionBoundary : Prop :=
 abbrev MetrizableWppLimitRightSurjectiveSourceDifferenceSurjectiveBoundary : Prop :=
   rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary
 
+abbrev MetrizableWppLimitSourceDifferenceLcaInput : Prop :=
+  DirectWppLimitFiniteShapeTransfer.wppLimit_lca_sourceDifferenceMap_surjective
+
 abbrev MetrizableWppLimitAlgebraicExactInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure
 
@@ -1923,6 +1971,17 @@ theorem
     hboundary
 
 /--
+Build the source-difference boundary from a pure LCA source-degree difference
+surjectivity input.
+-/
+theorem
+    metrizableWppLimitRightSurjectiveSourceDifferenceBoundary_of_lcaSourceDifference
+    (hsource : MetrizableWppLimitSourceDifferenceLcaInput) :
+    MetrizableWppLimitRightSurjectiveSourceDifferenceSurjectiveBoundary :=
+  rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary_of_lca_sourceDifference
+    hsource
+
+/--
 Build the WPP limit right-surjectivity field from difference-form correction
 data.
 -/
@@ -1941,6 +2000,15 @@ theorem metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceSurjectiveBoun
     MetrizableWppLimitRightSurjectiveInput :=
   rightSurjective_walkingParallelPair_limitClosure_of_sourceDifferenceSurjectiveBoundary
     hboundary
+
+/--
+Build the WPP limit right-surjectivity field from pure LCA source-degree
+difference surjectivity.
+-/
+theorem metrizableWppLimitRightSurjectiveInput_of_lcaSourceDifference
+    (hsource : MetrizableWppLimitSourceDifferenceLcaInput) :
+    MetrizableWppLimitRightSurjectiveInput :=
+  rightSurjective_walkingParallelPair_limitClosure_of_lca_sourceDifference hsource
 
 /-- Build the WPP limit algebraic-exactness field from component limit data. -/
 theorem metrizableWppLimitAlgebraicExactInput_of_lca
