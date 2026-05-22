@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
-  "generated_utc": "2026-05-22T17:26:34Z",
-  "source_tree_hash": "37559ec45408a2fbdcf760194c1a813bd52df70aee745f6ace8dcb2781896eef",
-  "summary": "W594 reuses the W593 split compact-target provider surface for the W525 global closed-embedding route: relation-pullback and target-relation compactness providers reconstruct W517, feed the W581 global closed-embedding normalized bundle, and carry the result through the W592/W580 homotopy/Verdier stable-certificate route. This is verified nonterminal support only: it does not construct the closed quotient-cover boundary data, source cokernel-pi-zero boundary data, concrete split compact-target provider proofs, concrete W525 closed-embedding provider data, normalized fixed-target localization data, homotopy iso-closedness, homotopy/Verdier left calculus, or Dbounded triangulated fields.",
+  "generated_utc": "2026-05-22T17:34:55Z",
+  "source_tree_hash": "35b1f4d997ea25cea4fcd20795a6e7a6a20b41803a47fde28c88d6ede689fd5d",
+  "summary": "W595 lets the W525 closed-map and closed-embedding exact-acyclic endpoints consume the W593 split compact-target fields directly: relation-pullback and target-relation compactness providers reconstruct W517, then feed the existing W525 compact-target exact-acyclic routes. This is verified nonterminal support only: it does not construct the closed quotient-cover boundary data, source cokernel-pi-zero boundary data, concrete split compact-target provider proofs, concrete W525 provider data, normalized fixed-target localization data, homotopy iso-closedness, homotopy/Verdier left calculus, or Dbounded triangulated fields.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -7165,6 +7165,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_043_w594_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_044_w595_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_044_w595_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_044_w595_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_044_w595_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_044_w595_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_044_w595_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_044_w595_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_044_w595_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_044_w595_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -9306,7 +9351,14 @@
     "Dbounded.metrizableWppSplitCompactTargetGlobalClosedEmbeddingStableInputNamesW594_count",
     "Dbounded.currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteSupportStateW594",
     "Dbounded.currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594",
-    "Dbounded.currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594_productSuccess"
+    "Dbounded.currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594_productSuccess",
+    "Dbounded.exactAcyclic_of_splitCompactTargetRelation_closedMap_w595",
+    "Dbounded.exactAcyclic_of_splitCompactTargetRelation_closedEmbedding_w595",
+    "Dbounded.metrizableWppSplitCompactTargetExactAcyclicEndpointInputNamesW595",
+    "Dbounded.metrizableWppSplitCompactTargetExactAcyclicEndpointInputNamesW595_count",
+    "Dbounded.currentMetrizableWppSplitCompactTargetExactAcyclicEndpointSupportStateW595",
+    "Dbounded.currentMetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595",
+    "Dbounded.currentMetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -9326,7 +9378,7 @@
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it"
   ],
-  "support_result_classification": "nonterminal_wpp_split_compact_target_global_closed_embedding_stable_route",
+  "support_result_classification": "nonterminal_wpp_split_compact_target_exact_acyclic_endpoints",
   "product_success": false,
   "remaining_work": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
@@ -9345,8 +9397,8 @@
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it"
   ],
-  "summary_log_tail": "W594 reuses the W593 split compact-target provider surface for the global closed-embedding route, reconstructs W517, and carries the result through the W592/W580 stable-certificate path; product flags remain false.",
-  "latest_verified_increment": "W594 split compact-target global closed-embedding stable route",
+  "summary_log_tail": "W595 lets W525 exact-acyclic endpoints consume split W593 compact-target fields directly rather than a monolithic W517 provider; product flags remain false.",
+  "latest_verified_increment": "W595 split compact-target exact-acyclic endpoints",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -9705,6 +9757,13 @@
       "refreshed_utc": "2026-05-22T17:26:34Z",
       "source_tree_hash": "37559ec45408a2fbdcf760194c1a813bd52df70aee745f6ace8dcb2781896eef",
       "latest_verified_increment": "W594 split compact-target global closed-embedding stable route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "The reusable verifier passed focused WPP source, WPP module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
+    },
+    "w595_split_compact_target_exact_acyclic_endpoints_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T17:34:55Z",
+      "source_tree_hash": "35b1f4d997ea25cea4fcd20795a6e7a6a20b41803a47fde28c88d6ede689fd5d",
+      "latest_verified_increment": "W595 split compact-target exact-acyclic endpoints",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "The reusable verifier passed focused WPP source, WPP module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
     }

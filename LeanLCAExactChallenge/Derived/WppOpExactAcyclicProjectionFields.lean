@@ -15633,6 +15633,79 @@ theorem
       false :=
   rfl
 
+/--
+W595 exact-acyclic endpoint: split W593 compact-target fields plus a global W525
+closed-map provider feed the W525 compact-target route.
+-/
+def exactAcyclic_of_splitCompactTargetRelation_closedMap_w595
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hcompact : ClosedNatTransOrdinaryTargetRelationCompactProviderW593)
+    (hclosedMap : ComponentwiseClosedMapProviderW525) :=
+  exactAcyclic_of_compactTargetRelation_closedMap_w525
+    (compactTargetRelationProvider_of_splitFields_w593 hpullback hcompact) hclosedMap
+
+/--
+W595 exact-acyclic endpoint: split W593 compact-target fields plus a global W525
+closed-embedding provider feed the W525 compact-target route.
+-/
+def exactAcyclic_of_splitCompactTargetRelation_closedEmbedding_w595
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hcompact : ClosedNatTransOrdinaryTargetRelationCompactProviderW593)
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :=
+  exactAcyclic_of_compactTargetRelation_closedEmbedding_w525
+    (compactTargetRelationProvider_of_splitFields_w593 hpullback hcompact) hclosedEmbedding
+
+/-- Input names for the W595 split compact-target exact-acyclic endpoints. -/
+def metrizableWppSplitCompactTargetExactAcyclicEndpointInputNamesW595 :
+    List String :=
+  ["ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "ClosedNatTransOrdinaryTargetRelationCompactProviderW593",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525"]
+
+theorem metrizableWppSplitCompactTargetExactAcyclicEndpointInputNamesW595_count :
+    metrizableWppSplitCompactTargetExactAcyclicEndpointInputNamesW595.length =
+      3 :=
+  rfl
+
+/-- Current checked W595 state for split compact-target exact-acyclic endpoints. -/
+structure MetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595 : Type where
+  seed : String
+  declarations : List String
+  closedMapEndpointResult : String
+  closedEmbeddingEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W595 state. -/
+def currentMetrizableWppSplitCompactTargetExactAcyclicEndpointSupportStateW595 :
+    MetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595 where
+  seed := "w595-split-compact-target-exact-acyclic-endpoints"
+  declarations :=
+    ["exactAcyclic_of_splitCompactTargetRelation_closedMap_w595",
+      "exactAcyclic_of_splitCompactTargetRelation_closedEmbedding_w595",
+      "metrizableWppSplitCompactTargetExactAcyclicEndpointInputNamesW595",
+      "metrizableWppSplitCompactTargetExactAcyclicEndpointInputNamesW595_count"]
+  closedMapEndpointResult :=
+    "proved: split W593 compact-target fields plus W525 closed-map data feed the W525 exact-acyclic endpoint"
+  closedEmbeddingEndpointResult :=
+    "proved: split W593 compact-target fields plus W525 closed-embedding data feed the W525 exact-acyclic endpoint"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationCompactProviderW593",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595 :
+    MetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595 :=
+  currentMetrizableWppSplitCompactTargetExactAcyclicEndpointSupportStateW595
+
+theorem
+    currentMetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595_productSuccess :
+    currentMetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -16401,6 +16474,13 @@ section Checks
 #check currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594
 #check
   currentMetrizableWppSplitCompactTargetGlobalClosedEmbeddingStableRouteStateW594_productSuccess
+#check exactAcyclic_of_splitCompactTargetRelation_closedMap_w595
+#check exactAcyclic_of_splitCompactTargetRelation_closedEmbedding_w595
+#check metrizableWppSplitCompactTargetExactAcyclicEndpointInputNamesW595
+#check metrizableWppSplitCompactTargetExactAcyclicEndpointInputNamesW595_count
+#check currentMetrizableWppSplitCompactTargetExactAcyclicEndpointSupportStateW595
+#check currentMetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595
+#check currentMetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595_productSuccess
 
 end Checks
 
