@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w565-lca-source-difference-provider-boundary",
-  "generated_utc": "2026-05-22T06:36:08Z",
+  "generated_utc": "2026-05-22T06:42:58Z",
   "source_tree_hash": "8fd57cfc0aaf34a8d78d7abb377e4227e24e0d4d6edb746275bd43e9fef8002d",
   "summary": "W565 adds a pure LCA source-degree WPP difference-map surjectivity input and proves that it supplies the W564 source-difference boundary, hence the WPP limit right-surjectivity input. This is a narrower provider-facing reduction: the pure LCA source-difference surjectivity itself is still not instantiated from W515/W516/W517 relation-provider data or W527 row providers, so product_success remains false.",
   "commands": [
@@ -7433,6 +7433,12 @@
       "latest_verified_increment": "W565 pure LCA source-difference provider boundary",
       "claim_review_status": "pending_claim_review_loop_v3",
       "note": "W565 source and audit declarations are verified locally, but claim-review-loop-v3 has not yet accepted this increment."
+    },
+    "w565_commit_hash_correction": {
+      "corrected_utc": "2026-05-22T06:42:58Z",
+      "wrong_in_consultant_artifacts": "7de3817331dc4862a56ce4b26122cf7dec100ea9",
+      "w565_source_commit": "7de3817fdb4ea2f671d907588e33fec8f778a883",
+      "note": "The abbreviated commit output 7de3817 was incorrectly expanded in consultant-side artifacts. Target source commit is recorded here; the enclosing metadata commit is intentionally not embedded to avoid self-reference."
     }
   }
 }

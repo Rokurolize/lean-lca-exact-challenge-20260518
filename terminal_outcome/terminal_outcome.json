@@ -3715,7 +3715,7 @@
     "Dbounded.metrizableWppLimitRightSurjectiveSourceDifferenceBoundary_of_lcaSourceDifference",
     "Dbounded.metrizableWppLimitRightSurjectiveInput_of_lcaSourceDifference"
   ],
-  "generated_utc": "2026-05-22T06:36:08Z",
+  "generated_utc": "2026-05-22T06:42:58Z",
   "support_result_classification": "verified_nonterminal_support_increment_pending_claim_review",
   "implemented_declarations_checked": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
@@ -5472,7 +5472,7 @@
   "latest_verified_increment": "W565 pure LCA source-difference provider boundary",
   "source_tree_hash": "8fd57cfc0aaf34a8d78d7abb377e4227e24e0d4d6edb746275bd43e9fef8002d",
   "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_015_w565_lake_build.log",
-  "git_commit_note": "W565 implementation and metadata refresh are pending commit and claim-review-loop-v3 acceptance.",
+  "git_commit_note": "W565 source implementation commit is 7de3817fdb4ea2f671d907588e33fec8f778a883. The enclosing target metadata commit should be read externally with git rev-parse HEAD; it is not embedded to avoid self-reference. Claim-review-loop-v3 acceptance remains pending.",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -5518,6 +5518,12 @@
       "latest_verified_increment": "W565 pure LCA source-difference provider boundary",
       "claim_review_status": "pending_claim_review_loop_v3",
       "note": "Terminal outcome remains explicitly nonterminal; update_goal is not allowed."
+    },
+    "w565_commit_hash_correction": {
+      "corrected_utc": "2026-05-22T06:42:58Z",
+      "wrong_in_consultant_artifacts": "7de3817331dc4862a56ce4b26122cf7dec100ea9",
+      "w565_source_commit": "7de3817fdb4ea2f671d907588e33fec8f778a883",
+      "note": "Corrects consultant-side full-SHA expansion for W565. Product flags remain false and update_goal is not allowed."
     }
   }
 }
