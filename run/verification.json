@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w567-source-difference-transfer-bridge",
-  "generated_utc": "2026-05-22T07:46:44Z",
+  "generated_utc": "2026-05-22T08:04:17Z",
   "source_tree_hash": "feef460aa4cab71fca21c04fdd5106eec926f7bdb14f712292b8a0efc55d8c9b",
   "summary": "W567 connects W566 source-degree source-difference surjectivity to W532 finite-shape transfer: right-open LCA data plus source-difference LCA data now produce WPP limit stability, the cokernel-top/cokernel-pi-zero/epi W566 boundary forms feed that stability field, and W515/W516/W517 providers plus W527 row providers feed representative-image/top-target/compact-target transfer builders. Product success remains false because the concrete right-open input, concrete source-difference boundary, provider rows, localization, and triangulated/left-calculus data are still not instantiated.",
   "commands": [
@@ -7727,6 +7727,24 @@
       "external_self_check_log": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_016_w567_external_self_check.log",
       "external_product_gate_log": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_016_w567_external_product_gate.log",
       "product_gate_status": "failed_expected_nonterminal"
+    },
+    "w567_round1_metadata_blocker_correction": {
+      "corrected_utc": "2026-05-22T08:04:17Z",
+      "review_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w567_claim_review_v3",
+      "round1_validate_round": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w567_claim_review_v3/validate-round-result-round1.json",
+      "round1_reviewer": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w567_claim_review_v3/review_round_01/workers/reviewer-09/result.json",
+      "reason": "reviewer-09 found stale W566 values in current terminal_outcome handoff fields after W567 metadata refresh.",
+      "fields_corrected": [
+        "terminal_outcome.worker_frontier_summary",
+        "terminal_outcome.summary_log_tail",
+        "terminal_outcome.git_commit_note"
+      ],
+      "source_commit_under_review": "37970592b0a47e46ca5e2639c32902c388bdf3d6",
+      "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_016_w567_lake_build.log",
+      "claim_review_status": "pending_claim_review_loop_v3_round2_after_parent_correction",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false
     }
   }
 }
