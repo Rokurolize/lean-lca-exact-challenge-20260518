@@ -1867,6 +1867,19 @@ theorem boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage
       (HomotopyCategory.mappingCone_triangleh_distinguished
         ((BoundedComplexCategory.ι C).map f))).1 hf
 
+/-- Homotopy-equivalence invariance of exact acyclicity supplies the iso-closedness needed
+to identify direct bounded weak equivalences with the exact-acyclic homotopy `trW`
+inverse image. -/
+theorem boundedExactWeakEquivalence_eq_homotopy_trW_inverseImage_of_homotopyEquiv
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (E : ExactAcyclicHomotopyEquivInvarianceInput C) :
+    boundedExactWeakEquivalence C =
+      (exactAcyclicHomotopyObject C).trW.inverseImage
+        (BoundedComplexCategory.homotopyQuotient C) := by
+  haveI : (exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance C E
+  exact boundedExactWeakEquivalence_eq_exactAcyclicHomotopy_trW_inverseImage C
+
 /-- If exact acyclicity is homotopy-category isomorphism invariant, direct bounded
 mapping-cone weak equivalences contain all identities. -/
 noncomputable instance boundedExactWeakEquivalence_containsIdentities_of_isoClosed
@@ -2298,6 +2311,21 @@ theorem
       C I
   exact boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_isoClosed C
 
+/-- Homotopy-equivalence invariance is enough to discharge the exact-acyclic homotopy-object
+iso-closedness premise in the localized-right-adjoint route to direct bounded left calculus. -/
+theorem
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (E : ExactAcyclicHomotopyEquivInvarianceInput C)
+    (I : BoundedHomotopyLocalizedRightAdjointInput C) :
+    (boundedExactWeakEquivalence C).HasLeftCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance C E
+  exact
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      C I
+
 /-- Once the isomorphism closure is triangulated, mathlib supplies the Verdier right calculus
 directly for the isomorphism-closed homotopy-category `trW` class. -/
 theorem exactAcyclicHomotopyIsoClosure_trW_hasRightCalculusOfFractions_of_isTriangulatedClosed2
@@ -2341,6 +2369,21 @@ theorem
     boundedHomotopyExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjointClosed2
       C I
   exact boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_isoClosed C
+
+/-- Homotopy-equivalence invariance is enough to discharge the exact-acyclic homotopy-object
+iso-closedness premise in the localized-left-adjoint route to direct bounded right calculus. -/
+theorem
+    boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_homotopyEquivLeftAdjoint
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    [(exactAcyclicHomotopyIsoClosure C).IsTriangulatedClosed₂]
+    (E : ExactAcyclicHomotopyEquivInvarianceInput C)
+    (I : BoundedHomotopyLocalizedLeftAdjointInput C) :
+    (boundedExactWeakEquivalence C).HasRightCalculusOfFractions := by
+  haveI : (exactAcyclicHomotopyObject C).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance C E
+  exact
+    boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_localizedLeftAdjointClosed2
+      C I
 
 /-- The same reduction as
 `exactAcyclicHomotopyObject_trW_hasLeftCalculusOfFractions_of_homotopyObjectClosed2`,
@@ -3819,6 +3862,18 @@ def Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584 : List 
 
 theorem Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584_count :
     Dbounded.metrizableExactAcyclicHomotopyEquivInvarianceInputNamesW584.length = 1 :=
+  rfl
+
+/-- Combined MetrizableLCA input names for the direct bounded calculus routes after W584:
+the raw iso-closedness premise has been replaced by homotopy-equivalence invariance. -/
+def Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585 : List String :=
+  ["exactAcyclic MetrizableLCA is invariant under homotopy equivalences",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "bounded homotopy localized left adjoint plus counit membership"]
+
+theorem Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585_count :
+    Dbounded.metrizableHomotopyEquivLocalizedAdjunctionCalculusInputNamesW585.length = 4 :=
   rfl
 
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/
