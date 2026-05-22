@@ -13531,6 +13531,225 @@ theorem
       false :=
   rfl
 
+/--
+W576 selected compact-target route for the closed quotient-cover/cokernel-pi-zero
+direct-right-field path. This keeps the W573 right-side boundary data but uses
+W517 compact-target relation data instead of W516 top-target relation data.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  compactTargetProvider :
+    ClosedNatTransOrdinaryCompactTargetRelationProviderW517
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/-- Extract the W573 direct right fields from the W576 compact-target bundle. -/
+def
+    metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576) :
+    MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571 where
+  rightOpen :=
+    Dbounded.metrizableWppLimitRightOpenInput_of_closedQuotientCoverBoundary
+      inputs.rightOpenBoundary
+  rightSurjective :=
+    Dbounded.metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceCokernelPiZeroBoundary
+      inputs.sourcePiZeroBoundary
+
+/--
+Convert the W576 selected bundle to the direct-limit W517 compact-target
+closed-map input surface.
+-/
+def
+    metrizableWppTransferInputsFromDirectLimitCompactTargetRelationClosedMapRows_of_rightOpenClosedQuotientPiZeroBundleW576
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576) :
+    MetrizableWppTransferInputsFromDirectLimitClosedMapRows
+      ClosedNatTransOrdinaryCompactTargetRelationProviderW517 where
+  rightOpen :=
+    (metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576
+      inputs).rightOpen
+  rightSurjective :=
+    (metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576
+      inputs).rightSurjective
+  provider := inputs.compactTargetProvider
+  closedMapRows := inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+W576 closed-map endpoint: closed quotient-cover right-open data,
+cokernel-pi-zero source-difference data, and W517 compact-target relation data
+feed the W532 finite-shape transfer route.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitCompactTargetRelationClosedMapRows
+    (metrizableWppTransferInputsFromDirectLimitCompactTargetRelationClosedMapRows_of_rightOpenClosedQuotientPiZeroBundleW576
+      inputs)
+
+/-- Input names for the W576 compact-target closed-map-row route. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleInputNamesW576 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "ComponentwiseClosedMapRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleInputNamesW576_count :
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleInputNamesW576.length =
+      5 :=
+  rfl
+
+/-- Closed-embedding-row variant of the W576 compact-target route. -/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  compactTargetProvider :
+    ClosedNatTransOrdinaryCompactTargetRelationProviderW517
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/-- Extract the W573 direct right fields from the W576 closed-embedding bundle. -/
+def
+    metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576) :
+    MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571 where
+  rightOpen :=
+    Dbounded.metrizableWppLimitRightOpenInput_of_closedQuotientCoverBoundary
+      inputs.rightOpenBoundary
+  rightSurjective :=
+    Dbounded.metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceCokernelPiZeroBoundary
+      inputs.sourcePiZeroBoundary
+
+/--
+Convert the W576 selected bundle to the direct-limit W517 compact-target
+closed-embedding input surface.
+-/
+def
+    metrizableWppTransferInputsFromDirectLimitCompactTargetRelationClosedEmbeddingRows_of_rightOpenClosedQuotientPiZeroBundleW576
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576) :
+    MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRows
+      ClosedNatTransOrdinaryCompactTargetRelationProviderW517 where
+  rightOpen :=
+    (metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576
+      inputs).rightOpen
+  rightSurjective :=
+    (metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576
+      inputs).rightSurjective
+  provider := inputs.compactTargetProvider
+  closedEmbeddingRows := inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+W576 closed-embedding endpoint: the compact-target route also accepts W527
+closed-embedding rows as the colimit-stability input.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitCompactTargetRelationClosedEmbeddingRows
+    (metrizableWppTransferInputsFromDirectLimitCompactTargetRelationClosedEmbeddingRows_of_rightOpenClosedQuotientPiZeroBundleW576
+      inputs)
+
+/-- Input names for the W576 compact-target closed-embedding-row route. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleInputNamesW576 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleInputNamesW576_count :
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleInputNamesW576.length =
+      5 :=
+  rfl
+
+/--
+Current checked W576 state for the closed quotient/cokernel-pi-zero
+compact-target route.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleStateW576 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapVariantResult : String
+  closedEmbeddingVariantResult : String
+  directRightFieldsResult : String
+  transferEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W576 state. -/
+def currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleSupportStateW576 :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleStateW576 where
+  seed := "w576-right-open-closed-quotient-cokernel-pi-zero-compact-target-bundle"
+  declarations :=
+    ["MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576",
+      "metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576",
+      "metrizableWppTransferInputsFromDirectLimitCompactTargetRelationClosedMapRows_of_rightOpenClosedQuotientPiZeroBundleW576",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleInputNamesW576",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleInputNamesW576_count",
+      "MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576",
+      "metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576",
+      "metrizableWppTransferInputsFromDirectLimitCompactTargetRelationClosedEmbeddingRows_of_rightOpenClosedQuotientPiZeroBundleW576",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleInputNamesW576",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleInputNamesW576_count"]
+  closedMapVariantResult :=
+    "proved: the selected W573 right-side boundary route feeds the W517 compact-target closed-map endpoint"
+  closedEmbeddingVariantResult :=
+    "proved: the selected W573 right-side boundary route feeds the W517 compact-target closed-embedding endpoint"
+  directRightFieldsResult :=
+    "proved: closed quotient-cover right-open boundary plus cokernel-pi-zero source-difference boundary yield W555 direct right fields"
+  transferEndpointResult :=
+    "proved: closed quotient/cokernel-pi-zero/compact-target bundles feed the W532 finite-shape transfer route"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct a concrete ClosedNatTransOrdinaryCompactTargetRelationProviderW517",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct WalkingParallelPair functor-category localization"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleStateW576 :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleStateW576 :=
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleSupportStateW576
+
+theorem
+    currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleStateW576_productSuccess :
+    currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleStateW576.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -14052,6 +14271,34 @@ section Checks
   currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575
 #check
   currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedEmbeddingBundleStateW575_productSuccess
+#check MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576
+#check
+  metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576
+#check
+  metrizableWppTransferInputsFromDirectLimitCompactTargetRelationClosedMapRows_of_rightOpenClosedQuotientPiZeroBundleW576
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleW576
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleInputNamesW576
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedMapBundleInputNamesW576_count
+#check MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576
+#check
+  metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576
+#check
+  metrizableWppTransferInputsFromDirectLimitCompactTargetRelationClosedEmbeddingRows_of_rightOpenClosedQuotientPiZeroBundleW576
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleW576
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleInputNamesW576
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetClosedEmbeddingBundleInputNamesW576_count
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleSupportStateW576
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleStateW576
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroCompactTargetBundleStateW576_productSuccess
 
 end Checks
 
