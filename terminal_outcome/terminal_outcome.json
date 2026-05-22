@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W589 exposes the remaining categorical ExactAt-to-strict-exact direction as explicit topological short-complex inputs. It adds MetrizableExactAtTopologyInputs, proves exactAcyclic_of_exactAt_metrizableLCA_of_topology using strictShortExact_of_exact_of_topology degreewise, and packages those inputs into the W588 MetrizableLCA exact-at detection route and homology-detection route. This is verified nonterminal support only: it does not construct the degreewise topology facts, homology existence, forgetful homology preservation, WPP boundary/provider data, localized adjunction membership, triangulated-closedness, or Dbounded triangulated fields.",
+  "summary": "W590 narrows the reverse ExactAt-to-strict-exact route: exactness of each short complex supplies its local homology data, so the reverse direction only needs forgetful homology preservation plus degreewise closed-embedding, open-map, and surjectivity topology facts. It adds MetrizableExactAtStrictTopologyInputs, exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology, and a homology-detection bridge that separates global homology existence from the narrower reverse topology inputs. This is verified nonterminal support only: it does not construct homology existence, forgetful homology preservation, the degreewise topology facts, WPP boundary/provider data, localized adjunction membership, triangulated-closedness, or Dbounded triangulated fields.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -975,7 +975,16 @@
     "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_038_w589_fix1_full_lake_build.log exit_code=0)",
     "python3 json validation for manifest/run/terminal_outcome (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_038_w589_fix1_json_validation.log exit_code=0)",
     "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_038_w589_fix1_git_diff_check.log exit_code=0)",
-    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_038_w589_fix1_external_audit_terminal_expected_nonterminal.log exit_code=1)"
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_038_w589_fix1_external_audit_terminal_expected_nonterminal.log exit_code=1)",
+    "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_039_w590_source_lean.log exit_code=0)",
+    "lake build LeanLCAExactChallenge.Derived.Bounded (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_039_w590_lake_build_source.log exit_code=0)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_039_w590_product_declarations_lean.log exit_code=0)",
+    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_039_w590_required_declarations_lean.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_039_w590_external_audit_self_check.log exit_code=0)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_039_w590_full_lake_build.log exit_code=0)",
+    "python3 json validation for manifest/run/terminal_outcome (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_039_w590_json_validation.log exit_code=0)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_039_w590_git_diff_check.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_039_w590_external_audit_terminal_expected_nonterminal.log exit_code=1)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535.walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
@@ -2560,7 +2569,14 @@
     "Dbounded.metrizableExactAtTopologyInputNamesW589",
     "Dbounded.metrizableExactAtTopologyInputNamesW589_count",
     "Dbounded.metrizableExactAtTopologyRouteNamesW589",
-    "Dbounded.metrizableExactAtTopologyRouteNamesW589_count"
+    "Dbounded.metrizableExactAtTopologyRouteNamesW589_count",
+    "MetrizableExactAtStrictTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_strictTopology",
+    "Dbounded.metrizableExactAtStrictTopologyInputNamesW590",
+    "Dbounded.metrizableExactAtStrictTopologyInputNamesW590_count",
+    "Dbounded.metrizableExactAtStrictTopologyRouteNamesW590",
+    "Dbounded.metrizableExactAtStrictTopologyRouteNamesW590_count"
   ],
   "known_gaps": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
@@ -2581,7 +2597,7 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W589 removes the opaque categorical ExactAt-to-strict-exactacyclic comparison field by replacing it with concrete degreewise closed-embedding/open-map/surjectivity topology obligations. Remaining exact-at route fields are homology existence, forgetful homology preservation, and those topology facts, plus existing WPP/provider/localization/triangulated-frontier items.",
+  "worker_frontier_summary": "W590 separates the exact-at route into global homology existence and a four-field strict-topology reverse route. Remaining exact-at route fields are homology existence, forgetful homology preservation, and degreewise closed-embedding/open-map/surjectivity facts, plus existing WPP/provider/localization/triangulated-frontier items.",
   "claim_review_result": "not_run_nonterminal_support_increment",
   "remaining_gaps": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
@@ -2597,7 +2613,7 @@
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "next_recommended_goal": "Prefer concrete construction of degreewise topology facts, homology existence, forgetful homology preservation, exact-acyclic isoClosure closed2/triangle realization, WPP closed quotient/source pi-zero boundary data, W517/W527 provider data, normalized fixed-target localization data, localized adjunction membership inputs, or Dbounded triangulated fields.",
+  "next_recommended_goal": "Prefer concrete construction of homology existence, forgetful homology preservation, degreewise topology facts, exact-acyclic isoClosure closed2/triangle realization, WPP closed quotient/source pi-zero boundary data, W517/W527 provider data, normalized fixed-target localization data, localized adjunction membership inputs, or Dbounded triangulated fields.",
   "implemented_declarations": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -4639,10 +4655,17 @@
     "Dbounded.metrizableExactAtTopologyInputNamesW589",
     "Dbounded.metrizableExactAtTopologyInputNamesW589_count",
     "Dbounded.metrizableExactAtTopologyRouteNamesW589",
-    "Dbounded.metrizableExactAtTopologyRouteNamesW589_count"
+    "Dbounded.metrizableExactAtTopologyRouteNamesW589_count",
+    "MetrizableExactAtStrictTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_strictTopology",
+    "Dbounded.metrizableExactAtStrictTopologyInputNamesW590",
+    "Dbounded.metrizableExactAtStrictTopologyInputNamesW590_count",
+    "Dbounded.metrizableExactAtStrictTopologyRouteNamesW590",
+    "Dbounded.metrizableExactAtStrictTopologyRouteNamesW590_count"
   ],
-  "generated_utc": "2026-05-22T16:45:01Z",
-  "support_result_classification": "nonterminal_metrizable_exact_at_topology_route",
+  "generated_utc": "2026-05-22T16:51:37Z",
+  "support_result_classification": "nonterminal_metrizable_exact_at_strict_topology_route",
   "implemented_declarations_checked": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -6720,7 +6743,14 @@
     "Dbounded.metrizableExactAtTopologyInputNamesW589",
     "Dbounded.metrizableExactAtTopologyInputNamesW589_count",
     "Dbounded.metrizableExactAtTopologyRouteNamesW589",
-    "Dbounded.metrizableExactAtTopologyRouteNamesW589_count"
+    "Dbounded.metrizableExactAtTopologyRouteNamesW589_count",
+    "MetrizableExactAtStrictTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_strictTopology",
+    "Dbounded.metrizableExactAtStrictTopologyInputNamesW590",
+    "Dbounded.metrizableExactAtStrictTopologyInputNamesW590_count",
+    "Dbounded.metrizableExactAtStrictTopologyRouteNamesW590",
+    "Dbounded.metrizableExactAtStrictTopologyRouteNamesW590_count"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
@@ -6738,10 +6768,10 @@
     "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "latest_verified_increment": "W589 topological ExactAt-to-strict-exact route",
-  "source_tree_hash": "90317e2b64920294940ace1323604e983d4e3f3f680b4a6706617c143f3850c7",
-  "summary_log_tail": "W589 turns the reverse ExactAt-to-exactAcyclic field into explicit degreewise topology obligations and packages them into the existing MetrizableLCA homology-detection route; product flags remain false.",
-  "git_commit_note": "W589 topological ExactAt-to-strict-exact route should be committed only after metadata refresh and final verification pass with product flags false.",
+  "latest_verified_increment": "W590 narrowed ExactAt strict-topology route",
+  "source_tree_hash": "414825a785b9d2f37eba9144e66ae6e6b941e8b54cce105316859b640d173288",
+  "summary_log_tail": "W590 removes homology existence from the reverse ExactAt-to-strict-exact topology bundle because exact short complexes provide local homology; product flags remain false.",
+  "git_commit_note": "W590 narrowed ExactAt strict-topology route should be committed only after metadata refresh and final verification pass with product flags false.",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -7166,6 +7196,16 @@
       "refreshed_utc": "2026-05-22T16:45:01Z",
       "source_tree_hash": "90317e2b64920294940ace1323604e983d4e3f3f680b4a6706617c143f3850c7",
       "latest_verified_increment": "W589 topological ExactAt-to-strict-exact route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "Nonterminal support increment only; do not call update_goal(status=\"complete\")."
+    },
+    "w590_exact_at_strict_topology_route_metadata_refresh": {
+      "refreshed_utc": "2026-05-22T16:51:37Z",
+      "source_tree_hash": "414825a785b9d2f37eba9144e66ae6e6b941e8b54cce105316859b640d173288",
+      "latest_verified_increment": "W590 narrowed ExactAt strict-topology route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "product_success": false,
       "product_complete": false,

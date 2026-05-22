@@ -527,6 +527,34 @@ theorem exactAcyclic_of_exactAt_metrizableLCA_of_topology
     (I.hasHomology K i) I.forgetPreservesHomology (hK i)
     (I.closedEmbedding K i) (I.openMap K i) (I.surjective K i)
 
+/-- The reverse ExactAt-to-strict-exact direction does not need homology existence as an
+input: exactness of each short complex supplies the local homology data. -/
+structure MetrizableExactAtStrictTopologyInputs : Prop where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  surjective :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+
+/-- Categorical exactness at every degree gives strict exact acyclicity from only the
+degreewise topology fields plus forgetful homology preservation. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology
+    (I : MetrizableExactAtStrictTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K := by
+  intro i
+  have hhom : (K.sc i).HasHomology := (show (K.sc i).Exact from hK i).hasHomology
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    hhom I.forgetPreservesHomology (hK i)
+    (I.closedEmbedding K i) (I.openMap K i) (I.surjective K i)
+
 /-- Homology detection of exact acyclicity implies invariance under homotopy equivalences:
 homotopy equivalences induce isomorphisms on homology. -/
 theorem exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
@@ -4095,6 +4123,44 @@ def Dbounded.metrizableExactAtTopologyRouteNamesW589 : List String :=
 
 theorem Dbounded.metrizableExactAtTopologyRouteNamesW589_count :
     Dbounded.metrizableExactAtTopologyRouteNamesW589.length = 4 :=
+  rfl
+
+/-- W590 combines global homology existence with the narrower reverse topology route. -/
+theorem Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_strictTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtStrictTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (C := MetrizableLCA.{0})
+    { hasHomology := hasHomology
+      exactAt_of_exactAcyclic := by
+        intro K hK i
+        exact exactAt_of_exactAcyclic_metrizableLCA
+          hasHomology I.forgetPreservesHomology hK i
+      exactAcyclic_of_exactAt := by
+        intro K hK
+        exact exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology I K hK }
+
+/-- W590 input names for the narrowed reverse ExactAt-to-strict-exact route. -/
+def Dbounded.metrizableExactAtStrictTopologyInputNamesW590 : List String :=
+  ["forget₂ MetrizableLCA AddCommGrpCat preserves homology",
+    "each degreewise incoming differential is a closed embedding",
+    "each degreewise outgoing differential is an open map",
+    "each degreewise outgoing differential is surjective"]
+
+theorem Dbounded.metrizableExactAtStrictTopologyInputNamesW590_count :
+    Dbounded.metrizableExactAtStrictTopologyInputNamesW590.length = 4 :=
+  rfl
+
+/-- W590 route names separating global homology existence from reverse topology data. -/
+def Dbounded.metrizableExactAtStrictTopologyRouteNamesW590 : List String :=
+  ["MetrizableExactAtStrictTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_strictTopology"]
+
+theorem Dbounded.metrizableExactAtStrictTopologyRouteNamesW590_count :
+    Dbounded.metrizableExactAtStrictTopologyRouteNamesW590.length = 3 :=
   rfl
 
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/

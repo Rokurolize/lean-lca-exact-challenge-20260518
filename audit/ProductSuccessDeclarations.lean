@@ -3894,6 +3894,18 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   Dbounded.metrizableExactAtTopologyRouteNamesW589
 #check
   Dbounded.metrizableExactAtTopologyRouteNamesW589_count
+#check MetrizableExactAtStrictTopologyInputs
+#check exactAcyclic_of_exactAt_metrizableLCA_of_strictTopology
+#check
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_strictTopology
+#check
+  Dbounded.metrizableExactAtStrictTopologyInputNamesW590
+#check
+  Dbounded.metrizableExactAtStrictTopologyInputNamesW590_count
+#check
+  Dbounded.metrizableExactAtStrictTopologyRouteNamesW590
+#check
+  Dbounded.metrizableExactAtStrictTopologyRouteNamesW590_count
 #check
   Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed
 #check
