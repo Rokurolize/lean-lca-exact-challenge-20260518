@@ -1490,6 +1490,15 @@ structure MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlge
   rightOpen : MetrizableWppLimitRightOpenInput
   rightSurjective : MetrizableWppLimitRightSurjectiveInput
 
+/--
+WPP limit-closure fields with direct left/algebraic proofs and pure LCA
+right-side fields.
+-/
+structure MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraicRightLca :
+    Type 1 where
+  rightOpenLca : MetrizableWppLimitRightOpenLcaInput
+  rightSurjectiveLca : MetrizableWppLimitRightSurjectiveLcaInput
+
 /-- Build the four WPP limit-closure field inputs from a pure LCA left field. -/
 def metrizableWalkingParallelPairLimitClosureFieldInputs_of_leftLca
     (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputsFromLeftLca) :
@@ -1539,6 +1548,20 @@ def metrizableWalkingParallelPairLimitClosureFieldInputs_of_directLeftAlgebraic
   rightSurjective := inputs.rightSurjective
   algebraicExact := metrizableWppLimitAlgebraicExactInput_direct
 
+/--
+Build the WPP limit-closure fields from direct left/algebraic proofs and pure
+LCA right-side certificates.
+-/
+def metrizableWalkingParallelPairLimitClosureFieldInputs_of_directLeftAlgebraicRightLca
+    (inputs :
+      MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraicRightLca) :
+    MetrizableWalkingParallelPairLimitClosureFieldInputs where
+  leftClosed := metrizableWppLimitLeftClosedInput_direct
+  rightOpen := metrizableWppLimitRightOpenInput_of_lca inputs.rightOpenLca
+  rightSurjective :=
+    metrizableWppLimitRightSurjectiveInput_of_lca inputs.rightSurjectiveLca
+  algebraicExact := metrizableWppLimitAlgebraicExactInput_direct
+
 /-- Build WPP exact-acyclic limit closure from the four short-complex field inputs. -/
 theorem metrizableWalkingParallelPairLimitClosure_of_fieldInputs
     (inputs : MetrizableWalkingParallelPairLimitClosureFieldInputs) :
@@ -1584,6 +1607,19 @@ theorem metrizableWalkingParallelPairLimitClosure_of_directLeftAlgebraic
     MetrizableWppLimitClosureInput :=
   exactAcyclic_walkingParallelPair_limitClosure_of_directLeftAlgebraic
     inputs.rightOpen inputs.rightSurjective
+
+/--
+Build WPP exact-acyclic limit closure from direct left/algebraic proofs and pure
+LCA right-side certificates.
+-/
+theorem metrizableWalkingParallelPairLimitClosure_of_directLeftAlgebraicRightLca
+    (inputs :
+      MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraicRightLca) :
+    MetrizableWppLimitClosureInput :=
+  metrizableWalkingParallelPairLimitClosure_of_directLeftAlgebraic
+    { rightOpen := metrizableWppLimitRightOpenInput_of_lca inputs.rightOpenLca
+      rightSurjective :=
+        metrizableWppLimitRightSurjectiveInput_of_lca inputs.rightSurjectiveLca }
 
 theorem metrizableWalkingParallelPairLimitStability_of_comparison_and_closure
     (hcomparison : MetrizableWppLimitComparisonInput)
@@ -1656,6 +1692,22 @@ theorem metrizableWalkingParallelPairLimitStability_of_comparison_and_directLeft
   directWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic
     hcomparison inputs.rightOpen inputs.rightSurjective
 
+/--
+Build WPP limit stability from comparison, direct left/algebraic proofs, and
+pure LCA right-side certificates.
+-/
+theorem metrizableWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraicRightLca
+    (hcomparison : MetrizableWppLimitComparisonInput)
+    (inputs :
+      MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraicRightLca) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic
+    hcomparison
+    { rightOpen := metrizableWppLimitRightOpenInput_of_lca inputs.rightOpenLca
+      rightSurjective :=
+        metrizableWppLimitRightSurjectiveInput_of_lca inputs.rightSurjectiveLca }
+
 /-- Build WPP limit stability from fixed cone comparison plus LCA/component field data. -/
 theorem metrizableWalkingParallelPairLimitStability_of_limitConeComparison_and_allLca
     (hcomparison : MetrizableWppLimitConeComparisonInput)
@@ -1700,6 +1752,18 @@ theorem metrizableWalkingParallelPairLimitStability_of_directLeftAlgebraic
     (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
       WalkingParallelPair :=
   metrizableWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraic
+    metrizableWppLimitComparisonInput_direct inputs
+
+/--
+Build WPP limit stability from W551/W555 direct left/algebraic proofs and pure
+LCA right-side certificates.
+-/
+theorem metrizableWalkingParallelPairLimitStability_of_directLeftAlgebraicRightLca
+    (inputs :
+      MetrizableWalkingParallelPairLimitClosureFieldInputsFromDirectLeftAlgebraicRightLca) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_comparison_and_directLeftAlgebraicRightLca
     metrizableWppLimitComparisonInput_direct inputs
 
 /--

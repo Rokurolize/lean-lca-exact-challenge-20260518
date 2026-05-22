@@ -9705,6 +9705,18 @@ theorem metrizableWalkingParallelPairLimitStability_of_directRightFields
     { rightOpen := rightOpen, rightSurjective := rightSurjective }
 
 /--
+Build WPP limit stability from pure LCA right-open/right-surjective certificates,
+with the left closed-embedding and algebraic exactness fields supplied directly.
+-/
+theorem metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+    (rightOpenLca : Dbounded.MetrizableWppLimitRightOpenLcaInput)
+    (rightSurjectiveLca : Dbounded.MetrizableWppLimitRightSurjectiveLcaInput) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  Dbounded.metrizableWalkingParallelPairLimitStability_of_directLeftAlgebraicRightLca
+    { rightOpenLca := rightOpenLca, rightSurjectiveLca := rightSurjectiveLca }
+
+/--
 W532 finite-shape transfer inputs with WPP limit stability supplied by the W555
 direct limit theorem and WPP colimit stability supplied by W515/W527 closed-map
 rows.
@@ -9906,6 +9918,108 @@ structure MetrizableWppTransferInputsFromDirectLimitClosedEmbeddingRowsNormalize
     Dbounded.MetrizableWppLimitRightOpenInput
   rightSurjective :
     Dbounded.MetrizableWppLimitRightSurjectiveInput
+  provider :
+    Provider
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/--
+Pure LCA right fields plus a W515/W516/W517 provider and W527 closed-map rows,
+with arbitrary functor-category localization.
+-/
+structure MetrizableWppTransferInputsFromLcaRightClosedMapRows
+    (Provider : Type 1) : Type 1 where
+  rightOpenLca :
+    Dbounded.MetrizableWppLimitRightOpenLcaInput
+  rightSurjectiveLca :
+    Dbounded.MetrizableWppLimitRightSurjectiveLcaInput
+  provider :
+    Provider
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+Pure LCA right fields plus a W515/W516/W517 provider and W527 closed-embedding
+rows, with arbitrary functor-category localization.
+-/
+structure MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRows
+    (Provider : Type 1) : Type 1 where
+  rightOpenLca :
+    Dbounded.MetrizableWppLimitRightOpenLcaInput
+  rightSurjectiveLca :
+    Dbounded.MetrizableWppLimitRightSurjectiveLcaInput
+  provider :
+    Provider
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/--
+Pure LCA right fields plus a W515/W516/W517 provider and W527 closed-map rows,
+with localization reduced to fixed-target data.
+-/
+structure MetrizableWppTransferInputsFromLcaRightClosedMapRowsFixedTargets
+    (Provider : Type 1) : Type 1 where
+  rightOpenLca :
+    Dbounded.MetrizableWppLimitRightOpenLcaInput
+  rightSurjectiveLca :
+    Dbounded.MetrizableWppLimitRightSurjectiveLcaInput
+  provider :
+    Provider
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  fixedTargetInputs :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+
+/--
+Pure LCA right fields plus a W515/W516/W517 provider and W527 closed-embedding
+rows, with localization reduced to fixed-target data.
+-/
+structure MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRowsFixedTargets
+    (Provider : Type 1) : Type 1 where
+  rightOpenLca :
+    Dbounded.MetrizableWppLimitRightOpenLcaInput
+  rightSurjectiveLca :
+    Dbounded.MetrizableWppLimitRightSurjectiveLcaInput
+  provider :
+    Provider
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  fixedTargetInputs :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+
+/--
+Pure LCA right fields plus a W515/W516/W517 provider and W527 closed-map rows,
+with localization reduced to normalized fixed-target data.
+-/
+structure MetrizableWppTransferInputsFromLcaRightClosedMapRowsNormalized
+    (Provider : Type 1) : Type 1 where
+  rightOpenLca :
+    Dbounded.MetrizableWppLimitRightOpenLcaInput
+  rightSurjectiveLca :
+    Dbounded.MetrizableWppLimitRightSurjectiveLcaInput
+  provider :
+    Provider
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/--
+Pure LCA right fields plus a W515/W516/W517 provider and W527 closed-embedding
+rows, with localization reduced to normalized fixed-target data.
+-/
+structure MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRowsNormalized
+    (Provider : Type 1) : Type 1 where
+  rightOpenLca :
+    Dbounded.MetrizableWppLimitRightOpenLcaInput
+  rightSurjectiveLca :
+    Dbounded.MetrizableWppLimitRightSurjectiveLcaInput
   provider :
     Provider
   closedEmbeddingRows :
@@ -10318,6 +10432,343 @@ def
     Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
       inputs.normalizedInputs
 
+/--
+Build W532's transfer record from pure LCA right fields, W515 representative-image
+data, and W527 closed-map rows.
+-/
+def metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightRepresentativeImageClosedMapRows
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedMapRows
+        ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Build W532's transfer record from pure LCA right fields, W515 representative-image
+data, and W527 closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightRepresentativeImageClosedEmbeddingRows
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRows
+        ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_representativeImage_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Build W532's transfer record from pure LCA right fields, W515/W527 closed-map rows,
+and fixed-target localization data.
+-/
+def metrizableWppTransferInputs_of_lcaRightRepImageClosedMapRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedMapRowsFixedTargets
+        ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W515/W527
+closed-embedding rows, and fixed-target localization data.
+-/
+def metrizableWppTransferInputs_of_lcaRightRepImageClosedEmbeddingRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRowsFixedTargets
+        ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_representativeImage_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W515/W527 closed-map rows,
+and normalized localization data.
+-/
+def metrizableWppTransferInputs_of_lcaRightRepImageClosedMapRowsNormalized
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedMapRowsNormalized
+        ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+      inputs.normalizedInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W515/W527
+closed-embedding rows, and normalized localization data.
+-/
+def metrizableWppTransferInputs_of_lcaRightRepImageClosedEmbeddingRowsNormalized
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRowsNormalized
+        ClosedNatTransOrdinaryRepresentativeImageProviderW515) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_representativeImage_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+      inputs.normalizedInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W516 top-target data,
+and W527 closed-map rows.
+-/
+def metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightTopTargetRelationClosedMapRows
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedMapRows
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Build W532's transfer record from pure LCA right fields, W516 top-target data,
+and W527 closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightTopTargetRelationClosedEmbeddingRows
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRows
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Build W532's transfer record from pure LCA right fields, W517 compact-target data,
+and W527 closed-map rows.
+-/
+def metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightCompactTargetRelationClosedMapRows
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedMapRows
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Build W532's transfer record from pure LCA right fields, W517 compact-target data,
+and W527 closed-embedding rows.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightCompactTargetRelationClosedEmbeddingRows
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRows
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+Build W532's transfer record from pure LCA right fields, W516 top-target data,
+W527 closed-map rows, and fixed-target localization data.
+-/
+def metrizableWppTransferInputs_of_lcaRightTopTargetRelationClosedMapRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedMapRowsFixedTargets
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W516 top-target data,
+W527 closed-embedding rows, and fixed-target localization data.
+-/
+def
+    metrizableWppTransferInputs_of_lcaRightTopTargetRelationClosedEmbeddingRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRowsFixedTargets
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W517 compact-target data,
+W527 closed-map rows, and fixed-target localization data.
+-/
+def metrizableWppTransferInputs_of_lcaRightCompactTargetRelationClosedMapRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedMapRowsFixedTargets
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W517 compact-target data,
+W527 closed-embedding rows, and fixed-target localization data.
+-/
+def
+    metrizableWppTransferInputs_of_lcaRightCompactTargetRelationClosedEmbeddingRowsFixedTargets
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRowsFixedTargets
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_fixedTargetData
+      inputs.fixedTargetInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W516 top-target data,
+W527 closed-map rows, and normalized localization data.
+-/
+def metrizableWppTransferInputs_of_lcaRightTopTargetRelationClosedMapRowsNormalized
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedMapRowsNormalized
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+      inputs.normalizedInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W516 top-target data,
+W527 closed-embedding rows, and normalized localization data.
+-/
+def
+    metrizableWppTransferInputs_of_lcaRightTopTargetRelationClosedEmbeddingRowsNormalized
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRowsNormalized
+        ClosedNatTransOrdinaryTopTargetRelationProviderW516) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_topTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+      inputs.normalizedInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W517 compact-target data,
+W527 closed-map rows, and normalized localization data.
+-/
+def metrizableWppTransferInputs_of_lcaRightCompactTargetRelationClosedMapRowsNormalized
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedMapRowsNormalized
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedMapRows_w535
+      inputs.provider inputs.closedMapRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+      inputs.normalizedInputs
+
+/--
+Build W532's transfer record from pure LCA right fields, W517 compact-target data,
+W527 closed-embedding rows, and normalized localization data.
+-/
+def
+    metrizableWppTransferInputs_of_lcaRightCompactTargetRelationClosedEmbeddingRowsNormalized
+    (inputs :
+      MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRowsNormalized
+        ClosedNatTransOrdinaryCompactTargetRelationProviderW517) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs where
+  limitStability :=
+    metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+      inputs.rightOpenLca inputs.rightSurjectiveLca
+  colimitStability :=
+    walkingParallelPairColimitStability_of_compactTargetRelation_and_closedEmbeddingRows_w535
+      inputs.provider inputs.closedEmbeddingRows
+  functorCategoryLocalization :=
+    Dbounded.metrizableWalkingParallelPairFunctorCategoryLocalization_of_normalized
+      inputs.normalizedInputs
+
 /-- Input names for the representative-image closed-map-row form of W532 finite-shape transfer. -/
 def metrizableWalkingParallelPairFiniteShapeTransferFromRepresentativeImageClosedMapRowsInputNames :
     List String :=
@@ -10624,6 +11075,118 @@ theorem metrizableWppTransferFromDirectLimitClosedEmbeddingRowsNormalizedInputNa
       6 :=
   rfl
 
+/--
+Input names for W515/W516/W517 provider routes with pure LCA right fields,
+closed-map rows, and arbitrary functor-category localization.
+-/
+def metrizableWppTransferFromLcaRightClosedMapRowsInputNames
+    (providerName : String) : List String :=
+  ["pure LCA WPP limit right-open certificate",
+    "pure LCA WPP limit right-surjective certificate",
+    providerName,
+    "ComponentwiseClosedMapRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem metrizableWppTransferFromLcaRightClosedMapRowsInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromLcaRightClosedMapRowsInputNames providerName).length =
+      5 :=
+  rfl
+
+/--
+Input names for W515/W516/W517 provider routes with pure LCA right fields,
+closed-embedding rows, and arbitrary functor-category localization.
+-/
+def metrizableWppTransferFromLcaRightClosedEmbeddingRowsInputNames
+    (providerName : String) : List String :=
+  ["pure LCA WPP limit right-open certificate",
+    "pure LCA WPP limit right-surjective certificate",
+    providerName,
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem metrizableWppTransferFromLcaRightClosedEmbeddingRowsInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromLcaRightClosedEmbeddingRowsInputNames providerName).length =
+      5 :=
+  rfl
+
+/--
+Input names for W515/W516/W517 provider routes with pure LCA right fields,
+closed-map rows, and fixed-target localization data.
+-/
+def metrizableWppTransferFromLcaRightClosedMapRowsFixedTargetInputNames
+    (providerName : String) : List String :=
+  ["pure LCA WPP limit right-open certificate",
+    "pure LCA WPP limit right-surjective certificate",
+    providerName,
+    "ComponentwiseClosedMapRowsProviderW527",
+    "fixed-target lift/fac/uniq for WalkingParallelPair to Dbounded MetrizableLCA",
+    "fixed-target lift/fac/uniq for the WalkingParallelPair localization model"]
+
+theorem metrizableWppTransferFromLcaRightClosedMapRowsFixedTargetInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromLcaRightClosedMapRowsFixedTargetInputNames providerName).length =
+      6 :=
+  rfl
+
+/--
+Input names for W515/W516/W517 provider routes with pure LCA right fields,
+closed-embedding rows, and fixed-target localization data.
+-/
+def metrizableWppTransferFromLcaRightClosedEmbeddingRowsFixedTargetInputNames
+    (providerName : String) : List String :=
+  ["pure LCA WPP limit right-open certificate",
+    "pure LCA WPP limit right-surjective certificate",
+    providerName,
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "fixed-target lift/fac/uniq for WalkingParallelPair to Dbounded MetrizableLCA",
+    "fixed-target lift/fac/uniq for the WalkingParallelPair localization model"]
+
+theorem metrizableWppTransferFromLcaRightClosedEmbeddingRowsFixedTargetInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromLcaRightClosedEmbeddingRowsFixedTargetInputNames providerName).length =
+      6 :=
+  rfl
+
+/--
+Input names for W515/W516/W517 provider routes with pure LCA right fields,
+closed-map rows, and normalized localization data.
+-/
+def metrizableWppTransferFromLcaRightClosedMapRowsNormalizedInputNames
+    (providerName : String) : List String :=
+  ["pure LCA WPP limit right-open certificate",
+    "pure LCA WPP limit right-surjective certificate",
+    providerName,
+    "ComponentwiseClosedMapRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness"]
+
+theorem metrizableWppTransferFromLcaRightClosedMapRowsNormalizedInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromLcaRightClosedMapRowsNormalizedInputNames providerName).length =
+      6 :=
+  rfl
+
+/--
+Input names for W515/W516/W517 provider routes with pure LCA right fields,
+closed-embedding rows, and normalized localization data.
+-/
+def metrizableWppTransferFromLcaRightClosedEmbeddingRowsNormalizedInputNames
+    (providerName : String) : List String :=
+  ["pure LCA WPP limit right-open certificate",
+    "pure LCA WPP limit right-surjective certificate",
+    providerName,
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness"]
+
+theorem metrizableWppTransferFromLcaRightClosedEmbeddingRowsNormalizedInputNames_count
+    (providerName : String) :
+    (metrizableWppTransferFromLcaRightClosedEmbeddingRowsNormalizedInputNames providerName).length =
+      6 :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -10723,6 +11286,65 @@ section Checks
 #check
   metrizableWppTransferInputs_of_directLimitCompactTargetRelationClosedEmbeddingRowsNormalized
 #check
+  metrizableWalkingParallelPairLimitStability_of_lcaRightFields
+#check
+  MetrizableWppTransferInputsFromLcaRightClosedMapRows
+#check
+  (MetrizableWppTransferInputsFromLcaRightClosedMapRows
+    ClosedNatTransOrdinaryRepresentativeImageProviderW515)
+#check
+  (MetrizableWppTransferInputsFromLcaRightClosedMapRows
+    ClosedNatTransOrdinaryTopTargetRelationProviderW516)
+#check
+  (MetrizableWppTransferInputsFromLcaRightClosedMapRows
+    ClosedNatTransOrdinaryCompactTargetRelationProviderW517)
+#check
+  MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRows
+#check
+  MetrizableWppTransferInputsFromLcaRightClosedMapRowsFixedTargets
+#check
+  MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRowsFixedTargets
+#check
+  MetrizableWppTransferInputsFromLcaRightClosedMapRowsNormalized
+#check
+  MetrizableWppTransferInputsFromLcaRightClosedEmbeddingRowsNormalized
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightRepresentativeImageClosedMapRows
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightRepresentativeImageClosedEmbeddingRows
+#check
+  metrizableWppTransferInputs_of_lcaRightRepImageClosedMapRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_lcaRightRepImageClosedEmbeddingRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_lcaRightRepImageClosedMapRowsNormalized
+#check
+  metrizableWppTransferInputs_of_lcaRightRepImageClosedEmbeddingRowsNormalized
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightTopTargetRelationClosedMapRows
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightTopTargetRelationClosedEmbeddingRows
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightCompactTargetRelationClosedMapRows
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_lcaRightCompactTargetRelationClosedEmbeddingRows
+#check
+  metrizableWppTransferInputs_of_lcaRightTopTargetRelationClosedMapRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_lcaRightTopTargetRelationClosedEmbeddingRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_lcaRightCompactTargetRelationClosedMapRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_lcaRightCompactTargetRelationClosedEmbeddingRowsFixedTargets
+#check
+  metrizableWppTransferInputs_of_lcaRightTopTargetRelationClosedMapRowsNormalized
+#check
+  metrizableWppTransferInputs_of_lcaRightTopTargetRelationClosedEmbeddingRowsNormalized
+#check
+  metrizableWppTransferInputs_of_lcaRightCompactTargetRelationClosedMapRowsNormalized
+#check
+  metrizableWppTransferInputs_of_lcaRightCompactTargetRelationClosedEmbeddingRowsNormalized
+#check
   metrizableWppTransferFromRepImageClosedMapRowsFixedTargetInputNames
 #check
   metrizableWppTransferFromRepImageClosedMapRowsFixedTargetInputNames_count
@@ -10810,6 +11432,60 @@ section Checks
     "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
 #check
   metrizableWppTransferFromDirectLimitClosedEmbeddingRowsNormalizedInputNames_count
+#check
+  (metrizableWppTransferFromLcaRightClosedMapRowsInputNames
+    "ClosedNatTransOrdinaryRepresentativeImageProviderW515")
+#check
+  (metrizableWppTransferFromLcaRightClosedMapRowsInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromLcaRightClosedMapRowsInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromLcaRightClosedMapRowsInputNames_count
+#check
+  (metrizableWppTransferFromLcaRightClosedEmbeddingRowsInputNames
+    "ClosedNatTransOrdinaryRepresentativeImageProviderW515")
+#check
+  (metrizableWppTransferFromLcaRightClosedEmbeddingRowsInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromLcaRightClosedEmbeddingRowsInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromLcaRightClosedEmbeddingRowsInputNames_count
+#check
+  (metrizableWppTransferFromLcaRightClosedMapRowsFixedTargetInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromLcaRightClosedMapRowsFixedTargetInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromLcaRightClosedMapRowsFixedTargetInputNames_count
+#check
+  (metrizableWppTransferFromLcaRightClosedEmbeddingRowsFixedTargetInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromLcaRightClosedEmbeddingRowsFixedTargetInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromLcaRightClosedEmbeddingRowsFixedTargetInputNames_count
+#check
+  (metrizableWppTransferFromLcaRightClosedMapRowsNormalizedInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromLcaRightClosedMapRowsNormalizedInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromLcaRightClosedMapRowsNormalizedInputNames_count
+#check
+  (metrizableWppTransferFromLcaRightClosedEmbeddingRowsNormalizedInputNames
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516")
+#check
+  (metrizableWppTransferFromLcaRightClosedEmbeddingRowsNormalizedInputNames
+    "ClosedNatTransOrdinaryCompactTargetRelationProviderW517")
+#check
+  metrizableWppTransferFromLcaRightClosedEmbeddingRowsNormalizedInputNames_count
 
 end Checks
 
