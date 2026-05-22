@@ -1300,6 +1300,16 @@ theorem wppLimit_lca_sourceDifferenceMap_surjective_of_epiBoundary
       haveI : Epi δ := hepi
       exact ⟨hopen, MetrizableLCA.cokernelπ_eq_zero_of_epi δ⟩)
 
+/-- Cokernel-pi-zero data supplies the Epi source-difference boundary. -/
+theorem wppLimit_lca_sourceDifferenceEpiBoundary_of_cokernelPiZeroBoundary
+    (hboundary : WppLimitLcaSourceDifferenceCokernelPiZeroBoundary) :
+    WppLimitLcaSourceDifferenceEpiBoundary := by
+  intro X cx hcx
+  let δ : X.obj WalkingParallelPair.zero ⟶ X.obj WalkingParallelPair.one :=
+    X.map WalkingParallelPairHom.left - X.map WalkingParallelPairHom.right
+  rcases hboundary X cx hcx with ⟨hopen, hπ⟩
+  exact ⟨hopen, MetrizableLCA.epi_of_cokernelπ_eq_zero δ hπ⟩
+
 /--
 Pure LCA source-degree difference surjectivity supplies the source-difference
 boundary used by the WPP limit right-surjectivity argument.
@@ -2112,6 +2122,12 @@ theorem metrizableWppLimitSourceDifferenceLcaInput_of_cokernelPiZeroBoundary
     (hboundary : MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary) :
     MetrizableWppLimitSourceDifferenceLcaInput :=
   wppLimit_lca_sourceDifferenceMap_surjective_of_cokernelPiZeroBoundary hboundary
+
+/-- Build the Epi source-difference boundary from cokernel-pi-zero data. -/
+theorem metrizableWppLimitSourceDifferenceEpiBoundary_of_cokernelPiZeroBoundary
+    (hboundary : MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary) :
+    MetrizableWppLimitSourceDifferenceEpiBoundary :=
+  wppLimit_lca_sourceDifferenceEpiBoundary_of_cokernelPiZeroBoundary hboundary
 
 /-- Build the pure LCA source-difference input from epi data. -/
 theorem metrizableWppLimitSourceDifferenceLcaInput_of_epiBoundary

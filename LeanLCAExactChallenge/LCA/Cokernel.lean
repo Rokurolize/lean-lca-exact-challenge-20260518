@@ -161,6 +161,16 @@ lemma cokernelπ_desc {k : B ⟶ Z} (hk : f ≫ k = 0) :
   quotientLift_quotientMap B (cokernelSubgroup f) (AddSubgroup.isClosed_topologicalClosure _) k
     (cokernel_desc_ker_le f hk)
 
+lemma epi_of_cokernelπ_eq_zero (hπ : cokernelπ f = 0) : Epi f := by
+  constructor
+  intro Z g h hgh
+  rw [← sub_eq_zero]
+  have hkill : f ≫ (g - h) = 0 := by
+    rw [Preadditive.comp_sub, hgh, sub_self]
+  have hdesc := cokernelπ_desc f hkill
+  rw [hπ, zero_comp] at hdesc
+  simpa using hdesc.symm
+
 /-- Uniqueness of the morphism induced from a map that kills `f`. -/
 lemma cokernelDesc_unique {k : B ⟶ Z} (hk : f ≫ k = 0) (m : cokernelObj f ⟶ Z)
     (hm : cokernelπ f ≫ m = k) : m = cokernelDesc f hk := by

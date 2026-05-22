@@ -13100,6 +13100,170 @@ theorem
       false :=
   rfl
 
+/--
+W573 selected bundle for the closed quotient-cover route with source-difference
+cokernel-pi-zero data.  The new source input is converted to the Epi boundary
+required by W572 using the explicit LCA cokernel universal property.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  representativeImageProvider :
+    ClosedNatTransOrdinaryRepresentativeImageProviderW515
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/-- Convert W573's source cokernel-pi-zero data to W572's Epi boundary. -/
+def
+    metrizableWppLimitSourceDifferenceEpiBoundary_of_closedQuotientPiZeroBundleW573
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573) :
+    Dbounded.MetrizableWppLimitSourceDifferenceEpiBoundary :=
+  Dbounded.metrizableWppLimitSourceDifferenceEpiBoundary_of_cokernelPiZeroBoundary
+    inputs.sourcePiZeroBoundary
+
+/-- Convert the W573 cokernel-pi-zero source bundle to the W572 Epi bundle. -/
+def
+    metrizableWppRightOpenClosedQuotientCokernelPiZero_to_epiBundleW573
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573) :
+    MetrizableWppRightOpenClosedQuotientEpiDirectRightFieldsBundleW572 where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourceBoundary :=
+    metrizableWppLimitSourceDifferenceEpiBoundary_of_closedQuotientPiZeroBundleW573
+      inputs
+  representativeImageProvider := inputs.representativeImageProvider
+  closedMapRows := inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/-- Extract W555 direct right fields from the W573 cokernel-pi-zero bundle. -/
+def metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroBundleW573
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573) :
+    MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571 :=
+  metrizableWppDirectRightFields_of_rightOpenClosedQuotientEpiBundleW572
+    (metrizableWppRightOpenClosedQuotientCokernelPiZero_to_epiBundleW573
+      inputs)
+
+/--
+W573 closed quotient-cover/cokernel-pi-zero extraction supplies the W532
+limit-stability field.
+-/
+theorem
+    metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientPiZeroBundleW573
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsStableUnderLimitsOfShape
+      WalkingParallelPair :=
+  metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientEpiDirectRightFieldsBundleW572
+    (metrizableWppRightOpenClosedQuotientCokernelPiZero_to_epiBundleW573
+      inputs)
+
+/--
+Convert the W573 selected bundle to the existing W515/W527 direct-limit
+representative-image closed-map input surface.
+-/
+def
+    metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenClosedQuotientPiZeroBundleW573
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573) :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows :=
+  metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenClosedQuotientEpiBundleW572
+    (metrizableWppRightOpenClosedQuotientCokernelPiZero_to_epiBundleW573
+      inputs)
+
+/--
+W573 endpoint: closed quotient-cover right-open data and cokernel-pi-zero
+source-difference data feed the W515/W527 direct-right-field route.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroDirectRightFieldsBundleW573
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientEpiDirectRightFieldsBundleW572
+    (metrizableWppRightOpenClosedQuotientCokernelPiZero_to_epiBundleW573
+      inputs)
+
+/-- Input names for the W573 closed quotient/cokernel-pi-zero direct-right-field route. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleInputNamesW573 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+    "ComponentwiseClosedMapRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleInputNamesW573_count :
+    metrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleInputNamesW573.length =
+      5 :=
+  rfl
+
+/--
+Current checked W573 state for the closed quotient/cokernel-pi-zero
+direct-right-field route.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573 :
+    Type where
+  seed : String
+  declarations : List String
+  sourceBoundaryUpgradeResult : String
+  directRightFieldsResult : String
+  transferEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W573 state. -/
+def currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleSupportStateW573 :
+    MetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573 where
+  seed := "w573-right-open-closed-quotient-cokernel-pi-zero-direct-right-fields-bundle"
+  declarations :=
+    ["MetrizableLCA.epi_of_cokernelπ_eq_zero",
+      "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_sourceDifferenceEpiBoundary_of_cokernelPiZeroBoundary",
+      "Dbounded.metrizableWppLimitSourceDifferenceEpiBoundary_of_cokernelPiZeroBoundary",
+      "MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573",
+      "metrizableWppLimitSourceDifferenceEpiBoundary_of_closedQuotientPiZeroBundleW573",
+      "metrizableWppRightOpenClosedQuotientCokernelPiZero_to_epiBundleW573",
+      "metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroBundleW573",
+      "metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientPiZeroBundleW573",
+      "metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenClosedQuotientPiZeroBundleW573",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroDirectRightFieldsBundleW573",
+      "metrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleInputNamesW573",
+      "metrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleInputNamesW573_count"]
+  sourceBoundaryUpgradeResult :=
+    "proved: cokernel-pi-zero source-difference data yield the Epi boundary required by W572"
+  directRightFieldsResult :=
+    "proved: closed quotient-cover right-open boundary plus cokernel-pi-zero source-difference boundary yield W555 direct right fields"
+  transferEndpointResult :=
+    "proved: closed quotient/cokernel-pi-zero bundle feeds the W515/W527 direct-limit representative-image closed-map route"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct a concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527",
+      "construct WalkingParallelPair functor-category localization"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573 :
+    MetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573 :=
+  currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleSupportStateW573
+
+theorem
+    currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573_productSuccess :
+    currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -13564,6 +13728,29 @@ section Checks
 #check currentMetrizableWppRightOpenClosedQuotientEpiDirectRightFieldsBundleSupportStateW572
 #check currentMetrizableWppRightOpenClosedQuotientEpiDirectRightFieldsBundleStateW572
 #check currentMetrizableWppRightOpenClosedQuotientEpiDirectRightFieldsBundleStateW572_productSuccess
+#check MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573
+#check
+  metrizableWppLimitSourceDifferenceEpiBoundary_of_closedQuotientPiZeroBundleW573
+#check
+  metrizableWppRightOpenClosedQuotientCokernelPiZero_to_epiBundleW573
+#check
+  metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroBundleW573
+#check
+  metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientPiZeroBundleW573
+#check
+  metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenClosedQuotientPiZeroBundleW573
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroDirectRightFieldsBundleW573
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleInputNamesW573
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleInputNamesW573_count
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleSupportStateW573
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573_productSuccess
 
 end Checks
 

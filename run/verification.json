@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w572-closed-quotient-epi-direct-right-fields-bridge",
-  "generated_utc": "2026-05-22T12:20:18Z",
-  "source_tree_hash": "5ad8e28533c9ed5975f3a8ff4f449624ac10e6be30d5d184d5366aed9c663faf",
-  "summary": "W572 adds a closed quotient-cover variant of the W571 direct-right-field route. The stronger MetrizableWppLimitRightOpenClosedQuotientCoverBoundary is adapted directly to MetrizableWppLimitRightOpenInput, and the Epi source-difference boundary is adapted to MetrizableWppLimitRightSurjectiveInput. Together with W515 representative-image provider data, W527 closed-map rows, and WalkingParallelPair functor-category localization, the bundle feeds the existing W515/W527 direct-limit representative-image closed-map transfer endpoint. W572 also extends audit coverage to the W571 backing support state. This is verified nonterminal support only: concrete closed quotient-cover boundary, Epi source-difference boundary, representative-image provider, closed-map rows, localization data, triangulated data, and bounded left-calculus data remain unconstructed.",
+  "schema": "lean-lca-exact-challenge-verification-w573-cokernel-pi-zero-epi-direct-right-fields-bridge",
+  "generated_utc": "2026-05-22T12:36:14Z",
+  "source_tree_hash": "47dbb5a11c344d3affd1760cdef3d7bb64394984f10bd112b38ef70f9287c929",
+  "summary": "W573 adds the missing source-boundary upgrade from cokernel-pi-zero source-difference data to the Epi boundary required by the W572 route. The general LCA lemma MetrizableLCA.epi_of_cokernelπ_eq_zero uses the explicit cokernel descent property to prove that a zero cokernel projection makes the original map epi. The WPP source-difference boundary is then upgraded from MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary to MetrizableWppLimitSourceDifferenceEpiBoundary, and a closed quotient-cover/cokernel-pi-zero bundle feeds the existing W572 direct-right-field and W515/W527 endpoint. This is verified nonterminal support only: concrete closed quotient-cover boundary, concrete cokernel-pi-zero source-difference boundary, representative-image provider, closed-map rows, localization data, triangulated data, and bounded left-calculus data remain unconstructed.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -6355,6 +6355,91 @@
       "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/review_ready_preflight.py validate <W572 review_ready_preflight_round2_config.json>",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w572_claim_review_v3/review_ready_preflight_round2_result.json"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/LCA/Cokernel.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_lca_cokernel_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.LCA.Cokernel",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_lca_cokernel_build.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_direct_wpp_limit_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_direct_wpp_limit_build.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_wpp_op_projection_fields_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_wpp_op_projection_fields_build.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_product_success_declarations_lean.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_root_import_lean.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_required_declarations_lean.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_forbidden_tokens_source.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_forbidden_tokens_audit.log"
+    },
+    {
+      "command": "rg -n product-success true patterns <W573 touched files>",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_product_placeholder_touched.log"
+    },
+    {
+      "command": "rg -n sorry/admit/axiom/unsafe <W573 touched files>",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_sorry_axiom_touched.log"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_diff_check.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_lake_build.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_external_self_check.log"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root .",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_external_audit_expected_fail.log"
     }
   ],
   "implemented_declarations_checked": [
@@ -8244,29 +8329,44 @@
     "currentMetrizableWppRightOpenClosedQuotientEpiDirectRightFieldsBundleSupportStateW572",
     "currentMetrizableWppRightOpenClosedQuotientEpiDirectRightFieldsBundleStateW572",
     "currentMetrizableWppRightOpenClosedQuotientEpiDirectRightFieldsBundleStateW572_productSuccess",
-    "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleSupportStateW571"
+    "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleSupportStateW571",
+    "MetrizableLCA.epi_of_cokernelπ_eq_zero",
+    "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_sourceDifferenceEpiBoundary_of_cokernelPiZeroBoundary",
+    "Dbounded.metrizableWppLimitSourceDifferenceEpiBoundary_of_cokernelPiZeroBoundary",
+    "MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573",
+    "metrizableWppLimitSourceDifferenceEpiBoundary_of_closedQuotientPiZeroBundleW573",
+    "metrizableWppRightOpenClosedQuotientCokernelPiZero_to_epiBundleW573",
+    "metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroBundleW573",
+    "metrizableWalkingParallelPairLimitStability_of_rightOpenClosedQuotientPiZeroBundleW573",
+    "metrizableWalkingParallelPairDirectLimitRepresentativeImageClosedMapRowsInputs_of_rightOpenClosedQuotientPiZeroBundleW573",
+    "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroDirectRightFieldsBundleW573",
+    "metrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleInputNamesW573",
+    "metrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleInputNamesW573_count",
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleSupportStateW573",
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573",
+    "currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "A concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary is still unconstructed.",
-    "A concrete value of MetrizableWppLimitSourceDifferenceEpiBoundary is still unconstructed.",
+    "A concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary is still unconstructed.",
     "A concrete ClosedNatTransOrdinaryRepresentativeImageProviderW515 is still unconstructed.",
     "Concrete ComponentwiseClosedMapRowsProviderW527 data are still unconstructed.",
     "WalkingParallelPair functor-category localization data are still unconstructed.",
     "Triangulated data and bounded left-calculus data remain unconnected to product success."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_review_accepted",
+  "support_result_classification": "verified_nonterminal_support_increment_pending_claim_review",
   "product_success": false,
   "remaining_work": [
     "Construct concrete closed quotient-cover WPP limit right-open boundary data.",
-    "Construct concrete Epi source-degree source-difference boundary data.",
+    "Construct concrete source-difference cokernel-pi-zero boundary data.",
     "Construct the W515 representative-image provider for the selected route.",
     "Construct W527 ComponentwiseClosedMapRowsProvider data for the selected route.",
     "Construct WalkingParallelPair functor-category localization.",
     "Connect the selected finite-shape transfer package to the remaining triangulated and bounded left-calculus product-success obligations."
   ],
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_021_w572_lake_build.log",
-  "latest_verified_increment": "W572 closed quotient-cover/Epi direct-right-field transfer bridge",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_022_w573_lake_build.log",
+  "latest_verified_increment": "W573 closed quotient-cover/cokernel-pi-zero direct-right-field bridge",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -8466,6 +8566,13 @@
       "latest_verified_increment": "W572 closed quotient-cover/Epi direct-right-field transfer bridge",
       "claim_review_status": "accepted_claim_review_loop_v3_round2",
       "note": "Accepted W572 after claim-review-loop-v3 round 2. review_root=/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/reviews/w572_claim_review_v3; validate_contract=validate-contract-result-round2.json; validate_round=validate-round-result-round2.json; hygiene=rollout_hygiene_after_round2_final_check.json; preflight=review_ready_preflight_round2_result.json; process_cleanup=round2_owned_process_cleanup.json; accepted_reviewers=10; blocking_findings=0; nonblocking_findings=0. Round 1 blocker was worker prompt self-test/temp-file conflict and is fixed in review-contract-round2.json."
+    },
+    "w573_cokernel_pi_zero_epi_direct_right_fields_metadata": {
+      "refreshed_utc": "2026-05-22T12:36:14Z",
+      "source_tree_hash": "47dbb5a11c344d3affd1760cdef3d7bb64394984f10bd112b38ef70f9287c929",
+      "latest_verified_increment": "W573 closed quotient-cover/cokernel-pi-zero direct-right-field bridge",
+      "claim_review_status": "pending_claim_review_loop_v3",
+      "note": "W573 source metadata refreshed after focused LCA cokernel check/build, direct WPP limit check/build, projection-fields check/build, product declaration audit, root import, required declarations, forbidden-token scans, product-false scans, diff check, and full lake build. Product flags remain false."
     }
   }
 }
