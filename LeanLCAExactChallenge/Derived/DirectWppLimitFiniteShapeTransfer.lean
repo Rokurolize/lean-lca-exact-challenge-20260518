@@ -1239,6 +1239,67 @@ abbrev wppLimit_lca_sourceDifferenceMap_surjective : Prop :=
           X.map WalkingParallelPairHom.left x₀ -
             X.map WalkingParallelPairHom.right x₀)
 
+/-- Cokernel-top and open-map data for the source-degree WPP difference map. -/
+abbrev WppLimitLcaSourceDifferenceCokernelTopBoundary : Prop :=
+  ∀ (X : WalkingParallelPair ⥤ MetrizableLCA.{0}) (cx : Cone X),
+    IsLimit cx →
+      let δ : X.obj WalkingParallelPair.zero ⟶ X.obj WalkingParallelPair.one :=
+        X.map WalkingParallelPairHom.left - X.map WalkingParallelPairHom.right
+      IsOpenMap (δ : X.obj WalkingParallelPair.zero → X.obj WalkingParallelPair.one) ∧
+        MetrizableLCA.cokernelSubgroup δ = ⊤
+
+/-- Cokernel-pi-zero and open-map data for the source-degree WPP difference map. -/
+abbrev WppLimitLcaSourceDifferenceCokernelPiZeroBoundary : Prop :=
+  ∀ (X : WalkingParallelPair ⥤ MetrizableLCA.{0}) (cx : Cone X),
+    IsLimit cx →
+      let δ : X.obj WalkingParallelPair.zero ⟶ X.obj WalkingParallelPair.one :=
+        X.map WalkingParallelPairHom.left - X.map WalkingParallelPairHom.right
+      IsOpenMap (δ : X.obj WalkingParallelPair.zero → X.obj WalkingParallelPair.one) ∧
+        MetrizableLCA.cokernelπ δ = 0
+
+/-- Epi and open-map data for the source-degree WPP difference map. -/
+abbrev WppLimitLcaSourceDifferenceEpiBoundary : Prop :=
+  ∀ (X : WalkingParallelPair ⥤ MetrizableLCA.{0}) (cx : Cone X),
+    IsLimit cx →
+      let δ : X.obj WalkingParallelPair.zero ⟶ X.obj WalkingParallelPair.one :=
+        X.map WalkingParallelPairHom.left - X.map WalkingParallelPairHom.right
+      IsOpenMap (δ : X.obj WalkingParallelPair.zero → X.obj WalkingParallelPair.one) ∧
+        Epi δ
+
+/-- Cokernel-top data supplies pure LCA source-difference surjectivity. -/
+theorem wppLimit_lca_sourceDifferenceMap_surjective_of_cokernelTopBoundary
+    (hboundary : WppLimitLcaSourceDifferenceCokernelTopBoundary) :
+    wppLimit_lca_sourceDifferenceMap_surjective := by
+  intro X cx hcx
+  let δ : X.obj WalkingParallelPair.zero ⟶ X.obj WalkingParallelPair.one :=
+    X.map WalkingParallelPairHom.left - X.map WalkingParallelPairHom.right
+  rcases hboundary X cx hcx with ⟨hopen, hcok⟩
+  simpa [δ] using
+    MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap δ hcok hopen
+
+/-- Cokernel-pi-zero data supplies pure LCA source-difference surjectivity. -/
+theorem wppLimit_lca_sourceDifferenceMap_surjective_of_cokernelPiZeroBoundary
+    (hboundary : WppLimitLcaSourceDifferenceCokernelPiZeroBoundary) :
+    wppLimit_lca_sourceDifferenceMap_surjective :=
+  wppLimit_lca_sourceDifferenceMap_surjective_of_cokernelTopBoundary
+    (fun X cx hcx => by
+      let δ : X.obj WalkingParallelPair.zero ⟶ X.obj WalkingParallelPair.one :=
+        X.map WalkingParallelPairHom.left - X.map WalkingParallelPairHom.right
+      rcases hboundary X cx hcx with ⟨hopen, hπ⟩
+      exact ⟨hopen, MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero δ hπ⟩)
+
+/-- Epi data supplies pure LCA source-difference surjectivity. -/
+theorem wppLimit_lca_sourceDifferenceMap_surjective_of_epiBoundary
+    (hboundary : WppLimitLcaSourceDifferenceEpiBoundary) :
+    wppLimit_lca_sourceDifferenceMap_surjective :=
+  wppLimit_lca_sourceDifferenceMap_surjective_of_cokernelPiZeroBoundary
+    (fun X cx hcx => by
+      let δ : X.obj WalkingParallelPair.zero ⟶ X.obj WalkingParallelPair.one :=
+        X.map WalkingParallelPairHom.left - X.map WalkingParallelPairHom.right
+      rcases hboundary X cx hcx with ⟨hopen, hepi⟩
+      haveI : Epi δ := hepi
+      exact ⟨hopen, MetrizableLCA.cokernelπ_eq_zero_of_epi δ⟩)
+
 /--
 Pure LCA source-degree difference surjectivity supplies the source-difference
 boundary used by the WPP limit right-surjectivity argument.
@@ -1896,6 +1957,15 @@ abbrev MetrizableWppLimitRightSurjectiveSourceDifferenceSurjectiveBoundary : Pro
 abbrev MetrizableWppLimitSourceDifferenceLcaInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.wppLimit_lca_sourceDifferenceMap_surjective
 
+abbrev MetrizableWppLimitSourceDifferenceCokernelTopBoundary : Prop :=
+  DirectWppLimitFiniteShapeTransfer.WppLimitLcaSourceDifferenceCokernelTopBoundary
+
+abbrev MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary : Prop :=
+  DirectWppLimitFiniteShapeTransfer.WppLimitLcaSourceDifferenceCokernelPiZeroBoundary
+
+abbrev MetrizableWppLimitSourceDifferenceEpiBoundary : Prop :=
+  DirectWppLimitFiniteShapeTransfer.WppLimitLcaSourceDifferenceEpiBoundary
+
 abbrev MetrizableWppLimitAlgebraicExactInput : Prop :=
   DirectWppLimitFiniteShapeTransfer.algebraicExact_walkingParallelPair_limitClosure
 
@@ -1981,6 +2051,24 @@ theorem
   rightSurjective_walkingParallelPair_limitSourceDifferenceSurjectiveBoundary_of_lca_sourceDifference
     hsource
 
+/-- Build the pure LCA source-difference input from cokernel-top data. -/
+theorem metrizableWppLimitSourceDifferenceLcaInput_of_cokernelTopBoundary
+    (hboundary : MetrizableWppLimitSourceDifferenceCokernelTopBoundary) :
+    MetrizableWppLimitSourceDifferenceLcaInput :=
+  wppLimit_lca_sourceDifferenceMap_surjective_of_cokernelTopBoundary hboundary
+
+/-- Build the pure LCA source-difference input from cokernel-pi-zero data. -/
+theorem metrizableWppLimitSourceDifferenceLcaInput_of_cokernelPiZeroBoundary
+    (hboundary : MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary) :
+    MetrizableWppLimitSourceDifferenceLcaInput :=
+  wppLimit_lca_sourceDifferenceMap_surjective_of_cokernelPiZeroBoundary hboundary
+
+/-- Build the pure LCA source-difference input from epi data. -/
+theorem metrizableWppLimitSourceDifferenceLcaInput_of_epiBoundary
+    (hboundary : MetrizableWppLimitSourceDifferenceEpiBoundary) :
+    MetrizableWppLimitSourceDifferenceLcaInput :=
+  wppLimit_lca_sourceDifferenceMap_surjective_of_epiBoundary hboundary
+
 /--
 Build the WPP limit right-surjectivity field from difference-form correction
 data.
@@ -2009,6 +2097,30 @@ theorem metrizableWppLimitRightSurjectiveInput_of_lcaSourceDifference
     (hsource : MetrizableWppLimitSourceDifferenceLcaInput) :
     MetrizableWppLimitRightSurjectiveInput :=
   rightSurjective_walkingParallelPair_limitClosure_of_lca_sourceDifference hsource
+
+/-- Build the WPP limit right-surjectivity field from source-difference cokernel-top data. -/
+theorem metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceCokernelTopBoundary
+    (hboundary : MetrizableWppLimitSourceDifferenceCokernelTopBoundary) :
+    MetrizableWppLimitRightSurjectiveInput :=
+  metrizableWppLimitRightSurjectiveInput_of_lcaSourceDifference
+    (metrizableWppLimitSourceDifferenceLcaInput_of_cokernelTopBoundary hboundary)
+
+/--
+Build the WPP limit right-surjectivity field from source-difference
+cokernel-pi-zero data.
+-/
+theorem metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceCokernelPiZeroBoundary
+    (hboundary : MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary) :
+    MetrizableWppLimitRightSurjectiveInput :=
+  metrizableWppLimitRightSurjectiveInput_of_lcaSourceDifference
+    (metrizableWppLimitSourceDifferenceLcaInput_of_cokernelPiZeroBoundary hboundary)
+
+/-- Build the WPP limit right-surjectivity field from source-difference epi data. -/
+theorem metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceEpiBoundary
+    (hboundary : MetrizableWppLimitSourceDifferenceEpiBoundary) :
+    MetrizableWppLimitRightSurjectiveInput :=
+  metrizableWppLimitRightSurjectiveInput_of_lcaSourceDifference
+    (metrizableWppLimitSourceDifferenceLcaInput_of_epiBoundary hboundary)
 
 /-- Build the WPP limit algebraic-exactness field from component limit data. -/
 theorem metrizableWppLimitAlgebraicExactInput_of_lca
