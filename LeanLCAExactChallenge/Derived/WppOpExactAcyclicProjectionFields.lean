@@ -13264,6 +13264,139 @@ theorem
       false :=
   rfl
 
+/--
+W574 selected top-target route for the closed quotient-cover/cokernel-pi-zero
+direct-right-field path. This keeps the W573 right-side boundary data but uses
+W516 top-target relation data instead of requiring the more opaque W515
+representative-image provider directly.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleW574 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  topTargetProvider :
+    ClosedNatTransOrdinaryTopTargetRelationProviderW516
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  functorCategoryLocalization :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryLocalizationInput
+
+/-- Extract the W573 direct right fields from the W574 top-target bundle. -/
+def metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetBundleW574
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleW574) :
+    MetrizableWppRightOpenQuotientEpiDirectRightFieldsW571 where
+  rightOpen :=
+    Dbounded.metrizableWppLimitRightOpenInput_of_closedQuotientCoverBoundary
+      inputs.rightOpenBoundary
+  rightSurjective :=
+    Dbounded.metrizableWppLimitRightSurjectiveInput_of_sourceDifferenceCokernelPiZeroBoundary
+      inputs.sourcePiZeroBoundary
+
+/--
+Convert the W574 selected bundle to the direct-limit W516 top-target
+closed-map input surface.
+-/
+def
+    metrizableWppTransferInputsFromDirectLimitTopTargetRelationClosedMapRows_of_rightOpenClosedQuotientPiZeroBundleW574
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleW574) :
+    MetrizableWppTransferInputsFromDirectLimitClosedMapRows
+      ClosedNatTransOrdinaryTopTargetRelationProviderW516 where
+  rightOpen :=
+    (metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetBundleW574
+      inputs).rightOpen
+  rightSurjective :=
+    (metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetBundleW574
+      inputs).rightSurjective
+  provider := inputs.topTargetProvider
+  closedMapRows := inputs.closedMapRows
+  functorCategoryLocalization := inputs.functorCategoryLocalization
+
+/--
+W574 endpoint: closed quotient-cover right-open data, cokernel-pi-zero
+source-difference data, and W516 top-target relation data feed the W532
+finite-shape transfer route.
+-/
+def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroTopTargetClosedMapBundleW574
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleW574) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_directLimitTopTargetRelationClosedMapRows
+    (metrizableWppTransferInputsFromDirectLimitTopTargetRelationClosedMapRows_of_rightOpenClosedQuotientPiZeroBundleW574
+      inputs)
+
+/-- Input names for the W574 closed quotient/cokernel-pi-zero top-target route. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleInputNamesW574 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516",
+    "ComponentwiseClosedMapRowsProviderW527",
+    "WalkingParallelPair functor-category localization"]
+
+theorem
+    metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleInputNamesW574_count :
+    metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleInputNamesW574.length =
+      5 :=
+  rfl
+
+/--
+Current checked W574 state for the closed quotient/cokernel-pi-zero top-target
+direct-right-field route.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574 :
+    Type where
+  seed : String
+  declarations : List String
+  providerSpecializationResult : String
+  directRightFieldsResult : String
+  transferEndpointResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W574 state. -/
+def currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleSupportStateW574 :
+    MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574 where
+  seed := "w574-right-open-closed-quotient-cokernel-pi-zero-top-target-closed-map-bundle"
+  declarations :=
+    ["MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleW574",
+      "metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetBundleW574",
+      "metrizableWppTransferInputsFromDirectLimitTopTargetRelationClosedMapRows_of_rightOpenClosedQuotientPiZeroBundleW574",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroTopTargetClosedMapBundleW574",
+      "metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleInputNamesW574",
+      "metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleInputNamesW574_count"]
+  providerSpecializationResult :=
+    "proved: the selected W573 right-side boundary route also feeds the W516 top-target relation colimit-stability endpoint"
+  directRightFieldsResult :=
+    "proved: closed quotient-cover right-open boundary plus cokernel-pi-zero source-difference boundary yield W555 direct right fields"
+  transferEndpointResult :=
+    "proved: closed quotient/cokernel-pi-zero/top-target bundle feeds the W532 finite-shape transfer route"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct a concrete ClosedNatTransOrdinaryTopTargetRelationProviderW516",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527",
+      "construct WalkingParallelPair functor-category localization"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574 :
+    MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574 :=
+  currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleSupportStateW574
+
+theorem
+    currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574_productSuccess :
+    currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -13751,6 +13884,23 @@ section Checks
   currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573
 #check
   currentMetrizableWppRightOpenClosedQuotientPiZeroDirectRightFieldsBundleStateW573_productSuccess
+#check MetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleW574
+#check
+  metrizableWppDirectRightFields_of_rightOpenClosedQuotientPiZeroTopTargetBundleW574
+#check
+  metrizableWppTransferInputsFromDirectLimitTopTargetRelationClosedMapRows_of_rightOpenClosedQuotientPiZeroBundleW574
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroTopTargetClosedMapBundleW574
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleInputNamesW574
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleInputNamesW574_count
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleSupportStateW574
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574
+#check
+  currentMetrizableWppRightOpenClosedQuotientPiZeroTopTargetClosedMapBundleStateW574_productSuccess
 
 end Checks
 
