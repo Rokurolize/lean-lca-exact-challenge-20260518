@@ -15706,6 +15706,81 @@ theorem
       false :=
   rfl
 
+/--
+W596 colimit-stability endpoint: split W593 compact-target fields plus a global
+W525 closed-map provider feed the W535 compact-target row-stability route.
+-/
+def walkingParallelPairColimitStability_of_splitCompactTargetRelation_globalClosedMap_w596
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hcompact : ClosedNatTransOrdinaryTargetRelationCompactProviderW593)
+    (hclosedMap : ComponentwiseClosedMapProviderW525) :=
+  walkingParallelPairColimitStability_of_compactTargetRelation_and_closedMapRows_w535
+    (compactTargetRelationProvider_of_splitFields_w593 hpullback hcompact)
+    (componentwiseClosedMapRowsProvider_of_globalClosedMapProvider_w581 hclosedMap)
+
+/--
+W596 colimit-stability endpoint: split W593 compact-target fields plus a global
+W525 closed-embedding provider feed the W535 compact-target row-stability route.
+-/
+def walkingParallelPairColimitStability_of_splitCompactTargetRelation_globalClosedEmbedding_w596
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hcompact : ClosedNatTransOrdinaryTargetRelationCompactProviderW593)
+    (hclosedEmbedding : ComponentwiseClosedEmbeddingProviderW525) :=
+  walkingParallelPairColimitStability_of_compactTargetRelation_and_closedEmbeddingRows_w535
+    (compactTargetRelationProvider_of_splitFields_w593 hpullback hcompact)
+    (componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581 hclosedEmbedding)
+
+/-- Input names for the W596 split compact-target colimit-stability endpoints. -/
+def metrizableWppSplitCompactTargetColimitStabilityInputNamesW596 :
+    List String :=
+  ["ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "ClosedNatTransOrdinaryTargetRelationCompactProviderW593",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525"]
+
+theorem metrizableWppSplitCompactTargetColimitStabilityInputNamesW596_count :
+    metrizableWppSplitCompactTargetColimitStabilityInputNamesW596.length =
+      3 :=
+  rfl
+
+/-- Current checked W596 state for split compact-target colimit-stability endpoints. -/
+structure MetrizableWppSplitCompactTargetColimitStabilityStateW596 : Type where
+  seed : String
+  declarations : List String
+  closedMapStabilityResult : String
+  closedEmbeddingStabilityResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W596 state. -/
+def currentMetrizableWppSplitCompactTargetColimitStabilitySupportStateW596 :
+    MetrizableWppSplitCompactTargetColimitStabilityStateW596 where
+  seed := "w596-split-compact-target-global-provider-colimit-stability"
+  declarations :=
+    ["walkingParallelPairColimitStability_of_splitCompactTargetRelation_globalClosedMap_w596",
+      "walkingParallelPairColimitStability_of_splitCompactTargetRelation_globalClosedEmbedding_w596",
+      "metrizableWppSplitCompactTargetColimitStabilityInputNamesW596",
+      "metrizableWppSplitCompactTargetColimitStabilityInputNamesW596_count"]
+  closedMapStabilityResult :=
+    "proved: split W593 compact-target fields plus W525 closed-map data feed W535 WPP colimit stability"
+  closedEmbeddingStabilityResult :=
+    "proved: split W593 compact-target fields plus W525 closed-embedding data feed W535 WPP colimit stability"
+  remainingInputs :=
+    ["construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationCompactProviderW593",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppSplitCompactTargetColimitStabilityStateW596 :
+    MetrizableWppSplitCompactTargetColimitStabilityStateW596 :=
+  currentMetrizableWppSplitCompactTargetColimitStabilitySupportStateW596
+
+theorem
+    currentMetrizableWppSplitCompactTargetColimitStabilityStateW596_productSuccess :
+    currentMetrizableWppSplitCompactTargetColimitStabilityStateW596.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -16481,6 +16556,13 @@ section Checks
 #check currentMetrizableWppSplitCompactTargetExactAcyclicEndpointSupportStateW595
 #check currentMetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595
 #check currentMetrizableWppSplitCompactTargetExactAcyclicEndpointStateW595_productSuccess
+#check walkingParallelPairColimitStability_of_splitCompactTargetRelation_globalClosedMap_w596
+#check walkingParallelPairColimitStability_of_splitCompactTargetRelation_globalClosedEmbedding_w596
+#check metrizableWppSplitCompactTargetColimitStabilityInputNamesW596
+#check metrizableWppSplitCompactTargetColimitStabilityInputNamesW596_count
+#check currentMetrizableWppSplitCompactTargetColimitStabilitySupportStateW596
+#check currentMetrizableWppSplitCompactTargetColimitStabilityStateW596
+#check currentMetrizableWppSplitCompactTargetColimitStabilityStateW596_productSuccess
 
 end Checks
 
