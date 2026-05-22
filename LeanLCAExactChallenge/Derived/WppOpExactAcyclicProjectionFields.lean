@@ -9553,6 +9553,8 @@ end WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535
 namespace Dbounded
 
 open WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483
+open WppOpW426W318LegCompatibilityAlignmentV370SupportW439
+open WppOpClosedNatTransOrdinaryRelationTopologyV370SupportW511
 open WppOpRepresentativeImageClosedSelectedCokernelColimitV370SupportW515
 open WppOpTopTargetRelationRepresentativeImageV370SupportW516
 open WppOpCompactTargetRelationRepresentativeImageV370SupportW517
@@ -15183,6 +15185,247 @@ theorem currentMetrizableWppGlobalClosedEmbeddingStableRouteStateW592_productSuc
       false :=
   rfl
 
+/-- W593 target compactness condition used to split the W517 compact-target provider. -/
+abbrev ClosedNatTransOrdinaryTargetRelationCompactConditionW593
+    {X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}} (_α : X ⟶ Y) : Prop :=
+  IsCompact
+    (MetrizableLCA.cokernelSubgroup (wppOpLeftW441 Y - wppOpRightW441 Y) :
+      Set (wppOpCodomainW441 Y))
+
+/-- W593 provider for only the relation-pullback half of W517. -/
+abbrev ClosedNatTransOrdinaryRelationPullbackProviderW593 : Prop :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      ClosedNatTransOrdinaryRelationPullbackConditionW511 α
+
+/-- W593 provider for only the target-relation compactness half of W517. -/
+abbrev ClosedNatTransOrdinaryTargetRelationCompactProviderW593 : Prop :=
+  ∀ (X Y : WalkingParallelPairᵒᵖ ⥤ MetrizableLCA.{0}) (α : X ⟶ Y),
+    (∀ j : WalkingParallelPairᵒᵖ,
+      IsClosedEmbedding (α.app j : X.obj j → Y.obj j)) →
+      ClosedNatTransOrdinaryTargetRelationCompactConditionW593 α
+
+/-- Split W593 fields supply the monolithic W517 compact-target provider. -/
+def compactTargetRelationProvider_of_splitFields_w593
+    (hpullback : ClosedNatTransOrdinaryRelationPullbackProviderW593)
+    (hcompact : ClosedNatTransOrdinaryTargetRelationCompactProviderW593) :
+    ClosedNatTransOrdinaryCompactTargetRelationProviderW517 :=
+  fun X Y α hclosed =>
+    { relation_pullback := hpullback X Y α hclosed
+      target_relation_compact := hcompact X Y α hclosed }
+
+/--
+W593 compact-target normalized bundle whose W517 provider is supplied by split
+relation-pullback and target-compactness providers.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapNormalizedBundleW593 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationPullbackProvider :
+    ClosedNatTransOrdinaryRelationPullbackProviderW593
+  targetCompactProvider :
+    ClosedNatTransOrdinaryTargetRelationCompactProviderW593
+  closedMapProvider :
+    ComponentwiseClosedMapProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/-- Convert the W593 split-provider bundle to the W591 global closed-map bundle. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapNormalizedBundle_of_splitCompactTargetW593
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapNormalizedBundleW593) :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapNormalizedBundleW591 where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  compactTargetProvider :=
+    compactTargetRelationProvider_of_splitFields_w593
+      inputs.relationPullbackProvider inputs.targetCompactProvider
+  closedMapProvider := inputs.closedMapProvider
+  normalizedInputs := inputs.normalizedInputs
+
+/--
+W593 endpoint: split W517 fields plus global W525 closed-map provider data feed
+the W591 finite-shape route.
+-/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitCompactTargetGlobalClosedMapBundleW593
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapNormalizedBundleW593) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_rightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapBundleW591
+    (metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapNormalizedBundle_of_splitCompactTargetW593
+      inputs)
+
+/--
+W593 homotopy/Verdier stable bundle with split W517 fields and global W525
+closed-map provider data.
+-/
+structure
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundleW593
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Type 1 where
+  compactTargetBundle :
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapNormalizedBundleW593
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert the W593 split-provider stable bundle to the W591 stable bundle. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundle_of_splitCompactTargetW593
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundleW593) :
+    MetrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundleW591 where
+  compactTargetBundle :=
+    metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapNormalizedBundle_of_splitCompactTargetW593
+      inputs.compactTargetBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/--
+W593 homotopy/Verdier stable-semantic input: split W517 fields drive the W591
+global closed-map stable route.
+-/
+def
+    metrizableWppTransferStableSemanticInputs_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundleW593) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed :=
+  metrizableWppTransferStableSemanticInputs_of_rightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW591
+    (metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundle_of_splitCompactTargetW593
+      inputs)
+
+/-- W593 split compact-target route builds the ordinary stable-semantic input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundleW593) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
+    (metrizableWppTransferStableSemanticInputs_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593
+      inputs)
+
+/-- The W593 split compact-target route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593_ready
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundleW593) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotopyIsoClosed_ready
+    (metrizableWppTransferStableSemanticInputs_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593
+      inputs)
+
+/-- Input names for the W593 split compact-target global closed-map stable route. -/
+def metrizableWppSplitCompactTargetGlobalClosedMapStableInputNamesW593 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "ClosedNatTransOrdinaryTargetRelationCompactProviderW593",
+    "ComponentwiseClosedMapProviderW525",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableWppSplitCompactTargetGlobalClosedMapStableInputNamesW593_count :
+    metrizableWppSplitCompactTargetGlobalClosedMapStableInputNamesW593.length =
+      11 :=
+  rfl
+
+/-- Current checked W593 state for split compact-target providers in stable routes. -/
+structure MetrizableWppSplitCompactTargetGlobalClosedMapStableRouteStateW593 :
+    Type where
+  seed : String
+  declarations : List String
+  splitProviderResult : String
+  stableBundleResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W593 state. -/
+def currentMetrizableWppSplitCompactTargetGlobalClosedMapStableRouteSupportStateW593 :
+    MetrizableWppSplitCompactTargetGlobalClosedMapStableRouteStateW593 where
+  seed := "w593-split-compact-target-global-closed-map-stable-route"
+  declarations :=
+    ["ClosedNatTransOrdinaryTargetRelationCompactConditionW593",
+      "ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "ClosedNatTransOrdinaryTargetRelationCompactProviderW593",
+      "compactTargetRelationProvider_of_splitFields_w593",
+      "MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapNormalizedBundleW593",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapNormalizedBundle_of_splitCompactTargetW593",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitCompactTargetGlobalClosedMapBundleW593",
+      "MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundleW593",
+      "metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundle_of_splitCompactTargetW593",
+      "metrizableWppTransferStableSemanticInputs_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593",
+      "metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593",
+      "metrizableStableCertificate_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593_ready",
+      "metrizableWppSplitCompactTargetGlobalClosedMapStableInputNamesW593",
+      "metrizableWppSplitCompactTargetGlobalClosedMapStableInputNamesW593_count"]
+  splitProviderResult :=
+    "proved: W517 compact-target providers split into relation-pullback and target-compactness providers"
+  stableBundleResult :=
+    "proved: split W517 fields feed the W591 global closed-map homotopy/Verdier stable route"
+  stableCertificateResult :=
+    "proved: the split compact-target global closed-map route produces the ready W528 stable certificate"
+  remainingInputs :=
+    ["construct a concrete value of MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct a concrete value of MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationCompactProviderW593",
+      "construct concrete ComponentwiseClosedMapProviderW525",
+      "construct normalized strict-representative fixed-target localization data",
+      "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+      "construct bounded homotopy/Verdier pullback left calculus of fractions",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppSplitCompactTargetGlobalClosedMapStableRouteStateW593 :
+    MetrizableWppSplitCompactTargetGlobalClosedMapStableRouteStateW593 :=
+  currentMetrizableWppSplitCompactTargetGlobalClosedMapStableRouteSupportStateW593
+
+theorem
+    currentMetrizableWppSplitCompactTargetGlobalClosedMapStableRouteStateW593_productSuccess :
+    currentMetrizableWppSplitCompactTargetGlobalClosedMapStableRouteStateW593.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -15902,6 +16145,32 @@ section Checks
 #check currentMetrizableWppGlobalClosedEmbeddingStableRouteSupportStateW592
 #check currentMetrizableWppGlobalClosedEmbeddingStableRouteStateW592
 #check currentMetrizableWppGlobalClosedEmbeddingStableRouteStateW592_productSuccess
+#check ClosedNatTransOrdinaryTargetRelationCompactConditionW593
+#check ClosedNatTransOrdinaryRelationPullbackProviderW593
+#check ClosedNatTransOrdinaryTargetRelationCompactProviderW593
+#check compactTargetRelationProvider_of_splitFields_w593
+#check
+  MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapNormalizedBundleW593
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapNormalizedBundle_of_splitCompactTargetW593
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitCompactTargetGlobalClosedMapBundleW593
+#check
+  MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundleW593
+#check
+  metrizableWppRightOpenClosedQuotientPiZeroCompactTargetGlobalClosedMapHomotopyIsoClosedStableBundle_of_splitCompactTargetW593
+#check
+  metrizableWppTransferStableSemanticInputs_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593
+#check
+  metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593
+#check
+  metrizableStableCertificate_of_splitCompactTargetGlobalClosedMapHomotopyIsoClosedBundleW593_ready
+#check metrizableWppSplitCompactTargetGlobalClosedMapStableInputNamesW593
+#check metrizableWppSplitCompactTargetGlobalClosedMapStableInputNamesW593_count
+#check currentMetrizableWppSplitCompactTargetGlobalClosedMapStableRouteSupportStateW593
+#check currentMetrizableWppSplitCompactTargetGlobalClosedMapStableRouteStateW593
+#check
+  currentMetrizableWppSplitCompactTargetGlobalClosedMapStableRouteStateW593_productSuccess
 
 end Checks
 
