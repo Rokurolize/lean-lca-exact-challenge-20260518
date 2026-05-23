@@ -28777,6 +28777,181 @@ theorem
       false :=
   rfl
 
+/-- W651 MetrizableLCA-specialized strict-realization input for exact-acyclic iso-closure. -/
+abbrev MetrizableExactAcyclicIsoClosureTrianglehIso13RealizationInputW651 : Prop :=
+  exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA.{0}
+
+/-- W651 turns the MetrizableLCA strict-realization input into the W605 closed₂ instance. -/
+theorem
+    metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+    (realize : MetrizableExactAcyclicIsoClosureTrianglehIso13RealizationInputW651) :
+    (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+  exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
+    MetrizableLCA.{0} realize
+
+/-- W651 endpoint field payload with the exact-acyclic closed₂ proof supplied explicitly. -/
+structure MetrizableEndpointStableTriangulatedPayloadW651 : Type 1 where
+  exactRealize :
+    MetrizableExactAcyclicIsoClosureTrianglehIso13RealizationInputW651
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  endpointTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+        exactRealize
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605 hasHomology endpointTopology
+        localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+        exactRealize
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605 hasHomology endpointTopology
+        localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- W651 builds W607 endpoint fields from explicit strict-realization payload data. -/
+noncomputable def
+    metrizableEndpointStableTriangulatedFields_of_trianglehIso13PayloadW651
+    (inputs : MetrizableEndpointStableTriangulatedPayloadW651) := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+        inputs.exactRealize
+  exact
+    (show MetrizableEndpointStableTriangulatedFieldsW607 from
+      { hasHomology := inputs.hasHomology
+        endpointTopology := inputs.endpointTopology
+        localizedRightAdjoint := inputs.localizedRightAdjoint
+        pretriangulated := inputs.pretriangulated
+        triangulated := inputs.triangulated })
+
+/-- W651 ShortExact field payload with the exact-acyclic closed₂ proof supplied explicitly. -/
+structure MetrizableShortExactStableTriangulatedPayloadW651 : Type 1 where
+  exactRealize :
+    MetrizableExactAcyclicIsoClosureTrianglehIso13RealizationInputW651
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  shortExactTopology :
+    MetrizableExactAtShortExactTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+        exactRealize
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605 hasHomology shortExactTopology
+        localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+        exactRealize
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605 hasHomology shortExactTopology
+        localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- W651 builds W608 ShortExact fields from explicit strict-realization payload data. -/
+noncomputable def
+    metrizableShortExactStableTriangulatedFields_of_trianglehIso13PayloadW651
+    (inputs : MetrizableShortExactStableTriangulatedPayloadW651) := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+        inputs.exactRealize
+  exact
+    (show MetrizableShortExactStableTriangulatedFieldsW608 from
+      { hasHomology := inputs.hasHomology
+        shortExactTopology := inputs.shortExactTopology
+        localizedRightAdjoint := inputs.localizedRightAdjoint
+        pretriangulated := inputs.pretriangulated
+        triangulated := inputs.triangulated })
+
+/-- Input names for the W651 explicit strict-realization stable-field bridge. -/
+def metrizableTrianglehIso13StableFieldInputNamesW651 : List String :=
+  ["exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs or MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)",
+    "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableTrianglehIso13StableFieldInputNamesW651_count :
+    metrizableTrianglehIso13StableFieldInputNamesW651.length = 6 :=
+  rfl
+
+/-- Current checked W651 state for explicit strict-realization stable-field construction. -/
+structure MetrizableTrianglehIso13StableFieldRouteStateW651 : Type where
+  seed : String
+  declarations : List String
+  closed2Result : String
+  endpointFieldResult : String
+  shortExactFieldResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W651 state. -/
+def currentMetrizableTrianglehIso13StableFieldRouteSupportStateW651 :
+    MetrizableTrianglehIso13StableFieldRouteStateW651 where
+  seed := "w651-triangleh-iso13-explicit-stable-field-route"
+  declarations :=
+    ["MetrizableExactAcyclicIsoClosureTrianglehIso13RealizationInputW651",
+      "metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651",
+      "MetrizableEndpointStableTriangulatedPayloadW651",
+      "metrizableEndpointStableTriangulatedFields_of_trianglehIso13PayloadW651",
+      "MetrizableShortExactStableTriangulatedPayloadW651",
+      "metrizableShortExactStableTriangulatedFields_of_trianglehIso13PayloadW651",
+      "metrizableTrianglehIso13StableFieldInputNamesW651",
+      "metrizableTrianglehIso13StableFieldInputNamesW651_count"]
+  closed2Result :=
+    "proved: explicit MetrizableLCA triangleh iso13 realization supplies exactAcyclicHomotopyIsoClosure closed₂"
+  endpointFieldResult :=
+    "proved: endpoint stable fields can carry the explicit triangleh realization instead of requiring an ambient closed₂ instance"
+  shortExactFieldResult :=
+    "proved: ShortExact stable fields can carry the explicit triangleh realization instead of requiring an ambient closed₂ instance"
+  remainingInputs :=
+    ["construct exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)",
+      "construct concrete WPP boundary/provider/localization data for finite-shape transfer"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableTrianglehIso13StableFieldRouteStateW651 :
+    MetrizableTrianglehIso13StableFieldRouteStateW651 :=
+  currentMetrizableTrianglehIso13StableFieldRouteSupportStateW651
+
+theorem currentMetrizableTrianglehIso13StableFieldRouteStateW651_productSuccess :
+    currentMetrizableTrianglehIso13StableFieldRouteStateW651.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
