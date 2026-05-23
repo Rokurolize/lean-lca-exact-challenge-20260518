@@ -26536,6 +26536,348 @@ theorem
       false :=
   rfl
 
+/--
+W644 composes W643's fixed-target top-target row route with W581
+global-provider narrowing for closed maps.
+-/
+structure MetrizableWppTopTargetCompactSpaceGlobalClosedMapFixedTargetBundleW644 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  topTargetProvider :
+    ClosedNatTransOrdinaryTopTargetRelationProviderW516
+  targetCompactSpaceProvider :
+    ClosedNatTransOrdinaryTargetCompactSpaceProviderW597
+  globalClosedMapProvider :
+    ComponentwiseClosedMapProviderW525
+  fixedTargetInputs :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+
+/-- Convert W644 global closed-map data to W643 fixed-target closed-map rows. -/
+def metrizableWppTopTargetCompactSpaceClosedMapRowsFixedTargetBundle_of_globalClosedMapW644
+    (inputs : MetrizableWppTopTargetCompactSpaceGlobalClosedMapFixedTargetBundleW644) :
+    MetrizableWppTopTargetCompactSpaceClosedMapRowsFixedTargetBundleW643
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  topTargetProvider := inputs.topTargetProvider
+  targetCompactSpaceProvider := inputs.targetCompactSpaceProvider
+  closedMapRows :=
+    componentwiseClosedMapRowsProvider_of_globalClosedMapProvider_w581
+      inputs.globalClosedMapProvider
+  fixedTargetInputs := inputs.fixedTargetInputs
+
+/--
+W644 top-target compact-space global closed-map stable bundle through the W643
+fixed-target localized-right-adjoint row route.
+-/
+structure
+    MetrizableWppTopTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  fixedTargetGlobalClosedMapBundle :
+    MetrizableWppTopTargetCompactSpaceGlobalClosedMapFixedTargetBundleW644
+  homotopyEquiv :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0}
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert W644 global closed-map stable data to the W643 fixed-target row bundle. -/
+def
+    metrizableWppTopTargetCompactSpaceClosedMapRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedMapW644
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTopTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644) :
+    MetrizableWppTopTargetCompactSpaceClosedMapRowsFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW643
+    where
+  fixedTargetBundle :=
+    metrizableWppTopTargetCompactSpaceClosedMapRowsFixedTargetBundle_of_globalClosedMapW644
+      inputs.fixedTargetGlobalClosedMapBundle
+  homotopyEquiv := inputs.homotopyEquiv
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W644 stable-semantic input for top-target compact-space global fixed-target closed maps. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_topTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTopTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        inputs.homotopyEquiv inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_topTargetCompactSpaceClosedMapRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundleW643
+    (metrizableWppTopTargetCompactSpaceClosedMapRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedMapW644
+      inputs)
+
+/-- W644 global closed-map fixed-target route builds the ordinary stable input through W643. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTopTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceClosedMapRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundleW643
+    (metrizableWppTopTargetCompactSpaceClosedMapRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedMapW644
+      inputs)
+
+/-- The W644 global closed-map fixed-target route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_topTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTopTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644
+        inputs)).ready :=
+  metrizableStableCertificate_of_topTargetCompactSpaceClosedMapRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundleW643_ready
+    (metrizableWppTopTargetCompactSpaceClosedMapRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedMapW644
+      inputs)
+
+/--
+W644 composes W643's fixed-target top-target row route with W581
+global-provider narrowing for closed embeddings.
+-/
+structure
+    MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingFixedTargetBundleW644 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  topTargetProvider :
+    ClosedNatTransOrdinaryTopTargetRelationProviderW516
+  targetCompactSpaceProvider :
+    ClosedNatTransOrdinaryTargetCompactSpaceProviderW597
+  globalClosedEmbeddingProvider :
+    ComponentwiseClosedEmbeddingProviderW525
+  fixedTargetInputs :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs
+
+/-- Convert W644 global closed-embedding data to W643 fixed-target closed-embedding rows. -/
+def
+    metrizableWppTopTargetCompactSpaceClosedEmbeddingRowsFixedTargetBundle_of_globalClosedEmbeddingW644
+    (inputs :
+      MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingFixedTargetBundleW644) :
+    MetrizableWppTopTargetCompactSpaceClosedEmbeddingRowsFixedTargetBundleW643
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  topTargetProvider := inputs.topTargetProvider
+  targetCompactSpaceProvider := inputs.targetCompactSpaceProvider
+  closedEmbeddingRows :=
+    componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581
+      inputs.globalClosedEmbeddingProvider
+  fixedTargetInputs := inputs.fixedTargetInputs
+
+/--
+W644 top-target compact-space global closed-embedding stable bundle through the
+W643 fixed-target localized-right-adjoint row route.
+-/
+structure
+    MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  fixedTargetGlobalClosedEmbeddingBundle :
+    MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingFixedTargetBundleW644
+  homotopyEquiv :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0}
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert W644 global closed-embedding stable data to the W643 fixed-target row bundle. -/
+def
+    metrizableWppTopTargetCompactSpaceClosedEmbeddingRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedEmbeddingW644
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644) :
+    MetrizableWppTopTargetCompactSpaceClosedEmbeddingRowsFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW643
+    where
+  fixedTargetBundle :=
+    metrizableWppTopTargetCompactSpaceClosedEmbeddingRowsFixedTargetBundle_of_globalClosedEmbeddingW644
+      inputs.fixedTargetGlobalClosedEmbeddingBundle
+  homotopyEquiv := inputs.homotopyEquiv
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W644 stable-semantic input for top-target compact-space global fixed-target embeddings. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_topTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        inputs.homotopyEquiv inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_topTargetCompactSpaceClosedEmbeddingRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundleW643
+    (metrizableWppTopTargetCompactSpaceClosedEmbeddingRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedEmbeddingW644
+      inputs)
+
+/-- W644 global closed-embedding fixed-target route builds the ordinary stable input through W643. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceClosedEmbeddingRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundleW643
+    (metrizableWppTopTargetCompactSpaceClosedEmbeddingRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedEmbeddingW644
+      inputs)
+
+/-- The W644 global closed-embedding fixed-target route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_topTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644
+        inputs)).ready :=
+  metrizableStableCertificate_of_topTargetCompactSpaceClosedEmbeddingRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundleW643_ready
+    (metrizableWppTopTargetCompactSpaceClosedEmbeddingRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedEmbeddingW644
+      inputs)
+
+/-- Input names for the W644 top-target compact-space global fixed-target routes. -/
+def
+    metrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointInputNamesW644 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryTopTargetRelationProviderW516",
+    "ClosedNatTransOrdinaryTargetCompactSpaceProviderW597",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "W516 top-target data supply W593 and W600 split providers",
+    "global closed-map provider narrows to W527 rows through W581",
+    "global closed-embedding provider narrows to W527 rows through W581",
+    "fixed-target lift/fac/uniq for WalkingParallelPair diagrams in Dbounded",
+    "fixed-target lift/fac/uniq for the WalkingParallelPair localization model",
+    "exactAcyclic MetrizableLCA is invariant under homotopy equivalences",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointInputNamesW644_count :
+    metrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointInputNamesW644.length =
+      15 :=
+  rfl
+
+/-- Current checked W644 state for top-target compact-space global fixed-target routes. -/
+structure
+    MetrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW644 :
+    Type where
+  seed : String
+  declarations : List String
+  globalClosedMapProviderNarrowingResult : String
+  globalClosedEmbeddingProviderNarrowingResult : String
+  globalClosedMapStableRouteResult : String
+  globalClosedEmbeddingStableRouteResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W644 state. -/
+def
+    currentMetrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointRouteSupportStateW644 :
+    MetrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW644
+    where
+  seed :=
+    "w644-top-target-compact-space-global-provider-fixed-target-localized-right-adjoint-route"
+  declarations :=
+    ["MetrizableWppTopTargetCompactSpaceGlobalClosedMapFixedTargetBundleW644",
+      "metrizableWppTopTargetCompactSpaceClosedMapRowsFixedTargetBundle_of_globalClosedMapW644",
+      "MetrizableWppTopTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644",
+      "metrizableWppTopTargetCompactSpaceClosedMapRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedMapW644",
+      "metrizableWppTransferStableSemanticInputs_of_topTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644",
+      "metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644",
+      "metrizableStableCertificate_of_topTargetCompactSpaceGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644_ready",
+      "MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingFixedTargetBundleW644",
+      "metrizableWppTopTargetCompactSpaceClosedEmbeddingRowsFixedTargetBundle_of_globalClosedEmbeddingW644",
+      "MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW644",
+      "metrizableWppTopTargetCompactSpaceClosedEmbeddingRowsFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedEmbeddingW644",
+      "metrizableWppTransferStableSemanticInputs_of_topTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644",
+      "metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644",
+      "metrizableStableCertificate_of_topTargetCompactSpaceGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundleW644_ready",
+      "metrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointInputNamesW644",
+      "metrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointInputNamesW644_count"]
+  globalClosedMapProviderNarrowingResult :=
+    "proved: W644 global closed-map data narrow to W643 fixed-target top-target compact-space closed-map rows through W581"
+  globalClosedEmbeddingProviderNarrowingResult :=
+    "proved: W644 global closed-embedding data narrow to W643 fixed-target top-target compact-space closed-embedding rows through W581"
+  globalClosedMapStableRouteResult :=
+    "proved: top-target compact-space global closed-map fixed-target data feed the W643 localized-right-adjoint stable route"
+  globalClosedEmbeddingStableRouteResult :=
+    "proved: top-target compact-space global closed-embedding fixed-target data feed the W643 localized-right-adjoint stable route"
+  stableCertificateResult :=
+    "proved: both W644 top-target compact-space global fixed-target variants produce ready W528 stable certificates through W643"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryTopTargetRelationProviderW516",
+      "construct concrete ClosedNatTransOrdinaryTargetCompactSpaceProviderW597",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct fixed-target lift/fac/uniq packages for the two WPP localization targets",
+      "prove exactAcyclic MetrizableLCA is invariant under homotopy equivalences",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW644 :
+    MetrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW644 :=
+  currentMetrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointRouteSupportStateW644
+
+theorem
+    currentMetrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW644_productSuccess :
+    currentMetrizableWppTopTargetCompactSpaceGlobalProvidersFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW644.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
