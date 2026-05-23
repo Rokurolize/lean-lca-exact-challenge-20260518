@@ -18963,6 +18963,251 @@ theorem
       false :=
   rfl
 
+/--
+W612 target-top compact bundle: W512 relation fields supply the pullback half,
+while a split W600 target-top provider replaces W601 target-difference
+surjectivity for the global closed-map branch.
+-/
+structure MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedBundleW612 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetRelationTopProvider :
+    ClosedNatTransOrdinaryTargetRelationTopProviderW600
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedMapProvider :
+    ComponentwiseClosedMapProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/-- Convert the W612 bundle to the W600 split top-target compact closed-map-row bundle. -/
+def
+    metrizableWppSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundle_of_relationFieldsTargetTopCompactGlobalClosedMapW612
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedBundleW612) :
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundleW600
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationPullbackProvider :=
+    relationPullbackProvider_of_relationFields_w600 inputs.relationFields
+  targetRelationTopProvider := inputs.targetRelationTopProvider
+  targetCompactSpaceProvider :=
+    targetCompactSpaceProvider_of_targetCodomainCompact_w601
+      inputs.targetCodomainCompactSpaceProvider
+  closedMapRows :=
+    componentwiseClosedMapRowsProvider_of_globalClosedMapProvider_w581
+      inputs.globalClosedMapProvider
+  normalizedInputs := inputs.normalizedInputs
+
+/--
+W612 finite-shape route: split target-top data and global closed maps feed the
+W600 closed-map-row transfer endpoint.
+-/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedMapRowsBundleW612
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedBundleW612) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitTopTargetCompactSpaceClosedMapRowsBundleW600
+    (metrizableWppSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundle_of_relationFieldsTargetTopCompactGlobalClosedMapW612
+      inputs)
+
+/-- W612 endpoint stable bundle for the target-top compact global closed-map route. -/
+structure MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapEndpointStableBundleW612
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  targetTopCompactGlobalClosedMapBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedBundleW612
+  endpointFields :
+    MetrizableEndpointStableTriangulatedFieldsW607
+
+/- W612 endpoint stable input: target-top data drive the W605 endpoint route. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapEndpointStableBundleW612) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605
+        inputs.endpointFields.hasHomology inputs.endpointFields.endpointTopology
+        inputs.endpointFields.localizedRightAdjoint) where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedMapRowsBundleW612
+      inputs.targetTopCompactGlobalClosedMapBundle
+  pretriangulated := inputs.endpointFields.pretriangulated
+  triangulated := inputs.endpointFields.triangulated
+
+/-- W612 endpoint route builds the ordinary stable input through W605. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapEndpointStableBundleW612) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfEndpointWppTransfer_w605
+    inputs.endpointFields.hasHomology inputs.endpointFields.endpointTopology
+    inputs.endpointFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612
+      inputs)
+
+/-- The W612 endpoint target-top compact route produces a ready stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapEndpointStableBundleW612) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfEndpointWppTransfer_w605_ready
+    inputs.endpointFields.hasHomology inputs.endpointFields.endpointTopology
+    inputs.endpointFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612
+      inputs)
+
+/-- W612 ShortExact stable bundle for the target-top compact global closed-map route. -/
+structure MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapShortExactStableBundleW612
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  targetTopCompactGlobalClosedMapBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedBundleW612
+  shortExactFields :
+    MetrizableShortExactStableTriangulatedFieldsW608
+
+/- W612 ShortExact stable input: target-top data drive the W605 ShortExact route. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapShortExactStableBundleW612) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605
+        inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+        inputs.shortExactFields.localizedRightAdjoint) where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedMapRowsBundleW612
+      inputs.targetTopCompactGlobalClosedMapBundle
+  pretriangulated := inputs.shortExactFields.pretriangulated
+  triangulated := inputs.shortExactFields.triangulated
+
+/-- W612 ShortExact route builds the ordinary stable input through W605. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapShortExactStableBundleW612) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfShortExactWppTransfer_w605
+    inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+    inputs.shortExactFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612
+      inputs)
+
+/-- The W612 ShortExact target-top compact route produces a ready stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapShortExactStableBundleW612) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfShortExactWppTransfer_w605_ready
+    inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+    inputs.shortExactFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612
+      inputs)
+
+/-- Input names for the W612 target-top compact global closed-map route. -/
+def metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapInputNamesW612 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs",
+    "MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapInputNamesW612_count :
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapInputNamesW612.length =
+      15 :=
+  rfl
+
+/-- Current checked W612 state for the target-top compact global closed-map route. -/
+structure MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612 :
+    Type where
+  seed : String
+  declarations : List String
+  targetTopRouteResult : String
+  endpointStableCertificateResult : String
+  shortExactStableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W612 state. -/
+def currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteSupportStateW612 :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612 where
+  seed := "w612-relation-fields-target-top-compact-global-closed-map-route"
+  declarations :=
+    ["MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedBundleW612",
+      "metrizableWppSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundle_of_relationFieldsTargetTopCompactGlobalClosedMapW612",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedMapRowsBundleW612",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapEndpointStableBundleW612",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612_ready",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapShortExactStableBundleW612",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612_ready",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapInputNamesW612",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapInputNamesW612_count"]
+  targetTopRouteResult :=
+    "proved: W512 relation fields plus W600 target-top data feed the W600 split top-target closed-map-row route"
+  endpointStableCertificateResult :=
+    "proved: target-top compact global closed-map endpoint bundles feed the W605 endpoint stable-certificate path"
+  shortExactStableCertificateResult :=
+    "proved: target-top compact global closed-map ShortExact bundles feed the W605 ShortExact stable-certificate path"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525",
+      "construct normalized strict-representative fixed-target localization data",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612 :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612 :=
+  currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteSupportStateW612
+
+theorem
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612_productSuccess :
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -20178,6 +20423,46 @@ set_option linter.style.longLine false in
 #check currentMetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapRouteStateW611
 set_option linter.style.longLine false in
 #check currentMetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapRouteStateW611_productSuccess
+set_option linter.style.longLine false in
+#check MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedBundleW612
+set_option linter.style.longLine false in
+#check
+  metrizableWppSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundle_of_relationFieldsTargetTopCompactGlobalClosedMapW612
+set_option linter.style.longLine false in
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedMapRowsBundleW612
+set_option linter.style.longLine false in
+#check MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapEndpointStableBundleW612
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapEndpointBundleW612_ready
+set_option linter.style.longLine false in
+#check MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapShortExactStableBundleW612
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapShortExactBundleW612_ready
+set_option linter.style.longLine false in
+#check metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapInputNamesW612
+set_option linter.style.longLine false in
+#check metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapInputNamesW612_count
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteSupportStateW612
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612_productSuccess
 
 end Checks
 
