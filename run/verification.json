@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w687-target-top-compact-global-fixed-target-kernel-cokernel-direct-localization",
-  "generated_utc": "2026-05-23T18:02:39Z",
-  "source_tree_hash": "15078c46521cab6c37d6c4fed419d4762eeb5b2a9dc9bb49d470485c531bcb54",
-  "summary": "W687 composes W645 relation-fields target-top compact global fixed-target bundles with W643/W644 finite-shape transfer and W682 kernel/cokernel direct-localization semantic fields. Closed-map and closed-embedding W645 target-top compact global provider inputs now produce accepted stable bounded-derived infinity-category packages without requiring TargetDifferenceSurjectiveProviderW601 as a direct route input. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w688-target-top-compact-global-closed-embedding-dominance-fixed-target-kernel-cokernel-direct-localization",
+  "generated_utc": "2026-05-23T18:11:02Z",
+  "source_tree_hash": "be262824176ebcfae883db4324079a7d4ad9b67a3c5cd07a9999dbf9ede924a6",
+  "summary": "W688 uses the W619 global closed-embedding-to-global closed-map dominance adapter inside the W687 target-top compact global-provider fixed-target kernel/cokernel direct-localization route. A W645 target-top compact global closed-embedding fixed-target bundle now also supplies the W687 global closed-map accepted stable bounded-derived infinity-category package, eliminating ComponentwiseClosedMapProviderW525 as a separate direct branch when closed-embedding data is available. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -11155,6 +11155,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_136_w687_pre_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_137_w688_pre_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_137_w688_pre_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_137_w688_pre_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_137_w688_pre_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_137_w688_pre_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_137_w688_pre_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_137_w688_pre_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_137_w688_pre_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_137_w688_pre_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -14886,7 +14931,20 @@
     "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderFixedTargetRouteStateW687",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderFixedTargetRouteSupportStateW687",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderFixedTargetRouteStateW687",
-    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderFixedTargetRouteStateW687_productSuccess"
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderFixedTargetRouteStateW687_productSuccess",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundle_of_globalClosedEmbeddingW688",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_globalClosedEmbeddingW688",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688",
+    "Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688_ready",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW688",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW688_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteSupportStateW688",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -14894,7 +14952,7 @@
     "construct concrete relation-fields provider data",
     "construct concrete target-relation-top provider data",
     "construct concrete target codomain compactness data",
-    "construct concrete componentwise global closed-map or closed-embedding provider data",
+    "construct concrete componentwise global closed-embedding provider data",
     "construct fixed-target universal-property packages",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
     "construct W668 kernel/cokernel-conditioned endpoint data including forgetful homology preservation",
@@ -14903,14 +14961,14 @@
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "support_result_classification": "nonterminal_target_top_compact_global_fixed_target_accepted_stable_route_for_kernel_cokernel_direct_localization",
+  "support_result_classification": "nonterminal_target_top_compact_global_closed_embedding_dominance_for_w687_accepted_stable_route",
   "product_success": false,
   "remaining_work": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
     "construct concrete target-relation-top provider data",
     "construct concrete target codomain compactness data",
-    "construct concrete componentwise global closed-map or closed-embedding provider data",
+    "construct concrete componentwise global closed-embedding provider data",
     "construct fixed-target universal-property packages",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
     "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
@@ -14920,8 +14978,8 @@
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W687 lets W645 target-top compact global fixed-target data feed accepted stable bounded-derived infinity-category packages through W643/W644 finite-shape transfer and W682 kernel/cokernel direct localization; product flags remain false.",
-  "latest_verified_increment": "W687 target-top compact global fixed-target accepted stable route for kernel-cokernel direct localization",
+  "summary_log_tail": "W688 lets W687 target-top compact global closed-embedding fixed-target kernel/cokernel direct-localization data also feed the global closed-map accepted stable package through W619; product flags remain false.",
+  "latest_verified_increment": "W688 target-top compact global closed-embedding dominance for the W687 accepted stable route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -15933,6 +15991,13 @@
       "latest_verified_increment": "W687 target-top compact global fixed-target accepted stable route for kernel-cokernel direct localization",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W687 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w688_target_top_compact_global_closed_embedding_dominance_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T18:11:02Z",
+      "source_tree_hash": "be262824176ebcfae883db4324079a7d4ad9b67a3c5cd07a9999dbf9ede924a6",
+      "latest_verified_increment": "W688 target-top compact global closed-embedding dominance for the W687 accepted stable route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W688 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }

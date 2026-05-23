@@ -37420,6 +37420,194 @@ theorem
       false :=
   rfl
 
+/--
+W688 global-provider dominance: a W645 target-top compact global
+closed-embedding fixed-target bundle also supplies the W645 global closed-map
+bundle.
+-/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundle_of_globalClosedEmbeddingW688
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetBundleW645) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundleW645
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetRelationTopProvider := inputs.targetRelationTopProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  globalClosedMapProvider :=
+    componentwiseClosedMapProvider_of_globalClosedEmbeddingProvider_w619
+      inputs.globalClosedEmbeddingProvider
+  fixedTargetInputs := inputs.fixedTargetInputs
+
+/--
+W688 adapts the W687 closed-embedding global-provider kernel/cokernel route to
+the W687 global closed-map route.
+-/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_globalClosedEmbeddingW688
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW687) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687
+    where
+  relationFieldsTargetTopCompactGlobalClosedMapBundle :=
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundle_of_globalClosedEmbeddingW688
+      inputs.relationFieldsTargetTopCompactGlobalClosedEmbeddingBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W688 closed-embedding-via-global-closed-map transfer inputs. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW687) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_globalClosedEmbeddingW688
+      inputs)
+
+/-- W688 closed-embedding-via-global-closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW687) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_globalClosedEmbeddingW688
+      inputs)
+
+/-- The W688 dominance route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW687) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687_ready
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_globalClosedEmbeddingW688
+      inputs)
+
+/--
+W688 packages the target-top compact global closed-embedding input through the
+global closed-map accepted stable route.
+-/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW687) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_globalClosedEmbeddingW688
+      inputs)
+
+/-- The W688 dominance package is on the accepted stable branch. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW687) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_globalClosedEmbeddingW688
+      inputs)
+
+/-- Input names for the W688 target-top compact global closed-embedding dominance route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW688 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedEmbeddingProviderW525",
+    "global closed-embedding provider upgrades to W525 closed-map provider through W619",
+    "W512 relation fields plus W600 target-top data reconstruct the W516 top-target provider",
+    "W601 target codomain compactness supplies the W597 target compact-space provider",
+    "W525 global providers narrow to W527 row providers through W581",
+    "fixed-target lift/fac/uniq packages for WalkingParallelPair diagrams and localization model",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW688_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW688.length =
+      15 :=
+  rfl
+
+/-- Current checked W688 state for target-top compact global closed-embedding dominance. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688 :
+    Type where
+  seed : String
+  declarations : List String
+  closedEmbeddingToClosedMapResult : String
+  closedMapAcceptedResult : String
+  removedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W688 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteSupportStateW688 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688
+    where
+  seed :=
+    "w688-target-top-compact-global-closed-embedding-dominance-fixed-target-kernel-cokernel-direct-localization-route"
+  declarations :=
+    ["metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundle_of_globalClosedEmbeddingW688",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_globalClosedEmbeddingW688",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW688",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW688_count"]
+  closedEmbeddingToClosedMapResult :=
+    "proved: W645 target-top compact global closed-embedding fixed-target data supplies W645 global closed-map data through W619"
+  closedMapAcceptedResult :=
+    "proved: the W687 global closed-embedding input also reaches the W687 global closed-map accepted stable package"
+  removedInputs :=
+    ["ComponentwiseClosedMapProviderW525 as a separate direct branch when ComponentwiseClosedEmbeddingProviderW525 is available"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedEmbeddingProviderW525",
+      "construct fixed-target lift/fac/uniq packages for the two WPP localization targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W668 kernel/cokernel-conditioned endpoint data including forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteSupportStateW688
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -39761,6 +39949,45 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderFixedTargetRouteStateW687_productSuccess
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundle_of_globalClosedEmbeddingW688
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_globalClosedEmbeddingW688
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688_ready
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688_accepted
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW688
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW688_count
+set_option linter.style.longLine false in
+#check
+  MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteSupportStateW688
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688_productSuccess
 
 end Checks
 
