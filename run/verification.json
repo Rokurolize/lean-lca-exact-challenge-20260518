@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w657-derived-localization-commshift-route",
-  "generated_utc": "2026-05-23T11:39:03Z",
-  "source_tree_hash": "9a73c57c51b102823a044511c4c9064e501024accb931be1059b112ec8adf594",
-  "summary": "W657 narrows the W656 direct-localization finite-shape core by deriving Dbounded.localization MetrizableLCA commShift from the W604 endpoint or ShortExact left-calculus route. It adds endpoint and ShortExact no-commShift payloads and direct finite-shape bundle adapters that continue through W656/W655/W653 to ready W528 certificates, removing the explicit localized commShift field from future direct finite-shape endpoint and ShortExact source payloads. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w658-target-iso-exact-realization-route",
+  "generated_utc": "2026-05-23T12:16:01Z",
+  "source_tree_hash": "4f9c4deeedcbec3d9bc9d8d688b471d9d15448467ec43dd967b5eef92236a47e",
+  "summary": "W658 narrows the W657 direct finite-shape endpoint and ShortExact routes by replacing the raw exactAcyclicHomotopyIsoClosure triangleh iso13 realization field with target-isomorphism realization data. It proves that exact acyclicity transported across an isomorphism supplies the W651 realization input, then adapts endpoint and ShortExact target-isomorphism bundles through W657 to ready W528 certificates. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -10000,6 +10000,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_106_w657_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_107_w658_post_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_107_w658_post_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_107_w658_post_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_107_w658_post_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_107_w658_post_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_107_w658_post_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_107_w658_post_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_107_w658_post_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_107_w658_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -13174,11 +13219,31 @@
     "Dbounded.MetrizableWppDirectFiniteShapeDirectLocalizationNoCommShiftRouteStateW657",
     "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationNoCommShiftRouteSupportStateW657",
     "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationNoCommShiftRouteStateW657",
-    "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationNoCommShiftRouteStateW657_productSuccess"
+    "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationNoCommShiftRouteStateW657_productSuccess",
+    "Dbounded.MetrizableExactAcyclicIsoClosureTrianglehIso13TargetIsoPayloadW658",
+    "Dbounded.metrizableExactAcyclicIsoClosureTrianglehIso13Realization_of_targetIsoPayloadW658",
+    "Dbounded.MetrizableEndpointDirectLocalizationTriangulatedTargetIsoPayloadW658",
+    "Dbounded.metrizableEndpointDirectLocalizationTriangulatedNoCommShiftPayload_of_targetIsoW658",
+    "Dbounded.MetrizableShortExactDirectLocalizationTriangulatedTargetIsoPayloadW658",
+    "Dbounded.metrizableShortExactDirectLocalizationTriangulatedNoCommShiftPayload_of_targetIsoW658",
+    "Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658",
+    "Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationNoCommShiftBundle_of_targetIsoW658",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658_ready",
+    "Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658",
+    "Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationNoCommShiftBundle_of_targetIsoW658",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658_ready",
+    "Dbounded.metrizableWppDirectFiniteShapeDirectLocalizationTargetIsoInputNamesW658",
+    "Dbounded.metrizableWppDirectFiniteShapeDirectLocalizationTargetIsoInputNamesW658_count",
+    "Dbounded.MetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteSupportStateW658",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "construct exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA data",
+    "construct target-isomorphism triangleh iso13 realization data for exactAcyclicHomotopyIsoClosure MetrizableLCA",
     "construct concrete MetrizableWalkingParallelPairFiniteShapeTransferInputs data for the final call site",
     "construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary data",
     "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary data",
@@ -13208,10 +13273,10 @@
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
     "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "support_result_classification": "nonterminal_derived_localization_commshift_direct_localization_route",
+  "support_result_classification": "nonterminal_target_iso_exact_realization_direct_finite_shape_route",
   "product_success": false,
   "remaining_work": [
-    "construct exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA data",
+    "construct target-isomorphism triangleh iso13 realization data for exactAcyclicHomotopyIsoClosure MetrizableLCA",
     "instantiate concrete direct finite-shape WPP source data",
     "instantiate WPP exact-acyclic limit closure data or all four WPP limit-field inputs",
     "instantiate WPP-op exact-acyclic closure data or the left/Snake colimit certificate",
@@ -13222,8 +13287,8 @@
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "summary_log_tail": "W657 derives localized commShift from endpoint/ShortExact left calculus and keeps direct finite-shape endpoint/ShortExact certificates ready; product flags remain false.",
-  "latest_verified_increment": "W657 derived localization commShift direct-localization route",
+  "summary_log_tail": "W658 replaces the raw W651 exact-realization input with target-isomorphism data and keeps direct finite-shape endpoint/ShortExact certificates ready; product flags remain false.",
+  "latest_verified_increment": "W658 target-isomorphism exact-realization direct finite-shape route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -14025,6 +14090,13 @@
       "latest_verified_increment": "W657 derived localization commShift direct-localization route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W657 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w658_target_iso_exact_realization_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T12:16:01Z",
+      "source_tree_hash": "4f9c4deeedcbec3d9bc9d8d688b471d9d15448467ec43dd967b5eef92236a47e",
+      "latest_verified_increment": "W658 target-isomorphism exact-realization direct finite-shape route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W658 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }

@@ -30360,6 +30360,259 @@ theorem
       false :=
   rfl
 
+/--
+W658 exact-acyclic triangleh iso13 target-isomorphism payload.
+
+Compared with the raw W651 strict-realization input, this lets the selected mapping-cone
+target be merely isomorphic to a strict exact-acyclic representative; exact acyclicity is
+then transported across that cochain isomorphism.
+-/
+abbrev MetrizableExactAcyclicIsoClosureTrianglehIso13TargetIsoPayloadW658 :
+    Prop :=
+  ∀ {T : Pretriangulated.Triangle
+      (HomotopyCategory MetrizableLCA.{0} (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory MetrizableLCA.{0} (ComplexShape.up ℤ)) →
+    exactAcyclicHomotopyIsoClosure MetrizableLCA.{0} T.obj₁ →
+    exactAcyclicHomotopyIsoClosure MetrizableLCA.{0} T.obj₃ →
+    ∃ (K L Lexact : CochainComplex MetrizableLCA.{0} ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+      (eL : Lexact ≅ L),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor
+              (HomotopyCategory MetrizableLCA.{0} (ComplexShape.up ℤ))
+              (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        exactAcyclic MetrizableLCA.{0} Lexact
+
+/-- W658 target-isomorphism payload supplies the W651 strict realization input. -/
+theorem
+    metrizableExactAcyclicIsoClosureTrianglehIso13Realization_of_targetIsoPayloadW658
+    (payload :
+      MetrizableExactAcyclicIsoClosureTrianglehIso13TargetIsoPayloadW658) :
+    MetrizableExactAcyclicIsoClosureTrianglehIso13RealizationInputW651 := by
+  intro T hT h₁ h₃
+  rcases payload hT h₁ h₃ with
+    ⟨K, L, Lexact, f, e₁, e₃, eL, comm, hLexact⟩
+  exact
+    ⟨K, L, f, e₁, e₃, comm,
+      exactAcyclic_of_iso MetrizableLCA.{0} eL hLexact⟩
+
+/-- W658 endpoint payload replacing raw exact realization by target-isomorphism data. -/
+structure MetrizableEndpointDirectLocalizationTriangulatedTargetIsoPayloadW658 :
+    Type 1 where
+  targetIsoPayload :
+    MetrizableExactAcyclicIsoClosureTrianglehIso13TargetIsoPayloadW658
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  endpointTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W658 adapts endpoint target-isomorphism payloads to W657 no-commShift payloads. -/
+def
+    metrizableEndpointDirectLocalizationTriangulatedNoCommShiftPayload_of_targetIsoW658
+    (inputs : MetrizableEndpointDirectLocalizationTriangulatedTargetIsoPayloadW658) :
+    MetrizableEndpointDirectLocalizationTriangulatedNoCommShiftPayloadW657 where
+  exactRealize :=
+    metrizableExactAcyclicIsoClosureTrianglehIso13Realization_of_targetIsoPayloadW658
+      inputs.targetIsoPayload
+  hasHomology := inputs.hasHomology
+  endpointTopology := inputs.endpointTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W658 ShortExact payload replacing raw exact realization by target-isomorphism data. -/
+structure MetrizableShortExactDirectLocalizationTriangulatedTargetIsoPayloadW658 :
+    Type 1 where
+  targetIsoPayload :
+    MetrizableExactAcyclicIsoClosureTrianglehIso13TargetIsoPayloadW658
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  shortExactTopology :
+    MetrizableExactAtShortExactTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W658 adapts ShortExact target-isomorphism payloads to W657 no-commShift payloads. -/
+def
+    metrizableShortExactDirectLocalizationTriangulatedNoCommShiftPayload_of_targetIsoW658
+    (inputs :
+      MetrizableShortExactDirectLocalizationTriangulatedTargetIsoPayloadW658) :
+    MetrizableShortExactDirectLocalizationTriangulatedNoCommShiftPayloadW657 where
+  exactRealize :=
+    metrizableExactAcyclicIsoClosureTrianglehIso13Realization_of_targetIsoPayloadW658
+      inputs.targetIsoPayload
+  hasHomology := inputs.hasHomology
+  shortExactTopology := inputs.shortExactTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W658 direct finite-shape endpoint bundle using target-isomorphism realization data. -/
+structure MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  endpointPayload :
+    MetrizableEndpointDirectLocalizationTriangulatedTargetIsoPayloadW658
+
+/-- W658 adapts endpoint target-isomorphism bundles to W657 no-commShift bundles. -/
+def
+    metrizableWppDirectFiniteShapeEndpointDirectLocalizationNoCommShiftBundle_of_targetIsoW658
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658) :
+    MetrizableWppDirectFiniteShapeEndpointDirectLocalizationNoCommShiftBundleW657 where
+  directSource := inputs.directSource
+  endpointPayload :=
+    metrizableEndpointDirectLocalizationTriangulatedNoCommShiftPayload_of_targetIsoW658
+      inputs.endpointPayload
+
+/-- W658 endpoint target-isomorphism route builds the W657 ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationNoCommShiftBundleW657
+    (metrizableWppDirectFiniteShapeEndpointDirectLocalizationNoCommShiftBundle_of_targetIsoW658
+      inputs)
+
+/-- W658 endpoint target-isomorphism route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationNoCommShiftBundleW657_ready
+    (metrizableWppDirectFiniteShapeEndpointDirectLocalizationNoCommShiftBundle_of_targetIsoW658
+      inputs)
+
+/-- W658 direct finite-shape ShortExact bundle using target-isomorphism realization data. -/
+structure MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  shortExactPayload :
+    MetrizableShortExactDirectLocalizationTriangulatedTargetIsoPayloadW658
+
+/-- W658 adapts ShortExact target-isomorphism bundles to W657 no-commShift bundles. -/
+def
+    metrizableWppDirectFiniteShapeShortExactDirectLocalizationNoCommShiftBundle_of_targetIsoW658
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658) :
+    MetrizableWppDirectFiniteShapeShortExactDirectLocalizationNoCommShiftBundleW657 where
+  directSource := inputs.directSource
+  shortExactPayload :=
+    metrizableShortExactDirectLocalizationTriangulatedNoCommShiftPayload_of_targetIsoW658
+      inputs.shortExactPayload
+
+/-- W658 ShortExact target-isomorphism route builds the W657 ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationNoCommShiftBundleW657
+    (metrizableWppDirectFiniteShapeShortExactDirectLocalizationNoCommShiftBundle_of_targetIsoW658
+      inputs)
+
+/-- W658 ShortExact target-isomorphism route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationNoCommShiftBundleW657_ready
+    (metrizableWppDirectFiniteShapeShortExactDirectLocalizationNoCommShiftBundle_of_targetIsoW658
+      inputs)
+
+/-- Input names for the W658 target-isomorphism exact-realization route. -/
+def metrizableWppDirectFiniteShapeDirectLocalizationTargetIsoInputNamesW658 :
+    List String :=
+  ["direct finite-shape WPP source",
+    "target-isomorphism triangleh iso13 realization data for exactAcyclicHomotopyIsoClosure MetrizableLCA",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs or MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem metrizableWppDirectFiniteShapeDirectLocalizationTargetIsoInputNamesW658_count :
+    metrizableWppDirectFiniteShapeDirectLocalizationTargetIsoInputNamesW658.length =
+      7 :=
+  rfl
+
+/-- Current checked W658 state for target-isomorphism exact-realization reuse. -/
+structure MetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658 :
+    Type where
+  seed : String
+  declarations : List String
+  targetIsoResult : String
+  endpointRouteResult : String
+  shortExactRouteResult : String
+  stableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W658 state. -/
+def currentMetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteSupportStateW658 :
+    MetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658 where
+  seed := "w658-direct-finite-shape-target-iso-exact-realization-route"
+  declarations :=
+    ["MetrizableExactAcyclicIsoClosureTrianglehIso13TargetIsoPayloadW658",
+      "metrizableExactAcyclicIsoClosureTrianglehIso13Realization_of_targetIsoPayloadW658",
+      "MetrizableEndpointDirectLocalizationTriangulatedTargetIsoPayloadW658",
+      "metrizableEndpointDirectLocalizationTriangulatedNoCommShiftPayload_of_targetIsoW658",
+      "MetrizableShortExactDirectLocalizationTriangulatedTargetIsoPayloadW658",
+      "metrizableShortExactDirectLocalizationTriangulatedNoCommShiftPayload_of_targetIsoW658",
+      "MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658",
+      "metrizableWppDirectFiniteShapeEndpointDirectLocalizationNoCommShiftBundle_of_targetIsoW658",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658",
+      "metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationTargetIsoBundleW658_ready",
+      "MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658",
+      "metrizableWppDirectFiniteShapeShortExactDirectLocalizationNoCommShiftBundle_of_targetIsoW658",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658",
+      "metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationTargetIsoBundleW658_ready",
+      "metrizableWppDirectFiniteShapeDirectLocalizationTargetIsoInputNamesW658",
+      "metrizableWppDirectFiniteShapeDirectLocalizationTargetIsoInputNamesW658_count"]
+  targetIsoResult :=
+    "proved: target-isomorphism triangleh iso13 data transports exact acyclicity to the selected mapping-cone target and supplies the W651 exact realization"
+  endpointRouteResult :=
+    "proved: direct finite-shape endpoint route can use target-isomorphism realization data instead of raw W651 exactRealize"
+  shortExactRouteResult :=
+    "proved: direct finite-shape ShortExact route can use target-isomorphism realization data instead of raw W651 exactRealize"
+  stableCertificateResult :=
+    "proved: endpoint and ShortExact W658 target-isomorphism bundles still produce ready W528 certificates through W657"
+  replacedInputs :=
+    ["raw exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA"]
+  remainingInputs :=
+    ["instantiate a concrete direct finite-shape WPP source",
+      "construct target-isomorphism triangleh iso13 realization data",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658 :
+    MetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658 :=
+  currentMetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteSupportStateW658
+
+theorem
+    currentMetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658_productSuccess :
+    currentMetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
