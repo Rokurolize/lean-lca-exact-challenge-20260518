@@ -35710,6 +35710,446 @@ theorem
       false :=
   rfl
 
+/--
+W682 exposes the direct bounded left-calculus instance already implicit in the
+W681 kernel/cokernel-derived homotopy-equivalence and localized-right-adjoint route.
+-/
+noncomputable def
+    metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicIsoClosureClosed2_of_kernelCokernelConditionedW681
+      hasHomology I
+  letI : (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+      MetrizableLCA.{0}
+      (Dbounded.homotopyEquivInvariance_of_kernelCokernelConditionedTopology_w668
+        hasHomology I)
+  exact
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      MetrizableLCA.{0} R
+
+/--
+W682 derives the localized commShift for `Dbounded.localization` from the W681 left
+calculus surface, so the direct-localization source core does not need to carry it.
+-/
+noncomputable abbrev
+    metrizableKernelCokernelHomotopyEquivLocalizationCommShift_of_leftCalculusW682
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682
+        hasHomology I R
+    letI : HasShift (Dbounded MetrizableLCA.{0}) ℤ :=
+      HasShift.localization (boundedExactWeakEquivalence MetrizableLCA.{0}) ℤ
+    (Dbounded.localization MetrizableLCA.{0}).CommShift ℤ := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682
+      hasHomology I R
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithShift ℤ :=
+    boundedExactWeakEquivalence_isCompatibleWithShift MetrizableLCA.{0}
+  letI : HasShift (Dbounded MetrizableLCA.{0}) ℤ :=
+    HasShift.localization (boundedExactWeakEquivalence MetrizableLCA.{0}) ℤ
+  infer_instance
+
+/--
+W682 replaces W681's raw `Dbounded` pretriangulated field by the direct-localization
+source core already used by W657.
+-/
+noncomputable def
+    metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0})
+    (source : MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657) :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        hasHomology I R
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0}) := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicIsoClosureClosed2_of_kernelCokernelConditionedW681
+      hasHomology I
+  letI : (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+      MetrizableLCA.{0}
+      (Dbounded.homotopyEquivInvariance_of_kernelCokernelConditionedTopology_w668
+        hasHomology I)
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682
+      hasHomology I R
+  letI : HasShift (Dbounded MetrizableLCA.{0}) ℤ :=
+    HasShift.localization (boundedExactWeakEquivalence MetrizableLCA.{0}) ℤ
+  let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+    metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+      hasHomology I R
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+  letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+  letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+    available.shiftAdditiveAll
+  letI : (Dbounded.localization MetrizableLCA.{0}).Additive :=
+    Dbounded.localization_additiveOfHasLeftCalculusOfFractions MetrizableLCA.{0}
+  letI : (Dbounded.localization MetrizableLCA.{0}).CommShift ℤ :=
+    metrizableKernelCokernelHomotopyEquivLocalizationCommShift_of_leftCalculusW682
+      hasHomology I R
+  letI : ∀ n : ℤ,
+      (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+    inferInstance
+  letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+    source.sourcePretriangulated
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithShift ℤ :=
+    boundedExactWeakEquivalence_isCompatibleWithShift MetrizableLCA.{0}
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithTriangulation :=
+    metrizableBoundedExactWeakEquivalence_isCompatibleWithTriangulation_of_triangleCompletionW654
+      source.triangleCompletion
+  exact metrizablePretriangulatedOfDirectLocalizationCompatibilityW654
+
+/--
+W682 similarly replaces W681's raw `Dbounded` triangulated field by W654 applied to
+the W681 left calculus and W657 direct-localization source core.
+-/
+noncomputable def
+    metrizableIsTriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0})
+    (source : MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657) :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        hasHomology I R
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+      metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+        hasHomology I R source
+    IsTriangulated (Dbounded MetrizableLCA.{0}) := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicIsoClosureClosed2_of_kernelCokernelConditionedW681
+      hasHomology I
+  letI : (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+      MetrizableLCA.{0}
+      (Dbounded.homotopyEquivInvariance_of_kernelCokernelConditionedTopology_w668
+        hasHomology I)
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682
+      hasHomology I R
+  letI : HasShift (Dbounded MetrizableLCA.{0}) ℤ :=
+    HasShift.localization (boundedExactWeakEquivalence MetrizableLCA.{0}) ℤ
+  let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+    metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+      hasHomology I R
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+  letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+  letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+    available.shiftAdditiveAll
+  letI : (Dbounded.localization MetrizableLCA.{0}).Additive :=
+    Dbounded.localization_additiveOfHasLeftCalculusOfFractions MetrizableLCA.{0}
+  letI : (Dbounded.localization MetrizableLCA.{0}).CommShift ℤ :=
+    metrizableKernelCokernelHomotopyEquivLocalizationCommShift_of_leftCalculusW682
+      hasHomology I R
+  letI : ∀ n : ℤ,
+      (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+    inferInstance
+  letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+    source.sourcePretriangulated
+  letI : IsTriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+    source.sourceTriangulated
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithShift ℤ :=
+    boundedExactWeakEquivalence_isCompatibleWithShift MetrizableLCA.{0}
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithTriangulation :=
+    metrizableBoundedExactWeakEquivalence_isCompatibleWithTriangulation_of_triangleCompletionW654
+      source.triangleCompletion
+  letI : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+    metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+      hasHomology I R source
+  exact metrizableIsTriangulatedOfDirectLocalizationCompatibilityW654
+
+/--
+W682 closed-map-row bundle: W681 data plus a W657 direct-localization source core,
+with raw `Dbounded` triangulated fields derived by W654.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682 :
+    Type 2 where
+  relationFieldsTargetTopCompactRowsBundle :
+    MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsNormalizedBundleW614
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W682 adapts closed-map-row direct-localization bundles to W681 bundles. -/
+noncomputable def
+    metrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivLocalizedRightAdjointStableBundleW681
+    where
+  relationFieldsTargetTopCompactRowsBundle := inputs.relationFieldsTargetTopCompactRowsBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  pretriangulated :=
+    metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+      inputs.directLocalization
+  triangulated := by
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+      metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+        inputs.directLocalization
+    exact
+      metrizableIsTriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+        inputs.directLocalization
+
+/-- W682 closed-map-row transfer inputs through W681 after deriving triangulated fields. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivBundleW681
+    (metrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682
+      inputs)
+
+/-- W682 closed-map-row route builds ordinary stable input through W681. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivBundleW681
+    (metrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682
+      inputs)
+
+/-- The W682 closed-map-row route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivBundleW681_ready
+    (metrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682
+      inputs)
+
+/--
+W682 closed-embedding-row bundle: W681 data plus a W657 direct-localization source core,
+with raw `Dbounded` triangulated fields derived by W654.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682 :
+    Type 2 where
+  relationFieldsTargetTopCompactRowsBundle :
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundleW615
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W682 adapts closed-embedding-row direct-localization bundles to W681 bundles. -/
+noncomputable def
+    metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivLocalizedRightAdjointStableBundleW681
+    where
+  relationFieldsTargetTopCompactRowsBundle := inputs.relationFieldsTargetTopCompactRowsBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  pretriangulated :=
+    metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+      inputs.directLocalization
+  triangulated := by
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+      metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+        inputs.directLocalization
+    exact
+      metrizableIsTriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+        inputs.directLocalization
+
+/--
+W682 closed-embedding-row transfer inputs through W681 after deriving
+triangulated fields.
+-/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivBundleW681
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682
+      inputs)
+
+/-- W682 closed-embedding-row route builds ordinary stable input through W681. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivBundleW681
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682
+      inputs)
+
+/-- The W682 closed-embedding-row route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivBundleW681_ready
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682
+      inputs)
+
+/-- Input names for the W682 direct-localization reduction of the W681 row-aware route. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+theorem
+    metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682_count :
+    metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682.length =
+      12 :=
+  rfl
+
+/-- Current checked W682 state for deriving W681's `Dbounded` triangulated fields. -/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682 :
+    Type where
+  seed : String
+  declarations : List String
+  leftCalculusResult : String
+  directLocalizationResult : String
+  closedMapRowsStableRouteResult : String
+  closedEmbeddingRowsStableRouteResult : String
+  stableCertificateResult : String
+  removedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W682 state. -/
+def
+    currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteSupportStateW682 :
+    MetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682
+    where
+  seed :=
+    "w682-relation-fields-target-top-compact-rows-kernel-cokernel-direct-localization-route"
+  declarations :=
+    ["metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682",
+      "metrizableKernelCokernelHomotopyEquivLocalizationCommShift_of_leftCalculusW682",
+      "metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682",
+      "metrizableIsTriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682",
+      "MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+      "metrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682_ready",
+      "MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+      "metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682_ready",
+      "metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682",
+      "metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682_count"]
+  leftCalculusResult :=
+    "proved: W681 kernel/cokernel homotopy-equivalence plus localized-right-adjoint data supplies direct bounded left calculus and localized commShift"
+  directLocalizationResult :=
+    "proved: W654 derives W681's Dbounded pretriangulated and triangulated fields from the W657 direct-localization source core"
+  closedMapRowsStableRouteResult :=
+    "proved: W614 closed-map rows feed W681 after W682 derives its triangulated fields"
+  closedEmbeddingRowsStableRouteResult :=
+    "proved: W615 closed-embedding rows feed W681 after W682 derives its triangulated fields"
+  stableCertificateResult :=
+    "proved: both W682 row variants produce ready W528 stable certificates without raw Dbounded triangulated payload fields"
+  removedInputs :=
+    ["raw Pretriangulated (Dbounded MetrizableLCA) payload field",
+      "raw IsTriangulated (Dbounded MetrizableLCA) payload field"]
+  remainingInputs :=
+    ["construct concrete WPP right-open and source-pi-zero boundary data",
+      "construct concrete relation-fields provider data",
+      "construct concrete target-relation-top provider data",
+      "construct concrete target codomain compactness data",
+      "construct concrete componentwise closed-map or closed-embedding row provider data",
+      "construct normalized strict representatives and fixed-target uniqueness data",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W668 kernel/cokernel-conditioned endpoint data including forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682 :
+    MetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682 :=
+  currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteSupportStateW682
+
+theorem
+    currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682_productSuccess :
+    currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -36165,6 +36605,67 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivRouteStateW681_productSuccess
+
+set_option linter.style.longLine false in
+#check
+  metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682
+set_option linter.style.longLine false in
+#check
+  metrizableKernelCokernelHomotopyEquivLocalizationCommShift_of_leftCalculusW682
+set_option linter.style.longLine false in
+#check
+  metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+set_option linter.style.longLine false in
+#check
+  metrizableIsTriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682_ready
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682_ready
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682_count
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteSupportStateW682
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682_productSuccess
 
 set_option linter.style.longLine false in
 #check metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670

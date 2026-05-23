@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w681-row-aware-relation-fields-target-top-compact-kernel-cokernel-derived-homotopy-equivalence-stable-route",
-  "generated_utc": "2026-05-23T16:22:19Z",
-  "source_tree_hash": "b9aec090bd220f71707c81084d68332ae5bd296eb06614bfcd7c3df7c30f891e",
-  "summary": "W681 derives W680's homotopy-equivalence and exactAcyclicHomotopyIsoClosure closed2 inputs from the existing W668/W671 kernel/cokernel-conditioned topology route, then feeds the W614 closed-map-row and W615 closed-embedding-row relation-fields target-top compact sources through the W638 localized-right-adjoint semantic bridge. This keeps the W681 path away from W679's source-side direct-localization triangulation and triangle-completion payload. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w682-row-aware-relation-fields-target-top-compact-kernel-cokernel-direct-localization-triangulation-route",
+  "generated_utc": "2026-05-23T16:38:44Z",
+  "source_tree_hash": "7ea0640de919d6ba5a85807b9c8fb31de189d66fe6508aefe8e685acf8c0cb01",
+  "summary": "W682 keeps the W681 W614/W615 row-aware relation-fields target-top compact kernel/cokernel-derived homotopy-equivalence route, but replaces the raw Pretriangulated and IsTriangulated payload fields for Dbounded MetrizableLCA with a W657 direct-localization source core. W654 then derives the Dbounded pretriangulated and triangulated fields from source triangulation, triangle-completion compatibility, W681 left calculus, and localized commShift. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -10885,6 +10885,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_130_w681_pre_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_131_w682_pre_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_131_w682_pre_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_131_w682_pre_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_131_w682_pre_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_131_w682_pre_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_131_w682_pre_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_131_w682_pre_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_131_w682_pre_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_131_w682_pre_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -14488,7 +14533,27 @@
     "Dbounded.MetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivRouteStateW681",
     "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivRouteSupportStateW681",
     "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivRouteStateW681",
-    "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivRouteStateW681_productSuccess"
+    "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivRouteStateW681_productSuccess",
+    "Dbounded.metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682",
+    "Dbounded.metrizableKernelCokernelHomotopyEquivLocalizationCommShift_of_leftCalculusW682",
+    "Dbounded.metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682",
+    "Dbounded.metrizableIsTriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+    "Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682_ready",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivBundle_of_directLocalizationW682",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682",
+    "Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682_ready",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682_count",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682",
+    "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteSupportStateW682",
+    "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682",
+    "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -14501,11 +14566,11 @@
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
     "construct W668 kernel/cokernel-conditioned endpoint data including forgetful homology preservation",
     "construct bounded homotopy localized right adjoint plus unit membership",
-    "construct Pretriangulated (Dbounded MetrizableLCA)",
-    "construct IsTriangulated (Dbounded MetrizableLCA)",
+    "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "support_result_classification": "nonterminal_row_aware_relation_fields_target_top_compact_kernel_cokernel_derived_homotopy_equivalence_route",
+  "support_result_classification": "nonterminal_row_aware_relation_fields_target_top_compact_kernel_cokernel_homotopy_equivalence_direct_localization_triangulation_route",
   "product_success": false,
   "remaining_work": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
@@ -14518,12 +14583,12 @@
     "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
     "prove categorical ExactAt supplies incoming kernel forks and outgoing cokernel coforks",
     "construct bounded homotopy localized right adjoint plus unit membership",
-    "construct Pretriangulated (Dbounded MetrizableLCA)",
-    "construct IsTriangulated (Dbounded MetrizableLCA)",
+    "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W681 derives W680's homotopy-equivalence and closed2 inputs from W668/W671 and avoids W679's source direct-localization triangulation payload; product flags remain false.",
-  "latest_verified_increment": "W681 row-aware relation-fields target-top compact kernel-cokernel-derived homotopy-equivalence stable route",
+  "summary_log_tail": "W682 derives W681's raw Dbounded pretriangulated and triangulated fields from W657/W654 direct-localization source data; product flags remain false.",
+  "latest_verified_increment": "W682 row-aware relation-fields target-top compact kernel-cokernel homotopy-equivalence direct-localization triangulation route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -15493,6 +15558,13 @@
       "latest_verified_increment": "W681 row-aware relation-fields target-top compact kernel-cokernel-derived homotopy-equivalence stable route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W681 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w682_row_aware_relation_fields_target_top_compact_kernel_cokernel_direct_localization_triangulation_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T16:38:44Z",
+      "source_tree_hash": "7ea0640de919d6ba5a85807b9c8fb31de189d66fe6508aefe8e685acf8c0cb01",
+      "latest_verified_increment": "W682 row-aware relation-fields target-top compact kernel-cokernel homotopy-equivalence direct-localization triangulation route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W682 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }
