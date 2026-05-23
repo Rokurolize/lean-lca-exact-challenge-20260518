@@ -6012,6 +6012,44 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationTargetIsoRouteStateW658_productSuccess
+  #check
+    Dbounded.MetrizableExactAcyclicIsoClosureClosed2InputW659
+  #check
+    Dbounded.MetrizableEndpointDirectLocalizationTriangulatedClosed2PayloadW659
+  #check
+    Dbounded.metrizableEndpointStableTriangulatedFields_of_closed2DirectLocalizationW659
+  #check
+    Dbounded.MetrizableShortExactDirectLocalizationTriangulatedClosed2PayloadW659
+  #check
+    Dbounded.metrizableShortExactStableTriangulatedFields_of_closed2DirectLocalizationW659
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2BundleW659
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointBundle_of_directLocalizationClosed2W659
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationClosed2BundleW659
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationClosed2BundleW659_ready
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2BundleW659
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactBundle_of_directLocalizationClosed2W659
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationClosed2BundleW659
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationClosed2BundleW659_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeDirectLocalizationClosed2InputNamesW659
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeDirectLocalizationClosed2InputNamesW659_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteSupportStateW659
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

@@ -30613,6 +30613,338 @@ theorem
       false :=
   rfl
 
+/-- W659 exact-acyclic iso-closure `Closed₂` input for the direct finite-shape route. -/
+abbrev MetrizableExactAcyclicIsoClosureClosed2InputW659 : Prop :=
+  (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂
+
+/--
+W659 endpoint payload using the exact-acyclic iso-closure closed₂ input directly.
+
+This bypasses the W651 strict-realization and W658 target-isomorphism realization surfaces
+when a direct proof of closed₂ is available.
+-/
+structure MetrizableEndpointDirectLocalizationTriangulatedClosed2PayloadW659 :
+    Type 1 where
+  exactClosed2 : MetrizableExactAcyclicIsoClosureClosed2InputW659
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  endpointTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W659 builds endpoint stable fields from direct closed₂ and direct-localization data. -/
+noncomputable def
+    metrizableEndpointStableTriangulatedFields_of_closed2DirectLocalizationW659
+    (inputs : MetrizableEndpointDirectLocalizationTriangulatedClosed2PayloadW659) :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      inputs.exactClosed2
+    MetrizableEndpointStableTriangulatedFieldsW607 := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.exactClosed2
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_endpointTopology_w604 inputs.hasHomology
+      inputs.endpointTopology inputs.localizedRightAdjoint
+  letI : HasShift (Dbounded MetrizableLCA.{0}) ℤ :=
+    HasShift.localization (boundedExactWeakEquivalence MetrizableLCA.{0}) ℤ
+  let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+    Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605 inputs.hasHomology
+      inputs.endpointTopology inputs.localizedRightAdjoint
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+  letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+  letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+    available.shiftAdditiveAll
+  letI : (Dbounded.localization MetrizableLCA.{0}).Additive :=
+    Dbounded.localization_additiveOfHasLeftCalculusOfFractions MetrizableLCA.{0}
+  letI : (Dbounded.localization MetrizableLCA.{0}).CommShift ℤ :=
+    metrizableEndpointLocalizationCommShift_of_leftCalculusW657 inputs.hasHomology
+      inputs.endpointTopology inputs.localizedRightAdjoint
+  letI : ∀ n : ℤ,
+      (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+    inferInstance
+  letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+    inputs.directLocalization.sourcePretriangulated
+  letI : IsTriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+    inputs.directLocalization.sourceTriangulated
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithShift ℤ :=
+    boundedExactWeakEquivalence_isCompatibleWithShift MetrizableLCA.{0}
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithTriangulation :=
+    metrizableBoundedExactWeakEquivalence_isCompatibleWithTriangulation_of_triangleCompletionW654
+      inputs.directLocalization.triangleCompletion
+  let pretriangulatedD : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+    metrizablePretriangulatedOfDirectLocalizationCompatibilityW654
+  let triangulatedD :
+      letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulatedD
+      IsTriangulated (Dbounded MetrizableLCA.{0}) := by
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulatedD
+    exact metrizableIsTriangulatedOfDirectLocalizationCompatibilityW654
+  exact
+    (show MetrizableEndpointStableTriangulatedFieldsW607 from
+      { hasHomology := inputs.hasHomology
+        endpointTopology := inputs.endpointTopology
+        localizedRightAdjoint := inputs.localizedRightAdjoint
+        pretriangulated := pretriangulatedD
+        triangulated := by
+          letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulatedD
+          exact triangulatedD })
+
+/-- W659 ShortExact payload using the exact-acyclic iso-closure closed₂ input directly. -/
+structure MetrizableShortExactDirectLocalizationTriangulatedClosed2PayloadW659 :
+    Type 1 where
+  exactClosed2 : MetrizableExactAcyclicIsoClosureClosed2InputW659
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  shortExactTopology :
+    MetrizableExactAtShortExactTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W659 builds ShortExact stable fields from direct closed₂ and direct-localization data. -/
+noncomputable def
+    metrizableShortExactStableTriangulatedFields_of_closed2DirectLocalizationW659
+    (inputs : MetrizableShortExactDirectLocalizationTriangulatedClosed2PayloadW659) :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      inputs.exactClosed2
+    MetrizableShortExactStableTriangulatedFieldsW608 := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.exactClosed2
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_shortExactTopology_w604 inputs.hasHomology
+      inputs.shortExactTopology inputs.localizedRightAdjoint
+  letI : HasShift (Dbounded MetrizableLCA.{0}) ℤ :=
+    HasShift.localization (boundedExactWeakEquivalence MetrizableLCA.{0}) ℤ
+  let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+    Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605 inputs.hasHomology
+      inputs.shortExactTopology inputs.localizedRightAdjoint
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+  letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+  letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+    available.shiftAdditiveAll
+  letI : (Dbounded.localization MetrizableLCA.{0}).Additive :=
+    Dbounded.localization_additiveOfHasLeftCalculusOfFractions MetrizableLCA.{0}
+  letI : (Dbounded.localization MetrizableLCA.{0}).CommShift ℤ :=
+    metrizableShortExactLocalizationCommShift_of_leftCalculusW657 inputs.hasHomology
+      inputs.shortExactTopology inputs.localizedRightAdjoint
+  letI : ∀ n : ℤ,
+      (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+    inferInstance
+  letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+    inputs.directLocalization.sourcePretriangulated
+  letI : IsTriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+    inputs.directLocalization.sourceTriangulated
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithShift ℤ :=
+    boundedExactWeakEquivalence_isCompatibleWithShift MetrizableLCA.{0}
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithTriangulation :=
+    metrizableBoundedExactWeakEquivalence_isCompatibleWithTriangulation_of_triangleCompletionW654
+      inputs.directLocalization.triangleCompletion
+  let pretriangulatedD : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+    metrizablePretriangulatedOfDirectLocalizationCompatibilityW654
+  let triangulatedD :
+      letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulatedD
+      IsTriangulated (Dbounded MetrizableLCA.{0}) := by
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulatedD
+    exact metrizableIsTriangulatedOfDirectLocalizationCompatibilityW654
+  exact
+    (show MetrizableShortExactStableTriangulatedFieldsW608 from
+      { hasHomology := inputs.hasHomology
+        shortExactTopology := inputs.shortExactTopology
+        localizedRightAdjoint := inputs.localizedRightAdjoint
+        pretriangulated := pretriangulatedD
+        triangulated := by
+          letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulatedD
+          exact triangulatedD })
+
+/-- W659 direct finite-shape endpoint bundle using direct closed₂ data. -/
+structure MetrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2BundleW659 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  endpointPayload :
+    MetrizableEndpointDirectLocalizationTriangulatedClosed2PayloadW659
+
+/-- W659 adapts endpoint direct closed₂ bundles to W648 finite-shape endpoint bundles. -/
+noncomputable def
+    metrizableWppFiniteShapeEndpointBundle_of_directLocalizationClosed2W659
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2BundleW659) :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      inputs.endpointPayload.exactClosed2
+    MetrizableWppFiniteShapeEndpointStableBundleW648 := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.endpointPayload.exactClosed2
+  exact
+    (show MetrizableWppFiniteShapeEndpointStableBundleW648 from
+      { finiteShapeInputs := inputs.directSource.finiteShapeInputs
+        endpointFields :=
+          metrizableEndpointStableTriangulatedFields_of_closed2DirectLocalizationW659
+            inputs.endpointPayload })
+
+/-- W659 endpoint direct closed₂ route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationClosed2BundleW659
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2BundleW659) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.endpointPayload.exactClosed2
+  exact
+    metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+      (metrizableWppFiniteShapeEndpointBundle_of_directLocalizationClosed2W659
+        inputs)
+
+/-- W659 endpoint direct closed₂ route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationClosed2BundleW659_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2BundleW659) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationClosed2BundleW659
+        inputs)).ready := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.endpointPayload.exactClosed2
+  exact
+    metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+      (metrizableWppFiniteShapeEndpointBundle_of_directLocalizationClosed2W659
+        inputs)
+
+/-- W659 direct finite-shape ShortExact bundle using direct closed₂ data. -/
+structure MetrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2BundleW659 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  shortExactPayload :
+    MetrizableShortExactDirectLocalizationTriangulatedClosed2PayloadW659
+
+/-- W659 adapts ShortExact direct closed₂ bundles to W648 finite-shape ShortExact bundles. -/
+noncomputable def
+    metrizableWppFiniteShapeShortExactBundle_of_directLocalizationClosed2W659
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2BundleW659) :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      inputs.shortExactPayload.exactClosed2
+    MetrizableWppFiniteShapeShortExactStableBundleW648 := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.shortExactPayload.exactClosed2
+  exact
+    (show MetrizableWppFiniteShapeShortExactStableBundleW648 from
+      { finiteShapeInputs := inputs.directSource.finiteShapeInputs
+        shortExactFields :=
+          metrizableShortExactStableTriangulatedFields_of_closed2DirectLocalizationW659
+            inputs.shortExactPayload })
+
+/-- W659 ShortExact direct closed₂ route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationClosed2BundleW659
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2BundleW659) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.shortExactPayload.exactClosed2
+  exact
+    metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+      (metrizableWppFiniteShapeShortExactBundle_of_directLocalizationClosed2W659
+        inputs)
+
+/-- W659 ShortExact direct closed₂ route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationClosed2BundleW659_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2BundleW659) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationClosed2BundleW659
+        inputs)).ready := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.shortExactPayload.exactClosed2
+  exact
+    metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+      (metrizableWppFiniteShapeShortExactBundle_of_directLocalizationClosed2W659
+        inputs)
+
+/-- Input names for the W659 direct closed₂ route. -/
+def metrizableWppDirectFiniteShapeDirectLocalizationClosed2InputNamesW659 :
+    List String :=
+  ["direct finite-shape WPP source",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA closed2",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs or MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem metrizableWppDirectFiniteShapeDirectLocalizationClosed2InputNamesW659_count :
+    metrizableWppDirectFiniteShapeDirectLocalizationClosed2InputNamesW659.length =
+      7 :=
+  rfl
+
+/-- Current checked W659 state for direct closed₂ route reuse. -/
+structure MetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659 :
+    Type where
+  seed : String
+  declarations : List String
+  endpointFieldsResult : String
+  shortExactFieldsResult : String
+  endpointRouteResult : String
+  shortExactRouteResult : String
+  stableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W659 state. -/
+def currentMetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteSupportStateW659 :
+    MetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659 where
+  seed := "w659-direct-finite-shape-direct-closed2-route"
+  declarations :=
+    ["MetrizableExactAcyclicIsoClosureClosed2InputW659",
+      "MetrizableEndpointDirectLocalizationTriangulatedClosed2PayloadW659",
+      "metrizableEndpointStableTriangulatedFields_of_closed2DirectLocalizationW659",
+      "MetrizableShortExactDirectLocalizationTriangulatedClosed2PayloadW659",
+      "metrizableShortExactStableTriangulatedFields_of_closed2DirectLocalizationW659",
+      "MetrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2BundleW659",
+      "metrizableWppFiniteShapeEndpointBundle_of_directLocalizationClosed2W659",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationClosed2BundleW659",
+      "metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationClosed2BundleW659_ready",
+      "MetrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2BundleW659",
+      "metrizableWppFiniteShapeShortExactBundle_of_directLocalizationClosed2W659",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationClosed2BundleW659",
+      "metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationClosed2BundleW659_ready",
+      "metrizableWppDirectFiniteShapeDirectLocalizationClosed2InputNamesW659",
+      "metrizableWppDirectFiniteShapeDirectLocalizationClosed2InputNamesW659_count"]
+  endpointFieldsResult :=
+    "proved: direct closed2 plus endpoint left calculus and source direct localization build W607 endpoint stable fields"
+  shortExactFieldsResult :=
+    "proved: direct closed2 plus ShortExact left calculus and source direct localization build W608 ShortExact stable fields"
+  endpointRouteResult :=
+    "proved: direct finite-shape endpoint route can use closed2 directly instead of W651 or W658 realization data"
+  shortExactRouteResult :=
+    "proved: direct finite-shape ShortExact route can use closed2 directly instead of W651 or W658 realization data"
+  stableCertificateResult :=
+    "proved: endpoint and ShortExact W659 direct-closed2 bundles produce ready W528 certificates through W648"
+  replacedInputs :=
+    ["raw exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+      "target-isomorphism triangleh iso13 realization payload"]
+  remainingInputs :=
+    ["instantiate a concrete direct finite-shape WPP source",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA closed2",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659 :
+    MetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659 :=
+  currentMetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteSupportStateW659
+
+theorem
+    currentMetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659_productSuccess :
+    currentMetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
