@@ -36591,6 +36591,307 @@ theorem
       false :=
   rfl
 
+/--
+W685 closed-map global-provider bundle: W642 relation-fields target-surjective
+compact fixed-target data plus the W682 kernel/cokernel direct-localization
+semantic route.
+-/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685 :
+    Type 2 where
+  relationFieldsGlobalClosedMapBundle :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetBundleW642
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/--
+W685 adapts relation-fields global closed-map data to the W684 fixed-target
+closed-map-row bundle.
+-/
+noncomputable def
+    metrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapW685
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    MetrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    where
+  fixedTargetBundle :=
+    metrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetBundle_of_globalClosedMapW641
+      (metrizableWppTargetSurjectiveCompactGlobalClosedMapFixedTargetBundle_of_relationFieldsW642
+        inputs.relationFieldsGlobalClosedMapBundle)
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W685 closed-map transfer inputs through W642/W641/W640 and W684. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapW685
+      inputs)
+
+/-- W685 closed-map global-provider route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapW685
+      inputs)
+
+/-- The W685 closed-map global-provider route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685
+        inputs)).ready :=
+  metrizableStableCertificate_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_ready
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapW685
+      inputs)
+
+/--
+W685 packages the relation-fields global closed-map route as an accepted stable
+bounded-derived infinity-category object.
+-/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapW685
+      inputs)
+
+/-- The W685 closed-map global-provider package is on the accepted stable branch. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_accepted
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapW685
+      inputs)
+
+/--
+W685 closed-embedding global-provider bundle: W642 relation-fields
+target-surjective compact fixed-target data plus the W682 kernel/cokernel
+direct-localization semantic route.
+-/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685 :
+    Type 2 where
+  relationFieldsGlobalClosedEmbeddingBundle :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetBundleW642
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/--
+W685 adapts relation-fields global closed-embedding data to the W684
+fixed-target closed-embedding-row bundle.
+-/
+noncomputable def
+    metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingW685
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    where
+  fixedTargetBundle :=
+    metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetBundle_of_globalClosedEmbeddingW641
+      (metrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetBundle_of_relationFieldsW642
+        inputs.relationFieldsGlobalClosedEmbeddingBundle)
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W685 closed-embedding transfer inputs through W642/W641/W640 and W684. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingW685
+      inputs)
+
+/-- W685 closed-embedding global-provider route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingW685
+      inputs)
+
+/--
+The W685 closed-embedding global-provider route produces a ready W528
+certificate.
+-/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685
+        inputs)).ready :=
+  metrizableStableCertificate_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_ready
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingW685
+      inputs)
+
+/--
+W685 packages the relation-fields global closed-embedding route as an accepted
+stable bounded-derived infinity-category object.
+-/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingW685
+      inputs)
+
+/--
+The W685 closed-embedding global-provider package is on the accepted stable
+branch.
+-/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_accepted
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingW685
+      inputs)
+
+/-- Input names for the W685 global-provider fixed-target accepted stable route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetInputNamesW685 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "W512 relation fields supply the W593 relation-pullback provider",
+    "W525 global providers narrow to W527 row providers through W581",
+    "fixed-target lift/fac/uniq packages for WalkingParallelPair diagrams and localization model",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetInputNamesW685_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetInputNamesW685.length =
+      13 :=
+  rfl
+
+/-- Current checked W685 state for the global-provider fixed-target route. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetRouteStateW685 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapGlobalAcceptedResult : String
+  closedEmbeddingGlobalAcceptedResult : String
+  globalProviderResult : String
+  removedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W685 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetRouteSupportStateW685 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetRouteStateW685
+    where
+  seed :=
+    "w685-global-provider-fixed-target-kernel-cokernel-direct-localization-accepted-stable-route"
+  declarations :=
+    ["MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685",
+      "metrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapW685",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW685_accepted",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685",
+      "metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundle_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingW685",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW685_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetInputNamesW685",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetInputNamesW685_count"]
+  closedMapGlobalAcceptedResult :=
+    "proved: W642 relation-fields global closed-map data feed the W684 fixed-target accepted stable route"
+  closedEmbeddingGlobalAcceptedResult :=
+    "proved: W642 relation-fields global closed-embedding data feed the W684 fixed-target accepted stable route"
+  globalProviderResult :=
+    "proved: W685 uses W512 relation-fields and W525 global-provider narrowing instead of requiring W593 pullback data and W527 rows directly"
+  removedInputs :=
+    ["ClosedNatTransOrdinaryRelationPullbackProviderW593 as a separate direct input",
+      "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527 as a separate direct input"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct fixed-target lift/fac/uniq packages for the two WPP localization targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W668 kernel/cokernel-conditioned endpoint data including forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetRouteStateW685 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetRouteStateW685 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetRouteSupportStateW685
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetRouteStateW685_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetRouteStateW685.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
