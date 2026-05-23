@@ -34879,6 +34879,229 @@ theorem
       false :=
   rfl
 
+/--
+W679 builds the direct finite-shape source expected by W671 from the W614
+relation-fields target-top compact closed-map-row route.
+-/
+noncomputable def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactClosedMapRowsW679
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsNormalizedBundleW614) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactClosedMapRowsBundleW614
+      inputs
+
+/--
+W679 builds the direct finite-shape source expected by W671 from the W615
+relation-fields target-top compact closed-embedding-row route.
+-/
+noncomputable def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactClosedEmbeddingRowsW679
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundleW615) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsBundleW615
+      inputs
+
+/--
+W679 row-aware relation-fields target-top compact closed-map bundle: W614
+finite-shape data plus the W668 kernel/cokernel-conditioned kernel payload
+consumed by W671.
+-/
+structure MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679 :
+    Type 2 where
+  relationFieldsTargetTopCompactRowsBundle :
+    MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsNormalizedBundleW614
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W679 adapts the row-aware target-top closed-map route to the W671 bundle. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactClosedMapRowsW679
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    where
+  directSource :=
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactClosedMapRowsW679
+      inputs.relationFieldsTargetTopCompactRowsBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W679 row-aware target-top closed-map route builds the ordinary stable input through W671. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactClosedMapRowsW679
+      inputs)
+
+/-- W679 row-aware target-top closed-map route produces a ready certificate through W671. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactClosedMapRowsW679
+      inputs)
+
+/--
+W679 row-aware relation-fields target-top compact closed-embedding bundle: W615
+finite-shape data plus the W668 kernel/cokernel-conditioned kernel payload
+consumed by W671.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679 :
+    Type 2 where
+  relationFieldsTargetTopCompactRowsBundle :
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundleW615
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W679 adapts the row-aware target-top closed-embedding route to the W671 bundle. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactClosedEmbeddingRowsW679
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    where
+  directSource :=
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactClosedEmbeddingRowsW679
+      inputs.relationFieldsTargetTopCompactRowsBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W679 row-aware target-top closed-embedding route builds the ordinary stable input through W671. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactClosedEmbeddingRowsW679
+      inputs)
+
+/-- W679 row-aware target-top closed-embedding route produces a ready certificate through W671. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactClosedEmbeddingRowsW679
+      inputs)
+
+/-- Input names for the W679 row-aware relation-fields target-top compact kernel-payload route. -/
+def metrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadInputNamesW679 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem metrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadInputNamesW679_count :
+    metrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadInputNamesW679.length =
+      13 :=
+  rfl
+
+/-- Current checked W679 state for row-aware relation-fields target-top compact routes. -/
+structure MetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapFiniteShapeResult : String
+  closedEmbeddingFiniteShapeResult : String
+  closedMapStableCertificateResult : String
+  closedEmbeddingStableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W679 state. -/
+def currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteSupportStateW679 :
+    MetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679 where
+  seed := "w679-relation-fields-target-top-compact-rows-kernel-payload-route"
+  declarations :=
+    ["metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactClosedMapRowsW679",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactClosedEmbeddingRowsW679",
+      "MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactClosedMapRowsW679",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679_ready",
+      "MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactClosedEmbeddingRowsW679",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679_ready",
+      "metrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadInputNamesW679",
+      "metrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadInputNamesW679_count"]
+  closedMapFiniteShapeResult :=
+    "proved: W614 row-aware relation-fields target-top compact closed-map data supply the W671 direct finite-shape source"
+  closedEmbeddingFiniteShapeResult :=
+    "proved: W615 row-aware relation-fields target-top compact closed-embedding data supply the W671 direct finite-shape source"
+  closedMapStableCertificateResult :=
+    "proved: W679 row-aware target-top closed-map kernel-payload bundles produce a ready W528 stable certificate through W671"
+  closedEmbeddingStableCertificateResult :=
+    "proved: W679 row-aware target-top closed-embedding kernel-payload bundles produce a ready W528 stable certificate through W671"
+  replacedInputs :=
+    ["W678 global W525 closed-map or closed-embedding provider surface"]
+  remainingInputs :=
+    ["construct concrete WPP right-open and source-pi-zero boundary data",
+      "construct concrete relation-fields provider data",
+      "construct concrete target-relation-top provider data",
+      "construct concrete target codomain compactness data",
+      "construct concrete componentwise closed-map or closed-embedding row provider data",
+      "construct normalized strict representatives and fixed-target uniqueness data",
+      "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct finite limits and finite colimits for Dbounded MetrizableLCA"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679 :
+    MetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679 :=
+  currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteSupportStateW679
+
+theorem currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679_productSuccess :
+    currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -35197,6 +35420,48 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678_productSuccess
+
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactClosedMapRowsW679
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactClosedEmbeddingRowsW679
+set_option linter.style.longLine false in
+#check MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactClosedMapRowsW679
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsKernelPayloadBundleW679_ready
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactClosedEmbeddingRowsW679
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelPayloadBundleW679_ready
+set_option linter.style.longLine false in
+#check metrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadInputNamesW679
+set_option linter.style.longLine false in
+#check metrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadInputNamesW679_count
+set_option linter.style.longLine false in
+#check MetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteSupportStateW679
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679_productSuccess
 
 set_option linter.style.longLine false in
 #check metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670
