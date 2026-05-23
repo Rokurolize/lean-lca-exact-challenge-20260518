@@ -4423,6 +4423,286 @@ theorem Dbounded.currentMetrizableExactAtEndpointTopologyRouteStateW602_productS
       false :=
   rfl
 
+/--
+W667 endpoint topology inputs conditioned on categorical `ExactAt`.
+
+Unlike W602's earlier endpoint surface, this does not require arbitrary differentials in
+arbitrary complexes to be closed embeddings or open maps.  The strict-topology data is
+only requested at degrees where the short complex is already categorically exact.
+-/
+structure MetrizableExactAtEndpointConditionedTopologyInputs : Prop where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  epi_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Epi ((K.sc i).g)
+
+/-- W667 ShortExact variant of the conditioned endpoint topology inputs. -/
+structure MetrizableExactAtShortExactConditionedTopologyInputs : Prop where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  closedEmbedding_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  openMap_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  shortExact_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → (K.sc i).ShortExact
+
+/-- W667 ShortExact-conditioned inputs supply the endpoint-conditioned epi data. -/
+theorem endpointConditionedTopologyInputs_of_shortExactConditionedTopology
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
+    MetrizableExactAtEndpointConditionedTopologyInputs where
+  forgetPreservesHomology := I.forgetPreservesHomology
+  closedEmbedding_of_exactAt := I.closedEmbedding_of_exactAt
+  openMap_of_exactAt := I.openMap_of_exactAt
+  epi_of_exactAt := by
+    intro K i hK
+    exact (I.shortExact_of_exactAt K i hK).epi_g
+
+/-- W667 conditioned endpoint topology turns categorical ExactAt into strict exactness. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K := by
+  intro i
+  have hExact : (K.sc i).Exact := hK i
+  have hhom : (K.sc i).HasHomology := hExact.hasHomology
+  haveI : Epi ((K.sc i).g) := I.epi_of_exactAt K i (hK i)
+  have hopen : IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃) :=
+    I.openMap_of_exactAt K i (hK i)
+  have hsurj :
+      Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃) :=
+    MetrizableLCA.surjective_of_cokernelSubgroup_eq_top_of_isOpenMap ((K.sc i).g)
+      (MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero ((K.sc i).g)
+        (MetrizableLCA.cokernelπ_eq_zero_of_epi ((K.sc i).g)))
+      hopen
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    hhom I.forgetPreservesHomology hExact
+    (I.closedEmbedding_of_exactAt K i (hK i)) hopen hsurj
+
+/-- W667 conditioned ShortExact topology wraps the conditioned endpoint route. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_shortExactConditionedTopology
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K :=
+  exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology
+    (endpointConditionedTopologyInputs_of_shortExactConditionedTopology I) K hK
+
+/-- W667 homology detection from global homology plus conditioned endpoint topology. -/
+theorem
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointConditionedTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (C := MetrizableLCA.{0})
+    { hasHomology := hasHomology
+      exactAt_of_exactAcyclic := by
+        intro K hK i
+        exact exactAt_of_exactAcyclic_metrizableLCA
+          hasHomology I.forgetPreservesHomology hK i
+      exactAcyclic_of_exactAt := by
+        intro K hK
+        exact exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology I K hK }
+
+/-- W667 homology detection from global homology plus conditioned ShortExact topology. -/
+theorem
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactConditionedTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointConditionedTopology
+    hasHomology (endpointConditionedTopologyInputs_of_shortExactConditionedTopology I)
+
+/-- W667 input names for the conditioned endpoint route. -/
+def Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "forget2 MetrizableLCA AddCommGrpCat preserves homology",
+    "categorical ExactAt implies the incoming differential is a closed embedding",
+    "categorical ExactAt implies the outgoing differential is an open map",
+    "categorical ExactAt implies the outgoing differential is epi or ShortExact"]
+
+theorem Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667_count :
+    Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667.length = 5 :=
+  rfl
+
+/-- W667 route names for the conditioned endpoint route. -/
+def Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667 : List String :=
+  ["MetrizableExactAtEndpointConditionedTopologyInputs",
+    "MetrizableExactAtShortExactConditionedTopologyInputs",
+    "endpointConditionedTopologyInputs_of_shortExactConditionedTopology",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_shortExactConditionedTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+endpointConditionedTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+shortExactConditionedTopology"]
+
+theorem Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667_count :
+    Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667.length = 7 :=
+  rfl
+
+/-- Current checked W667 state for the conditioned endpoint topology route. -/
+structure Dbounded.MetrizableExactAtEndpointConditionedTopologyRouteStateW667 : Type where
+  seed : String
+  declarations : List String
+  endpointResult : String
+  shortExactResult : String
+  homologyDetectionResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W667 state. -/
+def Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteSupportStateW667 :
+    Dbounded.MetrizableExactAtEndpointConditionedTopologyRouteStateW667 where
+  seed := "w667-exact-at-conditioned-endpoint-topology-route"
+  declarations :=
+    ["MetrizableExactAtEndpointConditionedTopologyInputs",
+      "MetrizableExactAtShortExactConditionedTopologyInputs",
+      "endpointConditionedTopologyInputs_of_shortExactConditionedTopology",
+      "exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology",
+      "exactAcyclic_of_exactAt_metrizableLCA_of_shortExactConditionedTopology",
+      "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+endpointConditionedTopology",
+      "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+shortExactConditionedTopology",
+      "Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667",
+      "Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667_count",
+      "Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667",
+      "Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667_count"]
+  endpointResult :=
+    "proved: ExactAt-conditioned endpoint topology recovers strict exact acyclicity without requiring arbitrary differentials to be strict"
+  shortExactResult :=
+    "proved: ExactAt-conditioned ShortExact data supplies the conditioned endpoint epi route"
+  homologyDetectionResult :=
+    "proved: homology detection can use ExactAt-conditioned endpoint or ShortExact topology"
+  replacedInputs :=
+    ["unconditional degreewise closed-embedding/open-map topology facts for all complexes"]
+  remainingInputs :=
+    ["construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
+      "prove categorical ExactAt implies the incoming map is a closed embedding",
+      "prove categorical ExactAt implies the outgoing map is an open map",
+      "prove categorical ExactAt implies outgoing epi or ShortExact"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667 :
+    Dbounded.MetrizableExactAtEndpointConditionedTopologyRouteStateW667 :=
+  Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteSupportStateW667
+
+theorem
+    Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667_productSuccess :
+    Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667.productSuccessClaimed =
+      false :=
+  rfl
+
+namespace Dbounded
+
+/-- Short W667 alias for conditioned endpoint homology detection. -/
+theorem homologyDetection_of_endpointConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointConditionedTopology
+    hasHomology I
+
+/-- Short W667 alias for conditioned ShortExact homology detection. -/
+theorem homologyDetection_of_shortExactConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactConditionedTopology
+    hasHomology I
+
+end Dbounded
+
+/-- W667 conditioned endpoint route from homology detection to homotopy-equivalence invariance. -/
+theorem
+    Dbounded.homotopyEquivInvariance_of_endpointConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs) :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
+  exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.homologyDetection_of_endpointConditionedTopology_w667 hasHomology I)
+
+/-- W667 conditioned ShortExact route to homotopy-equivalence invariance. -/
+theorem
+    Dbounded.homotopyEquivInvariance_of_shortExactConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
+  exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.homologyDetection_of_shortExactConditionedTopology_w667 hasHomology I)
+
+/-- W667 conditioned endpoint route to exact-acyclic homotopy-object iso-closedness. -/
+theorem
+    Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs) :
+    (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+  exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_endpointConditionedTopology_w667 hasHomology I)
+
+/-- W667 conditioned ShortExact route to exact-acyclic homotopy-object iso-closedness. -/
+theorem
+    Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactConditionedTopology_w667
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs) :
+    (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+  exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_shortExactConditionedTopology_w667 hasHomology I)
+
+/-- W667 conditioned endpoint route from homotopy invariance to direct bounded left calculus. -/
+theorem Dbounded.leftCalculus_of_endpointConditionedTopology_w667
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_endpointConditionedTopology_w667
+      hasHomology I) R
+
+/-- W667 conditioned ShortExact route from homotopy invariance to direct bounded left calculus. -/
+theorem Dbounded.leftCalculus_of_shortExactConditionedTopology_w667
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_shortExactConditionedTopology_w667
+      hasHomology I) R
+
 namespace Dbounded
 
 /-- Short W603 alias for the W602 endpoint homology-detection route. -/

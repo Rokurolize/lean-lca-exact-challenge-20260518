@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w666-endpoint-kernel-identification-route",
-  "generated_utc": "2026-05-23T14:00:56Z",
-  "source_tree_hash": "c88fd95fadf8bf5c2621094e45903e8fd582cb1f138a2835a78ff7d14e336b5e",
-  "summary": "W666 proves the W665 forgetful homological-kernel identification from W602 endpoint or ShortExact topology plus global homology existence. Strict exact-acyclic homotopy objects map into the forgetful homological kernel, the kernel gives degreewise ExactAt, and W602 endpoint or ShortExact topology turns that back into strict exact acyclicity. Endpoint and ShortExact W666 bundles produce ready W528 certificates through W665/W660. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w667-conditioned-endpoint-topology-route",
+  "generated_utc": "2026-05-23T14:10:08Z",
+  "source_tree_hash": "2b64ffe13444633bbdda51e63c93d1d62864e6c2fac528c1214a7d5c33e9f967",
+  "summary": "W667 replaces W602's unconditional endpoint-topology surface with ExactAt-conditioned endpoint and ShortExact topology inputs. The new route only asks for closed-embedding, open-map, epi, or ShortExact data at degrees already known to be categorically ExactAt, then rebuilds strict exact acyclicity, homology detection, homotopy-equivalence invariance, iso-closedness, and the direct bounded left-calculus bridge. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -10365,6 +10365,26 @@
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_115_w666_product_success_source_check.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_116_w667_bounded_source_check.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_116_w667_bounded_build.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_116_w667_wpp_source_check.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_116_w667_product_success_source_check.log exit_code=0"
     }
   ],
   "implemented_declarations_checked": [
@@ -13733,12 +13753,39 @@
     "Dbounded.MetrizableWppDirectFiniteShapeEndpointKernelRouteStateW666",
     "Dbounded.currentMetrizableWppDirectFiniteShapeEndpointKernelRouteSupportStateW666",
     "Dbounded.currentMetrizableWppDirectFiniteShapeEndpointKernelRouteStateW666",
-    "Dbounded.currentMetrizableWppDirectFiniteShapeEndpointKernelRouteStateW666_productSuccess"
+    "Dbounded.currentMetrizableWppDirectFiniteShapeEndpointKernelRouteStateW666_productSuccess",
+    "MetrizableExactAtEndpointConditionedTopologyInputs",
+    "MetrizableExactAtShortExactConditionedTopologyInputs",
+    "endpointConditionedTopologyInputs_of_shortExactConditionedTopology",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_endpointConditionedTopology",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_shortExactConditionedTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_endpointConditionedTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_shortExactConditionedTopology",
+    "Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667",
+    "Dbounded.metrizableExactAtEndpointConditionedTopologyInputNamesW667_count",
+    "Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667",
+    "Dbounded.metrizableExactAtEndpointConditionedTopologyRouteNamesW667_count",
+    "Dbounded.MetrizableExactAtEndpointConditionedTopologyRouteStateW667",
+    "Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteSupportStateW667",
+    "Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667",
+    "Dbounded.currentMetrizableExactAtEndpointConditionedTopologyRouteStateW667_productSuccess",
+    "Dbounded.homologyDetection_of_endpointConditionedTopology_w667",
+    "Dbounded.homologyDetection_of_shortExactConditionedTopology_w667",
+    "Dbounded.homotopyEquivInvariance_of_endpointConditionedTopology_w667",
+    "Dbounded.homotopyEquivInvariance_of_shortExactConditionedTopology_w667",
+    "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_endpointConditionedTopology_w667",
+    "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactConditionedTopology_w667",
+    "Dbounded.leftCalculus_of_endpointConditionedTopology_w667",
+    "Dbounded.leftCalculus_of_shortExactConditionedTopology_w667"
   ],
   "product_complete": false,
   "known_gaps": [
     "instantiate concrete direct finite-shape WPP source data",
-    "construct W602 endpoint or ShortExact data plus global homology existence",
+    "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+    "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
+    "prove categorical ExactAt implies the incoming map is a closed embedding",
+    "prove categorical ExactAt implies the outgoing map is an open map",
+    "prove categorical ExactAt implies outgoing epi or ShortExact",
     "construct bounded homotopy localized right adjoint plus unit membership",
     "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
@@ -13747,19 +13794,19 @@
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "support_result_classification": "nonterminal_endpoint_kernel_identification_direct_finite_shape_route",
+  "support_result_classification": "nonterminal_conditioned_endpoint_topology_route",
   "product_success": false,
   "remaining_work": [
     "instantiate concrete direct finite-shape WPP source data",
-    "construct W602 endpoint or ShortExact data plus global homology existence",
+    "construct W667 ExactAt-conditioned endpoint or ShortExact data plus global homology existence and forgetful homology preservation",
     "construct bounded homotopy localized right adjoint plus unit membership",
     "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "summary_log_tail": "W666 proves the forgetful homological-kernel identification from W602 endpoint/ShortExact topology and homology existence, removing the W665 kernel-identification payload and the older target-homology-zero triangle-realization focus from the direct closed2 route; product flags remain false.",
-  "latest_verified_increment": "W666 endpoint kernel-identification direct finite-shape route",
+  "summary_log_tail": "W667 replaces the impossible-looking unconditional W602 endpoint-topology surface with ExactAt-conditioned strict-topology data and carries that route through homology detection, iso-closedness, and left calculus; product flags remain false.",
+  "latest_verified_increment": "W667 ExactAt-conditioned endpoint topology route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -14624,6 +14671,13 @@
       "latest_verified_increment": "W666 endpoint kernel-identification direct finite-shape route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W666 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w667_conditioned_endpoint_topology_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T14:10:08Z",
+      "source_tree_hash": "2b64ffe13444633bbdda51e63c93d1d62864e6c2fac528c1214a7d5c33e9f967",
+      "latest_verified_increment": "W667 ExactAt-conditioned endpoint topology route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W667 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }
