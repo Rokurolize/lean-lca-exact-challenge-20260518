@@ -6552,6 +6552,38 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppCompactTargetKernelPayloadRouteStateW673
   #check
     Dbounded.currentMetrizableWppCompactTargetKernelPayloadRouteStateW673_productSuccess
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_splitCompactTargetGlobalClosedMapW674
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_splitCompactTargetGlobalClosedEmbeddingW674
+  #check
+    Dbounded.MetrizableWppSplitCompactTargetGlobalClosedMapKernelPayloadBundleW674
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedMapW674
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedMapKernelPayloadBundleW674
+  #check
+    Dbounded.metrizableStableCertificate_of_splitCompactTargetGlobalClosedMapKernelPayloadBundleW674_ready
+  #check
+    Dbounded.MetrizableWppSplitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedEmbeddingW674
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674
+  #check
+    Dbounded.metrizableStableCertificate_of_splitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674_ready
+  #check
+    Dbounded.metrizableWppSplitCompactTargetKernelPayloadInputNamesW674
+  #check
+    Dbounded.metrizableWppSplitCompactTargetKernelPayloadInputNamesW674_count
+  #check
+    Dbounded.MetrizableWppSplitCompactTargetKernelPayloadRouteStateW674
+  #check
+    Dbounded.currentMetrizableWppSplitCompactTargetKernelPayloadRouteSupportStateW674
+  #check
+    Dbounded.currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674
+  #check
+    Dbounded.currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

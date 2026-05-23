@@ -33779,6 +33779,215 @@ theorem currentMetrizableWppCompactTargetKernelPayloadRouteStateW673_productSucc
       false :=
   rfl
 
+/--
+W674 builds the direct finite-shape source expected by W671 from the W593 split
+compact-target global closed-map route.
+-/
+noncomputable def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_splitCompactTargetGlobalClosedMapW674
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapNormalizedBundleW593) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitCompactTargetGlobalClosedMapBundleW593
+      inputs
+
+/--
+W674 builds the direct finite-shape source expected by W671 from the W594 split
+compact-target global closed-embedding route.
+-/
+noncomputable def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_splitCompactTargetGlobalClosedEmbeddingW674
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingNormalizedBundleW594) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitCompactTargetGlobalClosedEmbeddingBundleW594
+      inputs
+
+/--
+W674 split compact-target closed-map bundle: W593 finite-shape data plus the W668
+kernel/cokernel-conditioned kernel payload consumed by W671.
+-/
+structure MetrizableWppSplitCompactTargetGlobalClosedMapKernelPayloadBundleW674 :
+    Type 2 where
+  splitCompactTargetBundle :
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedMapNormalizedBundleW593
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W674 adapts the split compact-target global closed-map route to the W671 bundle. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedMapW674
+    (inputs : MetrizableWppSplitCompactTargetGlobalClosedMapKernelPayloadBundleW674) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    where
+  directSource :=
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_splitCompactTargetGlobalClosedMapW674
+      inputs.splitCompactTargetBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W674 split compact-target closed-map route builds the ordinary stable input through W671. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedMapKernelPayloadBundleW674
+    (inputs : MetrizableWppSplitCompactTargetGlobalClosedMapKernelPayloadBundleW674) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedMapW674
+      inputs)
+
+/-- W674 split compact-target closed-map route produces a ready certificate through W671. -/
+theorem
+    metrizableStableCertificate_of_splitCompactTargetGlobalClosedMapKernelPayloadBundleW674_ready
+    (inputs : MetrizableWppSplitCompactTargetGlobalClosedMapKernelPayloadBundleW674) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedMapKernelPayloadBundleW674
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedMapW674
+      inputs)
+
+/--
+W674 split compact-target closed-embedding bundle: W594 finite-shape data plus
+the W668 kernel/cokernel-conditioned kernel payload consumed by W671.
+-/
+structure MetrizableWppSplitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674 :
+    Type 2 where
+  splitCompactTargetBundle :
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitCompactTargetGlobalClosedEmbeddingNormalizedBundleW594
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W674 adapts the split compact-target global closed-embedding route to the W671 bundle. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedEmbeddingW674
+    (inputs : MetrizableWppSplitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    where
+  directSource :=
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_splitCompactTargetGlobalClosedEmbeddingW674
+      inputs.splitCompactTargetBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W674 split compact-target closed-embedding route builds the ordinary stable input through W671. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674
+    (inputs : MetrizableWppSplitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedEmbeddingW674
+      inputs)
+
+/-- W674 split compact-target closed-embedding route produces a ready certificate through W671. -/
+theorem
+    metrizableStableCertificate_of_splitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674_ready
+    (inputs : MetrizableWppSplitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedEmbeddingW674
+      inputs)
+
+/-- Input names for the W674 split compact-target kernel-payload route. -/
+def metrizableWppSplitCompactTargetKernelPayloadInputNamesW674 : List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "ClosedNatTransOrdinaryTargetRelationCompactProviderW593",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem metrizableWppSplitCompactTargetKernelPayloadInputNamesW674_count :
+    metrizableWppSplitCompactTargetKernelPayloadInputNamesW674.length = 12 :=
+  rfl
+
+/-- Current checked W674 state for split compact-target kernel-payload routes. -/
+structure MetrizableWppSplitCompactTargetKernelPayloadRouteStateW674 : Type where
+  seed : String
+  declarations : List String
+  closedMapFiniteShapeResult : String
+  closedEmbeddingFiniteShapeResult : String
+  closedMapStableCertificateResult : String
+  closedEmbeddingStableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W674 state. -/
+def currentMetrizableWppSplitCompactTargetKernelPayloadRouteSupportStateW674 :
+    MetrizableWppSplitCompactTargetKernelPayloadRouteStateW674 where
+  seed := "w674-split-compact-target-kernel-payload-route"
+  declarations :=
+    ["metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_splitCompactTargetGlobalClosedMapW674",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_splitCompactTargetGlobalClosedEmbeddingW674",
+      "MetrizableWppSplitCompactTargetGlobalClosedMapKernelPayloadBundleW674",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedMapW674",
+      "metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedMapKernelPayloadBundleW674",
+      "metrizableStableCertificate_of_splitCompactTargetGlobalClosedMapKernelPayloadBundleW674_ready",
+      "MetrizableWppSplitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedEmbeddingW674",
+      "metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674",
+      "metrizableStableCertificate_of_splitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674_ready",
+      "metrizableWppSplitCompactTargetKernelPayloadInputNamesW674",
+      "metrizableWppSplitCompactTargetKernelPayloadInputNamesW674_count"]
+  closedMapFiniteShapeResult :=
+    "proved: W593 split compact-target global closed-map providers supply the W671 direct finite-shape source"
+  closedEmbeddingFiniteShapeResult :=
+    "proved: W594 split compact-target global closed-embedding providers supply the W671 direct finite-shape source"
+  closedMapStableCertificateResult :=
+    "proved: W674 split compact-target closed-map kernel-payload bundles produce a ready W528 stable certificate through W671"
+  closedEmbeddingStableCertificateResult :=
+    "proved: W674 split compact-target closed-embedding kernel-payload bundles produce a ready W528 stable certificate through W671"
+  replacedInputs :=
+    ["monolithic compact-target relation provider from W673"]
+  remainingInputs :=
+    ["construct concrete WPP right-open and source-pi-zero boundary data",
+      "construct concrete relation-pullback provider data",
+      "construct concrete target-relation compactness provider data",
+      "construct concrete componentwise global closed-map or closed-embedding provider data",
+      "construct normalized strict representatives and fixed-target uniqueness data",
+      "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct finite limits and finite colimits for Dbounded MetrizableLCA"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674 :
+    MetrizableWppSplitCompactTargetKernelPayloadRouteStateW674 :=
+  currentMetrizableWppSplitCompactTargetKernelPayloadRouteSupportStateW674
+
+theorem currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674_productSuccess :
+    currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -33885,6 +34094,44 @@ set_option linter.style.longLine false in
 #check currentMetrizableWppCompactTargetKernelPayloadRouteStateW673
 set_option linter.style.longLine false in
 #check currentMetrizableWppCompactTargetKernelPayloadRouteStateW673_productSuccess
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_splitCompactTargetGlobalClosedMapW674
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_splitCompactTargetGlobalClosedEmbeddingW674
+set_option linter.style.longLine false in
+#check MetrizableWppSplitCompactTargetGlobalClosedMapKernelPayloadBundleW674
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedMapW674
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedMapKernelPayloadBundleW674
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_splitCompactTargetGlobalClosedMapKernelPayloadBundleW674_ready
+set_option linter.style.longLine false in
+#check MetrizableWppSplitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_splitCompactTargetGlobalClosedEmbeddingW674
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_splitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_splitCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW674_ready
+set_option linter.style.longLine false in
+#check metrizableWppSplitCompactTargetKernelPayloadInputNamesW674
+set_option linter.style.longLine false in
+#check metrizableWppSplitCompactTargetKernelPayloadInputNamesW674_count
+set_option linter.style.longLine false in
+#check currentMetrizableWppSplitCompactTargetKernelPayloadRouteSupportStateW674
+set_option linter.style.longLine false in
+#check currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674
+set_option linter.style.longLine false in
+#check currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674_productSuccess
 
 set_option linter.style.longLine false in
 #check metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670

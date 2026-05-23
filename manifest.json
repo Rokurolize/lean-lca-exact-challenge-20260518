@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-23T15:11:09Z",
-  "content_hash_tree": "75bb12fa3683313fce9c8ebd66a6f8323c7cb30a611c6d16312a669ce2f7bcc6",
+  "generated_utc": "2026-05-23T15:17:17Z",
+  "content_hash_tree": "89c0441794d500b844b69f43e890432e9310d37011ca38230164402e3b52bd22",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -99,8 +99,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "bytes": 1964996,
-      "sha256": "c7c389e763a821c4489f6014c7d308e989bca2ddcdef54570d6e7772b8bddfea"
+      "bytes": 1979256,
+      "sha256": "51e6ba08c24956fad97bcd14c7152cb8e1aa6a0cb510f1c9a63db173c87ae15c"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean",
@@ -189,8 +189,8 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 388151,
-      "sha256": "62ab3ad605a2949b078c9bc3dfd244bde3bdacb696215f951b852b3c98af81ee"
+      "bytes": 389880,
+      "sha256": "dd668cab1753a9f722fd033d0cfdc404c7041c6ae53fbbca8750ff6b390ff795"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -4159,8 +4159,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 1120640,
-      "sha256": "f1bcaee5eeeca7f90329fcdf7f0480547c2deab0726197869fe43e5d89c54bfb"
+      "bytes": 1125731,
+      "sha256": "9fc335259049400798fcf3e2f405f2beb9379a398450ca98075057a51414255f"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -4174,8 +4174,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 1442442,
-      "sha256": "b6628f2471b84f0b371c505b1a437e3dd229adf27589ab3b902caa966b340a3c"
+      "bytes": 1450417,
+      "sha256": "7766248445667fde9921f0f7f10be2b0610423ee0dd5cfdb5de2ff1c28fdfe53"
     },
     {
       "path": "workers/README.md",
