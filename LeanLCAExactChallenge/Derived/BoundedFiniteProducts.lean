@@ -1347,6 +1347,132 @@ theorem Dbounded.currentMetrizableEndpointWppTransferStableRouteStateW605_produc
       false :=
   rfl
 
+/-- W669 kernel/cokernel-conditioned route to the left-calculus semantic-field record. -/
+noncomputable def Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    Dbounded.MetrizableLeftCalculusSemanticFields := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_kernelCokernelConditionedTopology_w668 hasHomology I R
+  exact Dbounded.metrizableLeftCalculusSemanticFields
+
+/--
+W669 kernel/cokernel-conditioned route: W668 direct left calculus plus WPP transfer gives
+stable semantics.
+-/
+noncomputable def
+    Dbounded.metrizableOrdinaryStableSemanticInputOfKernelCokernelConditionedWppTransfer_w669
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0})
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        (Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669
+          hasHomology I R)) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_kernelCokernelConditionedTopology_w668 hasHomology I R
+  exact Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferForAvailable
+    inputs
+
+/-- W669 kernel/cokernel-conditioned WPP transfer route produces a ready stable certificate. -/
+theorem Dbounded.stableCertificateOfKernelCokernelConditionedWppTransfer_w669_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0})
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        (Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669
+          hasHomology I R)) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfKernelCokernelConditionedWppTransfer_w669
+        hasHomology I R inputs)).ready := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_kernelCokernelConditionedTopology_w668 hasHomology I R
+  simpa [Dbounded.metrizableOrdinaryStableSemanticInputOfKernelCokernelConditionedWppTransfer_w669]
+    using Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferForAvailable_ready
+      inputs
+
+/-- W669 input names after composing W668 kernel/cokernel-conditioned calculus with WPP transfer. -/
+def Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW669 :
+    List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableWalkingParallelPairTransferStableSemanticInputs"]
+
+theorem Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW669_count :
+    Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW669.length = 5 :=
+  rfl
+
+/-- W669 route names for kernel/cokernel-conditioned calculus plus WPP-transfer stable certificates. -/
+def Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669 :
+    List String :=
+  ["Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669",
+    "Dbounded.metrizableOrdinaryStableSemanticInputOfKernelCokernelConditionedWppTransfer_w669",
+    "Dbounded.stableCertificateOfKernelCokernelConditionedWppTransfer_w669_ready"]
+
+theorem Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669_count :
+    Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669.length = 3 :=
+  rfl
+
+/-- Current checked W669 state for W668 kernel/cokernel calculus plus WPP transfer. -/
+structure Dbounded.MetrizableKernelCokernelConditionedWppTransferStableRouteStateW669 :
+    Type where
+  seed : String
+  declarations : List String
+  stableInputResult : String
+  certificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W669 state. -/
+def Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteSupportStateW669 :
+    Dbounded.MetrizableKernelCokernelConditionedWppTransferStableRouteStateW669 where
+  seed := "w669-kernel-cokernel-conditioned-wpp-transfer-stable-certificate"
+  declarations :=
+    ["Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669",
+      "Dbounded.metrizableOrdinaryStableSemanticInputOfKernelCokernelConditionedWppTransfer_w669",
+      "Dbounded.stableCertificateOfKernelCokernelConditionedWppTransfer_w669_ready",
+      "Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW669",
+      "Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW669_count",
+      "Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669",
+      "Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669_count"]
+  stableInputResult :=
+    "proved: W668 kernel/cokernel-conditioned left calculus plus WPP transfer supplies ordinary stable semantics"
+  certificateResult :=
+    "proved: W668 kernel/cokernel-conditioned WPP transfer route produces a ready stable certificate"
+  replacedInputs :=
+    ["W605 endpoint or ShortExact strict-topology package at the WPP stable-certificate layer"]
+  remainingInputs :=
+    ["construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
+      "prove categorical ExactAt supplies incoming kernel and outgoing cokernel coforks",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct concrete WPP transfer stable semantic inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteStateW669 :
+    Dbounded.MetrizableKernelCokernelConditionedWppTransferStableRouteStateW669 :=
+  Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteSupportStateW669
+
+theorem
+    Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteStateW669_productSuccess :
+    Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteStateW669.productSuccessClaimed =
+      false :=
+  rfl
+
 /-- Field names remaining after W530 plus finite-product finite-(co)limit reduction. -/
 def Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames : List String :=
   ["HasEqualizers (Dbounded MetrizableLCA)", "HasCoequalizers (Dbounded MetrizableLCA)",
@@ -1510,6 +1636,19 @@ section DboundedFiniteShapeTransferChecks
   Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
 #check Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready
 #check Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotopyIsoClosed_ready
+#check Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669
+#check
+  Dbounded.metrizableOrdinaryStableSemanticInputOfKernelCokernelConditionedWppTransfer_w669
+#check Dbounded.stableCertificateOfKernelCokernelConditionedWppTransfer_w669_ready
+#check Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW669
+#check Dbounded.metrizableKernelCokernelConditionedWppTransferStableInputNamesW669_count
+#check Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669
+#check Dbounded.metrizableKernelCokernelConditionedWppTransferStableRouteNamesW669_count
+#check Dbounded.MetrizableKernelCokernelConditionedWppTransferStableRouteStateW669
+#check Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteSupportStateW669
+#check Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteStateW669
+#check
+  Dbounded.currentMetrizableKernelCokernelConditionedWppTransferStableRouteStateW669_productSuccess
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames
 #check Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputNames_count
 #check Dbounded.metrizableWppTransferStableSemanticInputNames
