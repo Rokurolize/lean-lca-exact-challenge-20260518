@@ -34202,6 +34202,223 @@ theorem currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675_pro
       false :=
   rfl
 
+/--
+W676 builds the direct finite-shape source expected by W671 from the W630
+explicit target-surjective compact global closed-map route.
+-/
+noncomputable def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedMapW676
+    (inputs : MetrizableWppTargetSurjectiveCompactGlobalClosedMapNormalizedBundleW630) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_targetSurjectiveCompactGlobalClosedMapViaTopTargetCompactSpaceRowsBundleW630
+      inputs
+
+/--
+W676 builds the direct finite-shape source expected by W671 from the W631
+explicit target-surjective compact global closed-embedding route.
+-/
+noncomputable def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedEmbeddingW676
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedBundleW631) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_targetSurjectiveCompactGlobalClosedEmbeddingViaTopTargetCompactSpaceGlobalClosedMapRowsBundleW631
+      inputs
+
+/--
+W676 target-surjective compact closed-map bundle: W630 finite-shape data plus
+the W668 kernel/cokernel-conditioned kernel payload consumed by W671.
+-/
+structure MetrizableWppTargetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676 :
+    Type 2 where
+  targetSurjectiveCompactBundle :
+    MetrizableWppTargetSurjectiveCompactGlobalClosedMapNormalizedBundleW630
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W676 adapts the target-surjective compact global closed-map route to the W671 bundle. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedMapW676
+    (inputs : MetrizableWppTargetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    where
+  directSource :=
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedMapW676
+      inputs.targetSurjectiveCompactBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W676 target-surjective compact closed-map route builds the ordinary stable input through W671. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676
+    (inputs : MetrizableWppTargetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedMapW676
+      inputs)
+
+/-- W676 target-surjective compact closed-map route produces a ready certificate through W671. -/
+theorem
+    metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676_ready
+    (inputs : MetrizableWppTargetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedMapW676
+      inputs)
+
+/--
+W676 target-surjective compact closed-embedding bundle: W631 finite-shape data
+plus the W668 kernel/cokernel-conditioned kernel payload consumed by W671.
+-/
+structure MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676 :
+    Type 2 where
+  targetSurjectiveCompactBundle :
+    MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedBundleW631
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W676 adapts the target-surjective compact global closed-embedding route to the W671 bundle. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedEmbeddingW676
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    where
+  directSource :=
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedEmbeddingW676
+      inputs.targetSurjectiveCompactBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W676 target-surjective compact closed-embedding route builds the ordinary stable input through W671. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedEmbeddingW676
+      inputs)
+
+/-- W676 target-surjective compact closed-embedding route produces a ready certificate through W671. -/
+theorem
+    metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676_ready
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedEmbeddingW676
+      inputs)
+
+/-- Input names for the W676 target-surjective compact global-provider kernel-payload route. -/
+def metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676_count :
+    metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676.length =
+      13 :=
+  rfl
+
+/-- Current checked W676 state for target-surjective compact global-provider kernel-payload routes. -/
+structure MetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapFiniteShapeResult : String
+  closedEmbeddingFiniteShapeResult : String
+  closedMapStableCertificateResult : String
+  closedEmbeddingStableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W676 state. -/
+def currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteSupportStateW676 :
+    MetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676 where
+  seed := "w676-target-surjective-compact-global-provider-kernel-payload-route"
+  declarations :=
+    ["metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedMapW676",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedEmbeddingW676",
+      "MetrizableWppTargetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedMapW676",
+      "metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676",
+      "metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676_ready",
+      "MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedEmbeddingW676",
+      "metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676",
+      "metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676_ready",
+      "metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676",
+      "metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676_count"]
+  closedMapFiniteShapeResult :=
+    "proved: W630 explicit target-surjective compact global closed-map data supply the W671 direct finite-shape source"
+  closedEmbeddingFiniteShapeResult :=
+    "proved: W631 explicit target-surjective compact global closed-embedding data supply the W671 direct finite-shape source"
+  closedMapStableCertificateResult :=
+    "proved: W676 target-surjective compact closed-map kernel-payload bundles produce a ready W528 stable certificate through W671"
+  closedEmbeddingStableCertificateResult :=
+    "proved: W676 target-surjective compact closed-embedding kernel-payload bundles produce a ready W528 stable certificate through W671"
+  replacedInputs :=
+    ["W598 top-target compact-space provider surface from W675"]
+  remainingInputs :=
+    ["construct concrete WPP right-open and source-pi-zero boundary data",
+      "construct concrete relation-pullback provider data",
+      "construct concrete target-difference surjectivity data",
+      "construct concrete target codomain compactness data",
+      "construct concrete componentwise global closed-map or closed-embedding provider data",
+      "construct normalized strict representatives and fixed-target uniqueness data",
+      "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct finite limits and finite colimits for Dbounded MetrizableLCA"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676 :
+    MetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676 :=
+  currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteSupportStateW676
+
+theorem
+    currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676_productSuccess :
+    currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -34384,6 +34601,46 @@ set_option linter.style.longLine false in
 #check currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675
 set_option linter.style.longLine false in
 #check currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675_productSuccess
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedMapW676
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedEmbeddingW676
+set_option linter.style.longLine false in
+#check MetrizableWppTargetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedMapW676
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676_ready
+set_option linter.style.longLine false in
+#check MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedEmbeddingW676
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676_ready
+set_option linter.style.longLine false in
+#check metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676
+set_option linter.style.longLine false in
+#check metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676_count
+set_option linter.style.longLine false in
+#check MetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676
+set_option linter.style.longLine false in
+#check currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteSupportStateW676
+set_option linter.style.longLine false in
+#check currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676
+set_option linter.style.longLine false in
+#check currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676_productSuccess
 
 set_option linter.style.longLine false in
 #check metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670

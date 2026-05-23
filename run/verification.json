@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w675-top-target-compact-space-kernel-payload-stable-route",
-  "generated_utc": "2026-05-23T15:25:35Z",
-  "source_tree_hash": "34170dd5373c71d11e06a260dd22e2c1176651cbe920b46dce0d7eddc7f759f7",
-  "summary": "W675 wires the W598 top-target compact-space global closed-map and global closed-embedding routes into the W671 kernel-payload route. The resulting routes build the ordinary stable semantic input and ready stable certificate while replacing W674's split compact-target provider surface with W598 top-target compact-space providers. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w676-target-surjective-compact-global-provider-kernel-payload-stable-route",
+  "generated_utc": "2026-05-23T15:31:46Z",
+  "source_tree_hash": "8f472f440f7a42e6bbfd88ffcc9489a0e558ec920686f4c877cead8d055c4530",
+  "summary": "W676 wires the W630 explicit target-surjective compact global closed-map route and the W631 explicit target-surjective compact global closed-embedding route into the W671 kernel-payload route. The resulting routes build the ordinary stable semantic input and ready stable certificate while replacing W675's W598 top-target compact-space provider surface with W630/W631 explicit target-surjective compact global-provider data. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -10615,6 +10615,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_124_w675_pre_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_125_w676_pre_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_125_w676_pre_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_125_w676_pre_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_125_w676_pre_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_125_w676_pre_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_125_w676_pre_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_125_w676_pre_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_125_w676_pre_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_125_w676_pre_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -14123,13 +14168,30 @@
     "Dbounded.MetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675",
     "Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteSupportStateW675",
     "Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675",
-    "Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675_productSuccess"
+    "Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675_productSuccess",
+    "Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedMapW676",
+    "Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedEmbeddingW676",
+    "Dbounded.MetrizableWppTargetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedMapW676",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676",
+    "Dbounded.metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676_ready",
+    "Dbounded.MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedEmbeddingW676",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676",
+    "Dbounded.metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676_ready",
+    "Dbounded.metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676",
+    "Dbounded.metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676_count",
+    "Dbounded.MetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676",
+    "Dbounded.currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteSupportStateW676",
+    "Dbounded.currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676",
+    "Dbounded.currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
-    "construct concrete top-target relation provider data",
-    "construct concrete target compact-space provider data",
+    "construct concrete relation-pullback provider data",
+    "construct concrete target-difference surjectivity data",
+    "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives and fixed-target uniqueness data",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
@@ -14140,12 +14202,13 @@
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "support_result_classification": "nonterminal_top_target_compact_space_kernel_payload_stable_route",
+  "support_result_classification": "nonterminal_target_surjective_compact_global_provider_kernel_payload_stable_route",
   "product_success": false,
   "remaining_work": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
-    "construct concrete top-target relation provider data",
-    "construct concrete target compact-space provider data",
+    "construct concrete relation-pullback provider data",
+    "construct concrete target-difference surjectivity data",
+    "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives and fixed-target uniqueness data",
     "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
@@ -14154,8 +14217,8 @@
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W675 feeds W671 from existing W598 top-target compact-space normalized finite-shape providers; product flags remain false.",
-  "latest_verified_increment": "W675 top-target compact-space kernel-payload stable route",
+  "summary_log_tail": "W676 feeds W671 from existing W630/W631 explicit target-surjective compact global-provider routes; product flags remain false.",
+  "latest_verified_increment": "W676 target-surjective compact global-provider kernel-payload stable route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -15083,6 +15146,13 @@
       "latest_verified_increment": "W675 top-target compact-space kernel-payload stable route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W675 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w676_target_surjective_compact_global_provider_kernel_payload_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T15:31:46Z",
+      "source_tree_hash": "8f472f440f7a42e6bbfd88ffcc9489a0e558ec920686f4c877cead8d055c4530",
+      "latest_verified_increment": "W676 target-surjective compact global-provider kernel-payload stable route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W676 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }

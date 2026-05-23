@@ -6616,6 +6616,38 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675
   #check
     Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675_productSuccess
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedMapW676
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_targetSurjectiveCompactGlobalClosedEmbeddingW676
+  #check
+    Dbounded.MetrizableWppTargetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedMapW676
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676
+  #check
+    Dbounded.metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedMapKernelPayloadBundleW676_ready
+  #check
+    Dbounded.MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_targetSurjectiveCompactGlobalClosedEmbeddingW676
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676
+  #check
+    Dbounded.metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedEmbeddingKernelPayloadBundleW676_ready
+  #check
+    Dbounded.metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676
+  #check
+    Dbounded.metrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadInputNamesW676_count
+  #check
+    Dbounded.MetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676
+  #check
+    Dbounded.currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteSupportStateW676
+  #check
+    Dbounded.currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676
+  #check
+    Dbounded.currentMetrizableWppTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW676_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
