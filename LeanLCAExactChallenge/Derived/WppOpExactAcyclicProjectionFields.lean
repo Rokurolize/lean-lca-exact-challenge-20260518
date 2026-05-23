@@ -17655,6 +17655,355 @@ theorem currentMetrizableWppTargetSurjectiveCompactEndpointStableRouteStateW606_
       false :=
   rfl
 
+/--
+W607 closed-map-row bundle: W512 relation fields replace W606's explicit W593
+relation-pullback provider.
+-/
+structure MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundleW607 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetDifferenceSurjectiveProvider :
+    TargetDifferenceSurjectiveProviderW601
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/-- Convert the W607 closed-map-row bundle to W606. -/
+def
+    metrizableWppTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_relationFieldsW607
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundleW607) :
+    MetrizableWppTargetSurjectiveCompactClosedMapRowsNormalizedBundleW606 where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationPullbackProvider :=
+    relationPullbackProvider_of_relationFields_w600 inputs.relationFields
+  targetDifferenceSurjectiveProvider := inputs.targetDifferenceSurjectiveProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  closedMapRows := inputs.closedMapRows
+  normalizedInputs := inputs.normalizedInputs
+
+/-- W607 finite-shape endpoint from W512 relation fields and W601 closed-map-row data. -/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsBundleW607
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundleW607) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_targetSurjectiveCompactClosedMapRowsBundleW606
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_relationFieldsW607
+      inputs)
+
+/--
+W607 closed-embedding-row bundle: W512 relation fields replace W606's explicit
+W593 relation-pullback provider.
+-/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW607 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetDifferenceSurjectiveProvider :
+    TargetDifferenceSurjectiveProviderW601
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/-- Convert the W607 closed-embedding-row bundle to W606. -/
+def
+    metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundle_of_relationFieldsW607
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW607) :
+    MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW606 where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationPullbackProvider :=
+    relationPullbackProvider_of_relationFields_w600 inputs.relationFields
+  targetDifferenceSurjectiveProvider := inputs.targetDifferenceSurjectiveProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  closedEmbeddingRows := inputs.closedEmbeddingRows
+  normalizedInputs := inputs.normalizedInputs
+
+/-- W607 finite-shape endpoint from W512 relation fields and W601 closed-embedding data. -/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsBundleW607
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW607) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_targetSurjectiveCompactClosedEmbeddingRowsBundleW606
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundle_of_relationFieldsW607
+      inputs)
+
+/-- Shared endpoint-topology triangulated fields for W607 stable bundles. -/
+structure MetrizableEndpointStableTriangulatedFieldsW607
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  endpointTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605 hasHomology endpointTopology
+        localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605 hasHomology endpointTopology
+        localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- W607 endpoint stable bundle for closed-map rows. -/
+structure MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW607
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  relationFieldsTargetSurjectiveCompactBundle :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundleW607
+  endpointFields :
+    MetrizableEndpointStableTriangulatedFieldsW607
+
+/-- Convert the W607 closed-map endpoint bundle to W606. -/
+def
+    metrizableWppTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_relationFieldsW607
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW607) :
+    MetrizableWppTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW606 where
+  targetSurjectiveCompactBundle :=
+    metrizableWppTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_relationFieldsW607
+      inputs.relationFieldsTargetSurjectiveCompactBundle
+  hasHomology := inputs.endpointFields.hasHomology
+  endpointTopology := inputs.endpointFields.endpointTopology
+  localizedRightAdjoint := inputs.endpointFields.localizedRightAdjoint
+  pretriangulated := inputs.endpointFields.pretriangulated
+  triangulated := inputs.endpointFields.triangulated
+
+/--
+W607 stable-semantic input: W512 relation fields plus W601 closed-map-row data
+feed the W605 endpoint route.
+-/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW607) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605
+        inputs.endpointFields.hasHomology inputs.endpointFields.endpointTopology
+        inputs.endpointFields.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedMapRowsEndpointBundleW606
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_relationFieldsW607
+      inputs)
+
+/-- W607 closed-map-row endpoint route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW607) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedMapRowsEndpointBundleW606
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_relationFieldsW607
+      inputs)
+
+/-- The W607 closed-map-row endpoint route produces a ready stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW607) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607
+        inputs)).ready := by
+  exact
+    metrizableStableCertificate_of_targetSurjectiveCompactClosedMapRowsEndpointBundleW606_ready
+      (metrizableWppTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_relationFieldsW607
+        inputs)
+
+/-- W607 endpoint stable bundle for closed-embedding rows. -/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  relationFieldsTargetSurjectiveCompactBundle :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW607
+  endpointFields :
+    MetrizableEndpointStableTriangulatedFieldsW607
+
+/-- Convert the W607 closed-embedding endpoint bundle to W606. -/
+def
+    metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundle_of_relationFieldsW607
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607) :
+    MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW606 where
+  targetSurjectiveCompactBundle :=
+    metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundle_of_relationFieldsW607
+      inputs.relationFieldsTargetSurjectiveCompactBundle
+  hasHomology := inputs.endpointFields.hasHomology
+  endpointTopology := inputs.endpointFields.endpointTopology
+  localizedRightAdjoint := inputs.endpointFields.localizedRightAdjoint
+  pretriangulated := inputs.endpointFields.pretriangulated
+  triangulated := inputs.endpointFields.triangulated
+
+/--
+W607 stable-semantic input: W512 relation fields plus W601 closed-embedding
+data feed the W605 endpoint route.
+-/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW607
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605
+        inputs.endpointFields.hasHomology inputs.endpointFields.endpointTopology
+        inputs.endpointFields.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW606
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundle_of_relationFieldsW607
+      inputs)
+
+/-- W607 closed-embedding-row endpoint route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW607
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW606
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundle_of_relationFieldsW607
+      inputs)
+
+/-- The W607 closed-embedding-row endpoint route produces a ready stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW607_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW607
+        inputs)).ready := by
+  exact
+    metrizableStableCertificate_of_targetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW606_ready
+      (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundle_of_relationFieldsW607
+        inputs)
+
+/-- Input names for the W607 relation-fields target-surjective compact endpoint routes. -/
+def metrizableWppRelationFieldsTargetSurjectiveCompactEndpointInputNamesW607 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableWppRelationFieldsTargetSurjectiveCompactEndpointInputNamesW607_count :
+    metrizableWppRelationFieldsTargetSurjectiveCompactEndpointInputNamesW607.length = 14 :=
+  rfl
+
+/-- Current checked W607 state for relation-fields target-surjective endpoint routes. -/
+structure MetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteStateW607 :
+    Type where
+  seed : String
+  declarations : List String
+  relationFieldsReductionResult : String
+  closedMapEndpointResult : String
+  closedEmbeddingEndpointResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W607 state. -/
+def currentMetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteSupportStateW607 :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteStateW607 where
+  seed := "w607-relation-fields-target-surjective-compact-endpoint-route"
+  declarations :=
+    ["MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundleW607",
+      "metrizableWppTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_relationFieldsW607",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsBundleW607",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW607",
+      "metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundle_of_relationFieldsW607",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsBundleW607",
+      "MetrizableEndpointStableTriangulatedFieldsW607",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW607",
+      "metrizableWppTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_relationFieldsW607",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607_ready",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607",
+      "metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundle_of_relationFieldsW607",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW607",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW607",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW607_ready",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactEndpointInputNamesW607",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactEndpointInputNamesW607_count"]
+  relationFieldsReductionResult :=
+    "proved: W512 relation fields supply the W606 relation-pullback provider input"
+  closedMapEndpointResult :=
+    "proved: W512 relation fields plus W601 target-surjective compact closed-map rows feed the W605 endpoint stable route"
+  closedEmbeddingEndpointResult :=
+    "proved: W512 relation fields plus W601 target-surjective compact closed-embedding rows feed the W605 endpoint stable route"
+  stableCertificateResult :=
+    "proved: both W607 row variants produce ready endpoint-topology stable certificates"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct normalized strict-representative fixed-target localization data",
+      "construct W602 endpoint data and global homology existence",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteStateW607 :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteStateW607 :=
+  currentMetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteSupportStateW607
+
+theorem
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteStateW607_productSuccess :
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteStateW607.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -18631,6 +18980,63 @@ set_option linter.style.longLine false in
 #check currentMetrizableWppTargetSurjectiveCompactEndpointStableRouteSupportStateW606
 #check currentMetrizableWppTargetSurjectiveCompactEndpointStableRouteStateW606
 #check currentMetrizableWppTargetSurjectiveCompactEndpointStableRouteStateW606_productSuccess
+set_option linter.style.longLine false in
+#check MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundleW607
+set_option linter.style.longLine false in
+#check
+  metrizableWppTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_relationFieldsW607
+set_option linter.style.longLine false in
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsBundleW607
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW607
+set_option linter.style.longLine false in
+#check
+  metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundle_of_relationFieldsW607
+set_option linter.style.longLine false in
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsBundleW607
+#check MetrizableEndpointStableTriangulatedFieldsW607
+set_option linter.style.longLine false in
+#check MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW607
+set_option linter.style.longLine false in
+#check metrizableWppTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_relationFieldsW607
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607_ready
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607
+set_option linter.style.longLine false in
+#check
+  metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundle_of_relationFieldsW607
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW607
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW607
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW607_ready
+set_option linter.style.longLine false in
+#check metrizableWppRelationFieldsTargetSurjectiveCompactEndpointInputNamesW607
+set_option linter.style.longLine false in
+#check metrizableWppRelationFieldsTargetSurjectiveCompactEndpointInputNamesW607_count
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteSupportStateW607
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteStateW607
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteStateW607_productSuccess
 
 end Checks
 
