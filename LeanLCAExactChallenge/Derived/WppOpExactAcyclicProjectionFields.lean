@@ -21606,6 +21606,180 @@ theorem
       false :=
   rfl
 
+/--
+W624 converts the W600 split top-target closed-embedding-row bundle to the W600
+split top-target closed-map-row bundle using W580 row dominance.
+-/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundle_of_closedEmbeddingRowsW624
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedEmbeddingRowsNormalizedBundleW600) :
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundleW600
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationPullbackProvider := inputs.relationPullbackProvider
+  targetRelationTopProvider := inputs.targetRelationTopProvider
+  targetCompactSpaceProvider := inputs.targetCompactSpaceProvider
+  closedMapRows :=
+    componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580
+      inputs.closedEmbeddingRows
+  normalizedInputs := inputs.normalizedInputs
+
+/--
+W624 finite-shape route: split top-target closed-embedding-row data reaches the
+W600 closed-map-row finite-shape endpoint.
+-/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsBundleW624
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedEmbeddingRowsNormalizedBundleW600) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitTopTargetCompactSpaceClosedMapRowsBundleW600
+    (metrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundle_of_closedEmbeddingRowsW624
+      inputs)
+
+/-- Convert the W600 closed-embedding-row stable bundle to the W600 closed-map-row stable bundle. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundle_of_closedEmbeddingRowsW624
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedStableBundleW600) :
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundleW600
+    where
+  splitTopTargetBundle :=
+    metrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundle_of_closedEmbeddingRowsW624
+      inputs.splitTopTargetBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/--
+W624 homotopy/Verdier stable input: split top-target closed-embedding-row data
+reaches the W600 closed-map-row stable route.
+-/
+def
+    metrizableWppTransferStableSemanticInputs_of_splitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsHomotopyIsoClosedBundleW624
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedStableBundleW600) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed :=
+  metrizableWppTransferStableSemanticInputs_of_splitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedBundleW600
+    (metrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundle_of_closedEmbeddingRowsW624
+      inputs)
+
+/-- W624 row-dominance route builds the ordinary stable input through W600. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_splitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsHomotopyIsoClosedBundleW624
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedStableBundleW600) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_splitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedBundleW600
+    (metrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundle_of_closedEmbeddingRowsW624
+      inputs)
+
+/-- The W624 row-dominance route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_splitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsHomotopyIsoClosedBundleW624_ready
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedStableBundleW600) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_splitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsHomotopyIsoClosedBundleW624
+        inputs)).ready := by
+  exact
+    metrizableStableCertificate_of_splitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedBundleW600_ready
+      (metrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundle_of_closedEmbeddingRowsW624
+        inputs)
+
+/-- Input names for the W624 split top-target row-dominance route. -/
+def
+    metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableInputNamesW624 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "ClosedNatTransOrdinaryTargetCompactSpaceProviderW597",
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "closed-embedding rows upgrade to W527 closed-map rows through W580",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableInputNamesW624_count :
+    metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableInputNamesW624.length =
+      13 :=
+  rfl
+
+/-- Current checked W624 state for split top-target row dominance. -/
+structure
+    MetrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableRouteStateW624 :
+    Type where
+  seed : String
+  declarations : List String
+  rowProviderUpgradeResult : String
+  stableBundleResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W624 state. -/
+def
+    currentMetrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableRouteSupportStateW624 :
+    MetrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableRouteStateW624
+    where
+  seed :=
+    "w624-split-top-target-compact-space-closed-embedding-rows-via-closed-map-rows-stable-route"
+  declarations :=
+    ["metrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundle_of_closedEmbeddingRowsW624",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_splitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsBundleW624",
+      "metrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundle_of_closedEmbeddingRowsW624",
+      "metrizableWppTransferStableSemanticInputs_of_splitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsHomotopyIsoClosedBundleW624",
+      "metrizableOrdinaryStableSemanticInput_of_splitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsHomotopyIsoClosedBundleW624",
+      "metrizableStableCertificate_of_splitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsHomotopyIsoClosedBundleW624_ready",
+      "metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableInputNamesW624",
+      "metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableInputNamesW624_count"]
+  rowProviderUpgradeResult :=
+    "proved: W600 split top-target closed-embedding-row data supplies W600 closed-map-row data through W580"
+  stableBundleResult :=
+    "proved: split top-target closed-embedding-row stable bundles feed the W600 closed-map-row stable route"
+  stableCertificateResult :=
+    "proved: the split top-target closed-embedding-row via closed-map-row route produces the ready W528 stable certificate"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+      "construct concrete ClosedNatTransOrdinaryTargetCompactSpaceProviderW597",
+      "construct concrete ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct normalized strict-representative fixed-target localization data",
+      "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+      "construct bounded homotopy/Verdier pullback left calculus of fractions",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableRouteStateW624 :
+    MetrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableRouteStateW624 :=
+  currentMetrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableRouteSupportStateW624
+
+theorem
+    currentMetrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableRouteStateW624_productSuccess :
+    currentMetrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsViaClosedMapRowsStableRouteStateW624.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
