@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w665-forgetful-homological-kernel-route",
-  "generated_utc": "2026-05-23T13:50:56Z",
-  "source_tree_hash": "8b29defc990e781a57605610966fadfc65d5a46afd9b46023a8368f7a5c85d64",
-  "summary": "W665 adds a generic homological-kernel closed2 theorem and specializes it to a concrete forgetful homology functor from HomotopyCategory MetrizableLCA to AddCommGrpCat. Identifying exactAcyclicHomotopyObject MetrizableLCA with this homological kernel now supplies the W660 homotopy-object closed2 input, letting endpoint and ShortExact direct finite-shape bundles produce ready W528 certificates through W660. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w666-endpoint-kernel-identification-route",
+  "generated_utc": "2026-05-23T14:00:56Z",
+  "source_tree_hash": "c88fd95fadf8bf5c2621094e45903e8fd582cb1f138a2835a78ff7d14e336b5e",
+  "summary": "W666 proves the W665 forgetful homological-kernel identification from W602 endpoint or ShortExact topology plus global homology existence. Strict exact-acyclic homotopy objects map into the forgetful homological kernel, the kernel gives degreewise ExactAt, and W602 endpoint or ShortExact topology turns that back into strict exact acyclicity. Endpoint and ShortExact W666 bundles produce ready W528 certificates through W665/W660. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -10350,6 +10350,21 @@
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_114_w665_product_success_source_check.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_115_w666_wpp_source_check.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_115_w666_wpp_build.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_115_w666_product_success_source_check.log exit_code=0"
     }
   ],
   "implemented_declarations_checked": [
@@ -13695,11 +13710,33 @@
     "Dbounded.MetrizableWppDirectFiniteShapeForgetfulHomologicalKernelRouteStateW665",
     "Dbounded.currentMetrizableWppDirectFiniteShapeForgetfulHomologicalKernelRouteSupportStateW665",
     "Dbounded.currentMetrizableWppDirectFiniteShapeForgetfulHomologicalKernelRouteStateW665",
-    "Dbounded.currentMetrizableWppDirectFiniteShapeForgetfulHomologicalKernelRouteStateW665_productSuccess"
+    "Dbounded.currentMetrizableWppDirectFiniteShapeForgetfulHomologicalKernelRouteStateW665_productSuccess",
+    "Dbounded.metrizableForgetfulHomologicalKernel_of_exactAcyclicHomotopyObjectEndpointW666",
+    "Dbounded.metrizableExactAt_of_forgetfulHomologicalKernelEndpointW666",
+    "Dbounded.metrizableExactAcyclicHomotopyObject_of_forgetfulHomologicalKernelEndpointW666",
+    "Dbounded.metrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayload_of_endpointW666",
+    "Dbounded.metrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayload_of_shortExactW666",
+    "Dbounded.MetrizableEndpointDirectLocalizationTriangulatedEndpointKernelPayloadW666",
+    "Dbounded.metrizableEndpointDirectLocalizationTriangulatedForgetfulHomologicalKernelPayload_of_endpointKernelW666",
+    "Dbounded.MetrizableShortExactDirectLocalizationTriangulatedShortExactKernelPayloadW666",
+    "Dbounded.metrizableShortExactDirectLocalizationTriangulatedForgetfulHomologicalKernelPayload_of_shortExactKernelW666",
+    "Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationEndpointKernelBundleW666",
+    "Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationForgetfulHomologicalKernelBundle_of_endpointKernelW666",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationEndpointKernelBundleW666",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationEndpointKernelBundleW666_ready",
+    "Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationShortExactKernelBundleW666",
+    "Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationForgetfulHomologicalKernelBundle_of_shortExactKernelW666",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationShortExactKernelBundleW666",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationShortExactKernelBundleW666_ready",
+    "Dbounded.metrizableWppDirectFiniteShapeEndpointKernelInputNamesW666",
+    "Dbounded.metrizableWppDirectFiniteShapeEndpointKernelInputNamesW666_count",
+    "Dbounded.MetrizableWppDirectFiniteShapeEndpointKernelRouteStateW666",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeEndpointKernelRouteSupportStateW666",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeEndpointKernelRouteStateW666",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeEndpointKernelRouteStateW666_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "prove the forgetful homological-kernel identification for exactAcyclicHomotopyObject MetrizableLCA",
     "instantiate concrete direct finite-shape WPP source data",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "construct bounded homotopy localized right adjoint plus unit membership",
@@ -13710,10 +13747,9 @@
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "support_result_classification": "nonterminal_forgetful_homological_kernel_direct_finite_shape_route",
+  "support_result_classification": "nonterminal_endpoint_kernel_identification_direct_finite_shape_route",
   "product_success": false,
   "remaining_work": [
-    "prove the forgetful homological-kernel identification for exactAcyclicHomotopyObject MetrizableLCA",
     "instantiate concrete direct finite-shape WPP source data",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "construct bounded homotopy localized right adjoint plus unit membership",
@@ -13722,8 +13758,8 @@
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "summary_log_tail": "W665 bypasses triangleh target-homology-zero realization as the direct closed2 route target by reducing exactAcyclicHomotopyObject closed2 to a forgetful homological-kernel identification; product flags remain false.",
-  "latest_verified_increment": "W665 forgetful homological-kernel direct finite-shape route",
+  "summary_log_tail": "W666 proves the forgetful homological-kernel identification from W602 endpoint/ShortExact topology and homology existence, removing the W665 kernel-identification payload and the older target-homology-zero triangle-realization focus from the direct closed2 route; product flags remain false.",
+  "latest_verified_increment": "W666 endpoint kernel-identification direct finite-shape route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -14581,6 +14617,13 @@
       "latest_verified_increment": "W665 forgetful homological-kernel direct finite-shape route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W665 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w666_endpoint_kernel_identification_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T14:00:56Z",
+      "source_tree_hash": "c88fd95fadf8bf5c2621094e45903e8fd582cb1f138a2835a78ff7d14e336b5e",
+      "latest_verified_increment": "W666 endpoint kernel-identification direct finite-shape route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W666 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }
