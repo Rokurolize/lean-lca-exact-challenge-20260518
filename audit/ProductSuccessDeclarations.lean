@@ -6520,6 +6520,38 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672
   #check
     Dbounded.currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672_productSuccess
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_compactTargetGlobalClosedMapW673
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_compactTargetGlobalClosedEmbeddingW673
+  #check
+    Dbounded.MetrizableWppCompactTargetGlobalClosedMapKernelPayloadBundleW673
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_compactTargetGlobalClosedMapW673
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_compactTargetGlobalClosedMapKernelPayloadBundleW673
+  #check
+    Dbounded.metrizableStableCertificate_of_compactTargetGlobalClosedMapKernelPayloadBundleW673_ready
+  #check
+    Dbounded.MetrizableWppCompactTargetGlobalClosedEmbeddingKernelPayloadBundleW673
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_compactTargetGlobalClosedEmbeddingW673
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_compactTargetGlobalClosedEmbeddingKernelPayloadBundleW673
+  #check
+    Dbounded.metrizableStableCertificate_of_compactTargetGlobalClosedEmbeddingKernelPayloadBundleW673_ready
+  #check
+    Dbounded.metrizableWppCompactTargetKernelPayloadInputNamesW673
+  #check
+    Dbounded.metrizableWppCompactTargetKernelPayloadInputNamesW673_count
+  #check
+    Dbounded.MetrizableWppCompactTargetKernelPayloadRouteStateW673
+  #check
+    Dbounded.currentMetrizableWppCompactTargetKernelPayloadRouteSupportStateW673
+  #check
+    Dbounded.currentMetrizableWppCompactTargetKernelPayloadRouteStateW673
+  #check
+    Dbounded.currentMetrizableWppCompactTargetKernelPayloadRouteStateW673_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
