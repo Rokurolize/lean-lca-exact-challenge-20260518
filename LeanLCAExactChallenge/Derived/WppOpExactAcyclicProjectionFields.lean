@@ -30945,6 +30945,270 @@ theorem
       false :=
   rfl
 
+/-- W660 exact-acyclic homotopy-object `Closed₂` input for the direct finite-shape route. -/
+abbrev MetrizableExactAcyclicHomotopyObjectClosed2InputW660 : Prop :=
+  (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂
+
+/-- W660 obtains the iso-closure `Closed₂` input from homotopy-object `Closed₂`. -/
+noncomputable def
+    metrizableExactAcyclicIsoClosureClosed2_of_homotopyObjectClosed2W660
+    (closed2 : MetrizableExactAcyclicHomotopyObjectClosed2InputW660) :
+    MetrizableExactAcyclicIsoClosureClosed2InputW659 := by
+  letI : (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    closed2
+  exact exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_homotopyObject
+    MetrizableLCA.{0}
+
+/-- W660 endpoint payload using homotopy-object `Closed₂` directly. -/
+structure MetrizableEndpointDirectLocalizationTriangulatedHomotopyClosed2PayloadW660 :
+    Type 1 where
+  homotopyClosed2 : MetrizableExactAcyclicHomotopyObjectClosed2InputW660
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  endpointTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W660 adapts endpoint homotopy-closed₂ payloads to W659 direct closed₂ payloads. -/
+noncomputable def
+    metrizableEndpointDirectLocalizationTriangulatedClosed2Payload_of_homotopyClosed2W660
+    (inputs :
+      MetrizableEndpointDirectLocalizationTriangulatedHomotopyClosed2PayloadW660) :
+    MetrizableEndpointDirectLocalizationTriangulatedClosed2PayloadW659 where
+  exactClosed2 :=
+    metrizableExactAcyclicIsoClosureClosed2_of_homotopyObjectClosed2W660
+      inputs.homotopyClosed2
+  hasHomology := inputs.hasHomology
+  endpointTopology := inputs.endpointTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W660 builds endpoint stable fields from homotopy-object closed₂ data. -/
+noncomputable def
+    metrizableEndpointStableTriangulatedFields_of_homotopyClosed2DirectLocalizationW660
+    (inputs :
+      MetrizableEndpointDirectLocalizationTriangulatedHomotopyClosed2PayloadW660) :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      metrizableExactAcyclicIsoClosureClosed2_of_homotopyObjectClosed2W660
+        inputs.homotopyClosed2
+    MetrizableEndpointStableTriangulatedFieldsW607 := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicIsoClosureClosed2_of_homotopyObjectClosed2W660
+      inputs.homotopyClosed2
+  exact
+    metrizableEndpointStableTriangulatedFields_of_closed2DirectLocalizationW659
+      (metrizableEndpointDirectLocalizationTriangulatedClosed2Payload_of_homotopyClosed2W660
+        inputs)
+
+/-- W660 ShortExact payload using homotopy-object `Closed₂` directly. -/
+structure MetrizableShortExactDirectLocalizationTriangulatedHomotopyClosed2PayloadW660 :
+    Type 1 where
+  homotopyClosed2 : MetrizableExactAcyclicHomotopyObjectClosed2InputW660
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  shortExactTopology :
+    MetrizableExactAtShortExactTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W660 adapts ShortExact homotopy-closed₂ payloads to W659 direct closed₂ payloads. -/
+noncomputable def
+    metrizableShortExactDirectLocalizationTriangulatedClosed2Payload_of_homotopyClosed2W660
+    (inputs :
+      MetrizableShortExactDirectLocalizationTriangulatedHomotopyClosed2PayloadW660) :
+    MetrizableShortExactDirectLocalizationTriangulatedClosed2PayloadW659 where
+  exactClosed2 :=
+    metrizableExactAcyclicIsoClosureClosed2_of_homotopyObjectClosed2W660
+      inputs.homotopyClosed2
+  hasHomology := inputs.hasHomology
+  shortExactTopology := inputs.shortExactTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W660 builds ShortExact stable fields from homotopy-object closed₂ data. -/
+noncomputable def
+    metrizableShortExactStableTriangulatedFields_of_homotopyClosed2DirectLocalizationW660
+    (inputs :
+      MetrizableShortExactDirectLocalizationTriangulatedHomotopyClosed2PayloadW660) :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      metrizableExactAcyclicIsoClosureClosed2_of_homotopyObjectClosed2W660
+        inputs.homotopyClosed2
+    MetrizableShortExactStableTriangulatedFieldsW608 := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicIsoClosureClosed2_of_homotopyObjectClosed2W660
+      inputs.homotopyClosed2
+  exact
+    metrizableShortExactStableTriangulatedFields_of_closed2DirectLocalizationW659
+      (metrizableShortExactDirectLocalizationTriangulatedClosed2Payload_of_homotopyClosed2W660
+        inputs)
+
+/-- W660 direct finite-shape endpoint bundle using homotopy-object closed₂ data. -/
+structure MetrizableWppDirectFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  endpointPayload :
+    MetrizableEndpointDirectLocalizationTriangulatedHomotopyClosed2PayloadW660
+
+/-- W660 adapts endpoint homotopy-closed₂ bundles to W659 direct closed₂ bundles. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2Bundle_of_homotopyClosed2W660
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660) :
+    MetrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2BundleW659 where
+  directSource := inputs.directSource
+  endpointPayload :=
+    metrizableEndpointDirectLocalizationTriangulatedClosed2Payload_of_homotopyClosed2W660
+      inputs.endpointPayload
+
+/-- W660 endpoint homotopy-closed₂ route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationClosed2BundleW659
+    (metrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2Bundle_of_homotopyClosed2W660
+      inputs)
+
+/-- W660 endpoint homotopy-closed₂ route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationClosed2BundleW659_ready
+    (metrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2Bundle_of_homotopyClosed2W660
+      inputs)
+
+/-- W660 direct finite-shape ShortExact bundle using homotopy-object closed₂ data. -/
+structure MetrizableWppDirectFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  shortExactPayload :
+    MetrizableShortExactDirectLocalizationTriangulatedHomotopyClosed2PayloadW660
+
+/-- W660 adapts ShortExact homotopy-closed₂ bundles to W659 direct closed₂ bundles. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2Bundle_of_homotopyClosed2W660
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660) :
+    MetrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2BundleW659 where
+  directSource := inputs.directSource
+  shortExactPayload :=
+    metrizableShortExactDirectLocalizationTriangulatedClosed2Payload_of_homotopyClosed2W660
+      inputs.shortExactPayload
+
+/-- W660 ShortExact homotopy-closed₂ route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationClosed2BundleW659
+    (metrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2Bundle_of_homotopyClosed2W660
+      inputs)
+
+/-- W660 ShortExact homotopy-closed₂ route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationClosed2BundleW659_ready
+    (metrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2Bundle_of_homotopyClosed2W660
+      inputs)
+
+/-- Input names for the W660 homotopy-object closed₂ route. -/
+def metrizableWppDirectFiniteShapeHomotopyClosed2InputNamesW660 :
+    List String :=
+  ["direct finite-shape WPP source",
+    "exactAcyclicHomotopyObject MetrizableLCA closed2",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs or MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem metrizableWppDirectFiniteShapeHomotopyClosed2InputNamesW660_count :
+    metrizableWppDirectFiniteShapeHomotopyClosed2InputNamesW660.length =
+      7 :=
+  rfl
+
+/-- Current checked W660 state for homotopy-object closed₂ route reuse. -/
+structure MetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660 :
+    Type where
+  seed : String
+  declarations : List String
+  closed2ReductionResult : String
+  endpointRouteResult : String
+  shortExactRouteResult : String
+  stableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W660 state. -/
+def currentMetrizableWppDirectFiniteShapeHomotopyClosed2RouteSupportStateW660 :
+    MetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660 where
+  seed := "w660-direct-finite-shape-homotopy-closed2-route"
+  declarations :=
+    ["MetrizableExactAcyclicHomotopyObjectClosed2InputW660",
+      "metrizableExactAcyclicIsoClosureClosed2_of_homotopyObjectClosed2W660",
+      "MetrizableEndpointDirectLocalizationTriangulatedHomotopyClosed2PayloadW660",
+      "metrizableEndpointDirectLocalizationTriangulatedClosed2Payload_of_homotopyClosed2W660",
+      "metrizableEndpointStableTriangulatedFields_of_homotopyClosed2DirectLocalizationW660",
+      "MetrizableShortExactDirectLocalizationTriangulatedHomotopyClosed2PayloadW660",
+      "metrizableShortExactDirectLocalizationTriangulatedClosed2Payload_of_homotopyClosed2W660",
+      "metrizableShortExactStableTriangulatedFields_of_homotopyClosed2DirectLocalizationW660",
+      "MetrizableWppDirectFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660",
+      "metrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2Bundle_of_homotopyClosed2W660",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660",
+      "metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660_ready",
+      "MetrizableWppDirectFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660",
+      "metrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2Bundle_of_homotopyClosed2W660",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660",
+      "metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660_ready",
+      "metrizableWppDirectFiniteShapeHomotopyClosed2InputNamesW660",
+      "metrizableWppDirectFiniteShapeHomotopyClosed2InputNamesW660_count"]
+  closed2ReductionResult :=
+    "proved: exactAcyclicHomotopyObject closed2 supplies exactAcyclicHomotopyIsoClosure closed2"
+  endpointRouteResult :=
+    "proved: direct finite-shape endpoint route can consume homotopy-object closed2 through W659"
+  shortExactRouteResult :=
+    "proved: direct finite-shape ShortExact route can consume homotopy-object closed2 through W659"
+  stableCertificateResult :=
+    "proved: endpoint and ShortExact W660 homotopy-closed2 bundles produce ready W528 certificates through W659"
+  replacedInputs :=
+    ["direct exactAcyclicHomotopyIsoClosure MetrizableLCA closed2 input"]
+  remainingInputs :=
+    ["instantiate a concrete direct finite-shape WPP source",
+      "prove exactAcyclicHomotopyObject MetrizableLCA closed2",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660 :
+    MetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660 :=
+  currentMetrizableWppDirectFiniteShapeHomotopyClosed2RouteSupportStateW660
+
+theorem
+    currentMetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660_productSuccess :
+    currentMetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows

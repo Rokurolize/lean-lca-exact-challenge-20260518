@@ -6050,6 +6050,50 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationClosed2RouteStateW659_productSuccess
+  #check
+    Dbounded.MetrizableExactAcyclicHomotopyObjectClosed2InputW660
+  #check
+    Dbounded.metrizableExactAcyclicIsoClosureClosed2_of_homotopyObjectClosed2W660
+  #check
+    Dbounded.MetrizableEndpointDirectLocalizationTriangulatedHomotopyClosed2PayloadW660
+  #check
+    Dbounded.metrizableEndpointDirectLocalizationTriangulatedClosed2Payload_of_homotopyClosed2W660
+  #check
+    Dbounded.metrizableEndpointStableTriangulatedFields_of_homotopyClosed2DirectLocalizationW660
+  #check
+    Dbounded.MetrizableShortExactDirectLocalizationTriangulatedHomotopyClosed2PayloadW660
+  #check
+    Dbounded.metrizableShortExactDirectLocalizationTriangulatedClosed2Payload_of_homotopyClosed2W660
+  #check
+    Dbounded.metrizableShortExactStableTriangulatedFields_of_homotopyClosed2DirectLocalizationW660
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationClosed2Bundle_of_homotopyClosed2W660
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationHomotopyClosed2BundleW660_ready
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationClosed2Bundle_of_homotopyClosed2W660
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationHomotopyClosed2BundleW660_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeHomotopyClosed2InputNamesW660
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeHomotopyClosed2InputNamesW660_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeHomotopyClosed2RouteSupportStateW660
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
