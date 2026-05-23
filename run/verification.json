@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w632-explicit-target-surjective-compact-row-provider-homotopy-iso-routes",
-  "generated_utc": "2026-05-23T08:03:55Z",
-  "source_tree_hash": "370a4253d49767be3b946bcbae90392c108a02f3ee7a78c27f39b2046829612c",
-  "summary": "W632 upgrades the W606 explicit target-surjective compact row-provider bundles from endpoint-style routes to the existing W600 homotopy/Verdier row routes. It adds stable bundles and ready-certificate adapters for both W606 closed-map rows and W606 closed-embedding rows, using W601 target-surjectivity and target-codomain compactness to build the split top-target compact-space W600 row bundles. It keeps product-success flags false and remains nonterminal: it does not construct the required WPP boundary data, concrete W593 relation-pullback provider, concrete W601 target-surjectivity or target-codomain compactness providers, concrete W527 row providers, normalized localization data, homotopy-object iso closure, bounded left calculus, or Dbounded pretriangulated/triangulated fields.",
+  "schema": "lean-lca-exact-challenge-verification-w633-relation-fields-target-surjective-compact-row-provider-homotopy-iso-routes",
+  "generated_utc": "2026-05-23T08:09:32Z",
+  "source_tree_hash": "cd25376fcca0d00d2ce4856d2fbef8f83a197db417e7783dd6dfef5cf342849c",
+  "summary": "W633 gives the W607 relation-fields target-surjective compact row-provider bundles the W632 homotopy/Verdier route. It adds stable bundles and ready-certificate adapters for both W607 closed-map rows and W607 closed-embedding rows by reducing them to the explicit W606 row bundles consumed by W632. It keeps product-success flags false and remains nonterminal: it does not construct the required WPP boundary data, concrete W512 relation-fields provider, concrete W601 target-surjectivity or target-codomain compactness providers, concrete W527 row providers, normalized localization data, homotopy-object iso closure, bounded left calculus, or Dbounded pretriangulated/triangulated fields.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -8875,6 +8875,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_081_w632_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_082_w633_post_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_082_w633_post_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_082_w633_post_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_082_w633_post_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_082_w633_post_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_082_w633_post_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_082_w633_post_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_082_w633_post_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_082_w633_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -11591,13 +11636,29 @@
     "Dbounded.MetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteStateW632",
     "Dbounded.currentMetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteSupportStateW632",
     "Dbounded.currentMetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteStateW632",
-    "Dbounded.currentMetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteStateW632_productSuccess"
+    "Dbounded.currentMetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteStateW632_productSuccess",
+    "Dbounded.MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedStableBundleW633",
+    "Dbounded.metrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedStableBundle_of_relationFieldsW633",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedBundleW633",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedBundleW633",
+    "Dbounded.metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedBundleW633_ready",
+    "Dbounded.MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedStableBundleW633",
+    "Dbounded.metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedStableBundle_of_relationFieldsW633",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedBundleW633",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedBundleW633",
+    "Dbounded.metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedBundleW633_ready",
+    "Dbounded.metrizableWppRelationFieldsTargetSurjectiveCompactRowsHomotopyIsoInputNamesW633",
+    "Dbounded.metrizableWppRelationFieldsTargetSurjectiveCompactRowsHomotopyIsoInputNamesW633_count",
+    "Dbounded.MetrizableWppRelationFieldsTargetSurjectiveCompactRowsHomotopyIsoRouteStateW633",
+    "Dbounded.currentMetrizableWppRelationFieldsTargetSurjectiveCompactRowsHomotopyIsoRouteSupportStateW633",
+    "Dbounded.currentMetrizableWppRelationFieldsTargetSurjectiveCompactRowsHomotopyIsoRouteStateW633",
+    "Dbounded.currentMetrizableWppRelationFieldsTargetSurjectiveCompactRowsHomotopyIsoRouteStateW633_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary data",
     "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary data",
-    "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593 data",
+    "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512 data",
     "construct concrete TargetDifferenceSurjectiveProviderW601 data",
     "construct concrete TargetCodomainCompactSpaceProviderW601 data for ordinary WPP-op target codomains",
     "construct concrete ComponentwiseClosedMapRowsProviderW527 data or ComponentwiseClosedEmbeddingRowsProviderW527 data",
@@ -11605,8 +11666,8 @@
     "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
     "construct bounded homotopy/Verdier pullback left calculus of fractions",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA",
+    "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593 data if using explicit-pullback routes",
     "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525 data if using global-provider routes",
-    "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512 data if using relation-field routes",
     "construct W602 endpoint or ShortExact data plus global homology existence if using endpoint/ShortExact routes",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input if using endpoint/ShortExact routes",
     "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
@@ -11617,12 +11678,12 @@
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
     "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "support_result_classification": "nonterminal_explicit_target_surjective_compact_row_provider_homotopy_iso_routes",
+  "support_result_classification": "nonterminal_relation_fields_target_surjective_compact_row_provider_homotopy_iso_routes",
   "product_success": false,
   "remaining_work": [
     "construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary data",
     "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary data",
-    "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593 data",
+    "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512 data",
     "construct concrete TargetDifferenceSurjectiveProviderW601 data",
     "construct concrete TargetCodomainCompactSpaceProviderW601 data for ordinary WPP-op target codomains",
     "construct concrete ComponentwiseClosedMapRowsProviderW527 data or ComponentwiseClosedEmbeddingRowsProviderW527 data",
@@ -11631,8 +11692,8 @@
     "construct bounded homotopy/Verdier pullback left calculus of fractions",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W632 lets explicit W593 plus W601 target-surjective compact closed-map-row or closed-embedding-row data satisfy W600/W599 homotopy-iso stable-certificate consumers without W602 endpoint or ShortExact inputs; product flags remain false.",
-  "latest_verified_increment": "W632 explicit target-surjective compact row-provider homotopy-iso routes",
+  "summary_log_tail": "W633 lets W607 relation-fields target-surjective compact closed-map-row or closed-embedding-row data satisfy W632/W600/W599 homotopy-iso stable-certificate consumers without W602 endpoint or ShortExact inputs; product flags remain false.",
+  "latest_verified_increment": "W633 relation-fields target-surjective compact row-provider homotopy-iso routes",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -12257,6 +12318,13 @@
       "refreshed_utc": "2026-05-23T08:03:55Z",
       "source_tree_hash": "370a4253d49767be3b946bcbae90392c108a02f3ee7a78c27f39b2046829612c",
       "latest_verified_increment": "W632 explicit target-surjective compact row-provider homotopy-iso routes",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "The reusable verifier is expected to pass focused WppOpExactAcyclicProjectionFields source, WppOpExactAcyclicProjectionFields module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate after metadata refresh."
+    },
+    "w633_relation_fields_target_surjective_compact_row_provider_homotopy_iso_routes_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T08:09:32Z",
+      "source_tree_hash": "cd25376fcca0d00d2ce4856d2fbef8f83a197db417e7783dd6dfef5cf342849c",
+      "latest_verified_increment": "W633 relation-fields target-surjective compact row-provider homotopy-iso routes",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "The reusable verifier is expected to pass focused WppOpExactAcyclicProjectionFields source, WppOpExactAcyclicProjectionFields module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate after metadata refresh."
     }
