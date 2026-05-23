@@ -733,6 +733,25 @@ theorem exactAcyclicHomotopyObject_isTriangulated_of_isTriangulatedClosed2
     [(exactAcyclicHomotopyObject C).IsTriangulatedClosed₂] :
     (exactAcyclicHomotopyObject C).IsTriangulated where
 
+/-- If exact-acyclic homotopy objects are identified with the homological kernel of a
+homological functor, mathlib's homological-kernel theorem supplies the middle-object
+distinguished-triangle closure directly. -/
+theorem exactAcyclicHomotopyObject_isTriangulatedClosed2_of_homologicalKernel
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    {A : Type*} [Category A] [Abelian A]
+    (F : HomotopyCategory C (ComplexShape.up ℤ) ⥤ A)
+    [F.IsHomological]
+    (identify :
+      ∀ X, exactAcyclicHomotopyObject C X ↔ F.homologicalKernel X) :
+    (exactAcyclicHomotopyObject C).IsTriangulatedClosed₂ where
+  ext₂' := by
+    intro T hT h₁ h₃
+    have h₂ : F.homologicalKernel.isoClosure T.obj₂ :=
+      ObjectProperty.ext_of_isTriangulatedClosed₂' (P := F.homologicalKernel) T hT
+        ((identify T.obj₁).mp h₁) ((identify T.obj₃).mp h₃)
+    rcases h₂ with ⟨X₂, hX₂, e⟩
+    exact ⟨X₂, (identify X₂).mpr hX₂, e⟩
+
 /-- A morphism of complexes whose mapping cone is exact acyclic lies in the Verdier-style
 `trW` class for the exact-acyclic homotopy-object predicate. -/
 theorem exactAcyclicHomotopyObject_trW_quotient_map_of_exactAcyclic_mappingCone

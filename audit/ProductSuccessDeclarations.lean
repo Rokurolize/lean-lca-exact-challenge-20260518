@@ -6269,6 +6269,48 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664_productSuccess
+  #check
+    Dbounded.MetrizableForgetfulHomologyKernelFunctorW665
+  #check
+    Dbounded.MetrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayloadW665
+  #check
+    Dbounded.metrizableExactAcyclicHomotopyObjectClosed2_of_forgetfulHomologicalKernelW665
+  #check
+    Dbounded.MetrizableEndpointDirectLocalizationTriangulatedForgetfulHomologicalKernelPayloadW665
+  #check
+    Dbounded.metrizableEndpointDirectLocalizationTriangulatedHomotopyClosed2Payload_of_forgetfulHomologicalKernelW665
+  #check
+    Dbounded.MetrizableShortExactDirectLocalizationTriangulatedForgetfulHomologicalKernelPayloadW665
+  #check
+    Dbounded.metrizableShortExactDirectLocalizationTriangulatedHomotopyClosed2Payload_of_forgetfulHomologicalKernelW665
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationForgetfulHomologicalKernelBundleW665
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationHomotopyClosed2Bundle_of_forgetfulHomologicalKernelW665
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationForgetfulHomologicalKernelBundleW665
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationForgetfulHomologicalKernelBundleW665_ready
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationForgetfulHomologicalKernelBundleW665
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationHomotopyClosed2Bundle_of_forgetfulHomologicalKernelW665
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationForgetfulHomologicalKernelBundleW665
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationForgetfulHomologicalKernelBundleW665_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeForgetfulHomologicalKernelInputNamesW665
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeForgetfulHomologicalKernelInputNamesW665_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeForgetfulHomologicalKernelRouteStateW665
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeForgetfulHomologicalKernelRouteSupportStateW665
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeForgetfulHomologicalKernelRouteStateW665
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeForgetfulHomologicalKernelRouteStateW665_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
