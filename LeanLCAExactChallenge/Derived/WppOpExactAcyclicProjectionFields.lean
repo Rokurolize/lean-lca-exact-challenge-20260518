@@ -18004,6 +18004,224 @@ theorem
       false :=
   rfl
 
+/-- Shared ShortExact-topology triangulated fields for W608 stable bundles. -/
+structure MetrizableShortExactStableTriangulatedFieldsW608
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  shortExactTopology :
+    MetrizableExactAtShortExactTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605 hasHomology shortExactTopology
+        localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605 hasHomology shortExactTopology
+        localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- W608 ShortExact stable bundle for W607 closed-map rows. -/
+structure MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactStableBundleW608
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  relationFieldsTargetSurjectiveCompactBundle :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundleW607
+  shortExactFields :
+    MetrizableShortExactStableTriangulatedFieldsW608
+
+/- W608 stable input: W607 closed-map rows feed the W605 ShortExact route. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactStableBundleW608) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605
+        inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+        inputs.shortExactFields.localizedRightAdjoint) where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsBundleW607
+      inputs.relationFieldsTargetSurjectiveCompactBundle
+  pretriangulated := inputs.shortExactFields.pretriangulated
+  triangulated := inputs.shortExactFields.triangulated
+
+/-- W608 closed-map-row ShortExact route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactStableBundleW608) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfShortExactWppTransfer_w605
+    inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+    inputs.shortExactFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608
+      inputs)
+
+/-- The W608 closed-map-row ShortExact route produces a ready stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactStableBundleW608) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfShortExactWppTransfer_w605_ready
+    inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+    inputs.shortExactFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608
+      inputs)
+
+/-- W608 ShortExact stable bundle for W607 closed-embedding rows. -/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  relationFieldsTargetSurjectiveCompactBundle :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW607
+  shortExactFields :
+    MetrizableShortExactStableTriangulatedFieldsW608
+
+/- W608 stable input: W607 closed-embedding rows feed the W605 ShortExact route. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605
+        inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+        inputs.shortExactFields.localizedRightAdjoint) where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsBundleW607
+      inputs.relationFieldsTargetSurjectiveCompactBundle
+  pretriangulated := inputs.shortExactFields.pretriangulated
+  triangulated := inputs.shortExactFields.triangulated
+
+/-- W608 closed-embedding-row ShortExact route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfShortExactWppTransfer_w605
+    inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+    inputs.shortExactFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608
+      inputs)
+
+/-- The W608 closed-embedding-row ShortExact route produces a ready stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608
+        inputs)).ready := by
+  exact Dbounded.stableCertificateOfShortExactWppTransfer_w605_ready
+    inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+    inputs.shortExactFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608
+      inputs)
+
+/-- Input names for the W608 relation-fields target-surjective compact ShortExact routes. -/
+def metrizableWppRelationFieldsTargetSurjectiveCompactShortExactInputNamesW608 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableWppRelationFieldsTargetSurjectiveCompactShortExactInputNamesW608_count :
+    metrizableWppRelationFieldsTargetSurjectiveCompactShortExactInputNamesW608.length =
+      14 :=
+  rfl
+
+/-- Current checked W608 state for relation-fields target-surjective ShortExact routes. -/
+structure MetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteStateW608 :
+    Type where
+  seed : String
+  declarations : List String
+  shortExactClosedMapResult : String
+  shortExactClosedEmbeddingResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W608 state. -/
+def currentMetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteSupportStateW608 :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteStateW608 where
+  seed := "w608-relation-fields-target-surjective-compact-shortexact-route"
+  declarations :=
+    ["MetrizableShortExactStableTriangulatedFieldsW608",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactStableBundleW608",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608_ready",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608_ready",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactShortExactInputNamesW608",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactShortExactInputNamesW608_count"]
+  shortExactClosedMapResult :=
+    "proved: W607 relation-fields target-surjective compact closed-map rows feed the W605 ShortExact stable route"
+  shortExactClosedEmbeddingResult :=
+    "proved: W607 relation-fields target-surjective compact closed-embedding rows feed the W605 ShortExact stable route"
+  stableCertificateResult :=
+    "proved: both W608 row variants produce ready ShortExact-topology stable certificates"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct normalized strict-representative fixed-target localization data",
+      "construct W602 ShortExact data and global homology existence",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteStateW608 :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteStateW608 :=
+  currentMetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteSupportStateW608
+
+theorem
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteStateW608_productSuccess :
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteStateW608.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -19037,6 +19255,43 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableWppRelationFieldsTargetSurjectiveCompactEndpointRouteStateW607_productSuccess
+set_option linter.style.longLine false in
+#check MetrizableShortExactStableTriangulatedFieldsW608
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactStableBundleW608
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608_ready
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW608_ready
+set_option linter.style.longLine false in
+#check metrizableWppRelationFieldsTargetSurjectiveCompactShortExactInputNamesW608
+set_option linter.style.longLine false in
+#check metrizableWppRelationFieldsTargetSurjectiveCompactShortExactInputNamesW608_count
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteSupportStateW608
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteStateW608
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteStateW608_productSuccess
 
 end Checks
 
