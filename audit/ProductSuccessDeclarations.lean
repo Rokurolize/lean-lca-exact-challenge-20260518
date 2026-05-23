@@ -5890,6 +5890,46 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationPayloadRouteStateW655
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationPayloadRouteStateW655_productSuccess
+  #check
+    Dbounded.MetrizableDirectLocalizationTriangulatedSourceCoreW656
+  #check
+    Dbounded.metrizableDirectLocalizationTriangulatedSourcePayload_of_coreW656
+  #check
+    Dbounded.MetrizableEndpointDirectLocalizationTriangulatedCorePayloadW656
+  #check
+    Dbounded.metrizableEndpointDirectLocalizationTriangulatedPayload_of_coreW656
+  #check
+    Dbounded.MetrizableShortExactDirectLocalizationTriangulatedCorePayloadW656
+  #check
+    Dbounded.metrizableShortExactDirectLocalizationTriangulatedPayload_of_coreW656
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationCoreBundleW656
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationPayloadBundle_of_coreW656
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationCoreBundleW656
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationCoreBundleW656_ready
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationCoreBundleW656
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationPayloadBundle_of_coreW656
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationCoreBundleW656
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationCoreBundleW656_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeDirectLocalizationCoreInputNamesW656
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeDirectLocalizationCoreInputNamesW656_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteSupportStateW656
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

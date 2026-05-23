@@ -29798,6 +29798,269 @@ theorem
       false :=
   rfl
 
+/--
+W656 source core for W655 when the bounded-complex source shift additivity is
+supplied by canonical typeclass synthesis.
+-/
+structure MetrizableDirectLocalizationTriangulatedSourceCoreW656 :
+    Type 1 where
+  sourcePretriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  sourceTriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    IsTriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  triangleCompletion :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+  localizationCommShift :
+    letI : HasShift (Dbounded MetrizableLCA.{0}) ℤ :=
+      HasShift.localization (boundedExactWeakEquivalence MetrizableLCA.{0}) ℤ
+    (Dbounded.localization MetrizableLCA.{0}).CommShift ℤ
+
+/-- W656 fills W655 source shift additivity by canonical typeclass synthesis. -/
+noncomputable def
+    metrizableDirectLocalizationTriangulatedSourcePayload_of_coreW656
+    (inputs : MetrizableDirectLocalizationTriangulatedSourceCoreW656) :
+    MetrizableDirectLocalizationTriangulatedSourcePayloadW655 where
+  sourceShiftAdditiveAll := by
+    infer_instance
+  sourcePretriangulated := by
+    change Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})
+    exact inputs.sourcePretriangulated
+  sourceTriangulated := by
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      inputs.sourcePretriangulated
+    change IsTriangulated (BoundedComplexCategory MetrizableLCA.{0})
+    exact inputs.sourceTriangulated
+  triangleCompletion := by
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      inputs.sourcePretriangulated
+    change MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+    exact inputs.triangleCompletion
+  localizationCommShift := inputs.localizationCommShift
+
+/-- W656 endpoint payload with canonical source shift additivity. -/
+structure MetrizableEndpointDirectLocalizationTriangulatedCorePayloadW656 :
+    Type 1 where
+  exactRealize :
+    MetrizableExactAcyclicIsoClosureTrianglehIso13RealizationInputW651
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  endpointTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceCoreW656
+
+/-- W656 adapts endpoint core payloads to W655 endpoint payloads. -/
+noncomputable def
+    metrizableEndpointDirectLocalizationTriangulatedPayload_of_coreW656
+    (inputs : MetrizableEndpointDirectLocalizationTriangulatedCorePayloadW656) :
+    MetrizableEndpointDirectLocalizationTriangulatedPayloadW655 where
+  exactRealize := inputs.exactRealize
+  hasHomology := inputs.hasHomology
+  endpointTopology := inputs.endpointTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization :=
+    metrizableDirectLocalizationTriangulatedSourcePayload_of_coreW656
+      inputs.directLocalization
+
+/-- W656 ShortExact payload with canonical source shift additivity. -/
+structure MetrizableShortExactDirectLocalizationTriangulatedCorePayloadW656 :
+    Type 1 where
+  exactRealize :
+    MetrizableExactAcyclicIsoClosureTrianglehIso13RealizationInputW651
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  shortExactTopology :
+    MetrizableExactAtShortExactTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceCoreW656
+
+/-- W656 adapts ShortExact core payloads to W655 ShortExact payloads. -/
+noncomputable def
+    metrizableShortExactDirectLocalizationTriangulatedPayload_of_coreW656
+    (inputs : MetrizableShortExactDirectLocalizationTriangulatedCorePayloadW656) :
+    MetrizableShortExactDirectLocalizationTriangulatedPayloadW655 where
+  exactRealize := inputs.exactRealize
+  hasHomology := inputs.hasHomology
+  shortExactTopology := inputs.shortExactTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization :=
+    metrizableDirectLocalizationTriangulatedSourcePayload_of_coreW656
+      inputs.directLocalization
+
+/-- W656 direct finite-shape endpoint bundle with canonical source shift additivity. -/
+structure MetrizableWppDirectFiniteShapeEndpointDirectLocalizationCoreBundleW656 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  endpointPayload : MetrizableEndpointDirectLocalizationTriangulatedCorePayloadW656
+
+/-- W656 adapts endpoint core bundles to W655 direct-localization bundles. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeEndpointDirectLocalizationPayloadBundle_of_coreW656
+    (inputs : MetrizableWppDirectFiniteShapeEndpointDirectLocalizationCoreBundleW656) :
+    MetrizableWppDirectFiniteShapeEndpointDirectLocalizationPayloadBundleW655 where
+  directSource := inputs.directSource
+  endpointPayload :=
+    metrizableEndpointDirectLocalizationTriangulatedPayload_of_coreW656
+      inputs.endpointPayload
+
+/-- W656 endpoint core route builds the W655 ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationCoreBundleW656
+    (inputs : MetrizableWppDirectFiniteShapeEndpointDirectLocalizationCoreBundleW656) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationPayloadBundleW655
+    (metrizableWppDirectFiniteShapeEndpointDirectLocalizationPayloadBundle_of_coreW656
+      inputs)
+
+/-- W656 endpoint core route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationCoreBundleW656_ready
+    (inputs : MetrizableWppDirectFiniteShapeEndpointDirectLocalizationCoreBundleW656) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationCoreBundleW656
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationPayloadBundleW655_ready
+    (metrizableWppDirectFiniteShapeEndpointDirectLocalizationPayloadBundle_of_coreW656
+      inputs)
+
+/-- W656 direct finite-shape ShortExact bundle with canonical source shift additivity. -/
+structure MetrizableWppDirectFiniteShapeShortExactDirectLocalizationCoreBundleW656 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  shortExactPayload : MetrizableShortExactDirectLocalizationTriangulatedCorePayloadW656
+
+/-- W656 adapts ShortExact core bundles to W655 direct-localization bundles. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeShortExactDirectLocalizationPayloadBundle_of_coreW656
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationCoreBundleW656) :
+    MetrizableWppDirectFiniteShapeShortExactDirectLocalizationPayloadBundleW655 where
+  directSource := inputs.directSource
+  shortExactPayload :=
+    metrizableShortExactDirectLocalizationTriangulatedPayload_of_coreW656
+      inputs.shortExactPayload
+
+/-- W656 ShortExact core route builds the W655 ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationCoreBundleW656
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationCoreBundleW656) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationPayloadBundleW655
+    (metrizableWppDirectFiniteShapeShortExactDirectLocalizationPayloadBundle_of_coreW656
+      inputs)
+
+/-- W656 ShortExact core route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationCoreBundleW656_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationCoreBundleW656) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationCoreBundleW656
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationPayloadBundleW655_ready
+    (metrizableWppDirectFiniteShapeShortExactDirectLocalizationPayloadBundle_of_coreW656
+      inputs)
+
+/-- Input names for the W656 canonical-source-shift route. -/
+def metrizableWppDirectFiniteShapeDirectLocalizationCoreInputNamesW656 :
+    List String :=
+  ["direct finite-shape WPP source",
+    "exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs or MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+    "localized commShift infrastructure for Dbounded.localization MetrizableLCA"]
+
+theorem metrizableWppDirectFiniteShapeDirectLocalizationCoreInputNamesW656_count :
+    metrizableWppDirectFiniteShapeDirectLocalizationCoreInputNamesW656.length =
+      8 :=
+  rfl
+
+/-- Current checked W656 state for canonical source shift-additivity reuse. -/
+structure MetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656 :
+    Type where
+  seed : String
+  declarations : List String
+  sourceCoreResult : String
+  endpointRouteResult : String
+  shortExactRouteResult : String
+  stableCertificateResult : String
+  removedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W656 state. -/
+def currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteSupportStateW656 :
+    MetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656 where
+  seed := "w656-direct-finite-shape-direct-localization-core-route"
+  declarations :=
+    ["MetrizableDirectLocalizationTriangulatedSourceCoreW656",
+      "metrizableDirectLocalizationTriangulatedSourcePayload_of_coreW656",
+      "MetrizableEndpointDirectLocalizationTriangulatedCorePayloadW656",
+      "metrizableEndpointDirectLocalizationTriangulatedPayload_of_coreW656",
+      "MetrizableShortExactDirectLocalizationTriangulatedCorePayloadW656",
+      "metrizableShortExactDirectLocalizationTriangulatedPayload_of_coreW656",
+      "MetrizableWppDirectFiniteShapeEndpointDirectLocalizationCoreBundleW656",
+      "metrizableWppDirectFiniteShapeEndpointDirectLocalizationPayloadBundle_of_coreW656",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationCoreBundleW656",
+      "metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationCoreBundleW656_ready",
+      "MetrizableWppDirectFiniteShapeShortExactDirectLocalizationCoreBundleW656",
+      "metrizableWppDirectFiniteShapeShortExactDirectLocalizationPayloadBundle_of_coreW656",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationCoreBundleW656",
+      "metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationCoreBundleW656_ready",
+      "metrizableWppDirectFiniteShapeDirectLocalizationCoreInputNamesW656",
+      "metrizableWppDirectFiniteShapeDirectLocalizationCoreInputNamesW656_count"]
+  sourceCoreResult :=
+    "proved: W656 derives the W655 source shift-additivity payload field by canonical typeclass synthesis"
+  endpointRouteResult :=
+    "proved: direct finite-shape endpoint route can use the W656 core payload without an explicit source shift-additivity field"
+  shortExactRouteResult :=
+    "proved: direct finite-shape ShortExact route can use the W656 core payload without an explicit source shift-additivity field"
+  stableCertificateResult :=
+    "proved: endpoint and ShortExact W656 core bundles still produce ready W528 certificates through W655"
+  removedInputs :=
+    ["explicit forall n, (shiftFunctor (BoundedComplexCategory MetrizableLCA) n).Additive payload field"]
+  remainingInputs :=
+    ["instantiate a concrete direct finite-shape WPP source",
+      "construct exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct localized commShift infrastructure for Dbounded.localization MetrizableLCA"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656 :
+    MetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656 :=
+  currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteSupportStateW656
+
+theorem
+    currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656_productSuccess :
+    currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows

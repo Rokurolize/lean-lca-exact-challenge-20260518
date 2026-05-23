@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w655-direct-localization-payload-route",
-  "generated_utc": "2026-05-23T11:25:27Z",
-  "source_tree_hash": "8b67a2b22f8d154d275c79c4b65ba1e5c48af136303523eba47d710ee6e0f12f",
-  "summary": "W655 connects the W654 direct-localization triangulated bridge to the W653 direct finite-shape endpoint and ShortExact certificate routes. It adds a compact source-side direct-localization payload carrying source shift additivity, source pretriangulated and triangulated structures, source-side triangle completion, and Dbounded localization commShift; endpoint and ShortExact adapters then rebuild the W651 Dbounded triangulation payload fields by W654 and feed W653 ready certificate constructors. This removes raw Pretriangulated/IsTriangulated (Dbounded MetrizableLCA) fields from the direct finite-shape endpoint and ShortExact payload surface. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w656-canonical-source-shift-direct-localization-core",
+  "generated_utc": "2026-05-23T11:32:52Z",
+  "source_tree_hash": "78f467cd040b857ab326e0157ee40bf2c22e915e0d8f92f4a67f23f256f62fab",
+  "summary": "W656 narrows the W655 direct-localization finite-shape payload by deriving the source shift-additivity field for BoundedComplexCategory MetrizableLCA through canonical typeclass synthesis. It adds source-core, endpoint-core, and ShortExact-core payload adapters that feed W655, preserving the W653 ready certificate route while removing the explicit source shift-additivity field from future direct finite-shape endpoint and ShortExact call sites. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -9910,6 +9910,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_104_w655_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_105_w656_post_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_105_w656_post_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_105_w656_post_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_105_w656_post_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_105_w656_post_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_105_w656_post_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_105_w656_post_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_105_w656_post_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_105_w656_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -13043,7 +13088,27 @@
     "Dbounded.MetrizableWppDirectFiniteShapeDirectLocalizationPayloadRouteStateW655",
     "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationPayloadRouteSupportStateW655",
     "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationPayloadRouteStateW655",
-    "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationPayloadRouteStateW655_productSuccess"
+    "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationPayloadRouteStateW655_productSuccess",
+    "Dbounded.MetrizableDirectLocalizationTriangulatedSourceCoreW656",
+    "Dbounded.metrizableDirectLocalizationTriangulatedSourcePayload_of_coreW656",
+    "Dbounded.MetrizableEndpointDirectLocalizationTriangulatedCorePayloadW656",
+    "Dbounded.metrizableEndpointDirectLocalizationTriangulatedPayload_of_coreW656",
+    "Dbounded.MetrizableShortExactDirectLocalizationTriangulatedCorePayloadW656",
+    "Dbounded.metrizableShortExactDirectLocalizationTriangulatedPayload_of_coreW656",
+    "Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationCoreBundleW656",
+    "Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationPayloadBundle_of_coreW656",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationCoreBundleW656",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationCoreBundleW656_ready",
+    "Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationCoreBundleW656",
+    "Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationPayloadBundle_of_coreW656",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationCoreBundleW656",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationCoreBundleW656_ready",
+    "Dbounded.metrizableWppDirectFiniteShapeDirectLocalizationCoreInputNamesW656",
+    "Dbounded.metrizableWppDirectFiniteShapeDirectLocalizationCoreInputNamesW656_count",
+    "Dbounded.MetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteSupportStateW656",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeDirectLocalizationCoreRouteStateW656_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -13063,7 +13128,7 @@
     "instantiate WPP-op exact-acyclic closure data or the left/Snake colimit certificate",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "construct bounded homotopy localized right adjoint plus unit membership",
-    "construct ordinary source shift additivity, Pretriangulated, and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct Dbounded.localization MetrizableLCA commShift infrastructure",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
@@ -13078,7 +13143,7 @@
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
     "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "support_result_classification": "nonterminal_direct_finite_shape_direct_localization_payload_route",
+  "support_result_classification": "nonterminal_canonical_source_shift_direct_localization_core_route",
   "product_success": false,
   "remaining_work": [
     "construct exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA data",
@@ -13087,14 +13152,14 @@
     "instantiate WPP-op exact-acyclic closure data or the left/Snake colimit certificate",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "construct bounded homotopy localized right adjoint plus unit membership",
-    "construct ordinary source shift additivity, Pretriangulated, and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct Dbounded.localization MetrizableLCA commShift infrastructure",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "summary_log_tail": "W655 routes direct finite-shape endpoint and ShortExact payload bundles through W654-derived Dbounded triangulation fields and W653 ready certificates; product flags remain false.",
-  "latest_verified_increment": "W655 direct finite-shape direct-localization payload route",
+  "summary_log_tail": "W656 derives W655 source shift additivity canonically and keeps the direct finite-shape endpoint/ShortExact certificate routes ready; product flags remain false.",
+  "latest_verified_increment": "W656 canonical source-shift direct-localization core route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -13882,6 +13947,13 @@
       "latest_verified_increment": "W655 direct finite-shape direct-localization payload route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W655 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w656_canonical_source_shift_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T11:32:52Z",
+      "source_tree_hash": "78f467cd040b857ab326e0157ee40bf2c22e915e0d8f92f4a67f23f256f62fab",
+      "latest_verified_increment": "W656 canonical source-shift direct-localization core route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W656 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }
