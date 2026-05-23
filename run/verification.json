@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
-  "generated_utc": "2026-05-22T18:57:16Z",
-  "source_tree_hash": "2674154f999d74cf3fdd293e8511d7ef7a7f2aaee1192ea5418d1a34da7ce150",
-  "summary": "W603 wires the W602 endpoint-epi and ShortExact exact-at topology routes through the existing homology-detection theorem to produce explicit MetrizableLCA homotopy-equivalence invariance and exact-acyclic homotopy-object iso-closedness wrappers. This remains nonterminal: it does not construct the homology existence, forgetful homology preservation, topology, endpoint epi, or ShortExact data needed to instantiate those wrappers, and it does not construct WPP boundary data, normalized localization data, homotopy/Verdier calculus, or Dbounded triangulated fields.",
+  "generated_utc": "2026-05-23T04:11:07Z",
+  "source_tree_hash": "bb93402f4b1bfb50b26ab0c3da0cc98b38e942589372d5fc6f08a26567c4079b",
+  "summary": "W604 connects the W603 endpoint-epi and ShortExact homotopy-equivalence invariance wrappers to the existing generic direct bounded left- and right-calculus constructors. Endpoint or ShortExact exact-at topology data plus homology existence, triangulated closedness of the exact-acyclic isomorphism closure, and localized adjunction data now produce direct bounded left and right calculus. This remains nonterminal: it does not construct those inputs, WPP boundary data, normalized localization data, or the remaining finite-limit, finite-colimit, pretriangulated, and triangulated Dbounded fields.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -7570,6 +7570,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_052_w603_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_053_w604_pre_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_053_w604_pre_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_053_w604_pre_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_053_w604_pre_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_053_w604_pre_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_053_w604_pre_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_053_w604_pre_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_053_w604_pre_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_053_w604_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -9857,7 +9902,19 @@
     "Dbounded.MetrizableExactAcyclicIsoClosedEndpointRouteStateW603",
     "Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteSupportStateW603",
     "Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603",
-    "Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603_productSuccess"
+    "Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603_productSuccess",
+    "Dbounded.leftCalculus_of_endpointTopology_w604",
+    "Dbounded.leftCalculus_of_shortExactTopology_w604",
+    "Dbounded.rightCalculus_of_endpointTopology_w604",
+    "Dbounded.rightCalculus_of_shortExactTopology_w604",
+    "Dbounded.metrizableEndpointCalculusInputNamesW604",
+    "Dbounded.metrizableEndpointCalculusInputNamesW604_count",
+    "Dbounded.metrizableEndpointCalculusRouteNamesW604",
+    "Dbounded.metrizableEndpointCalculusRouteNamesW604_count",
+    "Dbounded.MetrizableEndpointCalculusRouteStateW604",
+    "Dbounded.currentMetrizableEndpointCalculusRouteSupportStateW604",
+    "Dbounded.currentMetrizableEndpointCalculusRouteStateW604",
+    "Dbounded.currentMetrizableEndpointCalculusRouteStateW604_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -9869,17 +9926,17 @@
     "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527 data",
     "construct normalized strict-representative fixed-target localization data",
     "construct the homology existence and W602 endpoint or ShortExact data needed to instantiate exactAcyclicHomotopyObject iso-closedness",
-    "construct bounded homotopy/Verdier pullback left calculus of fractions",
+    "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
+    "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
+    "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA",
+    "construct HasFiniteLimits and HasFiniteColimits fields for Dbounded MetrizableLCA",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
     "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
-    "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes",
-    "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
-    "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
-    "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it"
+    "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "support_result_classification": "nonterminal_exact_at_endpoint_iso_closed_wrappers",
+  "support_result_classification": "nonterminal_endpoint_routes_to_direct_bounded_calculus",
   "product_success": false,
   "remaining_work": [
     "construct concrete closed quotient-cover WPP limit right-open boundary data",
@@ -9890,18 +9947,18 @@
     "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527 data",
     "construct normalized strict-representative fixed-target localization data",
     "construct the homology existence and W602 endpoint or ShortExact data needed to instantiate exactAcyclicHomotopyObject iso-closedness",
-    "construct bounded homotopy/Verdier pullback left calculus of fractions",
+    "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
+    "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
+    "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA",
+    "construct HasFiniteLimits and HasFiniteColimits fields for Dbounded MetrizableLCA",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
     "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
-    "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes",
-    "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
-    "construct bounded homotopy localized right adjoint plus unit membership for left calculus",
-    "construct bounded homotopy localized left adjoint plus counit membership for right calculus if the opposite route needs it"
+    "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "summary_log_tail": "W603 turns W602 homology-detection data into homotopy-equivalence invariance and exact-acyclic homotopy-object iso-closedness wrappers; product flags remain false.",
-  "latest_verified_increment": "W603 endpoint route to homotopy iso-closedness",
+  "summary_log_tail": "W604 connects W603 endpoint homotopy-invariance wrappers to direct bounded left and right calculus constructors; product flags remain false.",
+  "latest_verified_increment": "W604 endpoint routes to direct bounded calculus",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -10323,6 +10380,13 @@
       "refreshed_utc": "2026-05-22T18:57:16Z",
       "source_tree_hash": "2674154f999d74cf3fdd293e8511d7ef7a7f2aaee1192ea5418d1a34da7ce150",
       "latest_verified_increment": "W603 endpoint route to homotopy iso-closedness",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "The reusable verifier passed focused Bounded source, Bounded module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
+    },
+    "w604_endpoint_routes_to_direct_bounded_calculus_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T04:11:07Z",
+      "source_tree_hash": "bb93402f4b1bfb50b26ab0c3da0cc98b38e942589372d5fc6f08a26567c4079b",
+      "latest_verified_increment": "W604 endpoint routes to direct bounded calculus",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "The reusable verifier passed focused Bounded source, Bounded module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
     }

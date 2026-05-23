@@ -4485,6 +4485,121 @@ theorem Dbounded.currentMetrizableExactAcyclicIsoClosedEndpointRouteStateW603_pr
       false :=
   rfl
 
+/-- W604 endpoint route from W603 homotopy invariance to direct bounded left calculus. -/
+theorem Dbounded.leftCalculus_of_endpointTopology_w604
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_endpointTopology_w603 hasHomology I) R
+
+/-- W604 ShortExact route from W603 homotopy invariance to direct bounded left calculus. -/
+theorem Dbounded.leftCalculus_of_shortExactTopology_w604
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603 hasHomology I) R
+
+/-- W604 endpoint route from W603 homotopy invariance to direct bounded right calculus. -/
+theorem Dbounded.rightCalculus_of_endpointTopology_w604
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs)
+    (L : BoundedHomotopyLocalizedLeftAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasRightCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_homotopyEquivLeftAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_endpointTopology_w603 hasHomology I) L
+
+/-- W604 ShortExact route from W603 homotopy invariance to direct bounded right calculus. -/
+theorem Dbounded.rightCalculus_of_shortExactTopology_w604
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs)
+    (L : BoundedHomotopyLocalizedLeftAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasRightCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasRightCalculusOfFractions_of_homotopyEquivLeftAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_shortExactTopology_w603 hasHomology I) L
+
+/-- W604 left/right calculus input names after W603 discharges iso-closedness. -/
+def Dbounded.metrizableEndpointCalculusInputNamesW604 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "W602 endpoint-epi or ShortExact exact-at topology data",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "bounded homotopy localized left adjoint plus counit membership"]
+
+theorem Dbounded.metrizableEndpointCalculusInputNamesW604_count :
+    Dbounded.metrizableEndpointCalculusInputNamesW604.length = 5 :=
+  rfl
+
+/-- W604 route names from W603 endpoint data to direct bounded calculus. -/
+def Dbounded.metrizableEndpointCalculusRouteNamesW604 : List String :=
+  ["Dbounded.leftCalculus_of_endpointTopology_w604",
+    "Dbounded.leftCalculus_of_shortExactTopology_w604",
+    "Dbounded.rightCalculus_of_endpointTopology_w604",
+    "Dbounded.rightCalculus_of_shortExactTopology_w604"]
+
+theorem Dbounded.metrizableEndpointCalculusRouteNamesW604_count :
+    Dbounded.metrizableEndpointCalculusRouteNamesW604.length = 4 :=
+  rfl
+
+/-- Current checked W604 state for endpoint routes into direct bounded calculus. -/
+structure Dbounded.MetrizableEndpointCalculusRouteStateW604 : Type where
+  seed : String
+  declarations : List String
+  leftCalculusResult : String
+  rightCalculusResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W604 state. -/
+def Dbounded.currentMetrizableEndpointCalculusRouteSupportStateW604 :
+    Dbounded.MetrizableEndpointCalculusRouteStateW604 where
+  seed := "w604-endpoint-route-to-direct-bounded-calculus"
+  declarations :=
+    ["Dbounded.leftCalculus_of_endpointTopology_w604",
+      "Dbounded.leftCalculus_of_shortExactTopology_w604",
+      "Dbounded.rightCalculus_of_endpointTopology_w604",
+      "Dbounded.rightCalculus_of_shortExactTopology_w604",
+      "Dbounded.metrizableEndpointCalculusInputNamesW604",
+      "Dbounded.metrizableEndpointCalculusInputNamesW604_count",
+      "Dbounded.metrizableEndpointCalculusRouteNamesW604",
+      "Dbounded.metrizableEndpointCalculusRouteNamesW604_count"]
+  leftCalculusResult :=
+    "proved: W603 homotopy invariance feeds localized-right-adjoint left calculus"
+  rightCalculusResult :=
+    "proved: W603 homotopy invariance feeds localized-left-adjoint right calculus"
+  remainingInputs :=
+    ["construct homology existence and W602 endpoint or ShortExact data",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct bounded homotopy localized left adjoint plus counit membership",
+      "construct remaining finite-limit, finite-colimit, and triangulated Dbounded fields"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableEndpointCalculusRouteStateW604 :
+    Dbounded.MetrizableEndpointCalculusRouteStateW604 :=
+  Dbounded.currentMetrizableEndpointCalculusRouteSupportStateW604
+
+theorem Dbounded.currentMetrizableEndpointCalculusRouteStateW604_productSuccess :
+    Dbounded.currentMetrizableEndpointCalculusRouteStateW604.productSuccessClaimed =
+      false :=
+  rfl
+
 /-- Remaining semantic fields after direct bounded left calculus supplies its part. -/
 def Dbounded.metrizableRemainingSemanticFieldNamesAfterLeftCalculus : List String :=
   ["HasFiniteLimits (Dbounded MetrizableLCA)", "HasFiniteColimits (Dbounded MetrizableLCA)",
