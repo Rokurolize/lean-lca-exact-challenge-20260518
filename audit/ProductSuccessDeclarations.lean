@@ -5714,6 +5714,34 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649_productSuccess
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW650
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointGenericBundleW650_ready
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW650
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointGenericBundleW650_ready
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW650
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactGenericBundleW650_ready
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW650
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactGenericBundleW650_ready
+  #check
+    Dbounded.metrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactInputNamesW650
+  #check
+    Dbounded.metrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactInputNamesW650_count
+  #check
+    Dbounded.MetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteStateW650
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteSupportStateW650
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteStateW650
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteStateW650_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

@@ -28593,6 +28593,190 @@ theorem currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649_pr
       false :=
   rfl
 
+/-- W650 adapts the W607 relation-fields target-surjective compact closed-map endpoint route to W648. -/
+def
+    metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW650
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW607) :
+    MetrizableWppFiniteShapeEndpointStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsBundleW607
+      inputs.relationFieldsTargetSurjectiveCompactBundle
+  endpointFields := inputs.endpointFields
+
+/-- W650 generic endpoint certificate for W607 relation-fields target-surjective compact closed-map rows. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointGenericBundleW650_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW607) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+        (metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW650
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+    (metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW650
+      inputs)
+
+/-- W650 adapts the W607 relation-fields target-surjective compact closed-embedding endpoint route to W648. -/
+def
+    metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW650
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607) :
+    MetrizableWppFiniteShapeEndpointStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsBundleW607
+      inputs.relationFieldsTargetSurjectiveCompactBundle
+  endpointFields := inputs.endpointFields
+
+/-- W650 generic endpoint certificate for W607 relation-fields target-surjective compact closed-embedding rows. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointGenericBundleW650_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+        (metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW650
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+    (metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW650
+      inputs)
+
+/-- W650 adapts the W608 relation-fields target-surjective compact closed-map ShortExact route to W648. -/
+def
+    metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW650
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactStableBundleW608) :
+    MetrizableWppFiniteShapeShortExactStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsBundleW607
+      inputs.relationFieldsTargetSurjectiveCompactBundle
+  shortExactFields := inputs.shortExactFields
+
+/-- W650 generic ShortExact certificate for W608 relation-fields target-surjective compact closed-map rows. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactGenericBundleW650_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactStableBundleW608) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+        (metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW650
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+    (metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW650
+      inputs)
+
+/-- W650 adapts the W608 relation-fields target-surjective compact closed-embedding ShortExact route to W648. -/
+def
+    metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW650
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608) :
+    MetrizableWppFiniteShapeShortExactStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsBundleW607
+      inputs.relationFieldsTargetSurjectiveCompactBundle
+  shortExactFields := inputs.shortExactFields
+
+/-- W650 generic ShortExact certificate for W608 relation-fields target-surjective compact closed-embedding rows. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactGenericBundleW650_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+        (metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW650
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+    (metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW650
+      inputs)
+
+/-- Input names for the W650 relation-fields target-surjective compact generic routes. -/
+def
+    metrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactInputNamesW650 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "W605 endpoint or ShortExact stable fields"]
+
+theorem
+    metrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactInputNamesW650_count :
+    metrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactInputNamesW650.length =
+      9 :=
+  rfl
+
+/-- Current checked W650 state for generic W607/W608 route reuse. -/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteStateW650 :
+    Type where
+  seed : String
+  declarations : List String
+  endpointReuseResult : String
+  shortExactReuseResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W650 state. -/
+def
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteSupportStateW650 :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteStateW650 where
+  seed := "w650-relation-fields-target-surjective-compact-generic-endpoint-shortexact-route"
+  declarations :=
+    ["metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW650",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointGenericBundleW650_ready",
+      "metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointBundleW650",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointGenericBundleW650_ready",
+      "metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW650",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactGenericBundleW650_ready",
+      "metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactBundleW650",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactGenericBundleW650_ready",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactInputNamesW650",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactInputNamesW650_count"]
+  endpointReuseResult :=
+    "proved: W607 relation-fields target-surjective compact closed-map and closed-embedding endpoint routes reuse the W648 generic finite-shape route"
+  shortExactReuseResult :=
+    "proved: W608 relation-fields target-surjective compact closed-map and closed-embedding ShortExact routes reuse the W648 generic finite-shape route"
+  stableCertificateResult :=
+    "proved: all four W607/W608 row variants produce ready W528 certificates through the W648 generic adapter"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct normalized strict-representative fixed-target localization data",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteStateW650 :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteStateW650 :=
+  currentMetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteSupportStateW650
+
+theorem
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteStateW650_productSuccess :
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactGenericEndpointShortExactRouteStateW650.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
