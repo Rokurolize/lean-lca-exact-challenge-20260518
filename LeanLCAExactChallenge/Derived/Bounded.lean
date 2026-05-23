@@ -4703,6 +4703,184 @@ theorem Dbounded.leftCalculus_of_shortExactConditionedTopology_w667
     (Dbounded.homotopyEquivInvariance_of_shortExactConditionedTopology_w667
       hasHomology I) R
 
+/--
+W668 kernel/cokernel-conditioned endpoint data.
+
+This replaces direct topological closed/open fields with categorical universal properties:
+an incoming kernel fork is a closed embedding by the explicit equalizer model, and an
+outgoing cokernel cofork is an open surjection by the explicit quotient coequalizer model.
+-/
+structure MetrizableExactAtKernelCokernelConditionedTopologyInputs : Type 2 where
+  forgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  kernel_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → IsLimit (KernelFork.ofι (K.sc i).f (K.sc i).zero)
+  cokernel_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → IsColimit (CokernelCofork.ofπ (K.sc i).g (K.sc i).zero)
+
+/-- W668 kernel/cokernel-conditioned ExactAt data turns ExactAt into strict exactness. -/
+theorem exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hK : ∀ i : ℤ, K.ExactAt i) :
+    exactAcyclic MetrizableLCA.{0} K := by
+  intro i
+  have hExact : (K.sc i).Exact := hK i
+  have hhom : (K.sc i).HasHomology := hExact.hasHomology
+  have hclosed :
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂) :=
+    MetrizableLCA.isLimit_fork_ι_closedEmbedding
+      (r := (K.sc i).g) (s := 0) (I.kernel_of_exactAt K i (hK i))
+  have hopen : IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃) :=
+    MetrizableLCA.isColimit_cofork_π_openMap (I.cokernel_of_exactAt K i (hK i))
+  have hsurj :
+      Function.Surjective ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃) :=
+    MetrizableLCA.isColimit_cofork_π_surjective (I.cokernel_of_exactAt K i (hK i))
+  exact MetrizableLCA.strictShortExact_of_exact_of_topology
+    hhom I.forgetPreservesHomology hExact hclosed hopen hsurj
+
+/-- W668 homology detection from global homology plus kernel/cokernel-conditioned topology. -/
+theorem
+    Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_kernelCokernelConditionedTopology
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_of_exactAtDetection
+    (C := MetrizableLCA.{0})
+    { hasHomology := hasHomology
+      exactAt_of_exactAcyclic := by
+        intro K hK i
+        exact exactAt_of_exactAcyclic_metrizableLCA
+          hasHomology I.forgetPreservesHomology hK i
+      exactAcyclic_of_exactAt := by
+        intro K hK
+        exact
+          exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology I K hK }
+
+/-- W668 input names for the kernel/cokernel-conditioned route. -/
+def Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668 :
+    List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "forget2 MetrizableLCA AddCommGrpCat preserves homology",
+    "categorical ExactAt supplies the incoming kernel fork",
+    "categorical ExactAt supplies the outgoing cokernel cofork"]
+
+theorem Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668_count :
+    Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668.length = 4 :=
+  rfl
+
+/-- W668 route names for the kernel/cokernel-conditioned route. -/
+def Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668 :
+    List String :=
+  ["MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology",
+    "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+kernelCokernelConditionedTopology"]
+
+theorem Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668_count :
+    Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668.length = 3 :=
+  rfl
+
+/-- Current checked W668 state for the kernel/cokernel-conditioned route. -/
+structure Dbounded.MetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668 :
+    Type where
+  seed : String
+  declarations : List String
+  topologyResult : String
+  homologyDetectionResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W668 state. -/
+def Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteSupportStateW668 :
+    Dbounded.MetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668 where
+  seed := "w668-kernel-cokernel-conditioned-endpoint-topology-route"
+  declarations :=
+    ["MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+      "exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology",
+      "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_\
+kernelCokernelConditionedTopology",
+      "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668",
+      "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668_count",
+      "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668",
+      "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668_count"]
+  topologyResult :=
+    "proved: kernel and cokernel universal properties supply closed-embedding/open-surjection topology"
+  homologyDetectionResult :=
+    "proved: homology detection can use ExactAt-conditioned kernel/cokernel data"
+  replacedInputs :=
+    ["direct topological closed-embedding, open-map, and endpoint-surjectivity fields"]
+  remainingInputs :=
+    ["construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
+      "prove categorical ExactAt supplies incoming kernel and outgoing cokernel coforks",
+      "construct direct finite-shape WPP source data and localization/triangulation inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668 :
+    Dbounded.MetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668 :=
+  Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteSupportStateW668
+
+theorem
+    Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668_productSuccess :
+    Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668.productSuccessClaimed =
+      false :=
+  rfl
+
+namespace Dbounded
+
+/-- Short W668 alias for kernel/cokernel-conditioned homology detection. -/
+theorem homologyDetection_of_kernelCokernelConditionedTopology_w668
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+  exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_kernelCokernelConditionedTopology
+    hasHomology I
+
+end Dbounded
+
+/-- W668 kernel/cokernel-conditioned route from homology detection to homotopy invariance. -/
+theorem
+    Dbounded.homotopyEquivInvariance_of_kernelCokernelConditionedTopology_w668
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0} :=
+  exactAcyclicHomotopyEquivInvarianceInput_of_homologyDetection
+    (C := MetrizableLCA.{0})
+    (Dbounded.homologyDetection_of_kernelCokernelConditionedTopology_w668 hasHomology I)
+
+/-- W668 kernel/cokernel-conditioned route to homotopy-object iso-closedness. -/
+theorem
+    Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_kernelCokernelConditionedTopology_w668
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+  exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_kernelCokernelConditionedTopology_w668
+      hasHomology I)
+
+/-- W668 kernel/cokernel-conditioned route from homotopy invariance to left calculus. -/
+theorem Dbounded.leftCalculus_of_kernelCokernelConditionedTopology_w668
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+  boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_homotopyEquivRightAdjoint
+    MetrizableLCA.{0}
+    (Dbounded.homotopyEquivInvariance_of_kernelCokernelConditionedTopology_w668
+      hasHomology I) R
+
 namespace Dbounded
 
 /-- Short W603 alias for the W602 endpoint homology-detection route. -/

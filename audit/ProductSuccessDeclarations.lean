@@ -62,6 +62,8 @@ example : HasFiniteColimits MetrizableLCA := by infer_instance
 #check MetrizableLCA.cokernelIsColimit
 #check MetrizableLCA.instHasCokernels
 #check MetrizableLCA.instHasFiniteColimits
+#check MetrizableLCA.isColimit_cofork_π_surjective
+#check MetrizableLCA.isColimit_cofork_π_openMap
 #check MetrizableLCA.pushoutCokernelMap_open_surjection
 #check MetrizableLCA.pushoutCokernelMap_kernel_iff_range_inr
 #check MetrizableLCA.shortExactExtensionPushout_kernel_iff_range_i
@@ -3995,6 +3997,33 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactConditionedTopology_w667
 #check Dbounded.leftCalculus_of_endpointConditionedTopology_w667
 #check Dbounded.leftCalculus_of_shortExactConditionedTopology_w667
+#check MetrizableExactAtKernelCokernelConditionedTopologyInputs
+#check exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology
+#check
+  Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_kernelCokernelConditionedTopology
+#check
+  Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668
+#check
+  Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputNamesW668_count
+#check
+  Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668
+#check
+  Dbounded.metrizableExactAtKernelCokernelConditionedTopologyRouteNamesW668_count
+#check
+  Dbounded.MetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668
+#check
+  Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteSupportStateW668
+#check
+  Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668
+#check
+  Dbounded.currentMetrizableExactAtKernelCokernelConditionedTopologyRouteStateW668_productSuccess
+#check
+  Dbounded.homologyDetection_of_kernelCokernelConditionedTopology_w668
+#check
+  Dbounded.homotopyEquivInvariance_of_kernelCokernelConditionedTopology_w668
+#check
+  Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_kernelCokernelConditionedTopology_w668
+#check Dbounded.leftCalculus_of_kernelCokernelConditionedTopology_w668
 #check
   Dbounded.homologyDetection_of_endpointTopology_w603
 #check
