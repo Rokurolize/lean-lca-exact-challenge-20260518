@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
-  "generated_utc": "2026-05-23T05:13:17Z",
-  "source_tree_hash": "1b2d2d42da15c336733dfcc3c0ba161a7a0ec002e084220f651a2e3bccc2e431",
-  "summary": "W612 composes W512 relation fields, W600 target-top provider, W601 codomain compactness, and W581 global closed-map provider narrowing to feed W600 closed-map-row transfer into W605 endpoint and ShortExact stable-certificate paths. This removes W601 target-difference-surjectivity from this closed-map branch while keeping all product-success flags false. It remains nonterminal: it does not construct the required WPP boundary data, W512 relation fields, W600 target-top data, W601 compact-codomain provider, global closed-map provider, normalized localization data, endpoint or ShortExact topology data, global homology existence, iso-closure triangulated closedness, localized adjunction data, or Dbounded pretriangulated/triangulated fields.",
+  "generated_utc": "2026-05-23T05:20:11Z",
+  "source_tree_hash": "0a358409dea46c42bb027b6b3874457351c5cc58386dfde943b95e98834a8bf0",
+  "summary": "W613 composes W512 relation fields, W600 target-top provider, W601 codomain compactness, and W581 global closed-embedding provider narrowing to feed W600 closed-embedding-row transfer into W605 endpoint and ShortExact stable-certificate paths. This removes W601 target-difference-surjectivity from this closed-embedding branch while keeping all product-success flags false. It remains nonterminal: it does not construct the required WPP boundary data, W512 relation fields, W600 target-top data, W601 compact-codomain provider, global closed-embedding provider, normalized localization data, endpoint or ShortExact topology data, global homology existence, iso-closure triangulated closedness, localized adjunction data, or Dbounded pretriangulated/triangulated fields.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -7975,6 +7975,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_061_w612_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_062_w613_pre_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_062_w613_pre_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_062_w613_pre_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_062_w613_pre_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_062_w613_pre_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_062_w613_pre_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_062_w613_pre_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_062_w613_pre_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_062_w613_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -10417,7 +10462,24 @@
     "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612",
     "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteSupportStateW612",
     "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612",
-    "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612_productSuccess"
+    "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapRouteStateW612_productSuccess",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedBundleW613",
+    "Dbounded.metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsNormalizedBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW613",
+    "Dbounded.metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingRowsBundleW613",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingEndpointStableBundleW613",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingEndpointBundleW613",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingEndpointBundleW613",
+    "Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingEndpointBundleW613_ready",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingShortExactStableBundleW613",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingShortExactBundleW613",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingShortExactBundleW613",
+    "Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingShortExactBundleW613_ready",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingInputNamesW613",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingInputNamesW613_count",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingRouteStateW613",
+    "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingRouteSupportStateW613",
+    "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingRouteStateW613",
+    "Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingRouteStateW613_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -10426,7 +10488,7 @@
     "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512 data",
     "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600 data",
     "construct concrete TargetCodomainCompactSpaceProviderW601 data for ordinary WPP-op target codomains",
-    "construct concrete ComponentwiseClosedMapProviderW525 data",
+    "construct concrete ComponentwiseClosedEmbeddingProviderW525 data",
     "construct normalized strict-representative fixed-target localization data",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
@@ -10439,7 +10501,7 @@
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
     "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "support_result_classification": "nonterminal_relation_fields_target_top_compact_global_closed_map_route",
+  "support_result_classification": "nonterminal_relation_fields_target_top_compact_global_closed_embedding_route",
   "product_success": false,
   "remaining_work": [
     "construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary data",
@@ -10447,7 +10509,7 @@
     "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512 data",
     "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600 data",
     "construct concrete TargetCodomainCompactSpaceProviderW601 data for ordinary WPP-op target codomains",
-    "construct concrete ComponentwiseClosedMapProviderW525 data",
+    "construct concrete ComponentwiseClosedEmbeddingProviderW525 data",
     "construct normalized strict-representative fixed-target localization data",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "prove exactAcyclicHomotopyIsoClosure is triangulated closed or supply the triangle realization input",
@@ -10460,8 +10522,8 @@
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
     "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "summary_log_tail": "W612 lets W512 relation fields, W600 target-top data, W601 compact target codomains, and W525 global closed-map data feed W600 closed-map-row transfer, then W605 endpoint and ShortExact stable paths; product flags remain false.",
-  "latest_verified_increment": "W612 relation-fields target-top compact global closed-map route",
+  "summary_log_tail": "W613 lets W512 relation fields, W600 target-top data, W601 compact target codomains, and W525 global closed-embedding data feed W600 closed-embedding-row transfer, then W605 endpoint and ShortExact stable paths; product flags remain false.",
+  "latest_verified_increment": "W613 relation-fields target-top compact global closed-embedding route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -10946,6 +11008,13 @@
       "refreshed_utc": "2026-05-23T05:13:17Z",
       "source_tree_hash": "1b2d2d42da15c336733dfcc3c0ba161a7a0ec002e084220f651a2e3bccc2e431",
       "latest_verified_increment": "W612 relation-fields target-top compact global closed-map route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "The reusable verifier passed focused WppOpExactAcyclicProjectionFields source, WppOpExactAcyclicProjectionFields module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
+    },
+    "w613_relation_fields_target_top_compact_global_closed_embedding_route_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T05:20:11Z",
+      "source_tree_hash": "0a358409dea46c42bb027b6b3874457351c5cc58386dfde943b95e98834a8bf0",
+      "latest_verified_increment": "W613 relation-fields target-top compact global closed-embedding route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "The reusable verifier passed focused WppOpExactAcyclicProjectionFields source, WppOpExactAcyclicProjectionFields module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
     }
