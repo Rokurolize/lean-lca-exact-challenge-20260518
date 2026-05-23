@@ -6488,6 +6488,38 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_productSuccess
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetW672
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetW672
+  #check
+    Dbounded.MetrizableWppNormalizedFixedTargetClosedMapKernelCokernelConditionedKernelPayloadBundleW672
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedMapNormalizedFixedTargetW672
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672
+  #check
+    Dbounded.metrizableStableCertificate_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672_ready
+  #check
+    Dbounded.MetrizableWppNormalizedFixedTargetClosedEmbeddingKernelCokernelConditionedKernelPayloadBundleW672
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedEmbeddingNormalizedFixedTargetW672
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672
+  #check
+    Dbounded.metrizableStableCertificate_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672_ready
+  #check
+    Dbounded.metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672
+  #check
+    Dbounded.metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672_count
+  #check
+    Dbounded.MetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672
+  #check
+    Dbounded.currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteSupportStateW672
+  #check
+    Dbounded.currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672
+  #check
+    Dbounded.currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

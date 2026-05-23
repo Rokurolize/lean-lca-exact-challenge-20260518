@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w671-direct-finite-shape-kernel-payload-stable-route",
-  "generated_utc": "2026-05-23T14:52:57Z",
-  "source_tree_hash": "47713b07421297fa2f50f8752b9a3d8bccf2f3f479bd6dd1ab2e52dbb876ed7d",
-  "summary": "W671 proves that W668 kernel/cokernel-conditioned topology identifies exactAcyclicHomotopyObject with the forgetful homological kernel, then uses that identification to derive the exactAcyclicHomotopyIsoClosure closed2 input required by W670. The resulting direct finite-shape route builds the ordinary stable semantic input and ready stable certificate without a separate closed2 field. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w672-normalized-fixed-target-kernel-payload-stable-route",
+  "generated_utc": "2026-05-23T15:02:55Z",
+  "source_tree_hash": "84b1f7c5b1a3f69061f7adf19de13bbe8ef3184fb1256f57047abcc681008239",
+  "summary": "W672 wires the W647 normalized fixed-target global closed-map and closed-embedding finite-shape providers into the W671 kernel-payload route. The resulting routes build the ordinary stable semantic input and ready stable certificate without an opaque direct finite-shape source field. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -10450,6 +10450,46 @@
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_120_w671_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_121_w672_wpp_op_projection_fields_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_121_w672_wpp_op_projection_fields_build.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_121_w672_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_121_w672_forbidden_tokens_source.log exit_code=0"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_121_w672_forbidden_tokens_product_declarations.log exit_code=0"
+    },
+    {
+      "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_121_w672_product_placeholder_touched.log exit_code=1-as-no-matches"
+    },
+    {
+      "command": "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_121_w672_sorry_axiom_touched.log exit_code=1-as-no-matches"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_121_w672_diff_check.log exit_code=0"
     }
   ],
   "implemented_declarations_checked": [
@@ -13894,35 +13934,53 @@
     "Dbounded.MetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671",
     "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteSupportStateW671",
     "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671",
-    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_productSuccess"
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_productSuccess",
+    "Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetW672",
+    "Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetW672",
+    "Dbounded.MetrizableWppNormalizedFixedTargetClosedMapKernelCokernelConditionedKernelPayloadBundleW672",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedMapNormalizedFixedTargetW672",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672",
+    "Dbounded.metrizableStableCertificate_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672_ready",
+    "Dbounded.MetrizableWppNormalizedFixedTargetClosedEmbeddingKernelCokernelConditionedKernelPayloadBundleW672",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedEmbeddingNormalizedFixedTargetW672",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672",
+    "Dbounded.metrizableStableCertificate_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672_ready",
+    "Dbounded.metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672",
+    "Dbounded.metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672_count",
+    "Dbounded.MetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672",
+    "Dbounded.currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteSupportStateW672",
+    "Dbounded.currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672",
+    "Dbounded.currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "instantiate concrete direct finite-shape WPP source data",
+    "construct concrete WPP right-open and source-pi-zero boundary data",
+    "construct concrete relation-field, target-top, and compact-target provider data",
+    "construct concrete componentwise global closed-map or closed-embedding provider data",
+    "construct normalized strict representatives and fixed-target uniqueness data",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
     "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
     "prove categorical ExactAt supplies incoming kernel forks and outgoing cokernel coforks",
     "construct bounded homotopy localized right adjoint plus unit membership",
     "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
-    "instantiate WPP exact-acyclic limit closure data or all four WPP limit-field inputs",
-    "instantiate WPP-op exact-acyclic closure data or the left/Snake colimit certificate",
-    "construct finite limits and finite colimits for Dbounded MetrizableLCA",
-    "construct concrete WPP boundary/provider/localization data"
+    "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "support_result_classification": "nonterminal_direct_finite_shape_kernel_payload_stable_route",
+  "support_result_classification": "nonterminal_normalized_fixed_target_kernel_payload_stable_route",
   "product_success": false,
   "remaining_work": [
-    "instantiate concrete direct finite-shape WPP source data",
+    "construct concrete WPP right-open and source-pi-zero boundary data",
+    "construct concrete relation-field, target-top, and compact-target provider data",
+    "construct concrete componentwise global closed-map or closed-embedding provider data",
+    "construct normalized strict representatives and fixed-target uniqueness data",
     "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
     "construct bounded homotopy localized right adjoint plus unit membership",
     "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
-    "construct finite limits and finite colimits for Dbounded MetrizableLCA",
-    "construct concrete WPP boundary/provider/localization data"
+    "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W671 derives W670's closed2 requirement from W668 kernel/cokernel-conditioned forgetful homological-kernel identification; product flags remain false.",
-  "latest_verified_increment": "W671 direct finite-shape kernel-payload stable route",
+  "summary_log_tail": "W672 replaces the W671 direct-source field at the stable route boundary with existing W647 normalized fixed-target closed-map and closed-embedding finite-shape providers; product flags remain false.",
+  "latest_verified_increment": "W672 normalized fixed-target kernel-payload stable route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -14822,6 +14880,13 @@
       "latest_verified_increment": "W671 direct finite-shape kernel-payload stable route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W671 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w672_normalized_fixed_target_kernel_payload_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T15:02:55Z",
+      "source_tree_hash": "84b1f7c5b1a3f69061f7adf19de13bbe8ef3184fb1256f57047abcc681008239",
+      "latest_verified_increment": "W672 normalized fixed-target kernel-payload stable route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W672 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }

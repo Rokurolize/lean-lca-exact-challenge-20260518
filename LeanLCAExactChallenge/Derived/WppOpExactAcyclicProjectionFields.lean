@@ -33352,6 +33352,226 @@ theorem currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_product
       false :=
   rfl
 
+/--
+W672 builds the direct finite-shape source expected by W671 from the W647 normalized
+fixed-target global closed-map provider route.
+-/
+noncomputable def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetW672
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW646) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW647
+      inputs
+
+/--
+W672 builds the direct finite-shape source expected by W671 from the W647 normalized
+fixed-target global closed-embedding provider route.
+-/
+noncomputable def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetW672
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW646) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW647
+      inputs
+
+/--
+W672 closed-map bundle: W646/W647 normalized fixed-target finite-shape data plus the
+W668 kernel/cokernel-conditioned kernel payload consumed by W671.
+-/
+structure
+    MetrizableWppNormalizedFixedTargetClosedMapKernelCokernelConditionedKernelPayloadBundleW672 :
+    Type 2 where
+  normalizedFixedTargetBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW646
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W672 adapts the normalized fixed-target closed-map route to the W671 bundle. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedMapNormalizedFixedTargetW672
+    (inputs :
+      MetrizableWppNormalizedFixedTargetClosedMapKernelCokernelConditionedKernelPayloadBundleW672) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    where
+  directSource :=
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetW672
+      inputs.normalizedFixedTargetBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W672 closed-map route builds the ordinary stable input through W671. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672
+    (inputs :
+      MetrizableWppNormalizedFixedTargetClosedMapKernelCokernelConditionedKernelPayloadBundleW672) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedMapNormalizedFixedTargetW672
+      inputs)
+
+/-- W672 closed-map route produces a ready certificate through W671. -/
+theorem
+    metrizableStableCertificate_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672_ready
+    (inputs :
+      MetrizableWppNormalizedFixedTargetClosedMapKernelCokernelConditionedKernelPayloadBundleW672) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedMapNormalizedFixedTargetW672
+      inputs)
+
+/--
+W672 closed-embedding bundle: W646/W647 normalized fixed-target finite-shape data plus
+the W668 kernel/cokernel-conditioned kernel payload consumed by W671.
+-/
+structure
+    MetrizableWppNormalizedFixedTargetClosedEmbeddingKernelCokernelConditionedKernelPayloadBundleW672 :
+    Type 2 where
+  normalizedFixedTargetBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW646
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W672 adapts the normalized fixed-target closed-embedding route to the W671 bundle. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedEmbeddingNormalizedFixedTargetW672
+    (inputs :
+      MetrizableWppNormalizedFixedTargetClosedEmbeddingKernelCokernelConditionedKernelPayloadBundleW672) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    where
+  directSource :=
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetW672
+      inputs.normalizedFixedTargetBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W672 closed-embedding route builds the ordinary stable input through W671. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672
+    (inputs :
+      MetrizableWppNormalizedFixedTargetClosedEmbeddingKernelCokernelConditionedKernelPayloadBundleW672) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedEmbeddingNormalizedFixedTargetW672
+      inputs)
+
+/-- W672 closed-embedding route produces a ready certificate through W671. -/
+theorem
+    metrizableStableCertificate_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672_ready
+    (inputs :
+      MetrizableWppNormalizedFixedTargetClosedEmbeddingKernelCokernelConditionedKernelPayloadBundleW672) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedEmbeddingNormalizedFixedTargetW672
+      inputs)
+
+/-- Input names for the W672 normalized fixed-target kernel-payload route. -/
+def metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "normalized strict representatives for WalkingParallelPair diagrams in Dbounded",
+    "target and localization-model uniqueness for normalized fixed targets",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672_count :
+    metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672.length =
+      13 :=
+  rfl
+
+/-- Current checked W672 state for normalized fixed-target kernel-payload routes. -/
+structure MetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapFiniteShapeResult : String
+  closedEmbeddingFiniteShapeResult : String
+  closedMapStableCertificateResult : String
+  closedEmbeddingStableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W672 state. -/
+def currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteSupportStateW672 :
+    MetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672 where
+  seed := "w672-normalized-fixed-target-kernel-payload-route"
+  declarations :=
+    ["metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetW672",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetW672",
+      "MetrizableWppNormalizedFixedTargetClosedMapKernelCokernelConditionedKernelPayloadBundleW672",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedMapNormalizedFixedTargetW672",
+      "metrizableOrdinaryStableSemanticInput_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672",
+      "metrizableStableCertificate_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672_ready",
+      "MetrizableWppNormalizedFixedTargetClosedEmbeddingKernelCokernelConditionedKernelPayloadBundleW672",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedEmbeddingNormalizedFixedTargetW672",
+      "metrizableOrdinaryStableSemanticInput_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672",
+      "metrizableStableCertificate_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672_ready",
+      "metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672",
+      "metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672_count"]
+  closedMapFiniteShapeResult :=
+    "proved: W647 normalized fixed-target global closed-map providers supply the W671 direct finite-shape source"
+  closedEmbeddingFiniteShapeResult :=
+    "proved: W647 normalized fixed-target global closed-embedding providers supply the W671 direct finite-shape source"
+  closedMapStableCertificateResult :=
+    "proved: W672 closed-map kernel-payload bundles produce a ready W528 stable certificate through W671"
+  closedEmbeddingStableCertificateResult :=
+    "proved: W672 closed-embedding kernel-payload bundles produce a ready W528 stable certificate through W671"
+  replacedInputs :=
+    ["opaque direct finite-shape WPP source field in the W671 bundle"]
+  remainingInputs :=
+    ["construct concrete WPP right-open and source-pi-zero boundary data",
+      "construct concrete relation-field, target-top, and compact-target provider data",
+      "construct concrete componentwise global closed-map or closed-embedding provider data",
+      "construct normalized strict representatives and fixed-target uniqueness data",
+      "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct finite limits and finite colimits for Dbounded MetrizableLCA"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672 :
+    MetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672 :=
+  currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteSupportStateW672
+
+theorem currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672_productSuccess :
+    currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -33385,6 +33605,45 @@ set_option linter.style.longLine false in
 #check currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671
 set_option linter.style.longLine false in
 #check currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_productSuccess
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetW672
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetW672
+set_option linter.style.longLine false in
+#check MetrizableWppNormalizedFixedTargetClosedMapKernelCokernelConditionedKernelPayloadBundleW672
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedMapNormalizedFixedTargetW672
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_closedMapNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672_ready
+set_option linter.style.longLine false in
+#check
+  MetrizableWppNormalizedFixedTargetClosedEmbeddingKernelCokernelConditionedKernelPayloadBundleW672
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_closedEmbeddingNormalizedFixedTargetW672
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_closedEmbeddingNormalizedFixedTargetKernelCokernelConditionedKernelPayloadBundleW672_ready
+set_option linter.style.longLine false in
+#check metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672
+set_option linter.style.longLine false in
+#check metrizableWppNormalizedFixedTargetKernelPayloadInputNamesW672_count
+set_option linter.style.longLine false in
+#check currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteSupportStateW672
+set_option linter.style.longLine false in
+#check currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672
+set_option linter.style.longLine false in
+#check currentMetrizableWppNormalizedFixedTargetKernelPayloadRouteStateW672_productSuccess
 
 set_option linter.style.longLine false in
 #check metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670
