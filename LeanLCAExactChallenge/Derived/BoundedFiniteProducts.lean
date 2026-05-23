@@ -1138,6 +1138,21 @@ noncomputable def
     (Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferHomotopyIsoClosed
       inputs)
 
+/--
+Full ordinary stable semantic input from WPP transfer for any already selected
+left-calculus semantic-field record.
+-/
+noncomputable def
+    Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferForAvailable
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    {available : Dbounded.MetrizableLeftCalculusSemanticFields}
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs available) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields available
+    (Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+      inputs)
+
 /-- WPP transfer route produces a ready stable certificate once the remaining fields exist. -/
 theorem Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransfer_ready
     [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
@@ -1158,6 +1173,17 @@ theorem Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotop
         Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed) :
     (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
       (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferHomotopyIsoClosed
+        inputs)).ready := by
+  exact Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready _
+
+/-- The generic selected-field WPP transfer route produces a ready stable certificate. -/
+theorem Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferForAvailable_ready
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    {available : Dbounded.MetrizableLeftCalculusSemanticFields}
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs available) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferForAvailable
         inputs)).ready := by
   exact Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready _
 
