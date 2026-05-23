@@ -952,6 +952,58 @@ theorem exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_real
     exact exactAcyclicHomotopyObject_distinguished_ext2_of_triangleh_iso13 C
       hT f e₁ e₃ comm hL
 
+/-- The strict-realization input needed to make exact-acyclic homotopy objects closed under
+distinguished triangles. -/
+abbrev exactAcyclicHomotopyObjectTrianglehIso13Realization
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    exactAcyclicHomotopyObject C T.obj₁ →
+    exactAcyclicHomotopyObject C T.obj₃ →
+    ∃ (K L : CochainComplex C ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        exactAcyclic C L
+
+/-- A target-isomorphism form of the exact-acyclic homotopy-object strict-realization input. -/
+abbrev exactAcyclicHomotopyObjectTrianglehIso13TargetIsoRealization
+    [HasZeroObject C] [HasBinaryBiproducts C] : Prop :=
+  ∀ {T : Pretriangulated.Triangle (HomotopyCategory C (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory C (ComplexShape.up ℤ)) →
+    exactAcyclicHomotopyObject C T.obj₁ →
+    exactAcyclicHomotopyObject C T.obj₃ →
+    ∃ (K L Lexact : CochainComplex C ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+      (_eL : Lexact ≅ L),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor (HomotopyCategory C (ComplexShape.up ℤ)) (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        exactAcyclic C Lexact
+
+/-- Target-isomorphism realization data supplies the exact-acyclic homotopy-object
+strict-realization input. -/
+theorem exactAcyclicHomotopyObjectTrianglehIso13Realization_of_targetIsoRealization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyObjectTrianglehIso13TargetIsoRealization C) :
+    exactAcyclicHomotopyObjectTrianglehIso13Realization C := by
+  intro T hT h₁ h₃
+  rcases realize hT h₁ h₃ with ⟨K, L, Lexact, f, e₁, e₃, eL, comm, hLexact⟩
+  exact ⟨K, L, f, e₁, e₃, comm, exactAcyclic_of_iso C eL hLexact⟩
+
+/-- Target-isomorphism realization data is enough for exact-acyclic homotopy-object
+middle-object distinguished-triangle closure. -/
+theorem exactAcyclicHomotopyObject_isTriangulatedClosed2_of_targetIsoRealization
+    [HasZeroObject C] [HasBinaryBiproducts C]
+    (realize : exactAcyclicHomotopyObjectTrianglehIso13TargetIsoRealization C) :
+    (exactAcyclicHomotopyObject C).IsTriangulatedClosed₂ :=
+  exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization C
+    (exactAcyclicHomotopyObjectTrianglehIso13Realization_of_targetIsoRealization
+      C realize)
+
 /-- A strict-realization criterion for the middle-object distinguished-triangle closure of
 the isomorphism closure of exact-acyclic homotopy objects.
 

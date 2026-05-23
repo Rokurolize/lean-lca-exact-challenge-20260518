@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w661-strict-realization-route",
-  "generated_utc": "2026-05-23T13:04:58Z",
-  "source_tree_hash": "89c002f05a40e30376d53cd239f954ee102bb8154c5f2c75e929405ff89c1325",
-  "summary": "W661 narrows the W660 homotopy-object closed2 route by accepting the strict exact-acyclic homotopy-object triangleh iso13 realization criterion directly, deriving exactAcyclicHomotopyObject MetrizableLCA closed2 from the existing Bounded.lean theorem, and adapting endpoint and ShortExact realization bundles through W660 to ready W528 certificates. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w662-object-target-iso-route",
+  "generated_utc": "2026-05-23T13:19:40Z",
+  "source_tree_hash": "ee96edfe7844519ffa205e2aa82dabf9a7c23a5d699e54a9a057bc2aa8a3fa01",
+  "summary": "W662 narrows the W661 strict exact-acyclic homotopy-object realization input by adding a target-isomorphism realization bridge: it is enough to match the selected mapping-cone target to an exact-acyclic representative by cochain isomorphism. The new generic Bounded.lean bridge derives exactAcyclicHomotopyObject triangleh iso13 realization and Closed2 from that target-isomorphism data, and the Wpp route adapts endpoint and ShortExact bundles through W661 to ready W528 certificates. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -10180,6 +10180,61 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_110_w661_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_bounded_source_check_after_warning_fix.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_bounded_build_after_warning_fix.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_pre_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_pre_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_pre_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_pre_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_pre_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_pre_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_pre_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_pre_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_111_w662_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -13437,11 +13492,35 @@
     "Dbounded.MetrizableWppDirectFiniteShapeRealizationRouteStateW661",
     "Dbounded.currentMetrizableWppDirectFiniteShapeRealizationRouteSupportStateW661",
     "Dbounded.currentMetrizableWppDirectFiniteShapeRealizationRouteStateW661",
-    "Dbounded.currentMetrizableWppDirectFiniteShapeRealizationRouteStateW661_productSuccess"
+    "Dbounded.currentMetrizableWppDirectFiniteShapeRealizationRouteStateW661_productSuccess",
+    "exactAcyclicHomotopyObjectTrianglehIso13Realization",
+    "exactAcyclicHomotopyObjectTrianglehIso13TargetIsoRealization",
+    "exactAcyclicHomotopyObjectTrianglehIso13Realization_of_targetIsoRealization",
+    "exactAcyclicHomotopyObject_isTriangulatedClosed2_of_targetIsoRealization",
+    "Dbounded.MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayloadW662",
+    "Dbounded.metrizableExactAcyclicHomotopyObjectTrianglehIso13Realization_of_targetIsoPayloadW662",
+    "Dbounded.MetrizableEndpointDirectLocalizationTriangulatedObjectTargetIsoPayloadW662",
+    "Dbounded.metrizableEndpointDirectLocalizationTriangulatedRealizationPayload_of_objectTargetIsoW662",
+    "Dbounded.MetrizableShortExactDirectLocalizationTriangulatedObjectTargetIsoPayloadW662",
+    "Dbounded.metrizableShortExactDirectLocalizationTriangulatedRealizationPayload_of_objectTargetIsoW662",
+    "Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundleW662",
+    "Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationRealizationBundle_of_objectTargetIsoW662",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundleW662",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundleW662_ready",
+    "Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundleW662",
+    "Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationRealizationBundle_of_objectTargetIsoW662",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundleW662",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundleW662_ready",
+    "Dbounded.metrizableWppDirectFiniteShapeObjectTargetIsoInputNamesW662",
+    "Dbounded.metrizableWppDirectFiniteShapeObjectTargetIsoInputNamesW662_count",
+    "Dbounded.MetrizableWppDirectFiniteShapeObjectTargetIsoRouteStateW662",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeObjectTargetIsoRouteSupportStateW662",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeObjectTargetIsoRouteStateW662",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeObjectTargetIsoRouteStateW662_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "construct exactAcyclicHomotopyObject triangleh iso13 realization for MetrizableLCA",
+    "construct object target-isomorphism triangleh iso13 realization data for MetrizableLCA",
     "instantiate concrete direct finite-shape WPP source data",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "construct bounded homotopy localized right adjoint plus unit membership",
@@ -13452,10 +13531,10 @@
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "support_result_classification": "nonterminal_strict_realization_direct_finite_shape_route",
+  "support_result_classification": "nonterminal_object_target_iso_direct_finite_shape_route",
   "product_success": false,
   "remaining_work": [
-    "construct exactAcyclicHomotopyObject triangleh iso13 realization for MetrizableLCA",
+    "construct object target-isomorphism triangleh iso13 realization data for MetrizableLCA",
     "instantiate concrete direct finite-shape WPP source data",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "construct bounded homotopy localized right adjoint plus unit membership",
@@ -13464,8 +13543,8 @@
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "summary_log_tail": "W661 reduces the direct finite-shape route from homotopy-object closed2 to the strict triangleh iso13 realization criterion and keeps endpoint/ShortExact certificates ready; product flags remain false.",
-  "latest_verified_increment": "W661 strict realization direct finite-shape route",
+  "summary_log_tail": "W662 reduces the direct finite-shape route from raw exactAcyclicHomotopyObject triangleh iso13 realization to object target-isomorphism data and keeps endpoint/ShortExact certificates ready; product flags remain false.",
+  "latest_verified_increment": "W662 object target-isomorphism direct finite-shape route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -14295,6 +14374,13 @@
       "latest_verified_increment": "W661 strict realization direct finite-shape route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W661 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w662_object_target_iso_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T13:19:40Z",
+      "source_tree_hash": "ee96edfe7844519ffa205e2aa82dabf9a7c23a5d699e54a9a057bc2aa8a3fa01",
+      "latest_verified_increment": "W662 object target-isomorphism direct finite-shape route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W662 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }

@@ -2245,6 +2245,13 @@ Exact weak equivalences are the morphisms whose mapping cone is exact.
   (C := MetrizableLCA))
 #check (exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization
   (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObjectTrianglehIso13Realization (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObjectTrianglehIso13TargetIsoRealization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObjectTrianglehIso13Realization_of_targetIsoRealization
+  (C := MetrizableLCA))
+#check (exactAcyclicHomotopyObject_isTriangulatedClosed2_of_targetIsoRealization
+  (C := MetrizableLCA))
 #check (exactAcyclicHomotopyIsoClosure_isTriangulatedClosed2_of_triangleh_iso13_realization
   (C := MetrizableLCA))
 #check (exactAcyclicHomotopyIsoClosureTrianglehIso13Realization (C := MetrizableLCA))
@@ -6138,6 +6145,46 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeRealizationRouteStateW661
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeRealizationRouteStateW661_productSuccess
+  #check
+    Dbounded.MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayloadW662
+  #check
+    Dbounded.metrizableExactAcyclicHomotopyObjectTrianglehIso13Realization_of_targetIsoPayloadW662
+  #check
+    Dbounded.MetrizableEndpointDirectLocalizationTriangulatedObjectTargetIsoPayloadW662
+  #check
+    Dbounded.metrizableEndpointDirectLocalizationTriangulatedRealizationPayload_of_objectTargetIsoW662
+  #check
+    Dbounded.MetrizableShortExactDirectLocalizationTriangulatedObjectTargetIsoPayloadW662
+  #check
+    Dbounded.metrizableShortExactDirectLocalizationTriangulatedRealizationPayload_of_objectTargetIsoW662
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundleW662
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationRealizationBundle_of_objectTargetIsoW662
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundleW662
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundleW662_ready
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundleW662
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationRealizationBundle_of_objectTargetIsoW662
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundleW662
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundleW662_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeObjectTargetIsoInputNamesW662
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeObjectTargetIsoInputNamesW662_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeObjectTargetIsoRouteStateW662
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeObjectTargetIsoRouteSupportStateW662
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeObjectTargetIsoRouteStateW662
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeObjectTargetIsoRouteStateW662_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
