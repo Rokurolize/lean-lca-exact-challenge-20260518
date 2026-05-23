@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w581-global-provider-row-narrowing",
-  "generated_utc": "2026-05-23T06:53:19Z",
-  "source_tree_hash": "94f925ac6f81d555935ba10a12d860eded27c8a30f314b543228e9504ee7159b",
-  "summary": "W624 applies the W580 closed-embedding-row-to-closed-map-row dominance adapter to the W600 split top-target compact-space row-aware branch. A W600 split top-target compact-space closed-embedding-row bundle can now be converted to the W600 closed-map-row bundle and consumed by W600 finite-shape and homotopy/Verdier stable-certificate paths. It keeps all product-success flags false and remains nonterminal: it does not construct the required WPP boundary data, concrete W593 relation-pullback provider, concrete W600 target-relation-top provider, concrete W597 target compact-space provider, concrete W527 closed-map-row or closed-embedding-row provider, normalized localization data, homotopy-object iso closure, bounded left calculus, or Dbounded pretriangulated/triangulated fields.",
+  "generated_utc": "2026-05-23T07:03:41Z",
+  "source_tree_hash": "7141aa9df6c0881f9d9d2628cc90b7d9103a5b69955f6fddb6367b4393347575",
+  "summary": "W625 removes two comment-only placeholder-marker false positives from W614/W615 descriptions in WppOpExactAcyclicProjectionFields. The row-aware closed-map and closed-embedding route comments no longer use the audit-reserved word frontier, so the expected nonterminal external audit can focus on real stale-manifest/product-completion evidence instead of source-comment hygiene. It adds no new mathematical product-success claim and keeps product_success, product_complete, and update_goal_allowed false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -8515,6 +8515,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_073_w624_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_074_w625_pre_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_074_w625_pre_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_074_w625_pre_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_074_w625_pre_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_074_w625_pre_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_074_w625_pre_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_074_w625_pre_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_074_w625_pre_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_074_w625_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -11165,7 +11210,7 @@
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
     "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "support_result_classification": "nonterminal_split_top_target_compact_space_closed_embedding_rows_via_closed_map_rows_stable_route",
+  "support_result_classification": "nonterminal_audit_hygiene_placeholder_marker_false_positive_removed",
   "product_success": false,
   "remaining_work": [
     "construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary data",
@@ -11192,8 +11237,8 @@
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
     "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "summary_log_tail": "W624 lets W600 split top-target compact-space closed-embedding-row data satisfy W600 closed-map-row finite-shape and stable-certificate paths through W580 row provider dominance; product flags remain false.",
-  "latest_verified_increment": "W624 split top-target compact-space closed-embedding rows via closed-map rows stable route",
+  "summary_log_tail": "W625 removed the comment-only frontier marker from W614/W615 route descriptions; product flags remain false.",
+  "latest_verified_increment": "W625 audit placeholder-marker false-positive removal",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -11764,6 +11809,13 @@
       "latest_verified_increment": "W624 split top-target compact-space closed-embedding rows via closed-map rows stable route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "The reusable verifier passed focused WppOpExactAcyclicProjectionFields source, WppOpExactAcyclicProjectionFields module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate before metadata refresh."
+    },
+    "w625_audit_placeholder_marker_false_positive_removal_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T07:03:41Z",
+      "source_tree_hash": "7141aa9df6c0881f9d9d2628cc90b7d9103a5b69955f6fddb6367b4393347575",
+      "latest_verified_increment": "W625 audit placeholder-marker false-positive removal",
+      "claim_review_status": "not_run_nonterminal_hygiene_increment",
+      "note": "The reusable verifier passed focused WppOpExactAcyclicProjectionFields source, module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, and git diff check before metadata refresh; the expected nonterminal product audit failed only because the manifest was stale before refresh."
     }
   }
 }

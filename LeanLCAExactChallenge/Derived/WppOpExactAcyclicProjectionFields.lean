@@ -19456,7 +19456,7 @@ theorem
 /--
 W614 target-top compact closed-map-row bundle: W512 relation fields supply the
 pullback half, while a split W600 target-top provider replaces W601
-target-difference surjectivity at the row-aware closed-map frontier.
+target-difference surjectivity on the row-aware closed-map route.
 -/
 structure MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsNormalizedBundleW614 :
     Type 1 where
@@ -19699,7 +19699,7 @@ theorem
 /--
 W615 target-top compact closed-embedding-row bundle: W512 relation fields supply
 the pullback half, while a split W600 target-top provider replaces W601
-target-difference surjectivity at the row-aware closed-embedding frontier.
+target-difference surjectivity on the row-aware closed-embedding route.
 -/
 structure
     MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundleW615 :

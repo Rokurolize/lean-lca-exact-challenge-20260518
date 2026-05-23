@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-23T06:53:19Z",
-  "content_hash_tree": "8309369e689eba27145e2f8874e7a12206ed320b7b4ed3051d5dca47d0c2438b",
+  "generated_utc": "2026-05-23T07:03:41Z",
+  "content_hash_tree": "fe8632b3904ae98fae644296cc26208229e7107e3615c4a9b42a51546b4fa4db",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -99,8 +99,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "bytes": 1231014,
-      "sha256": "95ddf809d708395f94473e2b5866f195f9addf25b23cc10d38ccf453c591da58"
+      "bytes": 1231008,
+      "sha256": "449d214aea4e38cbd5d0746af080065622cef60004559ec9c9537bf01cc48ba1"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean",
@@ -4159,8 +4159,8 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 866206,
-      "sha256": "8d3ef598d81371278add17837840fa8e419f71d54039ed1716a7924f916e78ca"
+      "bytes": 869375,
+      "sha256": "a0600eec433ad05690bc855128195fb0056124dcd0ac51d7e006350572d844d0"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -4174,8 +4174,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 1025207,
-      "sha256": "0596b9dc658eced03ef07cba566c0311ab3f0ddf902ae80728b1b007cad18f16"
+      "bytes": 1027521,
+      "sha256": "460830aa84b8e396e9ce87c0855a65c0a093e57c091ed55629761f7655dfc8e4"
     },
     {
       "path": "workers/README.md",
