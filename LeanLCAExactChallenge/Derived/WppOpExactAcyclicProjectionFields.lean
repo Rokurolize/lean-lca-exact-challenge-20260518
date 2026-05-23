@@ -27235,6 +27235,370 @@ theorem
       false :=
   rfl
 
+/--
+W646 turns normalized strict-representative fixed-target data into the raw
+fixed-target packages consumed by W645.
+-/
+def metrizableWalkingParallelPairRemainingFixedTargetInputs_of_normalizedW646
+    (inputs : Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs) :
+    Dbounded.MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs :=
+  Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_blueprint
+    (Dbounded.metrizableWalkingParallelPairFixedTargetInputs_of_normalized inputs)
+
+/--
+W646 normalized fixed-target variant of the W645 relation-fields target-top
+compact global closed-map route.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW646 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetRelationTopProvider :
+    ClosedNatTransOrdinaryTargetRelationTopProviderW600
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedMapProvider :
+    ComponentwiseClosedMapProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/-- W646 normalized closed-map data supply the W645 fixed-target closed-map data. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundle_of_normalizedW646
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW646) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundleW645
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetRelationTopProvider := inputs.targetRelationTopProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  globalClosedMapProvider := inputs.globalClosedMapProvider
+  fixedTargetInputs :=
+    metrizableWalkingParallelPairRemainingFixedTargetInputs_of_normalizedW646
+      inputs.normalizedInputs
+
+/--
+W646 normalized fixed-target closed-map stable bundle through the W645
+localized-right-adjoint route.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  relationFieldsTargetTopCompactGlobalClosedMapBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW646
+  homotopyEquiv :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0}
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert W646 normalized closed-map stable data to W645 stable data. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_normalizedW646
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW645
+    where
+  relationFieldsTargetTopCompactGlobalClosedMapBundle :=
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundle_of_normalizedW646
+      inputs.relationFieldsTargetTopCompactGlobalClosedMapBundle
+  homotopyEquiv := inputs.homotopyEquiv
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W646 stable-semantic input for normalized fixed-target global closed maps. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        inputs.homotopyEquiv inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundleW645
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_normalizedW646
+      inputs)
+
+/-- W646 normalized fixed-target closed-map route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundleW645
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_normalizedW646
+      inputs)
+
+/-- The W646 normalized closed-map route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundleW645_ready
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_normalizedW646
+      inputs)
+
+/--
+W646 normalized fixed-target variant of the W645 relation-fields target-top
+compact global closed-embedding route.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW646 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetRelationTopProvider :
+    ClosedNatTransOrdinaryTargetRelationTopProviderW600
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedEmbeddingProvider :
+    ComponentwiseClosedEmbeddingProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/-- W646 normalized closed-embedding data supply the W645 fixed-target data. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetBundle_of_normalizedW646
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW646) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetBundleW645
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetRelationTopProvider := inputs.targetRelationTopProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  globalClosedEmbeddingProvider := inputs.globalClosedEmbeddingProvider
+  fixedTargetInputs :=
+    metrizableWalkingParallelPairRemainingFixedTargetInputs_of_normalizedW646
+      inputs.normalizedInputs
+
+/--
+W646 normalized fixed-target closed-embedding stable bundle through the W645
+localized-right-adjoint route.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  relationFieldsTargetTopCompactGlobalClosedEmbeddingBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW646
+  homotopyEquiv :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0}
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert W646 normalized closed-embedding stable data to W645 stable data. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_normalizedW646
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW645
+    where
+  relationFieldsTargetTopCompactGlobalClosedEmbeddingBundle :=
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetBundle_of_normalizedW646
+      inputs.relationFieldsTargetTopCompactGlobalClosedEmbeddingBundle
+  homotopyEquiv := inputs.homotopyEquiv
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W646 stable-semantic input for normalized fixed-target global embeddings. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        inputs.homotopyEquiv inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundleW645
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_normalizedW646
+      inputs)
+
+/-- W646 normalized fixed-target closed-embedding route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundleW645
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_normalizedW646
+      inputs)
+
+/-- The W646 normalized closed-embedding route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundleW645_ready
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_normalizedW646
+      inputs)
+
+/-- Input names for the W646 normalized fixed-target routes. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointInputNamesW646 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "W512 relation fields supply the W593 relation-pullback provider",
+    "W600 target-top data complete the W516 top-target provider",
+    "target codomain compactness supplies the W597 target compact-space provider",
+    "global closed-map provider narrows to W527 rows through W581",
+    "global closed-embedding provider narrows to W527 rows through W581",
+    "normalized strict representatives for WalkingParallelPair diagrams in Dbounded",
+    "target and localization-model uniqueness for normalized fixed targets",
+    "exactAcyclic MetrizableLCA is invariant under homotopy equivalences",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointInputNamesW646_count :
+    metrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointInputNamesW646.length =
+      18 :=
+  rfl
+
+/-- Current checked W646 state for normalized fixed-target routes. -/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW646 :
+    Type where
+  seed : String
+  declarations : List String
+  normalizedFixedTargetReductionResult : String
+  globalClosedMapStableRouteResult : String
+  globalClosedEmbeddingStableRouteResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W646 state. -/
+def
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointRouteSupportStateW646 :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW646
+    where
+  seed :=
+    "w646-relation-fields-target-top-compact-global-provider-normalized-fixed-target-localized-right-adjoint-route"
+  declarations :=
+    ["metrizableWalkingParallelPairRemainingFixedTargetInputs_of_normalizedW646",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW646",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundle_of_normalizedW646",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_normalizedW646",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646_ready",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW646",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetBundle_of_normalizedW646",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointStableBundleW646",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetHomotopyEquivLocalizedRightAdjointBundle_of_normalizedW646",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointBundleW646_ready",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointInputNamesW646",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointInputNamesW646_count"]
+  normalizedFixedTargetReductionResult :=
+    "proved: normalized strict-representative data supply the raw fixed-target packages consumed by W645"
+  globalClosedMapStableRouteResult :=
+    "proved: normalized fixed-target relation-fields target-top compact global closed-map data feed W645"
+  globalClosedEmbeddingStableRouteResult :=
+    "proved: normalized fixed-target relation-fields target-top compact global closed-embedding data feed W645"
+  stableCertificateResult :=
+    "proved: both W646 normalized fixed-target variants produce ready W528 stable certificates through W645"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict representatives for the two WPP localization targets",
+      "prove target and localization-model uniqueness for normalized fixed targets",
+      "prove exactAcyclic MetrizableLCA is invariant under homotopy equivalences",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW646 :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW646 :=
+  currentMetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointRouteSupportStateW646
+
+theorem
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW646_productSuccess :
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetHomotopyEquivLocalizedRightAdjointRouteStateW646.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
