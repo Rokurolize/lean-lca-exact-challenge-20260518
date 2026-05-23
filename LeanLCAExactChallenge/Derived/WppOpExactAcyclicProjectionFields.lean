@@ -37608,6 +37608,313 @@ theorem
       false :=
   rfl
 
+/--
+W689 normalized closed-map target-top compact bundle: W646 normalized
+fixed-target data plus the W682 kernel/cokernel direct-localization route.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689 :
+    Type 2 where
+  normalizedFixedTargetBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW646
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W689 adapts normalized closed-map data to the W687 fixed-target route. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687
+    where
+  relationFieldsTargetTopCompactGlobalClosedMapBundle :=
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetBundle_of_normalizedW646
+      inputs.normalizedFixedTargetBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W689 normalized closed-map transfer inputs through W687. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/-- W689 normalized closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/-- The W689 normalized closed-map route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687_ready
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/--
+W689 packages the normalized closed-map route as an accepted stable
+bounded-derived infinity-category object.
+-/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/-- The W689 normalized closed-map package is on the accepted stable branch. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/--
+W689 normalized closed-embedding target-top compact bundle: W646 normalized
+fixed-target data plus the W682 kernel/cokernel direct-localization route.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689 :
+    Type 2 where
+  normalizedFixedTargetBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW646
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W689 adapts normalized closed-embedding data to the W687 fixed-target route. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundleW687
+    where
+  relationFieldsTargetTopCompactGlobalClosedEmbeddingBundle :=
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetBundle_of_normalizedW646
+      inputs.normalizedFixedTargetBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/--
+W689 sends normalized closed-embedding data through W688's closed-embedding to
+closed-map dominance route.
+-/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_closedEmbeddingNormalizedW689
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW687 :=
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_globalClosedEmbeddingW688
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/-- W689 normalized closed-embedding-via-closed-map transfer inputs. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/-- W689 normalized closed-embedding-via-closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/-- The W689 normalized closed-embedding dominance route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688_ready
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/--
+W689 packages the normalized closed-embedding input through the W688 dominance
+accepted stable route.
+-/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/--
+The W689 normalized closed-embedding dominance package is on the accepted stable
+branch.
+-/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundleW688_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+      inputs)
+
+/-- Input names for the W689 normalized fixed-target accepted stable route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetInputNamesW689 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "W512 relation fields plus W600 target-top data reconstruct the W516 top-target provider",
+    "W601 target codomain compactness supplies the W597 target compact-space provider",
+    "W525 global providers narrow to W527 row providers through W581",
+    "global closed-embedding provider upgrades to W525 closed-map provider through W619",
+    "normalized strict representatives for WalkingParallelPair diagrams in Dbounded",
+    "target and localization-model uniqueness for normalized fixed targets",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetInputNamesW689_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetInputNamesW689.length =
+      16 :=
+  rfl
+
+/-- Current checked W689 state for the normalized target-top compact route. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapNormalizedAcceptedResult : String
+  closedEmbeddingDominanceAcceptedResult : String
+  normalizedFixedTargetResult : String
+  removedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W689 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteSupportStateW689 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689
+    where
+  seed :=
+    "w689-target-top-compact-global-provider-normalized-fixed-target-kernel-cokernel-direct-localization-accepted-stable-route"
+  declarations :=
+    ["MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_accepted",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_closedEmbeddingNormalizedW689",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetInputNamesW689",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetInputNamesW689_count"]
+  closedMapNormalizedAcceptedResult :=
+    "proved: W646 normalized target-top compact global closed-map data feed the W687 kernel/cokernel direct-localization accepted stable route"
+  closedEmbeddingDominanceAcceptedResult :=
+    "proved: W646 normalized target-top compact global closed-embedding data feed W688 dominance and reach the W687 global closed-map accepted stable package"
+  normalizedFixedTargetResult :=
+    "proved: the accepted stable route can use normalized strict representatives and uniqueness instead of direct raw fixed-target lift/fac packages"
+  removedInputs :=
+    ["MetrizableWalkingParallelPairFunctorCategoryRemainingFixedTargetInputs as a direct accepted-route input",
+      "separate fixed-target fac obligations after normalized strict representatives are supplied",
+      "ComponentwiseClosedMapProviderW525 as a separate direct branch when ComponentwiseClosedEmbeddingProviderW525 is available"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict representatives for the two WPP localization targets",
+      "prove target and localization-model uniqueness for normalized fixed targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W668 kernel/cokernel-conditioned endpoint data including forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteSupportStateW689
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -39988,6 +40295,69 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW688_productSuccess
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_ready
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_accepted
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingFixedTargetKernelCokernelDirectLocalizationBundle_of_normalizedW689
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_closedEmbeddingNormalizedW689
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_ready
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_accepted
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetInputNamesW689
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetInputNamesW689_count
+set_option linter.style.longLine false in
+#check
+  MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteSupportStateW689
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689_productSuccess
 
 end Checks
 
