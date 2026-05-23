@@ -6227,6 +6227,48 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeTargetExactAtRouteStateW663
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeTargetExactAtRouteStateW663_productSuccess
+  #check
+    Dbounded.MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetHomologyZeroPayloadW664
+  #check
+    Dbounded.metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroEndpointW664
+  #check
+    Dbounded.metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroShortExactW664
+  #check
+    Dbounded.MetrizableEndpointDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664
+  #check
+    Dbounded.metrizableEndpointDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664
+  #check
+    Dbounded.MetrizableShortExactDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664
+  #check
+    Dbounded.metrizableShortExactDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664_ready
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteSupportStateW664
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

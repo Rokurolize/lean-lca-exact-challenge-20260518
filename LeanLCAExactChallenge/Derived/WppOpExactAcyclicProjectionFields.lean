@@ -31981,7 +31981,341 @@ theorem
       false :=
   rfl
 
+/-- W664 target homology-zero payload for the exact-acyclic homotopy-object route. -/
+abbrev MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetHomologyZeroPayloadW664
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i) :
+    Prop :=
+  ∀ {T : Pretriangulated.Triangle
+      (HomotopyCategory MetrizableLCA.{0} (ComplexShape.up ℤ))},
+    T ∈ distTriang (HomotopyCategory MetrizableLCA.{0} (ComplexShape.up ℤ)) →
+    exactAcyclicHomotopyObject MetrizableLCA.{0} T.obj₁ →
+    exactAcyclicHomotopyObject MetrizableLCA.{0} T.obj₃ →
+    ∃ (K L Lzero : CochainComplex MetrizableLCA.{0} ℤ) (f : K ⟶ L)
+      (e₁ : (CochainComplex.mappingCone.triangleh f).obj₁ ≅ T.obj₁)
+      (e₃ : (CochainComplex.mappingCone.triangleh f).obj₃ ≅ T.obj₃)
+      (_eL : Lzero ≅ L),
+        (CochainComplex.mappingCone.triangleh f).mor₃ ≫
+            (shiftFunctor
+              (HomotopyCategory MetrizableLCA.{0} (ComplexShape.up ℤ))
+              (1 : ℤ)).map e₁.hom =
+          e₃.hom ≫ T.mor₃ ∧
+        ∀ i : ℤ,
+          letI : Lzero.HasHomology i := hasHomology Lzero i
+          IsZero (Lzero.homology i)
+
+/-- W664 endpoint homology detection turns target homology-zero data into the W662
+target-isomorphism payload. -/
+theorem
+    metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroEndpointW664
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (endpointTopology : MetrizableExactAtEndpointStrictTopologyInputs)
+    (payload :
+      MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetHomologyZeroPayloadW664
+        hasHomology) :
+    MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayloadW662 := by
+  intro T hT h₁ h₃
+  rcases payload hT h₁ h₃ with
+    ⟨K, L, Lzero, f, e₁, e₃, eL, comm, hZero⟩
+  let H : ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+    Dbounded.homologyDetection_of_endpointTopology_w603 hasHomology endpointTopology
+  exact
+    ⟨K, L, Lzero, f, e₁, e₃, eL, comm,
+      H.exactAcyclic_of_isZero_homology Lzero hZero⟩
+
+/-- W664 ShortExact homology detection turns target homology-zero data into the W662
+target-isomorphism payload. -/
+theorem
+    metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroShortExactW664
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (shortExactTopology : MetrizableExactAtShortExactTopologyInputs)
+    (payload :
+      MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetHomologyZeroPayloadW664
+        hasHomology) :
+    MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayloadW662 := by
+  intro T hT h₁ h₃
+  rcases payload hT h₁ h₃ with
+    ⟨K, L, Lzero, f, e₁, e₃, eL, comm, hZero⟩
+  let H : ExactAcyclicHomologyDetectionInput MetrizableLCA.{0} :=
+    Dbounded.homologyDetection_of_shortExactTopology_w603 hasHomology shortExactTopology
+  exact
+    ⟨K, L, Lzero, f, e₁, e₃, eL, comm,
+      H.exactAcyclic_of_isZero_homology Lzero hZero⟩
+
+/-- W664 endpoint payload using target homology-zero realization data. -/
+structure MetrizableEndpointDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664 :
+    Type 1 where
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  targetHomologyZeroPayload :
+    MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetHomologyZeroPayloadW664
+      hasHomology
+  endpointTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W664 adapts endpoint target homology-zero payloads to W662 target-isomorphism payloads. -/
+def
+    metrizableEndpointDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664
+    (inputs :
+      MetrizableEndpointDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664) :
+    MetrizableEndpointDirectLocalizationTriangulatedObjectTargetIsoPayloadW662 where
+  targetIsoPayload :=
+    metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroEndpointW664
+      inputs.hasHomology inputs.endpointTopology inputs.targetHomologyZeroPayload
+  hasHomology := inputs.hasHomology
+  endpointTopology := inputs.endpointTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W664 ShortExact payload using target homology-zero realization data. -/
+structure MetrizableShortExactDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664 :
+    Type 1 where
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  targetHomologyZeroPayload :
+    MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetHomologyZeroPayloadW664
+      hasHomology
+  shortExactTopology :
+    MetrizableExactAtShortExactTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W664 adapts ShortExact target homology-zero payloads to W662 target-isomorphism payloads. -/
+def
+    metrizableShortExactDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664
+    (inputs :
+      MetrizableShortExactDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664) :
+    MetrizableShortExactDirectLocalizationTriangulatedObjectTargetIsoPayloadW662 where
+  targetIsoPayload :=
+    metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroShortExactW664
+      inputs.hasHomology inputs.shortExactTopology inputs.targetHomologyZeroPayload
+  hasHomology := inputs.hasHomology
+  shortExactTopology := inputs.shortExactTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W664 direct finite-shape endpoint bundle using target homology-zero data. -/
+structure MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  endpointPayload :
+    MetrizableEndpointDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664
+
+/-- W664 adapts endpoint target homology-zero bundles to W662 object target-isomorphism
+bundles. -/
+def
+    metrizableWppDirectFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664) :
+    MetrizableWppDirectFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundleW662 where
+  directSource := inputs.directSource
+  endpointPayload :=
+    metrizableEndpointDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664
+      inputs.endpointPayload
+
+/-- W664 endpoint target homology-zero route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundleW662
+    (metrizableWppDirectFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664
+      inputs)
+
+/-- W664 endpoint target homology-zero route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundleW662_ready
+    (metrizableWppDirectFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664
+      inputs)
+
+/-- W664 direct finite-shape ShortExact bundle using target homology-zero data. -/
+structure MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  shortExactPayload :
+    MetrizableShortExactDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664
+
+/-- W664 adapts ShortExact target homology-zero bundles to W662 object target-isomorphism
+bundles. -/
+def
+    metrizableWppDirectFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664) :
+    MetrizableWppDirectFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundleW662 where
+  directSource := inputs.directSource
+  shortExactPayload :=
+    metrizableShortExactDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664
+      inputs.shortExactPayload
+
+/-- W664 ShortExact target homology-zero route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundleW662
+    (metrizableWppDirectFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664
+      inputs)
+
+/-- W664 ShortExact target homology-zero route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundleW662_ready
+    (metrizableWppDirectFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664
+      inputs)
+
+/-- Input names for the W664 target homology-zero route. -/
+def metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664 :
+    List String :=
+  ["direct finite-shape WPP source",
+    "target-isomorphism triangleh iso13 target homology-zero data for exactAcyclicHomotopyObject MetrizableLCA",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs or MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664_count :
+    metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664.length =
+      7 :=
+  rfl
+
+/-- Current checked W664 state for target homology-zero route reuse. -/
+structure MetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664 :
+    Type where
+  seed : String
+  declarations : List String
+  targetHomologyZeroResult : String
+  endpointRouteResult : String
+  shortExactRouteResult : String
+  stableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W664 state. -/
+def currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteSupportStateW664 :
+    MetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664 where
+  seed := "w664-direct-finite-shape-target-homology-zero-route"
+  declarations :=
+    ["MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetHomologyZeroPayloadW664",
+      "metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroEndpointW664",
+      "metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroShortExactW664",
+      "MetrizableEndpointDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664",
+      "metrizableEndpointDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664",
+      "MetrizableShortExactDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664",
+      "metrizableShortExactDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664",
+      "MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664",
+      "metrizableWppDirectFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664",
+      "metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664_ready",
+      "MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664",
+      "metrizableWppDirectFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664",
+      "metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664_ready",
+      "metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664",
+      "metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664_count"]
+  targetHomologyZeroResult :=
+    "proved: endpoint or ShortExact homology detection turns selected target homology-zero data into the W662 exact-acyclic target-isomorphism payload"
+  endpointRouteResult :=
+    "proved: direct finite-shape endpoint route can consume target homology-zero data through W662"
+  shortExactRouteResult :=
+    "proved: direct finite-shape ShortExact route can consume target homology-zero data through W662"
+  stableCertificateResult :=
+    "proved: endpoint and ShortExact W664 target homology-zero bundles produce ready W528 certificates through W662"
+  replacedInputs :=
+    ["selected target ExactAt data in target-isomorphism realization data"]
+  remainingInputs :=
+    ["instantiate a concrete direct finite-shape WPP source",
+      "construct target-isomorphism triangleh iso13 target homology-zero data",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664 :
+    MetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664 :=
+  currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteSupportStateW664
+
+theorem
+    currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664_productSuccess :
+    currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
+
+#check MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetHomologyZeroPayloadW664
+set_option linter.style.longLine false in
+#check
+  metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroEndpointW664
+set_option linter.style.longLine false in
+#check
+  metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroShortExactW664
+set_option linter.style.longLine false in
+#check MetrizableEndpointDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664
+set_option linter.style.longLine false in
+#check
+  metrizableEndpointDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664
+set_option linter.style.longLine false in
+#check MetrizableShortExactDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664
+set_option linter.style.longLine false in
+#check
+  metrizableShortExactDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664
+set_option linter.style.longLine false in
+#check MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664_ready
+set_option linter.style.longLine false in
+#check MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664_ready
+set_option linter.style.longLine false in
+#check metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664
+set_option linter.style.longLine false in
+#check metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664_count
+set_option linter.style.longLine false in
+#check currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteSupportStateW664
+set_option linter.style.longLine false in
+#check currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664
+set_option linter.style.longLine false in
+#check currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664_productSuccess
 
 #check MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetExactAtPayloadW663
 set_option linter.style.longLine false in

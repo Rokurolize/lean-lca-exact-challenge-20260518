@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w663-target-exactat-route",
-  "generated_utc": "2026-05-23T13:27:04Z",
-  "source_tree_hash": "a502177e99872f3a8b648fb099c1b2bf724035d7b53b5a18715af34f5838ebb7",
-  "summary": "W663 narrows the W662 object target-isomorphism route by accepting selected target ExactAt data and using the existing W602 endpoint or ShortExact topology packages to produce the exact-acyclic target representative required by W662. Endpoint and ShortExact target-ExactAt bundles still adapt through W662/W661 to ready W528 certificates. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w664-target-homology-zero-route",
+  "generated_utc": "2026-05-23T13:34:38Z",
+  "source_tree_hash": "7e3b855f9584780168c35f3ddc8b57745e8e0fe78dfb11e470fb243d4cb11a5e",
+  "summary": "W664 narrows the W663 target ExactAt route by accepting selected target homology-zero data and using W602 endpoint or ShortExact homology detection to produce the exact-acyclic target representative required by W662. Endpoint and ShortExact target-homology-zero bundles still adapt through W662/W661 to ready W528 certificates. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -10280,6 +10280,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_112_w663_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_113_w664_pre_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_113_w664_pre_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_113_w664_pre_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_113_w664_pre_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_113_w664_pre_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_113_w664_pre_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_113_w664_pre_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_113_w664_pre_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_113_w664_pre_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -13582,11 +13627,32 @@
     "Dbounded.MetrizableWppDirectFiniteShapeTargetExactAtRouteStateW663",
     "Dbounded.currentMetrizableWppDirectFiniteShapeTargetExactAtRouteSupportStateW663",
     "Dbounded.currentMetrizableWppDirectFiniteShapeTargetExactAtRouteStateW663",
-    "Dbounded.currentMetrizableWppDirectFiniteShapeTargetExactAtRouteStateW663_productSuccess"
+    "Dbounded.currentMetrizableWppDirectFiniteShapeTargetExactAtRouteStateW663_productSuccess",
+    "Dbounded.MetrizableExactAcyclicHomotopyObjectTrianglehIso13TargetHomologyZeroPayloadW664",
+    "Dbounded.metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroEndpointW664",
+    "Dbounded.metrizableExactAcyclicHomotopyObjectTrianglehIso13TargetIsoPayload_of_targetHomologyZeroShortExactW664",
+    "Dbounded.MetrizableEndpointDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664",
+    "Dbounded.metrizableEndpointDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664",
+    "Dbounded.MetrizableShortExactDirectLocalizationTriangulatedTargetHomologyZeroPayloadW664",
+    "Dbounded.metrizableShortExactDirectLocalizationTriangulatedObjectTargetIsoPayload_of_targetHomologyZeroW664",
+    "Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664",
+    "Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationTargetHomologyZeroBundleW664_ready",
+    "Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664",
+    "Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationObjectTargetIsoBundle_of_targetHomologyZeroW664",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationTargetHomologyZeroBundleW664_ready",
+    "Dbounded.metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664",
+    "Dbounded.metrizableWppDirectFiniteShapeTargetHomologyZeroInputNamesW664_count",
+    "Dbounded.MetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteSupportStateW664",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeTargetHomologyZeroRouteStateW664_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "construct target-isomorphism triangleh iso13 target ExactAt data for exactAcyclicHomotopyObject endpoints",
+    "construct target-isomorphism triangleh iso13 target homology-zero data for exactAcyclicHomotopyObject endpoints",
     "instantiate concrete direct finite-shape WPP source data",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "construct bounded homotopy localized right adjoint plus unit membership",
@@ -13597,10 +13663,10 @@
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "support_result_classification": "nonterminal_target_exactat_direct_finite_shape_route",
+  "support_result_classification": "nonterminal_target_homology_zero_direct_finite_shape_route",
   "product_success": false,
   "remaining_work": [
-    "construct target-isomorphism triangleh iso13 target ExactAt data for exactAcyclicHomotopyObject endpoints",
+    "construct target-isomorphism triangleh iso13 target homology-zero data for exactAcyclicHomotopyObject endpoints",
     "instantiate concrete direct finite-shape WPP source data",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "construct bounded homotopy localized right adjoint plus unit membership",
@@ -13609,8 +13675,8 @@
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "summary_log_tail": "W663 reduces the direct finite-shape route from exact-acyclic target representatives to selected target ExactAt data plus W602 topology, keeping endpoint/ShortExact certificates ready; product flags remain false.",
-  "latest_verified_increment": "W663 target ExactAt direct finite-shape route",
+  "summary_log_tail": "W664 reduces the direct finite-shape route from selected target ExactAt data to selected target homology-zero data plus W602 homology detection, keeping endpoint/ShortExact certificates ready; product flags remain false.",
+  "latest_verified_increment": "W664 target homology-zero direct finite-shape route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -14454,6 +14520,13 @@
       "latest_verified_increment": "W663 target ExactAt direct finite-shape route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W663 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w664_target_homology_zero_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T13:34:38Z",
+      "source_tree_hash": "7e3b855f9584780168c35f3ddc8b57745e8e0fe78dfb11e470fb243d4cb11a5e",
+      "latest_verified_increment": "W664 target homology-zero direct finite-shape route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W664 post-metadata verifier must pass all deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }
