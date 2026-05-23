@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w689-normalized-target-top-compact-global-fixed-target-kernel-cokernel-direct-localization",
-  "generated_utc": "2026-05-23T18:26:47Z",
-  "source_tree_hash": "1c9e89bf7e7b8b1244918a6df672df8e3fde384da3ff2d287fa90967b99a2f90",
-  "summary": "W689 composes W646 normalized fixed-target data with the W687 target-top compact global-provider fixed-target kernel/cokernel direct-localization accepted stable route. Closed-map normalized data now feed the accepted package through W646-to-W645-to-W687, while closed-embedding normalized data feed W688 dominance and then the W687 global closed-map accepted package. This replaces direct raw fixed-target lift/fac packages on the accepted route with normalized strict representatives plus target/model uniqueness. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w690-normalized-target-top-compact-mapped-forgetful-kernel-cokernel-homology",
+  "generated_utc": "2026-05-23T18:42:56Z",
+  "source_tree_hash": "53003ee022c9335c1d4dddb8c8c4ef4ca9922c5ee2798bbb621c9183f7d95edb",
+  "summary": "W690 decomposes the W668 opaque forgetPreservesHomology field into explicit mapped MetrizableLCA equalizer-fork kernel preservation and explicit mapped MetrizableLCA cokernel-cofork preservation obligations after forgetting topology. The mapped evidence is adapted back into W668 kernel/cokernel-conditioned topology data, then reused through the W689 normalized target-top compact fixed-target accepted stable route for both closed-map and closed-embedding-via-W688 branches. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -11245,6 +11245,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_138_w689_pre_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_139_w690_pre_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_139_w690_pre_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_139_w690_pre_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_139_w690_pre_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_139_w690_pre_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_139_w690_pre_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_139_w690_pre_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_139_w690_pre_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_139_w690_pre_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -15010,7 +15055,33 @@
     "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteSupportStateW689",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689",
-    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689_productSuccess"
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689_productSuccess",
+    "Dbounded.mappedExplicitKernelForkW690",
+    "Dbounded.preservesKernelOfMappedExplicitKernelForkIsLimitW690",
+    "Dbounded.MetrizableForgetfulKernelCokernelPreservationInputsW690",
+    "Dbounded.metrizableForgetfulPreservesHomology_of_mappedKernelCokernelW690",
+    "Dbounded.MetrizableExactAtKernelCokernelConditionedTopologyMappedForgetfulInputsW690",
+    "Dbounded.metrizableExactAtKernelCokernelConditionedTopologyInputs_of_mappedForgetfulW690",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+    "Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_ready",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_accepted",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690",
+    "Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+    "Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_ready",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulInputNamesW690",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulInputNamesW690_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteSupportStateW690",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -15022,13 +15093,15 @@
     "construct normalized strict representatives for the two WPP localization targets",
     "prove target and localization-model uniqueness for normalized fixed targets",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
-    "construct W668 kernel/cokernel-conditioned endpoint data including forgetful homology preservation",
+    "prove every mapped explicit MetrizableLCA equalizer fork is limiting in AddCommGrpCat",
+    "prove every mapped explicit MetrizableLCA cokernel cofork is colimiting in AddCommGrpCat",
+    "construct ExactAt incoming-kernel and outgoing-cokernel universal-property witnesses",
     "construct bounded homotopy localized right adjoint plus unit membership",
     "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "support_result_classification": "nonterminal_normalized_target_top_compact_global_fixed_target_accepted_stable_route_for_kernel_cokernel_direct_localization",
+  "support_result_classification": "nonterminal_mapped_forgetful_kernel_cokernel_homology_route_for_normalized_target_top_compact_fixed_target_accepted_stable_packages",
   "product_success": false,
   "remaining_work": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
@@ -15039,15 +15112,16 @@
     "construct normalized strict representatives for the two WPP localization targets",
     "prove target and localization-model uniqueness for normalized fixed targets",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
-    "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
-    "prove categorical ExactAt supplies incoming kernel forks and outgoing cokernel coforks",
+    "prove every mapped explicit MetrizableLCA equalizer fork is limiting in AddCommGrpCat",
+    "prove every mapped explicit MetrizableLCA cokernel cofork is colimiting in AddCommGrpCat",
+    "construct ExactAt incoming-kernel and outgoing-cokernel universal-property witnesses",
     "construct bounded homotopy localized right adjoint plus unit membership",
     "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W689 lets W646 normalized target-top compact global fixed-target data feed the W687 kernel/cokernel direct-localization accepted stable route; closed embeddings use W688 dominance. Product flags remain false.",
-  "latest_verified_increment": "W689 normalized target-top compact global fixed-target accepted stable route for kernel-cokernel direct localization",
+  "summary_log_tail": "W690 replaces the opaque W668 forgetful PreservesHomology leaf with mapped explicit kernel and cokernel preservation evidence, then reuses W689/W688 accepted stable packages. Product flags remain false.",
+  "latest_verified_increment": "W690 mapped forgetful kernel/cokernel homology route for normalized target-top compact fixed-target accepted stable packages",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -16073,6 +16147,13 @@
       "latest_verified_increment": "W689 normalized target-top compact global fixed-target accepted stable route for kernel-cokernel direct localization",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W689 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w690_mapped_forgetful_kernel_cokernel_homology_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T18:42:56Z",
+      "source_tree_hash": "53003ee022c9335c1d4dddb8c8c4ef4ca9922c5ee2798bbb621c9183f7d95edb",
+      "latest_verified_increment": "W690 mapped forgetful kernel/cokernel homology route for normalized target-top compact fixed-target accepted stable packages",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W690 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }

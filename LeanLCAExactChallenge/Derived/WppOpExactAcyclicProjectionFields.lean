@@ -37915,6 +37915,379 @@ theorem
       false :=
   rfl
 
+open WppOpShortComplexPreservationFromUnderlyingV370SupportW495
+open WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497
+
+/-- W690 mapped explicit kernel fork after forgetting topology. -/
+def mappedExplicitKernelForkW690 {X Y : MetrizableLCA.{0}} (f : X ⟶ Y) :
+    Cone (parallelPair f 0 ⋙ underlyingForgetfulFunctorW495) :=
+  underlyingForgetfulFunctorW495.mapCone (MetrizableLCA.equalizerFork f 0)
+
+/-- Preservation of one kernel follows from the mapped explicit fork limit proof. -/
+@[reducible]
+def preservesKernelOfMappedExplicitKernelForkIsLimitW690
+    {X Y : MetrizableLCA.{0}} (f : X ⟶ Y)
+    (hMapped : IsLimit (mappedExplicitKernelForkW690 f)) :
+    PreservesLimit (parallelPair f 0) underlyingForgetfulFunctorW495 :=
+  preservesLimit_of_preserves_limit_cone
+    (MetrizableLCA.equalizerIsLimit f 0) hMapped
+
+/--
+W690 decomposes the forgetful homology-preservation premise into mapped explicit
+kernel and cokernel preservation obligations.
+-/
+structure MetrizableForgetfulKernelCokernelPreservationInputsW690 : Type 1 where
+  mappedKernel :
+    ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsLimit (mappedExplicitKernelForkW690 f)
+  mappedCokernel :
+    ∀ {X Y : MetrizableLCA.{0}} (f : X ⟶ Y),
+      IsColimit (mappedExplicitCokernelCoconeW497 f)
+
+/-- W690 builds forgetful homology preservation from mapped explicit kernels and cokernels. -/
+@[reducible]
+def metrizableForgetfulPreservesHomology_of_mappedKernelCokernelW690
+    (inputs : MetrizableForgetfulKernelCokernelPreservationInputsW690) :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology := by
+  change Functor.PreservesHomology underlyingForgetfulFunctorW495
+  exact
+    { preservesKernels := by
+        intro X Y f
+        exact preservesKernelOfMappedExplicitKernelForkIsLimitW690 f
+          (inputs.mappedKernel f)
+      preservesCokernels := by
+        intro X Y f
+        exact preservesCokernelOfMappedExplicitCokernelCoconeIsColimitW497 f
+          (inputs.mappedCokernel f) }
+
+/--
+W690 kernel/cokernel-conditioned topology input with the forgetful homology
+field expanded into mapped explicit kernel/cokernel preservation evidence.
+-/
+structure MetrizableExactAtKernelCokernelConditionedTopologyMappedForgetfulInputsW690 :
+    Type 2 where
+  forgetfulKernelCokernelPreservation :
+    MetrizableForgetfulKernelCokernelPreservationInputsW690
+  kernel_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → IsLimit (KernelFork.ofι (K.sc i).f (K.sc i).zero)
+  cokernel_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → IsColimit (CokernelCofork.ofπ (K.sc i).g (K.sc i).zero)
+
+/-- W690 adapts mapped forgetful kernel/cokernel evidence to the W668 topology input. -/
+def
+    metrizableExactAtKernelCokernelConditionedTopologyInputs_of_mappedForgetfulW690
+    (inputs :
+      MetrizableExactAtKernelCokernelConditionedTopologyMappedForgetfulInputsW690) :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+    where
+  forgetPreservesHomology :=
+    metrizableForgetfulPreservesHomology_of_mappedKernelCokernelW690
+      inputs.forgetfulKernelCokernelPreservation
+  kernel_of_exactAt := inputs.kernel_of_exactAt
+  cokernel_of_exactAt := inputs.cokernel_of_exactAt
+
+/--
+W690 normalized closed-map bundle: W689 with the W668 forgetful homology
+premise split into mapped explicit kernel/cokernel preservation evidence.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690 :
+    Type 2 where
+  normalizedFixedTargetBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW646
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  mappedForgetfulKernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyMappedForgetfulInputsW690
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W690 adapts the mapped-forgetful closed-map bundle to the W689 route. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    where
+  normalizedFixedTargetBundle := inputs.normalizedFixedTargetBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology :=
+    metrizableExactAtKernelCokernelConditionedTopologyInputs_of_mappedForgetfulW690
+      inputs.mappedForgetfulKernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W690 mapped-forgetful closed-map transfer inputs through W689. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology
+        (metrizableExactAtKernelCokernelConditionedTopologyInputs_of_mappedForgetfulW690
+          inputs.mappedForgetfulKernelCokernelTopology)
+        inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+      inputs)
+
+/-- W690 mapped-forgetful closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+      inputs)
+
+/-- The W690 mapped-forgetful closed-map route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_ready
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+      inputs)
+
+/-- W690 packages the mapped-forgetful closed-map route as accepted stable data. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+      inputs)
+
+/-- The W690 mapped-forgetful closed-map package is on the accepted stable branch. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+      inputs)
+
+/--
+W690 normalized closed-embedding bundle: W689 with mapped explicit
+kernel/cokernel preservation evidence for the forgetful homology field.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690 :
+    Type 2 where
+  normalizedFixedTargetBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW646
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  mappedForgetfulKernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyMappedForgetfulInputsW690
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W690 adapts the mapped-forgetful closed-embedding bundle to the W689 route. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    where
+  normalizedFixedTargetBundle := inputs.normalizedFixedTargetBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology :=
+    metrizableExactAtKernelCokernelConditionedTopologyInputs_of_mappedForgetfulW690
+      inputs.mappedForgetfulKernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W690 mapped-forgetful closed-embedding-via-closed-map transfer inputs. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology
+        (metrizableExactAtKernelCokernelConditionedTopologyInputs_of_mappedForgetfulW690
+          inputs.mappedForgetfulKernelCokernelTopology)
+        inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+      inputs)
+
+/-- W690 mapped-forgetful closed-embedding-via-closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+      inputs)
+
+/-- The W690 mapped-forgetful closed-embedding dominance route produces a ready certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_ready
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+      inputs)
+
+/-- W690 packages the mapped-forgetful closed-embedding dominance route as accepted stable data. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+      inputs)
+
+/-- The W690 mapped-forgetful closed-embedding package is on the accepted stable branch. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundleW689_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+      inputs)
+
+/-- Input names for the W690 mapped-forgetful normalized fixed-target accepted route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulInputNamesW690 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "W512 relation fields plus W600 target-top data reconstruct the W516 top-target provider",
+    "W601 target codomain compactness supplies the W597 target compact-space provider",
+    "W525 global providers narrow to W527 row providers through W581",
+    "global closed-embedding provider upgrades to W525 closed-map provider through W619",
+    "normalized strict representatives for WalkingParallelPair diagrams in Dbounded",
+    "target and localization-model uniqueness for normalized fixed targets",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "mapped explicit MetrizableLCA equalizer forks preserve kernels after forgetting topology",
+    "mapped explicit MetrizableLCA cokernel coforks preserve cokernels after forgetting topology",
+    "ExactAt supplies incoming kernel forks and outgoing cokernel coforks",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulInputNamesW690_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulInputNamesW690.length =
+      18 :=
+  rfl
+
+/-- Current checked W690 state for the mapped-forgetful normalized target-top route. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690 :
+    Type where
+  seed : String
+  declarations : List String
+  mappedForgetfulHomologyResult : String
+  closedMapMappedForgetfulAcceptedResult : String
+  closedEmbeddingDominanceMappedForgetfulAcceptedResult : String
+  removedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W690 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteSupportStateW690 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690
+    where
+  seed :=
+    "w690-normalized-fixed-target-mapped-forgetful-kernel-cokernel-accepted-stable-route"
+  declarations :=
+    ["mappedExplicitKernelForkW690",
+      "preservesKernelOfMappedExplicitKernelForkIsLimitW690",
+      "MetrizableForgetfulKernelCokernelPreservationInputsW690",
+      "metrizableForgetfulPreservesHomology_of_mappedKernelCokernelW690",
+      "MetrizableExactAtKernelCokernelConditionedTopologyMappedForgetfulInputsW690",
+      "metrizableExactAtKernelCokernelConditionedTopologyInputs_of_mappedForgetfulW690",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_accepted",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulInputNamesW690",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulInputNamesW690_count"]
+  mappedForgetfulHomologyResult :=
+    "proved: mapped explicit equalizer forks and mapped explicit cokernel coforks supply the forgetful PreservesHomology field needed by W668"
+  closedMapMappedForgetfulAcceptedResult :=
+    "proved: normalized target-top compact global closed-map data with mapped forgetful kernel/cokernel evidence feed W689 and remain accepted stable"
+  closedEmbeddingDominanceMappedForgetfulAcceptedResult :=
+    "proved: normalized target-top compact global closed-embedding data with mapped forgetful kernel/cokernel evidence feed W689/W688 dominance and remain accepted stable"
+  removedInputs :=
+    ["opaque forgetPreservesHomology : (forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology as a direct W668 field",
+      "direct MetrizableExactAtKernelCokernelConditionedTopologyInputs surface when mapped forgetful kernel/cokernel evidence is available",
+      "W689 abstract kernelCokernelTopology field as an accepted-route leaf obligation"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict representatives for the two WPP localization targets",
+      "prove target and localization-model uniqueness for normalized fixed targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "prove every mapped explicit MetrizableLCA equalizer fork is limiting in AddCommGrpCat",
+      "prove every mapped explicit MetrizableLCA cokernel cofork is colimiting in AddCommGrpCat",
+      "construct ExactAt incoming-kernel and outgoing-cokernel universal-property witnesses",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteSupportStateW690
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -40358,6 +40731,78 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetRouteStateW689_productSuccess
+set_option linter.style.longLine false in
+#check mappedExplicitKernelForkW690
+set_option linter.style.longLine false in
+#check preservesKernelOfMappedExplicitKernelForkIsLimitW690
+set_option linter.style.longLine false in
+#check MetrizableForgetfulKernelCokernelPreservationInputsW690
+set_option linter.style.longLine false in
+#check metrizableForgetfulPreservesHomology_of_mappedKernelCokernelW690
+set_option linter.style.longLine false in
+#check MetrizableExactAtKernelCokernelConditionedTopologyMappedForgetfulInputsW690
+set_option linter.style.longLine false in
+#check metrizableExactAtKernelCokernelConditionedTopologyInputs_of_mappedForgetfulW690
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_ready
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_accepted
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetKernelCokernelDirectLocalizationBundle_of_mappedForgetfulW690
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_ready
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetMappedForgetfulKernelCokernelDirectLocalizationBundleW690_accepted
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulInputNamesW690
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulInputNamesW690_count
+set_option linter.style.longLine false in
+#check
+  MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteSupportStateW690
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetMappedForgetfulRouteStateW690_productSuccess
 
 end Checks
 
