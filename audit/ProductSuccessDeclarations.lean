@@ -6438,6 +6438,28 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeEndpointKernelRouteStateW666
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeEndpointKernelRouteStateW666_productSuccess
+  #check
+    Dbounded.metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeKernelCokernelConditionedDirectLocalizationBundleW670
+  #check
+    Dbounded.metrizableWppTransferStableSemanticInputs_of_directFiniteShapeKernelCokernelConditionedBundleW670
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedBundleW670
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedBundleW670_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedInputNamesW670
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedInputNamesW670_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteSupportStateW670
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

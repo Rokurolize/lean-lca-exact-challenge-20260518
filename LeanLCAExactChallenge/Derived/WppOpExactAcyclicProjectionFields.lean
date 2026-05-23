@@ -32885,7 +32885,224 @@ theorem currentMetrizableWppDirectFiniteShapeEndpointKernelRouteStateW666_produc
       false :=
   rfl
 
+/-- W670 commShift route for W668 kernel/cokernel-conditioned left calculus. -/
+noncomputable abbrev
+    metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+      Dbounded.leftCalculus_of_kernelCokernelConditionedTopology_w668 hasHomology I R
+    letI : HasShift (Dbounded MetrizableLCA.{0}) ℤ :=
+      HasShift.localization (boundedExactWeakEquivalence MetrizableLCA.{0}) ℤ
+    (Dbounded.localization MetrizableLCA.{0}).CommShift ℤ := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_kernelCokernelConditionedTopology_w668 hasHomology I R
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithShift ℤ :=
+    boundedExactWeakEquivalence_isCompatibleWithShift MetrizableLCA.{0}
+  letI : HasShift (Dbounded MetrizableLCA.{0}) ℤ :=
+    HasShift.localization (boundedExactWeakEquivalence MetrizableLCA.{0}) ℤ
+  infer_instance
+
+/--
+W670 direct finite-shape bundle using W668 kernel/cokernel-conditioned topology and direct
+source triangulation data.
+-/
+structure MetrizableWppDirectFiniteShapeKernelCokernelConditionedDirectLocalizationBundleW670 :
+    Type 2 where
+  exactClosed2 :
+    (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W670 builds W669 transfer-stable semantic inputs from direct finite-shape data. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_directFiniteShapeKernelCokernelConditionedBundleW670
+    (inputs :
+      MetrizableWppDirectFiniteShapeKernelCokernelConditionedDirectLocalizationBundleW670) :
+    letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+      inputs.exactClosed2
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint) := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.exactClosed2
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_kernelCokernelConditionedTopology_w668 inputs.hasHomology
+      inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+  letI : HasShift (Dbounded MetrizableLCA.{0}) ℤ :=
+    HasShift.localization (boundedExactWeakEquivalence MetrizableLCA.{0}) ℤ
+  let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+    Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelConditionedTopology_w669
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+  letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+  letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+  letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+    available.shiftAdditiveAll
+  letI : (Dbounded.localization MetrizableLCA.{0}).Additive :=
+    Dbounded.localization_additiveOfHasLeftCalculusOfFractions MetrizableLCA.{0}
+  letI : (Dbounded.localization MetrizableLCA.{0}).CommShift ℤ :=
+    metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+  letI : ∀ n : ℤ,
+      (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+    inferInstance
+  letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+    inputs.directLocalization.sourcePretriangulated
+  letI : IsTriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+    inputs.directLocalization.sourceTriangulated
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithShift ℤ :=
+    boundedExactWeakEquivalence_isCompatibleWithShift MetrizableLCA.{0}
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithTriangulation :=
+    metrizableBoundedExactWeakEquivalence_isCompatibleWithTriangulation_of_triangleCompletionW654
+      inputs.directLocalization.triangleCompletion
+  let pretriangulatedD : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+    metrizablePretriangulatedOfDirectLocalizationCompatibilityW654
+  let triangulatedD :
+      letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulatedD
+      IsTriangulated (Dbounded MetrizableLCA.{0}) := by
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulatedD
+    exact metrizableIsTriangulatedOfDirectLocalizationCompatibilityW654
+  exact
+    { transferInputs := inputs.directSource.finiteShapeInputs
+      pretriangulated := pretriangulatedD
+      triangulated := by
+        letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulatedD
+        exact triangulatedD }
+
+/-- W670 direct finite-shape kernel/cokernel-conditioned route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedBundleW670
+    (inputs :
+      MetrizableWppDirectFiniteShapeKernelCokernelConditionedDirectLocalizationBundleW670) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.exactClosed2
+  exact
+    Dbounded.metrizableOrdinaryStableSemanticInputOfKernelCokernelConditionedWppTransfer_w669
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+      (metrizableWppTransferStableSemanticInputs_of_directFiniteShapeKernelCokernelConditionedBundleW670
+        inputs)
+
+/-- W670 direct finite-shape kernel/cokernel-conditioned route produces a ready certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedBundleW670_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeKernelCokernelConditionedDirectLocalizationBundleW670) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedBundleW670
+        inputs)).ready := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    inputs.exactClosed2
+  exact
+    Dbounded.stableCertificateOfKernelCokernelConditionedWppTransfer_w669_ready
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+      (metrizableWppTransferStableSemanticInputs_of_directFiniteShapeKernelCokernelConditionedBundleW670
+        inputs)
+
+/-- Input names for the W670 direct finite-shape kernel/cokernel-conditioned route. -/
+def metrizableWppDirectFiniteShapeKernelCokernelConditionedInputNamesW670 :
+    List String :=
+  ["direct finite-shape WPP source",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA closed2",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem metrizableWppDirectFiniteShapeKernelCokernelConditionedInputNamesW670_count :
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedInputNamesW670.length =
+      7 :=
+  rfl
+
+/-- Current checked W670 state for direct finite-shape W668/W669 stable routes. -/
+structure MetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670 :
+    Type where
+  seed : String
+  declarations : List String
+  transferStableInputResult : String
+  ordinaryStableInputResult : String
+  stableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W670 state. -/
+def currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteSupportStateW670 :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670 where
+  seed := "w670-direct-finite-shape-kernel-cokernel-conditioned-stable-route"
+  declarations :=
+    ["metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670",
+      "MetrizableWppDirectFiniteShapeKernelCokernelConditionedDirectLocalizationBundleW670",
+      "metrizableWppTransferStableSemanticInputs_of_directFiniteShapeKernelCokernelConditionedBundleW670",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedBundleW670",
+      "metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedBundleW670_ready",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedInputNamesW670",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedInputNamesW670_count"]
+  transferStableInputResult :=
+    "proved: direct finite-shape WPP source and direct source triangulation feed W669 transfer-stable semantic inputs"
+  ordinaryStableInputResult :=
+    "proved: direct finite-shape W668/W669 route builds the ordinary stable semantic input"
+  stableCertificateResult :=
+    "proved: direct finite-shape W668/W669 route produces a ready W528 stable certificate"
+  replacedInputs :=
+    ["W602 endpoint or ShortExact strict-topology package in the direct finite-shape stable route"]
+  remainingInputs :=
+    ["instantiate concrete direct finite-shape WPP source data",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA closed2",
+      "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct finite limits and finite colimits for Dbounded MetrizableLCA",
+      "construct concrete WPP boundary/provider/localization data"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670 :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670 :=
+  currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteSupportStateW670
+
+theorem
+    currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670_productSuccess :
+    currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
+
+set_option linter.style.longLine false in
+#check metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670
+set_option linter.style.longLine false in
+#check MetrizableWppDirectFiniteShapeKernelCokernelConditionedDirectLocalizationBundleW670
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_directFiniteShapeKernelCokernelConditionedBundleW670
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedBundleW670
+set_option linter.style.longLine false in
+#check metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedBundleW670_ready
+set_option linter.style.longLine false in
+#check metrizableWppDirectFiniteShapeKernelCokernelConditionedInputNamesW670
+set_option linter.style.longLine false in
+#check metrizableWppDirectFiniteShapeKernelCokernelConditionedInputNamesW670_count
+set_option linter.style.longLine false in
+#check currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteSupportStateW670
+set_option linter.style.longLine false in
+#check currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670
+set_option linter.style.longLine false in
+#check currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670_productSuccess
 
 #check metrizableForgetfulHomologicalKernel_of_exactAcyclicHomotopyObjectEndpointW666
 #check metrizableExactAt_of_forgetfulHomologicalKernelEndpointW666
