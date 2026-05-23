@@ -22547,6 +22547,226 @@ theorem
       false :=
   rfl
 
+/--
+W630 removes W629's W512 relation-field requirement: an explicit W593
+relation-pullback provider plus W601 target-surjective compact data and W525
+global closed-map data feed the W626 homotopy/Verdier row route.
+-/
+structure MetrizableWppTargetSurjectiveCompactGlobalClosedMapNormalizedBundleW630 :
+    Type 1 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationPullbackProvider :
+    ClosedNatTransOrdinaryRelationPullbackProviderW593
+  targetDifferenceSurjectiveProvider :
+    TargetDifferenceSurjectiveProviderW601
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedMapProvider :
+    ComponentwiseClosedMapProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+
+/-- Convert the W630 bundle to the W598 top-target compact-space global closed-map bundle. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapNormalizedBundle_of_targetSurjectiveCompactW630
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedMapNormalizedBundleW630) :
+    MetrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapNormalizedBundleW598
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  topTargetProvider :=
+    topTargetProvider_of_pullback_targetSurjective_w601
+      inputs.relationPullbackProvider inputs.targetDifferenceSurjectiveProvider
+  targetCompactSpaceProvider :=
+    targetCompactSpaceProvider_of_targetCodomainCompact_w601
+      inputs.targetCodomainCompactSpaceProvider
+  closedMapProvider := inputs.globalClosedMapProvider
+  normalizedInputs := inputs.normalizedInputs
+
+/-- W630 finite-shape route through the W626 row-aware global closed-map path. -/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_targetSurjectiveCompactGlobalClosedMapViaTopTargetCompactSpaceRowsBundleW630
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedMapNormalizedBundleW630) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_topTargetCompactSpaceGlobalClosedMapRowsBundleW626
+    (metrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapNormalizedBundle_of_targetSurjectiveCompactW630
+      inputs)
+
+/-- W630 homotopy/Verdier stable bundle for explicit W593 target-surjective data. -/
+structure
+    MetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoClosedStableBundleW630
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Type 1 where
+  targetSurjectiveCompactGlobalClosedMapBundle :
+    MetrizableWppTargetSurjectiveCompactGlobalClosedMapNormalizedBundleW630
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert the W630 stable bundle to the W598 top-target compact-space bundle. -/
+def
+    metrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW630
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoClosedStableBundleW630) :
+    MetrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapHomotopyIsoClosedStableBundleW598
+    where
+  topTargetBundle :=
+    metrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapNormalizedBundle_of_targetSurjectiveCompactW630
+      inputs.targetSurjectiveCompactGlobalClosedMapBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W630 stable-semantic input through the W626 row-aware route. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactGlobalClosedMapViaTopTargetCompactSpaceRowsHomotopyIsoClosedBundleW630
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoClosedStableBundleW630) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed :=
+  metrizableWppTransferStableSemanticInputs_of_topTargetCompactSpaceGlobalClosedMapRowsHomotopyIsoClosedBundleW626
+    (metrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW630
+      inputs)
+
+/-- W630 builds the ordinary stable input through the W626 row-aware path. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapViaTopTargetCompactSpaceRowsHomotopyIsoClosedBundleW630
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoClosedStableBundleW630) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedMapRowsHomotopyIsoClosedBundleW626
+    (metrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW630
+      inputs)
+
+/-- The W630 route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedMapViaTopTargetCompactSpaceRowsHomotopyIsoClosedBundleW630_ready
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoClosedStableBundleW630) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapViaTopTargetCompactSpaceRowsHomotopyIsoClosedBundleW630
+        inputs)).ready := by
+  exact
+    metrizableStableCertificate_of_topTargetCompactSpaceGlobalClosedMapRowsHomotopyIsoClosedBundleW626_ready
+      (metrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW630
+        inputs)
+
+/-- Input names for the W630 explicit-pullback target-surjective closed-map route. -/
+def
+    metrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsInputNamesW630 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525",
+    "target-difference surjectivity supplies the W600 target-relation-top provider",
+    "compact target codomains supply the W597 target compact-space provider",
+    "global closed-map provider narrows to W527 rows through W581",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsInputNamesW630_count :
+    metrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsInputNamesW630.length =
+      15 :=
+  rfl
+
+/-- Current checked W630 state for the explicit-pullback target-surjective route. -/
+structure
+    MetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsRouteStateW630 :
+    Type where
+  seed : String
+  declarations : List String
+  topTargetReductionResult : String
+  rowProviderNarrowingResult : String
+  stableBundleResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W630 state. -/
+def currentMetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsRouteSupportStateW630 :
+    MetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsRouteStateW630
+    where
+  seed :=
+    "w630-target-surjective-compact-global-closed-map-explicit-pullback-homotopy-iso-row-route"
+  declarations :=
+    ["MetrizableWppTargetSurjectiveCompactGlobalClosedMapNormalizedBundleW630",
+      "metrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapNormalizedBundle_of_targetSurjectiveCompactW630",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_targetSurjectiveCompactGlobalClosedMapViaTopTargetCompactSpaceRowsBundleW630",
+      "MetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoClosedStableBundleW630",
+      "metrizableWppRightOpenClosedQuotientPiZeroTopTargetCompactSpaceGlobalClosedMapHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW630",
+      "metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactGlobalClosedMapViaTopTargetCompactSpaceRowsHomotopyIsoClosedBundleW630",
+      "metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapViaTopTargetCompactSpaceRowsHomotopyIsoClosedBundleW630",
+      "metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedMapViaTopTargetCompactSpaceRowsHomotopyIsoClosedBundleW630_ready",
+      "metrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsInputNamesW630",
+      "metrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsInputNamesW630_count"]
+  topTargetReductionResult :=
+    "proved: W593 relation-pullback plus W601 target-surjective compact-codomain data supply the W598 global closed-map top-target compact-space inputs"
+  rowProviderNarrowingResult :=
+    "proved: explicit-pullback target-surjective compact global closed-map data reaches W599 closed-map rows through W626"
+  stableBundleResult :=
+    "proved: explicit-pullback target-surjective compact global closed-map homotopy-iso bundles feed the W626 row-aware stable route"
+  stableCertificateResult :=
+    "proved: the W630 target-surjective compact global closed-map homotopy-iso row route produces the ready W528 stable certificate"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525",
+      "construct normalized strict-representative fixed-target localization data",
+      "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+      "construct bounded homotopy/Verdier pullback left calculus of fractions",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsRouteStateW630 :
+    MetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsRouteStateW630 :=
+  currentMetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsRouteSupportStateW630
+
+theorem
+    currentMetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsRouteStateW630_productSuccess :
+    currentMetrizableWppTargetSurjectiveCompactGlobalClosedMapHomotopyIsoRowsRouteStateW630.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
