@@ -33079,7 +33079,312 @@ theorem
       false :=
   rfl
 
+/-- W671 forward direction: W668 exact-acyclic homotopy objects lie in the forgetful
+homological kernel. -/
+theorem
+    metrizableForgetfulHomologicalKernel_of_exactAcyclicHomotopyObjectKernelCokernelConditionedW671
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    ∀ X : HomotopyCategory MetrizableLCA.{0} (ComplexShape.up ℤ),
+      exactAcyclicHomotopyObject MetrizableLCA.{0} X →
+        MetrizableForgetfulHomologyKernelFunctorW665.homologicalKernel X := by
+  intro X hX n
+  obtain ⟨K, rfl⟩ := HomotopyCategory.quotient_obj_surjective X
+  have hShiftZero :
+      IsZero
+        (MetrizableForgetfulHomologyKernelFunctorW665.obj
+          ((HomotopyCategory.quotient MetrizableLCA.{0} (ComplexShape.up ℤ)).obj
+            (K⟦n⟧))) := by
+    let Kf : CochainComplex AddCommGrpCat.{0} ℤ :=
+      ((forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).mapHomologicalComplex
+        (ComplexShape.up ℤ)).obj (K⟦n⟧)
+    have hKshift : exactAcyclic MetrizableLCA.{0} (K⟦n⟧) :=
+      exactAcyclic_shift MetrizableLCA.{0} K n hX
+    have hExactAt : (K⟦n⟧).ExactAt (0 : ℤ) :=
+      exactAt_of_exactAcyclic_metrizableLCA hasHomology
+        I.forgetPreservesHomology hKshift (0 : ℤ)
+    rw [HomologicalComplex.exactAt_iff] at hExactAt
+    have hForgetExactAt : Kf.ExactAt (0 : ℤ) := by
+      rw [HomologicalComplex.exactAt_iff]
+      letI :
+          (HomologicalComplex.sc
+            ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) n).obj K) 0).HasHomology :=
+        hasHomology ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) n).obj K) 0
+      letI : (forget₂ MetrizableLCA.{0} Ab.{0}).PreservesHomology :=
+        I.forgetPreservesHomology
+      simpa [Kf] using
+        (ShortComplex.exact_iff_exact_map_forget₂
+          (S :=
+            (HomologicalComplex.sc
+              ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) n).obj K) 0))).mp
+          hExactAt
+    have hZero : IsZero (Kf.homology (0 : ℤ)) :=
+      (HomologicalComplex.exactAt_iff_isZero_homology (K := Kf) (i := (0 : ℤ))).mp
+        hForgetExactAt
+    change
+      IsZero
+        ((HomotopyCategory.homologyFunctor AddCommGrpCat.{0} (ComplexShape.up ℤ) (0 : ℤ)).obj
+          ((HomotopyCategory.quotient AddCommGrpCat.{0} (ComplexShape.up ℤ)).obj Kf))
+    exact IsZero.of_iso hZero
+      ((HomotopyCategory.homologyFunctorFactors AddCommGrpCat.{0}
+        (ComplexShape.up ℤ) (0 : ℤ)).app Kf)
+  exact IsZero.of_iso hShiftZero
+    (MetrizableForgetfulHomologyKernelFunctorW665.mapIso
+      (((HomotopyCategory.quotient MetrizableLCA.{0} (ComplexShape.up ℤ)).commShiftIso n).app
+        K).symm)
+
+/-- W671 reverse degreewise direction: the forgetful homological kernel gives target
+`ExactAt` in every degree under W668 homology preservation. -/
+theorem metrizableExactAt_of_forgetfulHomologicalKernelKernelCokernelConditionedW671
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs)
+    (K : CochainComplex MetrizableLCA.{0} ℤ)
+    (hKernel :
+      MetrizableForgetfulHomologyKernelFunctorW665.homologicalKernel
+        ((HomotopyCategory.quotient MetrizableLCA.{0} (ComplexShape.up ℤ)).obj K)) :
+    ∀ i : ℤ, K.ExactAt i := by
+  intro i
+  have hShifted :
+      IsZero
+        (MetrizableForgetfulHomologyKernelFunctorW665.obj
+          (((HomotopyCategory.quotient MetrizableLCA.{0} (ComplexShape.up ℤ)).obj K)⟦i⟧)) :=
+    hKernel i
+  have hQShift :
+      IsZero
+        (MetrizableForgetfulHomologyKernelFunctorW665.obj
+          ((HomotopyCategory.quotient MetrizableLCA.{0} (ComplexShape.up ℤ)).obj (K⟦i⟧))) := by
+    exact IsZero.of_iso hShifted
+      (MetrizableForgetfulHomologyKernelFunctorW665.mapIso
+        (((HomotopyCategory.quotient MetrizableLCA.{0} (ComplexShape.up ℤ)).commShiftIso i).app
+          K))
+  let Kf : CochainComplex AddCommGrpCat.{0} ℤ :=
+    ((forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).mapHomologicalComplex
+      (ComplexShape.up ℤ)).obj (K⟦i⟧)
+  have hQShift' :
+      IsZero
+        ((HomotopyCategory.homologyFunctor AddCommGrpCat.{0} (ComplexShape.up ℤ) (0 : ℤ)).obj
+          ((HomotopyCategory.quotient AddCommGrpCat.{0} (ComplexShape.up ℤ)).obj Kf)) := by
+    simpa [MetrizableForgetfulHomologyKernelFunctorW665, Kf] using hQShift
+  have hZero : IsZero (Kf.homology (0 : ℤ)) :=
+    IsZero.of_iso hQShift'
+      ((HomotopyCategory.homologyFunctorFactors AddCommGrpCat.{0}
+        (ComplexShape.up ℤ) (0 : ℤ)).app Kf).symm
+  have hForgetExactAt : Kf.ExactAt (0 : ℤ) :=
+    (HomologicalComplex.exactAt_iff_isZero_homology (K := Kf) (i := (0 : ℤ))).mpr hZero
+  rw [HomologicalComplex.exactAt_iff] at hForgetExactAt
+  have hShiftExact : (K⟦i⟧).ExactAt (0 : ℤ) := by
+    rw [HomologicalComplex.exactAt_iff]
+    letI :
+        (HomologicalComplex.sc
+          ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) i).obj K) 0).HasHomology :=
+      hasHomology ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) i).obj K) 0
+    letI : (forget₂ MetrizableLCA.{0} Ab.{0}).PreservesHomology :=
+      I.forgetPreservesHomology
+    exact
+      (ShortComplex.exact_iff_exact_map_forget₂
+        (S :=
+          (HomologicalComplex.sc
+            ((shiftFunctor (CochainComplex MetrizableLCA.{0} ℤ) i).obj K) 0))).mpr
+        (by simpa [Kf] using hForgetExactAt)
+  rw [HomologicalComplex.exactAt_iff] at hShiftExact
+  rw [HomologicalComplex.exactAt_iff]
+  exact ShortComplex.exact_of_iso
+    ((CochainComplex.shiftShortComplexFunctorIso MetrizableLCA.{0} i (0 : ℤ) i
+      (by simp)).app K)
+    hShiftExact
+
+/-- W671 reverse object direction: the forgetful homological kernel is strict
+exact-acyclic under W668 kernel/cokernel-conditioned topology. -/
+theorem
+    metrizableExactAcyclicHomotopyObject_of_forgetfulHomologicalKernelKernelCokernelConditionedW671
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    ∀ X : HomotopyCategory MetrizableLCA.{0} (ComplexShape.up ℤ),
+      MetrizableForgetfulHomologyKernelFunctorW665.homologicalKernel X →
+        exactAcyclicHomotopyObject MetrizableLCA.{0} X := by
+  intro X hKernel
+  obtain ⟨K, rfl⟩ := HomotopyCategory.quotient_obj_surjective X
+  exact exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology
+    I K
+    (metrizableExactAt_of_forgetfulHomologicalKernelKernelCokernelConditionedW671
+      hasHomology I K hKernel)
+
+/-- W671 kernel/cokernel-conditioned topology proves the W665 forgetful homological-kernel
+payload. -/
+theorem
+    metrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayload_of_kernelCokernelConditionedW671
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtKernelCokernelConditionedTopologyInputs) :
+    MetrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayloadW665 := by
+  intro X
+  exact
+    ⟨metrizableForgetfulHomologicalKernel_of_exactAcyclicHomotopyObjectKernelCokernelConditionedW671
+        hasHomology I X,
+      metrizableExactAcyclicHomotopyObject_of_forgetfulHomologicalKernelKernelCokernelConditionedW671
+        hasHomology I X⟩
+
+/--
+W671 direct finite-shape bundle that derives W670's `closed2` field from the W668
+forgetful homological-kernel identification.
+-/
+structure MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671 :
+    Type 2 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W671 adapts the kernel-payload bundle to the W670 direct finite-shape route. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedBundle_of_kernelPayloadW671
+    (inputs :
+      MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedDirectLocalizationBundleW670 where
+  exactClosed2 :=
+    metrizableExactAcyclicIsoClosureClosed2_of_homotopyObjectClosed2W660
+      (metrizableExactAcyclicHomotopyObjectClosed2_of_forgetfulHomologicalKernelW665
+        (metrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayload_of_kernelCokernelConditionedW671
+          inputs.hasHomology inputs.kernelCokernelTopology))
+  directSource := inputs.directSource
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W671 direct finite-shape kernel-payload route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (inputs :
+      MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedBundleW670
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedBundle_of_kernelPayloadW671
+      inputs)
+
+/-- W671 direct finite-shape kernel-payload route produces a ready certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (inputs :
+      MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedBundleW670_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedBundle_of_kernelPayloadW671
+      inputs)
+
+/-- Input names for the W671 kernel-payload route. -/
+def metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671 : List String :=
+  ["direct finite-shape WPP source",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671_count :
+    metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671.length = 6 :=
+  rfl
+
+/-- Current checked W671 state for deriving closed2 from W668 kernel-payload data. -/
+structure MetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671 : Type where
+  seed : String
+  declarations : List String
+  kernelPayloadResult : String
+  closed2ReductionResult : String
+  ordinaryStableInputResult : String
+  stableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W671 state. -/
+def currentMetrizableWppDirectFiniteShapeKernelPayloadRouteSupportStateW671 :
+    MetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671 where
+  seed := "w671-direct-finite-shape-kernel-payload-route"
+  declarations :=
+    ["metrizableForgetfulHomologicalKernel_of_exactAcyclicHomotopyObjectKernelCokernelConditionedW671",
+      "metrizableExactAt_of_forgetfulHomologicalKernelKernelCokernelConditionedW671",
+      "metrizableExactAcyclicHomotopyObject_of_forgetfulHomologicalKernelKernelCokernelConditionedW671",
+      "metrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayload_of_kernelCokernelConditionedW671",
+      "MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedBundle_of_kernelPayloadW671",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671",
+      "metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready",
+      "metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671",
+      "metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671_count"]
+  kernelPayloadResult :=
+    "proved: W668 kernel/cokernel-conditioned topology identifies exactAcyclicHomotopyObject with the forgetful homological kernel"
+  closed2ReductionResult :=
+    "proved: the W668 forgetful homological-kernel identification supplies W670's exactAcyclicHomotopyIsoClosure closed2 input"
+  ordinaryStableInputResult :=
+    "proved: W671 kernel-payload bundles build the ordinary stable semantic input through W670"
+  stableCertificateResult :=
+    "proved: W671 kernel-payload bundles produce a ready W528 stable certificate through W670"
+  replacedInputs :=
+    ["separate exactAcyclicHomotopyIsoClosure MetrizableLCA closed2 field in the direct finite-shape W670 bundle"]
+  remainingInputs :=
+    ["instantiate concrete direct finite-shape WPP source data",
+      "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct finite limits and finite colimits for Dbounded MetrizableLCA",
+      "construct concrete WPP boundary/provider/localization data"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671 :
+    MetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671 :=
+  currentMetrizableWppDirectFiniteShapeKernelPayloadRouteSupportStateW671
+
+theorem currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_productSuccess :
+    currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
+
+set_option linter.style.longLine false in
+#check
+  metrizableForgetfulHomologicalKernel_of_exactAcyclicHomotopyObjectKernelCokernelConditionedW671
+set_option linter.style.longLine false in
+#check metrizableExactAt_of_forgetfulHomologicalKernelKernelCokernelConditionedW671
+set_option linter.style.longLine false in
+#check
+  metrizableExactAcyclicHomotopyObject_of_forgetfulHomologicalKernelKernelCokernelConditionedW671
+set_option linter.style.longLine false in
+#check
+  metrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayload_of_kernelCokernelConditionedW671
+set_option linter.style.longLine false in
+#check MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+set_option linter.style.longLine false in
+#check metrizableWppDirectFiniteShapeKernelCokernelConditionedBundle_of_kernelPayloadW671
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+set_option linter.style.longLine false in
+#check metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671
+set_option linter.style.longLine false in
+#check metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671_count
+set_option linter.style.longLine false in
+#check currentMetrizableWppDirectFiniteShapeKernelPayloadRouteSupportStateW671
+set_option linter.style.longLine false in
+#check currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671
+set_option linter.style.longLine false in
+#check currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_productSuccess
 
 set_option linter.style.longLine false in
 #check metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670

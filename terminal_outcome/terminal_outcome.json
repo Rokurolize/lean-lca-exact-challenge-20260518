@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W670 builds a direct finite-shape WPP stable route from W668/W669 kernel/cokernel-conditioned calculus plus the existing direct source triangulation/localization core. It constructs the WPP transfer-stable semantic input, ordinary stable semantic input, and ready stable certificate without requiring the older W602 endpoint or ShortExact strict-topology package in the direct finite-shape stable route. Product-success flags remain false.",
+  "summary": "W671 proves that W668 kernel/cokernel-conditioned topology identifies exactAcyclicHomotopyObject with the forgetful homological kernel, then uses that identification to derive the exactAcyclicHomotopyIsoClosure closed2 input required by W670. The resulting direct finite-shape route builds the ordinary stable semantic input and ready stable certificate without a separate closed2 field. Product-success flags remain false.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -1674,7 +1674,10 @@
     "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_118_w669_product_declarations_lean.log exit_code=0)",
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_119_w670_wpp_op_projection_fields_lean.log exit_code=0)",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_119_w670_wpp_op_projection_fields_build.log exit_code=0)",
-    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_119_w670_product_declarations_lean.log exit_code=0)"
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_119_w670_product_declarations_lean.log exit_code=0)",
+    "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_120_w671_wpp_op_projection_fields_lean.log exit_code=0)",
+    "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_120_w671_wpp_op_projection_fields_build.log exit_code=0)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_120_w671_product_declarations_lean.log exit_code=0)"
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535.walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
@@ -4610,11 +4613,24 @@
     "Dbounded.MetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670",
     "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteSupportStateW670",
     "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670",
-    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670_productSuccess"
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670_productSuccess",
+    "Dbounded.metrizableForgetfulHomologicalKernel_of_exactAcyclicHomotopyObjectKernelCokernelConditionedW671",
+    "Dbounded.metrizableExactAt_of_forgetfulHomologicalKernelKernelCokernelConditionedW671",
+    "Dbounded.metrizableExactAcyclicHomotopyObject_of_forgetfulHomologicalKernelKernelCokernelConditionedW671",
+    "Dbounded.metrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayload_of_kernelCokernelConditionedW671",
+    "Dbounded.MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedBundle_of_kernelPayloadW671",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671_count",
+    "Dbounded.MetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteSupportStateW671",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_productSuccess"
   ],
   "known_gaps": [
     "instantiate concrete direct finite-shape WPP source data",
-    "prove exactAcyclicHomotopyIsoClosure MetrizableLCA closed2",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
     "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
     "prove categorical ExactAt supplies incoming kernel forks and outgoing cokernel coforks",
@@ -4631,11 +4647,10 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "W670 connects the concrete direct finite-shape source surface to the W668/W669 kernel/cokernel-conditioned stable route. Remaining work still needs actual direct source, homology, kernel/cokernel, closed2, localization, and source triangulation inputs.",
-  "claim_review_result": "not applicable: W670 is a nonterminal support increment with product_success=false",
+  "worker_frontier_summary": "W671 removes the separate closed2 input from the direct finite-shape W668/W669 route by deriving it from the W668 forgetful homological-kernel identification. Remaining work still needs actual source, homology, kernel/cokernel, localization, and source triangulation inputs.",
+  "claim_review_result": "not applicable: W671 is a nonterminal support increment with product_success=false",
   "remaining_gaps": [
     "instantiate concrete direct finite-shape WPP source data",
-    "prove exactAcyclicHomotopyIsoClosure MetrizableLCA closed2",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
     "prove forget2 MetrizableLCA AddCommGrpCat preserves homology",
     "prove categorical ExactAt supplies incoming kernel forks and outgoing cokernel coforks",
@@ -4647,7 +4662,7 @@
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "next_recommended_goal": "Instantiate concrete direct finite-shape WPP source data, W668 kernel/cokernel-conditioned topology data, homology existence, forgetful homology preservation, exactAcyclicHomotopyIsoClosure closed2, localized-right-adjoint data, source triangulation, and source triangle completion; do not call update_goal.",
+  "next_recommended_goal": "Instantiate concrete direct finite-shape WPP source data, W668 kernel/cokernel-conditioned topology data, homology existence, forgetful homology preservation, localized-right-adjoint data, source triangulation, and source triangle completion; do not call update_goal.",
   "implemented_declarations": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -8040,10 +8055,24 @@
     "Dbounded.MetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670",
     "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteSupportStateW670",
     "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670",
-    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670_productSuccess"
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670_productSuccess",
+    "Dbounded.metrizableForgetfulHomologicalKernel_of_exactAcyclicHomotopyObjectKernelCokernelConditionedW671",
+    "Dbounded.metrizableExactAt_of_forgetfulHomologicalKernelKernelCokernelConditionedW671",
+    "Dbounded.metrizableExactAcyclicHomotopyObject_of_forgetfulHomologicalKernelKernelCokernelConditionedW671",
+    "Dbounded.metrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayload_of_kernelCokernelConditionedW671",
+    "Dbounded.MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedBundle_of_kernelPayloadW671",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671_count",
+    "Dbounded.MetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteSupportStateW671",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_productSuccess"
   ],
-  "generated_utc": "2026-05-23T14:46:58Z",
-  "support_result_classification": "nonterminal_direct_finite_shape_kernel_cokernel_conditioned_stable_route",
+  "generated_utc": "2026-05-23T14:52:57Z",
+  "support_result_classification": "nonterminal_direct_finite_shape_kernel_payload_stable_route",
   "implemented_declarations_checked": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -11472,13 +11501,26 @@
     "Dbounded.MetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670",
     "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteSupportStateW670",
     "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670",
-    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670_productSuccess"
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670_productSuccess",
+    "Dbounded.metrizableForgetfulHomologicalKernel_of_exactAcyclicHomotopyObjectKernelCokernelConditionedW671",
+    "Dbounded.metrizableExactAt_of_forgetfulHomologicalKernelKernelCokernelConditionedW671",
+    "Dbounded.metrizableExactAcyclicHomotopyObject_of_forgetfulHomologicalKernelKernelCokernelConditionedW671",
+    "Dbounded.metrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayload_of_kernelCokernelConditionedW671",
+    "Dbounded.MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedBundle_of_kernelPayloadW671",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671",
+    "Dbounded.metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671_count",
+    "Dbounded.MetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteSupportStateW671",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
     "instantiate concrete direct finite-shape WPP source data",
-    "prove exactAcyclicHomotopyIsoClosure MetrizableLCA closed2",
     "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
     "construct bounded homotopy localized right adjoint plus unit membership",
     "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
@@ -11486,10 +11528,10 @@
     "construct finite limits and finite colimits for Dbounded MetrizableLCA",
     "construct concrete WPP boundary/provider/localization data"
   ],
-  "latest_verified_increment": "W670 direct finite-shape kernel/cokernel-conditioned stable route",
-  "source_tree_hash": "3c364d3ebad4467623866e30b87ac3b2a06bfcb0897cbf098c10d1b332c484d0",
-  "summary_log_tail": "W670 feeds direct finite-shape WPP source data and direct source triangulation/localization data into the W668/W669 kernel/cokernel-conditioned stable route; product flags remain false.",
-  "git_commit_note": "W670 direct finite-shape kernel/cokernel-conditioned stable route is a nonterminal support increment; product_success/product_complete/update_goal_allowed remain false.",
+  "latest_verified_increment": "W671 direct finite-shape kernel-payload stable route",
+  "source_tree_hash": "47713b07421297fa2f50f8752b9a3d8bccf2f3f479bd6dd1ab2e52dbb876ed7d",
+  "summary_log_tail": "W671 derives W670's closed2 requirement from W668 kernel/cokernel-conditioned forgetful homological-kernel identification; product flags remain false.",
+  "git_commit_note": "W671 direct finite-shape kernel-payload route is a nonterminal support increment; product_success/product_complete/update_goal_allowed remain false.",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -12729,6 +12771,16 @@
       "product_complete": false,
       "update_goal_allowed": false,
       "note": "W670 is nonterminal support only and must not authorize update_goal completion."
+    },
+    "w671_direct_finite_shape_kernel_payload_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T14:52:57Z",
+      "source_tree_hash": "47713b07421297fa2f50f8752b9a3d8bccf2f3f479bd6dd1ab2e52dbb876ed7d",
+      "latest_verified_increment": "W671 direct finite-shape kernel-payload stable route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "W671 is nonterminal support only and must not authorize update_goal completion."
     }
   }
 }

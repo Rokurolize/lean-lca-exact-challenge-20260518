@@ -6460,6 +6460,34 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeKernelCokernelConditionedRouteStateW670_productSuccess
+  #check
+    Dbounded.metrizableForgetfulHomologicalKernel_of_exactAcyclicHomotopyObjectKernelCokernelConditionedW671
+  #check
+    Dbounded.metrizableExactAt_of_forgetfulHomologicalKernelKernelCokernelConditionedW671
+  #check
+    Dbounded.metrizableExactAcyclicHomotopyObject_of_forgetfulHomologicalKernelKernelCokernelConditionedW671
+  #check
+    Dbounded.metrizableExactAcyclicHomotopyObjectForgetfulHomologicalKernelPayload_of_kernelCokernelConditionedW671
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedBundle_of_kernelPayloadW671
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelPayloadInputNamesW671_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteSupportStateW671
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeKernelPayloadRouteStateW671_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
