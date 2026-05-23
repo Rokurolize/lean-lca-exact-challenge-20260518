@@ -6584,6 +6584,38 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674
   #check
     Dbounded.currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674_productSuccess
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_topTargetCompactSpaceGlobalClosedMapW675
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_topTargetCompactSpaceGlobalClosedEmbeddingW675
+  #check
+    Dbounded.MetrizableWppTopTargetCompactSpaceGlobalClosedMapKernelPayloadBundleW675
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_topTargetCompactSpaceGlobalClosedMapW675
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedMapKernelPayloadBundleW675
+  #check
+    Dbounded.metrizableStableCertificate_of_topTargetCompactSpaceGlobalClosedMapKernelPayloadBundleW675_ready
+  #check
+    Dbounded.MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingKernelPayloadBundleW675
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_topTargetCompactSpaceGlobalClosedEmbeddingW675
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedEmbeddingKernelPayloadBundleW675
+  #check
+    Dbounded.metrizableStableCertificate_of_topTargetCompactSpaceGlobalClosedEmbeddingKernelPayloadBundleW675_ready
+  #check
+    Dbounded.metrizableWppTopTargetCompactSpaceKernelPayloadInputNamesW675
+  #check
+    Dbounded.metrizableWppTopTargetCompactSpaceKernelPayloadInputNamesW675_count
+  #check
+    Dbounded.MetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675
+  #check
+    Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteSupportStateW675
+  #check
+    Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675
+  #check
+    Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

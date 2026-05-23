@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w674-split-compact-target-kernel-payload-stable-route",
-  "generated_utc": "2026-05-23T15:17:17Z",
-  "source_tree_hash": "e402da8a6071de6fbe0733a2b7e4ce1d31c9ad417f6cf12b95e3f2bc24087643",
-  "summary": "W674 wires the W593 split compact-target global closed-map route and W594 split compact-target global closed-embedding route into the W671 kernel-payload route. The resulting routes build the ordinary stable semantic input and ready stable certificate while replacing W673's monolithic compact-target relation provider with relation-pullback plus target-relation compactness providers. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w675-top-target-compact-space-kernel-payload-stable-route",
+  "generated_utc": "2026-05-23T15:25:35Z",
+  "source_tree_hash": "34170dd5373c71d11e06a260dd22e2c1176651cbe920b46dce0d7eddc7f759f7",
+  "summary": "W675 wires the W598 top-target compact-space global closed-map and global closed-embedding routes into the W671 kernel-payload route. The resulting routes build the ordinary stable semantic input and ready stable certificate while replacing W674's split compact-target provider surface with W598 top-target compact-space providers. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -10570,6 +10570,51 @@
       "command": "git diff --check",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_123_w674_diff_check.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_124_w675_pre_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_124_w675_pre_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_124_w675_pre_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_124_w675_pre_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_124_w675_pre_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_124_w675_pre_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_124_w675_pre_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_124_w675_pre_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_124_w675_pre_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -14062,13 +14107,29 @@
     "Dbounded.MetrizableWppSplitCompactTargetKernelPayloadRouteStateW674",
     "Dbounded.currentMetrizableWppSplitCompactTargetKernelPayloadRouteSupportStateW674",
     "Dbounded.currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674",
-    "Dbounded.currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674_productSuccess"
+    "Dbounded.currentMetrizableWppSplitCompactTargetKernelPayloadRouteStateW674_productSuccess",
+    "Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_topTargetCompactSpaceGlobalClosedMapW675",
+    "Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_topTargetCompactSpaceGlobalClosedEmbeddingW675",
+    "Dbounded.MetrizableWppTopTargetCompactSpaceGlobalClosedMapKernelPayloadBundleW675",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_topTargetCompactSpaceGlobalClosedMapW675",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedMapKernelPayloadBundleW675",
+    "Dbounded.metrizableStableCertificate_of_topTargetCompactSpaceGlobalClosedMapKernelPayloadBundleW675_ready",
+    "Dbounded.MetrizableWppTopTargetCompactSpaceGlobalClosedEmbeddingKernelPayloadBundleW675",
+    "Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_topTargetCompactSpaceGlobalClosedEmbeddingW675",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_topTargetCompactSpaceGlobalClosedEmbeddingKernelPayloadBundleW675",
+    "Dbounded.metrizableStableCertificate_of_topTargetCompactSpaceGlobalClosedEmbeddingKernelPayloadBundleW675_ready",
+    "Dbounded.metrizableWppTopTargetCompactSpaceKernelPayloadInputNamesW675",
+    "Dbounded.metrizableWppTopTargetCompactSpaceKernelPayloadInputNamesW675_count",
+    "Dbounded.MetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675",
+    "Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteSupportStateW675",
+    "Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675",
+    "Dbounded.currentMetrizableWppTopTargetCompactSpaceKernelPayloadRouteStateW675_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
-    "construct concrete relation-pullback provider data",
-    "construct concrete target-relation compactness provider data",
+    "construct concrete top-target relation provider data",
+    "construct concrete target compact-space provider data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives and fixed-target uniqueness data",
     "construct homology existence for all MetrizableLCA cochain complexes in every degree",
@@ -14079,12 +14140,12 @@
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "support_result_classification": "nonterminal_split_compact_target_kernel_payload_stable_route",
+  "support_result_classification": "nonterminal_top_target_compact_space_kernel_payload_stable_route",
   "product_success": false,
   "remaining_work": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
-    "construct concrete relation-pullback provider data",
-    "construct concrete target-relation compactness provider data",
+    "construct concrete top-target relation provider data",
+    "construct concrete target compact-space provider data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives and fixed-target uniqueness data",
     "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
@@ -14093,8 +14154,8 @@
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct finite limits and finite colimits for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W674 feeds W671 from existing W593/W594 split compact-target normalized finite-shape providers; product flags remain false.",
-  "latest_verified_increment": "W674 split compact-target kernel-payload stable route",
+  "summary_log_tail": "W675 feeds W671 from existing W598 top-target compact-space normalized finite-shape providers; product flags remain false.",
+  "latest_verified_increment": "W675 top-target compact-space kernel-payload stable route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -15015,6 +15076,13 @@
       "latest_verified_increment": "W674 split compact-target kernel-payload stable route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W674 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
+    },
+    "w675_top_target_compact_space_kernel_payload_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T15:25:35Z",
+      "source_tree_hash": "34170dd5373c71d11e06a260dd22e2c1176651cbe920b46dce0d7eddc7f759f7",
+      "latest_verified_increment": "W675 top-target compact-space kernel-payload stable route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W675 post-metadata verifier must pass deterministic gates and retain the expected terminal nonterminal audit failure."
     }
   }
 }
