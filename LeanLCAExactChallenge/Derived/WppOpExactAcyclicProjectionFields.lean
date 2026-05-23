@@ -36150,6 +36150,139 @@ theorem
       false :=
   rfl
 
+/--
+W683 packages the W682 closed-map-row certificate as an accepted stable
+bounded-derived infinity-category object.
+-/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+    (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+      inputs)
+
+/-- The W683 closed-map-row package carries a ready four-projection certificate. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683
+      inputs).certificate.ready :=
+  (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683
+    inputs).ready
+
+/-- The W683 closed-map-row package is on the accepted stable-route branch. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683
+          inputs).certificate) =
+        true :=
+  (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683
+    inputs).accepted
+
+/--
+W683 packages the W682 closed-embedding-row certificate as an accepted stable
+bounded-derived infinity-category object.
+-/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+    (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682
+      inputs)
+
+/-- The W683 closed-embedding-row package carries a ready four-projection certificate. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683
+      inputs).certificate.ready :=
+  (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683
+    inputs).ready
+
+/-- The W683 closed-embedding-row package is on the accepted stable-route branch. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW682) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683
+          inputs).certificate) =
+        true :=
+  (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683
+    inputs).accepted
+
+/-- Input names for the W683 accepted stable-category packaging route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryInputNamesW683 :
+    List String :=
+  metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryInputNamesW683_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryInputNamesW683.length = 12 := by
+  simpa [metrizableAcceptedStableBoundedDerivedInfinityCategoryInputNamesW683] using
+    metrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationInputNamesW682_count
+
+/-- Current checked W683 state for accepted stable-category packaging. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRouteStateW683 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapRowsAcceptedResult : String
+  closedEmbeddingRowsAcceptedResult : String
+  stableCategoryResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W683 state. -/
+def currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRouteSupportStateW683 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRouteStateW683 where
+  seed :=
+    "w683-accepted-stable-bounded-derived-infinity-category-package"
+  declarations :=
+    ["AcceptedStableBoundedDerivedInfinityCategory",
+      "acceptedStableBoundedDerivedInfinityCategoryOfCertificate",
+      "acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsKernelCokernelHomotopyEquivDirectLocalizationBundleW683_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryInputNamesW683",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryInputNamesW683_count"]
+  closedMapRowsAcceptedResult :=
+    "proved: W682 closed-map-row stable certificate packages as an accepted stable route"
+  closedEmbeddingRowsAcceptedResult :=
+    "proved: W682 closed-embedding-row stable certificate packages as an accepted stable route"
+  stableCategoryResult :=
+    "proved: the W682 row variants produce accepted stable bounded-derived infinity-category packages rather than only ordinary route evidence"
+  remainingInputs :=
+    currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelCokernelHomotopyEquivDirectLocalizationRouteStateW682.remainingInputs
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRouteStateW683 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRouteStateW683 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRouteSupportStateW683
+
+theorem currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRouteStateW683_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRouteStateW683.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

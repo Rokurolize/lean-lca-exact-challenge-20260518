@@ -3923,6 +3923,35 @@ theorem Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready
     (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput input).ready := by
   exact StableFourProjectionCertificate.ready_of_fields _
 
+/-- An accepted stable bounded-derived infinity-category package for `Dbounded`. -/
+structure Dbounded.AcceptedStableBoundedDerivedInfinityCategory
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C] : Type (max (max u v) 2) where
+  certificate : Dbounded.StableFourProjectionCertificate C
+  ready : certificate.ready
+  accepted :
+    Dbounded.StableRouteAttempt.accepted (C := C) (.fullCertificate certificate) = true
+
+/-- Package any ready four-projection certificate as an accepted stable `Dbounded` object. -/
+noncomputable def Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfCertificate
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C]
+    (cert : Dbounded.StableFourProjectionCertificate C) (ready : cert.ready) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory C where
+  certificate := cert
+  ready := ready
+  accepted := rfl
+
+/-- Package a metrizable ordinary semantic input as an accepted stable `Dbounded` object. -/
+noncomputable def
+    Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+    (input : Dbounded.MetrizableOrdinaryStableSemanticInput) :
+    Dbounded.AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfCertificate
+    MetrizableLCA.{0}
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput input)
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready input)
+
 /-- Concrete ordinary fields required by the semantic adapter for `Dbounded MetrizableLCA`. -/
 def Dbounded.metrizableSemanticStableRequiredFieldNames : List String :=
   ["Preadditive (Dbounded MetrizableLCA)", "HasFiniteLimits (Dbounded MetrizableLCA)",
