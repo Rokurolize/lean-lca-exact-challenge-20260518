@@ -20171,6 +20171,232 @@ theorem
       false :=
   rfl
 
+/--
+W617 provider-narrowing route: W613 global closed-embedding data supplies the
+W615 row-aware closed-embedding route, then W616 dominance supplies W614
+closed-map-row consumers.
+-/
+def
+    metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundle_of_globalClosedEmbeddingW617
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedBundleW613) :
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundleW615
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetRelationTopProvider := inputs.targetRelationTopProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  closedEmbeddingRows :=
+    componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581
+      inputs.globalClosedEmbeddingProvider
+  normalizedInputs := inputs.normalizedInputs
+
+/--
+W617 finite-shape route: global closed-embedding data reaches the W614
+closed-map-row transfer through W615 and W616.
+-/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsBundleW617
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedBundleW613) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactClosedEmbeddingViaClosedMapRowsBundleW616
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundle_of_globalClosedEmbeddingW617
+      inputs)
+
+/-- Convert the W613 endpoint bundle to the W615 row-aware closed-embedding endpoint bundle. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsEndpointBundle_of_globalClosedEmbeddingW617
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingEndpointStableBundleW613) :
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsEndpointStableBundleW615
+    where
+  targetTopCompactClosedEmbeddingRowsBundle :=
+    metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundle_of_globalClosedEmbeddingW617
+      inputs.targetTopCompactGlobalClosedEmbeddingBundle
+  endpointFields := inputs.endpointFields
+
+/- W617 endpoint stable input: global closed embeddings drive W616's closed-map path. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsEndpointBundleW617
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingEndpointStableBundleW613) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605
+        inputs.endpointFields.hasHomology inputs.endpointFields.endpointTopology
+        inputs.endpointFields.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW616
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsEndpointBundle_of_globalClosedEmbeddingW617
+      inputs)
+
+/-- W617 endpoint route builds the ordinary stable input through W616 dominance. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsEndpointBundleW617
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingEndpointStableBundleW613) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW616
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsEndpointBundle_of_globalClosedEmbeddingW617
+      inputs)
+
+/-- The W617 endpoint provider-narrowing dominance route produces a ready stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsEndpointBundleW617_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingEndpointStableBundleW613) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsEndpointBundleW617
+        inputs)).ready := by
+  exact
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW616_ready
+      (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsEndpointBundle_of_globalClosedEmbeddingW617
+        inputs)
+
+/-- Convert the W613 ShortExact bundle to the W615 row-aware closed-embedding ShortExact bundle. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsShortExactBundle_of_globalClosedEmbeddingW617
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingShortExactStableBundleW613) :
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsShortExactStableBundleW615
+    where
+  targetTopCompactClosedEmbeddingRowsBundle :=
+    metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundle_of_globalClosedEmbeddingW617
+      inputs.targetTopCompactGlobalClosedEmbeddingBundle
+  shortExactFields := inputs.shortExactFields
+
+/- W617 ShortExact stable input: global closed embeddings drive W616's closed-map path. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsShortExactBundleW617
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingShortExactStableBundleW613) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605
+        inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+        inputs.shortExactFields.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW616
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsShortExactBundle_of_globalClosedEmbeddingW617
+      inputs)
+
+/-- W617 ShortExact route builds the ordinary stable input through W616 dominance. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsShortExactBundleW617
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingShortExactStableBundleW613) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW616
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsShortExactBundle_of_globalClosedEmbeddingW617
+      inputs)
+
+/-- The W617 ShortExact provider-narrowing dominance route produces a ready stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsShortExactBundleW617_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingShortExactStableBundleW613) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsShortExactBundleW617
+        inputs)).ready := by
+  exact
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW616_ready
+      (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsShortExactBundle_of_globalClosedEmbeddingW617
+        inputs)
+
+/-- Input names for the W617 global closed-embedding dominance route. -/
+def metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW617 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedEmbeddingProviderW525",
+    "global closed-embedding provider narrows to W527 rows through W581",
+    "closed-embedding rows dominate closed-map rows through W580",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs",
+    "MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW617_count :
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW617.length =
+      17 :=
+  rfl
+
+/-- Current checked W617 state for global closed-embedding dominance. -/
+structure MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW617 :
+    Type where
+  seed : String
+  declarations : List String
+  providerNarrowingResult : String
+  endpointStableCertificateResult : String
+  shortExactStableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W617 state. -/
+def
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteSupportStateW617 :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW617 where
+  seed := "w617-relation-fields-target-top-compact-global-closed-embedding-dominance-route"
+  declarations :=
+    ["metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundle_of_globalClosedEmbeddingW617",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsBundleW617",
+      "metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsEndpointBundle_of_globalClosedEmbeddingW617",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsEndpointBundleW617",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsEndpointBundleW617",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsEndpointBundleW617_ready",
+      "metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsShortExactBundle_of_globalClosedEmbeddingW617",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsShortExactBundleW617",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsShortExactBundleW617",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsShortExactBundleW617_ready",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW617",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW617_count"]
+  providerNarrowingResult :=
+    "proved: W525 global closed-embedding data supplies W615 target-top compact closed-embedding rows through W581"
+  endpointStableCertificateResult :=
+    "proved: global closed-embedding endpoint bundles feed the W616 closed-map endpoint stable-certificate path"
+  shortExactStableCertificateResult :=
+    "proved: global closed-embedding ShortExact bundles feed the W616 closed-map ShortExact stable-certificate path"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict-representative fixed-target localization data",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW617 :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW617 :=
+  currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteSupportStateW617
+
+theorem
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW617_productSuccess :
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW617.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -21586,6 +21812,46 @@ set_option linter.style.longLine false in
 #check currentMetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsDominanceRouteStateW616
 set_option linter.style.longLine false in
 #check currentMetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsDominanceRouteStateW616_productSuccess
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundle_of_globalClosedEmbeddingW617
+set_option linter.style.longLine false in
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsBundleW617
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsEndpointBundle_of_globalClosedEmbeddingW617
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsEndpointBundleW617
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsEndpointBundleW617
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsEndpointBundleW617_ready
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsShortExactBundle_of_globalClosedEmbeddingW617
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsShortExactBundleW617
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsShortExactBundleW617
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaClosedMapRowsShortExactBundleW617_ready
+set_option linter.style.longLine false in
+#check metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW617
+set_option linter.style.longLine false in
+#check metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceInputNamesW617_count
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteSupportStateW617
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW617
+set_option linter.style.longLine false in
+#check currentMetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingDominanceRouteStateW617_productSuccess
 
 end Checks
 
