@@ -36283,6 +36283,314 @@ theorem currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRouteStateW
       false :=
   rfl
 
+/--
+W684 closed-map-row bundle: W640 fixed-target WPP data plus the W682
+kernel/cokernel and direct-localization semantic route.
+-/
+structure
+    MetrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684 :
+    Type 2 where
+  fixedTargetBundle :
+    MetrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetBundleW640
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/--
+W684 closed-map-row transfer: the W640 fixed-target finite-shape transfer is
+fed by W682's direct-localization triangulated fields.
+-/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint) where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_targetSurjectiveCompactClosedMapRowsFixedTargetBundleW640
+      inputs.fixedTargetBundle
+  pretriangulated :=
+    metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+      inputs.directLocalization
+  triangulated := by
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+      metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+        inputs.directLocalization
+    exact
+      metrizableIsTriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+        inputs.directLocalization
+
+/-- W684 closed-map-row route builds ordinary stable input from fixed-target data. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+  exact
+    Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferForAvailable
+      (metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+        inputs)
+
+/-- The W684 closed-map-row fixed-target route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_ready
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+        inputs)).ready := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+  exact
+    Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferForAvailable_ready
+      (metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+        inputs)
+
+/--
+W684 packages the fixed-target closed-map-row route as an accepted stable
+bounded-derived infinity-category object.
+-/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+    (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+      inputs)
+
+/-- The W684 closed-map-row package is on the accepted stable-route branch. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_accepted
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+          inputs).certificate) =
+        true :=
+  (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    inputs).accepted
+
+/--
+W684 closed-embedding-row bundle: W640 fixed-target WPP data plus the W682
+kernel/cokernel and direct-localization semantic route.
+-/
+structure
+    MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684 :
+    Type 2 where
+  fixedTargetBundle :
+    MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetBundleW640
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/--
+W684 closed-embedding-row transfer: the W640 fixed-target finite-shape transfer is
+fed by W682's direct-localization triangulated fields.
+-/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint) where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetBundleW640
+      inputs.fixedTargetBundle
+  pretriangulated :=
+    metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+      inputs.directLocalization
+  triangulated := by
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+      metrizablePretriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+        inputs.directLocalization
+    exact
+      metrizableIsTriangulatedOfKernelCokernelHomotopyEquivDirectLocalizationW682
+        inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+        inputs.directLocalization
+
+/-- W684 closed-embedding-row route builds ordinary stable input from fixed-target data. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+  exact
+    Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferForAvailable
+      (metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+        inputs)
+
+/-- The W684 closed-embedding-row fixed-target route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_ready
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+        inputs)).ready := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    metrizableBoundedExactWeakEquivalenceLeftCalculus_of_kernelCokernelHomotopyEquivW682
+      inputs.hasHomology inputs.kernelCokernelTopology inputs.localizedRightAdjoint
+  exact
+    Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferForAvailable_ready
+      (metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+        inputs)
+
+/--
+W684 packages the fixed-target closed-embedding-row route as an accepted stable
+bounded-derived infinity-category object.
+-/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+    (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+      inputs)
+
+/-- The W684 closed-embedding-row package is on the accepted stable-route branch. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_accepted
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+          inputs).certificate) =
+        true :=
+  (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684
+    inputs).accepted
+
+/-- Input names for the W684 fixed-target kernel/cokernel direct-localization route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetInputNamesW684 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+    "fixed-target lift/fac/uniq packages for WalkingParallelPair diagrams and localization model",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetInputNamesW684_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetInputNamesW684.length =
+      11 :=
+  rfl
+
+/-- Current checked W684 state for the fixed-target accepted stable-category route. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetRouteStateW684 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapRowsAcceptedResult : String
+  closedEmbeddingRowsAcceptedResult : String
+  fixedTargetResult : String
+  removedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W684 state. -/
+def currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetRouteSupportStateW684 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetRouteStateW684 where
+  seed :=
+    "w684-fixed-target-kernel-cokernel-direct-localization-accepted-stable-route"
+  declarations :=
+    ["MetrizableWppTargetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684",
+      "metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684",
+      "metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684",
+      "metrizableStableCertificate_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedMapRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_accepted",
+      "MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684",
+      "metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684",
+      "metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684",
+      "metrizableStableCertificate_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_targetSurjectiveCompactClosedEmbeddingRowsFixedTargetKernelCokernelDirectLocalizationBundleW684_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetInputNamesW684",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetInputNamesW684_count"]
+  closedMapRowsAcceptedResult :=
+    "proved: W640 fixed-target closed-map rows feed the W682 kernel/cokernel direct-localization accepted stable route"
+  closedEmbeddingRowsAcceptedResult :=
+    "proved: W640 fixed-target closed-embedding rows feed the W682 kernel/cokernel direct-localization accepted stable route"
+  fixedTargetResult :=
+    "proved: the accepted stable route can use W640 fixed-target universal-property packages instead of normalized strict representatives"
+  removedInputs :=
+    ["normalized strict representatives for fixed-target localization",
+      "target and localization-model uniqueness as separate unbundled inputs"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct fixed-target lift/fac/uniq packages for the two WPP localization targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W668 kernel/cokernel-conditioned endpoint data including forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetRouteStateW684 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetRouteStateW684 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetRouteSupportStateW684
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetRouteStateW684_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryFixedTargetRouteStateW684.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
