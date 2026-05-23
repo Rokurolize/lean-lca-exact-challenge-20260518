@@ -18222,6 +18222,227 @@ theorem
       false :=
   rfl
 
+/--
+W609 row-dominance adapter: W607 relation-fields target-surjective compact
+closed-embedding rows also supply the corresponding closed-map-row bundle.
+-/
+def
+    metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_closedEmbeddingRowsW609
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW607) :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundleW607 where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetDifferenceSurjectiveProvider := inputs.targetDifferenceSurjectiveProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  closedMapRows :=
+    componentwiseClosedMapRowsProvider_of_closedEmbeddingRows_w580 inputs.closedEmbeddingRows
+  normalizedInputs := inputs.normalizedInputs
+
+/--
+W609 finite-shape route: a W607 closed-embedding-row bundle can run through the
+closed-map finite-shape transfer after row dominance.
+-/
+noncomputable def
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsBundleW609
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW607) :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs :=
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsBundleW607
+    (metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_closedEmbeddingRowsW609
+      inputs)
+
+/-- Convert a W607 closed-embedding endpoint bundle to the closed-map endpoint route. -/
+def
+    metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_closedEmbeddingRowsW609
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607) :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointStableBundleW607 where
+  relationFieldsTargetSurjectiveCompactBundle :=
+    metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_closedEmbeddingRowsW609
+      inputs.relationFieldsTargetSurjectiveCompactBundle
+  endpointFields := inputs.endpointFields
+
+/- W609 endpoint stable input: closed-embedding rows drive the closed-map path. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW609
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605
+        inputs.endpointFields.hasHomology inputs.endpointFields.endpointTopology
+        inputs.endpointFields.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607
+    (metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_closedEmbeddingRowsW609
+      inputs)
+
+/-- W609 endpoint route builds the ordinary stable input through closed-map dominance. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW609
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607
+    (metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_closedEmbeddingRowsW609
+      inputs)
+
+/-- The W609 endpoint dominance route produces a ready stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW609_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsEndpointStableBundleW607) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW609
+        inputs)).ready := by
+  exact
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundleW607_ready
+      (metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_closedEmbeddingRowsW609
+        inputs)
+
+/-- Convert a W608 closed-embedding ShortExact bundle to the closed-map ShortExact route. -/
+def
+    metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundle_of_closedEmbeddingRowsW609
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608) :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactStableBundleW608 where
+  relationFieldsTargetSurjectiveCompactBundle :=
+    metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_closedEmbeddingRowsW609
+      inputs.relationFieldsTargetSurjectiveCompactBundle
+  shortExactFields := inputs.shortExactFields
+
+/- W609 ShortExact stable input: closed-embedding rows drive the closed-map path. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW609
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605
+        inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+        inputs.shortExactFields.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608
+    (metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundle_of_closedEmbeddingRowsW609
+      inputs)
+
+/-- W609 ShortExact route builds the ordinary stable input through closed-map dominance. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW609
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608
+    (metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundle_of_closedEmbeddingRowsW609
+      inputs)
+
+/-- The W609 ShortExact dominance route produces a ready stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW609_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsShortExactStableBundleW608) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW609
+        inputs)).ready := by
+  exact
+    metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundleW608_ready
+      (metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundle_of_closedEmbeddingRowsW609
+        inputs)
+
+/-- Input names for the W609 closed-embedding dominance route. -/
+def metrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceInputNamesW609 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs",
+    "MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceInputNamesW609_count :
+    metrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceInputNamesW609.length =
+      15 :=
+  rfl
+
+/-- Current checked W609 state for closed-embedding-row dominance on W607/W608 routes. -/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteStateW609 :
+    Type where
+  seed : String
+  declarations : List String
+  rowDominanceResult : String
+  endpointStableCertificateResult : String
+  shortExactStableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W609 state. -/
+def
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteSupportStateW609 :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteStateW609
+    where
+  seed := "w609-relation-fields-target-surjective-compact-closed-embedding-dominance"
+  declarations :=
+    ["metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_closedEmbeddingRowsW609",
+      "metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsBundleW609",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_closedEmbeddingRowsW609",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW609",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW609",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW609_ready",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundle_of_closedEmbeddingRowsW609",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW609",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW609",
+      "metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW609_ready",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceInputNamesW609",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceInputNamesW609_count"]
+  rowDominanceResult :=
+    "proved: W527 closed-embedding rows supply W607 relation-fields target-surjective compact closed-map rows"
+  endpointStableCertificateResult :=
+    "proved: W607 closed-embedding endpoint bundles feed the closed-map endpoint stable-certificate path"
+  shortExactStableCertificateResult :=
+    "proved: W608 closed-embedding ShortExact bundles feed the closed-map ShortExact stable-certificate path"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct normalized strict-representative fixed-target localization data",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteStateW609 :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteStateW609 :=
+  currentMetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteSupportStateW609
+
+theorem
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteStateW609_productSuccess :
+    currentMetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteStateW609.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
@@ -19292,6 +19513,51 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableWppRelationFieldsTargetSurjectiveCompactShortExactRouteStateW608_productSuccess
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_closedEmbeddingRowsW609
+set_option linter.style.longLine false in
+#check
+  metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsBundleW609
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsEndpointBundle_of_closedEmbeddingRowsW609
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW609
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW609
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsEndpointBundleW609_ready
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsShortExactBundle_of_closedEmbeddingRowsW609
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW609
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW609
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingViaClosedMapRowsShortExactBundleW609_ready
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceInputNamesW609
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceInputNamesW609_count
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteSupportStateW609
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteStateW609
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingDominanceRouteStateW609_productSuccess
 
 end Checks
 
