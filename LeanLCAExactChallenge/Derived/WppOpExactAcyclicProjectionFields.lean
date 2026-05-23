@@ -24857,6 +24857,282 @@ theorem
       false :=
   rfl
 
+/--
+W639 composes W637's explicit global-provider narrowing with W638's
+homotopy-equivalence/localized-right-adjoint semantic bridge for closed maps.
+-/
+structure
+    MetrizableWppTargetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  targetSurjectiveCompactGlobalClosedMapBundle :
+    MetrizableWppTargetSurjectiveCompactGlobalClosedMapNormalizedBundleW630
+  homotopyEquiv :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0}
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert W639 global closed-map data to the W638 row-level localized-right-adjoint bundle. -/
+def
+    metrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedMapW639
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639) :
+    MetrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointStableBundleW638
+    where
+  targetSurjectiveCompactClosedMapRowsBundle :=
+    metrizableWppTargetSurjectiveCompactClosedMapRowsNormalizedBundle_of_globalClosedMapW637
+      inputs.targetSurjectiveCompactGlobalClosedMapBundle
+  homotopyEquiv := inputs.homotopyEquiv
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W639 stable-semantic input for W630 global closed maps through the W638 bridge. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        inputs.homotopyEquiv inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW638
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedMapW639
+      inputs)
+
+/-- W639 global closed-map route builds the ordinary stable input through W638. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW638
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedMapW639
+      inputs)
+
+/-- The W639 global closed-map route produces a ready W528 certificate through W638. -/
+theorem
+    metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639
+        inputs)).ready :=
+  metrizableStableCertificate_of_targetSurjectiveCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW638_ready
+    (metrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedMapW639
+      inputs)
+
+/--
+W639 composes W637's explicit global-provider narrowing with W638's
+homotopy-equivalence/localized-right-adjoint semantic bridge for closed
+embeddings.
+-/
+structure
+    MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  targetSurjectiveCompactGlobalClosedEmbeddingBundle :
+    MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedBundleW631
+  homotopyEquiv :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0}
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert W639 global closed-embedding data to the W638 row-level localized-right-adjoint bundle. -/
+def
+    metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedEmbeddingW639
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639) :
+    MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointStableBundleW638
+    where
+  targetSurjectiveCompactClosedEmbeddingRowsBundle :=
+    metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundle_of_globalClosedEmbeddingW637
+      inputs.targetSurjectiveCompactGlobalClosedEmbeddingBundle
+  homotopyEquiv := inputs.homotopyEquiv
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W639 stable-semantic input for W631 global closed embeddings through the W638 bridge. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        inputs.homotopyEquiv inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW638
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedEmbeddingW639
+      inputs)
+
+/-- W639 global closed-embedding route builds the ordinary stable input through W638. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW638
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedEmbeddingW639
+      inputs)
+
+/-- The W639 global closed-embedding route produces a ready W528 certificate through W638. -/
+theorem
+    metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639
+        inputs)).ready :=
+  metrizableStableCertificate_of_targetSurjectiveCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW638_ready
+    (metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedEmbeddingW639
+      inputs)
+
+/-- Input names for the W639 explicit global-provider localized-right-adjoint routes. -/
+def
+    metrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointInputNamesW639 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "global closed-map provider narrows to W606 rows through W637",
+    "global closed-embedding provider narrows to W606 rows through W637",
+    "target-difference surjectivity supplies the W600 target-relation-top provider",
+    "compact target codomains supply the W597 target compact-space provider",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclic MetrizableLCA is invariant under homotopy equivalences",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointInputNamesW639_count :
+    metrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointInputNamesW639.length =
+      17 :=
+  rfl
+
+/-- Current checked W639 state for explicit global-provider localized-right-adjoint routes. -/
+structure
+    MetrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointRouteStateW639 :
+    Type where
+  seed : String
+  declarations : List String
+  globalClosedMapProviderNarrowingResult : String
+  globalClosedEmbeddingProviderNarrowingResult : String
+  semanticBridgeResult : String
+  globalClosedMapStableRouteResult : String
+  globalClosedEmbeddingStableRouteResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W639 state. -/
+def
+    currentMetrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointRouteSupportStateW639 :
+    MetrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointRouteStateW639
+    where
+  seed :=
+    "w639-target-surjective-compact-explicit-global-provider-localized-right-adjoint-route"
+  declarations :=
+    ["MetrizableWppTargetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639",
+      "metrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedMapW639",
+      "metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639",
+      "metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639",
+      "metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedMapDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639_ready",
+      "MetrizableWppTargetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointStableBundleW639",
+      "metrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundle_of_globalClosedEmbeddingW639",
+      "metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639",
+      "metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639",
+      "metrizableStableCertificate_of_targetSurjectiveCompactGlobalClosedEmbeddingDirectRowsHomotopyEquivLocalizedRightAdjointBundleW639_ready",
+      "metrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointInputNamesW639",
+      "metrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointInputNamesW639_count"]
+  globalClosedMapProviderNarrowingResult :=
+    "proved: W630 explicit target-surjective compact global closed-map data narrow to W606 closed-map rows through W637"
+  globalClosedEmbeddingProviderNarrowingResult :=
+    "proved: W631 explicit target-surjective compact global closed-embedding data narrow to W606 closed-embedding rows through W637"
+  semanticBridgeResult :=
+    "proved: W639 composes W637 global narrowing with W638 homotopy-equivalence/localized-right-adjoint semantic fields"
+  globalClosedMapStableRouteResult :=
+    "proved: W630 global closed-map data feed the W638 localized-right-adjoint stable route"
+  globalClosedEmbeddingStableRouteResult :=
+    "proved: W631 global closed-embedding data feed the W638 localized-right-adjoint stable route"
+  stableCertificateResult :=
+    "proved: both W639 explicit global-provider variants produce ready W528 stable certificates through W638"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict-representative fixed-target localization data",
+      "prove exactAcyclic MetrizableLCA is invariant under homotopy equivalences",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointRouteStateW639 :
+    MetrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointRouteStateW639 :=
+  currentMetrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointRouteSupportStateW639
+
+theorem
+    currentMetrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointRouteStateW639_productSuccess :
+    currentMetrizableWppTargetSurjectiveCompactGlobalProvidersDirectRowsHomotopyEquivLocalizedRightAdjointRouteStateW639.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
