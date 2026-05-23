@@ -5832,6 +5832,26 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653_productSuccess
+  #check
+    Dbounded.MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+  #check
+    Dbounded.metrizableBoundedExactWeakEquivalence_isCompatibleWithTriangulation_of_triangleCompletionW654
+  #check
+    Dbounded.metrizablePretriangulatedOfDirectLocalizationCompatibilityW654
+  #check
+    Dbounded.metrizableIsTriangulatedOfDirectLocalizationCompatibilityW654
+  #check
+    Dbounded.metrizableDirectLocalizationTriangulatedInputNamesW654
+  #check
+    Dbounded.metrizableDirectLocalizationTriangulatedInputNamesW654_count
+  #check
+    Dbounded.MetrizableDirectLocalizationTriangulatedRouteStateW654
+  #check
+    Dbounded.currentMetrizableDirectLocalizationTriangulatedRouteSupportStateW654
+  #check
+    Dbounded.currentMetrizableDirectLocalizationTriangulatedRouteStateW654
+  #check
+    Dbounded.currentMetrizableDirectLocalizationTriangulatedRouteStateW654_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

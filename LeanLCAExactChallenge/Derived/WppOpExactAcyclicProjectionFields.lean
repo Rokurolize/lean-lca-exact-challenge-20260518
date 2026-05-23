@@ -29314,6 +29314,163 @@ theorem currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653_prod
       false :=
   rfl
 
+/--
+W654 source-side triangle-completion input for direct bounded exact weak equivalences.
+
+This is the MetrizableLCA-specialized shape required by mathlib's triangulated
+localization API: a compatible square between distinguished triangles whose first two
+vertical arrows are direct bounded exact weak equivalences must extend to a third direct
+bounded exact weak equivalence.
+-/
+abbrev MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+    [Preadditive (BoundedComplexCategory MetrizableLCA.{0})]
+    [HasZeroObject (BoundedComplexCategory MetrizableLCA.{0})]
+    [HasShift (BoundedComplexCategory MetrizableLCA.{0}) ℤ]
+    [∀ n : ℤ, (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive]
+    [Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})] : Prop :=
+  ∀ (T₁ T₂ : Pretriangulated.Triangle
+      (BoundedComplexCategory MetrizableLCA.{0})),
+    T₁ ∈ distTriang (BoundedComplexCategory MetrizableLCA.{0}) →
+    T₂ ∈ distTriang (BoundedComplexCategory MetrizableLCA.{0}) →
+    ∀ (a : T₁.obj₁ ⟶ T₂.obj₁) (b : T₁.obj₂ ⟶ T₂.obj₂),
+      boundedExactWeakEquivalence MetrizableLCA.{0} a →
+      boundedExactWeakEquivalence MetrizableLCA.{0} b →
+      T₁.mor₁ ≫ b = a ≫ T₂.mor₁ →
+      ∃ (c : T₁.obj₃ ⟶ T₂.obj₃),
+        ∃ (_ : boundedExactWeakEquivalence MetrizableLCA.{0} c),
+          (T₁.mor₂ ≫ c = b ≫ T₂.mor₂) ∧
+          (T₁.mor₃ ≫ a⟦(1 : ℤ)⟧' = c ≫ T₂.mor₃)
+
+/-- W654 turns the source-side triangle-completion input into compatibility. -/
+theorem
+    metrizableBoundedExactWeakEquivalence_isCompatibleWithTriangulation_of_triangleCompletionW654
+    [Preadditive (BoundedComplexCategory MetrizableLCA.{0})]
+    [HasZeroObject (BoundedComplexCategory MetrizableLCA.{0})]
+    [HasShift (BoundedComplexCategory MetrizableLCA.{0}) ℤ]
+    [∀ n : ℤ, (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive]
+    [Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})]
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithShift ℤ]
+    (complete :
+      MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654) :
+    (boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithTriangulation := by
+  exact
+    { compatible_with_triangulation := by
+        intro T₁ T₂ hT₁ hT₂ a b ha hb hcomm
+        exact complete T₁ T₂ hT₁ hT₂ a b ha hb hcomm }
+
+/--
+W654 conditional direct-localization pretriangulated structure for `Dbounded MetrizableLCA`.
+-/
+noncomputable abbrev
+    metrizablePretriangulatedOfDirectLocalizationCompatibilityW654
+    [Preadditive (BoundedComplexCategory MetrizableLCA.{0})]
+    [HasZeroObject (BoundedComplexCategory MetrizableLCA.{0})]
+    [HasShift (BoundedComplexCategory MetrizableLCA.{0}) ℤ]
+    [∀ n : ℤ, (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive]
+    [Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})]
+    [Preadditive (Dbounded MetrizableLCA.{0})]
+    [HasZeroObject (Dbounded MetrizableLCA.{0})]
+    [HasShift (Dbounded MetrizableLCA.{0}) ℤ]
+    [∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive]
+    [(Dbounded.localization MetrizableLCA.{0}).CommShift ℤ]
+    [(Dbounded.localization MetrizableLCA.{0}).Additive]
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithTriangulation] :
+    Pretriangulated (Dbounded MetrizableLCA.{0}) := by
+  let W : MorphismProperty (BoundedComplexCategory MetrizableLCA.{0}) :=
+    boundedExactWeakEquivalence MetrizableLCA.{0}
+  exact Triangulated.Localization.pretriangulated
+    (Dbounded.localization MetrizableLCA.{0}) W
+
+/--
+W654 conditional direct-localization triangulated structure for `Dbounded MetrizableLCA`.
+-/
+noncomputable abbrev
+    metrizableIsTriangulatedOfDirectLocalizationCompatibilityW654
+    [Preadditive (BoundedComplexCategory MetrizableLCA.{0})]
+    [HasZeroObject (BoundedComplexCategory MetrizableLCA.{0})]
+    [HasShift (BoundedComplexCategory MetrizableLCA.{0}) ℤ]
+    [∀ n : ℤ, (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive]
+    [Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})]
+    [IsTriangulated (BoundedComplexCategory MetrizableLCA.{0})]
+    [Preadditive (Dbounded MetrizableLCA.{0})]
+    [HasZeroObject (Dbounded MetrizableLCA.{0})]
+    [HasShift (Dbounded MetrizableLCA.{0}) ℤ]
+    [∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive]
+    [(Dbounded.localization MetrizableLCA.{0}).CommShift ℤ]
+    [(Dbounded.localization MetrizableLCA.{0}).Additive]
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    [(boundedExactWeakEquivalence MetrizableLCA.{0}).IsCompatibleWithTriangulation] :
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+      metrizablePretriangulatedOfDirectLocalizationCompatibilityW654
+    IsTriangulated (Dbounded MetrizableLCA.{0}) := by
+  let W : MorphismProperty (BoundedComplexCategory MetrizableLCA.{0}) :=
+    boundedExactWeakEquivalence MetrizableLCA.{0}
+  letI : Pretriangulated (Dbounded MetrizableLCA.{0}) :=
+    metrizablePretriangulatedOfDirectLocalizationCompatibilityW654
+  haveI : (Dbounded.localization MetrizableLCA.{0}).IsTriangulated :=
+    Triangulated.Localization.isTriangulated_functor
+      (Dbounded.localization MetrizableLCA.{0}) W
+  exact Triangulated.Localization.isTriangulated
+    (Dbounded.localization MetrizableLCA.{0}) W
+
+/-- Input names for the W654 direct-localization triangulated bridge. -/
+def metrizableDirectLocalizationTriangulatedInputNamesW654 :
+    List String :=
+  ["ordinary triangulated structure on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA triangle-completion compatibility",
+    "boundedExactWeakEquivalence MetrizableLCA left calculus of fractions",
+    "localized additive and shift infrastructure for Dbounded MetrizableLCA"]
+
+theorem metrizableDirectLocalizationTriangulatedInputNamesW654_count :
+    metrizableDirectLocalizationTriangulatedInputNamesW654.length = 4 :=
+  rfl
+
+/-- Current checked W654 state for direct-localization triangulated reduction. -/
+structure MetrizableDirectLocalizationTriangulatedRouteStateW654 :
+    Type where
+  seed : String
+  declarations : List String
+  compatibilityResult : String
+  pretriangulatedResult : String
+  triangulatedResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W654 state. -/
+def currentMetrizableDirectLocalizationTriangulatedRouteSupportStateW654 :
+    MetrizableDirectLocalizationTriangulatedRouteStateW654 where
+  seed := "w654-direct-localization-triangulated-route"
+  declarations :=
+    ["MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654",
+      "metrizableBoundedExactWeakEquivalence_isCompatibleWithTriangulation_of_triangleCompletionW654",
+      "metrizablePretriangulatedOfDirectLocalizationCompatibilityW654",
+      "metrizableIsTriangulatedOfDirectLocalizationCompatibilityW654",
+      "metrizableDirectLocalizationTriangulatedInputNamesW654",
+      "metrizableDirectLocalizationTriangulatedInputNamesW654_count"]
+  compatibilityResult :=
+    "proved: source-side triangle completion supplies boundedExactWeakEquivalence triangulation compatibility"
+  pretriangulatedResult :=
+    "proved: mathlib localization yields Pretriangulated (Dbounded MetrizableLCA) from direct compatibility hypotheses"
+  triangulatedResult :=
+    "proved: mathlib localization yields IsTriangulated (Dbounded MetrizableLCA) from direct compatibility hypotheses"
+  remainingInputs :=
+    ["construct ordinary triangulated structure on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA triangle-completion compatibility",
+      "construct boundedExactWeakEquivalence MetrizableLCA left calculus of fractions",
+      "construct finite limits and finite colimits for Dbounded MetrizableLCA"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableDirectLocalizationTriangulatedRouteStateW654 :
+    MetrizableDirectLocalizationTriangulatedRouteStateW654 :=
+  currentMetrizableDirectLocalizationTriangulatedRouteSupportStateW654
+
+theorem currentMetrizableDirectLocalizationTriangulatedRouteStateW654_productSuccess :
+    currentMetrizableDirectLocalizationTriangulatedRouteStateW654.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
