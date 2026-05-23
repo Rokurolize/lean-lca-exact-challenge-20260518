@@ -6094,6 +6094,50 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660
   #check
     Dbounded.currentMetrizableWppDirectFiniteShapeHomotopyClosed2RouteStateW660_productSuccess
+  #check
+    Dbounded.MetrizableExactAcyclicHomotopyObjectTrianglehIso13RealizationInputW661
+  #check
+    Dbounded.metrizableExactAcyclicHomotopyObjectClosed2_of_trianglehIso13RealizationW661
+  #check
+    Dbounded.MetrizableEndpointDirectLocalizationTriangulatedRealizationPayloadW661
+  #check
+    Dbounded.metrizableEndpointDirectLocalizationTriangulatedHomotopyClosed2Payload_of_realizationW661
+  #check
+    Dbounded.metrizableEndpointStableTriangulatedFields_of_realizationDirectLocalizationW661
+  #check
+    Dbounded.MetrizableShortExactDirectLocalizationTriangulatedRealizationPayloadW661
+  #check
+    Dbounded.metrizableShortExactDirectLocalizationTriangulatedHomotopyClosed2Payload_of_realizationW661
+  #check
+    Dbounded.metrizableShortExactStableTriangulatedFields_of_realizationDirectLocalizationW661
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeEndpointDirectLocalizationRealizationBundleW661
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeEndpointDirectLocalizationHomotopyClosed2Bundle_of_realizationW661
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointDirectLocalizationRealizationBundleW661
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointDirectLocalizationRealizationBundleW661_ready
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeShortExactDirectLocalizationRealizationBundleW661
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeShortExactDirectLocalizationHomotopyClosed2Bundle_of_realizationW661
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactDirectLocalizationRealizationBundleW661
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactDirectLocalizationRealizationBundleW661_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeRealizationInputNamesW661
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeRealizationInputNamesW661_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeRealizationRouteStateW661
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeRealizationRouteSupportStateW661
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeRealizationRouteStateW661
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeRealizationRouteStateW661_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
