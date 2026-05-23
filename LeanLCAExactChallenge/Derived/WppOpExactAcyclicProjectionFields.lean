@@ -27943,6 +27943,286 @@ theorem
       false :=
   rfl
 
+/--
+W648 generic endpoint bundle: once a finite-shape WPP transfer input is known,
+the W605 endpoint fields are enough to build the stable semantic route.
+-/
+structure MetrizableWppFiniteShapeEndpointStableBundleW648
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  finiteShapeInputs :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+  endpointFields :
+    MetrizableEndpointStableTriangulatedFieldsW607
+
+/-- W648 generic endpoint stable-semantic input. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_finiteShapeEndpointBundleW648
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppFiniteShapeEndpointStableBundleW648) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605
+        inputs.endpointFields.hasHomology inputs.endpointFields.endpointTopology
+        inputs.endpointFields.localizedRightAdjoint) where
+  transferInputs := inputs.finiteShapeInputs
+  pretriangulated := inputs.endpointFields.pretriangulated
+  triangulated := inputs.endpointFields.triangulated
+
+/-- W648 generic endpoint route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppFiniteShapeEndpointStableBundleW648) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfEndpointWppTransfer_w605
+    inputs.endpointFields.hasHomology inputs.endpointFields.endpointTopology
+    inputs.endpointFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_finiteShapeEndpointBundleW648
+      inputs)
+
+/-- The W648 generic endpoint route produces a ready W528 certificate. -/
+theorem metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppFiniteShapeEndpointStableBundleW648) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+        inputs)).ready :=
+  Dbounded.stableCertificateOfEndpointWppTransfer_w605_ready
+    inputs.endpointFields.hasHomology inputs.endpointFields.endpointTopology
+    inputs.endpointFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_finiteShapeEndpointBundleW648
+      inputs)
+
+/--
+W648 generic ShortExact bundle: once a finite-shape WPP transfer input is known,
+the W605 ShortExact fields are enough to build the stable semantic route.
+-/
+structure MetrizableWppFiniteShapeShortExactStableBundleW648
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  finiteShapeInputs :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+  shortExactFields :
+    MetrizableShortExactStableTriangulatedFieldsW608
+
+/-- W648 generic ShortExact stable-semantic input. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_finiteShapeShortExactBundleW648
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppFiniteShapeShortExactStableBundleW648) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605
+        inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+        inputs.shortExactFields.localizedRightAdjoint) where
+  transferInputs := inputs.finiteShapeInputs
+  pretriangulated := inputs.shortExactFields.pretriangulated
+  triangulated := inputs.shortExactFields.triangulated
+
+/-- W648 generic ShortExact route builds the ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppFiniteShapeShortExactStableBundleW648) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  Dbounded.metrizableOrdinaryStableSemanticInputOfShortExactWppTransfer_w605
+    inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+    inputs.shortExactFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_finiteShapeShortExactBundleW648
+      inputs)
+
+/-- The W648 generic ShortExact route produces a ready W528 certificate. -/
+theorem metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppFiniteShapeShortExactStableBundleW648) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+        inputs)).ready :=
+  Dbounded.stableCertificateOfShortExactWppTransfer_w605_ready
+    inputs.shortExactFields.hasHomology inputs.shortExactFields.shortExactTopology
+    inputs.shortExactFields.localizedRightAdjoint
+    (metrizableWppTransferStableSemanticInputs_of_finiteShapeShortExactBundleW648
+      inputs)
+
+/-- W648 adapts the W647 normalized fixed-target closed-map endpoint bundle to the generic route. -/
+def
+    metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointBundleW648
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStableBundleW647) :
+    MetrizableWppFiniteShapeEndpointStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW647
+      inputs.normalizedFixedTargetBundle
+  endpointFields := inputs.endpointFields
+
+/-- W648 generic endpoint certificate for the W647 normalized fixed-target closed-map route. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointGenericBundleW648_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStableBundleW647) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+        (metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointBundleW648
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+    (metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointBundleW648
+      inputs)
+
+/-- W648 adapts the W647 normalized fixed-target closed-map ShortExact bundle to the generic route. -/
+def
+    metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetShortExactBundleW648
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetShortExactStableBundleW647) :
+    MetrizableWppFiniteShapeShortExactStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW647
+      inputs.normalizedFixedTargetBundle
+  shortExactFields := inputs.shortExactFields
+
+/-- W648 generic ShortExact certificate for the W647 normalized fixed-target closed-map route. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetShortExactGenericBundleW648_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetShortExactStableBundleW647) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+        (metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetShortExactBundleW648
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+    (metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetShortExactBundleW648
+      inputs)
+
+/-- W648 adapts the W647 normalized fixed-target closed-embedding endpoint bundle to the generic route. -/
+def
+    metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointBundleW648
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStableBundleW647) :
+    MetrizableWppFiniteShapeEndpointStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW647
+      inputs.normalizedFixedTargetBundle
+  endpointFields := inputs.endpointFields
+
+/-- W648 generic endpoint certificate for the W647 normalized fixed-target closed-embedding route. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointGenericBundleW648_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStableBundleW647) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+        (metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointBundleW648
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+    (metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointBundleW648
+      inputs)
+
+/-- W648 adapts the W647 normalized fixed-target closed-embedding ShortExact bundle to the generic route. -/
+def
+    metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetShortExactBundleW648
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetShortExactStableBundleW647) :
+    MetrizableWppFiniteShapeShortExactStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW647
+      inputs.normalizedFixedTargetBundle
+  shortExactFields := inputs.shortExactFields
+
+/-- W648 generic ShortExact certificate for the W647 normalized fixed-target closed-embedding route. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetShortExactGenericBundleW648_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetShortExactStableBundleW647) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+        (metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetShortExactBundleW648
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+    (metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetShortExactBundleW648
+      inputs)
+
+/-- Input names for the W648 generic finite-shape endpoint/ShortExact route. -/
+def metrizableWppGenericFiniteShapeEndpointShortExactInputNamesW648 :
+    List String :=
+  ["MetrizableWalkingParallelPairFiniteShapeTransferInputs",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs or MetrizableExactAtShortExactTopologyInputs",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableWppGenericFiniteShapeEndpointShortExactInputNamesW648_count :
+    metrizableWppGenericFiniteShapeEndpointShortExactInputNamesW648.length = 7 :=
+  rfl
+
+/-- Current checked W648 state for the generic finite-shape endpoint/ShortExact route. -/
+structure MetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648 :
+    Type where
+  seed : String
+  declarations : List String
+  genericEndpointRouteResult : String
+  genericShortExactRouteResult : String
+  normalizedFixedTargetReuseResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W648 state. -/
+def currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteSupportStateW648 :
+    MetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648 where
+  seed := "w648-generic-finite-shape-endpoint-shortexact-route"
+  declarations :=
+    ["MetrizableWppFiniteShapeEndpointStableBundleW648",
+      "metrizableWppTransferStableSemanticInputs_of_finiteShapeEndpointBundleW648",
+      "metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648",
+      "metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready",
+      "MetrizableWppFiniteShapeShortExactStableBundleW648",
+      "metrizableWppTransferStableSemanticInputs_of_finiteShapeShortExactBundleW648",
+      "metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648",
+      "metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready",
+      "metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointBundleW648",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointGenericBundleW648_ready",
+      "metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetShortExactBundleW648",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetShortExactGenericBundleW648_ready",
+      "metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointBundleW648",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointGenericBundleW648_ready",
+      "metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetShortExactBundleW648",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetShortExactGenericBundleW648_ready",
+      "metrizableWppGenericFiniteShapeEndpointShortExactInputNamesW648",
+      "metrizableWppGenericFiniteShapeEndpointShortExactInputNamesW648_count"]
+  genericEndpointRouteResult :=
+    "proved: any finite-shape WPP transfer input feeds the W605 endpoint stable-certificate path"
+  genericShortExactRouteResult :=
+    "proved: any finite-shape WPP transfer input feeds the W605 ShortExact stable-certificate path"
+  normalizedFixedTargetReuseResult :=
+    "proved: W647 normalized fixed-target global-provider bundles reuse the generic finite-shape endpoint/ShortExact adapters"
+  stableCertificateResult :=
+    "proved: W648 centralizes the endpoint/ShortExact stable certificate boilerplate for future finite-shape WPP routes"
+  remainingInputs :=
+    ["construct concrete finite-shape WPP transfer inputs for the final call site",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648 :
+    MetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648 :=
+  currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteSupportStateW648
+
+theorem currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648_productSuccess :
+    currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows

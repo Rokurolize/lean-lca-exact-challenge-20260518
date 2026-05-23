@@ -5606,13 +5606,57 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetEndpointShortExactRouteStateW647
 #check
   Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetEndpointShortExactRouteSupportStateW647
-#check
-  Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetEndpointShortExactRouteStateW647
-#check
-  Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetEndpointShortExactRouteStateW647_productSuccess
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetEndpointShortExactRouteStateW647
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalProvidersNormalizedFixedTargetEndpointShortExactRouteStateW647_productSuccess
+  #check
+    Dbounded.MetrizableWppFiniteShapeEndpointStableBundleW648
+  #check
+    Dbounded.metrizableWppTransferStableSemanticInputs_of_finiteShapeEndpointBundleW648
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+  #check
+    Dbounded.metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+  #check
+    Dbounded.MetrizableWppFiniteShapeShortExactStableBundleW648
+  #check
+    Dbounded.metrizableWppTransferStableSemanticInputs_of_finiteShapeShortExactBundleW648
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+  #check
+    Dbounded.metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointBundleW648
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointGenericBundleW648_ready
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetShortExactBundleW648
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetShortExactGenericBundleW648_ready
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointBundleW648
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointGenericBundleW648_ready
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetShortExactBundleW648
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetShortExactGenericBundleW648_ready
+  #check
+    Dbounded.metrizableWppGenericFiniteShapeEndpointShortExactInputNamesW648
+  #check
+    Dbounded.metrizableWppGenericFiniteShapeEndpointShortExactInputNamesW648_count
+  #check
+    Dbounded.MetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648
+  #check
+    Dbounded.currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteSupportStateW648
+  #check
+    Dbounded.currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648
+  #check
+    Dbounded.currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648_productSuccess
 
-noncomputable example : SSet.QCat :=
-  BoundedDerivedInfinityCategory (C := MetrizableLCA)
+  noncomputable example : SSet.QCat :=
+    BoundedDerivedInfinityCategory (C := MetrizableLCA)
 
 noncomputable example :
     SSet.Quasicategory (Dbounded.infinityNerve (C := MetrizableLCA)) :=
