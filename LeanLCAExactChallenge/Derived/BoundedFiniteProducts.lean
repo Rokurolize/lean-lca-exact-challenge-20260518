@@ -1161,6 +1161,166 @@ theorem Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferHomotop
         inputs)).ready := by
   exact Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready _
 
+/-- W605 endpoint route to the left-calculus semantic-field record. -/
+noncomputable def Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    Dbounded.MetrizableLeftCalculusSemanticFields := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_endpointTopology_w604 hasHomology I R
+  exact Dbounded.metrizableLeftCalculusSemanticFields
+
+/-- W605 ShortExact route to the left-calculus semantic-field record. -/
+noncomputable def Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}) :
+    Dbounded.MetrizableLeftCalculusSemanticFields := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_shortExactTopology_w604 hasHomology I R
+  exact Dbounded.metrizableLeftCalculusSemanticFields
+
+/-- W605 endpoint route: W604 direct left calculus plus WPP transfer gives stable semantics. -/
+noncomputable def Dbounded.metrizableOrdinaryStableSemanticInputOfEndpointWppTransfer_w605
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0})
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        (Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605 hasHomology I R)) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_endpointTopology_w604 hasHomology I R
+  exact Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields
+    (Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605 hasHomology I R)
+    (Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+      inputs)
+
+/-- W605 ShortExact route: W604 direct left calculus plus WPP transfer gives stable semantics. -/
+noncomputable def Dbounded.metrizableOrdinaryStableSemanticInputOfShortExactWppTransfer_w605
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0})
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        (Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605 hasHomology I R)) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    Dbounded.leftCalculus_of_shortExactTopology_w604 hasHomology I R
+  exact Dbounded.metrizableOrdinaryStableSemanticInputOfLeftCalculusFields
+    (Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605 hasHomology I R)
+    (Dbounded.metrizableRemainingStableSemanticFieldsOfWalkingParallelPairTransferForAvailable
+      inputs)
+
+/-- W605 endpoint route produces a ready stable certificate. -/
+theorem Dbounded.stableCertificateOfEndpointWppTransfer_w605_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtEndpointStrictTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0})
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        (Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605 hasHomology I R)) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfEndpointWppTransfer_w605
+        hasHomology I R inputs)).ready := by
+  exact Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready _
+
+/-- W605 ShortExact route produces a ready stable certificate. -/
+theorem Dbounded.stableCertificateOfShortExactWppTransfer_w605_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (hasHomology :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i)
+    (I : MetrizableExactAtShortExactTopologyInputs)
+    (R : BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0})
+    (inputs :
+      Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+        (Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605 hasHomology I R)) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (Dbounded.metrizableOrdinaryStableSemanticInputOfShortExactWppTransfer_w605
+        hasHomology I R inputs)).ready := by
+  exact Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready _
+
+/-- W605 input names after composing endpoint calculus with WPP transfer. -/
+def Dbounded.metrizableEndpointWppTransferStableInputNamesW605 : List String :=
+  ["homology exists for all MetrizableLCA cochain complexes in every degree",
+    "W602 endpoint-epi or ShortExact exact-at topology data",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableWalkingParallelPairTransferStableSemanticInputs"]
+
+theorem Dbounded.metrizableEndpointWppTransferStableInputNamesW605_count :
+    Dbounded.metrizableEndpointWppTransferStableInputNamesW605.length = 5 :=
+  rfl
+
+/-- W605 route names for endpoint calculus plus WPP-transfer stable certificates. -/
+def Dbounded.metrizableEndpointWppTransferStableRouteNamesW605 : List String :=
+  ["Dbounded.metrizableOrdinaryStableSemanticInputOfEndpointWppTransfer_w605",
+    "Dbounded.metrizableOrdinaryStableSemanticInputOfShortExactWppTransfer_w605",
+    "Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605",
+    "Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605",
+    "Dbounded.stableCertificateOfEndpointWppTransfer_w605_ready",
+    "Dbounded.stableCertificateOfShortExactWppTransfer_w605_ready"]
+
+theorem Dbounded.metrizableEndpointWppTransferStableRouteNamesW605_count :
+    Dbounded.metrizableEndpointWppTransferStableRouteNamesW605.length = 6 :=
+  rfl
+
+/-- Current checked W605 state for endpoint calculus plus WPP transfer. -/
+structure Dbounded.MetrizableEndpointWppTransferStableRouteStateW605 : Type where
+  seed : String
+  declarations : List String
+  stableInputResult : String
+  certificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W605 state. -/
+def Dbounded.currentMetrizableEndpointWppTransferStableRouteSupportStateW605 :
+    Dbounded.MetrizableEndpointWppTransferStableRouteStateW605 where
+  seed := "w605-endpoint-calculus-wpp-transfer-stable-certificate"
+  declarations :=
+    ["Dbounded.metrizableLeftCalculusFieldsOfEndpoint_w605",
+      "Dbounded.metrizableLeftCalculusFieldsOfShortExact_w605",
+      "Dbounded.metrizableOrdinaryStableSemanticInputOfEndpointWppTransfer_w605",
+      "Dbounded.metrizableOrdinaryStableSemanticInputOfShortExactWppTransfer_w605",
+      "Dbounded.stableCertificateOfEndpointWppTransfer_w605_ready",
+      "Dbounded.stableCertificateOfShortExactWppTransfer_w605_ready",
+      "Dbounded.metrizableEndpointWppTransferStableInputNamesW605",
+      "Dbounded.metrizableEndpointWppTransferStableInputNamesW605_count",
+      "Dbounded.metrizableEndpointWppTransferStableRouteNamesW605",
+      "Dbounded.metrizableEndpointWppTransferStableRouteNamesW605_count"]
+  stableInputResult :=
+    "proved: W604 endpoint left calculus plus WPP transfer supplies ordinary stable semantics"
+  certificateResult :=
+    "proved: endpoint or ShortExact WPP transfer routes produce ready stable certificates"
+  remainingInputs :=
+    ["construct W602 endpoint or ShortExact data and global homology existence",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct concrete WPP transfer stable semantic inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev Dbounded.currentMetrizableEndpointWppTransferStableRouteStateW605 :
+    Dbounded.MetrizableEndpointWppTransferStableRouteStateW605 :=
+  Dbounded.currentMetrizableEndpointWppTransferStableRouteSupportStateW605
+
+theorem Dbounded.currentMetrizableEndpointWppTransferStableRouteStateW605_productSuccess :
+    Dbounded.currentMetrizableEndpointWppTransferStableRouteStateW605.productSuccessClaimed =
+      false :=
+  rfl
+
 /-- Field names remaining after W530 plus finite-product finite-(co)limit reduction. -/
 def Dbounded.metrizablePostFiniteLimitColimitRemainingFieldNames : List String :=
   ["HasEqualizers (Dbounded MetrizableLCA)", "HasCoequalizers (Dbounded MetrizableLCA)",
