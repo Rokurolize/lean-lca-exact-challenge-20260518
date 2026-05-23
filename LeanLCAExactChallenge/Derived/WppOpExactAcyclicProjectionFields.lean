@@ -22990,6 +22990,252 @@ theorem
       false :=
   rfl
 
+/--
+W632 upgrades the W606 explicit target-surjective compact row-provider bundles
+from endpoint-style routes to the W600 homotopy/Verdier row routes.
+-/
+structure
+    MetrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedStableBundleW632
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Type 1 where
+  targetSurjectiveCompactClosedMapRowsBundle :
+    MetrizableWppTargetSurjectiveCompactClosedMapRowsNormalizedBundleW606
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert W632 closed-map-row data to the W600 split top-target compact-space stable bundle. -/
+def
+    metrizableWppSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW632
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedStableBundleW632) :
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundleW600
+    where
+  splitTopTargetBundle :=
+    metrizableWppSplitTopTargetCompactSpaceClosedMapRowsNormalizedBundle_of_targetSurjectiveCompactW606
+      inputs.targetSurjectiveCompactClosedMapRowsBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W632 stable-semantic input for explicit target-surjective compact closed-map rows. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedMapRowsHomotopyIsoClosedBundleW632
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedStableBundleW632) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed :=
+  metrizableWppTransferStableSemanticInputs_of_splitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedBundleW600
+    (metrizableWppSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW632
+      inputs)
+
+/-- W632 closed-map-row route builds the ordinary stable input through W600. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedMapRowsHomotopyIsoClosedBundleW632
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedStableBundleW632) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_splitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedBundleW600
+    (metrizableWppSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW632
+      inputs)
+
+/-- The W632 closed-map-row route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_targetSurjectiveCompactClosedMapRowsHomotopyIsoClosedBundleW632_ready
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedStableBundleW632) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedMapRowsHomotopyIsoClosedBundleW632
+        inputs)).ready := by
+  exact
+    metrizableStableCertificate_of_splitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedBundleW600_ready
+      (metrizableWppSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW632
+        inputs)
+
+/-- W632 homotopy/Verdier stable bundle for explicit target-surjective compact closed-embedding rows. -/
+structure
+    MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedStableBundleW632
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions] :
+    Type 1 where
+  targetSurjectiveCompactClosedEmbeddingRowsBundle :
+    MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsNormalizedBundleW606
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- Convert W632 closed-embedding-row data to the W600 split top-target compact-space stable bundle. -/
+def
+    metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW632
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedStableBundleW632) :
+    MetrizableWppRightOpenClosedQuotientPiZeroSplitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedStableBundleW600
+    where
+  splitTopTargetBundle :=
+    metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsNormalizedBundle_of_targetSurjectiveCompactW606
+      inputs.targetSurjectiveCompactClosedEmbeddingRowsBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W632 stable-semantic input for explicit target-surjective compact closed-embedding rows. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedBundleW632
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedStableBundleW632) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      Dbounded.metrizableLeftCalculusSemanticFieldsOfHomotopyIsoClosed :=
+  metrizableWppTransferStableSemanticInputs_of_splitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedBundleW600
+    (metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW632
+      inputs)
+
+/-- W632 closed-embedding-row route builds the ordinary stable input through W600. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedBundleW632
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedStableBundleW632) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_splitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedBundleW600
+    (metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW632
+      inputs)
+
+/-- The W632 closed-embedding-row route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_targetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedBundleW632_ready
+    [(exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms]
+    [(boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions]
+    (inputs :
+      MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedStableBundleW632) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedBundleW632
+        inputs)).ready := by
+  exact
+    metrizableStableCertificate_of_splitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedBundleW600_ready
+      (metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW632
+        inputs)
+
+/-- Input names for the W632 explicit target-surjective compact row homotopy routes. -/
+def metrizableWppTargetSurjectiveCompactRowsHomotopyIsoInputNamesW632 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationPullbackProviderW593",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+    "target-difference surjectivity supplies the W600 target-relation-top provider",
+    "compact target codomains supply the W597 target compact-space provider",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+    "bounded homotopy/Verdier pullback left calculus of fractions",
+    "Pretriangulated (Dbounded MetrizableLCA)", "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableWppTargetSurjectiveCompactRowsHomotopyIsoInputNamesW632_count :
+    metrizableWppTargetSurjectiveCompactRowsHomotopyIsoInputNamesW632.length =
+      14 :=
+  rfl
+
+/-- Current checked W632 state for explicit target-surjective compact row homotopy routes. -/
+structure MetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteStateW632 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapRowsStableRouteResult : String
+  closedEmbeddingRowsStableRouteResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W632 state. -/
+def currentMetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteSupportStateW632 :
+    MetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteStateW632
+    where
+  seed := "w632-target-surjective-compact-row-provider-homotopy-iso-route"
+  declarations :=
+    ["MetrizableWppTargetSurjectiveCompactClosedMapRowsHomotopyIsoClosedStableBundleW632",
+      "metrizableWppSplitTopTargetCompactSpaceClosedMapRowsHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW632",
+      "metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedMapRowsHomotopyIsoClosedBundleW632",
+      "metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedMapRowsHomotopyIsoClosedBundleW632",
+      "metrizableStableCertificate_of_targetSurjectiveCompactClosedMapRowsHomotopyIsoClosedBundleW632_ready",
+      "MetrizableWppTargetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedStableBundleW632",
+      "metrizableWppSplitTopTargetCompactSpaceClosedEmbeddingRowsHomotopyIsoClosedStableBundle_of_targetSurjectiveCompactW632",
+      "metrizableWppTransferStableSemanticInputs_of_targetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedBundleW632",
+      "metrizableOrdinaryStableSemanticInput_of_targetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedBundleW632",
+      "metrizableStableCertificate_of_targetSurjectiveCompactClosedEmbeddingRowsHomotopyIsoClosedBundleW632_ready",
+      "metrizableWppTargetSurjectiveCompactRowsHomotopyIsoInputNamesW632",
+      "metrizableWppTargetSurjectiveCompactRowsHomotopyIsoInputNamesW632_count"]
+  closedMapRowsStableRouteResult :=
+    "proved: W606 explicit target-surjective compact closed-map rows feed the W600 homotopy/Verdier row route"
+  closedEmbeddingRowsStableRouteResult :=
+    "proved: W606 explicit target-surjective compact closed-embedding rows feed the W600 homotopy/Verdier row route"
+  stableCertificateResult :=
+    "proved: both W632 row variants produce ready W528 stable certificates without endpoint or ShortExact W602 data"
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationPullbackProviderW593",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct normalized strict-representative fixed-target localization data",
+      "prove exactAcyclicHomotopyObject is closed under homotopy-category isomorphisms",
+      "construct bounded homotopy/Verdier pullback left calculus of fractions",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteStateW632 :
+    MetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteStateW632 :=
+  currentMetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteSupportStateW632
+
+theorem currentMetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteStateW632_productSuccess :
+    currentMetrizableWppTargetSurjectiveCompactRowsHomotopyIsoRouteStateW632.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
