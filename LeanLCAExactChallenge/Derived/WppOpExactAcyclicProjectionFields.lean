@@ -39009,6 +39009,372 @@ theorem
       false :=
   rfl
 
+/--
+W693 endpoint input: in a balanced metrizable LCA category, exactness plus
+mono/epi endpoint data supplies the kernel/cokernel universal properties
+required by W692.
+-/
+structure MetrizableExactAtBalancedMonoEpiEndpointInputsW693 : Type 1 where
+  balanced :
+    Balanced MetrizableLCA.{0}
+  mono_f_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Mono (K.sc i).f
+  epi_g_of_exactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Epi (K.sc i).g
+
+/-- W693 derives the incoming kernel fork from ExactAt and mono endpoint data. -/
+noncomputable def kernelForkOfExactAt_of_balancedMonoW693
+    (inputs : MetrizableExactAtBalancedMonoEpiEndpointInputsW693)
+    (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ)
+    (h : K.ExactAt i) :
+    IsLimit (KernelFork.ofι (K.sc i).f (K.sc i).zero) := by
+  haveI : Balanced MetrizableLCA.{0} := inputs.balanced
+  haveI : (K.sc i).HasHomology := h.hasHomology
+  haveI : Mono (K.sc i).f := inputs.mono_f_of_exactAt K i h
+  exact ShortComplex.Exact.fIsKernel h
+
+/-- W693 derives the outgoing cokernel cofork from ExactAt and epi endpoint data. -/
+noncomputable def cokernelCoforkOfExactAt_of_balancedEpiW693
+    (inputs : MetrizableExactAtBalancedMonoEpiEndpointInputsW693)
+    (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ)
+    (h : K.ExactAt i) :
+    IsColimit (CokernelCofork.ofπ (K.sc i).g (K.sc i).zero) := by
+  haveI : Balanced MetrizableLCA.{0} := inputs.balanced
+  haveI : (K.sc i).HasHomology := h.hasHomology
+  haveI : Epi (K.sc i).g := inputs.epi_g_of_exactAt K i h
+  exact ShortComplex.Exact.gIsCokernel h
+
+/--
+W693 topology input: W692 with the direct ExactAt kernel/cokernel witnesses
+factored through balancedness and mono/epi endpoint data.
+-/
+structure
+    MetrizableExactAtKernelCokernelConditionedTopologyClosureKernelBalancedMonoEpiInputsW693 :
+    Type 2 where
+  closureKernelProvider :
+    MappedExplicitCokernelClosureKernelProviderW503
+  exactAtBalancedMonoEpi :
+    MetrizableExactAtBalancedMonoEpiEndpointInputsW693
+
+/-- W693 adapts balanced mono/epi endpoint data to the W692 topology input. -/
+def
+    metrizableExactAtKernelCokernelConditionedTopologyClosureKernelInputs_of_balancedMonoEpiW693
+    (inputs :
+      MetrizableExactAtKernelCokernelConditionedTopologyClosureKernelBalancedMonoEpiInputsW693) :
+    MetrizableExactAtKernelCokernelConditionedTopologyClosureKernelInputsW692
+    where
+  closureKernelProvider := inputs.closureKernelProvider
+  kernel_of_exactAt :=
+    kernelForkOfExactAt_of_balancedMonoW693 inputs.exactAtBalancedMonoEpi
+  cokernel_of_exactAt :=
+    cokernelCoforkOfExactAt_of_balancedEpiW693 inputs.exactAtBalancedMonoEpi
+
+/--
+W693 normalized closed-map bundle: W692 with ExactAt kernel/cokernel
+universal properties supplied from balanced mono/epi endpoint data.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693 :
+    Type 2 where
+  normalizedFixedTargetBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetBundleW646
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  closureKernelBalancedMonoEpiTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyClosureKernelBalancedMonoEpiInputsW693
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W693 adapts the balanced mono/epi closed-map bundle to W692. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692
+    where
+  normalizedFixedTargetBundle := inputs.normalizedFixedTargetBundle
+  hasHomology := inputs.hasHomology
+  closureKernelTopology :=
+    metrizableExactAtKernelCokernelConditionedTopologyClosureKernelInputs_of_balancedMonoEpiW693
+      inputs.closureKernelBalancedMonoEpiTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W693 balanced mono/epi closed-map transfer inputs through W692. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology
+        (metrizableExactAtKernelCokernelConditionedTopologyInputs_of_mappedForgetfulW690
+          (metrizableExactAtKernelCokernelConditionedTopologyMappedForgetfulInputs_of_cokernelW691
+            (metrizableExactAtKernelCokernelConditionedTopologyMappedCokernelInputs_of_closureKernelW692
+              (metrizableExactAtKernelCokernelConditionedTopologyClosureKernelInputs_of_balancedMonoEpiW693
+                inputs.closureKernelBalancedMonoEpiTopology))))
+        inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+      inputs)
+
+/-- W693 balanced mono/epi closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+      inputs)
+
+/-- The W693 balanced mono/epi closed-map route produces a ready certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692_ready
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+      inputs)
+
+/-- W693 packages the balanced mono/epi closed-map route as accepted stable data. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+      inputs)
+
+/-- The W693 balanced mono/epi closed-map package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+      inputs)
+
+/--
+W693 normalized closed-embedding bundle: W692 with ExactAt kernel/cokernel
+universal properties supplied from balanced mono/epi endpoint data.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693 :
+    Type 2 where
+  normalizedFixedTargetBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetBundleW646
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  closureKernelBalancedMonoEpiTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyClosureKernelBalancedMonoEpiInputsW693
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W693 adapts the balanced mono/epi closed-embedding bundle to W692. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692
+    where
+  normalizedFixedTargetBundle := inputs.normalizedFixedTargetBundle
+  hasHomology := inputs.hasHomology
+  closureKernelTopology :=
+    metrizableExactAtKernelCokernelConditionedTopologyClosureKernelInputs_of_balancedMonoEpiW693
+      inputs.closureKernelBalancedMonoEpiTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W693 balanced mono/epi closed-embedding transfer inputs through W692. -/
+noncomputable def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfKernelCokernelHomotopyEquivLocalizedRightAdjointW681
+        inputs.hasHomology
+        (metrizableExactAtKernelCokernelConditionedTopologyInputs_of_mappedForgetfulW690
+          (metrizableExactAtKernelCokernelConditionedTopologyMappedForgetfulInputs_of_cokernelW691
+            (metrizableExactAtKernelCokernelConditionedTopologyMappedCokernelInputs_of_closureKernelW692
+              (metrizableExactAtKernelCokernelConditionedTopologyClosureKernelInputs_of_balancedMonoEpiW693
+                inputs.closureKernelBalancedMonoEpiTopology))))
+        inputs.localizedRightAdjoint) :=
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+      inputs)
+
+/-- W693 balanced mono/epi closed-embedding route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+      inputs)
+
+/-- The W693 balanced mono/epi closed-embedding route produces a ready certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+        inputs)).ready :=
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692_ready
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+      inputs)
+
+/-- W693 packages the balanced mono/epi closed-embedding route as accepted stable data. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+      inputs)
+
+/-- The W693 balanced mono/epi closed-embedding package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundleW692_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+      inputs)
+
+/-- Input names for the W693 balanced mono/epi accepted route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiInputNamesW693 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "W512 relation fields plus W600 target-top data reconstruct the W516 top-target provider",
+    "W601 target codomain compactness supplies the W597 target compact-space provider",
+    "W525 global providers narrow to W527 row providers through W581",
+    "global closed-embedding provider upgrades to W525 closed-map provider through W619",
+    "normalized strict representatives for WalkingParallelPair diagrams in Dbounded",
+    "target and localization-model uniqueness for normalized fixed targets",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MappedExplicitCokernelClosureKernelProviderW503",
+    "Balanced MetrizableLCA",
+    "ExactAt supplies Mono incoming maps and Epi outgoing maps",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiInputNamesW693_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiInputNamesW693.length =
+      18 :=
+  rfl
+
+/-- Current checked W693 state for the balanced mono/epi ExactAt endpoint route. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693 :
+    Type where
+  seed : String
+  declarations : List String
+  exactAtBalancedMonoEpiResult : String
+  closedMapBalancedMonoEpiAcceptedResult : String
+  closedEmbeddingBalancedMonoEpiAcceptedResult : String
+  removedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W693 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteSupportStateW693 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693
+    where
+  seed :=
+    "w693-normalized-fixed-target-closure-kernel-balanced-mono-epi-exactat-route"
+  declarations :=
+    ["MetrizableExactAtBalancedMonoEpiEndpointInputsW693",
+      "kernelForkOfExactAt_of_balancedMonoW693",
+      "cokernelCoforkOfExactAt_of_balancedEpiW693",
+      "MetrizableExactAtKernelCokernelConditionedTopologyClosureKernelBalancedMonoEpiInputsW693",
+      "metrizableExactAtKernelCokernelConditionedTopologyClosureKernelInputs_of_balancedMonoEpiW693",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_accepted",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_ready",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiInputNamesW693",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiInputNamesW693_count"]
+  exactAtBalancedMonoEpiResult :=
+    "proved: Balanced MetrizableLCA plus ExactAt mono/epi endpoint data supplies the W692 ExactAt kernel/cokernel universal-property inputs"
+  closedMapBalancedMonoEpiAcceptedResult :=
+    "proved: normalized closed-map accepted stable data can use balanced mono/epi endpoint data instead of direct ExactAt kernel/cokernel universal-property witnesses"
+  closedEmbeddingBalancedMonoEpiAcceptedResult :=
+    "proved: normalized closed-embedding accepted stable data can use balanced mono/epi endpoint data instead of direct ExactAt kernel/cokernel universal-property witnesses"
+  removedInputs :=
+    ["ExactAt supplies incoming kernel forks and outgoing cokernel coforks as direct W692 inputs",
+      "W692 kernel_of_exactAt/cokernel_of_exactAt route leaf when balanced mono/epi endpoint data is available"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict representatives for the two WPP localization targets",
+      "prove target and localization-model uniqueness for normalized fixed targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W503 closure-kernel provider data for mapped explicit cokernels",
+      "prove Balanced MetrizableLCA or a sufficient balancedness theorem for the ExactAt endpoint route",
+      "prove ExactAt incoming maps are Mono and outgoing maps are Epi",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteSupportStateW693
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -41662,6 +42028,78 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelRouteStateW692_productSuccess
+set_option linter.style.longLine false in
+#check MetrizableExactAtBalancedMonoEpiEndpointInputsW693
+set_option linter.style.longLine false in
+#check kernelForkOfExactAt_of_balancedMonoW693
+set_option linter.style.longLine false in
+#check cokernelCoforkOfExactAt_of_balancedEpiW693
+set_option linter.style.longLine false in
+#check
+  MetrizableExactAtKernelCokernelConditionedTopologyClosureKernelBalancedMonoEpiInputsW693
+set_option linter.style.longLine false in
+#check
+  metrizableExactAtKernelCokernelConditionedTopologyClosureKernelInputs_of_balancedMonoEpiW693
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_ready
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_accepted
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelCokernelDirectLocalizationBundle_of_balancedMonoEpiW693
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_ready
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosureKernelBalancedMonoEpiDirectLocalizationBundleW693_accepted
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiInputNamesW693
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiInputNamesW693_count
+set_option linter.style.longLine false in
+#check
+  MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteSupportStateW693
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693_productSuccess
 
 end Checks
 
