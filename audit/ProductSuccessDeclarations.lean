@@ -5766,6 +5766,34 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableTrianglehIso13StableFieldRouteStateW651
   #check
     Dbounded.currentMetrizableTrianglehIso13StableFieldRouteStateW651_productSuccess
+  #check
+    Dbounded.MetrizableWppFiniteShapeEndpointTrianglehPayloadBundleW652
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointBundle_of_trianglehPayloadW652
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointTrianglehPayloadBundleW652
+  #check
+    Dbounded.metrizableStableCertificate_of_finiteShapeEndpointTrianglehPayloadBundleW652_ready
+  #check
+    Dbounded.MetrizableWppFiniteShapeShortExactTrianglehPayloadBundleW652
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactBundle_of_trianglehPayloadW652
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactTrianglehPayloadBundleW652
+  #check
+    Dbounded.metrizableStableCertificate_of_finiteShapeShortExactTrianglehPayloadBundleW652_ready
+  #check
+    Dbounded.metrizableWppTrianglehPayloadGenericEndpointShortExactInputNamesW652
+  #check
+    Dbounded.metrizableWppTrianglehPayloadGenericEndpointShortExactInputNamesW652_count
+  #check
+    Dbounded.MetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652
+  #check
+    Dbounded.currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteSupportStateW652
+  #check
+    Dbounded.currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652
+  #check
+    Dbounded.currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

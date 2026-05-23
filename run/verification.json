@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w651-explicit-triangleh-iso13-stable-field-bridge",
-  "generated_utc": "2026-05-23T10:43:25Z",
-  "source_tree_hash": "6f8941d7dbf9737497d55afe03724be76f6e5a0c2b11103d7a97583c003a3dcb",
-  "summary": "W651 specializes the existing triangleh iso13 strict-realization criterion to MetrizableLCA and packages it as explicit endpoint and ShortExact stable-field payloads. This removes an opaque ambient typeclass dependency from the W607/W608 field construction path by making exactAcyclicHomotopyIsoClosure closed₂ a payload-derived consequence, while preserving nonterminal product-success boundaries.",
+  "schema": "lean-lca-exact-challenge-verification-w652-explicit-triangleh-payload-generic-endpoint-shortexact-route",
+  "generated_utc": "2026-05-23T10:50:40Z",
+  "source_tree_hash": "b82a3568ca88166919c235f33b8e3962f2c7c5061756b5714185ecc83348ff1f",
+  "summary": "W652 composes the W651 explicit triangleh iso13 stable-field payloads with the W648 generic finite-shape endpoint and ShortExact stable-certificate adapter. The generic final route can now derive the exactAcyclicHomotopyIsoClosure closed₂ instance from payload data instead of requiring an ambient typeclass instance at the call surface, while preserving nonterminal product-success boundaries.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -9730,6 +9730,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_100_w651_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_101_w652_post_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_101_w652_post_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_101_w652_post_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_101_w652_post_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_101_w652_post_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_101_w652_post_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_101_w652_post_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_101_w652_post_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_101_w652_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -12801,11 +12846,26 @@
     "Dbounded.MetrizableTrianglehIso13StableFieldRouteStateW651",
     "Dbounded.currentMetrizableTrianglehIso13StableFieldRouteSupportStateW651",
     "Dbounded.currentMetrizableTrianglehIso13StableFieldRouteStateW651",
-    "Dbounded.currentMetrizableTrianglehIso13StableFieldRouteStateW651_productSuccess"
+    "Dbounded.currentMetrizableTrianglehIso13StableFieldRouteStateW651_productSuccess",
+    "Dbounded.MetrizableWppFiniteShapeEndpointTrianglehPayloadBundleW652",
+    "Dbounded.metrizableWppFiniteShapeEndpointBundle_of_trianglehPayloadW652",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointTrianglehPayloadBundleW652",
+    "Dbounded.metrizableStableCertificate_of_finiteShapeEndpointTrianglehPayloadBundleW652_ready",
+    "Dbounded.MetrizableWppFiniteShapeShortExactTrianglehPayloadBundleW652",
+    "Dbounded.metrizableWppFiniteShapeShortExactBundle_of_trianglehPayloadW652",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactTrianglehPayloadBundleW652",
+    "Dbounded.metrizableStableCertificate_of_finiteShapeShortExactTrianglehPayloadBundleW652_ready",
+    "Dbounded.metrizableWppTrianglehPayloadGenericEndpointShortExactInputNamesW652",
+    "Dbounded.metrizableWppTrianglehPayloadGenericEndpointShortExactInputNamesW652_count",
+    "Dbounded.MetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652",
+    "Dbounded.currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteSupportStateW652",
+    "Dbounded.currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652",
+    "Dbounded.currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "construct exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA data",
+    "construct concrete MetrizableWalkingParallelPairFiniteShapeTransferInputs data for the final call site",
     "construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary data",
     "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary data",
     "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512 data",
@@ -12832,28 +12892,18 @@
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
     "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "support_result_classification": "nonterminal_explicit_triangleh_iso13_stable_field_bridge",
+  "support_result_classification": "nonterminal_explicit_triangleh_payload_generic_endpoint_shortexact_route",
   "product_success": false,
   "remaining_work": [
     "construct exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA data",
-    "construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary data",
-    "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary data",
-    "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512 data",
-    "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600 data",
-    "construct concrete TargetCodomainCompactSpaceProviderW601 data",
-    "construct concrete ComponentwiseClosedMapProviderW525 data or ComponentwiseClosedEmbeddingProviderW525 data",
-    "construct concrete ComponentwiseClosedMapRowsProviderW527 data or ComponentwiseClosedEmbeddingRowsProviderW527 data",
-    "construct normalized strict representatives for the two WPP localization targets",
-    "prove target and localization-model uniqueness for normalized fixed targets",
-    "instantiate concrete direct WPP limit comparison data",
-    "instantiate WPP exact-acyclic limit closure data or all four WPP limit-field inputs",
-    "instantiate WPP-op exact-acyclic closure data or the left/Snake colimit certificate",
+    "construct concrete finite-shape WPP transfer inputs for the final call site",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "construct bounded homotopy localized right adjoint plus unit membership",
-    "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
+    "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA",
+    "construct concrete WPP boundary/provider/localization data"
   ],
-  "summary_log_tail": "W651 exposes exactAcyclicHomotopyIsoClosure closed₂ as an explicit MetrizableLCA triangleh iso13 payload used to build endpoint and ShortExact stable-field records; product flags remain false.",
-  "latest_verified_increment": "W651 explicit triangleh iso13 stable-field bridge",
+  "summary_log_tail": "W652 routes finite-shape endpoint and ShortExact bundles through explicit W651 triangleh payloads and the W648 generic stable-certificate adapter; product flags remain false.",
+  "latest_verified_increment": "W652 explicit triangleh payload generic endpoint/ShortExact route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -13611,6 +13661,13 @@
       "refreshed_utc": "2026-05-23T10:43:25Z",
       "source_tree_hash": "6f8941d7dbf9737497d55afe03724be76f6e5a0c2b11103d7a97583c003a3dcb",
       "latest_verified_increment": "W651 explicit triangleh iso13 stable-field bridge",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "The reusable verifier is expected to pass focused WppOpExactAcyclicProjectionFields source, WppOpExactAcyclicProjectionFields module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate after metadata refresh."
+    },
+    "w652_explicit_triangleh_payload_generic_endpoint_shortexact_route_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T10:50:40Z",
+      "source_tree_hash": "b82a3568ca88166919c235f33b8e3962f2c7c5061756b5714185ecc83348ff1f",
+      "latest_verified_increment": "W652 explicit triangleh payload generic endpoint/ShortExact route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "The reusable verifier is expected to pass focused WppOpExactAcyclicProjectionFields source, WppOpExactAcyclicProjectionFields module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate after metadata refresh."
     }

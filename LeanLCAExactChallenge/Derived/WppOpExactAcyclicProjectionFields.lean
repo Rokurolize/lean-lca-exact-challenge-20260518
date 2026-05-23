@@ -28952,6 +28952,175 @@ theorem currentMetrizableTrianglehIso13StableFieldRouteStateW651_productSuccess 
       false :=
   rfl
 
+/--
+W652 endpoint bundle with the exact-acyclic closed₂ instance derived from the
+W651 triangleh iso13 payload.
+-/
+structure MetrizableWppFiniteShapeEndpointTrianglehPayloadBundleW652 :
+    Type 1 where
+  finiteShapeInputs :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+  endpointPayload :
+    MetrizableEndpointStableTriangulatedPayloadW651
+
+/-- W652 adapts an explicit triangleh-payload endpoint bundle to W648. -/
+noncomputable def
+    metrizableWppFiniteShapeEndpointBundle_of_trianglehPayloadW652
+    (inputs : MetrizableWppFiniteShapeEndpointTrianglehPayloadBundleW652) := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+      inputs.endpointPayload.exactRealize
+  exact
+    (show MetrizableWppFiniteShapeEndpointStableBundleW648 from
+      { finiteShapeInputs := inputs.finiteShapeInputs
+        endpointFields :=
+          metrizableEndpointStableTriangulatedFields_of_trianglehIso13PayloadW651
+            inputs.endpointPayload })
+
+/-- W652 endpoint route builds the ordinary stable input from explicit triangleh payload data. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointTrianglehPayloadBundleW652
+    (inputs : MetrizableWppFiniteShapeEndpointTrianglehPayloadBundleW652) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+      inputs.endpointPayload.exactRealize
+  exact
+    metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+      (metrizableWppFiniteShapeEndpointBundle_of_trianglehPayloadW652 inputs)
+
+/-- W652 explicit triangleh-payload endpoint route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_finiteShapeEndpointTrianglehPayloadBundleW652_ready
+    (inputs : MetrizableWppFiniteShapeEndpointTrianglehPayloadBundleW652) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointTrianglehPayloadBundleW652
+        inputs)).ready := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+      inputs.endpointPayload.exactRealize
+  exact
+    metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+      (metrizableWppFiniteShapeEndpointBundle_of_trianglehPayloadW652 inputs)
+
+/--
+W652 ShortExact bundle with the exact-acyclic closed₂ instance derived from the
+W651 triangleh iso13 payload.
+-/
+structure MetrizableWppFiniteShapeShortExactTrianglehPayloadBundleW652 :
+    Type 1 where
+  finiteShapeInputs :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+  shortExactPayload :
+    MetrizableShortExactStableTriangulatedPayloadW651
+
+/-- W652 adapts an explicit triangleh-payload ShortExact bundle to W648. -/
+noncomputable def
+    metrizableWppFiniteShapeShortExactBundle_of_trianglehPayloadW652
+    (inputs : MetrizableWppFiniteShapeShortExactTrianglehPayloadBundleW652) := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+      inputs.shortExactPayload.exactRealize
+  exact
+    (show MetrizableWppFiniteShapeShortExactStableBundleW648 from
+      { finiteShapeInputs := inputs.finiteShapeInputs
+        shortExactFields :=
+          metrizableShortExactStableTriangulatedFields_of_trianglehIso13PayloadW651
+            inputs.shortExactPayload })
+
+/-- W652 ShortExact route builds the ordinary stable input from explicit triangleh payload data. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactTrianglehPayloadBundleW652
+    (inputs : MetrizableWppFiniteShapeShortExactTrianglehPayloadBundleW652) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+      inputs.shortExactPayload.exactRealize
+  exact
+    metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+      (metrizableWppFiniteShapeShortExactBundle_of_trianglehPayloadW652 inputs)
+
+/-- W652 explicit triangleh-payload ShortExact route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_finiteShapeShortExactTrianglehPayloadBundleW652_ready
+    (inputs : MetrizableWppFiniteShapeShortExactTrianglehPayloadBundleW652) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactTrianglehPayloadBundleW652
+        inputs)).ready := by
+  letI : (exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂ :=
+    metrizableExactAcyclicHomotopyIsoClosureClosed2_of_trianglehIso13RealizationW651
+      inputs.shortExactPayload.exactRealize
+  exact
+    metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+      (metrizableWppFiniteShapeShortExactBundle_of_trianglehPayloadW652 inputs)
+
+/-- Input names for the W652 explicit triangleh-payload generic route. -/
+def metrizableWppTrianglehPayloadGenericEndpointShortExactInputNamesW652 :
+    List String :=
+  ["MetrizableWalkingParallelPairFiniteShapeTransferInputs",
+    "exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtEndpointStrictTopologyInputs or MetrizableExactAtShortExactTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)",
+    "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableWppTrianglehPayloadGenericEndpointShortExactInputNamesW652_count :
+    metrizableWppTrianglehPayloadGenericEndpointShortExactInputNamesW652.length =
+      7 :=
+  rfl
+
+/-- Current checked W652 state for explicit triangleh-payload generic route reuse. -/
+structure MetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652 :
+    Type where
+  seed : String
+  declarations : List String
+  endpointRouteResult : String
+  shortExactRouteResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W652 state. -/
+def currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteSupportStateW652 :
+    MetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652 where
+  seed := "w652-triangleh-payload-generic-endpoint-shortexact-route"
+  declarations :=
+    ["MetrizableWppFiniteShapeEndpointTrianglehPayloadBundleW652",
+      "metrizableWppFiniteShapeEndpointBundle_of_trianglehPayloadW652",
+      "metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointTrianglehPayloadBundleW652",
+      "metrizableStableCertificate_of_finiteShapeEndpointTrianglehPayloadBundleW652_ready",
+      "MetrizableWppFiniteShapeShortExactTrianglehPayloadBundleW652",
+      "metrizableWppFiniteShapeShortExactBundle_of_trianglehPayloadW652",
+      "metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactTrianglehPayloadBundleW652",
+      "metrizableStableCertificate_of_finiteShapeShortExactTrianglehPayloadBundleW652_ready",
+      "metrizableWppTrianglehPayloadGenericEndpointShortExactInputNamesW652",
+      "metrizableWppTrianglehPayloadGenericEndpointShortExactInputNamesW652_count"]
+  endpointRouteResult :=
+    "proved: finite-shape WPP endpoint route can derive exact-acyclic closed₂ from an explicit W651 triangleh payload"
+  shortExactRouteResult :=
+    "proved: finite-shape WPP ShortExact route can derive exact-acyclic closed₂ from an explicit W651 triangleh payload"
+  stableCertificateResult :=
+    "proved: both explicit triangleh-payload generic routes produce ready W528 certificates"
+  remainingInputs :=
+    ["construct exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+      "construct concrete finite-shape WPP transfer inputs",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652 :
+    MetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652 :=
+  currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteSupportStateW652
+
+theorem currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652_productSuccess :
+    currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
