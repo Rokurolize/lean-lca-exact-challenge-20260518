@@ -5654,6 +5654,66 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648
   #check
     Dbounded.currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648_productSuccess
+  #check
+    Dbounded.MetrizableWppDirectLimitOpClosureEndpointStableBundleW649
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointBundle_of_directLimitOpClosureEndpointBundleW649
+  #check
+    Dbounded.metrizableStableCertificate_of_directLimitOpClosureEndpointBundleW649_ready
+  #check
+    Dbounded.MetrizableWppDirectLimitOpClosureShortExactStableBundleW649
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactBundle_of_directLimitOpClosureShortExactBundleW649
+  #check
+    Dbounded.metrizableStableCertificate_of_directLimitOpClosureShortExactBundleW649_ready
+  #check
+    Dbounded.MetrizableWppDirectLimitLeftSnakeEndpointStableBundleW649
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointBundle_of_directLimitLeftSnakeEndpointBundleW649
+  #check
+    Dbounded.metrizableStableCertificate_of_directLimitLeftSnakeEndpointBundleW649_ready
+  #check
+    Dbounded.MetrizableWppDirectLimitLeftSnakeShortExactStableBundleW649
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactBundle_of_directLimitLeftSnakeShortExactBundleW649
+  #check
+    Dbounded.metrizableStableCertificate_of_directLimitLeftSnakeShortExactBundleW649_ready
+  #check
+    Dbounded.MetrizableWppDirectLimitFieldsOpClosureEndpointStableBundleW649
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsOpClosureEndpointBundleW649
+  #check
+    Dbounded.metrizableStableCertificate_of_directLimitFieldsOpClosureEndpointBundleW649_ready
+  #check
+    Dbounded.MetrizableWppDirectLimitFieldsOpClosureShortExactStableBundleW649
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsOpClosureShortExactBundleW649
+  #check
+    Dbounded.metrizableStableCertificate_of_directLimitFieldsOpClosureShortExactBundleW649_ready
+  #check
+    Dbounded.MetrizableWppDirectLimitFieldsLeftSnakeEndpointStableBundleW649
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsLeftSnakeEndpointBundleW649
+  #check
+    Dbounded.metrizableStableCertificate_of_directLimitFieldsLeftSnakeEndpointBundleW649_ready
+  #check
+    Dbounded.MetrizableWppDirectLimitFieldsLeftSnakeShortExactStableBundleW649
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsLeftSnakeShortExactBundleW649
+  #check
+    Dbounded.metrizableStableCertificate_of_directLimitFieldsLeftSnakeShortExactBundleW649_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeEndpointShortExactInputNamesW649
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeEndpointShortExactInputNamesW649_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteSupportStateW649
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

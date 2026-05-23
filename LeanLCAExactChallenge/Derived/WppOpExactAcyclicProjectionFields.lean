@@ -28223,6 +28223,376 @@ theorem currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648_p
       false :=
   rfl
 
+/--
+W649 endpoint bundle for the direct-limit plus WPP-op exact-acyclic closure
+finite-shape source.
+-/
+structure MetrizableWppDirectLimitOpClosureEndpointStableBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  directInputs :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitAndOpClosure
+  endpointFields :
+    MetrizableEndpointStableTriangulatedFieldsW607
+
+/-- W649 adapts the direct-limit plus WPP-op closure endpoint bundle to W648. -/
+def
+    metrizableWppFiniteShapeEndpointBundle_of_directLimitOpClosureEndpointBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitOpClosureEndpointStableBundleW649) :
+    MetrizableWppFiniteShapeEndpointStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitAndOpClosure
+      inputs.directInputs
+  endpointFields := inputs.endpointFields
+
+/-- W649 direct-limit plus WPP-op closure endpoint route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directLimitOpClosureEndpointBundleW649_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitOpClosureEndpointStableBundleW649) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+        (metrizableWppFiniteShapeEndpointBundle_of_directLimitOpClosureEndpointBundleW649
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+    (metrizableWppFiniteShapeEndpointBundle_of_directLimitOpClosureEndpointBundleW649
+      inputs)
+
+/--
+W649 ShortExact bundle for the direct-limit plus WPP-op exact-acyclic closure
+finite-shape source.
+-/
+structure MetrizableWppDirectLimitOpClosureShortExactStableBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  directInputs :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitAndOpClosure
+  shortExactFields :
+    MetrizableShortExactStableTriangulatedFieldsW608
+
+/-- W649 adapts the direct-limit plus WPP-op closure ShortExact bundle to W648. -/
+def
+    metrizableWppFiniteShapeShortExactBundle_of_directLimitOpClosureShortExactBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitOpClosureShortExactStableBundleW649) :
+    MetrizableWppFiniteShapeShortExactStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitAndOpClosure
+      inputs.directInputs
+  shortExactFields := inputs.shortExactFields
+
+/-- W649 direct-limit plus WPP-op closure ShortExact route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directLimitOpClosureShortExactBundleW649_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitOpClosureShortExactStableBundleW649) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+        (metrizableWppFiniteShapeShortExactBundle_of_directLimitOpClosureShortExactBundleW649
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+    (metrizableWppFiniteShapeShortExactBundle_of_directLimitOpClosureShortExactBundleW649
+      inputs)
+
+/--
+W649 endpoint bundle for the direct-limit plus left/Snake finite-shape source.
+-/
+structure MetrizableWppDirectLimitLeftSnakeEndpointStableBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  directInputs :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitAndLeftSnake
+  endpointFields :
+    MetrizableEndpointStableTriangulatedFieldsW607
+
+/-- W649 adapts the direct-limit plus left/Snake endpoint bundle to W648. -/
+def
+    metrizableWppFiniteShapeEndpointBundle_of_directLimitLeftSnakeEndpointBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitLeftSnakeEndpointStableBundleW649) :
+    MetrizableWppFiniteShapeEndpointStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitAndLeftSnake
+      inputs.directInputs
+  endpointFields := inputs.endpointFields
+
+/-- W649 direct-limit plus left/Snake endpoint route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directLimitLeftSnakeEndpointBundleW649_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitLeftSnakeEndpointStableBundleW649) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+        (metrizableWppFiniteShapeEndpointBundle_of_directLimitLeftSnakeEndpointBundleW649
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+    (metrizableWppFiniteShapeEndpointBundle_of_directLimitLeftSnakeEndpointBundleW649
+      inputs)
+
+/--
+W649 ShortExact bundle for the direct-limit plus left/Snake finite-shape source.
+-/
+structure MetrizableWppDirectLimitLeftSnakeShortExactStableBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  directInputs :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitAndLeftSnake
+  shortExactFields :
+    MetrizableShortExactStableTriangulatedFieldsW608
+
+/-- W649 adapts the direct-limit plus left/Snake ShortExact bundle to W648. -/
+def
+    metrizableWppFiniteShapeShortExactBundle_of_directLimitLeftSnakeShortExactBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitLeftSnakeShortExactStableBundleW649) :
+    MetrizableWppFiniteShapeShortExactStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitAndLeftSnake
+      inputs.directInputs
+  shortExactFields := inputs.shortExactFields
+
+/-- W649 direct-limit plus left/Snake ShortExact route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directLimitLeftSnakeShortExactBundleW649_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitLeftSnakeShortExactStableBundleW649) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+        (metrizableWppFiniteShapeShortExactBundle_of_directLimitLeftSnakeShortExactBundleW649
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+    (metrizableWppFiniteShapeShortExactBundle_of_directLimitLeftSnakeShortExactBundleW649
+      inputs)
+
+/--
+W649 endpoint bundle for the direct limit-field plus WPP-op exact-acyclic
+closure finite-shape source.
+-/
+structure MetrizableWppDirectLimitFieldsOpClosureEndpointStableBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  directInputs :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitFieldsAndOpClosure
+  endpointFields :
+    MetrizableEndpointStableTriangulatedFieldsW607
+
+/-- W649 adapts the direct limit-field plus WPP-op closure endpoint bundle to W648. -/
+def
+    metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsOpClosureEndpointBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitFieldsOpClosureEndpointStableBundleW649) :
+    MetrizableWppFiniteShapeEndpointStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitFieldsAndOpClosure
+      inputs.directInputs
+  endpointFields := inputs.endpointFields
+
+/-- W649 direct limit-field plus WPP-op closure endpoint route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directLimitFieldsOpClosureEndpointBundleW649_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitFieldsOpClosureEndpointStableBundleW649) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+        (metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsOpClosureEndpointBundleW649
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+    (metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsOpClosureEndpointBundleW649
+      inputs)
+
+/--
+W649 ShortExact bundle for the direct limit-field plus WPP-op exact-acyclic
+closure finite-shape source.
+-/
+structure MetrizableWppDirectLimitFieldsOpClosureShortExactStableBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  directInputs :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitFieldsAndOpClosure
+  shortExactFields :
+    MetrizableShortExactStableTriangulatedFieldsW608
+
+/-- W649 adapts the direct limit-field plus WPP-op closure ShortExact bundle to W648. -/
+def
+    metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsOpClosureShortExactBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitFieldsOpClosureShortExactStableBundleW649) :
+    MetrizableWppFiniteShapeShortExactStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitFieldsAndOpClosure
+      inputs.directInputs
+  shortExactFields := inputs.shortExactFields
+
+/-- W649 direct limit-field plus WPP-op closure ShortExact route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directLimitFieldsOpClosureShortExactBundleW649_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitFieldsOpClosureShortExactStableBundleW649) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+        (metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsOpClosureShortExactBundleW649
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+    (metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsOpClosureShortExactBundleW649
+      inputs)
+
+/--
+W649 endpoint bundle for the direct limit-field plus left/Snake finite-shape
+source.
+-/
+structure MetrizableWppDirectLimitFieldsLeftSnakeEndpointStableBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  directInputs :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitFieldsAndLeftSnake
+  endpointFields :
+    MetrizableEndpointStableTriangulatedFieldsW607
+
+/-- W649 adapts the direct limit-field plus left/Snake endpoint bundle to W648. -/
+def
+    metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsLeftSnakeEndpointBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitFieldsLeftSnakeEndpointStableBundleW649) :
+    MetrizableWppFiniteShapeEndpointStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitFieldsAndLeftSnake
+      inputs.directInputs
+  endpointFields := inputs.endpointFields
+
+/-- W649 direct limit-field plus left/Snake endpoint route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directLimitFieldsLeftSnakeEndpointBundleW649_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitFieldsLeftSnakeEndpointStableBundleW649) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointBundleW648
+        (metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsLeftSnakeEndpointBundleW649
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeEndpointBundleW648_ready
+    (metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsLeftSnakeEndpointBundleW649
+      inputs)
+
+/--
+W649 ShortExact bundle for the direct limit-field plus left/Snake finite-shape
+source.
+-/
+structure MetrizableWppDirectLimitFieldsLeftSnakeShortExactStableBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  directInputs :
+    MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitFieldsAndLeftSnake
+  shortExactFields :
+    MetrizableShortExactStableTriangulatedFieldsW608
+
+/-- W649 adapts the direct limit-field plus left/Snake ShortExact bundle to W648. -/
+def
+    metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsLeftSnakeShortExactBundleW649
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitFieldsLeftSnakeShortExactStableBundleW649) :
+    MetrizableWppFiniteShapeShortExactStableBundleW648 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitFieldsAndLeftSnake
+      inputs.directInputs
+  shortExactFields := inputs.shortExactFields
+
+/-- W649 direct limit-field plus left/Snake ShortExact route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directLimitFieldsLeftSnakeShortExactBundleW649_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs : MetrizableWppDirectLimitFieldsLeftSnakeShortExactStableBundleW649) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactBundleW648
+        (metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsLeftSnakeShortExactBundleW649
+          inputs))).ready :=
+  metrizableStableCertificate_of_finiteShapeShortExactBundleW648_ready
+    (metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsLeftSnakeShortExactBundleW649
+      inputs)
+
+/-- Input names for the W649 direct finite-shape endpoint/ShortExact routes. -/
+def metrizableWppDirectFiniteShapeEndpointShortExactInputNamesW649 :
+    List String :=
+  ["direct WPP limit comparison",
+    "WPP exact-acyclic limit closure or four WPP limit fields",
+    "WPP-op exact-acyclic closure or left/Snake colimit certificate",
+    "WalkingParallelPair functor-category localization",
+    "W605 endpoint or ShortExact stable fields",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "Pretriangulated and IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableWppDirectFiniteShapeEndpointShortExactInputNamesW649_count :
+    metrizableWppDirectFiniteShapeEndpointShortExactInputNamesW649.length = 7 :=
+  rfl
+
+/-- Current checked W649 state for direct finite-shape endpoint/ShortExact routes. -/
+structure MetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649 :
+    Type where
+  seed : String
+  declarations : List String
+  directLimitClosureRouteResult : String
+  directLimitFieldsRouteResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W649 state. -/
+def currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteSupportStateW649 :
+    MetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649 where
+  seed := "w649-direct-finite-shape-endpoint-shortexact-route"
+  declarations :=
+    ["MetrizableWppDirectLimitOpClosureEndpointStableBundleW649",
+      "metrizableWppFiniteShapeEndpointBundle_of_directLimitOpClosureEndpointBundleW649",
+      "metrizableStableCertificate_of_directLimitOpClosureEndpointBundleW649_ready",
+      "MetrizableWppDirectLimitOpClosureShortExactStableBundleW649",
+      "metrizableWppFiniteShapeShortExactBundle_of_directLimitOpClosureShortExactBundleW649",
+      "metrizableStableCertificate_of_directLimitOpClosureShortExactBundleW649_ready",
+      "MetrizableWppDirectLimitLeftSnakeEndpointStableBundleW649",
+      "metrizableWppFiniteShapeEndpointBundle_of_directLimitLeftSnakeEndpointBundleW649",
+      "metrizableStableCertificate_of_directLimitLeftSnakeEndpointBundleW649_ready",
+      "MetrizableWppDirectLimitLeftSnakeShortExactStableBundleW649",
+      "metrizableWppFiniteShapeShortExactBundle_of_directLimitLeftSnakeShortExactBundleW649",
+      "metrizableStableCertificate_of_directLimitLeftSnakeShortExactBundleW649_ready",
+      "MetrizableWppDirectLimitFieldsOpClosureEndpointStableBundleW649",
+      "metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsOpClosureEndpointBundleW649",
+      "metrizableStableCertificate_of_directLimitFieldsOpClosureEndpointBundleW649_ready",
+      "MetrizableWppDirectLimitFieldsOpClosureShortExactStableBundleW649",
+      "metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsOpClosureShortExactBundleW649",
+      "metrizableStableCertificate_of_directLimitFieldsOpClosureShortExactBundleW649_ready",
+      "MetrizableWppDirectLimitFieldsLeftSnakeEndpointStableBundleW649",
+      "metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsLeftSnakeEndpointBundleW649",
+      "metrizableStableCertificate_of_directLimitFieldsLeftSnakeEndpointBundleW649_ready",
+      "MetrizableWppDirectLimitFieldsLeftSnakeShortExactStableBundleW649",
+      "metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsLeftSnakeShortExactBundleW649",
+      "metrizableStableCertificate_of_directLimitFieldsLeftSnakeShortExactBundleW649_ready",
+      "metrizableWppDirectFiniteShapeEndpointShortExactInputNamesW649",
+      "metrizableWppDirectFiniteShapeEndpointShortExactInputNamesW649_count"]
+  directLimitClosureRouteResult :=
+    "proved: direct WPP limit plus WPP-op closure and direct WPP limit plus left/Snake finite-shape sources feed endpoint and ShortExact stable certificates"
+  directLimitFieldsRouteResult :=
+    "proved: direct WPP limit-field plus WPP-op closure and direct WPP limit-field plus left/Snake finite-shape sources feed endpoint and ShortExact stable certificates"
+  stableCertificateResult :=
+    "proved: W649 reuses the W648 generic route for all direct finite-shape constructors from DirectWppLimitFiniteShapeTransfer"
+  remainingInputs :=
+    ["instantiate a concrete direct WPP limit comparison",
+      "instantiate WPP exact-acyclic limit closure or all four WPP limit fields",
+      "instantiate WPP-op exact-acyclic closure or left/Snake colimit certificate",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649 :
+    MetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649 :=
+  currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteSupportStateW649
+
+theorem currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649_productSuccess :
+    currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows

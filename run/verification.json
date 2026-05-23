@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w648-generic-finite-shape-endpoint-shortexact-wpp-transfer-adapter",
-  "generated_utc": "2026-05-23T10:20:36Z",
-  "source_tree_hash": "d20ce0af925be1f080a6818805037544500ab6c87f445d35c8d6a6d89fee71b0",
-  "summary": "W648 factors the W605 endpoint and ShortExact stable-certificate route through generic finite-shape WPP transfer bundles. It then adapts the W647 normalized fixed-target relation-fields target-top compact global closed-map and closed-embedding endpoint/ShortExact routes to the generic adapter, reducing future route boilerplate while preserving nonterminal product-success boundaries.",
+  "schema": "lean-lca-exact-challenge-verification-w649-direct-finite-shape-endpoint-shortexact-wpp-stable-certificate-routes",
+  "generated_utc": "2026-05-23T10:28:28Z",
+  "source_tree_hash": "0d0073ae15cc73dc7563c16ecd308e9109157a0949d7ce920da5787a85e23161",
+  "summary": "W649 wires the direct finite-shape WPP transfer constructors from DirectWppLimitFiniteShapeTransfer into the W648 generic endpoint and ShortExact stable-certificate adapter. It adds endpoint and ShortExact routes for direct limit plus WPP-op exact-acyclic closure, direct limit plus left/Snake, direct limit-field plus WPP-op exact-acyclic closure, and direct limit-field plus left/Snake sources, preserving nonterminal product-success boundaries.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -9595,6 +9595,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_097_w648_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_098_w649_post_metadata_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_098_w649_post_metadata_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_098_w649_post_metadata_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_098_w649_post_metadata_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_098_w649_post_metadata_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_098_w649_post_metadata_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_098_w649_post_metadata_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_098_w649_post_metadata_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_098_w649_post_metadata_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -12610,7 +12655,37 @@
     "Dbounded.MetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648",
     "Dbounded.currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteSupportStateW648",
     "Dbounded.currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648",
-    "Dbounded.currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648_productSuccess"
+    "Dbounded.currentMetrizableWppGenericFiniteShapeEndpointShortExactRouteStateW648_productSuccess",
+    "Dbounded.MetrizableWppDirectLimitOpClosureEndpointStableBundleW649",
+    "Dbounded.metrizableWppFiniteShapeEndpointBundle_of_directLimitOpClosureEndpointBundleW649",
+    "Dbounded.metrizableStableCertificate_of_directLimitOpClosureEndpointBundleW649_ready",
+    "Dbounded.MetrizableWppDirectLimitOpClosureShortExactStableBundleW649",
+    "Dbounded.metrizableWppFiniteShapeShortExactBundle_of_directLimitOpClosureShortExactBundleW649",
+    "Dbounded.metrizableStableCertificate_of_directLimitOpClosureShortExactBundleW649_ready",
+    "Dbounded.MetrizableWppDirectLimitLeftSnakeEndpointStableBundleW649",
+    "Dbounded.metrizableWppFiniteShapeEndpointBundle_of_directLimitLeftSnakeEndpointBundleW649",
+    "Dbounded.metrizableStableCertificate_of_directLimitLeftSnakeEndpointBundleW649_ready",
+    "Dbounded.MetrizableWppDirectLimitLeftSnakeShortExactStableBundleW649",
+    "Dbounded.metrizableWppFiniteShapeShortExactBundle_of_directLimitLeftSnakeShortExactBundleW649",
+    "Dbounded.metrizableStableCertificate_of_directLimitLeftSnakeShortExactBundleW649_ready",
+    "Dbounded.MetrizableWppDirectLimitFieldsOpClosureEndpointStableBundleW649",
+    "Dbounded.metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsOpClosureEndpointBundleW649",
+    "Dbounded.metrizableStableCertificate_of_directLimitFieldsOpClosureEndpointBundleW649_ready",
+    "Dbounded.MetrizableWppDirectLimitFieldsOpClosureShortExactStableBundleW649",
+    "Dbounded.metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsOpClosureShortExactBundleW649",
+    "Dbounded.metrizableStableCertificate_of_directLimitFieldsOpClosureShortExactBundleW649_ready",
+    "Dbounded.MetrizableWppDirectLimitFieldsLeftSnakeEndpointStableBundleW649",
+    "Dbounded.metrizableWppFiniteShapeEndpointBundle_of_directLimitFieldsLeftSnakeEndpointBundleW649",
+    "Dbounded.metrizableStableCertificate_of_directLimitFieldsLeftSnakeEndpointBundleW649_ready",
+    "Dbounded.MetrizableWppDirectLimitFieldsLeftSnakeShortExactStableBundleW649",
+    "Dbounded.metrizableWppFiniteShapeShortExactBundle_of_directLimitFieldsLeftSnakeShortExactBundleW649",
+    "Dbounded.metrizableStableCertificate_of_directLimitFieldsLeftSnakeShortExactBundleW649_ready",
+    "Dbounded.metrizableWppDirectFiniteShapeEndpointShortExactInputNamesW649",
+    "Dbounded.metrizableWppDirectFiniteShapeEndpointShortExactInputNamesW649_count",
+    "Dbounded.MetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteSupportStateW649",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649",
+    "Dbounded.currentMetrizableWppDirectFiniteShapeEndpointShortExactRouteStateW649_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -12622,7 +12697,9 @@
     "construct concrete ComponentwiseClosedMapProviderW525 data or ComponentwiseClosedEmbeddingProviderW525 data",
     "construct normalized strict representatives for the two WPP localization targets",
     "prove target and localization-model uniqueness for normalized fixed targets",
-    "construct concrete finite-shape WPP transfer inputs for the final call site",
+    "instantiate concrete direct WPP limit comparison data",
+    "instantiate WPP exact-acyclic limit closure data or all four WPP limit-field inputs",
+    "instantiate WPP-op exact-acyclic closure data or the left/Snake colimit certificate",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
     "construct bounded homotopy localized right adjoint plus unit membership",
@@ -12639,7 +12716,7 @@
     "construct degreewise closed-embedding/open-map topology facts for categorical ExactAt short complexes",
     "prove categorical ExactAt implies outgoing epi or degreewise ShortExact for the relevant complexes"
   ],
-  "support_result_classification": "nonterminal_generic_finite_shape_endpoint_shortexact_wpp_transfer_adapter",
+  "support_result_classification": "nonterminal_direct_finite_shape_endpoint_shortexact_wpp_stable_certificate_routes",
   "product_success": false,
   "remaining_work": [
     "construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary data",
@@ -12650,13 +12727,16 @@
     "construct concrete ComponentwiseClosedMapProviderW525 data or ComponentwiseClosedEmbeddingProviderW525 data",
     "construct normalized strict representatives for the two WPP localization targets",
     "prove target and localization-model uniqueness for normalized fixed targets",
+    "instantiate concrete direct WPP limit comparison data",
+    "instantiate WPP exact-acyclic limit closure data or all four WPP limit-field inputs",
+    "instantiate WPP-op exact-acyclic closure data or the left/Snake colimit certificate",
     "construct W602 endpoint or ShortExact data plus global homology existence",
     "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
     "construct bounded homotopy localized right adjoint plus unit membership",
     "construct Pretriangulated and IsTriangulated fields for Dbounded MetrizableLCA"
   ],
-  "summary_log_tail": "W648 centralizes finite-shape WPP endpoint and ShortExact stable-certificate routing through generic W605 adapters, then reuses them for the W647 normalized fixed-target path; product flags remain false.",
-  "latest_verified_increment": "W648 generic finite-shape endpoint/ShortExact WPP transfer adapter reused by W647 normalized fixed-target routes",
+  "summary_log_tail": "W649 feeds all direct finite-shape WPP transfer constructors from DirectWppLimitFiniteShapeTransfer through the W648 endpoint and ShortExact stable-certificate adapter; product flags remain false.",
+  "latest_verified_increment": "W649 direct finite-shape endpoint/ShortExact WPP stable-certificate routes",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -13393,6 +13473,13 @@
       "refreshed_utc": "2026-05-23T10:20:36Z",
       "source_tree_hash": "d20ce0af925be1f080a6818805037544500ab6c87f445d35c8d6a6d89fee71b0",
       "latest_verified_increment": "W648 generic finite-shape endpoint/ShortExact WPP transfer adapter reused by W647 normalized fixed-target routes",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "The reusable verifier is expected to pass focused WppOpExactAcyclicProjectionFields source, WppOpExactAcyclicProjectionFields module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate after metadata refresh."
+    },
+    "w649_direct_finite_shape_endpoint_shortexact_wpp_stable_certificate_routes_metadata_refresh": {
+      "refreshed_utc": "2026-05-23T10:28:28Z",
+      "source_tree_hash": "0d0073ae15cc73dc7563c16ecd308e9109157a0949d7ce920da5787a85e23161",
+      "latest_verified_increment": "W649 direct finite-shape endpoint/ShortExact WPP stable-certificate routes",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "The reusable verifier is expected to pass focused WppOpExactAcyclicProjectionFields source, WppOpExactAcyclicProjectionFields module build, ProductSuccessDeclarations, RequiredDeclarations, self-check, full lake build, JSON parse, git diff check, and expected nonterminal product gate after metadata refresh."
     }
