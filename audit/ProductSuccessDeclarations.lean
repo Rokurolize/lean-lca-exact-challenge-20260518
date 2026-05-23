@@ -6744,6 +6744,34 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679
   #check
     Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679_productSuccess
+  #check
+    Dbounded.MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointStableBundleW680
+  #check
+    Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680_ready
+  #check
+    Dbounded.MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointStableBundleW680
+  #check
+    Dbounded.metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680_ready
+  #check
+    Dbounded.metrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointInputNamesW680
+  #check
+    Dbounded.metrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointInputNamesW680_count
+  #check
+    Dbounded.MetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteSupportStateW680
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

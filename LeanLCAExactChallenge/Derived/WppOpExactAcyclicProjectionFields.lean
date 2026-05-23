@@ -35102,6 +35102,277 @@ theorem currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRoute
       false :=
   rfl
 
+/--
+W680 row-aware relation-fields target-top compact closed-map bundle using the
+W638 homotopy-equivalence/localized-right-adjoint semantic bridge instead of
+the W679 W668 kernel/cokernel-conditioned kernel-payload route.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointStableBundleW680
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  relationFieldsTargetTopCompactRowsBundle :
+    MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsNormalizedBundleW614
+  homotopyEquiv :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0}
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- W680 closed-map-row transfer inputs through the W638 semantic bridge. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointStableBundleW680) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        inputs.homotopyEquiv inputs.localizedRightAdjoint)
+    where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactClosedMapRowsBundleW614
+      inputs.relationFieldsTargetTopCompactRowsBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W680 closed-map-row route builds the ordinary stable input through W638. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointStableBundleW680) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+      MetrizableLCA.{0} inputs.homotopyEquiv
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      MetrizableLCA.{0} inputs.localizedRightAdjoint
+  exact
+    Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferForAvailable
+      (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680
+        inputs)
+
+/-- The W680 closed-map-row route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointStableBundleW680) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680
+        inputs)).ready := by
+  letI : (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+      MetrizableLCA.{0} inputs.homotopyEquiv
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      MetrizableLCA.{0} inputs.localizedRightAdjoint
+  exact
+    Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferForAvailable_ready
+      (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680
+        inputs)
+
+/--
+W680 row-aware relation-fields target-top compact closed-embedding bundle using
+the W638 homotopy-equivalence/localized-right-adjoint semantic bridge.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointStableBundleW680
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂] :
+    Type 1 where
+  relationFieldsTargetTopCompactRowsBundle :
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsNormalizedBundleW615
+  homotopyEquiv :
+    ExactAcyclicHomotopyEquivInvarianceInput MetrizableLCA.{0}
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  pretriangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    Pretriangulated (Dbounded MetrizableLCA.{0})
+  triangulated :
+    let available : Dbounded.MetrizableLeftCalculusSemanticFields :=
+      metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        homotopyEquiv localizedRightAdjoint
+    letI : Preadditive (Dbounded MetrizableLCA.{0}) := available.preadditive
+    letI : HasZeroObject (Dbounded MetrizableLCA.{0}) := available.zeroObject
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive :=
+      available.shiftAdditiveAll
+    letI : Pretriangulated (Dbounded MetrizableLCA.{0}) := pretriangulated
+    IsTriangulated (Dbounded MetrizableLCA.{0})
+
+/-- W680 closed-embedding-row transfer inputs through the W638 semantic bridge. -/
+def
+    metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointStableBundleW680) :
+    Dbounded.MetrizableWalkingParallelPairTransferStableSemanticInputs
+      (metrizableLeftCalculusSemanticFieldsOfHomotopyEquivLocalizedRightAdjointW638
+        inputs.homotopyEquiv inputs.localizedRightAdjoint)
+    where
+  transferInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsBundleW615
+      inputs.relationFieldsTargetTopCompactRowsBundle
+  pretriangulated := inputs.pretriangulated
+  triangulated := inputs.triangulated
+
+/-- W680 closed-embedding-row route builds the ordinary stable input through W638. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointStableBundleW680) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput := by
+  letI : (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+      MetrizableLCA.{0} inputs.homotopyEquiv
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      MetrizableLCA.{0} inputs.localizedRightAdjoint
+  exact
+    Dbounded.metrizableOrdinaryStableSemanticInputOfWalkingParallelPairTransferForAvailable
+      (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680
+        inputs)
+
+/-- The W680 closed-embedding-row route produces a ready W528 stable certificate. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680_ready
+    [(exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).IsTriangulatedClosed₂]
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointStableBundleW680) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680
+        inputs)).ready := by
+  letI : (exactAcyclicHomotopyObject MetrizableLCA.{0}).IsClosedUnderIsomorphisms :=
+    exactAcyclicHomotopyObject_isClosedUnderIsomorphisms_of_homotopyEquivInvariance
+      MetrizableLCA.{0} inputs.homotopyEquiv
+  letI : (boundedExactWeakEquivalence MetrizableLCA.{0}).HasLeftCalculusOfFractions :=
+    boundedExactWeakEquivalence_hasLeftCalculusOfFractions_of_localizedRightAdjointClosed2
+      MetrizableLCA.{0} inputs.localizedRightAdjoint
+  exact
+    Dbounded.stableCertificateOfMetrizableWalkingParallelPairTransferForAvailable_ready
+      (metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680
+        inputs)
+
+/-- Input names for the W680 row-aware target-top compact homotopy-equivalence route. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointInputNamesW680 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "exactAcyclic MetrizableLCA is invariant under homotopy equivalences",
+    "exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated (Dbounded MetrizableLCA)",
+    "IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem
+    metrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointInputNamesW680_count :
+    metrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointInputNamesW680.length =
+      13 :=
+  rfl
+
+/-- Current checked W680 state for the row-aware W638 semantic-bridge route. -/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680 :
+    Type where
+  seed : String
+  declarations : List String
+  semanticBridgeResult : String
+  closedMapRowsStableRouteResult : String
+  closedEmbeddingRowsStableRouteResult : String
+  stableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W680 state. -/
+def
+    currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteSupportStateW680 :
+    MetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680
+    where
+  seed :=
+    "w680-relation-fields-target-top-compact-rows-homotopy-equiv-localized-right-adjoint-route"
+  declarations :=
+    ["MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointStableBundleW680",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680_ready",
+      "MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointStableBundleW680",
+      "metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680_ready",
+      "metrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointInputNamesW680",
+      "metrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointInputNamesW680_count"]
+  semanticBridgeResult :=
+    "proved: W638 homotopy-equivalence plus localized-right-adjoint fields can drive W614/W615 relation-fields target-top compact rows"
+  closedMapRowsStableRouteResult :=
+    "proved: W614 closed-map rows feed WPP transfer through the W638 semantic bridge"
+  closedEmbeddingRowsStableRouteResult :=
+    "proved: W615 closed-embedding rows feed WPP transfer through the W638 semantic bridge"
+  stableCertificateResult :=
+    "proved: both W680 row variants produce ready W528 stable certificates without W679 kernel/cokernel topology or source direct-localization triangulation"
+  replacedInputs :=
+    ["W679 W668 kernel/cokernel-conditioned topology plus global homology surface",
+      "W679 source-side direct-localization triangulation and triangle-completion payload",
+      "W614/W615 endpoint or ShortExact W602 topology surface for stable transfer"]
+  remainingInputs :=
+    ["construct concrete WPP right-open and source-pi-zero boundary data",
+      "construct concrete relation-fields provider data",
+      "construct concrete target-relation-top provider data",
+      "construct concrete target codomain compactness data",
+      "construct concrete componentwise closed-map or closed-embedding row provider data",
+      "construct normalized strict representatives and fixed-target uniqueness data",
+      "prove exactAcyclic MetrizableLCA is invariant under homotopy equivalences",
+      "prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680 :
+    MetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680 :=
+  currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteSupportStateW680
+
+theorem
+    currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680_productSuccess :
+    currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -35462,6 +35733,49 @@ set_option linter.style.longLine false in
 #check currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679
 set_option linter.style.longLine false in
 #check currentMetrizableWppRelationFieldsTargetTopCompactRowsKernelPayloadRouteStateW679_productSuccess
+
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointStableBundleW680
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedMapRowsHomotopyEquivLocalizedRightAdjointBundleW680_ready
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointStableBundleW680
+set_option linter.style.longLine false in
+#check
+  metrizableWppTransferStableSemanticInputs_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactClosedEmbeddingRowsHomotopyEquivLocalizedRightAdjointBundleW680_ready
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointInputNamesW680
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointInputNamesW680_count
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteSupportStateW680
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetTopCompactRowsHomotopyEquivLocalizedRightAdjointRouteStateW680_productSuccess
 
 set_option linter.style.longLine false in
 #check metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670
