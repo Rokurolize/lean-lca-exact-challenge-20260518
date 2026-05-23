@@ -5794,6 +5794,44 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652
   #check
     Dbounded.currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW652_productSuccess
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitAndOpClosureW653
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitAndLeftSnakeW653
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitFieldsAndOpClosureW653
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitFieldsAndLeftSnakeW653
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeEndpointTrianglehPayloadBundleW653
+  #check
+    Dbounded.metrizableWppFiniteShapeEndpointTrianglehPayloadBundle_of_directSourceW653
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointTrianglehPayloadBundleW653
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeEndpointTrianglehPayloadBundleW653_ready
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeShortExactTrianglehPayloadBundleW653
+  #check
+    Dbounded.metrizableWppFiniteShapeShortExactTrianglehPayloadBundle_of_directSourceW653
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactTrianglehPayloadBundleW653
+  #check
+    Dbounded.metrizableStableCertificate_of_directFiniteShapeShortExactTrianglehPayloadBundleW653_ready
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadInputNamesW653
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadInputNamesW653_count
+  #check
+    Dbounded.MetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteSupportStateW653
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653
+  #check
+    Dbounded.currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

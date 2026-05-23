@@ -29121,6 +29121,199 @@ theorem currentMetrizableWppTrianglehPayloadGenericEndpointShortExactRouteStateW
       false :=
   rfl
 
+/--
+W653 direct finite-shape source wrapper for feeding W649-style direct constructors into
+the W652 explicit triangleh-payload route.
+-/
+structure MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 :
+    Type 1 where
+  finiteShapeInputs :
+    Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputs
+
+/-- W653 source from direct WPP limit comparison plus WPP-op exact-acyclic closure. -/
+def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitAndOpClosureW653
+    (inputs : MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitAndOpClosure) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitAndOpClosure
+      inputs
+
+/-- W653 source from direct WPP limit comparison plus the left/Snake route. -/
+def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitAndLeftSnakeW653
+    (inputs : MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitAndLeftSnake) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitAndLeftSnake
+      inputs
+
+/-- W653 source from direct WPP limit fields plus WPP-op exact-acyclic closure. -/
+def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitFieldsAndOpClosureW653
+    (inputs :
+      MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitFieldsAndOpClosure) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitFieldsAndOpClosure
+      inputs
+
+/-- W653 source from direct WPP limit fields plus the left/Snake route. -/
+def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitFieldsAndLeftSnakeW653
+    (inputs :
+      MetrizableWalkingParallelPairFiniteShapeTransferInputsFromLimitFieldsAndLeftSnake) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_limitFieldsAndLeftSnake
+      inputs
+
+/-- W653 endpoint bundle for direct finite-shape sources with explicit triangleh payloads. -/
+structure MetrizableWppDirectFiniteShapeEndpointTrianglehPayloadBundleW653 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  endpointPayload : MetrizableEndpointStableTriangulatedPayloadW651
+
+/-- W653 adapts a direct finite-shape endpoint payload bundle to W652. -/
+def
+    metrizableWppFiniteShapeEndpointTrianglehPayloadBundle_of_directSourceW653
+    (inputs : MetrizableWppDirectFiniteShapeEndpointTrianglehPayloadBundleW653) :
+    MetrizableWppFiniteShapeEndpointTrianglehPayloadBundleW652 where
+  finiteShapeInputs := inputs.directSource.finiteShapeInputs
+  endpointPayload := inputs.endpointPayload
+
+/-- W653 direct finite-shape endpoint route builds the W652 ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointTrianglehPayloadBundleW653
+    (inputs : MetrizableWppDirectFiniteShapeEndpointTrianglehPayloadBundleW653) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_finiteShapeEndpointTrianglehPayloadBundleW652
+    (metrizableWppFiniteShapeEndpointTrianglehPayloadBundle_of_directSourceW653
+      inputs)
+
+/-- W653 direct finite-shape endpoint route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeEndpointTrianglehPayloadBundleW653_ready
+    (inputs : MetrizableWppDirectFiniteShapeEndpointTrianglehPayloadBundleW653) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointTrianglehPayloadBundleW653
+        inputs)).ready :=
+  metrizableStableCertificate_of_finiteShapeEndpointTrianglehPayloadBundleW652_ready
+    (metrizableWppFiniteShapeEndpointTrianglehPayloadBundle_of_directSourceW653
+      inputs)
+
+/-- W653 ShortExact bundle for direct finite-shape sources with explicit triangleh payloads. -/
+structure MetrizableWppDirectFiniteShapeShortExactTrianglehPayloadBundleW653 :
+    Type 1 where
+  directSource : MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653
+  shortExactPayload : MetrizableShortExactStableTriangulatedPayloadW651
+
+/-- W653 adapts a direct finite-shape ShortExact payload bundle to W652. -/
+def
+    metrizableWppFiniteShapeShortExactTrianglehPayloadBundle_of_directSourceW653
+    (inputs : MetrizableWppDirectFiniteShapeShortExactTrianglehPayloadBundleW653) :
+    MetrizableWppFiniteShapeShortExactTrianglehPayloadBundleW652 where
+  finiteShapeInputs := inputs.directSource.finiteShapeInputs
+  shortExactPayload := inputs.shortExactPayload
+
+/-- W653 direct finite-shape ShortExact route builds the W652 ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactTrianglehPayloadBundleW653
+    (inputs : MetrizableWppDirectFiniteShapeShortExactTrianglehPayloadBundleW653) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_finiteShapeShortExactTrianglehPayloadBundleW652
+    (metrizableWppFiniteShapeShortExactTrianglehPayloadBundle_of_directSourceW653
+      inputs)
+
+/-- W653 direct finite-shape ShortExact route produces a ready W528 certificate. -/
+theorem
+    metrizableStableCertificate_of_directFiniteShapeShortExactTrianglehPayloadBundleW653_ready
+    (inputs : MetrizableWppDirectFiniteShapeShortExactTrianglehPayloadBundleW653) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactTrianglehPayloadBundleW653
+        inputs)).ready :=
+  metrizableStableCertificate_of_finiteShapeShortExactTrianglehPayloadBundleW652_ready
+    (metrizableWppFiniteShapeShortExactTrianglehPayloadBundle_of_directSourceW653
+      inputs)
+
+/-- Input names for the W653 direct finite-shape explicit triangleh-payload route. -/
+def metrizableWppDirectFiniteShapeTrianglehPayloadInputNamesW653 :
+    List String :=
+  ["direct WPP limit comparison",
+    "WPP exact-acyclic limit closure or all four WPP limit fields",
+    "WPP-op exact-acyclic closure or left/Snake colimit certificate",
+    "WalkingParallelPair functor-category localization",
+    "exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+    "W602 endpoint or ShortExact data plus global homology existence",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "Pretriangulated and IsTriangulated (Dbounded MetrizableLCA)"]
+
+theorem metrizableWppDirectFiniteShapeTrianglehPayloadInputNamesW653_count :
+    metrizableWppDirectFiniteShapeTrianglehPayloadInputNamesW653.length =
+      8 :=
+  rfl
+
+/-- Current checked W653 state for direct finite-shape explicit triangleh payload reuse. -/
+structure MetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653 :
+    Type where
+  seed : String
+  declarations : List String
+  directSourceResult : String
+  endpointRouteResult : String
+  shortExactRouteResult : String
+  stableCertificateResult : String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W653 state. -/
+def currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteSupportStateW653 :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653 where
+  seed := "w653-direct-finite-shape-triangleh-payload-route"
+  declarations :=
+    ["MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitAndOpClosureW653",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitAndLeftSnakeW653",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitFieldsAndOpClosureW653",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_limitFieldsAndLeftSnakeW653",
+      "MetrizableWppDirectFiniteShapeEndpointTrianglehPayloadBundleW653",
+      "metrizableWppFiniteShapeEndpointTrianglehPayloadBundle_of_directSourceW653",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeEndpointTrianglehPayloadBundleW653",
+      "metrizableStableCertificate_of_directFiniteShapeEndpointTrianglehPayloadBundleW653_ready",
+      "MetrizableWppDirectFiniteShapeShortExactTrianglehPayloadBundleW653",
+      "metrizableWppFiniteShapeShortExactTrianglehPayloadBundle_of_directSourceW653",
+      "metrizableOrdinaryStableSemanticInput_of_directFiniteShapeShortExactTrianglehPayloadBundleW653",
+      "metrizableStableCertificate_of_directFiniteShapeShortExactTrianglehPayloadBundleW653_ready",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadInputNamesW653",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadInputNamesW653_count"]
+  directSourceResult :=
+    "proved: all four direct WPP limit finite-shape constructors can feed a common W652 source wrapper"
+  endpointRouteResult :=
+    "proved: direct finite-shape endpoint route derives closed₂ through explicit W651 triangleh payload data"
+  shortExactRouteResult :=
+    "proved: direct finite-shape ShortExact route derives closed₂ through explicit W651 triangleh payload data"
+  stableCertificateResult :=
+    "proved: direct finite-shape endpoint and ShortExact explicit-payload routes produce ready W528 certificates"
+  remainingInputs :=
+    ["instantiate a concrete direct WPP limit comparison",
+      "instantiate WPP exact-acyclic limit closure or all four WPP limit fields",
+      "instantiate WPP-op exact-acyclic closure or left/Snake colimit certificate",
+      "construct exactAcyclicHomotopyIsoClosureTrianglehIso13Realization MetrizableLCA",
+      "construct W602 endpoint or ShortExact data plus global homology existence",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct Pretriangulated (Dbounded MetrizableLCA)",
+      "construct IsTriangulated (Dbounded MetrizableLCA)"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653 :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653 :=
+  currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteSupportStateW653
+
+theorem currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653_productSuccess :
+    currentMetrizableWppDirectFiniteShapeTrianglehPayloadRouteStateW653.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 #check MetrizableWalkingParallelPairFiniteShapeTransferInputsFromSelectedW461Rows
