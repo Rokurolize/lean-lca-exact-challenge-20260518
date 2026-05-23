@@ -34650,6 +34650,235 @@ theorem
       false :=
   rfl
 
+/--
+W678 builds the direct finite-shape source expected by W671 from the W612
+relation-fields target-top compact global closed-map route.
+-/
+noncomputable def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapW678
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedBundleW612) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedMapRowsBundleW612
+      inputs
+
+/--
+W678 builds the direct finite-shape source expected by W671 from the W613
+relation-fields target-top compact global closed-embedding route.
+-/
+noncomputable def
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedBundleW613) :
+    MetrizableWppDirectFiniteShapeTrianglehPayloadSourceW653 where
+  finiteShapeInputs :=
+    metrizableWalkingParallelPairFiniteShapeTransferInputs_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingRowsBundleW613
+      inputs
+
+/--
+W678 relation-fields target-top compact closed-map bundle: W612 finite-shape
+data plus the W668 kernel/cokernel-conditioned kernel payload consumed by W671.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678 :
+    Type 2 where
+  relationFieldsTargetTopCompactBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedBundleW612
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W678 adapts the relation-fields target-top global closed-map route to the W671 bundle. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedMapW678
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    where
+  directSource :=
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapW678
+      inputs.relationFieldsTargetTopCompactBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W678 relation-fields target-top closed-map route builds the ordinary stable input through W671. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedMapW678
+      inputs)
+
+/-- W678 relation-fields target-top closed-map route produces a ready certificate through W671. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedMapW678
+      inputs)
+
+/--
+W678 relation-fields target-top compact closed-embedding bundle: W613
+finite-shape data plus the W668 kernel/cokernel-conditioned kernel payload
+consumed by W671.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678 :
+    Type 2 where
+  relationFieldsTargetTopCompactBundle :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedBundleW613
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  kernelCokernelTopology :
+    MetrizableExactAtKernelCokernelConditionedTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W678 adapts the relation-fields target-top global closed-embedding route to the W671 bundle. -/
+noncomputable def
+    metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678) :
+    MetrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    where
+  directSource :=
+    metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678
+      inputs.relationFieldsTargetTopCompactBundle
+  hasHomology := inputs.hasHomology
+  kernelCokernelTopology := inputs.kernelCokernelTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W678 relation-fields target-top closed-embedding route builds the ordinary stable input through W671. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678
+      inputs)
+
+/-- W678 relation-fields target-top closed-embedding route produces a ready certificate through W671. -/
+theorem
+    metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678_ready
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678) :
+    (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
+      (metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678
+        inputs)).ready :=
+  metrizableStableCertificate_of_directFiniteShapeKernelCokernelConditionedKernelPayloadBundleW671_ready
+    (metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678
+      inputs)
+
+/-- Input names for the W678 relation-fields target-top compact kernel-payload route. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadInputNamesW678 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "normalized strict representatives for fixed-target localization",
+    "target and localization-model uniqueness",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem
+    metrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadInputNamesW678_count :
+    metrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadInputNamesW678.length =
+      13 :=
+  rfl
+
+/-- Current checked W678 state for relation-fields target-top compact kernel-payload routes. -/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapFiniteShapeResult : String
+  closedEmbeddingFiniteShapeResult : String
+  closedMapStableCertificateResult : String
+  closedEmbeddingStableCertificateResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W678 state. -/
+def
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteSupportStateW678 :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678 where
+  seed := "w678-relation-fields-target-top-compact-global-provider-kernel-payload-route"
+  declarations :=
+    ["metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapW678",
+      "metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedMapW678",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678_ready",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678",
+      "metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678",
+      "metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678_ready",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadInputNamesW678",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadInputNamesW678_count"]
+  closedMapFiniteShapeResult :=
+    "proved: W612 relation-fields target-top compact global closed-map data supply the W671 direct finite-shape source"
+  closedEmbeddingFiniteShapeResult :=
+    "proved: W613 relation-fields target-top compact global closed-embedding data supply the W671 direct finite-shape source"
+  closedMapStableCertificateResult :=
+    "proved: W678 relation-fields target-top closed-map kernel-payload bundles produce a ready W528 stable certificate through W671"
+  closedEmbeddingStableCertificateResult :=
+    "proved: W678 relation-fields target-top closed-embedding kernel-payload bundles produce a ready W528 stable certificate through W671"
+  replacedInputs :=
+    ["W677 target-difference surjectivity provider surface"]
+  remainingInputs :=
+    ["construct concrete WPP right-open and source-pi-zero boundary data",
+      "construct concrete relation-fields provider data",
+      "construct concrete target-relation-top provider data",
+      "construct concrete target codomain compactness data",
+      "construct concrete componentwise global closed-map or closed-embedding provider data",
+      "construct normalized strict representatives and fixed-target uniqueness data",
+      "construct W668 kernel/cokernel-conditioned endpoint data plus global homology existence and forgetful homology preservation",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct finite limits and finite colimits for Dbounded MetrizableLCA"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678 :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678 :=
+  currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteSupportStateW678
+
+theorem
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678_productSuccess :
+    currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -34920,6 +35149,54 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableWppRelationFieldsTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW677_productSuccess
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapW678
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedMapW678
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678_ready
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678
+set_option linter.style.longLine false in
+#check
+  metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678
+set_option linter.style.longLine false in
+#check
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678
+set_option linter.style.longLine false in
+#check
+  metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678_ready
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadInputNamesW678
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadInputNamesW678_count
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteSupportStateW678
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678
+set_option linter.style.longLine false in
+#check
+  currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678_productSuccess
 
 set_option linter.style.longLine false in
 #check metrizableKernelCokernelConditionedLocalizationCommShift_of_leftCalculusW670

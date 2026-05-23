@@ -6680,6 +6680,38 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppRelationFieldsTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW677
   #check
     Dbounded.currentMetrizableWppRelationFieldsTargetSurjectiveCompactGlobalProviderKernelPayloadRouteStateW677_productSuccess
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedMapW678
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeTrianglehPayloadSource_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678
+  #check
+    Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedMapW678
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedMapKernelPayloadBundleW678_ready
+  #check
+    Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678
+  #check
+    Dbounded.metrizableWppDirectFiniteShapeKernelCokernelConditionedKernelPayloadBundle_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingW678
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678
+  #check
+    Dbounded.metrizableStableCertificate_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingKernelPayloadBundleW678_ready
+  #check
+    Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadInputNamesW678
+  #check
+    Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadInputNamesW678_count
+  #check
+    Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteSupportStateW678
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678
+  #check
+    Dbounded.currentMetrizableWppRelationFieldsTargetTopCompactGlobalProviderKernelPayloadRouteStateW678_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
