@@ -38,20 +38,20 @@
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W712 explicit relation-field provider route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W713 target-only target-difference surjectivity route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260524T142312Z_019e599f_parent_w712</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T143808Z_019e599f_parent_w713</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W712 explicit relation-field provider route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W713 target-only target-difference surjectivity route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
       <div class="columns">
         <div>
-          <p>W712 lifts the W711 explicit componentwise route by replacing the direct W512 relation-fields aggregate with separate relation-pullback and target-relation-lift provider fields. The adapter assembles <code>ClosedNatTransOrdinaryRelationFieldsProviderW512</code> internally and delegates both accepted paths to W711.</p>
+          <p>W713 lifts the W712 explicit relation-field route by replacing the direct <code>TargetDifferenceSurjectiveProviderW601</code> input with target-only ordinary target-difference surjectivity. The adapter assembles the W601 provider internally and delegates both accepted paths to W712.</p>
           <ul>
-            <li><code>ClosedNatTransOrdinaryRelationPullbackProviderW712</code> isolates the W511 relation-pullback provider field.</li>
-            <li><code>ClosedNatTransOrdinaryTargetRelationLiftsProviderW712</code> isolates the W512 target-relation-lift provider field.</li>
-            <li>The input-name count is now <code>24</code>, replacing one W512 provider aggregate with two explicit relation-field provider obligations.</li>
+            <li><code>TargetDifferenceSurjectiveForTargetProviderW713</code> states target-difference surjectivity only in terms of the target diagram.</li>
+            <li><code>targetDifferenceSurjectiveProvider_of_targetOnlyW713</code> reconstructs W601's older closed-natural-transformation-indexed provider.</li>
+            <li>The input-name count remains <code>24</code>, but the target-difference obligation is now target-only instead of depending on extra call-site arguments.</li>
           </ul>
         </div>
         <div>
@@ -68,15 +68,15 @@
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed as <code>ef49757</code> before this W712 work.</p></div>
-      <p>W711 exposed the componentwise closed-provider input as three selected-difference component facts while delegating to W710.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed as <code>a583631</code> before this W713 work.</p></div>
+      <p>W712 exposed the relation-fields provider as separate relation-pullback and target-relation-lift provider fields while delegating to W711.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Concrete WPP right-open and source-pi-zero boundary data.</li>
         <li>Concrete relation-pullback and target-relation-lift providers for closed natural transformations.</li>
-        <li>Concrete W601 target-difference surjectivity and compact target data.</li>
+        <li>Target-only ordinary target-difference surjectivity and compact target data.</li>
         <li>Concrete selected-difference component closed-map or closed-embedding facts.</li>
         <li>Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness.</li>
         <li>Concrete W519 mapped-cokernel closed-map or closed-embedding data and explicit endpoint facts.</li>
