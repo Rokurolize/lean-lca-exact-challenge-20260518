@@ -52640,6 +52640,113 @@ theorem currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738_produc
       false :=
   rfl
 
+/--
+W739 constructs W737's categorical exactness input from the W736 universal
+left-right comparison isomorphism, W738 closure-kernel homology preservation,
+and the W318 algebraic exactness boundary.
+-/
+theorem exact_walkingParallelPairOp_colimitClosure_of_closureKernelComparisonAlgebraicW739
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (halg :
+      WppOpExactAcyclicFrontierConsolidatedW318.algebraicExact_walkingParallelPairOp_colimitClosure) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exact_walkingParallelPairOp_colimitClosureW737 := by
+  intro S cs hcs hS
+  letI : (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology :=
+    w737ForgetPreservesHomology_of_closureKernelW738 closureKernelProvider
+  haveI : IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 cs.pt) :=
+    comparisonIso cs.pt
+  have hhom : cs.pt.HasHomology :=
+    hasHomology_of_metrizableLeftRightComparisonIsoW736 cs.pt
+  letI : cs.pt.HasHomology := hhom
+  exact (ShortComplex.exact_iff_of_hasForget (S := cs.pt)).mpr
+    (halg S cs hcs hS)
+
+/--
+W739 closes W738's categorical exactness premise from the algebraic exactness
+boundary and the W736 comparison-isomorphism route.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonAlgebraicLeftW739
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (halg :
+      WppOpExactAcyclicFrontierConsolidatedW318.algebraicExact_walkingParallelPairOp_colimitClosure)
+    (hclosed :
+      WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_injective_inducing_closedImage) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelExactLeftFixedOpenW738
+    closureKernelProvider
+    (exact_walkingParallelPairOp_colimitClosure_of_closureKernelComparisonAlgebraicW739
+      closureKernelProvider comparisonIso halg)
+    hclosed
+
+/-- Input names for the W739 comparison-plus-algebraic exactness specialization. -/
+def exactAcyclicWppOpClosureKernelComparisonAlgebraicLeftInputNamesW739 :
+    List String :=
+  ["closure-kernel mapped explicit cokernel provider for forgetful homology preservation",
+    "universal IsIso for every MetrizableLCA left-right homology comparison",
+    "WPP-op colimit algebraic exactness boundary",
+    "pure left closed-embedding preservation for WPP-op LCA colimit maps"]
+
+theorem exactAcyclicWppOpClosureKernelComparisonAlgebraicLeftInputNamesW739_count :
+    exactAcyclicWppOpClosureKernelComparisonAlgebraicLeftInputNamesW739.length =
+      4 :=
+  rfl
+
+/--
+Current checked W739 state for the comparison-plus-algebraic exactness route
+into W738.
+-/
+structure MetrizableWppClosureKernelComparisonAlgebraicLeftRouteStateW739 :
+    Type where
+  seed : String
+  declarations : List String
+  exactnessResult : String
+  exactAcyclicConsumerResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W739 state. -/
+def currentMetrizableWppClosureKernelComparisonAlgebraicLeftRouteSupportStateW739 :
+    MetrizableWppClosureKernelComparisonAlgebraicLeftRouteStateW739
+    where
+  seed :=
+    "w739-closure-kernel-comparison-algebraic-exactness-specialization"
+  declarations :=
+    ["exact_walkingParallelPairOp_colimitClosure_of_closureKernelComparisonAlgebraicW739",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonAlgebraicLeftW739",
+      "exactAcyclicWppOpClosureKernelComparisonAlgebraicLeftInputNamesW739",
+      "exactAcyclicWppOpClosureKernelComparisonAlgebraicLeftInputNamesW739_count"]
+  exactnessResult :=
+    "proved: W736 comparison isomorphisms plus W318 algebraic exactness construct W737 categorical exactness"
+  exactAcyclicConsumerResult :=
+    "proved: W738 can consume closure-kernel data, comparison isomorphisms, \
+      algebraic exactness, and pure left topology"
+  exposedInputs :=
+    exactAcyclicWppOpClosureKernelComparisonAlgebraicLeftInputNamesW739
+  remainingInputs :=
+    ["construct closure-kernel mapped explicit cokernel provider",
+      "construct the universal left-right homology comparison isomorphism",
+      "construct WPP-op colimit algebraic exactness",
+      "construct pure left closed-embedding preservation for WPP-op LCA colimit maps"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppClosureKernelComparisonAlgebraicLeftRouteStateW739 :
+    MetrizableWppClosureKernelComparisonAlgebraicLeftRouteStateW739 :=
+  currentMetrizableWppClosureKernelComparisonAlgebraicLeftRouteSupportStateW739
+
+theorem currentMetrizableWppClosureKernelComparisonAlgebraicLeftRouteStateW739_productSuccess :
+    currentMetrizableWppClosureKernelComparisonAlgebraicLeftRouteStateW739.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

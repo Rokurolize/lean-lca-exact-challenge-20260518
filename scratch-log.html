@@ -38,20 +38,20 @@
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W738 closure-kernel W737 specialization</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W739 comparison algebraic exactness route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260524T201355Z_codex_parent_w738</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T202106Z_codex_parent_w739</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W738 closure-kernel W737 specialization</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W739 comparison algebraic exactness route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
       <div class="columns">
         <div>
-          <p>W738 specializes the W737 exact/topology route with the existing W694 closure-kernel proof of forgetful homology preservation. The route no longer exposes a raw <code>PreservesHomology</code> premise: closure-kernel data feed <code>w737ForgetPreservesHomology_of_closureKernelW738</code>, then the W737 fixed-open consumer handles exact-acyclic WPP-op colimit closure.</p>
+          <p>W739 connects the W736 left-right comparison-isomorphism route to W738. With closure-kernel homology preservation and the W318 algebraic exactness boundary, the universal comparison isomorphism supplies the local homology needed to turn element-level exactness into W737 categorical exactness.</p>
           <ul>
-            <li><code>w737ForgetPreservesHomology_of_closureKernelW738</code> supplies the W737 forgetful homology-preservation field from <code>MappedExplicitCokernelClosureKernelProviderW503</code>.</li>
-            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelExactLeftFixedOpenW738</code> uses the W737 fixed-open consumer with closure-kernel data.</li>
-            <li>The exposed route inputs are now closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation.</li>
+            <li><code>exact_walkingParallelPairOp_colimitClosure_of_closureKernelComparisonAlgebraicW739</code> builds W737 categorical exactness from closure-kernel preservation, W736 comparison isomorphisms, and W318 algebraic exactness.</li>
+            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonAlgebraicLeftW739</code> feeds that exactness into the W738 closure-kernel fixed-open consumer.</li>
+            <li>The exposed route inputs are now closure-kernel mapped explicit cokernel data, the universal left-right comparison isomorphism, WPP-op colimit algebraic exactness, and pure left closed-embedding preservation.</li>
           </ul>
         </div>
         <div>
@@ -60,7 +60,7 @@
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T201355Z_codex_parent_w738/w738_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T202106Z_codex_parent_w739/w739_required_declarations.lean</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake build</code></li>
             <li>Forbidden-token audits, JSON parse checks, manifest self-check, browser evidence, and expected nonterminal product-gate rejection.</li>
@@ -69,13 +69,13 @@
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W738 work.</p></div>
-      <p>W737 moved the exact/topology WPP-op route into the production consolidated frontier and showed that categorical exactness of the WPP-op colimit short complex supplies local homology via <code>ShortComplex.Exact.hasHomology</code>.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W739 work.</p></div>
+      <p>W738 specialized the W737 exact/topology route with the existing W694 closure-kernel proof of forgetful homology preservation, replacing the raw <code>PreservesHomology</code> premise with closure-kernel data.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>W738 route: construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps.</li>
+        <li>W739 route: construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, WPP-op colimit algebraic exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps.</li>
         <li>The universal left-right homology comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes.</li>
         <li>Concrete values for the W735 branch data inputs.</li>
         <li>Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>

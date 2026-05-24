@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T20:18:36Z",
+  "generated_utc": "2026-05-24T20:25:43Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,24 +1854,23 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w738_closure_kernel_w737_specialization",
-  "latest_parent_update": "parent_update_w738_closure_kernel_w737_specialization",
-  "summary": "W738 specializes the W737 exact/topology WPP-op route with the existing W694 closure-kernel proof of forgetful homology preservation. The route no longer exposes a raw PreservesHomology premise: closure-kernel data supply the W737 preservation field, while categorical exactness of the WPP-op colimit point and pure left closed-embedding preservation remain open route inputs.",
-  "remaining_frontier": "Need W738 closure-kernel route inputs, WPP-op colimit exactness, pure left closed-embedding preservation, the W736 universal left-right comparison isomorphism, concrete W735 branch data, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w738_closure_kernel_w737_specialization",
+  "support_result_classification": "verified_nonterminal_support_increment_w739_comparison_algebraic_exactness_route",
+  "latest_parent_update": "parent_update_w739_comparison_algebraic_exactness_route",
+  "summary": "W739 connects the W736 universal left-right comparison-isomorphism route to the W738 closure-kernel exact/topology route. With closure-kernel homology preservation and W318 algebraic exactness, the comparison isomorphism supplies local homology so element-level exactness yields W737 categorical exactness.",
+  "remaining_frontier": "Need W739 route inputs, concrete W735 branch data, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w739_comparison_algebraic_exactness_route",
   "remaining_blockers": [
-    "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
-    "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, WPP-op colimit algebraic exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W739 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "open_blockers": [
-    "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
-    "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, WPP-op colimit algebraic exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W739 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "consumed_support_results": [
+    "w739-closure-kernel-comparison-algebraic-exactness-specialization",
     "w738-closure-kernel-specialization-of-w737-exact-topology-fixed-open-route",
     "w737-exact-topology-fixed-open-with-exactness-derived-homology",
     "w735-category-with-homology-instance-constructors-for-w733-concrete-leaves",
@@ -2132,8 +2131,7 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
-    "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, WPP-op colimit algebraic exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W739 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -6856,6 +6854,28 @@
       "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
       "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
       "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data."
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w739_comparison_algebraic_exactness_route": {
+    "updated_utc": "2026-05-24T20:25:43Z",
+    "status": "verified_nonterminal_support_increment_w739_comparison_algebraic_exactness_route",
+    "implemented_declarations": [
+      "Dbounded.exact_walkingParallelPairOp_colimitClosure_of_closureKernelComparisonAlgebraicW739",
+      "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonAlgebraicLeftW739",
+      "Dbounded.exactAcyclicWppOpClosureKernelComparisonAlgebraicLeftInputNamesW739",
+      "Dbounded.exactAcyclicWppOpClosureKernelComparisonAlgebraicLeftInputNamesW739_count",
+      "Dbounded.MetrizableWppClosureKernelComparisonAlgebraicLeftRouteStateW739",
+      "Dbounded.currentMetrizableWppClosureKernelComparisonAlgebraicLeftRouteSupportStateW739",
+      "Dbounded.currentMetrizableWppClosureKernelComparisonAlgebraicLeftRouteStateW739",
+      "Dbounded.currentMetrizableWppClosureKernelComparisonAlgebraicLeftRouteStateW739_productSuccess"
+    ],
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T202106Z_codex_parent_w739",
+    "result": "W736 comparison isomorphisms and W318 algebraic exactness now feed W737 categorical exactness under W738 closure-kernel homology preservation.",
+    "remaining_inputs": [
+      "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, WPP-op colimit algebraic exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W739 route.",
+      "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
+      "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
     ],
     "product_success_claimed": false
   }
