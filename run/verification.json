@@ -1,9 +1,99 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w710-explicit-endpoint-strict-topology-route",
-  "generated_utc": "2026-05-24T14:03:39Z",
-  "source_tree_hash": "ab6750fad96484795145e53b55ee924410f1f6635e6daf16fbe30c63d60b8f00",
-  "summary": "W710 exposes the W709 endpoint-strict topology input as four explicit endpoint fields: forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis. It assembles MetrizableExactAtEndpointStrictTopologyInputs internally and delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W709. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w711-explicit-componentwise-closed-provider-route",
+  "generated_utc": "2026-05-24T14:18:30Z",
+  "source_tree_hash": "35d617795ac7ba617bcf56bfc941a7cd83976f018842fa61becce6af9838d0b7",
+  "summary": "W711 explicit componentwise closed-provider route exposes the W710 W525 componentwise closed-map and closed-embedding provider inputs as three selected-difference component facts. It assembles ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525 internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W710, and keeps product-success flags false.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W711 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/lean_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W711 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/module_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W711 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/product_success_audit.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/w711_required_declarations.lean",
+      "status": "passed",
+      "evidence": "W711 focused required-declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/w711_required_declarations.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import remains green after W711; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/root_import.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W711; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/required_declarations.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full repository build passed after W711; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/lake_build_full.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source-tree script passed after W711; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/forbidden_project.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Forbidden-token product-audit script passed after W711; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/forbidden_product_audit.log."
+    },
+    {
+      "command": "rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file forbidden-token regex returned no matches after W711; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/touched_forbidden_rg.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true|product_success.*true|product_complete.*true|update_goal_allowed.*true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-success marker scan returned no matches after W711; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/product_marker_rg.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Final whitespace diff check passed after W711; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/git_diff_check_final.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W711 terminal outcome JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/json_parse_all_final.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W711 verification JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/json_parse_all_final.log."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W711 frontier JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/json_parse_all_final.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W711 manifest JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/json_parse_all_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "Final W711 external self-check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/external_self_check_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Final W711 external product gate is expected to reject nonterminal outcome blocked_nonterminal_frontier; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T140801Z_019e599f_parent_w711/logs/external_product_gate_final.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -12763,6 +12853,22 @@
     }
   ],
   "implemented_declarations_checked": [
+    "SelectedDifferenceClosedMapPi1FieldW711",
+    "SelectedDifferenceClosedMapPi2FieldW711",
+    "SelectedDifferenceClosedMapPi3FieldW711",
+    "SelectedDifferenceClosedEmbeddingPi1FieldW711",
+    "SelectedDifferenceClosedEmbeddingPi2FieldW711",
+    "SelectedDifferenceClosedEmbeddingPi3FieldW711",
+    "componentwiseClosedMapProvider_of_explicitComponentFieldsW711",
+    "componentwiseClosedEmbeddingProvider_of_explicitComponentFieldsW711",
+    "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW711",
+    "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_globalClosedMapComponentsW711",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW711_accepted",
+    "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW711",
+    "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_globalClosedEmbeddingComponentsW711",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW711_accepted",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedInputNamesW711_count",
+    "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedRouteStateW711_productSuccess",
     "metrizableExactAtEndpointStrictTopologyInputs_of_explicitEndpointFieldsW710",
     "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
     "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710",
@@ -16878,24 +16984,26 @@
   "product_complete": false,
   "known_gaps": [
     "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
-    "Concrete W512 relation fields, W601 target-difference surjectivity, compact target data, and W525 global closed-map or closed-embedding provider data remain unconstructed.",
+    "Concrete W512 relation fields, W601 target-difference surjectivity, and compact target data remain unconstructed.",
+    "The selected-difference componentwise closed-provider aggregate is split, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
-    "Endpoint facts are now explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
+    "Endpoint facts are explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
     "Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w710",
+  "support_result_classification": "verified_nonterminal_support_increment_w711",
   "product_success": false,
   "remaining_work": [
     "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
-    "Concrete W512 relation fields, W601 target-difference surjectivity, compact target data, and W525 global closed-map or closed-embedding provider data remain unconstructed.",
+    "Concrete W512 relation fields, W601 target-difference surjectivity, and compact target data remain unconstructed.",
+    "The selected-difference componentwise closed-provider aggregate is split, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
-    "Endpoint facts are now explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
+    "Endpoint facts are explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
     "Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "summary_log_tail": "W710 splits endpoint-strict topology into four explicit fields, delegates to W709, and keeps product flags false.",
-  "latest_verified_increment": "W710 explicit endpoint-strict topology mapped-cokernel closed-provider route",
+  "summary_log_tail": "W711 splits W525 componentwise closed-provider inputs into three selected-difference component facts, delegates to W710, and keeps product flags false.",
+  "latest_verified_increment": "W711 explicit componentwise closed-provider mapped-cokernel route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
