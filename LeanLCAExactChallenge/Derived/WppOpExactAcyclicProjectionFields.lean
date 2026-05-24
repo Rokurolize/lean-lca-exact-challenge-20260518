@@ -53536,6 +53536,120 @@ theorem currentMetrizableWppW480ClosedRangeOnlyRowsRouteStateW748_productSuccess
       false :=
   rfl
 
+/--
+W749 specializes W748 by deriving its W526 row-aware closed-range-only input
+from W527 row-aware selected closed-map data.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedMapRowsW749
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (w480OrdinaryMap :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475OrdinaryMapProviderW480)
+    (hclosedMapRows :
+      WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.ComponentwiseClosedMapRowsProviderW527) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_selectedW461Provider_closedMapRows_w527
+    (WppOpW478ProviderToSelectedW461ProviderCurrentHeadV370SupportW486.selectedW461Provider_of_w461PromotionInputProvider_w486
+      (WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.w461PromotionInputProvider_of_w480
+        w480PromotionInputs
+        w480OrdinaryMap))
+    hclosedMapRows
+
+/--
+W749 closed-embedding-row variant. W527 converts closed-embedding rows to the
+same W526 row-aware closed-range-only boundary used by W748.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedEmbeddingRowsW749
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (w480OrdinaryMap :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475OrdinaryMapProviderW480)
+    (hclosedEmbeddingRows :
+      WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.ComponentwiseClosedEmbeddingRowsProviderW527) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_selectedW461Provider_closedEmbeddingRows_w527
+    (WppOpW478ProviderToSelectedW461ProviderCurrentHeadV370SupportW486.selectedW461Provider_of_w461PromotionInputProvider_w486
+      (WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.w461PromotionInputProvider_of_w480
+        w480PromotionInputs
+        w480OrdinaryMap))
+    hclosedEmbeddingRows
+
+/-- Input names for the W749 closed-map-row variant. -/
+def exactAcyclicWppOpW480ClosedMapRowsInputNamesW749 : List String :=
+  ["W480 split promotion-input provider for pure left closed-image preservation",
+    "W480 split ordinary-map provider for pure left closed-image preservation",
+    "W527 row-aware selected closed-map provider for strict AddCommGrp rows"]
+
+theorem exactAcyclicWppOpW480ClosedMapRowsInputNamesW749_count :
+    exactAcyclicWppOpW480ClosedMapRowsInputNamesW749.length = 3 :=
+  rfl
+
+/-- Input names for the W749 closed-embedding-row variant. -/
+def exactAcyclicWppOpW480ClosedEmbeddingRowsInputNamesW749 : List String :=
+  ["W480 split promotion-input provider for pure left closed-image preservation",
+    "W480 split ordinary-map provider for pure left closed-image preservation",
+    "W527 row-aware selected closed-embedding provider for strict AddCommGrp rows"]
+
+theorem exactAcyclicWppOpW480ClosedEmbeddingRowsInputNamesW749_count :
+    exactAcyclicWppOpW480ClosedEmbeddingRowsInputNamesW749.length = 3 :=
+  rfl
+
+/--
+Current checked W749 state for the W480/W527 row-aware closed-map and
+closed-embedding exactness routes.
+-/
+structure MetrizableWppW480ClosedMapRowsRouteStateW749 : Type where
+  seed : String
+  declarations : List String
+  closedMapVariantResult : String
+  closedEmbeddingVariantResult : String
+  w480SelectedProviderResult : String
+  rowAwareExactnessResult : String
+  exposedClosedMapInputs : List String
+  exposedClosedEmbeddingInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W749 state. -/
+def currentMetrizableWppW480ClosedMapRowsRouteSupportStateW749 :
+    MetrizableWppW480ClosedMapRowsRouteStateW749
+    where
+  seed := "w749-w480-w527-row-aware-closed-map-and-embedding-route"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedMapRowsW749",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedEmbeddingRowsW749",
+      "exactAcyclicWppOpW480ClosedMapRowsInputNamesW749",
+      "exactAcyclicWppOpW480ClosedMapRowsInputNamesW749_count",
+      "exactAcyclicWppOpW480ClosedEmbeddingRowsInputNamesW749",
+      "exactAcyclicWppOpW480ClosedEmbeddingRowsInputNamesW749_count"]
+  closedMapVariantResult :=
+    "proved: W527 row-aware selected closed-map rows feed the W748 row-aware exactness route"
+  closedEmbeddingVariantResult :=
+    "proved: W527 row-aware selected closed-embedding rows feed the W748 row-aware exactness route"
+  w480SelectedProviderResult :=
+    "proved: W480 split providers assemble W478 and then W486 supplies W527's selected-W461 input"
+  rowAwareExactnessResult :=
+    "proved: W527 row providers supply W526 closed-range-only rows and hence the strict AddCommGrp exactness boundary"
+  exposedClosedMapInputs := exactAcyclicWppOpW480ClosedMapRowsInputNamesW749
+  exposedClosedEmbeddingInputs := exactAcyclicWppOpW480ClosedEmbeddingRowsInputNamesW749
+  remainingInputs :=
+    ["construct W480 split promotion-input provider",
+      "construct W480 split ordinary-map provider",
+      "construct W527 row-aware selected closed-map rows or selected closed-embedding rows"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppW480ClosedMapRowsRouteStateW749 :
+    MetrizableWppW480ClosedMapRowsRouteStateW749 :=
+  currentMetrizableWppW480ClosedMapRowsRouteSupportStateW749
+
+theorem currentMetrizableWppW480ClosedMapRowsRouteStateW749_productSuccess :
+    currentMetrizableWppW480ClosedMapRowsRouteStateW749.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
