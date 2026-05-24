@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T17:03:14Z",
+  "generated_utc": "2026-05-24T17:12:51Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,11 +1854,11 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w721_localized_right_adjoint_data_route",
-  "latest_parent_update": "parent_update_v721_localized_right_adjoint_data_route",
-  "summary": "W721 localized-right-adjoint data route bundles the bounded homotopy localized right adjoint, its adjunction, and unit membership into one localized-right-adjoint data provider. It projects that provider back to the W720 endpoint-data route, delegates both closed-map and closed-embedding accepted paths to W720, and keeps product-success flags false.",
-  "remaining_frontier": "Need concrete bundled WPP boundary data, bundled closed-natural-transformation relation data, concrete target-only surjective-compact target data, concrete selected-difference diagram component provider data, concrete normalized fixed-target data, mapped-cokernel closed-provider data, concrete endpoint strict-topology data, concrete localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w721_localized_right_adjoint_data_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w722_source_triangulation_data_route",
+  "latest_parent_update": "parent_update_v722_source_triangulation_data_route",
+  "summary": "W722 source triangulation data route bundles the source Pretriangulated structure, source IsTriangulated structure, and source-side triangle completion into one source triangulation data provider. It projects that provider back to the W721 localized-right-adjoint route, delegates both closed-map and closed-embedding accepted paths to W721, and keeps product-success flags false.",
+  "remaining_frontier": "Need concrete bundled WPP boundary data, bundled closed-natural-transformation relation data, concrete target-only surjective-compact target data, concrete selected-difference diagram component provider data, concrete normalized fixed-target data, mapped-cokernel closed-provider data, concrete endpoint strict-topology data, concrete localized-right-adjoint data, concrete source triangulation data, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w722_source_triangulation_data_route",
   "remaining_blockers": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
     "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
@@ -1867,7 +1867,8 @@
     "Concrete normalized fixed-target data provider remains unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
     "Concrete endpoint strict-topology data provider remains unconstructed; its bundled forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
-    "Concrete bounded homotopy localized-right-adjoint data provider remains unconstructed; source triangulation, triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs also remain unconstructed."
+    "Concrete bounded homotopy localized-right-adjoint data provider remains unconstructed.",
+    "Concrete source triangulation and triangle-completion data provider remains unconstructed; Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs also remain unconstructed."
   ],
   "open_blockers": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
@@ -1877,7 +1878,8 @@
     "Concrete normalized fixed-target data provider remains unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
     "Concrete endpoint strict-topology data provider remains unconstructed; its bundled forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
-    "Concrete bounded homotopy localized-right-adjoint data provider remains unconstructed; source triangulation, triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs also remain unconstructed."
+    "Concrete bounded homotopy localized-right-adjoint data provider remains unconstructed.",
+    "Concrete source triangulation and triangle-completion data provider remains unconstructed; Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs also remain unconstructed."
   ],
   "consumed_support_results": [
     "w714-diagram-only-selected-difference-component-mapped-cokernel-route",
@@ -2143,7 +2145,8 @@
     "Concrete normalized fixed-target data provider remains unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
     "Concrete endpoint strict-topology data provider remains unconstructed; its bundled forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
-    "Concrete bounded homotopy localized-right-adjoint data provider remains unconstructed; source triangulation, triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs also remain unconstructed."
+    "Concrete bounded homotopy localized-right-adjoint data provider remains unconstructed.",
+    "Concrete source triangulation and triangle-completion data provider remains unconstructed; Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs also remain unconstructed."
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -6364,6 +6367,36 @@
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointRouteSupportStateW721",
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointRouteStateW721",
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointRouteStateW721_productSuccess"
+    ]
+  },
+  "parent_update_v722": "W722 source triangulation data route bundles the source Pretriangulated structure, source IsTriangulated structure, and source-side triangle completion into one source triangulation data provider. It projects that provider back to the W721 localized-right-adjoint route, delegates both closed-map and closed-embedding accepted paths to W721, and keeps product-success flags false.",
+  "parent_update_w722_metadata_refresh": {
+    "generated_utc": "2026-05-24T17:12:51Z",
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T170543Z_codex_parent_w722",
+    "source_tree_hash": "26bd265a3aaaa02599eecd24095581386b462bca9ad674c689c1c25e9dc97956",
+    "classification": "verified_nonterminal_support_increment_w722_source_triangulation_data_route",
+    "product_complete": false,
+    "implemented_declarations": [
+      "Dbounded.MetrizableWppSourceTriangulationDataProviderW722",
+      "Dbounded.sourcePretriangulated_of_sourceTriangulationDataW722",
+      "Dbounded.sourceTriangulated_of_sourceTriangulationDataW722",
+      "Dbounded.triangleCompletion_of_sourceTriangulationDataW722",
+      "Dbounded.MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationDataBundleW722",
+      "Dbounded.metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointDataBundle_of_sourceTriangulationDataW722",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationDataBundleW722",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationDataBundleW722",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationDataBundleW722_accepted",
+      "Dbounded.MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationDataBundleW722",
+      "Dbounded.metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointDataBundle_of_sourceTriangulationDataW722",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationDataBundleW722",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationDataBundleW722",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationDataBundleW722_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationInputNamesW722",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationInputNamesW722_count",
+      "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationRouteStateW722",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationRouteSupportStateW722",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationRouteStateW722",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationRouteStateW722_productSuccess"
     ]
   }
 }
