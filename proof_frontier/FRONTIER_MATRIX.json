@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T20:41:09Z",
+  "generated_utc": "2026-05-24T20:49:05Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,22 +1854,28 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w741_projection_field_comparison_route",
-  "latest_parent_update": "parent_update_w741_projection_field_comparison_route",
-  "summary": "W741 specializes the W740 SnakeInput route by supplying its SnakeInput cokernel boundary from the existing W464 selected projection-component colimit fields. The result remains nonterminal: closure-kernel data, the universal comparison isomorphism, projection-component colimit fields, and pure left topology are still inputs.",
-  "remaining_frontier": "Need W741 route inputs, concrete W735 branch data, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w741_projection_field_comparison_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w742_selected_w461_comparison_route",
+  "latest_parent_update": "parent_update_w742_selected_w461_comparison_route",
+  "summary": "W742 specializes the W741 projection-field comparison route by deriving its pure left closed-image boundary from the existing W483 selected W461 promotion provider. The result remains nonterminal: closure-kernel data, the universal comparison isomorphism, selected W461 promotion data, and projection-component colimit fields are still inputs.",
+  "remaining_frontier": "Need W742 route inputs, concrete W735 branch data, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w742_selected_w461_comparison_route",
   "remaining_blockers": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W464 selected projection-component colimit fields, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W741 route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W464 selected projection-component colimit fields for the W742 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "open_blockers": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W464 selected projection-component colimit fields, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W741 route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W464 selected projection-component colimit fields for the W742 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "consumed_support_results": [
+    {
+      "increment": "W742",
+      "classification": "verified_nonterminal_support_increment_w742_selected_w461_comparison_route",
+      "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204720Z_codex_parent_w742",
+      "product_success_claimed": false
+    },
     {
       "increment": "W741",
       "classification": "verified_nonterminal_support_increment_w741_projection_field_comparison_route",
@@ -2143,7 +2149,7 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W464 selected projection-component colimit fields, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W741 route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W464 selected projection-component colimit fields for the W742 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -6929,6 +6935,27 @@
     "result": "W741 routes W740 through W464 selected projection-component colimit fields instead of an abstract SnakeInput cokernel boundary.",
     "remaining_inputs": [
       "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W464 selected projection-component colimit fields, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W741 route.",
+      "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
+      "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w742_selected_w461_comparison_route": {
+    "updated_utc": "2026-05-24T20:49:05Z",
+    "status": "verified_nonterminal_support_increment_w742_selected_w461_comparison_route",
+    "implemented_declarations": [
+      "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ProjectionFieldsLeftW742",
+      "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742",
+      "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742_count",
+      "Dbounded.MetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742",
+      "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteSupportStateW742",
+      "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742",
+      "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742_productSuccess"
+    ],
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204720Z_codex_parent_w742",
+    "result": "W742 routes W741 through W483 selected W461 data instead of a raw pure left closed-image boundary.",
+    "remaining_inputs": [
+      "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W464 selected projection-component colimit fields for the W742 route.",
       "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
       "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
     ],

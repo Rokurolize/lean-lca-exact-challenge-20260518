@@ -2,8 +2,21 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W741 specializes the W740 SnakeInput route by supplying its SnakeInput cokernel boundary from the existing W464 selected projection-component colimit fields. The result remains nonterminal: closure-kernel data, the universal comparison isomorphism, projection-component colimit fields, and pure left topology are still inputs.",
+  "summary": "W742 specializes the W741 projection-field comparison route by deriving its pure left closed-image boundary from the existing W483 selected W461 promotion provider. The result remains nonterminal: closure-kernel data, the universal comparison isomorphism, selected W461 promotion data, and projection-component colimit fields are still inputs.",
   "verified_commands": [
+    "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204720Z_codex_parent_w742/w742_required_declarations.lean",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "git diff --check",
+    "lake build",
+    "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+    "python3 JSON metadata parse check",
+    "browser evidence render for scratch-log.html",
+    "python3 audit/external_audit.py --root . --self-check-only",
+    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
     "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -2255,6 +2268,13 @@
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T170543Z_codex_parent_w722/browser_evidence --expect W722 --expect product_complete=false --expect 20260524T170543Z_codex_parent_w722"
   ],
   "required_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ProjectionFieldsLeftW742",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742_count",
+    "Dbounded.MetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteSupportStateW742",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonProjectionFieldsLeftW741",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741_count",
@@ -6472,7 +6492,7 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
   "known_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W464 selected projection-component colimit fields, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W741 route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W464 selected projection-component colimit fields for the W742 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -6484,12 +6504,19 @@
   "worker_frontier_summary": "No worker launch was needed for W736; the parent verified the kernel/cokernel homology reduction directly.",
   "claim_review_result": "not applicable: W733 is a nonterminal support increment with product_success=false",
   "remaining_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W464 selected projection-component colimit fields, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W741 route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W464 selected projection-component colimit fields for the W742 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "next_recommended_goal": "Construct the W741 route inputs: closure-kernel provider, universal left-right comparison isomorphism, selected projection-component colimit fields, and pure left closed-embedding preservation.",
+  "next_recommended_goal": "Construct the W742 route inputs: closure-kernel provider, universal left-right comparison isomorphism, selected W461 promotion data, and selected projection-component colimit fields.",
   "implemented_declarations": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ProjectionFieldsLeftW742",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742_count",
+    "Dbounded.MetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteSupportStateW742",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonProjectionFieldsLeftW741",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741_count",
@@ -11242,9 +11269,16 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
-  "generated_utc": "2026-05-24T20:41:09Z",
-  "support_result_classification": "verified_nonterminal_support_increment_w741_projection_field_comparison_route",
+  "generated_utc": "2026-05-24T20:49:05Z",
+  "support_result_classification": "verified_nonterminal_support_increment_w742_selected_w461_comparison_route",
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ProjectionFieldsLeftW742",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742_count",
+    "Dbounded.MetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteSupportStateW742",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonProjectionFieldsLeftW741",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741_count",
@@ -16030,13 +16064,13 @@
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W464 selected projection-component colimit fields, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W741 route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W464 selected projection-component colimit fields for the W742 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "latest_verified_increment": "W741 projection-field comparison route",
-  "source_tree_hash": "12c58875621df3a9cf8aaa27a40f86e84a622c21bf507ba7ec3c15c7ff3915de",
-  "summary_log_tail": "W741 routes W740 through W464 projection-component colimit fields; product flags remain false.",
+  "latest_verified_increment": "W742 selected-W461 comparison route",
+  "source_tree_hash": "fda670aa7245408ca5601bbd31f306bcda3ee447d813316e147cd64ca547e9ec",
+  "summary_log_tail": "W742 routes W741 through W483 selected W461 data for the left closed-image boundary; product flags remain false.",
   "git_commit_note": "W736 kernel-cokernel comparison reduction is a nonterminal support increment; product_success/product_complete/update_goal_allowed remain false.",
   "metadata_corrections": {
     "w739_metadata_refresh": {
@@ -17817,10 +17851,14 @@
     "w741_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:41:09Z",
       "reason": "W741 refresh keeps terminal outcome blocked_nonterminal_frontier and update_goal_allowed=false; declarations and command evidence were prepended."
+    },
+    "w742_metadata_refresh": {
+      "corrected_utc": "2026-05-24T20:49:05Z",
+      "reason": "W742 refresh keeps terminal outcome blocked_nonterminal_frontier and update_goal_allowed=false; declarations and command evidence were prepended."
     }
   },
-  "classification": "verified_nonterminal_support_increment_w741_projection_field_comparison_route",
-  "latest_increment": "W741 projection-field comparison route",
+  "classification": "verified_nonterminal_support_increment_w742_selected_w461_comparison_route",
+  "latest_increment": "W742 selected-W461 comparison route",
   "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T202106Z_codex_parent_w739",
   "product_success_claimed": false,
   "update_goal_complete_permitted": false

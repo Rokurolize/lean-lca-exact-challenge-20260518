@@ -52939,6 +52939,90 @@ theorem
       false :=
   rfl
 
+/--
+W742 specializes W741 by deriving the pure left closed-image boundary from a
+single W483 selected W461 promotion provider.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ProjectionFieldsLeftW742
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (selectedW461Provider :
+      WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483.SelectedW461PromotionInputsProviderW483)
+    (hproj :
+      AddCommGrpW426LeftClosedProjectionFieldsExactAcyclicV370SupportW475.ProjectionFieldsProviderW475) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonProjectionFieldsLeftW741
+    closureKernelProvider
+    comparisonIso
+    hproj
+    (WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483.wppOp_lca_colimitMap_injective_inducing_closedImage_of_selectedW461Provider_w483
+      selectedW461Provider)
+
+/-- Input names for the W742 selected-W461/projection-field specialization. -/
+def exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742 :
+    List String :=
+  ["closure-kernel mapped explicit cokernel provider for forgetful homology preservation",
+    "universal IsIso for every MetrizableLCA left-right homology comparison",
+    "W483 selected W461 promotion provider for pure left closed-image preservation",
+    "W464 selected projection-component colimit fields for WPP-op diagrams"]
+
+theorem
+    exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742_count :
+    exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742.length =
+      4 :=
+  rfl
+
+/--
+Current checked W742 state for the selected-W461/projection-field specialization
+of the W741 route.
+-/
+structure MetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742 :
+    Type where
+  seed : String
+  declarations : List String
+  selectedW461Result : String
+  exactAcyclicConsumerResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W742 state. -/
+def currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteSupportStateW742 :
+    MetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742
+    where
+  seed :=
+    "w742-closure-kernel-comparison-selected-w461-projection-fields-specialization"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ProjectionFieldsLeftW742",
+      "exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742",
+      "exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742_count"]
+  selectedW461Result :=
+    "proved: W483 selected W461 promotion provider supplies W741's pure left closed-image boundary"
+  exactAcyclicConsumerResult :=
+    "proved: W741 can consume closure-kernel data, comparison isomorphisms, selected W461 data, and projection fields"
+  exposedInputs :=
+    exactAcyclicWppOpClosureKernelComparisonSelectedW461ProjectionFieldsLeftInputNamesW742
+  remainingInputs :=
+    ["construct closure-kernel mapped explicit cokernel provider",
+      "construct the universal left-right homology comparison isomorphism",
+      "construct W483 selected W461 promotion provider",
+      "construct W464 selected projection-component colimit fields for WPP-op diagrams"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742 :
+    MetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742 :=
+  currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteSupportStateW742
+
+theorem
+    currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742_productSuccess :
+    currentMetrizableWppClosureKernelComparisonSelectedW461ProjectionFieldsLeftRouteStateW742.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
