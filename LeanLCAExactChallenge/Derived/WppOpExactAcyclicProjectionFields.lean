@@ -45972,6 +45972,538 @@ theorem
       false :=
   rfl
 
+/-- W714 diagram-only closed-map field for the first selected difference component. -/
+abbrev SelectedDifferenceClosedMapPi1DiagramFieldW714 : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}),
+    IsClosedMap
+      (WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481.selectedMetrizableDifferenceπ₁W481 S :
+        (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinarySourceIndexW484).X₁ →
+          (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinaryTargetIndexW484).X₁)
+
+/-- W714 diagram-only closed-map field for the second selected difference component. -/
+abbrev SelectedDifferenceClosedMapPi2DiagramFieldW714 : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}),
+    IsClosedMap
+      (WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481.selectedMetrizableDifferenceπ₂W481 S :
+        (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinarySourceIndexW484).X₂ →
+          (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinaryTargetIndexW484).X₂)
+
+/-- W714 diagram-only closed-map field for the third selected difference component. -/
+abbrev SelectedDifferenceClosedMapPi3DiagramFieldW714 : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}),
+    IsClosedMap
+      (WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481.selectedMetrizableDifferenceπ₃W481 S :
+        (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinarySourceIndexW484).X₃ →
+          (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinaryTargetIndexW484).X₃)
+
+/-- W714 diagram-only closed-embedding field for the first selected difference component. -/
+abbrev SelectedDifferenceClosedEmbeddingPi1DiagramFieldW714 : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}),
+    IsClosedEmbedding
+      (WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481.selectedMetrizableDifferenceπ₁W481 S :
+        (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinarySourceIndexW484).X₁ →
+          (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinaryTargetIndexW484).X₁)
+
+/-- W714 diagram-only closed-embedding field for the second selected difference component. -/
+abbrev SelectedDifferenceClosedEmbeddingPi2DiagramFieldW714 : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}),
+    IsClosedEmbedding
+      (WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481.selectedMetrizableDifferenceπ₂W481 S :
+        (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinarySourceIndexW484).X₂ →
+          (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinaryTargetIndexW484).X₂)
+
+/-- W714 diagram-only closed-embedding field for the third selected difference component. -/
+abbrev SelectedDifferenceClosedEmbeddingPi3DiagramFieldW714 : Prop :=
+  ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0}),
+    IsClosedEmbedding
+      (WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481.selectedMetrizableDifferenceπ₃W481 S :
+        (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinarySourceIndexW484).X₃ →
+          (S.obj WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ordinaryTargetIndexW484).X₃)
+
+/-- W714 adapts a diagram-only first closed-map field to W711's cocone-indexed field. -/
+def selectedDifferenceClosedMapPi1Field_of_diagramFieldW714
+    (hclosedMap : SelectedDifferenceClosedMapPi1DiagramFieldW714) :
+    SelectedDifferenceClosedMapPi1FieldW711 :=
+  fun S _cs _hcs => hclosedMap S
+
+/-- W714 adapts a diagram-only second closed-map field to W711's cocone-indexed field. -/
+def selectedDifferenceClosedMapPi2Field_of_diagramFieldW714
+    (hclosedMap : SelectedDifferenceClosedMapPi2DiagramFieldW714) :
+    SelectedDifferenceClosedMapPi2FieldW711 :=
+  fun S _cs _hcs => hclosedMap S
+
+/-- W714 adapts a diagram-only third closed-map field to W711's cocone-indexed field. -/
+def selectedDifferenceClosedMapPi3Field_of_diagramFieldW714
+    (hclosedMap : SelectedDifferenceClosedMapPi3DiagramFieldW714) :
+    SelectedDifferenceClosedMapPi3FieldW711 :=
+  fun S _cs _hcs => hclosedMap S
+
+/--
+W714 adapts a diagram-only first closed-embedding field to W711's
+cocone-indexed field.
+-/
+def selectedDifferenceClosedEmbeddingPi1Field_of_diagramFieldW714
+    (hclosedEmbedding : SelectedDifferenceClosedEmbeddingPi1DiagramFieldW714) :
+    SelectedDifferenceClosedEmbeddingPi1FieldW711 :=
+  fun S _cs _hcs => hclosedEmbedding S
+
+/--
+W714 adapts a diagram-only second closed-embedding field to W711's
+cocone-indexed field.
+-/
+def selectedDifferenceClosedEmbeddingPi2Field_of_diagramFieldW714
+    (hclosedEmbedding : SelectedDifferenceClosedEmbeddingPi2DiagramFieldW714) :
+    SelectedDifferenceClosedEmbeddingPi2FieldW711 :=
+  fun S _cs _hcs => hclosedEmbedding S
+
+/--
+W714 adapts a diagram-only third closed-embedding field to W711's
+cocone-indexed field.
+-/
+def selectedDifferenceClosedEmbeddingPi3Field_of_diagramFieldW714
+    (hclosedEmbedding : SelectedDifferenceClosedEmbeddingPi3DiagramFieldW714) :
+    SelectedDifferenceClosedEmbeddingPi3FieldW711 :=
+  fun S _cs _hcs => hclosedEmbedding S
+
+/--
+W714 closed-map bundle: expose the W713 route with diagram-only
+selected-difference closed-map component fields.
+-/
+structure
+    MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationPullbackProvider :
+    ClosedNatTransOrdinaryRelationPullbackProviderW712
+  targetRelationLiftsProvider :
+    ClosedNatTransOrdinaryTargetRelationLiftsProviderW712
+  targetDifferenceSurjectiveForTargetProvider :
+    TargetDifferenceSurjectiveForTargetProviderW713
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedMapPi1 :
+    SelectedDifferenceClosedMapPi1DiagramFieldW714
+  globalClosedMapPi2 :
+    SelectedDifferenceClosedMapPi2DiagramFieldW714
+  globalClosedMapPi3 :
+    SelectedDifferenceClosedMapPi3DiagramFieldW714
+  normalizedLiftBlueprint :
+    Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint
+  targetFixedTargetUniq :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+      (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0})
+  localizationModelFixedTargetUniq :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+      (((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair).Localization)
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  mappedCokernelClosedMapProvider :
+    MappedExplicitCokernelClosedMapProviderW519
+  endpointForgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  endpointClosedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  endpointOpenMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  endpointEpiOfExactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Epi ((K.sc i).g)
+  boundedHomotopyLocalizedRightAdjoint :
+    MorphismProperty.Localization
+        ((exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).trW) ⥤
+      BoundedComplexCategory MetrizableLCA.{0}
+  boundedHomotopyLocalizedAdjunction :
+    boundedHomotopyLocalizedVerdierFunctor MetrizableLCA.{0} ⊣
+      boundedHomotopyLocalizedRightAdjoint
+  boundedHomotopyLocalizedUnitMem :
+    (boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+      (BoundedComplexCategory MetrizableLCA.{0})
+      boundedHomotopyLocalizedAdjunction.unit
+  sourcePretriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  sourceTriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    IsTriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  triangleCompletion :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+
+/-- W714 assembles the W713 closed-map bundle from diagram-only component fields. -/
+def
+    metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714
+    (inputs :
+      MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714) :
+    MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW713
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationPullbackProvider := inputs.relationPullbackProvider
+  targetRelationLiftsProvider := inputs.targetRelationLiftsProvider
+  targetDifferenceSurjectiveForTargetProvider :=
+    inputs.targetDifferenceSurjectiveForTargetProvider
+  targetCodomainCompactSpaceProvider :=
+    inputs.targetCodomainCompactSpaceProvider
+  globalClosedMapPi1 :=
+    selectedDifferenceClosedMapPi1Field_of_diagramFieldW714
+      inputs.globalClosedMapPi1
+  globalClosedMapPi2 :=
+    selectedDifferenceClosedMapPi2Field_of_diagramFieldW714
+      inputs.globalClosedMapPi2
+  globalClosedMapPi3 :=
+    selectedDifferenceClosedMapPi3Field_of_diagramFieldW714
+      inputs.globalClosedMapPi3
+  normalizedLiftBlueprint := inputs.normalizedLiftBlueprint
+  targetFixedTargetUniq := inputs.targetFixedTargetUniq
+  localizationModelFixedTargetUniq :=
+    inputs.localizationModelFixedTargetUniq
+  hasHomology := inputs.hasHomology
+  mappedCokernelClosedMapProvider := inputs.mappedCokernelClosedMapProvider
+  endpointForgetPreservesHomology := inputs.endpointForgetPreservesHomology
+  endpointClosedEmbedding := inputs.endpointClosedEmbedding
+  endpointOpenMap := inputs.endpointOpenMap
+  endpointEpiOfExactAt := inputs.endpointEpiOfExactAt
+  boundedHomotopyLocalizedRightAdjoint :=
+    inputs.boundedHomotopyLocalizedRightAdjoint
+  boundedHomotopyLocalizedAdjunction :=
+    inputs.boundedHomotopyLocalizedAdjunction
+  boundedHomotopyLocalizedUnitMem :=
+    inputs.boundedHomotopyLocalizedUnitMem
+  sourcePretriangulated := inputs.sourcePretriangulated
+  sourceTriangulated := inputs.sourceTriangulated
+  triangleCompletion := inputs.triangleCompletion
+
+/-- W714 diagram-only component closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714
+    (inputs :
+      MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW713
+    (metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714
+      inputs)
+
+/-- W714 diagram-only component closed-map data are accepted through W713. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714
+    (inputs :
+      MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW713
+    (metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714
+      inputs)
+
+/-- The W714 diagram-only component closed-map package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714_accepted
+    (inputs :
+      MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW713_accepted
+    (metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714
+      inputs)
+
+/--
+W714 closed-embedding bundle: expose the W713 route with diagram-only
+selected-difference closed-embedding component fields.
+-/
+structure
+    MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationPullbackProvider :
+    ClosedNatTransOrdinaryRelationPullbackProviderW712
+  targetRelationLiftsProvider :
+    ClosedNatTransOrdinaryTargetRelationLiftsProviderW712
+  targetDifferenceSurjectiveForTargetProvider :
+    TargetDifferenceSurjectiveForTargetProviderW713
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedEmbeddingPi1 :
+    SelectedDifferenceClosedEmbeddingPi1DiagramFieldW714
+  globalClosedEmbeddingPi2 :
+    SelectedDifferenceClosedEmbeddingPi2DiagramFieldW714
+  globalClosedEmbeddingPi3 :
+    SelectedDifferenceClosedEmbeddingPi3DiagramFieldW714
+  normalizedLiftBlueprint :
+    Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint
+  targetFixedTargetUniq :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+      (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0})
+  localizationModelFixedTargetUniq :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+      (((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair).Localization)
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  mappedCokernelClosedEmbeddingProvider :
+    MappedExplicitCokernelClosedEmbeddingProviderW519
+  endpointForgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  endpointClosedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  endpointOpenMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  endpointEpiOfExactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Epi ((K.sc i).g)
+  boundedHomotopyLocalizedRightAdjoint :
+    MorphismProperty.Localization
+        ((exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).trW) ⥤
+      BoundedComplexCategory MetrizableLCA.{0}
+  boundedHomotopyLocalizedAdjunction :
+    boundedHomotopyLocalizedVerdierFunctor MetrizableLCA.{0} ⊣
+      boundedHomotopyLocalizedRightAdjoint
+  boundedHomotopyLocalizedUnitMem :
+    (boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+      (BoundedComplexCategory MetrizableLCA.{0})
+      boundedHomotopyLocalizedAdjunction.unit
+  sourcePretriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  sourceTriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    IsTriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  triangleCompletion :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+
+/-- W714 assembles the W713 closed-embedding bundle from diagram-only component fields. -/
+def
+    metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714
+    (inputs :
+      MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714) :
+    MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW713
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationPullbackProvider := inputs.relationPullbackProvider
+  targetRelationLiftsProvider := inputs.targetRelationLiftsProvider
+  targetDifferenceSurjectiveForTargetProvider :=
+    inputs.targetDifferenceSurjectiveForTargetProvider
+  targetCodomainCompactSpaceProvider :=
+    inputs.targetCodomainCompactSpaceProvider
+  globalClosedEmbeddingPi1 :=
+    selectedDifferenceClosedEmbeddingPi1Field_of_diagramFieldW714
+      inputs.globalClosedEmbeddingPi1
+  globalClosedEmbeddingPi2 :=
+    selectedDifferenceClosedEmbeddingPi2Field_of_diagramFieldW714
+      inputs.globalClosedEmbeddingPi2
+  globalClosedEmbeddingPi3 :=
+    selectedDifferenceClosedEmbeddingPi3Field_of_diagramFieldW714
+      inputs.globalClosedEmbeddingPi3
+  normalizedLiftBlueprint := inputs.normalizedLiftBlueprint
+  targetFixedTargetUniq := inputs.targetFixedTargetUniq
+  localizationModelFixedTargetUniq :=
+    inputs.localizationModelFixedTargetUniq
+  hasHomology := inputs.hasHomology
+  mappedCokernelClosedEmbeddingProvider :=
+    inputs.mappedCokernelClosedEmbeddingProvider
+  endpointForgetPreservesHomology := inputs.endpointForgetPreservesHomology
+  endpointClosedEmbedding := inputs.endpointClosedEmbedding
+  endpointOpenMap := inputs.endpointOpenMap
+  endpointEpiOfExactAt := inputs.endpointEpiOfExactAt
+  boundedHomotopyLocalizedRightAdjoint :=
+    inputs.boundedHomotopyLocalizedRightAdjoint
+  boundedHomotopyLocalizedAdjunction :=
+    inputs.boundedHomotopyLocalizedAdjunction
+  boundedHomotopyLocalizedUnitMem :=
+    inputs.boundedHomotopyLocalizedUnitMem
+  sourcePretriangulated := inputs.sourcePretriangulated
+  sourceTriangulated := inputs.sourceTriangulated
+  triangleCompletion := inputs.triangleCompletion
+
+/-- W714 diagram-only component closed-embedding route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714
+    (inputs :
+      MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW713
+    (metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714
+      inputs)
+
+/-- W714 diagram-only component closed-embedding data are accepted through W713. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714
+    (inputs :
+      MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW713
+    (metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714
+      inputs)
+
+/-- The W714 diagram-only component closed-embedding package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714_accepted
+    (inputs :
+      MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW713_accepted
+    (metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714
+      inputs)
+
+/-- Input names for the W714 diagram-only selected component route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedInputNamesW714 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "closed natural transformation ordinary relation-pullback provider",
+    "closed natural transformation ordinary target-relation-lift provider",
+    "target-only ordinary target-difference surjectivity provider",
+    "TargetCodomainCompactSpaceProviderW601",
+    "selected difference first diagram component is a closed map or closed embedding",
+    "selected difference second diagram component is a closed map or closed embedding",
+    "selected difference third diagram component is a closed map or closed embedding",
+    "normalized strict-representative lift blueprint for WPP diagrams and maps",
+    "target fixed-target uniqueness for the WPP objectwise localization functor",
+    "localization-model fixed-target uniqueness for the WPP objectwise localization functor",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MappedExplicitCokernelClosedMapProviderW519 or MappedExplicitCokernelClosedEmbeddingProviderW519",
+    "forgetful functor preserves homology for MetrizableLCA",
+    "endpoint ExactAt incoming maps are closed embeddings",
+    "endpoint ExactAt outgoing maps are open",
+    "endpoint ExactAt outgoing maps are epis",
+    "right adjoint to the bounded homotopy localized Verdier functor",
+    "adjunction for the bounded homotopy localized Verdier functor",
+    "unit membership in boundedHomotopyExactWeakEquivalence",
+    "ordinary Pretriangulated structure on BoundedComplexCategory MetrizableLCA",
+    "ordinary IsTriangulated structure on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedInputNamesW714_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedInputNamesW714.length =
+      24 :=
+  rfl
+
+/-- Current checked W714 state for diagram-only selected component fields. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteStateW714 :
+    Type where
+  seed : String
+  declarations : List String
+  diagramClosedMapFieldsToW711Result : String
+  diagramClosedEmbeddingFieldsToW711Result : String
+  closedMapDiagramAcceptedResult : String
+  closedEmbeddingDiagramAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W714 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteSupportStateW714 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteStateW714
+    where
+  seed :=
+    "w714-diagram-only-selected-difference-component-closedness-route"
+  declarations :=
+    ["SelectedDifferenceClosedMapPi1DiagramFieldW714",
+      "SelectedDifferenceClosedMapPi2DiagramFieldW714",
+      "SelectedDifferenceClosedMapPi3DiagramFieldW714",
+      "SelectedDifferenceClosedEmbeddingPi1DiagramFieldW714",
+      "SelectedDifferenceClosedEmbeddingPi2DiagramFieldW714",
+      "SelectedDifferenceClosedEmbeddingPi3DiagramFieldW714",
+      "selectedDifferenceClosedMapPi1Field_of_diagramFieldW714",
+      "selectedDifferenceClosedMapPi2Field_of_diagramFieldW714",
+      "selectedDifferenceClosedMapPi3Field_of_diagramFieldW714",
+      "selectedDifferenceClosedEmbeddingPi1Field_of_diagramFieldW714",
+      "selectedDifferenceClosedEmbeddingPi2Field_of_diagramFieldW714",
+      "selectedDifferenceClosedEmbeddingPi3Field_of_diagramFieldW714",
+      "MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714",
+      "metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714_accepted",
+      "MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714",
+      "metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedInputNamesW714",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedInputNamesW714_count"]
+  diagramClosedMapFieldsToW711Result :=
+    "proved: diagram-only selected-difference closed-map facts assemble W711 cocone-indexed fields"
+  diagramClosedEmbeddingFieldsToW711Result :=
+    "proved: diagram-only selected-difference closed-embedding facts assemble W711 cocone-indexed fields"
+  closedMapDiagramAcceptedResult :=
+    "proved: diagram-only component closed-map bundle assembles W713 and feeds the accepted closed-map route"
+  closedEmbeddingDiagramAcceptedResult :=
+    "proved: diagram-only component closed-embedding bundle assembles W713 and feeds the accepted closed-embedding route"
+  replacedInputs :=
+    ["selected-difference component closedness fields that directly quantify over a cocone and colimit proof"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete relation-pullback provider for closed natural transformations",
+      "construct concrete target-relation-lift provider for closed natural transformations",
+      "prove target-only ordinary target-difference surjectivity for every WPP-op target",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "prove the three selected-difference diagram component closed-map or closed-embedding facts",
+      "construct normalized strict-representative lift blueprint for WPP diagrams and maps",
+      "prove target fixed-target uniqueness for the WPP objectwise localization functor",
+      "prove localization-model fixed-target uniqueness for the WPP objectwise localization functor",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct concrete W519 mapped-explicit-cokernel closed-map or closed-embedding data",
+      "prove forgetful homology preservation for MetrizableLCA",
+      "prove ExactAt-conditioned incoming maps are closed embeddings",
+      "prove ExactAt-conditioned outgoing maps are open",
+      "prove ExactAt-conditioned outgoing maps are epis",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteStateW714 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteStateW714 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteSupportStateW714
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteStateW714_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteStateW714.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -46814,6 +47346,69 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalComponentProviderMappedCokernelClosedRouteStateW713_productSuccess
+set_option linter.style.longLine false in
+#check SelectedDifferenceClosedMapPi1DiagramFieldW714
+set_option linter.style.longLine false in
+#check SelectedDifferenceClosedMapPi2DiagramFieldW714
+set_option linter.style.longLine false in
+#check SelectedDifferenceClosedMapPi3DiagramFieldW714
+set_option linter.style.longLine false in
+#check SelectedDifferenceClosedEmbeddingPi1DiagramFieldW714
+set_option linter.style.longLine false in
+#check SelectedDifferenceClosedEmbeddingPi2DiagramFieldW714
+set_option linter.style.longLine false in
+#check SelectedDifferenceClosedEmbeddingPi3DiagramFieldW714
+set_option linter.style.longLine false in
+#check selectedDifferenceClosedMapPi1Field_of_diagramFieldW714
+set_option linter.style.longLine false in
+#check selectedDifferenceClosedMapPi2Field_of_diagramFieldW714
+set_option linter.style.longLine false in
+#check selectedDifferenceClosedMapPi3Field_of_diagramFieldW714
+set_option linter.style.longLine false in
+#check selectedDifferenceClosedEmbeddingPi1Field_of_diagramFieldW714
+set_option linter.style.longLine false in
+#check selectedDifferenceClosedEmbeddingPi2Field_of_diagramFieldW714
+set_option linter.style.longLine false in
+#check selectedDifferenceClosedEmbeddingPi3Field_of_diagramFieldW714
+set_option linter.style.longLine false in
+#check
+  MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714
+set_option linter.style.longLine false in
+#check
+  metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714_accepted
+set_option linter.style.longLine false in
+#check
+  MetrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714
+set_option linter.style.longLine false in
+#check
+  metrizableWppExplicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_diagramComponentsW714
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetOnlySurjectiveCompactGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW714_accepted
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedInputNamesW714
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedInputNamesW714_count
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteSupportStateW714
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteStateW714
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsTargetOnlySurjectiveEndpointStrictTopologyCompactGlobalDiagramComponentMappedCokernelClosedRouteStateW714_productSuccess
 
 set_option linter.style.longLine false in
 #check
