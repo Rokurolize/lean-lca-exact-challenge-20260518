@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w705-explicit-source-triangulation-target-top-route",
-  "generated_utc": "2026-05-24T12:59:28Z",
-  "source_tree_hash": "573f63d89c0ce3829055d4dccc17c147879985a1385c7917c13c242060475cef",
-  "summary": "W705 exposes the W704 direct-localization source core as separate source Pretriangulated, source IsTriangulated, and bounded exact weak-equivalence triangle-completion fields, assembles the W657 core internally, and delegates closed-map and closed-embedding paths to W704. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w706-explicit-localized-right-adjoint-target-top-route",
+  "generated_utc": "2026-05-24T13:08:22Z",
+  "source_tree_hash": "ab3ed16887490e175ae7e868447b1c3b4382afc2228508547236e6c72d19b068",
+  "summary": "W706 exposes the W705 bounded homotopy localized-right-adjoint package as separate right-adjoint, adjunction, and unit-membership fields, assembles BoundedHomotopyLocalizedRightAdjointInput internally, and delegates closed-map and closed-embedding paths to W705. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -12355,6 +12355,81 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "W705 product gate still rejects the nonterminal outcome as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T125353Z_019e599f_parent_w705/logs/w705_external_product_gate_final.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_projection_fields_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_projection_fields_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_product_success_declarations_lean.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_required_declarations_lean.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_root_import_lean.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_forbidden_tokens_source.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_forbidden_tokens_projection.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_forbidden_tokens_product_audit.log."
+    },
+    {
+      "command": "rg -n 'sorry|admit|axiom|set_option +allowUnsafe|unsafe' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_no_forbidden_rg_projection_product.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "W706 pre-metadata verification passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_git_diff_check_pre_metadata.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "W706 final whitespace diff check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_git_diff_check_final.log."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "W706 final JSON parse checks passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_json_parse_all_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "W706 final external audit self-check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_external_self_check_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "W706 product gate still rejects the nonterminal outcome as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T130228Z_019e599f_parent_w706/logs/w706_external_product_gate_final.log."
     }
   ],
   "implemented_declarations_checked": [
@@ -16426,13 +16501,30 @@
     "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteSupportStateW705",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705",
-    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705_productSuccess"
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705_productSuccess",
+    "Dbounded.boundedHomotopyLocalizedRightAdjointInput_of_explicitFieldsW706",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitLocalizedRightAdjointNormalizedFixedTargetBundleW706",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundle_of_explicitLocalizedRightAdjointW706",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitLocalizedRightAdjointNormalizedFixedTargetBundleW706",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitLocalizedRightAdjointNormalizedFixedTargetBundleW706",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitLocalizedRightAdjointNormalizedFixedTargetBundleW706_accepted",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitLocalizedRightAdjointNormalizedFixedTargetBundleW706",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundle_of_explicitLocalizedRightAdjointW706",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitLocalizedRightAdjointNormalizedFixedTargetBundleW706",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitLocalizedRightAdjointNormalizedFixedTargetBundleW706",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitLocalizedRightAdjointNormalizedFixedTargetBundleW706_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitLocalizedRightAdjointTargetTopCompactGlobalProviderInputNamesW706",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitLocalizedRightAdjointTargetTopCompactGlobalProviderInputNamesW706_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitLocalizedRightAdjointTargetTopCompactGlobalProviderRouteStateW706",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitLocalizedRightAdjointTargetTopCompactGlobalProviderRouteSupportStateW706",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitLocalizedRightAdjointTargetTopCompactGlobalProviderRouteStateW706",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitLocalizedRightAdjointTargetTopCompactGlobalProviderRouteStateW706_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
-    "construct concrete target-relation-top provider data for the W702/W703/W704/W705 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
+    "construct concrete target-relation-top provider data for the W702/W703/W704/W705/W706 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
@@ -16444,12 +16536,12 @@
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w705",
+  "support_result_classification": "verified_nonterminal_support_increment_w706",
   "product_success": false,
   "remaining_work": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
-    "construct concrete target-relation-top provider data for the W702/W703/W704/W705 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
+    "construct concrete target-relation-top provider data for the W702/W703/W704/W705/W706 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
@@ -16461,8 +16553,8 @@
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
   ],
-  "summary_log_tail": "W705 splits W704 direct-localization source core into explicit source triangulation and triangle-completion fields, delegates to W704, and keeps product flags false.",
-  "latest_verified_increment": "W705 explicit source-triangulation target-top route",
+  "summary_log_tail": "W706 splits W705 bounded homotopy localized-right-adjoint package into explicit right-adjoint, adjunction, and unit-membership fields, delegates to W705, and keeps product flags false.",
+  "latest_verified_increment": "W706 explicit localized-right-adjoint target-top route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
