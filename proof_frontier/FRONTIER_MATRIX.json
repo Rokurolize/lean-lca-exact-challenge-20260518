@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T15:46:58Z",
+  "generated_utc": "2026-05-24T15:56:51Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,14 +1854,14 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w716",
-  "latest_parent_update": "parent_update_v716_bundled_wpp_boundary_data_route",
-  "summary": "W716 bundled WPP boundary-data route bundles the WPP right-open quotient-cover boundary and source-pi-zero boundary into one explicit boundary-data provider. It projects the bundled provider back to the W715 target-only surjective-compact provider route, delegates both closed-map and closed-embedding accepted paths to W715, and keeps product-success flags false.",
-  "remaining_frontier": "Need concrete bundled WPP boundary data, relation-pullback and target-relation-lift providers, concrete target-only surjective-compact target data, diagram-only selected-difference component closedness facts, normalized fixed-target obligations, mapped-cokernel closed-provider data, explicit endpoint facts, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs.",
-  "support_classification": "nonterminal_support_w716_bundled_wpp_boundary_data_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w717",
+  "latest_parent_update": "parent_update_v717_bundled_relation_data_route",
+  "summary": "W717 bundled relation-data route bundles the closed-natural-transformation relation-pullback provider and target-relation-lift provider into one explicit relation-data provider. It projects the bundled provider back to the W716 bundled WPP boundary-data route, delegates both closed-map and closed-embedding accepted paths to W716, and keeps product-success flags false.",
+  "remaining_frontier": "Need concrete bundled WPP boundary data, bundled closed-natural-transformation relation data, concrete target-only surjective-compact target data, diagram-only selected-difference component closedness facts, normalized fixed-target obligations, mapped-cokernel closed-provider data, explicit endpoint facts, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs.",
+  "support_classification": "nonterminal_support_w717_bundled_relation_data_route",
   "remaining_blockers": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
-    "Concrete relation-pullback and target-relation-lift providers for closed natural transformations remain unconstructed.",
+    "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
     "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
     "The selected-difference component closedness fields are diagram-only, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
@@ -1871,7 +1871,7 @@
   ],
   "open_blockers": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
-    "Concrete relation-pullback and target-relation-lift providers for closed natural transformations remain unconstructed.",
+    "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
     "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
     "The selected-difference component closedness fields are diagram-only, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
@@ -2137,7 +2137,7 @@
   ],
   "known_gaps": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
-    "Concrete relation-pullback and target-relation-lift providers for closed natural transformations remain unconstructed.",
+    "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
     "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
     "The selected-difference component closedness fields are diagram-only, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
@@ -4782,11 +4782,18 @@
       "status": "verified_nonterminal_support_increment_w716",
       "effect": "W716 bundles the WPP right-open quotient-cover and source-pi-zero boundary inputs into one provider, then delegates both accepted paths to W715.",
       "product_complete": false
+    },
+    {
+      "timestamp_utc": "2026-05-24T15:56:51Z",
+      "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "verified_nonterminal_support_increment_w717",
+      "effect": "W717 bundles the relation-pullback and target-relation-lift providers into one relation-data provider, then delegates both accepted paths to W716.",
+      "product_complete": false
     }
   ],
   "current_primary_blockers": [
     "construct concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data",
-    "construct concrete relation-field providers, paired target-only surjective-compact data, normalized fixed-target data, and componentwise global provider data",
+    "construct concrete bundled relation-field provider data, paired target-only surjective-compact data, normalized fixed-target data, and componentwise global provider data",
     "construct W519 endpoint-strict topology, localization, triangulation, homology, and Dbounded stable-infinity inputs"
   ],
   "parent_update_w467": {
@@ -6279,5 +6286,6 @@
   "parent_update_v713": "W713 target-only target-difference surjectivity route exposes the W712 TargetDifferenceSurjectiveProviderW601 input as a provider depending only on the target WPP-op diagram. It assembles TargetDifferenceSurjectiveProviderW601 internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W712, and keeps product-success flags false.",
   "parent_update_v714": "W714 diagram-only selected-difference component route exposes the W713 selected component closedness inputs as facts depending only on the diagram S. It assembles the W711 cocone-indexed selected-difference closed-map and closed-embedding fields internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W713, and keeps product-success flags false.",
   "parent_update_v715": "W715 target-only surjective-compact provider route pairs ordinary target-difference surjectivity and target-codomain compactness for each target WPP-op diagram. It projects the paired provider to the W713 target-only surjectivity and W601 compactness inputs, delegates both closed-map and closed-embedding accepted paths to W714, and keeps product-success flags false.",
-  "parent_update_v716": "W716 bundled WPP boundary-data route bundles the WPP right-open quotient-cover boundary and source-pi-zero boundary into one explicit boundary-data provider. It projects the bundled provider back to the W715 target-only surjective-compact provider route, delegates both closed-map and closed-embedding accepted paths to W715, and keeps product-success flags false."
+  "parent_update_v716": "W716 bundled WPP boundary-data route bundles the WPP right-open quotient-cover boundary and source-pi-zero boundary into one explicit boundary-data provider. It projects the bundled provider back to the W715 target-only surjective-compact provider route, delegates both closed-map and closed-embedding accepted paths to W715, and keeps product-success flags false.",
+  "parent_update_v717": "W717 bundled relation-data route bundles the closed-natural-transformation relation-pullback provider and target-relation-lift provider into one explicit relation-data provider. It projects the bundled provider back to the W716 bundled WPP boundary-data route, delegates both closed-map and closed-embedding accepted paths to W716, and keeps product-success flags false."
 }
