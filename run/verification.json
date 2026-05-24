@@ -1,9 +1,99 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w707-explicit-normalized-fixed-target-localized-right-adjoint-route",
-  "generated_utc": "2026-05-24T13:22:27Z",
-  "source_tree_hash": "d6234ecd64c2a006ac1d7745c21e2ab8c3095ddfea6c36f48ab955a2f9d3b265",
-  "summary": "W707 exposes the W706 normalized fixed-target localization input as separate normalized strict-representative lift blueprint, target fixed-target uniqueness, and localization-model fixed-target uniqueness fields; it assembles Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs internally and delegates closed-map and closed-embedding paths to W706. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w708-target-surjective-explicit-normalized-fixed-target-localized-right-adjoint-route",
+  "generated_utc": "2026-05-24T13:39:49Z",
+  "source_tree_hash": "522d546c2b3a22f27dd8a307ce7bd3b7a96c19058b0d4e1743ff593189345464",
+  "summary": "W708 adds a target-surjective compact global-provider lift of the W707 explicit normalized fixed-target localized-right-adjoint route. It takes TargetDifferenceSurjectiveProviderW601 at the newest call surface, assembles the W600 target-relation-top provider internally with the existing W601 adapter, and delegates both closed-map and closed-embedding accepted paths to W707. Product-success flags remain false.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W708 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_projection_fields_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W708 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_projection_fields_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W708 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_product_success_declarations_lean.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/w708_required_declarations.lean",
+      "status": "passed",
+      "evidence": "W708 focused required-declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_required_declarations_lean.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import remains green after W708; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_root_import_lean.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full repository build passed after W708; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_lake_build.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W708; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_required_declarations_actual.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source-tree script passed after W708; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_forbidden_tokens_tree_script.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Forbidden-token product-audit script passed after W708; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_forbidden_tokens_product_audit_script.log."
+    },
+    {
+      "command": "rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file forbidden-token regex returned no matches after W708; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_forbidden_tokens_source.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true|product_success.*true|product_complete.*true|update_goal_allowed.*true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-success marker scan returned no matches after W708; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_product_marker_scan.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Final whitespace diff check passed after W708; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_git_diff_check_final.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W708 terminal outcome JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_json_parse_all_final.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W708 verification JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_json_parse_all_final.log."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W708 frontier JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_json_parse_all_final.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W708 manifest JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_json_parse_all_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "Final W708 external self-check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_external_self_check_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Final W708 external product gate is expected to reject nonterminal outcome blocked_nonterminal_frontier; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T132812Z_019e599f_parent_w708/logs/w708_external_product_gate_final.log."
+    },
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
       "status": "passed",
@@ -1722,7 +1812,7 @@
     {
       "command": "lake env lean audit/blockers/direct_wpp_op_colimit_stability_w265.lean",
       "status": "passed",
-      "evidence": "Focused W265 direct WPPᵒᵖ colimit-stability boundary audit passed in the parent target worktree."
+      "evidence": "Focused W265 direct WPP\u1d52\u1d56 colimit-stability boundary audit passed in the parent target worktree."
     },
     {
       "command": "lake env lean audit/blockers/opposite_finite_limit_assembly_w266.lean",
@@ -2162,7 +2252,7 @@
     {
       "command": "lake env lean audit/blockers/bounded_inclusion_wpp_colimit_preservation_w324.lean",
       "status": "passed",
-      "evidence": "Focused W324 check passed; BoundedComplexCategory.ι preserves WalkingParallelPair and WalkingParallelPairᵒᵖ colimits."
+      "evidence": "Focused W324 check passed; BoundedComplexCategory.\u03b9 preserves WalkingParallelPair and WalkingParallelPair\u1d52\u1d56 colimits."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/bounded_inclusion_wpp_colimit_preservation_w324.lean",
@@ -2237,7 +2327,7 @@
     {
       "command": "lake env lean audit/blockers/wpp_op_mapping_cone_right_uniqueness_w329.lean",
       "status": "passed",
-      "evidence": "Focused W329 check passed; right mappingCone.inr component uniqueness follows from preserved ambient c₂ colimit hom_ext."
+      "evidence": "Focused W329 check passed; right mappingCone.inr component uniqueness follows from preserved ambient c\u2082 colimit hom_ext."
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_right_uniqueness_w329.lean",
@@ -3857,7 +3947,7 @@
     {
       "command": "lake env lean audit/blockers/addcommgrp_selected_difference_kernel_row_frontier_v370_support_w459.lean",
       "status": "passed",
-      "evidence": "Focused W459 selected difference kernel row support file passed; #check output confirms selectedDifferenceKernelRow, selectedDifferenceKernelι, selectedDifferenceKernelι_condition, selectedDifferenceKernelIsLimit, and strictSnakeCokernelData_of_componentwiseSelectedCokernel_kernelRow."
+      "evidence": "Focused W459 selected difference kernel row support file passed; #check output confirms selectedDifferenceKernelRow, selectedDifferenceKernel\u03b9, selectedDifferenceKernel\u03b9_condition, selectedDifferenceKernelIsLimit, and strictSnakeCokernelData_of_componentwiseSelectedCokernel_kernelRow."
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_selected_difference_kernel_row_frontier_v370_support_w459.lean",
@@ -3867,7 +3957,7 @@
     {
       "command": "lake env lean audit/blockers/addcommgrp_component_projection_cofork_normalization_v370_support_w460.lean",
       "status": "passed",
-      "evidence": "Focused W460 component projection cofork normalization support file passed; #check output confirms selectedProjectionπ₁/π₂/π₃CoforkIso and selectedProjectionComponentIsColimitInputs_of_selectedComponentCoforks."
+      "evidence": "Focused W460 component projection cofork normalization support file passed; #check output confirms selectedProjection\u03c0\u2081/\u03c0\u2082/\u03c0\u2083CoforkIso and selectedProjectionComponentIsColimitInputs_of_selectedComponentCoforks."
     },
     {
       "command": "rg -n '\\b(sorry|admit|axiom)\\b' audit/blockers/addcommgrp_component_projection_cofork_normalization_v370_support_w460.lean",
@@ -12838,7 +12928,7 @@
     "MetrizableLCA.instHasFiniteProducts",
     "OptionProductDecompositionW151.complementSubproductDegreeReindexIso",
     "OptionProductDecompositionW151.evalTailProductPointIso",
-    "OptionProductDecompositionW151.evalTailProductPointIso_hom_π",
+    "OptionProductDecompositionW151.evalTailProductPointIso_hom_\u03c0",
     "OptionProductDecompositionW151.noneSubproductDegreeIso",
     "OptionProductDecompositionW151.optionNoneIndex",
     "OptionProductDecompositionW151.optionNoneIndexUnique",
@@ -13017,7 +13107,7 @@
     "MappingConeProductApiScoutW145.currentFiniteProductApiLayerState_comparison_supplied",
     "MappingConeProductApiScoutW145.finiteGeneralizationNextObligations_count",
     "BoundedFiniteProducts.includedProductIso",
-    "BoundedFiniteProducts.includedProductIso_hom_π",
+    "BoundedFiniteProducts.includedProductIso_hom_\u03c0",
     "BoundedFiniteProducts.includedProductMap_naturality",
     "BoundedFiniteProducts.exactAcyclic_mappingCone_cochain_piMap",
     "BoundedFiniteProducts.finiteProductMappingConeInput_metrizableLCA",
@@ -13113,10 +13203,10 @@
     "MetrizableLCA.range_le_cokernelSubgroup",
     "MetrizableLCA.map_mem_cokernelSubgroup",
     "MetrizableLCA.cokernelObj",
-    "MetrizableLCA.cokernelπ",
-    "MetrizableLCA.comp_cokernelπ",
+    "MetrizableLCA.cokernel\u03c0",
+    "MetrizableLCA.comp_cokernel\u03c0",
     "MetrizableLCA.cokernelDesc",
-    "MetrizableLCA.cokernelπ_desc",
+    "MetrizableLCA.cokernel\u03c0_desc",
     "MetrizableLCA.cokernelDesc_unique",
     "MetrizableLCA.cokernelIsColimit",
     "MetrizableLCA.instHasCokernel",
@@ -13173,8 +13263,8 @@
     "ShortComplexExactnessHomologyZeroW246.no_shortComplexExact_to_targetSurjectivity",
     "MetrizableLCA.forgetToAddCommGrpCat_exact_of_strict",
     "LeanLCAExactChallenge.MetrizableLCA.forgetToAddCommGrpCat",
-    "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
-    "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
+    "CategoryTheory.HasForget\u2082 LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
+    "(CategoryTheory.forget\u2082 LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
     "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology",
     "LeanLCAExactChallenge.MetrizableLCA.rangeSubgroup_coe",
     "LeanLCAExactChallenge.MetrizableLCA.denseRange_of_cokernelSubgroup_eq_top",
@@ -13195,11 +13285,11 @@
     "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasFiniteLimits",
     "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasFiniteProducts",
     "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasEqualizers",
-    "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero",
-    "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_cokernelSubgroup_eq_top",
-    "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top",
-    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero",
-    "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_epi",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_of_cokernel\u03c0_eq_zero",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernel\u03c0_eq_zero_of_cokernelSubgroup_eq_top",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernel\u03c0_eq_zero_iff_cokernelSubgroup_eq_top",
+    "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernel\u03c0_eq_zero",
+    "LeanLCAExactChallenge.MetrizableLCA.cokernel\u03c0_eq_zero_of_epi",
     "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi",
     "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.localizedComposite_factorizationIso",
     "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorRightTransportInput",
@@ -13340,10 +13430,10 @@
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOpLcaColimitMapOpenCoverOfLeg",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates",
-    "LeanLCAExactChallenge.MetrizableLCA.coequalizerπ_surjective",
-    "LeanLCAExactChallenge.MetrizableLCA.coequalizerπ_openMap",
-    "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_ι_one_surjective",
-    "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_ι_one_openMap",
+    "LeanLCAExactChallenge.MetrizableLCA.coequalizer\u03c0_surjective",
+    "LeanLCAExactChallenge.MetrizableLCA.coequalizer\u03c0_openMap",
+    "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_\u03b9_one_surjective",
+    "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_\u03b9_one_openMap",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_canonical_colimit_leg_opZero_surjective_open",
     "LeanLCAExactChallenge.RightOpenMapWppOpColimitW286.wppOp_lca_colimitMap_preserves_openMap_of_canonical_opZero_leg",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_left_and_addCommGrpStrict",
@@ -13384,7 +13474,7 @@
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.DifferenceCokernelSnakeInputData",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.snakeInput_of_differenceCokernelData",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.ParallelPairDifferenceCokernelData",
-    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.parallelPair_snakeInput_v₁₂",
+    "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.parallelPair_snakeInput_v\u2081\u2082",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.strictSnakeCokernelData_of_parallelPairDifferenceCokernelData",
     "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.AddCommGrpSnakeInputDifferenceCokernelV367SupportW344.addCommGrpKernelExact_of_parallelPairDifferenceCokernelData",
     "LeanLCAExactChallenge.AddCommGrpSnakeInputDifferenceCokernel.shortComplexExact_of_addCommGrpKernelExact",
@@ -13513,9 +13603,9 @@
     "LeanLCAExactChallenge.MetrizableLCA.quotientMap_image_closed_of_closed_saturatedW360",
     "LeanLCAExactChallenge.MetrizableLCA.targetQuotientClosedOnSaturatedSetsW360",
     "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.PiMapCoforkComponentTransportBoundary",
-    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₁OfComponentIso",
-    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₂OfComponentIso",
-    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.hπ₃OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.h\u03c0\u2081OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.h\u03c0\u2082OfComponentIso",
+    "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.h\u03c0\u2083OfComponentIso",
     "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.toW359CompatibleOfComponentIso",
     "LeanLCAExactChallenge.ShortComplexPiMapCoforkColimitsV369SupportW364.ConcreteDegreewiseCokernelCoforkData.shortComplexCokernelOfComponentIso",
     "LeanLCAExactChallenge.MetrizableLCA.image_closed_of_isQuotientMap_and_saturatedW365",
@@ -13527,9 +13617,9 @@
     "LeanLCAExactChallenge.MetrizableLCA.QuotientClosedMapComposerInputsW365",
     "LeanLCAExactChallenge.MetrizableLCA.QuotientClosedMapComposerInputsW365.representative_image_closed",
     "LeanLCAExactChallenge.MetrizableLCA.QuotientClosedMapComposerInputsW365.descended_closedMap",
-    "LeanLCAExactChallenge.WppOpLeftLcaTransportedDescendedLegV369SupportW366.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_π",
+    "LeanLCAExactChallenge.WppOpLeftLcaTransportedDescendedLegV369SupportW366.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_\u03c0",
     "LeanLCAExactChallenge.WppOpLeftLcaTransportedDescendedLegV369SupportW366.wppOpWhiskeredDiagramIso",
-    "LeanLCAExactChallenge.WppOpLeftLcaTransportedDescendedLegV369SupportW366.wppOpTransportedConcreteQuotientCocone_ι_app",
+    "LeanLCAExactChallenge.WppOpLeftLcaTransportedDescendedLegV369SupportW366.wppOpTransportedConcreteQuotientCocone_\u03b9_app",
     "LeanLCAExactChallenge.WppOpLeftLcaTransportedDescendedLegV369SupportW366.TransportedConcreteQuotientW354Inputs",
     "LeanLCAExactChallenge.WppOpLeftLcaTransportedDescendedLegV369SupportW366.TransportedDescendedLegEquations",
     "LeanLCAExactChallenge.WppOpLeftLcaTransportedDescendedLegV369SupportW366.transportedConcreteQuotientW354Inputs_of_transportedDescendedLegEquations",
@@ -13539,10 +13629,10 @@
     "LeanLCAExactChallenge.ShortComplexPiCoconeTransportV370SupportW367.ConcreteDegreewiseCokernelCoforkData.wT",
     "LeanLCAExactChallenge.ShortComplexPiCoconeTransportV370SupportW367.PiMapCoforkComponentCoconeTransport",
     "LeanLCAExactChallenge.ShortComplexPiCoconeTransportV370SupportW367.PiMapCoforkComponentCoconeTransport.isColimit",
-    "LeanLCAExactChallenge.ShortComplexPiCoconeTransportV370SupportW367.ConcreteDegreewiseCokernelCoforkData.hπ₁OfComponentCoconeTransport",
+    "LeanLCAExactChallenge.ShortComplexPiCoconeTransportV370SupportW367.ConcreteDegreewiseCokernelCoforkData.h\u03c0\u2081OfComponentCoconeTransport",
     "LeanLCAExactChallenge.ShortComplexPiCoconeTransportV370SupportW367.ConcreteDegreewiseCokernelCoforkData.toW359CompatibleOfComponentTransport",
     "LeanLCAExactChallenge.ShortComplexPiCoconeTransportV370SupportW367.ConcreteDegreewiseCokernelCoforkData.shortComplexCokernelOfComponentTransport",
-    "CategoryTheory.ShortComplex.isColimitOfIsColimitπ",
+    "CategoryTheory.ShortComplex.isColimitOfIsColimit\u03c0",
     "LeanLCAExactChallenge.MetrizableLCA.IsStableUnderSubgroupTranslationsW368",
     "LeanLCAExactChallenge.MetrizableLCA.targetRelationLiftsThroughComponentW368",
     "LeanLCAExactChallenge.MetrizableLCA.quotientMap_saturated_of_subgroup_translation_stableW368",
@@ -13560,17 +13650,17 @@
     "LeanLCAExactChallenge.ShortComplexPi1NatCoconeIsoV370SupportW370.pi1CokernelCoforkMapCoconeIso",
     "LeanLCAExactChallenge.ShortComplexPi1NatCoconeIsoV370SupportW370.pi1Transport",
     "LeanLCAExactChallenge.ShortComplexPi1NatCoconeIsoV370SupportW370.PiMapCoforkComponentCoconeTransport.isColimit",
-    "LeanLCAExactChallenge.ShortComplexPi1NatCoconeIsoV370SupportW370.ConcreteDegreewiseCokernelCoforkData.hπ₁OfComponentCoconeIso",
+    "LeanLCAExactChallenge.ShortComplexPi1NatCoconeIsoV370SupportW370.ConcreteDegreewiseCokernelCoforkData.h\u03c0\u2081OfComponentCoconeIso",
     "LeanLCAExactChallenge.ShortComplexPi1NatCoconeIsoV370SupportW370.ConcreteDegreewiseCokernelCoforkData.toW359CompatibleOfPi1CoconeIso",
     "LeanLCAExactChallenge.ShortComplexPi1NatCoconeIsoV370SupportW370.ConcreteDegreewiseCokernelCoforkData.shortComplexCokernelOfPi1CoconeIso",
     "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.pi2ParallelPairDiagramIso",
     "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.pi2CokernelCoforkMapCoconeIso",
     "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.pi2Transport",
-    "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.ConcreteDegreewiseCokernelCoforkData.hπ₂OfComponentCoconeIso",
+    "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.ConcreteDegreewiseCokernelCoforkData.h\u03c0\u2082OfComponentCoconeIso",
     "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.pi3ParallelPairDiagramIso",
     "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.pi3CokernelCoforkMapCoconeIso",
     "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.pi3Transport",
-    "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.ConcreteDegreewiseCokernelCoforkData.hπ₃OfComponentCoconeIso",
+    "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.ConcreteDegreewiseCokernelCoforkData.h\u03c0\u2083OfComponentCoconeIso",
     "LeanLCAExactChallenge.ShortComplexPi23NatCoconeIsoV370SupportW373.ConcreteDegreewiseCokernelCoforkData.shortComplexCokernelOfPiCoconeIso",
     "LeanLCAExactChallenge.WppOpQuotientClosedMapInputsV370SupportW371.ConcreteMetrizableLCA.concreteDescendedQuotientMap",
     "LeanLCAExactChallenge.WppOpQuotientClosedMapInputsV370SupportW371.ConcreteMetrizableLCA.concreteDescendedQuotientMap_quotient_compat",
@@ -13586,7 +13676,7 @@
     "LeanLCAExactChallenge.WppOpSquareEquationsV370SupportW374.wppOpLeftSquareEquationW374_naturality_component",
     "LeanLCAExactChallenge.WppOpSquareEquationsV370SupportW374.wppOpRightSquareEquationW374_naturality_component",
     "LeanLCAExactChallenge.WppOpSquareEquationsV370SupportW374.WppOpConcreteQuotientClosedMapInputsW371.of_remaining_inputsW374",
-    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_π",
+    "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_\u03c0",
     "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_leftLeg",
     "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ConcreteMetrizableLCA.concreteDescendedQuotientMap_cofork_rightLeg",
     "LeanLCAExactChallenge.WppOpLeftLcaOrdinaryWhiskeredProjectionV370SupportW375.ordinaryWhiskeredProjectionEquation",
@@ -13713,8 +13803,8 @@
     "descendedQuotientFieldsW352_to_ordinaryDescendedQuotientFieldsW393",
     "currentWppOpLeftLcaW352ToW393AdapterV370SupportState_productSuccess",
     "cokernelCoforkPointUniqueIso",
-    "cokernelCoforkPointUniqueIso_hom_π",
-    "cokernelCoforkPointUniqueIso_inv_π",
+    "cokernelCoforkPointUniqueIso_hom_\u03c0",
+    "cokernelCoforkPointUniqueIso_inv_\u03c0",
     "ForgottenTargetColimitIsoInput.targetIso",
     "ForgottenTargetColimitIsoInput.toW391CompatibleTargetIsoInput",
     "currentAddCommGrpForgottenTargetColimitIsoV370SupportState_productSuccess",
@@ -13745,7 +13835,7 @@
     "WppOpConcreteQuotientClosedMapRelationFieldsW377.to_w386_target_relation_lift_certificate",
     "currentWppOpRelationFieldsFromW371V370SupportStateW397_productSuccess",
     "LeanLCAExactChallenge.MetrizableLCA.underlyingAddCommGrpFunctor",
-    "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelπ",
+    "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernel\u03c0",
     "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCofork",
     "LeanLCAExactChallenge.MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel",
     "LeanLCAExactChallenge.MetrizableLCA.forgottenAlgebraicRangeSubgroup",
@@ -13795,9 +13885,9 @@
     "supportSeedW484",
     "supportSeedW485",
     "underlyingForgetfulFunctorW485",
-    "selectedMetrizableDifferenceπ₁W485",
-    "selectedMetrizableDifferenceπ₂W485",
-    "selectedMetrizableDifferenceπ₃W485",
+    "selectedMetrizableDifference\u03c0\u2081W485",
+    "selectedMetrizableDifference\u03c0\u2082W485",
+    "selectedMetrizableDifference\u03c0\u2083W485",
     "SelectedComponentQuotientIdentificationInputsW485",
     "QuotientIdentificationProjectionProviderW485",
     "selectedProjectionComponentIsColimitInputs_of_quotientIdentifications_w485",
@@ -13850,7 +13940,7 @@
     "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.explicitMetrizableCokernelCoforkW497",
     "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.explicitMetrizableCokernelCoforkIsColimitW497",
     "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.mappedExplicitCokernelCoconeW497",
-    "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.mappedExplicitCokernelCocone_ι_oneW497",
+    "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.mappedExplicitCokernelCocone_\u03b9_oneW497",
     "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.preservesCokernelOfMappedExplicitCokernelCoconeIsColimitW497",
     "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.preservesAllCokernelsOfMappedExplicitCokernelCoconesW497",
     "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.underlyingForgetfulPreservesFiniteColimitsOfMappedExplicitCokernelCoforksW497",
@@ -13897,7 +13987,7 @@
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.exactAcyclic_of_selectedW461TransportedPointIso_and_closureKernelProvider_w506",
     "WppOpSelectedW461TransportedPointIsoProviderV370SupportW506.currentSelectedW461TransportedPointIsoProviderStateW506_productSuccess",
     "WppOpSelectedW461TransportedTargetLegV370SupportW507.supportSeedW507",
-    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpTransportedConcreteQuotientCocone_ι_app_w507",
+    "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpTransportedConcreteQuotientCocone_\u03b9_app_w507",
     "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpWhiskeredConcreteQuotientCocone_target_leg_w507",
     "WppOpSelectedW461TransportedTargetLegV370SupportW507.wppOpWhiskeredDiagramIso_target_identity_w507",
     "WppOpSelectedW461TransportedTargetLegV370SupportW507.transportedConcreteTargetLegEquation_w507",
@@ -14092,8 +14182,8 @@
     "DirectWppLimitFiniteShapeTransfer.comp_mappingCone_map_f_snd",
     "DirectWppLimitFiniteShapeTransfer.mappingCone_inl_inr_fst",
     "DirectWppLimitFiniteShapeTransfer.mappingCone_inl_inr_snd",
-    "DirectWppLimitFiniteShapeTransfer.comp_mappingConeCone_π_fst",
-    "DirectWppLimitFiniteShapeTransfer.comp_mappingConeCone_π_snd",
+    "DirectWppLimitFiniteShapeTransfer.comp_mappingConeCone_\u03c0_fst",
+    "DirectWppLimitFiniteShapeTransfer.comp_mappingConeCone_\u03c0_snd",
     "DirectWppLimitFiniteShapeTransfer.mappingConeDegreewiseSourceCone",
     "DirectWppLimitFiniteShapeTransfer.mappingConeDegreewiseTargetCone",
     "DirectWppLimitFiniteShapeTransfer.mappingCone_walkingParallelPair_limitCanonicalConeDegreewiseComparison_direct",
@@ -14108,20 +14198,20 @@
     "MetrizableLCA.equalizerSubgroup",
     "MetrizableLCA.equalizerSubgroup_isClosed",
     "MetrizableLCA.equalizerObj",
-    "MetrizableLCA.equalizerι",
-    "MetrizableLCA.equalizerι_condition",
+    "MetrizableLCA.equalizer\u03b9",
+    "MetrizableLCA.equalizer\u03b9_condition",
     "MetrizableLCA.equalizerFork",
     "MetrizableLCA.equalizerLift",
-    "MetrizableLCA.equalizerLift_ι",
+    "MetrizableLCA.equalizerLift_\u03b9",
     "MetrizableLCA.equalizer_hom_ext",
     "MetrizableLCA.equalizerIsLimit",
-    "MetrizableLCA.equalizerι_closedEmbedding_explicit",
+    "MetrizableLCA.equalizer\u03b9_closedEmbedding_explicit",
     "MetrizableLCA.equalizerIsoEqualizerObj",
-    "MetrizableLCA.equalizerIsoEqualizerObj_hom_ι",
-    "MetrizableLCA.equalizer_ι_closedEmbedding",
-    "MetrizableLCA.isLimit_fork_ι_closedEmbedding",
+    "MetrizableLCA.equalizerIsoEqualizerObj_hom_\u03b9",
+    "MetrizableLCA.equalizer_\u03b9_closedEmbedding",
+    "MetrizableLCA.isLimit_fork_\u03b9_closedEmbedding",
     "DirectWppLimitFiniteShapeTransfer.forkOfConeIsLimit",
-    "DirectWppLimitFiniteShapeTransfer.walkingParallelPair_limit_π_zero_closedEmbedding",
+    "DirectWppLimitFiniteShapeTransfer.walkingParallelPair_limit_\u03c0_zero_closedEmbedding",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_limitMap_injective_inducing_closedImage_direct",
     "Dbounded.metrizableWppLimitLeftClosedLcaInput_direct",
     "Dbounded.metrizableWppLimitLeftClosedInput_direct",
@@ -14380,7 +14470,7 @@
     "currentMetrizableWppRightOpenClosedQuotientEpiDirectRightFieldsBundleStateW572",
     "currentMetrizableWppRightOpenClosedQuotientEpiDirectRightFieldsBundleStateW572_productSuccess",
     "currentMetrizableWppRightOpenQuotientEpiDirectRightFieldsBundleSupportStateW571",
-    "MetrizableLCA.epi_of_cokernelπ_eq_zero",
+    "MetrizableLCA.epi_of_cokernel\u03c0_eq_zero",
     "DirectWppLimitFiniteShapeTransfer.wppLimit_lca_sourceDifferenceEpiBoundary_of_cokernelPiZeroBoundary",
     "Dbounded.metrizableWppLimitSourceDifferenceEpiBoundary_of_cokernelPiZeroBoundary",
     "MetrizableWppRightOpenClosedQuotientCokernelPiZeroDirectRightFieldsBundleW573",
@@ -15882,8 +15972,8 @@
     "Dbounded.exactAcyclicHomotopyObjectIsoClosed_of_shortExactConditionedTopology_w667",
     "Dbounded.leftCalculus_of_endpointConditionedTopology_w667",
     "Dbounded.leftCalculus_of_shortExactConditionedTopology_w667",
-    "MetrizableLCA.isColimit_cofork_π_surjective",
-    "MetrizableLCA.isColimit_cofork_π_openMap",
+    "MetrizableLCA.isColimit_cofork_\u03c0_surjective",
+    "MetrizableLCA.isColimit_cofork_\u03c0_openMap",
     "MetrizableExactAtKernelCokernelConditionedTopologyInputs",
     "exactAcyclic_of_exactAt_metrizableLCA_of_kernelCokernelConditionedTopology",
     "Dbounded.exactAcyclicHomologyDetectionInput_metrizableLCA_of_homology_and_kernelCokernelConditionedTopology",

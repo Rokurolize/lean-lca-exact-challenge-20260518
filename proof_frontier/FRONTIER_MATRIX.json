@@ -1,9 +1,60 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T13:22:27Z",
+  "generated_utc": "2026-05-24T13:38:41Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
+    {
+      "frontier_id": "frontier-w708-target-surjective-explicit-normalized-fixed-target-localized-right-adjoint",
+      "target_declarations": [
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW708",
+        "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_targetSurjectiveCompactW708",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW708_accepted",
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW708",
+        "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_targetSurjectiveCompactW708",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW708_accepted",
+        "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitNormalizedFixedTargetLocalizedRightAdjointTargetSurjectiveCompactGlobalProviderRouteStateW708_productSuccess"
+      ],
+      "target_files_or_module": [
+        "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "audit/ProductSuccessDeclarations.lean"
+      ],
+      "dependencies": [
+        "W707 explicit normalized fixed-target localized-right-adjoint route",
+        "TargetDifferenceSurjectiveProviderW601",
+        "targetTopProvider_of_targetSurjective_w601",
+        "TargetCodomainCompactSpaceProviderW601"
+      ],
+      "allowed_writes": [
+        "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "audit/ProductSuccessDeclarations.lean",
+        "scratch-log.html",
+        "proof_frontier/FRONTIER_MATRIX.json",
+        "proof_frontier/FRONTIER_MATRIX.md",
+        "run/verification.json",
+        "terminal_outcome/terminal_outcome.json",
+        "manifest.json"
+      ],
+      "forbidden_writes": [
+        "global Lean or elan configuration",
+        "packet-internal authoritative final zip SHA256",
+        "unrelated repositories"
+      ],
+      "worker_count_allowed": 0,
+      "verification_command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields && lake env lean audit/ProductSuccessDeclarations.lean && lake build",
+      "merge_blocker": "Concrete WPP boundary data, W512 relation fields, W601 target-difference surjectivity, compact targets, W525 global closed providers, normalized fixed-target obligations, W519 closed-range data, endpoint-strict topology, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs remain unconstructed.",
+      "product_success_contribution": "Replaces the direct W600 target-top call-site input at the W707 surface by W601 target-difference surjectivity while preserving accepted closed-map and closed-embedding routes.",
+      "owned_by_active_process": true,
+      "implemented_declarations": [
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW708",
+        "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_targetSurjectiveCompactW708",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW708_accepted",
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW708",
+        "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_targetSurjectiveCompactW708",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW708_accepted",
+        "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitNormalizedFixedTargetLocalizedRightAdjointTargetSurjectiveCompactGlobalProviderRouteStateW708_productSuccess"
+      ]
+    },
     {
       "frontier_id": "frontier-w492-w480-selected-cokernel-colimit",
       "target_declarations": [
@@ -330,8 +381,8 @@
         "YonedaExt.positiveYonedaExtCast_ofExtension",
         "YonedaExt.positiveYonedaExtCast_spliceLeftWith_assoc",
         "YonedaExt.yonedaProduct_ofExtension_assoc_cast",
-        "CategoryTheory.HasForget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
-        "(CategoryTheory.forget₂ LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
+        "CategoryTheory.HasForget\u2082 LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat",
+        "(CategoryTheory.forget\u2082 LeanLCAExactChallenge.MetrizableLCA AddCommGrpCat).Additive",
         "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_exact_of_topology",
         "LeanLCAExactChallenge.MetrizableLCA.rangeSubgroup_coe",
         "LeanLCAExactChallenge.MetrizableLCA.denseRange_of_cokernelSubgroup_eq_top",
@@ -352,11 +403,11 @@
         "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasFiniteLimits",
         "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasFiniteProducts",
         "LeanLCAExactChallenge.BoundedOppositeConcreteFiniteLimitsW248.metrizableLCA_boundedComplexOp_hasEqualizers",
-        "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_of_cokernelπ_eq_zero",
-        "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_cokernelSubgroup_eq_top",
-        "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_iff_cokernelSubgroup_eq_top",
-        "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernelπ_eq_zero",
-        "LeanLCAExactChallenge.MetrizableLCA.cokernelπ_eq_zero_of_epi",
+        "LeanLCAExactChallenge.MetrizableLCA.cokernelSubgroup_eq_top_of_cokernel\u03c0_eq_zero",
+        "LeanLCAExactChallenge.MetrizableLCA.cokernel\u03c0_eq_zero_of_cokernelSubgroup_eq_top",
+        "LeanLCAExactChallenge.MetrizableLCA.cokernel\u03c0_eq_zero_iff_cokernelSubgroup_eq_top",
+        "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_cokernel\u03c0_eq_zero",
+        "LeanLCAExactChallenge.MetrizableLCA.cokernel\u03c0_eq_zero_of_epi",
         "LeanLCAExactChallenge.MetrizableLCA.strictShortExact_of_kernel_open_closed_epi",
         "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.localizedComposite_factorizationIso",
         "LeanLCAExactChallenge.LocalizedComparisonTransportInputW253.ComparisonFactorRightTransportInput",
@@ -695,7 +746,7 @@
         "exact cone trW criterion",
         "iso-closure cone-membership criterion",
         "homotopy weak equivalence iff cone object in exactAcyclicHomotopyIsoClosure",
-        "homotopy-object IsTriangulatedClosed₂ reduction",
+        "homotopy-object IsTriangulatedClosed\u2082 reduction",
         "iso-closure closed2 transported from homotopy object closed2",
         "iso-closure trW left calculus from homotopy object closed2",
         "iso-closure trW triangulation compatibility from homotopy object closed2",
@@ -711,18 +762,18 @@
         "bounded homotopy category conditional triangulated wrapper",
         "bounded exact-acyclic homotopy Verdier quotient wrapper",
         "standard mapping cone triangle boundedness ext1/ext2/ext3",
-        "strict representative boundary for boundedHomotopyObject IsTriangulatedClosed₂",
+        "strict representative boundary for boundedHomotopyObject IsTriangulatedClosed\u2082",
         "Pretriangulated.Triangle projection isomorphism transfer",
         "ObjectProperty.prop_of_iso transfer for triangle projections",
         "explicit triangle isomorphism transfer for strict mapping-cone boundedness",
         "strict cochain-isomorphism mapping cone boundedness transport",
-        "Pretriangulated.isoTriangleOfIso₁₂",
-        "Pretriangulated.isoTriangleOfIso₁₃",
+        "Pretriangulated.isoTriangleOfIso\u2081\u2082",
+        "Pretriangulated.isoTriangleOfIso\u2081\u2083",
         "endpoint-isomorphism completion of distinguished triangle isomorphisms",
         "Pretriangulated.rot_of_distTriang",
         "Pretriangulated.invRotate",
         "Pretriangulated.rotCompInvRot",
-        "ObjectProperty.IsTriangulatedClosed₂.mk'",
+        "ObjectProperty.IsTriangulatedClosed\u2082.mk'",
         "exact acyclic homotopy object strict triangle transfer",
         "exact acyclic homotopy object explicit triangle isomorphism transfer",
         "exact acyclic endpoint-pair distinguished triangle transfer into isoClosure",
@@ -764,7 +815,7 @@
         "boundedCochainComplex_isClosedUnderIsomorphisms",
         "boundedCochainComplex_isStableUnderShift",
         "BoundedComplexCategory",
-        "BoundedComplexCategory.ι",
+        "BoundedComplexCategory.\u03b9",
         "MetrizableLCA.zeroObj",
         "MetrizableLCA.zeroObj_isZero",
         "boundedCochainComplex_containsZero",
@@ -835,7 +886,7 @@
         "boundedHomotopyObject_containsZero",
         "boundedHomotopyObject_isStableUnderShift",
         "BoundedHomotopyCategory",
-        "BoundedHomotopyCategory.ι",
+        "BoundedHomotopyCategory.\u03b9",
         "boundedHomotopyObject_mappingCone",
         "boundedHomotopyObject_mappingCone_congr_iff",
         "boundedExactWeakEquivalenceToHomotopyExactWeakEquivalenceOfIsoClosed",
@@ -946,7 +997,7 @@
         "boundedExactAcyclicHomotopyVerdierComparison",
         "boundedExactAcyclicHomotopyVerdierComparisonLocalizationIso",
         "BoundedComplexCategory.homotopyQuotientBounded",
-        "BoundedComplexCategory.homotopyQuotientBounded_comp_ι_iso",
+        "BoundedComplexCategory.homotopyQuotientBounded_comp_\u03b9_iso",
         "boundedHomotopyExactWeakEquivalenceToBoundedExactAcyclicHomotopy_trW",
         "boundedHomotopyExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage",
         "boundedExactWeakEquivalence_eq_boundedExactAcyclicHomotopy_trW_inverseImage_of_isoClosed",
@@ -1118,16 +1169,16 @@
         "BoundedComplexCategory.hasFiniteLimits",
         "BoundedComplexCategory.hasFiniteColimits",
         "Dbounded.hasFiniteProductsOfStableFiniteProducts",
-        "MetrizableExactAcyclicBiproductBoundary.shortComplexπ₁_mapBiprod_inv_fst",
-        "MetrizableExactAcyclicBiproductBoundary.shortComplexπ₁_mapBiprod_inv_snd",
-        "MetrizableExactAcyclicBiproductBoundary.shortComplexπ₂_mapBiprod_inv_fst",
-        "MetrizableExactAcyclicBiproductBoundary.shortComplexπ₂_mapBiprod_inv_snd",
-        "MetrizableExactAcyclicBiproductBoundary.shortComplexπ₃_mapBiprod_inv_fst",
-        "MetrizableExactAcyclicBiproductBoundary.shortComplexπ₃_mapBiprod_inv_snd",
-        "MetrizableExactAcyclicBiproductBoundary.shortComplexπ₂_mapBiprod_hom_fst",
-        "MetrizableExactAcyclicBiproductBoundary.shortComplexπ₂_mapBiprod_hom_snd",
-        "MetrizableExactAcyclicBiproductBoundary.shortComplexπ₃_mapBiprod_hom_fst",
-        "MetrizableExactAcyclicBiproductBoundary.shortComplexπ₃_mapBiprod_hom_snd",
+        "MetrizableExactAcyclicBiproductBoundary.shortComplex\u03c0\u2081_mapBiprod_inv_fst",
+        "MetrizableExactAcyclicBiproductBoundary.shortComplex\u03c0\u2081_mapBiprod_inv_snd",
+        "MetrizableExactAcyclicBiproductBoundary.shortComplex\u03c0\u2082_mapBiprod_inv_fst",
+        "MetrizableExactAcyclicBiproductBoundary.shortComplex\u03c0\u2082_mapBiprod_inv_snd",
+        "MetrizableExactAcyclicBiproductBoundary.shortComplex\u03c0\u2083_mapBiprod_inv_fst",
+        "MetrizableExactAcyclicBiproductBoundary.shortComplex\u03c0\u2083_mapBiprod_inv_snd",
+        "MetrizableExactAcyclicBiproductBoundary.shortComplex\u03c0\u2082_mapBiprod_hom_fst",
+        "MetrizableExactAcyclicBiproductBoundary.shortComplex\u03c0\u2082_mapBiprod_hom_snd",
+        "MetrizableExactAcyclicBiproductBoundary.shortComplex\u03c0\u2083_mapBiprod_hom_fst",
+        "MetrizableExactAcyclicBiproductBoundary.shortComplex\u03c0\u2083_mapBiprod_hom_snd",
         "MappingConeFiniteProductStabilityW136.ShortComplexBiprodTransportInput",
         "MappingConeFiniteProductStabilityW136.exactAcyclic_biprod_of_shortComplexBiprodTransport",
         "MappingConeFiniteProductStabilityW136.shortComplexTransportConstructorIngredients",
@@ -1211,7 +1262,7 @@
         "FiniteExactAcyclicProductClosureW149.FiniteProductOptionDecompositionInput",
         "FiniteExactAcyclicProductClosureW149.finiteProductDecompositionInput_of_optionProductIsoBiprod",
         "OptionProductDecompositionW151.evalTailProductPointIso",
-        "OptionProductDecompositionW151.evalTailProductPointIso_hom_π",
+        "OptionProductDecompositionW151.evalTailProductPointIso_hom_\u03c0",
         "FiniteExactAcyclicProductClosureW149.exactAcyclic_optionProduct_of_optionProductIsoBiprod",
         "FiniteProductExactness.FiniteExactAcyclicProductClosure",
         "FiniteProductExactness.FiniteProductOptionDecompositionInput",
@@ -1234,7 +1285,7 @@
         "MappingConeOptionProductStepW146.OptionTransportedFanMapProjectionNaturalityInput",
         "MappingConeOptionProductStepW146.optionProductMapNaturalityInput_of_projectionNaturality",
         "MappingConeOptionProductStepW146.optionTransportedFanMapFstNaturality",
-        "MappingConeOptionProductStepW146.optionProductComplexTransportedBinaryFan_snd_π",
+        "MappingConeOptionProductStepW146.optionProductComplexTransportedBinaryFan_snd_\u03c0",
         "MappingConeOptionProductStepW146.optionTransportedFanMapSndNaturality",
         "MappingConeOptionProductStepW146.optionTransportedFanMapProjectionNaturalityInput_direct",
         "MappingConeOptionProductStepW146.optionProductMapNaturalityInput_direct",
@@ -1296,9 +1347,9 @@
         "bounded exact-acyclic homotopy Verdier quotient wrappers",
         "ordinary nerve of bounded homotopy Verdier quotient remains non-stable evidence",
         "standard mapping cone triangle strict boundedness faces",
-        "strict representative boundary does not prove iso-closure IsTriangulatedClosed₂",
+        "strict representative boundary does not prove iso-closure IsTriangulatedClosed\u2082",
         "explicit triangle isomorphism transfer for strict mapping cone boundedness faces",
-        "strict representative boundary still does not prove full boundedHomotopyObject IsTriangulatedClosed₂",
+        "strict representative boundary still does not prove full boundedHomotopyObject IsTriangulatedClosed\u2082",
         "exact acyclic homotopy object strict mapping cone triangle transfer",
         "exact acyclic homotopy object explicit triangle isomorphism transfer into isoClosure",
         "exact acyclic endpoint-pair distinguished triangle transfer into isoClosure",
@@ -1351,7 +1402,7 @@
         "v233 proved bounded exact weak equivalence finite-product mapping-cone input for MetrizableLCA and audit-level finite-product stability."
       ],
       "latest_parent_updates": [
-        "v294: direct WalkingParallelPairᵒᵖ colimit stability reduced to mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison plus exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure via audit/blockers/direct_wpp_op_colimit_closure_w271.lean.",
+        "v294: direct WalkingParallelPair\u1d52\u1d56 colimit stability reduced to mappingCone_bounded_inclusion_walkingParallelPairOp_colimit_comparison plus exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure via audit/blockers/direct_wpp_op_colimit_closure_w271.lean.",
         "v295: direct identity iso-closed input reduced to MetrizableLCAExactAcyclicTransportOfHomotopyEquiv via audit/blockers/exact_acyclic_iso_closed_w273.lean; W229 leaves ShortComplexQuasiIsoConflationTransport as the local bridge."
       ],
       "remaining_inputs": [
@@ -1665,7 +1716,7 @@
   "consumed_support_results": [
     {
       "artifact": "audit/blockers/opposite_direct_colimit_to_limit_transport_w283.lean",
-      "result": "Direct colimit stability of W over Jᵒᵖ now transports to limit stability of W.op over J, closing the formal WalkingParallelPair op-transport gap. Direct boundedExactWeakEquivalence WalkingParallelPairᵒᵖ colimit stability remains open."
+      "result": "Direct colimit stability of W over J\u1d52\u1d56 now transports to limit stability of W.op over J, closing the formal WalkingParallelPair op-transport gap. Direct boundedExactWeakEquivalence WalkingParallelPair\u1d52\u1d56 colimit stability remains open."
     },
     {
       "artifact": "LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean",
@@ -1697,7 +1748,7 @@
     },
     {
       "artifact": "audit/blockers/right_homology_cokernel_comparison_w268.lean",
-      "result": "Shows T.rightHomology is Kernel T.fromOpcycles and MetrizableLCA.cokernelπ T.g is Cokernel T.fromOpcycles; Epi T.fromOpcycles is a positive endpoint input, while rightHomology zero alone is insufficient."
+      "result": "Shows T.rightHomology is Kernel T.fromOpcycles and MetrizableLCA.cokernel\u03c0 T.g is Cokernel T.fromOpcycles; Epi T.fromOpcycles is a positive endpoint input, while rightHomology zero alone is insufficient."
     },
     {
       "artifact": "audit/blockers/opposite_contains_identities_of_iso_closed_w291.lean",
@@ -1735,7 +1786,7 @@
     },
     {
       "artifact": "audit/blockers/right_open_map_wpp_op_colimit_w286.lean",
-      "result": "W286 reduces rightOpenMap WPP-op colimit closure to component X₂/X₃ colimit open-map preservation; not product success."
+      "result": "W286 reduces rightOpenMap WPP-op colimit closure to component X\u2082/X\u2083 colimit open-map preservation; not product success."
     },
     {
       "artifact": "audit/blockers/algebraic_exact_wpp_op_colimit_w287.lean",
@@ -1747,7 +1798,7 @@
     },
     {
       "artifact": "audit/blockers/metrizable_lca_forget_preserves_homology_w316.lean",
-      "result": "W316 reduces forgetful PreservesHomology to PreservesFiniteLimits and PreservesFiniteColimits for forget₂ MetrizableLCA AddCommGrpCat; not product success."
+      "result": "W316 reduces forgetful PreservesHomology to PreservesFiniteLimits and PreservesFiniteColimits for forget\u2082 MetrizableLCA AddCommGrpCat; not product success."
     },
     {
       "artifact": "audit/blockers/left_closed_embedding_wpp_op_colimit_w289.lean",
@@ -1931,10 +1982,10 @@
     "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
   ],
   "parent_update_v324": {
-    "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
+    "summary": "v324\u3067BoundedComplexCategory.\u03b9 MetrizableLCA\u306eWalkingParallelPair/WPP-op colimit\u4fdd\u5b58\u3092\u78ba\u8a8d\u3057\u3001W308\u306bambient right-leg cocone route\u3092\u8ffd\u52a0\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
-      "BoundedComplexCategory.ι MetrizableLCA preserves WalkingParallelPairᵒᵖ colimits",
-      "BoundedComplexCategory.ι MetrizableLCA preserves WalkingParallelPair colimits",
+      "BoundedComplexCategory.\u03b9 MetrizableLCA preserves WalkingParallelPair\u1d52\u1d56 colimits",
+      "BoundedComplexCategory.\u03b9 MetrizableLCA preserves WalkingParallelPair colimits",
       "W308 constructs ambient right-leg cocone data from any test cocone"
     ],
     "remaining_inputs": [
@@ -1947,7 +1998,7 @@
     "product_success_claimed": false
   },
   "parent_update_v326": {
-    "summary": "v326でW296/W297支援ファイルを移植し、AddCommGrp kernel exactness境界とMetrizableLCA component coequalizer closed-embedding境界を確認した。product_completeはfalseのまま。",
+    "summary": "v326\u3067W296/W297\u652f\u63f4\u30d5\u30a1\u30a4\u30eb\u3092\u79fb\u690d\u3057\u3001AddCommGrp kernel exactness\u5883\u754c\u3068MetrizableLCA component coequalizer closed-embedding\u5883\u754c\u3092\u78ba\u8a8d\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
       "W296 proves that an AddCommGrpCat kernel-exactness WPP-op colimit boundary supplies W319 additiveKernelExact_wppOp_colimit_boundary.",
       "W296 proves that WPP-op colimit preservation of ShortComplex.Exact in AddCommGrpCat would supply the AddCommGrpCat kernel-exactness boundary.",
@@ -1955,13 +2006,13 @@
     ],
     "remaining_inputs": [
       "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable or stronger addCommGrpShortComplexExact_wppOp_colimit_boundary_for_metrizable",
-      "wppOp_lca_colimitMap_preserves_closedEmbedding for MetrizableLCA WalkingParallelPairᵒᵖ diagrams",
+      "wppOp_lca_colimitMap_preserves_closedEmbedding for MetrizableLCA WalkingParallelPair\u1d52\u1d56 diagrams",
       "W308 fixed mapping-cone left cochain, descEq, leg equations, and uniqueness"
     ],
     "product_success_claimed": false
   },
   "parent_update_v327": {
-    "summary": "v327でmapping-cone leg equationを左右成分へ分解した。右脚互換性と左cochain互換性から固定leg equationが従うことを確認したが、left cochain/descEq/uniquenessは未完了。product_completeはfalseのまま。",
+    "summary": "v327\u3067mapping-cone leg equation\u3092\u5de6\u53f3\u6210\u5206\u3078\u5206\u89e3\u3057\u305f\u3002\u53f3\u811a\u4e92\u63db\u6027\u3068\u5de6cochain\u4e92\u63db\u6027\u304b\u3089\u56fa\u5b9aleg equation\u304c\u5f93\u3046\u3053\u3068\u3092\u78ba\u8a8d\u3057\u305f\u304c\u3001left cochain/descEq/uniqueness\u306f\u672a\u5b8c\u4e86\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "accepted_file": "audit/blockers/wpp_op_mapping_cone_fac_split_w327.lean",
     "remaining_inputs": [
       "left degree -1 cochain for each test cocone",
@@ -1972,7 +2023,7 @@
     "product_success_claimed": false
   },
   "parent_update_v328": {
-    "summary": "v328でmappingCone_hom_ext_of_left_rightを追加し、mapping-cone mediator uniquenessを左右成分へ分解した。product_completeはfalseのまま。",
+    "summary": "v328\u3067mappingCone_hom_ext_of_left_right\u3092\u8ffd\u52a0\u3057\u3001mapping-cone mediator uniqueness\u3092\u5de6\u53f3\u6210\u5206\u3078\u5206\u89e3\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
       "mappingCone_hom_ext_of_left_right compiles and checks mapping-cone uniqueness by ext_from at each degree.",
       "W308 uniqueness no longer needs to remain a monolithic mappingCone equality obligation."
@@ -1981,12 +2032,12 @@
       "construct left degree -1 cochain",
       "prove left mappingCone.inl cochain equality/compatibility",
       "prove desc differential compatibility",
-      "connect right inr equality to c₂ colimit uniqueness in the full W308 assembly"
+      "connect right inr equality to c\u2082 colimit uniqueness in the full W308 assembly"
     ],
     "product_success_claimed": false
   },
   "parent_update_v329": {
-    "summary": "v329でW308右成分uniquenessをpreserved ambient colimitのhom_extへ縮約した。product_completeはfalseのまま。",
+    "summary": "v329\u3067W308\u53f3\u6210\u5206uniqueness\u3092preserved ambient colimit\u306ehom_ext\u3078\u7e2e\u7d04\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "accepted_file": "audit/blockers/wpp_op_mapping_cone_right_uniqueness_w329.lean",
     "positive_facts": [
       "ambientRightComponent_ext_of_colimit",
@@ -2001,7 +2052,7 @@
     "product_success_claimed": false
   },
   "parent_update_v330": {
-    "summary": "v330でmappingCone_hom_ext_of_left_and_colimit_rightを追加し、mapping-cone uniquenessとcolimit right-leg uniquenessを一つのstandalone補題にまとめた。product_completeはfalseのまま。",
+    "summary": "v330\u3067mappingCone_hom_ext_of_left_and_colimit_right\u3092\u8ffd\u52a0\u3057\u3001mapping-cone uniqueness\u3068colimit right-leg uniqueness\u3092\u4e00\u3064\u306estandalone\u88dc\u984c\u306b\u307e\u3068\u3081\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
       "The first audit-file-import formulation was discarded because audit files are not Lake modules.",
       "The import-safe standalone theorem compiles against the source module imports.",
@@ -2016,7 +2067,7 @@
     "product_success_claimed": false
   },
   "parent_update_v331": {
-    "summary": "v331でleftCochainOfColimitとleftCochainOfColimit_comp_facを追加し、左degree -1 cochainをcolimitから構成する一般補題を証明した。product_completeはfalseのまま。",
+    "summary": "v331\u3067leftCochainOfColimit\u3068leftCochainOfColimit_comp_fac\u3092\u8ffd\u52a0\u3057\u3001\u5de6degree -1 cochain\u3092colimit\u304b\u3089\u69cb\u6210\u3059\u308b\u4e00\u822c\u88dc\u984c\u3092\u8a3c\u660e\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
       "HomComplex.Cochain is a degree-indexed family, so degreewise colimit desc constructs a cochain.",
       "leftCochainOfColimit_comp_fac proves the expected cochain leg equation.",
@@ -2025,56 +2076,56 @@
     "remaining_inputs": [
       "instantiate objectwise left cochains as mappingCone.inl followed by the test cocone legs",
       "prove objectwise left-cochain compatibility/naturality",
-      "supply or derive evaluation-colimit preservation for the included c₁ diagram",
+      "supply or derive evaluation-colimit preservation for the included c\u2081 diagram",
       "prove the mappingCone.desc differential compatibility equation"
     ],
     "product_success_claimed": false
   },
   "parent_update_v332": {
-    "summary": "v332でobjectwiseLeftCochainとcompatibility補題を追加し、W308左cochain候補の自然性をmappingCone.map cocone自然性へ縮約した。product_completeはfalseのまま。",
+    "summary": "v332\u3067objectwiseLeftCochain\u3068compatibility\u88dc\u984c\u3092\u8ffd\u52a0\u3057\u3001W308\u5de6cochain\u5019\u88dc\u306e\u81ea\u7136\u6027\u3092mappingCone.map cocone\u81ea\u7136\u6027\u3078\u7e2e\u7d04\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
-      "objectwiseLeftCochain φ leg := mappingCone.inl φ composed with the test cocone leg.",
+      "objectwiseLeftCochain \u03c6 leg := mappingCone.inl \u03c6 composed with the test cocone leg.",
       "objectwiseLeftCochain_compatible_of_leg_naturality compiles and proves the compatibility needed by W331."
     ],
     "remaining_inputs": [
       "combine W331 and W332 in the full W308 setting",
-      "supply evaluation-colimit preservation for the included c₁ diagram",
+      "supply evaluation-colimit preservation for the included c\u2081 diagram",
       "prove the mappingCone.desc differential compatibility equation",
       "continue W318/W296/W297 source theorem work"
     ],
     "product_success_claimed": false
   },
   "parent_update_v333": {
-    "summary": "v333でleftCochainOfMappingConeLegsとleftCochainOfMappingConeLegs_comp_facを追加し、W331/W332をstandaloneに結合した。product_completeはfalseのまま。",
+    "summary": "v333\u3067leftCochainOfMappingConeLegs\u3068leftCochainOfMappingConeLegs_comp_fac\u3092\u8ffd\u52a0\u3057\u3001W331/W332\u3092standalone\u306b\u7d50\u5408\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
-      "Given mappingCone.map-natural test legs, the left cochain descends from the X₁ colimit.",
+      "Given mappingCone.map-natural test legs, the left cochain descends from the X\u2081 colimit.",
       "The expected mappingCone.inl leg equation is proved as a HomComplex.Cochain equality.",
       "The f.naturality orientation issue was corrected by using .symm for mappingCone.map."
     ],
     "remaining_inputs": [
-      "instantiate this constructor with W308 included bounded c₁ cocone",
-      "supply ambient/evaluation colimit preservation for included c₁",
+      "instantiate this constructor with W308 included bounded c\u2081 cocone",
+      "supply ambient/evaluation colimit preservation for included c\u2081",
       "prove the mappingCone.desc differential compatibility equation",
       "continue W318/W296/W297 source theorem work"
     ],
     "product_success_claimed": false
   },
   "parent_update_v334": {
-    "summary": "v334でobjectwiseLeftCochain_descEqを追加し、mappingCone.inl由来left cochainの局所δ等式を証明した。product_completeはfalseのまま。",
+    "summary": "v334\u3067objectwiseLeftCochain_descEq\u3092\u8ffd\u52a0\u3057\u3001mappingCone.inl\u7531\u6765left cochain\u306e\u5c40\u6240\u03b4\u7b49\u5f0f\u3092\u8a3c\u660e\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
-      "objectwiseLeftCochain_descEq compiles and proves δ left = ofHom (φ ≫ mappingCone.inr φ ≫ leg).",
+      "objectwiseLeftCochain_descEq compiles and proves \u03b4 left = ofHom (\u03c6 \u226b mappingCone.inr \u03c6 \u226b leg).",
       "The local mapping-cone algebra part of descEq is no longer the blocker."
     ],
     "remaining_inputs": [
       "prove global descEq after colimit descent",
       "identify descended objectwise right legs with W308 ambientRightLegMediator",
-      "instantiate included c₁/c₂ preserved colimits in the full W308 assembly",
+      "instantiate included c\u2081/c\u2082 preserved colimits in the full W308 assembly",
       "continue W318/W296/W297 source theorem work"
     ],
     "product_success_claimed": false
   },
   "parent_update_v335": {
-    "summary": "v335でcochain_ext_of_colimit_legsを追加し、colimit complexから出るcochain等式を全脚後の等式へ縮約した。product_completeはfalseのまま。",
+    "summary": "v335\u3067cochain_ext_of_colimit_legs\u3092\u8ffd\u52a0\u3057\u3001colimit complex\u304b\u3089\u51fa\u308bcochain\u7b49\u5f0f\u3092\u5168\u811a\u5f8c\u306e\u7b49\u5f0f\u3078\u7e2e\u7d04\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
       "cochain_ext_of_colimit_legs compiles under explicit evaluation-colimit preservation.",
       "cochain_ext_of_colimit_legs_component provides a component-equation variant."
@@ -2082,56 +2133,56 @@
     "remaining_inputs": [
       "instantiate W335 for W333/W334 global descEq",
       "identify descended objectwise right terms with the ambient right mediator",
-      "instantiate included c₁/c₂ preserved colimits in W308",
+      "instantiate included c\u2081/c\u2082 preserved colimits in W308",
       "continue W318/W296/W297 source theorem work"
     ],
     "product_success_claimed": false
   },
   "parent_update_v336": {
-    "summary": "v336でdelta_of_colimit_leg_compを追加し、δがcolimit legでのprecompositionと可換であることをW308向けに包んだ。product_completeはfalseのまま。",
+    "summary": "v336\u3067delta_of_colimit_leg_comp\u3092\u8ffd\u52a0\u3057\u3001\u03b4\u304ccolimit leg\u3067\u306eprecomposition\u3068\u53ef\u63db\u3067\u3042\u308b\u3053\u3068\u3092W308\u5411\u3051\u306b\u5305\u3093\u3060\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
-      "delta_of_colimit_leg_comp compiles from mathlib HomComplex.δ_ofHom_comp.",
+      "delta_of_colimit_leg_comp compiles from mathlib HomComplex.\u03b4_ofHom_comp.",
       "colimit_leg_delta_eq_of_precomp_eq packages the W333 leg-equation rewrite needed for descEq."
     ],
     "remaining_inputs": [
       "identify objectwise right terms after colimit legs with W308 ambientRightLegMediator",
       "complete the global descEq wrapper using W333-W336",
-      "instantiate included c₁/c₂ preserved colimits in W308",
+      "instantiate included c\u2081/c\u2082 preserved colimits in W308",
       "continue W318/W296/W297 source theorem work"
     ],
     "product_success_claimed": false
   },
   "parent_update_v337": {
-    "summary": "v337でphi_comp_rightMediator_eq_desc_objectwiseを追加し、φとright mediatorのleg equationsから右辺descent同一視を証明した。product_completeはfalseのまま。",
+    "summary": "v337\u3067phi_comp_rightMediator_eq_desc_objectwise\u3092\u8ffd\u52a0\u3057\u3001\u03c6\u3068right mediator\u306eleg equations\u304b\u3089\u53f3\u8fbadescent\u540c\u4e00\u8996\u3092\u8a3c\u660e\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "positive_facts": [
-      "rightSideObjectwiseCocone packages objectwise maps f.app j ≫ right_j as an X₁-cocone.",
-      "phi_comp_rightMediator_eq_desc_objectwise proves φ ≫ β equals the colimit desc of this cocone."
+      "rightSideObjectwiseCocone packages objectwise maps f.app j \u226b right_j as an X\u2081-cocone.",
+      "phi_comp_rightMediator_eq_desc_objectwise proves \u03c6 \u226b \u03b2 equals the colimit desc of this cocone."
     ],
     "remaining_inputs": [
       "package W333-W337 into a single global descEq wrapper",
-      "instantiate with W308 included bounded c₁/c₂ cocones and ambient right mediator",
+      "instantiate with W308 included bounded c\u2081/c\u2082 cocones and ambient right mediator",
       "finish W308 ambient desc assembly or continue source theorem closures",
       "continue W318/W296/W297 source theorem work"
     ],
     "product_success_claimed": false
   },
   "parent_update_v338": {
-    "summary": "v338でglobal_descEq_of_mappingConeLegsを追加し、W333-W337のleft cochain construction, objectwise descEq, δ-precomposition, and right-side colimit comparisonを単一のcochain等式へ統合した。product_completeはfalseのまま。",
+    "summary": "v338\u3067global_descEq_of_mappingConeLegs\u3092\u8ffd\u52a0\u3057\u3001W333-W337\u306eleft cochain construction, objectwise descEq, \u03b4-precomposition, and right-side colimit comparison\u3092\u5358\u4e00\u306ecochain\u7b49\u5f0f\u3078\u7d71\u5408\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "accepted_file": "audit/blockers/wpp_op_mapping_cone_global_desc_eq_w338.lean",
     "positive_facts": [
       "cochain_ext_of_colimit_legs_w338 reduces the global equality to colimit legs.",
-      "global_descEq_of_mappingConeLegs proves δ(leftCochainOfMappingConeLegs)=ofHom(φ ≫ β) from mapping-cone leg naturality and expected φ/β leg equations.",
+      "global_descEq_of_mappingConeLegs proves \u03b4(leftCochainOfMappingConeLegs)=ofHom(\u03c6 \u226b \u03b2) from mapping-cone leg naturality and expected \u03c6/\u03b2 leg equations.",
       "The previous component-level q=p normalization issue was avoided by proving the legged equality at HomComplex.Cochain level."
     ],
     "remaining_inputs": [
-      "instantiate included bounded c₁/c₂ cocones and evaluation-colimit preservation inputs",
+      "instantiate included bounded c\u2081/c\u2082 cocones and evaluation-colimit preservation inputs",
       "package global_descEq_of_mappingConeLegs into W308 FixedMappingConeCoconeDescAssemblyData",
       "finish fixed leg fac and uniqueness fields using W327-W330"
     ],
     "product_success_claimed": false
   },
   "parent_update_v339": {
-    "summary": "v339でtestCoconeLegNaturalityを追加し、objectwise mappingConeDiagram上の任意coconeがW338のnaturality入力を自動的に満たすことを証明した。product_completeはfalseのまま。",
+    "summary": "v339\u3067testCoconeLegNaturality\u3092\u8ffd\u52a0\u3057\u3001objectwise mappingConeDiagram\u4e0a\u306e\u4efb\u610fcocone\u304cW338\u306enaturality\u5165\u529b\u3092\u81ea\u52d5\u7684\u306b\u6e80\u305f\u3059\u3053\u3068\u3092\u8a3c\u660e\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
     "accepted_file": "audit/blockers/wpp_op_mapping_cone_test_cocone_naturality_w339.lean",
     "positive_facts": [
       "The generic cochain-complex mappingConeDiagram matches the mappingCone.map shape used by W338.",
@@ -2139,13 +2190,13 @@
     ],
     "remaining_inputs": [
       "identify W308 bounded-inclusion mappingConeDiagram with the generic ambient cochain-complex mappingConeDiagram",
-      "instantiate W338 with included c₁/c₂ colimits and W339 naturality",
+      "instantiate W338 with included c\u2081/c\u2082 colimits and W339 naturality",
       "package fac and uniqueness using W327-W330"
     ],
     "product_success_claimed": false
   },
   "parent_update_v340": {
-    "summary": "v340でboundedTestCoconeLegNaturalityを追加し、W308本体にもtestCoconeLegNaturalityを統合した。W308 test coconeからbounded-inclusion版のnaturality入力が自動的に得られる。",
+    "summary": "v340\u3067boundedTestCoconeLegNaturality\u3092\u8ffd\u52a0\u3057\u3001W308\u672c\u4f53\u306b\u3082testCoconeLegNaturality\u3092\u7d71\u5408\u3057\u305f\u3002W308 test cocone\u304b\u3089bounded-inclusion\u7248\u306enaturality\u5165\u529b\u304c\u81ea\u52d5\u7684\u306b\u5f97\u3089\u308c\u308b\u3002",
     "accepted_file": "audit/blockers/wpp_op_mapping_cone_bounded_test_cocone_naturality_w340.lean",
     "integrated_file": "audit/blockers/wpp_op_mapping_cone_unique_mediator_w308.lean",
     "positive_facts": [
@@ -2158,22 +2209,22 @@
     "product_success_claimed": false
   },
   "parent_update_v341": {
-    "summary": "v341でleftCochainOfBoundedTestCocone、leftCochainOfBoundedTestCocone_comp_fac、globalDescEqOfBoundedTestCocone、boundedMappingConeDesc_fac、arbitraryMediator_leftCochain_eqを追加した。",
+    "summary": "v341\u3067leftCochainOfBoundedTestCocone\u3001leftCochainOfBoundedTestCocone_comp_fac\u3001globalDescEqOfBoundedTestCocone\u3001boundedMappingConeDesc_fac\u3001arbitraryMediator_leftCochain_eq\u3092\u8ffd\u52a0\u3057\u305f\u3002",
     "accepted_file": "audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
     "positive_facts": [
       "leftCochainOfBoundedTestCocone constructs the degree -1 left cochain in W308 bounded-inclusion form.",
-      "globalDescEqOfBoundedTestCocone proves the descEq field from hφ and hβ.",
+      "globalDescEqOfBoundedTestCocone proves the descEq field from h\u03c6 and h\u03b2.",
       "boundedMappingConeDesc_fac proves the mappingCone.desc fac equation for each test leg.",
       "arbitraryMediator_leftCochain_eq identifies the left cochain component of an arbitrary competing mediator."
     ],
     "remaining_inputs": [
-      "combine W341 left equality with W302/W329/W330 right c₂ colimit equality",
+      "combine W341 left equality with W302/W329/W330 right c\u2082 colimit equality",
       "package final W308 uniqueness field"
     ],
     "product_success_claimed": false
   },
   "parent_update_v342": {
-    "summary": "v342でWPP/WPP-op形のincluded colimit入力と評価関手colimit保存入力を明示した。",
+    "summary": "v342\u3067WPP/WPP-op\u5f62\u306eincluded colimit\u5165\u529b\u3068\u8a55\u4fa1\u95a2\u624bcolimit\u4fdd\u5b58\u5165\u529b\u3092\u660e\u793a\u3057\u305f\u3002",
     "accepted_file": "audit/blockers/wpp_op_mapping_cone_included_colimit_inputs_w342.lean",
     "positive_facts": [
       "includedWppOpColimit_isColimit",
@@ -2201,8 +2252,8 @@
     "frontier_effect": "W308 bounded test legs now descend to a left cochain with the expected mappingCone.inl leg equation; W308 also records the bounded test-leg naturality wrapper locally.",
     "product_complete": false,
     "remaining_inputs": [
-      "derive included c₁ ambient/evaluation colimit input from W324",
-      "instantiate W338 global descEq with W308 included bounded c₁/c₂ cocones and ambientRightLegMediator",
+      "derive included c\u2081 ambient/evaluation colimit input from W324",
+      "instantiate W338 global descEq with W308 included bounded c\u2081/c\u2082 cocones and ambientRightLegMediator",
       "package mappingCone.desc fac and uniqueness fields using W302/W327-W330"
     ]
   },
@@ -2222,7 +2273,7 @@
     "product_complete": false,
     "remaining_inputs": [
       "instantiate W341 with W308 actual WPP-op source diagram",
-      "combine with W302/W329/W330 right c₂ component equality",
+      "combine with W302/W329/W330 right c\u2082 component equality",
       "package final W308 uniqueness field"
     ]
   },
@@ -2255,7 +2306,7 @@
       "lake env lean audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean",
       "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/wpp_op_mapping_cone_bounded_left_cochain_w341.lean"
     ],
-    "contribution": "Closes the bounded-inclusion mappingCone.desc fac and uniqueness assembly from included c1/c2 colimit inputs, evaluation-colimit preservation, β right-leg equations, and arbitrary mediator fixed-leg fac equations.",
+    "contribution": "Closes the bounded-inclusion mappingCone.desc fac and uniqueness assembly from included c1/c2 colimit inputs, evaluation-colimit preservation, \u03b2 right-leg equations, and arbitrary mediator fixed-leg fac equations.",
     "remaining": "Instantiate the W341 bounded assembly with W308 actual WPP-op source cocones and connect it to the fixed mapping-cone cocone universal package."
   },
   "parent_update_v347": {
@@ -2393,7 +2444,7 @@
       "LeanLCAExactChallenge.WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_preserves_openMap_of_leg_certificates"
     ],
     "remaining_inputs": [
-      "WPP-op component colimit脚certificate: source側脚の全射性とtarget側脚のopen性",
+      "WPP-op component colimit\u811acertificate: source\u5074\u811a\u306e\u5168\u5c04\u6027\u3068target\u5074\u811a\u306eopen\u6027",
       "wppOp_lca_colimitMap_injective_inducing_closedImage",
       "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable"
     ],
@@ -2419,7 +2470,7 @@
     ],
     "remaining_inputs": [
       "concrete WPP-op quotient/coequalizer presentation for the component colimit",
-      "canonical colimit.ι leg source-surjectivity and target-open proof for the selected WPP-op leg",
+      "canonical colimit.\u03b9 leg source-surjectivity and target-open proof for the selected WPP-op leg",
       "wppOp_lca_colimitMap_injective_inducing_closedImage",
       "addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable"
     ],
@@ -2454,10 +2505,10 @@
       "LeanLCAExactChallenge.MetrizableLCA.iso_hom_openMap",
       "LeanLCAExactChallenge.MetrizableLCA.surjective_comp_iso",
       "LeanLCAExactChallenge.MetrizableLCA.openMap_comp_iso",
-      "LeanLCAExactChallenge.MetrizableLCA.coequalizerπ_surjective",
-      "LeanLCAExactChallenge.MetrizableLCA.coequalizerπ_openMap",
-      "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_ι_one_surjective",
-      "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_ι_one_openMap"
+      "LeanLCAExactChallenge.MetrizableLCA.coequalizer\u03c0_surjective",
+      "LeanLCAExactChallenge.MetrizableLCA.coequalizer\u03c0_openMap",
+      "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_\u03b9_one_surjective",
+      "LeanLCAExactChallenge.MetrizableLCA.parallelPair_colimit_\u03b9_one_openMap"
     ],
     "verification": [
       "lake env lean LeanLCAExactChallenge/LCA/Cokernel.lean",
@@ -2620,7 +2671,7 @@
       "AddCommGrpSnakeCokernelV362SupportW338.v362Boundary_iff_snakeCokernelRowCertificateBoundary"
     ],
     "remaining_inputs": [
-      "construct a ShortComplex.SnakeInput whose L₃ is isomorphic to the WPP-op colimit short complex",
+      "construct a ShortComplex.SnakeInput whose L\u2083 is isomorphic to the WPP-op colimit short complex",
       "identify the cokernel cofork/coequalizer comparison isomorphisms for that concrete WPP-op colimit"
     ],
     "product_success_claimed": false
@@ -2637,7 +2688,7 @@
       "v362Boundary_iff_snakeCokernelRowCertificateBoundary"
     ],
     "remaining_inputs": [
-      "construct a concrete ShortComplex.SnakeInput whose L₃ is isomorphic to the WPP-op colimit short complex",
+      "construct a concrete ShortComplex.SnakeInput whose L\u2083 is isomorphic to the WPP-op colimit short complex",
       "identify the cokernel/coequalizer comparison isomorphisms for that WPP-op colimit"
     ],
     "product_success_claimed": false
@@ -2654,7 +2705,7 @@
     "remaining_inputs": [
       "construct concrete WPP-op quotient-presenting source and target cocones",
       "prove those concrete cocones are colimit cocones",
-      "prove descended quotient map leg equations for every WalkingParallelPairᵒᵖ leg"
+      "prove descended quotient map leg equations for every WalkingParallelPair\u1d52\u1d56 leg"
     ],
     "product_success_claimed": false
   },
@@ -2891,7 +2942,7 @@
     "contribution": "Concrete quotient coforks as cokernels of f-g, descended quotient maps from compatible squares, and whiskered WPP-op quotient cocones with IsColimit are checked.",
     "remaining_inputs": [
       "transport whiskered cocone to actual Cocone X",
-      "rewrite ordinary cofork equations into W354 source.ι.app j equations",
+      "rewrite ordinary cofork equations into W354 source.\u03b9.app j equations",
       "combine W352/W355 topological fields"
     ],
     "product_success_claimed": false
@@ -2910,7 +2961,7 @@
     ],
     "remaining": [
       "counit diagram-iso transport back to X",
-      "W354 source.ι.app j leg rewrite",
+      "W354 source.\u03b9.app j leg rewrite",
       "combine W352/W355 topological fields"
     ],
     "product_success": false
@@ -2943,7 +2994,7 @@
     ],
     "contribution": "Inverse-whiskered WPP-op quotient cocones transport to actual Cocone X through the equivalence counit, with colimitness preserved.",
     "remaining_inputs": [
-      "rewrite transported cocone legs into W354 source.ι.app equations",
+      "rewrite transported cocone legs into W354 source.\u03b9.app equations",
       "combine with W357 descended map equations",
       "combine W352/W355 topological fields"
     ],
@@ -2994,11 +3045,11 @@
       "lake env lean audit/blockers/shortcomplex_pi_mapcofork_colimits_v369_support_w364.lean",
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/shortcomplex_pi_mapcofork_colimits_v369_support_w364.lean"
     ],
-    "contribution": "Records the three component cocone transport boundaries needed to turn component cofork colimits into ShortComplex.πᵢ.mapCocone colimits, then feeds W361/W359 short-complex cokernel assembly.",
+    "contribution": "Records the three component cocone transport boundaries needed to turn component cofork colimits into ShortComplex.\u03c0\u1d62.mapCocone colimits, then feeds W361/W359 short-complex cokernel assembly.",
     "remaining_inputs": [
-      "π₁ component cocone transport",
-      "π₂ component cocone transport",
-      "π₃ component cocone transport"
+      "\u03c0\u2081 component cocone transport",
+      "\u03c0\u2082 component cocone transport",
+      "\u03c0\u2083 component cocone transport"
     ],
     "product_success_claimed": false
   },
@@ -3044,9 +3095,9 @@
       "lake env lean audit/blockers/shortcomplex_pi_cocone_transport_v370_support_w367.lean",
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/shortcomplex_pi_cocone_transport_v370_support_w367.lean"
     ],
-    "contribution": "An explicit π₁ component diagram/cocone transport plus π₂/π₃ transport functions feed W359-compatible short-complex cokernel assembly.",
+    "contribution": "An explicit \u03c0\u2081 component diagram/cocone transport plus \u03c0\u2082/\u03c0\u2083 transport functions feed W359-compatible short-complex cokernel assembly.",
     "remaining_inputs": [
-      "concrete π₂ and π₃ component cocone transports",
+      "concrete \u03c0\u2082 and \u03c0\u2083 component cocone transports",
       "final component-row data"
     ],
     "product_success_claimed": false
@@ -3094,10 +3145,10 @@
       "lake env lean audit/blockers/shortcomplex_pi1_nat_cocone_iso_v370_support_w370.lean",
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/shortcomplex_pi1_nat_cocone_iso_v370_support_w370.lean"
     ],
-    "contribution": "The π₁ component diagram/cocone isomorphisms required by W367 are constructed, transporting component cokernel colimit proof to ShortComplex.π₁.mapCocone.",
+    "contribution": "The \u03c0\u2081 component diagram/cocone isomorphisms required by W367 are constructed, transporting component cokernel colimit proof to ShortComplex.\u03c0\u2081.mapCocone.",
     "remaining_inputs": [
-      "concrete π₂ component cocone transport",
-      "concrete π₃ component cocone transport",
+      "concrete \u03c0\u2082 component cocone transport",
+      "concrete \u03c0\u2083 component cocone transport",
       "final component-row data"
     ],
     "product_success_claimed": false
@@ -3111,7 +3162,7 @@
       "lake env lean audit/blockers/shortcomplex_pi23_nat_cocone_iso_v370_support_w373.lean",
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/shortcomplex_pi23_nat_cocone_iso_v370_support_w373.lean"
     ],
-    "contribution": "The remaining π₂ and π₃ component diagram/cocone isomorphisms are constructed, so all component cokernel colimit proofs transport to ShortComplex.πᵢ.mapCocone and feed W359 short-complex cokernel assembly.",
+    "contribution": "The remaining \u03c0\u2082 and \u03c0\u2083 component diagram/cocone isomorphisms are constructed, so all component cokernel colimit proofs transport to ShortComplex.\u03c0\u1d62.mapCocone and feed W359 short-complex cokernel assembly.",
     "remaining_inputs": [
       "concrete degreewise cokernel cofork data",
       "component-row isomorphism to forgotten WPP-op colimit row",
@@ -3228,10 +3279,10 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_closedmap_remaining_fields_v370_support_w377.lean"
     ],
     "remaining_inputs": [
-      "ordinary codomain componentについて、具体descended quotient mapへ渡すcomponent closed-map定理はまだ未証明である。",
-      "具体WPP-op quotient relationについて、relation-pullback equality本体はまだ未証明である。",
-      "ordinary codomain componentを通じたtarget relation liftingはまだ未証明である。",
-      "得られたdescended closed-mapとtransported certificate fieldsをW354/W351 consumerへ統合する部分はまだ未証明である。"
+      "ordinary codomain component\u306b\u3064\u3044\u3066\u3001\u5177\u4f53descended quotient map\u3078\u6e21\u3059component closed-map\u5b9a\u7406\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "\u5177\u4f53WPP-op quotient relation\u306b\u3064\u3044\u3066\u3001relation-pullback equality\u672c\u4f53\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "ordinary codomain component\u3092\u901a\u3058\u305ftarget relation lifting\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "\u5f97\u3089\u308c\u305fdescended closed-map\u3068transported certificate fields\u3092W354/W351 consumer\u3078\u7d71\u5408\u3059\u308b\u90e8\u5206\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3255,11 +3306,11 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_transported_relation_fields_v370_support_w378.lean"
     ],
     "remaining_inputs": [
-      "W378のordinary component square equationsを実際のWPP-op natural transformationから与える部分はまだ未証明である。",
-      "W378で必要なrelation-pullback equality、または同値なreverse preimage conditionはまだ未証明である。",
-      "ordinary descended quotient mapのquotient compatibilityはまだ未証明である。",
-      "ordinary descended quotient mapのclosed-map inputはまだ未証明である。",
-      "ordinary W352 fieldsをtransported concrete quotient cocone points上のfieldsとして同一視する部分はまだ未証明である。"
+      "W378\u306eordinary component square equations\u3092\u5b9f\u969b\u306eWPP-op natural transformation\u304b\u3089\u4e0e\u3048\u308b\u90e8\u5206\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "W378\u3067\u5fc5\u8981\u306arelation-pullback equality\u3001\u307e\u305f\u306f\u540c\u5024\u306areverse preimage condition\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "ordinary descended quotient map\u306equotient compatibility\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "ordinary descended quotient map\u306eclosed-map input\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "ordinary W352 fields\u3092transported concrete quotient cocone points\u4e0a\u306efields\u3068\u3057\u3066\u540c\u4e00\u8996\u3059\u308b\u90e8\u5206\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3285,9 +3336,9 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_degreewise_cokernel_data_v370_support_w379.lean"
     ],
     "remaining_inputs": [
-      "strict difference kernel/cokernel rowsを構成する部分はまだ未証明である。",
-      "canonical AddCommGrp cokernel rowをforgotten WPP-op colimit rowと同一視するtargetIsoはまだ未証明である。",
-      "audit境界として定義したW379 schemaを通常moduleから再利用する必要がある場合の昇格作業はまだ未実施である。"
+      "strict difference kernel/cokernel rows\u3092\u69cb\u6210\u3059\u308b\u90e8\u5206\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "canonical AddCommGrp cokernel row\u3092forgotten WPP-op colimit row\u3068\u540c\u4e00\u8996\u3059\u308btargetIso\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "audit\u5883\u754c\u3068\u3057\u3066\u5b9a\u7fa9\u3057\u305fW379 schema\u3092\u901a\u5e38module\u304b\u3089\u518d\u5229\u7528\u3059\u308b\u5fc5\u8981\u304c\u3042\u308b\u5834\u5408\u306e\u6607\u683c\u4f5c\u696d\u306f\u307e\u3060\u672a\u5b9f\u65bd\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3310,8 +3361,8 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_component_closedmap_v370_support_w380.lean"
     ],
     "remaining_inputs": [
-      "W380後も具体WPP-op quotient relationのrelation-pullback equalityはまだ未証明である。",
-      "W380後もordinary codomain componentを通じたtarget relation liftingはまだ未証明である。"
+      "W380\u5f8c\u3082\u5177\u4f53WPP-op quotient relation\u306erelation-pullback equality\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "W380\u5f8c\u3082ordinary codomain component\u3092\u901a\u3058\u305ftarget relation lifting\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3337,12 +3388,12 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_ordinary_fields_to_transported_v370_support_w381.lean"
     ],
     "remaining_inputs": [
-      "W381で必要なordinary quotient/cofork source pointとtransported concrete quotient cocone source pointの同一視はまだ未証明である。",
-      "W381で必要なordinary quotient/cofork target pointとtransported concrete quotient cocone target pointの同一視はまだ未証明である。",
-      "transported descended mapがordinary descended quotient mapと共役であることはまだ未証明である。",
-      "source/target point isomorphismsを通じたinjectivityの移送はまだ未証明である。",
-      "source/target point isomorphismsを通じたIsInducingの移送はまだ未証明である。",
-      "source/target point isomorphismsを通じたclosed rangeの移送はまだ未証明である。"
+      "W381\u3067\u5fc5\u8981\u306aordinary quotient/cofork source point\u3068transported concrete quotient cocone source point\u306e\u540c\u4e00\u8996\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "W381\u3067\u5fc5\u8981\u306aordinary quotient/cofork target point\u3068transported concrete quotient cocone target point\u306e\u540c\u4e00\u8996\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "transported descended map\u304cordinary descended quotient map\u3068\u5171\u5f79\u3067\u3042\u308b\u3053\u3068\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "source/target point isomorphisms\u3092\u901a\u3058\u305finjectivity\u306e\u79fb\u9001\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "source/target point isomorphisms\u3092\u901a\u3058\u305fIsInducing\u306e\u79fb\u9001\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "source/target point isomorphisms\u3092\u901a\u3058\u305fclosed range\u306e\u79fb\u9001\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3367,10 +3418,10 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_transported_point_iso_v370_support_w384.lean"
     ],
     "remaining_inputs": [
-      "W384 transported point packageのsource point isomorphismはまだ未証明である。",
-      "W384 transported point packageのtarget point isomorphismはまだ未証明である。",
-      "W384 transported point packageのpointwise descended-map conjugacyはまだ未証明である。",
-      "W384 transported point packageへ渡すordinary W352 descended quotient fieldsはまだ未証明である。"
+      "W384 transported point package\u306esource point isomorphism\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "W384 transported point package\u306etarget point isomorphism\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "W384 transported point package\u306epointwise descended-map conjugacy\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "W384 transported point package\u3078\u6e21\u3059ordinary W352 descended quotient fields\u306f\u307e\u3060\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3393,8 +3444,8 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_forgotten_target_row_id_v370_support_w382.lean"
     ],
     "remaining_inputs": [
-      "W382後もcanonical AddCommGrp cokernel rowとforgotten WPP-op colimit rowを同一視するtargetIsoは未証明である。",
-      "W382 schemaはaudit境界で重複定義をfield-by-fieldに橋渡ししており、必要なら通常moduleへ昇格する作業が残る。"
+      "W382\u5f8c\u3082canonical AddCommGrp cokernel row\u3068forgotten WPP-op colimit row\u3092\u540c\u4e00\u8996\u3059\u308btargetIso\u306f\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "W382 schema\u306faudit\u5883\u754c\u3067\u91cd\u8907\u5b9a\u7fa9\u3092field-by-field\u306b\u6a4b\u6e21\u3057\u3057\u3066\u304a\u308a\u3001\u5fc5\u8981\u306a\u3089\u901a\u5e38module\u3078\u6607\u683c\u3059\u308b\u4f5c\u696d\u304c\u6b8b\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3416,8 +3467,8 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_relation_pullback_target_lift_v370_support_w383.lean"
     ],
     "remaining_inputs": [
-      "W383後もordinary codomain componentを通じたrelation-pullback equalityは未証明である。",
-      "W383後もordinary codomain componentを通じたtarget relation liftingは未証明である。"
+      "W383\u5f8c\u3082ordinary codomain component\u3092\u901a\u3058\u305frelation-pullback equality\u306f\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "W383\u5f8c\u3082ordinary codomain component\u3092\u901a\u3058\u305ftarget relation lifting\u306f\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3441,8 +3492,8 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_forgotten_target_iso_v370_support_w385.lean"
     ],
     "remaining_inputs": [
-      "W385後もcanonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
-      "W385後もW376 presentationとcanonical W379 rowを同一視する等式入力は未証明である。"
+      "W385\u5f8c\u3082canonical AddCommGrp cokernel row\u304b\u3089forgotten WPP-op colimit row\u3078\u306e\u76f4\u63a5targetIso\u306f\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "W385\u5f8c\u3082W376 presentation\u3068canonical W379 row\u3092\u540c\u4e00\u8996\u3059\u308b\u7b49\u5f0f\u5165\u529b\u306f\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3465,7 +3516,7 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_target_relation_lift_v370_support_w386.lean"
     ],
     "remaining_inputs": [
-      "W386後もordinary codomain componentを通じたrelation-pullback equalityは未証明である。"
+      "W386\u5f8c\u3082ordinary codomain component\u3092\u901a\u3058\u305frelation-pullback equality\u306f\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3490,8 +3541,8 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/wpp_op_left_lca_transported_quotient_point_iso_v370_support_w387.lean"
     ],
     "remaining_inputs": [
-      "W387後もtransported descended mapとordinary descended quotient mapのpointwise conjugacyは未証明である。",
-      "W387後もordinary W352 descended quotient fieldsは未証明である。"
+      "W387\u5f8c\u3082transported descended map\u3068ordinary descended quotient map\u306epointwise conjugacy\u306f\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "W387\u5f8c\u3082ordinary W352 descended quotient fields\u306f\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3516,8 +3567,8 @@
       "rg -n '\\b(sorry|admit|axiom|unsafe)\\b' audit/blockers/addcommgrp_forgotten_target_c_identification_v370_support_w388.lean"
     ],
     "remaining_inputs": [
-      "canonical AddCommGrp cokernel rowからforgotten WPP-op colimit rowへの直接targetIsoは未証明である。",
-      "left-LCA routeではpointwise descended-map conjugacy、ordinary W352 descended fields、relation-pullback equalityが未証明である。"
+      "canonical AddCommGrp cokernel row\u304b\u3089forgotten WPP-op colimit row\u3078\u306e\u76f4\u63a5targetIso\u306f\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002",
+      "left-LCA route\u3067\u306fpointwise descended-map conjugacy\u3001ordinary W352 descended fields\u3001relation-pullback equality\u304c\u672a\u8a3c\u660e\u3067\u3042\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3648,8 +3699,8 @@
     ],
     "proved_or_checked_declarations": [
       "cokernelCoforkPointUniqueIso",
-      "cokernelCoforkPointUniqueIso_hom_π",
-      "cokernelCoforkPointUniqueIso_inv_π",
+      "cokernelCoforkPointUniqueIso_hom_\u03c0",
+      "cokernelCoforkPointUniqueIso_inv_\u03c0",
       "ForgottenTargetColimitIsoInput.targetIso",
       "ForgottenTargetColimitIsoInput.toW391CompatibleTargetIsoInput",
       "currentAddCommGrpForgottenTargetColimitIsoV370SupportState_productSuccess",
@@ -3819,10 +3870,10 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "具体WPP-op morphismについてWppOpRelationClosedRangePreimageEqualityW409を証明する。",
-      "またはW407 membership statementを直接証明する。",
-      "W408 representative-image closedness certificateを証明する。",
-      "W406 selected ordinary cofork IsColimitとtarget relation lift certificateを証明する。"
+      "\u5177\u4f53WPP-op morphism\u306b\u3064\u3044\u3066WppOpRelationClosedRangePreimageEqualityW409\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "\u307e\u305f\u306fW407 membership statement\u3092\u76f4\u63a5\u8a3c\u660e\u3059\u308b\u3002",
+      "W408 representative-image closedness certificate\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "W406 selected ordinary cofork IsColimit\u3068target relation lift certificate\u3092\u8a3c\u660e\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3844,9 +3895,9 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "元のWPP-op colimitの保存とtransportからIsColimit (selectedForgottenTargetMappedCocone S cs)を証明する。",
-      "W409/W407のclosed-range証明を具体WPP-op morphismについて行う。",
-      "W408 representative-image closedness certificateとtarget relation lift certificateを証明する。"
+      "\u5143\u306eWPP-op colimit\u306e\u4fdd\u5b58\u3068transport\u304b\u3089IsColimit (selectedForgottenTargetMappedCocone S cs)\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "W409/W407\u306eclosed-range\u8a3c\u660e\u3092\u5177\u4f53WPP-op morphism\u306b\u3064\u3044\u3066\u884c\u3046\u3002",
+      "W408 representative-image closedness certificate\u3068target relation lift certificate\u3092\u8a3c\u660e\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3874,9 +3925,9 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "ordinary codomain component closed-map or closed-embedding fieldを証明する。",
-      "closed source quotient setごとのtarget representative-image saturationを証明する。",
-      "W410 mapped-cocone colimit、W409/W407 closed-range証明、target relation lift certificateを証明する。"
+      "ordinary codomain component closed-map or closed-embedding field\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "closed source quotient set\u3054\u3068\u306etarget representative-image saturation\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "W410 mapped-cocone colimit\u3001W409/W407 closed-range\u8a3c\u660e\u3001target relation lift certificate\u3092\u8a3c\u660e\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3901,9 +3952,9 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "実際のWPP-op morphismについてW407 membershipまたはW409 closed-range preimage equalityを証明する。",
-      "W410 mapped-cocone colimitを証明する。",
-      "W411 component closed-map/closed-embeddingとtarget saturation、target relation lift certificateを証明する。"
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W407 membership\u307e\u305f\u306fW409 closed-range preimage equality\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "W410 mapped-cocone colimit\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "W411 component closed-map/closed-embedding\u3068target saturation\u3001target relation lift certificate\u3092\u8a3c\u660e\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3926,9 +3977,9 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "PreservesColimit S forgottenShortComplexFunctorを最終routeで供給する。",
-      "W413からW410/W406/W403/W398 target input routeへ接続する。",
-      "W412 relation statement、W411 topological inputs、target relation lift certificateを証明する。"
+      "PreservesColimit S forgottenShortComplexFunctor\u3092\u6700\u7d42route\u3067\u4f9b\u7d66\u3059\u308b\u3002",
+      "W413\u304b\u3089W410/W406/W403/W398 target input route\u3078\u63a5\u7d9a\u3059\u308b\u3002",
+      "W412 relation statement\u3001W411 topological inputs\u3001target relation lift certificate\u3092\u8a3c\u660e\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3951,9 +4002,9 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "実際のWPP-op morphismについてW412で同値化されたrelation statementを証明する。",
-      "target-relation lift certificateを証明する。",
-      "W413のPreservesColimit接続と四部構成全体の統合を完了する。"
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W412\u3067\u540c\u5024\u5316\u3055\u308c\u305frelation statement\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "target-relation lift certificate\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "W413\u306ePreservesColimit\u63a5\u7d9a\u3068\u56db\u90e8\u69cb\u6210\u5168\u4f53\u306e\u7d71\u5408\u3092\u5b8c\u4e86\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -3977,16 +4028,16 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "実際のWPP-op morphismについてW407/W412 relation statementを証明する。",
-      "W405 quotient compatibilityとW408/W411/W414 IsClosedMap経路を最終統合する。",
-      "W413 PreservesColimit接続とtarget relation lift certificateを完了する。"
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W407/W412 relation statement\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "W405 quotient compatibility\u3068W408/W411/W414 IsClosedMap\u7d4c\u8def\u3092\u6700\u7d42\u7d71\u5408\u3059\u308b\u3002",
+      "W413 PreservesColimit\u63a5\u7d9a\u3068target relation lift certificate\u3092\u5b8c\u4e86\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
   "parent_update_w416": {
     "timestamp_utc": "2026-05-21T00:52:00Z",
     "status": "verified_focused",
-    "summary": "W416 reduces W413 individual preservation to shape-level PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctor.",
+    "summary": "W416 reduces W413 individual preservation to shape-level PreservesColimitsOfShape WalkingParallelPair\u1d52\u1d56 forgottenShortComplexFunctor.",
     "touched_files": [
       "audit/blockers/addcommgrp_forgotten_short_complex_preservation_v370_support_w416.lean"
     ],
@@ -4001,9 +4052,9 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "PreservesColimitsOfShape WalkingParallelPairᵒᵖ forgottenShortComplexFunctorを証明または供給する。",
-      "W416からW413/W410/W406/W403/W398へ接続する。",
-      "W415/W414側のrelation statementとtarget relation lift certificateを証明する。"
+      "PreservesColimitsOfShape WalkingParallelPair\u1d52\u1d56 forgottenShortComplexFunctor\u3092\u8a3c\u660e\u307e\u305f\u306f\u4f9b\u7d66\u3059\u308b\u3002",
+      "W416\u304b\u3089W413/W410/W406/W403/W398\u3078\u63a5\u7d9a\u3059\u308b\u3002",
+      "W415/W414\u5074\u306erelation statement\u3068target relation lift certificate\u3092\u8a3c\u660e\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -4028,10 +4079,10 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "実際のWPP-op morphismについてcomponent_closedMapを証明する。",
-      "実際のWPP-op morphismについてrelation_pullbackを証明する。",
-      "実際のWPP-op morphismについてtarget_relation_liftsを証明する。",
-      "W416 shape-level preservation instanceと四部構成全体の統合を完了する。"
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066component_closedMap\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066relation_pullback\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066target_relation_lifts\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "W416 shape-level preservation instance\u3068\u56db\u90e8\u69cb\u6210\u5168\u4f53\u306e\u7d71\u5408\u3092\u5b8c\u4e86\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -4056,17 +4107,17 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "実際のWPP-op morphismについてW407 reverse closed-range membershipを証明する。",
-      "ordinaryDescendedOfOrdinaryMapW418 ordinaryMapのIsClosedMapを証明する。",
-      "W399からW393/W390/W384 transported field routeへ接続する。",
-      "W416 shape-level preservation instanceを完了する。"
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W407 reverse closed-range membership\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "ordinaryDescendedOfOrdinaryMapW418 ordinaryMap\u306eIsClosedMap\u3092\u8a3c\u660e\u3059\u308b\u3002",
+      "W399\u304b\u3089W393/W390/W384 transported field route\u3078\u63a5\u7d9a\u3059\u308b\u3002",
+      "W416 shape-level preservation instance\u3092\u5b8c\u4e86\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
   "parent_update_w419": {
     "timestamp_utc": "2026-05-21T01:01:00Z",
     "status": "verified_focused",
-    "summary": "W419 derives WPP-op preservation for forgottenShortComplexFunctor from WPP-op preservation by forget₂ MetrizableLCA AddCommGrpCat and shape colimits in MetrizableLCA.",
+    "summary": "W419 derives WPP-op preservation for forgottenShortComplexFunctor from WPP-op preservation by forget\u2082 MetrizableLCA AddCommGrpCat and shape colimits in MetrizableLCA.",
     "touched_files": [
       "audit/blockers/addcommgrp_short_complex_preservation_from_underlying_v370_support_w419.lean"
     ],
@@ -4081,9 +4132,9 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "HasColimitsOfShape WalkingParallelPairᵒᵖ MetrizableLCAを供給する。",
-      "PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat)を供給する。",
-      "W418 relation/closed-map inputsと全体統合を完了する。"
+      "HasColimitsOfShape WalkingParallelPair\u1d52\u1d56 MetrizableLCA\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "PreservesColimitsOfShape WalkingParallelPair\u1d52\u1d56 (forget\u2082 MetrizableLCA AddCommGrpCat)\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "W418 relation/closed-map inputs\u3068\u5168\u4f53\u7d71\u5408\u3092\u5b8c\u4e86\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -4110,11 +4161,11 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "実際のWPP-op morphismについてW380/component closed-map certificateまたはclosed-embedding sourceを供給する。",
-      "実際のWPP-op morphismについてW389 relation-pullback equality certificateを供給する。",
-      "実際のWPP-op morphismについてW386/W392 target-relation lift certificateを供給する。",
-      "W399からW393/W390/W384 transported field routeへ接続する。",
-      "W419 shape-level preservation inputと四部構成全体の統合を完了する。"
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W380/component closed-map certificate\u307e\u305f\u306fclosed-embedding source\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W389 relation-pullback equality certificate\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W386/W392 target-relation lift certificate\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "W399\u304b\u3089W393/W390/W384 transported field route\u3078\u63a5\u7d9a\u3059\u308b\u3002",
+      "W419 shape-level preservation input\u3068\u56db\u90e8\u69cb\u6210\u5168\u4f53\u306e\u7d71\u5408\u3092\u5b8c\u4e86\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -4137,16 +4188,16 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "実際のWPP-op morphismについてW407 reverse closed-range membershipを供給する。",
-      "実際のWPP-op morphismについてW417 component_closedMap、relation_pullback、target_relation_liftsを供給する。",
-      "W399からW393/W390/W384 transported field routeへ接続する。"
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W407 reverse closed-range membership\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W417 component_closedMap\u3001relation_pullback\u3001target_relation_lifts\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "W399\u304b\u3089W393/W390/W384 transported field route\u3078\u63a5\u7d9a\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
   "parent_update_w422": {
     "timestamp_utc": "2026-05-21T01:07:00Z",
     "status": "verified_focused",
-    "summary": "W422 derives selected mapped cocone, selected cofork, and selected cokernel cofork IsColimit facts from original IsColimit cs plus underlying forget₂ WPP-op preservation.",
+    "summary": "W422 derives selected mapped cocone, selected cofork, and selected cokernel cofork IsColimit facts from original IsColimit cs plus underlying forget\u2082 WPP-op preservation.",
     "touched_files": [
       "audit/blockers/addcommgrp_selected_cokernel_colimit_from_underlying_v370_support_w422.lean"
     ],
@@ -4161,9 +4212,9 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "元のhcs : IsColimit csを供給する。",
-      "HasColimitsOfShape WalkingParallelPairᵒᵖ MetrizableLCAを供給する。",
-      "PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat)を供給する。"
+      "\u5143\u306ehcs : IsColimit cs\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "HasColimitsOfShape WalkingParallelPair\u1d52\u1d56 MetrizableLCA\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "PreservesColimitsOfShape WalkingParallelPair\u1d52\u1d56 (forget\u2082 MetrizableLCA AddCommGrpCat)\u3092\u4f9b\u7d66\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -4185,17 +4236,17 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "実際のWPP-op morphismについてW407 reverse closed-range membershipを供給する。",
-      "W420 certificate packageまたはW380/W389/W386 certificatesを供給する。",
-      "standalone audit blocksをimportable Lean modulesへ昇格する。",
-      "W399からW393/W390/W384 transported field routeへ接続する。"
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W407 reverse closed-range membership\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "W420 certificate package\u307e\u305f\u306fW380/W389/W386 certificates\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "standalone audit blocks\u3092importable Lean modules\u3078\u6607\u683c\u3059\u308b\u3002",
+      "W399\u304b\u3089W393/W390/W384 transported field route\u3078\u63a5\u7d9a\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
   "parent_update_w424": {
     "timestamp_utc": "2026-05-21T01:13:00Z",
     "status": "verified_focused_blocked_reduction",
-    "summary": "W424 checks consumers for underlying forget₂ WPP-op preservation, but records that PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat) is still missing and not synthesized.",
+    "summary": "W424 checks consumers for underlying forget\u2082 WPP-op preservation, but records that PreservesColimitsOfShape WalkingParallelPair\u1d52\u1d56 (forget\u2082 MetrizableLCA AddCommGrpCat) is still missing and not synthesized.",
     "touched_files": [
       "audit/blockers/addcommgrp_underlying_forgetful_wpp_op_preservation_v370_support_w424.lean"
     ],
@@ -4210,14 +4261,14 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat)を証明または供給する。"
+      "PreservesColimitsOfShape WalkingParallelPair\u1d52\u1d56 (forget\u2082 MetrizableLCA AddCommGrpCat)\u3092\u8a3c\u660e\u307e\u305f\u306f\u4f9b\u7d66\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
   "parent_update_w425": {
     "timestamp_utc": "2026-05-21T01:13:00Z",
     "status": "verified_focused",
-    "summary": "W425 supplies HasColimitsOfShape WalkingParallelPairᵒᵖ MetrizableLCA from existing finite colimits.",
+    "summary": "W425 supplies HasColimitsOfShape WalkingParallelPair\u1d52\u1d56 MetrizableLCA from existing finite colimits.",
     "touched_files": [
       "audit/blockers/metrizable_lca_wpp_op_has_colimits_v370_support_w425.lean"
     ],
@@ -4252,9 +4303,9 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "実際のWPP-op morphismについてW420 certificate packageまたはW380/W389/W386 certificatesを供給する。",
-      "standalone audit blocksをimportable Lean modulesへ昇格する。",
-      "W399からW393/W390/W384 transported field routeへ接続する。"
+      "\u5b9f\u969b\u306eWPP-op morphism\u306b\u3064\u3044\u3066W420 certificate package\u307e\u305f\u306fW380/W389/W386 certificates\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "standalone audit blocks\u3092importable Lean modules\u3078\u6607\u683c\u3059\u308b\u3002",
+      "W399\u304b\u3089W393/W390/W384 transported field route\u3078\u63a5\u7d9a\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -4276,8 +4327,8 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "hcs : IsColimit csを供給する。",
-      "PreservesColimitsOfShape WalkingParallelPairᵒᵖ (forget₂ MetrizableLCA AddCommGrpCat)を供給する。"
+      "hcs : IsColimit cs\u3092\u4f9b\u7d66\u3059\u308b\u3002",
+      "PreservesColimitsOfShape WalkingParallelPair\u1d52\u1d56 (forget\u2082 MetrizableLCA AddCommGrpCat)\u3092\u4f9b\u7d66\u3059\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -4301,7 +4352,7 @@
       "git diff --check"
     ],
     "remaining_inputs": [
-      "PreservesFiniteColimits (forget₂ MetrizableLCA AddCommGrpCat)を証明するか、閉像/certificate付きselected preservation経路へ置き換える。"
+      "PreservesFiniteColimits (forget\u2082 MetrizableLCA AddCommGrpCat)\u3092\u8a3c\u660e\u3059\u308b\u304b\u3001\u9589\u50cf/certificate\u4ed8\u304dselected preservation\u7d4c\u8def\u3078\u7f6e\u304d\u63db\u3048\u308b\u3002"
     ],
     "product_success_claimed": false
   },
@@ -4312,7 +4363,7 @@
       "lake env lean audit/blockers/addcommgrp_cokernel_closed_range_set_input_v370_support_parent.lean",
       "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_cokernel_closed_range_set_input_v370_support_parent.lean"
     ],
-    "result": "Set-level closed range IsClosed (Set.range (f : A → B)) supplies the algebraic range topological-closure input, ClosureKernelInput, and IsColimit for the forgotten local cokernel cofork in AddCommGrpCat.",
+    "result": "Set-level closed range IsClosed (Set.range (f : A \u2192 B)) supplies the algebraic range topological-closure input, ClosureKernelInput, and IsColimit for the forgotten local cokernel cofork in AddCommGrpCat.",
     "remaining": [
       "prove the closed-range hypothesis for the actual WPP-op difference morphism",
       "transport the objectwise forgotten cokernel colimit into the selected short-complex target row",
@@ -4381,7 +4432,7 @@
       "lake env lean audit/blockers/addcommgrp_mapped_explicit_cokernel_closed_range_v370_support_parent.lean",
       "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_mapped_explicit_cokernel_closed_range_v370_support_parent.lean"
     ],
-    "result": "Proved mappedExplicitCokernelCocone f is colimiting in AddCommGrpCat when Set.range (f : X → Y) is closed; also gives ordinary WPP and finite-colimit preservation under a uniform closed-range hypothesis, recorded only as a reducer not as a valid global product claim.",
+    "result": "Proved mappedExplicitCokernelCocone f is colimiting in AddCommGrpCat when Set.range (f : X \u2192 Y) is closed; also gives ordinary WPP and finite-colimit preservation under a uniform closed-range hypothesis, recorded only as a reducer not as a valid global product claim.",
     "remaining": [
       "instantiate the closed-range condition for the actual WPP-op difference/certificate situation",
       "transport the closed-range objectwise result into the selected short-complex target row",
@@ -4414,11 +4465,11 @@
     ],
     "new_importable_declarations": [
       "MetrizableLCA.underlyingAddCommGrpFunctor",
-      "MetrizableLCA.forgottenCokernelπ",
+      "MetrizableLCA.forgottenCokernel\u03c0",
       "MetrizableLCA.forgottenCokernelCofork",
       "MetrizableLCA.forgottenCokernelCoforkIsColimit_of_closureKernel"
     ],
-    "frontier_effect": "W437のAddCommGrp closure-kernel境界をaudit-onlyから本体import可能APIへ昇格した。任意保存は未証明で、実際のWPP-op差分射に対するclosed-range/certificate入力が必要。",
+    "frontier_effect": "W437\u306eAddCommGrp closure-kernel\u5883\u754c\u3092audit-only\u304b\u3089\u672c\u4f53import\u53ef\u80fdAPI\u3078\u6607\u683c\u3057\u305f\u3002\u4efb\u610f\u4fdd\u5b58\u306f\u672a\u8a3c\u660e\u3067\u3001\u5b9f\u969b\u306eWPP-op\u5dee\u5206\u5c04\u306b\u5bfe\u3059\u308bclosed-range/certificate\u5165\u529b\u304c\u5fc5\u8981\u3002",
     "product_complete": false
   },
   "parent_update_w438_w440_w441": {
@@ -4445,7 +4496,7 @@
       "lake env lean audit/RequiredDeclarations.lean",
       "lake env lean audit/ProductSuccessDeclarations.lean"
     ],
-    "frontier_effect": "W433型mapped explicit cokernel coconeはClosureKernelInputから直接IsColimitへ進める。本物のClosureKernelInputとW426/W318 map equalityは未解決。",
+    "frontier_effect": "W433\u578bmapped explicit cokernel cocone\u306fClosureKernelInput\u304b\u3089\u76f4\u63a5IsColimit\u3078\u9032\u3081\u308b\u3002\u672c\u7269\u306eClosureKernelInput\u3068W426/W318 map equality\u306f\u672a\u89e3\u6c7a\u3002",
     "product_complete": false
   },
   "recent_frontier_updates": [
@@ -4639,7 +4690,7 @@
     "worker_result": "/home/roku/codex-consultant-20260517/outputs/task_runs/df2e4d909d3381b6/20260519T175017352584Z-lean-lca-standalone-autoresearch-support-df2e4d909d33/standalone_autoresearch_wave185_20260520T163335Z/workers/w472-selected-component-coforks-exact-acyclic-v370/result.json",
     "result": "Selected component cofork IsColimit inputs now imply projection component fields, the AddCommGrp strict kernel exact boundary, and exact-acyclic closure wrapper.",
     "remaining": [
-      "Prove selected component cofork IsColimit statements for π₁, π₂, and π₃ at the actual selected WPP-op colimit call site.",
+      "Prove selected component cofork IsColimit statements for \u03c0\u2081, \u03c0\u2082, and \u03c0\u2083 at the actual selected WPP-op colimit call site.",
       "Provide the W318/W464 left closed-embedding input wppOp_lca_colimitMap_injective_inducing_closedImage for exact-acyclic closure.",
       "Instantiate W465 with W426 ordinary descended map, W426 quotient compatibility, and W387 point-identification target-leg equations.",
       "Promote/connect W426/W387/W390 concrete alignment declarations into the final importable namespace."
@@ -4679,7 +4730,7 @@
     "result": "W426 ordinary-map promotion output now composes with W472 selected component cofork inputs to exact-acyclic closure.",
     "remaining": [
       "Construct the actual W426 ordinaryEqualsCanonicalColimitMap proof for the WPP-op colimit map.",
-      "Prove selected component cofork IsColimit statements for π₁, π₂, and π₃ at the final call site.",
+      "Prove selected component cofork IsColimit statements for \u03c0\u2081, \u03c0\u2082, and \u03c0\u2083 at the final call site.",
       "Instantiate W465 with W426 quotient compatibility and W387 point-identification target-leg equations.",
       "Promote/connect W426/W387/W390 concrete alignment declarations into the final importable namespace."
     ],
@@ -5080,7 +5131,7 @@
   },
   "parent_update_v495_v496": {
     "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-    "result": "short-complex WPP-op preservation reduced to finite-colimit preservation by forget₂ MetrizableLCA AddCommGrpCat",
+    "result": "short-complex WPP-op preservation reduced to finite-colimit preservation by forget\u2082 MetrizableLCA AddCommGrpCat",
     "product_complete": false,
     "checked_declarations": [
       "WppOpShortComplexPreservationFromUnderlyingV370SupportW495.supportSeedW495",
@@ -5103,7 +5154,7 @@
       "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.explicitMetrizableCokernelCoforkW497",
       "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.explicitMetrizableCokernelCoforkIsColimitW497",
       "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.mappedExplicitCokernelCoconeW497",
-      "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.mappedExplicitCokernelCocone_ι_oneW497",
+      "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.mappedExplicitCokernelCocone_\u03b9_oneW497",
       "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.preservesCokernelOfMappedExplicitCokernelCoconeIsColimitW497",
       "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.preservesAllCokernelsOfMappedExplicitCokernelCoconesW497",
       "WppOpForgetfulFinitePreservationFromCokernelsV370SupportW497.underlyingForgetfulPreservesFiniteColimitsOfMappedExplicitCokernelCoforksW497",
@@ -5253,9 +5304,9 @@
       "git diff --check"
     ],
     "remaining_blockers": [
-      "final call siteでW515 representative-image provider、または同等のW516/W517 relation provider dataを具体的に構成する必要がある。",
-      "final call siteで、選択component difference mapがclosed mapまたはclosed embeddingであることを、strict AddCommGrp行境界に対応するrow-aware providerとして具体的に構成する必要がある。",
-      "W527はclosed-map/closed-embedding入力をW526のrow-aware closed-range providerへ渡すadapterであり、closed mapやclosed embedding自体はまだ証明していない。"
+      "final call site\u3067W515 representative-image provider\u3001\u307e\u305f\u306f\u540c\u7b49\u306eW516/W517 relation provider data\u3092\u5177\u4f53\u7684\u306b\u69cb\u6210\u3059\u308b\u5fc5\u8981\u304c\u3042\u308b\u3002",
+      "final call site\u3067\u3001\u9078\u629ecomponent difference map\u304cclosed map\u307e\u305f\u306fclosed embedding\u3067\u3042\u308b\u3053\u3068\u3092\u3001strict AddCommGrp\u884c\u5883\u754c\u306b\u5bfe\u5fdc\u3059\u308brow-aware provider\u3068\u3057\u3066\u5177\u4f53\u7684\u306b\u69cb\u6210\u3059\u308b\u5fc5\u8981\u304c\u3042\u308b\u3002",
+      "W527\u306fclosed-map/closed-embedding\u5165\u529b\u3092W526\u306erow-aware closed-range provider\u3078\u6e21\u3059adapter\u3067\u3042\u308a\u3001closed map\u3084closed embedding\u81ea\u4f53\u306f\u307e\u3060\u8a3c\u660e\u3057\u3066\u3044\u306a\u3044\u3002"
     ],
     "product_complete": false
   },
