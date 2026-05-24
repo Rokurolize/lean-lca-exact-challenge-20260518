@@ -4,31 +4,153 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lean LCA Progress Log</title>
-  <style>
-    :root { color-scheme: light; --ink: #172026; --muted: #5b6770; --line: #d8dee4; --paper: #fbfcfd; --panel: #ffffff; --accent: #0f6b5f; --warn: #9a5b00; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--paper); line-height: 1.45; }
-    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 48px; }
-    header { border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 20px; }
-    h1 { margin: 0 0 8px; font-size: 28px; font-weight: 700; letter-spacing: 0; }
-    h2 { margin: 0 0 12px; font-size: 18px; font-weight: 700; letter-spacing: 0; }
-    p { margin: 0 0 10px; }
-    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.94em; background: #eef2f4; padding: 1px 4px; border-radius: 4px; }
-    .meta { color: var(--muted); font-size: 14px; }
-    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 0 22px; }
-    .metric, .entry, .note { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
-    .metric strong { display: block; font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
-    .metric span { display: block; font-size: 16px; font-weight: 700; }
-    .status { display: inline-block; border-radius: 999px; padding: 2px 9px; font-size: 12px; font-weight: 700; background: #e3f4ef; color: var(--accent); border: 1px solid #b9ded4; }
-    .status.warn { background: #fff1d8; color: var(--warn); border-color: #f0ce93; }
-    .entry { margin: 12px 0; }
-    .entry-head { display: flex; gap: 10px; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 12px; }
-    ul { margin: 8px 0 0; padding-left: 20px; }
-    li { margin: 5px 0; }
-    .columns { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 14px; }
-    .note { margin-top: 20px; color: var(--muted); font-size: 14px; }
-    a { color: #0b5cad; }
-    @media (max-width: 780px) { main { padding: 22px 14px 36px; } .grid, .columns { grid-template-columns: 1fr; } .entry-head { display: block; } .entry-head .meta { margin-top: 4px; } }
+  <style id="html-progress-report-style">
+:root {
+  color-scheme: light;
+  --bg: #f6f7f4;
+  --panel: #ffffff;
+  --panel-soft: #fbfcfd;
+  --ink: #20242a;
+  --muted: #626b75;
+  --line: #d8ded8;
+  --accent: #0f6b6e;
+  --accent-2: #87510d;
+  --ok: #166534;
+  --warn: #9a5b00;
+  --risk: #9f2f2f;
+  --info-bg: #e7f1f2;
+  --ok-bg: #e9f5ee;
+  --warn-bg: #fff3dc;
+  --risk-bg: #fdeceb;
+  --code: #eef2f4;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .045);
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 14px/1.56 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+}
+header.report-hero {
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.wrap {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 24px 0;
+}
+main.wrap { padding-bottom: 48px; }
+h1, h2, h3 { margin: 0; line-height: 1.22; letter-spacing: 0; }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 760; }
+h2 { font-size: 20px; margin-bottom: 12px; font-weight: 740; }
+h3 { font-size: 16px; margin-bottom: 7px; font-weight: 720; }
+p { margin: 8px 0 0; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .92em;
+  background: var(--code);
+  padding: 1px 5px;
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+.lede { color: var(--muted); max-width: 920px; margin-top: 8px; }
+.toolbar, .badges { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 16px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--panel-soft);
+  white-space: nowrap;
+}
+.badge.ok { color: var(--ok); background: var(--ok-bg); border-color: #bad8c4; }
+.badge.warn { color: var(--warn); background: var(--warn-bg); border-color: #ebcf93; }
+.badge.risk { color: var(--risk); background: var(--risk-bg); border-color: #e7b2ae; }
+.badge.info { color: var(--accent); background: var(--info-bg); border-color: #bad4d5; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+section, .card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 17px;
+  box-shadow: var(--shadow);
+}
+section { margin-top: 16px; }
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+.metric {
+  font-size: clamp(21px, 3vw, 30px);
+  font-weight: 780;
+  line-height: 1.14;
+  margin-top: 7px;
+}
+.label, .meta { color: var(--muted); font-size: 13px; }
+.note, .warnbox, .riskbox {
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 10px;
+  border-left: 4px solid var(--accent);
+  background: var(--info-bg);
+}
+.warnbox { border-left-color: var(--warn); background: var(--warn-bg); }
+.riskbox { border-left-color: var(--risk); background: var(--risk-bg); }
+.timeline { display: grid; gap: 10px; margin-top: 8px; }
+.event {
+  border-left: 3px solid var(--accent-2);
+  padding: 10px 0 10px 13px;
+  background: linear-gradient(90deg, rgba(135, 81, 13, .06), transparent 32%);
+}
+.event time { display: block; color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  padding: 9px 8px;
+}
+th { color: var(--muted); font-weight: 680; background: rgba(127, 127, 127, .06); }
+ul, ol { margin: 8px 0 0; padding-left: 20px; }
+li { margin: 5px 0; }
+textarea.goal-text {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+  background: var(--code);
+  color: var(--ink);
+  font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (max-width: 900px) {
+  .wrap { width: min(100% - 28px, 1180px); padding-top: 18px; }
+  .span-3, .span-4, .span-6, .span-8, .span-12 { grid-column: span 12; }
+  section, .card { padding: 15px; }
+}
   </style>
 </head>
 <body>
@@ -38,20 +160,20 @@
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W743 componentwise-projection comparison route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W744 W477 projection comparison route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260524T205500Z_codex_parent_w743</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T210235Z_codex_parent_w744</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W743 componentwise-projection comparison route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W744 W477 projection comparison route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
       <div class="columns">
         <div>
-          <p>W743 specializes the W742 selected-W461 route by deriving its projection-field input from the W481 componentwise closed-range projection provider.</p>
+          <p>W744 specializes the W743 componentwise-projection route by deriving its W481 projection input from the existing W477 componentwise closed-range projection provider.</p>
           <ul>
-            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ComponentwiseProjectionLeftW743</code> feeds W481 componentwise closed-range projection data into W742's projection-field consumer.</li>
-            <li><code>exactAcyclicWppOpClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftInputNamesW743</code> records the four exposed nonterminal inputs.</li>
-            <li>The exposed route inputs are now closure-kernel mapped explicit cokernel data, the universal left-right comparison isomorphism, selected W461 promotion data, and W481 componentwise closed-range projection data.</li>
+            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461W477ProjectionLeftW744</code> feeds W477 componentwise closed-range projection data through the W482 adapter into W743.</li>
+            <li><code>exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744</code> records the four exposed nonterminal inputs.</li>
+            <li>The exposed route inputs are now closure-kernel mapped explicit cokernel data, the universal left-right comparison isomorphism, selected W461 promotion data, and W477 componentwise closed-range projection data.</li>
           </ul>
         </div>
         <div>
@@ -60,7 +182,7 @@
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T205500Z_codex_parent_w743/w743_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/w744_required_declarations.lean</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake build</code></li>
             <li>Forbidden-token audits, JSON parse checks, manifest self-check, browser evidence, and expected nonterminal product-gate rejection.</li>
@@ -69,13 +191,13 @@
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W743 work.</p></div>
-      <p>W742 specialized the W741 projection-field route by deriving its pure left closed-image boundary from the existing W483 selected W461 promotion provider.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W744 work.</p></div>
+      <p>W743 specialized the W742 selected-W461 route by deriving its projection-field input from the W481 componentwise closed-range projection provider.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>W743 route: construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W481 componentwise closed-range projection data.</li>
+        <li>W744 route: construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W477 componentwise closed-range projection data.</li>
         <li>The universal left-right homology comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes.</li>
         <li>Concrete values for the W735 branch data inputs.</li>
         <li>Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>

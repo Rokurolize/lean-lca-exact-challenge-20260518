@@ -1,9 +1,79 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w733-explicit-leaf-constructor",
-  "generated_utc": "2026-05-24T20:56:40Z",
-  "source_tree_hash": "64c62a5dae4c71ad20247604f300ced547cc497cb71702a394b42b18288a5c04",
-  "summary": "W743 specializes the W742 selected-W461 comparison route by deriving its projection-field input from the existing W481 componentwise closed-range projection provider. The result remains nonterminal: closure-kernel data, the universal comparison isomorphism, selected W461 promotion data, and W481 componentwise projection data are still inputs.",
+  "schema": "lean-lca-exact-challenge-verification-w744-w477-projection-comparison-route",
+  "generated_utc": "2026-05-24T21:12:58Z",
+  "source_tree_hash": "be3a4cc9061400d00b11c054bc1fc8bc4b2b87764130d64962de6ae3115f3393",
+  "summary": "W744 W477 projection comparison route specializes the W743 componentwise-projection comparison route by deriving its W481 componentwise projection input from the existing W477 componentwise closed-range projection provider through the W482 adapter. The result remains nonterminal: closure-kernel data, the universal left-right comparison isomorphism, selected W461 promotion data, and W477 componentwise closed-range projection data are still inputs.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W744 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_focused_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W744 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks the W744 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_audit_product.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/w744_required_declarations.lean",
+      "status": "passed",
+      "evidence": "External W744 required-declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_required.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W744; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_audit_required.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token audit passed after W744; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W744; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_git_diff_check.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full repository build passed after W744; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_lake_build_full.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "passed",
+      "evidence": "No product-success true marker was introduced; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_rg_product_true.log."
+    },
+    {
+      "command": "python3 JSON metadata parse check",
+      "status": "passed",
+      "evidence": "W744 JSON metadata parse check is recorded in /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_json_parse.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "HTML progress report validator passed after W744; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_html_check.log."
+    },
+    {
+      "command": "browser evidence render for scratch-log.html",
+      "status": "passed",
+      "evidence": "Browser-rendered scratch-log evidence for W744 is recorded under /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/browser_evidence and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_browser_evidence.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W744; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Full terminal audit rejects the intentionally nonterminal outcome after W744; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_external_terminal_expected.log and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_external_terminal_expected.status."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -5648,21 +5718,6 @@
       "command": "lake env lean audit/blockers/wpp_op_relation_fields_from_w371_v370_support_w397.lean",
       "status": "passed",
       "evidence": "lake env lean audit/blockers/wpp_op_relation_fields_from_w371_v370_support_w397.lean passed for focused W397/W398 support verification."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean",
-      "status": "passed",
-      "evidence": "Metadata-corrected note: scripts/audit_no_forbidden_lean_tokens.sh audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean is the first-root invocation represented here; historical extra tokens after the first root were not treated as additional roots by the script.",
-      "metadata_correction": {
-        "corrected_utc": "2026-05-22T04:53:13Z",
-        "reason": "historical multi-root command metadata narrowed to the first root actually evaluated by audit_no_forbidden_lean_tokens.sh",
-        "first_evaluated_root": "audit/blockers/addcommgrp_forgotten_target_cofork_map_v370_support_w398.lean",
-        "omitted_extra_tokens_count": 1,
-        "current_w562_single_root_evidence": [
-          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log",
-          "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_audit.log"
-        ]
-      }
     },
     {
       "command": "lake env lean audit/blockers/wpp_op_left_lca_ordinary_descended_topology_fields_v370_support_w399.lean",
@@ -15498,6 +15553,13 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461W477ProjectionLeftW744",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744_count",
+    "Dbounded.MetrizableWppClosureKernelComparisonSelectedW461W477ProjectionLeftRouteStateW744",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461W477ProjectionLeftRouteSupportStateW744",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461W477ProjectionLeftRouteStateW744",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonSelectedW461W477ProjectionLeftRouteStateW744_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ComponentwiseProjectionLeftW743",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftInputNamesW743",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftInputNamesW743_count",
@@ -20296,19 +20358,19 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W481 componentwise closed-range projection data for the W743 route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W477 componentwise closed-range projection data for the W744 W477 projection comparison route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w743_componentwise_projection_comparison_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w744_w477_projection_comparison_route",
   "product_success": false,
   "remaining_work": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W481 componentwise closed-range projection data for the W743 route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W477 componentwise closed-range projection data for the W744 W477 projection comparison route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "summary_log_tail": "W743 routes W742 through W481 componentwise closed-range projection data; product flags remain false.",
-  "latest_verified_increment": "W743 componentwise-projection comparison route",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_lake_build_full.log",
+  "latest_verified_increment": "W744 W477 projection comparison route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -21710,6 +21772,12 @@
     "w743_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:56:40Z",
       "reason": "W743 refresh prepended componentwise-projection comparison route commands and declarations; source_tree_hash recomputed after source/audit edits; product flags remain false."
+    },
+    "w744_metadata_refresh": {
+      "refreshed_utc": "2026-05-24T21:12:58Z",
+      "source_tree_hash": "be3a4cc9061400d00b11c054bc1fc8bc4b2b87764130d64962de6ae3115f3393",
+      "latest_verified_increment": "W744 W477 projection comparison route",
+      "note": "W744 commands and declarations were prepended; product_success/product_complete/update_goal_allowed remain false."
     }
   }
 }
