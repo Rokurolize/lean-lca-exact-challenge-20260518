@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T20:08:44Z",
+  "generated_utc": "2026-05-24T20:18:36Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,24 +1854,25 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w737_exactness_derived_homology_route",
-  "latest_parent_update": "parent_update_w737_exactness_derived_homology_route",
-  "summary": "W737 moves the exact/topology WPP-op route into the production consolidated frontier: categorical exactness of the WPP-op colimit short complex now supplies local HasHomology via ShortComplex.Exact.hasHomology, so the route no longer needs a standalone homology-availability input.",
-  "remaining_frontier": "Need W737 exact/topology route inputs, the W736 universal left-right comparison isomorphism, concrete W735 branch data, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w737_exactness_derived_homology_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w738_closure_kernel_w737_specialization",
+  "latest_parent_update": "parent_update_w738_closure_kernel_w737_specialization",
+  "summary": "W738 specializes the W737 exact/topology WPP-op route with the existing W694 closure-kernel proof of forgetful homology preservation. The route no longer exposes a raw PreservesHomology premise: closure-kernel data supply the W737 preservation field, while categorical exactness of the WPP-op colimit point and pure left closed-embedding preservation remain open route inputs.",
+  "remaining_frontier": "Need W738 closure-kernel route inputs, WPP-op colimit exactness, pure left closed-embedding preservation, the W736 universal left-right comparison isomorphism, concrete W735 branch data, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w738_closure_kernel_w737_specialization",
   "remaining_blockers": [
-    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
+    "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
     "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "open_blockers": [
-    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
+    "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
     "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "consumed_support_results": [
+    "w738-closure-kernel-specialization-of-w737-exact-topology-fixed-open-route",
     "w737-exact-topology-fixed-open-with-exactness-derived-homology",
     "w735-category-with-homology-instance-constructors-for-w733-concrete-leaves",
     "w734-w723-category-homology-branch-constructors-for-w733-concrete-leaves",
@@ -2131,7 +2132,7 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
-    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
+    "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
     "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
@@ -6831,6 +6832,28 @@
     "result": "WPP-op colimit-point Exact now supplies HasHomology for the exact/topology route; the fixed-open variant exposes only forgetful PreservesHomology, categorical exactness preservation, and left closed-embedding preservation.",
     "remaining_inputs": [
       "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
+      "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
+      "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data."
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w738_closure_kernel_w737_specialization": {
+    "updated_utc": "2026-05-24T20:18:36Z",
+    "status": "verified_nonterminal_support_increment_w738_closure_kernel_w737_specialization",
+    "implemented_declarations": [
+      "Dbounded.w737ForgetPreservesHomology_of_closureKernelW738",
+      "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelExactLeftFixedOpenW738",
+      "Dbounded.exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738",
+      "Dbounded.exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738_count",
+      "Dbounded.MetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738",
+      "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteSupportStateW738",
+      "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738",
+      "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738_productSuccess"
+    ],
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T201355Z_codex_parent_w738",
+    "result": "W694 closure-kernel data now feed the W737 exact/topology fixed-open route, replacing the raw PreservesHomology premise with a concrete closure-kernel provider input.",
+    "remaining_inputs": [
+      "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
       "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
       "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data."
     ],

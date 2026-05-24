@@ -8522,6 +8522,21 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736
   #check
     Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736_productSuccess
+  #check Dbounded.w737ForgetPreservesHomology_of_closureKernelW738
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelExactLeftFixedOpenW738
+  #check
+    Dbounded.exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738
+  #check
+    Dbounded.exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738_count
+  #check
+    Dbounded.MetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738
+  #check
+    Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteSupportStateW738
+  #check
+    Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738
+  #check
+    Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

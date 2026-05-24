@@ -2,8 +2,21 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W737 moves the exact/topology WPP-op route into the production consolidated frontier: categorical exactness of the WPP-op colimit short complex now supplies local HasHomology via ShortComplex.Exact.hasHomology, so the route no longer needs a standalone homology-availability input.",
+  "summary": "W738 specializes the W737 exact/topology WPP-op route with the existing W694 closure-kernel proof of forgetful homology preservation. The route no longer exposes a raw PreservesHomology premise: closure-kernel data supply the W737 preservation field, while categorical exactness of the WPP-op colimit point and pure left closed-embedding preservation remain open route inputs.",
   "verified_commands": [
+    "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T201355Z_codex_parent_w738/w738_required_declarations.lean",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "git diff --check",
+    "lake build",
+    "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+    "python3 JSON metadata parse check",
+    "browser evidence render for scratch-log.html",
+    "python3 audit/external_audit.py --root . --self-check-only",
+    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated",
     "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -2203,6 +2216,14 @@
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T170543Z_codex_parent_w722/browser_evidence --expect W722 --expect product_complete=false --expect 20260524T170543Z_codex_parent_w722"
   ],
   "required_declarations_checked": [
+    "Dbounded.w737ForgetPreservesHomology_of_closureKernelW738",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelExactLeftFixedOpenW738",
+    "Dbounded.exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738",
+    "Dbounded.exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738_count",
+    "Dbounded.MetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738",
+    "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteSupportStateW738",
+    "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738",
+    "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738_productSuccess",
     "WppOpExactAcyclicFrontierConsolidatedW318.exact_walkingParallelPairOp_colimitClosureW737",
     "WppOpExactAcyclicFrontierConsolidatedW318.hasHomology_walkingParallelPairOp_colimitClosure_of_exactnessW737",
     "WppOpExactAcyclicFrontierConsolidatedW318.strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_componentTopologyW737",
@@ -6389,7 +6410,7 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
   "known_gaps": [
-    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
+    "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
     "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
@@ -6402,13 +6423,21 @@
   "worker_frontier_summary": "No worker launch was needed for W736; the parent verified the kernel/cokernel homology reduction directly.",
   "claim_review_result": "not applicable: W733 is a nonterminal support increment with product_success=false",
   "remaining_gaps": [
-    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
+    "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
     "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "next_recommended_goal": "Continue from W737 by proving or reducing the WPP-op colimit point categorical exactness, forgetful PreservesHomology, or pure left closed-embedding preservation inputs without claiming product completion.",
+  "next_recommended_goal": "Continue from W738 by proving or reducing WPP-op colimit point categorical exactness, pure left closed-embedding preservation, or closure-kernel mapped explicit cokernel data without claiming product completion.",
   "implemented_declarations": [
+    "Dbounded.w737ForgetPreservesHomology_of_closureKernelW738",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelExactLeftFixedOpenW738",
+    "Dbounded.exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738",
+    "Dbounded.exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738_count",
+    "Dbounded.MetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738",
+    "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteSupportStateW738",
+    "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738",
+    "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738_productSuccess",
     "WppOpExactAcyclicFrontierConsolidatedW318.exact_walkingParallelPairOp_colimitClosureW737",
     "WppOpExactAcyclicFrontierConsolidatedW318.hasHomology_walkingParallelPairOp_colimitClosure_of_exactnessW737",
     "WppOpExactAcyclicFrontierConsolidatedW318.strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_componentTopologyW737",
@@ -11130,9 +11159,17 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
-  "generated_utc": "2026-05-24T20:08:44Z",
-  "support_result_classification": "verified_nonterminal_support_increment_w737_exactness_derived_homology_route",
+  "generated_utc": "2026-05-24T20:18:36Z",
+  "support_result_classification": "verified_nonterminal_support_increment_w738_closure_kernel_w737_specialization",
   "implemented_declarations_checked": [
+    "Dbounded.w737ForgetPreservesHomology_of_closureKernelW738",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelExactLeftFixedOpenW738",
+    "Dbounded.exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738",
+    "Dbounded.exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738_count",
+    "Dbounded.MetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738",
+    "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteSupportStateW738",
+    "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738",
+    "Dbounded.currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738_productSuccess",
     "WppOpExactAcyclicFrontierConsolidatedW318.exact_walkingParallelPairOp_colimitClosureW737",
     "WppOpExactAcyclicFrontierConsolidatedW318.hasHomology_walkingParallelPairOp_colimitClosure_of_exactnessW737",
     "WppOpExactAcyclicFrontierConsolidatedW318.strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_componentTopologyW737",
@@ -15887,16 +15924,20 @@
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
+    "Construct closure-kernel mapped explicit cokernel data, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W738 closure-kernel exact/topology route.",
     "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "latest_verified_increment": "W737 exactness-derived homology route",
-  "source_tree_hash": "35c57a1d09d0c9d843be445ffae83aed8e017a154d4c62ae1669110e15140591",
-  "summary_log_tail": "W737 proves exactness-derived local homology for the WPP-op exact/topology path, internalizes the right-open input through the fixed WPP-op colimit leg, and keeps product flags false.",
+  "latest_verified_increment": "W738 closure-kernel W737 specialization",
+  "source_tree_hash": "5845eb73869dee3a242ac6d740b74cd4bfd1aa06eb61020904d0303d71683963",
+  "summary_log_tail": "W738 removes the raw PreservesHomology input from the W737 fixed-open exact/topology route by feeding it with W694 closure-kernel data; product flags remain false.",
   "git_commit_note": "W736 kernel-cokernel comparison reduction is a nonterminal support increment; product_success/product_complete/update_goal_allowed remain false.",
   "metadata_corrections": {
+    "w738_metadata_refresh": {
+      "corrected_utc": "2026-05-24T20:18:36Z",
+      "reason": "W738 refresh keeps terminal outcome blocked_nonterminal_frontier and update_goal_allowed=false; declarations and command evidence were prepended."
+    },
     "w737_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:08:44Z",
       "reason": "W737 refresh keeps terminal outcome blocked_nonterminal_frontier and update_goal_allowed=false; declarations and command evidence were prepended."
@@ -17661,9 +17702,9 @@
       "update_goal_allowed": false
     }
   },
-  "classification": "verified_nonterminal_support_increment_w737_exactness_derived_homology_route",
-  "latest_increment": "W737 exactness-derived homology route",
-  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737",
+  "classification": "verified_nonterminal_support_increment_w738_closure_kernel_w737_specialization",
+  "latest_increment": "W738 closure-kernel W737 specialization",
+  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T201355Z_codex_parent_w738",
   "product_success_claimed": false,
   "update_goal_complete_permitted": false
 }

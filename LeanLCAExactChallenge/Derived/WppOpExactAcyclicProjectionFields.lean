@@ -52554,6 +52554,92 @@ theorem
       false :=
   rfl
 
+/--
+W738 supplies the W737 exact/topology route's forgetful homology-preservation
+input from the W694 closure-kernel route.
+-/
+def w737ForgetPreservesHomology_of_closureKernelW738
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503) :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology :=
+  metrizableForgetfulPreservesHomology_of_closureKernelW694 closureKernelProvider
+
+/--
+W738 specialization of the W737 fixed-open exact/topology route: closure-kernel
+data replace the raw `PreservesHomology` premise, leaving exactness of the
+WPP-op colimit point and pure left topology as the exposed route inputs.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelExactLeftFixedOpenW738
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (hexact :
+      WppOpExactAcyclicFrontierConsolidatedW318.exact_walkingParallelPairOp_colimitClosureW737)
+    (hclosed :
+      WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_injective_inducing_closedImage) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_left_fixedOpenW737
+    (w737ForgetPreservesHomology_of_closureKernelW738 closureKernelProvider)
+    hexact
+    hclosed
+
+/-- Input names for the W738 closure-kernel specialization of W737. -/
+def exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738 :
+    List String :=
+  ["closure-kernel mapped explicit cokernel provider for forgetful homology preservation",
+    "WPP-op colimit point categorical exactness",
+    "pure left closed-embedding preservation for WPP-op LCA colimit maps"]
+
+theorem exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738_count :
+    exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738.length =
+      3 :=
+  rfl
+
+/--
+Current checked W738 state for the closure-kernel specialization of the W737
+exact/topology route.
+-/
+structure MetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738 :
+    Type where
+  seed : String
+  declarations : List String
+  forgetPreservesHomologyResult : String
+  exactAcyclicConsumerResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W738 state. -/
+def currentMetrizableWppClosureKernelExactLeftFixedOpenRouteSupportStateW738 :
+    MetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738
+    where
+  seed :=
+    "w738-closure-kernel-specialization-of-w737-exact-topology-fixed-open-route"
+  declarations :=
+    ["w737ForgetPreservesHomology_of_closureKernelW738",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelExactLeftFixedOpenW738",
+      "exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738",
+      "exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738_count"]
+  forgetPreservesHomologyResult :=
+    "proved: W694 closure-kernel data supply the forgetful PreservesHomology field consumed by W737"
+  exactAcyclicConsumerResult :=
+    "proved: the W737 fixed-open exact/topology route can be used with closure-kernel data \
+      instead of a raw PreservesHomology input"
+  exposedInputs :=
+    exactAcyclicWppOpClosureKernelExactLeftFixedOpenInputNamesW738
+  remainingInputs :=
+    ["construct closure-kernel mapped explicit cokernel provider",
+      "construct WPP-op colimit point categorical exactness",
+      "construct pure left closed-embedding preservation for WPP-op LCA colimit maps"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738 :
+    MetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738 :=
+  currentMetrizableWppClosureKernelExactLeftFixedOpenRouteSupportStateW738
+
+theorem currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738_productSuccess :
+    currentMetrizableWppClosureKernelExactLeftFixedOpenRouteStateW738.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
