@@ -53888,6 +53888,130 @@ theorem
       false :=
   rfl
 
+/--
+W752 specializes W751 by fixing the W480 ordinary-map provider to W509's
+canonical WPP-op natural-transformation ordinary map.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480CanonicalOrdinaryExplicitClosedMapComponentsW752
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (closedMapPi1 : SelectedDifferenceClosedMapPi1FieldW711)
+    (closedMapPi2 : SelectedDifferenceClosedMapPi2FieldW711)
+    (closedMapPi3 : SelectedDifferenceClosedMapPi3FieldW711) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ExplicitClosedMapComponentsW751
+    w480PromotionInputs
+    WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.ordinaryMapProvider_of_wppOpNatTrans_w509
+    closedMapPi1
+    closedMapPi2
+    closedMapPi3
+
+/--
+W752 closed-embedding variant with W509's canonical WPP-op ordinary-map
+provider fixed as the W480 ordinary-map input.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480CanonicalOrdinaryExplicitClosedEmbeddingComponentsW752
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (closedEmbeddingPi1 : SelectedDifferenceClosedEmbeddingPi1FieldW711)
+    (closedEmbeddingPi2 : SelectedDifferenceClosedEmbeddingPi2FieldW711)
+    (closedEmbeddingPi3 : SelectedDifferenceClosedEmbeddingPi3FieldW711) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ExplicitClosedEmbeddingComponentsW751
+    w480PromotionInputs
+    WppOpSelectedW461ClosedNatTransOrdinaryPackageV370SupportW509.ordinaryMapProvider_of_wppOpNatTrans_w509
+    closedEmbeddingPi1
+    closedEmbeddingPi2
+    closedEmbeddingPi3
+
+/-- Input names for the W752 canonical-ordinary closed-map route. -/
+def exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedMapComponentsInputNamesW752 :
+    List String :=
+  ["W480 split promotion-input provider for pure left closed-image preservation",
+    "W711 first selected-difference component closed-map field",
+    "W711 second selected-difference component closed-map field",
+    "W711 third selected-difference component closed-map field"]
+
+theorem
+    exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedMapComponentsInputNamesW752_count :
+    exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedMapComponentsInputNamesW752.length =
+      4 :=
+  rfl
+
+/-- Input names for the W752 canonical-ordinary closed-embedding route. -/
+def
+    exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedEmbeddingComponentsInputNamesW752 :
+    List String :=
+  ["W480 split promotion-input provider for pure left closed-image preservation",
+    "W711 first selected-difference component closed-embedding field",
+    "W711 second selected-difference component closed-embedding field",
+    "W711 third selected-difference component closed-embedding field"]
+
+theorem
+    exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedEmbeddingComponentsInputNamesW752_count :
+    exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedEmbeddingComponentsInputNamesW752.length =
+      4 :=
+  rfl
+
+/--
+Current checked W752 state for routing W751 through W509's canonical W480
+ordinary-map provider.
+-/
+structure MetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteStateW752 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapCanonicalOrdinaryResult : String
+  closedEmbeddingCanonicalOrdinaryResult : String
+  w509OrdinaryProviderResult : String
+  w751ConsumerResult : String
+  exposedClosedMapInputs : List String
+  exposedClosedEmbeddingInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W752 state. -/
+def currentMetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteSupportStateW752 :
+    MetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteStateW752
+    where
+  seed := "w752-w480-canonical-ordinary-explicit-component-route"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480CanonicalOrdinaryExplicitClosedMapComponentsW752",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480CanonicalOrdinaryExplicitClosedEmbeddingComponentsW752",
+      "exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedMapComponentsInputNamesW752",
+      "exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedMapComponentsInputNamesW752_count",
+      "exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedEmbeddingComponentsInputNamesW752",
+      "exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedEmbeddingComponentsInputNamesW752_count"]
+  closedMapCanonicalOrdinaryResult :=
+    "proved: W509's canonical ordinary-map provider supplies W751's W480 ordinary-map input for closed-map components"
+  closedEmbeddingCanonicalOrdinaryResult :=
+    "proved: W509's canonical ordinary-map provider supplies W751's W480 ordinary-map input for closed-embedding components"
+  w509OrdinaryProviderResult :=
+    "proved: W509 exposes ordinaryMapProvider_of_wppOpNatTrans_w509 as a W480 ordinary-map provider"
+  w751ConsumerResult :=
+    "proved: W751 consumes W480 promotion inputs and W711 explicit component closedness facts"
+  exposedClosedMapInputs :=
+    exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedMapComponentsInputNamesW752
+  exposedClosedEmbeddingInputs :=
+    exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedEmbeddingComponentsInputNamesW752
+  remainingInputs :=
+    ["construct W480 split promotion-input provider",
+      "construct three W711 selected-difference closed-map component fields or three W711 selected-difference closed-embedding component fields"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteStateW752 :
+    MetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteStateW752 :=
+  currentMetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteSupportStateW752
+
+theorem
+    currentMetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteStateW752_productSuccess :
+    currentMetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteStateW752.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

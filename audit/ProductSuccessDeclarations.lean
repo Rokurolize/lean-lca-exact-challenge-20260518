@@ -8725,6 +8725,26 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.currentMetrizableWppW480ExplicitClosedComponentsRouteStateW751
   #check
     Dbounded.currentMetrizableWppW480ExplicitClosedComponentsRouteStateW751_productSuccess
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480CanonicalOrdinaryExplicitClosedMapComponentsW752
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480CanonicalOrdinaryExplicitClosedEmbeddingComponentsW752
+  #check
+    Dbounded.exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedMapComponentsInputNamesW752
+  #check
+    Dbounded.exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedMapComponentsInputNamesW752_count
+  #check
+    Dbounded.exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedEmbeddingComponentsInputNamesW752
+  #check
+    Dbounded.exactAcyclicWppOpW480CanonicalOrdinaryExplicitClosedEmbeddingComponentsInputNamesW752_count
+  #check
+    Dbounded.MetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteStateW752
+  #check
+    Dbounded.currentMetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteSupportStateW752
+  #check
+    Dbounded.currentMetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteStateW752
+  #check
+    Dbounded.currentMetrizableWppW480CanonicalOrdinaryExplicitClosedComponentsRouteStateW752_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
