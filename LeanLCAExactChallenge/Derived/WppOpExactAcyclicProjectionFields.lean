@@ -51313,6 +51313,157 @@ theorem
       false :=
   rfl
 
+/-- W731 bundles target/closedness data with normalized source/endpoint data. -/
+structure MetrizableWppTargetClosednessNormalizedSourceEndpointDataProviderW731 :
+    Type 2 where
+  targetClosednessData :
+    MetrizableWppTargetSurjectiveCompactClosednessDataProviderW729
+  normalizedFixedTargetSourceEndpointData :
+    MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728
+
+/-- W731 projects target/closedness data. -/
+def targetClosednessData_of_targetClosednessNormalizedSourceEndpointDataW731
+    (targetNormalizedData :
+      MetrizableWppTargetClosednessNormalizedSourceEndpointDataProviderW731) :
+    MetrizableWppTargetSurjectiveCompactClosednessDataProviderW729 :=
+  targetNormalizedData.targetClosednessData
+
+/-- W731 projects normalized source/endpoint data. -/
+def normalizedFixedTargetSourceEndpointData_of_targetClosednessNormalizedSourceEndpointDataW731
+    (targetNormalizedData :
+      MetrizableWppTargetClosednessNormalizedSourceEndpointDataProviderW731) :
+    MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728 :=
+  targetNormalizedData.normalizedFixedTargetSourceEndpointData
+
+/--
+W731 bundle: expose the W730 boundary/relation route with one target/normalized
+provider instead of separate target/closedness and normalized source/endpoint data.
+-/
+structure
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731 :
+    Type 2 where
+  boundaryRelationData :
+    MetrizableWppBoundaryRelationDataProviderW730
+  targetClosednessNormalizedSourceEndpointData :
+    MetrizableWppTargetClosednessNormalizedSourceEndpointDataProviderW731
+
+/-- W731 assembles the W730 bundle from target/normalized data. -/
+def
+    metrizableWppBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessNormalizedSourceEndpointDataW731
+    (inputs :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW730
+    where
+  boundaryRelationData := inputs.boundaryRelationData
+  targetClosednessData :=
+    targetClosednessData_of_targetClosednessNormalizedSourceEndpointDataW731
+      inputs.targetClosednessNormalizedSourceEndpointData
+  normalizedFixedTargetSourceEndpointData :=
+    normalizedFixedTargetSourceEndpointData_of_targetClosednessNormalizedSourceEndpointDataW731
+      inputs.targetClosednessNormalizedSourceEndpointData
+
+/-- W731 target/normalized route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731
+    (inputs :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW730
+    (metrizableWppBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessNormalizedSourceEndpointDataW731
+      inputs)
+
+/-- W731 target/normalized route is accepted through W730. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731
+    (inputs :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW730
+    (metrizableWppBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessNormalizedSourceEndpointDataW731
+      inputs)
+
+/-- The W731 target/normalized package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731_accepted
+    (inputs :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW730_accepted
+    (metrizableWppBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessNormalizedSourceEndpointDataW731
+      inputs)
+
+/-- Input names for the W731 target/normalized route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointInputNamesW731 :
+    List String :=
+  ["boundary/relation data provider for bundled WPP boundary data and closed natural transformation relation data",
+    "target/closedness normalized source/endpoint data provider for target-only surjective-compact data, matched component/W519 closedness, normalized target data, source homological data, endpoint strict-topology data, and localized-right-adjoint data"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointInputNamesW731_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointInputNamesW731.length =
+      2 :=
+  rfl
+
+/-- Current checked W731 state for target/normalized data. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointRouteStateW731 :
+    Type where
+  seed : String
+  declarations : List String
+  targetNormalizedProjectionResult : String
+  targetNormalizedAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W731 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointRouteSupportStateW731 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointRouteStateW731
+    where
+  seed :=
+    "w731-target-closedness-normalized-source-endpoint-data-route"
+  declarations :=
+    ["MetrizableWppTargetClosednessNormalizedSourceEndpointDataProviderW731",
+      "targetClosednessData_of_targetClosednessNormalizedSourceEndpointDataW731",
+      "normalizedFixedTargetSourceEndpointData_of_targetClosednessNormalizedSourceEndpointDataW731",
+      "MetrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731",
+      "metrizableWppBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessNormalizedSourceEndpointDataW731",
+      "metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointInputNamesW731",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointInputNamesW731_count"]
+  targetNormalizedProjectionResult :=
+    "proved: one target/normalized provider projects to target/closedness data and normalized source/endpoint data"
+  targetNormalizedAcceptedResult :=
+    "proved: target/normalized bundle assembles W730 and feeds the accepted boundary/relation route"
+  replacedInputs :=
+    ["separate target/closedness data provider",
+      "separate normalized source/endpoint data provider"]
+  remainingInputs :=
+    ["construct concrete boundary/relation data provider",
+      "construct concrete target/closedness normalized source/endpoint data provider",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointRouteStateW731 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointRouteStateW731 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointRouteSupportStateW731
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointRouteStateW731_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointRouteStateW731.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
