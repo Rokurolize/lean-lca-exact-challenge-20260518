@@ -41339,6 +41339,302 @@ theorem
       false :=
   rfl
 
+/--
+W701 endpoint-strict closed-range topology input: W519 mapped-explicit-cokernel
+closed-range data plus endpoint-strict topology supply the W696 closed-range
+endpoint package consumed by W700.
+-/
+structure MetrizableExactAtClosedRangeEndpointStrictTopologyInputsW701 :
+    Type 1 where
+  closedRangeProvider :
+    MappedExplicitCokernelClosedRangeProviderW519
+  endpointStrictTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+
+/--
+W701 adapts endpoint-strict topology to the W696 ExactAt-conditioned
+closed-range endpoint topology surface.
+-/
+def
+    metrizableExactAtClosedRangeEndpointTopologyInputs_of_endpointStrictW701
+    (inputs : MetrizableExactAtClosedRangeEndpointStrictTopologyInputsW701) :
+    MetrizableExactAtClosedRangeEndpointTopologyInputsW696
+    where
+  closedRangeProvider := inputs.closedRangeProvider
+  closedEmbedding_of_exactAt := by
+    intro K i _hK
+    exact inputs.endpointStrictTopology.closedEmbedding K i
+  openMap_of_exactAt := by
+    intro K i _hK
+    exact inputs.endpointStrictTopology.openMap K i
+  epi_of_exactAt :=
+    inputs.endpointStrictTopology.epi_of_exactAt
+
+/--
+W701 closed-map bundle: normalized fixed-target W700 data with endpoint-strict
+closed-range topology instead of the raw W696 package.
+-/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetDifferenceSurjectiveProvider :
+    TargetDifferenceSurjectiveProviderW601
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedMapProvider :
+    ComponentwiseClosedMapProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  endpointStrictClosedRangeTopology :
+    MetrizableExactAtClosedRangeEndpointStrictTopologyInputsW701
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W701 adapts the closed-map endpoint-strict bundle to W700. -/
+def
+    metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701) :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW700
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetDifferenceSurjectiveProvider := inputs.targetDifferenceSurjectiveProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  globalClosedMapProvider := inputs.globalClosedMapProvider
+  normalizedInputs := inputs.normalizedInputs
+  hasHomology := inputs.hasHomology
+  closedRangeEndpointTopology :=
+    metrizableExactAtClosedRangeEndpointTopologyInputs_of_endpointStrictW701
+      inputs.endpointStrictClosedRangeTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W701 endpoint-strict closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW700
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701
+      inputs)
+
+/-- W701 endpoint-strict closed-map data are accepted through W700. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW700
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701
+      inputs)
+
+/-- The W701 endpoint-strict closed-map package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW700_accepted
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701
+      inputs)
+
+/--
+W701 closed-embedding bundle: normalized fixed-target closed-embedding data with
+endpoint-strict closed-range topology.
+-/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetDifferenceSurjectiveProvider :
+    TargetDifferenceSurjectiveProviderW601
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedEmbeddingProvider :
+    ComponentwiseClosedEmbeddingProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  endpointStrictClosedRangeTopology :
+    MetrizableExactAtClosedRangeEndpointStrictTopologyInputsW701
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W701 adapts the closed-embedding endpoint-strict bundle to W700. -/
+def
+    metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701) :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW700
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetDifferenceSurjectiveProvider := inputs.targetDifferenceSurjectiveProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  globalClosedEmbeddingProvider := inputs.globalClosedEmbeddingProvider
+  normalizedInputs := inputs.normalizedInputs
+  hasHomology := inputs.hasHomology
+  closedRangeEndpointTopology :=
+    metrizableExactAtClosedRangeEndpointTopologyInputs_of_endpointStrictW701
+      inputs.endpointStrictClosedRangeTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W701 endpoint-strict closed-embedding route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW700
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701
+      inputs)
+
+/-- W701 endpoint-strict closed-embedding data are accepted through W700. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW700
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701
+      inputs)
+
+/-- The W701 endpoint-strict closed-embedding package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW700_accepted
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701
+      inputs)
+
+/-- Input names for the W701 endpoint-strict closed-range route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW701 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "normalized strict representatives plus target and localization-model uniqueness for fixed targets",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MappedExplicitCokernelClosedRangeProviderW519",
+    "MetrizableExactAtEndpointStrictTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW701_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW701.length =
+      12 :=
+  rfl
+
+/-- Current checked W701 state for endpoint-strict closed-range topology. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701 :
+    Type where
+  seed : String
+  declarations : List String
+  endpointStrictClosedRangeTopologyResult : String
+  closedMapEndpointStrictAcceptedResult : String
+  closedEmbeddingEndpointStrictAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W701 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW701 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701
+    where
+  seed :=
+    "w701-normalized-fixed-target-endpoint-strict-closed-range-route"
+  declarations :=
+    ["MetrizableExactAtClosedRangeEndpointStrictTopologyInputsW701",
+      "metrizableExactAtClosedRangeEndpointTopologyInputs_of_endpointStrictW701",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701_accepted",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW701",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW701_count"]
+  endpointStrictClosedRangeTopologyResult :=
+    "proved: W519 closed-range data plus endpoint-strict topology supply the W696 closed-range endpoint package"
+  closedMapEndpointStrictAcceptedResult :=
+    "proved: endpoint-strict closed-range data feed the W700 normalized fixed-target closed-map route"
+  closedEmbeddingEndpointStrictAcceptedResult :=
+    "proved: endpoint-strict closed-range data feed the W700 normalized fixed-target closed-embedding route"
+  replacedInputs :=
+    ["ExactAt-conditioned endpoint topology fields as a direct W700 route input"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W519 closed-range provider data for mapped explicit cokernels",
+      "construct endpoint-strict ExactAt topology data, including forgetful homology preservation and endpoint epis",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW701
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -41630,6 +41926,51 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetClosedRangeEndpointTopologyRouteStateW700_productSuccess
+set_option linter.style.longLine false in
+#check
+  MetrizableExactAtClosedRangeEndpointStrictTopologyInputsW701
+set_option linter.style.longLine false in
+#check
+  metrizableExactAtClosedRangeEndpointTopologyInputs_of_endpointStrictW701
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701_accepted
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingNormalizedFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_endpointStrictW701
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW701_accepted
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW701
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW701_count
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW701
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701_productSuccess
 
 set_option linter.style.longLine false in
 #check
