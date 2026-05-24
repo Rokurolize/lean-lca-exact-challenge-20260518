@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-24T19:15:01Z",
-  "content_hash_tree": "c3dc18f7632cc4e6be84a26303ee355d309c22435b0121ed9082365ced182349",
+  "generated_utc": "2026-05-24T19:30:52Z",
+  "content_hash_tree": "7954af976eb309d5f4458e085caf13961124e5fe2efb3a96a534cda9998a3dab",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -99,8 +99,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "bytes": 3298692,
-      "sha256": "637fcbb630bd4e7029304e4f1b33c669efafe2723a9d736e4115b8f26c0383f1"
+      "bytes": 3310432,
+      "sha256": "56698f1899901e7ee134449021a8af39201ebc3ac99028d93308209218e55719"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean",
@@ -189,8 +189,8 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 554964,
-      "sha256": "9bf19f47802a7e830e2f8463563f568e87a8f8e4703b2ec398f7fa975143e029"
+      "bytes": 556711,
+      "sha256": "3c75245107f4b49dbac1a7497aa963f6a581af7c1532e7f08aad687caa1e5f5a"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -4139,8 +4139,8 @@
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.json",
-      "bytes": 486785,
-      "sha256": "e9f6f3ad62ae339dc00bd4c0ffd3c84e52bcc1b4d46ea3e9cc54085171714bec"
+      "bytes": 491375,
+      "sha256": "ee743487809227ef3d82081f6d99ca28a9a1b2decee4e0bc046809e14698c940"
     },
     {
       "path": "proof_frontier/FRONTIER_MATRIX.md",
@@ -4159,13 +4159,13 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 1661417,
-      "sha256": "cadc553462ad21e7211c69b86e71a5f9e67253a0d216c207b39969d3756fb532"
+      "bytes": 1668417,
+      "sha256": "faf538ce86b45410ce4daf9fac6e8686af6d616d12c5d6cf5f3215a1308a0bd9"
     },
     {
       "path": "scratch-log.html",
-      "bytes": 6609,
-      "sha256": "312f4e83921748971d981c94ca6f677fc53b560138ae55c467fa157d1a4ccf00"
+      "bytes": 6635,
+      "sha256": "285d046b1b995c19efb317e106c7f6b907033d7d188e2ea428a3288ef147b3ca"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -4179,8 +4179,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 2151021,
-      "sha256": "d5b286793e21afd64eaccdefb5ba333ed5e2107c9d9978d3b2893cfdaca5c099"
+      "bytes": 2157877,
+      "sha256": "ce1f59c98c174148bf96c8da23c2d6c1b446d96b82da8fe54820fc3ef9896ecc"
     },
     {
       "path": "workers/README.md",

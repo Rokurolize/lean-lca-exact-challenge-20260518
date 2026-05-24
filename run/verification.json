@@ -1,9 +1,74 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w733-explicit-leaf-constructor",
-  "generated_utc": "2026-05-24T19:15:01Z",
-  "source_tree_hash": "9da1957247facd76fcd240fa8622ad834c7112d5907ed1634618b84ce9ff325e",
-  "summary": "W733 explicit leaf constructor exposes eight leaf providers for constructing the W732 one route-data provider. It assembles boundary/relation, endpoint/localized, source/endpoint, normalized source/endpoint, target/closedness, and target/normalized data, delegates acceptance to W732, and keeps product-success flags false.",
+  "generated_utc": "2026-05-24T19:30:52Z",
+  "source_tree_hash": "ab96107069529b054afd1812377ba3da825895af0da1d549b78a6a2af8026092",
+  "summary": "W734 constructs the W733 concrete leaf record from the W723 category-homology closed-map and closed-embedding branches. It builds the mapped-cokernel closedness branch and source homological-triangulation leaf from W723 data, delegates ordinary stable input and acceptance to W733, and keeps product-success flags false.",
   "commands": [
+    {
+      "command": "python3 -m json.tool run/verification.json terminal_outcome/terminal_outcome.json proof_frontier/FRONTIER_MATRIX.json manifest.json",
+      "status": "passed",
+      "evidence": "JSON parse checks passed for W734 metadata; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_json_parse_* logs."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/browser_evidence --expect 'W734 category-homology leaf constructors' --expect 'product_complete=false' --expect '20260524T192120Z_codex_parent_w734'",
+      "status": "passed",
+      "evidence": "Browser-rendered scratch-log evidence passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_browser_evidence.log and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/browser_evidence/browser_evidence_fidelity.json."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_external_self_check_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Full terminal audit rejected the nonterminal outcome as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_external_terminal_expected_summary_final.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W734 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/focused_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W734 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/module_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W734 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_audit_product.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_required_declarations.lean",
+      "status": "passed",
+      "evidence": "External W734 required declaration file checks the new declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_required_rerun.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W734; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_audit_required.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source audit passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_git_diff_check.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W734; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_lake_build_full.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No touched Lean file claims productSuccessClaimed true; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T192120Z_codex_parent_w734/w734_rg_product_true.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -14848,6 +14913,20 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyW734",
+    "Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyW734",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_closedMapCategoryHomologyConcreteLeavesW734",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_closedEmbeddingCategoryHomologyConcreteLeavesW734",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyConcreteLeavesW734",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyConcreteLeavesW734",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyConcreteLeavesW734_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyConcreteLeavesW734_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyConcreteLeafInputNamesW734",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyConcreteLeafInputNamesW734_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyConcreteLeavesRouteStateW734",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyConcreteLeavesRouteSupportStateW734",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyConcreteLeavesRouteStateW734",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyConcreteLeavesRouteStateW734_productSuccess",
     "Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733",
     "Dbounded.boundaryRelationData_of_concreteLeavesW733",
     "Dbounded.endpointLocalizedRightAdjointData_of_concreteLeavesW733",
@@ -19535,17 +19614,17 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "Concrete values for the eight explicit W733 leaf providers remain unconstructed.",
+    "Concrete values for the W734 category-homology branch inputs remain unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w733_explicit_leaf_constructor",
+  "support_result_classification": "verified_nonterminal_support_increment_w734_category_homology_concrete_leaf_constructors",
   "product_success": false,
   "remaining_work": [
-    "Concrete values for the eight explicit W733 leaf providers remain unconstructed.",
+    "Concrete values for the W734 category-homology branch inputs remain unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "summary_log_tail": "W733 exposes eight explicit leaf providers for W732 route data and keeps product flags false.",
-  "latest_verified_increment": "W733 explicit leaf constructor",
+  "summary_log_tail": "W734 constructs W733 concrete leaves from W723 category-homology branches and keeps product flags false.",
+  "latest_verified_increment": "W734 category-homology leaf constructors",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -20901,6 +20980,12 @@
         "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733_productSuccess"
       ],
       "note": "W733 source, product audit, metadata, browser evidence, and nonterminal product-gate evidence are recorded; product_success/product_complete/update_goal_allowed remain false."
+    },
+    "w734_metadata_refresh": {
+      "timestamp_utc": "2026-05-24T19:21:20Z",
+      "summary": "W734 constructs W733 concrete leaves from W723 category-homology branches and keeps product flags false.",
+      "product_complete": false,
+      "product_success": false
     }
   }
 }
