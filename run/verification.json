@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w697-row-provider-target-surjective-closed-range-endpoint-topology-route",
-  "generated_utc": "2026-05-24T05:01:49Z",
-  "source_tree_hash": "6b586f6670cf4765e1d09e546def6060f431875eb064116071fbcd57a406ac1e",
-  "summary": "W697 uses the existing W601 adapter so the W696 closed-range endpoint-topology row route can take target-difference surjectivity plus compact target codomains instead of an abstract W600 target-relation-top provider. Closed-map and closed-embedding row bundles still route through the W696/W695 accepted-stable packages. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w698-global-provider-target-surjective-closed-range-endpoint-topology-route",
+  "generated_utc": "2026-05-24T05:47:30Z",
+  "source_tree_hash": "3f9763854d692fbc398970c0cdf5931d213a5a42ffb4e7db8cba7cd0935cc2cc",
+  "summary": "W698 global-provider target-surjective closed-range endpoint route narrows the W697 target-surjective closed-range endpoint row route: W525 global closed-map providers feed W697 through W581 row narrowing, and W525 global closed-embedding providers feed the same accepted route through W619 dominance plus W581. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -11710,6 +11710,66 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Product gate still rejects the nonterminal outcome after W697, as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w697_external_product_gate.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W698 source checks passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_source_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W698 touched module build passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_lake_build_source.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration checks include W698 and passed after rebuilding the touched module; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_product_declarations_lean.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W698; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_required_declarations_lean.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import check passed after W698; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_root_import_lean.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W698; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_lake_build_full.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Full source forbidden-token audit passed after W698; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_audit_no_forbidden_lean_tokens_all.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Touched source forbidden-token audit passed after W698; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_audit_no_forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declarations forbidden-token audit passed after W698; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_audit_no_forbidden_lean_tokens_product_declarations.log."
+    },
+    {
+      "command": "rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "No forbidden tokens in touched source; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_forbidden_tokens_source.log."
+    },
+    {
+      "command": "rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden tokens in product declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_forbidden_tokens_product_declarations.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W698; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T041610Z_e0076c6f_fresh_parent/logs_w698_git_diff_check.log."
     }
   ],
   "implemented_declarations_checked": [
@@ -15651,7 +15711,22 @@
     "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyInputNamesW697_count",
     "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697",
-    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697_productSuccess"
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697_productSuccess",
+    "Dbounded.MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapClosedRangeEndpointTopologyDirectLocalizationBundleW698",
+    "Dbounded.metrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_globalClosedMapW698",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapClosedRangeEndpointTopologyDirectLocalizationBundleW698",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapClosedRangeEndpointTopologyDirectLocalizationBundleW698",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapClosedRangeEndpointTopologyDirectLocalizationBundleW698_accepted",
+    "Dbounded.MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingClosedRangeEndpointTopologyDirectLocalizationBundleW698",
+    "Dbounded.metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapClosedRangeEndpointTopologyDirectLocalizationBundle_of_globalClosedEmbeddingW698",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapClosedRangeEndpointTopologyDirectLocalizationBundleW698",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapClosedRangeEndpointTopologyDirectLocalizationBundleW698",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapClosedRangeEndpointTopologyDirectLocalizationBundleW698_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderTargetSurjectiveClosedRangeEndpointTopologyInputNamesW698",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderTargetSurjectiveClosedRangeEndpointTopologyInputNamesW698_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderTargetSurjectiveClosedRangeEndpointTopologyRouteStateW698",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderTargetSurjectiveClosedRangeEndpointTopologyRouteStateW698",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderTargetSurjectiveClosedRangeEndpointTopologyRouteStateW698_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -15659,33 +15734,33 @@
     "construct concrete relation-fields provider data",
     "construct concrete target-difference surjectivity data",
     "construct concrete target codomain compactness data",
-    "construct concrete componentwise row closed-map or closed-embedding provider data",
+    "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives for the two WPP localization targets",
-    "construct global homology-preservation data for the row-provider route",
+    "construct global homology-preservation data for the global-provider route",
     "construct W519 closed-range provider data for mapped explicit cokernels",
     "construct ExactAt-conditioned endpoint topology inputs",
     "construct bounded homotopy localized-right-adjoint data",
     "construct source triangulation data and triangle-completion data",
     "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"
   ],
-  "support_result_classification": "nonterminal_row_provider_target_surjective_closed_range_endpoint_topology_route",
+  "support_result_classification": "nonterminal_global_provider_target_surjective_closed_range_endpoint_topology_route",
   "product_success": false,
   "remaining_work": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
     "construct concrete target-difference surjectivity data",
     "construct concrete target codomain compactness data",
-    "construct concrete componentwise row closed-map or closed-embedding provider data",
+    "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives for the two WPP localization targets",
-    "construct global homology-preservation data for the row-provider route",
+    "construct global homology-preservation data for the global-provider route",
     "construct W519 closed-range provider data for mapped explicit cokernels",
     "construct ExactAt-conditioned endpoint topology inputs",
     "construct bounded homotopy localized-right-adjoint data",
     "construct source triangulation data and triangle-completion data",
     "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"
   ],
-  "summary_log_tail": "W697 narrows the W696 row-provider closed-range endpoint-topology route from a direct W600 target-top provider to W601 target-difference surjectivity plus compact target codomain data. Product flags remain false.",
-  "latest_verified_increment": "W697 row-provider target-surjective closed-range endpoint-topology route",
+  "summary_log_tail": "W698 replaces the W697 row-provider leaf by W525 global providers through W581 and W619; product flags remain false.",
+  "latest_verified_increment": "W698 global-provider target-surjective closed-range endpoint-topology route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -16766,6 +16841,13 @@
       "source_tree_hash": "6b586f6670cf4765e1d09e546def6060f431875eb064116071fbcd57a406ac1e",
       "latest_verified_increment": "W697 row-provider target-surjective closed-range endpoint-topology route",
       "note": "W697 refresh records target-surjective closed-range endpoint row-provider checks and leaves product_success/product_complete false.",
+      "active_thread": "e0076c6f-373c-41ca-b4e4-28a50c68457d"
+    },
+    "w698_metadata_refresh": {
+      "refreshed_utc": "2026-05-24T05:47:30Z",
+      "source_tree_hash": "3f9763854d692fbc398970c0cdf5931d213a5a42ffb4e7db8cba7cd0935cc2cc",
+      "latest_verified_increment": "W698 global-provider target-surjective closed-range endpoint-topology route",
+      "note": "W698 refresh records global-provider target-surjective closed-range endpoint route checks and leaves product_success/product_complete false.",
       "active_thread": "e0076c6f-373c-41ca-b4e4-28a50c68457d"
     }
   }
