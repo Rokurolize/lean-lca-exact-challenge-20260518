@@ -1,7 +1,7 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T05:47:30Z",
-  "active_thread": "e0076c6f-373c-41ca-b4e4-28a50c68457d",
+  "generated_utc": "2026-05-24T11:21:29Z",
+  "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
     {
@@ -1627,9 +1627,9 @@
     }
   ],
   "support_result_classification": "nonterminal_global_provider_target_surjective_closed_range_endpoint_topology_route",
-  "latest_parent_update": "parent_update_w698_global_provider_target_surjective_closed_range_endpoint_topology_route",
-  "summary": "W698 global-provider target-surjective closed-range endpoint route narrows the W697 target-surjective closed-range endpoint row route: W525 global closed-map providers feed W697 through W581 row narrowing, and W525 global closed-embedding providers feed the same accepted route through W619 dominance plus W581. Product-success flags remain false.",
-  "remaining_frontier": "construct concrete WPP right-open and source-pi-zero boundary data; construct concrete relation-fields provider data; construct concrete target-difference surjectivity data; construct concrete target codomain compactness data; construct concrete componentwise global closed-map or closed-embedding provider data; construct normalized strict representatives for the two WPP localization targets; construct global homology-preservation data for the global-provider route; construct W519 closed-range provider data for mapped explicit cokernels; construct ExactAt-conditioned endpoint topology inputs; construct bounded homotopy localized-right-adjoint data; construct source triangulation data and triangle-completion data; construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs.",
+  "latest_parent_update": "parent_update_w699_fixed_target_global_provider_closed_range_endpoint_topology_route",
+  "summary": "W699 fixed-target global-provider closed-range endpoint route narrows the W685 fixed-target global-provider route: W696 closed-range endpoint topology supplies the generic kernel/cokernel topology input, W642 global closed-map bundles feed W685 directly, and W642 global closed-embedding fixed-target bundles feed the same closed-map accepted route through W686 dominance. Product-success flags remain false.",
+  "remaining_frontier": "construct concrete WPP right-open and source-pi-zero boundary data; construct concrete relation-fields provider data; construct concrete target-difference surjectivity data; construct concrete target codomain compactness data; construct concrete componentwise global closed-map or closed-embedding provider data; construct fixed-target lift/fac/uniq packages for the two WPP localization targets; construct global homology-preservation data for the fixed-target global-provider route; construct W519 closed-range provider data for mapped explicit cokernels; construct ExactAt-conditioned endpoint topology inputs; construct bounded homotopy localized-right-adjoint data; construct source triangulation data and triangle-completion data; construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs.",
   "support_classification": "nonterminal_support_w698_global_provider_target_surjective_closed_range_endpoint_topology_route",
   "remaining_blockers": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
@@ -1637,8 +1637,8 @@
     "construct concrete target-difference surjectivity data",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
-    "construct normalized strict representatives for the two WPP localization targets",
-    "construct global homology-preservation data for the global-provider route",
+    "construct fixed-target lift/fac/uniq packages for the two WPP localization targets",
+    "construct global homology-preservation data for the fixed-target global-provider route",
     "construct W519 closed-range provider data for mapped explicit cokernels",
     "construct ExactAt-conditioned endpoint topology inputs",
     "construct bounded homotopy localized-right-adjoint data",
@@ -1651,8 +1651,8 @@
     "construct concrete target-difference surjectivity data",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
-    "construct normalized strict representatives for the two WPP localization targets",
-    "construct global homology-preservation data for the global-provider route",
+    "construct fixed-target lift/fac/uniq packages for the two WPP localization targets",
+    "construct global homology-preservation data for the fixed-target global-provider route",
     "construct W519 closed-range provider data for mapped explicit cokernels",
     "construct ExactAt-conditioned endpoint topology inputs",
     "construct bounded homotopy localized-right-adjoint data",
@@ -1911,8 +1911,8 @@
     "construct concrete target-difference surjectivity data",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
-    "construct normalized strict representatives for the two WPP localization targets",
-    "construct global homology-preservation data for the global-provider route",
+    "construct fixed-target lift/fac/uniq packages for the two WPP localization targets",
+    "construct global homology-preservation data for the fixed-target global-provider route",
     "construct W519 closed-range provider data for mapped explicit cokernels",
     "construct ExactAt-conditioned endpoint topology inputs",
     "construct bounded homotopy localized-right-adjoint data",
@@ -4546,8 +4546,8 @@
   ],
   "current_primary_blockers": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
-    "construct concrete relation-fields/target-surjective/compact-target provider data",
-    "construct concrete W525 global closed-map or closed-embedding provider data plus remaining endpoint/localization/stable-infinity inputs"
+    "construct concrete relation-fields, target-surjective, compact-target, and fixed-target provider data",
+    "construct concrete W525 global closed-map or closed-embedding provider data plus W519 endpoint, localization, triangulation, and Dbounded stable-infinity inputs"
   ],
   "parent_update_w467": {
     "timestamp_utc": "2026-05-21T01:54:02Z",
@@ -5488,5 +5488,67 @@
     ],
     "product_success_claimed": false,
     "active_thread": "e0076c6f-373c-41ca-b4e4-28a50c68457d"
+  },
+  "parent_update_w699": {
+    "timestamp_utc": "2026-05-24T11:21:29Z",
+    "status": "verified_nonterminal_support_increment",
+    "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "audit_artifact": "audit/ProductSuccessDeclarations.lean",
+    "changed_declarations": [
+      "Dbounded.MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW699",
+      "Dbounded.metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetKernelCokernelDirectLocalizationBundle_of_closedRangeEndpointTopologyW699",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW699",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW699",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW699_accepted",
+      "Dbounded.MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW699",
+      "Dbounded.metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundle_of_globalClosedEmbeddingW699",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW699",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW699",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapFixedTargetClosedRangeEndpointTopologyDirectLocalizationBundleW699_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetClosedRangeEndpointTopologyInputNamesW699",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetClosedRangeEndpointTopologyInputNamesW699_count",
+      "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetClosedRangeEndpointTopologyRouteStateW699",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetClosedRangeEndpointTopologyRouteSupportStateW699",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetClosedRangeEndpointTopologyRouteStateW699",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderFixedTargetClosedRangeEndpointTopologyRouteStateW699_productSuccess"
+    ],
+    "verified_commands": [
+      "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "lake env lean audit/ProductSuccessDeclarations.lean",
+      "lake env lean audit/RequiredDeclarations.lean",
+      "lake env lean LeanLCAExactChallenge.lean",
+      "lake build LeanLCAExactChallenge",
+      "lake build",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "bash -lc \"! rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean\"",
+      "bash -lc \"! rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' audit/ProductSuccessDeclarations.lean\"",
+      "git diff --check",
+      "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "python3 -m json.tool run/verification.json >/dev/null",
+      "python3 -m json.tool manifest.json >/dev/null",
+      "python3 audit/external_audit.py --root . --self-check-only",
+      "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json"
+    ],
+    "contribution": "Composes the W685 fixed-target global-provider route with W696 closed-range endpoint topology, replacing the direct generic kernel/cokernel topology input with W519 closed-range endpoint data; W642 global closed-embedding fixed-target bundles route through W686 dominance into the same closed-map accepted route.",
+    "remaining_inputs": [
+      "construct concrete WPP right-open and source-pi-zero boundary data",
+      "construct concrete relation-fields provider data",
+      "construct concrete target-difference surjectivity data",
+      "construct concrete target codomain compactness data",
+      "construct concrete componentwise global closed-map or closed-embedding provider data",
+      "construct fixed-target lift/fac/uniq packages for the two WPP localization targets",
+      "construct global homology-preservation data for the fixed-target global-provider route",
+      "construct W519 closed-range provider data for mapped explicit cokernels",
+      "construct ExactAt-conditioned endpoint topology inputs",
+      "construct bounded homotopy localized-right-adjoint data",
+      "construct source triangulation data and triangle-completion data",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"
+    ],
+    "product_success_claimed": false,
+    "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1"
   }
 }
