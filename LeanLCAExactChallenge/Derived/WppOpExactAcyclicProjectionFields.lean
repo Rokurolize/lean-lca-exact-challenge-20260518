@@ -54388,6 +54388,132 @@ theorem
       false :=
   rfl
 
+/--
+W756 specializes W755 by bundling its two explicit relation-provider inputs
+through W717 relation data and its three diagram closed-map component inputs
+through the W718 selected-difference component provider.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756
+    (relationData : ClosedNatTransOrdinaryRelationDataProviderW717)
+    (closedMapComponents : SelectedDifferenceClosedMapDiagramComponentProviderW718) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedMapComponentsW755
+    (relationPullbackProvider_of_relationDataW717 relationData)
+    (targetRelationLiftsProvider_of_relationDataW717 relationData)
+    (selectedDifferenceClosedMapPi1DiagramField_of_componentProviderW718
+      closedMapComponents)
+    (selectedDifferenceClosedMapPi2DiagramField_of_componentProviderW718
+      closedMapComponents)
+    (selectedDifferenceClosedMapPi3DiagramField_of_componentProviderW718
+      closedMapComponents)
+
+/--
+W756 closed-embedding branch: W717 relation data and the W718
+closed-embedding component provider supply the bundled inputs consumed by W755.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756
+    (relationData : ClosedNatTransOrdinaryRelationDataProviderW717)
+    (closedEmbeddingComponents :
+      SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedEmbeddingComponentsW755
+    (relationPullbackProvider_of_relationDataW717 relationData)
+    (targetRelationLiftsProvider_of_relationDataW717 relationData)
+    (selectedDifferenceClosedEmbeddingPi1DiagramField_of_componentProviderW718
+      closedEmbeddingComponents)
+    (selectedDifferenceClosedEmbeddingPi2DiagramField_of_componentProviderW718
+      closedEmbeddingComponents)
+    (selectedDifferenceClosedEmbeddingPi3DiagramField_of_componentProviderW718
+      closedEmbeddingComponents)
+
+/-- Input names for the W756 relation-data component-provider closed-map route. -/
+def
+    exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756 :
+    List String :=
+  ["W717 bundled closed natural transformation ordinary relation data provider",
+    "W718 selected-difference diagram component closed-map provider"]
+
+theorem
+    exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756_count :
+    exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756.length =
+      2 :=
+  rfl
+
+/--
+Input names for the W756 relation-data component-provider closed-embedding
+route.
+-/
+def
+    exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756 :
+    List String :=
+  ["W717 bundled closed natural transformation ordinary relation data provider",
+    "W718 selected-difference diagram component closed-embedding provider"]
+
+theorem
+    exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756_count :
+    exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756.length =
+      2 :=
+  rfl
+
+/--
+Current checked W756 state for routing bundled W717 relation data and W718
+diagram component providers to W755 exactness.
+-/
+structure MetrizableWppRelationDataDiagramComponentProviderRouteStateW756 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapRelationDataComponentProviderResult : String
+  closedEmbeddingRelationDataComponentProviderResult : String
+  w717RelationProjectionResult : String
+  w718ComponentProjectionResult : String
+  exposedClosedMapInputs : List String
+  exposedClosedEmbeddingInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W756 state. -/
+def currentMetrizableWppRelationDataDiagramComponentProviderRouteSupportStateW756 :
+    MetrizableWppRelationDataDiagramComponentProviderRouteStateW756
+    where
+  seed := "w756-w717-relation-data-w718-diagram-component-provider-route"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756",
+      "exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756",
+      "exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756_count",
+      "exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756",
+      "exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756_count"]
+  closedMapRelationDataComponentProviderResult :=
+    "proved: W717 bundled relation data and W718 closed-map component provider supply W755 exactness inputs"
+  closedEmbeddingRelationDataComponentProviderResult :=
+    "proved: W717 bundled relation data and W718 closed-embedding component provider supply W755 exactness inputs"
+  w717RelationProjectionResult :=
+    "proved: W717 projects relation-pullback and target-relation-lift providers for W755"
+  w718ComponentProjectionResult :=
+    "proved: W718 projects the three W714 diagram component fields for W755"
+  exposedClosedMapInputs :=
+    exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756
+  exposedClosedEmbeddingInputs :=
+    exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756
+  remainingInputs :=
+    ["construct concrete W717 bundled closed-natural-transformation relation data provider",
+      "construct concrete W718 selected-difference diagram component closed-map or closed-embedding provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRelationDataDiagramComponentProviderRouteStateW756 :
+    MetrizableWppRelationDataDiagramComponentProviderRouteStateW756 :=
+  currentMetrizableWppRelationDataDiagramComponentProviderRouteSupportStateW756
+
+theorem
+    currentMetrizableWppRelationDataDiagramComponentProviderRouteStateW756_productSuccess :
+    currentMetrizableWppRelationDataDiagramComponentProviderRouteStateW756.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

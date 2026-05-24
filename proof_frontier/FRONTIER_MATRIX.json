@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T23:11:08Z",
+  "generated_utc": "2026-05-24T23:25:57Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -53,9 +53,19 @@
       "worker_count_allowed": 0,
       "verification_command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields && lake env lean audit/ProductSuccessDeclarations.lean && lake build",
       "merge_blocker": "Concrete W512 relation-field data, selected-difference component closed-map or closed-embedding facts, WPP boundary data, W601 target-difference surjectivity, compact targets, normalized fixed-target obligations, W519 mapped-cokernel closed-map or closed-embedding data, explicit endpoint facts, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs remain unconstructed.",
-      "product_success_contribution": "W753 bypasses W480 by using W523 to turn W512 relation fields into the selected-W461 provider and W711/W581 to turn explicit component closedness into W527 row providers.",
+      "product_success_contribution": "W756 bundles W755 relation and diagram component inputs: W717 provides the two relation-provider fields and W718 provides the three diagram component closedness fields before invoking the W755 exactness route.",
       "owned_by_active_process": true,
       "implemented_declarations": [
+        "Dbounded.currentMetrizableWppRelationDataDiagramComponentProviderRouteStateW756_productSuccess",
+        "Dbounded.currentMetrizableWppRelationDataDiagramComponentProviderRouteStateW756",
+        "Dbounded.currentMetrizableWppRelationDataDiagramComponentProviderRouteSupportStateW756",
+        "Dbounded.MetrizableWppRelationDataDiagramComponentProviderRouteStateW756",
+        "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756_count",
+        "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756",
+        "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756_count",
+        "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756",
+        "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756",
+        "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756",
         "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsExplicitClosedMapComponentsW753",
         "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsExplicitClosedEmbeddingComponentsW753",
         "Dbounded.exactAcyclicWppOpRelationFieldsExplicitClosedMapComponentsInputNamesW753",
@@ -1874,18 +1884,18 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w755_w712_explicit_relation_fields_w714_diagram_route",
-  "latest_parent_update": "parent_update_w755_w712_explicit_relation_fields_w714_diagram_route",
-  "summary": "W755 W712 explicit relation-fields W714 diagram route specializes the W754 W512 relation-fields W714 diagram-field route: W712 assembles W512 relation fields from separate relation-pullback and target-relation-lift providers, while W714 supplies diagram-only selected-difference closed-map or closed-embedding component facts. The exposed exactness route now requires two W712 explicit relation providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only closed-embedding component facts; product_success remains false.",
-  "remaining_frontier": "Need W755 route inputs, concrete W735 branch data, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w755_w712_explicit_relation_fields_w714_diagram_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w756_w717_relation_data_w718_component_provider_exactness_route",
+  "latest_parent_update": "parent_update_w756_w717_relation_data_w718_component_provider_exactness_route",
+  "summary": "W756 W717 relation-data W718 component-provider exactness route specializes W755: W717 bundles the two W712 relation providers, and W718 bundles the three W714 diagram-only selected-difference component closed-map or closed-embedding facts. The exposed exactness route now requires one W717 bundled relation-data provider plus one W718 selected-difference diagram component closed-map or closed-embedding provider; product_success remains false.",
+  "remaining_frontier": "Need W756 route inputs, concrete W735 branch data, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w756_w717_relation_data_w718_component_provider_exactness_route",
   "remaining_blockers": [
-    "Construct W712 closed natural transformation ordinary relation-pullback and target-relation-lift providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts for the W755 W712 explicit relation-fields W714 diagram route.",
+    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "open_blockers": [
-    "Construct W480 split promotion-input data, W480 ordinary-map data, and three W711 selected-difference closed-map component facts or three selected closed-embedding component facts for the W751 W480/explicit component route.",
+    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -2220,10 +2230,11 @@
     "w703-explicit-target-top-endpoint-strict-closed-range-route",
     "w704-explicit-endpoint-strict-target-top-route",
     "w705-explicit-source-triangulation-target-top-route",
-    "w706-explicit-localized-right-adjoint-target-top-route"
+    "w706-explicit-localized-right-adjoint-target-top-route",
+    "w756-w717-relation-data-w718-component-provider-exactness-route"
   ],
   "known_gaps": [
-    "Construct W480 split promotion-input data, W480 ordinary-map data, and three W711 selected-difference closed-map component facts or three selected closed-embedding component facts for the W751 W480/explicit component route.",
+    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -4829,10 +4840,17 @@
       "status": "verified_nonterminal_support_increment_w753_w512_relation_fields_explicit_component_route",
       "effect": "W753 bypasses W480 by deriving the selected-W461 provider from W512 relation fields and combining it with W711 explicit component closedness via W581/W527.",
       "product_complete": false
+    },
+    {
+      "timestamp_utc": "2026-05-24T23:25:57Z",
+      "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "verified_nonterminal_support_increment_w756_w717_relation_data_w718_component_provider_exactness_route",
+      "effect": "W756 reduces the exactness-facing W755 surface from two W712 relation providers plus three W714 diagram fields to W717 relation data plus one W718 diagram component provider.",
+      "product_complete": false
     }
   ],
   "current_primary_blockers": [
-    "Construct the W755 W712 explicit relation-fields W714 diagram route inputs: W712 relation-pullback and target-relation-lift providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts.",
+    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -7269,6 +7287,46 @@
     ],
     "remaining_inputs": [
       "Construct W712 closed natural transformation ordinary relation-pullback and target-relation-lift providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts for the W755 W712 explicit relation-fields W714 diagram route.",
+      "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
+      "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w756_w717_relation_data_w718_component_provider_exactness_route": {
+    "updated_utc": "2026-05-24T23:25:57Z",
+    "status": "verified_nonterminal_support_increment_w756_w717_relation_data_w718_component_provider_exactness_route",
+    "implemented_declarations": [
+      "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756",
+      "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756",
+      "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756",
+      "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756_count",
+      "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756",
+      "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756_count",
+      "Dbounded.MetrizableWppRelationDataDiagramComponentProviderRouteStateW756",
+      "Dbounded.currentMetrizableWppRelationDataDiagramComponentProviderRouteSupportStateW756",
+      "Dbounded.currentMetrizableWppRelationDataDiagramComponentProviderRouteStateW756",
+      "Dbounded.currentMetrizableWppRelationDataDiagramComponentProviderRouteStateW756_productSuccess"
+    ],
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756",
+    "result": "W756 routes W717 bundled relation data plus W718 selected-difference diagram component providers through W755 to W527 exactness.",
+    "verification": [
+      "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "lake env lean audit/ProductSuccessDeclarations.lean",
+      "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/w756_required_declarations.lean",
+      "lake env lean audit/RequiredDeclarations.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "git diff --check",
+      "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "python3 -c \"import json; [json.load(open(p)) for p in ['run/verification.json','terminal_outcome/terminal_outcome.json','proof_frontier/FRONTIER_MATRIX.json','manifest.json']]\"",
+      "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/scratch_log_browser_evidence --expect W756 W717 relation-data W718 component-provider exactness route --expect product_complete=false --expect 20260524T231719Z_codex_parent_w756",
+      "lake build",
+      "python3 audit/external_audit.py --root . --self-check-only",
+      "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json"
+    ],
+    "remaining_inputs": [
+      "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
       "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
       "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
     ],

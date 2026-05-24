@@ -1,9 +1,79 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w755-w712-explicit-relation-fields-w714-diagram-route",
-  "generated_utc": "2026-05-24T23:11:08Z",
-  "source_tree_hash": "896e466d3c3e03cfdea92eb51ce39c4d7854b351fb8d3398e7bf960a460420c4",
-  "summary": "W755 W712 explicit relation-fields W714 diagram route specializes the W754 W512 relation-fields W714 diagram-field route: W712 assembles W512 relation fields from separate relation-pullback and target-relation-lift providers, while W714 supplies diagram-only selected-difference closed-map or closed-embedding component facts. The exposed exactness route now requires two W712 explicit relation providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only closed-embedding component facts; product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w756-w717-relation-data-w718-component-provider-exactness-route",
+  "generated_utc": "2026-05-24T23:25:57Z",
+  "source_tree_hash": "76b0cead04413c62867d60981141e276e0de13f757e346deb832fcb20b9c4d91",
+  "summary": "W756 W717 relation-data W718 component-provider exactness route specializes W755: W717 bundles the two W712 relation providers, and W718 bundles the three W714 diagram-only selected-difference component closed-map or closed-embedding facts. The exposed exactness route now requires one W717 bundled relation-data provider plus one W718 selected-difference diagram component closed-map or closed-embedding provider; product_success remains false.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W756 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/lean_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W756 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product success declaration audit checks the W756 declarations while product_success remains false; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/lean_product_success_declarations.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/w756_required_declarations.lean",
+      "status": "passed",
+      "evidence": "Run-owned W756 required declaration checks passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/lean_w756_required_declarations.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Baseline required declaration audit passed after W756; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/lean_required_declarations.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan passed for the source tree; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/audit_no_forbidden_lean_tokens.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed for the W756 worktree; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/git_diff_check_final.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "HTML progress report validator passed after W756 report update; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/html_check_report.log."
+    },
+    {
+      "command": "python3 -c \"import json; [json.load(open(p)) for p in ['run/verification.json','terminal_outcome/terminal_outcome.json','proof_frontier/FRONTIER_MATRIX.json','manifest.json']]\"",
+      "status": "passed",
+      "evidence": "JSON parse gate passed for verification, terminal outcome, frontier matrix, and manifest; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/json_parse.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "No productSuccessClaimed := true marker exists; rg exit 1 is expected for the nonterminal W756 increment; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/product_success_true_grep.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/scratch_log_browser_evidence --expect W756 W717 relation-data W718 component-provider exactness route --expect product_complete=false --expect 20260524T231719Z_codex_parent_w756",
+      "status": "passed",
+      "evidence": "Browser-rendered report evidence contains the W756 label, product_complete=false, and run id; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/scratch_log_browser_evidence."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W756 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/lake_build_full.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed for the W756 evidence set; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/external_audit_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "External audit product gate still rejects the terminal outcome because product_success is intentionally not claimed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/external_audit_terminal_expected.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -16323,6 +16393,16 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756",
+    "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756",
+    "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756_count",
+    "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756",
+    "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedEmbeddingInputNamesW756_count",
+    "Dbounded.MetrizableWppRelationDataDiagramComponentProviderRouteStateW756",
+    "Dbounded.currentMetrizableWppRelationDataDiagramComponentProviderRouteSupportStateW756",
+    "Dbounded.currentMetrizableWppRelationDataDiagramComponentProviderRouteStateW756",
+    "Dbounded.currentMetrizableWppRelationDataDiagramComponentProviderRouteStateW756_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedMapComponentsW755",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedEmbeddingComponentsW755",
     "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755",
@@ -21226,19 +21306,19 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct W712 closed natural transformation ordinary relation-pullback and target-relation-lift providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts for the W755 W712 explicit relation-fields W714 diagram route.",
+    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w755_w712_explicit_relation_fields_w714_diagram_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w756_w717_relation_data_w718_component_provider_exactness_route",
   "product_success": false,
   "remaining_work": [
-    "Construct W712 closed natural transformation ordinary relation-pullback and target-relation-lift providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts for the W755 W712 explicit relation-fields W714 diagram route.",
+    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "summary_log_tail": "W755 final JSON/browser/full-build/external-audit gates passed; terminal audit rejected product_success as expected.",
-  "latest_verified_increment": "W755 W712 explicit relation-fields W714 diagram route",
+  "summary_log_tail": "W756 focused Lean/report gates passed; final JSON/browser/full-build/external-audit gates are recorded in the W756 run directory.",
+  "latest_verified_increment": "W756 W717 relation-data W718 component-provider exactness route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
