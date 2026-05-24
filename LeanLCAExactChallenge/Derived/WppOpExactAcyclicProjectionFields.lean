@@ -52747,6 +52747,111 @@ theorem currentMetrizableWppClosureKernelComparisonAlgebraicLeftRouteStateW739_p
       false :=
   rfl
 
+/--
+W740 specializes W739 by replacing the raw algebraic exactness input with the
+strict AddCommGrp kernel-exactness boundary from W318.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonAddCommGrpLeftW740
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (hadd :
+      WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictKernelExact_wppOp_colimit_boundary_for_metrizable)
+    (hclosed :
+      WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_injective_inducing_closedImage) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonAlgebraicLeftW739
+    closureKernelProvider
+    comparisonIso
+    (WppOpExactAcyclicFrontierConsolidatedW318.algebraicExact_walkingParallelPairOp_colimitClosure_of_addCommGrpStrictKernelExact
+      hadd)
+    hclosed
+
+/--
+W740 SnakeInput variant: a cokernel-row presentation of the underlying
+AddCommGrp short complex supplies the strict AddCommGrp boundary consumed by
+the comparison-algebraic route.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSnakeLeftW740
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (hsnake :
+      WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictSnakeCokernel_wppOp_colimit_boundary_for_metrizable)
+    (hclosed :
+      WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_injective_inducing_closedImage) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonAddCommGrpLeftW740
+    closureKernelProvider
+    comparisonIso
+    (WppOpExactAcyclicFrontierConsolidatedW318.addCommGrpStrictKernelExact_wppOp_colimit_boundary_of_snakeCokernel
+      hsnake)
+    hclosed
+
+/-- Input names for the W740 SnakeInput specialization of W739. -/
+def exactAcyclicWppOpClosureKernelComparisonSnakeLeftInputNamesW740 :
+    List String :=
+  ["closure-kernel mapped explicit cokernel provider for forgetful homology preservation",
+    "universal IsIso for every MetrizableLCA left-right homology comparison",
+    "AddCommGrp SnakeInput cokernel boundary for WPP-op colimit maps",
+    "pure left closed-embedding preservation for WPP-op LCA colimit maps"]
+
+theorem exactAcyclicWppOpClosureKernelComparisonSnakeLeftInputNamesW740_count :
+    exactAcyclicWppOpClosureKernelComparisonSnakeLeftInputNamesW740.length =
+      4 :=
+  rfl
+
+/--
+Current checked W740 state for the SnakeInput specialization of the W739 route.
+-/
+structure MetrizableWppClosureKernelComparisonSnakeLeftRouteStateW740 :
+    Type where
+  seed : String
+  declarations : List String
+  addCommGrpStrictResult : String
+  snakeResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W740 state. -/
+def currentMetrizableWppClosureKernelComparisonSnakeLeftRouteSupportStateW740 :
+    MetrizableWppClosureKernelComparisonSnakeLeftRouteStateW740
+    where
+  seed :=
+    "w740-closure-kernel-comparison-snake-specialization"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonAddCommGrpLeftW740",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSnakeLeftW740",
+      "exactAcyclicWppOpClosureKernelComparisonSnakeLeftInputNamesW740",
+      "exactAcyclicWppOpClosureKernelComparisonSnakeLeftInputNamesW740_count"]
+  addCommGrpStrictResult :=
+    "proved: strict AddCommGrp kernel-exactness supplies W739's algebraic exactness input"
+  snakeResult :=
+    "proved: a SnakeInput cokernel-row boundary supplies the strict AddCommGrp boundary for W740"
+  exposedInputs :=
+    exactAcyclicWppOpClosureKernelComparisonSnakeLeftInputNamesW740
+  remainingInputs :=
+    ["construct closure-kernel mapped explicit cokernel provider",
+      "construct the universal left-right homology comparison isomorphism",
+      "construct SnakeInput cokernel-row boundary for the underlying AddCommGrp colimit short complex",
+      "construct pure left closed-embedding preservation for WPP-op LCA colimit maps"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppClosureKernelComparisonSnakeLeftRouteStateW740 :
+    MetrizableWppClosureKernelComparisonSnakeLeftRouteStateW740 :=
+  currentMetrizableWppClosureKernelComparisonSnakeLeftRouteSupportStateW740
+
+theorem currentMetrizableWppClosureKernelComparisonSnakeLeftRouteStateW740_productSuccess :
+    currentMetrizableWppClosureKernelComparisonSnakeLeftRouteStateW740.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
