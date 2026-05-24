@@ -40302,6 +40302,274 @@ theorem
       false :=
   rfl
 
+/--
+W697 closed-map-row bundle: W601 target-difference surjectivity plus compact
+target codomains replace the abstract W600 target-top provider in W696.
+-/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetDifferenceSurjectiveProvider :
+    TargetDifferenceSurjectiveProviderW601
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  closedMapRows :
+    ComponentwiseClosedMapRowsProviderW527
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  closedRangeEndpointTopology :
+    MetrizableExactAtClosedRangeEndpointTopologyInputsW696
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W697 adapts closed-map-row target-surjective bundles to W696. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697) :
+    MetrizableWppRelationFieldsTargetTopCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW696
+    where
+  relationFieldsTargetTopCompactRowsBundle :=
+    { rightOpenBoundary := inputs.rightOpenBoundary
+      sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+      relationFields := inputs.relationFields
+      targetRelationTopProvider :=
+        targetTopProvider_of_targetSurjective_w601
+          inputs.targetDifferenceSurjectiveProvider
+      targetCodomainCompactSpaceProvider :=
+        inputs.targetCodomainCompactSpaceProvider
+      closedMapRows := inputs.closedMapRows
+      normalizedInputs := inputs.normalizedInputs }
+  hasHomology := inputs.hasHomology
+  closedRangeEndpointTopology := inputs.closedRangeEndpointTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W697 target-surjective closed-map-row route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW696
+    (metrizableWppRelationFieldsTargetTopCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697
+      inputs)
+
+/-- W697 packages the target-surjective closed-map-row route as accepted stable data. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW696
+    (metrizableWppRelationFieldsTargetTopCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697
+      inputs)
+
+/-- The W697 target-surjective closed-map-row package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW696_accepted
+    (metrizableWppRelationFieldsTargetTopCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697
+      inputs)
+
+/--
+W697 closed-embedding-row bundle: W601 target-difference surjectivity plus
+compact target codomains replace the abstract W600 target-top provider in W696.
+-/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetDifferenceSurjectiveProvider :
+    TargetDifferenceSurjectiveProviderW601
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  closedEmbeddingRows :
+    ComponentwiseClosedEmbeddingRowsProviderW527
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  closedRangeEndpointTopology :
+    MetrizableExactAtClosedRangeEndpointTopologyInputsW696
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W697 adapts closed-embedding-row target-surjective bundles to W696. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697) :
+    MetrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW696
+    where
+  relationFieldsTargetTopCompactRowsBundle :=
+    { rightOpenBoundary := inputs.rightOpenBoundary
+      sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+      relationFields := inputs.relationFields
+      targetRelationTopProvider :=
+        targetTopProvider_of_targetSurjective_w601
+          inputs.targetDifferenceSurjectiveProvider
+      targetCodomainCompactSpaceProvider :=
+        inputs.targetCodomainCompactSpaceProvider
+      closedEmbeddingRows := inputs.closedEmbeddingRows
+      normalizedInputs := inputs.normalizedInputs }
+  hasHomology := inputs.hasHomology
+  closedRangeEndpointTopology := inputs.closedRangeEndpointTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W697 target-surjective closed-embedding-row route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW696
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697
+      inputs)
+
+/-- W697 packages the target-surjective closed-embedding-row route as accepted stable data. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW696
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697
+      inputs)
+
+/-- The W697 target-surjective closed-embedding-row package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW696_accepted
+    (metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697
+      inputs)
+
+/-- Input names for the W697 target-surjective closed-range endpoint route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyInputNamesW697 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+    "normalized strict representatives for WalkingParallelPair diagrams in Dbounded",
+    "target and localization-model uniqueness for normalized fixed targets",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MappedExplicitCokernelClosedRangeProviderW519",
+    "ExactAt-conditioned incoming closed embeddings, outgoing open maps, and endpoint epis",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyInputNamesW697_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyInputNamesW697.length =
+      13 :=
+  rfl
+
+/-- Current checked W697 state for the target-surjective closed-range endpoint route. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697 :
+    Type where
+  seed : String
+  declarations : List String
+  targetSurjectiveToTargetTopResult : String
+  closedMapRowsAcceptedResult : String
+  closedEmbeddingRowsAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W697 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteSupportStateW697 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697
+    where
+  seed :=
+    "w697-row-provider-target-surjective-closed-range-endpoint-topology-route"
+  declarations :=
+    ["MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697",
+      "metrizableWppRelationFieldsTargetTopCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697_accepted",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697",
+      "metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyInputNamesW697",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyInputNamesW697_count"]
+  targetSurjectiveToTargetTopResult :=
+    "proved: W601 target-difference surjectivity supplies the W600 target-relation-top provider inside the W696 row route"
+  closedMapRowsAcceptedResult :=
+    "proved: W614 closed-map rows feed the W696 accepted-stable row route with W601 target-surjective data"
+  closedEmbeddingRowsAcceptedResult :=
+    "proved: W615 closed-embedding rows feed the W696 accepted-stable row route with W601 target-surjective data"
+  replacedInputs :=
+    ["ClosedNatTransOrdinaryTargetRelationTopProviderW600 as a direct row endpoint-topology leaf"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapRowsProviderW527 or ComponentwiseClosedEmbeddingRowsProviderW527",
+      "construct normalized strict representatives for the two WPP localization targets",
+      "prove target and localization-model uniqueness for normalized fixed targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W519 closed-range provider data for mapped explicit cokernels",
+      "prove ExactAt-conditioned incoming maps are closed embeddings, outgoing maps are open, and outgoing maps are Epi",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteSupportStateW697
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -40449,6 +40717,39 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsClosedRangeEndpointTopologyRouteStateW696_productSuccess
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedMapRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697_accepted
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundle_of_targetSurjectiveCompactW697
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactClosedEmbeddingRowsClosedRangeEndpointTopologyDirectLocalizationBundleW697_accepted
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyInputNamesW697
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyInputNamesW697_count
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRowsTargetSurjectiveClosedRangeEndpointTopologyRouteStateW697_productSuccess
 
 set_option linter.style.longLine false in
 #check
