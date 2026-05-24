@@ -2,8 +2,22 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W756 W717 relation-data W718 component-provider exactness route specializes W755: W717 bundles the two W712 relation providers, and W718 bundles the three W714 diagram-only selected-difference component closed-map or closed-embedding facts. The exposed exactness route now requires one W717 bundled relation-data provider plus one W718 selected-difference diagram component closed-map or closed-embedding provider; product_success remains false.",
+  "summary": "W757 W735 concrete leaf exactness route specializes W756: the W735 closed-map and closed-embedding category-homology instance concrete leaf input records already carry the W717 relation data and W718 selected-difference diagram component providers required by W756. The exposed exactness route now requires one W735 closed-map or closed-embedding concrete leaf input record; product_success remains false.",
   "verified_commands": [
+    "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/w757_required_declarations.lean",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "git diff --check",
+    "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+    "python3 -c \"import json; [json.load(open(p)) for p in ['run/verification.json','terminal_outcome/terminal_outcome.json','proof_frontier/FRONTIER_MATRIX.json','manifest.json']]\"",
+    "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/scratch_log_browser_evidence --expect W757 W735 concrete leaf exactness route --expect product_complete=false --expect 20260524T233114Z_codex_parent_w757",
+    "lake build",
+    "python3 audit/external_audit.py --root . --self-check-only",
+    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
     "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -2463,6 +2477,16 @@
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T170543Z_codex_parent_w722/browser_evidence --expect W722 --expect product_complete=false --expect 20260524T170543Z_codex_parent_w722"
   ],
   "required_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeafInputsW757",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW757",
+    "Dbounded.exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757",
+    "Dbounded.exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757_count",
+    "Dbounded.exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757",
+    "Dbounded.exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757_count",
+    "Dbounded.MetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteSupportStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756",
     "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756",
@@ -6809,8 +6833,7 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
   "known_gaps": [
-    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
-    "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
+    "Construct concrete W735 closed-map or closed-embedding category-homology instance concrete leaf input records for the W757 W735 concrete leaf exactness route.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -6818,15 +6841,24 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "self-reference-safe: commit SHA recorded externally after commit creation",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "No worker output was accepted for W756; parent verified deterministic W717/W718-to-W755 exactness plumbing directly in the live target.",
-  "claim_review_result": "not applicable: W756 W717 relation-data W718 component-provider exactness route is a nonterminal support increment with product_success=false",
+  "worker_frontier_summary": "No worker output was accepted for W757; parent verified deterministic W735 leaf-record field projection into W756 exactness directly in the live target.",
+  "claim_review_result": "not applicable: W757 W735 concrete leaf exactness route is a nonterminal support increment with product_success=false",
   "remaining_gaps": [
-    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
-    "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
+    "Construct concrete W735 closed-map or closed-embedding category-homology instance concrete leaf input records for the W757 W735 concrete leaf exactness route.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "next_recommended_goal": "Construct the W717 bundled relation-data provider and W718 selected-difference diagram component closed-map or closed-embedding provider, or reduce those providers to concrete topology/component hypotheses.",
+  "next_recommended_goal": "Construct concrete W735 closed-map or closed-embedding category-homology instance concrete leaf records, then finish Dbounded stable-infinity inputs.",
   "implemented_declarations": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeafInputsW757",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW757",
+    "Dbounded.exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757",
+    "Dbounded.exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757_count",
+    "Dbounded.exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757",
+    "Dbounded.exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757_count",
+    "Dbounded.MetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteSupportStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756",
     "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756",
@@ -11708,9 +11740,19 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
-  "generated_utc": "2026-05-24T23:25:57Z",
-  "support_result_classification": "verified_nonterminal_support_increment_w756_w717_relation_data_w718_component_provider_exactness_route",
+  "generated_utc": "2026-05-24T23:36:40Z",
+  "support_result_classification": "verified_nonterminal_support_increment_w757_w735_concrete_leaf_exactness_route",
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeafInputsW757",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW757",
+    "Dbounded.exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757",
+    "Dbounded.exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757_count",
+    "Dbounded.exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757",
+    "Dbounded.exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757_count",
+    "Dbounded.MetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteSupportStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756",
     "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756",
@@ -16625,13 +16667,12 @@
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
-    "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
+    "Construct concrete W735 closed-map or closed-embedding category-homology instance concrete leaf input records for the W757 W735 concrete leaf exactness route.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "latest_verified_increment": "W756 W717 relation-data W718 component-provider exactness route",
-  "source_tree_hash": "76b0cead04413c62867d60981141e276e0de13f757e346deb832fcb20b9c4d91",
-  "summary_log_tail": "W756 focused Lean/report gates passed; final JSON/browser/full-build/external-audit gates are recorded in the W756 run directory.",
+  "latest_verified_increment": "W757 W735 concrete leaf exactness route",
+  "source_tree_hash": "4f4db1178a1c236bd3ca64105f0f087981e55ad13f714a429bc6e8f0ee243594",
+  "summary_log_tail": "W757 focused Lean/report gates passed; final JSON/browser/full-build/external-audit gates are recorded in the W757 run directory.",
   "git_commit_note": "Commit SHA is intentionally not embedded before commit; remote durability JSON records the final pushed SHA after commit.",
   "metadata_corrections": {
     "w739_metadata_refresh": {
@@ -18452,9 +18493,9 @@
       "note": "Terminal outcome remains blocked_nonterminal_frontier; update_goal_allowed remains false after W751."
     }
   },
-  "classification": "verified_nonterminal_support_increment_w756_w717_relation_data_w718_component_provider_exactness_route",
-  "latest_increment": "W756 W717 relation-data W718 component-provider exactness route",
-  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756",
+  "classification": "verified_nonterminal_support_increment_w757_w735_concrete_leaf_exactness_route",
+  "latest_increment": "W757 W735 concrete leaf exactness route",
+  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757",
   "product_success_claimed": false,
   "update_goal_complete_permitted": false
 }

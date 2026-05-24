@@ -1,9 +1,79 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w756-w717-relation-data-w718-component-provider-exactness-route",
-  "generated_utc": "2026-05-24T23:25:57Z",
-  "source_tree_hash": "76b0cead04413c62867d60981141e276e0de13f757e346deb832fcb20b9c4d91",
-  "summary": "W756 W717 relation-data W718 component-provider exactness route specializes W755: W717 bundles the two W712 relation providers, and W718 bundles the three W714 diagram-only selected-difference component closed-map or closed-embedding facts. The exposed exactness route now requires one W717 bundled relation-data provider plus one W718 selected-difference diagram component closed-map or closed-embedding provider; product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w757-w735-concrete-leaf-exactness-route",
+  "generated_utc": "2026-05-24T23:36:40Z",
+  "source_tree_hash": "4f4db1178a1c236bd3ca64105f0f087981e55ad13f714a429bc6e8f0ee243594",
+  "summary": "W757 W735 concrete leaf exactness route specializes W756: the W735 closed-map and closed-embedding category-homology instance concrete leaf input records already carry the W717 relation data and W718 selected-difference diagram component providers required by W756. The exposed exactness route now requires one W735 closed-map or closed-embedding concrete leaf input record; product_success remains false.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W757 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/lean_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W757 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product success declaration audit checks the W757 declarations while product_success remains false; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/lean_product_success_declarations.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/w757_required_declarations.lean",
+      "status": "passed",
+      "evidence": "Run-owned W757 required declaration checks passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/lean_w757_required_declarations.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Baseline required declaration audit passed after W757; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/lean_required_declarations.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan passed for the source tree; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/audit_no_forbidden_lean_tokens.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed for the W757 worktree; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/git_diff_check_final.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "HTML progress report validator passed after W757 report update; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/html_check_report.log."
+    },
+    {
+      "command": "python3 -c \"import json; [json.load(open(p)) for p in ['run/verification.json','terminal_outcome/terminal_outcome.json','proof_frontier/FRONTIER_MATRIX.json','manifest.json']]\"",
+      "status": "passed",
+      "evidence": "JSON parse gate passed for verification, terminal outcome, frontier matrix, and manifest; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/json_parse.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "No productSuccessClaimed := true marker exists; rg exit 1 is expected for the nonterminal W757 increment; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/product_success_true_grep.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/scratch_log_browser_evidence --expect W757 W735 concrete leaf exactness route --expect product_complete=false --expect 20260524T233114Z_codex_parent_w757",
+      "status": "passed",
+      "evidence": "Browser-rendered report evidence contains the W757 label, product_complete=false, and run id; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/scratch_log_browser_evidence."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W757 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/lake_build_full.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed for the W757 evidence set; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/external_audit_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "External audit product gate still rejects the terminal outcome because product_success is intentionally not claimed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/external_audit_terminal_expected.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -16393,6 +16463,16 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeafInputsW757",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW757",
+    "Dbounded.exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757",
+    "Dbounded.exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757_count",
+    "Dbounded.exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757",
+    "Dbounded.exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757_count",
+    "Dbounded.MetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteSupportStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756",
     "Dbounded.exactAcyclicWppOpRelationDataDiagramComponentProviderClosedMapInputNamesW756",
@@ -21306,19 +21386,17 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
-    "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
+    "Construct concrete W735 closed-map or closed-embedding category-homology instance concrete leaf input records for the W757 W735 concrete leaf exactness route.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w756_w717_relation_data_w718_component_provider_exactness_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w757_w735_concrete_leaf_exactness_route",
   "product_success": false,
   "remaining_work": [
-    "Construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider for the W756 W717 relation-data W718 component-provider exactness route.",
-    "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
+    "Construct concrete W735 closed-map or closed-embedding category-homology instance concrete leaf input records for the W757 W735 concrete leaf exactness route.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "summary_log_tail": "W756 focused Lean/report gates passed; final JSON/browser/full-build/external-audit gates are recorded in the W756 run directory.",
-  "latest_verified_increment": "W756 W717 relation-data W718 component-provider exactness route",
+  "summary_log_tail": "W757 focused Lean/report gates passed; final JSON/browser/full-build/external-audit gates are recorded in the W757 run directory.",
+  "latest_verified_increment": "W757 W735 concrete leaf exactness route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",

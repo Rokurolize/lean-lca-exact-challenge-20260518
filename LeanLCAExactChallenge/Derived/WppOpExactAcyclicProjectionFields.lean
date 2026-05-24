@@ -54514,6 +54514,117 @@ theorem
       false :=
   rfl
 
+/--
+W757 consumes the W735 closed-map category-homology instance concrete leaf record
+as a direct exactness input: its relation data and W718 closed-map component
+provider are precisely the two inputs required by W756.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeafInputsW757
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756
+    inputs.relationData
+    inputs.globalClosedMapComponents
+
+/--
+W757 closed-embedding branch: the W735 closed-embedding concrete leaf record
+also carries W717 relation data and the W718 closed-embedding component provider
+required by W756.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW757
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756
+    inputs.relationData
+    inputs.globalClosedEmbeddingComponents
+
+/-- Input name for the W757 closed-map W735 leaf-record exactness route. -/
+def
+    exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757 :
+    List String :=
+  ["W735 closed-map category-homology instance concrete leaf input record"]
+
+theorem
+    exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757_count :
+    exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757.length =
+      1 :=
+  rfl
+
+/--
+Input name for the W757 closed-embedding W735 leaf-record exactness route.
+-/
+def
+    exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757 :
+    List String :=
+  ["W735 closed-embedding category-homology instance concrete leaf input record"]
+
+theorem
+    exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757_count :
+    exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757.length =
+      1 :=
+  rfl
+
+/--
+Current checked W757 state for routing W735 category-homology instance concrete
+leaf records through W756 exactness.
+-/
+structure MetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapLeafExactnessResult : String
+  closedEmbeddingLeafExactnessResult : String
+  w735ProjectionResult : String
+  w756ExactnessResult : String
+  exposedClosedMapInputs : List String
+  exposedClosedEmbeddingInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W757 state. -/
+def
+    currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteSupportStateW757 :
+    MetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757
+    where
+  seed := "w757-w735-category-homology-instance-leaf-exactness-route"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeafInputsW757",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW757",
+      "exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757",
+      "exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757_count",
+      "exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757",
+      "exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757_count"]
+  closedMapLeafExactnessResult :=
+    "proved: W735 closed-map category-homology instance concrete leaf inputs carry W756 relation data and component provider inputs"
+  closedEmbeddingLeafExactnessResult :=
+    "proved: W735 closed-embedding category-homology instance concrete leaf inputs carry W756 relation data and component provider inputs"
+  w735ProjectionResult :=
+    "proved: W735 leaf records expose relationData and selected-difference diagram component providers directly"
+  w756ExactnessResult :=
+    "proved: W756 consumes W717 relation data plus W718 diagram component providers for exactness"
+  exposedClosedMapInputs :=
+    exactAcyclicWppOpClosedMapCategoryHomologyInstanceConcreteLeafInputNamesW757
+  exposedClosedEmbeddingInputs :=
+    exactAcyclicWppOpClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputNamesW757
+  remainingInputs :=
+    ["construct concrete W735 closed-map or closed-embedding category-homology instance concrete leaf input records",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757 :
+    MetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757 :=
+  currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteSupportStateW757
+
+theorem
+    currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757_productSuccess :
+    currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactnessRouteStateW757.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

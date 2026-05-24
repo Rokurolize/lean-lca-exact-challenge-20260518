@@ -160,20 +160,20 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W756 W717 relation-data W718 component-provider exactness route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W757 W735 concrete leaf exactness route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260524T231719Z_codex_parent_w756</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T233114Z_codex_parent_w757</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W756 W717 relation-data W718 component-provider exactness route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W757 W735 concrete leaf exactness route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
       <div class="columns">
         <div>
-          <p>W756 W717 relation-data W718 component-provider exactness route specializes W755 by bundling its five explicit inputs into two providers: W717 relation data supplies the W712 relation-pullback and target-relation-lift providers, while W718 supplies the three W714 diagram-only selected-difference component facts.</p>
+          <p>W757 W735 concrete leaf exactness route specializes W756: the existing W735 closed-map and closed-embedding category-homology instance concrete leaf records already carry the W717 relation data and W718 diagram component providers required for exactness.</p>
           <ul>
-            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756</code> routes W717 relation data plus a W718 closed-map component provider to W755 exactness.</li>
-            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756</code> adds the parallel closed-embedding component-provider branch.</li>
-            <li>The exposed route inputs are now one W717 bundled relation-data provider and one W718 selected-difference diagram component closed-map or closed-embedding provider.</li>
+            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeafInputsW757</code> projects W735 closed-map leaf inputs into W756 exactness.</li>
+            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW757</code> adds the parallel closed-embedding W735 leaf-input branch.</li>
+            <li>The exposed exactness route now needs one W735 closed-map or closed-embedding category-homology instance concrete leaf input record.</li>
           </ul>
         </div>
         <div>
@@ -182,7 +182,7 @@ textarea.goal-text {
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T231719Z_codex_parent_w756/w756_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/w757_required_declarations.lean</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake build</code></li>
             <li>Forbidden-token audits, JSON parse checks, manifest self-check, browser evidence, and expected nonterminal product-gate rejection.</li>
@@ -191,14 +191,13 @@ textarea.goal-text {
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W756 work.</p></div>
-      <p>W755 W712 explicit relation-fields W714 diagram route specialized W754 by assembling W512 relation fields from separate W712 relation-pullback and target-relation-lift providers while keeping W714 diagram-only component closedness explicit.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W757 work.</p></div>
+      <p>W756 W717 relation-data W718 component-provider exactness route bundled W755's two W712 relation-provider inputs and three W714 diagram component inputs into W717 relation data plus one W718 selected-difference diagram component provider.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>W756 route: construct a concrete W717 bundled closed-natural-transformation relation-data provider and a concrete W718 selected-difference diagram component closed-map or closed-embedding provider.</li>
-        <li>Concrete values for the W735 branch data inputs.</li>
+        <li>W757 route: construct concrete W735 closed-map or closed-embedding category-homology instance concrete leaf input records.</li>
         <li>Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
       </ul>
     </section>
