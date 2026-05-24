@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T17:38:26Z",
+  "generated_utc": "2026-05-24T17:47:49Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,11 +1854,11 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w724_source_homological_triangulation_route",
-  "latest_parent_update": "parent_update_v724_source_homological_triangulation_route",
-  "summary": "W724 source homological-triangulation route bundles the W723 CategoryWithHomology MetrizableLCA provider and the W722 source triangulation provider into one source-side provider. It projects that provider back to W723, delegates both closed-map and closed-embedding accepted paths to W723, reduces the current input-name count from 10 to 9, and keeps product-success flags false.",
-  "remaining_frontier": "Need concrete bundled WPP boundary data, bundled closed-natural-transformation relation data, concrete target-only surjective-compact target data, concrete selected-difference diagram component provider data, concrete normalized fixed-target data, concrete source homological-triangulation data, mapped-cokernel closed-provider data, concrete endpoint strict-topology data, concrete localized-right-adjoint data, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w724_source_homological_triangulation_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w725_closedness_branch_provider_route",
+  "latest_parent_update": "parent_update_v725_closedness_branch_provider_route",
+  "summary": "W725 closedness-branch provider route aligns selected-difference component closedness with the matching W519 mapped-explicit-cokernel closedness provider. It introduces one branch provider with closed-map and closed-embedding cases, delegates each case to the W724 source homological-triangulation route, reduces the current input-name count from 9 to 8, and keeps product-success flags false.",
+  "remaining_frontier": "Need concrete bundled WPP boundary data, bundled closed-natural-transformation relation data, concrete target-only surjective-compact target data, concrete matched selected-difference component plus W519 mapped-cokernel closedness branch data, concrete normalized fixed-target data, concrete source homological-triangulation data, concrete endpoint strict-topology data, concrete localized-right-adjoint data, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w725_closedness_branch_provider_route",
   "remaining_blockers": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
     "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
@@ -2141,10 +2141,9 @@
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
     "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
     "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
-    "Concrete selected-difference diagram component closed-map or closed-embedding provider data remain unconstructed.",
+    "Concrete matched selected-difference component and W519 mapped-cokernel closedness branch provider remains unconstructed.",
     "Concrete normalized fixed-target data provider remains unconstructed.",
-    "Concrete source homological-triangulation data provider remains unconstructed; W724 only bundles the CategoryWithHomology and source triangulation provider surfaces.",
-    "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
+    "Concrete source homological-triangulation data provider remains unconstructed.",
     "Concrete endpoint strict-topology data provider remains unconstructed; its bundled forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
     "Concrete bounded homotopy localized-right-adjoint data provider remains unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
@@ -6456,6 +6455,27 @@
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteSupportStateW724",
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW724",
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW724_productSuccess"
+    ]
+  },
+  "parent_update_v725": "W725 closedness-branch provider route aligns selected-difference component closedness with the matching W519 mapped-explicit-cokernel closedness provider. It introduces one branch provider with closed-map and closed-embedding cases, delegates each case to the W724 source homological-triangulation route, reduces the current input-name count from 9 to 8, and keeps product-success flags false.",
+  "parent_update_w725_metadata_refresh": {
+    "generated_utc": "2026-05-24T17:47:49Z",
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T174217Z_codex_parent_w725",
+    "source_tree_hash": "a2d8b856fe8bd142597233e5ffd54c0c9625e24729a30801cb84ede3dbe30fa0",
+    "classification": "verified_nonterminal_support_increment_w725_closedness_branch_provider_route",
+    "product_complete": false,
+    "implemented_declarations": [
+      "Dbounded.MetrizableWppDiagramAndMappedCokernelClosednessDataProviderW725",
+      "Dbounded.MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW725",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW725_count",
+      "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteSupportStateW725",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
     ]
   }
 }

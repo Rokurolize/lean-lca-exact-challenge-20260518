@@ -50243,6 +50243,238 @@ theorem
       false :=
   rfl
 
+/--
+W725 keeps the selected-difference component closedness branch aligned with the
+matching W519 mapped-explicit-cokernel closedness provider.
+-/
+inductive MetrizableWppDiagramAndMappedCokernelClosednessDataProviderW725 :
+    Type 2 where
+  | closedMap
+      (globalClosedMapComponents :
+        SelectedDifferenceClosedMapDiagramComponentProviderW718)
+      (mappedCokernelClosedMapProvider :
+        MappedExplicitCokernelClosedMapProviderW519)
+  | closedEmbedding
+      (globalClosedEmbeddingComponents :
+        SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718)
+      (mappedCokernelClosedEmbeddingProvider :
+        MappedExplicitCokernelClosedEmbeddingProviderW519)
+
+/--
+W725 bundle: expose the W724 source-homological route with one closedness
+branch input instead of unrelated component and mapped-cokernel closedness data.
+-/
+structure
+    MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725 :
+    Type 2 where
+  boundaryData :
+    MetrizableWppLimitBoundaryDataW716
+  relationData :
+    ClosedNatTransOrdinaryRelationDataProviderW717
+  targetSurjectiveCompactForTargetProvider :
+    TargetSurjectiveCompactForTargetProviderW715
+  diagramAndMappedCokernelClosednessData :
+    MetrizableWppDiagramAndMappedCokernelClosednessDataProviderW725
+  normalizedFixedTargetData :
+    MetrizableWppNormalizedFixedTargetDataProviderW719
+  sourceHomologicalTriangulationData :
+    MetrizableWppSourceHomologicalTriangulationDataProviderW724
+  endpointStrictTopologyData :
+    MetrizableWppEndpointStrictTopologyDataProviderW720
+  localizedRightAdjointData :
+    MetrizableWppLocalizedRightAdjointDataProviderW721
+
+/-- W725 closedness-branch route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  match inputs.diagramAndMappedCokernelClosednessData with
+  | .closedMap globalClosedMapComponents mappedCokernelClosedMapProvider =>
+      metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724
+        { boundaryData := inputs.boundaryData
+          relationData := inputs.relationData
+          targetSurjectiveCompactForTargetProvider :=
+            inputs.targetSurjectiveCompactForTargetProvider
+          globalClosedMapComponents := globalClosedMapComponents
+          normalizedFixedTargetData := inputs.normalizedFixedTargetData
+          sourceHomologicalTriangulationData :=
+            inputs.sourceHomologicalTriangulationData
+          mappedCokernelClosedMapProvider := mappedCokernelClosedMapProvider
+          endpointStrictTopologyData := inputs.endpointStrictTopologyData
+          localizedRightAdjointData := inputs.localizedRightAdjointData }
+  | .closedEmbedding globalClosedEmbeddingComponents
+      mappedCokernelClosedEmbeddingProvider =>
+      metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724
+        { boundaryData := inputs.boundaryData
+          relationData := inputs.relationData
+          targetSurjectiveCompactForTargetProvider :=
+            inputs.targetSurjectiveCompactForTargetProvider
+          globalClosedEmbeddingComponents := globalClosedEmbeddingComponents
+          normalizedFixedTargetData := inputs.normalizedFixedTargetData
+          sourceHomologicalTriangulationData :=
+            inputs.sourceHomologicalTriangulationData
+          mappedCokernelClosedEmbeddingProvider :=
+            mappedCokernelClosedEmbeddingProvider
+          endpointStrictTopologyData := inputs.endpointStrictTopologyData
+          localizedRightAdjointData := inputs.localizedRightAdjointData }
+
+/-- W725 closedness-branch route is accepted through W724. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  match inputs.diagramAndMappedCokernelClosednessData with
+  | .closedMap globalClosedMapComponents mappedCokernelClosedMapProvider =>
+      metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724
+        { boundaryData := inputs.boundaryData
+          relationData := inputs.relationData
+          targetSurjectiveCompactForTargetProvider :=
+            inputs.targetSurjectiveCompactForTargetProvider
+          globalClosedMapComponents := globalClosedMapComponents
+          normalizedFixedTargetData := inputs.normalizedFixedTargetData
+          sourceHomologicalTriangulationData :=
+            inputs.sourceHomologicalTriangulationData
+          mappedCokernelClosedMapProvider := mappedCokernelClosedMapProvider
+          endpointStrictTopologyData := inputs.endpointStrictTopologyData
+          localizedRightAdjointData := inputs.localizedRightAdjointData }
+  | .closedEmbedding globalClosedEmbeddingComponents
+      mappedCokernelClosedEmbeddingProvider =>
+      metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724
+        { boundaryData := inputs.boundaryData
+          relationData := inputs.relationData
+          targetSurjectiveCompactForTargetProvider :=
+            inputs.targetSurjectiveCompactForTargetProvider
+          globalClosedEmbeddingComponents := globalClosedEmbeddingComponents
+          normalizedFixedTargetData := inputs.normalizedFixedTargetData
+          sourceHomologicalTriangulationData :=
+            inputs.sourceHomologicalTriangulationData
+          mappedCokernelClosedEmbeddingProvider :=
+            mappedCokernelClosedEmbeddingProvider
+          endpointStrictTopologyData := inputs.endpointStrictTopologyData
+          localizedRightAdjointData := inputs.localizedRightAdjointData }
+
+/-- The W725 closedness-branch package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725_accepted
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725
+          inputs).certificate) =
+        true := by
+  cases inputs.diagramAndMappedCokernelClosednessData with
+  | closedMap globalClosedMapComponents mappedCokernelClosedMapProvider =>
+      exact
+        metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724_accepted
+          { boundaryData := inputs.boundaryData
+            relationData := inputs.relationData
+            targetSurjectiveCompactForTargetProvider :=
+              inputs.targetSurjectiveCompactForTargetProvider
+            globalClosedMapComponents := globalClosedMapComponents
+            normalizedFixedTargetData := inputs.normalizedFixedTargetData
+            sourceHomologicalTriangulationData :=
+              inputs.sourceHomologicalTriangulationData
+            mappedCokernelClosedMapProvider := mappedCokernelClosedMapProvider
+            endpointStrictTopologyData := inputs.endpointStrictTopologyData
+            localizedRightAdjointData := inputs.localizedRightAdjointData }
+  | closedEmbedding globalClosedEmbeddingComponents
+      mappedCokernelClosedEmbeddingProvider =>
+      exact
+        metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724_accepted
+          { boundaryData := inputs.boundaryData
+            relationData := inputs.relationData
+            targetSurjectiveCompactForTargetProvider :=
+              inputs.targetSurjectiveCompactForTargetProvider
+            globalClosedEmbeddingComponents := globalClosedEmbeddingComponents
+            normalizedFixedTargetData := inputs.normalizedFixedTargetData
+            sourceHomologicalTriangulationData :=
+              inputs.sourceHomologicalTriangulationData
+            mappedCokernelClosedEmbeddingProvider :=
+              mappedCokernelClosedEmbeddingProvider
+            endpointStrictTopologyData := inputs.endpointStrictTopologyData
+            localizedRightAdjointData := inputs.localizedRightAdjointData }
+
+/-- Input names for the W725 closedness-branch route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW725 :
+    List String :=
+  ["bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+    "bundled closed natural transformation ordinary relation-pullback and target-relation-lift provider",
+    "target-only ordinary target-difference surjectivity plus target-codomain compactness provider",
+    "matched selected-difference component and W519 mapped-cokernel closedness branch provider",
+    "normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness provider",
+    "source homological-triangulation data provider for CategoryWithHomology, Pretriangulated, IsTriangulated, and triangle completion data",
+    "endpoint strict-topology data provider for forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and endpoint epis",
+    "bounded homotopy localized-right-adjoint data provider for right adjoint, adjunction, and unit membership"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW725_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW725.length =
+      8 :=
+  rfl
+
+/-- Current checked W725 state for the matched closedness-branch route. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725 :
+    Type where
+  seed : String
+  declarations : List String
+  closednessBranchAlignmentResult : String
+  closednessBranchAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W725 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteSupportStateW725 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725
+    where
+  seed :=
+    "w725-diagram-and-mapped-cokernel-closedness-branch-route"
+  declarations :=
+    ["MetrizableWppDiagramAndMappedCokernelClosednessDataProviderW725",
+      "MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725",
+      "metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW725",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW725_count"]
+  closednessBranchAlignmentResult :=
+    "proved: one branch provider keeps selected-difference component closedness aligned with the matching W519 mapped-cokernel closedness provider"
+  closednessBranchAcceptedResult :=
+    "proved: closed-map and closed-embedding cases both assemble W724 and feed accepted routes"
+  replacedInputs :=
+    ["separate selected-difference component closed-map/closed-embedding provider",
+      "separate W519 mapped-explicit-cokernel closed-map/closed-embedding provider"]
+  remainingInputs :=
+    ["construct concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+      "construct concrete bundled closed-natural-transformation relation data",
+      "construct concrete target-only surjective-compact provider for every WPP-op target",
+      "construct concrete matched selected-difference component and W519 mapped-cokernel closedness branch provider",
+      "construct concrete normalized fixed-target data provider",
+      "construct concrete source homological-triangulation data provider",
+      "construct concrete endpoint strict-topology data provider",
+      "construct concrete bounded homotopy localized-right-adjoint data provider",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteSupportStateW725
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
