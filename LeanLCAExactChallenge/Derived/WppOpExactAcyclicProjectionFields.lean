@@ -53023,6 +53023,90 @@ theorem
       false :=
   rfl
 
+/--
+W743 specializes W742 by deriving its projection-field input from the W481
+componentwise closed-range projection provider.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ComponentwiseProjectionLeftW743
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (selectedW461Provider :
+      WppOpSingleW461ProviderComponentwiseProjectionV370SupportW483.SelectedW461PromotionInputsProviderW483)
+    (hcomponentwise :
+      WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481.ComponentwiseClosedRangeProjectionProviderW481) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ProjectionFieldsLeftW742
+    closureKernelProvider
+    comparisonIso
+    selectedW461Provider
+    (WppOpW461BridgeComponentwiseClosedRangeProjectionV370SupportW481.projectionFieldsProvider_of_componentwiseClosedRangeProjectionInputs_w481
+      hcomponentwise)
+
+/-- Input names for the W743 selected-W461/componentwise-projection specialization. -/
+def exactAcyclicWppOpClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftInputNamesW743 :
+    List String :=
+  ["closure-kernel mapped explicit cokernel provider for forgetful homology preservation",
+    "universal IsIso for every MetrizableLCA left-right homology comparison",
+    "W483 selected W461 promotion provider for pure left closed-image preservation",
+    "W481 componentwise closed-range projection provider for WPP-op diagrams"]
+
+theorem
+    exactAcyclicWppOpClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftInputNamesW743_count :
+    exactAcyclicWppOpClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftInputNamesW743.length =
+      4 :=
+  rfl
+
+/--
+Current checked W743 state for the selected-W461/componentwise-projection
+specialization of the W742 route.
+-/
+structure MetrizableWppClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftRouteStateW743 :
+    Type where
+  seed : String
+  declarations : List String
+  componentwiseProjectionResult : String
+  exactAcyclicConsumerResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W743 state. -/
+def currentMetrizableWppClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftRouteSupportStateW743 :
+    MetrizableWppClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftRouteStateW743
+    where
+  seed :=
+    "w743-closure-kernel-comparison-selected-w461-componentwise-projection-specialization"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ComponentwiseProjectionLeftW743",
+      "exactAcyclicWppOpClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftInputNamesW743",
+      "exactAcyclicWppOpClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftInputNamesW743_count"]
+  componentwiseProjectionResult :=
+    "proved: W481 componentwise closed-range projection provider supplies W742's projection-field input"
+  exactAcyclicConsumerResult :=
+    "proved: W742 can consume closure-kernel data, comparison isomorphisms, selected W461 data, and componentwise projection data"
+  exposedInputs :=
+    exactAcyclicWppOpClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftInputNamesW743
+  remainingInputs :=
+    ["construct closure-kernel mapped explicit cokernel provider",
+      "construct the universal left-right homology comparison isomorphism",
+      "construct W483 selected W461 promotion provider",
+      "construct W481 componentwise closed-range projection provider for WPP-op diagrams"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftRouteStateW743 :
+    MetrizableWppClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftRouteStateW743 :=
+  currentMetrizableWppClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftRouteSupportStateW743
+
+theorem
+    currentMetrizableWppClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftRouteStateW743_productSuccess :
+    currentMetrizableWppClosureKernelComparisonSelectedW461ComponentwiseProjectionLeftRouteStateW743.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
