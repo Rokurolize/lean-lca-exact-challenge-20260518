@@ -38,20 +38,20 @@
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W732 one route-data provider</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W733 explicit leaf constructor</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260524T190043Z_codex_parent_w732</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T190937Z_codex_parent_w733</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W732 one route-data provider</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W733 explicit leaf constructor</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
       <div class="columns">
         <div>
-          <p>W732 bundles boundary/relation data with target/closedness normalized source/endpoint data in one route-data provider. The W732 route projects that provider back into the W731 target/normalized bundle, delegates acceptance to W731, and keeps the product-success flags false.</p>
+          <p>W733 exposes eight explicit leaf providers for constructing the W732 one route-data provider. The W733 route assembles boundary/relation, endpoint/localized, source/endpoint, normalized source/endpoint, target/closedness, and target/normalized data, delegates acceptance to W732, and keeps the product-success flags false.</p>
           <ul>
-            <li><code>MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732</code> records all remaining WPP semantic route-data in one provider.</li>
-            <li>The W732 accepted route assembles the W731 bundle with projected boundary/relation and target/normalized fields.</li>
-            <li>The input-name count drops from <code>2</code> to <code>1</code>.</li>
+            <li><code>MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733</code> names the explicit leaf providers needed to construct the one-provider route data.</li>
+            <li>The W733 accepted route assembles the W732 provider from those leaves and then uses the W732 accepted path.</li>
+            <li>The constructor surface names <code>8</code> explicit leaf inputs without claiming any concrete leaf value exists.</li>
           </ul>
         </div>
         <div>
@@ -60,7 +60,7 @@
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T190043Z_codex_parent_w732/w732_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T190937Z_codex_parent_w733/w733_required_declarations.lean</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake env lean LeanLCAExactChallenge.lean</code> and <code>lake build</code></li>
             <li>Forbidden-token audits, JSON parse checks, manifest self-check, browser evidence, and expected nonterminal product-gate rejection.</li>
@@ -69,13 +69,13 @@
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W732 work.</p></div>
-      <p>W731 paired target/closedness data with normalized source/endpoint data in one provider.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W733 work.</p></div>
+      <p>W732 bundled boundary/relation data with target/closedness normalized source/endpoint data in one route-data provider.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>Concrete boundary/relation target/closedness normalized source/endpoint route-data provider.</li>
+        <li>Concrete values for the eight explicit W733 leaf providers.</li>
         <li>Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
       </ul>
     </section>

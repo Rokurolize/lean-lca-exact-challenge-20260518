@@ -8379,6 +8379,36 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732
   #check
     Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732_productSuccess
+  #check
+    Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+  #check Dbounded.boundaryRelationData_of_concreteLeavesW733
+  #check Dbounded.endpointLocalizedRightAdjointData_of_concreteLeavesW733
+  #check Dbounded.sourceHomologicalEndpointLocalizedData_of_concreteLeavesW733
+  #check
+    Dbounded.normalizedFixedTargetSourceEndpointData_of_concreteLeavesW733
+  #check Dbounded.targetClosednessData_of_concreteLeavesW733
+  #check
+    Dbounded.targetClosednessNormalizedSourceEndpointData_of_concreteLeavesW733
+  #check
+    Dbounded.boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733_accepted
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW733
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW733_count
+  #check
+    Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteSupportStateW733
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

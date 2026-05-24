@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T19:05:54Z",
+  "generated_utc": "2026-05-24T19:15:01Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,17 +1854,17 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w732_one_route_data_provider",
-  "latest_parent_update": "parent_update_v732_one_route_data_provider",
-  "summary": "W732 one route-data provider bundles boundary/relation data with target/closedness normalized source/endpoint data into one provider. It projects that provider back to the W731 target/normalized route, delegates acceptance to W731, reduces input-name count from 2 to 1, and keeps product-success flags false.",
-  "remaining_frontier": "Need concrete one-provider WPP route data and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w732_one_route_data_provider",
+  "support_result_classification": "verified_nonterminal_support_increment_w733_explicit_leaf_constructor",
+  "latest_parent_update": "parent_update_v733_explicit_leaf_constructor",
+  "summary": "W733 explicit leaf constructor exposes eight leaf providers for constructing the W732 one route-data provider. It assembles boundary/relation, endpoint/localized, source/endpoint, normalized source/endpoint, target/closedness, and target/normalized data, delegates acceptance to W732, and keeps product-success flags false.",
+  "remaining_frontier": "Need concrete values for the eight explicit W733 leaf providers and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w733_explicit_leaf_constructor",
   "remaining_blockers": [
-    "Concrete boundary/relation target/closedness normalized source/endpoint route-data provider remains unconstructed.",
+    "Concrete values for the eight explicit W733 leaf providers remain unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "open_blockers": [
-    "Concrete boundary/relation target/closedness normalized source/endpoint route-data provider remains unconstructed.",
+    "Concrete values for the eight explicit W733 leaf providers remain unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "consumed_support_results": [
@@ -2124,7 +2124,7 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
-    "Concrete boundary/relation target/closedness normalized source/endpoint route-data provider remains unconstructed.",
+    "Concrete values for the eight explicit W733 leaf providers remain unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "parent_update_v324": {
@@ -4788,7 +4788,7 @@
     }
   ],
   "current_primary_blockers": [
-    "construct concrete boundary/relation target/closedness normalized source/endpoint route-data provider",
+    "construct concrete values for the eight explicit W733 leaf providers",
     "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
   ],
   "parent_update_w467": {
@@ -6625,5 +6625,33 @@
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732_productSuccess"
     ],
     "note": "W732 source, product audit, metadata, browser evidence, and nonterminal product-gate evidence are recorded; product_success/product_complete/update_goal_allowed remain false."
+  },
+  "parent_update_v733": "W733 explicit leaf constructor exposes eight leaf providers for constructing the W732 one route-data provider. It assembles boundary/relation, endpoint/localized, source/endpoint, normalized source/endpoint, target/closedness, and target/normalized data, delegates acceptance to W732, and keeps product-success flags false.",
+  "parent_update_w733_metadata_refresh": {
+    "generated_utc": "2026-05-24T19:15:01Z",
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T190937Z_codex_parent_w733",
+    "source_tree_hash": "9da1957247facd76fcd240fa8622ad834c7112d5907ed1634618b84ce9ff325e",
+    "classification": "verified_nonterminal_support_increment_w733_explicit_leaf_constructor",
+    "product_complete": false,
+    "implemented_declarations": [
+      "Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733",
+      "Dbounded.boundaryRelationData_of_concreteLeavesW733",
+      "Dbounded.endpointLocalizedRightAdjointData_of_concreteLeavesW733",
+      "Dbounded.sourceHomologicalEndpointLocalizedData_of_concreteLeavesW733",
+      "Dbounded.normalizedFixedTargetSourceEndpointData_of_concreteLeavesW733",
+      "Dbounded.targetClosednessData_of_concreteLeavesW733",
+      "Dbounded.targetClosednessNormalizedSourceEndpointData_of_concreteLeavesW733",
+      "Dbounded.boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW733",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW733_count",
+      "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteSupportStateW733",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733_productSuccess"
+    ],
+    "note": "W733 source, product audit, metadata, browser evidence, and nonterminal product-gate evidence are recorded; product_success/product_complete/update_goal_allowed remain false."
   }
 }

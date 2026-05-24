@@ -51599,6 +51599,205 @@ theorem
       false :=
   rfl
 
+/-- W733 exposes explicit leaf inputs for constructing the W732 route-data provider. -/
+structure MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733 :
+    Type 2 where
+  boundaryData :
+    MetrizableWppLimitBoundaryDataW716
+  relationData :
+    ClosedNatTransOrdinaryRelationDataProviderW717
+  targetSurjectiveCompactForTargetProvider :
+    TargetSurjectiveCompactForTargetProviderW715
+  diagramAndMappedCokernelClosednessData :
+    MetrizableWppDiagramAndMappedCokernelClosednessDataProviderW725
+  normalizedFixedTargetData :
+    MetrizableWppNormalizedFixedTargetDataProviderW719
+  sourceHomologicalTriangulationData :
+    MetrizableWppSourceHomologicalTriangulationDataProviderW724
+  endpointStrictTopologyData :
+    MetrizableWppEndpointStrictTopologyDataProviderW720
+  localizedRightAdjointData :
+    MetrizableWppLocalizedRightAdjointDataProviderW721
+
+/-- W733 assembles boundary/relation data from explicit leaves. -/
+def boundaryRelationData_of_concreteLeavesW733
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    MetrizableWppBoundaryRelationDataProviderW730
+    where
+  boundaryData := leaves.boundaryData
+  relationData := leaves.relationData
+
+/-- W733 assembles endpoint/localized data from explicit leaves. -/
+def endpointLocalizedRightAdjointData_of_concreteLeavesW733
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    MetrizableWppEndpointLocalizedRightAdjointDataProviderW726
+    where
+  endpointStrictTopologyData := leaves.endpointStrictTopologyData
+  localizedRightAdjointData := leaves.localizedRightAdjointData
+
+/-- W733 assembles source/endpoint data from explicit leaves. -/
+def sourceHomologicalEndpointLocalizedData_of_concreteLeavesW733
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    MetrizableWppSourceHomologicalEndpointLocalizedDataProviderW727
+    where
+  sourceHomologicalTriangulationData :=
+    leaves.sourceHomologicalTriangulationData
+  endpointLocalizedRightAdjointData :=
+    endpointLocalizedRightAdjointData_of_concreteLeavesW733 leaves
+
+/-- W733 assembles normalized source/endpoint data from explicit leaves. -/
+def normalizedFixedTargetSourceEndpointData_of_concreteLeavesW733
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728
+    where
+  normalizedFixedTargetData := leaves.normalizedFixedTargetData
+  sourceHomologicalEndpointLocalizedData :=
+    sourceHomologicalEndpointLocalizedData_of_concreteLeavesW733 leaves
+
+/-- W733 assembles target/closedness data from explicit leaves. -/
+def targetClosednessData_of_concreteLeavesW733
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    MetrizableWppTargetSurjectiveCompactClosednessDataProviderW729
+    where
+  targetSurjectiveCompactForTargetProvider :=
+    leaves.targetSurjectiveCompactForTargetProvider
+  diagramAndMappedCokernelClosednessData :=
+    leaves.diagramAndMappedCokernelClosednessData
+
+/-- W733 assembles target/normalized data from explicit leaves. -/
+def targetClosednessNormalizedSourceEndpointData_of_concreteLeavesW733
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    MetrizableWppTargetClosednessNormalizedSourceEndpointDataProviderW731
+    where
+  targetClosednessData := targetClosednessData_of_concreteLeavesW733 leaves
+  normalizedFixedTargetSourceEndpointData :=
+    normalizedFixedTargetSourceEndpointData_of_concreteLeavesW733 leaves
+
+/-- W733 assembles the W732 one-provider route data from explicit leaves. -/
+def boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732
+    where
+  boundaryRelationData := boundaryRelationData_of_concreteLeavesW733 leaves
+  targetClosednessNormalizedSourceEndpointData :=
+    targetClosednessNormalizedSourceEndpointData_of_concreteLeavesW733 leaves
+
+/-- W733 explicit leaves route builds ordinary stable input through W732. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedDataW732
+    (boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733
+      leaves)
+
+/-- W733 explicit leaves route is accepted through W732. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732
+    (boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733
+      leaves)
+
+/-- The W733 explicit leaves package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733_accepted
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+          leaves).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732_accepted
+    (boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733
+      leaves)
+
+/-- Explicit leaf names for constructing the W732 route-data provider. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW733 :
+    List String :=
+  ["bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+    "bundled closed natural transformation relation data",
+    "target-only target-difference surjectivity plus target-codomain compactness provider",
+    "matched selected-difference component and W519 mapped-cokernel closedness branch provider",
+    "normalized fixed-target data provider",
+    "source homological-triangulation data provider",
+    "endpoint strict-topology data provider",
+    "bounded homotopy localized-right-adjoint data provider"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW733_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW733.length =
+      8 :=
+  rfl
+
+/-- Current checked W733 state for explicit leaf construction of W732 route data. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733 :
+    Type where
+  seed : String
+  declarations : List String
+  leafAssemblyResult : String
+  leafAcceptedResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W733 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteSupportStateW733 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733
+    where
+  seed :=
+    "w733-explicit-leaf-constructor-for-one-route-data-provider"
+  declarations :=
+    ["MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733",
+      "boundaryRelationData_of_concreteLeavesW733",
+      "endpointLocalizedRightAdjointData_of_concreteLeavesW733",
+      "sourceHomologicalEndpointLocalizedData_of_concreteLeavesW733",
+      "normalizedFixedTargetSourceEndpointData_of_concreteLeavesW733",
+      "targetClosednessData_of_concreteLeavesW733",
+      "targetClosednessNormalizedSourceEndpointData_of_concreteLeavesW733",
+      "boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733",
+      "metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW733",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW733_count"]
+  leafAssemblyResult :=
+    "proved: eight explicit leaf providers assemble the W732 one route-data provider"
+  leafAcceptedResult :=
+    "proved: explicit leaves feed W732 and therefore the accepted one-provider route"
+  exposedInputs :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW733
+  remainingInputs :=
+    ["construct concrete values for the eight explicit W733 leaf providers",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteSupportStateW733
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedConcreteLeavesRouteStateW733.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
