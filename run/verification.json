@@ -1,9 +1,79 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w749-w480-w527-row-route",
-  "generated_utc": "2026-05-24T22:07:53Z",
-  "source_tree_hash": "ae1d083a23cf648c4f5f891bf1374e7d019177f877364fe257f3051a2e88d752",
-  "summary": "W749 specializes W748 by deriving W526 row-aware closed-range-only data from W527 row-aware selected closed-map rows or selected closed-embedding rows. W480 split providers assemble W478 and W486 supplies selected-W461 data, so the WPP exactness route is now exposed through W480 promotion-input data, W480 ordinary-map data, and either W527 row-aware selected closed-map rows or selected closed-embedding rows.",
+  "schema": "lean-lca-exact-challenge-verification-w750-w480-global-closed-provider-row-route",
+  "generated_utc": "2026-05-24T22:16:35Z",
+  "source_tree_hash": "a7efbd7cedd3c851aeebb6d543ca3b225effdcb7f289b838c34c53dd9f7c7dd8",
+  "summary": "W750 W480/global closed-provider row route specializes W749 by deriving W527 row-aware selected closed-map rows or selected closed-embedding rows from W525 global selected closed-map or selected closed-embedding providers through W581 provider narrowing. W480 split providers still assemble W478 and W486 selected-W461 data, so the WPP exactness route is now exposed through W480 promotion-input data, W480 ordinary-map data, and a W525 global closed-map or closed-embedding provider.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W750 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/lean_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W750 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product success declaration audit checks the W750 declarations while product_success remains false; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/lean_product_success_declarations.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/w750_required_declarations.lean",
+      "status": "passed",
+      "evidence": "Run-owned W750 required declaration checks passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/lean_w750_required_declarations.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Baseline required declaration audit passed after W750; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/lean_required_declarations.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan passed for the source tree; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/audit_no_forbidden_lean_tokens.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed for the W750 worktree; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/git_diff_check_final.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "HTML progress report validator passed after W750 report update; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/html_check_report.log."
+    },
+    {
+      "command": "python3 -c \"import json; [json.load(open(p)) for p in ['run/verification.json','terminal_outcome/terminal_outcome.json','proof_frontier/FRONTIER_MATRIX.json','manifest.json']]\"",
+      "status": "passed",
+      "evidence": "JSON parse gate passed for verification, terminal outcome, frontier matrix, and manifest; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/json_parse.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "No productSuccessClaimed := true marker exists; rg exit 1 is expected for the nonterminal W750 increment; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/product_success_true_grep.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/scratch_log_browser_evidence --expect W750 W480/global closed-provider row route --expect product_complete=false --expect 20260524T221015Z_codex_parent_w750",
+      "status": "passed",
+      "evidence": "Browser-rendered report evidence contains the W750 label, product_complete=false, and run id; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/scratch_log_browser_evidence."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full project build passed after W750 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/lake_build_full.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed for the W750 evidence set; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/external_audit_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "External audit product gate still rejects the terminal outcome because product_success is intentionally not claimed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/external_audit_terminal_expected.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -15903,6 +15973,16 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedMapW750",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedEmbeddingW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedMapInputNamesW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedMapInputNamesW750_count",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750_count",
+    "Dbounded.MetrizableWppW480GlobalClosedProviderRouteStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteSupportStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteStateW750_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedMapRowsW749",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedEmbeddingRowsW749",
     "Dbounded.exactAcyclicWppOpW480ClosedMapRowsInputNamesW749",
@@ -20746,19 +20826,19 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct W480 split promotion-input data, W480 ordinary-map data, and W527 row-aware selected closed-map rows or selected closed-embedding rows for the W749 W480/W527 row route.",
+    "Construct W480 split promotion-input data, W480 ordinary-map data, and a W525 global selected closed-map provider or selected closed-embedding provider for the W750 W480/global closed-provider row route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w749_w480_w527_row_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w750_w480_global_closed_provider_row_route",
   "product_success": false,
   "remaining_work": [
-    "Construct W480 split promotion-input data, W480 ordinary-map data, and W527 row-aware selected closed-map rows or selected closed-embedding rows for the W749 W480/W527 row route.",
+    "Construct W480 split promotion-input data, W480 ordinary-map data, and a W525 global selected closed-map provider or selected closed-embedding provider for the W750 W480/global closed-provider row route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T215735Z_codex_parent_w749/lake_build_full.log",
-  "latest_verified_increment": "W749 W480/W527 row route",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/lake_build_full.log",
+  "latest_verified_increment": "W750 W480/global closed-provider row route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -22178,6 +22258,12 @@
       "source_tree_hash": "ae1d083a23cf648c4f5f891bf1374e7d019177f877364fe257f3051a2e88d752",
       "latest_verified_increment": "W749 W480/W527 row route",
       "note": "W749 refresh prepends W480/W527 row-route commands and declarations; product_success/product_complete remain false."
+    },
+    "w750_metadata_refresh": {
+      "refreshed_utc": "2026-05-24T22:16:35Z",
+      "source_tree_hash": "a7efbd7cedd3c851aeebb6d543ca3b225effdcb7f289b838c34c53dd9f7c7dd8",
+      "latest_verified_increment": "W750 W480/global closed-provider row route",
+      "note": "W750 refresh prepends W480/global closed-provider row-route commands and declarations; product_success/product_complete remain false."
     }
   }
 }

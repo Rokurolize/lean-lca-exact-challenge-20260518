@@ -53650,6 +53650,119 @@ theorem currentMetrizableWppW480ClosedMapRowsRouteStateW749_productSuccess :
       false :=
   rfl
 
+/--
+W750 W480/global closed-provider row route: W581 narrows a global W525 selected
+closed-map provider to the W527 row-aware provider consumed by W749.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedMapW750
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (w480OrdinaryMap :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475OrdinaryMapProviderW480)
+    (hclosedMap :
+      WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525.ComponentwiseClosedMapProviderW525) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedMapRowsW749
+    w480PromotionInputs
+    w480OrdinaryMap
+    (componentwiseClosedMapRowsProvider_of_globalClosedMapProvider_w581
+      hclosedMap)
+
+/--
+W750 W480/global closed-provider row route, closed-embedding branch. W581
+narrows a global W525 selected closed-embedding provider to W527 rows.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedEmbeddingW750
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (w480OrdinaryMap :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475OrdinaryMapProviderW480)
+    (hclosedEmbedding :
+      WppOpSelectedDifferenceClosedMapClosedRangeOnlyV370SupportW525.ComponentwiseClosedEmbeddingProviderW525) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedEmbeddingRowsW749
+    w480PromotionInputs
+    w480OrdinaryMap
+    (componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581
+      hclosedEmbedding)
+
+/-- Input names for the W750 global closed-map provider route. -/
+def exactAcyclicWppOpW480GlobalClosedMapInputNamesW750 : List String :=
+  ["W480 split promotion-input provider for pure left closed-image preservation",
+    "W480 split ordinary-map provider for pure left closed-image preservation",
+    "W525 global selected closed-map provider for W581 row narrowing"]
+
+theorem exactAcyclicWppOpW480GlobalClosedMapInputNamesW750_count :
+    exactAcyclicWppOpW480GlobalClosedMapInputNamesW750.length = 3 :=
+  rfl
+
+/-- Input names for the W750 global closed-embedding provider route. -/
+def exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750 : List String :=
+  ["W480 split promotion-input provider for pure left closed-image preservation",
+    "W480 split ordinary-map provider for pure left closed-image preservation",
+    "W525 global selected closed-embedding provider for W581 row narrowing"]
+
+theorem exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750_count :
+    exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750.length = 3 :=
+  rfl
+
+/--
+Current checked W750 state for routing W480 through W581 global selected
+closed-map and closed-embedding providers.
+-/
+structure MetrizableWppW480GlobalClosedProviderRouteStateW750 : Type where
+  seed : String
+  declarations : List String
+  closedMapVariantResult : String
+  closedEmbeddingVariantResult : String
+  w581NarrowingResult : String
+  w749ConsumerResult : String
+  exposedClosedMapInputs : List String
+  exposedClosedEmbeddingInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W750 state. -/
+def currentMetrizableWppW480GlobalClosedProviderRouteSupportStateW750 :
+    MetrizableWppW480GlobalClosedProviderRouteStateW750
+    where
+  seed := "w750-w480-w581-global-closed-provider-row-route"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedMapW750",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedEmbeddingW750",
+      "exactAcyclicWppOpW480GlobalClosedMapInputNamesW750",
+      "exactAcyclicWppOpW480GlobalClosedMapInputNamesW750_count",
+      "exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750",
+      "exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750_count"]
+  closedMapVariantResult :=
+    "proved: W525 global selected closed-map provider feeds W749 through W581 row narrowing"
+  closedEmbeddingVariantResult :=
+    "proved: W525 global selected closed-embedding provider feeds W749 through W581 row narrowing"
+  w581NarrowingResult :=
+    "proved: W581 converts global selected closed-map or closed-embedding data into W527 row-aware providers"
+  w749ConsumerResult :=
+    "proved: W749 consumes W527 row-aware providers with W480/W486 selected-W461 data"
+  exposedClosedMapInputs := exactAcyclicWppOpW480GlobalClosedMapInputNamesW750
+  exposedClosedEmbeddingInputs :=
+    exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750
+  remainingInputs :=
+    ["construct W480 split promotion-input provider",
+      "construct W480 split ordinary-map provider",
+      "construct W525 global selected closed-map provider or selected closed-embedding provider"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppW480GlobalClosedProviderRouteStateW750 :
+    MetrizableWppW480GlobalClosedProviderRouteStateW750 :=
+  currentMetrizableWppW480GlobalClosedProviderRouteSupportStateW750
+
+theorem currentMetrizableWppW480GlobalClosedProviderRouteStateW750_productSuccess :
+    currentMetrizableWppW480GlobalClosedProviderRouteStateW750.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

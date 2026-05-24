@@ -2,8 +2,22 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W749 specializes W748 by deriving W526 row-aware closed-range-only data from W527 row-aware selected closed-map rows or selected closed-embedding rows. W480 split providers assemble W478 and W486 supplies selected-W461 data, so the WPP exactness route is now exposed through W480 promotion-input data, W480 ordinary-map data, and either W527 row-aware selected closed-map rows or selected closed-embedding rows.",
+  "summary": "W750 W480/global closed-provider row route specializes W749 by deriving W527 row-aware selected closed-map rows or selected closed-embedding rows from W525 global selected closed-map or selected closed-embedding providers through W581 provider narrowing. W480 split providers still assemble W478 and W486 selected-W461 data, so the WPP exactness route is now exposed through W480 promotion-input data, W480 ordinary-map data, and a W525 global closed-map or closed-embedding provider.",
   "verified_commands": [
+    "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/w750_required_declarations.lean",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "git diff --check",
+    "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+    "python3 -c \"import json; [json.load(open(p)) for p in ['run/verification.json','terminal_outcome/terminal_outcome.json','proof_frontier/FRONTIER_MATRIX.json','manifest.json']]\"",
+    "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/scratch_log_browser_evidence --expect W750 W480/global closed-provider row route --expect product_complete=false --expect 20260524T221015Z_codex_parent_w750",
+    "lake build",
+    "python3 audit/external_audit.py --root . --self-check-only",
+    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
     "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -2365,6 +2379,16 @@
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T170543Z_codex_parent_w722/browser_evidence --expect W722 --expect product_complete=false --expect 20260524T170543Z_codex_parent_w722"
   ],
   "required_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedMapW750",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedEmbeddingW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedMapInputNamesW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedMapInputNamesW750_count",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750_count",
+    "Dbounded.MetrizableWppW480GlobalClosedProviderRouteStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteSupportStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteStateW750_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedMapRowsW749",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedEmbeddingRowsW749",
     "Dbounded.exactAcyclicWppOpW480ClosedMapRowsInputNamesW749",
@@ -6641,7 +6665,7 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
   "known_gaps": [
-    "Construct W480 split promotion-input data, W480 ordinary-map data, and W527 row-aware selected closed-map rows or selected closed-embedding rows for the W749 W480/W527 row route.",
+    "Construct W480 split promotion-input data, W480 ordinary-map data, and a W525 global selected closed-map provider or selected closed-embedding provider for the W750 W480/global closed-provider row route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -6650,15 +6674,25 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "No worker output was accepted for W749; parent verified the W480/W486 plus W527 row-aware selected closed-map and closed-embedding routes directly in the live target.",
-  "claim_review_result": "not applicable: W749 W480/W527 row route is a nonterminal support increment with product_success=false",
+  "worker_frontier_summary": "No worker output was accepted for W750; parent verified the W480/W486 plus W581 global-provider row narrowing route directly in the live target.",
+  "claim_review_result": "not applicable: W750 W480/global closed-provider row route is a nonterminal support increment with product_success=false",
   "remaining_gaps": [
-    "Construct W480 split promotion-input data, W480 ordinary-map data, and W527 row-aware selected closed-map rows or selected closed-embedding rows for the W749 W480/W527 row route.",
+    "Construct W480 split promotion-input data, W480 ordinary-map data, and a W525 global selected closed-map provider or selected closed-embedding provider for the W750 W480/global closed-provider row route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "next_recommended_goal": "Continue from the W749 W480/W527 row route by constructing W480 split promotion-input data, W480 ordinary-map data, and W527 row-aware selected closed-map rows or selected closed-embedding rows.",
+  "next_recommended_goal": "Continue from the W750 W480/global closed-provider row route by constructing W480 split promotion-input data, W480 ordinary-map data, and a W525 global selected closed-map provider or selected closed-embedding provider.",
   "implemented_declarations": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedMapW750",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedEmbeddingW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedMapInputNamesW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedMapInputNamesW750_count",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750_count",
+    "Dbounded.MetrizableWppW480GlobalClosedProviderRouteStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteSupportStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteStateW750_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedMapRowsW749",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedEmbeddingRowsW749",
     "Dbounded.exactAcyclicWppOpW480ClosedMapRowsInputNamesW749",
@@ -11470,9 +11504,19 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
-  "generated_utc": "2026-05-24T22:07:53Z",
-  "support_result_classification": "verified_nonterminal_support_increment_w749_w480_w527_row_route",
+  "generated_utc": "2026-05-24T22:16:35Z",
+  "support_result_classification": "verified_nonterminal_support_increment_w750_w480_global_closed_provider_row_route",
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedMapW750",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedEmbeddingW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedMapInputNamesW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedMapInputNamesW750_count",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750",
+    "Dbounded.exactAcyclicWppOpW480GlobalClosedEmbeddingInputNamesW750_count",
+    "Dbounded.MetrizableWppW480GlobalClosedProviderRouteStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteSupportStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteStateW750",
+    "Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteStateW750_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedMapRowsW749",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedEmbeddingRowsW749",
     "Dbounded.exactAcyclicWppOpW480ClosedMapRowsInputNamesW749",
@@ -16317,14 +16361,14 @@
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Construct W480 split promotion-input data, W480 ordinary-map data, and W527 row-aware selected closed-map rows or selected closed-embedding rows for the W749 W480/W527 row route.",
+    "Construct W480 split promotion-input data, W480 ordinary-map data, and a W525 global selected closed-map provider or selected closed-embedding provider for the W750 W480/global closed-provider row route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "latest_verified_increment": "W749 W480/W527 row route",
-  "source_tree_hash": "ae1d083a23cf648c4f5f891bf1374e7d019177f877364fe257f3051a2e88d752",
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T215735Z_codex_parent_w749/lake_build_full.log",
-  "git_commit_note": "W749 W480/W527 row route is a nonterminal support increment; product_success/product_complete/update_goal_allowed remain false.",
+  "latest_verified_increment": "W750 W480/global closed-provider row route",
+  "source_tree_hash": "a7efbd7cedd3c851aeebb6d543ca3b225effdcb7f289b838c34c53dd9f7c7dd8",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750/lake_build_full.log",
+  "git_commit_note": "W750 W480/global closed-provider row route is a nonterminal support increment; product_success/product_complete/update_goal_allowed remain false.",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -18130,11 +18174,17 @@
       "source_tree_hash": "ae1d083a23cf648c4f5f891bf1374e7d019177f877364fe257f3051a2e88d752",
       "latest_verified_increment": "W749 W480/W527 row route",
       "note": "Terminal outcome remains blocked_nonterminal_frontier; update_goal_allowed remains false after W749."
+    },
+    "w750_metadata_refresh": {
+      "refreshed_utc": "2026-05-24T22:16:35Z",
+      "source_tree_hash": "a7efbd7cedd3c851aeebb6d543ca3b225effdcb7f289b838c34c53dd9f7c7dd8",
+      "latest_verified_increment": "W750 W480/global closed-provider row route",
+      "note": "Terminal outcome remains blocked_nonterminal_frontier; update_goal_allowed remains false after W750."
     }
   },
-  "classification": "verified_nonterminal_support_increment_w749_w480_w527_row_route",
-  "latest_increment": "W749 W480/W527 row route",
-  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T215735Z_codex_parent_w749",
+  "classification": "verified_nonterminal_support_increment_w750_w480_global_closed_provider_row_route",
+  "latest_increment": "W750 W480/global closed-provider row route",
+  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T221015Z_codex_parent_w750",
   "product_success_claimed": false,
   "update_goal_complete_permitted": false
 }
