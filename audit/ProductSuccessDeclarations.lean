@@ -8707,6 +8707,24 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteStateW750
   #check
     Dbounded.currentMetrizableWppW480GlobalClosedProviderRouteStateW750_productSuccess
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ExplicitClosedMapComponentsW751
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ExplicitClosedEmbeddingComponentsW751
+  #check
+    Dbounded.exactAcyclicWppOpW480ExplicitClosedMapComponentsInputNamesW751
+  #check
+    Dbounded.exactAcyclicWppOpW480ExplicitClosedMapComponentsInputNamesW751_count
+  #check
+    Dbounded.exactAcyclicWppOpW480ExplicitClosedEmbeddingComponentsInputNamesW751
+  #check
+    Dbounded.exactAcyclicWppOpW480ExplicitClosedEmbeddingComponentsInputNamesW751_count
+  #check Dbounded.MetrizableWppW480ExplicitClosedComponentsRouteStateW751
+  #check
+    Dbounded.currentMetrizableWppW480ExplicitClosedComponentsRouteSupportStateW751
+  #check Dbounded.currentMetrizableWppW480ExplicitClosedComponentsRouteStateW751
+  #check
+    Dbounded.currentMetrizableWppW480ExplicitClosedComponentsRouteStateW751_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

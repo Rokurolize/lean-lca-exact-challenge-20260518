@@ -53763,6 +53763,131 @@ theorem currentMetrizableWppW480GlobalClosedProviderRouteStateW750_productSucces
       false :=
   rfl
 
+/--
+W751 specializes the W750 W480/global closed-map route by assembling its W525
+global selected closed-map provider from three explicit W711 component fields.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ExplicitClosedMapComponentsW751
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (w480OrdinaryMap :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475OrdinaryMapProviderW480)
+    (closedMapPi1 : SelectedDifferenceClosedMapPi1FieldW711)
+    (closedMapPi2 : SelectedDifferenceClosedMapPi2FieldW711)
+    (closedMapPi3 : SelectedDifferenceClosedMapPi3FieldW711) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedMapW750
+    w480PromotionInputs
+    w480OrdinaryMap
+    (componentwiseClosedMapProvider_of_explicitComponentFieldsW711
+      closedMapPi1 closedMapPi2 closedMapPi3)
+
+/--
+W751 closed-embedding component variant. Three explicit W711 closed-embedding
+component fields assemble the W525 provider consumed by W750.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ExplicitClosedEmbeddingComponentsW751
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (w480OrdinaryMap :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475OrdinaryMapProviderW480)
+    (closedEmbeddingPi1 : SelectedDifferenceClosedEmbeddingPi1FieldW711)
+    (closedEmbeddingPi2 : SelectedDifferenceClosedEmbeddingPi2FieldW711)
+    (closedEmbeddingPi3 : SelectedDifferenceClosedEmbeddingPi3FieldW711) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480GlobalClosedEmbeddingW750
+    w480PromotionInputs
+    w480OrdinaryMap
+    (componentwiseClosedEmbeddingProvider_of_explicitComponentFieldsW711
+      closedEmbeddingPi1 closedEmbeddingPi2 closedEmbeddingPi3)
+
+/-- Input names for the W751 explicit closed-map component route. -/
+def exactAcyclicWppOpW480ExplicitClosedMapComponentsInputNamesW751 :
+    List String :=
+  ["W480 split promotion-input provider for pure left closed-image preservation",
+    "W480 split ordinary-map provider for pure left closed-image preservation",
+    "W711 first selected-difference component closed-map field",
+    "W711 second selected-difference component closed-map field",
+    "W711 third selected-difference component closed-map field"]
+
+theorem exactAcyclicWppOpW480ExplicitClosedMapComponentsInputNamesW751_count :
+    exactAcyclicWppOpW480ExplicitClosedMapComponentsInputNamesW751.length =
+      5 :=
+  rfl
+
+/-- Input names for the W751 explicit closed-embedding component route. -/
+def exactAcyclicWppOpW480ExplicitClosedEmbeddingComponentsInputNamesW751 :
+    List String :=
+  ["W480 split promotion-input provider for pure left closed-image preservation",
+    "W480 split ordinary-map provider for pure left closed-image preservation",
+    "W711 first selected-difference component closed-embedding field",
+    "W711 second selected-difference component closed-embedding field",
+    "W711 third selected-difference component closed-embedding field"]
+
+theorem exactAcyclicWppOpW480ExplicitClosedEmbeddingComponentsInputNamesW751_count :
+    exactAcyclicWppOpW480ExplicitClosedEmbeddingComponentsInputNamesW751.length =
+      5 :=
+  rfl
+
+/--
+Current checked W751 state for routing W480 through explicit selected-difference
+component closed-map and closed-embedding fields.
+-/
+structure MetrizableWppW480ExplicitClosedComponentsRouteStateW751 : Type where
+  seed : String
+  declarations : List String
+  closedMapComponentResult : String
+  closedEmbeddingComponentResult : String
+  w711AssemblyResult : String
+  w750ConsumerResult : String
+  exposedClosedMapInputs : List String
+  exposedClosedEmbeddingInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W751 state. -/
+def currentMetrizableWppW480ExplicitClosedComponentsRouteSupportStateW751 :
+    MetrizableWppW480ExplicitClosedComponentsRouteStateW751
+    where
+  seed := "w751-w480-explicit-selected-difference-component-route"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ExplicitClosedMapComponentsW751",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ExplicitClosedEmbeddingComponentsW751",
+      "exactAcyclicWppOpW480ExplicitClosedMapComponentsInputNamesW751",
+      "exactAcyclicWppOpW480ExplicitClosedMapComponentsInputNamesW751_count",
+      "exactAcyclicWppOpW480ExplicitClosedEmbeddingComponentsInputNamesW751",
+      "exactAcyclicWppOpW480ExplicitClosedEmbeddingComponentsInputNamesW751_count"]
+  closedMapComponentResult :=
+    "proved: three W711 selected-difference closed-map component facts assemble the W525 provider consumed by W750"
+  closedEmbeddingComponentResult :=
+    "proved: three W711 selected-difference closed-embedding component facts assemble the W525 provider consumed by W750"
+  w711AssemblyResult :=
+    "proved: W711 constructors build W525 global providers from explicit component fields"
+  w750ConsumerResult :=
+    "proved: W750 consumes W525 global providers with W480/W486 selected-W461 data"
+  exposedClosedMapInputs :=
+    exactAcyclicWppOpW480ExplicitClosedMapComponentsInputNamesW751
+  exposedClosedEmbeddingInputs :=
+    exactAcyclicWppOpW480ExplicitClosedEmbeddingComponentsInputNamesW751
+  remainingInputs :=
+    ["construct W480 split promotion-input provider",
+      "construct W480 split ordinary-map provider",
+      "construct three W711 selected-difference closed-map component fields or three W711 selected-difference closed-embedding component fields"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppW480ExplicitClosedComponentsRouteStateW751 :
+    MetrizableWppW480ExplicitClosedComponentsRouteStateW751 :=
+  currentMetrizableWppW480ExplicitClosedComponentsRouteSupportStateW751
+
+theorem
+    currentMetrizableWppW480ExplicitClosedComponentsRouteStateW751_productSuccess :
+    currentMetrizableWppW480ExplicitClosedComponentsRouteStateW751.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
