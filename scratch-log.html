@@ -5,130 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lean LCA Progress Log</title>
   <style>
-    :root {
-      color-scheme: light;
-      --ink: #172026;
-      --muted: #5b6770;
-      --line: #d8dee4;
-      --paper: #fbfcfd;
-      --panel: #ffffff;
-      --accent: #0f6b5f;
-      --warn: #9a5b00;
-    }
+    :root { color-scheme: light; --ink: #172026; --muted: #5b6770; --line: #d8dee4; --paper: #fbfcfd; --panel: #ffffff; --accent: #0f6b5f; --warn: #9a5b00; }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--ink);
-      background: var(--paper);
-      line-height: 1.45;
-    }
-    main {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 28px 20px 48px;
-    }
-    header {
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 18px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      margin: 0 0 8px;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 0;
-    }
-    h2 {
-      margin: 0 0 12px;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0;
-    }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--paper); line-height: 1.45; }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 48px; }
+    header { border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 20px; }
+    h1 { margin: 0 0 8px; font-size: 28px; font-weight: 700; letter-spacing: 0; }
+    h2 { margin: 0 0 12px; font-size: 18px; font-weight: 700; letter-spacing: 0; }
     p { margin: 0 0 10px; }
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.94em;
-      background: #eef2f4;
-      padding: 1px 4px;
-      border-radius: 4px;
-    }
-    .meta {
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin: 18px 0 22px;
-    }
-    .metric, .entry, .note {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 14px;
-    }
-    .metric strong {
-      display: block;
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .metric span {
-      display: block;
-      font-size: 16px;
-      font-weight: 700;
-    }
-    .status {
-      display: inline-block;
-      border-radius: 999px;
-      padding: 2px 9px;
-      font-size: 12px;
-      font-weight: 700;
-      background: #e3f4ef;
-      color: var(--accent);
-      border: 1px solid #b9ded4;
-    }
-    .status.warn {
-      background: #fff1d8;
-      color: var(--warn);
-      border-color: #f0ce93;
-    }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.94em; background: #eef2f4; padding: 1px 4px; border-radius: 4px; }
+    .meta { color: var(--muted); font-size: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 0 22px; }
+    .metric, .entry, .note { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+    .metric strong { display: block; font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+    .metric span { display: block; font-size: 16px; font-weight: 700; }
+    .status { display: inline-block; border-radius: 999px; padding: 2px 9px; font-size: 12px; font-weight: 700; background: #e3f4ef; color: var(--accent); border: 1px solid #b9ded4; }
+    .status.warn { background: #fff1d8; color: var(--warn); border-color: #f0ce93; }
     .entry { margin: 12px 0; }
-    .entry-head {
-      display: flex;
-      gap: 10px;
-      align-items: baseline;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 10px;
-      margin-bottom: 12px;
-    }
+    .entry-head { display: flex; gap: 10px; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 12px; }
     .entry h2 { margin: 0; }
-    ul {
-      margin: 8px 0 0;
-      padding-left: 20px;
-    }
+    ul { margin: 8px 0 0; padding-left: 20px; }
     li { margin: 5px 0; }
-    .columns {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 14px;
-    }
-    .note {
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 14px;
-    }
+    .columns { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 14px; }
+    .note { margin-top: 20px; color: var(--muted); font-size: 14px; }
     a { color: #0b5cad; }
-    @media (max-width: 780px) {
-      main { padding: 22px 14px 36px; }
-      .grid, .columns { grid-template-columns: 1fr; }
-      .entry-head { display: block; }
-      .entry-head .meta { margin-top: 4px; }
-    }
+    @media (max-width: 780px) { main { padding: 22px 14px 36px; } .grid, .columns { grid-template-columns: 1fr; } .entry-head { display: block; } .entry-head .meta { margin-top: 4px; } }
   </style>
 </head>
 <body>
@@ -137,38 +38,21 @@
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">"The unreasonable effectiveness of HTML"</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
-
     <section class="grid" aria-label="Current status">
-      <div class="metric">
-        <strong>Latest Increment</strong>
-        <span>W706 explicit localized-right-adjoint target-top route</span>
-      </div>
-      <div class="metric">
-        <strong>Product Status</strong>
-        <span>Nonterminal</span>
-      </div>
-      <div class="metric">
-        <strong>Primary Lean Surface</strong>
-        <span>WppOpExactAcyclicProjectionFields</span>
-      </div>
-      <div class="metric">
-        <strong>Run Evidence</strong>
-        <span>20260524T130228Z_019e599f_parent_w706</span>
-      </div>
+      <div class="metric"><strong>Latest Increment</strong><span>W707 explicit normalized fixed-target localized-right-adjoint route</span></div>
+      <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T131252Z_019e599f_parent_w707</span></div>
     </section>
-
     <section class="entry">
-      <div class="entry-head">
-        <h2>Current Increment: W706 explicit localized-right-adjoint target-top route</h2>
-        <p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p>
-      </div>
+      <div class="entry-head"><h2>Current Increment: W707 explicit normalized fixed-target localized-right-adjoint route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
       <div class="columns">
         <div>
-          <p>The W706 explicit localized-right-adjoint target-top route exposes W705 with separate bounded homotopy localized right-adjoint, adjunction, and unit-membership fields. It assembles the localized-right-adjoint package internally, delegates closed-map and closed-embedding paths to W705, and preserves the nonterminal product status.</p>
+          <p>The W707 explicit normalized fixed-target localized-right-adjoint route exposes W706 with separate normalized strict-representative lift blueprint, target fixed-target uniqueness, and localization-model fixed-target uniqueness fields. It assembles the normalized fixed-target localization package internally, delegates closed-map and closed-embedding paths to W706, and preserves the nonterminal product status.</p>
           <ul>
-            <li>Closed-map explicit localized-right-adjoint bundles assemble <code>MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705</code>.</li>
-            <li>Closed-embedding explicit localized-right-adjoint bundles assemble the W705 closed-embedding route and reuse its accepted path.</li>
-            <li>The product audit now checks W706 declarations and the false product-success marker.</li>
+            <li>Closed-map explicit normalized fixed-target bundles assemble <code>MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitLocalizedRightAdjointNormalizedFixedTargetBundleW706</code>.</li>
+            <li>Closed-embedding explicit normalized fixed-target bundles assemble the W706 closed-embedding route and reuse its accepted path.</li>
+            <li>The product audit now checks W707 declarations and the false product-success marker.</li>
           </ul>
         </div>
         <div>
@@ -184,33 +68,22 @@
         </div>
       </div>
     </section>
-
     <section class="entry">
-      <div class="entry-head">
-        <h2>Previous Increment</h2>
-        <p class="meta">Committed as <code>d150a06</code> before this W706 work.</p>
-      </div>
-      <p>The W705 explicit source-triangulation target-top route exposed W704 through separate source pretriangulated, source triangulated, and triangle-completion fields.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed as <code>181439c</code> before this W707 work.</p></div>
+      <p>The W706 explicit localized-right-adjoint target-top route exposed W705 through separate right-adjoint, adjunction, and unit-membership fields.</p>
     </section>
-
     <section class="entry">
-      <div class="entry-head">
-        <h2>Remaining Product Blockers</h2>
-        <p class="meta">First mention expands local W-code labels for auditability.</p>
-      </div>
+      <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">First mention expands local W-code labels for auditability.</p></div>
       <ul>
         <li>Concrete WPP right-open and source-pi-zero boundary data.</li>
-        <li>Concrete W512 relation-fields provider data, W600 target-relation-top data for W702 or W601 target-difference surjectivity data for W701, and W601 compact target data.</li>
+        <li>Concrete W512 relation-fields provider data, W600 target-relation-top data for the W702/W703/W704/W705/W706/W707 target-top route or W601 target-difference surjectivity data for W701, and W601 compact target data.</li>
         <li>Concrete W525 global closed-map or closed-embedding provider data.</li>
-        <li>Normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets.</li>
+        <li>Normalized strict-representative lift blueprint, target fixed-target uniqueness, and localization-model fixed-target uniqueness.</li>
         <li>W519 mapped-explicit-cokernel closed-range provider data and endpoint-strict ExactAt topology data.</li>
         <li>Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
       </ul>
     </section>
-
-    <section class="note">
-      <p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p>
-    </section>
+    <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>
   </main>
 </body>
 </html>
