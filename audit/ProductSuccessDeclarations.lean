@@ -8353,6 +8353,32 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointRouteStateW731
   #check
     Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedSourceEndpointRouteStateW731_productSuccess
+  #check
+    Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732
+  #check
+    Dbounded.boundaryRelationData_of_boundaryRelationTargetClosednessNormalizedDataW732
+  #check
+    Dbounded.targetClosednessNormalizedSourceEndpointData_of_boundaryRelationTargetClosednessNormalizedDataW732
+  #check
+    Dbounded.metrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundle_of_boundaryRelationTargetClosednessNormalizedDataW732
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedDataW732
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732_accepted
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedInputNamesW732
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedInputNamesW732_count
+  #check
+    Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteSupportStateW732
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

@@ -51464,6 +51464,141 @@ theorem
       false :=
   rfl
 
+/-- W732 bundles the remaining boundary/relation and target/normalized route data. -/
+structure MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732 :
+    Type 2 where
+  boundaryRelationData :
+    MetrizableWppBoundaryRelationDataProviderW730
+  targetClosednessNormalizedSourceEndpointData :
+    MetrizableWppTargetClosednessNormalizedSourceEndpointDataProviderW731
+
+/-- W732 projects boundary/relation data. -/
+def boundaryRelationData_of_boundaryRelationTargetClosednessNormalizedDataW732
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    MetrizableWppBoundaryRelationDataProviderW730 :=
+  routeData.boundaryRelationData
+
+/-- W732 projects target/closedness normalized source/endpoint data. -/
+def targetClosednessNormalizedSourceEndpointData_of_boundaryRelationTargetClosednessNormalizedDataW732
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    MetrizableWppTargetClosednessNormalizedSourceEndpointDataProviderW731 :=
+  routeData.targetClosednessNormalizedSourceEndpointData
+
+/-- W732 assembles the W731 bundle from one route-data provider. -/
+def
+    metrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundle_of_boundaryRelationTargetClosednessNormalizedDataW732
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731
+    where
+  boundaryRelationData :=
+    boundaryRelationData_of_boundaryRelationTargetClosednessNormalizedDataW732
+      routeData
+  targetClosednessNormalizedSourceEndpointData :=
+    targetClosednessNormalizedSourceEndpointData_of_boundaryRelationTargetClosednessNormalizedDataW732
+      routeData
+
+/-- W732 one-provider route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedDataW732
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731
+    (metrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundle_of_boundaryRelationTargetClosednessNormalizedDataW732
+      routeData)
+
+/-- W732 one-provider route is accepted through W731. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731
+    (metrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundle_of_boundaryRelationTargetClosednessNormalizedDataW732
+      routeData)
+
+/-- The W732 one-provider package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732_accepted
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732
+          routeData).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedSourceEndpointDataBundleW731_accepted
+    (metrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundle_of_boundaryRelationTargetClosednessNormalizedDataW732
+      routeData)
+
+/-- Input name for the W732 one-provider route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedInputNamesW732 :
+    List String :=
+  ["boundary/relation target/closedness normalized source/endpoint route-data provider for all remaining WPP semantic inputs"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedInputNamesW732_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedInputNamesW732.length =
+      1 :=
+  rfl
+
+/-- Current checked W732 state for the one-provider route data. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732 :
+    Type where
+  seed : String
+  declarations : List String
+  oneProviderProjectionResult : String
+  oneProviderAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W732 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteSupportStateW732 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732
+    where
+  seed :=
+    "w732-one-route-data-provider"
+  declarations :=
+    ["MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732",
+      "boundaryRelationData_of_boundaryRelationTargetClosednessNormalizedDataW732",
+      "targetClosednessNormalizedSourceEndpointData_of_boundaryRelationTargetClosednessNormalizedDataW732",
+      "metrizableWppBoundaryRelationTargetClosednessNormalizedSourceEndpointDataBundle_of_boundaryRelationTargetClosednessNormalizedDataW732",
+      "metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedDataW732",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedInputNamesW732",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedInputNamesW732_count"]
+  oneProviderProjectionResult :=
+    "proved: one route-data provider projects to boundary/relation data and target/normalized data"
+  oneProviderAcceptedResult :=
+    "proved: one route-data provider assembles W731 and feeds the accepted target/normalized route"
+  replacedInputs :=
+    ["separate boundary/relation data provider",
+      "separate target/closedness normalized source/endpoint data provider"]
+  remainingInputs :=
+    ["construct concrete boundary/relation target/closedness normalized source/endpoint route-data provider",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteSupportStateW732
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedRouteStateW732.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
