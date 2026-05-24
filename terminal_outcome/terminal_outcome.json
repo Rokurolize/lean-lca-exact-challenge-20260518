@@ -2,8 +2,22 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W744 W477 projection comparison route specializes the W743 componentwise-projection comparison route by deriving its W481 componentwise projection input from the existing W477 componentwise closed-range projection provider through the W482 adapter. The result remains nonterminal: closure-kernel data, the universal left-right comparison isomorphism, selected W461 promotion data, and W477 componentwise closed-range projection data are still inputs.",
+  "summary": "W745 W478/W477 comparison route specializes the W744 W477 projection comparison route by deriving its W483 selected-W461 input from the existing W478 bundled W461 promotion provider through W486. The result remains nonterminal: closure-kernel data, the universal left-right comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data are still inputs.",
   "verified_commands": [
+    "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/w745_required_declarations.lean",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "git diff --check",
+    "lake build",
+    "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+    "python3 JSON metadata parse check",
+    "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+    "browser evidence render for scratch-log.html",
+    "python3 audit/external_audit.py --root . --self-check-only",
+    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
     "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -2295,6 +2309,13 @@
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T170543Z_codex_parent_w722/browser_evidence --expect W722 --expect product_complete=false --expect 20260524T170543Z_codex_parent_w722"
   ],
   "required_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW478W477ProjectionLeftW745",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745_count",
+    "Dbounded.MetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteSupportStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461W477ProjectionLeftW744",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744_count",
@@ -6533,7 +6554,7 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
   "known_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W477 componentwise closed-range projection data for the W744 W477 projection comparison route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data for the W745 W478/W477 comparison route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -6542,15 +6563,22 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": "external: use git rev-parse HEAD after checkout; enclosing commit hash is not embedded to avoid self-reference",
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "No worker output was accepted for W744; parent verified the W477-to-W481 adapter specialization directly in the live target.",
-  "claim_review_result": "not applicable: W744 W477 projection comparison route is a nonterminal support increment with product_success=false",
+  "worker_frontier_summary": "No worker output was accepted for W745; parent verified the W478-to-W483 adapter specialization directly in the live target.",
+  "claim_review_result": "not applicable: W745 W478/W477 comparison route is a nonterminal support increment with product_success=false",
   "remaining_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W477 componentwise closed-range projection data for the W744 W477 projection comparison route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data for the W745 W478/W477 comparison route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "next_recommended_goal": "Continue from the W744 W477 projection comparison route toward constructing closure-kernel data, the universal left-right comparison isomorphism, selected W461 promotion data, and W477 componentwise projection data.",
+  "next_recommended_goal": "Continue from the W745 W478/W477 comparison route toward constructing closure-kernel data, the universal left-right comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise projection data.",
   "implemented_declarations": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW478W477ProjectionLeftW745",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745_count",
+    "Dbounded.MetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteSupportStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461W477ProjectionLeftW744",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744_count",
@@ -11324,9 +11352,16 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
-  "generated_utc": "2026-05-24T21:15:21Z",
-  "support_result_classification": "verified_nonterminal_support_increment_w744_w477_projection_comparison_route",
+  "generated_utc": "2026-05-24T21:23:25Z",
+  "support_result_classification": "verified_nonterminal_support_increment_w745_w478_w477_comparison_route",
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW478W477ProjectionLeftW745",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745_count",
+    "Dbounded.MetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteSupportStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461W477ProjectionLeftW744",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744_count",
@@ -16133,14 +16168,14 @@
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W477 componentwise closed-range projection data for the W744 W477 projection comparison route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data for the W745 W478/W477 comparison route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "latest_verified_increment": "W744 W477 projection comparison route",
-  "source_tree_hash": "be3a4cc9061400d00b11c054bc1fc8bc4b2b87764130d64962de6ae3115f3393",
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_lake_build_full.log",
-  "git_commit_note": "W744 W477 projection comparison route is a nonterminal support increment; product_success/product_complete/update_goal_allowed remain false.",
+  "latest_verified_increment": "W745 W478/W477 comparison route",
+  "source_tree_hash": "637e6f6c5fac798a728fbbe456b0f2b817505a458ce896bd4deef45feed00c96",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_lake_build_full.log",
+  "git_commit_note": "W745 W478/W477 comparison route is a nonterminal support increment; product_success/product_complete/update_goal_allowed remain false.",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -17934,11 +17969,17 @@
       "source_tree_hash": "be3a4cc9061400d00b11c054bc1fc8bc4b2b87764130d64962de6ae3115f3393",
       "latest_verified_increment": "W744 W477 projection comparison route",
       "note": "Terminal outcome updated from W743 to W744 while preserving historical verified_commands ordering and nonterminal product flags."
+    },
+    "w745_metadata_refresh": {
+      "refreshed_utc": "2026-05-24T21:23:25Z",
+      "source_tree_hash": "637e6f6c5fac798a728fbbe456b0f2b817505a458ce896bd4deef45feed00c96",
+      "latest_verified_increment": "W745 W478/W477 comparison route",
+      "note": "Terminal outcome updated from W744 to W745 while preserving nonterminal product flags."
     }
   },
-  "classification": "verified_nonterminal_support_increment_w744_w477_projection_comparison_route",
-  "latest_increment": "W744 W477 projection comparison route",
-  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744",
+  "classification": "verified_nonterminal_support_increment_w745_w478_w477_comparison_route",
+  "latest_increment": "W745 W478/W477 comparison route",
+  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745",
   "product_success_claimed": false,
   "update_goal_complete_permitted": false
 }

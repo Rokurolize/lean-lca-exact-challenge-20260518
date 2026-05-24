@@ -53190,6 +53190,92 @@ theorem
       false :=
   rfl
 
+/--
+W745 specializes W744 by deriving its W483 selected-W461 provider input from
+the existing W478 bundled W461 promotion provider via W486.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW478W477ProjectionLeftW745
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (w461PromotionProvider :
+      WppOpW461ToW441PromotionProviderV370SupportW478.W461PromotionInputProviderW478)
+    (hcomponentwise :
+      AddCommGrpW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportW477.ComponentwiseClosedRangeProjectionProviderW477) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461W477ProjectionLeftW744
+    closureKernelProvider
+    comparisonIso
+    (WppOpW478ProviderToSelectedW461ProviderCurrentHeadV370SupportW486.selectedW461Provider_of_w461PromotionInputProvider_w486
+      w461PromotionProvider)
+    hcomponentwise
+
+/-- Input names for the W745 W478/W477 projection specialization. -/
+def exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745 :
+    List String :=
+  ["closure-kernel mapped explicit cokernel provider for forgetful homology preservation",
+    "universal IsIso for every MetrizableLCA left-right homology comparison",
+    "W478 bundled W461 promotion provider for pure left closed-image preservation",
+    "W477 componentwise closed-range projection provider for WPP-op diagrams"]
+
+theorem exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745_count :
+    exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745.length =
+      4 :=
+  rfl
+
+/--
+Current checked W745 state for the W478/W477-projection specialization of the
+W744 route.
+-/
+structure MetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745 :
+    Type where
+  seed : String
+  declarations : List String
+  w478AdapterResult : String
+  w477ProjectionResult : String
+  exactAcyclicConsumerResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W745 state. -/
+def currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteSupportStateW745 :
+    MetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745
+    where
+  seed :=
+    "w745-closure-kernel-comparison-w478-w477-projection-specialization"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW478W477ProjectionLeftW745",
+      "exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745",
+      "exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745_count"]
+  w478AdapterResult :=
+    "proved: W478 bundled W461 promotion provider supplies W744's W483 selected-W461 input through W486"
+  w477ProjectionResult :=
+    "proved: W477 componentwise closed-range projection provider remains the componentwise projection input"
+  exactAcyclicConsumerResult :=
+    "proved: W744 can consume closure-kernel data, comparison isomorphisms, W478 promotion data, and W477 projection data"
+  exposedInputs :=
+    exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745
+  remainingInputs :=
+    ["construct closure-kernel mapped explicit cokernel provider",
+      "construct the universal left-right homology comparison isomorphism",
+      "construct W478 bundled W461 promotion provider",
+      "construct W477 componentwise closed-range projection provider for WPP-op diagrams"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745 :
+    MetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745 :=
+  currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteSupportStateW745
+
+theorem
+    currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745_productSuccess :
+    currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

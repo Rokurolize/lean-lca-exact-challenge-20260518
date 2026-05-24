@@ -1,9 +1,79 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w744-w477-projection-comparison-route",
-  "generated_utc": "2026-05-24T21:12:58Z",
-  "source_tree_hash": "be3a4cc9061400d00b11c054bc1fc8bc4b2b87764130d64962de6ae3115f3393",
-  "summary": "W744 W477 projection comparison route specializes the W743 componentwise-projection comparison route by deriving its W481 componentwise projection input from the existing W477 componentwise closed-range projection provider through the W482 adapter. The result remains nonterminal: closure-kernel data, the universal left-right comparison isomorphism, selected W461 promotion data, and W477 componentwise closed-range projection data are still inputs.",
+  "schema": "lean-lca-exact-challenge-verification-w745-w478-w477-comparison-route",
+  "generated_utc": "2026-05-24T21:23:25Z",
+  "source_tree_hash": "637e6f6c5fac798a728fbbe456b0f2b817505a458ce896bd4deef45feed00c96",
+  "summary": "W745 W478/W477 comparison route specializes the W744 W477 projection comparison route by deriving its W483 selected-W461 input from the existing W478 bundled W461 promotion provider through W486. The result remains nonterminal: closure-kernel data, the universal left-right comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data are still inputs.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W745 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_focused_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W745 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks the W745 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_audit_product.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/w745_required_declarations.lean",
+      "status": "passed",
+      "evidence": "External W745 required-declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_required.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W745; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_audit_required.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token audit passed after W745; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W745; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_git_diff_check.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full repository build passed after W745; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_lake_build_full.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "passed",
+      "evidence": "No product-success true marker was introduced; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_rg_product_true.log."
+    },
+    {
+      "command": "python3 JSON metadata parse check",
+      "status": "passed",
+      "evidence": "W745 JSON metadata parse check is recorded in /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_json_parse.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "HTML progress report validator passed after W745; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_html_check.log."
+    },
+    {
+      "command": "browser evidence render for scratch-log.html",
+      "status": "passed",
+      "evidence": "Browser-rendered scratch-log evidence for W745 is recorded under /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/browser_evidence and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_browser_evidence.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W745; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Full terminal audit rejects the intentionally nonterminal outcome after W745; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_external_terminal_expected.log and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_external_terminal_expected.status."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -15553,6 +15623,13 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW478W477ProjectionLeftW745",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonW478W477ProjectionLeftInputNamesW745_count",
+    "Dbounded.MetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteSupportStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonW478W477ProjectionLeftRouteStateW745_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461W477ProjectionLeftW744",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSelectedW461W477ProjectionLeftInputNamesW744_count",
@@ -20358,19 +20435,19 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W477 componentwise closed-range projection data for the W744 W477 projection comparison route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data for the W745 W478/W477 comparison route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w744_w477_projection_comparison_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w745_w478_w477_comparison_route",
   "product_success": false,
   "remaining_work": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W483 selected W461 promotion data, and W477 componentwise closed-range projection data for the W744 W477 projection comparison route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data for the W745 W478/W477 comparison route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T210235Z_codex_parent_w744/logs/w744_lake_build_full.log",
-  "latest_verified_increment": "W744 W477 projection comparison route",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T211820Z_codex_parent_w745/logs/w745_lake_build_full.log",
+  "latest_verified_increment": "W745 W478/W477 comparison route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -21778,6 +21855,12 @@
       "source_tree_hash": "be3a4cc9061400d00b11c054bc1fc8bc4b2b87764130d64962de6ae3115f3393",
       "latest_verified_increment": "W744 W477 projection comparison route",
       "note": "W744 commands and declarations were prepended; product_success/product_complete/update_goal_allowed remain false."
+    },
+    "w745_metadata_refresh": {
+      "refreshed_utc": "2026-05-24T21:23:25Z",
+      "source_tree_hash": "637e6f6c5fac798a728fbbe456b0f2b817505a458ce896bd4deef45feed00c96",
+      "latest_verified_increment": "W745 W478/W477 comparison route",
+      "note": "W745 commands and declarations were prepended; product_success/product_complete/update_goal_allowed remain false."
     }
   }
 }
