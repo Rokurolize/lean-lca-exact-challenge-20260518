@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T21:23:25Z",
+  "generated_utc": "2026-05-24T21:35:44Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,22 +1854,28 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w745_w478_w477_comparison_route",
-  "latest_parent_update": "parent_update_w745_w478_w477_comparison_route",
-  "summary": "W745 W478/W477 comparison route specializes the W744 W477 projection comparison route by deriving its W483 selected-W461 input from the existing W478 bundled W461 promotion provider through W486. The result remains nonterminal: closure-kernel data, the universal left-right comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data are still inputs.",
-  "remaining_frontier": "Need W745 route inputs, concrete W735 branch data, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w745_w478_w477_comparison_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w746_w480_w477_comparison_route",
+  "latest_parent_update": "parent_update_w746_w480_w477_comparison_route",
+  "summary": "W746 W480/W477 comparison route specializes the W745 W478/W477 comparison route by deriving its W478 bundled W461 promotion provider from W480 split promotion-input and ordinary-map providers through w461PromotionInputProvider_of_w480. The result remains nonterminal: closure-kernel data, the universal left-right comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W477 componentwise closed-range projection data are still inputs.",
+  "remaining_frontier": "Need W746 route inputs, concrete W735 branch data, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w746_w480_w477_comparison_route",
   "remaining_blockers": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data for the W745 W478/W477 comparison route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W477 componentwise closed-range projection data for the W746 W480/W477 comparison route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "open_blockers": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data for the W745 W478/W477 comparison route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W477 componentwise closed-range projection data for the W746 W480/W477 comparison route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "consumed_support_results": [
+    {
+      "increment": "W746",
+      "classification": "verified_nonterminal_support_increment_w746_w480_w477_comparison_route",
+      "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T212908Z_codex_parent_w746",
+      "product_success_claimed": false
+    },
     {
       "increment": "W745",
       "classification": "verified_nonterminal_support_increment_w745_w478_w477_comparison_route",
@@ -2167,7 +2173,7 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise closed-range projection data for the W745 W478/W477 comparison route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W477 componentwise closed-range projection data for the W746 W480/W477 comparison route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -4838,7 +4844,7 @@
     }
   ],
   "current_primary_blockers": [
-    "Construct the W745 W478/W477 comparison route inputs: closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W478 bundled W461 promotion data, and W477 componentwise projection data.",
+    "Construct the W746 W480/W477 comparison route inputs: closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W477 componentwise projection data.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],

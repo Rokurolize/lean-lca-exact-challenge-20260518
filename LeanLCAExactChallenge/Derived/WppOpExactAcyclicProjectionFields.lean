@@ -53276,6 +53276,97 @@ theorem
       false :=
   rfl
 
+/--
+W746 specializes W745 by deriving its W478 bundled W461 promotion provider from
+the existing W480 split promotion-input and ordinary-map providers.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW480W477ProjectionLeftW746
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (w480OrdinaryMap :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475OrdinaryMapProviderW480)
+    (hcomponentwise :
+      AddCommGrpW426LeftClosedComponentwiseClosedRangeProjectionExactAcyclicV370SupportW477.ComponentwiseClosedRangeProjectionProviderW477) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW478W477ProjectionLeftW745
+    closureKernelProvider
+    comparisonIso
+    (WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.w461PromotionInputProvider_of_w480
+      w480PromotionInputs
+      w480OrdinaryMap)
+    hcomponentwise
+
+/-- Input names for the W746 W480/W477 projection specialization. -/
+def exactAcyclicWppOpClosureKernelComparisonW480W477ProjectionLeftInputNamesW746 :
+    List String :=
+  ["closure-kernel mapped explicit cokernel provider for forgetful homology preservation",
+    "universal IsIso for every MetrizableLCA left-right homology comparison",
+    "W480 split promotion-input provider for pure left closed-image preservation",
+    "W480 split ordinary-map provider for pure left closed-image preservation",
+    "W477 componentwise closed-range projection provider for WPP-op diagrams"]
+
+theorem exactAcyclicWppOpClosureKernelComparisonW480W477ProjectionLeftInputNamesW746_count :
+    exactAcyclicWppOpClosureKernelComparisonW480W477ProjectionLeftInputNamesW746.length =
+      5 :=
+  rfl
+
+/--
+Current checked W746 state for the W480/W477-projection specialization of the
+W745 route.
+-/
+structure MetrizableWppClosureKernelComparisonW480W477ProjectionLeftRouteStateW746 :
+    Type where
+  seed : String
+  declarations : List String
+  w480AdapterResult : String
+  w477ProjectionResult : String
+  exactAcyclicConsumerResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W746 state. -/
+def currentMetrizableWppClosureKernelComparisonW480W477ProjectionLeftRouteSupportStateW746 :
+    MetrizableWppClosureKernelComparisonW480W477ProjectionLeftRouteStateW746
+    where
+  seed :=
+    "w746-closure-kernel-comparison-w480-w477-projection-specialization"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW480W477ProjectionLeftW746",
+      "exactAcyclicWppOpClosureKernelComparisonW480W477ProjectionLeftInputNamesW746",
+      "exactAcyclicWppOpClosureKernelComparisonW480W477ProjectionLeftInputNamesW746_count"]
+  w480AdapterResult :=
+    "proved: W480 split providers assemble W745's W478 bundled W461 promotion provider"
+  w477ProjectionResult :=
+    "proved: W477 componentwise closed-range projection provider remains the componentwise projection input"
+  exactAcyclicConsumerResult :=
+    "proved: W745 can consume closure-kernel data, comparison isomorphisms, W480 split promotion data, and W477 projection data"
+  exposedInputs :=
+    exactAcyclicWppOpClosureKernelComparisonW480W477ProjectionLeftInputNamesW746
+  remainingInputs :=
+    ["construct closure-kernel mapped explicit cokernel provider",
+      "construct the universal left-right homology comparison isomorphism",
+      "construct W480 split promotion-input provider",
+      "construct W480 split ordinary-map provider",
+      "construct W477 componentwise closed-range projection provider for WPP-op diagrams"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppClosureKernelComparisonW480W477ProjectionLeftRouteStateW746 :
+    MetrizableWppClosureKernelComparisonW480W477ProjectionLeftRouteStateW746 :=
+  currentMetrizableWppClosureKernelComparisonW480W477ProjectionLeftRouteSupportStateW746
+
+theorem
+    currentMetrizableWppClosureKernelComparisonW480W477ProjectionLeftRouteStateW746_productSuccess :
+    currentMetrizableWppClosureKernelComparisonW480W477ProjectionLeftRouteStateW746.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
