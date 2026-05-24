@@ -54135,6 +54135,130 @@ theorem
       false :=
   rfl
 
+/--
+W754 specializes the W753 exactness route by accepting W714 diagram-only
+closed-map fields. W714 adapts the diagram fields to W711's cocone-indexed
+component fields, while W753 supplies the W512 relation-field exactness route.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedMapComponentsW754
+    (relationFields : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (closedMapPi1 : SelectedDifferenceClosedMapPi1DiagramFieldW714)
+    (closedMapPi2 : SelectedDifferenceClosedMapPi2DiagramFieldW714)
+    (closedMapPi3 : SelectedDifferenceClosedMapPi3DiagramFieldW714) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsExplicitClosedMapComponentsW753
+    relationFields
+    (selectedDifferenceClosedMapPi1Field_of_diagramFieldW714 closedMapPi1)
+    (selectedDifferenceClosedMapPi2Field_of_diagramFieldW714 closedMapPi2)
+    (selectedDifferenceClosedMapPi3Field_of_diagramFieldW714 closedMapPi3)
+
+/--
+W754 closed-embedding branch through W512 relation fields and W714 diagram-only
+closed-embedding component facts.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedEmbeddingComponentsW754
+    (relationFields : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (closedEmbeddingPi1 : SelectedDifferenceClosedEmbeddingPi1DiagramFieldW714)
+    (closedEmbeddingPi2 : SelectedDifferenceClosedEmbeddingPi2DiagramFieldW714)
+    (closedEmbeddingPi3 : SelectedDifferenceClosedEmbeddingPi3DiagramFieldW714) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsExplicitClosedEmbeddingComponentsW753
+    relationFields
+    (selectedDifferenceClosedEmbeddingPi1Field_of_diagramFieldW714
+      closedEmbeddingPi1)
+    (selectedDifferenceClosedEmbeddingPi2Field_of_diagramFieldW714
+      closedEmbeddingPi2)
+    (selectedDifferenceClosedEmbeddingPi3Field_of_diagramFieldW714
+      closedEmbeddingPi3)
+
+/-- Input names for the W754 relation-fields diagram closed-map route. -/
+def exactAcyclicWppOpRelationFieldsDiagramClosedMapComponentsInputNamesW754 :
+    List String :=
+  ["W512 closed natural transformation ordinary relation-fields provider",
+    "W714 first selected-difference component diagram closed-map field",
+    "W714 second selected-difference component diagram closed-map field",
+    "W714 third selected-difference component diagram closed-map field"]
+
+theorem
+    exactAcyclicWppOpRelationFieldsDiagramClosedMapComponentsInputNamesW754_count :
+    exactAcyclicWppOpRelationFieldsDiagramClosedMapComponentsInputNamesW754.length =
+      4 :=
+  rfl
+
+/-- Input names for the W754 relation-fields diagram closed-embedding route. -/
+def
+    exactAcyclicWppOpRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW754 :
+    List String :=
+  ["W512 closed natural transformation ordinary relation-fields provider",
+    "W714 first selected-difference component diagram closed-embedding field",
+    "W714 second selected-difference component diagram closed-embedding field",
+    "W714 third selected-difference component diagram closed-embedding field"]
+
+theorem
+    exactAcyclicWppOpRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW754_count :
+    exactAcyclicWppOpRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW754.length =
+      4 :=
+  rfl
+
+/--
+Current checked W754 state for routing W512 relation fields and W714 diagram-only
+component closedness to W527 exactness through W753.
+-/
+structure MetrizableWppRelationFieldsDiagramClosedComponentsRouteStateW754 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapDiagramResult : String
+  closedEmbeddingDiagramResult : String
+  w714AdapterResult : String
+  w753ExactnessResult : String
+  exposedClosedMapInputs : List String
+  exposedClosedEmbeddingInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W754 state. -/
+def currentMetrizableWppRelationFieldsDiagramClosedComponentsRouteSupportStateW754 :
+    MetrizableWppRelationFieldsDiagramClosedComponentsRouteStateW754
+    where
+  seed := "w754-w512-relation-fields-w714-diagram-component-route"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedMapComponentsW754",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedEmbeddingComponentsW754",
+      "exactAcyclicWppOpRelationFieldsDiagramClosedMapComponentsInputNamesW754",
+      "exactAcyclicWppOpRelationFieldsDiagramClosedMapComponentsInputNamesW754_count",
+      "exactAcyclicWppOpRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW754",
+      "exactAcyclicWppOpRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW754_count"]
+  closedMapDiagramResult :=
+    "proved: W714 diagram-only closed-map component fields adapt to W753's W711 component inputs"
+  closedEmbeddingDiagramResult :=
+    "proved: W714 diagram-only closed-embedding component fields adapt to W753's W711 component inputs"
+  w714AdapterResult :=
+    "proved: W714 removes the cocone-indexed component-closedness quantifier from the W753 exactness route"
+  w753ExactnessResult :=
+    "proved: W753 consumes W512 relation-field data and W711 component closedness for exactness"
+  exposedClosedMapInputs :=
+    exactAcyclicWppOpRelationFieldsDiagramClosedMapComponentsInputNamesW754
+  exposedClosedEmbeddingInputs :=
+    exactAcyclicWppOpRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW754
+  remainingInputs :=
+    ["construct W512 closed natural transformation ordinary relation-fields provider",
+      "prove three W714 diagram-only selected-difference closed-map component facts or three diagram-only closed-embedding component facts"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRelationFieldsDiagramClosedComponentsRouteStateW754 :
+    MetrizableWppRelationFieldsDiagramClosedComponentsRouteStateW754 :=
+  currentMetrizableWppRelationFieldsDiagramClosedComponentsRouteSupportStateW754
+
+theorem
+    currentMetrizableWppRelationFieldsDiagramClosedComponentsRouteStateW754_productSuccess :
+    currentMetrizableWppRelationFieldsDiagramClosedComponentsRouteStateW754.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
