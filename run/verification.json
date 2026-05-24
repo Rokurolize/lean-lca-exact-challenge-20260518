@@ -1,9 +1,104 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w719-normalized-fixed-target-data-route",
-  "generated_utc": "2026-05-24T18:22:59Z",
-  "source_tree_hash": "1588ba1feccdc7a0dc867bc075f5122965a67f395b1d8f06c0ed52b0372900cc",
-  "summary": "W727 source/endpoint-localized route bundles source homological-triangulation data with endpoint/localized-right-adjoint data into one provider. It projects that provider back to the W726 endpoint/localized route, delegates acceptance to W726, reduces the current input-name count from 7 to 6, and keeps product-success flags false.",
+  "generated_utc": "2026-05-24T18:31:02Z",
+  "source_tree_hash": "df4640f8d17fdc5621c79d3f69ef89306cf945e434ac969a442cd2119632db70",
+  "summary": "W728 normalized/source-endpoint route bundles normalized fixed-target data with source/endpoint-localized data into one provider. It projects that provider back to the W727 source/endpoint-localized route, delegates acceptance to W727, reduces the current input-name count from 6 to 5, and keeps product-success flags false.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W728 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_lean_source_initial.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W728 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W728 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_audit_product.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_required_declarations.lean",
+      "status": "passed",
+      "evidence": "Focused W728 declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_required.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import passed after W728; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_root_import.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W728; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_audit_required.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W728; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_lake_build_full.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan over source passed after W728; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan over product audit passed after W728; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_forbidden_lean_tokens_audit.log."
+    },
+    {
+      "command": "rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden-token matches in W728-touched Lean files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_rg_forbidden_touched.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true|product_success.*true|product_complete.*true|update_goal_allowed.*true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No accidental product-success true flags in W728-touched Lean files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_rg_product_true.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W728 source edits; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_git_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W728 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_json_parse_all.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W728 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_json_parse_all.log."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W728 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_json_parse_all.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W728 manifest refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_json_parse_all.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W728 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Terminal product gate still rejects W728 as nonterminal because product_complete and update_goal_allowed remain false; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_external_terminal_expected.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir \"$RUN_DIR/browser_evidence\" --expect 'W728 normalized/source-endpoint route' --expect 'product_complete=false' --expect '20260524T182539Z_codex_parent_w728'",
+      "status": "passed",
+      "evidence": "Browser-rendered scratch-log evidence passed W728 expected text checks; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/w728_browser_evidence.log and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728/browser_evidence/browser_evidence_fidelity.json."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -14278,6 +14373,20 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728",
+    "Dbounded.normalizedFixedTargetData_of_normalizedSourceEndpointDataW728",
+    "Dbounded.sourceHomologicalEndpointLocalizedData_of_normalizedSourceEndpointDataW728",
+    "Dbounded.MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728",
+    "Dbounded.metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundle_of_normalizedSourceEndpointDataW728",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointInputNamesW728",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointInputNamesW728_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteSupportStateW728",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728_productSuccess",
     "Dbounded.MetrizableWppSourceHomologicalEndpointLocalizedDataProviderW727",
     "Dbounded.sourceHomologicalTriangulationData_of_sourceHomologicalEndpointLocalizedDataW727",
     "Dbounded.endpointLocalizedRightAdjointData_of_sourceHomologicalEndpointLocalizedDataW727",
@@ -18883,23 +18992,21 @@
     "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
     "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
     "Concrete matched selected-difference component and W519 mapped-cokernel closedness branch provider remains unconstructed.",
-    "Concrete normalized fixed-target data provider remains unconstructed.",
-    "Concrete source/endpoint-localized data provider remains unconstructed.",
+    "Concrete normalized source/endpoint data provider remains unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w727_source_endpoint_localized_data_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w728_normalized_source_endpoint_data_route",
   "product_success": false,
   "remaining_work": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
     "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
     "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
     "Concrete matched selected-difference component and W519 mapped-cokernel closedness branch provider remains unconstructed.",
-    "Concrete normalized fixed-target data provider remains unconstructed.",
-    "Concrete source/endpoint-localized data provider remains unconstructed.",
+    "Concrete normalized source/endpoint data provider remains unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "summary_log_tail": "W727 bundles source homological-triangulation and endpoint/localized data, delegates to W726, and keeps product flags false.",
-  "latest_verified_increment": "W727 source/endpoint-localized route",
+  "summary_log_tail": "W728 bundles normalized fixed-target and source/endpoint-localized data, delegates to W727, and keeps product flags false.",
+  "latest_verified_increment": "W728 normalized/source-endpoint route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -20110,6 +20217,29 @@
         "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedRouteSupportStateW727",
         "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedRouteStateW727",
         "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedRouteStateW727_productSuccess"
+      ]
+    },
+    "parent_update_w728_metadata_refresh": {
+      "generated_utc": "2026-05-24T18:31:02Z",
+      "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T182539Z_codex_parent_w728",
+      "source_tree_hash": "df4640f8d17fdc5621c79d3f69ef89306cf945e434ac969a442cd2119632db70",
+      "classification": "verified_nonterminal_support_increment_w728_normalized_source_endpoint_data_route",
+      "product_complete": false,
+      "implemented_declarations": [
+        "Dbounded.MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728",
+        "Dbounded.normalizedFixedTargetData_of_normalizedSourceEndpointDataW728",
+        "Dbounded.sourceHomologicalEndpointLocalizedData_of_normalizedSourceEndpointDataW728",
+        "Dbounded.MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728",
+        "Dbounded.metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundle_of_normalizedSourceEndpointDataW728",
+        "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728",
+        "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728",
+        "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728_accepted",
+        "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointInputNamesW728",
+        "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointInputNamesW728_count",
+        "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728",
+        "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteSupportStateW728",
+        "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728",
+        "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728_productSuccess"
       ]
     }
   }

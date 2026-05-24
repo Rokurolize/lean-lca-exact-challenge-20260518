@@ -50829,6 +50829,174 @@ theorem
       false :=
   rfl
 
+/-- W728 bundles normalized fixed-target data with source/endpoint-localized data. -/
+structure MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728 :
+    Type 2 where
+  normalizedFixedTargetData :
+    MetrizableWppNormalizedFixedTargetDataProviderW719
+  sourceHomologicalEndpointLocalizedData :
+    MetrizableWppSourceHomologicalEndpointLocalizedDataProviderW727
+
+/-- W728 projects normalized fixed-target data. -/
+def normalizedFixedTargetData_of_normalizedSourceEndpointDataW728
+    (normalizedSourceEndpointData :
+      MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728) :
+    MetrizableWppNormalizedFixedTargetDataProviderW719 :=
+  normalizedSourceEndpointData.normalizedFixedTargetData
+
+/-- W728 projects source/endpoint-localized data. -/
+def sourceHomologicalEndpointLocalizedData_of_normalizedSourceEndpointDataW728
+    (normalizedSourceEndpointData :
+      MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728) :
+    MetrizableWppSourceHomologicalEndpointLocalizedDataProviderW727 :=
+  normalizedSourceEndpointData.sourceHomologicalEndpointLocalizedData
+
+/--
+W728 bundle: expose the W727 source/endpoint-localized route with one normalized
+source/endpoint provider instead of separate normalized and source/endpoint data.
+-/
+structure
+    MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728 :
+    Type 2 where
+  boundaryData :
+    MetrizableWppLimitBoundaryDataW716
+  relationData :
+    ClosedNatTransOrdinaryRelationDataProviderW717
+  targetSurjectiveCompactForTargetProvider :
+    TargetSurjectiveCompactForTargetProviderW715
+  diagramAndMappedCokernelClosednessData :
+    MetrizableWppDiagramAndMappedCokernelClosednessDataProviderW725
+  normalizedFixedTargetSourceEndpointData :
+    MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728
+
+/-- W728 assembles the W727 bundle from normalized source/endpoint data. -/
+def
+    metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundle_of_normalizedSourceEndpointDataW728
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728) :
+    MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundleW727
+    where
+  boundaryData := inputs.boundaryData
+  relationData := inputs.relationData
+  targetSurjectiveCompactForTargetProvider :=
+    inputs.targetSurjectiveCompactForTargetProvider
+  diagramAndMappedCokernelClosednessData :=
+    inputs.diagramAndMappedCokernelClosednessData
+  normalizedFixedTargetData :=
+    normalizedFixedTargetData_of_normalizedSourceEndpointDataW728
+      inputs.normalizedFixedTargetSourceEndpointData
+  sourceHomologicalEndpointLocalizedData :=
+    sourceHomologicalEndpointLocalizedData_of_normalizedSourceEndpointDataW728
+      inputs.normalizedFixedTargetSourceEndpointData
+
+/-- W728 normalized source/endpoint route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundleW727
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundle_of_normalizedSourceEndpointDataW728
+      inputs)
+
+/-- W728 normalized source/endpoint route is accepted through W727. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundleW727
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundle_of_normalizedSourceEndpointDataW728
+      inputs)
+
+/-- The W728 normalized source/endpoint package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728_accepted
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundleW727_accepted
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundle_of_normalizedSourceEndpointDataW728
+      inputs)
+
+/-- Input names for the W728 normalized source/endpoint route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointInputNamesW728 :
+    List String :=
+  ["bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+    "bundled closed natural transformation ordinary relation-pullback and target-relation-lift provider",
+    "target-only ordinary target-difference surjectivity plus target-codomain compactness provider",
+    "matched selected-difference component and W519 mapped-cokernel closedness branch provider",
+    "normalized fixed-target source/endpoint data provider for normalized target data, source homological data, endpoint strict-topology data, and localized-right-adjoint data"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointInputNamesW728_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointInputNamesW728.length =
+      5 :=
+  rfl
+
+/-- Current checked W728 state for normalized source/endpoint data. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728 :
+    Type where
+  seed : String
+  declarations : List String
+  normalizedSourceEndpointProjectionResult : String
+  normalizedSourceEndpointAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W728 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteSupportStateW728 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728
+    where
+  seed :=
+    "w728-normalized-fixed-target-source-endpoint-data-route"
+  declarations :=
+    ["MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728",
+      "normalizedFixedTargetData_of_normalizedSourceEndpointDataW728",
+      "sourceHomologicalEndpointLocalizedData_of_normalizedSourceEndpointDataW728",
+      "MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728",
+      "metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceHomologicalEndpointLocalizedDataBundle_of_normalizedSourceEndpointDataW728",
+      "metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointInputNamesW728",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointInputNamesW728_count"]
+  normalizedSourceEndpointProjectionResult :=
+    "proved: one normalized source/endpoint provider projects to normalized fixed-target data and source/endpoint-localized data"
+  normalizedSourceEndpointAcceptedResult :=
+    "proved: normalized source/endpoint bundle assembles W727 and feeds the accepted source/endpoint-localized route"
+  replacedInputs :=
+    ["separate normalized fixed-target data provider",
+      "separate source/endpoint-localized data provider"]
+  remainingInputs :=
+    ["construct concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+      "construct concrete bundled closed-natural-transformation relation data",
+      "construct concrete target-only surjective-compact provider for every WPP-op target",
+      "construct concrete matched selected-difference component and W519 mapped-cokernel closedness branch provider",
+      "construct concrete normalized source/endpoint data provider",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteSupportStateW728
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
