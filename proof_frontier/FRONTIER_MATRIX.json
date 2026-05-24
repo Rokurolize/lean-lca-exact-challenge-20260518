@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T14:55:51Z",
+  "generated_utc": "2026-05-24T15:13:33Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,15 +1854,15 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w714",
-  "latest_parent_update": "parent_update_w714_diagram_only_selected_component_route",
-  "summary": "W714 diagram-only selected-difference component route exposes the W713 selected component closedness inputs as facts depending only on the diagram S. It assembles the W711 cocone-indexed selected-difference closed-map and closed-embedding fields internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W713, and keeps product-success flags false.",
-  "remaining_frontier": "Need concrete WPP boundary data, relation-pullback and target-relation-lift providers, target-only ordinary target-difference surjectivity, compact target data, diagram-only selected-difference component closedness facts, normalized fixed-target obligations, mapped-cokernel closed-provider data, explicit endpoint facts, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs.",
-  "support_classification": "nonterminal_support_w714_diagram_only_selected_component_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w715",
+  "latest_parent_update": "parent_update_v715_target_surjective_compact_provider_route",
+  "summary": "W715 target-only surjective-compact provider route pairs ordinary target-difference surjectivity and target-codomain compactness for each target WPP-op diagram. It projects the paired provider to the W713 target-only surjectivity and W601 compactness inputs, delegates both closed-map and closed-embedding accepted paths to W714, and keeps product-success flags false.",
+  "remaining_frontier": "Need concrete WPP boundary data, relation-pullback and target-relation-lift providers, concrete target-only surjective-compact target data, diagram-only selected-difference component closedness facts, normalized fixed-target obligations, mapped-cokernel closed-provider data, explicit endpoint facts, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs.",
+  "support_classification": "nonterminal_support_w715_target_surjective_compact_provider_route",
   "remaining_blockers": [
     "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
     "Concrete relation-pullback and target-relation-lift providers for closed natural transformations remain unconstructed.",
-    "Target-only ordinary target-difference surjectivity and compact target data remain unconstructed.",
+    "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
     "The selected-difference component closedness fields are diagram-only, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
@@ -4768,11 +4768,18 @@
       "status": "verified_nonterminal_support_increment_w702",
       "effect": "W702 routes W701 endpoint-strict closed-range topology into the W694 target-top compact normalized fixed-target accepted route for both closed-map and closed-embedding paths.",
       "product_complete": false
+    },
+    {
+      "timestamp_utc": "2026-05-24T15:13:33Z",
+      "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "verified_nonterminal_support_increment_w715",
+      "effect": "W715 pairs target-only ordinary target-difference surjectivity and target-codomain compactness into one provider, then delegates both accepted paths to W714.",
+      "product_complete": false
     }
   ],
   "current_primary_blockers": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
-    "construct concrete relation-fields, target-surjective, compact-target, normalized fixed-target, and componentwise global provider data",
+    "construct concrete relation-field providers, paired target-only surjective-compact data, normalized fixed-target data, and componentwise global provider data",
     "construct W519 endpoint-strict topology, localization, triangulation, homology, and Dbounded stable-infinity inputs"
   ],
   "parent_update_w467": {
@@ -6263,5 +6270,6 @@
   },
   "parent_update_v712": "W712 explicit relation-field provider route exposes the W711 W512 relation-fields provider input as separate relation-pullback and target-relation-lift providers. It assembles ClosedNatTransOrdinaryRelationFieldsProviderW512 internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W711, and keeps product-success flags false.",
   "parent_update_v713": "W713 target-only target-difference surjectivity route exposes the W712 TargetDifferenceSurjectiveProviderW601 input as a provider depending only on the target WPP-op diagram. It assembles TargetDifferenceSurjectiveProviderW601 internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W712, and keeps product-success flags false.",
-  "parent_update_v714": "W714 diagram-only selected-difference component route exposes the W713 selected component closedness inputs as facts depending only on the diagram S. It assembles the W711 cocone-indexed selected-difference closed-map and closed-embedding fields internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W713, and keeps product-success flags false."
+  "parent_update_v714": "W714 diagram-only selected-difference component route exposes the W713 selected component closedness inputs as facts depending only on the diagram S. It assembles the W711 cocone-indexed selected-difference closed-map and closed-embedding fields internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W713, and keeps product-success flags false.",
+  "parent_update_v715": "W715 target-only surjective-compact provider route pairs ordinary target-difference surjectivity and target-codomain compactness for each target WPP-op diagram. It projects the paired provider to the W713 target-only surjectivity and W601 compactness inputs, delegates both closed-map and closed-embedding accepted paths to W714, and keeps product-success flags false."
 }

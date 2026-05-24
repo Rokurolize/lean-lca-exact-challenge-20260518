@@ -38,20 +38,20 @@
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W714 diagram-only selected-difference component route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W715 target-only surjective-compact provider route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260524T144847Z_019e599f_parent_w714</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T150144Z_codex_parent_w715</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W714 diagram-only selected-difference component route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W715 target-only surjective-compact provider route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
       <div class="columns">
         <div>
-          <p>W714 lifts the W713 target-only route by replacing selected-difference component closedness fields that carried a cocone and colimit proof with diagram-only component facts. The adapters assemble the W711 cocone-indexed fields internally and delegate both accepted paths to W713.</p>
+          <p>W715 pairs the target-only ordinary target-difference surjectivity fact and target-codomain compactness fact into one provider for each target diagram. The adapters project that provider back into the W713 target-only surjectivity route and the W601 target-codomain compactness input, then delegate both accepted paths to W714.</p>
           <ul>
-            <li><code>SelectedDifferenceClosedMapPi1DiagramFieldW714</code>, <code>SelectedDifferenceClosedMapPi2DiagramFieldW714</code>, and <code>SelectedDifferenceClosedMapPi3DiagramFieldW714</code> isolate diagram-only closed-map obligations.</li>
-            <li>The matching closed-embedding fields isolate the same three component obligations for the closed-embedding branch.</li>
-            <li>The input-name count remains <code>24</code>, but the selected-difference component obligations no longer mention a cocone or colimit proof.</li>
+            <li><code>TargetSurjectiveCompactForTargetProviderW715</code> records the paired target-only data.</li>
+            <li>The closed-map and closed-embedding W715 bundles assemble W714 inputs internally.</li>
+            <li>The input-name count drops from <code>24</code> to <code>23</code> by replacing two target-data fields with one paired provider.</li>
           </ul>
         </div>
         <div>
@@ -60,6 +60,7 @@
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T150144Z_codex_parent_w715/w715_required_declarations.lean</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake env lean LeanLCAExactChallenge.lean</code> and <code>lake build</code></li>
             <li>Forbidden-token audits, JSON parse checks, manifest self-check, browser evidence, and expected nonterminal product-gate rejection.</li>
@@ -68,15 +69,15 @@
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed as <code>a01c6e0</code> before this W714 work.</p></div>
-      <p>W713 exposed target-difference surjectivity as a target-only provider while delegating to W712.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W715 work.</p></div>
+      <p>W714 exposed selected-difference component closedness as diagram-only facts while delegating to W713.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Concrete WPP right-open and source-pi-zero boundary data.</li>
         <li>Concrete relation-pullback and target-relation-lift providers for closed natural transformations.</li>
-        <li>Target-only ordinary target-difference surjectivity and compact target data.</li>
+        <li>Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data.</li>
         <li>Concrete diagram-only selected-difference component closed-map or closed-embedding facts.</li>
         <li>Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness.</li>
         <li>Concrete W519 mapped-cokernel closed-map or closed-embedding data and explicit endpoint facts.</li>
