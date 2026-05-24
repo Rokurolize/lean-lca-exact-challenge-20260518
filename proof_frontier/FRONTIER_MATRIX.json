@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T19:45:52Z",
+  "generated_utc": "2026-05-24T20:08:44Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,22 +1854,25 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w736_kernel_cokernel_left_right_comparison_reduction",
-  "latest_parent_update": "parent_update_w736_kernel_cokernel_left_right_comparison_reduction",
-  "summary": "W736 records that MetrizableLCA already has kernel and cokernel instances sufficient to synthesize canonical left and right homology data for every short complex, then reduces CategoryWithHomology MetrizableLCA to the universal IsIso of the canonical left-right homology comparison maps and feeds that reduction through the W735/W733 concrete-leaf route while keeping product-success flags false.",
-  "remaining_frontier": "Need universal MetrizableLCA left-right homology comparison isomorphism, concrete W735 branch data inputs, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w736_kernel_cokernel_left_right_comparison_reduction",
+  "support_result_classification": "verified_nonterminal_support_increment_w737_exactness_derived_homology_route",
+  "latest_parent_update": "parent_update_w737_exactness_derived_homology_route",
+  "summary": "W737 moves the exact/topology WPP-op route into the production consolidated frontier: categorical exactness of the WPP-op colimit short complex now supplies local HasHomology via ShortComplex.Exact.hasHomology, so the route no longer needs a standalone homology-availability input.",
+  "remaining_frontier": "Need W737 exact/topology route inputs, the W736 universal left-right comparison isomorphism, concrete W735 branch data, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w737_exactness_derived_homology_route",
   "remaining_blockers": [
+    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
     "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
-    "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
+    "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "open_blockers": [
-    "Construct a category-level CategoryWithHomology MetrizableLCA instance that supplies homology for every short complex.",
+    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
+    "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
-    "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
+    "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "consumed_support_results": [
+    "w737-exact-topology-fixed-open-with-exactness-derived-homology",
     "w735-category-with-homology-instance-constructors-for-w733-concrete-leaves",
     "w734-w723-category-homology-branch-constructors-for-w733-concrete-leaves",
     "w714-diagram-only-selected-difference-component-mapped-cokernel-route",
@@ -2128,9 +2131,10 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
+    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
     "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
-    "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
+    "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "parent_update_v324": {
     "summary": "v324でBoundedComplexCategory.ι MetrizableLCAのWalkingParallelPair/WPP-op colimit保存を確認し、W308にambient right-leg cocone routeを追加した。product_completeはfalseのまま。",
@@ -6804,6 +6808,31 @@
       "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
       "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
       "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w737_exactness_derived_homology_route": {
+    "updated_utc": "2026-05-24T20:08:44Z",
+    "status": "verified_nonterminal_support_increment_w737_exactness_derived_homology_route",
+    "implemented_declarations": [
+      "WppOpExactAcyclicFrontierConsolidatedW318.exact_walkingParallelPairOp_colimitClosureW737",
+      "WppOpExactAcyclicFrontierConsolidatedW318.hasHomology_walkingParallelPairOp_colimitClosure_of_exactnessW737",
+      "WppOpExactAcyclicFrontierConsolidatedW318.strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_componentTopologyW737",
+      "WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_componentTopologyW737",
+      "WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_left_fixedOpenW737",
+      "WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclicWppOpExactLeftFixedOpenInputNamesW737",
+      "WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclicWppOpExactLeftFixedOpenInputNamesW737_count",
+      "WppOpExactAcyclicFrontierConsolidatedW318.WppOpExactAcyclicExactLeftFixedOpenRouteStateW737",
+      "WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicExactLeftFixedOpenRouteSupportStateW737",
+      "WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicExactLeftFixedOpenRouteStateW737",
+      "WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicExactLeftFixedOpenRouteStateW737_productSuccess"
+    ],
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737",
+    "result": "WPP-op colimit-point Exact now supplies HasHomology for the exact/topology route; the fixed-open variant exposes only forgetful PreservesHomology, categorical exactness preservation, and left closed-embedding preservation.",
+    "remaining_inputs": [
+      "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
+      "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
+      "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data."
     ],
     "product_success_claimed": false
   }

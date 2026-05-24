@@ -1,9 +1,74 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w733-explicit-leaf-constructor",
-  "generated_utc": "2026-05-24T19:45:52Z",
-  "source_tree_hash": "022e0e2b5b72540ec02119b4c249c87b3637d89ea4e46b7f405e9916d74c77de",
-  "summary": "W736 records that MetrizableLCA already has kernel and cokernel instances sufficient to synthesize canonical left and right homology data for every short complex, then reduces CategoryWithHomology MetrizableLCA to the universal IsIso of the canonical left-right homology comparison maps and feeds that reduction through the W735/W733 concrete-leaf route while keeping product-success flags false.",
+  "generated_utc": "2026-05-24T20:08:44Z",
+  "source_tree_hash": "35c57a1d09d0c9d843be445ffae83aed8e017a154d4c62ae1669110e15140591",
+  "summary": "W737 moves the exact/topology WPP-op route into the production consolidated frontier: categorical exactness of the WPP-op colimit short complex now supplies local HasHomology via ShortComplex.Exact.hasHomology, so the route no longer needs a standalone homology-availability input.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean",
+      "status": "passed",
+      "evidence": "Focused W737 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_focused_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated",
+      "status": "passed",
+      "evidence": "W737 consolidated frontier module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks the W737 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_audit_product.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/w737_required_declarations.lean",
+      "status": "passed",
+      "evidence": "External W737 required-declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_required.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W737; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_audit_required.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token audit passed after W737; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W737; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_git_diff_check.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full repository build passed after W737; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_lake_build_full.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "passed",
+      "evidence": "No product-success true marker was introduced; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_rg_product_true.log."
+    },
+    {
+      "command": "python3 JSON metadata parse check",
+      "status": "passed",
+      "evidence": "W737 JSON metadata parse check is recorded in /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_json_parse.log."
+    },
+    {
+      "command": "browser evidence render for scratch-log.html",
+      "status": "passed",
+      "evidence": "Browser-rendered scratch-log evidence for W737 is recorded under /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/browser_evidence and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_browser_evidence.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W737; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Full terminal audit rejects the intentionally nonterminal outcome after W737; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_external_terminal_expected.log and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T200304Z_codex_parent_w737/logs/w737_external_terminal_expected_summary.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -15043,6 +15108,17 @@
     }
   ],
   "implemented_declarations_checked": [
+    "WppOpExactAcyclicFrontierConsolidatedW318.exact_walkingParallelPairOp_colimitClosureW737",
+    "WppOpExactAcyclicFrontierConsolidatedW318.hasHomology_walkingParallelPairOp_colimitClosure_of_exactnessW737",
+    "WppOpExactAcyclicFrontierConsolidatedW318.strictShortExact_walkingParallelPairOp_colimitClosure_of_exact_componentTopologyW737",
+    "WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_componentTopologyW737",
+    "WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_walkingParallelPairOp_colimit_closure_of_exact_left_fixedOpenW737",
+    "WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclicWppOpExactLeftFixedOpenInputNamesW737",
+    "WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclicWppOpExactLeftFixedOpenInputNamesW737_count",
+    "WppOpExactAcyclicFrontierConsolidatedW318.WppOpExactAcyclicExactLeftFixedOpenRouteStateW737",
+    "WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicExactLeftFixedOpenRouteSupportStateW737",
+    "WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicExactLeftFixedOpenRouteStateW737",
+    "WppOpExactAcyclicFrontierConsolidatedW318.currentWppOpExactAcyclicExactLeftFixedOpenRouteStateW737_productSuccess",
     "Dbounded.metrizableHasKernelsW736",
     "Dbounded.metrizableHasCokernelsW736",
     "Dbounded.hasLeftHomology_of_metrizableKernelCokernelW736",
@@ -19785,20 +19861,26 @@
   ],
   "product_complete": false,
   "known_gaps": [
+    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
     "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
-    "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
+    "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w736_kernel_cokernel_left_right_comparison_reduction",
+  "support_result_classification": "verified_nonterminal_support_increment_w737_exactness_derived_homology_route",
   "product_success": false,
   "remaining_work": [
+    "Construct PreservesHomology for forget₂ MetrizableLCA AddCommGrpCat, WPP-op colimit point categorical exactness, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W737 exact/topology route.",
     "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
-    "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
+    "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "summary_log_tail": "W736 reduces CategoryWithHomology MetrizableLCA to the universal left-right homology comparison isomorphism and keeps product flags false.",
-  "latest_verified_increment": "W736 kernel-cokernel comparison reduction",
+  "summary_log_tail": "W737 proves exactness-derived local homology for the WPP-op exact/topology path, internalizes the right-open input through the fixed WPP-op colimit leg, and keeps product flags false.",
+  "latest_verified_increment": "W737 exactness-derived homology route",
   "metadata_corrections": {
+    "w737_metadata_refresh": {
+      "corrected_utc": "2026-05-24T20:08:44Z",
+      "reason": "W737 refresh prepended exactness-derived homology route commands and declarations; source_tree_hash recomputed after source/audit edits; product flags remain false."
+    },
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
       "reason": "The forbidden-token audit script accepts one root argument; historical command metadata listing additional roots was narrowed to first-root evidence and superseded by current W562 single-root source/audit scans.",
