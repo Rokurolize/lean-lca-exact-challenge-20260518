@@ -44193,6 +44193,426 @@ theorem
       false :=
   rfl
 
+/-- W710 assembles endpoint-strict topology from explicit endpoint fields. -/
+def
+    metrizableExactAtEndpointStrictTopologyInputs_of_explicitEndpointFieldsW710
+    (endpointForgetPreservesHomology :
+      (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology)
+    (endpointClosedEmbedding :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+        Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂))
+    (endpointOpenMap :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+        IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃))
+    (endpointEpiOfExactAt :
+      ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+        K.ExactAt i → Epi ((K.sc i).g)) :
+    MetrizableExactAtEndpointStrictTopologyInputs
+    where
+  forgetPreservesHomology := endpointForgetPreservesHomology
+  closedEmbedding := endpointClosedEmbedding
+  openMap := endpointOpenMap
+  epi_of_exactAt := endpointEpiOfExactAt
+
+/--
+W710 closed-map bundle: expose the W709 mapped-cokernel closed-map route with
+explicit endpoint-strict topology fields instead of a preassembled endpoint
+topology input.
+-/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetDifferenceSurjectiveProvider :
+    TargetDifferenceSurjectiveProviderW601
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedMapProvider :
+    ComponentwiseClosedMapProviderW525
+  normalizedLiftBlueprint :
+    Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint
+  targetFixedTargetUniq :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+      (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0})
+  localizationModelFixedTargetUniq :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+      (((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair).Localization)
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  mappedCokernelClosedMapProvider :
+    MappedExplicitCokernelClosedMapProviderW519
+  endpointForgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  endpointClosedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  endpointOpenMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  endpointEpiOfExactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Epi ((K.sc i).g)
+  boundedHomotopyLocalizedRightAdjoint :
+    MorphismProperty.Localization
+        ((exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).trW) ⥤
+      BoundedComplexCategory MetrizableLCA.{0}
+  boundedHomotopyLocalizedAdjunction :
+    boundedHomotopyLocalizedVerdierFunctor MetrizableLCA.{0} ⊣
+      boundedHomotopyLocalizedRightAdjoint
+  boundedHomotopyLocalizedUnitMem :
+    (boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+      (BoundedComplexCategory MetrizableLCA.{0})
+      boundedHomotopyLocalizedAdjunction.unit
+  sourcePretriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  sourceTriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    IsTriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  triangleCompletion :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+
+/-- W710 assembles the W709 closed-map bundle from explicit endpoint fields. -/
+def
+    metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710) :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetDifferenceSurjectiveProvider := inputs.targetDifferenceSurjectiveProvider
+  targetCodomainCompactSpaceProvider :=
+    inputs.targetCodomainCompactSpaceProvider
+  globalClosedMapProvider := inputs.globalClosedMapProvider
+  normalizedLiftBlueprint := inputs.normalizedLiftBlueprint
+  targetFixedTargetUniq := inputs.targetFixedTargetUniq
+  localizationModelFixedTargetUniq :=
+    inputs.localizationModelFixedTargetUniq
+  hasHomology := inputs.hasHomology
+  mappedCokernelClosedMapProvider := inputs.mappedCokernelClosedMapProvider
+  endpointStrictTopology :=
+    metrizableExactAtEndpointStrictTopologyInputs_of_explicitEndpointFieldsW710
+      inputs.endpointForgetPreservesHomology
+      inputs.endpointClosedEmbedding
+      inputs.endpointOpenMap
+      inputs.endpointEpiOfExactAt
+  boundedHomotopyLocalizedRightAdjoint :=
+    inputs.boundedHomotopyLocalizedRightAdjoint
+  boundedHomotopyLocalizedAdjunction :=
+    inputs.boundedHomotopyLocalizedAdjunction
+  boundedHomotopyLocalizedUnitMem :=
+    inputs.boundedHomotopyLocalizedUnitMem
+  sourcePretriangulated := inputs.sourcePretriangulated
+  sourceTriangulated := inputs.sourceTriangulated
+  triangleCompletion := inputs.triangleCompletion
+
+/-- W710 explicit endpoint fields closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710
+      inputs)
+
+/-- W710 explicit endpoint fields closed-map data are accepted through W709. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710
+      inputs)
+
+/-- The W710 explicit endpoint fields closed-map package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709_accepted
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710
+      inputs)
+
+/--
+W710 closed-embedding bundle: expose the W709 mapped-cokernel
+closed-embedding route with explicit endpoint-strict topology fields instead
+of a preassembled endpoint topology input.
+-/
+structure
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetDifferenceSurjectiveProvider :
+    TargetDifferenceSurjectiveProviderW601
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedEmbeddingProvider :
+    ComponentwiseClosedEmbeddingProviderW525
+  normalizedLiftBlueprint :
+    Dbounded.MetrizableWalkingParallelPairNormalizedLiftBlueprint
+  targetFixedTargetUniq :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+      (WalkingParallelPair ⥤ Dbounded MetrizableLCA.{0})
+  localizationModelFixedTargetUniq :
+    Dbounded.MetrizableWalkingParallelPairFixedTargetUniqObligation
+      (((boundedExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+        WalkingParallelPair).Localization)
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  mappedCokernelClosedEmbeddingProvider :
+    MappedExplicitCokernelClosedEmbeddingProviderW519
+  endpointForgetPreservesHomology :
+    (forget₂ MetrizableLCA.{0} AddCommGrpCat.{0}).PreservesHomology
+  endpointClosedEmbedding :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      Topology.IsClosedEmbedding ((K.sc i).f : (K.sc i).X₁ → (K.sc i).X₂)
+  endpointOpenMap :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      IsOpenMap ((K.sc i).g : (K.sc i).X₂ → (K.sc i).X₃)
+  endpointEpiOfExactAt :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ),
+      K.ExactAt i → Epi ((K.sc i).g)
+  boundedHomotopyLocalizedRightAdjoint :
+    MorphismProperty.Localization
+        ((exactAcyclicHomotopyIsoClosure MetrizableLCA.{0}).trW) ⥤
+      BoundedComplexCategory MetrizableLCA.{0}
+  boundedHomotopyLocalizedAdjunction :
+    boundedHomotopyLocalizedVerdierFunctor MetrizableLCA.{0} ⊣
+      boundedHomotopyLocalizedRightAdjoint
+  boundedHomotopyLocalizedUnitMem :
+    (boundedHomotopyExactWeakEquivalence MetrizableLCA.{0}).functorCategory
+      (BoundedComplexCategory MetrizableLCA.{0})
+      boundedHomotopyLocalizedAdjunction.unit
+  sourcePretriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  sourceTriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    IsTriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  triangleCompletion :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+
+/-- W710 assembles the W709 closed-embedding bundle from explicit endpoint fields. -/
+def
+    metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710) :
+    MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetDifferenceSurjectiveProvider := inputs.targetDifferenceSurjectiveProvider
+  targetCodomainCompactSpaceProvider :=
+    inputs.targetCodomainCompactSpaceProvider
+  globalClosedEmbeddingProvider := inputs.globalClosedEmbeddingProvider
+  normalizedLiftBlueprint := inputs.normalizedLiftBlueprint
+  targetFixedTargetUniq := inputs.targetFixedTargetUniq
+  localizationModelFixedTargetUniq :=
+    inputs.localizationModelFixedTargetUniq
+  hasHomology := inputs.hasHomology
+  mappedCokernelClosedEmbeddingProvider :=
+    inputs.mappedCokernelClosedEmbeddingProvider
+  endpointStrictTopology :=
+    metrizableExactAtEndpointStrictTopologyInputs_of_explicitEndpointFieldsW710
+      inputs.endpointForgetPreservesHomology
+      inputs.endpointClosedEmbedding
+      inputs.endpointOpenMap
+      inputs.endpointEpiOfExactAt
+  boundedHomotopyLocalizedRightAdjoint :=
+    inputs.boundedHomotopyLocalizedRightAdjoint
+  boundedHomotopyLocalizedAdjunction :=
+    inputs.boundedHomotopyLocalizedAdjunction
+  boundedHomotopyLocalizedUnitMem :=
+    inputs.boundedHomotopyLocalizedUnitMem
+  sourcePretriangulated := inputs.sourcePretriangulated
+  sourceTriangulated := inputs.sourceTriangulated
+  triangleCompletion := inputs.triangleCompletion
+
+/-- W710 explicit endpoint fields closed-embedding route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710
+      inputs)
+
+/-- W710 explicit endpoint fields closed-embedding data are accepted through W709. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710
+      inputs)
+
+/-- The W710 explicit endpoint fields closed-embedding package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709_accepted
+    (metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710
+      inputs)
+
+/-- Input names for the W710 explicit-endpoint mapped-cokernel closed-provider route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedInputNamesW710 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "TargetDifferenceSurjectiveProviderW601",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "normalized strict-representative lift blueprint for WPP diagrams and maps",
+    "target fixed-target uniqueness for the WPP objectwise localization functor",
+    "localization-model fixed-target uniqueness for the WPP objectwise localization functor",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MappedExplicitCokernelClosedMapProviderW519 or MappedExplicitCokernelClosedEmbeddingProviderW519",
+    "forgetful functor preserves homology for MetrizableLCA",
+    "endpoint ExactAt incoming maps are closed embeddings",
+    "endpoint ExactAt outgoing maps are open",
+    "endpoint ExactAt outgoing maps are epis",
+    "right adjoint to the bounded homotopy localized Verdier functor",
+    "adjunction for the bounded homotopy localized Verdier functor",
+    "unit membership in boundedHomotopyExactWeakEquivalence",
+    "ordinary Pretriangulated structure on BoundedComplexCategory MetrizableLCA",
+    "ordinary IsTriangulated structure on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedInputNamesW710_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedInputNamesW710.length =
+      21 :=
+  rfl
+
+/-- Current checked W710 state for explicit endpoint fields. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW710 :
+    Type where
+  seed : String
+  declarations : List String
+  endpointFieldsToEndpointStrictTopologyResult : String
+  closedMapExplicitEndpointAcceptedResult : String
+  closedEmbeddingExplicitEndpointAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W710 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteSupportStateW710 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW710
+    where
+  seed :=
+    "w710-explicit-endpoint-strict-topology-target-surjective-mapped-cokernel-closed-provider-route"
+  declarations :=
+    ["metrizableExactAtEndpointStrictTopologyInputs_of_explicitEndpointFieldsW710",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710_accepted",
+      "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
+      "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedInputNamesW710",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedInputNamesW710_count"]
+  endpointFieldsToEndpointStrictTopologyResult :=
+    "proved: four explicit endpoint fields assemble MetrizableExactAtEndpointStrictTopologyInputs"
+  closedMapExplicitEndpointAcceptedResult :=
+    "proved: explicit endpoint fields assemble W709 and feed the accepted closed-map route"
+  closedEmbeddingExplicitEndpointAcceptedResult :=
+    "proved: explicit endpoint fields assemble W709 and feed the accepted closed-embedding route"
+  replacedInputs :=
+    ["MetrizableExactAtEndpointStrictTopologyInputs as a direct W709 call-site input"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete TargetDifferenceSurjectiveProviderW601",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict-representative lift blueprint for WPP diagrams and maps",
+      "prove target fixed-target uniqueness for the WPP objectwise localization functor",
+      "prove localization-model fixed-target uniqueness for the WPP objectwise localization functor",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct concrete W519 mapped-explicit-cokernel closed-map or closed-embedding data",
+      "prove forgetful homology preservation for MetrizableLCA",
+      "prove ExactAt-conditioned incoming maps are closed embeddings",
+      "prove ExactAt-conditioned outgoing maps are open",
+      "prove ExactAt-conditioned outgoing maps are epis",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW710 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW710 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteSupportStateW710
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW710_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW710.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -44850,6 +45270,48 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitNormalizedFixedTargetLocalizedRightAdjointTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW709_productSuccess
+set_option linter.style.longLine false in
+#check
+  metrizableExactAtEndpointStrictTopologyInputs_of_explicitEndpointFieldsW710
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710_accepted
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710_accepted
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedInputNamesW710
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedInputNamesW710_count
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteSupportStateW710
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW710
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW710_productSuccess
 
 set_option linter.style.longLine false in
 #check

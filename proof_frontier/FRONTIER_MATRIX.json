@@ -1,9 +1,64 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T13:50:46Z",
+  "generated_utc": "2026-05-24T14:03:39Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
+    {
+      "frontier_id": "frontier-w710-explicit-endpoint-strict-topology-mapped-cokernel-closed-provider",
+      "target_declarations": [
+        "metrizableExactAtEndpointStrictTopologyInputs_of_explicitEndpointFieldsW710",
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
+        "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710_accepted",
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
+        "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710_accepted",
+        "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW710_productSuccess"
+      ],
+      "target_files_or_module": [
+        "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "audit/ProductSuccessDeclarations.lean"
+      ],
+      "dependencies": [
+        "W709 mapped-cokernel closed-provider route",
+        "MetrizableExactAtEndpointStrictTopologyInputs",
+        "forgetPreservesHomology",
+        "closedEmbedding",
+        "openMap",
+        "epi_of_exactAt"
+      ],
+      "allowed_writes": [
+        "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "audit/ProductSuccessDeclarations.lean",
+        "scratch-log.html",
+        "proof_frontier/FRONTIER_MATRIX.json",
+        "proof_frontier/FRONTIER_MATRIX.md",
+        "run/verification.json",
+        "terminal_outcome/terminal_outcome.json",
+        "manifest.json"
+      ],
+      "forbidden_writes": [
+        "global Lean or elan configuration",
+        "packet-internal authoritative final zip SHA256",
+        "unrelated repositories"
+      ],
+      "worker_count_allowed": 0,
+      "verification_command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields && lake env lean audit/ProductSuccessDeclarations.lean && lake build",
+      "merge_blocker": "Concrete WPP boundary data, W512 relation fields, W601 target-difference surjectivity, compact targets, W525 global closed providers, normalized fixed-target obligations, W519 mapped-cokernel closed-map or closed-embedding data, explicit endpoint facts, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs remain unconstructed.",
+      "product_success_contribution": "Replaces the direct MetrizableExactAtEndpointStrictTopologyInputs call-site input at the W709 surface by four explicit endpoint fields while preserving accepted closed-map and closed-embedding routes.",
+      "owned_by_active_process": true,
+      "implemented_declarations": [
+        "metrizableExactAtEndpointStrictTopologyInputs_of_explicitEndpointFieldsW710",
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
+        "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710_accepted",
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710",
+        "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitEndpointFieldsW710",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW710_accepted",
+        "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTopologyTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW710_productSuccess"
+      ]
+    },
     {
       "frontier_id": "frontier-w709-mapped-cokernel-closed-provider-explicit-normalized-fixed-target-localized-right-adjoint",
       "target_declarations": [
@@ -1729,41 +1784,26 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w707",
-  "latest_parent_update": "parent_update_w706_explicit_localized_right_adjoint_target_top_route",
-  "summary": "W707 exposes the W706 normalized fixed-target localization input as separate normalized strict-representative lift blueprint, target fixed-target uniqueness, and localization-model fixed-target uniqueness fields; it assembles Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs internally and delegates closed-map and closed-embedding paths to W706. Product-success flags remain false.",
-  "remaining_frontier": "Need to construct concrete WPP right-open cover boundary data and source pi-zero cokernel boundary data at the final call site.; Need to construct concrete W512 relation-field provider data and compatible target-relation-top or target-difference surjectivity data.; Need to construct concrete target codomain compactness data for the WPP target objects used by the route.; Need to construct concrete W525 componentwise global closed-map or closed-embedding provider data for all required components.; Need to construct a normalized strict-representative lift blueprint for WPP diagrams and maps.; Need to prove target fixed-target uniqueness for the WPP objectwise localization functor.; Need to prove localization-model fixed-target uniqueness for the WPP objectwise localization functor.; Need to construct homology existence for every MetrizableLCA cochain complex in every integer degree.; Need to construct concrete W519 closed-range provider data for mapped explicit cokernels.; Need to construct endpoint-strict ExactAt topology data, including forgetful homology preservation and endpoint epimorphisms.; Need to construct bounded homotopy localized right-adjoint data together with the required unit membership evidence.; Need to construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA.; Need to prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion.; Need to construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs..",
-  "support_classification": "nonterminal_support_w707_explicit_normalized_fixed_target_localized_right_adjoint_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w710",
+  "latest_parent_update": "parent_update_w710_explicit_endpoint_strict_topology_route",
+  "summary": "W710 exposes the W709 endpoint-strict topology input as four explicit endpoint fields: forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis. It assembles MetrizableExactAtEndpointStrictTopologyInputs internally and delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W709. Product-success flags remain false.",
+  "remaining_frontier": "Need concrete WPP boundary data, relation fields, target-surjectivity and compactness data, global closed providers, normalized fixed-target obligations, mapped-cokernel closed-provider data, explicit endpoint facts, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs.",
+  "support_classification": "nonterminal_support_w710_explicit_endpoint_strict_topology_route",
   "remaining_blockers": [
-    "Need to construct concrete WPP right-open cover boundary data and source pi-zero cokernel boundary data at the final call site.",
-    "Need to construct concrete W512 relation-field provider data and compatible target-relation-top or target-difference surjectivity data.",
-    "Need to construct concrete target codomain compactness data for the WPP target objects used by the route.",
-    "Need to construct concrete W525 componentwise global closed-map or closed-embedding provider data for all required components.",
-    "Need to construct a normalized strict-representative lift blueprint for WPP diagrams and maps.",
-    "Need to prove target fixed-target uniqueness for the WPP objectwise localization functor.",
-    "Need to prove localization-model fixed-target uniqueness for the WPP objectwise localization functor.",
-    "Need to construct homology existence for every MetrizableLCA cochain complex in every integer degree.",
-    "Need to construct concrete W519 closed-range provider data for mapped explicit cokernels.",
-    "Need to construct endpoint-strict ExactAt topology data, including forgetful homology preservation and endpoint epimorphisms.",
-    "Need to construct bounded homotopy localized right-adjoint data together with the required unit membership evidence.",
-    "Need to construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA.",
-    "Need to prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion.",
-    "Need to construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs."
+    "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
+    "Concrete W512 relation fields, W601 target-difference surjectivity, compact target data, and W525 global closed-map or closed-embedding provider data remain unconstructed.",
+    "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
+    "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
+    "Endpoint facts are now explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
+    "Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "open_blockers": [
-    "construct concrete WPP right-open and source-pi-zero boundary data",
-    "construct concrete relation-fields provider data",
-    "construct concrete target-relation-top provider data for the W702/W703/W704/W705/W706 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
-    "construct concrete target codomain compactness data",
-    "construct concrete componentwise global closed-map or closed-embedding provider data",
-    "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
-    "construct homology existence for all MetrizableLCA cochain complexes in every degree",
-    "construct W519 mapped-explicit-cokernel closed-range provider data",
-    "construct endpoint-strict ExactAt topology data, including forgetful homology preservation and endpoint epis",
-    "construct bounded homotopy localized right adjoint plus unit membership",
-    "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
-    "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
-    "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
+    "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
+    "Concrete W512 relation fields, W601 target-difference surjectivity, compact target data, and W525 global closed-map or closed-embedding provider data remain unconstructed.",
+    "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
+    "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
+    "Endpoint facts are now explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
+    "Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "consumed_support_results": [
     {
@@ -2019,19 +2059,12 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
-    "construct concrete WPP right-open and source-pi-zero boundary data",
-    "construct concrete relation-fields provider data",
-    "construct concrete target-relation-top provider data for the W702/W703/W704/W705/W706 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
-    "construct concrete target codomain compactness data",
-    "construct concrete componentwise global closed-map or closed-embedding provider data",
-    "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
-    "construct homology existence for all MetrizableLCA cochain complexes in every degree",
-    "construct W519 mapped-explicit-cokernel closed-range provider data",
-    "construct endpoint-strict ExactAt topology data, including forgetful homology preservation and endpoint epis",
-    "construct bounded homotopy localized right adjoint plus unit membership",
-    "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
-    "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
-    "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
+    "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
+    "Concrete W512 relation fields, W601 target-difference surjectivity, compact target data, and W525 global closed-map or closed-embedding provider data remain unconstructed.",
+    "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
+    "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
+    "Endpoint facts are now explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
+    "Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "parent_update_v324": {
     "summary": "v324\u3067BoundedComplexCategory.\u03b9 MetrizableLCA\u306eWalkingParallelPair/WPP-op colimit\u4fdd\u5b58\u3092\u78ba\u8a8d\u3057\u3001W308\u306bambient right-leg cocone route\u3092\u8ffd\u52a0\u3057\u305f\u3002product_complete\u306ffalse\u306e\u307e\u307e\u3002",
