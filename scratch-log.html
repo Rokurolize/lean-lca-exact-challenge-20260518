@@ -38,20 +38,20 @@
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W723 CategoryWithHomology provider route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W724 source homological-triangulation route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260524T172012Z_codex_parent_w723</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T173219Z_codex_parent_w724</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W723 CategoryWithHomology provider route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W724 source homological-triangulation route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
       <div class="columns">
         <div>
-          <p>W723 replaces the raw global homology function field at the W722 source-triangulation call site with a standard <code>CategoryWithHomology MetrizableLCA</code> provider. The adapters project that category-level provider into <code>HasHomology</code> for every MetrizableLCA cochain complex and degree, then delegate both accepted paths to W722.</p>
+          <p>W724 combines the source-side <code>CategoryWithHomology MetrizableLCA</code> provider from W723 with the W722 source triangulation provider. The adapters project that single source homological-triangulation input back into W723, then delegate both accepted paths to W723.</p>
           <ul>
-            <li><code>MetrizableWppCategoryWithHomologyProviderW723</code> records the category-level homology input.</li>
-            <li><code>hasHomology_of_categoryWithHomologyProviderW723</code> turns that provider into the global <code>HasHomology</code> field consumed by W722.</li>
-            <li>The closed-map and closed-embedding W723 bundles assemble W722 inputs internally while keeping the input-name count at <code>10</code>.</li>
+            <li><code>MetrizableWppSourceHomologicalTriangulationDataProviderW724</code> records category-level homology and source triangulation data together.</li>
+            <li>The W724 projections recover the W723 homology provider, global <code>HasHomology</code>, and W722 source triangulation data.</li>
+            <li>The input-name count drops from <code>10</code> to <code>9</code> by replacing two source-side providers with one coherent source provider.</li>
           </ul>
         </div>
         <div>
@@ -60,7 +60,7 @@
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T173219Z_codex_parent_w724/w724_required_declarations.lean</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake env lean LeanLCAExactChallenge.lean</code> and <code>lake build</code></li>
             <li>Forbidden-token audits, JSON parse checks, manifest self-check, browser evidence, and expected nonterminal product-gate rejection.</li>
@@ -69,8 +69,8 @@
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W723 work.</p></div>
-      <p>W722 bundled the source Pretriangulated structure, source IsTriangulated structure, and source-side triangle completion into one source triangulation data provider while delegating to W721.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W724 work.</p></div>
+      <p>W723 replaced the raw global homology function field at the W722 call site with a standard <code>CategoryWithHomology MetrizableLCA</code> provider while delegating to W722.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
@@ -80,8 +80,8 @@
         <li>Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data.</li>
         <li>Concrete selected-difference diagram component closed-map or closed-embedding provider data.</li>
         <li>Concrete normalized fixed-target data provider.</li>
-        <li>Concrete <code>CategoryWithHomology MetrizableLCA</code>, W519 mapped-cokernel closed-map or closed-embedding data, and endpoint strict-topology data.</li>
-        <li>Concrete bounded homotopy localized-right-adjoint data, concrete source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
+        <li>Concrete source homological-triangulation data, W519 mapped-cokernel closed-map or closed-embedding data, and endpoint strict-topology data.</li>
+        <li>Concrete bounded homotopy localized-right-adjoint data and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>

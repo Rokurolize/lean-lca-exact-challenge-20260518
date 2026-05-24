@@ -49959,6 +49959,290 @@ theorem
       false :=
   rfl
 
+/-- W724 bundles source-side homology and triangulation data. -/
+structure MetrizableWppSourceHomologicalTriangulationDataProviderW724 :
+    Type 2 where
+  categoryWithHomologyProvider :
+    MetrizableWppCategoryWithHomologyProviderW723
+  sourceTriangulationData :
+    MetrizableWppSourceTriangulationDataProviderW722
+
+/-- W724 projects the category-level homology provider. -/
+def categoryWithHomologyProvider_of_sourceHomologicalTriangulationDataW724
+    (sourceData :
+      MetrizableWppSourceHomologicalTriangulationDataProviderW724) :
+    MetrizableWppCategoryWithHomologyProviderW723 :=
+  sourceData.categoryWithHomologyProvider
+
+/-- W724 projects the source triangulation provider. -/
+def sourceTriangulationData_of_sourceHomologicalTriangulationDataW724
+    (sourceData :
+      MetrizableWppSourceHomologicalTriangulationDataProviderW724) :
+    MetrizableWppSourceTriangulationDataProviderW722 :=
+  sourceData.sourceTriangulationData
+
+/-- W724 projects global homology existence through the W723 provider. -/
+def hasHomology_of_sourceHomologicalTriangulationDataW724
+    (sourceData :
+      MetrizableWppSourceHomologicalTriangulationDataProviderW724) :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i :=
+  hasHomology_of_categoryWithHomologyProviderW723
+    (categoryWithHomologyProvider_of_sourceHomologicalTriangulationDataW724
+      sourceData)
+
+/--
+W724 closed-map bundle: expose the W723 category-homology route with one
+source homological-triangulation data input.
+-/
+structure
+    MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724 :
+    Type 2 where
+  boundaryData :
+    MetrizableWppLimitBoundaryDataW716
+  relationData :
+    ClosedNatTransOrdinaryRelationDataProviderW717
+  targetSurjectiveCompactForTargetProvider :
+    TargetSurjectiveCompactForTargetProviderW715
+  globalClosedMapComponents :
+    SelectedDifferenceClosedMapDiagramComponentProviderW718
+  normalizedFixedTargetData :
+    MetrizableWppNormalizedFixedTargetDataProviderW719
+  sourceHomologicalTriangulationData :
+    MetrizableWppSourceHomologicalTriangulationDataProviderW724
+  mappedCokernelClosedMapProvider :
+    MappedExplicitCokernelClosedMapProviderW519
+  endpointStrictTopologyData :
+    MetrizableWppEndpointStrictTopologyDataProviderW720
+  localizedRightAdjointData :
+    MetrizableWppLocalizedRightAdjointDataProviderW721
+
+/-- W724 assembles the W723 closed-map bundle from source homological data. -/
+def
+    metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundle_of_sourceHomologicalTriangulationDataW724
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724) :
+    MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723
+    where
+  boundaryData := inputs.boundaryData
+  relationData := inputs.relationData
+  targetSurjectiveCompactForTargetProvider :=
+    inputs.targetSurjectiveCompactForTargetProvider
+  globalClosedMapComponents := inputs.globalClosedMapComponents
+  normalizedFixedTargetData := inputs.normalizedFixedTargetData
+  categoryWithHomologyProvider :=
+    categoryWithHomologyProvider_of_sourceHomologicalTriangulationDataW724
+      inputs.sourceHomologicalTriangulationData
+  mappedCokernelClosedMapProvider := inputs.mappedCokernelClosedMapProvider
+  endpointStrictTopologyData := inputs.endpointStrictTopologyData
+  localizedRightAdjointData := inputs.localizedRightAdjointData
+  sourceTriangulationData :=
+    sourceTriangulationData_of_sourceHomologicalTriangulationDataW724
+      inputs.sourceHomologicalTriangulationData
+
+/-- W724 source-homological closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundle_of_sourceHomologicalTriangulationDataW724
+      inputs)
+
+/-- W724 source-homological closed-map route is accepted through W723. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundle_of_sourceHomologicalTriangulationDataW724
+      inputs)
+
+/-- The W724 source-homological closed-map package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724_accepted
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723_accepted
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundle_of_sourceHomologicalTriangulationDataW724
+      inputs)
+
+/--
+W724 closed-embedding bundle: expose the W723 category-homology route with one
+source homological-triangulation data input.
+-/
+structure
+    MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724 :
+    Type 2 where
+  boundaryData :
+    MetrizableWppLimitBoundaryDataW716
+  relationData :
+    ClosedNatTransOrdinaryRelationDataProviderW717
+  targetSurjectiveCompactForTargetProvider :
+    TargetSurjectiveCompactForTargetProviderW715
+  globalClosedEmbeddingComponents :
+    SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718
+  normalizedFixedTargetData :
+    MetrizableWppNormalizedFixedTargetDataProviderW719
+  sourceHomologicalTriangulationData :
+    MetrizableWppSourceHomologicalTriangulationDataProviderW724
+  mappedCokernelClosedEmbeddingProvider :
+    MappedExplicitCokernelClosedEmbeddingProviderW519
+  endpointStrictTopologyData :
+    MetrizableWppEndpointStrictTopologyDataProviderW720
+  localizedRightAdjointData :
+    MetrizableWppLocalizedRightAdjointDataProviderW721
+
+/-- W724 assembles the W723 closed-embedding bundle from source homological data. -/
+def
+    metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundle_of_sourceHomologicalTriangulationDataW724
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724) :
+    MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723
+    where
+  boundaryData := inputs.boundaryData
+  relationData := inputs.relationData
+  targetSurjectiveCompactForTargetProvider :=
+    inputs.targetSurjectiveCompactForTargetProvider
+  globalClosedEmbeddingComponents := inputs.globalClosedEmbeddingComponents
+  normalizedFixedTargetData := inputs.normalizedFixedTargetData
+  categoryWithHomologyProvider :=
+    categoryWithHomologyProvider_of_sourceHomologicalTriangulationDataW724
+      inputs.sourceHomologicalTriangulationData
+  mappedCokernelClosedEmbeddingProvider :=
+    inputs.mappedCokernelClosedEmbeddingProvider
+  endpointStrictTopologyData := inputs.endpointStrictTopologyData
+  localizedRightAdjointData := inputs.localizedRightAdjointData
+  sourceTriangulationData :=
+    sourceTriangulationData_of_sourceHomologicalTriangulationDataW724
+      inputs.sourceHomologicalTriangulationData
+
+/-- W724 source-homological closed-embedding route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundle_of_sourceHomologicalTriangulationDataW724
+      inputs)
+
+/-- W724 source-homological closed-embedding route is accepted through W723. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundle_of_sourceHomologicalTriangulationDataW724
+      inputs)
+
+/-- The W724 source-homological closed-embedding package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724_accepted
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723_accepted
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundle_of_sourceHomologicalTriangulationDataW724
+      inputs)
+
+/-- Input names for the W724 source homological-triangulation route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW724 :
+    List String :=
+  ["bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+    "bundled closed natural transformation ordinary relation-pullback and target-relation-lift provider",
+    "target-only ordinary target-difference surjectivity plus target-codomain compactness provider",
+    "selected-difference diagram component closed-map or closed-embedding provider",
+    "normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness provider",
+    "source homological-triangulation data provider for CategoryWithHomology, Pretriangulated, IsTriangulated, and triangle completion data",
+    "MappedExplicitCokernelClosedMapProviderW519 or MappedExplicitCokernelClosedEmbeddingProviderW519",
+    "endpoint strict-topology data provider for forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and endpoint epis",
+    "bounded homotopy localized-right-adjoint data provider for right adjoint, adjunction, and unit membership"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW724_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW724.length =
+      9 :=
+  rfl
+
+/-- Current checked W724 state for source homological-triangulation data. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW724 :
+    Type where
+  seed : String
+  declarations : List String
+  sourceHomologicalProjectionResult : String
+  closedMapSourceHomologicalAcceptedResult : String
+  closedEmbeddingSourceHomologicalAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W724 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteSupportStateW724 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW724
+    where
+  seed :=
+    "w724-source-homological-triangulation-data-route"
+  declarations :=
+    ["MetrizableWppSourceHomologicalTriangulationDataProviderW724",
+      "categoryWithHomologyProvider_of_sourceHomologicalTriangulationDataW724",
+      "sourceTriangulationData_of_sourceHomologicalTriangulationDataW724",
+      "hasHomology_of_sourceHomologicalTriangulationDataW724",
+      "MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724",
+      "metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundle_of_sourceHomologicalTriangulationDataW724",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724_accepted",
+      "MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724",
+      "metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundle_of_sourceHomologicalTriangulationDataW724",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW724_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW724",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationInputNamesW724_count"]
+  sourceHomologicalProjectionResult :=
+    "proved: one source homological-triangulation input projects to CategoryWithHomology, global HasHomology, source triangulation, and triangle-completion data"
+  closedMapSourceHomologicalAcceptedResult :=
+    "proved: source-homological closed-map bundle assembles W723 and feeds the accepted closed-map route"
+  closedEmbeddingSourceHomologicalAcceptedResult :=
+    "proved: source-homological closed-embedding bundle assembles W723 and feeds the accepted closed-embedding route"
+  replacedInputs :=
+    ["separate CategoryWithHomology provider and source triangulation data provider"]
+  remainingInputs :=
+    ["construct concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+      "construct concrete bundled closed-natural-transformation relation data",
+      "construct concrete target-only surjective-compact provider for every WPP-op target",
+      "construct concrete selected-difference diagram component closed-map or closed-embedding provider",
+      "construct concrete normalized fixed-target data provider",
+      "construct concrete source homological-triangulation data provider",
+      "construct concrete W519 mapped-explicit-cokernel closed-map or closed-embedding data",
+      "construct concrete endpoint strict-topology data provider",
+      "construct concrete bounded homotopy localized-right-adjoint data provider",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW724 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW724 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteSupportStateW724
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW724_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW724.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
