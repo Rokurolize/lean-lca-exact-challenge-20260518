@@ -38,20 +38,20 @@
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W725 closedness-branch provider route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W726 endpoint/localized-right-adjoint route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260524T174217Z_codex_parent_w725</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T180548Z_codex_parent_w726</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W725 closedness-branch provider route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W726 endpoint/localized-right-adjoint route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
       <div class="columns">
         <div>
-          <p>W725 keeps the selected-difference component closedness branch aligned with the matching W519 mapped-cokernel closedness provider. A single branch provider carries either the closed-map data or the closed-embedding data, and the accepted route delegates by cases to W724.</p>
+          <p>W726 pairs endpoint strict-topology data with bounded homotopy localized-right-adjoint data in one provider. The W726 route projects that provider back into the W725 closedness-branch bundle, delegates acceptance to W725, and keeps the product-success flags false.</p>
           <ul>
-            <li><code>MetrizableWppDiagramAndMappedCokernelClosednessDataProviderW725</code> records the matched closed-map or closed-embedding branch.</li>
-            <li>The W725 accepted route case-splits on that branch and assembles the corresponding W724 bundle.</li>
-            <li>The input-name count drops from <code>9</code> to <code>8</code> by replacing separate component and W519 mapped-cokernel closedness inputs with one matched provider.</li>
+            <li><code>MetrizableWppEndpointLocalizedRightAdjointDataProviderW726</code> records endpoint strict-topology data and localized-right-adjoint data together.</li>
+            <li>The W726 accepted route assembles the W725 bundle with projected endpoint and localized fields.</li>
+            <li>The input-name count drops from <code>8</code> to <code>7</code> by replacing separate endpoint and localized-right-adjoint inputs with one provider.</li>
           </ul>
         </div>
         <div>
@@ -60,7 +60,7 @@
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T174217Z_codex_parent_w725/w725_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T180548Z_codex_parent_w726/w726_required_declarations.lean</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake env lean LeanLCAExactChallenge.lean</code> and <code>lake build</code></li>
             <li>Forbidden-token audits, JSON parse checks, manifest self-check, browser evidence, and expected nonterminal product-gate rejection.</li>
@@ -69,8 +69,8 @@
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W725 work.</p></div>
-      <p>W724 combined the source-side <code>CategoryWithHomology MetrizableLCA</code> provider with source triangulation data into one source homological-triangulation provider.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W726 work.</p></div>
+      <p>W725 aligned selected-difference component closedness with the matching W519 mapped-cokernel closedness provider in one closedness-branch route.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
@@ -78,10 +78,10 @@
         <li>Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data.</li>
         <li>Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations.</li>
         <li>Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data.</li>
-        <li>Concrete selected-difference diagram component closed-map or closed-embedding provider data.</li>
         <li>Concrete normalized fixed-target data provider.</li>
-        <li>Concrete matched selected-difference component and W519 mapped-cokernel closedness branch data, source homological-triangulation data, and endpoint strict-topology data.</li>
-        <li>Concrete bounded homotopy localized-right-adjoint data and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
+        <li>Concrete matched selected-difference component and W519 mapped-cokernel closedness branch data.</li>
+        <li>Concrete source homological-triangulation data and concrete endpoint/localized-right-adjoint data.</li>
+        <li>Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>

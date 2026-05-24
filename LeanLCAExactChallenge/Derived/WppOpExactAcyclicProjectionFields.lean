@@ -50475,6 +50475,185 @@ theorem
       false :=
   rfl
 
+/-- W726 bundles endpoint strict-topology and localized-right-adjoint data. -/
+structure MetrizableWppEndpointLocalizedRightAdjointDataProviderW726 :
+    Type 2 where
+  endpointStrictTopologyData :
+    MetrizableWppEndpointStrictTopologyDataProviderW720
+  localizedRightAdjointData :
+    MetrizableWppLocalizedRightAdjointDataProviderW721
+
+/-- W726 projects endpoint strict-topology data. -/
+def endpointStrictTopologyData_of_endpointLocalizedRightAdjointDataW726
+    (endpointLocalizedData :
+      MetrizableWppEndpointLocalizedRightAdjointDataProviderW726) :
+    MetrizableWppEndpointStrictTopologyDataProviderW720 :=
+  endpointLocalizedData.endpointStrictTopologyData
+
+/-- W726 projects localized-right-adjoint data. -/
+def localizedRightAdjointData_of_endpointLocalizedRightAdjointDataW726
+    (endpointLocalizedData :
+      MetrizableWppEndpointLocalizedRightAdjointDataProviderW726) :
+    MetrizableWppLocalizedRightAdjointDataProviderW721 :=
+  endpointLocalizedData.localizedRightAdjointData
+
+/--
+W726 bundle: expose the W725 closedness-branch route with one endpoint/localized
+provider instead of separate endpoint strict-topology and localized-adjoint data.
+-/
+structure
+    MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726 :
+    Type 2 where
+  boundaryData :
+    MetrizableWppLimitBoundaryDataW716
+  relationData :
+    ClosedNatTransOrdinaryRelationDataProviderW717
+  targetSurjectiveCompactForTargetProvider :
+    TargetSurjectiveCompactForTargetProviderW715
+  diagramAndMappedCokernelClosednessData :
+    MetrizableWppDiagramAndMappedCokernelClosednessDataProviderW725
+  normalizedFixedTargetData :
+    MetrizableWppNormalizedFixedTargetDataProviderW719
+  sourceHomologicalTriangulationData :
+    MetrizableWppSourceHomologicalTriangulationDataProviderW724
+  endpointLocalizedRightAdjointData :
+    MetrizableWppEndpointLocalizedRightAdjointDataProviderW726
+
+/-- W726 assembles the W725 bundle from endpoint/localized data. -/
+def
+    metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundle_of_endpointLocalizedRightAdjointDataW726
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726) :
+    MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725
+    where
+  boundaryData := inputs.boundaryData
+  relationData := inputs.relationData
+  targetSurjectiveCompactForTargetProvider :=
+    inputs.targetSurjectiveCompactForTargetProvider
+  diagramAndMappedCokernelClosednessData :=
+    inputs.diagramAndMappedCokernelClosednessData
+  normalizedFixedTargetData := inputs.normalizedFixedTargetData
+  sourceHomologicalTriangulationData :=
+    inputs.sourceHomologicalTriangulationData
+  endpointStrictTopologyData :=
+    endpointStrictTopologyData_of_endpointLocalizedRightAdjointDataW726
+      inputs.endpointLocalizedRightAdjointData
+  localizedRightAdjointData :=
+    localizedRightAdjointData_of_endpointLocalizedRightAdjointDataW726
+      inputs.endpointLocalizedRightAdjointData
+
+/-- W726 endpoint/localized route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundle_of_endpointLocalizedRightAdjointDataW726
+      inputs)
+
+/-- W726 endpoint/localized route is accepted through W725. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundle_of_endpointLocalizedRightAdjointDataW726
+      inputs)
+
+/-- The W726 endpoint/localized package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726_accepted
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundleW725_accepted
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundle_of_endpointLocalizedRightAdjointDataW726
+      inputs)
+
+/-- Input names for the W726 endpoint/localized route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationInputNamesW726 :
+    List String :=
+  ["bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+    "bundled closed natural transformation ordinary relation-pullback and target-relation-lift provider",
+    "target-only ordinary target-difference surjectivity plus target-codomain compactness provider",
+    "matched selected-difference component and W519 mapped-cokernel closedness branch provider",
+    "normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness provider",
+    "source homological-triangulation data provider for CategoryWithHomology, Pretriangulated, IsTriangulated, and triangle completion data",
+    "endpoint/localized-right-adjoint data provider for endpoint strict-topology data and bounded homotopy localized-right-adjoint data"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationInputNamesW726_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationInputNamesW726.length =
+      7 :=
+  rfl
+
+/-- Current checked W726 state for endpoint/localized data. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationRouteStateW726 :
+    Type where
+  seed : String
+  declarations : List String
+  endpointLocalizedProjectionResult : String
+  endpointLocalizedAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W726 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationRouteSupportStateW726 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationRouteStateW726
+    where
+  seed :=
+    "w726-endpoint-localized-right-adjoint-data-route"
+  declarations :=
+    ["MetrizableWppEndpointLocalizedRightAdjointDataProviderW726",
+      "endpointStrictTopologyData_of_endpointLocalizedRightAdjointDataW726",
+      "localizedRightAdjointData_of_endpointLocalizedRightAdjointDataW726",
+      "MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726",
+      "metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationBundle_of_endpointLocalizedRightAdjointDataW726",
+      "metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationBundleW726_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationInputNamesW726",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationInputNamesW726_count"]
+  endpointLocalizedProjectionResult :=
+    "proved: one endpoint/localized provider projects to endpoint strict-topology data and localized-right-adjoint data"
+  endpointLocalizedAcceptedResult :=
+    "proved: endpoint/localized bundle assembles W725 and feeds the accepted closedness-branch route"
+  replacedInputs :=
+    ["separate endpoint strict-topology data provider",
+      "separate bounded homotopy localized-right-adjoint data provider"]
+  remainingInputs :=
+    ["construct concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+      "construct concrete bundled closed-natural-transformation relation data",
+      "construct concrete target-only surjective-compact provider for every WPP-op target",
+      "construct concrete matched selected-difference component and W519 mapped-cokernel closedness branch provider",
+      "construct concrete normalized fixed-target data provider",
+      "construct concrete source homological-triangulation data provider",
+      "construct concrete endpoint/localized-right-adjoint data provider",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationRouteStateW726 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationRouteStateW726 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationRouteSupportStateW726
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationRouteStateW726_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointLocalizedRightAdjointDataNormalizedFixedTargetSourceHomologicalTriangulationRouteStateW726.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
