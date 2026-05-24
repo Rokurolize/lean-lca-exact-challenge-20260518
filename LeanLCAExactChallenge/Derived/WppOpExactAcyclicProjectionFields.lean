@@ -50997,6 +50997,170 @@ theorem
       false :=
   rfl
 
+/--
+W729 bundles target-only surjective-compact data with matched closedness data.
+-/
+structure MetrizableWppTargetSurjectiveCompactClosednessDataProviderW729 :
+    Type 2 where
+  targetSurjectiveCompactForTargetProvider :
+    TargetSurjectiveCompactForTargetProviderW715
+  diagramAndMappedCokernelClosednessData :
+    MetrizableWppDiagramAndMappedCokernelClosednessDataProviderW725
+
+/-- W729 projects target-only surjective-compact data. -/
+def targetSurjectiveCompactForTargetProvider_of_targetClosednessDataW729
+    (targetClosednessData :
+      MetrizableWppTargetSurjectiveCompactClosednessDataProviderW729) :
+    TargetSurjectiveCompactForTargetProviderW715 :=
+  targetClosednessData.targetSurjectiveCompactForTargetProvider
+
+/-- W729 projects matched diagram and mapped-cokernel closedness data. -/
+def diagramAndMappedCokernelClosednessData_of_targetClosednessDataW729
+    (targetClosednessData :
+      MetrizableWppTargetSurjectiveCompactClosednessDataProviderW729) :
+    MetrizableWppDiagramAndMappedCokernelClosednessDataProviderW725 :=
+  targetClosednessData.diagramAndMappedCokernelClosednessData
+
+/--
+W729 bundle: expose the W728 normalized/source-endpoint route with one target
+closedness provider instead of separate target-only and closedness data.
+-/
+structure
+    MetrizableWppRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729 :
+    Type 2 where
+  boundaryData :
+    MetrizableWppLimitBoundaryDataW716
+  relationData :
+    ClosedNatTransOrdinaryRelationDataProviderW717
+  targetClosednessData :
+    MetrizableWppTargetSurjectiveCompactClosednessDataProviderW729
+  normalizedFixedTargetSourceEndpointData :
+    MetrizableWppNormalizedFixedTargetSourceEndpointDataProviderW728
+
+/-- W729 assembles the W728 bundle from target/closedness data. -/
+def
+    metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessDataW729
+    (inputs :
+      MetrizableWppRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729) :
+    MetrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728
+    where
+  boundaryData := inputs.boundaryData
+  relationData := inputs.relationData
+  targetSurjectiveCompactForTargetProvider :=
+    targetSurjectiveCompactForTargetProvider_of_targetClosednessDataW729
+      inputs.targetClosednessData
+  diagramAndMappedCokernelClosednessData :=
+    diagramAndMappedCokernelClosednessData_of_targetClosednessDataW729
+      inputs.targetClosednessData
+  normalizedFixedTargetSourceEndpointData :=
+    inputs.normalizedFixedTargetSourceEndpointData
+
+/-- W729 target/closedness route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729
+    (inputs :
+      MetrizableWppRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessDataW729
+      inputs)
+
+/-- W729 target/closedness route is accepted through W728. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729
+    (inputs :
+      MetrizableWppRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessDataW729
+      inputs)
+
+/-- The W729 target/closedness package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729_accepted
+    (inputs :
+      MetrizableWppRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundleW728_accepted
+    (metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessDataW729
+      inputs)
+
+/-- Input names for the W729 target/closedness route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointInputNamesW729 :
+    List String :=
+  ["bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+    "bundled closed natural transformation ordinary relation-pullback and target-relation-lift provider",
+    "target/closedness data provider for target-only surjective-compact data and matched component/W519 closedness",
+    "normalized fixed-target source/endpoint data provider for normalized target data, source homological data, endpoint strict-topology data, and localized-right-adjoint data"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointInputNamesW729_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointInputNamesW729.length =
+      4 :=
+  rfl
+
+/-- Current checked W729 state for target/closedness data. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729 :
+    Type where
+  seed : String
+  declarations : List String
+  targetClosednessProjectionResult : String
+  targetClosednessAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W729 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteSupportStateW729 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729
+    where
+  seed :=
+    "w729-target-surjective-compact-closedness-data-route"
+  declarations :=
+    ["MetrizableWppTargetSurjectiveCompactClosednessDataProviderW729",
+      "targetSurjectiveCompactForTargetProvider_of_targetClosednessDataW729",
+      "diagramAndMappedCokernelClosednessData_of_targetClosednessDataW729",
+      "MetrizableWppRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729",
+      "metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessDataW729",
+      "metrizableOrdinaryStableSemanticInput_of_relationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointInputNamesW729",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointInputNamesW729_count"]
+  targetClosednessProjectionResult :=
+    "proved: one target/closedness provider projects to target-only surjective-compact data and matched closedness branch data"
+  targetClosednessAcceptedResult :=
+    "proved: target/closedness bundle assembles W728 and feeds the accepted normalized/source-endpoint route"
+  replacedInputs :=
+    ["separate target-only surjective-compact provider",
+      "separate matched selected-difference component and W519 mapped-cokernel closedness branch provider"]
+  remainingInputs :=
+    ["construct concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+      "construct concrete bundled closed-natural-transformation relation data",
+      "construct concrete target/closedness data provider",
+      "construct concrete normalized source/endpoint data provider",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteSupportStateW729
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T18:31:02Z",
+  "generated_utc": "2026-05-24T18:39:32Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,24 +1854,22 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w728_normalized_source_endpoint_data_route",
-  "latest_parent_update": "parent_update_v728_normalized_source_endpoint_data_route",
-  "summary": "W728 normalized/source-endpoint route bundles normalized fixed-target data with source/endpoint-localized data into one provider. It projects that provider back to the W727 source/endpoint-localized route, delegates acceptance to W727, reduces the current input-name count from 6 to 5, and keeps product-success flags false.",
-  "remaining_frontier": "Need concrete bundled WPP boundary data, bundled closed-natural-transformation relation data, concrete target-only surjective-compact target data, concrete matched selected-difference component plus W519 mapped-cokernel closedness branch data, concrete normalized/source-endpoint data, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w728_normalized_source_endpoint_data_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w729_target_closedness_data_route",
+  "latest_parent_update": "parent_update_v729_target_closedness_data_route",
+  "summary": "W729 target/closedness route bundles target-only surjective-compact data with matched selected-difference component and W519 mapped-cokernel closedness data into one provider. It projects that provider back to the W728 normalized/source-endpoint route, delegates acceptance to W728, reduces the current input-name count from 5 to 4, and keeps product-success flags false.",
+  "remaining_frontier": "Need concrete bundled WPP boundary data, bundled closed-natural-transformation relation data, concrete target/closedness data, concrete normalized/source-endpoint data, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w729_target_closedness_data_route",
   "remaining_blockers": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
     "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
-    "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
-    "Concrete matched selected-difference component and W519 mapped-cokernel closedness branch provider remains unconstructed.",
+    "Concrete target/closedness data provider remains unconstructed.",
     "Concrete normalized source/endpoint data provider remains unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "open_blockers": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
     "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
-    "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
-    "Concrete matched selected-difference component and W519 mapped-cokernel closedness branch provider remains unconstructed.",
+    "Concrete target/closedness data provider remains unconstructed.",
     "Concrete normalized source/endpoint data provider remains unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
@@ -2134,8 +2132,7 @@
   "known_gaps": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
     "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
-    "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
-    "Concrete matched selected-difference component and W519 mapped-cokernel closedness branch provider remains unconstructed.",
+    "Concrete target/closedness data provider remains unconstructed.",
     "Concrete normalized source/endpoint data provider remains unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
@@ -6539,6 +6536,30 @@
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteSupportStateW728",
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728",
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointRouteStateW728_productSuccess"
+    ]
+  },
+  "parent_update_v729": "W729 target/closedness route bundles target-only surjective-compact data with matched selected-difference component and W519 mapped-cokernel closedness data into one provider. It projects that provider back to the W728 normalized/source-endpoint route, delegates acceptance to W728, reduces the current input-name count from 5 to 4, and keeps product-success flags false.",
+  "parent_update_w729_metadata_refresh": {
+    "generated_utc": "2026-05-24T18:39:32Z",
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T183353Z_codex_parent_w729",
+    "source_tree_hash": "18e7dac7bb0d2a4bba6f4be16d95c214cfa6e19c02c889f4c0483dc2957c6be6",
+    "classification": "verified_nonterminal_support_increment_w729_target_closedness_data_route",
+    "product_complete": false,
+    "implemented_declarations": [
+      "Dbounded.MetrizableWppTargetSurjectiveCompactClosednessDataProviderW729",
+      "Dbounded.targetSurjectiveCompactForTargetProvider_of_targetClosednessDataW729",
+      "Dbounded.diagramAndMappedCokernelClosednessData_of_targetClosednessDataW729",
+      "Dbounded.MetrizableWppRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729",
+      "Dbounded.metrizableWppRelationDataTargetSurjectiveCompactBoundaryClosednessBranchNormalizedFixedTargetSourceEndpointDataBundle_of_targetClosednessDataW729",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW729_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointInputNamesW729",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointInputNamesW729_count",
+      "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteSupportStateW729",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729_productSuccess"
     ]
   }
 }
