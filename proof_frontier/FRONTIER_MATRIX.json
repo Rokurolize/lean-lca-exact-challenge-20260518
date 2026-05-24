@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T19:30:52Z",
+  "generated_utc": "2026-05-24T19:41:30Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,20 +1854,23 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w734_category_homology_concrete_leaf_constructors",
-  "latest_parent_update": "parent_update_w734_category_homology_concrete_leaf_constructors",
-  "summary": "W734 constructs the W733 concrete leaf record from the W723 category-homology closed-map and closed-embedding branches. It builds the mapped-cokernel closedness branch and source homological-triangulation leaf from W723 data, delegates ordinary stable input and acceptance to W733, and keeps product-success flags false.",
-  "remaining_frontier": "Need concrete values for the W734 category-homology branch inputs and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w734_category_homology_concrete_leaf_constructors",
+  "support_result_classification": "verified_nonterminal_support_increment_w735_category_homology_instance_concrete_leaf_constructors",
+  "latest_parent_update": "parent_update_w735_category_homology_instance_concrete_leaf_constructors",
+  "summary": "W735 lowers the W734 category-homology provider wrapper to a standard CategoryWithHomology MetrizableLCA typeclass input. From that instance plus branch data it constructs the W723 provider, the W724 source homological-triangulation data, and W733 concrete leaves for closed-map and closed-embedding branches while keeping product-success flags false.",
+  "remaining_frontier": "Need CategoryWithHomology MetrizableLCA, concrete W735 branch data inputs, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w735_category_homology_instance_concrete_leaf_constructors",
   "remaining_blockers": [
-    "Concrete values for the W734 category-homology branch inputs remain unconstructed.",
+    "Construct a category-level CategoryWithHomology MetrizableLCA instance that supplies homology for every short complex.",
+    "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "open_blockers": [
-    "Concrete values for the W734 category-homology branch inputs remain unconstructed.",
+    "Construct a category-level CategoryWithHomology MetrizableLCA instance that supplies homology for every short complex.",
+    "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "consumed_support_results": [
+    "w735-category-with-homology-instance-constructors-for-w733-concrete-leaves",
     "w734-w723-category-homology-branch-constructors-for-w733-concrete-leaves",
     "w714-diagram-only-selected-difference-component-mapped-cokernel-route",
     "w713-target-only-target-difference-surjectivity-mapped-cokernel-route",
@@ -2125,7 +2128,8 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
-    "Concrete values for the W734 category-homology branch inputs remain unconstructed.",
+    "Construct a category-level CategoryWithHomology MetrizableLCA instance that supplies homology for every short complex.",
+    "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "parent_update_v324": {
@@ -6701,6 +6705,61 @@
     ],
     "remaining_inputs": [
       "Concrete values for the W734 category-homology branch inputs remain unconstructed.",
+      "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w735_category_homology_instance_concrete_leaf_constructors": {
+    "timestamp_utc": "2026-05-24T19:40:00Z",
+    "status": "verified_nonterminal_support_increment_w735_category_homology_instance_concrete_leaf_constructors",
+    "summary": "W735 lowers the W734 category-homology provider wrapper to a standard CategoryWithHomology MetrizableLCA typeclass input. From that instance plus branch data it constructs the W723 provider, the W724 source homological-triangulation data, and W733 concrete leaves for closed-map and closed-embedding branches while keeping product-success flags false.",
+    "touched_files": [
+      "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "audit/ProductSuccessDeclarations.lean",
+      "scratch-log.html",
+      "run/verification.json",
+      "terminal_outcome/terminal_outcome.json",
+      "proof_frontier/FRONTIER_MATRIX.json",
+      "manifest.json"
+    ],
+    "proved_or_checked_declarations": [
+      "Dbounded.categoryWithHomologyProvider_of_instanceW735",
+      "Dbounded.sourceHomologicalTriangulationData_of_categoryWithHomologyInstanceW735",
+      "Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735",
+      "Dbounded.MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735",
+      "Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyInstanceW735",
+      "Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyInstanceW735",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_closedMapCategoryHomologyInstanceConcreteLeavesW735",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735_count",
+      "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteSupportStateW735",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735_productSuccess"
+    ],
+    "verification": [
+      "python3 -m json.tool run/verification.json terminal_outcome/terminal_outcome.json proof_frontier/FRONTIER_MATRIX.json manifest.json",
+      "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T193346Z_codex_parent_w735/browser_evidence --expect 'W735 CategoryWithHomology instance constructors' --expect 'product_complete=false' --expect '20260524T193346Z_codex_parent_w735'",
+      "python3 audit/external_audit.py --root . --self-check-only",
+      "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "lake env lean audit/ProductSuccessDeclarations.lean",
+      "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T193346Z_codex_parent_w735/w735_required_declarations.lean",
+      "lake env lean audit/RequiredDeclarations.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "git diff --check",
+      "lake build",
+      "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean"
+    ],
+    "remaining_inputs": [
+      "Construct a category-level CategoryWithHomology MetrizableLCA instance that supplies homology for every short complex.",
+      "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
       "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
     ],
     "product_success_claimed": false

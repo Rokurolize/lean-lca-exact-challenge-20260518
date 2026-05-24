@@ -8437,6 +8437,41 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyConcreteLeavesRouteStateW734
   #check
     Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyConcreteLeavesRouteStateW734_productSuccess
+  #check Dbounded.categoryWithHomologyProvider_of_instanceW735
+  #check
+    Dbounded.sourceHomologicalTriangulationData_of_categoryWithHomologyInstanceW735
+  #check
+    Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735
+  #check
+    Dbounded.MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735
+  #check
+    Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyInstanceW735
+  #check
+    Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyInstanceW735
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_closedMapCategoryHomologyInstanceConcreteLeavesW735
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735_accepted
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735_accepted
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735_count
+  #check
+    Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteSupportStateW735
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

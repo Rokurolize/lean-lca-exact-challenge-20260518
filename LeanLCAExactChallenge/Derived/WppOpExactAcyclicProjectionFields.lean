@@ -51987,6 +51987,277 @@ theorem
       false :=
   rfl
 
+/-- W735 turns a category-level homology instance into the W723 provider. -/
+def categoryWithHomologyProvider_of_instanceW735
+    [CategoryWithHomology MetrizableLCA.{0}] :
+    MetrizableWppCategoryWithHomologyProviderW723
+    where
+  categoryWithHomology := inferInstance
+
+/-- W735 builds source homological-triangulation data from category homology. -/
+def sourceHomologicalTriangulationData_of_categoryWithHomologyInstanceW735
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (sourceTriangulationData : MetrizableWppSourceTriangulationDataProviderW722) :
+    MetrizableWppSourceHomologicalTriangulationDataProviderW724
+    where
+  categoryWithHomologyProvider :=
+    categoryWithHomologyProvider_of_instanceW735
+  sourceTriangulationData := sourceTriangulationData
+
+/-- W735 closed-map branch inputs after replacing the W723 provider by a typeclass. -/
+structure MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735 :
+    Type 2 where
+  boundaryData :
+    MetrizableWppLimitBoundaryDataW716
+  relationData :
+    ClosedNatTransOrdinaryRelationDataProviderW717
+  targetSurjectiveCompactForTargetProvider :
+    TargetSurjectiveCompactForTargetProviderW715
+  globalClosedMapComponents :
+    SelectedDifferenceClosedMapDiagramComponentProviderW718
+  mappedCokernelClosedMapProvider :
+    MappedExplicitCokernelClosedMapProviderW519
+  normalizedFixedTargetData :
+    MetrizableWppNormalizedFixedTargetDataProviderW719
+  sourceTriangulationData :
+    MetrizableWppSourceTriangulationDataProviderW722
+  endpointStrictTopologyData :
+    MetrizableWppEndpointStrictTopologyDataProviderW720
+  localizedRightAdjointData :
+    MetrizableWppLocalizedRightAdjointDataProviderW721
+
+/--
+W735 closed-embedding branch inputs after replacing the W723 provider by a
+typeclass.
+-/
+structure
+    MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735 :
+    Type 2 where
+  boundaryData :
+    MetrizableWppLimitBoundaryDataW716
+  relationData :
+    ClosedNatTransOrdinaryRelationDataProviderW717
+  targetSurjectiveCompactForTargetProvider :
+    TargetSurjectiveCompactForTargetProviderW715
+  globalClosedEmbeddingComponents :
+    SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718
+  mappedCokernelClosedEmbeddingProvider :
+    MappedExplicitCokernelClosedEmbeddingProviderW519
+  normalizedFixedTargetData :
+    MetrizableWppNormalizedFixedTargetDataProviderW719
+  sourceTriangulationData :
+    MetrizableWppSourceTriangulationDataProviderW722
+  endpointStrictTopologyData :
+    MetrizableWppEndpointStrictTopologyDataProviderW720
+  localizedRightAdjointData :
+    MetrizableWppLocalizedRightAdjointDataProviderW721
+
+/--
+W735 constructs W733 concrete leaves from closed-map branch inputs plus a
+category-level homology instance.
+-/
+def boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyInstanceW735
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    where
+  boundaryData := inputs.boundaryData
+  relationData := inputs.relationData
+  targetSurjectiveCompactForTargetProvider :=
+    inputs.targetSurjectiveCompactForTargetProvider
+  diagramAndMappedCokernelClosednessData :=
+    .closedMap inputs.globalClosedMapComponents
+      inputs.mappedCokernelClosedMapProvider
+  normalizedFixedTargetData := inputs.normalizedFixedTargetData
+  sourceHomologicalTriangulationData :=
+    sourceHomologicalTriangulationData_of_categoryWithHomologyInstanceW735
+      inputs.sourceTriangulationData
+  endpointStrictTopologyData := inputs.endpointStrictTopologyData
+  localizedRightAdjointData := inputs.localizedRightAdjointData
+
+/--
+W735 constructs W733 concrete leaves from closed-embedding branch inputs plus a
+category-level homology instance.
+-/
+def
+    boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyInstanceW735
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    where
+  boundaryData := inputs.boundaryData
+  relationData := inputs.relationData
+  targetSurjectiveCompactForTargetProvider :=
+    inputs.targetSurjectiveCompactForTargetProvider
+  diagramAndMappedCokernelClosednessData :=
+    .closedEmbedding inputs.globalClosedEmbeddingComponents
+      inputs.mappedCokernelClosedEmbeddingProvider
+  normalizedFixedTargetData := inputs.normalizedFixedTargetData
+  sourceHomologicalTriangulationData :=
+    sourceHomologicalTriangulationData_of_categoryWithHomologyInstanceW735
+      inputs.sourceTriangulationData
+  endpointStrictTopologyData := inputs.endpointStrictTopologyData
+  localizedRightAdjointData := inputs.localizedRightAdjointData
+
+/-- W735 closed-map instance branch builds ordinary stable input through W733. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_closedMapCategoryHomologyInstanceConcreteLeavesW735
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyInstanceW735
+      inputs)
+
+/--
+W735 closed-embedding instance branch builds ordinary stable input through W733.
+-/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyInstanceW735
+      inputs)
+
+/-- W735 closed-map instance branch is accepted through W733. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyInstanceW735
+      inputs)
+
+/-- W735 closed-embedding instance branch is accepted through W733. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyInstanceW735
+      inputs)
+
+/-- The W735 closed-map instance branch is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735_accepted
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733_accepted
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyInstanceW735
+      inputs)
+
+/-- The W735 closed-embedding instance branch is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735_accepted
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733_accepted
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyInstanceW735
+      inputs)
+
+/-- Input names for the W735 category-homology instance constructors. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735 :
+    List String :=
+  ["CategoryWithHomology MetrizableLCA instance",
+    "bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+    "bundled closed natural transformation ordinary relation data",
+    "target-only target-difference surjectivity plus target-codomain compactness provider",
+    "closed-map or closed-embedding selected-difference component provider",
+    "matching W519 mapped-explicit-cokernel closedness provider",
+    "normalized fixed-target data provider",
+    "source triangulation and triangle-completion data provider",
+    "endpoint strict-topology data provider",
+    "bounded homotopy localized-right-adjoint data provider"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735.length =
+      10 :=
+  rfl
+
+/--
+Current checked W735 state for category-homology instance constructors into W733
+concrete leaves.
+-/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735 :
+    Type where
+  seed : String
+  declarations : List String
+  categoryHomologyProviderResult : String
+  closedMapLeafAssemblyResult : String
+  closedEmbeddingLeafAssemblyResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W735 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteSupportStateW735 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735
+    where
+  seed :=
+    "w735-category-with-homology-instance-constructors-for-w733-concrete-leaves"
+  declarations :=
+    ["categoryWithHomologyProvider_of_instanceW735",
+      "sourceHomologicalTriangulationData_of_categoryWithHomologyInstanceW735",
+      "MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735",
+      "MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735",
+      "boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyInstanceW735",
+      "boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyInstanceW735",
+      "metrizableOrdinaryStableSemanticInput_of_closedMapCategoryHomologyInstanceConcreteLeavesW735",
+      "metrizableOrdinaryStableSemanticInput_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735_count"]
+  categoryHomologyProviderResult :=
+    "proved: a CategoryWithHomology MetrizableLCA instance constructs the W723 provider and W724 source homological-triangulation data"
+  closedMapLeafAssemblyResult :=
+    "proved: closed-map branch inputs plus CategoryWithHomology construct the W733 concrete leaf record"
+  closedEmbeddingLeafAssemblyResult :=
+    "proved: closed-embedding branch inputs plus CategoryWithHomology construct the W733 concrete leaf record"
+  exposedInputs :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735
+  remainingInputs :=
+    ["construct CategoryWithHomology MetrizableLCA",
+      "construct concrete values for the W735 branch data inputs",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteSupportStateW735
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
