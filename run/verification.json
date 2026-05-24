@@ -1,9 +1,104 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w719-normalized-fixed-target-data-route",
-  "generated_utc": "2026-05-24T17:12:51Z",
-  "source_tree_hash": "26bd265a3aaaa02599eecd24095581386b462bca9ad674c689c1c25e9dc97956",
-  "summary": "W722 source triangulation data route bundles the source Pretriangulated structure, source IsTriangulated structure, and source-side triangle completion into one source triangulation data provider. It projects that provider back to the W721 localized-right-adjoint route, delegates both closed-map and closed-embedding accepted paths to W721, and keeps product-success flags false.",
+  "generated_utc": "2026-05-24T17:28:06Z",
+  "source_tree_hash": "e53e1834c9244da1f18169b671e5e0c77878abc8a780a31b1e5d8e9e16bd62ee",
+  "summary": "W723 CategoryWithHomology provider route replaces the raw global HasHomology function field at the W722 source-triangulation call site with a standard CategoryWithHomology MetrizableLCA provider. It projects that provider to HasHomology for every MetrizableLCA cochain complex and degree, delegates both closed-map and closed-embedding accepted paths to W722, and keeps product-success flags false.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W723 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_lean_source_initial.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W723 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W723 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_audit_product.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_required_declarations.lean",
+      "status": "passed",
+      "evidence": "Focused W723 declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_required.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import passed after W723; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_root_import.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W723; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_audit_required.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W723; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_lake_build_full.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan over source passed after W723; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan over product audit passed after W723; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_forbidden_lean_tokens_audit.log."
+    },
+    {
+      "command": "rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden-token matches in W723-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_rg_forbidden_touched.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true|product_success.*true|product_complete.*true|update_goal_allowed.*true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No accidental product-success true flags in W723-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_rg_product_true.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Final whitespace diff check passed after W723 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_git_diff_check_final.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W723 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_json_parse_all.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W723 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_json_parse_all.log."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W723 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_json_parse_all.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W723 manifest refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_json_parse_all.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W723 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Terminal product gate still rejects W723 as nonterminal because product_complete and update_goal_allowed remain false; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_external_terminal_expected.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir \"$RUN_DIR/browser_evidence\" --expect 'W723 CategoryWithHomology provider route' --expect 'product_complete=false' --expect '20260524T172012Z_codex_parent_w723'",
+      "status": "passed",
+      "evidence": "Browser-rendered scratch-log evidence passed W723 expected text checks; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/w723_browser_evidence.log and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T172012Z_codex_parent_w723/browser_evidence/browser_evidence.json."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -18323,7 +18418,25 @@
     "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationRouteStateW722",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationRouteSupportStateW722",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationRouteStateW722",
-    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationRouteStateW722_productSuccess"
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationRouteStateW722_productSuccess",
+    "Dbounded.MetrizableWppCategoryWithHomologyProviderW723",
+    "Dbounded.hasHomology_of_categoryWithHomologyProviderW723",
+    "Dbounded.MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723",
+    "Dbounded.metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationDataBundle_of_categoryHomologyW723",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723_accepted",
+    "Dbounded.MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723",
+    "Dbounded.metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationDataBundle_of_categoryHomologyW723",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyInputNamesW723",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyInputNamesW723_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyRouteStateW723",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyRouteSupportStateW723",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyRouteStateW723",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyDataGlobalDiagramComponentProviderMappedCokernelClosedNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyRouteStateW723_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -18332,12 +18445,13 @@
     "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
     "Concrete selected-difference diagram component closed-map or closed-embedding provider data remain unconstructed.",
     "Concrete normalized fixed-target data provider remains unconstructed.",
+    "Concrete CategoryWithHomology MetrizableLCA remains unconstructed; W723 only replaces the raw HasHomology function field with that standard category-level provider surface.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
     "Concrete endpoint strict-topology data provider remains unconstructed; its bundled forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
     "Concrete bounded homotopy localized-right-adjoint data provider remains unconstructed.",
     "Concrete source triangulation and triangle-completion data provider remains unconstructed; Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs also remain unconstructed."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w722_source_triangulation_data_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w723_category_with_homology_provider_route",
   "product_success": false,
   "remaining_work": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
@@ -18345,13 +18459,14 @@
     "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
     "Concrete selected-difference diagram component closed-map or closed-embedding provider data remain unconstructed.",
     "Concrete normalized fixed-target data provider remains unconstructed.",
+    "Concrete CategoryWithHomology MetrizableLCA remains unconstructed; W723 only replaces the raw HasHomology function field with that standard category-level provider surface.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
     "Concrete endpoint strict-topology data provider remains unconstructed; its bundled forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
     "Concrete bounded homotopy localized-right-adjoint data provider remains unconstructed.",
     "Concrete source triangulation and triangle-completion data provider remains unconstructed; Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs also remain unconstructed."
   ],
-  "summary_log_tail": "W719 bundles normalized lift blueprint and fixed-target uniqueness obligations, delegates to W718, and keeps product flags false.",
-  "latest_verified_increment": "W722 source triangulation data route",
+  "summary_log_tail": "W723 packages CategoryWithHomology MetrizableLCA as the global homology provider surface, delegates to W722, and keeps product flags false.",
+  "latest_verified_increment": "W723 CategoryWithHomology provider route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
