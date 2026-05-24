@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w717-bundled-relation-data-route",
-  "generated_utc": "2026-05-24T15:56:51Z",
-  "source_tree_hash": "33e86997ce4558c0e5f2035991e84b3582ad2c31a3c5473b7cd7effc9444c4da",
-  "summary": "W717 bundled relation-data route bundles the closed-natural-transformation relation-pullback provider and target-relation-lift provider into one explicit relation-data provider. It projects the bundled provider back to the W716 bundled WPP boundary-data route, delegates both closed-map and closed-embedding accepted paths to W716, and keeps product-success flags false.",
+  "schema": "lean-lca-exact-challenge-verification-w718-component-provider-route",
+  "generated_utc": "2026-05-24T16:07:05Z",
+  "source_tree_hash": "e2803f5305036208bd8d79d2061b7c453fe7e43dee2ba8a5ddcf707ae4df810f",
+  "summary": "W718 component-provider route bundles the three selected-difference diagram component closed-map or closed-embedding fields into one component provider per branch. It projects those providers back to the W717 bundled relation-data route, delegates both closed-map and closed-embedding accepted paths to W717, and keeps product-success flags false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -13335,6 +13335,96 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Terminal product gate still rejects W717 as nonterminal because product_complete and update_goal_allowed remain false."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W718 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_lean_source_initial.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W718 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W718 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_audit_product.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/w718_required_declarations.lean",
+      "status": "passed",
+      "evidence": "Focused W718 declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_required.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import passed after W718; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_root_import.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W718; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_audit_required.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W718; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_lake_build_full.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan over source passed after W718; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan over product audit passed after W718; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_forbidden_lean_tokens_audit.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true|product_success.*true|product_complete.*true|update_goal_allowed.*true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No accidental product-success true flags in W718-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_rg_product_true.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/browser_evidence --expect W718 --expect product_complete=false --expect 20260524T160247Z_codex_parent_w718",
+      "status": "passed",
+      "evidence": "Browser evidence for scratch-log.html passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_browser_evidence.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W718 metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T160247Z_codex_parent_w718/logs/w718_git_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W718 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W718 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W718 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W718 manifest refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W718 metadata and manifest refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Terminal product gate still rejects W718 as nonterminal because product_complete and update_goal_allowed remain false."
     }
   ],
   "implemented_declarations_checked": [
@@ -17708,33 +17798,81 @@
     "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentMappedCokernelClosedRouteStateW717",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentMappedCokernelClosedRouteSupportStateW717",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentMappedCokernelClosedRouteStateW717",
-    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentMappedCokernelClosedRouteStateW717_productSuccess"
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentMappedCokernelClosedRouteStateW717_productSuccess",
+    "SelectedDifferenceClosedMapDiagramComponentProviderW718",
+    "SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718",
+    "selectedDifferenceClosedMapPi1DiagramField_of_componentProviderW718",
+    "selectedDifferenceClosedMapPi2DiagramField_of_componentProviderW718",
+    "selectedDifferenceClosedMapPi3DiagramField_of_componentProviderW718",
+    "selectedDifferenceClosedEmbeddingPi1DiagramField_of_componentProviderW718",
+    "selectedDifferenceClosedEmbeddingPi2DiagramField_of_componentProviderW718",
+    "selectedDifferenceClosedEmbeddingPi3DiagramField_of_componentProviderW718",
+    "MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_componentProviderW718",
+    "metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718_accepted",
+    "MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_componentProviderW718",
+    "metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718_accepted",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedInputNamesW718",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedInputNamesW718_count",
+    "MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedRouteStateW718",
+    "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedRouteSupportStateW718",
+    "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedRouteStateW718",
+    "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedRouteStateW718_productSuccess",
+    "Dbounded.SelectedDifferenceClosedMapDiagramComponentProviderW718",
+    "Dbounded.SelectedDifferenceClosedEmbeddingDiagramComponentProviderW718",
+    "Dbounded.selectedDifferenceClosedMapPi1DiagramField_of_componentProviderW718",
+    "Dbounded.selectedDifferenceClosedMapPi2DiagramField_of_componentProviderW718",
+    "Dbounded.selectedDifferenceClosedMapPi3DiagramField_of_componentProviderW718",
+    "Dbounded.selectedDifferenceClosedEmbeddingPi1DiagramField_of_componentProviderW718",
+    "Dbounded.selectedDifferenceClosedEmbeddingPi2DiagramField_of_componentProviderW718",
+    "Dbounded.selectedDifferenceClosedEmbeddingPi3DiagramField_of_componentProviderW718",
+    "Dbounded.MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "Dbounded.metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_componentProviderW718",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718_accepted",
+    "Dbounded.MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "Dbounded.metrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_componentProviderW718",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW718_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedInputNamesW718",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedInputNamesW718_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedRouteStateW718",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedRouteSupportStateW718",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedRouteStateW718",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryEndpointStrictTopologyGlobalDiagramComponentProviderMappedCokernelClosedRouteStateW718_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
     "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
     "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
-    "The selected-difference component closedness fields are diagram-only, but the three component closed-map or closed-embedding facts still need concrete proofs.",
+    "Concrete selected-difference diagram component closed-map or closed-embedding provider data remain unconstructed.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
     "Endpoint facts are explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
     "Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w717",
+  "support_result_classification": "verified_nonterminal_support_increment_w718",
   "product_success": false,
   "remaining_work": [
     "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
     "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
     "Concrete target-only ordinary target-difference surjectivity plus target-codomain compactness data remain unconstructed.",
-    "The selected-difference component closedness fields are diagram-only, but the three component closed-map or closed-embedding facts still need concrete proofs.",
+    "Concrete selected-difference diagram component closed-map or closed-embedding provider data remain unconstructed.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
     "Endpoint facts are explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
     "Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "summary_log_tail": "W717 bundles the relation-pullback and target-relation-lift provider obligations, delegates to W716, and keeps product flags false.",
-  "latest_verified_increment": "W717 bundled relation-data route",
+  "summary_log_tail": "W718 bundles the selected-difference diagram component closed-map or closed-embedding obligations, delegates to W717, and keeps product flags false.",
+  "latest_verified_increment": "W718 component-provider route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
