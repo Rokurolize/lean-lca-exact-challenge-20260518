@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T14:18:30Z",
+  "generated_utc": "2026-05-24T14:32:35Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,14 +1854,15 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w711",
-  "latest_parent_update": "parent_update_w711_explicit_componentwise_closed_provider_route",
-  "summary": "W711 explicit componentwise closed-provider route exposes the W710 W525 componentwise closed-map and closed-embedding provider inputs as three selected-difference component facts. It assembles ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525 internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W710, and keeps product-success flags false.",
-  "remaining_frontier": "Need concrete WPP boundary data, relation fields, target-surjectivity and compactness data, selected-difference component closed-provider facts, normalized fixed-target obligations, mapped-cokernel closed-provider data, explicit endpoint facts, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs.",
-  "support_classification": "nonterminal_support_w711_explicit_componentwise_closed_provider_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w712",
+  "latest_parent_update": "parent_update_w712_explicit_relation_field_provider_route",
+  "summary": "W712 explicit relation-field provider route exposes the W711 W512 relation-fields provider input as separate relation-pullback and target-relation-lift providers. It assembles ClosedNatTransOrdinaryRelationFieldsProviderW512 internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W711, and keeps product-success flags false.",
+  "remaining_frontier": "Need concrete WPP boundary data, relation-pullback and target-relation-lift providers, target-surjectivity and compactness data, selected-difference component closed-provider facts, normalized fixed-target obligations, mapped-cokernel closed-provider data, explicit endpoint facts, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs.",
+  "support_classification": "nonterminal_support_w712_explicit_relation_field_provider_route",
   "remaining_blockers": [
     "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
-    "Concrete W512 relation fields, W601 target-difference surjectivity, and compact target data remain unconstructed.",
+    "Concrete relation-pullback and target-relation-lift providers for closed natural transformations remain unconstructed.",
+    "Concrete W601 target-difference surjectivity and compact target data remain unconstructed.",
     "The selected-difference componentwise closed-provider aggregate is split, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
@@ -1870,7 +1871,8 @@
   ],
   "open_blockers": [
     "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
-    "Concrete W512 relation fields, W601 target-difference surjectivity, and compact target data remain unconstructed.",
+    "Concrete relation-pullback and target-relation-lift providers for closed natural transformations remain unconstructed.",
+    "Concrete W601 target-difference surjectivity and compact target data remain unconstructed.",
     "The selected-difference componentwise closed-provider aggregate is split, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
@@ -1878,6 +1880,7 @@
     "Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "consumed_support_results": [
+    "w712-explicit-relation-field-provider-mapped-cokernel-route",
     {
       "artifact": "audit/blockers/opposite_direct_colimit_to_limit_transport_w283.lean",
       "result": "Direct colimit stability of W over J\u1d52\u1d56 now transports to limit stability of W.op over J, closing the formal WalkingParallelPair op-transport gap. Direct boundedExactWeakEquivalence WalkingParallelPair\u1d52\u1d56 colimit stability remains open."
@@ -2132,7 +2135,8 @@
   ],
   "known_gaps": [
     "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
-    "Concrete W512 relation fields, W601 target-difference surjectivity, and compact target data remain unconstructed.",
+    "Concrete relation-pullback and target-relation-lift providers for closed natural transformations remain unconstructed.",
+    "Concrete W601 target-difference surjectivity and compact target data remain unconstructed.",
     "The selected-difference componentwise closed-provider aggregate is split, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
@@ -6254,5 +6258,6 @@
     ],
     "product_success_claimed": false,
     "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1"
-  }
+  },
+  "parent_update_v712": "W712 explicit relation-field provider route exposes the W711 W512 relation-fields provider input as separate relation-pullback and target-relation-lift providers. It assembles ClosedNatTransOrdinaryRelationFieldsProviderW512 internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W711, and keeps product-success flags false."
 }

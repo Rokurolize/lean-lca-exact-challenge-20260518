@@ -1,9 +1,99 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w711-explicit-componentwise-closed-provider-route",
-  "generated_utc": "2026-05-24T14:18:30Z",
-  "source_tree_hash": "35d617795ac7ba617bcf56bfc941a7cd83976f018842fa61becce6af9838d0b7",
-  "summary": "W711 explicit componentwise closed-provider route exposes the W710 W525 componentwise closed-map and closed-embedding provider inputs as three selected-difference component facts. It assembles ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525 internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W710, and keeps product-success flags false.",
+  "generated_utc": "2026-05-24T14:32:35Z",
+  "source_tree_hash": "d50eee4500637fd28a646dde38c9120b057ea5dd7bca7fab9fcb2da200e96f35",
+  "summary": "W712 explicit relation-field provider route exposes the W711 W512 relation-fields provider input as separate relation-pullback and target-relation-lift providers. It assembles ClosedNatTransOrdinaryRelationFieldsProviderW512 internally, delegates the mapped-cokernel closed-map and closed-embedding accepted routes to W711, and keeps product-success flags false.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W712 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/lean_source_r2.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W712 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W712 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/audit_product_success.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/w712_required_declarations.lean",
+      "status": "passed",
+      "evidence": "Focused W712 declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/w712_required.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import passed after W712; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/root_import.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W712; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/audit_required.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W712; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/lake_build_full.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan over source passed after W712; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Forbidden Lean token scan over product audit passed after W712; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/forbidden_lean_tokens_audit.log."
+    },
+    {
+      "command": "rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No forbidden-token matches in W712-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/rg_forbidden_tokens.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true|product_success.*true|product_complete.*true|update_goal_allowed.*true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No accidental product-success true flags in W712-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/rg_product_true.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W712 source edits; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712/logs/git_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W712 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W712 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W712 metadata refresh."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "JSON parse check rerun after W712 manifest refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External self-check rerun after W712 metadata and manifest refresh."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Terminal product gate still rejects W712 as nonterminal because product_complete and update_goal_allowed remain false."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -670,11 +760,6 @@
       "evidence": "Forbidden-token source tree scan passed after W545; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w545_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
-    },
-    {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "Product-facing placeholder regex returned no matches on W545-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w545_product_placeholder_touched.log."
@@ -748,11 +833,6 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
       "evidence": "Forbidden-token source tree scan passed after W544; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w544_audit_no_forbidden_tree.log."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
     },
     {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
@@ -830,11 +910,6 @@
       "evidence": "Forbidden-token source tree scan passed after W543; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w543_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
-    },
-    {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "Product-facing placeholder regex returned no matches on W543-touched files; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w543_product_placeholder_touched.log."
@@ -908,11 +983,6 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
       "evidence": "Forbidden-token source tree scan passed after W542; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w542_audit_no_forbidden_tree.log."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
     },
     {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
@@ -4767,11 +4837,6 @@
       "evidence": "Forbidden-token source tree scan passed after W547; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
-    },
-    {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "Touched-file product-placeholder regex returned no matches; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w547_placeholder_regex_touched.log."
@@ -4845,11 +4910,6 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
       "evidence": "Forbidden-token source tree scan passed after W548; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w548_audit_no_forbidden_tree.log."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
     },
     {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
@@ -5010,11 +5070,6 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
       "evidence": "Forbidden-token source tree scan passed after W550; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w550_audit_no_forbidden_lean_tokens_tree.log."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
     },
     {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
@@ -5362,11 +5417,6 @@
       "evidence": "Forbidden Lean token scan over the source tree passed after W555; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
-    },
-    {
       "command": "rg -n -i 'StrictExactQuillenAxioms|SourcePatch|ConstructionAssumption|ProductAssumption|\\bsource[- ]patch\\b|\\bblocker\\b|\\bfrontier\\b|\\bgap\\b' LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "Product-facing placeholder regex returned no matches on W555-touched files after the comment fix; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_008_w555_product_placeholder_touched_final.log."
@@ -5707,11 +5757,6 @@
       "evidence": "Forbidden-token source tree scan passed after W560; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w560_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "Touched audit-file forbidden-token scan passed after W560; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w560_audit_no_forbidden_audit_file.log."
@@ -5777,11 +5822,6 @@
       "evidence": "Forbidden-token source tree scan passed after W561; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w561_audit_no_forbidden_tree.log."
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
-    },
-    {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
       "status": "passed",
       "evidence": "Touched audit-file forbidden-token scan passed after W561; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_012_w561_audit_no_forbidden_audit_file.log."
@@ -5845,11 +5885,6 @@
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
       "evidence": "Full Lean source forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens_full_source.log."
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean",
-      "status": "passed",
-      "evidence": "Touched source-file forbidden-token scan passed after W562; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260521T082446Z-019e49a2/logs/cycle_013_w562_forbidden_tokens.log."
     },
     {
       "command": "git diff --check",
@@ -12853,6 +12888,44 @@
     }
   ],
   "implemented_declarations_checked": [
+    "ClosedNatTransOrdinaryRelationPullbackProviderW712",
+    "ClosedNatTransOrdinaryTargetRelationLiftsProviderW712",
+    "closedNatTransOrdinaryRelationFieldsProvider_of_explicitFieldsW712",
+    "MetrizableWppExplicitRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitRelationFieldsW712",
+    "metrizableOrdinaryStableSemanticInput_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712_accepted",
+    "MetrizableWppExplicitRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitRelationFieldsW712",
+    "metrizableOrdinaryStableSemanticInput_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712_accepted",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedInputNamesW712",
+    "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedInputNamesW712_count",
+    "MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedRouteStateW712",
+    "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedRouteSupportStateW712",
+    "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedRouteStateW712",
+    "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedRouteStateW712_productSuccess",
+    "Dbounded.ClosedNatTransOrdinaryRelationPullbackProviderW712",
+    "Dbounded.ClosedNatTransOrdinaryTargetRelationLiftsProviderW712",
+    "Dbounded.closedNatTransOrdinaryRelationFieldsProvider_of_explicitFieldsW712",
+    "Dbounded.MetrizableWppExplicitRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "Dbounded.metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitRelationFieldsW712",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedMapComponentsMappedCokernelClosedMapExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712_accepted",
+    "Dbounded.MetrizableWppExplicitRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "Dbounded.metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_explicitRelationFieldsW712",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_explicitRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingComponentsMappedCokernelClosedEmbeddingExplicitEndpointStrictTopologyExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW712_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedInputNamesW712",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedInputNamesW712_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedRouteStateW712",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedRouteSupportStateW712",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedRouteStateW712",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitRelationFieldsEndpointStrictTopologyTargetSurjectiveCompactGlobalComponentProviderMappedCokernelClosedRouteStateW712_productSuccess",
     "SelectedDifferenceClosedMapPi1FieldW711",
     "SelectedDifferenceClosedMapPi2FieldW711",
     "SelectedDifferenceClosedMapPi3FieldW711",
@@ -16984,26 +17057,28 @@
   "product_complete": false,
   "known_gaps": [
     "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
-    "Concrete W512 relation fields, W601 target-difference surjectivity, and compact target data remain unconstructed.",
+    "Concrete relation-pullback and target-relation-lift providers for closed natural transformations remain unconstructed.",
+    "Concrete W601 target-difference surjectivity and compact target data remain unconstructed.",
     "The selected-difference componentwise closed-provider aggregate is split, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
     "Endpoint facts are explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
     "Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w711",
+  "support_result_classification": "verified_nonterminal_support_increment_w712",
   "product_success": false,
   "remaining_work": [
     "Concrete WPP right-open and source-pi-zero boundary data remain unconstructed.",
-    "Concrete W512 relation fields, W601 target-difference surjectivity, and compact target data remain unconstructed.",
+    "Concrete relation-pullback and target-relation-lift providers for closed natural transformations remain unconstructed.",
+    "Concrete W601 target-difference surjectivity and compact target data remain unconstructed.",
     "The selected-difference componentwise closed-provider aggregate is split, but the three component closed-map or closed-embedding facts still need concrete proofs.",
     "Normalized strict-representative lift blueprint plus target and localization-model fixed-target uniqueness remain unconstructed.",
     "Concrete W519 mapped-explicit-cokernel closed-map or closed-embedding provider data remain unconstructed.",
     "Endpoint facts are explicit, but forgetful homology preservation, endpoint closed embeddings, endpoint open maps, and ExactAt-implied epis still need concrete proofs.",
     "Bounded homotopy localized-right-adjoint data, source triangulation and triangle completion, and Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "summary_log_tail": "W711 splits W525 componentwise closed-provider inputs into three selected-difference component facts, delegates to W710, and keeps product flags false.",
-  "latest_verified_increment": "W711 explicit componentwise closed-provider mapped-cokernel route",
+  "summary_log_tail": "W712 splits the W512 relation-fields provider into relation-pullback and target-relation-lift providers, delegates to W711, and keeps product flags false.",
+  "latest_verified_increment": "W712 explicit relation-field provider mapped-cokernel route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -18124,6 +18199,13 @@
       "latest_verified_increment": "W707 explicit normalized fixed-target localized-right-adjoint route",
       "note": "W707 source and audit declarations are locally verified; product_success/product_complete/update_goal_allowed remain false.",
       "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T131252Z_019e599f_parent_w707"
+    },
+    "w712_metadata_refresh": {
+      "generated_utc": "2026-05-24T14:32:35Z",
+      "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T142312Z_019e599f_parent_w712",
+      "source_tree_hash": "d50eee4500637fd28a646dde38c9120b057ea5dd7bca7fab9fcb2da200e96f35",
+      "classification": "verified_nonterminal_support_increment_w712",
+      "product_complete": false
     }
   }
 }
