@@ -1,9 +1,74 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w733-explicit-leaf-constructor",
-  "generated_utc": "2026-05-24T19:41:30Z",
-  "source_tree_hash": "d4710bed470ed6eca0098a0563ecc0e4b184efd9997110e354eb9e77be17e0cf",
-  "summary": "W735 lowers the W734 category-homology provider wrapper to a standard CategoryWithHomology MetrizableLCA typeclass input. From that instance plus branch data it constructs the W723 provider, the W724 source homological-triangulation data, and W733 concrete leaves for closed-map and closed-embedding branches while keeping product-success flags false.",
+  "generated_utc": "2026-05-24T19:45:52Z",
+  "source_tree_hash": "022e0e2b5b72540ec02119b4c249c87b3637d89ea4e46b7f405e9916d74c77de",
+  "summary": "W736 records that MetrizableLCA already has kernel and cokernel instances sufficient to synthesize canonical left and right homology data for every short complex, then reduces CategoryWithHomology MetrizableLCA to the universal IsIso of the canonical left-right homology comparison maps and feeds that reduction through the W735/W733 concrete-leaf route while keeping product-success flags false.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W736 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/focused_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W736 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W736 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_audit_product.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_required_declarations.lean",
+      "status": "passed",
+      "evidence": "External W736 required declaration file checks the new declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_required.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W736; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_audit_required.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source audit passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_git_diff_check.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed after W736; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_lake_build_full.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "No touched Lean file claims productSuccessClaimed true; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_rg_product_true.log."
+    },
+    {
+      "command": "for f in run/verification.json terminal_outcome/terminal_outcome.json proof_frontier/FRONTIER_MATRIX.json manifest.json; do python3 -m json.tool \"$f\" >/dev/null; done",
+      "status": "passed",
+      "evidence": "JSON parse checks passed for W736 metadata; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_json_parse.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/browser_evidence --expect 'W736 kernel-cokernel comparison reduction' --expect 'product_complete=false' --expect '20260524T194552Z_codex_parent_w736'",
+      "status": "passed",
+      "evidence": "Browser-rendered scratch-log evidence passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_browser_evidence.log and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/browser_evidence/browser_evidence_fidelity.json."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Full terminal audit rejected the nonterminal outcome as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736/w736_external_terminal_expected_summary.log."
+    },
     {
       "command": "python3 -m json.tool run/verification.json terminal_outcome/terminal_outcome.json proof_frontier/FRONTIER_MATRIX.json manifest.json",
       "status": "passed",
@@ -14978,6 +15043,29 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.metrizableHasKernelsW736",
+    "Dbounded.metrizableHasCokernelsW736",
+    "Dbounded.hasLeftHomology_of_metrizableKernelCokernelW736",
+    "Dbounded.hasRightHomology_of_metrizableKernelCokernelW736",
+    "Dbounded.leftRightHomologyComparison_of_metrizableKernelCokernelW736",
+    "Dbounded.hasHomology_of_metrizableLeftRightComparisonIsoW736",
+    "Dbounded.categoryWithHomology_of_metrizableLeftRightComparisonIsoW736",
+    "Dbounded.categoryWithHomologyProvider_of_metrizableLeftRightComparisonIsoW736",
+    "Dbounded.sourceHomologicalTriangulationData_of_metrizableLeftRightComparisonIsoW736",
+    "Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapLeftRightComparisonIsoW736",
+    "Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingLeftRightComparisonIsoW736",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_closedMapLeftRightComparisonIsoConcreteLeavesW736",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteSupportStateW736",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736_productSuccess",
     "Dbounded.categoryWithHomologyProvider_of_instanceW735",
     "Dbounded.sourceHomologicalTriangulationData_of_categoryWithHomologyInstanceW735",
     "Dbounded.MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735",
@@ -19697,19 +19785,19 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct a category-level CategoryWithHomology MetrizableLCA instance that supplies homology for every short complex.",
+    "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w735_category_homology_instance_concrete_leaf_constructors",
+  "support_result_classification": "verified_nonterminal_support_increment_w736_kernel_cokernel_left_right_comparison_reduction",
   "product_success": false,
   "remaining_work": [
-    "Construct a category-level CategoryWithHomology MetrizableLCA instance that supplies homology for every short complex.",
+    "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
-  "summary_log_tail": "W735 constructs W733 concrete leaves from a CategoryWithHomology MetrizableLCA instance plus branch data and keeps product flags false.",
-  "latest_verified_increment": "W735 CategoryWithHomology instance constructors",
+  "summary_log_tail": "W736 reduces CategoryWithHomology MetrizableLCA to the universal left-right homology comparison isomorphism and keeps product flags false.",
+  "latest_verified_increment": "W736 kernel-cokernel comparison reduction",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -21077,6 +21165,12 @@
       "summary": "W735 constructs W733 concrete leaves from a CategoryWithHomology MetrizableLCA instance plus branch data and keeps product flags false.",
       "product_complete": false,
       "product_success": false
+    },
+    "w736_metadata_refresh": {
+      "refreshed_utc": "2026-05-24T19:45:52Z",
+      "source_tree_hash": "022e0e2b5b72540ec02119b4c249c87b3637d89ea4e46b7f405e9916d74c77de",
+      "latest_verified_increment": "W736 kernel-cokernel comparison reduction",
+      "note": "W736 narrows the CategoryWithHomology blocker to the universal left-right comparison isomorphism; product_success/product_complete/update_goal_allowed remain false."
     }
   }
 }

@@ -8472,6 +8472,45 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735
   #check
     Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeavesRouteStateW735_productSuccess
+  #check Dbounded.metrizableHasKernelsW736
+  #check Dbounded.metrizableHasCokernelsW736
+  #check Dbounded.hasLeftHomology_of_metrizableKernelCokernelW736
+  #check Dbounded.hasRightHomology_of_metrizableKernelCokernelW736
+  #check Dbounded.leftRightHomologyComparison_of_metrizableKernelCokernelW736
+  #check Dbounded.hasHomology_of_metrizableLeftRightComparisonIsoW736
+  #check Dbounded.categoryWithHomology_of_metrizableLeftRightComparisonIsoW736
+  #check
+    Dbounded.categoryWithHomologyProvider_of_metrizableLeftRightComparisonIsoW736
+  #check
+    Dbounded.sourceHomologicalTriangulationData_of_metrizableLeftRightComparisonIsoW736
+  #check
+    Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapLeftRightComparisonIsoW736
+  #check
+    Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingLeftRightComparisonIsoW736
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_closedMapLeftRightComparisonIsoConcreteLeavesW736
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInput_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736_accepted
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736_accepted
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736
+  #check
+    Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736_count
+  #check
+    Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteSupportStateW736
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736
+  #check
+    Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T19:41:30Z",
+  "generated_utc": "2026-05-24T19:45:52Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,13 +1854,13 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w735_category_homology_instance_concrete_leaf_constructors",
-  "latest_parent_update": "parent_update_w735_category_homology_instance_concrete_leaf_constructors",
-  "summary": "W735 lowers the W734 category-homology provider wrapper to a standard CategoryWithHomology MetrizableLCA typeclass input. From that instance plus branch data it constructs the W723 provider, the W724 source homological-triangulation data, and W733 concrete leaves for closed-map and closed-embedding branches while keeping product-success flags false.",
-  "remaining_frontier": "Need CategoryWithHomology MetrizableLCA, concrete W735 branch data inputs, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w735_category_homology_instance_concrete_leaf_constructors",
+  "support_result_classification": "verified_nonterminal_support_increment_w736_kernel_cokernel_left_right_comparison_reduction",
+  "latest_parent_update": "parent_update_w736_kernel_cokernel_left_right_comparison_reduction",
+  "summary": "W736 records that MetrizableLCA already has kernel and cokernel instances sufficient to synthesize canonical left and right homology data for every short complex, then reduces CategoryWithHomology MetrizableLCA to the universal IsIso of the canonical left-right homology comparison maps and feeds that reduction through the W735/W733 concrete-leaf route while keeping product-success flags false.",
+  "remaining_frontier": "Need universal MetrizableLCA left-right homology comparison isomorphism, concrete W735 branch data inputs, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w736_kernel_cokernel_left_right_comparison_reduction",
   "remaining_blockers": [
-    "Construct a category-level CategoryWithHomology MetrizableLCA instance that supplies homology for every short complex.",
+    "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
@@ -2128,7 +2128,7 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
-    "Construct a category-level CategoryWithHomology MetrizableLCA instance that supplies homology for every short complex.",
+    "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
@@ -4652,6 +4652,12 @@
   },
   "recent_frontier_updates": [
     {
+      "timestamp_utc": "2026-05-24T19:45:52Z",
+      "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "result": "W736 reduces CategoryWithHomology MetrizableLCA to the universal left-right comparison isomorphism after kernels/cokernels supply left/right homology data.",
+      "product_complete": false
+    },
+    {
       "timestamp_utc": "2026-05-21T02:10:00Z",
       "artifact": "audit/blockers/addcommgrp_component_colimit_comparison_quotient_identification_v370_support_w469.lean",
       "status": "verified_focused",
@@ -4793,8 +4799,9 @@
     }
   ],
   "current_primary_blockers": [
-    "construct concrete values for the eight explicit W733 leaf providers",
-    "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
+    "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
+    "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
+    "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "parent_update_w467": {
     "timestamp_utc": "2026-05-21T01:54:02Z",
@@ -6759,6 +6766,42 @@
     ],
     "remaining_inputs": [
       "Construct a category-level CategoryWithHomology MetrizableLCA instance that supplies homology for every short complex.",
+      "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
+      "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
+    ],
+    "product_success_claimed": false
+  },
+  "parent_update_w736_kernel_cokernel_left_right_comparison_reduction": {
+    "updated_utc": "2026-05-24T19:45:52Z",
+    "implemented_declarations": [
+      "Dbounded.metrizableHasKernelsW736",
+      "Dbounded.metrizableHasCokernelsW736",
+      "Dbounded.hasLeftHomology_of_metrizableKernelCokernelW736",
+      "Dbounded.hasRightHomology_of_metrizableKernelCokernelW736",
+      "Dbounded.leftRightHomologyComparison_of_metrizableKernelCokernelW736",
+      "Dbounded.hasHomology_of_metrizableLeftRightComparisonIsoW736",
+      "Dbounded.categoryWithHomology_of_metrizableLeftRightComparisonIsoW736",
+      "Dbounded.categoryWithHomologyProvider_of_metrizableLeftRightComparisonIsoW736",
+      "Dbounded.sourceHomologicalTriangulationData_of_metrizableLeftRightComparisonIsoW736",
+      "Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapLeftRightComparisonIsoW736",
+      "Dbounded.boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingLeftRightComparisonIsoW736",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_closedMapLeftRightComparisonIsoConcreteLeavesW736",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736_count",
+      "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteSupportStateW736",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736_productSuccess"
+    ],
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T194552Z_codex_parent_w736",
+    "result": "MetrizableLCA kernel/cokernel instances now explicitly feed canonical left/right homology data; CategoryWithHomology is reduced to the universal IsIso of the left-right comparison.",
+    "remaining_inputs": [
+      "Construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes.",
       "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
       "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
     ],

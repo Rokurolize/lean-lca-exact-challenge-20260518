@@ -52258,6 +52258,302 @@ theorem
       false :=
   rfl
 
+/-- W736 records that MetrizableLCA has the kernel side needed for short-complex homology. -/
+theorem metrizableHasKernelsW736 : HasKernels MetrizableLCA.{0} :=
+  inferInstance
+
+/-- W736 records that MetrizableLCA has the cokernel side needed for short-complex homology. -/
+theorem metrizableHasCokernelsW736 : HasCokernels MetrizableLCA.{0} :=
+  inferInstance
+
+/-- Kernels and cokernels give the canonical left homology data for any MetrizableLCA short complex. -/
+theorem hasLeftHomology_of_metrizableKernelCokernelW736
+    (S : ShortComplex MetrizableLCA.{0}) : S.HasLeftHomology :=
+  inferInstance
+
+/-- Kernels and cokernels give the canonical right homology data for any MetrizableLCA short complex. -/
+theorem hasRightHomology_of_metrizableKernelCokernelW736
+    (S : ShortComplex MetrizableLCA.{0}) : S.HasRightHomology :=
+  inferInstance
+
+/--
+The remaining W736 homology comparison map after the kernel and cokernel
+ingredients have been supplied by instance search.
+-/
+noncomputable abbrev leftRightHomologyComparison_of_metrizableKernelCokernelW736
+    (S : ShortComplex MetrizableLCA.{0}) :
+    S.leftHomology ⟶ S.rightHomology :=
+  S.leftRightHomologyComparison
+
+/--
+W736 converts the remaining left-right comparison isomorphism into homology for
+a single MetrizableLCA short complex.
+-/
+theorem hasHomology_of_metrizableLeftRightComparisonIsoW736
+    (S : ShortComplex MetrizableLCA.{0})
+    [IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S)] :
+    S.HasHomology := by
+  haveI : S.HasLeftHomology :=
+    hasLeftHomology_of_metrizableKernelCokernelW736 S
+  haveI : S.HasRightHomology :=
+    hasRightHomology_of_metrizableKernelCokernelW736 S
+  exact ShortComplex.hasHomology_of_isIsoLeftRightHomologyComparison (S := S)
+
+/--
+W736 reduces `CategoryWithHomology MetrizableLCA` to the universal isomorphism
+of the canonical left-right homology comparison maps.
+-/
+theorem categoryWithHomology_of_metrizableLeftRightComparisonIsoW736
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S)) :
+    CategoryWithHomology MetrizableLCA.{0} := by
+  constructor
+  intro S
+  show S.HasHomology
+  haveI : IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S) :=
+    comparisonIso S
+  exact hasHomology_of_metrizableLeftRightComparisonIsoW736 S
+
+/-- W736 packages the comparison-isomorphism reduction as the W723 homology provider. -/
+def categoryWithHomologyProvider_of_metrizableLeftRightComparisonIsoW736
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S)) :
+    MetrizableWppCategoryWithHomologyProviderW723
+    where
+  categoryWithHomology :=
+    categoryWithHomology_of_metrizableLeftRightComparisonIsoW736
+      comparisonIso
+
+/--
+W736 builds source homological-triangulation data from the remaining universal
+left-right comparison isomorphism.
+-/
+def sourceHomologicalTriangulationData_of_metrizableLeftRightComparisonIsoW736
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (sourceTriangulationData : MetrizableWppSourceTriangulationDataProviderW722) :
+    MetrizableWppSourceHomologicalTriangulationDataProviderW724
+    where
+  categoryWithHomologyProvider :=
+    categoryWithHomologyProvider_of_metrizableLeftRightComparisonIsoW736
+      comparisonIso
+  sourceTriangulationData := sourceTriangulationData
+
+/--
+W736 closed-map branch: the W735 concrete-leaf route only needs the universal
+left-right comparison isomorphism instead of an opaque category-homology input.
+-/
+def boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapLeftRightComparisonIsoW736
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733 := by
+  letI : CategoryWithHomology MetrizableLCA.{0} :=
+    categoryWithHomology_of_metrizableLeftRightComparisonIsoW736
+      comparisonIso
+  exact
+    boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyInstanceW735
+      inputs
+
+/--
+W736 closed-embedding branch: the W735 concrete-leaf route only needs the
+universal left-right comparison isomorphism.
+-/
+def
+    boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingLeftRightComparisonIsoW736
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733 := by
+  letI : CategoryWithHomology MetrizableLCA.{0} :=
+    categoryWithHomology_of_metrizableLeftRightComparisonIsoW736
+      comparisonIso
+  exact
+    boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyInstanceW735
+      inputs
+
+/-- W736 closed-map comparison-isomorphism branch builds ordinary stable input through W733. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_closedMapLeftRightComparisonIsoConcreteLeavesW736
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapLeftRightComparisonIsoW736
+      comparisonIso inputs)
+
+/-- W736 closed-embedding comparison-isomorphism branch builds ordinary stable input through W733. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingLeftRightComparisonIsoW736
+      comparisonIso inputs)
+
+/-- W736 closed-map comparison-isomorphism branch is accepted through W733. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapLeftRightComparisonIsoW736
+      comparisonIso inputs)
+
+/-- W736 closed-embedding comparison-isomorphism branch is accepted through W733. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingLeftRightComparisonIsoW736
+      comparisonIso inputs)
+
+/-- The W736 closed-map comparison-isomorphism branch is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736_accepted
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736
+          comparisonIso inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733_accepted
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapLeftRightComparisonIsoW736
+      comparisonIso inputs)
+
+/-- The W736 closed-embedding comparison-isomorphism branch is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736_accepted
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736
+          comparisonIso inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733_accepted
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingLeftRightComparisonIsoW736
+      comparisonIso inputs)
+
+/-- Input names for the W736 left-right-comparison route into W735 concrete leaves. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736 :
+    List String :=
+  ["universal IsIso for every MetrizableLCA left-right homology comparison built from kernel/cokernel data",
+    "bundled WPP right-open quotient-cover and source-pi-zero boundary data",
+    "bundled closed natural transformation ordinary relation data",
+    "target-only target-difference surjectivity plus target-codomain compactness provider",
+    "closed-map or closed-embedding selected-difference component provider",
+    "matching W519 mapped-explicit-cokernel closedness provider",
+    "normalized fixed-target data provider",
+    "source triangulation and triangle-completion data provider",
+    "endpoint strict-topology data provider",
+    "bounded homotopy localized-right-adjoint data provider"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736.length =
+      10 :=
+  rfl
+
+/--
+Current checked W736 state for the kernel/cokernel reduction of
+`CategoryWithHomology MetrizableLCA`.
+-/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736 :
+    Type where
+  seed : String
+  declarations : List String
+  kernelCokernelHomologyResult : String
+  comparisonReductionResult : String
+  closedMapLeafAssemblyResult : String
+  closedEmbeddingLeafAssemblyResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W736 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteSupportStateW736 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736
+    where
+  seed :=
+    "w736-kernel-cokernel-left-right-comparison-reduction"
+  declarations :=
+    ["metrizableHasKernelsW736",
+      "metrizableHasCokernelsW736",
+      "hasLeftHomology_of_metrizableKernelCokernelW736",
+      "hasRightHomology_of_metrizableKernelCokernelW736",
+      "leftRightHomologyComparison_of_metrizableKernelCokernelW736",
+      "hasHomology_of_metrizableLeftRightComparisonIsoW736",
+      "categoryWithHomology_of_metrizableLeftRightComparisonIsoW736",
+      "categoryWithHomologyProvider_of_metrizableLeftRightComparisonIsoW736",
+      "sourceHomologicalTriangulationData_of_metrizableLeftRightComparisonIsoW736",
+      "boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapLeftRightComparisonIsoW736",
+      "boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingLeftRightComparisonIsoW736",
+      "metrizableOrdinaryStableSemanticInput_of_closedMapLeftRightComparisonIsoConcreteLeavesW736",
+      "metrizableOrdinaryStableSemanticInput_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736_count"]
+  kernelCokernelHomologyResult :=
+    "proved: MetrizableLCA kernels and cokernels synthesize the canonical left and right homology data for any short complex"
+  comparisonReductionResult :=
+    "proved: a universal IsIso for the canonical left-right homology comparisons constructs CategoryWithHomology MetrizableLCA and the W723 provider"
+  closedMapLeafAssemblyResult :=
+    "proved: closed-map W735 branch inputs plus the comparison isomorphism feed the W733 concrete leaf route"
+  closedEmbeddingLeafAssemblyResult :=
+    "proved: closed-embedding W735 branch inputs plus the comparison isomorphism feed the W733 concrete leaf route"
+  exposedInputs :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736
+  remainingInputs :=
+    ["construct the universal left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes",
+      "construct concrete values for the W735 branch data inputs",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteSupportStateW736
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeavesRouteStateW736.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
