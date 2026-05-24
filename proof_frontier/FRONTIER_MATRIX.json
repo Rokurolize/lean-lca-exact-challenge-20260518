@@ -1,9 +1,61 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T13:38:41Z",
+  "generated_utc": "2026-05-24T13:50:46Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
+    {
+      "frontier_id": "frontier-w709-mapped-cokernel-closed-provider-explicit-normalized-fixed-target-localized-right-adjoint",
+      "target_declarations": [
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709",
+        "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_mappedCokernelClosedMapW709",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709_accepted",
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709",
+        "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_mappedCokernelClosedEmbeddingW709",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709_accepted",
+        "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitNormalizedFixedTargetLocalizedRightAdjointTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW709_productSuccess"
+      ],
+      "target_files_or_module": [
+        "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "audit/ProductSuccessDeclarations.lean"
+      ],
+      "dependencies": [
+        "W708 target-surjective explicit normalized fixed-target localized-right-adjoint route",
+        "MappedExplicitCokernelClosedMapProviderW519",
+        "MappedExplicitCokernelClosedEmbeddingProviderW519",
+        "closedRangeProvider_of_closedMapProvider_w519",
+        "closedRangeProvider_of_closedEmbeddingProvider_w519"
+      ],
+      "allowed_writes": [
+        "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+        "audit/ProductSuccessDeclarations.lean",
+        "scratch-log.html",
+        "proof_frontier/FRONTIER_MATRIX.json",
+        "proof_frontier/FRONTIER_MATRIX.md",
+        "run/verification.json",
+        "terminal_outcome/terminal_outcome.json",
+        "manifest.json"
+      ],
+      "forbidden_writes": [
+        "global Lean or elan configuration",
+        "packet-internal authoritative final zip SHA256",
+        "unrelated repositories"
+      ],
+      "worker_count_allowed": 0,
+      "verification_command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields && lake env lean audit/ProductSuccessDeclarations.lean && lake build",
+      "merge_blocker": "Concrete WPP boundary data, W512 relation fields, W601 target-difference surjectivity, compact targets, W525 global closed providers, normalized fixed-target obligations, W519 mapped-cokernel closed-map or closed-embedding data, endpoint-strict topology, localized-right-adjoint data, source triangulation, and Dbounded stable-infinity inputs remain unconstructed.",
+      "product_success_contribution": "Replaces the direct W519 closed-range call-site input at the W708 surface by W519 mapped-cokernel closed-map or closed-embedding provider inputs while preserving accepted closed-map and closed-embedding routes.",
+      "owned_by_active_process": true,
+      "implemented_declarations": [
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709",
+        "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_mappedCokernelClosedMapW709",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedMapMappedCokernelClosedMapExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709_accepted",
+        "MetrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709",
+        "metrizableWppRelationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundle_of_mappedCokernelClosedEmbeddingW709",
+        "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetSurjectiveCompactGlobalClosedEmbeddingViaGlobalClosedMapMappedCokernelClosedEmbeddingExplicitNormalizedFixedTargetLocalizedRightAdjointBundleW709_accepted",
+        "currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitNormalizedFixedTargetLocalizedRightAdjointTargetSurjectiveCompactGlobalProviderMappedCokernelClosedRouteStateW709_productSuccess"
+      ]
+    },
     {
       "frontier_id": "frontier-w708-target-surjective-explicit-normalized-fixed-target-localized-right-adjoint",
       "target_declarations": [

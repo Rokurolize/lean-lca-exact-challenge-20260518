@@ -1,9 +1,99 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w708-target-surjective-explicit-normalized-fixed-target-localized-right-adjoint-route",
-  "generated_utc": "2026-05-24T13:39:49Z",
-  "source_tree_hash": "522d546c2b3a22f27dd8a307ce7bd3b7a96c19058b0d4e1743ff593189345464",
-  "summary": "W708 adds a target-surjective compact global-provider lift of the W707 explicit normalized fixed-target localized-right-adjoint route. It takes TargetDifferenceSurjectiveProviderW601 at the newest call surface, assembles the W600 target-relation-top provider internally with the existing W601 adapter, and delegates both closed-map and closed-embedding accepted paths to W707. Product-success flags remain false.",
+  "schema": "lean-lca-exact-challenge-verification-w709-mapped-cokernel-closed-provider-route",
+  "generated_utc": "2026-05-24T13:50:46Z",
+  "source_tree_hash": "ac2877556822e0edf86435ce59724b0895d4e4d7b11991d0bb86d976f4df7c47",
+  "summary": "W709 adds mapped-explicit-cokernel closed-map and closed-embedding provider lifts for the W708 target-surjective explicit normalized fixed-target localized-right-adjoint route. It converts MappedExplicitCokernelClosedMapProviderW519 and MappedExplicitCokernelClosedEmbeddingProviderW519 to the W519 closed-range provider internally, then delegates the accepted closed-map and closed-embedding paths to W708. Product-success flags remain false.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W709 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_projection_fields_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W709 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_projection_fields_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks W709 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_product_success_declarations_lean.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/w709_required_declarations.lean",
+      "status": "passed",
+      "evidence": "W709 focused required-declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_required_declarations_lean.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "Root import remains green after W709; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_root_import_lean.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit remains green after W709; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_required_declarations_actual.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full repository build passed after W709; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token source-tree script passed after W709; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_forbidden_tokens_tree_script.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Forbidden-token product-audit script passed after W709; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_forbidden_tokens_product_audit_script.log."
+    },
+    {
+      "command": "rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Touched-file forbidden-token regex returned no matches after W709; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_forbidden_tokens_source.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true|product_success.*true|product_complete.*true|update_goal_allowed.*true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product-success marker scan returned no matches after W709; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_product_marker_scan.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W709; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_git_diff_check.log."
+    },
+    {
+      "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W709 terminal outcome JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_json_parse_all_final.log."
+    },
+    {
+      "command": "python3 -m json.tool run/verification.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W709 verification JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_json_parse_all_final.log."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W709 frontier JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_json_parse_all_final.log."
+    },
+    {
+      "command": "python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "Final W709 manifest JSON parse is recorded at /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_json_parse_all_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "Final W709 external self-check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_external_self_check_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Final W709 external product gate is expected to reject nonterminal outcome blocked_nonterminal_frontier; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T134349Z_019e599f_parent_w709/logs/w709_external_product_gate_final.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
