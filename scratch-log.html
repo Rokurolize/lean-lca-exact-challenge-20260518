@@ -160,20 +160,20 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W747 W480/W484 comparison route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W748 W480/W526 row route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260524T214046Z_codex_parent_w747</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T214845Z_codex_parent_w748</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W747 W480/W484 comparison route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W748 W480/W526 row route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
       <div class="columns">
         <div>
-          <p>W747 combines the W480 split-provider adapter with W522's W484 closed-range-only projection bridge, so the comparison route no longer asks for the stronger W477 projection-field provider.</p>
+          <p>W748 uses the direct W526 row-aware exactness route: W480 split providers supply selected-W461 data through W486, while W526 row-aware closed-range-only data supplies the strict AddCommGrp boundary.</p>
           <ul>
-            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW480W484ProjectionLeftW747</code> feeds W480 split providers through W486 for selected-W461 data, and feeds W484 closed-range-only data through W522 for the W481 componentwise projection input.</li>
-            <li><code>exactAcyclicWppOpClosureKernelComparisonW480W484ProjectionLeftInputNamesW747</code> records the five exposed nonterminal inputs.</li>
-            <li>The exposed route inputs are now closure-kernel mapped explicit cokernel data, the universal left-right comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W484 componentwise closed-range-only data.</li>
+            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedRangeOnlyRowsW748</code> composes W480 through W486 with <code>exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526</code>.</li>
+            <li><code>exactAcyclicWppOpW480ClosedRangeOnlyRowsInputNamesW748</code> records the three exposed nonterminal inputs.</li>
+            <li>The exposed route inputs are now W480 split promotion-input data, W480 ordinary-map data, and W526 row-aware componentwise closed-range-only data.</li>
           </ul>
         </div>
         <div>
@@ -182,7 +182,7 @@ textarea.goal-text {
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214046Z_codex_parent_w747/w747_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/w748_required_declarations.lean</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake build</code></li>
             <li>Forbidden-token audits, JSON parse checks, manifest self-check, browser evidence, and expected nonterminal product-gate rejection.</li>
@@ -191,14 +191,13 @@ textarea.goal-text {
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W747 work.</p></div>
-      <p>W746 specialized the W745 W478/W477 comparison route by deriving its W478 bundled W461 promotion provider from W480 split promotion-input and ordinary-map providers.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W748 work.</p></div>
+      <p>W747 combined the W480 split-provider adapter with W522's W484 closed-range-only projection bridge, avoiding the stronger W477 projection-field provider.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>W747 route: construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W484 componentwise closed-range-only data.</li>
-        <li>The universal left-right homology comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes.</li>
+        <li>W748 route: construct W480 split promotion-input data, W480 ordinary-map data, and W526 row-aware componentwise closed-range-only data.</li>
         <li>Concrete values for the W735 branch data inputs.</li>
         <li>Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
       </ul>

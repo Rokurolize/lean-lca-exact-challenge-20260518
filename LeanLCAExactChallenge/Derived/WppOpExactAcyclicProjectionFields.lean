@@ -53460,6 +53460,82 @@ theorem
       false :=
   rfl
 
+/--
+W748 uses the W526 row-aware exactness route directly: W480 split providers feed
+W486 to obtain the selected-W461 input, while W526 supplies the strict
+AddCommGrp row boundary from row-aware closed-range-only data.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedRangeOnlyRowsW748
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (w480OrdinaryMap :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475OrdinaryMapProviderW480)
+    (hclosedRows :
+      WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526.ComponentwiseClosedRangeOnlyRowsProviderW526) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  WppOpRowAwareClosedRangeOnlyProjectionV370SupportW526.exactAcyclic_of_selectedW461Provider_and_closedRangeOnlyRows_w526
+    (WppOpW478ProviderToSelectedW461ProviderCurrentHeadV370SupportW486.selectedW461Provider_of_w461PromotionInputProvider_w486
+      (WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.w461PromotionInputProvider_of_w480
+        w480PromotionInputs
+        w480OrdinaryMap))
+    hclosedRows
+
+/-- Input names for the W748 W480/W526 row-aware exactness route. -/
+def exactAcyclicWppOpW480ClosedRangeOnlyRowsInputNamesW748 : List String :=
+  ["W480 split promotion-input provider for pure left closed-image preservation",
+    "W480 split ordinary-map provider for pure left closed-image preservation",
+    "W526 row-aware componentwise closed-range-only provider for strict AddCommGrp rows"]
+
+theorem exactAcyclicWppOpW480ClosedRangeOnlyRowsInputNamesW748_count :
+    exactAcyclicWppOpW480ClosedRangeOnlyRowsInputNamesW748.length = 3 :=
+  rfl
+
+/--
+Current checked W748 state for the W480/W526 direct row-aware exactness route.
+-/
+structure MetrizableWppW480ClosedRangeOnlyRowsRouteStateW748 : Type where
+  seed : String
+  declarations : List String
+  w480SelectedProviderResult : String
+  rowAwareExactnessResult : String
+  exactAcyclicConsumerResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W748 state. -/
+def currentMetrizableWppW480ClosedRangeOnlyRowsRouteSupportStateW748 :
+    MetrizableWppW480ClosedRangeOnlyRowsRouteStateW748
+    where
+  seed := "w748-w480-w526-row-aware-direct-exactness-route"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedRangeOnlyRowsW748",
+      "exactAcyclicWppOpW480ClosedRangeOnlyRowsInputNamesW748",
+      "exactAcyclicWppOpW480ClosedRangeOnlyRowsInputNamesW748_count"]
+  w480SelectedProviderResult :=
+    "proved: W480 split providers assemble W478 and then W486 supplies W526's selected-W461 provider"
+  rowAwareExactnessResult :=
+    "proved: W526 row-aware closed-range-only data supplies the strict AddCommGrp exactness boundary"
+  exactAcyclicConsumerResult :=
+    "proved: W526 can consume W480-derived selected-W461 data and row-aware closed-range-only data"
+  exposedInputs := exactAcyclicWppOpW480ClosedRangeOnlyRowsInputNamesW748
+  remainingInputs :=
+    ["construct W480 split promotion-input provider",
+      "construct W480 split ordinary-map provider",
+      "construct W526 row-aware componentwise closed-range-only provider for strict AddCommGrp rows"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppW480ClosedRangeOnlyRowsRouteStateW748 :
+    MetrizableWppW480ClosedRangeOnlyRowsRouteStateW748 :=
+  currentMetrizableWppW480ClosedRangeOnlyRowsRouteSupportStateW748
+
+theorem currentMetrizableWppW480ClosedRangeOnlyRowsRouteStateW748_productSuccess :
+    currentMetrizableWppW480ClosedRangeOnlyRowsRouteStateW748.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

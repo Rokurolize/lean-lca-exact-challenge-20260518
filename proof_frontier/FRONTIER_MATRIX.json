@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T21:45:45Z",
+  "generated_utc": "2026-05-24T21:54:04Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,22 +1854,28 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w747_w480_w484_comparison_route",
-  "latest_parent_update": "parent_update_w747_w480_w484_comparison_route",
-  "summary": "W747 W480/W484 comparison route combines the W480 split-provider adapter with W522 closed-range-only projection bridge data, deriving W743 selected-W461 and W481 componentwise projection inputs without the stronger W477 projection-field provider. The result remains nonterminal: closure-kernel data, the universal left-right comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W484 componentwise closed-range-only data are still inputs.",
-  "remaining_frontier": "Need W747 route inputs, concrete W735 branch data, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w747_w480_w484_comparison_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w748_w480_w526_row_route",
+  "latest_parent_update": "parent_update_w748_w480_w526_row_route",
+  "summary": "W748 W480/W526 row route uses the direct W526 row-aware exactness endpoint: W480 split providers assemble the W478 provider, W486 supplies selected-W461 data, and W526 row-aware closed-range-only data supplies the strict AddCommGrp boundary. The WPP exactness route is now exposed through three nonterminal inputs: W480 promotion-input data, W480 ordinary-map data, and W526 row-aware componentwise closed-range-only data.",
+  "remaining_frontier": "Need W748 route inputs, concrete W735 branch data, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w748_w480_w526_row_route",
   "remaining_blockers": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W484 componentwise closed-range-only data for the W747 W480/W484 comparison route.",
+    "Construct W480 split promotion-input data, W480 ordinary-map data, and W526 row-aware componentwise closed-range-only data for the W748 W480/W526 row route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "open_blockers": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W484 componentwise closed-range-only data for the W747 W480/W484 comparison route.",
+    "Construct W480 split promotion-input data, W480 ordinary-map data, and W526 row-aware componentwise closed-range-only data for the W748 W480/W526 row route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "consumed_support_results": [
+    {
+      "increment": "W748",
+      "classification": "verified_nonterminal_support_increment_w748_w480_w526_row_route",
+      "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748",
+      "product_success_claimed": false
+    },
     {
       "increment": "W747",
       "classification": "verified_nonterminal_support_increment_w747_w480_w484_comparison_route",
@@ -2179,7 +2185,7 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W484 componentwise closed-range-only data for the W747 W480/W484 comparison route.",
+    "Construct W480 split promotion-input data, W480 ordinary-map data, and W526 row-aware componentwise closed-range-only data for the W748 W480/W526 row route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -4850,7 +4856,7 @@
     }
   ],
   "current_primary_blockers": [
-    "Construct the W747 W480/W484 comparison route inputs: closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W484 componentwise closed-range-only data.",
+    "Construct the W748 W480/W526 row route inputs: W480 split promotion-input data, W480 ordinary-map data, and W526 row-aware componentwise closed-range-only data.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],

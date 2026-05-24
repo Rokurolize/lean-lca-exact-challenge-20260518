@@ -1,9 +1,79 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w747-w480-w484-comparison-route",
-  "generated_utc": "2026-05-24T21:45:45Z",
-  "source_tree_hash": "0ba6e141b0d8974d784b6b53af121001fb8c90c6bed8e231fead4520ebe725f4",
-  "summary": "W747 W480/W484 comparison route combines the W480 split-provider adapter with W522 closed-range-only projection bridge data, deriving W743 selected-W461 and W481 componentwise projection inputs without the stronger W477 projection-field provider. The result remains nonterminal: closure-kernel data, the universal left-right comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W484 componentwise closed-range-only data are still inputs.",
+  "schema": "lean-lca-exact-challenge-verification-w748-w480-w526-row-route",
+  "generated_utc": "2026-05-24T21:54:04Z",
+  "source_tree_hash": "f90881df5809c050dbb9c78f81837ac93e71d3677ded0f10374fd5b212d8f3ea",
+  "summary": "W748 W480/W526 row route uses the direct W526 row-aware exactness endpoint: W480 split providers assemble the W478 provider, W486 supplies selected-W461 data, and W526 row-aware closed-range-only data supplies the strict AddCommGrp boundary. The WPP exactness route is now exposed through three nonterminal inputs: W480 promotion-input data, W480 ordinary-map data, and W526 row-aware componentwise closed-range-only data.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W748 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/lean_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W748 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks the W748 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/lean_product_success_declarations.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/w748_required_declarations.lean",
+      "status": "passed",
+      "evidence": "Run-owned W748 declaration check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/lean_w748_required_declarations.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W748; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/lean_required_declarations.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token audit passed after W748; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/audit_no_forbidden_lean_tokens.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W748; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/git_diff_check.log."
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "HTML report validator passed for the W748 scratch log; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/html_check_report.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full lake build passed for W748; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/lake_build_full.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "passed",
+      "evidence": "No product-success true marker was found; rg exit 1 is expected and recorded in /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/product_success_true_grep.log."
+    },
+    {
+      "command": "python3 JSON metadata parse check",
+      "status": "passed",
+      "evidence": "run/verification.json, terminal_outcome/terminal_outcome.json, proof_frontier/FRONTIER_MATRIX.json, and manifest.json parsed after W748; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/json_parse_check.log."
+    },
+    {
+      "command": "browser evidence render for scratch-log.html",
+      "status": "passed",
+      "evidence": "Browser-rendered scratch-log evidence matched W748 expected values; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/scratch_log_browser_evidence/fidelity.json."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W748; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/external_audit_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "External terminal-outcome audit rejected the nonterminal W748 outcome as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/external_audit_terminal_expected_fail.log."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -15763,6 +15833,13 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_w480ClosedRangeOnlyRowsW748",
+    "Dbounded.exactAcyclicWppOpW480ClosedRangeOnlyRowsInputNamesW748",
+    "Dbounded.exactAcyclicWppOpW480ClosedRangeOnlyRowsInputNamesW748_count",
+    "Dbounded.MetrizableWppW480ClosedRangeOnlyRowsRouteStateW748",
+    "Dbounded.currentMetrizableWppW480ClosedRangeOnlyRowsRouteSupportStateW748",
+    "Dbounded.currentMetrizableWppW480ClosedRangeOnlyRowsRouteStateW748",
+    "Dbounded.currentMetrizableWppW480ClosedRangeOnlyRowsRouteStateW748_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW480W484ProjectionLeftW747",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonW480W484ProjectionLeftInputNamesW747",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonW480W484ProjectionLeftInputNamesW747_count",
@@ -20589,19 +20666,19 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W484 componentwise closed-range-only data for the W747 W480/W484 comparison route.",
+    "Construct W480 split promotion-input data, W480 ordinary-map data, and W526 row-aware componentwise closed-range-only data for the W748 W480/W526 row route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w747_w480_w484_comparison_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w748_w480_w526_row_route",
   "product_success": false,
   "remaining_work": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W480 split promotion-input data, W480 ordinary-map data, and W484 componentwise closed-range-only data for the W747 W480/W484 comparison route.",
+    "Construct W480 split promotion-input data, W480 ordinary-map data, and W526 row-aware componentwise closed-range-only data for the W748 W480/W526 row route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214046Z_codex_parent_w747/lake_build_full.log",
-  "latest_verified_increment": "W747 W480/W484 comparison route",
+  "summary_log_tail": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T214845Z_codex_parent_w748/lake_build_full.log",
+  "latest_verified_increment": "W748 W480/W526 row route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
