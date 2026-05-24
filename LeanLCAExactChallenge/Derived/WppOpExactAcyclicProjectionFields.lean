@@ -54012,6 +54012,129 @@ theorem
       false :=
   rfl
 
+/--
+W753 routes the explicit component closed-map branch through W512 relation
+fields instead of a W480 selected-provider surface. W523 supplies the
+selected-W461 provider, while W711 and W581 supply the W527 row provider.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsExplicitClosedMapComponentsW753
+    (relationFields : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (closedMapPi1 : SelectedDifferenceClosedMapPi1FieldW711)
+    (closedMapPi2 : SelectedDifferenceClosedMapPi2FieldW711)
+    (closedMapPi3 : SelectedDifferenceClosedMapPi3FieldW711) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_selectedW461Provider_closedMapRows_w527
+    (WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.selectedW461Provider_of_relationFields_w523
+      relationFields)
+    (componentwiseClosedMapRowsProvider_of_globalClosedMapProvider_w581
+      (componentwiseClosedMapProvider_of_explicitComponentFieldsW711
+        closedMapPi1 closedMapPi2 closedMapPi3))
+
+/--
+W753 closed-embedding branch through W512 relation fields and W711 explicit
+closed-embedding component facts.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsExplicitClosedEmbeddingComponentsW753
+    (relationFields : ClosedNatTransOrdinaryRelationFieldsProviderW512)
+    (closedEmbeddingPi1 : SelectedDifferenceClosedEmbeddingPi1FieldW711)
+    (closedEmbeddingPi2 : SelectedDifferenceClosedEmbeddingPi2FieldW711)
+    (closedEmbeddingPi3 : SelectedDifferenceClosedEmbeddingPi3FieldW711) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  WppOpRowAwareClosedMapClosedRangeOnlyProjectionV370SupportW527.exactAcyclic_of_selectedW461Provider_closedEmbeddingRows_w527
+    (WppOpClosedNatTransSelectedProviderClosedRangeOnlyProjectionV370SupportW523.selectedW461Provider_of_relationFields_w523
+      relationFields)
+    (componentwiseClosedEmbeddingRowsProvider_of_globalClosedEmbeddingProvider_w581
+      (componentwiseClosedEmbeddingProvider_of_explicitComponentFieldsW711
+        closedEmbeddingPi1 closedEmbeddingPi2 closedEmbeddingPi3))
+
+/-- Input names for the W753 relation-fields explicit closed-map route. -/
+def exactAcyclicWppOpRelationFieldsExplicitClosedMapComponentsInputNamesW753 :
+    List String :=
+  ["W512 closed natural transformation ordinary relation-fields provider",
+    "W711 first selected-difference component closed-map field",
+    "W711 second selected-difference component closed-map field",
+    "W711 third selected-difference component closed-map field"]
+
+theorem
+    exactAcyclicWppOpRelationFieldsExplicitClosedMapComponentsInputNamesW753_count :
+    exactAcyclicWppOpRelationFieldsExplicitClosedMapComponentsInputNamesW753.length =
+      4 :=
+  rfl
+
+/-- Input names for the W753 relation-fields explicit closed-embedding route. -/
+def
+    exactAcyclicWppOpRelationFieldsExplicitClosedEmbeddingComponentsInputNamesW753 :
+    List String :=
+  ["W512 closed natural transformation ordinary relation-fields provider",
+    "W711 first selected-difference component closed-embedding field",
+    "W711 second selected-difference component closed-embedding field",
+    "W711 third selected-difference component closed-embedding field"]
+
+theorem
+    exactAcyclicWppOpRelationFieldsExplicitClosedEmbeddingComponentsInputNamesW753_count :
+    exactAcyclicWppOpRelationFieldsExplicitClosedEmbeddingComponentsInputNamesW753.length =
+      4 :=
+  rfl
+
+/--
+Current checked W753 state for routing W512 relation fields and W711 explicit
+component closedness to W527 exactness.
+-/
+structure MetrizableWppRelationFieldsExplicitClosedComponentsRouteStateW753 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapRelationFieldsResult : String
+  closedEmbeddingRelationFieldsResult : String
+  w523SelectedProviderResult : String
+  w711W581RowProviderResult : String
+  exposedClosedMapInputs : List String
+  exposedClosedEmbeddingInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W753 state. -/
+def currentMetrizableWppRelationFieldsExplicitClosedComponentsRouteSupportStateW753 :
+    MetrizableWppRelationFieldsExplicitClosedComponentsRouteStateW753
+    where
+  seed := "w753-w512-relation-fields-explicit-component-route"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsExplicitClosedMapComponentsW753",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsExplicitClosedEmbeddingComponentsW753",
+      "exactAcyclicWppOpRelationFieldsExplicitClosedMapComponentsInputNamesW753",
+      "exactAcyclicWppOpRelationFieldsExplicitClosedMapComponentsInputNamesW753_count",
+      "exactAcyclicWppOpRelationFieldsExplicitClosedEmbeddingComponentsInputNamesW753",
+      "exactAcyclicWppOpRelationFieldsExplicitClosedEmbeddingComponentsInputNamesW753_count"]
+  closedMapRelationFieldsResult :=
+    "proved: W512 relation fields supply W523's selected-W461 provider for the closed-map component route"
+  closedEmbeddingRelationFieldsResult :=
+    "proved: W512 relation fields supply W523's selected-W461 provider for the closed-embedding component route"
+  w523SelectedProviderResult :=
+    "proved: W523 converts W512 relation-field data into the W483 selected-W461 provider"
+  w711W581RowProviderResult :=
+    "proved: W711 explicit component closedness assembles W525 global providers and W581 narrows them to W527 rows"
+  exposedClosedMapInputs :=
+    exactAcyclicWppOpRelationFieldsExplicitClosedMapComponentsInputNamesW753
+  exposedClosedEmbeddingInputs :=
+    exactAcyclicWppOpRelationFieldsExplicitClosedEmbeddingComponentsInputNamesW753
+  remainingInputs :=
+    ["construct W512 closed natural transformation ordinary relation-fields provider",
+      "construct three W711 selected-difference closed-map component fields or three W711 selected-difference closed-embedding component fields"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRelationFieldsExplicitClosedComponentsRouteStateW753 :
+    MetrizableWppRelationFieldsExplicitClosedComponentsRouteStateW753 :=
+  currentMetrizableWppRelationFieldsExplicitClosedComponentsRouteSupportStateW753
+
+theorem
+    currentMetrizableWppRelationFieldsExplicitClosedComponentsRouteStateW753_productSuccess :
+    currentMetrizableWppRelationFieldsExplicitClosedComponentsRouteStateW753.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
