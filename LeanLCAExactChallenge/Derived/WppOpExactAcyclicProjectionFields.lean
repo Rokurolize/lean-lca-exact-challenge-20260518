@@ -42125,6 +42125,289 @@ theorem
       false :=
   rfl
 
+/--
+W704 exposes the endpoint-strict closed-range topology package as its two
+concrete fields.
+-/
+def
+    metrizableExactAtClosedRangeEndpointStrictTopologyInputs_of_explicitEndpointTopologyW704
+    (closedRangeProvider : MappedExplicitCokernelClosedRangeProviderW519)
+    (endpointStrictTopology : MetrizableExactAtEndpointStrictTopologyInputs) :
+    MetrizableExactAtClosedRangeEndpointStrictTopologyInputsW701
+    where
+  closedRangeProvider := closedRangeProvider
+  endpointStrictTopology := endpointStrictTopology
+
+/--
+W704 explicit endpoint-topology closed-map bundle: expose W703 with separate
+W519 closed-range and endpoint-strict topology fields.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetRelationTopProvider :
+    ClosedNatTransOrdinaryTargetRelationTopProviderW600
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedMapProvider :
+    ComponentwiseClosedMapProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  closedRangeProvider :
+    MappedExplicitCokernelClosedRangeProviderW519
+  endpointStrictTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W704 assembles the W703 closed-map bundle and delegates to W703. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW703
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetRelationTopProvider := inputs.targetRelationTopProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  globalClosedMapProvider := inputs.globalClosedMapProvider
+  normalizedInputs := inputs.normalizedInputs
+  hasHomology := inputs.hasHomology
+  endpointStrictClosedRangeTopology :=
+    metrizableExactAtClosedRangeEndpointStrictTopologyInputs_of_explicitEndpointTopologyW704
+      inputs.closedRangeProvider
+      inputs.endpointStrictTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W704 explicit endpoint-topology closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW703
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704
+      inputs)
+
+/-- W704 explicit endpoint-topology closed-map data are accepted through W703. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW703
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704
+      inputs)
+
+/-- The W704 explicit endpoint-topology closed-map package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW703_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704
+      inputs)
+
+/--
+W704 explicit endpoint-topology closed-embedding bundle: expose W703 with
+separate W519 closed-range and endpoint-strict topology fields.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetRelationTopProvider :
+    ClosedNatTransOrdinaryTargetRelationTopProviderW600
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedEmbeddingProvider :
+    ComponentwiseClosedEmbeddingProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  closedRangeProvider :
+    MappedExplicitCokernelClosedRangeProviderW519
+  endpointStrictTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  directLocalization :
+    MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657
+
+/-- W704 assembles the W703 closed-embedding bundle and delegates to W703. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW703
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetRelationTopProvider := inputs.targetRelationTopProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  globalClosedEmbeddingProvider := inputs.globalClosedEmbeddingProvider
+  normalizedInputs := inputs.normalizedInputs
+  hasHomology := inputs.hasHomology
+  endpointStrictClosedRangeTopology :=
+    metrizableExactAtClosedRangeEndpointStrictTopologyInputs_of_explicitEndpointTopologyW704
+      inputs.closedRangeProvider
+      inputs.endpointStrictTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization := inputs.directLocalization
+
+/-- W704 explicit endpoint-topology closed-embedding route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW703
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704
+      inputs)
+
+/-- W704 explicit endpoint-topology closed-embedding data are accepted through W703. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW703
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704
+      inputs)
+
+/-- The W704 explicit endpoint-topology closed-embedding package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW703_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704
+      inputs)
+
+/-- Input names for the W704 explicit endpoint-topology route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderInputNamesW704 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "normalized strict representatives plus target and localization-model uniqueness for fixed targets",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MappedExplicitCokernelClosedRangeProviderW519",
+    "MetrizableExactAtEndpointStrictTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderInputNamesW704_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderInputNamesW704.length =
+      12 :=
+  rfl
+
+/-- Current checked W704 state for explicit endpoint-topology route fields. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteStateW704 :
+    Type where
+  seed : String
+  declarations : List String
+  endpointStrictTopologyAssemblyResult : String
+  closedMapExplicitAcceptedResult : String
+  closedEmbeddingExplicitAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W704 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteSupportStateW704 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteStateW704
+    where
+  seed :=
+    "w704-explicit-endpoint-strict-target-top-compact-route"
+  declarations :=
+    ["metrizableExactAtClosedRangeEndpointStrictTopologyInputs_of_explicitEndpointTopologyW704",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704_accepted",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderInputNamesW704",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderInputNamesW704_count"]
+  endpointStrictTopologyAssemblyResult :=
+    "proved: W519 closed-range data and endpoint-strict ExactAt topology assemble the W701 endpoint-strict closed-range package"
+  closedMapExplicitAcceptedResult :=
+    "proved: explicit endpoint-topology closed-map fields assemble W703 and feed the accepted route"
+  closedEmbeddingExplicitAcceptedResult :=
+    "proved: explicit endpoint-topology closed-embedding fields assemble W703 and feed the accepted route"
+  replacedInputs :=
+    ["preassembled MetrizableExactAtClosedRangeEndpointStrictTopologyInputsW701 as a direct W703 call-site input"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct concrete W519 closed-range provider data for mapped explicit cokernels",
+      "construct endpoint-strict ExactAt topology data, including forgetful homology preservation and endpoint epis",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteStateW704 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteStateW704 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteSupportStateW704
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteStateW704_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteStateW704.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -42539,6 +42822,48 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitTargetTopCompactGlobalProviderEndpointStrictClosedRangeRouteStateW703_productSuccess
+set_option linter.style.longLine false in
+#check
+  metrizableExactAtClosedRangeEndpointStrictTopologyInputs_of_explicitEndpointTopologyW704
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704_accepted
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundle_of_explicitEndpointTopologyW704
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704_accepted
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderInputNamesW704
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderInputNamesW704_count
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteSupportStateW704
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteStateW704
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteStateW704_productSuccess
 
 set_option linter.style.longLine false in
 #check
