@@ -160,20 +160,21 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W757 W735 concrete leaf exactness route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W758 left-right comparison concrete leaf exact/stable bridge</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260524T233114Z_codex_parent_w757</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260524T234318Z_codex_parent_w758</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W757 W735 concrete leaf exactness route</h2><p class="meta"><span class="status">Verified locally</span> <span class="status warn">product_complete=false</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W758 left-right comparison concrete leaf exact/stable bridge</h2><p class="meta"><span class="status">Focused Lean gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 08:53 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W757 W735 concrete leaf exactness route specializes W756: the existing W735 closed-map and closed-embedding category-homology instance concrete leaf records already carry the W717 relation data and W718 diagram component providers required for exactness.</p>
+          <p>W758 left-right comparison concrete leaf exact/stable bridge packages the two checked outputs available at the same concrete leaf surface: W757 W735 concrete leaf exactness route supplies WPP-op exactness, while W736 kernel/cokernel comparison route supplies accepted stable bounded-derived-infinity-category evidence under an explicit universal comparison-isomorphism premise.</p>
           <ul>
-            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeafInputsW757</code> projects W735 closed-map leaf inputs into W756 exactness.</li>
-            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW757</code> adds the parallel closed-embedding W735 leaf-input branch.</li>
-            <li>The exposed exactness route now needs one W735 closed-map or closed-embedding category-homology instance concrete leaf input record.</li>
+            <li><code>MetrizableWppExactStableEvidenceW758</code> records exactness, the accepted stable category certificate, and the certificate acceptance proof together.</li>
+            <li><code>exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeafInputsW758</code> packages the closed-map branch from a universal comparison-isomorphism premise and one W735 closed-map leaf record.</li>
+            <li><code>exactStableEvidence_of_closedEmbeddingLeftRightComparisonConcreteLeafInputsW758</code> adds the parallel closed-embedding branch.</li>
+            <li>A run-owned probe confirmed the comparison-isomorphism premise is not currently solved by typeclass search, so W758 keeps it explicit and does not overclaim product success.</li>
           </ul>
         </div>
         <div>
@@ -182,22 +183,23 @@ textarea.goal-text {
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T233114Z_codex_parent_w757/w757_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T234318Z_codex_parent_w758/w758_required_declarations.lean</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
-            <li><code>lake build</code></li>
-            <li>Forbidden-token audits, JSON parse checks, manifest self-check, browser evidence, and expected nonterminal product-gate rejection.</li>
+            <li><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></li>
+            <li>Focused W758 gate statuses are all zero; full-build, browser, JSON, manifest, and external-audit gates run next before commit.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W757 work.</p></div>
-      <p>W756 W717 relation-data W718 component-provider exactness route bundled W755's two W712 relation-provider inputs and three W714 diagram component inputs into W717 relation data plus one W718 selected-difference diagram component provider.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W758 work.</p></div>
+      <p>W757 W735 concrete leaf exactness route specialized W756 by projecting relation data and selected-difference diagram component providers from existing W735 closed-map and closed-embedding category-homology instance concrete leaf records.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>W757 route: construct concrete W735 closed-map or closed-embedding category-homology instance concrete leaf input records.</li>
+        <li>Construct the universal left-right comparison isomorphism for MetrizableLCA short complexes; the W758 probe shows this is not currently inferred automatically.</li>
+        <li>Construct one concrete W735 closed-map or closed-embedding category-homology instance concrete leaf input record.</li>
         <li>Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
       </ul>
     </section>

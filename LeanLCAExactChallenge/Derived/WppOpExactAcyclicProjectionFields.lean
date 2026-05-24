@@ -54625,6 +54625,157 @@ theorem
       false :=
   rfl
 
+/--
+W758 packages the W757 exactness result together with the W736 accepted stable
+bounded-derived-infinity-category evidence at the same W735 concrete leaf
+surface.
+-/
+structure MetrizableWppExactStableEvidenceW758 : Type 2 where
+  exactAcyclic :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure
+  acceptedStable :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0}
+  acceptedStableAccepted :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate acceptedStable.certificate) =
+        true
+
+/--
+W758 closed-map branch: one W736 comparison-isomorphism premise plus one W735
+closed-map concrete leaf record supplies both WPP-op exactness and accepted
+stable bounded-derived-infinity-category evidence.
+-/
+noncomputable def
+    exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeafInputsW758
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppExactStableEvidenceW758
+    where
+  exactAcyclic :=
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeafInputsW757
+      inputs
+  acceptedStable :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736
+      comparisonIso inputs
+  acceptedStableAccepted :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapLeftRightComparisonIsoConcreteLeavesW736_accepted
+      comparisonIso inputs
+
+/--
+W758 closed-embedding branch: one W736 comparison-isomorphism premise plus one
+W735 closed-embedding concrete leaf record supplies both exactness and accepted
+stable evidence.
+-/
+noncomputable def
+    exactStableEvidence_of_closedEmbeddingLeftRightComparisonConcreteLeafInputsW758
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppExactStableEvidenceW758
+    where
+  exactAcyclic :=
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW757
+      inputs
+  acceptedStable :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736
+      comparisonIso inputs
+  acceptedStableAccepted :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingLeftRightComparisonIsoConcreteLeavesW736_accepted
+      comparisonIso inputs
+
+/-- Input names for the W758 closed-map exact/stable evidence route. -/
+def exactStableWppOpClosedMapLeftRightComparisonConcreteLeafInputNamesW758 :
+    List String :=
+  ["universal IsIso for every MetrizableLCA left-right homology comparison built from kernel/cokernel data",
+    "W735 closed-map category-homology instance concrete leaf input record"]
+
+theorem
+    exactStableWppOpClosedMapLeftRightComparisonConcreteLeafInputNamesW758_count :
+    exactStableWppOpClosedMapLeftRightComparisonConcreteLeafInputNamesW758.length =
+      2 :=
+  rfl
+
+/-- Input names for the W758 closed-embedding exact/stable evidence route. -/
+def
+    exactStableWppOpClosedEmbeddingLeftRightComparisonConcreteLeafInputNamesW758 :
+    List String :=
+  ["universal IsIso for every MetrizableLCA left-right homology comparison built from kernel/cokernel data",
+    "W735 closed-embedding category-homology instance concrete leaf input record"]
+
+theorem
+    exactStableWppOpClosedEmbeddingLeftRightComparisonConcreteLeafInputNamesW758_count :
+    exactStableWppOpClosedEmbeddingLeftRightComparisonConcreteLeafInputNamesW758.length =
+      2 :=
+  rfl
+
+/--
+Current checked W758 state for the combined exactness and accepted stable
+bounded-derived-infinity-category evidence route.
+-/
+structure MetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW758 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapExactStableResult : String
+  closedEmbeddingExactStableResult : String
+  comparisonProbeResult : String
+  w757ExactnessResult : String
+  w736StableResult : String
+  exposedClosedMapInputs : List String
+  exposedClosedEmbeddingInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W758 state. -/
+def
+    currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteSupportStateW758 :
+    MetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW758
+    where
+  seed := "w758-left-right-comparison-concrete-leaf-exact-stable-route"
+  declarations :=
+    ["MetrizableWppExactStableEvidenceW758",
+      "exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeafInputsW758",
+      "exactStableEvidence_of_closedEmbeddingLeftRightComparisonConcreteLeafInputsW758",
+      "exactStableWppOpClosedMapLeftRightComparisonConcreteLeafInputNamesW758",
+      "exactStableWppOpClosedMapLeftRightComparisonConcreteLeafInputNamesW758_count",
+      "exactStableWppOpClosedEmbeddingLeftRightComparisonConcreteLeafInputNamesW758",
+      "exactStableWppOpClosedEmbeddingLeftRightComparisonConcreteLeafInputNamesW758_count"]
+  closedMapExactStableResult :=
+    "proved: W736 comparison-isomorphism data plus one W735 closed-map leaf record supplies W757 exactness and W736 accepted stable evidence"
+  closedEmbeddingExactStableResult :=
+    "proved: W736 comparison-isomorphism data plus one W735 closed-embedding leaf record supplies W757 exactness and W736 accepted stable evidence"
+  comparisonProbeResult :=
+    "verified: W758 probe did not synthesize the universal comparison-isomorphism premise by instance search"
+  w757ExactnessResult :=
+    "proved: W757 consumes the W735 leaf record's relationData and selected-difference component provider for exactness"
+  w736StableResult :=
+    "proved: W736 consumes the same W735 leaf record plus explicit comparison isomorphisms for accepted stable bounded-derived-infinity-category evidence"
+  exposedClosedMapInputs :=
+    exactStableWppOpClosedMapLeftRightComparisonConcreteLeafInputNamesW758
+  exposedClosedEmbeddingInputs :=
+    exactStableWppOpClosedEmbeddingLeftRightComparisonConcreteLeafInputNamesW758
+  remainingInputs :=
+    ["construct the universal left-right comparison isomorphism for MetrizableLCA short complexes",
+      "construct one concrete W735 closed-map or closed-embedding category-homology instance concrete leaf input record",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW758 :
+    MetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW758 :=
+  currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteSupportStateW758
+
+theorem
+    currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW758_productSuccess :
+    currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW758.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
