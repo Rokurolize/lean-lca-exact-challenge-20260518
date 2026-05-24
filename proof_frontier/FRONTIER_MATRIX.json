@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T18:39:32Z",
+  "generated_utc": "2026-05-24T18:50:20Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1854,21 +1854,19 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w729_target_closedness_data_route",
-  "latest_parent_update": "parent_update_v729_target_closedness_data_route",
-  "summary": "W729 target/closedness route bundles target-only surjective-compact data with matched selected-difference component and W519 mapped-cokernel closedness data into one provider. It projects that provider back to the W728 normalized/source-endpoint route, delegates acceptance to W728, reduces the current input-name count from 5 to 4, and keeps product-success flags false.",
-  "remaining_frontier": "Need concrete bundled WPP boundary data, bundled closed-natural-transformation relation data, concrete target/closedness data, concrete normalized/source-endpoint data, and Dbounded stable-infinity inputs.",
-  "support_classification": "verified_nonterminal_support_increment_w729_target_closedness_data_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w730_boundary_relation_data_route",
+  "latest_parent_update": "parent_update_v730_boundary_relation_data_route",
+  "summary": "W730 boundary/relation route bundles bundled WPP boundary data with closed-natural-transformation relation data into one provider. It projects that provider back to the W729 target/closedness route, delegates acceptance to W729, reduces input-name count from 4 to 3, and keeps product-success flags false.",
+  "remaining_frontier": "Need concrete boundary/relation data provider, concrete target/closedness data provider, concrete normalized source/endpoint data provider, and Dbounded stable-infinity inputs.",
+  "support_classification": "verified_nonterminal_support_increment_w730_boundary_relation_data_route",
   "remaining_blockers": [
-    "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
-    "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
+    "Concrete boundary/relation data provider remains unconstructed.",
     "Concrete target/closedness data provider remains unconstructed.",
     "Concrete normalized source/endpoint data provider remains unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
   ],
   "open_blockers": [
-    "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
-    "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
+    "Concrete boundary/relation data provider remains unconstructed.",
     "Concrete target/closedness data provider remains unconstructed.",
     "Concrete normalized source/endpoint data provider remains unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
@@ -2130,8 +2128,7 @@
     "w706-explicit-localized-right-adjoint-target-top-route"
   ],
   "known_gaps": [
-    "Concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data remain unconstructed.",
-    "Concrete bundled relation-pullback and target-relation-lift provider data for closed natural transformations remain unconstructed.",
+    "Concrete boundary/relation data provider remains unconstructed.",
     "Concrete target/closedness data provider remains unconstructed.",
     "Concrete normalized source/endpoint data provider remains unconstructed.",
     "Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs remain unconstructed."
@@ -4797,9 +4794,10 @@
     }
   ],
   "current_primary_blockers": [
-    "construct concrete bundled WPP right-open quotient-cover and source-pi-zero boundary data",
-    "construct concrete bundled relation-field provider data, paired target-only surjective-compact data, selected-difference component provider data, and normalized fixed-target data",
-    "construct W519 endpoint-strict topology, localization, triangulation, homology, and Dbounded stable-infinity inputs"
+    "construct concrete boundary/relation data provider",
+    "construct concrete target/closedness data provider",
+    "construct concrete normalized source/endpoint data provider",
+    "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
   ],
   "parent_update_w467": {
     "timestamp_utc": "2026-05-21T01:54:02Z",
@@ -6561,5 +6559,30 @@
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729",
       "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW729_productSuccess"
     ]
+  },
+  "parent_update_v730": "W730 boundary/relation route bundles bundled WPP boundary data with closed-natural-transformation relation data into one provider. It projects that provider back to the W729 target/closedness route, delegates acceptance to W729, reduces input-name count from 4 to 3, and keeps product-success flags false.",
+  "parent_update_w730_metadata_refresh": {
+    "generated_utc": "2026-05-24T18:50:20Z",
+    "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T184206Z_codex_parent_w730",
+    "source_tree_hash": "b84ddccc77ff912c145f65835350cbf28cb3321782031ffd5e4ae08ee86c09d7",
+    "classification": "verified_nonterminal_support_increment_w730_boundary_relation_data_route",
+    "product_complete": false,
+    "implemented_declarations": [
+      "Dbounded.MetrizableWppBoundaryRelationDataProviderW730",
+      "Dbounded.boundaryData_of_boundaryRelationDataW730",
+      "Dbounded.relationData_of_boundaryRelationDataW730",
+      "Dbounded.MetrizableWppBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW730",
+      "Dbounded.metrizableWppRelationDataBoundaryTargetClosednessNormalizedFixedTargetSourceEndpointDataBundle_of_boundaryRelationDataW730",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_boundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW730",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW730",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointDataBundleW730_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointInputNamesW730",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointInputNamesW730_count",
+      "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW730",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointRouteSupportStateW730",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW730",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedFixedTargetSourceEndpointRouteStateW730_productSuccess"
+    ],
+    "note": "W730 source, product audit, metadata, browser evidence, and nonterminal product-gate evidence are recorded; product_success/product_complete/update_goal_allowed remain false."
   }
 }
