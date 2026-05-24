@@ -53367,6 +53367,99 @@ theorem
       false :=
   rfl
 
+/--
+W747 combines the W480 split-provider adapter with W522's W484
+closed-range-only projection bridge, avoiding the W477 projection-field input.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW480W484ProjectionLeftW747
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (w480PromotionInputs :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475PromotionInputsProviderW480)
+    (w480OrdinaryMap :
+      WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.W461ToW475OrdinaryMapProviderW480)
+    (hclosedOnly :
+      WppOpClosedRangeOnlyComponentwiseProjectionV370SupportW484.ComponentwiseClosedRangeOnlyProviderW484) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSelectedW461ComponentwiseProjectionLeftW743
+    closureKernelProvider
+    comparisonIso
+    (WppOpW478ProviderToSelectedW461ProviderCurrentHeadV370SupportW486.selectedW461Provider_of_w461PromotionInputProvider_w486
+      (WppOpW461BridgeToW475ProjectionExactAcyclicV370SupportW480.w461PromotionInputProvider_of_w480
+        w480PromotionInputs
+        w480OrdinaryMap))
+    (WppOpClosedRangeOnlyProjectionBridgeV370SupportW522.componentwiseClosedRangeProjectionProvider_of_closedRangeOnly_w522
+      hclosedOnly)
+
+/-- Input names for the W747 W480/W484 projection specialization. -/
+def exactAcyclicWppOpClosureKernelComparisonW480W484ProjectionLeftInputNamesW747 :
+    List String :=
+  ["closure-kernel mapped explicit cokernel provider for forgetful homology preservation",
+    "universal IsIso for every MetrizableLCA left-right homology comparison",
+    "W480 split promotion-input provider for pure left closed-image preservation",
+    "W480 split ordinary-map provider for pure left closed-image preservation",
+    "W484 componentwise closed-range-only provider for WPP-op diagrams"]
+
+theorem exactAcyclicWppOpClosureKernelComparisonW480W484ProjectionLeftInputNamesW747_count :
+    exactAcyclicWppOpClosureKernelComparisonW480W484ProjectionLeftInputNamesW747.length =
+      5 :=
+  rfl
+
+/--
+Current checked W747 state for the W480/W484 closed-range-only specialization
+of the W743 route.
+-/
+structure MetrizableWppClosureKernelComparisonW480W484ProjectionLeftRouteStateW747 :
+    Type where
+  seed : String
+  declarations : List String
+  w480AdapterResult : String
+  w484ProjectionBridgeResult : String
+  exactAcyclicConsumerResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W747 state. -/
+def currentMetrizableWppClosureKernelComparisonW480W484ProjectionLeftRouteSupportStateW747 :
+    MetrizableWppClosureKernelComparisonW480W484ProjectionLeftRouteStateW747
+    where
+  seed :=
+    "w747-closure-kernel-comparison-w480-w484-projection-specialization"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonW480W484ProjectionLeftW747",
+      "exactAcyclicWppOpClosureKernelComparisonW480W484ProjectionLeftInputNamesW747",
+      "exactAcyclicWppOpClosureKernelComparisonW480W484ProjectionLeftInputNamesW747_count"]
+  w480AdapterResult :=
+    "proved: W480 split providers assemble W478 and then W486 supplies W743's selected-W461 provider"
+  w484ProjectionBridgeResult :=
+    "proved: W522 converts W484 closed-range-only component data into W743's W481 componentwise projection input"
+  exactAcyclicConsumerResult :=
+    "proved: W743 can consume closure-kernel data, comparison isomorphisms, W480 split promotion data, and W484 closed-range-only projection data"
+  exposedInputs :=
+    exactAcyclicWppOpClosureKernelComparisonW480W484ProjectionLeftInputNamesW747
+  remainingInputs :=
+    ["construct closure-kernel mapped explicit cokernel provider",
+      "construct the universal left-right homology comparison isomorphism",
+      "construct W480 split promotion-input provider",
+      "construct W480 split ordinary-map provider",
+      "construct W484 componentwise closed-range-only provider for WPP-op diagrams"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppClosureKernelComparisonW480W484ProjectionLeftRouteStateW747 :
+    MetrizableWppClosureKernelComparisonW480W484ProjectionLeftRouteStateW747 :=
+  currentMetrizableWppClosureKernelComparisonW480W484ProjectionLeftRouteSupportStateW747
+
+theorem
+    currentMetrizableWppClosureKernelComparisonW480W484ProjectionLeftRouteStateW747_productSuccess :
+    currentMetrizableWppClosureKernelComparisonW480W484ProjectionLeftRouteStateW747.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
