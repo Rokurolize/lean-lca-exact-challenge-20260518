@@ -1,6 +1,6 @@
 {
   "schema": "lean-lca-exact-proof-frontier-v1",
-  "generated_utc": "2026-05-24T11:54:22Z",
+  "generated_utc": "2026-05-24T12:31:35Z",
   "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1",
   "worker_policy": "Fresh parent admitted two read-only lean-low scouts after W694 preflight; no worker may mutate the live target, and worker output is advisory until parent-verified.",
   "frontiers": [
@@ -1626,15 +1626,15 @@
       "product_complete": false
     }
   ],
-  "support_result_classification": "nonterminal_global_provider_normalized_fixed_target_endpoint_strict_closed_range_route",
-  "latest_parent_update": "parent_update_w701_endpoint_strict_closed_range_normalized_fixed_target_route",
-  "summary": "W701 endpoint-strict closed-range route narrows the W700 normalized fixed-target global-provider closed-range endpoint route: W519 mapped-explicit-cokernel closed-range data plus MetrizableExactAtEndpointStrictTopologyInputs supply the W696 closed-range endpoint package consumed by W700, for both the closed-map and closed-embedding paths. Product-success flags remain false.",
-  "remaining_frontier": "construct concrete WPP right-open and source-pi-zero boundary data; construct concrete relation-fields provider data; construct concrete target-difference surjectivity data; construct concrete target codomain compactness data; construct concrete componentwise global closed-map or closed-embedding provider data; construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets; construct homology existence for all MetrizableLCA cochain complexes in every degree; construct W519 mapped-explicit-cokernel closed-range provider data; construct endpoint-strict ExactAt topology data, including forgetful homology preservation and endpoint epis; construct bounded homotopy localized right adjoint plus unit membership; construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA; prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion; construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.",
-  "support_classification": "nonterminal_support_w701_endpoint_strict_closed_range_normalized_fixed_target_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w702",
+  "latest_parent_update": "parent_update_w702_target_top_compact_endpoint_strict_closed_range_route",
+  "summary": "W702 wires W701 endpoint-strict closed-range topology into the W694 target-top compact normalized fixed-target route. It supplies the W694 closure-kernel endpoint-topology input from W519 closed-range data plus endpoint-strict topology, for both closed-map and closed-embedding paths, without using the W700 target-difference-surjectivity branch. Product-success flags remain false.",
+  "remaining_frontier": "construct concrete WPP right-open and source-pi-zero boundary data; construct concrete relation-fields provider data; construct concrete target-relation-top provider data for the W702 target-top route, or target-difference surjectivity data for the W701 target-surjective route; construct concrete target codomain compactness data; construct concrete componentwise global closed-map or closed-embedding provider data; construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets; construct homology existence for all MetrizableLCA cochain complexes in every degree; construct W519 mapped-explicit-cokernel closed-range provider data; construct endpoint-strict ExactAt topology data, including forgetful homology preservation and endpoint epis; construct bounded homotopy localized right adjoint plus unit membership; construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA; prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion; construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.",
+  "support_classification": "nonterminal_support_w702_target_top_compact_endpoint_strict_closed_range_route",
   "remaining_blockers": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
-    "construct concrete target-difference surjectivity data",
+    "construct concrete target-relation-top provider data for the W702 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
@@ -1649,7 +1649,7 @@
   "open_blockers": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
-    "construct concrete target-difference surjectivity data",
+    "construct concrete target-relation-top provider data for the W702 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
@@ -1907,12 +1907,13 @@
     "w527-row-aware-closed-map-closed-range-only",
     "W698 global-provider target-surjective closed-range endpoint-topology route",
     "w700-normalized-fixed-target-global-provider-closed-range-endpoint-route",
-    "w701-endpoint-strict-closed-range-normalized-fixed-target-route"
+    "w701-endpoint-strict-closed-range-normalized-fixed-target-route",
+    "w702-target-top-compact-endpoint-strict-closed-range-route"
   ],
   "known_gaps": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
-    "construct concrete target-difference surjectivity data",
+    "construct concrete target-relation-top provider data for the W702 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
@@ -4444,13 +4445,6 @@
   },
   "recent_frontier_updates": [
     {
-      "timestamp_utc": "2026-05-21T01:54:02Z",
-      "artifact": "audit/blockers/addcommgrp_quotient_identification_exact_acyclic_boundary_v370_support_w467.lean",
-      "status": "verified_focused",
-      "effect": "W463 quotient-identification inputs compose through W464 projection-field consumers to the AddCommGrp strict kernel boundary and exact-acyclic closure wrapper.",
-      "product_complete": false
-    },
-    {
       "timestamp_utc": "2026-05-21T02:10:00Z",
       "artifact": "audit/blockers/addcommgrp_component_colimit_comparison_quotient_identification_v370_support_w469.lean",
       "status": "verified_focused",
@@ -4546,6 +4540,13 @@
       "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "promoted_importable_parent_api_w527",
       "effect": "W527 narrows W526 row-aware closed-range rows to row-aware selected component closed-map or closed-embedding provider data.",
+      "product_complete": false
+    },
+    {
+      "timestamp_utc": "2026-05-24T12:31:04Z",
+      "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "verified_nonterminal_support_increment_w702",
+      "effect": "W702 routes W701 endpoint-strict closed-range topology into the W694 target-top compact normalized fixed-target accepted route for both closed-map and closed-embedding paths.",
       "product_complete": false
     }
   ],
@@ -5670,6 +5671,67 @@
       "construct concrete WPP right-open and source-pi-zero boundary data",
       "construct concrete relation-fields provider data",
       "construct concrete target-difference surjectivity data",
+      "construct concrete target codomain compactness data",
+      "construct concrete componentwise global closed-map or closed-embedding provider data",
+      "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct W519 mapped-explicit-cokernel closed-range provider data",
+      "construct endpoint-strict ExactAt topology data, including forgetful homology preservation and endpoint epis",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
+    ],
+    "product_success_claimed": false,
+    "active_thread": "019e599f-9415-7d71-9805-24826b1a28c1"
+  },
+  "parent_update_w702": {
+    "timestamp_utc": "2026-05-24T12:31:04Z",
+    "status": "verified_nonterminal_support_increment",
+    "artifact": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "audit_artifact": "audit/ProductSuccessDeclarations.lean",
+    "changed_declarations": [
+      "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+      "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelEndpointTopologyDirectLocalizationBundle_of_endpointStrictClosedRangeW702",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702_accepted",
+      "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+      "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelEndpointTopologyDirectLocalizationBundle_of_endpointStrictClosedRangeW702",
+      "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702_accepted",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW702",
+      "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW702_count",
+      "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW702",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702",
+      "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702_productSuccess"
+    ],
+    "verified_commands": [
+      "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "lake env lean audit/ProductSuccessDeclarations.lean",
+      "lake env lean audit/RequiredDeclarations.lean",
+      "lake env lean LeanLCAExactChallenge.lean",
+      "lake build",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "bash -lc \"! rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean\"",
+      "git diff --check",
+      "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null",
+      "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
+      "python3 -m json.tool run/verification.json >/dev/null",
+      "python3 -m json.tool manifest.json >/dev/null",
+      "python3 audit/external_audit.py --root . --self-check-only",
+      "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json"
+    ],
+    "contribution": "Uses W701 endpoint-strict closed-range topology to supply the W694 closure-kernel endpoint topology for target-top compact normalized fixed-target closed-map and closed-embedding routes, avoiding W700 target-difference-surjectivity as a direct branch input when W646 target-top compact data are available.",
+    "remaining_inputs": [
+      "construct concrete WPP right-open and source-pi-zero boundary data",
+      "construct concrete relation-fields provider data",
+      "construct concrete target-relation-top provider data for the W702 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
       "construct concrete target codomain compactness data",
       "construct concrete componentwise global closed-map or closed-embedding provider data",
       "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",

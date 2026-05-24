@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W701 endpoint-strict closed-range route narrows the W700 normalized fixed-target global-provider closed-range endpoint route: W519 mapped-explicit-cokernel closed-range data plus MetrizableExactAtEndpointStrictTopologyInputs supply the W696 closed-range endpoint package consumed by W700, for both the closed-map and closed-embedding paths. Product-success flags remain false.",
+  "summary": "W702 wires W701 endpoint-strict closed-range topology into the W694 target-top compact normalized fixed-target route. It supplies the W694 closure-kernel endpoint-topology input from W519 closed-range data plus endpoint-strict topology, for both closed-map and closed-embedding paths, without using the W700 target-difference-surjectivity branch. Product-success flags remain false.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -1885,7 +1885,8 @@
     "rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' audit/ProductSuccessDeclarations.lean",
     "bash -lc \"! rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean\"",
-    "bash -lc \"! rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' audit/ProductSuccessDeclarations.lean\""
+    "bash -lc \"! rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' audit/ProductSuccessDeclarations.lean\"",
+    "bash -lc \"! rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean\""
   ],
   "required_declarations_checked": [
     "LeanLCAExactChallenge.WppOpW535FiniteShapeTransferConcreteRowsV370SupportW535.walkingParallelPairColimitStability_of_representativeImage_and_closedMapRows_w535",
@@ -5425,12 +5426,28 @@
     "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW701",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701",
-    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701_productSuccess"
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701_productSuccess",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelEndpointTopologyDirectLocalizationBundle_of_endpointStrictClosedRangeW702",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702_accepted",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelEndpointTopologyDirectLocalizationBundle_of_endpointStrictClosedRangeW702",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW702_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702_productSuccess"
   ],
   "known_gaps": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
-    "construct concrete target-difference surjectivity data",
+    "construct concrete target-relation-top provider data for the W702 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
@@ -5452,7 +5469,7 @@
   "remaining_gaps": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
-    "construct concrete target-difference surjectivity data",
+    "construct concrete target-relation-top provider data for the W702 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
@@ -9439,10 +9456,26 @@
     "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW701",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701",
-    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701_productSuccess"
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701_productSuccess",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelEndpointTopologyDirectLocalizationBundle_of_endpointStrictClosedRangeW702",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702_accepted",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelEndpointTopologyDirectLocalizationBundle_of_endpointStrictClosedRangeW702",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW702_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702_productSuccess"
   ],
-  "generated_utc": "2026-05-24T11:54:22Z",
-  "support_result_classification": "nonterminal_global_provider_normalized_fixed_target_endpoint_strict_closed_range_route",
+  "generated_utc": "2026-05-24T12:31:04Z",
+  "support_result_classification": "verified_nonterminal_support_increment_w702",
   "implemented_declarations_checked": [
     "Dbounded.metrizableWalkingParallelPairLimitStability_of_directRightFields",
     "Dbounded.MetrizableWalkingParallelPairFiniteShapeTransferInputsFromDirectLimitRepresentativeImageClosedMapRows",
@@ -13447,14 +13480,30 @@
     "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW701",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701",
-    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701_productSuccess"
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701_productSuccess",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelEndpointTopologyDirectLocalizationBundle_of_endpointStrictClosedRangeW702",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702_accepted",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelEndpointTopologyDirectLocalizationBundle_of_endpointStrictClosedRangeW702",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW702_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
-    "construct concrete target-difference surjectivity data",
+    "construct concrete target-relation-top provider data for the W702 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
@@ -13466,8 +13515,8 @@
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
   ],
-  "latest_verified_increment": "W701 endpoint-strict closed-range normalized fixed-target route",
-  "source_tree_hash": "e7697976d91ac830ddfcd96338d8a0500e6a6266c3c0a82ee5a128429b765385",
+  "latest_verified_increment": "W702 target-top compact endpoint-strict closed-range route",
+  "source_tree_hash": "64e3c50ba3617d554c9d8a51922a05ccda10502430bd6ca911eebc0bd1ac4166",
   "summary_log_tail": "W701 replaces direct ExactAt-conditioned endpoint topology fields with W519 closed-range data plus endpoint-strict topology and keeps product flags false.",
   "git_commit_note": "W701 endpoint-strict closed-range normalized fixed-target route is a nonterminal support increment; product_success/product_complete/update_goal_allowed remain false.",
   "metadata_corrections": {
@@ -14995,6 +15044,15 @@
       "source_tree_hash": "e7697976d91ac830ddfcd96338d8a0500e6a6266c3c0a82ee5a128429b765385",
       "latest_verified_increment": "W701 endpoint-strict closed-range normalized fixed-target route",
       "note": "W701 source, product audit, metadata, and nonterminal product-gate evidence are recorded; product_success/product_complete/update_goal_allowed remain false."
+    },
+    "w702_metadata_refresh": {
+      "refreshed_utc": "2026-05-24T12:31:04Z",
+      "source_tree_hash": "64e3c50ba3617d554c9d8a51922a05ccda10502430bd6ca911eebc0bd1ac4166",
+      "latest_verified_increment": "W702 target-top compact endpoint-strict closed-range route",
+      "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false
     }
   }
 }

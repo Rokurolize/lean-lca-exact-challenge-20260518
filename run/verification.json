@@ -1,8 +1,8 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w701-endpoint-strict-closed-range-normalized-fixed-target-route",
-  "generated_utc": "2026-05-24T11:54:22Z",
-  "source_tree_hash": "e7697976d91ac830ddfcd96338d8a0500e6a6266c3c0a82ee5a128429b765385",
-  "summary": "W701 endpoint-strict closed-range route narrows the W700 normalized fixed-target global-provider closed-range endpoint route: W519 mapped-explicit-cokernel closed-range data plus MetrizableExactAtEndpointStrictTopologyInputs supply the W696 closed-range endpoint package consumed by W700, for both the closed-map and closed-embedding paths. Product-success flags remain false.",
+  "generated_utc": "2026-05-24T12:32:48Z",
+  "source_tree_hash": "64e3c50ba3617d554c9d8a51922a05ccda10502430bd6ca911eebc0bd1ac4166",
+  "summary": "W702 wires W701 endpoint-strict closed-range topology into the W694 target-top compact normalized fixed-target route. It supplies the W694 closure-kernel endpoint-topology input from W519 closed-range data plus endpoint-strict topology, for both closed-map and closed-embedding paths, without using the W700 target-difference-surjectivity branch. Product-success flags remain false.",
   "commands": [
     {
       "command": "python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null",
@@ -12055,6 +12055,81 @@
       "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "Product gate still rejects the nonterminal W701 outcome as expected after manifest and verification checks; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T115028Z_019e599f_parent_w701/logs/w701_external_product_gate_final.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W702 projection source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_projection_fields_lean.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W702 projection module build passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_projection_fields_build.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "W702 product audit declaration check passed after rebuilding the projection module; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_product_success_declarations_lean_after_build.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "W702 required declarations check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_required_declarations_lean.log."
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "W702 root import check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_root_import_lean.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "W702 full lake build passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_lake_build.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "W702 source-tree forbidden-token scan passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_forbidden_tokens_source.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "W702 projection-file forbidden-token scan passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_forbidden_tokens_projection.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "W702 product-audit forbidden-token scan passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_forbidden_tokens_product_audit.log."
+    },
+    {
+      "command": "bash -lc \"! rg -n 'sorry|admit|axiom|unsafe|set_option autoImplicit true' LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean audit/ProductSuccessDeclarations.lean\"",
+      "status": "passed",
+      "evidence": "W702 direct rg forbidden-token check found no matches; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_no_forbidden_rg_projection_product.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "W702 pre-metadata whitespace diff check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_git_diff_check_pre_metadata.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "W702 final diff check passed after metadata refresh; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_git_diff_check_final.log."
+    },
+    {
+      "command": "python3 -m json.tool proof_frontier/FRONTIER_MATRIX.json >/dev/null && python3 -m json.tool terminal_outcome/terminal_outcome.json >/dev/null && python3 -m json.tool run/verification.json >/dev/null && python3 -m json.tool manifest.json >/dev/null",
+      "status": "passed",
+      "evidence": "W702 final JSON parse checks passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_json_parse_all_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "W702 final external audit self-check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_external_self_check_final.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root \"$PWD\" --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "W702 product gate still rejects the nonterminal outcome as expected; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702/logs/w702_external_product_gate_final.log."
     }
   ],
   "implemented_declarations_checked": [
@@ -16061,13 +16136,29 @@
     "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW701",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701",
-    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701_productSuccess"
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW701_productSuccess",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetClosureKernelEndpointTopologyDirectLocalizationBundle_of_endpointStrictClosedRangeW702",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702_accepted",
+    "Dbounded.MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingNormalizedFixedTargetClosureKernelEndpointTopologyDirectLocalizationBundle_of_endpointStrictClosedRangeW702",
+    "Dbounded.metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapNormalizedFixedTargetEndpointStrictClosedRangeDirectLocalizationBundleW702_accepted",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW702",
+    "Dbounded.metrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeInputNamesW702_count",
+    "Dbounded.MetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteSupportStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702",
+    "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetEndpointStrictClosedRangeRouteStateW702_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
-    "construct concrete target-difference surjectivity data",
+    "construct concrete target-relation-top provider data for the W702 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
@@ -16079,12 +16170,12 @@
     "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
     "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
   ],
-  "support_result_classification": "nonterminal_global_provider_normalized_fixed_target_endpoint_strict_closed_range_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w702",
   "product_success": false,
   "remaining_work": [
     "construct concrete WPP right-open and source-pi-zero boundary data",
     "construct concrete relation-fields provider data",
-    "construct concrete target-difference surjectivity data",
+    "construct concrete target-relation-top provider data for the W702 target-top route, or target-difference surjectivity data for the W701 target-surjective route",
     "construct concrete target codomain compactness data",
     "construct concrete componentwise global closed-map or closed-embedding provider data",
     "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
@@ -16097,7 +16188,7 @@
     "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"
   ],
   "summary_log_tail": "W701 replaces direct ExactAt-conditioned endpoint topology fields with W519 closed-range data plus endpoint-strict topology and keeps product flags false.",
-  "latest_verified_increment": "W701 endpoint-strict closed-range normalized fixed-target route",
+  "latest_verified_increment": "W702 target-top compact endpoint-strict closed-range route",
   "metadata_corrections": {
     "forbidden_token_scan_command_metadata_w562": {
       "corrected_utc": "2026-05-22T04:53:13Z",
@@ -17204,6 +17295,13 @@
       "source_tree_hash": "e7697976d91ac830ddfcd96338d8a0500e6a6266c3c0a82ee5a128429b765385",
       "latest_verified_increment": "W701 endpoint-strict closed-range normalized fixed-target route",
       "note": "W701 source, product audit, metadata, and nonterminal product-gate evidence are recorded; product_success/product_complete/update_goal_allowed remain false."
+    },
+    "w702_metadata_refresh": {
+      "refreshed_utc": "2026-05-24T12:31:04Z",
+      "source_tree_hash": "64e3c50ba3617d554c9d8a51922a05ccda10502430bd6ca911eebc0bd1ac4166",
+      "latest_verified_increment": "W702 target-top compact endpoint-strict closed-range route",
+      "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T122207Z_019e599f_parent_w702",
+      "note": "W702 source and audit declarations are locally verified; product_success/product_complete remain false and update_goal is not allowed."
     }
   }
 }
