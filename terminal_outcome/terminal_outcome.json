@@ -2,8 +2,22 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W754 W512 relation-fields W714 diagram-field route specializes the W753 W512 relation-fields explicit component route: W714 adapts diagram-only selected-difference closed-map or closed-embedding component facts into W711 fields, then W753 routes W512 relation-field data and W711 component closedness to W527 exactness. The exposed exactness route now requires W512 closed natural transformation ordinary relation fields plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only closed-embedding component facts; product_success remains false.",
+  "summary": "W755 W712 explicit relation-fields W714 diagram route specializes the W754 W512 relation-fields W714 diagram-field route: W712 assembles W512 relation fields from separate relation-pullback and target-relation-lift providers, while W714 supplies diagram-only selected-difference closed-map or closed-embedding component facts. The exposed exactness route now requires two W712 explicit relation providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only closed-embedding component facts; product_success remains false.",
   "verified_commands": [
+    "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+    "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+    "lake env lean audit/ProductSuccessDeclarations.lean",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T230554Z_codex_parent_w755/w755_required_declarations.lean",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "git diff --check",
+    "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+    "python3 -c \"import json; [json.load(open(p)) for p in ['run/verification.json','terminal_outcome/terminal_outcome.json','proof_frontier/FRONTIER_MATRIX.json','manifest.json']]\"",
+    "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T230554Z_codex_parent_w755/scratch_log_browser_evidence --expect W755 W712 explicit relation-fields W714 diagram route --expect product_complete=false --expect 20260524T230554Z_codex_parent_w755",
+    "lake build",
+    "python3 audit/external_audit.py --root . --self-check-only",
+    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
     "lake env lean audit/ProductSuccessDeclarations.lean",
@@ -2435,6 +2449,16 @@
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T170543Z_codex_parent_w722/browser_evidence --expect W722 --expect product_complete=false --expect 20260524T170543Z_codex_parent_w722"
   ],
   "required_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedMapComponentsW755",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedEmbeddingComponentsW755",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755_count",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755_count",
+    "Dbounded.MetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755",
+    "Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteSupportStateW755",
+    "Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755",
+    "Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedMapComponentsW754",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedEmbeddingComponentsW754",
     "Dbounded.exactAcyclicWppOpRelationFieldsDiagramClosedMapComponentsInputNamesW754",
@@ -6761,7 +6785,7 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
   "known_gaps": [
-    "Construct W512 closed natural transformation ordinary relation-fields data and three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts for the W754 W512 relation-fields W714 diagram-field route.",
+    "Construct W712 closed natural transformation ordinary relation-pullback and target-relation-lift providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts for the W755 W712 explicit relation-fields W714 diagram route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
@@ -6773,12 +6797,22 @@
   "worker_frontier_summary": "No worker output was accepted for W753; parent verified the W512 relation-fields plus W711 explicit component route directly in the live target.",
   "claim_review_result": "not applicable: W753 W512 relation-fields explicit component route is a nonterminal support increment with product_success=false",
   "remaining_gaps": [
-    "Construct W512 closed natural transformation ordinary relation-fields data and three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts for the W754 W512 relation-fields W714 diagram-field route.",
+    "Construct W712 closed natural transformation ordinary relation-pullback and target-relation-lift providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts for the W755 W712 explicit relation-fields W714 diagram route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "next_recommended_goal": "Construct W512 relation-field data and W714 diagram-only selected-difference component closedness facts, or reduce those facts to more concrete topology/component hypotheses.",
+  "next_recommended_goal": "Construct W712 relation-pullback and target-relation-lift providers and W714 diagram-only selected-difference component closedness facts, or reduce those facts to concrete topology/component hypotheses.",
   "implemented_declarations": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedMapComponentsW755",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedEmbeddingComponentsW755",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755_count",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755_count",
+    "Dbounded.MetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755",
+    "Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteSupportStateW755",
+    "Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755",
+    "Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedMapComponentsW754",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedEmbeddingComponentsW754",
     "Dbounded.exactAcyclicWppOpRelationFieldsDiagramClosedMapComponentsInputNamesW754",
@@ -11640,9 +11674,19 @@
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725",
     "Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryRelationDataTargetSurjectiveCompactBoundaryClosednessBranchEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceHomologicalTriangulationRouteStateW725_productSuccess"
   ],
-  "generated_utc": "2026-05-24T23:02:32Z",
-  "support_result_classification": "verified_nonterminal_support_increment_w754_w512_relation_fields_w714_diagram_component_route",
+  "generated_utc": "2026-05-24T23:11:08Z",
+  "support_result_classification": "verified_nonterminal_support_increment_w755_w712_explicit_relation_fields_w714_diagram_route",
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedMapComponentsW755",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedEmbeddingComponentsW755",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755_count",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755",
+    "Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755_count",
+    "Dbounded.MetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755",
+    "Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteSupportStateW755",
+    "Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755",
+    "Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedMapComponentsW754",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedEmbeddingComponentsW754",
     "Dbounded.exactAcyclicWppOpRelationFieldsDiagramClosedMapComponentsInputNamesW754",
@@ -16537,13 +16581,13 @@
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Construct W512 closed natural transformation ordinary relation-fields data and three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts for the W754 W512 relation-fields W714 diagram-field route.",
+    "Construct W712 closed natural transformation ordinary relation-pullback and target-relation-lift providers plus three W714 diagram-only selected-difference closed-map component facts or three diagram-only selected closed-embedding component facts for the W755 W712 explicit relation-fields W714 diagram route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "latest_verified_increment": "W754 W512 relation-fields W714 diagram-field route",
-  "source_tree_hash": "b8e48d0bf69451970e5637d0da296ac8f815a7b7242f96a6ce75423700f8ccdd",
-  "summary_log_tail": "W754 final JSON/browser/full-build/external-audit gates passed; terminal audit rejected product_success as expected.",
+  "latest_verified_increment": "W755 W712 explicit relation-fields W714 diagram route",
+  "source_tree_hash": "896e466d3c3e03cfdea92eb51ce39c4d7854b351fb8d3398e7bf960a460420c4",
+  "summary_log_tail": "W755 final JSON/browser/full-build/external-audit gates passed; terminal audit rejected product_success as expected.",
   "git_commit_note": "Commit SHA is intentionally not embedded before commit; remote durability JSON records the final pushed SHA after commit.",
   "metadata_corrections": {
     "w739_metadata_refresh": {
@@ -18364,9 +18408,9 @@
       "note": "Terminal outcome remains blocked_nonterminal_frontier; update_goal_allowed remains false after W751."
     }
   },
-  "classification": "verified_nonterminal_support_increment_w754_w512_relation_fields_w714_diagram_component_route",
-  "latest_increment": "W754 W512 relation-fields W714 diagram-field route",
-  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T225103Z_codex_parent_w754",
+  "classification": "verified_nonterminal_support_increment_w755_w712_explicit_relation_fields_w714_diagram_route",
+  "latest_increment": "W755 W712 explicit relation-fields W714 diagram route",
+  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T230554Z_codex_parent_w755",
   "product_success_claimed": false,
   "update_goal_complete_permitted": false
 }

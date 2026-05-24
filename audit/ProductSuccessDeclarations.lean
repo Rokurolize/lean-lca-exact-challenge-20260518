@@ -8783,6 +8783,26 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppRelationFieldsDiagramClosedComponentsRouteStateW754
   #check
     Dbounded.currentMetrizableWppRelationFieldsDiagramClosedComponentsRouteStateW754_productSuccess
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedMapComponentsW755
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedEmbeddingComponentsW755
+  #check
+    Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755
+  #check
+    Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755_count
+  #check
+    Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755
+  #check
+    Dbounded.exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755_count
+  #check
+    Dbounded.MetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755
+  #check
+    Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteSupportStateW755
+  #check
+    Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755
+  #check
+    Dbounded.currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

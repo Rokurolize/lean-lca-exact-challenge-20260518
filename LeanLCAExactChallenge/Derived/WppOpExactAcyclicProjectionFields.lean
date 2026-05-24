@@ -54259,6 +54259,135 @@ theorem
       false :=
   rfl
 
+/--
+W755 specializes the W754 diagram-field exactness route by exposing W712's
+separate relation-pullback and target-relation-lift providers instead of a
+preassembled W512 relation-fields provider.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedMapComponentsW755
+    (relationPullbackProvider : ClosedNatTransOrdinaryRelationPullbackProviderW712)
+    (targetRelationLiftsProvider :
+      ClosedNatTransOrdinaryTargetRelationLiftsProviderW712)
+    (closedMapPi1 : SelectedDifferenceClosedMapPi1DiagramFieldW714)
+    (closedMapPi2 : SelectedDifferenceClosedMapPi2DiagramFieldW714)
+    (closedMapPi3 : SelectedDifferenceClosedMapPi3DiagramFieldW714) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedMapComponentsW754
+    (closedNatTransOrdinaryRelationFieldsProvider_of_explicitFieldsW712
+      relationPullbackProvider targetRelationLiftsProvider)
+    closedMapPi1 closedMapPi2 closedMapPi3
+
+/--
+W755 closed-embedding branch through W712 explicit relation providers and W714
+diagram-only closed-embedding component facts.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedEmbeddingComponentsW755
+    (relationPullbackProvider : ClosedNatTransOrdinaryRelationPullbackProviderW712)
+    (targetRelationLiftsProvider :
+      ClosedNatTransOrdinaryTargetRelationLiftsProviderW712)
+    (closedEmbeddingPi1 : SelectedDifferenceClosedEmbeddingPi1DiagramFieldW714)
+    (closedEmbeddingPi2 : SelectedDifferenceClosedEmbeddingPi2DiagramFieldW714)
+    (closedEmbeddingPi3 : SelectedDifferenceClosedEmbeddingPi3DiagramFieldW714) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationFieldsDiagramClosedEmbeddingComponentsW754
+    (closedNatTransOrdinaryRelationFieldsProvider_of_explicitFieldsW712
+      relationPullbackProvider targetRelationLiftsProvider)
+    closedEmbeddingPi1 closedEmbeddingPi2 closedEmbeddingPi3
+
+/-- Input names for the W755 explicit relation-field diagram closed-map route. -/
+def
+    exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755 :
+    List String :=
+  ["W712 closed natural transformation ordinary relation-pullback provider",
+    "W712 closed natural transformation ordinary target-relation-lift provider",
+    "W714 first selected-difference component diagram closed-map field",
+    "W714 second selected-difference component diagram closed-map field",
+    "W714 third selected-difference component diagram closed-map field"]
+
+theorem
+    exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755_count :
+    exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755.length =
+      5 :=
+  rfl
+
+/--
+Input names for the W755 explicit relation-field diagram closed-embedding route.
+-/
+def
+    exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755 :
+    List String :=
+  ["W712 closed natural transformation ordinary relation-pullback provider",
+    "W712 closed natural transformation ordinary target-relation-lift provider",
+    "W714 first selected-difference component diagram closed-embedding field",
+    "W714 second selected-difference component diagram closed-embedding field",
+    "W714 third selected-difference component diagram closed-embedding field"]
+
+theorem
+    exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755_count :
+    exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755.length =
+      5 :=
+  rfl
+
+/--
+Current checked W755 state for routing W712 explicit relation providers and W714
+diagram-only component closedness to W527 exactness through W754.
+-/
+structure MetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapExplicitRelationResult : String
+  closedEmbeddingExplicitRelationResult : String
+  w712RelationFieldsResult : String
+  w754DiagramRouteResult : String
+  exposedClosedMapInputs : List String
+  exposedClosedEmbeddingInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W755 state. -/
+def currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteSupportStateW755 :
+    MetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755
+    where
+  seed := "w755-w712-explicit-relation-fields-w714-diagram-component-route"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedMapComponentsW755",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_explicitRelationFieldsDiagramClosedEmbeddingComponentsW755",
+      "exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755",
+      "exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755_count",
+      "exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755",
+      "exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755_count"]
+  closedMapExplicitRelationResult :=
+    "proved: W712 explicit relation providers assemble W754's W512 relation-field input for the closed-map diagram route"
+  closedEmbeddingExplicitRelationResult :=
+    "proved: W712 explicit relation providers assemble W754's W512 relation-field input for the closed-embedding diagram route"
+  w712RelationFieldsResult :=
+    "proved: W712 converts separate relation-pullback and target-relation-lift providers into W512 relation fields"
+  w754DiagramRouteResult :=
+    "proved: W754 consumes W512 relation fields and W714 diagram-only component closedness for exactness"
+  exposedClosedMapInputs :=
+    exactAcyclicWppOpExplicitRelationFieldsDiagramClosedMapComponentsInputNamesW755
+  exposedClosedEmbeddingInputs :=
+    exactAcyclicWppOpExplicitRelationFieldsDiagramClosedEmbeddingComponentsInputNamesW755
+  remainingInputs :=
+    ["construct W712 closed natural transformation ordinary relation-pullback provider",
+      "construct W712 closed natural transformation ordinary target-relation-lift provider",
+      "prove three W714 diagram-only selected-difference closed-map component facts or three diagram-only closed-embedding component facts"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755 :
+    MetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755 :=
+  currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteSupportStateW755
+
+theorem
+    currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755_productSuccess :
+    currentMetrizableWppExplicitRelationFieldsDiagramClosedComponentsRouteStateW755.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
