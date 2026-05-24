@@ -42408,6 +42408,314 @@ theorem
       false :=
   rfl
 
+/--
+W705 explicit source-triangulation closed-map bundle: expose W704 with separate
+source pretriangulated, source triangulated, and triangle-completion fields.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetRelationTopProvider :
+    ClosedNatTransOrdinaryTargetRelationTopProviderW600
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedMapProvider :
+    ComponentwiseClosedMapProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  closedRangeProvider :
+    MappedExplicitCokernelClosedRangeProviderW519
+  endpointStrictTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  sourcePretriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  sourceTriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    IsTriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  triangleCompletion :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+
+/-- W705 assembles the W704 closed-map bundle and delegates to W704. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetRelationTopProvider := inputs.targetRelationTopProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  globalClosedMapProvider := inputs.globalClosedMapProvider
+  normalizedInputs := inputs.normalizedInputs
+  hasHomology := inputs.hasHomology
+  closedRangeProvider := inputs.closedRangeProvider
+  endpointStrictTopology := inputs.endpointStrictTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization :=
+    { sourcePretriangulated := inputs.sourcePretriangulated
+      sourceTriangulated := inputs.sourceTriangulated
+      triangleCompletion := inputs.triangleCompletion }
+
+/-- W705 explicit source-triangulation closed-map route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705
+      inputs)
+
+/-- W705 explicit source-triangulation closed-map data are accepted through W704. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705
+      inputs)
+
+/-- The W705 explicit source-triangulation closed-map package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705
+      inputs)
+
+/--
+W705 explicit source-triangulation closed-embedding bundle: expose W704 with
+separate source pretriangulated, source triangulated, and triangle-completion
+fields.
+-/
+structure
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705 :
+    Type 2 where
+  rightOpenBoundary :
+    Dbounded.MetrizableWppLimitRightOpenClosedQuotientCoverBoundary
+  sourcePiZeroBoundary :
+    Dbounded.MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary
+  relationFields :
+    ClosedNatTransOrdinaryRelationFieldsProviderW512
+  targetRelationTopProvider :
+    ClosedNatTransOrdinaryTargetRelationTopProviderW600
+  targetCodomainCompactSpaceProvider :
+    TargetCodomainCompactSpaceProviderW601
+  globalClosedEmbeddingProvider :
+    ComponentwiseClosedEmbeddingProviderW525
+  normalizedInputs :
+    Dbounded.MetrizableWalkingParallelPairNormalizedFixedTargetInputs
+  hasHomology :
+    ∀ (K : CochainComplex MetrizableLCA.{0} ℤ) (i : ℤ), K.HasHomology i
+  closedRangeProvider :
+    MappedExplicitCokernelClosedRangeProviderW519
+  endpointStrictTopology :
+    MetrizableExactAtEndpointStrictTopologyInputs
+  localizedRightAdjoint :
+    BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA.{0}
+  sourcePretriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    Pretriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  sourceTriangulated :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    IsTriangulated (BoundedComplexCategory MetrizableLCA.{0})
+  triangleCompletion :
+    letI : ∀ n : ℤ,
+        (shiftFunctor (BoundedComplexCategory MetrizableLCA.{0}) n).Additive :=
+      inferInstance
+    letI : Pretriangulated (BoundedComplexCategory MetrizableLCA.{0}) :=
+      sourcePretriangulated
+    MetrizableBoundedExactWeakEquivalenceTriangleCompletionInputW654
+
+/-- W705 assembles the W704 closed-embedding bundle and delegates to W704. -/
+def
+    metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705) :
+    MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+    where
+  rightOpenBoundary := inputs.rightOpenBoundary
+  sourcePiZeroBoundary := inputs.sourcePiZeroBoundary
+  relationFields := inputs.relationFields
+  targetRelationTopProvider := inputs.targetRelationTopProvider
+  targetCodomainCompactSpaceProvider := inputs.targetCodomainCompactSpaceProvider
+  globalClosedEmbeddingProvider := inputs.globalClosedEmbeddingProvider
+  normalizedInputs := inputs.normalizedInputs
+  hasHomology := inputs.hasHomology
+  closedRangeProvider := inputs.closedRangeProvider
+  endpointStrictTopology := inputs.endpointStrictTopology
+  localizedRightAdjoint := inputs.localizedRightAdjoint
+  directLocalization :=
+    { sourcePretriangulated := inputs.sourcePretriangulated
+      sourceTriangulated := inputs.sourceTriangulated
+      triangleCompletion := inputs.triangleCompletion }
+
+/-- W705 explicit source-triangulation closed-embedding route builds ordinary stable input. -/
+noncomputable def
+    metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705) :
+    Dbounded.MetrizableOrdinaryStableSemanticInput :=
+  metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705
+      inputs)
+
+/-- W705 explicit source-triangulation closed-embedding data are accepted through W704. -/
+noncomputable def
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705) :
+    AcceptedStableBoundedDerivedInfinityCategory MetrizableLCA.{0} :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705
+      inputs)
+
+/-- The W705 explicit source-triangulation closed-embedding package is accepted. -/
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705_accepted
+    (inputs :
+      MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705) :
+    StableRouteAttempt.accepted (C := MetrizableLCA.{0})
+      (.fullCertificate
+        (metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705
+          inputs).certificate) =
+        true :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundleW704_accepted
+    (metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705
+      inputs)
+
+/-- Input names for the W705 explicit source-triangulation route. -/
+def
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderInputNamesW705 :
+    List String :=
+  ["MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+    "MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+    "ClosedNatTransOrdinaryRelationFieldsProviderW512",
+    "ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+    "TargetCodomainCompactSpaceProviderW601",
+    "ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+    "normalized strict representatives plus target and localization-model uniqueness for fixed targets",
+    "homology exists for all MetrizableLCA cochain complexes in every degree",
+    "MappedExplicitCokernelClosedRangeProviderW519",
+    "MetrizableExactAtEndpointStrictTopologyInputs",
+    "bounded homotopy localized right adjoint plus unit membership",
+    "ordinary Pretriangulated structure on BoundedComplexCategory MetrizableLCA",
+    "ordinary IsTriangulated structure on BoundedComplexCategory MetrizableLCA",
+    "boundedExactWeakEquivalence MetrizableLCA source-side triangle completion"]
+
+theorem
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderInputNamesW705_count :
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderInputNamesW705.length =
+      14 :=
+  rfl
+
+/-- Current checked W705 state for explicit source-triangulation route fields. -/
+structure
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705 :
+    Type where
+  seed : String
+  declarations : List String
+  sourceTriangulationAssemblyResult : String
+  closedMapExplicitAcceptedResult : String
+  closedEmbeddingExplicitAcceptedResult : String
+  replacedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W705 state. -/
+def
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteSupportStateW705 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705
+    where
+  seed :=
+    "w705-explicit-source-triangulation-target-top-compact-route"
+  declarations :=
+    ["MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705_accepted",
+      "MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705",
+      "metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705",
+      "metrizableOrdinaryStableSemanticInput_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705_accepted",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderInputNamesW705",
+      "metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderInputNamesW705_count"]
+  sourceTriangulationAssemblyResult :=
+    "proved: explicit source pretriangulated, source triangulated, and triangle-completion fields assemble the W657 direct-localization source core"
+  closedMapExplicitAcceptedResult :=
+    "proved: explicit source-triangulation closed-map fields assemble W704 and feed the accepted route"
+  closedEmbeddingExplicitAcceptedResult :=
+    "proved: explicit source-triangulation closed-embedding fields assemble W704 and feed the accepted route"
+  replacedInputs :=
+    ["preassembled MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657 as a direct W704 call-site input"]
+  remainingInputs :=
+    ["construct concrete MetrizableWppLimitRightOpenClosedQuotientCoverBoundary",
+      "construct concrete MetrizableWppLimitSourceDifferenceCokernelPiZeroBoundary",
+      "construct concrete ClosedNatTransOrdinaryRelationFieldsProviderW512",
+      "construct concrete ClosedNatTransOrdinaryTargetRelationTopProviderW600",
+      "construct concrete TargetCodomainCompactSpaceProviderW601",
+      "construct concrete ComponentwiseClosedMapProviderW525 or ComponentwiseClosedEmbeddingProviderW525",
+      "construct normalized strict representatives plus target and localization-model uniqueness for the two WPP localization targets",
+      "construct homology existence for all MetrizableLCA cochain complexes in every degree",
+      "construct concrete W519 closed-range provider data for mapped explicit cokernels",
+      "construct endpoint-strict ExactAt topology data, including forgetful homology preservation and endpoint epis",
+      "construct bounded homotopy localized right adjoint plus unit membership",
+      "construct ordinary Pretriangulated and IsTriangulated structures on BoundedComplexCategory MetrizableLCA",
+      "prove boundedExactWeakEquivalence MetrizableLCA source-side triangle completion",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705 :
+    MetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705 :=
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteSupportStateW705
+
+theorem
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705_productSuccess :
+    currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
@@ -42864,6 +43172,45 @@ set_option linter.style.longLine false in
 set_option linter.style.longLine false in
 #check
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitEndpointStrictTargetTopCompactGlobalProviderRouteStateW704_productSuccess
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedMapExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705_accepted
+set_option linter.style.longLine false in
+#check
+  MetrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705
+set_option linter.style.longLine false in
+#check
+  metrizableWppRelationFieldsTargetTopCompactGlobalClosedEmbeddingExplicitEndpointStrictNormalizedFixedTargetDirectLocalizationBundle_of_explicitSourceTriangulationW705
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategory_of_relationFieldsTargetTopCompactGlobalClosedEmbeddingViaGlobalClosedMapExplicitSourceTriangulatedNormalizedFixedTargetDirectLocalizationBundleW705_accepted
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderInputNamesW705
+set_option linter.style.longLine false in
+#check
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderInputNamesW705_count
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteSupportStateW705
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705
+set_option linter.style.longLine false in
+#check
+  currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryExplicitSourceTriangulatedTargetTopCompactGlobalProviderRouteStateW705_productSuccess
 
 set_option linter.style.longLine false in
 #check
