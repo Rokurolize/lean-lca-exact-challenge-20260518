@@ -1,9 +1,74 @@
 {
   "schema": "lean-lca-exact-challenge-verification-w733-explicit-leaf-constructor",
-  "generated_utc": "2026-05-24T20:33:18Z",
-  "source_tree_hash": "e4d317ef465b8bc8a6230ebb6886c56e1b262a56139652e8dd527be2f21dfadd",
-  "summary": "W740 specializes the W739 comparison-algebraic route by replacing raw algebraic exactness with the existing W318 strict AddCommGrp kernel-exactness boundary and the SnakeInput cokernel-row boundary that supplies it. The result remains nonterminal: closure-kernel data, the universal comparison isomorphism, SnakeInput boundary data, and pure left topology are still inputs, not constructed final product data.",
+  "generated_utc": "2026-05-24T20:41:09Z",
+  "source_tree_hash": "12c58875621df3a9cf8aaa27a40f86e84a622c21bf507ba7ec3c15c7ff3915de",
+  "summary": "W741 specializes the W740 SnakeInput route by supplying its SnakeInput cokernel boundary from the existing W464 selected projection-component colimit fields. The result remains nonterminal: closure-kernel data, the universal comparison isomorphism, projection-component colimit fields, and pure left topology are still inputs.",
   "commands": [
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "Focused W741 source check passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_focused_source.log."
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "W741 projection-fields module rebuild passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_lake_build_module.log."
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "Product declaration audit checks the W741 declarations; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_audit_product.log."
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/w741_required_declarations.lean",
+      "status": "passed",
+      "evidence": "External W741 required-declaration probe passed; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_required.log."
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "Required declaration audit passed after W741; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_audit_required.log."
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "Forbidden-token audit passed after W741; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_forbidden_lean_tokens_source.log."
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "Whitespace diff check passed after W741; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_git_diff_check.log."
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "Full repository build passed after W741; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_lake_build_full.log."
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "passed",
+      "evidence": "No product-success true marker was introduced; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_rg_product_true.log."
+    },
+    {
+      "command": "python3 JSON metadata parse check",
+      "status": "passed",
+      "evidence": "W741 JSON metadata parse check is recorded in /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_json_parse.log."
+    },
+    {
+      "command": "browser evidence render for scratch-log.html",
+      "status": "passed",
+      "evidence": "Browser-rendered scratch-log evidence for W741 is recorded under /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/browser_evidence and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_browser_evidence.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --self-check-only",
+      "status": "passed",
+      "evidence": "External audit self-check passed after W741; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_external_self_check.log."
+    },
+    {
+      "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "Full terminal audit rejects the intentionally nonterminal outcome after W741; see /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_external_terminal_expected.log and /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T204045Z_codex_parent_w741/logs/w741_external_terminal_expected.status."
+    },
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
       "status": "passed",
@@ -15303,6 +15368,13 @@
     }
   ],
   "implemented_declarations_checked": [
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonProjectionFieldsLeftW741",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741",
+    "Dbounded.exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741_count",
+    "Dbounded.MetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteStateW741",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteSupportStateW741",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteStateW741",
+    "Dbounded.currentMetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteStateW741_productSuccess",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonAddCommGrpLeftW740",
     "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSnakeLeftW740",
     "Dbounded.exactAcyclicWppOpClosureKernelComparisonSnakeLeftInputNamesW740",
@@ -20080,19 +20152,19 @@
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, AddCommGrp SnakeInput cokernel boundary data, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W740 route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W464 selected projection-component colimit fields, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W741 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "support_result_classification": "verified_nonterminal_support_increment_w740_snake_boundary_comparison_route",
+  "support_result_classification": "verified_nonterminal_support_increment_w741_projection_field_comparison_route",
   "product_success": false,
   "remaining_work": [
-    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, AddCommGrp SnakeInput cokernel boundary data, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W740 route.",
+    "Construct closure-kernel mapped explicit cokernel data, the universal left-right homology comparison isomorphism, W464 selected projection-component colimit fields, and pure left closed-embedding preservation for WPP-op LCA colimit maps for the W741 route.",
     "Construct concrete values for the W735 branch data inputs: boundary, relation, target compact-surjective, closedness, normalized fixed-target, source triangulation, endpoint topology, and localized right-adjoint data.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "summary_log_tail": "W740 routes W739 through W318 strict AddCommGrp and SnakeInput boundaries; product flags remain false.",
-  "latest_verified_increment": "W740 Snake boundary comparison route",
+  "summary_log_tail": "W741 routes W740 through W464 projection-component colimit fields; product flags remain false.",
+  "latest_verified_increment": "W741 projection-field comparison route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -21482,6 +21554,10 @@
     "w740_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:33:18Z",
       "reason": "W740 refresh prepended Snake boundary comparison route commands and declarations; source_tree_hash recomputed after source/audit edits; product flags remain false."
+    },
+    "w741_metadata_refresh": {
+      "corrected_utc": "2026-05-24T20:41:09Z",
+      "reason": "W741 refresh prepended projection-field comparison route commands and declarations; source_tree_hash recomputed after source/audit edits; product flags remain false."
     }
   }
 }

@@ -52852,6 +52852,93 @@ theorem currentMetrizableWppClosureKernelComparisonSnakeLeftRouteStateW740_produ
       false :=
   rfl
 
+/--
+W741 specializes W740 by supplying its SnakeInput boundary from W464 projection
+component colimit fields.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonProjectionFieldsLeftW741
+    (closureKernelProvider : MappedExplicitCokernelClosureKernelProviderW503)
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (hproj :
+      ∀ (S : WalkingParallelPairᵒᵖ ⥤ ShortComplex MetrizableLCA.{0})
+        (cs : Cocone S),
+        IsColimit cs →
+          AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464.SelectedProjectionComponentIsColimitInputs
+            S cs)
+    (hclosed :
+      WppOpExactAcyclicFrontierConsolidatedW318.wppOp_lca_colimitMap_injective_inducing_closedImage) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonSnakeLeftW740
+    closureKernelProvider
+    comparisonIso
+    (AddCommGrpRowFieldsProjectionKernelBoundaryV370SupportW464.addCommGrpStrictSnakeCokernelBoundary_of_projectionComponentFields
+      hproj)
+    hclosed
+
+/-- Input names for the W741 projection-field specialization of W740. -/
+def exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741 :
+    List String :=
+  ["closure-kernel mapped explicit cokernel provider for forgetful homology preservation",
+    "universal IsIso for every MetrizableLCA left-right homology comparison",
+    "W464 selected projection-component colimit fields for WPP-op diagrams",
+    "pure left closed-embedding preservation for WPP-op LCA colimit maps"]
+
+theorem exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741_count :
+    exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741.length =
+      4 :=
+  rfl
+
+/--
+Current checked W741 state for the projection-field specialization of the W740
+SnakeInput route.
+-/
+structure MetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteStateW741 :
+    Type where
+  seed : String
+  declarations : List String
+  projectionFieldsResult : String
+  exactAcyclicConsumerResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W741 state. -/
+def currentMetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteSupportStateW741 :
+    MetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteStateW741
+    where
+  seed :=
+    "w741-closure-kernel-comparison-projection-fields-specialization"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closureKernelComparisonProjectionFieldsLeftW741",
+      "exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741",
+      "exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741_count"]
+  projectionFieldsResult :=
+    "proved: W464 projection-component colimit fields supply W740's SnakeInput cokernel boundary"
+  exactAcyclicConsumerResult :=
+    "proved: W740 can consume closure-kernel data, comparison isomorphisms, projection fields, and pure left topology"
+  exposedInputs :=
+    exactAcyclicWppOpClosureKernelComparisonProjectionFieldsLeftInputNamesW741
+  remainingInputs :=
+    ["construct closure-kernel mapped explicit cokernel provider",
+      "construct the universal left-right homology comparison isomorphism",
+      "construct W464 selected projection-component colimit fields for WPP-op diagrams",
+      "construct pure left closed-embedding preservation for WPP-op LCA colimit maps"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteStateW741 :
+    MetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteStateW741 :=
+  currentMetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteSupportStateW741
+
+theorem
+    currentMetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteStateW741_productSuccess :
+    currentMetrizableWppClosureKernelComparisonProjectionFieldsLeftRouteStateW741.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
