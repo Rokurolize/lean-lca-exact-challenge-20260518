@@ -14,6 +14,8 @@ W828では、明示的なsemantic input recordをfinal product declaration surfa
 
 W829では、`CategoryTheory.Localization.CalculusOfFractions.Preadditive`に沿って、direct bounded exact weak equivalenceのleft calculusから`Dbounded MetrizableLCA`のpreadditive構造、zero object、全shift加法性、suspension加法性を供給するrouteを追加した。`Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRoute`は明示的なsemantic input recordではなく、left calculusと残りの有限極限、有限余極限、pretriangulated構造、triangulated構造を要求する。このrouteもまだproduct successではなく、left calculus自体と残り4つのstable structureを実データから構成する必要がある。
 
+W830では、W829で残っていたrawな`(boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions`前提を、W768のleft-right comparison homology、W668のkernel/cokernel conditioned topology、`exactAcyclicHomotopyIsoClosure MetrizableLCA`の`IsTriangulatedClosed₂`、bounded homotopy localized right adjointという具体的なroute dataから構成する`Dbounded.directBoundedLeftCalculusOfKernelCokernelComparisonW830`を追加した。さらに`Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusRouteW830`でW829のstable routeへ接続した。ただしこのroute data自体と、`Dbounded MetrizableLCA`の有限極限、有限余極限、pretriangulated構造、triangulated構造はまだ未構成であり、product successではない。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス

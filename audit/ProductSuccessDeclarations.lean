@@ -57,6 +57,7 @@ import LeanLCAExactChallenge.Derived.TargetIsoToTargetExactAtTerminalProductRout
 import LeanLCAExactChallenge.Derived.TargetIsoStrictRealizationTerminalProductRoute
 import LeanLCAExactChallenge.Derived.IsoClosureStrictRealizationTerminalProductRoute
 import LeanLCAExactChallenge.Derived.IsoClosureHomologyDetectionTerminalProductRoute
+import LeanLCAExactChallenge.Derived.DirectLeftCalculusRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9084,5 +9085,14 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
 noncomputable example :
     SSet.Quasicategory (Dbounded.infinityNerve (C := MetrizableLCA)) :=
   Dbounded.infinityNerve_quasicategory (C := MetrizableLCA)
+
+#check Dbounded.MetrizableDirectBoundedLeftCalculusDataW830
+#check Dbounded.directBoundedLeftCalculusOfKernelCokernelComparisonW830
+#check Dbounded.metrizableLeftCalculusFieldsOfDirectBoundedRouteW830
+#check Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusRouteW830
+#check Dbounded.metrizableDirectBoundedLeftCalculusInputNamesW830_count
+#check Dbounded.metrizableDirectLeftCalculusStableRouteRequiredFieldNamesW830_count
+#check Dbounded.metrizableDirectLeftCalculusStableRouteExpandedRequiredFieldNamesW830_count
+#check Dbounded.currentMetrizableDirectLeftCalculusRouteStateW830_productSuccess
 
 end LeanLCAExactChallenge

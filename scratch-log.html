@@ -159,7 +159,7 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-26 02:25 JST</span>
+        <span class="badge info">Updated 2026-05-26 02:35 JST</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">product_success=false</span>
       </div>
@@ -169,13 +169,13 @@ textarea.goal-text {
     <section class="grid" aria-label="Current status">
       <div class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W829</div>
-        <p>left-calculus stable route</p>
+        <div class="metric">W830</div>
+        <p>direct left-calculus route</p>
       </div>
       <div class="card span-3">
         <div class="label">Verification</div>
         <div class="metric">Guarded</div>
-        <p>left calculus supplies four stable fields conditionally</p>
+        <p>raw left-calculus premise now has concrete route data</p>
       </div>
       <div class="card span-3">
         <div class="label">Primary Surface</div>
@@ -185,21 +185,21 @@ textarea.goal-text {
       <div class="card span-3">
         <div class="label">Next Safe Action</div>
         <div class="metric">Implement</div>
-        <p>prove left calculus and remaining stable structures</p>
+        <p>construct W830 data and remaining stable structures</p>
       </div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W829 keeps the target nonterminal under the immutable original four-task contract and adds a left-calculus route for <code>BoundedDerivedInfinityCategory</code>. Direct bounded left calculus now supplies preadditivity, zero object, all-shift additivity, and suspension additivity conditionally; the route still requires the left-calculus premise itself plus finite limits, finite colimits, pretriangulated structure, and triangulated structure before it can become original four-task completion evidence.</p>
+      <p>W830 keeps the target nonterminal under the immutable original four-task contract and replaces W829's raw direct-left-calculus premise with concrete route data. <code>Dbounded.directBoundedLeftCalculusOfKernelCokernelComparisonW830</code> proves the left calculus from W768 comparison homology, W668 kernel/cokernel topology, triangulated closure of the exact-acyclic homotopy isomorphism closure, and a bounded homotopy localized right adjoint. The route still requires those data plus finite limits, finite colimits, pretriangulated structure, and triangulated structure before it can become original four-task completion evidence.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>Touched Sources</h3>
           <table>
             <tbody>
-              <tr><th>Baseline</th><td><code>4a2db4a64e8112a457514d335cd075417fcb30c3</code></td></tr>
+              <tr><th>Baseline</th><td><code>533062b566e7fa26a40394de18d163744c5dbc90</code></td></tr>
               <tr><th>Contract SHA</th><td><code>a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</code></td></tr>
-              <tr><th>Known Gaps</th><td>left calculus, remaining stable structures, original witness, final packet fixtures</td></tr>
+              <tr><th>Known Gaps</th><td>W830 route data, remaining stable structures, original witness, final packet fixtures</td></tr>
               <tr><th>WPP Source</th><td>untouched</td></tr>
             </tbody>
           </table>
@@ -207,7 +207,8 @@ textarea.goal-text {
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRoute</code></li>
+            <li><code>Dbounded.directBoundedLeftCalculusOfKernelCokernelComparisonW830</code></li>
+            <li><code>Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusRouteW830</code></li>
             <li><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></li>
@@ -226,11 +227,11 @@ textarea.goal-text {
           <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.TypeclassStableLeftCalculusRoute</code></td><td>passed</td><td><code>w829_lake_build_typeclass_stable_left_calculus_route.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w829_product_declarations_retry.log</code></td></tr>
-          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w829_original_four_task_declarations_retry.log</code></td></tr>
-          <tr><td><code>lake env lean left-calculus route probe</code></td><td>passed</td><td><code>w829_left_calculus_route_probe_retry.log</code></td></tr>
-          <tr><td><code>lake env lean left-calculus synth probe</code></td><td>failed_expected</td><td><code>w829_left_calculus_synth_expected_failure.log</code></td></tr>
+	          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/DirectLeftCalculusRoute.lean</code></td><td>passed</td><td><code>w830_direct_left_calculus_route_lean_after_style.log</code></td></tr>
+	          <tr><td><code>lake build LeanLCAExactChallenge.Derived.DirectLeftCalculusRoute</code></td><td>passed</td><td><code>w830_lake_build_direct_left_calculus_route.log</code></td></tr>
+	          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w830_product_success_declarations_retry.log</code></td></tr>
+	          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w830_original_four_task_declarations_retry.log</code></td></tr>
+	          <tr><td><code>lake build</code></td><td>passed</td><td><code>w830_lake_build.log</code></td></tr>
           <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ComparisonBijectivityRoute.lean</code></td><td>passed</td><td><code>w821_focused_source_lean.log</code></td></tr>
           <tr><td><code>lake build LeanLCAExactChallenge.Derived.ComparisonBijectivityRoute</code></td><td>passed</td><td><code>w821_focused_lake_build_source.log</code></td></tr>
           <tr><td><code>lake env lean LeanLCAExactChallenge.lean</code></td><td>passed</td><td><code>w821_root_import.log</code></td></tr>

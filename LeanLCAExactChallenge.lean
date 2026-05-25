@@ -13,6 +13,7 @@ import LeanLCAExactChallenge.LCA.ExactCategory
 import LeanLCAExactChallenge.Ext.Yoneda
 import LeanLCAExactChallenge.Derived.Bounded
 import LeanLCAExactChallenge.Derived.TypeclassStableLeftCalculusRoute
+import LeanLCAExactChallenge.Derived.DirectLeftCalculusRoute
 import LeanLCAExactChallenge.Derived.OptionProductDecomposition
 import LeanLCAExactChallenge.Derived.FiniteProductExactness
 import LeanLCAExactChallenge.Derived.MappingConeBiprod
