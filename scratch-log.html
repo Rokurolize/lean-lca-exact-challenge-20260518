@@ -160,46 +160,47 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W768 left-right comparison product route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W769 direct finite-shape product route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/LeftRightComparisonProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T022356Z_codex_parent_w768</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/DirectFiniteShapeProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T023806Z_codex_parent_w769</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W768 left-right comparison product route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 11:36 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W769 direct finite-shape product route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 11:45 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W768 replaces the direct <code>CategoryWithHomology MetrizableLCA</code> input in the product route with the explicit W736 universal left-right comparison-isomorphism input. It feeds that comparison data into the W669 kernel/cokernel stable route and combines it with W762 exact/WPP evidence. The increment lives in a new 199-line helper module and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W769 replaces W768's primitive <code>MetrizableWalkingParallelPairTransferStableSemanticInputs</code> argument with the W670 direct finite-shape construction. It feeds W736 left-right comparison data through W670/W669 to produce the same ready stable certificate shape, then combines that stable evidence with W762 exact/WPP evidence. The increment lives in a new 220-line helper module and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>cochainHasHomology_of_leftRightComparisonIsoW768</code> derives the cochain homology function from the W736 comparison-isomorphism premise.</li>
-            <li><code>metrizableOrdinaryStableSemanticInputOfKernelCokernelLeftRightComparisonProductRoute_w768</code> feeds that premise through the W669 kernel/cokernel WPP-transfer stable route.</li>
-            <li><code>productEvidence_of_closedMapLeftRightComparisonKernelCokernelRouteW768</code> and <code>productEvidence_of_closedEmbeddingLeftRightComparisonKernelCokernelRouteW768</code> expose the two comparison-based product evidence routes while keeping product success false.</li>
+            <li><code>directFiniteShapeKernelCokernelBundleOfLeftRightComparisonW769</code> repackages comparison, kernel/cokernel topology, localized-right-adjoint, direct finite-shape source, and direct localization data in the W670 bundle shape.</li>
+            <li><code>transferStableInputsOfLeftRightComparisonDirectFiniteShapeW769</code> derives the WPP transfer-stable semantic inputs instead of accepting them as a primitive premise.</li>
+            <li><code>productEvidence_of_closedMapLeftRightComparisonDirectFiniteShapeRouteW769</code> and <code>productEvidence_of_closedEmbeddingLeftRightComparisonDirectFiniteShapeRouteW769</code> expose the two direct finite-shape product evidence routes while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/LeftRightComparisonProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/w768_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/w769_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 199 lines with 12 top-level declarations.</li>
-            <li>Focused W768 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 220 lines with 12 top-level declarations.</li>
+            <li><code>w769_goal_sha_delta_decision.tsv</code> records the active-goal SHA drift and the decision to continue under Round 12 constraints before focused verification.</li>
+            <li>Focused W769 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W768 work.</p></div>
-      <p>W767 packaged the W765 category-homology exact/WPP route together with the W766 kernel/cokernel category-homology WPP-transfer stable route.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W769 work.</p></div>
+      <p>W768 replaced the direct <code>CategoryWithHomology MetrizableLCA</code> input in the product route with the explicit W736 universal left-right comparison-isomorphism input.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct <code>MetrizableExactAtKernelCokernelConditionedTopologyInputs</code>, the triangulated-closure premise, concrete WPP-transfer stable semantic inputs, and the remaining Dbounded stable-infinity inputs.</li>
+        <li>Construct <code>MetrizableExactAtKernelCokernelConditionedTopologyInputs</code>, the triangulated-closure premise, direct finite-shape WPP source data, bounded homotopy localized-right-adjoint data, direct localization triangulated source data, and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>

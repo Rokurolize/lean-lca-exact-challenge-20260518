@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w768-left-right-comparison-product-route",
-  "generated_utc": "2026-05-25T02:35:58Z",
-  "source_tree_hash": "ee01316781bc6b8c107502a93b537e95c9f399b93bf9db9a942e6fb18f77444d",
-  "summary": "W768 replaces the direct CategoryWithHomology MetrizableLCA product-route input with the explicit W736 universal left-right comparison-isomorphism premise, then combines W762 exact/WPP evidence with the W669 kernel/cokernel WPP-transfer stable route. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w769-direct-finite-shape-product-route",
+  "generated_utc": "2026-05-25T02:50:05Z",
+  "source_tree_hash": "8ca7228701286e4aad11e9760700f31232b76baac3c6cbf1751e61d26af5c94f",
+  "summary": "W769 replaces W768's primitive MetrizableWalkingParallelPairTransferStableSemanticInputs premise with W670 direct finite-shape construction data, then combines W762 exact/WPP evidence with the W670/W669-derived stable certificate. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -17170,6 +17170,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/logs/w768_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/logs/w769_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/logs/w769_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/logs/w769_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/w769_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/logs/w769_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/logs/w769_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/logs/w769_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/logs/w769_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/logs/w769_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T023806Z_codex_parent_w769/logs/w769_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -22202,7 +22247,17 @@
     "Dbounded.kernelCokernelLeftRightComparisonProductRouteInputNamesW768_count",
     "Dbounded.MetrizableKernelCokernelLeftRightComparisonProductRouteStateW768",
     "Dbounded.currentMetrizableKernelCokernelLeftRightComparisonProductRouteSupportStateW768",
-    "Dbounded.currentMetrizableKernelCokernelLeftRightComparisonProductRouteStateW768_productSuccess"
+    "Dbounded.currentMetrizableKernelCokernelLeftRightComparisonProductRouteStateW768_productSuccess",
+    "Dbounded.MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769",
+    "Dbounded.directFiniteShapeKernelCokernelBundleOfLeftRightComparisonW769",
+    "Dbounded.transferStableInputsOfLeftRightComparisonDirectFiniteShapeW769",
+    "Dbounded.productEvidence_of_closedMapLeftRightComparisonDirectFiniteShapeRouteW769",
+    "Dbounded.productEvidence_of_closedEmbeddingLeftRightComparisonDirectFiniteShapeRouteW769",
+    "Dbounded.leftRightComparisonDirectFiniteShapeProductRouteInputNamesW769",
+    "Dbounded.leftRightComparisonDirectFiniteShapeProductRouteInputNamesW769_count",
+    "Dbounded.MetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW769",
+    "Dbounded.currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteSupportStateW769",
+    "Dbounded.currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW769_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -22210,7 +22265,9 @@
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
     "Construct MetrizableExactAtKernelCokernelConditionedTopologyInputs.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
-    "Construct concrete WPP-transfer stable semantic inputs and remaining Dbounded stable-infinity inputs."
+    "Construct direct finite-shape WPP source data.",
+    "Construct bounded homotopy localized-right-adjoint data plus unit membership.",
+    "Construct direct localization triangulated source data and remaining Dbounded stable-infinity inputs."
   ],
   "support_result_classification": "nonterminal_support_increment",
   "product_success": false,
@@ -22219,11 +22276,11 @@
     "Construct concrete W735 branch data values.",
     "Construct MetrizableExactAtKernelCokernelConditionedTopologyInputs.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
-    "Construct WPP-transfer stable semantic inputs and remaining Dbounded stable-infinity inputs.",
+    "Construct direct finite-shape WPP source data, bounded homotopy localized-right-adjoint data, direct localization triangulated source data, and remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W768 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, and new-file accounting gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W768 left-right comparison product route",
+  "summary_log_tail": "Focused W769 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, new-file accounting, and rendered-report precheck gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W769 direct finite-shape product route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -23734,6 +23791,13 @@
       "latest_verified_increment": "W768 left-right comparison product route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W768 metadata records the left-right comparison product-route integration and leaves product_success/product_complete false."
+    },
+    "w769_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T02:50:05Z",
+      "source_tree_hash": "8ca7228701286e4aad11e9760700f31232b76baac3c6cbf1751e61d26af5c94f",
+      "latest_verified_increment": "W769 direct finite-shape product route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W769 metadata records the direct finite-shape product-route integration and leaves product_success/product_complete false."
     }
   }
 }

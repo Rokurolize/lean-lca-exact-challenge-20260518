@@ -6,6 +6,7 @@ import LeanLCAExactChallenge.Derived.LeftRightComparisonRoute
 import LeanLCAExactChallenge.Derived.CategoryHomologyStableRoute
 import LeanLCAExactChallenge.Derived.KernelCokernelProductRoute
 import LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
+import LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9079,6 +9080,29 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableKernelCokernelLeftRightComparisonProductRouteSupportStateW768
   #check
     Dbounded.currentMetrizableKernelCokernelLeftRightComparisonProductRouteStateW768_productSuccess
+  #check
+    Dbounded.MetrizableKernelCokernelLeftRightComparisonDirectFiniteShapeStableDataW769
+  #check
+    Dbounded.directFiniteShapeKernelCokernelBundleOfLeftRightComparisonW769
+  #check
+    Dbounded.transferStableInputsOfLeftRightComparisonDirectFiniteShapeW769
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInputOfLeftRightComparisonDirectFiniteShapeProductRoute_w769
+  #check
+    Dbounded.stableCertificateOfLeftRightComparisonDirectFiniteShapeProductRoute_w769_ready
+  #check
+    Dbounded.productEvidence_of_closedMapLeftRightComparisonDirectFiniteShapeRouteW769
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingLeftRightComparisonDirectFiniteShapeRouteW769
+  #check Dbounded.leftRightComparisonDirectFiniteShapeProductRouteInputNamesW769
+  #check
+    Dbounded.leftRightComparisonDirectFiniteShapeProductRouteInputNamesW769_count
+  #check
+    Dbounded.MetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW769
+  #check
+    Dbounded.currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteSupportStateW769
+  #check
+    Dbounded.currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW769_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
