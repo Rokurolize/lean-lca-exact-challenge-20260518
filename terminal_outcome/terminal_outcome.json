@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W817 proves that a categorical isomorphism of the canonical MetrizableLCA left-right homology comparison supplies the W816 concrete bijective-embedding target, and routes the W736 universal comparison-isomorphism input through W816 to CategoryWithHomology MetrizableLCA. Product remains nonterminal.",
+  "summary": "W818 ports the TopModuleCat open-quotient/inducing comparison argument to MetrizableLCA homology data: W815 projection topology plus algebraic bijectivity and a concrete right-cokernel fiber-saturation condition prove the W816 embedding field and feed CategoryWithHomology MetrizableLCA through W816. Product remains nonterminal.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/CategoryHomologyComparisonBijectiveOpenRoute.lean",
     "lake build LeanLCAExactChallenge.Derived.CategoryHomologyComparisonBijectiveOpenRoute",
@@ -52,37 +52,53 @@
     "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_product_success_true_scan.log)",
     "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_lake_build.log)",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_scratch_log_check_report.log)",
-    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/scratch_log_browser_evidence_precloseout --expect Latest Increment --expect W817 --expect product_complete=false --expect product_success=false --expect ComparisonIsomorphismEmbeddingRoute (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/scratch_log_browser_evidence_precloseout/browser_evidence_fidelity.json)"
+    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/scratch_log_browser_evidence_precloseout --expect Latest Increment --expect W817 --expect product_complete=false --expect product_success=false --expect ComparisonIsomorphismEmbeddingRoute (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/scratch_log_browser_evidence_precloseout/browser_evidence_fidelity.json)",
+    "lake env lean LeanLCAExactChallenge/Derived/ComparisonEmbeddingCriterionRoute.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_focused_source_lean.log exit_code=0)",
+    "lake build LeanLCAExactChallenge.Derived.ComparisonEmbeddingCriterionRoute (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_focused_lake_build_source.log exit_code=0)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_focused_product_declarations_lean.log exit_code=0)",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/w818_required_declarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_focused_required_declarations_lean.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_focused_external_audit_self_check.log exit_code=0)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_focused_full_lake_build.log exit_code=0)",
+    "python3 json validation for manifest/run/terminal_outcome (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_focused_json_validation.log exit_code=0)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_focused_git_diff_check.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_focused_external_audit_terminal_expected_nonterminal.log exit_code=1)",
+    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_root_import.log)",
+    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_required_declarations_audit.log)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_forbidden_tokens.log)",
+    "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_product_success_true_scan.log)",
+    "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/logs/w818_scratch_log_check_report.log)",
+    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/scratch_log_browser_evidence_precloseout --expect Latest Increment --expect W818 --expect product_complete=false --expect product_success=false --expect ComparisonEmbeddingCriterionRoute (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/scratch_log_browser_evidence_precloseout/browser_evidence_fidelity.json)",
+    "actual-diff/module-size gate with new-file accounting (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T121125Z_codex_parent_w818_comparison_embedding_criterion/actual_diff_module_size_gate.tsv)"
   ],
   "known_gaps": [
-    "Prove the universal canonical left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes, or prove the W816 bijective-embedding fields directly.",
-    "If pursuing the direct embedding route, combine the W815 projection-topology facts with algebraic control of the comparison fibers.",
-    "Use the resulting comparison theorem to prove comparisonBijectiveOpenTargetW814 and CategoryWithHomology MetrizableLCA.",
+    "Prove algebraic bijectivity of the canonical left-right homology comparison for arbitrary MetrizableLCA short complexes.",
+    "Prove the W818 fiber-saturation condition for the left-cycle range under the right cokernel projection.",
+    "Use the W818 target to prove comparisonBijectiveEmbeddingTargetW816 and comparisonBijectiveOpenTargetW814 universally.",
     "Construct concrete W735 closed-map or closed-embedding branch-data values.",
     "Construct exact-acyclic homotopy-object strict triangleh realization data without looping through W651/W809 equivalence."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
-  "latest_verified_increment": "W817 comparison isomorphism-to-embedding bridge",
+  "latest_verified_increment": "W818 comparison embedding criterion route",
   "support_result_classification": "blocked_nonterminal_frontier",
   "target_head_before_commit": "f164423ec70628e74592aad761f9a2c5fc0afeae",
   "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T111154Z_codex_parent_w814_category_homology_scout",
   "update_goal_complete_permitted": false,
   "product_success": false,
   "remaining_gaps": [
-    "Prove the universal canonical left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes, or prove the W816 bijective-embedding fields directly.",
-    "If pursuing the direct embedding route, combine the W815 projection-topology facts with algebraic control of the comparison fibers.",
-    "Use the resulting comparison theorem to prove comparisonBijectiveOpenTargetW814 and CategoryWithHomology MetrizableLCA.",
+    "Prove algebraic bijectivity of the canonical left-right homology comparison for arbitrary MetrizableLCA short complexes.",
+    "Prove the W818 fiber-saturation condition for the left-cycle range under the right cokernel projection.",
+    "Use the W818 target to prove comparisonBijectiveEmbeddingTargetW816 and comparisonBijectiveOpenTargetW814 universally.",
     "Construct concrete W735 closed-map or closed-embedding branch-data values.",
     "Construct exact-acyclic homotopy-object strict triangleh realization data without looping through W651/W809 equivalence."
   ],
   "remaining_work": [
-    "Prove the universal canonical comparison isomorphism for arbitrary MetrizableLCA short complexes, or directly prove comparisonBijectiveEmbeddingTargetW816.",
-    "Then use categoryWithHomology_of_comparisonBijectiveEmbeddingW816 or categoryWithHomology_of_w736ComparisonIsoViaEmbeddingW817 to instantiate CategoryWithHomology MetrizableLCA and feed the W736/W768 product route."
+    "Attack the algebraic bijectivity and right-cokernel fiber-saturation inputs named by comparisonEmbeddingCriterionInputNamesW818.",
+    "Then route the resulting universal comparisonFiberSaturationTargetW818 through categoryWithHomology_of_comparisonFiberSaturationW818."
   ],
-  "generated_utc": "2026-05-25T12:05:18Z",
-  "source_tree_hash": "96aef1a03313978b0c011b826292089c7becdf727774c7346b1335abfe0b1da8",
-  "next_recommended_goal": "Prove the universal canonical left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes, or directly prove comparisonBijectiveEmbeddingTargetW816 using W815 projection topology.",
-  "worker_frontier_summary": "W817 removes any extra topology obligation after a W736-style canonical comparison IsIso is proved; the remaining comparison frontier is the actual universal comparison isomorphism or direct bijective-embedding proof.",
+  "generated_utc": "2026-05-25T12:22:17Z",
+  "source_tree_hash": "d2f079d3f9d7609e1d40f83e256aa017d3d0961002c51db9a55f633f05040da9",
+  "next_recommended_goal": "Prove the algebraic bijectivity or right-cokernel fiber-saturation condition in comparisonFiberSaturationTargetW818 for arbitrary MetrizableLCA short complexes.",
+  "worker_frontier_summary": "W818 removes the separate topology proof once algebraic bijectivity and fiber saturation are available; the remaining comparison frontier is those two concrete inputs.",
   "implemented_declarations": [
     "MetrizableLCA.cokernelCofork_π_surjective_of_isColimitW815",
     "MetrizableLCA.cokernelCofork_π_openMap_of_isColimitW815",
@@ -122,7 +138,22 @@
     "MetrizableLCA.comparisonIsomorphismEmbeddingInputNamesW817_count",
     "MetrizableLCA.ComparisonIsomorphismEmbeddingRouteStateW817",
     "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817",
-    "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817_productSuccess"
+    "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817_productSuccess",
+    "MetrizableLCA.isOpenQuotientMap_of_surjective_openMapW818",
+    "MetrizableLCA.leftHomologyData_π_openQuotientMapW818",
+    "MetrizableLCA.rightHomologyData_p_openQuotientMapW818",
+    "MetrizableLCA.leftRightComparisonFiberSaturationW818",
+    "MetrizableLCA.leftRightHomologyComparison'_squareW818",
+    "MetrizableLCA.leftRightHomologyComparison'_comp_ι_embedding_of_bijective_saturatedW818",
+    "MetrizableLCA.leftRightHomologyComparison'_embedding_of_bijective_saturatedW818",
+    "MetrizableLCA.comparisonFiberSaturationTargetW818",
+    "MetrizableLCA.comparisonBijectiveEmbeddingTarget_of_fiberSaturationW818",
+    "MetrizableLCA.categoryWithHomology_of_comparisonFiberSaturationW818",
+    "MetrizableLCA.comparisonEmbeddingCriterionInputNamesW818",
+    "MetrizableLCA.comparisonEmbeddingCriterionInputNamesW818_count",
+    "MetrizableLCA.ComparisonEmbeddingCriterionRouteStateW818",
+    "MetrizableLCA.currentComparisonEmbeddingCriterionRouteStateW818",
+    "MetrizableLCA.currentComparisonEmbeddingCriterionRouteStateW818_productSuccess"
   ],
   "implemented_declarations_checked": [
     "MetrizableLCA.cokernelCofork_π_surjective_of_isColimitW815",
@@ -163,7 +194,22 @@
     "MetrizableLCA.comparisonIsomorphismEmbeddingInputNamesW817_count",
     "MetrizableLCA.ComparisonIsomorphismEmbeddingRouteStateW817",
     "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817",
-    "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817_productSuccess"
+    "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817_productSuccess",
+    "MetrizableLCA.isOpenQuotientMap_of_surjective_openMapW818",
+    "MetrizableLCA.leftHomologyData_π_openQuotientMapW818",
+    "MetrizableLCA.rightHomologyData_p_openQuotientMapW818",
+    "MetrizableLCA.leftRightComparisonFiberSaturationW818",
+    "MetrizableLCA.leftRightHomologyComparison'_squareW818",
+    "MetrizableLCA.leftRightHomologyComparison'_comp_ι_embedding_of_bijective_saturatedW818",
+    "MetrizableLCA.leftRightHomologyComparison'_embedding_of_bijective_saturatedW818",
+    "MetrizableLCA.comparisonFiberSaturationTargetW818",
+    "MetrizableLCA.comparisonBijectiveEmbeddingTarget_of_fiberSaturationW818",
+    "MetrizableLCA.categoryWithHomology_of_comparisonFiberSaturationW818",
+    "MetrizableLCA.comparisonEmbeddingCriterionInputNamesW818",
+    "MetrizableLCA.comparisonEmbeddingCriterionInputNamesW818_count",
+    "MetrizableLCA.ComparisonEmbeddingCriterionRouteStateW818",
+    "MetrizableLCA.currentComparisonEmbeddingCriterionRouteStateW818",
+    "MetrizableLCA.currentComparisonEmbeddingCriterionRouteStateW818_productSuccess"
   ],
   "required_declarations_checked": [
     "MetrizableLCA.cokernelCofork_π_surjective_of_isColimitW815",
@@ -204,7 +250,22 @@
     "MetrizableLCA.comparisonIsomorphismEmbeddingInputNamesW817_count",
     "MetrizableLCA.ComparisonIsomorphismEmbeddingRouteStateW817",
     "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817",
-    "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817_productSuccess"
+    "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817_productSuccess",
+    "MetrizableLCA.isOpenQuotientMap_of_surjective_openMapW818",
+    "MetrizableLCA.leftHomologyData_π_openQuotientMapW818",
+    "MetrizableLCA.rightHomologyData_p_openQuotientMapW818",
+    "MetrizableLCA.leftRightComparisonFiberSaturationW818",
+    "MetrizableLCA.leftRightHomologyComparison'_squareW818",
+    "MetrizableLCA.leftRightHomologyComparison'_comp_ι_embedding_of_bijective_saturatedW818",
+    "MetrizableLCA.leftRightHomologyComparison'_embedding_of_bijective_saturatedW818",
+    "MetrizableLCA.comparisonFiberSaturationTargetW818",
+    "MetrizableLCA.comparisonBijectiveEmbeddingTarget_of_fiberSaturationW818",
+    "MetrizableLCA.categoryWithHomology_of_comparisonFiberSaturationW818",
+    "MetrizableLCA.comparisonEmbeddingCriterionInputNamesW818",
+    "MetrizableLCA.comparisonEmbeddingCriterionInputNamesW818_count",
+    "MetrizableLCA.ComparisonEmbeddingCriterionRouteStateW818",
+    "MetrizableLCA.currentComparisonEmbeddingCriterionRouteStateW818",
+    "MetrizableLCA.currentComparisonEmbeddingCriterionRouteStateW818_productSuccess"
   ],
   "metadata_corrections": {
     "w815_comparison_projection_topology_metadata_refresh": {
@@ -236,6 +297,17 @@
       "product_complete": false,
       "update_goal_allowed": false,
       "note": "update_goal(status=complete) remains forbidden because product_success=false and the universal canonical comparison theorem is still unproved."
+    },
+    "w818_comparison_embedding_criterion_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T12:22:17Z",
+      "source_tree_hash": "d2f079d3f9d7609e1d40f83e256aa017d3d0961002c51db9a55f633f05040da9",
+      "latest_verified_increment": "W818 comparison embedding criterion route",
+      "claim_review_status": "pending_claim_review_loop_v3",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "update_goal(status=complete) remains forbidden because product_success=false and the W818 universal comparison inputs are still unproved."
     }
-  }
+  },
+  "summary_log_tail": "W818 helper 225 lines, 16 top-level declarations, WPP untouched, focused verifier passed with expected nonterminal terminal audit failure."
 }

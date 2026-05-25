@@ -8,6 +8,7 @@ import LeanLCAExactChallenge.Derived.CategoryHomologyComparisonBijectiveOpenRout
 import LeanLCAExactChallenge.Derived.ComparisonProjectionTopologyRoute
 import LeanLCAExactChallenge.Derived.ComparisonBijectiveEmbeddingRoute
 import LeanLCAExactChallenge.Derived.ComparisonIsomorphismEmbeddingRoute
+import LeanLCAExactChallenge.Derived.ComparisonEmbeddingCriterionRoute
 import LeanLCAExactChallenge.Derived.KernelCokernelProductRoute
 import LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
 import LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
@@ -9934,6 +9935,23 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check MetrizableLCA.ComparisonIsomorphismEmbeddingRouteStateW817
   #check MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817
   #check MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817_productSuccess
+  #check MetrizableLCA.isOpenQuotientMap_of_surjective_openMapW818
+  #check MetrizableLCA.leftHomologyData_π_openQuotientMapW818
+  #check MetrizableLCA.rightHomologyData_p_openQuotientMapW818
+  #check MetrizableLCA.leftRightComparisonFiberSaturationW818
+  #check MetrizableLCA.leftRightHomologyComparison'_squareW818
+  #check
+    MetrizableLCA.leftRightHomologyComparison'_comp_ι_embedding_of_bijective_saturatedW818
+  #check
+    MetrizableLCA.leftRightHomologyComparison'_embedding_of_bijective_saturatedW818
+  #check MetrizableLCA.comparisonFiberSaturationTargetW818
+  #check MetrizableLCA.comparisonBijectiveEmbeddingTarget_of_fiberSaturationW818
+  #check MetrizableLCA.categoryWithHomology_of_comparisonFiberSaturationW818
+  #check MetrizableLCA.comparisonEmbeddingCriterionInputNamesW818
+  #check MetrizableLCA.comparisonEmbeddingCriterionInputNamesW818_count
+  #check MetrizableLCA.ComparisonEmbeddingCriterionRouteStateW818
+  #check MetrizableLCA.currentComparisonEmbeddingCriterionRouteStateW818
+  #check MetrizableLCA.currentComparisonEmbeddingCriterionRouteStateW818_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
