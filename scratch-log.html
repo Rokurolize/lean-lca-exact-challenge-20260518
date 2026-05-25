@@ -159,7 +159,7 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-25 20:49 JST</span>
+        <span class="badge info">Updated 2026-05-25 21:03 JST</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">product_success=false</span>
       </div>
@@ -169,8 +169,8 @@ textarea.goal-text {
     <section class="grid" aria-label="Current status">
       <div class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W816</div>
-        <p>comparison bijective-embedding bridge</p>
+        <div class="metric">W817</div>
+        <p>comparison isomorphism-to-embedding bridge</p>
       </div>
       <div class="card span-3">
         <div class="label">Verification</div>
@@ -180,26 +180,26 @@ textarea.goal-text {
       <div class="card span-3">
         <div class="label">Primary Surface</div>
         <div class="metric">Derived</div>
-        <p><code>ComparisonBijectiveEmbeddingRoute</code></p>
+        <p><code>ComparisonIsomorphismEmbeddingRoute</code></p>
       </div>
       <div class="card span-3">
         <div class="label">Next Safe Action</div>
         <div class="metric">W814 target</div>
-        <p>prove algebraic bijectivity plus the comparison-map embedding</p>
+        <p>prove the universal canonical comparison isomorphism or direct concrete comparison inputs</p>
       </div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W816 reduces the W814 MetrizableLCA comparison route from a bijective-open target to a bijective-embedding target. It proves the reusable topological bridge that a surjective embedding is an open map, then packages the remaining comparison proof obligations as algebraic bijectivity plus embedding of the canonical left-right homology comparison. The new helper leaves <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> untouched.</p>
+      <p>W817 connects the existing W736 canonical comparison <code>IsIso</code> surface to the W816 concrete bijective-embedding target. It proves that an isomorphism in <code>MetrizableLCA</code> has a bijective and embedded underlying map, then routes the W736 universal comparison-isomorphism input through W816 to <code>CategoryWithHomology MetrizableLCA</code>. The new helper leaves <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> untouched.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>New Helper</h3>
           <table>
             <tbody>
-              <tr><th>Path</th><td><code>LeanLCAExactChallenge/Derived/ComparisonBijectiveEmbeddingRoute.lean</code></td></tr>
-              <tr><th>Line Count</th><td>115</td></tr>
-              <tr><th>Top-Level Declarations</th><td>10</td></tr>
+              <tr><th>Path</th><td><code>LeanLCAExactChallenge/Derived/ComparisonIsomorphismEmbeddingRoute.lean</code></td></tr>
+              <tr><th>Line Count</th><td>136</td></tr>
+              <tr><th>Top-Level Declarations</th><td>11</td></tr>
               <tr><th>Long-Line Outliers</th><td>0</td></tr>
             </tbody>
           </table>
@@ -207,12 +207,12 @@ textarea.goal-text {
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>isOpenMap_of_surjective_isEmbeddingW816</code></li>
-            <li><code>comparisonBijectiveEmbeddingTargetW816</code></li>
-            <li><code>comparisonBijectiveOpenTarget_of_bijectiveEmbeddingW816</code></li>
-            <li><code>categoryWithHomology_of_comparisonBijectiveEmbeddingW816</code></li>
-            <li><code>comparisonBijectiveEmbeddingInputNamesW816_count</code></li>
-            <li><code>currentComparisonBijectiveEmbeddingRouteStateW816_productSuccess</code></li>
+            <li><code>bijective_of_isIsoW817</code></li>
+            <li><code>isEmbedding_of_isIsoW817</code></li>
+            <li><code>comparisonBijectiveEmbeddingTarget_of_isIsoW817</code></li>
+            <li><code>universalComparisonBijectiveEmbeddingTarget_of_w736ComparisonIsoW817</code></li>
+            <li><code>categoryWithHomology_of_w736ComparisonIsoViaEmbeddingW817</code></li>
+            <li><code>currentComparisonIsomorphismEmbeddingRouteStateW817_productSuccess</code></li>
           </ul>
         </div>
       </div>
@@ -225,15 +225,15 @@ textarea.goal-text {
           <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ComparisonBijectiveEmbeddingRoute.lean</code></td><td>passed</td><td><code>w816_helper_lean.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ComparisonBijectiveEmbeddingRoute</code></td><td>passed</td><td><code>w816_helper_lake_build.log</code></td></tr>
-          <tr><td><code>lake env lean LeanLCAExactChallenge.lean</code></td><td>passed</td><td><code>w816_root_import_after_build.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w816_product_success_declarations.log</code></td></tr>
-          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w816_required_declarations_audit.log</code></td></tr>
-          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w816_forbidden_tokens.log</code></td></tr>
-          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w816_git_diff_check.log</code></td></tr>
-          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>failed_expected</td><td><code>w816_product_success_true_scan.log</code></td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td><code>w816_lake_build.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ComparisonIsomorphismEmbeddingRoute.lean</code></td><td>passed</td><td><code>w817_helper_lean.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ComparisonIsomorphismEmbeddingRoute</code></td><td>passed</td><td><code>w817_helper_lake_build.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge.lean</code></td><td>passed</td><td><code>w817_root_import.log</code></td></tr>
+          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w817_product_success_declarations.log</code></td></tr>
+          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w817_required_declarations_audit.log</code></td></tr>
+          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w817_forbidden_tokens.log</code></td></tr>
+          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w817_git_diff_check.log</code></td></tr>
+          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>failed_expected</td><td><code>w817_product_success_true_scan.log</code></td></tr>
+          <tr><td><code>lake build</code></td><td>passed</td><td><code>w817_lake_build.log</code></td></tr>
         </tbody>
       </table>
     </section>
@@ -242,17 +242,17 @@ textarea.goal-text {
       <h2>Decision Timeline</h2>
       <div class="timeline">
         <article class="event">
-          <time datetime="2026-05-25T20:44:43+09:00">2026-05-25 20:44 JST</time>
-          <h3>Started W816 from pushed W815 baseline</h3>
-          <p>Run root created at <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T114443Z_codex_parent_w816_comparison_embedding_bridge</code>.</p>
+          <time datetime="2026-05-25T20:57:00+09:00">2026-05-25 20:57 JST</time>
+          <h3>Started W817 from clean W816 baseline</h3>
+          <p>Run root created at <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding</code>.</p>
         </article>
         <article class="event">
-          <time datetime="2026-05-25T20:46:00+09:00">2026-05-25 20:46 JST</time>
-          <h3>Accepted bijective-embedding reduction</h3>
-          <p>The helper uses <code>IsEmbedding.isOpenEmbedding_of_surjective</code> to turn surjectivity plus embedding into the open-map field required by the W814 target.</p>
+          <time datetime="2026-05-25T20:59:20+09:00">2026-05-25 20:59 JST</time>
+          <h3>Accepted IsIso-to-embedding route</h3>
+          <p>The helper uses <code>isoToContinuousAddEquiv (asIso f)</code> to extract bijectivity and embedding from a categorical isomorphism in <code>MetrizableLCA</code>.</p>
         </article>
         <article class="event">
-          <time datetime="2026-05-25T20:49:47+09:00">2026-05-25 20:49 JST</time>
+          <time datetime="2026-05-25T21:03:31+09:00">2026-05-25 21:03 JST</time>
           <h3>Verification completed</h3>
           <p>Helper, root import, product declarations, required declarations, forbidden-token scan, diff check, and full <code>lake build</code> all passed while preserving <code>product_complete=false</code>.</p>
         </article>
@@ -262,9 +262,9 @@ textarea.goal-text {
     <section>
       <h2>Remaining Product Blockers</h2>
       <ul>
-        <li>Prove algebraic bijectivity of the canonical left-right homology comparison for arbitrary <code>MetrizableLCA</code> short complexes.</li>
-        <li>Prove embedding of the canonical comparison map using the W815 projection-topology facts.</li>
-        <li>Prove <code>comparisonBijectiveOpenTargetW814</code> for arbitrary <code>MetrizableLCA</code> short complexes.</li>
+        <li>Prove the universal canonical left-right homology comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes, or prove the W816 bijective-embedding fields directly.</li>
+        <li>Use the W815 projection-topology facts if pursuing the direct embedding route.</li>
+        <li>Feed the resulting comparison target into <code>comparisonBijectiveOpenTargetW814</code>.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
         <li>Construct exact-acyclic homotopy-object strict triangleh realization data without looping through W651/W809 equivalence.</li>
       </ul>

@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w816-comparison-bijective-embedding-route",
-  "generated_utc": "2026-05-25T11:51:48Z",
-  "source_tree_hash": "d20c68c894a0820980edd2f5fbba4a979fd1b3015e9c41d6d98a7bfe0b6fa394",
-  "summary": "W816 reduces the W814 MetrizableLCA comparison target from bijective-open to bijective-embedding: a surjective embedding is an open map, so a bijective embedding of the canonical left-right homology comparison supplies the W814 target. Product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-w817-comparison-isomorphism-embedding-route",
+  "generated_utc": "2026-05-25T12:05:18Z",
+  "source_tree_hash": "96aef1a03313978b0c011b826292089c7becdf727774c7346b1335abfe0b1da8",
+  "summary": "W817 proves that a categorical isomorphism of the canonical MetrizableLCA left-right homology comparison supplies the W816 concrete bijective-embedding target, and routes the W736 universal comparison-isomorphism input through W816 to CategoryWithHomology MetrizableLCA. Product remains nonterminal.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/CategoryHomologyComparisonBijectiveOpenRoute.lean",
@@ -188,23 +188,83 @@
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T114443Z_codex_parent_w816_comparison_embedding_bridge/scratch_log_browser_evidence_precloseout --expect Latest Increment --expect W816 --expect product_complete=false --expect product_success=false --expect ComparisonBijectiveEmbeddingRoute",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T114443Z_codex_parent_w816_comparison_embedding_bridge/scratch_log_browser_evidence_precloseout/browser_evidence_fidelity.json"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ComparisonIsomorphismEmbeddingRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_helper_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.ComparisonIsomorphismEmbeddingRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_helper_lake_build.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_root_import.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_product_success_declarations.log"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/w817_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_required_declarations_run_owned.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_required_declarations_audit.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_forbidden_tokens.log"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_git_diff_check.log"
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_product_success_true_scan.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_lake_build.log"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/logs/w817_scratch_log_check_report.log"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/scratch_log_browser_evidence_precloseout --expect Latest Increment --expect W817 --expect product_complete=false --expect product_success=false --expect ComparisonIsomorphismEmbeddingRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T115700Z_codex_parent_w817_comparison_isomorphism_embedding/scratch_log_browser_evidence_precloseout/browser_evidence_fidelity.json"
     }
   ],
   "product_success": false,
   "product_complete": false,
   "support_result_classification": "blocked_nonterminal_frontier",
   "known_gaps": [
-    "Prove algebraic bijectivity of the canonical left-right homology comparison for arbitrary MetrizableLCA short complexes.",
-    "Prove embedding of the canonical left-right homology comparison using the W815 projection-topology facts.",
-    "Prove comparisonBijectiveEmbeddingTargetW816 for arbitrary MetrizableLCA short complexes, then feed it into comparisonBijectiveOpenTargetW814.",
+    "Prove the universal canonical left-right homology comparison isomorphism for arbitrary MetrizableLCA short complexes, or prove the W816 bijective-embedding fields directly.",
+    "If pursuing the direct embedding route, combine the W815 projection-topology facts with algebraic control of the comparison fibers.",
+    "Use the resulting comparison theorem to prove comparisonBijectiveOpenTargetW814 and CategoryWithHomology MetrizableLCA.",
     "Construct concrete W735 closed-map or closed-embedding branch-data values.",
     "Construct exact-acyclic homotopy-object strict triangleh realization data without looping through W651/W809 equivalence."
   ],
   "remaining_work": [
-    "Prove algebraic bijectivity and embedding for the canonical left-right homology comparison.",
-    "Use categoryWithHomology_of_comparisonBijectiveEmbeddingW816 to instantiate CategoryWithHomology MetrizableLCA and feed the W736/W768 product route."
+    "Prove the universal canonical comparison isomorphism for arbitrary MetrizableLCA short complexes, or directly prove comparisonBijectiveEmbeddingTargetW816.",
+    "Then use categoryWithHomology_of_comparisonBijectiveEmbeddingW816 or categoryWithHomology_of_w736ComparisonIsoViaEmbeddingW817 to instantiate CategoryWithHomology MetrizableLCA and feed the W736/W768 product route."
   ],
-  "latest_verified_increment": "W816 comparison bijective-embedding bridge",
+  "latest_verified_increment": "W817 comparison isomorphism-to-embedding bridge",
   "implemented_declarations_checked": [
     "MetrizableLCA.cokernelCofork_π_surjective_of_isColimitW815",
     "MetrizableLCA.cokernelCofork_π_openMap_of_isColimitW815",
@@ -234,7 +294,17 @@
     "MetrizableLCA.comparisonBijectiveEmbeddingInputNamesW816_count",
     "MetrizableLCA.ComparisonBijectiveEmbeddingRouteStateW816",
     "MetrizableLCA.currentComparisonBijectiveEmbeddingRouteStateW816",
-    "MetrizableLCA.currentComparisonBijectiveEmbeddingRouteStateW816_productSuccess"
+    "MetrizableLCA.currentComparisonBijectiveEmbeddingRouteStateW816_productSuccess",
+    "MetrizableLCA.bijective_of_isIsoW817",
+    "MetrizableLCA.isEmbedding_of_isIsoW817",
+    "MetrizableLCA.comparisonBijectiveEmbeddingTarget_of_isIsoW817",
+    "MetrizableLCA.universalComparisonBijectiveEmbeddingTarget_of_w736ComparisonIsoW817",
+    "MetrizableLCA.categoryWithHomology_of_w736ComparisonIsoViaEmbeddingW817",
+    "MetrizableLCA.comparisonIsomorphismEmbeddingInputNamesW817",
+    "MetrizableLCA.comparisonIsomorphismEmbeddingInputNamesW817_count",
+    "MetrizableLCA.ComparisonIsomorphismEmbeddingRouteStateW817",
+    "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817",
+    "MetrizableLCA.currentComparisonIsomorphismEmbeddingRouteStateW817_productSuccess"
   ],
   "metadata_corrections": {
     "w815_comparison_projection_topology_metadata_refresh": {
@@ -250,6 +320,13 @@
       "latest_verified_increment": "W816 comparison bijective-embedding bridge",
       "claim_review_status": "pending_claim_review_loop_v3",
       "note": "W816 is a checked helper increment toward W814; it does not prove the final comparison theorem."
+    },
+    "w817_comparison_isomorphism_embedding_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T12:05:18Z",
+      "source_tree_hash": "96aef1a03313978b0c011b826292089c7becdf727774c7346b1335abfe0b1da8",
+      "latest_verified_increment": "W817 comparison isomorphism-to-embedding bridge",
+      "claim_review_status": "pending_claim_review_loop_v3",
+      "note": "W817 is a checked helper increment toward the W814/W816 comparison theorem; it does not prove the universal comparison isomorphism itself."
     }
   }
 }
