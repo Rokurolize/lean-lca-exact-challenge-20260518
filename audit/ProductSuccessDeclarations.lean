@@ -36,6 +36,7 @@ import LeanLCAExactChallenge.Derived.TargetIsoClosed2ProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtTerminalEvidenceProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroTerminalEvidenceProductRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664TerminalProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9618,6 +9619,24 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableTargetHomologyZeroTerminalEvidenceRouteStateW798
   #check
     Dbounded.currentW798TargetHomologyZeroTerminalEvidenceRoute_productSuccess
+  #check Dbounded.MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799
+  #check Dbounded.closedMapComparisonHomologyDataOfW664PayloadW799
+  #check Dbounded.closedEmbeddingComparisonHomologyDataOfW664PayloadW799
+  #check Dbounded.productEvidence_of_closedMapW664TerminalRouteW799
+  #check Dbounded.productEvidence_of_closedEmbeddingW664TerminalRouteW799
+  #check Dbounded.closedMapExactStableEvidenceOfW664TerminalW799
+  #check Dbounded.closedEmbeddingExactStableEvidenceOfW664TerminalW799
+  #check Dbounded.closedMapStableCertificateReadyOfW664TerminalW799
+  #check Dbounded.closedEmbeddingStableCertificateReadyOfW664TerminalW799
+  #check Dbounded.closedMapStableCertificateAcceptedOfW664TerminalW799
+  #check Dbounded.closedEmbeddingStableCertificateAcceptedOfW664TerminalW799
+  #check Dbounded.targetHomologyZeroW664TerminalProductRouteInputNamesW799
+  #check Dbounded.targetHomologyZeroW664TerminalProductRouteInputNamesW799_count
+  #check Dbounded.MetrizableTargetHomologyZeroW664TerminalRouteStateW799
+  #check Dbounded.currentMetrizableTargetHomologyZeroW664TerminalRouteStateW799
+  #check Dbounded.currentW799TargetHomologyZeroW664TerminalRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

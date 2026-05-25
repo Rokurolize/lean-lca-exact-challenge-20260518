@@ -160,47 +160,48 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W798 target homology-zero terminal-evidence route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W799 W664 target homology-zero terminal route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroTerminalEvidenceProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T074919Z_codex_parent_w798</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroW664TerminalProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T080115Z_codex_parent_w799</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W798 target homology-zero terminal-evidence route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 16:57 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W799 W664 target homology-zero terminal route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 17:08 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W798 applies the terminal-evidence projection pattern to W794 target homology-zero comparison-homology product evidence. The new helper projects exact/stable WPP evidence, stable certificate readiness, and stable certificate acceptance for closed-map and closed-embedding routes, replacing the target ExactAt terminal premise with target homology-zero realization data indexed by W768-derived homology existence. The increment lives in a new 142-line helper module with 13 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W799 makes the W798 target homology-zero terminal route depend directly on the underlying W664 target homology-zero payload indexed by W768-derived homology existence. The new helper converts W664-explicit closed-map and closed-embedding branch data into W794 comparison-homology data, then reuses W798 terminal exact/stable and stable-certificate evidence. The increment lives in a new 181-line helper module with 17 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>closedMapExactStableEvidenceOfTargetHomologyZeroTerminalW798</code> and <code>closedEmbeddingExactStableEvidenceOfTargetHomologyZeroTerminalW798</code> project exact/stable WPP evidence from W794.</li>
-            <li><code>closedMapStableCertificateReadyOfTargetHomologyZeroTerminalW798</code> and <code>closedEmbeddingStableCertificateReadyOfTargetHomologyZeroTerminalW798</code> project stable certificate readiness.</li>
-            <li><code>closedMapStableCertificateAcceptedOfTargetHomologyZeroTerminalW798</code> and <code>closedEmbeddingStableCertificateAcceptedOfTargetHomologyZeroTerminalW798</code> project stable route acceptance while keeping product success false.</li>
+            <li><code>closedMapComparisonHomologyDataOfW664PayloadW799</code> and <code>closedEmbeddingComparisonHomologyDataOfW664PayloadW799</code> convert W664-explicit branch data to W794.</li>
+            <li><code>closedMapExactStableEvidenceOfW664TerminalW799</code> and <code>closedEmbeddingExactStableEvidenceOfW664TerminalW799</code> project exact/stable evidence through W798.</li>
+            <li><code>closedMapStableCertificateAcceptedOfW664TerminalW799</code> and <code>closedEmbeddingStableCertificateAcceptedOfW664TerminalW799</code> project stable route acceptance while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroTerminalEvidenceProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroTerminalEvidenceProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroW664TerminalProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroW664TerminalProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T074919Z_codex_parent_w798/w798_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/w799_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 142 lines with 13 top-level declarations.</li>
-            <li><code>w798_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
-            <li>Focused W798 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>w799_goal_sha_delta_decision.tsv</code> records the pre-edit active-goal SHA delta and the decision to continue under the current goal.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 181 lines with 17 top-level declarations.</li>
+            <li><code>w799_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
+            <li>Focused W799 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W798 work.</p></div>
-      <p>W797 projected exact/stable evidence and stable certificate readiness/acceptance from W796 target ExactAt closed-range product evidence.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W799 work.</p></div>
+      <p>W798 projected exact/stable evidence and stable certificate readiness/acceptance from W794 target homology-zero comparison-homology product evidence.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct target homology-zero realization data indexed by the comparison-derived homology existence.</li>
+        <li>Construct the W664 target homology-zero payload indexed by the comparison-derived homology existence.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>

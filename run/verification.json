@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w798-target-homology-zero-terminal-evidence-route",
-  "generated_utc": "2026-05-25T07:58:41Z",
-  "source_tree_hash": "03b2bfbb13022b2ef27aea68027edbb4122fdd3ecd30e4b0c09506774ad3171f",
-  "summary": "W798 projects W794 target homology-zero comparison-homology product evidence into exact-stable evidence, stable certificate, ready proof, and accepted proof for closed-map and closed-embedding routes. The remaining inputs are the universal left-right comparison isomorphism, concrete W735 branch data, and target homology-zero realization data indexed by W768-derived homology existence. product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w799-target-homology-zero-w664-terminal-route",
+  "generated_utc": "2026-05-25T08:09:43Z",
+  "source_tree_hash": "53c7690eed4cb368a1e5cc41286e55330a9d9b2d2a261386c6d45cbf1930d245",
+  "summary": "W799 makes the W798 target homology-zero terminal route depend directly on the underlying W664 target homology-zero payload indexed by W768-derived homology existence. It converts W664-explicit closed-map and closed-embedding branch data into W794 comparison-homology data, then reuses W798 terminal exact-stable evidence, stable certificate readiness, and stable certificate acceptance. product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -18625,6 +18625,66 @@
       "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T074919Z_codex_parent_w798/logs/w798_product_success_true_grep.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroW664TerminalProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroW664TerminalProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/w799_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_root_lean.log exit_code=0"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_focused_forbidden_tokens.log exit_code=0"
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/logs/w799_product_success_true_grep.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -24051,24 +24111,41 @@
     "Dbounded.targetHomologyZeroTerminalEvidenceProductRouteInputNamesW798_count",
     "Dbounded.MetrizableTargetHomologyZeroTerminalEvidenceRouteStateW798",
     "Dbounded.currentMetrizableTargetHomologyZeroTerminalEvidenceRouteStateW798",
-    "Dbounded.currentW798TargetHomologyZeroTerminalEvidenceRoute_productSuccess"
+    "Dbounded.currentW798TargetHomologyZeroTerminalEvidenceRoute_productSuccess",
+    "Dbounded.MetrizableClosedMapTargetHomologyZeroW664TerminalBranchDataW799",
+    "Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroW664TerminalBranchDataW799",
+    "Dbounded.closedMapComparisonHomologyDataOfW664PayloadW799",
+    "Dbounded.closedEmbeddingComparisonHomologyDataOfW664PayloadW799",
+    "Dbounded.productEvidence_of_closedMapW664TerminalRouteW799",
+    "Dbounded.productEvidence_of_closedEmbeddingW664TerminalRouteW799",
+    "Dbounded.closedMapExactStableEvidenceOfW664TerminalW799",
+    "Dbounded.closedEmbeddingExactStableEvidenceOfW664TerminalW799",
+    "Dbounded.closedMapStableCertificateReadyOfW664TerminalW799",
+    "Dbounded.closedEmbeddingStableCertificateReadyOfW664TerminalW799",
+    "Dbounded.closedMapStableCertificateAcceptedOfW664TerminalW799",
+    "Dbounded.closedEmbeddingStableCertificateAcceptedOfW664TerminalW799",
+    "Dbounded.targetHomologyZeroW664TerminalProductRouteInputNamesW799",
+    "Dbounded.targetHomologyZeroW664TerminalProductRouteInputNamesW799_count",
+    "Dbounded.MetrizableTargetHomologyZeroW664TerminalRouteStateW799",
+    "Dbounded.currentMetrizableTargetHomologyZeroW664TerminalRouteStateW799",
+    "Dbounded.currentW799TargetHomologyZeroW664TerminalRoute_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
-    "Construct target homology-zero realization data indexed by W768-derived homology existence."
+    "Construct the W664 target homology-zero payload indexed by W768-derived homology existence."
   ],
   "support_result_classification": "nonterminal_support_increment",
   "product_success": false,
   "remaining_work": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete W735 branch data values.",
-    "Construct target homology-zero realization data indexed by W768-derived homology existence.",
+    "Construct the W664 target homology-zero payload indexed by W768-derived homology existence.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W798 source, module, root import, product declaration, run-owned required declarations, forbidden-token scan, full build, JSON, diff, helper accounting, browser report, and expected nonterminal audit gates passed; terminal external audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W798 target homology-zero terminal-evidence route",
+  "summary_log_tail": "Focused W799 source, module, root import, product declaration, run-owned required declarations, forbidden-token scan, full build, JSON, diff, helper accounting, browser report, stale-goal delta decision, and expected nonterminal audit gates passed; terminal external audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W799 W664 target homology-zero terminal route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -25789,6 +25866,13 @@
       "latest_verified_increment": "W798 target homology-zero terminal-evidence route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W798 metadata records the target homology-zero terminal-evidence route and leaves product_success/product_complete false."
+    },
+    "w799_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T08:09:43Z",
+      "source_tree_hash": "53c7690eed4cb368a1e5cc41286e55330a9d9b2d2a261386c6d45cbf1930d245",
+      "latest_verified_increment": "W799 W664 target homology-zero terminal route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W799 metadata records the W664 target homology-zero terminal route and leaves product_success/product_complete false."
     }
   }
 }
