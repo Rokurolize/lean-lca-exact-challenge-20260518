@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w796-target-exactat-closed-range-route",
-  "generated_utc": "2026-05-25T07:31:54Z",
-  "source_tree_hash": "9e5974b4b1b7b3058e207c80eca991048843f12876c1703f3d8436ac93debe61",
-  "summary": "W796 replaces the W795 target-isomorphism realization premise with W785 target ExactAt realization data plus W735-derived closed-range endpoint topology, deriving W774 Closed2 through W795 while reusing W793 concrete-leaf colimit stability and W792 boundary limit stability. product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w797-target-exactat-terminal-evidence-route",
+  "generated_utc": "2026-05-25T07:45:27Z",
+  "source_tree_hash": "d4d9819a9f9b0e5ff314a9d6b5e413e7d25dfda4bd7822e9f97bcc01c459645d",
+  "summary": "W797 projects W796 target ExactAt closed-range product evidence into exact-stable evidence, stable certificate, ready proof, and accepted proof for closed-map and closed-embedding routes. The remaining inputs are the universal left-right comparison isomorphism, concrete W735 branch data, and target ExactAt realization payloads. product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -18505,6 +18505,66 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T072104Z_codex_parent_w796/logs/w796_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/TargetExactAtTerminalEvidenceProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.TargetExactAtTerminalEvidenceProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_root_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/w797_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_required_declarations.log exit_code=0"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_focused_forbidden_tokens.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 -c import json; [json.load(open(p, encoding='utf-8')) for p in ['manifest.json','run/verification.json','terminal_outcome/terminal_outcome.json']]",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "bash -lc rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_product_success_true_grep.log exit_code=1"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T073445Z_codex_parent_w797/logs/w797_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -23905,14 +23965,26 @@
     "Dbounded.targetExactAtClosedRangeProductRouteInputNamesW796_count",
     "Dbounded.MetrizableTargetExactAtClosedRangeRouteStateW796",
     "Dbounded.currentMetrizableTargetExactAtClosedRangeRouteStateW796",
-    "Dbounded.currentW796TargetExactAtClosedRangeRoute_productSuccess"
+    "Dbounded.currentW796TargetExactAtClosedRangeRoute_productSuccess",
+    "Dbounded.closedMapExactStableEvidenceOfTargetExactAtTerminalW797",
+    "Dbounded.closedEmbeddingExactStableEvidenceOfTargetExactAtTerminalW797",
+    "Dbounded.closedMapStableCertificateOfTargetExactAtTerminalW797",
+    "Dbounded.closedEmbeddingStableCertificateOfTargetExactAtTerminalW797",
+    "Dbounded.closedMapStableCertificateReadyOfTargetExactAtTerminalW797",
+    "Dbounded.closedEmbeddingStableCertificateReadyOfTargetExactAtTerminalW797",
+    "Dbounded.closedMapStableCertificateAcceptedOfTargetExactAtTerminalW797",
+    "Dbounded.closedEmbeddingStableCertificateAcceptedOfTargetExactAtTerminalW797",
+    "Dbounded.targetExactAtTerminalEvidenceProductRouteInputNamesW797",
+    "Dbounded.targetExactAtTerminalEvidenceProductRouteInputNamesW797_count",
+    "Dbounded.MetrizableTargetExactAtTerminalEvidenceRouteStateW797",
+    "Dbounded.currentMetrizableTargetExactAtTerminalEvidenceRouteStateW797",
+    "Dbounded.currentW797TargetExactAtTerminalEvidenceRoute_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
-    "Construct exact-acyclic homotopy-object target ExactAt realization data.",
-    "Construct remaining Dbounded stable-infinity inputs."
+    "Construct exact-acyclic homotopy-object target ExactAt realization data."
   ],
   "support_result_classification": "nonterminal_support_increment",
   "product_success": false,
@@ -23920,11 +23992,10 @@
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete W735 branch data values.",
     "Construct exact-acyclic homotopy-object target ExactAt realization data.",
-    "Construct remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W796 source, module, root import, product declaration, run-owned required declarations, forbidden-token scan, full build, JSON, diff, helper accounting, browser report, and expected nonterminal audit gates passed; terminal external audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W796 target ExactAt closed-range route",
+  "summary_log_tail": "Focused W797 source, module, root import, product declaration, run-owned required declarations, forbidden-token scan, full build, JSON, diff, helper accounting, browser report, and expected nonterminal audit gates passed; terminal external audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W797 target ExactAt terminal-evidence route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -25631,6 +25702,13 @@
       "latest_verified_increment": "W796 target ExactAt closed-range route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W796 metadata records the target ExactAt closed-range route and leaves product_success/product_complete false."
+    },
+    "w797_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T07:45:27Z",
+      "source_tree_hash": "d4d9819a9f9b0e5ff314a9d6b5e413e7d25dfda4bd7822e9f97bcc01c459645d",
+      "latest_verified_increment": "W797 target ExactAt terminal-evidence route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W797 metadata records the target ExactAt terminal-evidence route and leaves product_success/product_complete false."
     }
   }
 }
