@@ -33,6 +33,7 @@ import LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundarySourcePiZeroProdu
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroConcreteLeafColimitProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroComparisonHomologyProductRoute
 import LeanLCAExactChallenge.Derived.TargetIsoClosed2ProductRoute
+import LeanLCAExactChallenge.Derived.TargetExactAtClosedRangeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9565,6 +9566,21 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetIsoClosed2RouteStateW795
   #check Dbounded.currentMetrizableTargetIsoClosed2RouteStateW795
   #check Dbounded.currentW795TargetIsoClosed2Route_productSuccess
+  #check Dbounded.targetIsoRealizationOfTargetExactAtClosedRangeW796
+  #check Dbounded.exactClosed2OfTargetExactAtClosedRangeW796
+  #check Dbounded.MetrizableClosedMapTargetExactAtClosedRangeBranchDataW796
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetExactAtClosedRangeBranchDataW796
+  #check Dbounded.closedMapNormalizedDataOfTargetExactAtClosedRangeW796
+  #check Dbounded.closedEmbeddingNormalizedDataOfTargetExactAtClosedRangeW796
+  #check Dbounded.productEvidence_of_closedMapTargetExactAtClosedRangeRouteW796
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingTargetExactAtClosedRangeRouteW796
+  #check Dbounded.targetExactAtClosedRangeProductRouteInputNamesW796
+  #check Dbounded.targetExactAtClosedRangeProductRouteInputNamesW796_count
+  #check Dbounded.MetrizableTargetExactAtClosedRangeRouteStateW796
+  #check Dbounded.currentMetrizableTargetExactAtClosedRangeRouteStateW796
+  #check Dbounded.currentW796TargetExactAtClosedRangeRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
