@@ -40,6 +40,8 @@ W841では、W839のtarget homology-zero left-calculus routeを、W653 direct fi
 
 W842では、W841で別入力として残っていたW653 direct finite-shape source dataとW657 direct-localization triangulated source dataを、W839 target homology-zero dataから既存のW799/W800/W773経路で導くrouteへ置き換えた。`Dbounded.closedMapDirectSourceOfTargetHomologyZeroW842`はW839 dataをW799/W664 terminal surfaceへ送り、W800経由でW653を得る。`Dbounded.closedMapDirectLocalizationOfTargetHomologyZeroW842`は同じW800 source-triangulation surfaceをW773へ送り、W657を得る。`Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroDirectSourceW842`とclosed-embedding版は、W841のstable packageをW839 dataだけから組み立てる。ただしW735 branch data、W790 target homology-zero realization data、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
 
+W843では、W842に残っていたW790 target homology-zero realization data入力を、W803の変換でW785/W663 target ExactAt realization dataから導くrouteへ置き換えた。`Dbounded.closedMapTargetHomologyZeroDataOfTargetExactAtW843`とclosed-embedding版は、W843 dataをW839 target homology-zero surfaceへ送り、`Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetExactAtDirectSourceW843`とclosed-embedding版はW842のstable packageをtarget ExactAt dataから組み立てる。ただしW735 branch data、W785/W663 target ExactAt realization data、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス
