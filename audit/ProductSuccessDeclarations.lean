@@ -38,6 +38,7 @@ import LeanLCAExactChallenge.Derived.TargetExactAtTerminalEvidenceProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroTerminalEvidenceProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664TerminalProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664SourceTriangulationProductRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664SourceTriangulationTerminalProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9662,6 +9663,31 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800
   #check
     Dbounded.currentW800TargetHomologyZeroW664SourceTriangulationRoute_productSuccess
+  #check Dbounded.productEvidence_of_closedMapW664SourceTriangulationRouteW801
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingW664SourceTriangulationRouteW801
+  #check Dbounded.closedMapExactStableEvidenceOfW664SourceTriangulationW801
+  #check
+    Dbounded.closedEmbeddingExactStableEvidenceOfW664SourceTriangulationW801
+  #check Dbounded.closedMapStableCertificateOfW664SourceTriangulationW801
+  #check
+    Dbounded.closedEmbeddingStableCertificateOfW664SourceTriangulationW801
+  #check Dbounded.closedMapStableCertificateReadyOfW664SourceTriangulationW801
+  #check
+    Dbounded.closedEmbeddingStableCertificateReadyOfW664SourceTriangulationW801
+  #check Dbounded.closedMapStableCertificateAcceptedOfW664SourceTriangulationW801
+  #check
+    Dbounded.closedEmbeddingStableCertificateAcceptedOfW664SourceTriangulationW801
+  #check
+    Dbounded.targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801
+  #check
+    Dbounded.targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801_count
+  #check
+    Dbounded.MetrizableTargetHomologyZeroW664SourceTriangulationTerminalRouteStateW801
+  #check
+    Dbounded.currentMetrizableTargetHomologyZeroW664SourceTriangulationTerminalRouteStateW801
+  #check
+    Dbounded.currentW801TargetHomologyZeroW664SourceTriangulationTerminalRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

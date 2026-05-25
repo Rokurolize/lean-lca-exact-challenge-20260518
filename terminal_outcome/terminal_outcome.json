@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W800 exposes W799 W664 target homology-zero terminal branch data at the W774 normalized-direct-source layer and the W773 source-triangulation layer, projecting direct sources, source-triangulation data, exact-acyclic closure, closed-range endpoint topology, and WalkingParallelPair limit/colimit stability while product_complete remains false.",
+  "summary": "W801 routes the W800 W664 source-triangulation surface through the existing W773 product-evidence route, then exposes exact/stable evidence, stable certificates, readiness, and acceptance for closed-map and closed-embedding branches while product_complete remains false.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -2895,7 +2895,19 @@
     "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T081324Z_codex_parent_w800/logs/w800_focused_external_audit_terminal_expected_nonterminal.log exit_code=1)",
     "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T081324Z_codex_parent_w800/logs/w800_focused_root_lean.log exit_code=0)",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T081324Z_codex_parent_w800/logs/w800_focused_forbidden_tokens.log exit_code=0)",
-    "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T081324Z_codex_parent_w800/logs/w800_product_success_true_grep.log exit_code=1)"
+    "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T081324Z_codex_parent_w800/logs/w800_product_success_true_grep.log exit_code=1)",
+    "lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroW664SourceTriangulationTerminalProductRoute.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_source_lean.log exit_code=0)",
+    "lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroW664SourceTriangulationTerminalProductRoute (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_lake_build_source.log exit_code=0)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_product_declarations_lean.log exit_code=0)",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/w801_required_declarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_required_declarations_lean.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_external_audit_self_check.log exit_code=0)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_full_lake_build.log exit_code=0)",
+    "python3 json validation for manifest/run/terminal_outcome (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_json_validation.log exit_code=0)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_git_diff_check.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_external_audit_terminal_expected_nonterminal.log exit_code=1)",
+    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_root_lean.log exit_code=0)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_focused_forbidden_tokens.log exit_code=0)",
+    "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/logs/w801_product_success_true_grep.log exit_code=1)"
   ],
   "required_declarations_checked": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
@@ -7791,7 +7803,22 @@
     "Dbounded.targetHomologyZeroW664SourceTriangulationProductRouteInputNamesW800_count",
     "Dbounded.MetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800",
     "Dbounded.currentMetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800",
-    "Dbounded.currentW800TargetHomologyZeroW664SourceTriangulationRoute_productSuccess"
+    "Dbounded.currentW800TargetHomologyZeroW664SourceTriangulationRoute_productSuccess",
+    "Dbounded.productEvidence_of_closedMapW664SourceTriangulationRouteW801",
+    "Dbounded.productEvidence_of_closedEmbeddingW664SourceTriangulationRouteW801",
+    "Dbounded.closedMapExactStableEvidenceOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingExactStableEvidenceOfW664SourceTriangulationW801",
+    "Dbounded.closedMapStableCertificateOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingStableCertificateOfW664SourceTriangulationW801",
+    "Dbounded.closedMapStableCertificateReadyOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingStableCertificateReadyOfW664SourceTriangulationW801",
+    "Dbounded.closedMapStableCertificateAcceptedOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingStableCertificateAcceptedOfW664SourceTriangulationW801",
+    "Dbounded.targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801",
+    "Dbounded.targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801_count",
+    "Dbounded.MetrizableTargetHomologyZeroW664SourceTriangulationTerminalRouteStateW801",
+    "Dbounded.currentMetrizableTargetHomologyZeroW664SourceTriangulationTerminalRouteStateW801",
+    "Dbounded.currentW801TargetHomologyZeroW664SourceTriangulationTerminalRoute_productSuccess"
   ],
   "known_gaps": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
@@ -7812,7 +7839,7 @@
     "Construct the W664 target homology-zero payload indexed by W768-derived homology existence.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "next_recommended_goal": "Continue from W800 by reducing one of the three remaining construction inputs: universal left-right comparison, concrete W735 branch data, or W664 target homology-zero payload.",
+  "next_recommended_goal": "Continue from W801 by reducing one of the three remaining construction inputs: universal left-right comparison, concrete W735 branch data, or W664 target homology-zero payload.",
   "implemented_declarations": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
     "Dbounded.exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeafInputsW758",
@@ -13243,9 +13270,24 @@
     "Dbounded.targetHomologyZeroW664SourceTriangulationProductRouteInputNamesW800_count",
     "Dbounded.MetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800",
     "Dbounded.currentMetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800",
-    "Dbounded.currentW800TargetHomologyZeroW664SourceTriangulationRoute_productSuccess"
+    "Dbounded.currentW800TargetHomologyZeroW664SourceTriangulationRoute_productSuccess",
+    "Dbounded.productEvidence_of_closedMapW664SourceTriangulationRouteW801",
+    "Dbounded.productEvidence_of_closedEmbeddingW664SourceTriangulationRouteW801",
+    "Dbounded.closedMapExactStableEvidenceOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingExactStableEvidenceOfW664SourceTriangulationW801",
+    "Dbounded.closedMapStableCertificateOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingStableCertificateOfW664SourceTriangulationW801",
+    "Dbounded.closedMapStableCertificateReadyOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingStableCertificateReadyOfW664SourceTriangulationW801",
+    "Dbounded.closedMapStableCertificateAcceptedOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingStableCertificateAcceptedOfW664SourceTriangulationW801",
+    "Dbounded.targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801",
+    "Dbounded.targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801_count",
+    "Dbounded.MetrizableTargetHomologyZeroW664SourceTriangulationTerminalRouteStateW801",
+    "Dbounded.currentMetrizableTargetHomologyZeroW664SourceTriangulationTerminalRouteStateW801",
+    "Dbounded.currentW801TargetHomologyZeroW664SourceTriangulationTerminalRoute_productSuccess"
   ],
-  "generated_utc": "2026-05-25T08:22:03Z",
+  "generated_utc": "2026-05-25T08:30:35Z",
   "support_result_classification": "blocked_nonterminal_frontier",
   "implemented_declarations_checked": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
@@ -18707,7 +18749,22 @@
     "Dbounded.targetHomologyZeroW664SourceTriangulationProductRouteInputNamesW800_count",
     "Dbounded.MetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800",
     "Dbounded.currentMetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800",
-    "Dbounded.currentW800TargetHomologyZeroW664SourceTriangulationRoute_productSuccess"
+    "Dbounded.currentW800TargetHomologyZeroW664SourceTriangulationRoute_productSuccess",
+    "Dbounded.productEvidence_of_closedMapW664SourceTriangulationRouteW801",
+    "Dbounded.productEvidence_of_closedEmbeddingW664SourceTriangulationRouteW801",
+    "Dbounded.closedMapExactStableEvidenceOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingExactStableEvidenceOfW664SourceTriangulationW801",
+    "Dbounded.closedMapStableCertificateOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingStableCertificateOfW664SourceTriangulationW801",
+    "Dbounded.closedMapStableCertificateReadyOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingStableCertificateReadyOfW664SourceTriangulationW801",
+    "Dbounded.closedMapStableCertificateAcceptedOfW664SourceTriangulationW801",
+    "Dbounded.closedEmbeddingStableCertificateAcceptedOfW664SourceTriangulationW801",
+    "Dbounded.targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801",
+    "Dbounded.targetHomologyZeroW664SourceTriangulationTerminalInputNamesW801_count",
+    "Dbounded.MetrizableTargetHomologyZeroW664SourceTriangulationTerminalRouteStateW801",
+    "Dbounded.currentMetrizableTargetHomologyZeroW664SourceTriangulationTerminalRouteStateW801",
+    "Dbounded.currentW801TargetHomologyZeroW664SourceTriangulationTerminalRoute_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
@@ -18717,10 +18774,10 @@
     "Construct the W664 target homology-zero payload indexed by W768-derived homology existence.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "latest_verified_increment": "W800 W664 source-triangulation route",
-  "source_tree_hash": "360aa8264e1894a33855c11d052cf83a419ad5ef9b91c32f91ca592acd86640e",
+  "latest_verified_increment": "W801 W664 source-triangulation terminal route",
+  "source_tree_hash": "06aa790464c97f6ca4c371ffafcc41cc08d0c5f0d2df157f4e168574b75da515",
   "summary_log_tail": "Focused W799 source, module, root import, product declaration, run-owned required declarations, forbidden-token scan, full build, JSON, diff, helper accounting, browser report, stale-goal delta decision, and expected nonterminal audit gates passed; terminal external audit still fails only at the expected nonterminal product gate.",
-  "git_commit_note": "Commit will be created by the W800 closeout wrapper after metadata refresh and post-metadata verification.",
+  "git_commit_note": "Commit will be created by the W801 closeout wrapper after metadata refresh and post-metadata verification.",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -20955,6 +21012,16 @@
       "product_complete": false,
       "update_goal_allowed": false,
       "note": "W800 is a proof-surface increment only; product success remains blocked on universal comparison, concrete W735 branch data, and W664 payload construction."
+    },
+    "w801_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T08:30:35Z",
+      "source_tree_hash": "06aa790464c97f6ca4c371ffafcc41cc08d0c5f0d2df157f4e168574b75da515",
+      "latest_verified_increment": "W801 W664 source-triangulation terminal route",
+      "claim_review_status": "pending_claim_review_loop_v3",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "W801 is a proof-surface increment only; product success remains blocked on universal comparison, concrete W735 branch data, and W664 payload construction."
     }
   },
   "classification": "verified_nonterminal_support_increment",
