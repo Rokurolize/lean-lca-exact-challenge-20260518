@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W772 replaces W771's direct W694 closure-kernel endpoint-topology field with W696 closed-range endpoint-topology data, exposing closed-map and closed-embedding closed-range direct finite-shape product evidence. Product_success remains false.",
+  "summary": "W773 replaces W772's separate MetrizableDirectLocalizationTriangulatedSourceNoCommShiftCoreW657 field with W735 sourceTriangulationData, deriving the W657 source core from W722 and exposing closed-map and closed-embedding source-triangulation closed-range product evidence. Product_success remains false.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -2616,7 +2616,16 @@
     "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T031101Z_codex_parent_w772/logs/w772_focused_full_lake_build.log exit_code=0)",
     "python3 json validation for manifest/run/terminal_outcome (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T031101Z_codex_parent_w772/logs/w772_focused_json_validation.log exit_code=0)",
     "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T031101Z_codex_parent_w772/logs/w772_focused_git_diff_check.log exit_code=0)",
-    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T031101Z_codex_parent_w772/logs/w772_focused_external_audit_terminal_expected_nonterminal.log exit_code=1)"
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T031101Z_codex_parent_w772/logs/w772_focused_external_audit_terminal_expected_nonterminal.log exit_code=1)",
+    "lake env lean LeanLCAExactChallenge/Derived/SourceTriangulationClosedRangeDirectFiniteShapeProductRoute.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/logs/w773_focused_source_lean.log exit_code=0)",
+    "lake build LeanLCAExactChallenge.Derived.SourceTriangulationClosedRangeDirectFiniteShapeProductRoute (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/logs/w773_focused_lake_build_source.log exit_code=0)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/logs/w773_focused_product_declarations_lean.log exit_code=0)",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/w773_required_declarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/logs/w773_focused_required_declarations_lean.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/logs/w773_focused_external_audit_self_check.log exit_code=0)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/logs/w773_focused_full_lake_build.log exit_code=0)",
+    "python3 json validation for manifest/run/terminal_outcome (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/logs/w773_focused_json_validation.log exit_code=0)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/logs/w773_focused_git_diff_check.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/logs/w773_focused_external_audit_terminal_expected_nonterminal.log exit_code=1)"
   ],
   "required_declarations_checked": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
@@ -7131,7 +7140,20 @@
     "Dbounded.closedRangeDirectFiniteShapeProductRouteInputNamesW772_count",
     "Dbounded.MetrizableClosedRangeDirectFiniteShapeProductRouteStateW772",
     "Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteSupportStateW772",
-    "Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteStateW772_productSuccess"
+    "Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteStateW772_productSuccess",
+    "Dbounded.MetrizableClosedMapSourceTriangulationClosedRangeDirectFiniteShapeBranchDataW773",
+    "Dbounded.MetrizableClosedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeBranchDataW773",
+    "Dbounded.directLocalizationOfClosedMapSourceTriangulationW773",
+    "Dbounded.directLocalizationOfClosedEmbeddingSourceTriangulationW773",
+    "Dbounded.closedMapClosedRangeDataOfSourceTriangulationW773",
+    "Dbounded.closedEmbeddingClosedRangeDataOfSourceTriangulationW773",
+    "Dbounded.productEvidence_of_closedMapSourceTriangulationClosedRangeDirectFiniteShapeRouteW773",
+    "Dbounded.productEvidence_of_closedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeRouteW773",
+    "Dbounded.sourceTriangulationClosedRangeDirectFiniteShapeProductRouteInputNamesW773",
+    "Dbounded.sourceTriangulationClosedRangeDirectFiniteShapeProductRouteInputNamesW773_count",
+    "Dbounded.MetrizableSourceTriangulationClosedRangeDirectFiniteShapeProductRouteStateW773",
+    "Dbounded.currentMetrizableSourceTriangulationClosedRangeDirectFiniteShapeProductRouteSupportStateW773",
+    "Dbounded.currentW773SourceTriangulationClosedRangeProductRouteState_productSuccess"
   ],
   "known_gaps": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
@@ -7139,14 +7161,14 @@
     "Construct W696 closed-range endpoint-topology data.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
     "Construct direct finite-shape WPP source data.",
-    "Construct direct localization triangulated source data and remaining Dbounded stable-infinity inputs."
+    "Construct remaining Dbounded stable-infinity inputs."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "packet_zip": "packets/lean_lca_exact_category_challenge.zip",
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": null,
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "No worker lane admitted for W772; parent-solo strategy composed existing W696/W771 routes in a helper module without touching the oversized WPP file.",
+  "worker_frontier_summary": "No worker lane admitted for W773; parent-solo strategy derived W657 direct-localization source-core data from W735/W722 source-triangulation data in a helper module without touching the oversized WPP file.",
   "claim_review_result": "not_product_success; update_goal_not_allowed",
   "remaining_gaps": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
@@ -7154,9 +7176,9 @@
     "Construct W696 closed-range endpoint-topology data.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
     "Construct direct finite-shape WPP source data.",
-    "Construct direct localization triangulated source data and remaining Dbounded stable-infinity inputs."
+    "Construct remaining Dbounded stable-infinity inputs."
   ],
-  "next_recommended_goal": "Continue from W772 by constructing the universal left-right comparison isomorphism, concrete W735 branch data, W696 closed-range endpoint-topology data, the triangulated-closure premise, direct finite-shape WPP source data, direct localization triangulated source data, and remaining Dbounded stable-infinity inputs; rerun product-success terminal audit only after no known gaps remain.",
+  "next_recommended_goal": "Continue from W773 by constructing the universal left-right comparison isomorphism, concrete W735 branch data, W696 closed-range endpoint-topology data, the triangulated-closure premise, direct finite-shape WPP source data, and remaining Dbounded stable-infinity inputs; rerun product-success terminal audit only after no known gaps remain.",
   "implemented_declarations": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
     "Dbounded.exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeafInputsW758",
@@ -12206,9 +12228,22 @@
     "Dbounded.closedRangeDirectFiniteShapeProductRouteInputNamesW772_count",
     "Dbounded.MetrizableClosedRangeDirectFiniteShapeProductRouteStateW772",
     "Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteSupportStateW772",
-    "Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteStateW772_productSuccess"
+    "Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteStateW772_productSuccess",
+    "Dbounded.MetrizableClosedMapSourceTriangulationClosedRangeDirectFiniteShapeBranchDataW773",
+    "Dbounded.MetrizableClosedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeBranchDataW773",
+    "Dbounded.directLocalizationOfClosedMapSourceTriangulationW773",
+    "Dbounded.directLocalizationOfClosedEmbeddingSourceTriangulationW773",
+    "Dbounded.closedMapClosedRangeDataOfSourceTriangulationW773",
+    "Dbounded.closedEmbeddingClosedRangeDataOfSourceTriangulationW773",
+    "Dbounded.productEvidence_of_closedMapSourceTriangulationClosedRangeDirectFiniteShapeRouteW773",
+    "Dbounded.productEvidence_of_closedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeRouteW773",
+    "Dbounded.sourceTriangulationClosedRangeDirectFiniteShapeProductRouteInputNamesW773",
+    "Dbounded.sourceTriangulationClosedRangeDirectFiniteShapeProductRouteInputNamesW773_count",
+    "Dbounded.MetrizableSourceTriangulationClosedRangeDirectFiniteShapeProductRouteStateW773",
+    "Dbounded.currentMetrizableSourceTriangulationClosedRangeDirectFiniteShapeProductRouteSupportStateW773",
+    "Dbounded.currentW773SourceTriangulationClosedRangeProductRouteState_productSuccess"
   ],
-  "generated_utc": "2026-05-25T03:19:36Z",
+  "generated_utc": "2026-05-25T03:30:29Z",
   "support_result_classification": "nonterminal_support_increment",
   "implemented_declarations_checked": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
@@ -17289,7 +17324,20 @@
     "Dbounded.closedRangeDirectFiniteShapeProductRouteInputNamesW772_count",
     "Dbounded.MetrizableClosedRangeDirectFiniteShapeProductRouteStateW772",
     "Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteSupportStateW772",
-    "Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteStateW772_productSuccess"
+    "Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteStateW772_productSuccess",
+    "Dbounded.MetrizableClosedMapSourceTriangulationClosedRangeDirectFiniteShapeBranchDataW773",
+    "Dbounded.MetrizableClosedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeBranchDataW773",
+    "Dbounded.directLocalizationOfClosedMapSourceTriangulationW773",
+    "Dbounded.directLocalizationOfClosedEmbeddingSourceTriangulationW773",
+    "Dbounded.closedMapClosedRangeDataOfSourceTriangulationW773",
+    "Dbounded.closedEmbeddingClosedRangeDataOfSourceTriangulationW773",
+    "Dbounded.productEvidence_of_closedMapSourceTriangulationClosedRangeDirectFiniteShapeRouteW773",
+    "Dbounded.productEvidence_of_closedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeRouteW773",
+    "Dbounded.sourceTriangulationClosedRangeDirectFiniteShapeProductRouteInputNamesW773",
+    "Dbounded.sourceTriangulationClosedRangeDirectFiniteShapeProductRouteInputNamesW773_count",
+    "Dbounded.MetrizableSourceTriangulationClosedRangeDirectFiniteShapeProductRouteStateW773",
+    "Dbounded.currentMetrizableSourceTriangulationClosedRangeDirectFiniteShapeProductRouteSupportStateW773",
+    "Dbounded.currentW773SourceTriangulationClosedRangeProductRouteState_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
@@ -17298,13 +17346,13 @@
     "Construct concrete W735 branch data values.",
     "Construct W696 closed-range endpoint-topology data.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
-    "Construct direct finite-shape WPP source data, direct localization triangulated source data, and remaining Dbounded stable-infinity inputs.",
+    "Construct direct finite-shape WPP source data and remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "latest_verified_increment": "W772 closed-range direct finite-shape route",
-  "source_tree_hash": "4bb35508af49aa71ee4a9b7446586baa404c2ed01f21ed94c421641bbba992fd",
-  "summary_log_tail": "Focused W772 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, new-file accounting, and rendered-report precheck gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "git_commit_note": "Commit SHA is recorded after verified W772 commit and push closeout.",
+  "latest_verified_increment": "W773 source-triangulation closed-range route",
+  "source_tree_hash": "1ed84f1a1c441c4721a976ded8c7c83086a978b76e2956d34d665705f24b7581",
+  "summary_log_tail": "Focused W773 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, new-file accounting, and rendered-report precheck gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "git_commit_note": "Commit SHA is recorded after verified W773 commit and push closeout.",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -19259,6 +19307,16 @@
       "product_complete": false,
       "update_goal_allowed": false,
       "note": "Terminal outcome remains blocked_nonterminal_frontier for W772; update_goal is not allowed."
+    },
+    "w773_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T03:30:29Z",
+      "source_tree_hash": "1ed84f1a1c441c4721a976ded8c7c83086a978b76e2956d34d665705f24b7581",
+      "latest_verified_increment": "W773 source-triangulation closed-range route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "Terminal outcome remains blocked_nonterminal_frontier for W773; update_goal is not allowed."
     }
   },
   "classification": "verified_nonterminal_support_increment",

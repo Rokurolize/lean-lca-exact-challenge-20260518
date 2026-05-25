@@ -160,47 +160,47 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W772 closed-range direct finite-shape route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W773 source-triangulation closed-range route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/ClosedRangeDirectFiniteShapeProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T031101Z_codex_parent_w772</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/SourceTriangulationClosedRangeDirectFiniteShapeProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T032214Z_codex_parent_w773</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W772 closed-range direct finite-shape route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 12:16 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W773 source-triangulation closed-range route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 12:28 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W772 replaces W771's W694 closure-kernel endpoint-topology field with W696 closed-range endpoint-topology data. Closed-map and closed-embedding branch records now pass through W696 into the W771 route. The increment lives in a new 173-line helper module and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W773 removes W772's separate W657 direct-localization source-core field by deriving it from the W735 branch's W722 source-triangulation data. Closed-map and closed-embedding branch records now pass through W735 source data into the W772 route. The increment lives in a new 198-line helper module and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>closureKernelEndpointTopologyOfClosedMapClosedRangeW772</code> and the closed-embedding counterpart apply the W696 closed-range endpoint-topology adapter.</li>
-            <li><code>closedMapClosureKernelDataOfClosedRangeW772</code> and <code>closedEmbeddingClosureKernelDataOfClosedRangeW772</code> convert W772 branch data into the W771 closure-kernel surface.</li>
-            <li><code>productEvidence_of_closedMapClosedRangeDirectFiniteShapeRouteW772</code> and <code>productEvidence_of_closedEmbeddingClosedRangeDirectFiniteShapeRouteW772</code> expose closed-range direct finite-shape product evidence while keeping product success false.</li>
+            <li><code>directLocalizationOfClosedMapSourceTriangulationW773</code> and the closed-embedding counterpart build W657 source-core data from W735 source-triangulation fields.</li>
+            <li><code>closedMapClosedRangeDataOfSourceTriangulationW773</code> and <code>closedEmbeddingClosedRangeDataOfSourceTriangulationW773</code> convert W773 branch data into the W772 closed-range surface.</li>
+            <li><code>productEvidence_of_closedMapSourceTriangulationClosedRangeDirectFiniteShapeRouteW773</code> and <code>productEvidence_of_closedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeRouteW773</code> expose source-triangulation closed-range product evidence while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/ClosedRangeDirectFiniteShapeProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.ClosedRangeDirectFiniteShapeProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/SourceTriangulationClosedRangeDirectFiniteShapeProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.SourceTriangulationClosedRangeDirectFiniteShapeProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T031101Z_codex_parent_w772/w772_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T032214Z_codex_parent_w773/w773_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 173 lines with 13 top-level declarations.</li>
-            <li><code>w772_goal_sha_delta_decision.tsv</code> records the active-goal SHA drift and the decision to continue under Round 15 constraints before focused verification.</li>
-            <li>Focused W772 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 198 lines with 13 top-level declarations.</li>
+            <li><code>goal_sha_comparison_before_focused.tsv</code> and <code>goal_sha_comparison_after_focused.tsv</code> record that the active-goal SHA stayed stable for W773 focused verification.</li>
+            <li>Focused W773 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W772 work.</p></div>
-      <p>W771 replaced W770's generic <code>MetrizableExactAtKernelCokernelConditionedTopologyInputs</code> field with W695 closure-kernel endpoint-topology data.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W773 work.</p></div>
+      <p>W772 replaced W771's W694 closure-kernel endpoint-topology field with W696 closed-range endpoint-topology data.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct W696 closed-range endpoint-topology data, the triangulated-closure premise, direct finite-shape WPP source data, direct localization triangulated source data, and the remaining Dbounded stable-infinity inputs.</li>
+        <li>Construct W696 closed-range endpoint-topology data, the triangulated-closure premise, direct finite-shape WPP source data, and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>

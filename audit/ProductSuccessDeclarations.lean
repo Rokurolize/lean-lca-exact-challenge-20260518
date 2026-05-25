@@ -10,6 +10,7 @@ import LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.BranchLocalizedDirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.ClosureKernelDirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.ClosedRangeDirectFiniteShapeProductRoute
+import LeanLCAExactChallenge.Derived.SourceTriangulationClosedRangeDirectFiniteShapeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9158,6 +9159,27 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableClosedRangeDirectFiniteShapeProductRouteStateW772
   #check Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteSupportStateW772
   #check Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteStateW772_productSuccess
+  #check
+    Dbounded.MetrizableClosedMapSourceTriangulationClosedRangeDirectFiniteShapeBranchDataW773
+  #check
+    Dbounded.MetrizableClosedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeBranchDataW773
+  #check Dbounded.directLocalizationOfClosedMapSourceTriangulationW773
+  #check Dbounded.directLocalizationOfClosedEmbeddingSourceTriangulationW773
+  #check Dbounded.closedMapClosedRangeDataOfSourceTriangulationW773
+  #check Dbounded.closedEmbeddingClosedRangeDataOfSourceTriangulationW773
+  #check
+    Dbounded.productEvidence_of_closedMapSourceTriangulationClosedRangeDirectFiniteShapeRouteW773
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingSourceTriangulationClosedRangeDirectFiniteShapeRouteW773
+  #check
+    Dbounded.sourceTriangulationClosedRangeDirectFiniteShapeProductRouteInputNamesW773
+  #check
+    Dbounded.sourceTriangulationClosedRangeDirectFiniteShapeProductRouteInputNamesW773_count
+  #check
+    Dbounded.MetrizableSourceTriangulationClosedRangeDirectFiniteShapeProductRouteStateW773
+  #check
+    Dbounded.currentMetrizableSourceTriangulationClosedRangeDirectFiniteShapeProductRouteSupportStateW773
+  #check Dbounded.currentW773SourceTriangulationClosedRangeProductRouteState_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
