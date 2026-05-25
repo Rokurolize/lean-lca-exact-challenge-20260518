@@ -15,6 +15,7 @@ import LeanLCAExactChallenge.Derived.RouteDataSelectedCochainStableRoute
 import LeanLCAExactChallenge.Derived.HomologyFreeSelectedCochainStableRoute
 import LeanLCAExactChallenge.Derived.HomologyFreeRouteDataProviderFromRouteData
 import LeanLCAExactChallenge.Derived.RouteDataProviderFromComparisonBijectivity
+import LeanLCAExactChallenge.Derived.EndpointTopologyFromClosednessBranch
 
 set_option autoImplicit false
 
@@ -460,5 +461,18 @@ theorem originalFourTaskContract_comparisonBijectivityRouteData_nonterminal :
     Dbounded.currentMetrizableComparisonBijectivityRouteDataProviderStateW855.productSuccessClaimed =
       false :=
   Dbounded.currentW855ComparisonBijectivityRouteDataProvider_productSuccess
+
+theorem originalFourTaskContract_endpointTopologyFacts_remainingFactCount :
+    Dbounded.endpointTopologyFactInputNamesW856.length = 3 :=
+  Dbounded.endpointTopologyFactInputNamesW856_count
+
+theorem originalFourTaskContract_endpointFactsHomologyFreeRouteData_inputCount :
+    Dbounded.endpointFactsHomologyFreeRouteDataInputNamesW856.length = 8 :=
+  Dbounded.endpointFactsHomologyFreeRouteDataInputNamesW856_count
+
+theorem originalFourTaskContract_endpointFactsHomologyFreeRouteData_nonterminal :
+    Dbounded.currentMetrizableEndpointFactsHomologyFreeRouteDataStateW856.productSuccessClaimed =
+      false :=
+  Dbounded.currentW856EndpointFactsHomologyFreeRouteData_productSuccess
 
 end LeanLCAExactChallenge
