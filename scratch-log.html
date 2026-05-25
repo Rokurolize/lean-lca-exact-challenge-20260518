@@ -160,49 +160,48 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W812 homology-detected iso-closure terminal route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W814 category-homology bijective-open route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/IsoClosureHomologyDetectionTerminalProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T101049Z_codex_parent_w812_discovery</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/CategoryHomologyComparisonBijectiveOpenRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T111154Z_codex_parent_w814_category_homology_scout</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W812 homology-detected iso-closure terminal route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 19:15 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W814 category-homology bijective-open route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 20:20 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W812 derives the homology-detection evidence needed to collapse W651 iso-closure endpoints back to exact-acyclic homotopy objects. The detection input comes from W735 exact-input fields plus W768 universal-comparison homology existence through W790/W696/W668, so W809 strict realization can supply W651 realization without adding a standalone premise. The new module is 180 lines with 12 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W814 records the accepted W814 scout reduction from the category-level homology frontier to a concrete topological theorem: for every <code>MetrizableLCA</code> short complex, the canonical left-right homology comparison must be bijective and open. Once that theorem is supplied, the new helper constructs <code>CategoryWithHomology MetrizableLCA</code> through <code>MetrizableLCA.isIso_of_bijective_openMap</code> and mathlib's <code>ShortComplex.hasHomology_of_isIsoLeftRightHomologyComparison</code>. The new module is 109 lines with 8 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>homologyDetectionOfClosedMapExactInputsW812</code> and <code>homologyDetectionOfClosedEmbeddingExactInputsW812</code> derive W668 homology detection from the existing branch inputs.</li>
-            <li><code>isoClosureRealizationOfStrictRealizationHomologyDetectionW812</code> turns W809 strict realization into W651 iso-closure realization under that detected homology input.</li>
-            <li><code>productEvidence_of_closedMapHomologyDetectedIsoClosureRouteW812</code> and <code>productEvidence_of_closedEmbeddingHomologyDetectedIsoClosureRouteW812</code> expose terminal product evidence while product success remains false.</li>
+            <li><code>comparisonBijectiveOpenTargetW814</code> names the exact bijective-open comparison theorem needed for arbitrary <code>MetrizableLCA</code> short complexes.</li>
+            <li><code>categoryWithHomology_of_comparisonBijectiveOpenW814</code> proves that this concrete comparison theorem supplies <code>CategoryWithHomology MetrizableLCA</code>.</li>
+            <li><code>currentW814CategoryHomologyComparisonBijectiveOpen_productSuccess</code> keeps the helper explicitly nonterminal while recording the remaining input.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/IsoClosureHomologyDetectionTerminalProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.IsoClosureHomologyDetectionTerminalProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/CategoryHomologyComparisonBijectiveOpenRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.CategoryHomologyComparisonBijectiveOpenRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/w812_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T111154Z_codex_parent_w814_category_homology_scout/w814_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>goal_sha_comparison_after_focused.tsv</code> shows the run goal, active goal file, and sidecar all matched.</li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 180 lines with 12 top-level declarations.</li>
-            <li><code>w812_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
-            <li>Focused W812 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
-            <li><code>work_discovery/CANDIDATE_MATRIX.json</code> records the accepted W735/W768 homology-detection route and the rejected raw iso-closure-collapse and legacy adapter probes.</li>
+            <li><code>w813_worker_result_summary.json</code> records that three W813 scouts produced no accepted implementation candidate but identified the category-homology bottleneck.</li>
+            <li><code>w814_parent_probe_rerun_result.json</code> confirms the W814 scratch probe passed before integration.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 109 lines with 8 top-level declarations.</li>
+            <li>Focused W814 gate status is recorded: source, module build, root import, product declaration, run-owned required declaration, full build, diff check, forbidden-token scan, and expected product-success grep miss all passed.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W812 work.</p></div>
-      <p>W810 proved W651 iso-closure realization data supplies W809 strict homotopy-object realization by reflexive endpoint isomorphisms.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W814 work.</p></div>
+      <p>W812 derived homology detection from W735 exact-input fields plus W768 universal-comparison homology existence, then used it to route strict realization evidence through the W651 iso-closure terminal surface.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
+        <li>Prove the W814 bijective-open theorem for the canonical left-right homology comparison of arbitrary <code>MetrizableLCA</code> short complexes.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct exact-acyclic homotopy-object strict triangleh realization data now that W812 derives the W651 iso-closure bridge from W735/W768 homology detection.</li>
+        <li>Construct exact-acyclic homotopy-object strict triangleh realization data without looping through W651/W809 equivalence.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>

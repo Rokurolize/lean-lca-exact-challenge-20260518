@@ -4,6 +4,7 @@ import LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer
 import LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields
 import LeanLCAExactChallenge.Derived.LeftRightComparisonRoute
 import LeanLCAExactChallenge.Derived.CategoryHomologyStableRoute
+import LeanLCAExactChallenge.Derived.CategoryHomologyComparisonBijectiveOpenRoute
 import LeanLCAExactChallenge.Derived.KernelCokernelProductRoute
 import LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
 import LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
@@ -9880,6 +9881,16 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check
     Dbounded.currentMetrizableHomologyDetectedIsoClosureTerminalRouteStateW812
   #check Dbounded.currentW812HomologyDetectedIsoClosureTerminalRoute_productSuccess
+  #check MetrizableLCA.comparisonBijectiveOpenTargetW814
+  #check MetrizableLCA.categoryWithHomology_of_comparisonBijectiveOpenW814
+  #check MetrizableLCA.categoryHomologyComparisonBijectiveOpenInputNamesW814
+  #check
+    MetrizableLCA.categoryHomologyComparisonBijectiveOpenInputNamesW814_count
+  #check MetrizableLCA.CategoryHomologyComparisonBijectiveOpenRouteStateW814
+  #check
+    MetrizableLCA.currentCategoryHomologyComparisonBijectiveOpenRouteStateW814
+  #check
+    MetrizableLCA.currentW814CategoryHomologyComparisonBijectiveOpen_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
