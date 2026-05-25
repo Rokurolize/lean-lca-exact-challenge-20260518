@@ -47,6 +47,9 @@ contract-completing stable bounded derived infinity-category witness.
 #check LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfTargetIsoW833
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfTargetIsoLeftCalculusW833
+#check LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfIsoClosureRealizationW834
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfIsoClosureLeftCalculusW834
 
 namespace LeanLCAExactChallenge
 
@@ -100,5 +103,13 @@ theorem originalFourTaskContract_targetIsoLeftCalculusRoute_concreteInputCount :
 theorem originalFourTaskContract_targetIsoLeftCalculusRoute_expandedRequiredFieldCount :
     Dbounded.targetIsoLeftCalculusExpandedRequiredFieldNamesW833.length = 7 :=
   Dbounded.targetIsoLeftCalculusExpandedRequiredFieldNamesW833_count
+
+theorem originalFourTaskContract_isoClosureLeftCalculusRoute_concreteInputCount :
+    Dbounded.isoClosureLeftCalculusInputNamesW834.length = 3 :=
+  Dbounded.isoClosureLeftCalculusInputNamesW834_count
+
+theorem originalFourTaskContract_isoClosureLeftCalculusRoute_expandedRequiredFieldCount :
+    Dbounded.isoClosureLeftCalculusExpandedRequiredFieldNamesW834.length = 7 :=
+  Dbounded.isoClosureLeftCalculusExpandedRequiredFieldNamesW834_count
 
 end LeanLCAExactChallenge
