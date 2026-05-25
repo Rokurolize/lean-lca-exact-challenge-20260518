@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w792-target-homology-zero-boundary-source-pi-zero-route",
-  "generated_utc": "2026-05-25T06:47:15Z",
-  "source_tree_hash": "c449f66f13858d2195148f1dde165513f5faee24e6489a7f90830a93ce33a052",
-  "summary": "W792 removes the separate W780 Epi right-surjectivity boundary by deriving WPP limit stability from W735 exactInputs.boundaryData through W716 right-open and source-pi-zero projections, then feeding W774 normalized direct-source evidence. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w793-target-homology-zero-concrete-leaf-colimit-route",
+  "generated_utc": "2026-05-25T06:57:11Z",
+  "source_tree_hash": "721d9f8e3da7d309571535ef95381d9fa3f2dd29c7726288ffb91a43ad2ea341",
+  "summary": "W793 removes the selected-W461 and row-aware provider fields by deriving WPP colimit stability from W735 concrete leaf data through the W758/W757 exact-acyclic WPP-op colimit closure route, while reusing W792 boundary-data limit stability and feeding W774 normalized direct-source evidence. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -18265,6 +18265,66 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T063732Z_codex_parent_w792/logs/w792_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroConcreteLeafColimitProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroConcreteLeafColimitProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_root_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/w793_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_required_declarations.log exit_code=0"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_focused_forbidden_tokens.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/product_success_true_grep.log exit_code=1"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T064928Z_codex_parent_w793/logs/w793_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -23616,7 +23676,20 @@
     "Dbounded.targetHomologyZeroBoundarySourcePiZeroProductRouteInputNamesW792_count",
     "Dbounded.MetrizableTargetHomologyZeroBoundarySourcePiZeroRouteStateW792",
     "Dbounded.currentMetrizableTargetHomologyZeroBoundarySourcePiZeroRouteStateW792",
-    "Dbounded.currentW792TargetHomologyZeroBoundarySourcePiZeroRoute_productSuccess"
+    "Dbounded.currentW792TargetHomologyZeroBoundarySourcePiZeroRoute_productSuccess",
+    "Dbounded.colimitStabilityOfClosedMapConcreteLeafInputsW793",
+    "Dbounded.colimitStabilityOfClosedEmbeddingConcreteLeafInputsW793",
+    "Dbounded.MetrizableClosedMapTargetHomologyZeroConcreteLeafColimitBranchDataW793",
+    "Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroConcreteLeafColimitBranchDataW793",
+    "Dbounded.closedMapNormalizedDataOfConcreteLeafColimitW793",
+    "Dbounded.closedEmbeddingNormalizedDataOfConcreteLeafColimitW793",
+    "Dbounded.productEvidence_of_closedMapConcreteLeafColimitRouteW793",
+    "Dbounded.productEvidence_of_closedEmbeddingConcreteLeafColimitRouteW793",
+    "Dbounded.targetHomologyZeroConcreteLeafColimitProductRouteInputNamesW793",
+    "Dbounded.targetHomologyZeroConcreteLeafColimitProductRouteInputNamesW793_count",
+    "Dbounded.MetrizableTargetHomologyZeroConcreteLeafColimitRouteStateW793",
+    "Dbounded.currentMetrizableTargetHomologyZeroConcreteLeafColimitRouteStateW793",
+    "Dbounded.currentW793TargetHomologyZeroConcreteLeafColimitRoute_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -23624,8 +23697,6 @@
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
     "Construct target homology-zero realization data for exact-acyclic homotopy objects.",
     "Construct homology existence for all MetrizableLCA cochain complexes in every degree.",
-    "Construct selected W461 provider data for WPP-op left closed-embedding.",
-    "Construct row-aware closed-map or closed-embedding provider data for WPP-op SnakeInput.",
     "Construct remaining Dbounded stable-infinity inputs."
   ],
   "support_result_classification": "nonterminal_support_increment",
@@ -23634,11 +23705,11 @@
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete W735 branch data values.",
     "Construct target homology-zero realization data and global homology existence.",
-    "Construct selected W461 provider data, row-aware closed-map or closed-embedding provider data, and remaining Dbounded stable-infinity inputs.",
+    "Construct remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W792 source, module, root import, product declaration, run-owned required declaration, full build, JSON, diff, helper accounting, and rendered-report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W792 target homology-zero boundary source-pi-zero route",
+  "summary_log_tail": "Focused W793 source, module, root import, product declaration, run-owned required declaration, full build, JSON, diff, helper accounting, stale-goal delta decision, and rendered-report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W793 target homology-zero concrete-leaf colimit route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -25317,6 +25388,13 @@
       "latest_verified_increment": "W792 target homology-zero boundary source-pi-zero route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W792 metadata records the target homology-zero boundary source-pi-zero route and leaves product_success/product_complete false."
+    },
+    "w793_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T06:57:11Z",
+      "source_tree_hash": "721d9f8e3da7d309571535ef95381d9fa3f2dd29c7726288ffb91a43ad2ea341",
+      "latest_verified_increment": "W793 target homology-zero concrete-leaf colimit route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W793 metadata records the target homology-zero concrete-leaf colimit route and leaves product_success/product_complete false."
     }
   }
 }

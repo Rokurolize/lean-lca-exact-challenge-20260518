@@ -30,6 +30,7 @@ import LeanLCAExactChallenge.Derived.TargetHomologyZeroClosedRangeTargetIsoSelec
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroExactInputsClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundaryDataExactInputsProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundarySourcePiZeroProductRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroConcreteLeafColimitProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9523,6 +9524,21 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableTargetHomologyZeroBoundarySourcePiZeroRouteStateW792
   #check
     Dbounded.currentW792TargetHomologyZeroBoundarySourcePiZeroRoute_productSuccess
+  #check Dbounded.colimitStabilityOfClosedMapConcreteLeafInputsW793
+  #check Dbounded.colimitStabilityOfClosedEmbeddingConcreteLeafInputsW793
+  #check
+    Dbounded.MetrizableClosedMapTargetHomologyZeroConcreteLeafColimitBranchDataW793
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroConcreteLeafColimitBranchDataW793
+  #check Dbounded.closedMapNormalizedDataOfConcreteLeafColimitW793
+  #check Dbounded.closedEmbeddingNormalizedDataOfConcreteLeafColimitW793
+  #check Dbounded.productEvidence_of_closedMapConcreteLeafColimitRouteW793
+  #check Dbounded.productEvidence_of_closedEmbeddingConcreteLeafColimitRouteW793
+  #check Dbounded.targetHomologyZeroConcreteLeafColimitProductRouteInputNamesW793
+  #check Dbounded.targetHomologyZeroConcreteLeafColimitProductRouteInputNamesW793_count
+  #check Dbounded.MetrizableTargetHomologyZeroConcreteLeafColimitRouteStateW793
+  #check Dbounded.currentMetrizableTargetHomologyZeroConcreteLeafColimitRouteStateW793
+  #check Dbounded.currentW793TargetHomologyZeroConcreteLeafColimitRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
