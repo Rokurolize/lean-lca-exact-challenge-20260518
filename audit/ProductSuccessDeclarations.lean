@@ -12,6 +12,7 @@ import LeanLCAExactChallenge.Derived.ClosureKernelDirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.ClosedRangeDirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.SourceTriangulationClosedRangeDirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.NormalizedDirectSourceClosedRangeProductRoute
+import LeanLCAExactChallenge.Derived.OpClosureNormalizedDirectSourceClosedRangeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9199,6 +9200,21 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check
     Dbounded.currentMetrizableNormalizedDirectSourceClosedRangeProductRouteSupportStateW774
   #check Dbounded.currentW774NormalizedDirectSourceClosedRangeRoute_productSuccess
+  #check Dbounded.MetrizableClosedMapOpClosureNormalizedClosedRangeBranchDataW775
+  #check
+    Dbounded.MetrizableClosedEmbeddingOpClosureNormalizedClosedRangeBranchDataW775
+  #check Dbounded.colimitStabilityOfClosedMapOpClosureW775
+  #check Dbounded.colimitStabilityOfClosedEmbeddingOpClosureW775
+  #check Dbounded.closedMapNormalizedDataOfOpClosureW775
+  #check Dbounded.closedEmbeddingNormalizedDataOfOpClosureW775
+  #check Dbounded.productEvidence_of_closedMapOpClosureNormalizedClosedRangeRouteW775
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingOpClosureNormalizedClosedRangeRouteW775
+  #check Dbounded.opClosureNormalizedClosedRangeProductRouteInputNamesW775
+  #check Dbounded.opClosureNormalizedClosedRangeProductRouteInputNamesW775_count
+  #check Dbounded.MetrizableOpClosureNormalizedClosedRangeProductRouteStateW775
+  #check Dbounded.currentMetrizableOpClosureNormalizedClosedRangeProductRouteSupportStateW775
+  #check Dbounded.currentW775OpClosureNormalizedClosedRangeRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
