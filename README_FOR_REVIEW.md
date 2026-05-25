@@ -34,6 +34,8 @@ W838では、W837に残っていたuniversal comparison isomorphism入力を、W
 
 W839では、W838に残っていた直接のW783 strict triangleh realization入力を、W790 target homology-zero payloadからW784 target-isomorphism realizationを作り、そこからW783へ送るrouteへ置き換えた。`Dbounded.cochainHasHomology_of_comparisonBijectivityW839`がW831のcomparison bijectivity routeからW790用の全cochain homologyを供給し、`Dbounded.trianglehRealizationOfClosedMapTargetHomologyZeroW839`と`Dbounded.trianglehRealizationOfClosedEmbeddingTargetHomologyZeroW839`がW783 realizationを作り、`Dbounded.directBoundedLeftCalculusOfClosedMapTargetHomologyZeroW839`、`Dbounded.directBoundedLeftCalculusOfClosedEmbeddingTargetHomologyZeroW839`、および対応するbounded derived infinity-category routeまでコンパイル確認した。ただしW735 branch data、W790 target homology-zero realization data、`Dbounded MetrizableLCA`の有限極限、有限余極限、pretriangulated構造、triangulated構造、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
 
+W840では、W839のtarget homology-zero left-calculus routeを、既存のwalking-parallel-pair finite-shape transfer routeへ接続した。`Dbounded.remainingStableFieldsOfClosedMapTargetHomologyZeroFiniteShapeW840`とclosed-embedding版は、W839が選ぶleft-calculus semantic fieldsのもとで`MetrizableWalkingParallelPairTransferStableSemanticInputs`から残りのstable fieldsを作る。これにより、W839でprimitiveに残っていた`HasFiniteLimits (Dbounded MetrizableLCA)`と`HasFiniteColimits (Dbounded MetrizableLCA)`は、WPP finite-shape transfer inputから導く形へ移った。ただしW735 branch data、W790 target homology-zero realization data、WPP finite-shape transfer input、pretriangulated構造、triangulated構造、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス
