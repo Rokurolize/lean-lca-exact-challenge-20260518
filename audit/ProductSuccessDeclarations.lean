@@ -14,6 +14,7 @@ import LeanLCAExactChallenge.Derived.SourceTriangulationClosedRangeDirectFiniteS
 import LeanLCAExactChallenge.Derived.NormalizedDirectSourceClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.OpClosureNormalizedDirectSourceClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.LimitOpClosureNormalizedClosedRangeProductRoute
+import LeanLCAExactChallenge.Derived.DirectRightLcaLimitOpClosureNormalizedClosedRangeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9233,6 +9234,28 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check
     Dbounded.currentMetrizableLimitOpClosureNormalizedClosedRangeProductRouteSupportStateW776
   #check Dbounded.currentW776LimitOpClosureNormalizedClosedRangeRoute_productSuccess
+  #check
+    Dbounded.MetrizableClosedMapDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777
+  #check
+    Dbounded.MetrizableClosedEmbeddingDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777
+  #check Dbounded.limitClosureOfClosedMapDirectRightLcaW777
+  #check Dbounded.limitClosureOfClosedEmbeddingDirectRightLcaW777
+  #check Dbounded.closedMapLimitOpClosureDataOfDirectRightLcaW777
+  #check Dbounded.closedEmbeddingLimitOpClosureDataOfDirectRightLcaW777
+  #check
+    Dbounded.productEvidence_of_closedMapDirectRightLcaLimitOpClosureNormalizedClosedRangeRouteW777
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingDirectRightLcaLimitOpClosureNormalizedClosedRangeRouteW777
+  #check
+    Dbounded.directRightLcaLimitOpClosureNormalizedClosedRangeProductRouteInputNamesW777
+  #check
+    Dbounded.directRightLcaLimitOpClosureNormalizedClosedRangeProductRouteInputNamesW777_count
+  #check
+    Dbounded.MetrizableDirectRightLcaLimitOpClosureNormalizedClosedRangeProductRouteStateW777
+  #check
+    Dbounded.currentMetrizableDirectRightLcaLimitOpClosureNormalizedClosedRangeProductRouteSupportStateW777
+  #check
+    Dbounded.currentW777DirectRightLcaLimitOpClosureNormalizedClosedRangeRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

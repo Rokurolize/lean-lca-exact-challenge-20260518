@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w776-limit-op-closure-normalized-closed-range-route",
-  "generated_utc": "2026-05-25T03:57:53Z",
-  "source_tree_hash": "ab75d94db1178eee9d78ff683603b57284fdd7ec16cd547a522498f43c7e05e4",
-  "summary": "W776 replaces W775's abstract WPP limit-stability field with direct WPP limit comparison plus exact-acyclic limit closure via metrizableWalkingParallelPairLimitStability_of_comparison_and_closure, feeding W775's WPP-op closure normalized closed-range route. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w777-direct-right-lca-limit-op-closure-route",
+  "generated_utc": "2026-05-25T04:07:00Z",
+  "source_tree_hash": "f7ff716731976671b275ffe72aed7e206657ee1c626fbac762ef9f8effc89ff6",
+  "summary": "W777 replaces W776's opaque WPP exact-acyclic limit-closure field with the direct-left/algebraic-right-LCA route via metrizableWalkingParallelPairLimitClosure_of_directLeftAlgebraicRightLca, feeding W776's limit/op-closure normalized closed-range route. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -17530,6 +17530,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035159Z_codex_parent_w776/logs/w776_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectRightLcaLimitOpClosureNormalizedClosedRangeProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035944Z_codex_parent_w777/logs/w777_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectRightLcaLimitOpClosureNormalizedClosedRangeProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035944Z_codex_parent_w777/logs/w777_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035944Z_codex_parent_w777/logs/w777_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035944Z_codex_parent_w777/w777_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035944Z_codex_parent_w777/logs/w777_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035944Z_codex_parent_w777/logs/w777_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035944Z_codex_parent_w777/logs/w777_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035944Z_codex_parent_w777/logs/w777_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035944Z_codex_parent_w777/logs/w777_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035944Z_codex_parent_w777/logs/w777_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -22665,7 +22710,20 @@
     "Dbounded.limitOpClosureNormalizedClosedRangeProductRouteInputNamesW776_count",
     "Dbounded.MetrizableLimitOpClosureNormalizedClosedRangeProductRouteStateW776",
     "Dbounded.currentMetrizableLimitOpClosureNormalizedClosedRangeProductRouteSupportStateW776",
-    "Dbounded.currentW776LimitOpClosureNormalizedClosedRangeRoute_productSuccess"
+    "Dbounded.currentW776LimitOpClosureNormalizedClosedRangeRoute_productSuccess",
+    "Dbounded.MetrizableClosedMapDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777",
+    "Dbounded.MetrizableClosedEmbeddingDirectRightLcaLimitOpClosureNormalizedClosedRangeBranchDataW777",
+    "Dbounded.limitClosureOfClosedMapDirectRightLcaW777",
+    "Dbounded.limitClosureOfClosedEmbeddingDirectRightLcaW777",
+    "Dbounded.closedMapLimitOpClosureDataOfDirectRightLcaW777",
+    "Dbounded.closedEmbeddingLimitOpClosureDataOfDirectRightLcaW777",
+    "Dbounded.productEvidence_of_closedMapDirectRightLcaLimitOpClosureNormalizedClosedRangeRouteW777",
+    "Dbounded.productEvidence_of_closedEmbeddingDirectRightLcaLimitOpClosureNormalizedClosedRangeRouteW777",
+    "Dbounded.directRightLcaLimitOpClosureNormalizedClosedRangeProductRouteInputNamesW777",
+    "Dbounded.directRightLcaLimitOpClosureNormalizedClosedRangeProductRouteInputNamesW777_count",
+    "Dbounded.MetrizableDirectRightLcaLimitOpClosureNormalizedClosedRangeProductRouteStateW777",
+    "Dbounded.currentMetrizableDirectRightLcaLimitOpClosureNormalizedClosedRangeProductRouteSupportStateW777",
+    "Dbounded.currentW777DirectRightLcaLimitOpClosureNormalizedClosedRangeRoute_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -22674,7 +22732,8 @@
     "Construct W696 closed-range endpoint-topology data.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
     "Construct mapping-cone WPP limit comparison.",
-    "Construct WPP exact-acyclic limit closure.",
+    "Construct WPP limit right-open pure LCA certificate.",
+    "Construct WPP limit right-surjectivity pure LCA certificate.",
     "Construct WPP-op exact-acyclic colimit closure.",
     "Construct remaining Dbounded stable-infinity inputs."
   ],
@@ -22685,11 +22744,11 @@
     "Construct concrete W735 branch data values.",
     "Construct W696 closed-range endpoint-topology data.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
-    "Construct mapping-cone WPP limit comparison, WPP exact-acyclic limit closure, WPP-op exact-acyclic colimit closure, and remaining Dbounded stable-infinity inputs.",
+    "Construct mapping-cone WPP limit comparison, pure LCA right-open and right-surjective WPP limit certificates, WPP-op exact-acyclic colimit closure, and remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W776 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, new-file accounting, and rendered-report precheck gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W776 limit/op-closure normalized closed-range route",
+  "summary_log_tail": "Focused W777 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, new-file accounting, and rendered-report precheck gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W777 direct-right-LCA limit/op-closure route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -24256,6 +24315,13 @@
       "latest_verified_increment": "W776 limit/op-closure normalized closed-range route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W776 metadata records the direct-limit/WPP-op closure normalized closed-range product-route integration and leaves product_success/product_complete false."
+    },
+    "w777_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T04:07:00Z",
+      "source_tree_hash": "f7ff716731976671b275ffe72aed7e206657ee1c626fbac762ef9f8effc89ff6",
+      "latest_verified_increment": "W777 direct-right-LCA limit/op-closure route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W777 metadata records the direct-right-LCA limit/op-closure product-route integration and leaves product_success/product_complete false."
     }
   }
 }
