@@ -1,7 +1,7 @@
 import LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields
 
 /-!
-W765 closes the local W736 comparison-isomorphism frontier under the existing
+W765 closes the local W736 comparison-isomorphism target under the existing
 `CategoryWithHomology MetrizableLCA` premise.
 -/
 

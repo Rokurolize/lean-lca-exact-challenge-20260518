@@ -8,7 +8,7 @@ W819 reduced W818's fiber-saturation condition to a precise cokernel-fiber
 closure statement.  In `MetrizableLCA`, every cokernel is isomorphic to the
 explicit closed-range quotient, so equality under a right homology cokernel
 projection already says that the difference lies in the closed boundary range.
-The comparison frontier is therefore reduced to algebraic bijectivity of the
+The comparison target is therefore reduced to algebraic bijectivity of the
 canonical left-right homology comparison.
 -/
 
