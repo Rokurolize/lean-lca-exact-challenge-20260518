@@ -22,6 +22,7 @@ import LeanLCAExactChallenge.Derived.SelectedW461RowsClosedQuotientEpiProductRou
 import LeanLCAExactChallenge.Derived.HomotopyObjectTriangulatedSelectedW461RowsProductRoute
 import LeanLCAExactChallenge.Derived.TrianglehRealizationHomotopyObjectSelectedW461RowsProductRoute
 import LeanLCAExactChallenge.Derived.TargetIsoRealizationTrianglehSelectedW461RowsProductRoute
+import LeanLCAExactChallenge.Derived.TargetExactAtEndpointTargetIsoSelectedW461RowsProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9376,6 +9377,20 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetIsoRealizationTrianglehRouteStateW784
   #check Dbounded.currentMetrizableTargetIsoRealizationTrianglehRouteStateW784
   #check Dbounded.currentW784TargetIsoRealizationRoute_productSuccess
+  #check Dbounded.MetrizableExactAcyclicHomotopyObjectTargetExactAtPayloadW785
+  #check Dbounded.targetIsoRealizationOfTargetExactAtEndpointW785
+  #check Dbounded.MetrizableClosedMapTargetExactAtEndpointTargetIsoBranchDataW785
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetExactAtEndpointTargetIsoBranchDataW785
+  #check Dbounded.closedMapTargetIsoDataOfTargetExactAtEndpointW785
+  #check Dbounded.closedEmbeddingTargetIsoDataOfTargetExactAtEndpointW785
+  #check Dbounded.productEvidence_of_closedMapTargetExactAtEndpointRouteW785
+  #check Dbounded.productEvidence_of_closedEmbeddingTargetExactAtEndpointRouteW785
+  #check Dbounded.targetExactAtEndpointTargetIsoProductRouteInputNamesW785
+  #check Dbounded.targetExactAtEndpointTargetIsoProductRouteInputNamesW785_count
+  #check Dbounded.MetrizableTargetExactAtEndpointTargetIsoRouteStateW785
+  #check Dbounded.currentMetrizableTargetExactAtEndpointTargetIsoRouteStateW785
+  #check Dbounded.currentW785TargetExactAtEndpointRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
