@@ -58,6 +58,14 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapExactInputsIsoClosureW835
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingExactInputsIsoClosureW835
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapBranchLocalizedW836
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedEmbeddingBranchLocalizedW836
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapBranchLocalizedW836
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingBranchLocalizedW836
 
 namespace LeanLCAExactChallenge
 
@@ -128,5 +136,15 @@ theorem originalFourTaskContract_exactInputsIsoClosureLeftCalculusRoute_expanded
     Dbounded.exactInputsIsoClosureLeftCalculusExpandedRequiredFieldNamesW835.length =
       7 :=
   Dbounded.exactInputsIsoClosureLeftCalculusExpandedRequiredFieldNamesW835_count
+
+theorem originalFourTaskContract_branchLocalizedExactInputsLeftCalculusRoute_concreteInputCount :
+    Dbounded.branchLocalizedExactInputsLeftCalculusInputNamesW836.length =
+      2 :=
+  Dbounded.branchLocalizedExactInputsLeftCalculusInputNamesW836_count
+
+theorem originalFourTaskContract_branchLocalizedExactInputsLeftCalculusRoute_expandedRequiredFieldCount :
+    Dbounded.branchLocalizedExactInputsLeftCalculusExpandedRequiredFieldNamesW836.length =
+      6 :=
+  Dbounded.branchLocalizedExactInputsLeftCalculusExpandedRequiredFieldNamesW836_count
 
 end LeanLCAExactChallenge

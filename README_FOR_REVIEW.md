@@ -26,6 +26,8 @@ W834では、W833のW784 target-isomorphism realization入力を、W810のW651 i
 
 W835では、W834のW696 closed-range endpoint topology入力を、W790経由でW735 closed-map/closed-embedding exact-input branch dataから導くrouteへ置き換えた。`Dbounded.isoClosureLeftCalculusDataOfClosedMapExactInputsW835`と`Dbounded.isoClosureLeftCalculusDataOfClosedEmbeddingExactInputsW835`がW735/W651/W721 dataからW834 dataを作り、`Dbounded.directBoundedLeftCalculusOfClosedMapExactInputsIsoClosureW835`、`Dbounded.directBoundedLeftCalculusOfClosedEmbeddingExactInputsIsoClosureW835`、および対応するbounded derived infinity-category routeまでコンパイル確認した。ただしW735/W651/W721の具体値、`Dbounded MetrizableLCA`の有限極限、有限余極限、pretriangulated構造、triangulated構造、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
 
+W836では、W835の独立したW721 localized-right-adjoint入力を、W735 branch dataがすでに保持している`localizedRightAdjointData`から読むrouteへ置き換えた。`Dbounded.exactInputsLeftCalculusDataOfClosedMapBranchLocalizedW836`と`Dbounded.exactInputsLeftCalculusDataOfClosedEmbeddingBranchLocalizedW836`がW735/W651 dataからW835 dataを作り、`Dbounded.directBoundedLeftCalculusOfClosedMapBranchLocalizedW836`、`Dbounded.directBoundedLeftCalculusOfClosedEmbeddingBranchLocalizedW836`、および対応するbounded derived infinity-category routeまでコンパイル確認した。ただしW735 branch data自体とW651の具体値、`Dbounded MetrizableLCA`の有限極限、有限余極限、pretriangulated構造、triangulated構造、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス
