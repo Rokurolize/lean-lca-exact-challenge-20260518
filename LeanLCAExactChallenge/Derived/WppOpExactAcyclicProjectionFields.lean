@@ -55003,6 +55003,139 @@ theorem
       false :=
   rfl
 
+/--
+W761 closed-map branch: W735 category-homology instance inputs construct the
+W733 leaf record consumed by the W759 exact/stable bridge.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeavesW761
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyInstanceW735
+      inputs)
+
+/--
+W761 closed-embedding branch: W735 category-homology instance inputs construct
+the W733 leaf record consumed by the W759 exact/stable bridge.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyInstanceW735
+      inputs)
+
+/--
+W761 packages closed-map W735 category-homology instance exactness together with
+the accepted stable evidence produced by the same W735 input.
+-/
+noncomputable def
+    exactStableEvidence_of_closedMapCategoryHomologyInstanceConcreteLeavesW761
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppExactStableEvidenceW758
+    where
+  exactAcyclic :=
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeavesW761
+      inputs
+  acceptedStable :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735
+      inputs
+  acceptedStableAccepted :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyInstanceConcreteLeavesW735_accepted
+      inputs
+
+/--
+W761 packages closed-embedding W735 category-homology instance exactness together
+with the accepted stable evidence produced by the same W735 input.
+-/
+noncomputable def
+    exactStableEvidence_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761
+    [CategoryWithHomology MetrizableLCA.{0}]
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppExactStableEvidenceW758
+    where
+  exactAcyclic :=
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761
+      inputs
+  acceptedStable :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735
+      inputs
+  acceptedStableAccepted :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW735_accepted
+      inputs
+
+/-- Input names for the W761 W735 category-homology instance exact/stable bridge. -/
+def exactStableWppOpCategoryHomologyInstanceConcreteLeafInputNamesW761 :
+    List String :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735
+
+theorem
+    exactStableWppOpCategoryHomologyInstanceConcreteLeafInputNamesW761_count :
+    exactStableWppOpCategoryHomologyInstanceConcreteLeafInputNamesW761.length =
+      10 := by
+  simpa [exactStableWppOpCategoryHomologyInstanceConcreteLeafInputNamesW761] using
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyInstanceConcreteLeafInputNamesW735_count
+
+/--
+Current checked W761 state for the W735 category-homology instance concrete leaf
+exact/stable bridge.
+-/
+structure
+    MetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteStateW761 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapExactStableResult : String
+  closedEmbeddingExactStableResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W761 state. -/
+def
+    currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteSupportStateW761 :
+    MetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteStateW761
+    where
+  seed :=
+    "w761-w735-category-homology-instance-concrete-leaf-exact-stable-bridge"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeavesW761",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761",
+      "exactStableEvidence_of_closedMapCategoryHomologyInstanceConcreteLeavesW761",
+      "exactStableEvidence_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761",
+      "exactStableWppOpCategoryHomologyInstanceConcreteLeafInputNamesW761",
+      "exactStableWppOpCategoryHomologyInstanceConcreteLeafInputNamesW761_count"]
+  closedMapExactStableResult :=
+    "proved: W735 closed-map category-homology instance inputs construct W733 leaves, so W759 supplies exactness and W735 supplies accepted stable evidence"
+  closedEmbeddingExactStableResult :=
+    "proved: W735 closed-embedding category-homology instance inputs construct W733 leaves, so W759 supplies exactness and W735 supplies accepted stable evidence"
+  exposedInputs :=
+    exactStableWppOpCategoryHomologyInstanceConcreteLeafInputNamesW761
+  remainingInputs :=
+    ["construct CategoryWithHomology MetrizableLCA",
+      "construct concrete values for the W735 branch data inputs",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev
+    currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteStateW761 :
+    MetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteStateW761 :=
+  currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteSupportStateW761
+
+theorem
+    currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteStateW761_productSuccess :
+    currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteStateW761.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

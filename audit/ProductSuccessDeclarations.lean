@@ -8899,6 +8899,26 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760
   #check
     Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760_productSuccess
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeavesW761
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761
+  #check
+    Dbounded.exactStableEvidence_of_closedMapCategoryHomologyInstanceConcreteLeavesW761
+  #check
+    Dbounded.exactStableEvidence_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761
+  #check
+    Dbounded.exactStableWppOpCategoryHomologyInstanceConcreteLeafInputNamesW761
+  #check
+    Dbounded.exactStableWppOpCategoryHomologyInstanceConcreteLeafInputNamesW761_count
+  #check
+    Dbounded.MetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteStateW761
+  #check
+    Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteSupportStateW761
+  #check
+    Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteStateW761
+  #check
+    Dbounded.currentMetrizableWppCategoryHomologyInstanceConcreteLeafExactStableRouteStateW761_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
