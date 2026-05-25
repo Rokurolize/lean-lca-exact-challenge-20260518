@@ -42,6 +42,7 @@ import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664SourceTriangulationTe
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664RouteConsistencyProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtW664TerminalProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtRouteConsistencyProductRoute
+import LeanLCAExactChallenge.Derived.TargetExactAtEndpointReductionProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9748,6 +9749,31 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetExactAtRouteConsistencyStateW804
   #check Dbounded.currentMetrizableTargetExactAtRouteConsistencyStateW804
   #check Dbounded.currentW804TargetExactAtRouteConsistency_productSuccess
+  #check Dbounded.closedMapTargetExactAtW803DataOfEndpointW805
+  #check Dbounded.closedEmbeddingTargetExactAtW803DataOfEndpointW805
+  #check
+    Dbounded.productEvidence_of_closedMapTargetExactAtEndpointReducedRouteW805
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingTargetExactAtEndpointReducedRouteW805
+  #check
+    Dbounded.closedMapExactStableEvidenceOfTargetExactAtEndpointReducedW805
+  #check
+    Dbounded.closedEmbeddingExactStableEvidenceOfTargetExactAtEndpointReducedW805
+  #check Dbounded.closedMapStableCertificateOfTargetExactAtEndpointReducedW805
+  #check
+    Dbounded.closedEmbeddingStableCertificateOfTargetExactAtEndpointReducedW805
+  #check Dbounded.closedMapStableCertificateReadyOfTargetExactAtEndpointReducedW805
+  #check
+    Dbounded.closedEmbeddingStableCertificateReadyOfTargetExactAtEndpointReducedW805
+  #check
+    Dbounded.closedMapStableCertificateAcceptedOfTargetExactAtEndpointReducedW805
+  #check
+    Dbounded.closedEmbeddingStableCertificateAcceptedOfTargetExactAtEndpointReducedW805
+  #check Dbounded.targetExactAtEndpointReductionProductRouteInputNamesW805
+  #check Dbounded.targetExactAtEndpointReductionProductRouteInputNamesW805_count
+  #check Dbounded.MetrizableTargetExactAtEndpointReductionRouteStateW805
+  #check Dbounded.currentMetrizableTargetExactAtEndpointReductionRouteStateW805
+  #check Dbounded.currentW805TargetExactAtEndpointReduction_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
