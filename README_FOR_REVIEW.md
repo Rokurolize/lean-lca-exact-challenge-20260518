@@ -24,6 +24,8 @@ W833では、W832のW785 target ExactAt payload入力を、W808のtarget-isomorp
 
 W834では、W833のW784 target-isomorphism realization入力を、W810のW651 iso-closure strict realizationからW783 strict triangleh realizationを得る変換と、W809のstrict triangleh realizationからW784 target-isomorphism realizationを得る変換で導くrouteへ置き換えた。`Dbounded.targetIsoRealizationOfIsoClosureLeftCalculusW834`がW651からW784を作り、`Dbounded.targetIsoLeftCalculusDataOfIsoClosureRealizationW834`がW833 dataへ接続し、`Dbounded.directBoundedLeftCalculusOfIsoClosureRealizationW834`と`Dbounded.boundedDerivedInfinityCategoryOfIsoClosureLeftCalculusW834`までコンパイル確認した。ただしW696/W651/W721の具体値、`Dbounded MetrizableLCA`の有限極限、有限余極限、pretriangulated構造、triangulated構造、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
 
+W835では、W834のW696 closed-range endpoint topology入力を、W790経由でW735 closed-map/closed-embedding exact-input branch dataから導くrouteへ置き換えた。`Dbounded.isoClosureLeftCalculusDataOfClosedMapExactInputsW835`と`Dbounded.isoClosureLeftCalculusDataOfClosedEmbeddingExactInputsW835`がW735/W651/W721 dataからW834 dataを作り、`Dbounded.directBoundedLeftCalculusOfClosedMapExactInputsIsoClosureW835`、`Dbounded.directBoundedLeftCalculusOfClosedEmbeddingExactInputsIsoClosureW835`、および対応するbounded derived infinity-category routeまでコンパイル確認した。ただしW735/W651/W721の具体値、`Dbounded MetrizableLCA`の有限極限、有限余極限、pretriangulated構造、triangulated構造、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス
