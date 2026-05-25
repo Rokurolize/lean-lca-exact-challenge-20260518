@@ -160,41 +160,42 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W799 W664 target homology-zero terminal route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W800 W664 source-triangulation route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroW664TerminalProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T080115Z_codex_parent_w799</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroW664SourceTriangulationProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T081324Z_codex_parent_w800</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W799 W664 target homology-zero terminal route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 17:08 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W800 W664 source-triangulation route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 17:19 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W799 makes the W798 target homology-zero terminal route depend directly on the underlying W664 target homology-zero payload indexed by W768-derived homology existence. The new helper converts W664-explicit closed-map and closed-embedding branch data into W794 comparison-homology data, then reuses W798 terminal exact/stable and stable-certificate evidence. The increment lives in a new 181-line helper module with 17 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W800 exposes the W799 W664 terminal branch data at the W774 normalized-direct-source layer and the W773 source-triangulation layer. The new helper projects closed-map and closed-embedding W799 data into normalized data, direct finite-shape sources, source-triangulation branch data, and the closed-range/stability fields used by the existing product route. The increment lives in a new 194-line helper module with 18 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>closedMapComparisonHomologyDataOfW664PayloadW799</code> and <code>closedEmbeddingComparisonHomologyDataOfW664PayloadW799</code> convert W664-explicit branch data to W794.</li>
-            <li><code>closedMapExactStableEvidenceOfW664TerminalW799</code> and <code>closedEmbeddingExactStableEvidenceOfW664TerminalW799</code> project exact/stable evidence through W798.</li>
-            <li><code>closedMapStableCertificateAcceptedOfW664TerminalW799</code> and <code>closedEmbeddingStableCertificateAcceptedOfW664TerminalW799</code> project stable route acceptance while keeping product success false.</li>
+            <li><code>closedMapNormalizedDataOfW664TerminalW800</code> and <code>closedEmbeddingNormalizedDataOfW664TerminalW800</code> project W799 data to W774 normalized data.</li>
+            <li><code>closedMapDirectSourceOfW664TerminalW800</code> and <code>closedEmbeddingDirectSourceOfW664TerminalW800</code> rebuild the W653 direct finite-shape source through W774.</li>
+            <li><code>closedMapSourceTriangulationDataOfW664TerminalW800</code> and <code>closedEmbeddingSourceTriangulationDataOfW664TerminalW800</code> expose the W773 source-triangulation branch data while keeping product success false.</li>
+            <li>The W800 projection theorems expose exact-acyclic closure, closed-range endpoint topology, and WalkingParallelPair limit/colimit stability from the same W799 branch data.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroW664TerminalProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroW664TerminalProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroW664SourceTriangulationProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroW664SourceTriangulationProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T080115Z_codex_parent_w799/w799_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T081324Z_codex_parent_w800/w800_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>w799_goal_sha_delta_decision.tsv</code> records the pre-edit active-goal SHA delta and the decision to continue under the current goal.</li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 181 lines with 17 top-level declarations.</li>
-            <li><code>w799_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
-            <li>Focused W799 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>goal_sha_comparison_before_focused.tsv</code> and <code>goal_sha_comparison_after_focused.tsv</code> show the run goal, active goal file, and sidecar all matched.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 194 lines with 18 top-level declarations.</li>
+            <li><code>w800_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
+            <li>Focused W800 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W799 work.</p></div>
-      <p>W798 projected exact/stable evidence and stable certificate readiness/acceptance from W794 target homology-zero comparison-homology product evidence.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W800 work.</p></div>
+      <p>W799 made the W798 terminal target homology-zero evidence depend directly on W664 target homology-zero payload data indexed by W768-derived homology existence.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>

@@ -37,6 +37,7 @@ import LeanLCAExactChallenge.Derived.TargetExactAtClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtTerminalEvidenceProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroTerminalEvidenceProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664TerminalProductRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664SourceTriangulationProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9637,6 +9638,30 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetHomologyZeroW664TerminalRouteStateW799
   #check Dbounded.currentMetrizableTargetHomologyZeroW664TerminalRouteStateW799
   #check Dbounded.currentW799TargetHomologyZeroW664TerminalRoute_productSuccess
+  #check Dbounded.closedMapNormalizedDataOfW664TerminalW800
+  #check Dbounded.closedEmbeddingNormalizedDataOfW664TerminalW800
+  #check Dbounded.closedMapDirectSourceOfW664TerminalW800
+  #check Dbounded.closedEmbeddingDirectSourceOfW664TerminalW800
+  #check Dbounded.closedMapSourceTriangulationDataOfW664TerminalW800
+  #check Dbounded.closedEmbeddingSourceTriangulationDataOfW664TerminalW800
+  #check Dbounded.closedMapExactClosed2OfW664TerminalW800
+  #check Dbounded.closedEmbeddingExactClosed2OfW664TerminalW800
+  #check Dbounded.closedMapClosedRangeEndpointTopologyOfW664TerminalW800
+  #check Dbounded.closedEmbeddingClosedRangeEndpointTopologyOfW664TerminalW800
+  #check Dbounded.closedMapLimitStabilityOfW664TerminalW800
+  #check Dbounded.closedEmbeddingLimitStabilityOfW664TerminalW800
+  #check Dbounded.closedMapColimitStabilityOfW664TerminalW800
+  #check Dbounded.closedEmbeddingColimitStabilityOfW664TerminalW800
+  #check
+    Dbounded.targetHomologyZeroW664SourceTriangulationProductRouteInputNamesW800
+  #check
+    Dbounded.targetHomologyZeroW664SourceTriangulationProductRouteInputNamesW800_count
+  #check
+    Dbounded.MetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800
+  #check
+    Dbounded.currentMetrizableTargetHomologyZeroW664SourceTriangulationRouteStateW800
+  #check
+    Dbounded.currentW800TargetHomologyZeroW664SourceTriangulationRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
