@@ -11,6 +11,7 @@ import LeanLCAExactChallenge.Derived.BranchLocalizedDirectFiniteShapeProductRout
 import LeanLCAExactChallenge.Derived.ClosureKernelDirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.ClosedRangeDirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.SourceTriangulationClosedRangeDirectFiniteShapeProductRoute
+import LeanLCAExactChallenge.Derived.NormalizedDirectSourceClosedRangeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9180,6 +9181,24 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check
     Dbounded.currentMetrizableSourceTriangulationClosedRangeDirectFiniteShapeProductRouteSupportStateW773
   #check Dbounded.currentW773SourceTriangulationClosedRangeProductRouteState_productSuccess
+  #check Dbounded.MetrizableClosedMapNormalizedDirectSourceClosedRangeBranchDataW774
+  #check
+    Dbounded.MetrizableClosedEmbeddingNormalizedDirectSourceClosedRangeBranchDataW774
+  #check Dbounded.normalizedFixedTargetInputsOfClosedMapW774
+  #check Dbounded.normalizedFixedTargetInputsOfClosedEmbeddingW774
+  #check Dbounded.directSourceOfClosedMapNormalizedW774
+  #check Dbounded.directSourceOfClosedEmbeddingNormalizedW774
+  #check Dbounded.closedMapSourceTriangulationDataOfNormalizedW774
+  #check Dbounded.closedEmbeddingSourceTriangulationDataOfNormalizedW774
+  #check Dbounded.productEvidence_of_closedMapNormalizedDirectSourceClosedRangeRouteW774
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingNormalizedDirectSourceClosedRangeRouteW774
+  #check Dbounded.normalizedDirectSourceClosedRangeProductRouteInputNamesW774
+  #check Dbounded.normalizedDirectSourceClosedRangeProductRouteInputNamesW774_count
+  #check Dbounded.MetrizableNormalizedDirectSourceClosedRangeProductRouteStateW774
+  #check
+    Dbounded.currentMetrizableNormalizedDirectSourceClosedRangeProductRouteSupportStateW774
+  #check Dbounded.currentW774NormalizedDirectSourceClosedRangeRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
