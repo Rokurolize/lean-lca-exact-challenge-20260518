@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w790-target-homology-zero-exact-inputs-closed-range-route",
-  "generated_utc": "2026-05-25T06:25:34Z",
-  "source_tree_hash": "bd3da1001d3ab7975d92f7469ead6cc2d4e97949153b5d40227935668a01da2e",
-  "summary": "W790 removes W789's separate W696 closed-range endpoint-topology branch field by deriving W696 from W735 exactInputs: W519 mapped-cokernel closedness supplies the closed-range provider and W720 endpoint topology data supplies ExactAt closed-embedding, open-map, and Epi fields. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w791-target-homology-zero-boundary-data-route",
+  "generated_utc": "2026-05-25T06:32:59Z",
+  "source_tree_hash": "4669974b13f7536ce4fcb132c51159d91a12fc0a246daaebf44f18409977f2e0",
+  "summary": "W791 removes W790's separate right-open boundary field by deriving it from W735 exactInputs.boundaryData through W716, then feeds the W790 exact-inputs closed-range route. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -18160,6 +18160,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062033Z_codex_parent_w790/logs/w790_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroBoundaryDataExactInputsProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/logs/w791_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundaryDataExactInputsProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/logs/w791_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/logs/w791_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/w791_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/logs/w791_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/logs/w791_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/logs/w791_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/logs/w791_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/logs/w791_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/logs/w791_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -23485,7 +23530,18 @@
     "Dbounded.targetHomologyZeroExactInputsClosedRangeProductRouteInputNamesW790_count",
     "Dbounded.MetrizableTargetHomologyZeroExactInputsClosedRangeRouteStateW790",
     "Dbounded.currentMetrizableTargetHomologyZeroExactInputsClosedRangeRouteStateW790",
-    "Dbounded.currentW790TargetHomologyZeroExactInputsClosedRangeRoute_productSuccess"
+    "Dbounded.currentW790TargetHomologyZeroExactInputsClosedRangeRoute_productSuccess",
+    "Dbounded.MetrizableClosedMapTargetHomologyZeroBoundaryDataBranchDataW791",
+    "Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroBoundaryDataBranchDataW791",
+    "Dbounded.closedMapExactInputsDataOfBoundaryDataW791",
+    "Dbounded.closedEmbeddingExactInputsDataOfBoundaryDataW791",
+    "Dbounded.productEvidence_of_closedMapTargetHomologyZeroBoundaryDataRouteW791",
+    "Dbounded.productEvidence_of_closedEmbeddingTargetHomologyZeroBoundaryDataRouteW791",
+    "Dbounded.targetHomologyZeroBoundaryDataProductRouteInputNamesW791",
+    "Dbounded.targetHomologyZeroBoundaryDataProductRouteInputNamesW791_count",
+    "Dbounded.MetrizableTargetHomologyZeroBoundaryDataRouteStateW791",
+    "Dbounded.currentMetrizableTargetHomologyZeroBoundaryDataRouteStateW791",
+    "Dbounded.currentW791TargetHomologyZeroBoundaryDataRoute_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -23493,7 +23549,6 @@
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
     "Construct target homology-zero realization data for exact-acyclic homotopy objects.",
     "Construct homology existence for all MetrizableLCA cochain complexes in every degree.",
-    "Construct closed quotient-cover boundary data for WPP limit right-open maps.",
     "Construct Epi boundary data for WPP limit right-surjectivity.",
     "Construct selected W461 provider data for WPP-op left closed-embedding.",
     "Construct row-aware closed-map or closed-embedding provider data for WPP-op SnakeInput.",
@@ -23505,11 +23560,11 @@
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete W735 branch data values.",
     "Construct target homology-zero realization data and global homology existence.",
-    "Construct closed quotient-cover right-open boundary, Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and remaining Dbounded stable-infinity inputs.",
+    "Construct Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W790 source, module, product declaration, run-owned required declaration, full build, JSON, diff, helper accounting, and rendered-report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W790 target homology-zero exact-inputs closed-range route",
+  "summary_log_tail": "Focused W791 source, module, product declaration, run-owned required declaration, full build, JSON, diff, helper accounting, and rendered-report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W791 target homology-zero boundary-data route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -25174,6 +25229,13 @@
       "latest_verified_increment": "W790 target homology-zero exact-inputs closed-range route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W790 metadata records the target homology-zero exact-inputs closed-range route and leaves product_success/product_complete false."
+    },
+    "w791_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T06:32:59Z",
+      "source_tree_hash": "4669974b13f7536ce4fcb132c51159d91a12fc0a246daaebf44f18409977f2e0",
+      "latest_verified_increment": "W791 target homology-zero boundary-data route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W791 metadata records the target homology-zero boundary-data route and leaves product_success/product_complete false."
     }
   }
 }
