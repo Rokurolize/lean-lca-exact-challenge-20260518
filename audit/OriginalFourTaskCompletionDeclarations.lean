@@ -35,6 +35,7 @@ contract-completing stable bounded derived infinity-category witness.
 #check LeanLCAExactChallenge.BoundedDerivedInfinityCategory
 #check LeanLCAExactChallenge.Dbounded
 #check LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances
+#check LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRoute
 
 namespace LeanLCAExactChallenge
 
@@ -50,5 +51,9 @@ theorem originalFourTaskContract_currentSemanticRouteNonterminal :
 theorem originalFourTaskContract_typeclassStableRoute_remainingFieldCount :
     Dbounded.metrizableStableInstanceFieldNames.length = 7 :=
   Dbounded.metrizableStableInstanceFieldNames_count
+
+theorem originalFourTaskContract_leftCalculusStableRoute_requiredFieldCount :
+    Dbounded.metrizableLeftCalculusStableRouteRequiredFieldNames.length = 5 :=
+  Dbounded.metrizableLeftCalculusStableRouteRequiredFieldNames_count
 
 end LeanLCAExactChallenge

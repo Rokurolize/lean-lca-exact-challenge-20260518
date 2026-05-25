@@ -12,6 +12,8 @@ W827では、`BoundedDerivedInfinityCategory`を4つの任意`Prop` readiness fi
 
 W828では、明示的なsemantic input recordをfinal product declaration surfaceから外し、`D^b(MetrizableLCA,E)`のstable packageをtypeclass解決で組み立てる`Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances`を追加した。このrouteはまだ無引数witnessではない。Lean上で残る7つのinstance family、すなわち`Dbounded MetrizableLCA`のpreadditive構造、有限極限、有限余極限、zero object、全shiftの加法性、pretriangulated構造、triangulated構造を`D^b(MetrizableLCA,E)`から構成する必要がある。
 
+W829では、`CategoryTheory.Localization.CalculusOfFractions.Preadditive`に沿って、direct bounded exact weak equivalenceのleft calculusから`Dbounded MetrizableLCA`のpreadditive構造、zero object、全shift加法性、suspension加法性を供給するrouteを追加した。`Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRoute`は明示的なsemantic input recordではなく、left calculusと残りの有限極限、有限余極限、pretriangulated構造、triangulated構造を要求する。このrouteもまだproduct successではなく、left calculus自体と残り4つのstable structureを実データから構成する必要がある。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス

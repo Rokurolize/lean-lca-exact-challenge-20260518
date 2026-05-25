@@ -1,57 +1,61 @@
 {
-  "outcome": "nonterminal_typeclass_stable_route",
+  "outcome": "nonterminal_left_calculus_stable_route",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W828 keeps the target nonterminal under the immutable original four-task contract and adds a typeclass-resolved BoundedDerivedInfinityCategory route for MetrizableLCA. The route has no explicit semantic input record, but seven concrete Dbounded stable instance families are still missing before it can be a completion witness.",
+  "summary": "W829 keeps the target nonterminal under the immutable original four-task contract and adds a left-calculus stable route for BoundedDerivedInfinityCategory over MetrizableLCA. Direct bounded left calculus now conditionally supplies preadditivity, zero object, all-shift additivity, and suspension additivity; the route still lacks the left-calculus premise itself, finite limits, finite colimits, pretriangulated structure, triangulated structure, and an original four-task completion witness.",
   "known_gaps": [
-    "Task 4 is not yet contract-complete: the typeclass stable route requires seven Dbounded MetrizableLCA instance families that do not synthesize yet.",
+    "Task 4 is not yet contract-complete: the W829 left-calculus stable route still requires direct bounded left calculus plus finite limits, finite colimits, pretriangulated structure, and triangulated structure for Dbounded MetrizableLCA.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
   ],
   "remaining_gaps": [
-    "Task 4 is not yet contract-complete: the typeclass stable route requires seven Dbounded MetrizableLCA instance families that do not synthesize yet.",
+    "Task 4 is not yet contract-complete: the W829 left-calculus stable route still requires direct bounded left calculus plus finite limits, finite colimits, pretriangulated structure, and triangulated structure for Dbounded MetrizableLCA.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
   ],
   "remaining_work": [
-    "Construct Preadditive, finite limits, finite colimits, zero object, all-shift additivity, pretriangulated, and triangulated instances for Dbounded MetrizableLCA from the actual bounded localization.",
-    "Once those instances synthesize, expose a no-argument or fully typeclass-resolved original four-task completion witness and make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations check it.",
-    "Refresh the review packet with contract-specific negative fixtures, external SHA256 sidecar, and clean extraction audit before any future product-success claim."
+    "Construct (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions from the actual bounded exact weak equivalences.",
+    "Construct finite limits, finite colimits, pretriangulated structure, and triangulated structure for Dbounded MetrizableLCA from the bounded localization rather than a semantic input record.",
+    "Expose a no-argument or fully instance-resolved original four-task completion witness only after those structures are real, then refresh the review packet fixtures and clean extraction audit."
   ],
-  "generated_utc": "2026-05-25T17:07:08Z",
+  "generated_utc": "2026-05-25T17:25:21Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "878bb6862fff21fe2a91943700a3c6d4a854fe8afea5ceac49468471ef80f78d"
+    "sha256": "278bd2e4a63a7629d2efa4012112040b6d0ccab38c882dd40aba6ab07a98a3a6"
   },
-  "support_result_classification": "nonterminal_typeclass_stable_route",
-  "latest_verified_increment": "W828 typeclass stable route",
+  "support_result_classification": "nonterminal_left_calculus_stable_route",
+  "latest_verified_increment": "W829 left-calculus stable route",
   "reference_route_log": "docs/research/reference_route_log.md",
   "implemented_declarations": [
-    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances",
-    "Dbounded.metrizableStableInstanceFieldNames_count",
-    "originalFourTaskContract_typeclassStableRoute_remainingFieldCount",
-    "ProductSuccessDeclarations checks the typeclass stable route instead of the explicit semantic adapter"
+    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRoute",
+    "Dbounded.metrizableLeftCalculusStableRouteSuppliedFieldNames_count",
+    "Dbounded.metrizableLeftCalculusStableRouteRequiredFieldNames_count",
+    "originalFourTaskContract_leftCalculusStableRoute_requiredFieldCount",
+    "ProductSuccessDeclarations checks the left-calculus stable route while product_success remains false"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances",
-    "Dbounded.metrizableStableInstanceFieldNames_count",
-    "originalFourTaskContract_typeclassStableRoute_remainingFieldCount",
-    "ProductSuccessDeclarations checks the typeclass stable route instead of the explicit semantic adapter"
+    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRoute",
+    "Dbounded.metrizableLeftCalculusStableRouteSuppliedFieldNames_count",
+    "Dbounded.metrizableLeftCalculusStableRouteRequiredFieldNames_count",
+    "originalFourTaskContract_leftCalculusStableRoute_requiredFieldCount",
+    "ProductSuccessDeclarations checks the left-calculus stable route while product_success remains false"
   ],
   "verified_commands": [
-    "lake build LeanLCAExactChallenge.Derived.Bounded",
-    "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+    "lake env lean LeanLCAExactChallenge/Derived/TypeclassStableLeftCalculusRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.TypeclassStableLeftCalculusRoute",
+    "lake build LeanLCAExactChallenge",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-    "lake env lean w828_synth_probe.lean",
+    "lake env lean /dev/stdin (W829 left-calculus route probe)",
+    "lake env lean /dev/stdin (W829 left-calculus synth expected failure)",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
     "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
     "git diff --check",

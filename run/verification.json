@@ -1,101 +1,113 @@
 {
-  "schema": "lean_lca_original_four_task_nonterminal_verification_v4",
-  "generated_utc": "2026-05-25T17:07:08Z",
-  "source_tree_hash": "1cf7a812401a5f31fac378ef860487024bb4d71385aea5124e6f46fdbfe705cc",
-  "summary": "W828 keeps the target nonterminal under the immutable original four-task contract and adds a typeclass-resolved BoundedDerivedInfinityCategory route for MetrizableLCA. The route has no explicit semantic input record, but seven concrete Dbounded stable instance families are still missing before it can be a completion witness.",
+  "schema": "lean_lca_original_four_task_nonterminal_verification_v5",
+  "generated_utc": "2026-05-25T17:25:21Z",
+  "source_tree_hash": "8225e627237f10555e38c998043644228f9ace2cb953a45af1a9d2b93999ebe9",
+  "summary": "W829 keeps the target nonterminal under the immutable original four-task contract and adds a left-calculus stable route for BoundedDerivedInfinityCategory over MetrizableLCA. Direct bounded left calculus now conditionally supplies preadditivity, zero object, all-shift additivity, and suspension additivity; the route still lacks the left-calculus premise itself, finite limits, finite colimits, pretriangulated structure, triangulated structure, and an original four-task completion witness.",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "878bb6862fff21fe2a91943700a3c6d4a854fe8afea5ceac49468471ef80f78d"
+    "sha256": "278bd2e4a63a7629d2efa4012112040b6d0ccab38c882dd40aba6ab07a98a3a6"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
   "known_gaps": [
-    "Task 4 is not yet contract-complete: the typeclass stable route requires seven Dbounded MetrizableLCA instance families that do not synthesize yet.",
+    "Task 4 is not yet contract-complete: the W829 left-calculus stable route still requires direct bounded left calculus plus finite limits, finite colimits, pretriangulated structure, and triangulated structure for Dbounded MetrizableLCA.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
   ],
   "remaining_work": [
-    "Construct Preadditive, finite limits, finite colimits, zero object, all-shift additivity, pretriangulated, and triangulated instances for Dbounded MetrizableLCA from the actual bounded localization.",
-    "Once those instances synthesize, expose a no-argument or fully typeclass-resolved original four-task completion witness and make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations check it.",
-    "Refresh the review packet with contract-specific negative fixtures, external SHA256 sidecar, and clean extraction audit before any future product-success claim."
+    "Construct (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions from the actual bounded exact weak equivalences.",
+    "Construct finite limits, finite colimits, pretriangulated structure, and triangulated structure for Dbounded MetrizableLCA from the bounded localization rather than a semantic input record.",
+    "Expose a no-argument or fully instance-resolved original four-task completion witness only after those structures are real, then refresh the review packet fixtures and clean extraction audit."
   ],
-  "support_result_classification": "nonterminal_typeclass_stable_route",
-  "latest_verified_increment": "W828 typeclass stable route",
+  "support_result_classification": "nonterminal_left_calculus_stable_route",
+  "latest_verified_increment": "W829 left-calculus stable route",
   "implemented_declarations_checked": [
-    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances",
-    "Dbounded.metrizableStableInstanceFieldNames_count",
-    "originalFourTaskContract_typeclassStableRoute_remainingFieldCount",
-    "ProductSuccessDeclarations checks the typeclass stable route instead of the explicit semantic adapter"
+    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRoute",
+    "Dbounded.metrizableLeftCalculusStableRouteSuppliedFieldNames_count",
+    "Dbounded.metrizableLeftCalculusStableRouteRequiredFieldNames_count",
+    "originalFourTaskContract_leftCalculusStableRoute_requiredFieldCount",
+    "ProductSuccessDeclarations checks the left-calculus stable route while product_success remains false"
   ],
   "commands": [
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/TypeclassStableLeftCalculusRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_lake_build_bounded.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_typeclass_stable_left_calculus_route_lean.log"
     },
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
+      "command": "lake build LeanLCAExactChallenge.Derived.TypeclassStableLeftCalculusRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_bounded_lean.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_lake_build_typeclass_stable_left_calculus_route.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_lake_build_root.log"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_product_declarations_retry.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_product_declarations_retry.log"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_original_four_task_declarations_retry.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_original_four_task_declarations_retry.log"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_required_declarations.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_required_declarations_retry.log"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_lake_build.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_lake_build.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_forbidden_tokens.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_forbidden_tokens.log"
     },
     {
-      "command": "lake env lean w828_synth_probe.lean",
+      "command": "lake env lean /dev/stdin (W829 left-calculus route probe)",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_left_calculus_route_probe_retry.log",
+      "note": "proves the W829 route constructs BoundedDerivedInfinityCategory under exactly its left-calculus and remaining stable-field assumptions"
+    },
+    {
+      "command": "lake env lean /dev/stdin (W829 left-calculus synth expected failure)",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_synth_probe.log",
-      "note": "confirms the seven stable Dbounded instance families are not globally synthesized yet"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_left_calculus_synth_expected_failure.log",
+      "note": "confirms direct bounded left calculus and unconditional Preadditive (Dbounded MetrizableLCA) do not synthesize yet"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_contract_audit_after_metadata.log",
-      "note": "passes because the target outcome is honestly nonterminal; completion witness and packet blockers remain"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_contract_audit_after_metadata.log",
+      "note": "expected nonterminal pass: product_success is false and original witness plus packet blockers remain"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_external_audit_nonterminal_expected.log",
-      "note": "legacy product-success audit rejects the reopened nonterminal state"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_external_audit_nonterminal_expected.log",
+      "note": "legacy product-success audit rejects the nonterminal state"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_git_diff_check.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_git_diff_check.log"
     },
     {
       "command": "python3 browser-evidence-check render_static_report.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_browser_evidence.log",
-      "note": "rendered scratch-log.html and checked W828/product flags"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171925Z_codex_parent_w829_left_calculus_stable_route/logs/w829_browser_evidence.log",
+      "note": "rendered scratch-log.html and checked W829/product flags"
     }
   ]
 }
