@@ -82,6 +82,14 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonBijectivityStrictRealizationW838
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonBijectivityStrictRealizationW838
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapTargetHomologyZeroW839
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedEmbeddingTargetHomologyZeroW839
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroW839
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetHomologyZeroW839
 
 namespace LeanLCAExactChallenge
 
@@ -182,5 +190,15 @@ theorem originalFourTaskContract_comparisonBijectivityStrictRealizationLeftCalcu
     Dbounded.comparisonBijectivityStrictRealizationLeftCalculusExpandedRequiredFieldNamesW838.length =
       6 :=
   Dbounded.comparisonBijectivityStrictRealizationLeftCalculusExpandedRequiredFieldNamesW838_count
+
+theorem originalFourTaskContract_targetHomologyZeroStrictRealizationLeftCalculusRoute_concreteInputCount :
+    Dbounded.targetHomologyZeroStrictRealizationLeftCalculusInputNamesW839.length =
+      2 :=
+  Dbounded.targetHomologyZeroStrictRealizationLeftCalculusInputNamesW839_count
+
+theorem originalFourTaskContract_targetHomologyZeroStrictRealizationLeftCalculusRoute_expandedRequiredFieldCount :
+    Dbounded.targetHomologyZeroStrictRealizationLeftCalculusExpandedRequiredFieldNamesW839.length =
+      6 :=
+  Dbounded.targetHomologyZeroStrictRealizationLeftCalculusExpandedRequiredFieldNamesW839_count
 
 end LeanLCAExactChallenge
