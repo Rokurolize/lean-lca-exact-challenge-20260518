@@ -40,6 +40,7 @@ import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664TerminalProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664SourceTriangulationProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664SourceTriangulationTerminalProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroW664RouteConsistencyProductRoute
+import LeanLCAExactChallenge.Derived.TargetExactAtW664TerminalProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9705,6 +9706,26 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetHomologyZeroW664RouteConsistencyStateW802
   #check Dbounded.currentMetrizableTargetHomologyZeroW664RouteConsistencyStateW802
   #check Dbounded.currentW802TargetHomologyZeroW664RouteConsistency_productSuccess
+  #check Dbounded.targetHomologyZeroPayloadOfTargetExactAtW803
+  #check Dbounded.MetrizableClosedMapTargetExactAtW664TerminalBranchDataW803
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetExactAtW664TerminalBranchDataW803
+  #check Dbounded.closedMapW664TerminalDataOfTargetExactAtW803
+  #check Dbounded.closedEmbeddingW664TerminalDataOfTargetExactAtW803
+  #check Dbounded.productEvidence_of_closedMapTargetExactAtW664TerminalRouteW803
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingTargetExactAtW664TerminalRouteW803
+  #check Dbounded.closedMapExactStableEvidenceOfTargetExactAtW664TerminalW803
+  #check
+    Dbounded.closedEmbeddingExactStableEvidenceOfTargetExactAtW664TerminalW803
+  #check Dbounded.closedMapStableCertificateReadyOfTargetExactAtW664TerminalW803
+  #check
+    Dbounded.closedEmbeddingStableCertificateReadyOfTargetExactAtW664TerminalW803
+  #check Dbounded.targetExactAtW664TerminalProductRouteInputNamesW803
+  #check Dbounded.targetExactAtW664TerminalProductRouteInputNamesW803_count
+  #check Dbounded.MetrizableTargetExactAtW664TerminalRouteStateW803
+  #check Dbounded.currentMetrizableTargetExactAtW664TerminalRouteStateW803
+  #check Dbounded.currentW803TargetExactAtW664TerminalRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
