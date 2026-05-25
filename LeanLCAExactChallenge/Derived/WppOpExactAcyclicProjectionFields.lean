@@ -55413,6 +55413,169 @@ theorem currentMetrizableWppRouteDataExactStableBridgeStateW763_productSuccess :
       false :=
   rfl
 
+/--
+W764 closed-map branch: W736 left-right comparison data plus one W735
+closed-map branch record construct the W732 route-data provider consumed by
+W763.
+-/
+def
+    boundaryRelationTargetClosednessNormalizedDataProvider_of_closedMapLeftRightComparisonW764
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732 :=
+  boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapLeftRightComparisonIsoW736
+      comparisonIso inputs)
+
+/--
+W764 closed-embedding branch: W736 left-right comparison data plus one W735
+closed-embedding branch record construct the W732 route-data provider consumed
+by W763.
+-/
+def
+    boundaryRelationTargetClosednessNormalizedDataProvider_of_closedEmbeddingLeftRightComparisonW764
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732 :=
+  boundaryRelationTargetClosednessNormalizedDataProvider_of_concreteLeavesW733
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingLeftRightComparisonIsoW736
+      comparisonIso inputs)
+
+/--
+W764 exactness bridge: the closed-map W736/W735 branch now first constructs
+the concrete W732 provider, then uses W763.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapLeftRightComparisonRouteDataW764
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_routeDataW763
+    (boundaryRelationTargetClosednessNormalizedDataProvider_of_closedMapLeftRightComparisonW764
+      comparisonIso inputs)
+
+/--
+W764 exactness bridge: the closed-embedding W736/W735 branch now first
+constructs the concrete W732 provider, then uses W763.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingLeftRightComparisonRouteDataW764
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_routeDataW763
+    (boundaryRelationTargetClosednessNormalizedDataProvider_of_closedEmbeddingLeftRightComparisonW764
+      comparisonIso inputs)
+
+/--
+W764 exact/stable bridge: the closed-map W736/W735 branch constructs W732
+route data and then packages W763 exactness plus accepted stable evidence.
+-/
+noncomputable def
+    exactStableEvidence_of_closedMapLeftRightComparisonRouteDataW764
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppExactStableEvidenceW758 :=
+  exactStableEvidence_of_routeDataW763
+    (boundaryRelationTargetClosednessNormalizedDataProvider_of_closedMapLeftRightComparisonW764
+      comparisonIso inputs)
+
+/--
+W764 exact/stable bridge: the closed-embedding W736/W735 branch constructs W732
+route data and then packages W763 exactness plus accepted stable evidence.
+-/
+noncomputable def
+    exactStableEvidence_of_closedEmbeddingLeftRightComparisonRouteDataW764
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppExactStableEvidenceW758 :=
+  exactStableEvidence_of_routeDataW763
+    (boundaryRelationTargetClosednessNormalizedDataProvider_of_closedEmbeddingLeftRightComparisonW764
+      comparisonIso inputs)
+
+/-- Input names for the W764 W736-to-W732 route-data exact/stable bridge. -/
+def exactStableWppOpLeftRightComparisonRouteDataInputNamesW764 :
+    List String :=
+  exactStableWppOpLeftRightComparisonConcreteLeafInputNamesW762
+
+theorem exactStableWppOpLeftRightComparisonRouteDataInputNamesW764_count :
+    exactStableWppOpLeftRightComparisonRouteDataInputNamesW764.length =
+      10 := by
+  simpa [exactStableWppOpLeftRightComparisonRouteDataInputNamesW764] using
+    exactStableWppOpLeftRightComparisonConcreteLeafInputNamesW762_count
+
+/--
+Current checked W764 state for constructing concrete W732 route-data providers
+from the W736 left-right comparison branches.
+-/
+structure MetrizableWppLeftRightComparisonRouteDataExactStableStateW764 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapRouteDataResult : String
+  closedEmbeddingRouteDataResult : String
+  exactStableResult : String
+  removedInputs : List String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W764 state. -/
+def currentMetrizableWppLeftRightComparisonRouteDataExactStableSupportStateW764 :
+    MetrizableWppLeftRightComparisonRouteDataExactStableStateW764
+    where
+  seed := "w764-w736-left-right-comparison-w732-route-data-exact-stable"
+  declarations :=
+    ["boundaryRelationTargetClosednessNormalizedDataProvider_of_closedMapLeftRightComparisonW764",
+      "boundaryRelationTargetClosednessNormalizedDataProvider_of_closedEmbeddingLeftRightComparisonW764",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapLeftRightComparisonRouteDataW764",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingLeftRightComparisonRouteDataW764",
+      "exactStableEvidence_of_closedMapLeftRightComparisonRouteDataW764",
+      "exactStableEvidence_of_closedEmbeddingLeftRightComparisonRouteDataW764",
+      "exactStableWppOpLeftRightComparisonRouteDataInputNamesW764",
+      "exactStableWppOpLeftRightComparisonRouteDataInputNamesW764_count"]
+  closedMapRouteDataResult :=
+    "proved: W736 comparison-isomorphism data and one W735 closed-map branch record construct the W732 route-data provider"
+  closedEmbeddingRouteDataResult :=
+    "proved: W736 comparison-isomorphism data and one W735 closed-embedding branch record construct the W732 route-data provider"
+  exactStableResult :=
+    "proved: the constructed W732 providers feed W763 exactness and accepted stable evidence"
+  removedInputs :=
+    ["opaque W732 route-data provider as a direct exact/stable bridge input"]
+  exposedInputs :=
+    exactStableWppOpLeftRightComparisonRouteDataInputNamesW764
+  remainingInputs :=
+    ["construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes",
+      "construct concrete values for the W735 branch data inputs",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764 :
+    MetrizableWppLeftRightComparisonRouteDataExactStableStateW764 :=
+  currentMetrizableWppLeftRightComparisonRouteDataExactStableSupportStateW764
+
+theorem
+    currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764_productSuccess :
+    currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

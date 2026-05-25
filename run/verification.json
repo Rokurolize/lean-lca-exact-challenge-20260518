@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w763-w732-route-data-exact-stable-bridge",
-  "generated_utc": "2026-05-25T01:06:17Z",
-  "source_tree_hash": "bb7d9a2cb549831b32c161298484813fdd69b25ca237d00adc94d1ca38e19236",
-  "summary": "W763 W732 route-data exact/stable bridge projects the one W732 boundary/relation target/closedness normalized source/endpoint route-data provider into the W733 concrete leaf record used by W759. The same input now supplies W759 exactness and W732 accepted stable evidence; product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w764-w736-to-w732-route-data-exact-stable",
+  "generated_utc": "2026-05-25T01:23:28Z",
+  "source_tree_hash": "9b34180fddde9f6af2a71296a5e964a9a14983891ecd59cecf4068b0a3c6cca8",
+  "summary": "W764 W736-to-W732 route-data exact/stable bridge constructs W732 boundary/relation target/closedness normalized route-data providers from the existing W736 left-right comparison closed-map and closed-embedding branches, then feeds those providers through W763 to package WPP-op exactness plus accepted stable evidence. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -16885,6 +16885,76 @@
       "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T005453Z_codex_parent_w763/product_success_true_grep.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/logs/w764_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/logs/w764_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/logs/w764_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/w764_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/logs/w764_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/logs/w764_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/logs/w764_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/logs/w764_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/logs/w764_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/logs/w764_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/audit_no_forbidden_lean_tokens.log exit_code=0"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/report_style_inject.log exit_code=0"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/html_check_report.log exit_code=0"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/scratch_log_browser_evidence --expect W764 W736-to-W732 route-data exact/stable bridge --expect product_complete=false --expect 20260525T011400Z_codex_parent_w764",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/scratch_log_browser_evidence/browser_evidence_fidelity.json passed=true"
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/product_success_true_grep.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -21865,22 +21935,36 @@
     "Dbounded.MetrizableWppRouteDataExactStableBridgeStateW763",
     "Dbounded.currentMetrizableWppRouteDataExactStableBridgeSupportStateW763",
     "Dbounded.currentMetrizableWppRouteDataExactStableBridgeStateW763",
-    "Dbounded.currentMetrizableWppRouteDataExactStableBridgeStateW763_productSuccess"
+    "Dbounded.currentMetrizableWppRouteDataExactStableBridgeStateW763_productSuccess",
+    "Dbounded.boundaryRelationTargetClosednessNormalizedDataProvider_of_closedMapLeftRightComparisonW764",
+    "Dbounded.boundaryRelationTargetClosednessNormalizedDataProvider_of_closedEmbeddingLeftRightComparisonW764",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapLeftRightComparisonRouteDataW764",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingLeftRightComparisonRouteDataW764",
+    "Dbounded.exactStableEvidence_of_closedMapLeftRightComparisonRouteDataW764",
+    "Dbounded.exactStableEvidence_of_closedEmbeddingLeftRightComparisonRouteDataW764",
+    "Dbounded.exactStableWppOpLeftRightComparisonRouteDataInputNamesW764",
+    "Dbounded.exactStableWppOpLeftRightComparisonRouteDataInputNamesW764_count",
+    "Dbounded.MetrizableWppLeftRightComparisonRouteDataExactStableStateW764",
+    "Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableSupportStateW764",
+    "Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764",
+    "Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct one concrete W732 boundary/relation target/closedness normalized source/endpoint route-data provider.",
+    "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
+    "Construct concrete values for the W735 closed-map or closed-embedding branch-data inputs.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "support_result_classification": "nonterminal_support_increment",
   "product_success": false,
   "remaining_work": [
-    "Construct one concrete W732 boundary/relation target/closedness normalized source/endpoint route-data provider.",
+    "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
+    "Construct concrete values for the W735 closed-map or closed-embedding branch-data inputs.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W763 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, scratch-log, and browser-rendered report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W763 W732 route-data exact/stable bridge",
+  "summary_log_tail": "Focused W764 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, scratch-log, and browser-rendered report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W764 W736-to-W732 route-data exact/stable bridge",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -23356,6 +23440,13 @@
       "latest_verified_increment": "W763 W732 route-data exact/stable bridge",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W763 metadata records the W732 route-data exact/stable bridge and leaves product_success/product_complete false."
+    },
+    "w764_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T01:23:28Z",
+      "source_tree_hash": "9b34180fddde9f6af2a71296a5e964a9a14983891ecd59cecf4068b0a3c6cca8",
+      "latest_verified_increment": "W764 W736-to-W732 route-data exact/stable bridge",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W764 metadata records the W736-to-W732 route-data exact/stable bridge and leaves product_success/product_complete false."
     }
   }
 }

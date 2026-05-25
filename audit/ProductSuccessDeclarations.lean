@@ -8957,6 +8957,30 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppRouteDataExactStableBridgeStateW763
   #check
     Dbounded.currentMetrizableWppRouteDataExactStableBridgeStateW763_productSuccess
+  #check
+    Dbounded.boundaryRelationTargetClosednessNormalizedDataProvider_of_closedMapLeftRightComparisonW764
+  #check
+    Dbounded.boundaryRelationTargetClosednessNormalizedDataProvider_of_closedEmbeddingLeftRightComparisonW764
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapLeftRightComparisonRouteDataW764
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingLeftRightComparisonRouteDataW764
+  #check
+    Dbounded.exactStableEvidence_of_closedMapLeftRightComparisonRouteDataW764
+  #check
+    Dbounded.exactStableEvidence_of_closedEmbeddingLeftRightComparisonRouteDataW764
+  #check
+    Dbounded.exactStableWppOpLeftRightComparisonRouteDataInputNamesW764
+  #check
+    Dbounded.exactStableWppOpLeftRightComparisonRouteDataInputNamesW764_count
+  #check
+    Dbounded.MetrizableWppLeftRightComparisonRouteDataExactStableStateW764
+  #check
+    Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableSupportStateW764
+  #check
+    Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764
+  #check
+    Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

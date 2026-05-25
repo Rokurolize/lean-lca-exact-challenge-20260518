@@ -160,20 +160,20 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W763 W732 route-data exact/stable bridge</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W764 W736-to-W732 route-data exact/stable bridge</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T005453Z_codex_parent_w763</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T011400Z_codex_parent_w764</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W763 W732 route-data exact/stable bridge</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 10:04 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W764 W736-to-W732 route-data exact/stable bridge</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 10:29 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W763 W732 route-data exact/stable bridge projects the one W732 boundary/relation target/closedness normalized source/endpoint route-data provider into the W733 concrete leaf record used by W759. The same input now supplies W759 exactness and W732 accepted stable evidence.</p>
+          <p>W764 constructs concrete W732 route-data providers from the existing W736 left-right comparison branches, then feeds those providers through the W763 exact/stable bridge. This removes the opaque W732 provider from the immediate exact/stable surface while keeping the real homology and branch-data obligations explicit.</p>
           <ul>
-            <li><code>boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_routeDataW763</code> projects the W732 provider to every W733 leaf field.</li>
-            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_routeDataW763</code> sends that leaf record through W759 to the WPP-op exactness endpoint.</li>
-            <li><code>exactStableEvidence_of_routeDataW763</code> packages exactness with W732 accepted stable evidence from the same route-data provider.</li>
+            <li><code>boundaryRelationTargetClosednessNormalizedDataProvider_of_closedMapLeftRightComparisonW764</code> builds the closed-map W732 provider from W736 comparison data and a W735 branch record.</li>
+            <li><code>boundaryRelationTargetClosednessNormalizedDataProvider_of_closedEmbeddingLeftRightComparisonW764</code> does the same for the closed-embedding branch.</li>
+            <li><code>exactStableEvidence_of_closedMapLeftRightComparisonRouteDataW764</code> and <code>exactStableEvidence_of_closedEmbeddingLeftRightComparisonRouteDataW764</code> package W763 exactness plus accepted stable evidence through those constructed providers.</li>
           </ul>
         </div>
         <div>
@@ -182,22 +182,22 @@ textarea.goal-text {
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T005453Z_codex_parent_w763/w763_required_declarations.lean</code></li>
-            <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
-            <li><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></li>
-            <li>Focused W763 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/w764_required_declarations.lean</code></li>
+            <li><code>lake build</code></li>
+            <li>Focused W764 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W763 work.</p></div>
-      <p>W762 W736 left-right comparison concrete leaf exact/stable bridge packaged WPP-op exactness and accepted stable evidence through the W736 comparison-isomorphism route and W761 CategoryWithHomology bridge.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W764 work.</p></div>
+      <p>W763 projected one W732 boundary/relation target/closedness normalized source/endpoint route-data provider into the W733 concrete leaf record used by W759, then packaged W759 exactness with W732 accepted stable evidence.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>Construct one concrete W732 boundary/relation target/closedness normalized source/endpoint route-data provider.</li>
+        <li>Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.</li>
+        <li>Construct concrete values for the W735 closed-map or closed-embedding branch-data inputs.</li>
         <li>Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
       </ul>
     </section>
