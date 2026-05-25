@@ -38,6 +38,9 @@ contract-completing stable bounded derived infinity-category witness.
 #check LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfMetrizableLeftCalculusStableRoute
 #check LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfKernelCokernelComparisonW830
 #check LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusRouteW830
+#check LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfComparisonBijectivityW831
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusW831
 
 namespace LeanLCAExactChallenge
 
@@ -66,5 +69,14 @@ theorem originalFourTaskContract_directLeftCalculusStableRoute_expandedRequiredF
     Dbounded.metrizableDirectLeftCalculusStableRouteExpandedRequiredFieldNamesW830.length =
       8 :=
   Dbounded.metrizableDirectLeftCalculusStableRouteExpandedRequiredFieldNamesW830_count
+
+theorem originalFourTaskContract_comparisonBijectivityLeftCalculusRoute_concreteInputCount :
+    Dbounded.metrizableComparisonBijectivityLeftCalculusInputNamesW831.length = 3 :=
+  Dbounded.metrizableComparisonBijectivityLeftCalculusInputNamesW831_count
+
+theorem originalFourTaskContract_comparisonBijectivityLeftCalculusRoute_expandedRequiredFieldCount :
+    Dbounded.metrizableComparisonBijectivityLeftCalculusStableRouteExpandedRequiredFieldNamesW831.length =
+      7 :=
+  Dbounded.metrizableComparisonBijectivityLeftCalculusStableRouteExpandedRequiredFieldNamesW831_count
 
 end LeanLCAExactChallenge

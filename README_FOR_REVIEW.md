@@ -16,6 +16,8 @@ W829では、`CategoryTheory.Localization.CalculusOfFractions.Preadditive`に沿
 
 W830では、W829で残っていたrawな`(boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions`前提を、W768のleft-right comparison homology、W668のkernel/cokernel conditioned topology、`exactAcyclicHomotopyIsoClosure MetrizableLCA`の`IsTriangulatedClosed₂`、bounded homotopy localized right adjointという具体的なroute dataから構成する`Dbounded.directBoundedLeftCalculusOfKernelCokernelComparisonW830`を追加した。さらに`Dbounded.boundedDerivedInfinityCategoryOfMetrizableDirectLeftCalculusRouteW830`でW829のstable routeへ接続した。ただしこのroute data自体と、`Dbounded MetrizableLCA`の有限極限、有限余極限、pretriangulated構造、triangulated構造はまだ未構成であり、product successではない。
 
+W831では、W821のcomparison bijectivityから得た`CategoryWithHomology MetrizableLCA`とW765のcategory-with-homology comparison routeを使い、W830のuniversal comparison `IsIso`入力を構成済みのLean定理として消した。`Dbounded.directBoundedLeftCalculusOfComparisonBijectivityW831`は、残り3つのdirect-left-calculus入力からW830のroute dataを作り、expanded stable routeの要求数を8から7へ減らす。ただし残る3入力、`Dbounded MetrizableLCA`の有限極限、有限余極限、pretriangulated構造、triangulated構造、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス
