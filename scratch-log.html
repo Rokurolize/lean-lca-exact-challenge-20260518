@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lean LCA W853 Nonterminal Progress Report</title>
+  <title>Lean LCA W854 Nonterminal Progress Report</title>
   <style id="html-progress-report-style">
 :root {
   color-scheme: light;
@@ -154,96 +154,83 @@ textarea.goal-text {
   </style>
 </head>
 <body>
-  <header class="report-hero">
-    <div class="wrap">
+  <main class="page">
+    <section class="hero">
       <p class="eyebrow">Lean LCA exact challenge</p>
-      <h1>W853 homology-free selected-cochain stable route</h1>
-      <p class="lede">Generated 2026-05-26 07:05 JST. W853 removes the unused category-homology payload from the selected-cochain provider and keeps the original four-task contract nonterminal.</p>
+      <h1>W854 homology-free provider from route data</h1>
+      <p class="lede">Generated 2026-05-26 07:16 JST. W854 constructs the W853 provider from W763/W732 route-data evidence and keeps the original four-task contract nonterminal.</p>
       <div class="badges">
         <span class="badge warn">product_success=false</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">update_goal_allowed=false</span>
       </div>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="grid metrics" aria-label="Current state">
-      <div class="card"><div class="label">Latest Increment</div><div class="metric">W853</div><p>homology-free selected-cochain stable route</p></div>
-      <div class="card"><div class="label">Outcome</div><div class="metric small">nonterminal_homology_free_selected_cochain_stable_route</div><p>The terminal outcome intentionally rejects product completion.</p></div>
-      <div class="card"><div class="label">Source Tree Hash</div><div class="metric code">61d8c81ea2f00c2a472a20b3293555d89af9e73829fd25972d8ce482098cc0d1</div><p>Lean/audit/docs source hash recorded in verification evidence.</p></div>
-      <div class="card"><div class="label">Remaining Input</div><div class="metric">1 provider</div><p>A concrete homology-free selected-cochain provider is still required.</p></div>
     </section>
 
-    <section>
-      <h2>Current Status</h2>
-      <p>W853 keeps the target nonterminal under the immutable original four-task contract while removing an unused category-homology payload from the remaining selected-cochain provider. It defines a homology-free one-provider surface containing the exact W735 branch data W851 consumes after W831 supplies the comparison route, case-splits the closed-map or closed-embedding closedness branch, rebuilds the matching W735 exact-input branch internally, and applies the W851 comparison-selected-cochain stable route. The final original four-task witness is still absent because no concrete homology-free selected-cochain route-data provider and no completion review packet have been constructed.</p>
-      <p>The key change is that W853 no longer asks the remaining provider to carry a category-homology component. W831 supplies the comparison route, and the provider now contains only the W735 branch data consumed by W851.</p>
+    <section class="grid cards">
+      <div class="card"><div class="label">Latest Increment</div><div class="metric">W854</div><p>homology-free provider from route data</p></div>
+      <div class="card"><div class="label">Outcome</div><div class="metric small">nonterminal_homology_free_provider_from_route_data</div><p>The terminal outcome intentionally rejects product completion.</p></div>
+      <div class="card"><div class="label">Source Tree Hash</div><div class="metric code">f90d4e62c75e474386ba2d597315e3e94b37236a91f84a7a2b3b58fe38fdd96d</div><p>Lean/audit/docs source hash recorded in verification evidence.</p></div>
+      <div class="card"><div class="label">Contract SHA256</div><div class="metric code">a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</div><p>Immutable original four-task contract.</p></div>
     </section>
 
-    <section class="grid two">
-      <article class="card span-2">
-        <h2>Checked Declarations</h2>
-        <ul><li><code>Dbounded.MetrizableWppHomologyFreeSelectedCochainRouteDataProviderW853</code></li>
-<li><code>Dbounded.closedMapExactInputsOfHomologyFreeRouteDataW853</code></li>
-<li><code>Dbounded.closedEmbeddingExactInputsOfHomologyFreeRouteDataW853</code></li>
-<li><code>Dbounded.MetrizableHomologyFreeSelectedCochainDirectSourceDataW853</code></li>
-<li><code>Dbounded.selectedCochainDirectSourceDataOfHomologyFreeRouteDataW853</code></li>
-<li><code>Dbounded.directBoundedLeftCalculusOfHomologyFreeComparisonSelectedCochainW853</code></li>
-<li><code>Dbounded.boundedDerivedInfinityCategoryOfHomologyFreeComparisonSelectedCochainW853</code></li>
-<li><code>Dbounded.homologyFreeSelectedCochainStableRouteInputNamesW853_count</code></li>
-<li><code>Dbounded.currentW853HomologyFreeSelectedCochainStableRoute_productSuccess</code></li>
-<li><code>originalFourTaskContract_homologyFreeSelectedCochainStableRoute_inputCount</code></li>
-<li><code>originalFourTaskContract_homologyFreeSelectedCochainStableRoute_nonterminal</code></li>
-</ul>
-      </article>
-      <article class="card span-2">
-        <h2>Known Nonterminal Facts</h2>
-        <ul><li>Task 4 is not contract-complete under the original four-task contract: W853 reaches the selected-cochain stable package from one homology-free provider, but that provider is still an input rather than a constructed value.</li>
-<li>The final Dbounded MetrizableLCA original four-task completion witness is still missing because the concrete homology-free selected-cochain route-data provider has not been constructed.</li>
-<li>ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still record nonterminal evidence and lack originalFourTaskContractCompletion.</li>
-<li>The review packet still does not expose the immutable-contract negative fixtures and clean extraction audit in the completion packet shape required for product success.</li>
-</ul>
-      </article>
+    <section class="panel">
+      <h2>Current Result</h2>
+      <p>W854 keeps the target nonterminal under the immutable original four-task contract while constructing the W853 homology-free selected-cochain route-data provider from existing W733/W732 route-data evidence. It projects W763 concrete leaves from one W732 route-data provider, drops the unused category-homology payload by retaining only the source-triangulation component, then feeds the constructed W853 provider into the W853 selected-cochain, left-calculus, and bounded-derived package routes. Product success remains false because the concrete W732 route-data provider, the nullary original-four-task completion witness, and the completion review packet are still absent.</p>
+      <p>The route is a real Lean construction step: <code>homologyFreeSelectedCochainRouteDataProviderOfRouteDataW854</code> builds the W853 provider from one W732 route-data provider by projecting W733 leaves through W763 and dropping only the category-homology payload.</p>
     </section>
 
-    <section>
-      <h2>Verification Evidence</h2>
-      <table>
-        <thead><tr><th>Command</th><th>Status</th><th>Evidence</th><th>Note</th></tr></thead>
-        <tbody>
-<tr><td><code>lake env lean LeanLCAExactChallenge/Derived/HomologyFreeSelectedCochainStableRoute.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_new_module_lean.log</code></td><td>focused Lean check for the W853 homology-free selected-cochain stable route</td></tr>
-<tr><td><code>lake build LeanLCAExactChallenge.Derived.HomologyFreeSelectedCochainStableRoute</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_new_module_lake_build.log</code></td><td>named Lake target for the W853 route</td></tr>
-<tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_required_audit_lean.log</code></td><td>required public declarations still elaborate</td></tr>
-<tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_product_audit_lean.log</code></td><td>checks W853 declarations while product_success remains false</td></tr>
-<tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_original_audit_lean.log</code></td><td>records W853 as nonterminal original-four-task evidence</td></tr>
-<tr><td><code>lake build</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_lake_build.log</code></td><td>full build after W853</td></tr>
-<tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_forbidden_tokens.log</code></td><td>no forbidden Lean tokens under LeanLCAExactChallenge</td></tr>
-<tr><td><code>rg -n productSuccessClaimed/product_success/product_complete true scan</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_source_product_success_true_scan.log</code></td><td>Lean/audit/outcome surfaces have no product-success true claim outside negative fixtures</td></tr>
-<tr><td><code>git diff --check</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_git_diff_check.log</code></td><td>whitespace check after W853 source edits</td></tr>
-<tr><td><code>python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_html_check_report.log</code></td><td>static HTML report validation passed</td></tr>
-<tr><td><code>python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_contract_audit.log</code></td><td>expected nonterminal pass: product_success is false and original witness plus packet requirements remain</td></tr>
-<tr><td><code>python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json</code></td><td>failed_expected</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_external_audit_nonterminal_expected.log</code></td><td>legacy product-success audit rejects the nonterminal state at the product-success outcome gate</td></tr>
-<tr><td><code>python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T220407Z_codex_parent_w853_homology_free_selected_cochain_stable_route/logs/w853_browser_evidence_scratch_log.log</code></td><td>browser-rendered report evidence with W853 DOM expectations</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h2>Timeline</h2>
-      <div class="timeline">
-        <article class="event"><time datetime="2026-05-26T06:51:31+09:00">2026-05-26 06:51 JST</time><h3>W851 discharged the comparison input</h3><p>W831 supplied the universal comparison isomorphism, leaving one W735 branch.</p></article>
-        <article class="event"><time datetime="2026-05-26T07:00:50+09:00">2026-05-26 07:00 JST</time><h3>W852 routed W732 into W851</h3><p>W763 route-data leaves rebuilt the closed-map or closed-embedding W735 branch internally.</p></article>
-        <article class="event"><time datetime="2026-05-26T07:05:35+09:00">2026-05-26 07:05 JST</time><h3>W853 removed category-homology payload</h3><p>The remaining provider now carries the selected-cochain data W851 actually consumes.</p></article>
+    <section class="panel two-col">
+      <div>
+        <h2>Implemented Declarations</h2>
+        <ul><li><code>Dbounded.homologyFreeSelectedCochainRouteDataProviderOfConcreteLeavesW854</code></li>
+<li><code>Dbounded.homologyFreeSelectedCochainRouteDataProviderOfRouteDataW854</code></li>
+<li><code>Dbounded.selectedCochainDirectSourceDataOfRouteDataViaHomologyFreeW854</code></li>
+<li><code>Dbounded.directBoundedLeftCalculusOfRouteDataViaHomologyFreeW854</code></li>
+<li><code>Dbounded.boundedDerivedInfinityCategoryOfRouteDataViaHomologyFreeW854</code></li>
+<li><code>Dbounded.homologyFreeProviderFromRouteDataInputNamesW854_count</code></li>
+<li><code>Dbounded.currentW854HomologyFreeProviderFromRouteData_productSuccess</code></li>
+<li><code>originalFourTaskContract_homologyFreeProviderFromRouteData_inputCount</code></li>
+<li><code>originalFourTaskContract_homologyFreeProviderFromRouteData_nonterminal</code></li></ul>
+      </div>
+      <div>
+        <h2>Remaining Gaps</h2>
+        <ul><li>Task 4 is not contract-complete under the original four-task contract: W854 constructs the W853 homology-free provider from W732 route data, but the concrete W732 route-data provider is still an input rather than a constructed value.</li>
+<li>The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.</li>
+<li>The review packet still does not expose the immutable-contract negative fixtures, external SHA256 sidecar, and clean extraction audit required for product success.</li></ul>
       </div>
     </section>
 
-    <section>
+    <section class="panel">
+      <h2>Verification Evidence</h2>
+      <table>
+        <thead><tr><th>Command</th><th>Status</th><th>Evidence</th><th>Note</th></tr></thead>
+        <tbody><tr><td><code>lake env lean LeanLCAExactChallenge/Derived/HomologyFreeRouteDataProviderFromRouteData.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_new_module_lean.log</code></td><td>focused Lean check for the W854 provider-construction route</td></tr>
+<tr><td><code>lake build LeanLCAExactChallenge.Derived.HomologyFreeRouteDataProviderFromRouteData</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_new_module_lake_build.log</code></td><td>named Lake target for the W854 helper module</td></tr>
+<tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_required_audit_lean.log</code></td><td>required public declarations still elaborate</td></tr>
+<tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_product_audit_lean.log</code></td><td>checks W854 declarations while product_success remains false</td></tr>
+<tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_original_audit_lean.log</code></td><td>records W854 as nonterminal original-four-task evidence</td></tr>
+<tr><td><code>lake build</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_lake_build.log</code></td><td>full build after W854</td></tr>
+<tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_forbidden_tokens.log</code></td><td>no forbidden Lean tokens under LeanLCAExactChallenge</td></tr>
+<tr><td><code>rg -n productSuccessClaimed/product_success/product_complete true scan</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_source_product_success_true_scan.log</code></td><td>Lean/audit/outcome surfaces have no product-success true claim outside negative fixtures</td></tr>
+<tr><td><code>git diff --check</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_git_diff_check.log</code></td><td>whitespace check after W854 source edits</td></tr>
+<tr><td><code>python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_html_check_report.log</code></td><td>static HTML report validation passed</td></tr>
+<tr><td><code>python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_contract_audit.log</code></td><td>expected nonterminal pass: product_success is false and original witness plus packet requirements remain</td></tr>
+<tr><td><code>python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json</code></td><td>failed_expected</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_external_audit_nonterminal_expected.log</code></td><td>legacy product-success audit rejects the nonterminal state at the product-success outcome gate</td></tr>
+<tr><td><code>python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_browser_evidence_scratch_log.log</code></td><td>browser-rendered report evidence with W854 DOM expectations</td></tr></tbody>
+      </table>
+    </section>
+
+    <section class="panel timeline">
+      <h2>Timeline</h2>
+      <article class="event"><time datetime="2026-05-26T07:05:35+09:00">2026-05-26 07:05 JST</time><h3>W853 removed category-homology payload</h3><p>The remaining provider carried only the selected-cochain data W851 consumes.</p></article>
+      <article class="event"><time datetime="2026-05-26T07:16:10+09:00">2026-05-26 07:16 JST</time><h3>W854 constructed the provider from route data</h3><p>W763-projected W733 leaves now construct the W853 provider from one W732 route-data provider.</p></article>
+    </section>
+
+    <section class="panel">
       <h2>Next Safe Action</h2>
-      <ol><li>Construct a concrete homology-free selected-cochain route-data provider, including boundary data, relation data, target closedness data, normalized fixed-target data, source triangulation data, endpoint strict-topology data, and localized-right-adjoint data.</li>
-<li>Expose a no-argument or fully instance-resolved original four-task completion witness using the W853 route after the provider is real.</li>
-<li>Refresh the review packet fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists.</li>
-</ol>
+      <ul><li>Construct a concrete W732 boundary/relation target/closedness normalized source/endpoint route-data provider or reduce its remaining component blockers with exact Lean evidence.</li>
+<li>Expose a no-argument or fully instance-resolved original four-task completion witness after the W732 provider and stable Dbounded data are real.</li>
+<li>Refresh the review packet fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists.</li></ul>
       <div class="warnbox"><strong>Nonterminal:</strong> the original four-task contract is not complete. This report and terminal outcome intentionally keep <code>product_success=false</code>, <code>product_complete=false</code>, and <code>update_goal_allowed=false</code>.</div>
     </section>
   </main>
