@@ -22,6 +22,7 @@ import LeanLCAExactChallenge.Derived.TargetExactAtFromClosednessBranch
 import LeanLCAExactChallenge.Derived.TargetExactAtEndpointLocalizedFromClosednessBranch
 import LeanLCAExactChallenge.Derived.TargetExactAtConcreteLeavesFromClosednessBranch
 import LeanLCAExactChallenge.Derived.TargetExactAtConcreteLeavesFromTargetHomologyZero
+import LeanLCAExactChallenge.Derived.TargetExactAtConcreteLeavesStableFromTargetHomologyZero
 
 set_option autoImplicit false
 
@@ -577,5 +578,21 @@ theorem originalFourTaskContract_targetHomologyZeroConcreteLeavesTargetExactAt_n
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW862TargetHomologyZeroConcreteLeavesTargetExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_targetHomologyZeroStableExactAt_inputCount :
+    Dbounded.targetHomologyZeroStableExactAtInputNamesW863.length = 1 :=
+  Dbounded.targetHomologyZeroStableExactAtInputNamesW863_count
+
+theorem originalFourTaskContract_targetHomologyZeroStableExactAt_expandedInputCount :
+    Dbounded.targetHomologyZeroStableExactAtExpandedInputNamesW863.length =
+      2 :=
+  Dbounded.targetHomologyZeroStableExactAtExpandedInputNamesW863_count
+
+theorem originalFourTaskContract_targetHomologyZeroStableExactAt_nonterminal :
+    (let state :=
+        Dbounded.currentMetrizableTargetHomologyZeroStableExactAtRouteStateW863;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW863TargetHomologyZeroStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
