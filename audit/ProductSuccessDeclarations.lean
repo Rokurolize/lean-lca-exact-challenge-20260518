@@ -31,6 +31,7 @@ import LeanLCAExactChallenge.Derived.TargetHomologyZeroExactInputsClosedRangePro
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundaryDataExactInputsProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundarySourcePiZeroProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroConcreteLeafColimitProductRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroComparisonHomologyProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9539,6 +9540,18 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetHomologyZeroConcreteLeafColimitRouteStateW793
   #check Dbounded.currentMetrizableTargetHomologyZeroConcreteLeafColimitRouteStateW793
   #check Dbounded.currentW793TargetHomologyZeroConcreteLeafColimitRoute_productSuccess
+  #check Dbounded.MetrizableClosedMapTargetHomologyZeroComparisonHomologyBranchDataW794
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroComparisonHomologyBranchDataW794
+  #check Dbounded.closedMapNormalizedDataOfComparisonHomologyW794
+  #check Dbounded.closedEmbeddingNormalizedDataOfComparisonHomologyW794
+  #check Dbounded.productEvidence_of_closedMapComparisonHomologyRouteW794
+  #check Dbounded.productEvidence_of_closedEmbeddingComparisonHomologyRouteW794
+  #check Dbounded.targetHomologyZeroComparisonHomologyProductRouteInputNamesW794
+  #check Dbounded.targetHomologyZeroComparisonHomologyProductRouteInputNamesW794_count
+  #check Dbounded.MetrizableTargetHomologyZeroComparisonHomologyRouteStateW794
+  #check Dbounded.currentMetrizableTargetHomologyZeroComparisonHomologyRouteStateW794
+  #check Dbounded.currentW794TargetHomologyZeroComparisonHomologyRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
