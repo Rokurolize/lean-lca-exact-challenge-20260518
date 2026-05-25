@@ -45,6 +45,7 @@ import LeanLCAExactChallenge.Derived.TargetExactAtRouteConsistencyProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtEndpointReductionProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtW663BundleReductionProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtW663DirectBundleReductionProductRoute
+import LeanLCAExactChallenge.Derived.TargetIsoToTargetExactAtTerminalProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9817,6 +9818,20 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableTargetExactAtW663DirectBundleReductionStateW807
   #check
     Dbounded.currentW807TargetExactAtW663DirectBundleReduction_productSuccess
+  #check Dbounded.targetExactAtPayloadOfTargetIsoRealizationW808
+  #check Dbounded.forgetPreservesHomologyOfClosedMapExactInputsW808
+  #check Dbounded.forgetPreservesHomologyOfClosedEmbeddingExactInputsW808
+  #check Dbounded.MetrizableClosedMapTargetIsoTerminalBranchDataW808
+  #check Dbounded.MetrizableClosedEmbeddingTargetIsoTerminalBranchDataW808
+  #check Dbounded.closedMapTargetExactAtDataOfTargetIsoW808
+  #check Dbounded.closedEmbeddingTargetExactAtDataOfTargetIsoW808
+  #check Dbounded.productEvidence_of_closedMapTargetIsoTerminalRouteW808
+  #check Dbounded.productEvidence_of_closedEmbeddingTargetIsoTerminalRouteW808
+  #check Dbounded.targetIsoToTargetExactAtTerminalInputNamesW808
+  #check Dbounded.targetIsoToTargetExactAtTerminalInputNamesW808_count
+  #check Dbounded.MetrizableTargetIsoToTargetExactAtTerminalRouteStateW808
+  #check Dbounded.currentMetrizableTargetIsoToTargetExactAtTerminalRouteStateW808
+  #check Dbounded.currentW808TargetIsoToTargetExactAtTerminalRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
