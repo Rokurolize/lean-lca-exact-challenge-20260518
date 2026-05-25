@@ -10,6 +10,7 @@ import LeanLCAExactChallenge.Derived.ComparisonBijectiveEmbeddingRoute
 import LeanLCAExactChallenge.Derived.ComparisonIsomorphismEmbeddingRoute
 import LeanLCAExactChallenge.Derived.ComparisonEmbeddingCriterionRoute
 import LeanLCAExactChallenge.Derived.ComparisonFiberSaturationRoute
+import LeanLCAExactChallenge.Derived.RightCokernelClosureRoute
 import LeanLCAExactChallenge.Derived.KernelCokernelProductRoute
 import LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
 import LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
@@ -9967,6 +9968,20 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check MetrizableLCA.ComparisonFiberSaturationRouteStateW819
   #check MetrizableLCA.currentComparisonFiberSaturationRouteStateW819
   #check MetrizableLCA.currentComparisonFiberSaturationRouteStateW819_productSuccess
+  #check MetrizableLCA.cokernelSubgroup_mem_closure_rangeW820
+  #check
+    MetrizableLCA.isColimit_cokernel_cofork_eq_zero_mem_closure_rangeW820
+  #check MetrizableLCA.rightCokernelFiberClosure_of_rightHomologyDataW820
+  #check MetrizableLCA.comparisonBijectiveTargetW820
+  #check MetrizableLCA.comparisonRightCokernelFiberClosureTarget_of_bijectiveW820
+  #check MetrizableLCA.comparisonFiberSaturationTarget_of_bijectiveW820
+  #check MetrizableLCA.comparisonBijectiveEmbeddingTarget_of_bijectiveW820
+  #check MetrizableLCA.categoryWithHomology_of_comparisonBijectiveW820
+  #check MetrizableLCA.rightCokernelClosureInputNamesW820
+  #check MetrizableLCA.rightCokernelClosureInputNamesW820_count
+  #check MetrizableLCA.RightCokernelClosureRouteStateW820
+  #check MetrizableLCA.currentRightCokernelClosureRouteStateW820
+  #check MetrizableLCA.currentRightCokernelClosureRouteStateW820_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

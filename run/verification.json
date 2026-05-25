@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w819-comparison-fiber-saturation-route",
-  "generated_utc": "2026-05-25T12:38:42Z",
-  "source_tree_hash": "71071e20ea18efbb554dcf8164d7b27eb69236bfc7df05f6e118de821d36d7e0",
-  "summary": "W819 proves the kernel-range and boundary-closure half of W818 fiber saturation for MetrizableLCA homology data: right-cokernel equality now only needs to detect closed boundary-closure differences, alongside algebraic bijectivity, before the W818 comparison embedding criterion feeds CategoryWithHomology MetrizableLCA. Product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-w820-right-cokernel-closure-route",
+  "generated_utc": "2026-05-25T12:52:07Z",
+  "source_tree_hash": "e56d7485934e45e598e9d8b3227a01fe70c2c02a7270b1accf3415f3ee3561a3",
+  "summary": "W820 proves that the zero fiber of any limiting MetrizableLCA cokernel projection is the closed range of the source morphism, discharging W819 right-cokernel fiber closure for arbitrary right homology data. The comparison route now reduces to algebraic bijectivity of the canonical left-right homology comparison before feeding W818/W816 to CategoryWithHomology MetrizableLCA. Product remains nonterminal.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/CategoryHomologyComparisonBijectiveOpenRoute.lean",
@@ -413,6 +413,91 @@
       "command": "goal SHA delta decision after Round63 active-goal update",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T122804Z_codex_parent_w819_comparison_fiber_saturation/w819_goal_sha_delta_decision.tsv"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/RightCokernelClosureRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.RightCokernelClosureRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/w820_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_root_import.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_required_declarations_audit.log exit_code=0"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_forbidden_tokens.log exit_code=0"
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_product_success_true_scan.log exit_code=1"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/logs/w820_check_report.log exit_code=0"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/scratch_log_browser_evidence_precloseout --expect Latest Increment --expect W820 --expect product_complete=false --expect product_success=false --expect RightCokernelClosureRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/scratch_log_browser_evidence_precloseout/browser_evidence_fidelity.json"
+    },
+    {
+      "command": "actual-diff/module-size gate with new-file accounting",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/actual_diff_module_size_gate.tsv"
+    },
+    {
+      "command": "goal SHA delta decision after Round64 active-goal update",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T124220Z_codex_parent_w820_right_cokernel_closure_probe/w820_goal_sha_delta_decision.tsv"
     }
   ],
   "product_success": false,
@@ -420,16 +505,15 @@
   "support_result_classification": "blocked_nonterminal_frontier",
   "known_gaps": [
     "Prove algebraic bijectivity of the canonical left-right homology comparison for arbitrary MetrizableLCA short complexes.",
-    "Prove the W819 right-cokernel closure input: equality under the right cokernel projection detects closed boundary-range differences.",
-    "Use the resulting W818 fiber-saturation target to prove comparisonBijectiveEmbeddingTargetW816 and comparisonBijectiveOpenTargetW814 universally.",
-    "Construct concrete W735 closed-map or closed-embedding branch-data values.",
+    "Use the resulting W820 bijectivity target to prove comparisonBijectiveEmbeddingTargetW816 and comparisonBijectiveOpenTargetW814 universally.",
+    "Construct concrete W735 closed-map or closed-embedding branch-data values if the route returns to WPP branch data.",
     "Construct exact-acyclic homotopy-object strict triangleh realization data without looping through W651/W809 equivalence."
   ],
   "remaining_work": [
-    "Attack either algebraic bijectivity or rightCokernelFiberClosureTargetW819 for arbitrary MetrizableLCA short complexes.",
-    "Then route comparisonRightCokernelFiberClosureTargetW819 through categoryWithHomology_of_rightCokernelFiberClosureW819."
+    "Attack comparisonBijectiveTargetW820 for arbitrary MetrizableLCA short complexes.",
+    "Then route the result through categoryWithHomology_of_comparisonBijectiveW820."
   ],
-  "latest_verified_increment": "W819 comparison fiber-saturation route",
+  "latest_verified_increment": "W820 right-cokernel closure route",
   "implemented_declarations_checked": [
     "MetrizableLCA.cokernelCofork_π_surjective_of_isColimitW815",
     "MetrizableLCA.cokernelCofork_π_openMap_of_isColimitW815",
@@ -496,7 +580,20 @@
     "MetrizableLCA.comparisonFiberSaturationInputNamesW819_count",
     "MetrizableLCA.ComparisonFiberSaturationRouteStateW819",
     "MetrizableLCA.currentComparisonFiberSaturationRouteStateW819",
-    "MetrizableLCA.currentComparisonFiberSaturationRouteStateW819_productSuccess"
+    "MetrizableLCA.currentComparisonFiberSaturationRouteStateW819_productSuccess",
+    "MetrizableLCA.cokernelSubgroup_mem_closure_rangeW820",
+    "MetrizableLCA.isColimit_cokernel_cofork_eq_zero_mem_closure_rangeW820",
+    "MetrizableLCA.rightCokernelFiberClosure_of_rightHomologyDataW820",
+    "MetrizableLCA.comparisonBijectiveTargetW820",
+    "MetrizableLCA.comparisonRightCokernelFiberClosureTarget_of_bijectiveW820",
+    "MetrizableLCA.comparisonFiberSaturationTarget_of_bijectiveW820",
+    "MetrizableLCA.comparisonBijectiveEmbeddingTarget_of_bijectiveW820",
+    "MetrizableLCA.categoryWithHomology_of_comparisonBijectiveW820",
+    "MetrizableLCA.rightCokernelClosureInputNamesW820",
+    "MetrizableLCA.rightCokernelClosureInputNamesW820_count",
+    "MetrizableLCA.RightCokernelClosureRouteStateW820",
+    "MetrizableLCA.currentRightCokernelClosureRouteStateW820",
+    "MetrizableLCA.currentRightCokernelClosureRouteStateW820_productSuccess"
   ],
   "metadata_corrections": {
     "w815_comparison_projection_topology_metadata_refresh": {
@@ -533,7 +630,14 @@
       "latest_verified_increment": "W819 comparison fiber-saturation route",
       "claim_review_status": "pending_claim_review_loop_v3",
       "note": "W819 is a checked nonterminal helper increment for comparison fiber saturation; it does not prove algebraic bijectivity or the remaining right-cokernel closure input universally."
+    },
+    "w820_right_cokernel_closure_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T12:52:07Z",
+      "source_tree_hash": "e56d7485934e45e598e9d8b3227a01fe70c2c02a7270b1accf3415f3ee3561a3",
+      "latest_verified_increment": "W820 right-cokernel closure route",
+      "claim_review_status": "pending_claim_review_loop_v3",
+      "note": "W820 is a checked nonterminal helper increment that removes the right-cokernel closure input; it does not prove algebraic bijectivity universally."
     }
   },
-  "summary_log_tail": "W819 helper 209 lines, 13 top-level declarations, WPP untouched, focused verifier and browser evidence passed; active goal changed after focused verification and w819_goal_sha_delta_decision.tsv authorizes closeout under Round63."
+  "summary_log_tail": "W820 helper 183 lines, 13 top-level declarations, WPP untouched, focused verifier and browser evidence passed; active goal changed after preflight and w820_goal_sha_delta_decision.tsv authorizes closeout under Round64."
 }
