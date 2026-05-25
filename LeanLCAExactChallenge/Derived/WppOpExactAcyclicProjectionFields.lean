@@ -55275,6 +55275,144 @@ theorem
       false :=
   rfl
 
+/--
+W763 turns the W732 one-provider route-data bundle back into the W733 concrete
+leaf record used by the exactness bridge.
+-/
+def boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_routeDataW763
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733 := by
+  let boundaryRelationData :=
+    boundaryRelationData_of_boundaryRelationTargetClosednessNormalizedDataW732
+      routeData
+  let targetNormalizedData :=
+    targetClosednessNormalizedSourceEndpointData_of_boundaryRelationTargetClosednessNormalizedDataW732
+      routeData
+  let targetClosednessData :=
+    targetClosednessData_of_targetClosednessNormalizedSourceEndpointDataW731
+      targetNormalizedData
+  let normalizedSourceEndpointData :=
+    normalizedFixedTargetSourceEndpointData_of_targetClosednessNormalizedSourceEndpointDataW731
+      targetNormalizedData
+  let sourceEndpointData :=
+    sourceHomologicalEndpointLocalizedData_of_normalizedSourceEndpointDataW728
+      normalizedSourceEndpointData
+  let endpointLocalizedData :=
+    endpointLocalizedRightAdjointData_of_sourceHomologicalEndpointLocalizedDataW727
+      sourceEndpointData
+  exact
+    { boundaryData := boundaryData_of_boundaryRelationDataW730 boundaryRelationData
+      relationData := relationData_of_boundaryRelationDataW730 boundaryRelationData
+      targetSurjectiveCompactForTargetProvider :=
+        targetSurjectiveCompactForTargetProvider_of_targetClosednessDataW729
+          targetClosednessData
+      diagramAndMappedCokernelClosednessData :=
+        diagramAndMappedCokernelClosednessData_of_targetClosednessDataW729
+          targetClosednessData
+      normalizedFixedTargetData :=
+        normalizedFixedTargetData_of_normalizedSourceEndpointDataW728
+          normalizedSourceEndpointData
+      sourceHomologicalTriangulationData :=
+        sourceHomologicalTriangulationData_of_sourceHomologicalEndpointLocalizedDataW727
+          sourceEndpointData
+      endpointStrictTopologyData :=
+        endpointStrictTopologyData_of_endpointLocalizedRightAdjointDataW726
+          endpointLocalizedData
+      localizedRightAdjointData :=
+        localizedRightAdjointData_of_endpointLocalizedRightAdjointDataW726
+          endpointLocalizedData }
+
+/--
+W763 exactness bridge: one W732 route-data provider supplies the W733 leaves
+consumed by W759.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_routeDataW763
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_routeDataW763
+      routeData)
+
+/--
+W763 exact/stable bridge: the same W732 route-data provider supplies W759
+exactness and W732 accepted stable evidence.
+-/
+noncomputable def exactStableEvidence_of_routeDataW763
+    (routeData :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedDataProviderW732) :
+    MetrizableWppExactStableEvidenceW758
+    where
+  exactAcyclic :=
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_routeDataW763
+      routeData
+  acceptedStable :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732
+      routeData
+  acceptedStableAccepted :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedDataW732_accepted
+      routeData
+
+/-- Input name for the W763 one-route-data exact/stable bridge. -/
+def exactStableWppOpRouteDataInputNamesW763 :
+    List String :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedInputNamesW732
+
+theorem exactStableWppOpRouteDataInputNamesW763_count :
+    exactStableWppOpRouteDataInputNamesW763.length =
+      1 := by
+  simpa [exactStableWppOpRouteDataInputNamesW763] using
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryBoundaryRelationTargetClosednessNormalizedInputNamesW732_count
+
+/--
+Current checked W763 state for the one-route-data provider exact/stable bridge.
+-/
+structure MetrizableWppRouteDataExactStableBridgeStateW763 : Type where
+  seed : String
+  declarations : List String
+  routeDataLeafProjectionResult : String
+  exactStableResult : String
+  removedInputs : List String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W763 state. -/
+def currentMetrizableWppRouteDataExactStableBridgeSupportStateW763 :
+    MetrizableWppRouteDataExactStableBridgeStateW763
+    where
+  seed := "w763-w732-route-data-exact-stable-bridge"
+  declarations :=
+    ["boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_routeDataW763",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_routeDataW763",
+      "exactStableEvidence_of_routeDataW763",
+      "exactStableWppOpRouteDataInputNamesW763",
+      "exactStableWppOpRouteDataInputNamesW763_count"]
+  routeDataLeafProjectionResult :=
+    "proved: one W732 route-data provider projects to every W733 concrete leaf field"
+  exactStableResult :=
+    "proved: the W732 provider supplies W759 exactness and W732 accepted stable evidence"
+  removedInputs :=
+    ["eight separate W733 concrete leaf providers at the exact/stable bridge surface"]
+  exposedInputs :=
+    exactStableWppOpRouteDataInputNamesW763
+  remainingInputs :=
+    ["construct one concrete W732 boundary/relation target/closedness normalized source/endpoint route-data provider",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppRouteDataExactStableBridgeStateW763 :
+    MetrizableWppRouteDataExactStableBridgeStateW763 :=
+  currentMetrizableWppRouteDataExactStableBridgeSupportStateW763
+
+theorem currentMetrizableWppRouteDataExactStableBridgeStateW763_productSuccess :
+    currentMetrizableWppRouteDataExactStableBridgeStateW763.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
