@@ -6,6 +6,8 @@
 
 2026-05-26の不変4課題契約再監査では、直前のW824 terminal outcomeが`product_success=true`を主張していたことを過大主張として扱い直した。`audit/original_four_task_contract_audit.py`は、`BoundedDerivedInfinityCategory`が4つの抽象`Prop` field wrapperであること、final surfaceが`MetrizableOrdinaryStableSemanticInput`、`StableFourProjectionCertificate`、`AcceptedStableBoundedDerivedInfinityCategory`経路を参照していること、packet側に不変契約で要求されるnegative fixtureがまだ揃っていないことを、original four-task contract上の未完了理由として検出する。このためtarget側のterminal outcomeとverification metadataは非完了へ戻した。
 
+W826では、歴史的なLean宣言自体は残しつつ、`audit/ProductSuccessDeclarations.lean`とterminal metadataからsemantic-input/certificate-adapter経路名を外し、final product surfaceがその経路を完了証拠として参照しないようにした。残る未完了理由は、`BoundedDerivedInfinityCategory`自体がまだ4つの抽象`Prop` field wrapperであること、original four-task completion witnessがまだないこと、review packetの不変契約fixtureとclean extraction auditが未更新であることに縮小された。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス

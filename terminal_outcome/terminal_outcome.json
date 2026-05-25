@@ -1,37 +1,39 @@
 {
-  "outcome": "nonterminal_original_four_task_contract_reaudit",
+  "outcome": "nonterminal_final_surface_quarantine",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W825 reopens the W824 terminal product-success claim under the immutable original four-task contract. The current task-4 bounded-derived infinity-category surface is still nonterminal because the final surface can be routed through semantic input and four-Prop certificate wrappers.",
+  "summary": "W826 keeps the target nonterminal under the immutable original four-task contract and removes semantic-input/certificate-adapter route names from the product-success audit surface. The remaining task-4 blocker is the actual four-Prop bounded-derived infinity-category wrapper.",
   "known_gaps": [
     "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory is still a four-Prop wrapper rather than stable infinity-category data constructed from Dbounded MetrizableLCA.",
-    "Final product surfaces still reference MetrizableOrdinaryStableSemanticInput, StableFourProjectionCertificate, AcceptedStableBoundedDerivedInfinityCategory, or the metrizable ordinary-input adapter route.",
+    "ProductSuccessDeclarations no longer cites the semantic-input/certificate-adapter route names, but it still lacks an original four-task completion witness.",
     "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
   ],
   "remaining_gaps": [
     "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory is still a four-Prop wrapper rather than stable infinity-category data constructed from Dbounded MetrizableLCA.",
-    "Final product surfaces still reference MetrizableOrdinaryStableSemanticInput, StableFourProjectionCertificate, AcceptedStableBoundedDerivedInfinityCategory, or the metrizable ordinary-input adapter route.",
+    "ProductSuccessDeclarations no longer cites the semantic-input/certificate-adapter route names, but it still lacks an original four-task completion witness.",
     "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
   ],
   "remaining_work": [
-    "Replace the task-4 semantic-input adapter with nullary or typeclass-resolved stable infinity-category data constructed from the actual bounded localization.",
-    "Make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations expose a real original-four-task completion witness instead of a name-only check.",
+    "Replace the task-4 four-Prop wrapper with nullary or typeclass-resolved stable infinity-category data constructed from the actual bounded localization.",
+    "Make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations expose a real original-four-task completion witness.",
     "Refresh the review packet with contract-specific negative fixtures, external SHA256 sidecar, and clean extraction audit before any future product-success claim."
   ],
-  "generated_utc": "2026-05-25T16:30:55Z",
+  "generated_utc": "2026-05-25T16:40:57Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
-  "support_result_classification": "nonterminal_original_four_task_contract_reaudit",
-  "latest_verified_increment": "W825 original four-task contract guard",
+  "support_result_classification": "nonterminal_final_surface_quarantine",
+  "latest_verified_increment": "W826 final-surface quarantine",
   "reference_route_log": "docs/research/reference_route_log.md",
   "implemented_declarations": [
+    "ProductSuccessDeclarations semantic-input/certificate adapter route names removed",
     "originalFourTaskContract_currentOrdinaryRouteRejected",
     "originalFourTaskContract_currentSemanticRouteNonterminal"
   ],
   "implemented_declarations_checked": [
+    "ProductSuccessDeclarations semantic-input/certificate adapter route names removed",
     "originalFourTaskContract_currentOrdinaryRouteRejected",
     "originalFourTaskContract_currentSemanticRouteNonterminal"
   ],

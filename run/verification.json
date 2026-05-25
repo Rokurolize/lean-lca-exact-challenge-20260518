@@ -1,8 +1,8 @@
 {
-  "schema": "lean_lca_original_four_task_nonterminal_verification_v1",
-  "generated_utc": "2026-05-25T16:30:55Z",
-  "source_tree_hash": "210b6b5719e3bfa36c4c9a438148cd340871ef347b5bd756d090d990a0358914",
-  "summary": "W825 reopens the W824 terminal product-success claim under the immutable original four-task contract. The current task-4 bounded-derived infinity-category surface is still nonterminal because the final surface can be routed through semantic input and four-Prop certificate wrappers.",
+  "schema": "lean_lca_original_four_task_nonterminal_verification_v2",
+  "generated_utc": "2026-05-25T16:40:57Z",
+  "source_tree_hash": "f6bc6dc48eefcfa454e18e94bb2d5448b7ed093856a3ada6a1e345606a730528",
+  "summary": "W826 keeps the target nonterminal under the immutable original four-task contract and removes semantic-input/certificate-adapter route names from the product-success audit surface. The remaining task-4 blocker is the actual four-Prop bounded-derived infinity-category wrapper.",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
@@ -12,17 +12,18 @@
   "update_goal_allowed": false,
   "known_gaps": [
     "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory is still a four-Prop wrapper rather than stable infinity-category data constructed from Dbounded MetrizableLCA.",
-    "Final product surfaces still reference MetrizableOrdinaryStableSemanticInput, StableFourProjectionCertificate, AcceptedStableBoundedDerivedInfinityCategory, or the metrizable ordinary-input adapter route.",
+    "ProductSuccessDeclarations no longer cites the semantic-input/certificate-adapter route names, but it still lacks an original four-task completion witness.",
     "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
   ],
   "remaining_work": [
-    "Replace the task-4 semantic-input adapter with nullary or typeclass-resolved stable infinity-category data constructed from the actual bounded localization.",
-    "Make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations expose a real original-four-task completion witness instead of a name-only check.",
+    "Replace the task-4 four-Prop wrapper with nullary or typeclass-resolved stable infinity-category data constructed from the actual bounded localization.",
+    "Make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations expose a real original-four-task completion witness.",
     "Refresh the review packet with contract-specific negative fixtures, external SHA256 sidecar, and clean extraction audit before any future product-success claim."
   ],
-  "support_result_classification": "nonterminal_original_four_task_contract_reaudit",
-  "latest_verified_increment": "W825 original four-task contract guard",
+  "support_result_classification": "nonterminal_final_surface_quarantine",
+  "latest_verified_increment": "W826 final-surface quarantine",
   "implemented_declarations_checked": [
+    "ProductSuccessDeclarations semantic-input/certificate adapter route names removed",
     "originalFourTaskContract_currentOrdinaryRouteRejected",
     "originalFourTaskContract_currentSemanticRouteNonterminal"
   ],
@@ -30,45 +31,44 @@
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_lake_build.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_lake_build.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_forbidden_tokens.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_forbidden_tokens.log"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_required_declarations.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_required_declarations.log"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_product_declarations.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_product_declarations_retry.log"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_original_four_task_declarations.log",
-      "note": "nonterminal Lean-native contract audit surface"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_original_four_task_declarations.log"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_original_four_task_contract_audit.log",
-      "note": "passes because the target outcome is honestly nonterminal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_original_four_task_contract_audit.log",
+      "note": "passes because the target outcome is honestly nonterminal and final-surface adapter names were removed"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_external_audit_nonterminal_expected.log",
-      "note": "legacy product-success audit still requires outcome=product_success and is expected to reject the reopened nonterminal state"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_external_audit_nonterminal_expected.log",
+      "note": "legacy product-success audit rejects the reopened nonterminal state"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_git_diff_check.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_git_diff_check.log"
     }
   ]
 }
