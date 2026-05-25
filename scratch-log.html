@@ -160,47 +160,47 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W791 target homology-zero boundary-data route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W792 target homology-zero boundary source-pi-zero route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroBoundaryDataExactInputsProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T062806Z_codex_parent_w791</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroBoundarySourcePiZeroProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T063732Z_codex_parent_w792</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W791 target homology-zero boundary-data route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 15:30 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W792 target homology-zero boundary source-pi-zero route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 15:44 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W791 removes W790's separate right-open boundary field from the target homology-zero branch data. The new helper derives <code>MetrizableWppLimitRightOpenClosedQuotientCoverBoundary</code> from W735 <code>exactInputs.boundaryData</code> via W716, then feeds W790 unchanged. The increment lives in a new 181-line helper module with 11 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W792 removes the separate W780 Epi right-surjectivity boundary from the target homology-zero branch data. The new helper derives WPP limit stability directly from W735 <code>exactInputs.boundaryData</code> via W716 right-open and source-pi-zero projections, then feeds W774 normalized direct-source evidence. The increment lives in a new 246-line helper module with 15 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>MetrizableClosedMapTargetHomologyZeroBoundaryDataBranchDataW791</code> and <code>MetrizableClosedEmbeddingTargetHomologyZeroBoundaryDataBranchDataW791</code> omit the separate right-open boundary field.</li>
-            <li><code>closedMapExactInputsDataOfBoundaryDataW791</code> and <code>closedEmbeddingExactInputsDataOfBoundaryDataW791</code> convert W791 branch data into W790 branch data by projecting W716 boundary data.</li>
-            <li><code>productEvidence_of_closedMapTargetHomologyZeroBoundaryDataRouteW791</code> and <code>productEvidence_of_closedEmbeddingTargetHomologyZeroBoundaryDataRouteW791</code> expose product evidence while keeping product success false.</li>
+            <li><code>limitStabilityOfBoundaryDataW792</code> uses W716 <code>rightOpenBoundary</code> and <code>sourcePiZeroBoundary</code> to build WPP limit stability.</li>
+            <li><code>exactClosed2OfTargetHomologyZeroClosedRangeW792</code> composes W790, W784, W783, and W782 to supply W774's <code>Closed₂</code> input.</li>
+            <li><code>productEvidence_of_closedMapBoundarySourcePiZeroRouteW792</code> and <code>productEvidence_of_closedEmbeddingBoundarySourcePiZeroRouteW792</code> expose product evidence while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroBoundaryDataExactInputsProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundaryDataExactInputsProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroBoundarySourcePiZeroProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundarySourcePiZeroProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T062806Z_codex_parent_w791/w791_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T063732Z_codex_parent_w792/w792_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 181 lines with 11 top-level declarations.</li>
-            <li><code>w791_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
-            <li>Focused W791 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 246 lines with 15 top-level declarations.</li>
+            <li><code>w792_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
+            <li>Focused W792 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W791 work.</p></div>
-      <p>W790 derived W696 closed-range endpoint topology from W735 exact inputs using W519 mapped-cokernel closedness and W720 endpoint topology data.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W792 work.</p></div>
+      <p>W791 derived W790's right-open boundary from W735 exact-input boundary data through W716.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct target homology-zero realization data, global homology existence, Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and the remaining Dbounded stable-infinity inputs.</li>
+        <li>Construct target homology-zero realization data, global homology existence, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>

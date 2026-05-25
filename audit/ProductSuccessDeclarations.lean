@@ -29,6 +29,7 @@ import LeanLCAExactChallenge.Derived.TargetHomologyZeroKernelCokernelTargetIsoSe
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroClosedRangeTargetIsoSelectedW461RowsProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroExactInputsClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundaryDataExactInputsProductRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroBoundarySourcePiZeroProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9501,6 +9502,27 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetHomologyZeroBoundaryDataRouteStateW791
   #check Dbounded.currentMetrizableTargetHomologyZeroBoundaryDataRouteStateW791
   #check Dbounded.currentW791TargetHomologyZeroBoundaryDataRoute_productSuccess
+  #check Dbounded.limitStabilityOfBoundaryDataW792
+  #check Dbounded.colimitStabilityOfClosedMapSelectedRowsW792
+  #check Dbounded.colimitStabilityOfClosedEmbeddingSelectedRowsW792
+  #check Dbounded.exactClosed2OfTargetHomologyZeroClosedRangeW792
+  #check
+    Dbounded.MetrizableClosedMapTargetHomologyZeroBoundarySourcePiZeroBranchDataW792
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroBoundarySourcePiZeroBranchDataW792
+  #check Dbounded.closedMapNormalizedDataOfBoundarySourcePiZeroW792
+  #check Dbounded.closedEmbeddingNormalizedDataOfBoundarySourcePiZeroW792
+  #check Dbounded.productEvidence_of_closedMapBoundarySourcePiZeroRouteW792
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingBoundarySourcePiZeroRouteW792
+  #check Dbounded.targetHomologyZeroBoundarySourcePiZeroProductRouteInputNamesW792
+  #check
+    Dbounded.targetHomologyZeroBoundarySourcePiZeroProductRouteInputNamesW792_count
+  #check Dbounded.MetrizableTargetHomologyZeroBoundarySourcePiZeroRouteStateW792
+  #check
+    Dbounded.currentMetrizableTargetHomologyZeroBoundarySourcePiZeroRouteStateW792
+  #check
+    Dbounded.currentW792TargetHomologyZeroBoundarySourcePiZeroRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
