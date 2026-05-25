@@ -1,75 +1,75 @@
 {
-  "outcome": "nonterminal_comparison_bijectivity_left_calculus_route",
+  "outcome": "nonterminal_target_exact_at_left_calculus_route",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W831 keeps the target nonterminal under the immutable original four-task contract and removes W830's explicit universal comparison-isomorphism input. Dbounded.universalLeftRightComparisonIso_of_comparisonBijectivityW831 derives that input from W821 comparison bijectivity and the W765 category-with-homology comparison route. Dbounded.directBoundedLeftCalculusOfComparisonBijectivityW831 now proves (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions from the remaining three direct-left-calculus inputs. The route still lacks those inputs, finite limits, finite colimits, pretriangulated structure, triangulated structure, and the original four-task completion witness.",
+  "summary": "W832 keeps the target nonterminal under the immutable original four-task contract and expands W831's remaining direct-left-calculus fields into concrete route inputs. Dbounded.targetExactAtLeftCalculusDataW832 derives the exact-closure field via W796, the kernel/cokernel topology field via W696, and the localized-right-adjoint input via W767. Dbounded.directBoundedLeftCalculusOfTargetExactAtW832 then proves (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions from W696/W785/W721 data. The route still lacks concrete W696/W785/W721 data values, finite limits, finite colimits, pretriangulated structure, triangulated structure, and the original four-task completion witness.",
   "known_gaps": [
-    "Task 4 is not contract-complete: W831 derives the universal comparison-isomorphism input, but still needs exactAcyclicHomotopyIsoClosure triangulated closure, kernel/cokernel conditioned ExactAt topology data, and a bounded homotopy localized right adjoint.",
+    "Task 4 is not contract-complete: W832 derives the W831 direct-left-calculus fields only from W696 closed-range endpoint topology, W785 target ExactAt payload, and W721 localized-right-adjoint provider data that still must be constructed.",
     "The final Dbounded MetrizableLCA finite-limit, finite-colimit, pretriangulated, and triangulated structures remain missing.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet still does not expose the immutable-contract negative fixtures and clean extraction audit in the completion packet shape required for product success."
   ],
   "remaining_gaps": [
-    "Task 4 is not contract-complete: W831 derives the universal comparison-isomorphism input, but still needs exactAcyclicHomotopyIsoClosure triangulated closure, kernel/cokernel conditioned ExactAt topology data, and a bounded homotopy localized right adjoint.",
+    "Task 4 is not contract-complete: W832 derives the W831 direct-left-calculus fields only from W696 closed-range endpoint topology, W785 target ExactAt payload, and W721 localized-right-adjoint provider data that still must be constructed.",
     "The final Dbounded MetrizableLCA finite-limit, finite-colimit, pretriangulated, and triangulated structures remain missing.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet still does not expose the immutable-contract negative fixtures and clean extraction audit in the completion packet shape required for product success."
   ],
   "remaining_work": [
-    "Construct the remaining W831 direct-left-calculus data: exactAcyclicHomotopyIsoClosure triangulated closure, kernel/cokernel conditioned ExactAt topology data, and bounded homotopy localized right adjoint.",
+    "Construct W696 closed-range endpoint topology data for MetrizableLCA.",
+    "Construct the W785 target ExactAt payload for exact-acyclic homotopy objects.",
+    "Construct W721 bounded homotopy localized-right-adjoint provider data.",
     "Construct finite limits, finite colimits, pretriangulated structure, and triangulated structure for Dbounded MetrizableLCA from the bounded localization rather than a semantic input record.",
     "Expose a no-argument or fully instance-resolved original four-task completion witness only after those structures are real, then refresh the review packet fixtures and clean extraction audit."
   ],
-  "generated_utc": "2026-05-25T17:52:36Z",
+  "generated_utc": "2026-05-25T18:02:46Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "dac210873e40ce28745cf08915ab46fa40ddf76f0ea26bc7335132dfe50d3b77"
+    "sha256": "f1a68f61e18a085037f9905e2f6c489ecdb7b5a2168d83a186973dd5cf4dff5a"
   },
-  "support_result_classification": "nonterminal_comparison_bijectivity_left_calculus_route",
-  "latest_verified_increment": "W831 comparison-bijectivity left-calculus route",
+  "support_result_classification": "nonterminal_target_exact_at_left_calculus_route",
+  "latest_verified_increment": "W832 target-ExactAt left-calculus route",
   "reference_route_log": "docs/research/reference_route_log.md",
   "implemented_declarations": [
-    "Dbounded.universalLeftRightComparisonIso_of_comparisonBijectivityW831",
-    "Dbounded.MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831",
-    "Dbounded.directBoundedLeftCalculusDataOfComparisonBijectivityW831",
-    "Dbounded.directBoundedLeftCalculusOfComparisonBijectivityW831",
-    "Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusW831",
-    "Dbounded.metrizableComparisonBijectivityLeftCalculusInputNamesW831_count",
-    "Dbounded.metrizableComparisonBijectivityLeftCalculusStableRouteRequiredFieldNamesW831_count",
-    "Dbounded.metrizableComparisonBijectivityLeftCalculusStableRouteExpandedRequiredFieldNamesW831_count",
-    "Dbounded.currentMetrizableComparisonBijectivityLeftCalculusRouteStateW831_productSuccess",
-    "originalFourTaskContract_comparisonBijectivityLeftCalculusRoute_expandedRequiredFieldCount"
+    "Dbounded.MetrizableTargetExactAtLeftCalculusDataW832",
+    "Dbounded.targetExactAtLeftCalculusDataW832",
+    "Dbounded.directBoundedLeftCalculusOfTargetExactAtW832",
+    "Dbounded.boundedDerivedInfinityCategoryOfTargetExactAtLeftCalculusW832",
+    "Dbounded.targetExactAtLeftCalculusInputNamesW832_count",
+    "Dbounded.targetExactAtLeftCalculusStableRouteRequiredFieldNamesW832_count",
+    "Dbounded.targetExactAtLeftCalculusExpandedRequiredFieldNamesW832_count",
+    "Dbounded.currentMetrizableTargetExactAtLeftCalculusRouteStateW832_productSuccess",
+    "originalFourTaskContract_targetExactAtLeftCalculusRoute_expandedRequiredFieldCount"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.universalLeftRightComparisonIso_of_comparisonBijectivityW831",
-    "Dbounded.MetrizableDirectBoundedLeftCalculusDataWithoutComparisonW831",
-    "Dbounded.directBoundedLeftCalculusDataOfComparisonBijectivityW831",
-    "Dbounded.directBoundedLeftCalculusOfComparisonBijectivityW831",
-    "Dbounded.boundedDerivedInfinityCategoryOfComparisonBijectivityLeftCalculusW831",
-    "Dbounded.metrizableComparisonBijectivityLeftCalculusInputNamesW831_count",
-    "Dbounded.metrizableComparisonBijectivityLeftCalculusStableRouteRequiredFieldNamesW831_count",
-    "Dbounded.metrizableComparisonBijectivityLeftCalculusStableRouteExpandedRequiredFieldNamesW831_count",
-    "Dbounded.currentMetrizableComparisonBijectivityLeftCalculusRouteStateW831_productSuccess",
-    "originalFourTaskContract_comparisonBijectivityLeftCalculusRoute_expandedRequiredFieldCount"
+    "Dbounded.MetrizableTargetExactAtLeftCalculusDataW832",
+    "Dbounded.targetExactAtLeftCalculusDataW832",
+    "Dbounded.directBoundedLeftCalculusOfTargetExactAtW832",
+    "Dbounded.boundedDerivedInfinityCategoryOfTargetExactAtLeftCalculusW832",
+    "Dbounded.targetExactAtLeftCalculusInputNamesW832_count",
+    "Dbounded.targetExactAtLeftCalculusStableRouteRequiredFieldNamesW832_count",
+    "Dbounded.targetExactAtLeftCalculusExpandedRequiredFieldNamesW832_count",
+    "Dbounded.currentMetrizableTargetExactAtLeftCalculusRouteStateW832_productSuccess",
+    "originalFourTaskContract_targetExactAtLeftCalculusRoute_expandedRequiredFieldCount"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/ComparisonBijectivityLeftCalculusRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.ComparisonBijectivityLeftCalculusRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/TargetExactAtLeftCalculusRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.TargetExactAtLeftCalculusRoute",
     "lake build LeanLCAExactChallenge",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-    "rg -n 'productSuccessClaimed := true|\"product_success\" *: *true|\"product_complete\" *: *true' LeanLCAExactChallenge audit run terminal_outcome -g '!audit/negative_fixtures/**'",
+    "rg -n 'productSuccessClaimed := true|\"product_success\" *: *true|\"product_complete\" *: *true' LeanLCAExactChallenge audit -g '!audit/negative_fixtures/**'",
     "git diff --check",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
     "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
-    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html $PWD/scratch-log.html --out-dir $RUN/browser_evidence --expect \"Current Increment\" --expect \"W831 keeps the target nonterminal\" --expect \"directBoundedLeftCalculusOfComparisonBijectivityW831\" --expect \"product_success=false\""
+    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html $PWD/scratch-log.html --out-dir $RUN/browser_evidence --expect \"Current Increment\" --expect \"W832 keeps the target nonterminal\" --expect \"targetExactAtLeftCalculusDataW832\" --expect \"product_success=false\""
   ]
 }

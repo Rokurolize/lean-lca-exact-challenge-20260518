@@ -18,6 +18,8 @@ W830では、W829で残っていたrawな`(boundedExactWeakEquivalence Metrizabl
 
 W831では、W821のcomparison bijectivityから得た`CategoryWithHomology MetrizableLCA`とW765のcategory-with-homology comparison routeを使い、W830のuniversal comparison `IsIso`入力を構成済みのLean定理として消した。`Dbounded.directBoundedLeftCalculusOfComparisonBijectivityW831`は、残り3つのdirect-left-calculus入力からW830のroute dataを作り、expanded stable routeの要求数を8から7へ減らす。ただし残る3入力、`Dbounded MetrizableLCA`の有限極限、有限余極限、pretriangulated構造、triangulated構造、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
 
+W832では、W831の残り3つのdirect-left-calculus fieldを、W696 closed-range endpoint topology、W785 target ExactAt payload、W721 localized-right-adjoint providerというより具体的な入力面へ展開した。`Dbounded.targetExactAtLeftCalculusDataW832`は、W796で`exactAcyclicHomotopyIsoClosure MetrizableLCA`の`IsTriangulatedClosed₂`を、W696で`MetrizableExactAtKernelCokernelConditionedTopologyInputs`を、W767で`BoundedHomotopyLocalizedRightAdjointInput MetrizableLCA`を作り、`Dbounded.directBoundedLeftCalculusOfTargetExactAtW832`へ接続する。ただしW696/W785/W721の具体値、`Dbounded MetrizableLCA`の有限極限、有限余極限、pretriangulated構造、triangulated構造、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス
