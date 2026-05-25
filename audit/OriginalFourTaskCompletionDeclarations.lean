@@ -9,6 +9,7 @@ import LeanLCAExactChallenge.Derived.StrictRealizationDirectSourceStableRoute
 import LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainStrictificationRoute
 import LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainClosed2Route
 import LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainExactInputsRoute
+import LeanLCAExactChallenge.Derived.ExactInputsSelectedCochainDirectSourceStableRoute
 
 set_option autoImplicit false
 
@@ -395,5 +396,15 @@ theorem originalFourTaskContract_selectedCochainExactInputsRoute_nonterminal :
     Dbounded.currentMetrizableSelectedCochainExactInputsRouteStateW849.productSuccessClaimed =
       false :=
   Dbounded.currentW849SelectedCochainExactInputsRoute_productSuccess
+
+theorem originalFourTaskContract_exactInputsSelectedCochainDirectSourceRoute_inputCount :
+    Dbounded.exactInputsSelectedCochainDirectSourceStableRouteInputNamesW850.length =
+      2 :=
+  Dbounded.exactInputsSelectedCochainDirectSourceStableRouteInputNamesW850_count
+
+theorem originalFourTaskContract_exactInputsSelectedCochainDirectSourceRoute_nonterminal :
+    Dbounded.currentMetrizableExactInputsSelectedCochainDirectSourceStableRouteStateW850.productSuccessClaimed =
+      false :=
+  Dbounded.currentW850ExactInputsSelectedCochainDirectSourceStableRoute_productSuccess
 
 end LeanLCAExactChallenge

@@ -159,7 +159,7 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-26 06:33 JST</span>
+        <span class="badge info">Updated 2026-05-26 06:43 JST</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">product_success=false</span>
       </div>
@@ -167,7 +167,7 @@ textarea.goal-text {
   </header>
   <main class="wrap">
     <section class="grid" aria-label="Current status">
-      <div class="card span-3"><div class="label">Latest Increment</div><div class="metric">W849</div><p>exact-inputs selected-cochain route</p></div>
+      <div class="card span-3"><div class="label">Latest Increment</div><div class="metric">W850</div><p>exact-input direct-source stable route</p></div>
       <div class="card span-3"><div class="label">Verification</div><div class="metric">Passed</div><p><code>lake build</code> and Lean audits passed</p></div>
       <div class="card span-3"><div class="label">Primary Surface</div><div class="metric">Nonterminal</div><p><code>original_four_task_contract_audit.py</code></p></div>
       <div class="card span-3"><div class="label">Next Safe Action</div><div class="metric">Construct</div><p>comparison isomorphism and W735 branch values</p></div>
@@ -175,18 +175,18 @@ textarea.goal-text {
 
     <section>
       <h2>Current Increment</h2>
-      <p>W849 keeps the target nonterminal under the immutable original four-task contract. It proves <code>Dbounded.closed2OfClosedMapExactInputsW849</code> and <code>Dbounded.closed2OfClosedEmbeddingExactInputsW849</code>: W735 endpoint strict-topology data plus the W736 universal comparison-isomorphism input supply exact-acyclic homotopy-object <code>Closed2</code> through W768, W720, W666, and W665.</p>
-      <p>The selected-cochain route now feeds that <code>Closed2</code> witness into W848 via <code>Dbounded.selectedCochainStrictificationOfClosedMapExactInputsW849</code> and the closed-embedding analogue. The route still requires the comparison isomorphism and one concrete W735 branch, so <code>product_success=false</code>.</p>
+      <p>W850 keeps the target nonterminal under the immutable original four-task contract. It assembles W847 selected-cochain direct-source stable route data from W735 exact inputs plus the W736 universal comparison-isomorphism input by consuming the W849 selected-cochain strictification route.</p>
+      <p>The new W850 declarations now produce direct bounded left calculus and the existing bounded derived infinity-category package for both closed-map and closed-embedding branches from those two inputs. The inputs are still not concrete values, so <code>product_success=false</code>.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>Dbounded.closed2OfClosedMapExactInputsW849</code></li>
-            <li><code>Dbounded.closed2OfClosedEmbeddingExactInputsW849</code></li>
-            <li><code>Dbounded.selectedCochainStrictificationOfClosedMapExactInputsW849</code></li>
-            <li><code>Dbounded.selectedCochainStrictificationOfClosedEmbeddingExactInputsW849</code></li>
-            <li><code>Dbounded.selectedCochainExactInputsRouteInputNamesW849_count</code></li>
-            <li><code>Dbounded.currentW849SelectedCochainExactInputsRoute_productSuccess</code></li>
+            <li><code>Dbounded.closedMapSelectedCochainDirectSourceDataOfExactInputsW850</code></li>
+            <li><code>Dbounded.closedEmbeddingSelectedCochainDirectSourceDataOfExactInputsW850</code></li>
+            <li><code>Dbounded.directBoundedLeftCalculusOfClosedMapExactInputsSelectedCochainW850</code></li>
+            <li><code>Dbounded.directBoundedLeftCalculusOfClosedEmbeddingExactInputsSelectedCochainW850</code></li>
+            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapExactInputsSelectedCochainW850</code></li>
+            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingExactInputsSelectedCochainW850</code></li>
           </ul>
         </div>
         <div class="card span-6">
@@ -205,16 +205,16 @@ textarea.goal-text {
       <table>
         <thead><tr><th>Check</th><th>Status</th><th>Evidence</th></tr></thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ExactAcyclicSelectedCochainExactInputsRoute.lean</code></td><td>passed</td><td><code>w849_new_module_lean.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainExactInputsRoute</code></td><td>passed</td><td><code>w849_new_module_lake_build.log</code></td></tr>
-          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w849_required_audit_lean.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w849_product_audit_lean.log</code></td></tr>
-          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w849_original_audit_lean.log</code></td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td><code>w849_lake_build.log</code></td></tr>
-          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w849_forbidden_tokens.log</code></td></tr>
-          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w849_git_diff_check.log</code></td></tr>
-          <tr><td><code>python3 audit/original_four_task_contract_audit.py --root ...</code></td><td>passed</td><td><code>w849_contract_audit.log</code></td></tr>
-          <tr><td><code>python3 audit/external_audit.py --root ...</code></td><td>failed_expected</td><td><code>w849_external_audit_nonterminal_expected.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ExactInputsSelectedCochainDirectSourceStableRoute.lean</code></td><td>passed</td><td><code>w850_new_module_lean.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ExactInputsSelectedCochainDirectSourceStableRoute</code></td><td>passed</td><td><code>w850_new_module_lake_build.log</code></td></tr>
+          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w850_required_audit_lean.log</code></td></tr>
+          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w850_product_audit_lean.log</code></td></tr>
+          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w850_original_audit_lean.log</code></td></tr>
+          <tr><td><code>lake build</code></td><td>passed</td><td><code>w850_lake_build.log</code></td></tr>
+          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w850_forbidden_tokens.log</code></td></tr>
+          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w850_git_diff_check.log</code></td></tr>
+          <tr><td><code>python3 audit/original_four_task_contract_audit.py --root ...</code></td><td>passed</td><td><code>w850_contract_audit.log</code></td></tr>
+          <tr><td><code>python3 audit/external_audit.py --root ...</code></td><td>failed_expected</td><td><code>w850_external_audit_nonterminal_expected.log</code></td></tr>
           <tr><td><code>render_static_report.py --html scratch-log.html</code></td><td>passed</td><td><code>browser_evidence_fidelity.json</code></td></tr>
         </tbody>
       </table>
@@ -223,19 +223,19 @@ textarea.goal-text {
     <section>
       <h2>Decision Timeline</h2>
       <div class="timeline">
-        <article class="event"><time datetime="2026-05-26T06:21:24+09:00">2026-05-26 06:21 JST</time><h3>W848 closed the selected-cochain route through Closed2</h3><p>Selected-cochain strictification was reduced to exact-acyclic homotopy-object <code>Closed2</code> plus homotopy-equivalence invariance.</p></article>
-        <article class="event"><time datetime="2026-05-26T06:33:43+09:00">2026-05-26 06:33 JST</time><h3>W849 derived Closed2 from exact inputs</h3><p>The new route uses W735 endpoint strict-topology data and the W736 comparison-isomorphism input to build <code>Closed2</code>, then consumes W848.</p></article>
+        <article class="event"><time datetime="2026-05-26T06:33:43+09:00">2026-05-26 06:33 JST</time><h3>W849 derived Closed2 from exact inputs</h3><p>W735 endpoint strict-topology data and the W736 comparison-isomorphism input build <code>Closed2</code>, then consume W848.</p></article>
+        <article class="event"><time datetime="2026-05-26T06:43:00+09:00">2026-05-26 06:43 JST</time><h3>W850 fed W849 into the stable route</h3><p>The direct-source stable package now follows from the comparison-isomorphism input plus one W735 branch.</p></article>
       </div>
     </section>
 
     <section>
       <h2>Product State</h2>
       <div class="warnbox"><strong>Nonterminal:</strong> the original four-task contract is not complete. The report and terminal outcome intentionally keep <code>product_success=false</code>, <code>product_complete=false</code>, and <code>update_goal_allowed=false</code>.</div>
-      <p>Run root: <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T213343Z_codex_parent_w849_exact_inputs_selected_cochain_route</code></p>
-      <p>Terminal outcome: <code>nonterminal_exact_inputs_selected_cochain_route</code></p>
+      <p>Run root: <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214131Z_codex_parent_w850_exact_inputs_selected_cochain_direct_source_route</code></p>
+      <p>Terminal outcome: <code>nonterminal_exact_inputs_selected_cochain_direct_source_route</code></p>
       <p>Contract SHA256: <code>a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</code></p>
       <p>Dynamic guidance SHA256: <code>9f75854eb9b5573d43146d9ad6e8c6e09f7dd44dfe22c5adbe0d1399c6be9e8b</code></p>
-      <p>Source tree hash: <code>ad0103fed843e6fca1edad134825840398c2feb8ffe82dc2da956066ffe788b3</code></p>
+      <p>Source tree hash: <code>7f787d73214bebd62be9a91d578f57fa789dc81582fa28a7346d84534a45ac68</code></p>
     </section>
   </main>
 </body>
