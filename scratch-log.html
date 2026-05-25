@@ -159,7 +159,7 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-26 06:21 JST</span>
+        <span class="badge info">Updated 2026-05-26 06:33 JST</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">product_success=false</span>
       </div>
@@ -167,34 +167,34 @@ textarea.goal-text {
   </header>
   <main class="wrap">
     <section class="grid" aria-label="Current status">
-      <div class="card span-3"><div class="label">Latest Increment</div><div class="metric">W848</div><p>exact selected-cochain Closed2 route</p></div>
+      <div class="card span-3"><div class="label">Latest Increment</div><div class="metric">W849</div><p>exact-inputs selected-cochain route</p></div>
       <div class="card span-3"><div class="label">Verification</div><div class="metric">Passed</div><p><code>lake build</code> and Lean audits passed</p></div>
       <div class="card span-3"><div class="label">Primary Surface</div><div class="metric">Nonterminal</div><p><code>original_four_task_contract_audit.py</code></p></div>
-      <div class="card span-3"><div class="label">Next Safe Action</div><div class="metric">Construct</div><p>Closed2 and W735 concrete branch data</p></div>
+      <div class="card span-3"><div class="label">Next Safe Action</div><div class="metric">Construct</div><p>comparison isomorphism and W735 branch values</p></div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W848 keeps the target nonterminal under the immutable original four-task contract. It proves <code>exactAcyclicTrianglehIso13SelectedCochainStrictification_of_closed2_homotopyEquivInvariance</code>: exact-acyclic homotopy-object <code>Closed2</code> plus homotopy-equivalence invariance constructs the W847 selected-cochain payload directly from the distinguished-triangle mapping-cone presentation.</p>
-      <p>The Dbounded W848 routes show W812/W735 homology detection supplies the homotopy-invariance half for both closed-map and closed-embedding exact-input branches. This narrows the remaining selected-cochain problem to exact-acyclic <code>Closed2</code>, the universal comparison isomorphism surface, and concrete W735 branch values. <code>product_success=false</code>.</p>
+      <p>W849 keeps the target nonterminal under the immutable original four-task contract. It proves <code>Dbounded.closed2OfClosedMapExactInputsW849</code> and <code>Dbounded.closed2OfClosedEmbeddingExactInputsW849</code>: W735 endpoint strict-topology data plus the W736 universal comparison-isomorphism input supply exact-acyclic homotopy-object <code>Closed2</code> through W768, W720, W666, and W665.</p>
+      <p>The selected-cochain route now feeds that <code>Closed2</code> witness into W848 via <code>Dbounded.selectedCochainStrictificationOfClosedMapExactInputsW849</code> and the closed-embedding analogue. The route still requires the comparison isomorphism and one concrete W735 branch, so <code>product_success=false</code>.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>Dbounded.selectedCochainStrictificationOfClosed2HomotopyInvarianceW848</code></li>
-            <li><code>Dbounded.homotopyEquivInvarianceOfClosedMapExactInputsW848</code></li>
-            <li><code>Dbounded.selectedCochainStrictificationOfClosedMapExactInputsClosed2W848</code></li>
-            <li><code>Dbounded.homotopyEquivInvarianceOfClosedEmbeddingExactInputsW848</code></li>
-            <li><code>Dbounded.selectedCochainStrictificationOfClosedEmbeddingExactInputsClosed2W848</code></li>
-            <li><code>Dbounded.currentW848SelectedCochainClosed2Route_productSuccess</code></li>
+            <li><code>Dbounded.closed2OfClosedMapExactInputsW849</code></li>
+            <li><code>Dbounded.closed2OfClosedEmbeddingExactInputsW849</code></li>
+            <li><code>Dbounded.selectedCochainStrictificationOfClosedMapExactInputsW849</code></li>
+            <li><code>Dbounded.selectedCochainStrictificationOfClosedEmbeddingExactInputsW849</code></li>
+            <li><code>Dbounded.selectedCochainExactInputsRouteInputNamesW849_count</code></li>
+            <li><code>Dbounded.currentW849SelectedCochainExactInputsRoute_productSuccess</code></li>
           </ul>
         </div>
         <div class="card span-6">
           <h3>Remaining Work</h3>
           <ul>
-            <li>Construct exact-acyclic homotopy-object <code>Closed2</code> for <code>MetrizableLCA</code> without assuming W847.</li>
-            <li>Construct one W735 exact-input branch, including W721 and W722 payloads.</li>
-            <li>Expose the final original four-task witness and clean review packet only after the mathematical inputs are real.</li>
+            <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes.</li>
+            <li>Construct one W735 exact-input branch, including W720 endpoint data, W721 localized-right-adjoint data, and W722 source-triangulation data.</li>
+            <li>Expose the final original four-task witness and clean review packet only after those inputs are real.</li>
           </ul>
         </div>
       </div>
@@ -205,16 +205,16 @@ textarea.goal-text {
       <table>
         <thead><tr><th>Check</th><th>Status</th><th>Evidence</th></tr></thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ExactAcyclicSelectedCochainClosed2Route.lean</code></td><td>passed</td><td><code>w848_new_module_lean.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainClosed2Route</code></td><td>passed</td><td><code>w848_new_module_lake_build.log</code></td></tr>
-          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w848_required_audit_lean.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w848_product_audit_lean.log</code></td></tr>
-          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w848_original_audit_lean.log</code></td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td><code>w848_lake_build.log</code></td></tr>
-          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w848_forbidden_tokens.log</code></td></tr>
-          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w848_git_diff_check.log</code></td></tr>
-          <tr><td><code>python3 audit/original_four_task_contract_audit.py --root ...</code></td><td>passed</td><td><code>w848_contract_audit.log</code></td></tr>
-          <tr><td><code>python3 audit/external_audit.py --root ...</code></td><td>failed_expected</td><td><code>w848_external_audit_nonterminal_expected.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ExactAcyclicSelectedCochainExactInputsRoute.lean</code></td><td>passed</td><td><code>w849_new_module_lean.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainExactInputsRoute</code></td><td>passed</td><td><code>w849_new_module_lake_build.log</code></td></tr>
+          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w849_required_audit_lean.log</code></td></tr>
+          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w849_product_audit_lean.log</code></td></tr>
+          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w849_original_audit_lean.log</code></td></tr>
+          <tr><td><code>lake build</code></td><td>passed</td><td><code>w849_lake_build.log</code></td></tr>
+          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w849_forbidden_tokens.log</code></td></tr>
+          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w849_git_diff_check.log</code></td></tr>
+          <tr><td><code>python3 audit/original_four_task_contract_audit.py --root ...</code></td><td>passed</td><td><code>w849_contract_audit.log</code></td></tr>
+          <tr><td><code>python3 audit/external_audit.py --root ...</code></td><td>failed_expected</td><td><code>w849_external_audit_nonterminal_expected.log</code></td></tr>
           <tr><td><code>render_static_report.py --html scratch-log.html</code></td><td>passed</td><td><code>browser_evidence_fidelity.json</code></td></tr>
         </tbody>
       </table>
@@ -223,17 +223,19 @@ textarea.goal-text {
     <section>
       <h2>Decision Timeline</h2>
       <div class="timeline">
-        <article class="event"><time datetime="2026-05-26T06:03:00+09:00">2026-05-26 06:03 JST</time><h3>W847 named the selected-cochain boundary</h3><p>The selected payload was made equivalent to W783 and routed into W846 without claiming product success.</p></article>
-        <article class="event"><time datetime="2026-05-26T06:21:24+09:00">2026-05-26 06:21 JST</time><h3>W848 closed the causal route</h3><p>The new theorem proves selected-cochain strictification from exact <code>Closed2</code> plus homotopy invariance, and W812/W735 supplies the invariance half for both exact branches.</p></article>
+        <article class="event"><time datetime="2026-05-26T06:21:24+09:00">2026-05-26 06:21 JST</time><h3>W848 closed the selected-cochain route through Closed2</h3><p>Selected-cochain strictification was reduced to exact-acyclic homotopy-object <code>Closed2</code> plus homotopy-equivalence invariance.</p></article>
+        <article class="event"><time datetime="2026-05-26T06:33:43+09:00">2026-05-26 06:33 JST</time><h3>W849 derived Closed2 from exact inputs</h3><p>The new route uses W735 endpoint strict-topology data and the W736 comparison-isomorphism input to build <code>Closed2</code>, then consumes W848.</p></article>
       </div>
     </section>
 
     <section>
       <h2>Product State</h2>
       <div class="warnbox"><strong>Nonterminal:</strong> the original four-task contract is not complete. The report and terminal outcome intentionally keep <code>product_success=false</code>, <code>product_complete=false</code>, and <code>update_goal_allowed=false</code>.</div>
-      <p>Run root: <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T211025Z_codex_parent_w848_exact_selected_cochain_closed2_route</code></p>
+      <p>Run root: <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T213343Z_codex_parent_w849_exact_inputs_selected_cochain_route</code></p>
+      <p>Terminal outcome: <code>nonterminal_exact_inputs_selected_cochain_route</code></p>
       <p>Contract SHA256: <code>a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</code></p>
       <p>Dynamic guidance SHA256: <code>9f75854eb9b5573d43146d9ad6e8c6e09f7dd44dfe22c5adbe0d1399c6be9e8b</code></p>
+      <p>Source tree hash: <code>ad0103fed843e6fca1edad134825840398c2feb8ffe82dc2da956066ffe788b3</code></p>
     </section>
   </main>
 </body>
