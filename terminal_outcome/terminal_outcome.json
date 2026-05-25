@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W759 W733 concrete leaf exact/stable bridge moves the combined exactness and accepted stable evidence surface below the W735 category-homology-instance wrapper and below W758's W736 comparison-isomorphism premise. One W733 boundary/relation target/closedness normalized concrete leaf record now supplies WPP-op exactness and accepted stable bounded-derived-infinity-category evidence; product_success remains false.",
+  "summary": "W760 W734 category-homology concrete leaf exact/stable bridge composes the W759 W733 exact/stable bridge with the existing W734 closed-map and closed-embedding constructors. The combined evidence surface now starts from W734 category-homology branch data rather than a raw W733 leaf record; product_success remains false.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -2491,7 +2491,9 @@
     "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T170543Z_codex_parent_w722/w722_required_declarations.lean",
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T170543Z_codex_parent_w722/browser_evidence --expect W722 --expect product_complete=false --expect 20260524T170543Z_codex_parent_w722",
     "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T235749Z_codex_parent_w759/w759_required_declarations.lean",
-    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T235749Z_codex_parent_w759/scratch_log_browser_evidence --expect W759 W733 concrete leaf exact/stable bridge --expect product_complete=false --expect 20260524T235749Z_codex_parent_w759"
+    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T235749Z_codex_parent_w759/scratch_log_browser_evidence --expect W759 W733 concrete leaf exact/stable bridge --expect product_complete=false --expect 20260524T235749Z_codex_parent_w759",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T001208Z_codex_parent_w760/w760_required_declarations.lean",
+    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T001208Z_codex_parent_w760/scratch_log_browser_evidence --expect W760 W734 category-homology concrete leaf exact/stable bridge --expect product_complete=false --expect 20260525T001208Z_codex_parent_w760"
   ],
   "required_declarations_checked": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
@@ -6866,10 +6868,20 @@
     "Dbounded.MetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759",
     "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteSupportStateW759",
     "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759",
-    "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759_productSuccess"
+    "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759_productSuccess",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactStableEvidence_of_closedMapCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactStableEvidence_of_closedEmbeddingCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760",
+    "Dbounded.exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760_count",
+    "Dbounded.MetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760",
+    "Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteSupportStateW760",
+    "Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760",
+    "Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760_productSuccess"
   ],
   "known_gaps": [
-    "Construct one concrete W733 boundary/relation target/closedness normalized concrete leaf record with source-homological data.",
+    "Construct concrete values for the W734 category-homology branch inputs.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -6877,13 +6889,13 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": null,
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "No worker lane admitted for W759; the live target already held a deterministic parent-owned W733 concrete leaf exact/stable bridge with focused gates passing.",
+  "worker_frontier_summary": "No worker lane admitted for W760; the increment deterministically composes parent-verified W734 and W759 declarations.",
   "claim_review_result": "not_product_success; update_goal_not_allowed",
   "remaining_gaps": [
-    "Construct one concrete W733 boundary/relation target/closedness normalized concrete leaf record with source-homological data.",
+    "Construct concrete values for the W734 category-homology branch inputs.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "next_recommended_goal": "Construct one concrete W733 boundary/relation target/closedness normalized concrete leaf record with source-homological data feeding the W759 exact/stable bridge, then close the remaining Dbounded stable-infinity inputs.",
+  "next_recommended_goal": "Construct concrete values for the W734 category-homology branch inputs feeding the W760 exact/stable bridge, then close the remaining Dbounded stable-infinity inputs.",
   "implemented_declarations": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
     "Dbounded.exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeafInputsW758",
@@ -11793,10 +11805,20 @@
     "Dbounded.MetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759",
     "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteSupportStateW759",
     "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759",
-    "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759_productSuccess"
+    "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759_productSuccess",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactStableEvidence_of_closedMapCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactStableEvidence_of_closedEmbeddingCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760",
+    "Dbounded.exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760_count",
+    "Dbounded.MetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760",
+    "Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteSupportStateW760",
+    "Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760",
+    "Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760_productSuccess"
   ],
-  "generated_utc": "2026-05-25T00:08:28Z",
-  "support_result_classification": "verified_nonterminal_support_increment_w759_w733_concrete_leaf_exact_stable_bridge",
+  "generated_utc": "2026-05-25T00:17:52Z",
+  "support_result_classification": "verified_nonterminal_support_increment_w760_w734_category_homology_concrete_leaf_exact_stable_bridge",
   "implemented_declarations_checked": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
     "Dbounded.exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeafInputsW758",
@@ -16736,22 +16758,32 @@
     "Dbounded.MetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759",
     "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteSupportStateW759",
     "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759",
-    "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759_productSuccess"
+    "Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759_productSuccess",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactStableEvidence_of_closedMapCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactStableEvidence_of_closedEmbeddingCategoryHomologyConcreteLeavesW760",
+    "Dbounded.exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760",
+    "Dbounded.exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760_count",
+    "Dbounded.MetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760",
+    "Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteSupportStateW760",
+    "Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760",
+    "Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
-    "Construct one concrete W733 boundary/relation target/closedness normalized concrete leaf record with source-homological data.",
+    "Construct concrete values for the W734 category-homology branch inputs.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
-  "latest_verified_increment": "W759 W733 concrete leaf exact/stable bridge",
-  "source_tree_hash": "5d34e553d5a895dd58777403cbb617130e619cc8545337a2ce2e8e8bfeb2b2fc",
+  "latest_verified_increment": "W760 W734 category-homology concrete leaf exact/stable bridge",
+  "source_tree_hash": "9c94c2ea0841e1d572ec2b55f7650fabf6f72960104db05f0402cbbe04655606",
   "summary_log_tail": [
-    "Focused W759 Lean gates passed for the W733 concrete leaf exact/stable bridge.",
-    "W759 removes the W735 wrapper and W736 comparison premise from this bridge surface but still needs an actual W733 concrete leaf record.",
+    "Focused W760 Lean gates passed for the W734 category-homology concrete leaf exact/stable bridge.",
+    "W760 lowers the exact/stable bridge surface from raw W733 leaves to W734 category-homology branch data.",
     "Product success remains intentionally false; update_goal is not allowed."
   ],
-  "git_commit_note": "Commit SHA is recorded after verified W759 commit and push closeout.",
+  "git_commit_note": "Commit SHA is recorded after verified W760 commit and push closeout.",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -18578,11 +18610,20 @@
       "product_complete": false,
       "update_goal_allowed": false,
       "note": "Terminal outcome remains blocked_nonterminal_frontier for W759; update_goal is not allowed."
+    },
+    "w760_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T00:17:52Z",
+      "source_tree_hash": "9c94c2ea0841e1d572ec2b55f7650fabf6f72960104db05f0402cbbe04655606",
+      "latest_verified_increment": "W760 W734 category-homology concrete leaf exact/stable bridge",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "Terminal outcome remains blocked_nonterminal_frontier for W760; update_goal is not allowed."
     }
   },
   "classification": "verified_nonterminal_support_increment",
-  "latest_increment": "W759 W733 concrete leaf exact/stable bridge",
-  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260524T235749Z_codex_parent_w759",
+  "latest_increment": "W760 W734 category-homology concrete leaf exact/stable bridge",
+  "run_dir": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T001208Z_codex_parent_w760",
   "product_success_claimed": false,
   "update_goal_complete_permitted": false
 }

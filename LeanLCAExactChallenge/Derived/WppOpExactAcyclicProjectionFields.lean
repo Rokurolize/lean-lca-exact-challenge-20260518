@@ -54877,6 +54877,132 @@ theorem
       false :=
   rfl
 
+/--
+W760 closed-map branch: W734 category-homology concrete leaf data construct the
+W733 leaf record consumed by the W759 exact/stable bridge.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyConcreteLeavesW760
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedMapCategoryHomologyW734
+      inputs)
+
+/--
+W760 closed-embedding branch: W734 category-homology concrete leaf data construct
+the W733 leaf record consumed by the W759 exact/stable bridge.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyConcreteLeavesW760
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure :=
+  exactAcyclic_walkingParallelPairOp_colimit_closure_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759
+    (boundaryRelationTargetClosednessNormalizedConcreteLeaves_of_closedEmbeddingCategoryHomologyW734
+      inputs)
+
+/--
+W760 packages closed-map W734 category-homology concrete leaf exactness together
+with the accepted stable evidence produced by the same W734 input.
+-/
+noncomputable def
+    exactStableEvidence_of_closedMapCategoryHomologyConcreteLeavesW760
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedMapDiagramComponentProviderMappedCokernelClosedMapEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723) :
+    MetrizableWppExactStableEvidenceW758
+    where
+  exactAcyclic :=
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyConcreteLeavesW760
+      inputs
+  acceptedStable :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyConcreteLeavesW734
+      inputs
+  acceptedStableAccepted :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedMapCategoryHomologyConcreteLeavesW734_accepted
+      inputs
+
+/--
+W760 packages closed-embedding W734 category-homology concrete leaf exactness
+together with the accepted stable evidence produced by the same W734 input.
+-/
+noncomputable def
+    exactStableEvidence_of_closedEmbeddingCategoryHomologyConcreteLeavesW760
+    (inputs :
+      MetrizableWppRelationDataTargetSurjectiveCompactBoundaryGlobalClosedEmbeddingDiagramComponentProviderMappedCokernelClosedEmbeddingEndpointStrictTopologyDataNormalizedFixedTargetLocalizedRightAdjointSourceTriangulationCategoryHomologyBundleW723) :
+    MetrizableWppExactStableEvidenceW758
+    where
+  exactAcyclic :=
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyConcreteLeavesW760
+      inputs
+  acceptedStable :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyConcreteLeavesW734
+      inputs
+  acceptedStableAccepted :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_closedEmbeddingCategoryHomologyConcreteLeavesW734_accepted
+      inputs
+
+/-- Input names for the W760 W734 category-homology exact/stable bridge. -/
+def exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760 :
+    List String :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyConcreteLeafInputNamesW734
+
+theorem
+    exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760_count :
+    exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760.length =
+      10 := by
+  simpa [exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760] using
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryCategoryHomologyConcreteLeafInputNamesW734_count
+
+/--
+Current checked W760 state for the W734 category-homology concrete leaf
+exact/stable bridge.
+-/
+structure MetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapExactStableResult : String
+  closedEmbeddingExactStableResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W760 state. -/
+def currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteSupportStateW760 :
+    MetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760
+    where
+  seed := "w760-w734-category-homology-concrete-leaf-exact-stable-bridge"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyConcreteLeavesW760",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyConcreteLeavesW760",
+      "exactStableEvidence_of_closedMapCategoryHomologyConcreteLeavesW760",
+      "exactStableEvidence_of_closedEmbeddingCategoryHomologyConcreteLeavesW760",
+      "exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760",
+      "exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760_count"]
+  closedMapExactStableResult :=
+    "proved: W734 closed-map category-homology data construct W733 leaves, so W759 supplies exactness and W734 supplies accepted stable evidence"
+  closedEmbeddingExactStableResult :=
+    "proved: W734 closed-embedding category-homology data construct W733 leaves, so W759 supplies exactness and W734 supplies accepted stable evidence"
+  exposedInputs :=
+    exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760
+  remainingInputs :=
+    ["construct concrete values for the W734 category-homology branch inputs",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760 :
+    MetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760 :=
+  currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteSupportStateW760
+
+theorem
+    currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760_productSuccess :
+    currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

@@ -8879,6 +8879,26 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759
   #check
     Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759_productSuccess
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyConcreteLeavesW760
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyConcreteLeavesW760
+  #check
+    Dbounded.exactStableEvidence_of_closedMapCategoryHomologyConcreteLeavesW760
+  #check
+    Dbounded.exactStableEvidence_of_closedEmbeddingCategoryHomologyConcreteLeavesW760
+  #check
+    Dbounded.exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760
+  #check
+    Dbounded.exactStableWppOpCategoryHomologyConcreteLeafInputNamesW760_count
+  #check
+    Dbounded.MetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760
+  #check
+    Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteSupportStateW760
+  #check
+    Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760
+  #check
+    Dbounded.currentMetrizableWppCategoryHomologyConcreteLeafExactStableRouteStateW760_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
