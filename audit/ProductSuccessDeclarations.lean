@@ -44,6 +44,7 @@ import LeanLCAExactChallenge.Derived.TargetExactAtW664TerminalProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtRouteConsistencyProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtEndpointReductionProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtW663BundleReductionProductRoute
+import LeanLCAExactChallenge.Derived.TargetExactAtW663DirectBundleReductionProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9792,6 +9793,30 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetExactAtW663BundleReductionStateW806
   #check Dbounded.currentMetrizableTargetExactAtW663BundleReductionStateW806
   #check Dbounded.currentW806TargetExactAtW663BundleReduction_productSuccess
+  #check Dbounded.endpointPayloadOfDirectEndpointBundleW807
+  #check Dbounded.shortExactPayloadOfDirectShortExactBundleW807
+  #check Dbounded.closedMapTargetExactAtW803DataOfDirectEndpointBundleW807
+  #check
+    Dbounded.closedEmbeddingTargetExactAtW803DataOfDirectEndpointBundleW807
+  #check
+    Dbounded.closedMapTargetExactAtW803DataOfDirectShortExactBundleW807
+  #check
+    Dbounded.closedEmbeddingTargetExactAtW803DataOfDirectShortExactBundleW807
+  #check
+    Dbounded.productEvidence_of_closedMapDirectEndpointBundleReducedRouteW807
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingDirectEndpointBundleReducedRouteW807
+  #check
+    Dbounded.productEvidence_of_closedMapDirectShortExactBundleReducedRouteW807
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingDirectShortExactBundleReducedRouteW807
+  #check Dbounded.targetExactAtW663DirectBundleReductionInputNamesW807
+  #check Dbounded.targetExactAtW663DirectBundleReductionInputNamesW807_count
+  #check Dbounded.MetrizableTargetExactAtW663DirectBundleReductionStateW807
+  #check
+    Dbounded.currentMetrizableTargetExactAtW663DirectBundleReductionStateW807
+  #check
+    Dbounded.currentW807TargetExactAtW663DirectBundleReduction_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
