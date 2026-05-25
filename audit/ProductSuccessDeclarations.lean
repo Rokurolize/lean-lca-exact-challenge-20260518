@@ -18,6 +18,7 @@ import LeanLCAExactChallenge.Derived.DirectRightLcaLimitOpClosureNormalizedClose
 import LeanLCAExactChallenge.Derived.LeftSnakeDirectRightLcaNormalizedClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.DirectComparisonLeftSnakeProductRoute
 import LeanLCAExactChallenge.Derived.ClosedQuotientEpiDirectComparisonLeftSnakeProductRoute
+import LeanLCAExactChallenge.Derived.SelectedW461RowsClosedQuotientEpiProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9305,6 +9306,24 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.currentMetrizableClosedQuotientEpiDirectComparisonLeftSnakeRouteStateW780
   #check
     Dbounded.currentW780ClosedQuotientEpiDirectComparisonLeftSnakeRoute_productSuccess
+  #check Dbounded.WppOpSelectedW461ProviderW781
+  #check Dbounded.WppOpClosedMapRowsProviderW781
+  #check Dbounded.WppOpClosedEmbeddingRowsProviderW781
+  #check Dbounded.MetrizableClosedMapSelectedW461RowsClosedQuotientEpiBranchDataW781
+  #check
+    Dbounded.MetrizableClosedEmbeddingSelectedW461RowsClosedQuotientEpiBranchDataW781
+  #check Dbounded.opLeftClosedOfSelectedW461W781
+  #check Dbounded.opSnakeOfClosedMapRowsW781
+  #check Dbounded.opSnakeOfClosedEmbeddingRowsW781
+  #check Dbounded.closedMapClosedQuotientEpiDataOfSelectedW461RowsW781
+  #check Dbounded.closedEmbeddingClosedQuotientEpiDataOfSelectedW461RowsW781
+  #check Dbounded.productEvidence_of_closedMapSelectedW461RowsRouteW781
+  #check Dbounded.productEvidence_of_closedEmbeddingSelectedW461RowsRouteW781
+  #check Dbounded.selectedW461RowsClosedQuotientEpiProductRouteInputNamesW781
+  #check Dbounded.selectedW461RowsClosedQuotientEpiProductRouteInputNamesW781_count
+  #check Dbounded.MetrizableSelectedW461RowsClosedQuotientEpiRouteStateW781
+  #check Dbounded.currentMetrizableSelectedW461RowsClosedQuotientEpiRouteStateW781
+  #check Dbounded.currentW781SelectedW461RowsClosedQuotientEpiRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

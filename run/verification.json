@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w780-closed-quotient-epi-direct-comparison-left-snake-route",
-  "generated_utc": "2026-05-25T04:34:22Z",
-  "source_tree_hash": "664a26cb849672341d765695fda57217550d53b113b142155678f7c6a623d80d",
-  "summary": "W780 uses closed quotient-cover right-open boundary data and Epi right-surjectivity boundary data to supply W779's pure right-LCA fields, preserving the direct-comparison left/Snake route. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w781-selected-w461-rows-closed-quotient-epi-route",
+  "generated_utc": "2026-05-25T04:44:00Z",
+  "source_tree_hash": "f5a84556c41152f41108e80c652c0ea1ff1cd9e022781e2b293bbf8cc67e2351",
+  "summary": "W781 uses W483 selected-W461 provider data and W527 row-aware closed-map/closed-embedding provider data to supply W780's WPP-op left/Snake fields, preserving the closed-quotient/Epi direct-comparison route. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -17710,6 +17710,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T042743Z_codex_parent_w780/logs/w780_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/SelectedW461RowsClosedQuotientEpiProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/logs/w781_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.SelectedW461RowsClosedQuotientEpiProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/logs/w781_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/logs/w781_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/w781_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/logs/w781_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/logs/w781_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/logs/w781_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/logs/w781_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/logs/w781_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/logs/w781_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -22899,7 +22944,24 @@
     "Dbounded.closedQuotientEpiDirectComparisonLeftSnakeInputNamesW780_count",
     "Dbounded.MetrizableClosedQuotientEpiDirectComparisonLeftSnakeRouteStateW780",
     "Dbounded.currentMetrizableClosedQuotientEpiDirectComparisonLeftSnakeRouteStateW780",
-    "Dbounded.currentW780ClosedQuotientEpiDirectComparisonLeftSnakeRoute_productSuccess"
+    "Dbounded.currentW780ClosedQuotientEpiDirectComparisonLeftSnakeRoute_productSuccess",
+    "Dbounded.WppOpSelectedW461ProviderW781",
+    "Dbounded.WppOpClosedMapRowsProviderW781",
+    "Dbounded.WppOpClosedEmbeddingRowsProviderW781",
+    "Dbounded.MetrizableClosedMapSelectedW461RowsClosedQuotientEpiBranchDataW781",
+    "Dbounded.MetrizableClosedEmbeddingSelectedW461RowsClosedQuotientEpiBranchDataW781",
+    "Dbounded.opLeftClosedOfSelectedW461W781",
+    "Dbounded.opSnakeOfClosedMapRowsW781",
+    "Dbounded.opSnakeOfClosedEmbeddingRowsW781",
+    "Dbounded.closedMapClosedQuotientEpiDataOfSelectedW461RowsW781",
+    "Dbounded.closedEmbeddingClosedQuotientEpiDataOfSelectedW461RowsW781",
+    "Dbounded.productEvidence_of_closedMapSelectedW461RowsRouteW781",
+    "Dbounded.productEvidence_of_closedEmbeddingSelectedW461RowsRouteW781",
+    "Dbounded.selectedW461RowsClosedQuotientEpiProductRouteInputNamesW781",
+    "Dbounded.selectedW461RowsClosedQuotientEpiProductRouteInputNamesW781_count",
+    "Dbounded.MetrizableSelectedW461RowsClosedQuotientEpiRouteStateW781",
+    "Dbounded.currentMetrizableSelectedW461RowsClosedQuotientEpiRouteStateW781",
+    "Dbounded.currentW781SelectedW461RowsClosedQuotientEpiRoute_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -22909,8 +22971,8 @@
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
     "Construct closed quotient-cover boundary data for WPP limit right-open maps.",
     "Construct Epi boundary data for WPP limit right-surjectivity.",
-    "Construct WPP-op colimit left closed-embedding certificate.",
-    "Construct WPP-op AddCommGrp SnakeInput cokernel-row certificate.",
+    "Construct selected W461 provider data for WPP-op left closed-embedding.",
+    "Construct row-aware closed-map or closed-embedding provider data for WPP-op SnakeInput.",
     "Construct remaining Dbounded stable-infinity inputs."
   ],
   "support_result_classification": "nonterminal_support_increment",
@@ -22920,11 +22982,11 @@
     "Construct concrete W735 branch data values.",
     "Construct W696 closed-range endpoint-topology data.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
-    "Construct closed quotient-cover right-open boundary, Epi right-surjectivity boundary, WPP-op left/Snake colimit certificates, and remaining Dbounded stable-infinity inputs.",
+    "Construct closed quotient-cover right-open boundary, Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W780 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA delta, new-file accounting, and rendered-report precheck gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W780 closed-quotient/Epi direct-comparison route",
+  "summary_log_tail": "Focused W781 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA delta, new-file accounting, and rendered-report precheck gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W781 selected-W461 rows closed-quotient route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -24519,6 +24581,13 @@
       "latest_verified_increment": "W780 closed-quotient/Epi direct-comparison route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W780 metadata records the closed-quotient/Epi direct-comparison left/Snake product-route integration and leaves product_success/product_complete false."
+    },
+    "w781_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T04:44:00Z",
+      "source_tree_hash": "f5a84556c41152f41108e80c652c0ea1ff1cd9e022781e2b293bbf8cc67e2351",
+      "latest_verified_increment": "W781 selected-W461 rows closed-quotient route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W781 metadata records the selected-W461/row-aware WPP-op product-route integration and leaves product_success/product_complete false."
     }
   }
 }

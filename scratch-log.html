@@ -160,49 +160,49 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W780 closed-quotient/Epi direct-comparison route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W781 selected-W461 rows closed-quotient route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/ClosedQuotientEpiDirectComparisonLeftSnakeProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T042743Z_codex_parent_w780</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/SelectedW461RowsClosedQuotientEpiProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T043607Z_codex_parent_w781</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W780 closed-quotient/Epi direct-comparison route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 13:32 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W781 selected-W461 rows closed-quotient route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 13:42 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W780 replaces W779's pure right-LCA limit fields with existing boundary adapters: closed quotient-cover data supplies the right-open LCA field, and Epi data supplies the right-surjectivity LCA field. The route then feeds W779's direct-comparison left/Snake product evidence unchanged. The increment lives in a new 204-line helper module with 14 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W781 replaces W780's WPP-op left and Snake fields with existing W483 and W527 adapters. A selected W461 provider supplies the left closed-embedding field, while row-aware closed-map or closed-embedding providers supply the SnakeInput cokernel-row field. The route then feeds W780 unchanged. The increment lives in a new 226-line helper module with 17 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>rightOpenLcaOfClosedQuotientW780</code> routes closed quotient-cover data into W779's pure right-open field.</li>
-            <li><code>rightSurjectiveLcaOfEpiBoundaryW780</code> routes Epi boundary data into W779's pure right-surjectivity field.</li>
-            <li><code>closedMapDirectComparisonDataOfClosedQuotientEpiW780</code> and <code>closedEmbeddingDirectComparisonDataOfClosedQuotientEpiW780</code> feed W779 branch data.</li>
-            <li><code>productEvidence_of_closedMapClosedQuotientEpiRouteW780</code> and <code>productEvidence_of_closedEmbeddingClosedQuotientEpiRouteW780</code> expose boundary-adapted product evidence while keeping product success false.</li>
+            <li><code>opLeftClosedOfSelectedW461W781</code> routes selected W461 provider data into W780's WPP-op left field.</li>
+            <li><code>opSnakeOfClosedMapRowsW781</code> and <code>opSnakeOfClosedEmbeddingRowsW781</code> route W527 row-aware provider data into W780's Snake field.</li>
+            <li><code>closedMapClosedQuotientEpiDataOfSelectedW461RowsW781</code> and <code>closedEmbeddingClosedQuotientEpiDataOfSelectedW461RowsW781</code> feed W780 branch data.</li>
+            <li><code>productEvidence_of_closedMapSelectedW461RowsRouteW781</code> and <code>productEvidence_of_closedEmbeddingSelectedW461RowsRouteW781</code> expose selected-W461/rows product evidence while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/ClosedQuotientEpiDirectComparisonLeftSnakeProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.ClosedQuotientEpiDirectComparisonLeftSnakeProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/SelectedW461RowsClosedQuotientEpiProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.SelectedW461RowsClosedQuotientEpiProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T042743Z_codex_parent_w780/w780_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T043607Z_codex_parent_w781/w781_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>w780_goal_sha_delta_decision.tsv</code> records the active-goal SHA advance before focused verification and the explicit continuation decision under the refreshed goal.</li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 204 lines with 14 top-level declarations.</li>
-            <li><code>goal_sha_comparison_after_focused.tsv</code> records that the refreshed active-goal SHA stayed stable for W780 focused verification.</li>
-            <li>Focused W780 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>w781_goal_sha_delta_decision.tsv</code> records the active-goal SHA advance before focused verification and the explicit continuation decision under the refreshed goal.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 226 lines with 17 top-level declarations.</li>
+            <li><code>goal_sha_comparison_after_focused.tsv</code> records that the refreshed active-goal SHA stayed stable for W781 focused verification.</li>
+            <li>Focused W781 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W780 work.</p></div>
-      <p>W779 replaced W778's explicit mapping-cone WPP limit-comparison field with the direct W551 comparison theorem and fed the left/Snake route unchanged.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W781 work.</p></div>
+      <p>W780 replaced W779's pure right-LCA limit fields with closed quotient-cover and Epi boundary adapters.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct W696 closed-range endpoint-topology data, the triangulated-closure premise, closed quotient-cover right-open boundary, Epi right-surjectivity boundary, WPP-op left closed-embedding and Snake cokernel certificates, and the remaining Dbounded stable-infinity inputs.</li>
+        <li>Construct W696 closed-range endpoint-topology data, the triangulated-closure premise, closed quotient-cover right-open boundary, Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>
