@@ -159,9 +159,9 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-25 22:53 JST</span>
-        <span class="badge ok">product_complete=true</span>
-        <span class="badge ok">product_success=true</span>
+        <span class="badge info">Updated 2026-05-26 00:31 JST</span>
+        <span class="badge warn">product_complete=false</span>
+        <span class="badge warn">product_success=false</span>
       </div>
     </div>
   </header>
@@ -169,37 +169,37 @@ textarea.goal-text {
     <section class="grid" aria-label="Current status">
       <div class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W824</div>
-        <p>terminal product audit attempt</p>
+        <div class="metric">W825</div>
+        <p>original four-task contract reaudit</p>
       </div>
       <div class="card span-3">
         <div class="label">Verification</div>
-        <div class="metric">Passed</div>
-        <p>required declarations, product declarations, forbidden tokens, diff check, and full build</p>
+        <div class="metric">Guarded</div>
+        <p>new immutable-contract audit rejects the W824 overclaim</p>
       </div>
       <div class="card span-3">
         <div class="label">Primary Surface</div>
-        <div class="metric">Product</div>
-        <p><code>external_audit.py</code></p>
+        <div class="metric">Nonterminal</div>
+        <p><code>original_four_task_contract_audit.py</code></p>
       </div>
       <div class="card span-3">
         <div class="label">Next Safe Action</div>
-        <div class="metric">Audit</div>
-        <p>run final terminal external audit and remote durability</p>
+        <div class="metric">Implement</div>
+        <p>replace the task-4 semantic-input route with contract-completing stable data</p>
       </div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W824 is the terminal product-audit attempt after W821 proved the canonical left-right homology comparison bijective and W823 changed the bounded-derived infinity-category surface into stable product-facing data. The required product commands have passed, and the final external audit is the deciding gate before any goal-completion claim.</p>
+      <p>W825 reopens the W824 product-success claim under the immutable original four-task contract. The current bounded-derived surface is still a four-<code>Prop</code> wrapper that can be reached through <code>MetrizableOrdinaryStableSemanticInput</code> and stable-certificate adapters, so it is explicitly nonterminal.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>Touched Sources</h3>
           <table>
             <tbody>
-              <tr><th>Baseline</th><td><code>74b1b6878edd713691506f6367b28716084392c3</code></td></tr>
-              <tr><th>Required Commands</th><td>5 passed</td></tr>
-              <tr><th>Known Gaps</th><td>0</td></tr>
+              <tr><th>Baseline</th><td><code>b9af6c78d99333fca91bd663250875db66b43c13</code></td></tr>
+              <tr><th>Contract SHA</th><td><code>a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</code></td></tr>
+              <tr><th>Known Gaps</th><td>task 4 stable infinity-category evidence and final packet fixtures</td></tr>
               <tr><th>WPP Source</th><td>untouched</td></tr>
             </tbody>
           </table>
@@ -210,9 +210,10 @@ textarea.goal-text {
             <li><code>lake build</code></li>
             <li><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
-            <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
+            <li><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></li>
+            <li><code>python3 audit/original_four_task_contract_audit.py ...</code></li>
             <li><code>git diff --check</code></li>
-            <li><code>categoryWithHomology_of_leftRightComparisonBijectiveW821</code></li>
+            <li><code>currentSemanticRouteNonterminal</code></li>
           </ul>
         </div>
       </div>

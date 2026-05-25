@@ -1,67 +1,74 @@
 {
-  "schema": "lean_lca_terminal_product_verification_v1",
-  "generated_utc": "2026-05-25T14:18:49Z",
-  "source_tree_hash": "d4b8dcddc1f29cc1f895b2e8c57e46922bbbc056bf903dbaa55e739c4d10d572",
-  "summary": "W824 records terminal Lean LCA product success after W821 proved the canonical left-right homology comparison bijective and W823 replaced the product-facing bounded derived infinity-category surface with stable four-projection data.",
-  "product_complete": true,
-  "product_success": true,
-  "update_goal_allowed": true,
-  "known_gaps": [],
-  "remaining_work": [],
-  "support_result_classification": "product_success",
-  "latest_verified_increment": "W824 terminal product audit",
+  "schema": "lean_lca_original_four_task_nonterminal_verification_v1",
+  "generated_utc": "2026-05-25T16:30:55Z",
+  "source_tree_hash": "210b6b5719e3bfa36c4c9a438148cd340871ef347b5bd756d090d990a0358914",
+  "summary": "W825 reopens the W824 terminal product-success claim under the immutable original four-task contract. The current task-4 bounded-derived infinity-category surface is still nonterminal because the final surface can be routed through semantic input and four-Prop certificate wrappers.",
+  "immutable_contract": {
+    "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
+    "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
+  },
+  "product_success": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "known_gaps": [
+    "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory is still a four-Prop wrapper rather than stable infinity-category data constructed from Dbounded MetrizableLCA.",
+    "Final product surfaces still reference MetrizableOrdinaryStableSemanticInput, StableFourProjectionCertificate, AcceptedStableBoundedDerivedInfinityCategory, or the metrizable ordinary-input adapter route.",
+    "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
+  ],
+  "remaining_work": [
+    "Replace the task-4 semantic-input adapter with nullary or typeclass-resolved stable infinity-category data constructed from the actual bounded localization.",
+    "Make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations expose a real original-four-task completion witness instead of a name-only check.",
+    "Refresh the review packet with contract-specific negative fixtures, external SHA256 sidecar, and clean extraction audit before any future product-success claim."
+  ],
+  "support_result_classification": "nonterminal_original_four_task_contract_reaudit",
+  "latest_verified_increment": "W825 original four-task contract guard",
   "implemented_declarations_checked": [
-    "MetrizableLCA.categoryWithHomology_of_leftRightComparisonBijectiveW821",
-    "BoundedDerivedInfinityCategory",
-    "BoundedDerivedOrdinaryQuasicategory",
-    "Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted",
-    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput"
+    "originalFourTaskContract_currentOrdinaryRouteRejected",
+    "originalFourTaskContract_currentSemanticRouteNonterminal"
   ],
   "commands": [
     {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T135012Z_codex_parent_w824_terminal_audit_attempt/logs/w824_required_declarations.log exit_code=0"
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T135012Z_codex_parent_w824_terminal_audit_attempt/logs/w824_product_declarations.log exit_code=0"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_lake_build.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T135012Z_codex_parent_w824_terminal_audit_attempt/logs/w824_forbidden_tokens.log exit_code=0"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_forbidden_tokens.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_required_declarations.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_product_declarations.log"
+    },
+    {
+      "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_original_four_task_declarations.log",
+      "note": "nonterminal Lean-native contract audit surface"
+    },
+    {
+      "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_original_four_task_contract_audit.log",
+      "note": "passes because the target outcome is honestly nonterminal"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_external_audit_nonterminal_expected.log",
+      "note": "legacy product-success audit still requires outcome=product_success and is expected to reject the reopened nonterminal state"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T135012Z_codex_parent_w824_terminal_audit_attempt/logs/w824_git_diff_check.log exit_code=0"
-    },
-    {
-      "command": "lake build",
-      "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T135012Z_codex_parent_w824_terminal_audit_attempt/logs/w824_lake_build.log exit_code=0"
-    },
-    {
-      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T135012Z_codex_parent_w824_terminal_audit_attempt/scratch_log_browser_evidence_final --expect Latest Increment --expect W824 --expect product_complete=true --expect product_success=true --expect terminal product audit attempt",
-      "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T135012Z_codex_parent_w824_terminal_audit_attempt/logs/w824_browser_evidence.log exit_code=0"
-    },
-    {
-      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
-      "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T135012Z_codex_parent_w824_terminal_audit_attempt/logs/w824_external_audit_final.log exit_code=0"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T000000Z_codex_parent_original_four_task_contract_reaudit/logs/w825_git_diff_check.log"
     }
-  ],
-  "terminal_audit_mode": "final",
-  "metadata_corrections": {
-    "w824_terminal_product_metadata_final": {
-      "refreshed_utc": "2026-05-25T14:18:49Z",
-      "source_tree_hash": "d4b8dcddc1f29cc1f895b2e8c57e46922bbbc056bf903dbaa55e739c4d10d572",
-      "product_success": true,
-      "product_complete": true,
-      "update_goal_allowed": true
-    }
-  }
+  ]
 }

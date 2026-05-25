@@ -4,6 +4,8 @@
 
 この成果物はproduct successではない。更新後のgoalではsource-patch-needed handoffで完了できないため、このpacketは歴史的な調査証跡と未完了診断として読む。
 
+2026-05-26の不変4課題契約再監査では、直前のW824 terminal outcomeが`product_success=true`を主張していたことを過大主張として扱い直した。`audit/original_four_task_contract_audit.py`は、`BoundedDerivedInfinityCategory`が4つの抽象`Prop` field wrapperであること、final surfaceが`MetrizableOrdinaryStableSemanticInput`、`StableFourProjectionCertificate`、`AcceptedStableBoundedDerivedInfinityCategory`経路を参照していること、packet側に不変契約で要求されるnegative fixtureがまだ揃っていないことを、original four-task contract上の未完了理由として検出する。このためtarget側のterminal outcomeとverification metadataは非完了へ戻した。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス

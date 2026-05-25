@@ -1,52 +1,48 @@
 {
-  "outcome": "product_success",
-  "product_success": true,
-  "product_complete": true,
-  "update_goal_allowed": true,
-  "summary": "W824 records terminal Lean LCA product success after W821 proved the canonical left-right homology comparison bijective and W823 replaced the product-facing bounded derived infinity-category surface with stable four-projection data.",
-  "known_gaps": [],
-  "remaining_gaps": [],
-  "remaining_work": [],
-  "generated_utc": "2026-05-25T14:18:49Z",
-  "support_result_classification": "product_success",
-  "latest_verified_increment": "W824 terminal product audit",
-  "source_tree_hash": "d4b8dcddc1f29cc1f895b2e8c57e46922bbbc056bf903dbaa55e739c4d10d572",
+  "outcome": "nonterminal_original_four_task_contract_reaudit",
+  "product_success": false,
+  "product_complete": false,
+  "update_goal_allowed": false,
+  "summary": "W825 reopens the W824 terminal product-success claim under the immutable original four-task contract. The current task-4 bounded-derived infinity-category surface is still nonterminal because the final surface can be routed through semantic input and four-Prop certificate wrappers.",
+  "known_gaps": [
+    "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory is still a four-Prop wrapper rather than stable infinity-category data constructed from Dbounded MetrizableLCA.",
+    "Final product surfaces still reference MetrizableOrdinaryStableSemanticInput, StableFourProjectionCertificate, AcceptedStableBoundedDerivedInfinityCategory, or the metrizable ordinary-input adapter route.",
+    "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
+  ],
+  "remaining_gaps": [
+    "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory is still a four-Prop wrapper rather than stable infinity-category data constructed from Dbounded MetrizableLCA.",
+    "Final product surfaces still reference MetrizableOrdinaryStableSemanticInput, StableFourProjectionCertificate, AcceptedStableBoundedDerivedInfinityCategory, or the metrizable ordinary-input adapter route.",
+    "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
+  ],
+  "remaining_work": [
+    "Replace the task-4 semantic-input adapter with nullary or typeclass-resolved stable infinity-category data constructed from the actual bounded localization.",
+    "Make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations expose a real original-four-task completion witness instead of a name-only check.",
+    "Refresh the review packet with contract-specific negative fixtures, external SHA256 sidecar, and clean extraction audit before any future product-success claim."
+  ],
+  "generated_utc": "2026-05-25T16:30:55Z",
+  "immutable_contract": {
+    "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
+    "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
+  },
+  "support_result_classification": "nonterminal_original_four_task_contract_reaudit",
+  "latest_verified_increment": "W825 original four-task contract guard",
   "reference_route_log": "docs/research/reference_route_log.md",
   "implemented_declarations": [
-    "MetrizableLCA.categoryWithHomology_of_leftRightComparisonBijectiveW821",
-    "BoundedDerivedInfinityCategory",
-    "BoundedDerivedOrdinaryQuasicategory",
-    "Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted",
-    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput"
+    "originalFourTaskContract_currentOrdinaryRouteRejected",
+    "originalFourTaskContract_currentSemanticRouteNonterminal"
   ],
   "implemented_declarations_checked": [
-    "MetrizableLCA.categoryWithHomology_of_leftRightComparisonBijectiveW821",
-    "BoundedDerivedInfinityCategory",
-    "BoundedDerivedOrdinaryQuasicategory",
-    "Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted",
-    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput"
-  ],
-  "required_declarations_checked": [
-    "MetrizableLCA.categoryWithHomology_of_leftRightComparisonBijectiveW821",
-    "BoundedDerivedInfinityCategory",
-    "BoundedDerivedOrdinaryQuasicategory",
-    "Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted",
-    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput"
+    "originalFourTaskContract_currentOrdinaryRouteRejected",
+    "originalFourTaskContract_currentSemanticRouteNonterminal"
   ],
   "verified_commands": [
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "lake env lean audit/RequiredDeclarations.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
+    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
+    "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
+    "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
     "git diff --check"
-  ],
-  "metadata_corrections": {
-    "w824_terminal_product_metadata_final": {
-      "refreshed_utc": "2026-05-25T14:18:49Z",
-      "source_tree_hash": "d4b8dcddc1f29cc1f895b2e8c57e46922bbbc056bf903dbaa55e739c4d10d572",
-      "product_success": true,
-      "product_complete": true,
-      "update_goal_allowed": true
-    }
-  }
+  ]
 }
