@@ -160,42 +160,41 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W805 target ExactAt endpoint reduction</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W806 W663 target ExactAt bundle reduction</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetExactAtEndpointReductionProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T090255Z_codex_parent_w805</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetExactAtW663BundleReductionProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T091449Z_codex_parent_w806</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W805 target ExactAt endpoint reduction</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 18:07 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W806 W663 target ExactAt bundle reduction</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 18:18 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W805 projects the older W785 target-ExactAt endpoint branch data into the W803 minimal terminal route, dropping endpoint-strict topology, W461-row providers, closed-range endpoint topology, and boundary fields from the terminal evidence path. The helper exposes product evidence, exact/stable evidence, ready stable certificates, and accepted stable certificates from the reduced route. The new module is 193 lines with 14 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W806 lets W663 endpoint and ShortExact target-ExactAt payload bundles feed the current W803 terminal route, ignoring the extra localization, topology, and global-homology fields that are not needed for terminal evidence. The helper exposes closed-map and closed-embedding product evidence for both endpoint and ShortExact bundle shapes. The new module is 213 lines with 13 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>closedMapTargetExactAtW803DataOfEndpointW805</code> and <code>closedEmbeddingTargetExactAtW803DataOfEndpointW805</code> reduce W785 endpoint branch data to W803 terminal branch data.</li>
-            <li><code>productEvidence_of_closedMapTargetExactAtEndpointReducedRouteW805</code> and <code>productEvidence_of_closedEmbeddingTargetExactAtEndpointReducedRouteW805</code> expose terminal product evidence through the reduced route.</li>
-            <li><code>closedMapStableCertificateAcceptedOfTargetExactAtEndpointReducedW805</code> and <code>closedEmbeddingStableCertificateAcceptedOfTargetExactAtEndpointReducedW805</code> keep stable-certificate acceptance visible while product success remains false.</li>
+            <li><code>targetExactAtPayloadOfEndpointBundleW806</code> and <code>targetExactAtPayloadOfShortExactBundleW806</code> extract the W785 target-ExactAt payload from W663 bundles.</li>
+            <li><code>closedMapTargetExactAtW803DataOfEndpointBundleW806</code> and <code>closedMapTargetExactAtW803DataOfShortExactBundleW806</code> reduce closed-map endpoint and ShortExact bundles to W803 terminal branch data.</li>
+            <li><code>productEvidence_of_closedMapEndpointBundleReducedRouteW806</code> and <code>productEvidence_of_closedEmbeddingShortExactBundleReducedRouteW806</code> expose terminal product evidence while product success remains false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetExactAtEndpointReductionProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.TargetExactAtEndpointReductionProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetExactAtW663BundleReductionProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.TargetExactAtW663BundleReductionProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T090255Z_codex_parent_w805/w805_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T091449Z_codex_parent_w806/w806_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>w805_goal_sha_delta_decision.tsv</code> records the active-goal SHA delta and the decision to continue under the refreshed current goal.</li>
-            <li><code>goal_sha_comparison_after_focused.tsv</code> shows the refreshed run goal, active goal file, and sidecar all matched.</li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 193 lines with 14 top-level declarations.</li>
-            <li><code>w805_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
-            <li>Focused W805 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>goal_sha_comparison_after_focused.tsv</code> shows the run goal, active goal file, and sidecar all matched.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 213 lines with 13 top-level declarations.</li>
+            <li><code>w806_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
+            <li>Focused W806 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W805 work.</p></div>
-      <p>W804 proved that the W803 target-ExactAt W664 terminal route and the W796/W797 target-ExactAt closed-range route compute the same evidence for the same branch data.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W806 work.</p></div>
+      <p>W805 projected W785 target-ExactAt endpoint branch data into the W803 minimal terminal route and dropped endpoint/W461/row/boundary fields from that terminal evidence path.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
