@@ -160,47 +160,47 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W770 branch-localized direct finite-shape route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W771 closure-kernel direct finite-shape route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/BranchLocalizedDirectFiniteShapeProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T025127Z_codex_parent_w770</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/ClosureKernelDirectFiniteShapeProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T030153Z_codex_parent_w771</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W770 branch-localized direct finite-shape route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 11:56 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W771 closure-kernel direct finite-shape route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 12:08 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W770 reuses the W721 localized-right-adjoint data already carried by each W735 branch input in the W769 direct finite-shape stable route. Closed-map and closed-embedding branch records now feed W762 exact/WPP evidence and W670/W669-derived stable evidence through one branch-localized surface. The increment lives in a new 194-line helper module and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W771 replaces W770's generic <code>MetrizableExactAtKernelCokernelConditionedTopologyInputs</code> field with W695 closure-kernel endpoint-topology data. Closed-map and closed-embedding branch records now pass through W695 into the branch-localized W770 route. The increment lives in a new 174-line helper module and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>directFiniteShapeStableDataOfClosedMapBranchLocalizedW770</code> and <code>directFiniteShapeStableDataOfClosedEmbeddingBranchLocalizedW770</code> convert W735 branch records into the W769 stable-data surface.</li>
-            <li><code>stableCertificateOfClosedMapBranchLocalizedDirectFiniteShapeRouteW770_ready</code> and its closed-embedding counterpart reuse the W769 ready-certificate theorem.</li>
-            <li><code>productEvidence_of_closedMapBranchLocalizedDirectFiniteShapeRouteW770</code> and <code>productEvidence_of_closedEmbeddingBranchLocalizedDirectFiniteShapeRouteW770</code> expose branch-localized product evidence while keeping product success false.</li>
+            <li><code>kernelCokernelTopologyOfClosedMapClosureKernelW771</code> and the closed-embedding counterpart apply the W695 endpoint-topology adapter.</li>
+            <li><code>closedMapBranchLocalizedDataOfClosureKernelW771</code> and <code>closedEmbeddingBranchLocalizedDataOfClosureKernelW771</code> convert W771 branch data into the W770 branch-localized surface.</li>
+            <li><code>productEvidence_of_closedMapClosureKernelDirectFiniteShapeRouteW771</code> and <code>productEvidence_of_closedEmbeddingClosureKernelDirectFiniteShapeRouteW771</code> expose closure-kernel direct finite-shape product evidence while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/BranchLocalizedDirectFiniteShapeProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.BranchLocalizedDirectFiniteShapeProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/ClosureKernelDirectFiniteShapeProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.ClosureKernelDirectFiniteShapeProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T025127Z_codex_parent_w770/w770_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T030153Z_codex_parent_w771/w771_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 194 lines with 12 top-level declarations.</li>
-            <li><code>w770_goal_sha_delta_decision.tsv</code> records the active-goal SHA drift and the decision to continue under Round 13 constraints before focused verification.</li>
-            <li>Focused W770 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 174 lines with 13 top-level declarations.</li>
+            <li><code>w771_goal_sha_delta_decision.tsv</code> records the active-goal SHA drift and the decision to continue under Round 14 constraints before focused verification.</li>
+            <li>Focused W771 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W770 work.</p></div>
-      <p>W769 replaced W768's primitive <code>MetrizableWalkingParallelPairTransferStableSemanticInputs</code> argument with the W670 direct finite-shape construction.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W771 work.</p></div>
+      <p>W770 reused the W721 localized-right-adjoint data already carried by each W735 branch input in the W769 direct finite-shape stable route.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct <code>MetrizableExactAtKernelCokernelConditionedTopologyInputs</code>, the triangulated-closure premise, direct finite-shape WPP source data, direct localization triangulated source data, and the remaining Dbounded stable-infinity inputs.</li>
+        <li>Construct the W694 closure-kernel endpoint-topology data, the triangulated-closure premise, direct finite-shape WPP source data, direct localization triangulated source data, and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>
