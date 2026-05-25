@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w810-iso-closure-realization-terminal-route",
-  "generated_utc": "2026-05-25T10:06:21Z",
-  "source_tree_hash": "4c52bb6037080fc57237a802c349c80f7ac35a8796c14cee0ddbe09dca04f354",
-  "summary": "W810 proves W651 exact-acyclic iso-closure strict realization data supplies the W809 homotopy-object strict realization premise by embedding exact-acyclic homotopy-object endpoints into isoClosure with reflexive isomorphisms, then routes closed-map and closed-embedding branch data through the W809 terminal product evidence path. Product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-w812-homology-detected-iso-closure-terminal-route",
+  "generated_utc": "2026-05-25T10:16:43Z",
+  "source_tree_hash": "4ee3ec62d03ce4dd54b18fdd20130c158ad31a7fd51558dfff90fd96d1beeb1d",
+  "summary": "W812 derives W668 homology detection from W735 exact-input fields plus W768 universal-comparison homology existence, uses that detection to collapse W651 iso-closure endpoints back to exact-acyclic homotopy objects, and routes W809 strict realization through W810 iso-closure terminal product evidence. Product remains nonterminal.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -19345,6 +19345,66 @@
       "command": "bash -lc rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T100027Z_codex_parent_w810_discovery/logs/w810_product_success_true_grep.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/IsoClosureHomologyDetectionTerminalProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.IsoClosureHomologyDetectionTerminalProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_root_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/w812_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "bash -lc python3 - <<'PY2'\nimport json\nfor p in ['manifest.json','run/verification.json','terminal_outcome/terminal_outcome.json']:\n    with open(p, encoding='utf-8') as f:\n        json.load(f)\nprint('json validation passed')\nPY2",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_focused_forbidden_tokens.log exit_code=0"
+    },
+    {
+      "command": "bash -lc rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T101049Z_codex_parent_w812_discovery/logs/w812_product_success_true_grep.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -24949,13 +25009,26 @@
     "Dbounded.isoClosureRealizationTerminalProductRouteInputNamesW810_count",
     "Dbounded.MetrizableIsoClosureRealizationTerminalRouteStateW810",
     "Dbounded.currentMetrizableIsoClosureRealizationTerminalRouteStateW810",
-    "Dbounded.currentW810IsoClosureRealizationTerminalRoute_productSuccess"
+    "Dbounded.currentW810IsoClosureRealizationTerminalRoute_productSuccess",
+    "Dbounded.homologyDetectionOfClosedMapExactInputsW812",
+    "Dbounded.homologyDetectionOfClosedEmbeddingExactInputsW812",
+    "Dbounded.exactAcyclicHomotopyObjectOfIsoClosureHomologyDetectionW812",
+    "Dbounded.isoClosureRealizationOfStrictRealizationHomologyDetectionW812",
+    "Dbounded.closedMapIsoClosureDataOfStrictRealizationW812",
+    "Dbounded.closedEmbeddingIsoClosureDataOfStrictRealizationW812",
+    "Dbounded.productEvidence_of_closedMapHomologyDetectedIsoClosureRouteW812",
+    "Dbounded.productEvidence_of_closedEmbeddingHomologyDetectedIsoClosureRouteW812",
+    "Dbounded.homologyDetectedIsoClosureTerminalProductRouteInputNamesW812",
+    "Dbounded.homologyDetectedIsoClosureTerminalProductRouteInputNamesW812_count",
+    "Dbounded.MetrizableHomologyDetectedIsoClosureTerminalRouteStateW812",
+    "Dbounded.currentMetrizableHomologyDetectedIsoClosureTerminalRouteStateW812",
+    "Dbounded.currentW812HomologyDetectedIsoClosureTerminalRoute_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete W735 branch data values.",
-    "Construct W651 exact-acyclic homotopy-object iso-closure strict realization data.",
+    "Construct exact-acyclic homotopy-object strict triangleh realization data.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
   "support_result_classification": "blocked_nonterminal_frontier",
@@ -24963,11 +25036,11 @@
   "remaining_work": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete W735 branch data values.",
-    "Construct W651 exact-acyclic homotopy-object iso-closure strict realization data.",
+    "Construct exact-acyclic homotopy-object strict triangleh realization data.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
   "summary_log_tail": "Focused W799 source, module, root import, product declaration, run-owned required declarations, forbidden-token scan, full build, JSON, diff, helper accounting, browser report, stale-goal delta decision, and expected nonterminal audit gates passed; terminal external audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W810 iso-closure realization terminal route",
+  "latest_verified_increment": "W812 homology-detected iso-closure terminal route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -26772,6 +26845,13 @@
       "latest_verified_increment": "W810 iso-closure realization terminal route",
       "claim_review_status": "pending_claim_review_loop_v3",
       "note": "Focused W810 verification passed with product_complete=false and expected nonterminal terminal audit failure; run goal, active goal file, and sidecar SHA matched after focused verification. The helper stayed under the 220-line cap and left WPP untouched."
+    },
+    "w812_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T10:16:43Z",
+      "source_tree_hash": "4ee3ec62d03ce4dd54b18fdd20130c158ad31a7fd51558dfff90fd96d1beeb1d",
+      "latest_verified_increment": "W812 homology-detected iso-closure terminal route",
+      "claim_review_status": "pending_claim_review_loop_v3",
+      "note": "Focused W812 verification passed with product_complete=false and expected nonterminal terminal audit failure; run goal, active goal file, and sidecar SHA matched after focused verification. The helper stayed under the 220-line cap and left WPP untouched."
     }
   }
 }

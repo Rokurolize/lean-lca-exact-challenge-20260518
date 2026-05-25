@@ -48,6 +48,7 @@ import LeanLCAExactChallenge.Derived.TargetExactAtW663DirectBundleReductionProdu
 import LeanLCAExactChallenge.Derived.TargetIsoToTargetExactAtTerminalProductRoute
 import LeanLCAExactChallenge.Derived.TargetIsoStrictRealizationTerminalProductRoute
 import LeanLCAExactChallenge.Derived.IsoClosureStrictRealizationTerminalProductRoute
+import LeanLCAExactChallenge.Derived.IsoClosureHomologyDetectionTerminalProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9864,6 +9865,21 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableIsoClosureRealizationTerminalRouteStateW810
   #check Dbounded.currentMetrizableIsoClosureRealizationTerminalRouteStateW810
   #check Dbounded.currentW810IsoClosureRealizationTerminalRoute_productSuccess
+  #check Dbounded.homologyDetectionOfClosedMapExactInputsW812
+  #check Dbounded.homologyDetectionOfClosedEmbeddingExactInputsW812
+  #check Dbounded.exactAcyclicHomotopyObjectOfIsoClosureHomologyDetectionW812
+  #check Dbounded.isoClosureRealizationOfStrictRealizationHomologyDetectionW812
+  #check Dbounded.closedMapIsoClosureDataOfStrictRealizationW812
+  #check Dbounded.closedEmbeddingIsoClosureDataOfStrictRealizationW812
+  #check Dbounded.productEvidence_of_closedMapHomologyDetectedIsoClosureRouteW812
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingHomologyDetectedIsoClosureRouteW812
+  #check Dbounded.homologyDetectedIsoClosureTerminalProductRouteInputNamesW812
+  #check Dbounded.homologyDetectedIsoClosureTerminalProductRouteInputNamesW812_count
+  #check Dbounded.MetrizableHomologyDetectedIsoClosureTerminalRouteStateW812
+  #check
+    Dbounded.currentMetrizableHomologyDetectedIsoClosureTerminalRouteStateW812
+  #check Dbounded.currentW812HomologyDetectedIsoClosureTerminalRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
