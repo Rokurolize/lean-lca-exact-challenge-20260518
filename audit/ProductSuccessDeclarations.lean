@@ -35,6 +35,7 @@ import LeanLCAExactChallenge.Derived.TargetHomologyZeroComparisonHomologyProduct
 import LeanLCAExactChallenge.Derived.TargetIsoClosed2ProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtTerminalEvidenceProductRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroTerminalEvidenceProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9596,6 +9597,27 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetExactAtTerminalEvidenceRouteStateW797
   #check Dbounded.currentMetrizableTargetExactAtTerminalEvidenceRouteStateW797
   #check Dbounded.currentW797TargetExactAtTerminalEvidenceRoute_productSuccess
+  #check Dbounded.closedMapExactStableEvidenceOfTargetHomologyZeroTerminalW798
+  #check
+    Dbounded.closedEmbeddingExactStableEvidenceOfTargetHomologyZeroTerminalW798
+  #check Dbounded.closedMapStableCertificateOfTargetHomologyZeroTerminalW798
+  #check
+    Dbounded.closedEmbeddingStableCertificateOfTargetHomologyZeroTerminalW798
+  #check Dbounded.closedMapStableCertificateReadyOfTargetHomologyZeroTerminalW798
+  #check
+    Dbounded.closedEmbeddingStableCertificateReadyOfTargetHomologyZeroTerminalW798
+  #check
+    Dbounded.closedMapStableCertificateAcceptedOfTargetHomologyZeroTerminalW798
+  #check
+    Dbounded.closedEmbeddingStableCertificateAcceptedOfTargetHomologyZeroTerminalW798
+  #check Dbounded.targetHomologyZeroTerminalEvidenceProductRouteInputNamesW798
+  #check
+    Dbounded.targetHomologyZeroTerminalEvidenceProductRouteInputNamesW798_count
+  #check Dbounded.MetrizableTargetHomologyZeroTerminalEvidenceRouteStateW798
+  #check
+    Dbounded.currentMetrizableTargetHomologyZeroTerminalEvidenceRouteStateW798
+  #check
+    Dbounded.currentW798TargetHomologyZeroTerminalEvidenceRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
