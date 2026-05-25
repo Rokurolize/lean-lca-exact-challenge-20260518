@@ -1,120 +1,130 @@
 {
-  "schema": "lean_lca_original_four_task_nonterminal_verification_v24",
-  "generated_utc": "2026-05-25T22:16:10Z",
-  "source_tree_hash": "f90d4e62c75e474386ba2d597315e3e94b37236a91f84a7a2b3b58fe38fdd96d",
-  "summary": "W854 keeps the target nonterminal under the immutable original four-task contract while constructing the W853 homology-free selected-cochain route-data provider from existing W733/W732 route-data evidence. It projects W763 concrete leaves from one W732 route-data provider, drops the unused category-homology payload by retaining only the source-triangulation component, then feeds the constructed W853 provider into the W853 selected-cochain, left-calculus, and bounded-derived package routes. Product success remains false because the concrete W732 route-data provider, the nullary original-four-task completion witness, and the completion review packet are still absent.",
+  "schema": "lean_lca_original_four_task_nonterminal_verification_v25",
+  "generated_utc": "2026-05-25T22:28:20Z",
+  "source_tree_hash": "3184a4899ce528db41bfc07e56e874f445bea786dfed11432100e4d0aa046668",
+  "summary": "W855 keeps the target nonterminal under the immutable original four-task contract while using the W821 comparison-bijectivity proof to remove the explicit CategoryWithHomology MetrizableLCA premise from the W735-to-W732 route-data surface. It constructs W732 closed-map and closed-embedding route-data providers from W735 branch records, then feeds those providers through the W854 homology-free selected-cochain route to obtain selected-cochain direct-source data, direct bounded left calculus, and the existing bounded-derived package. Product success remains false because concrete values for the nine W735 branch data fields, the final original-four-task witness, and the completion review packet are still absent.",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "a73668336c6f6739d4a93f1ee9cf8d618f71bb921dd70926cd8318bc859f42d5"
+    "sha256": "e470443e8293edd8baf5ee6762795871429406c39210ee92da2c916c5882a4d1"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W854 constructs the W853 homology-free provider from W732 route data, but the concrete W732 route-data provider is still an input rather than a constructed value.",
+    "Task 4 is not contract-complete under the original four-task contract: W855 constructs W732 route data from W735 branch records, but the nine W735 branch data fields still need concrete values.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The review packet still does not expose the immutable-contract negative fixtures, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct a concrete W732 boundary/relation target/closedness normalized source/endpoint route-data provider or reduce its remaining component blockers with exact Lean evidence.",
-    "Expose a no-argument or fully instance-resolved original four-task completion witness after the W732 provider and stable Dbounded data are real.",
+    "Construct concrete values for the nine W735 branch data fields, starting with the smallest field that feeds the W855 route-data providers.",
+    "Expose a no-argument or fully instance-resolved original four-task completion witness after the route-data provider and stable Dbounded data are real.",
     "Refresh the review packet fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_homology_free_provider_from_route_data",
-  "latest_verified_increment": "W854 homology-free provider from route data",
+  "support_result_classification": "nonterminal_comparison_bijectivity_route_data",
+  "latest_verified_increment": "W855 comparison-bijectivity route data",
   "implemented_declarations_checked": [
-    "Dbounded.homologyFreeSelectedCochainRouteDataProviderOfConcreteLeavesW854",
-    "Dbounded.homologyFreeSelectedCochainRouteDataProviderOfRouteDataW854",
-    "Dbounded.selectedCochainDirectSourceDataOfRouteDataViaHomologyFreeW854",
-    "Dbounded.directBoundedLeftCalculusOfRouteDataViaHomologyFreeW854",
-    "Dbounded.boundedDerivedInfinityCategoryOfRouteDataViaHomologyFreeW854",
-    "Dbounded.homologyFreeProviderFromRouteDataInputNamesW854_count",
-    "Dbounded.currentW854HomologyFreeProviderFromRouteData_productSuccess",
-    "originalFourTaskContract_homologyFreeProviderFromRouteData_inputCount",
-    "originalFourTaskContract_homologyFreeProviderFromRouteData_nonterminal"
+    "Dbounded.categoryWithHomologyOfComparisonBijectivityW855",
+    "Dbounded.categoryWithHomologyProviderOfComparisonBijectivityW855",
+    "Dbounded.sourceHomologicalTriangulationDataOfComparisonBijectivityW855",
+    "Dbounded.closedMapConcreteLeavesOfComparisonBijectivityW855",
+    "Dbounded.closedEmbeddingConcreteLeavesOfComparisonBijectivityW855",
+    "Dbounded.closedMapRouteDataProviderOfComparisonBijectivityW855",
+    "Dbounded.closedEmbeddingRouteDataProviderOfComparisonBijectivityW855",
+    "Dbounded.homologyFreeRouteDataProviderOfClosedMapComparisonBijectivityW855",
+    "Dbounded.homologyFreeRouteDataProviderOfClosedEmbeddingComparisonBijectivityW855",
+    "Dbounded.selectedCochainDirectSourceDataOfClosedMapComparisonBijectivityW855",
+    "Dbounded.selectedCochainDirectSourceDataOfClosedEmbeddingComparisonBijectivityW855",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapComparisonBijectivityW855",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingComparisonBijectivityW855",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonBijectivityW855",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonBijectivityW855",
+    "Dbounded.comparisonBijectivityRouteDataBranchInputNamesW855_count",
+    "Dbounded.currentW855ComparisonBijectivityRouteDataProvider_productSuccess",
+    "originalFourTaskContract_comparisonBijectivityRouteData_inputCount",
+    "originalFourTaskContract_comparisonBijectivityRouteData_nonterminal"
   ],
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/HomologyFreeRouteDataProviderFromRouteData.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/RouteDataProviderFromComparisonBijectivity.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_new_module_lean.log",
-      "note": "focused Lean check for the W854 provider-construction route"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_new_module_lean.log",
+      "note": "focused Lean check for the W855 route-data provider module"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.HomologyFreeRouteDataProviderFromRouteData",
+      "command": "lake build LeanLCAExactChallenge.Derived.RouteDataProviderFromComparisonBijectivity",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_new_module_lake_build.log",
-      "note": "named Lake target for the W854 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_new_module_lake_build.log",
+      "note": "named Lake target for the W855 helper module"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_required_audit_lean.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_required_audit_lean.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_product_audit_lean.log",
-      "note": "checks W854 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_product_audit_lean.log",
+      "note": "checks W855 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_original_audit_lean.log",
-      "note": "records W854 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_original_audit_lean.log",
+      "note": "records W855 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_lake_build.log",
-      "note": "full build after W854"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_lake_build.log",
+      "note": "full build after W855"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_forbidden_tokens.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_forbidden_tokens.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "rg -n productSuccessClaimed/product_success/product_complete true scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_source_product_success_true_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_source_product_success_true_scan.log",
       "note": "Lean/audit/outcome surfaces have no product-success true claim outside negative fixtures"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_git_diff_check.log",
-      "note": "whitespace check after W854 source and metadata edits; staged diff was checked against HEAD in the same closeout log set"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_git_diff_check.log",
+      "note": "whitespace check after W855 source and metadata edits"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_html_check_report.log",
       "note": "static HTML report validation passed"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_contract_audit.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_contract_audit.log",
       "note": "expected nonterminal pass: product_success is false and original witness plus packet requirements remain"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_external_audit_nonterminal_expected.log",
       "note": "legacy product-success audit rejects the nonterminal state at the product-success outcome gate"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T221437Z_codex_parent_w854_homology_free_provider_from_route_data/logs/w854_browser_evidence_scratch_log.log",
-      "note": "browser-rendered report evidence with W854 DOM expectations"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T222705Z_codex_parent_w855_comparison_bijectivity_route_data/logs/w855_browser_evidence_scratch_log.log",
+      "note": "browser-rendered report evidence with W855 DOM expectations"
     }
   ]
 }
