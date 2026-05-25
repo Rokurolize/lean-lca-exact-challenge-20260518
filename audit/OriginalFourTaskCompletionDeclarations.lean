@@ -1,5 +1,6 @@
 import LeanLCAExactChallenge
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroFiniteShapeStableRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectLocalizationStableRoute
 
 set_option autoImplicit false
 
@@ -107,6 +108,20 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroFiniteShapeW840
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetHomologyZeroFiniteShapeW840
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapTargetHomologyZeroDirectLocalizationW841
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedEmbeddingTargetHomologyZeroDirectLocalizationW841
+#check
+  LeanLCAExactChallenge.Dbounded.pretriangulatedOfClosedMapTargetHomologyZeroDirectLocalizationW841
+#check
+  LeanLCAExactChallenge.Dbounded.triangulatedOfClosedMapTargetHomologyZeroDirectLocalizationW841
+#check
+  LeanLCAExactChallenge.Dbounded.remainingStableFieldsOfClosedMapTargetHomologyZeroDirectLocalizationW841
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroDirectLocalizationW841
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetHomologyZeroDirectLocalizationW841
 
 namespace LeanLCAExactChallenge
 
@@ -232,5 +247,16 @@ theorem originalFourTaskContract_targetHomologyZeroFiniteShapeStableRoute_expand
     Dbounded.targetHomologyZeroFiniteShapeStableRouteExpandedRequiredFieldNamesW840.length =
       5 :=
   Dbounded.targetHomologyZeroFiniteShapeStableRouteExpandedRequiredFieldNamesW840_count
+
+theorem originalFourTaskContract_targetHomologyZeroDirectLocalizationStableRoute_bundledInputCount :
+    Dbounded.targetHomologyZeroDirectLocalizationStableRouteInputNamesW841.length =
+      3 :=
+  Dbounded.targetHomologyZeroDirectLocalizationStableRouteInputNamesW841_count
+
+theorem
+    originalFourTaskContract_targetHomologyZeroDirectLocalizationStableRoute_expandedRequiredFieldCount :
+    Dbounded.targetHomologyZeroDirectLocalizationStableRouteExpandedRequiredFieldNamesW841.length =
+      4 :=
+  Dbounded.targetHomologyZeroDirectLocalizationStableRouteExpandedRequiredFieldNamesW841_count
 
 end LeanLCAExactChallenge

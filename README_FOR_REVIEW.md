@@ -36,6 +36,8 @@ W839では、W838に残っていた直接のW783 strict triangleh realization入
 
 W840では、W839のtarget homology-zero left-calculus routeを、既存のwalking-parallel-pair finite-shape transfer routeへ接続した。`Dbounded.remainingStableFieldsOfClosedMapTargetHomologyZeroFiniteShapeW840`とclosed-embedding版は、W839が選ぶleft-calculus semantic fieldsのもとで`MetrizableWalkingParallelPairTransferStableSemanticInputs`から残りのstable fieldsを作る。これにより、W839でprimitiveに残っていた`HasFiniteLimits (Dbounded MetrizableLCA)`と`HasFiniteColimits (Dbounded MetrizableLCA)`は、WPP finite-shape transfer inputから導く形へ移った。ただしW735 branch data、W790 target homology-zero realization data、WPP finite-shape transfer input、pretriangulated構造、triangulated構造、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
 
+W841では、W839のtarget homology-zero left-calculus routeを、W653 direct finite-shape source dataとW657 direct-localization triangulated source dataへ接続した。`Dbounded.remainingStableFieldsOfClosedMapTargetHomologyZeroDirectLocalizationW841`とclosed-embedding版は、finite-limit/finite-colimit側をW653のdirect sourceから、pretriangulated/triangulated側をW657のdirect-localization sourceから導く。これによりW840で残っていたWPP transfer-stable input、pretriangulated構造、triangulated構造は、より具体的なW653/W657 source dataへ置き換わった。ただしW735 branch data、W790 target homology-zero realization data、W653 direct finite-shape source data、W657 direct-localization triangulated source data、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス
