@@ -3,6 +3,7 @@ import LeanLCAExactChallenge.Derived.Bounded
 import LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer
 import LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields
 import LeanLCAExactChallenge.Derived.LeftRightComparisonRoute
+import LeanLCAExactChallenge.Derived.CategoryHomologyStableRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9006,6 +9007,30 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppCategoryHomologyInstanceRouteDataExactStableStateW765
   #check
     Dbounded.currentMetrizableWppCategoryHomologyInstanceRouteDataExactStableStateW765_productSuccess
+  #check
+    Dbounded.cochainHasHomology_of_categoryWithHomologyW766
+  #check
+    Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelCategoryHomology_w766
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInputOfKernelCokernelCategoryHomologyWppTransfer_w766
+  #check
+    Dbounded.stableCertificateOfKernelCokernelCategoryHomologyWppTransfer_w766_ready
+  #check
+    Dbounded.metrizableKernelCokernelCategoryHomologyWppTransferStableInputNamesW766
+  #check
+    Dbounded.metrizableKernelCokernelCategoryHomologyWppTransferStableInputNamesW766_count
+  #check
+    Dbounded.metrizableKernelCokernelCategoryHomologyWppTransferStableRouteNamesW766
+  #check
+    Dbounded.metrizableKernelCokernelCategoryHomologyWppTransferStableRouteNamesW766_count
+  #check
+    Dbounded.MetrizableKernelCokernelCategoryHomologyWppTransferStableRouteStateW766
+  #check
+    Dbounded.currentMetrizableKernelCokernelCategoryHomologyWppTransferStableRouteSupportStateW766
+  #check
+    Dbounded.currentMetrizableKernelCokernelCategoryHomologyWppTransferStableRouteStateW766
+  #check
+    Dbounded.currentMetrizableKernelCokernelCategoryHomologyWppTransferStableRouteStateW766_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
