@@ -9,6 +9,7 @@ import LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
 import LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.BranchLocalizedDirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.ClosureKernelDirectFiniteShapeProductRoute
+import LeanLCAExactChallenge.Derived.ClosedRangeDirectFiniteShapeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9143,6 +9144,20 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableClosureKernelDirectFiniteShapeProductRouteSupportStateW771
   #check
     Dbounded.currentMetrizableClosureKernelDirectFiniteShapeProductRouteStateW771_productSuccess
+  #check Dbounded.MetrizableClosedMapClosedRangeDirectFiniteShapeBranchDataW772
+  #check Dbounded.MetrizableClosedEmbeddingClosedRangeDirectFiniteShapeBranchDataW772
+  #check Dbounded.closureKernelEndpointTopologyOfClosedMapClosedRangeW772
+  #check Dbounded.closureKernelEndpointTopologyOfClosedEmbeddingClosedRangeW772
+  #check Dbounded.closedMapClosureKernelDataOfClosedRangeW772
+  #check Dbounded.closedEmbeddingClosureKernelDataOfClosedRangeW772
+  #check Dbounded.productEvidence_of_closedMapClosedRangeDirectFiniteShapeRouteW772
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingClosedRangeDirectFiniteShapeRouteW772
+  #check Dbounded.closedRangeDirectFiniteShapeProductRouteInputNamesW772
+  #check Dbounded.closedRangeDirectFiniteShapeProductRouteInputNamesW772_count
+  #check Dbounded.MetrizableClosedRangeDirectFiniteShapeProductRouteStateW772
+  #check Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteSupportStateW772
+  #check Dbounded.currentMetrizableClosedRangeDirectFiniteShapeProductRouteStateW772_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
