@@ -1,136 +1,138 @@
 {
-  "schema": "lean_lca_original_four_task_nonterminal_verification_v13",
-  "generated_utc": "2026-05-25T20:17:10Z",
-  "source_tree_hash": "9ee06d52a409d6e20a6bceeafd8fc6a4bd3c4aeb14ab5322f78396ac8e15a2fb",
-  "summary": "W843 keeps the target nonterminal under the immutable original four-task contract and routes W785/W663 target ExactAt realization data through W803 into the W839 target homology-zero surface, then reuses the W842 direct-source stable path. Dbounded.closedMapTargetHomologyZeroDataOfTargetExactAtW843 and its closed-embedding analogue convert target ExactAt data to W839 data. Dbounded.closedMapW664TerminalDataOfTargetExactAtW843 records the W803/W799 terminal conversion. Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetExactAtDirectSourceW843 and its closed-embedding analogue assemble the W842 stable package from target ExactAt data. The route still lacks concrete W735 branch data, W785/W663 target ExactAt realization data, and the original four-task completion witness.",
+  "schema": "lean_lca_original_four_task_nonterminal_verification_v14",
+  "generated_utc": "2026-05-25T20:26:20Z",
+  "source_tree_hash": "0c0953de7e0174c0092360f42f37b1ca31ddd45578a82cf2a246d9abc05752ba",
+  "summary": "W844 keeps the target nonterminal under the immutable original four-task contract and routes W784 target-isomorphism realization data through W808 into the W843 target ExactAt surface, then reuses the W842 direct-source stable path. Dbounded.closedMapW803DataOfTargetIsoW844 and its closed-embedding analogue convert target-isomorphism data plus W735 exact inputs to W803 target ExactAt terminal data. Dbounded.closedMapTargetHomologyZeroDataOfTargetIsoW844 and its closed-embedding analogue derive the W839 target homology-zero surface. Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetIsoDirectSourceW844 and its closed-embedding analogue assemble the stable package from target-isomorphism data. The route still lacks concrete W735 branch data, W784 target-isomorphism realization data, and the original four-task completion witness.",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "29a568d04a30def3001b92e7bebe124b59488908838d5bd07daf82b01678fe91"
+    "sha256": "18359a4636f9c757b7e01a24cdcb9ca862f77d98abc354140a33a657b414d2af"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W843 derives the W839/W790 target homology-zero surface from W785/W663 target ExactAt data, but concrete W735 branch values and target ExactAt realization data still must be constructed.",
-    "The final Dbounded MetrizableLCA original four-task completion witness is still missing because W843 data is not yet available as a no-argument or fully instance-resolved construction.",
+    "Task 4 is not contract-complete under the original four-task contract: W844 derives the W843/W803 target ExactAt surface and W839/W790 target homology-zero surface from W784 target-isomorphism data, but concrete W735 branch values and W784 target-isomorphism realization data still must be constructed.",
+    "The final Dbounded MetrizableLCA original four-task completion witness is still missing because W844 data is not yet available as a no-argument or fully instance-resolved construction.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet still does not expose the immutable-contract negative fixtures and clean extraction audit in the completion packet shape required for product success."
   ],
   "remaining_work": [
     "Construct W735 closed-map or closed-embedding exact-input branch data for MetrizableLCA, including its W721 localized-right-adjoint payload and W722 source-triangulation payload.",
-    "Construct W785/W663 target ExactAt realization data for exactAcyclicHomotopyObject MetrizableLCA.",
-    "Expose a no-argument or fully instance-resolved original four-task completion witness only after those W843 inputs are real, then refresh the review packet fixtures and clean extraction audit."
+    "Construct W784 exact-acyclic homotopy-object target-isomorphism realization data for MetrizableLCA.",
+    "Expose a no-argument or fully instance-resolved original four-task completion witness only after those W844 inputs are real, then refresh the review packet fixtures and clean extraction audit."
   ],
-  "support_result_classification": "nonterminal_target_exact_at_direct_source_stable_route",
-  "latest_verified_increment": "W843 target ExactAt direct-source stable route",
+  "support_result_classification": "nonterminal_target_iso_direct_source_stable_route",
+  "latest_verified_increment": "W844 target-isomorphism direct-source stable route",
   "implemented_declarations_checked": [
-    "Dbounded.MetrizableClosedMapTargetExactAtDirectSourceStableRouteDataW843",
-    "Dbounded.MetrizableClosedEmbeddingTargetExactAtDirectSourceStableRouteDataW843",
-    "Dbounded.closedMapW803DataOfTargetExactAtW843",
-    "Dbounded.closedEmbeddingW803DataOfTargetExactAtW843",
-    "Dbounded.closedMapTargetHomologyZeroDataOfTargetExactAtW843",
-    "Dbounded.closedEmbeddingTargetHomologyZeroDataOfTargetExactAtW843",
-    "Dbounded.closedMapW664TerminalDataOfTargetExactAtW843",
-    "Dbounded.closedEmbeddingW664TerminalDataOfTargetExactAtW843",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetExactAtDirectSourceW843",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingTargetExactAtDirectSourceW843",
-    "Dbounded.remainingStableFieldsOfClosedMapTargetExactAtDirectSourceW843",
-    "Dbounded.remainingStableFieldsOfClosedEmbeddingTargetExactAtDirectSourceW843",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetExactAtDirectSourceW843",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetExactAtDirectSourceW843",
-    "Dbounded.targetExactAtDirectSourceStableRouteInputNamesW843_count",
-    "Dbounded.targetExactAtDirectSourceStableRouteExpandedRequiredFieldNamesW843_count",
-    "Dbounded.currentW843TargetExactAtDirectSourceStableRoute_productSuccess",
-    "originalFourTaskContract_targetExactAtDirectSourceStableRoute_bundledInputCount",
-    "originalFourTaskContract_targetExactAtDirectSourceStableRoute_expandedRequiredFieldCount"
+    "Dbounded.MetrizableClosedMapTargetIsoDirectSourceStableRouteDataW844",
+    "Dbounded.MetrizableClosedEmbeddingTargetIsoDirectSourceStableRouteDataW844",
+    "Dbounded.closedMapW808DataOfTargetIsoW844",
+    "Dbounded.closedEmbeddingW808DataOfTargetIsoW844",
+    "Dbounded.closedMapW803DataOfTargetIsoW844",
+    "Dbounded.closedEmbeddingW803DataOfTargetIsoW844",
+    "Dbounded.closedMapTargetExactAtDirectSourceDataOfTargetIsoW844",
+    "Dbounded.closedEmbeddingTargetExactAtDirectSourceDataOfTargetIsoW844",
+    "Dbounded.closedMapTargetHomologyZeroDataOfTargetIsoW844",
+    "Dbounded.closedEmbeddingTargetHomologyZeroDataOfTargetIsoW844",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetIsoDirectSourceW844",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingTargetIsoDirectSourceW844",
+    "Dbounded.remainingStableFieldsOfClosedMapTargetIsoDirectSourceW844",
+    "Dbounded.remainingStableFieldsOfClosedEmbeddingTargetIsoDirectSourceW844",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetIsoDirectSourceW844",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetIsoDirectSourceW844",
+    "Dbounded.targetIsoDirectSourceStableRouteInputNamesW844_count",
+    "Dbounded.targetIsoDirectSourceStableRouteExpandedRequiredFieldNamesW844_count",
+    "Dbounded.currentW844TargetIsoDirectSourceStableRoute_productSuccess",
+    "originalFourTaskContract_targetIsoDirectSourceStableRoute_bundledInputCount",
+    "originalFourTaskContract_targetIsoDirectSourceStableRoute_expandedRequiredFieldCount"
   ],
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/TargetExactAtDirectSourceStableRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/TargetIsoDirectSourceStableRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_target_exact_at_direct_source_stable_route_lean.log",
-      "note": "focused Lean check for the W843 route"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_target_iso_direct_source_stable_route_lean.log",
+      "note": "focused Lean check for the W844 route"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.TargetIsoDirectSourceStableRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_lake_build_target_exact_at_direct_source_stable_route.log",
-      "note": "named Lake target for the W843 route"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_lake_build_target_iso_direct_source_stable_route.log",
+      "note": "named Lake target for the W844 route"
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_lake_build_root.log",
-      "note": "root import build after adding the W843 route"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_lake_build_root.log",
+      "note": "root import build after adding the W844 route"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_audit_product_success_declarations.log",
-      "note": "checks W843 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_audit_product_success_declarations.log",
+      "note": "checks W844 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_audit_original_four_task_completion_declarations.log",
-      "note": "records W843 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_audit_original_four_task_completion_declarations.log",
+      "note": "records W844 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_audit_required_declarations.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_audit_required_declarations.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_lake_build.log",
-      "note": "full build after W843"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_lake_build.log",
+      "note": "full build after W844"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_forbidden_tokens.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_forbidden_tokens.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "rg -n 'productSuccessClaimed := true|\"product_success\" *: *true|\"product_complete\" *: *true' LeanLCAExactChallenge audit -g '!audit/negative_fixtures/**'",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_source_product_success_true_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_source_product_success_true_scan.log",
       "note": "source and audit tree has no product-success true claim outside negative fixtures"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_git_diff_check.log",
-      "note": "whitespace check after W843 source edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_git_diff_check.log",
+      "note": "whitespace check after W844 source edits"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_html_check_report.log",
       "note": "static HTML report validation passed"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_contract_audit.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_contract_audit.log",
       "note": "expected nonterminal pass: product_success is false and original witness plus packet requirements remain"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_external_audit_nonterminal_expected.log",
       "note": "legacy product-success audit rejects the nonterminal state"
     },
     {
-      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/browser_evidence --expect \"Current Increment\" --expect \"W843 keeps the target nonterminal\" --expect \"closedMapTargetHomologyZeroDataOfTargetExactAtW843\" --expect \"product_success=false\"",
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/browser_evidence --expect \"Current Increment\" --expect \"W844 keeps the target nonterminal\" --expect \"closedMapTargetHomologyZeroDataOfTargetIsoW844\" --expect \"product_success=false\"",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T201000Z_codex_parent_w843_target_exact_at_direct_source_stable_route/logs/w843_browser_evidence_scratch_log.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T202100Z_codex_parent_w844_target_iso_direct_source_stable_route/logs/w844_browser_evidence_scratch_log.log",
       "note": "browser-rendered scratch-log DOM checks and screenshot passed"
     }
   ]

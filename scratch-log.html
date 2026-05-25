@@ -159,7 +159,7 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-26 05:13 JST</span>
+        <span class="badge info">Updated 2026-05-26 05:26 JST</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">product_success=false</span>
       </div>
@@ -169,13 +169,13 @@ textarea.goal-text {
     <section class="grid" aria-label="Current status">
       <div class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W843</div>
-        <p>target ExactAt direct-source stable route</p>
+        <div class="metric">W844</div>
+        <p>target-isomorphism direct-source stable route</p>
       </div>
       <div class="card span-3">
         <div class="label">Verification</div>
         <div class="metric">Guarded</div>
-        <p>W785/W663 data derives the W839 surface</p>
+        <p>W784 data derives the W843 surface</p>
       </div>
       <div class="card span-3">
         <div class="label">Primary Surface</div>
@@ -185,34 +185,34 @@ textarea.goal-text {
       <div class="card span-3">
         <div class="label">Next Safe Action</div>
         <div class="metric">Implement</div>
-        <p>construct W735 branch data and W785/W663 target ExactAt data</p>
+        <p>construct W735 branch data and W784 target-isomorphism data</p>
       </div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W843 keeps the target nonterminal under the immutable original four-task contract and routes W785/W663 target ExactAt realization data through W803 into the W839 target homology-zero surface, then reuses W842's direct-source stable path. <code>Dbounded.closedMapTargetHomologyZeroDataOfTargetExactAtW843</code> derives the W839 data from target ExactAt data, <code>Dbounded.closedMapW664TerminalDataOfTargetExactAtW843</code> records the W803/W799 terminal conversion, and <code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetExactAtDirectSourceW843</code> assembles the W842 stable package from target ExactAt data. The route still requires concrete W735 branch data and W785/W663 target ExactAt realization data before it can become original four-task completion evidence.</p>
+      <p>W844 keeps the target nonterminal under the immutable original four-task contract and routes W784 target-isomorphism realization data through W808 into the W843 target ExactAt surface, then reuses the W842 direct-source stable path. <code>Dbounded.closedMapW803DataOfTargetIsoW844</code> derives W803 target ExactAt terminal data from W784 data and W735 exact inputs, <code>Dbounded.closedMapTargetHomologyZeroDataOfTargetIsoW844</code> derives the W839 target homology-zero surface, and <code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetIsoDirectSourceW844</code> assembles the stable package from target-isomorphism data. The route still requires concrete W735 branch data and W784 target-isomorphism realization data before it can become original four-task completion evidence.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>Touched Sources</h3>
           <table>
             <tbody>
-              <tr><th>Baseline</th><td><code>bb9334338310efdd6920a80e7ec9f3469a75f8bd</code></td></tr>
+              <tr><th>Baseline</th><td><code>586ac12ee08206c45fc13a72b1505b8d96cc88cd</code></td></tr>
               <tr><th>Contract SHA</th><td><code>a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</code></td></tr>
-              <tr><th>Dynamic Guidance SHA</th><td><code>29a568d04a30def3001b92e7bebe124b59488908838d5bd07daf82b01678fe91</code></td></tr>
-              <tr><th>Remaining Inputs</th><td>W735 branch data, W785/W663 target ExactAt data, original witness, final packet fixtures</td></tr>
-              <tr><th>Target Data</th><td>W790/W839 surface derived through W803 from W785/W663 target ExactAt data</td></tr>
+              <tr><th>Dynamic Guidance SHA</th><td><code>18359a4636f9c757b7e01a24cdcb9ca862f77d98abc354140a33a657b414d2af</code></td></tr>
+              <tr><th>Remaining Inputs</th><td>W735 branch data, W784 target-isomorphism data, original witness, final packet fixtures</td></tr>
+              <tr><th>Target Data</th><td>W785/W663 target ExactAt and W790/W839 surfaces derived through W808/W803</td></tr>
             </tbody>
           </table>
         </div>
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>Dbounded.closedMapW803DataOfTargetExactAtW843</code></li>
-            <li><code>Dbounded.closedMapTargetHomologyZeroDataOfTargetExactAtW843</code></li>
-            <li><code>Dbounded.closedMapW664TerminalDataOfTargetExactAtW843</code></li>
-            <li><code>Dbounded.remainingStableFieldsOfClosedMapTargetExactAtDirectSourceW843</code></li>
-            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetExactAtDirectSourceW843</code></li>
+            <li><code>Dbounded.closedMapW808DataOfTargetIsoW844</code></li>
+            <li><code>Dbounded.closedMapW803DataOfTargetIsoW844</code></li>
+            <li><code>Dbounded.closedMapTargetHomologyZeroDataOfTargetIsoW844</code></li>
+            <li><code>Dbounded.remainingStableFieldsOfClosedMapTargetIsoDirectSourceW844</code></li>
+            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetIsoDirectSourceW844</code></li>
             <li><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></li>
@@ -231,16 +231,16 @@ textarea.goal-text {
           <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/TargetExactAtDirectSourceStableRoute.lean</code></td><td>passed</td><td><code>w843_target_exact_at_direct_source_stable_route_lean.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableRoute</code></td><td>passed</td><td><code>w843_lake_build_target_exact_at_direct_source_stable_route.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge</code></td><td>passed</td><td><code>w843_lake_build_root.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w843_audit_product_success_declarations.log</code></td></tr>
-          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w843_audit_original_four_task_completion_declarations.log</code></td></tr>
-          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w843_audit_required_declarations.log</code></td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td><code>w843_lake_build.log</code></td></tr>
-          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w843_forbidden_tokens.log</code></td></tr>
-          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>passed</td><td><code>w843_source_product_success_true_scan.log</code></td></tr>
-          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w843_git_diff_check.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/TargetIsoDirectSourceStableRoute.lean</code></td><td>passed</td><td><code>w844_target_iso_direct_source_stable_route_lean.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge.Derived.TargetIsoDirectSourceStableRoute</code></td><td>passed</td><td><code>w844_lake_build_target_iso_direct_source_stable_route.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge</code></td><td>passed</td><td><code>w844_lake_build_root.log</code></td></tr>
+          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w844_audit_product_success_declarations.log</code></td></tr>
+          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w844_audit_original_four_task_completion_declarations.log</code></td></tr>
+          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w844_audit_required_declarations.log</code></td></tr>
+          <tr><td><code>lake build</code></td><td>passed</td><td><code>w844_lake_build.log</code></td></tr>
+          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w844_forbidden_tokens.log</code></td></tr>
+          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>passed</td><td><code>w844_source_product_success_true_scan.log</code></td></tr>
+          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w844_git_diff_check.log</code></td></tr>
           <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ComparisonBijectivityRoute.lean</code></td><td>passed</td><td><code>w821_focused_source_lean.log</code></td></tr>
           <tr><td><code>lake build LeanLCAExactChallenge.Derived.ComparisonBijectivityRoute</code></td><td>passed</td><td><code>w821_focused_lake_build_source.log</code></td></tr>
           <tr><td><code>lake env lean LeanLCAExactChallenge.lean</code></td><td>passed</td><td><code>w821_root_import.log</code></td></tr>
@@ -363,6 +363,11 @@ textarea.goal-text {
           <h3>Derived target homology-zero data from target ExactAt data</h3>
           <p><code>TargetExactAtDirectSourceStableRoute</code> uses W803 to feed W842 from W785/W663 target ExactAt data, reducing the remaining realization premise from W790 to target ExactAt while preserving <code>product_success=false</code>.</p>
         </article>
+        <article class="event">
+          <time datetime="2026-05-26T05:26:00+09:00">2026-05-26 05:26 JST</time>
+          <h3>Derived target ExactAt data from target-isomorphism data</h3>
+          <p><code>TargetIsoDirectSourceStableRoute</code> uses W808 to feed W843 from W784 target-isomorphism realization data and W735 exact inputs, reducing the remaining realization premise from target ExactAt to target-isomorphism while preserving <code>product_success=false</code>.</p>
+        </article>
       </div>
     </section>
 
@@ -383,7 +388,8 @@ textarea.goal-text {
         <li>W841 derives finite-limit, finite-colimit, pretriangulated, and triangulated stable-route fields from W653/W657 source data under the W839 selected left-calculus fields.</li>
         <li>W842 derives W653/W657 direct source fields from W839 data through W799/W800/W773 and assembles the W841 stable package from W839 data alone.</li>
         <li>W843 derives W842's W839 input surface from W785/W663 target ExactAt realization data through W803.</li>
-        <li>The remaining mathematical product work is to construct W735 branch data and W785/W663 target ExactAt realization data.</li>
+        <li>W844 derives W843's target ExactAt input surface from W784 target-isomorphism realization data through W808.</li>
+        <li>The remaining mathematical product work is to construct W735 branch data and W784 target-isomorphism realization data.</li>
       </ul>
       <div class="note">
         <strong>Goal completion rule.</strong>

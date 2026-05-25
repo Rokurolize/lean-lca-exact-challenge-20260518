@@ -42,6 +42,8 @@ W842では、W841で別入力として残っていたW653 direct finite-shape so
 
 W843では、W842に残っていたW790 target homology-zero realization data入力を、W803の変換でW785/W663 target ExactAt realization dataから導くrouteへ置き換えた。`Dbounded.closedMapTargetHomologyZeroDataOfTargetExactAtW843`とclosed-embedding版は、W843 dataをW839 target homology-zero surfaceへ送り、`Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetExactAtDirectSourceW843`とclosed-embedding版はW842のstable packageをtarget ExactAt dataから組み立てる。ただしW735 branch data、W785/W663 target ExactAt realization data、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
 
+W844では、W843に残っていたW785/W663 target ExactAt realization data入力を、W808の変換でW784 target-isomorphism realization dataから導くrouteへ置き換えた。`Dbounded.closedMapW803DataOfTargetIsoW844`とclosed-embedding版はW735 exact inputsからforgetful homology preservationを読み、W784 dataをW803 target ExactAt terminal surfaceへ送る。`Dbounded.closedMapTargetHomologyZeroDataOfTargetIsoW844`とclosed-embedding版はW839 surfaceを作り、`Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetIsoDirectSourceW844`とclosed-embedding版はW843のstable packageをtarget-isomorphism dataから組み立てる。ただしW735 branch data、W784 target-isomorphism realization data、original four-task completion witness、review packet fixtureはまだ未構成であり、product successではない。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス
