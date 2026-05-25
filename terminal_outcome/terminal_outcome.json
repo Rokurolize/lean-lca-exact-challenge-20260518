@@ -1,66 +1,65 @@
 {
-  "outcome": "nonterminal_exact_inputs_selected_cochain_direct_source_route",
-  "generated_utc": "2026-05-25T21:43:00Z",
+  "outcome": "nonterminal_comparison_selected_cochain_single_w735_route",
+  "generated_utc": "2026-05-25T21:51:31Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "9f75854eb9b5573d43146d9ad6e8c6e09f7dd44dfe22c5adbe0d1399c6be9e8b"
+    "sha256": "eeb8cbe7a2cb4432d13751e92075a2f7629cc4ef43751bd27731bd56bcac32c1"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W850 keeps the target nonterminal under the immutable original four-task contract and threads the W849 selected-cochain strictification into the existing W847 direct-source stable route. The new closed-map and closed-embedding data constructors assemble W847 route data from W735 exact inputs plus the W736 universal left-right comparison-isomorphism input. The W850 direct bounded left-calculus theorems and boundedDerivedInfinityCategoryOf... declarations show the current stable package is now reachable from exactly those two inputs. The final original four-task witness is still absent because neither the universal comparison isomorphism nor a concrete W735 branch value has been constructed.",
+  "summary": "W851 keeps the target nonterminal under the immutable original four-task contract while discharging W850's universal comparison-isomorphism input. It uses W831 universalLeftRightComparisonIso_of_comparisonBijectivityW831 to feed the W850 selected-cochain direct-source stable route, so the current stable package now depends only on one W735 closed-map or closed-embedding exact-input branch. The final original four-task witness is still absent because no concrete W735 branch value and no completion review packet have been constructed.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W850 reaches the existing direct-source stable package from comparison-isomorphism data and a W735 branch, but both are still inputs rather than constructed values.",
+    "Task 4 is not contract-complete under the original four-task contract: W851 reaches the existing selected-cochain direct-source stable package from one W735 branch, but that branch is still an input rather than a constructed value.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing because no concrete W735 closed-map or closed-embedding branch value has been constructed.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still record nonterminal evidence and lack originalFourTaskContractCompletion.",
     "The review packet still does not expose the immutable-contract negative fixtures and clean extraction audit in the completion packet shape required for product success."
   ],
   "remaining_work": [
-    "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes if it cannot be discharged from the existing W821/W831 surface.",
-    "Construct W735 closed-map or closed-embedding exact-input branch data for MetrizableLCA, including W720 endpoint strict-topology data, W721 localized-right-adjoint data, and W722 source-triangulation data.",
-    "Use the W850 direct-source stable route to expose a no-argument or fully instance-resolved original four-task completion witness only after those inputs are real.",
+    "Construct concrete values for one W735 closed-map or closed-embedding exact-input branch, including W720 endpoint strict-topology data, W721 localized-right-adjoint data, and W722 source-triangulation data.",
+    "Expose a no-argument or fully instance-resolved original four-task completion witness using the W851 route after the W735 branch is real.",
     "Refresh the review packet fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_exact_inputs_selected_cochain_direct_source_route",
-  "latest_verified_increment": "W850 exact-input selected-cochain direct-source stable route",
+  "support_result_classification": "nonterminal_comparison_selected_cochain_single_w735_route",
+  "latest_verified_increment": "W851 comparison-selected-cochain single-W735 stable route",
   "reference_route_log": "docs/research/reference_route_log.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W850 reaches the existing direct-source stable package from comparison-isomorphism data and a W735 branch, but both are still inputs rather than constructed values.",
+    "Task 4 is not contract-complete under the original four-task contract: W851 reaches the existing selected-cochain direct-source stable package from one W735 branch, but that branch is still an input rather than a constructed value.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing because no concrete W735 closed-map or closed-embedding branch value has been constructed.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still record nonterminal evidence and lack originalFourTaskContractCompletion.",
     "The review packet still does not expose the immutable-contract negative fixtures and clean extraction audit in the completion packet shape required for product success."
   ],
   "implemented_declarations": [
-    "Dbounded.closedMapSelectedCochainDirectSourceDataOfExactInputsW850",
-    "Dbounded.closedEmbeddingSelectedCochainDirectSourceDataOfExactInputsW850",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapExactInputsSelectedCochainW850",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingExactInputsSelectedCochainW850",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapExactInputsSelectedCochainW850",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingExactInputsSelectedCochainW850",
-    "Dbounded.exactInputsSelectedCochainDirectSourceStableRouteInputNamesW850_count",
-    "Dbounded.currentW850ExactInputsSelectedCochainDirectSourceStableRoute_productSuccess",
-    "originalFourTaskContract_exactInputsSelectedCochainDirectSourceRoute_inputCount",
-    "originalFourTaskContract_exactInputsSelectedCochainDirectSourceRoute_nonterminal"
+    "Dbounded.closedMapSelectedCochainDirectSourceDataOfComparisonW851",
+    "Dbounded.closedEmbeddingSelectedCochainDirectSourceDataOfComparisonW851",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapComparisonSelectedCochainW851",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingComparisonSelectedCochainW851",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonSelectedCochainW851",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonSelectedCochainW851",
+    "Dbounded.comparisonSelectedCochainStableRouteInputNamesW851_count",
+    "Dbounded.currentW851ComparisonSelectedCochainStableRoute_productSuccess",
+    "originalFourTaskContract_comparisonSelectedCochainStableRoute_inputCount",
+    "originalFourTaskContract_comparisonSelectedCochainStableRoute_nonterminal"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.closedMapSelectedCochainDirectSourceDataOfExactInputsW850",
-    "Dbounded.closedEmbeddingSelectedCochainDirectSourceDataOfExactInputsW850",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapExactInputsSelectedCochainW850",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingExactInputsSelectedCochainW850",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapExactInputsSelectedCochainW850",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingExactInputsSelectedCochainW850",
-    "Dbounded.exactInputsSelectedCochainDirectSourceStableRouteInputNamesW850_count",
-    "Dbounded.currentW850ExactInputsSelectedCochainDirectSourceStableRoute_productSuccess",
-    "originalFourTaskContract_exactInputsSelectedCochainDirectSourceRoute_inputCount",
-    "originalFourTaskContract_exactInputsSelectedCochainDirectSourceRoute_nonterminal"
+    "Dbounded.closedMapSelectedCochainDirectSourceDataOfComparisonW851",
+    "Dbounded.closedEmbeddingSelectedCochainDirectSourceDataOfComparisonW851",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapComparisonSelectedCochainW851",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingComparisonSelectedCochainW851",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonSelectedCochainW851",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonSelectedCochainW851",
+    "Dbounded.comparisonSelectedCochainStableRouteInputNamesW851_count",
+    "Dbounded.currentW851ComparisonSelectedCochainStableRoute_productSuccess",
+    "originalFourTaskContract_comparisonSelectedCochainStableRoute_inputCount",
+    "originalFourTaskContract_comparisonSelectedCochainStableRoute_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/ExactInputsSelectedCochainDirectSourceStableRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.ExactInputsSelectedCochainDirectSourceStableRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/ExactInputsComparisonSelectedCochainStableRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.ExactInputsComparisonSelectedCochainStableRoute",
     "lake env lean audit/RequiredDeclarations.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",

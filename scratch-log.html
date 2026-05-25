@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lean LCA Progress Log</title>
+  <title>Lean LCA W851 Nonterminal Progress Report</title>
   <style id="html-progress-report-style">
 :root {
   color-scheme: light;
@@ -156,86 +156,94 @@ textarea.goal-text {
 <body>
   <header class="report-hero">
     <div class="wrap">
-      <h1>Lean LCA Exact Challenge Progress</h1>
-      <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
-      <div class="toolbar">
-        <span class="badge info">Updated 2026-05-26 06:43 JST</span>
-        <span class="badge warn">product_complete=false</span>
+      <p class="eyebrow">Lean LCA exact challenge</p>
+      <h1>W851 comparison-selected-cochain stable route</h1>
+      <p class="lede">Generated 2026-05-26 06:51 JST. W851 discharges the W850 comparison-isomorphism input through W831 and keeps the original four-task contract nonterminal.</p>
+      <div class="badges">
         <span class="badge warn">product_success=false</span>
+        <span class="badge warn">product_complete=false</span>
+        <span class="badge warn">update_goal_allowed=false</span>
       </div>
     </div>
   </header>
+
   <main class="wrap">
-    <section class="grid" aria-label="Current status">
-      <div class="card span-3"><div class="label">Latest Increment</div><div class="metric">W850</div><p>exact-input direct-source stable route</p></div>
-      <div class="card span-3"><div class="label">Verification</div><div class="metric">Passed</div><p><code>lake build</code> and Lean audits passed</p></div>
-      <div class="card span-3"><div class="label">Primary Surface</div><div class="metric">Nonterminal</div><p><code>original_four_task_contract_audit.py</code></p></div>
-      <div class="card span-3"><div class="label">Next Safe Action</div><div class="metric">Construct</div><p>comparison isomorphism and W735 branch values</p></div>
+    <section class="grid metrics" aria-label="Current state">
+      <div class="card"><div class="label">Latest Increment</div><div class="metric">W851</div><p>comparison-selected-cochain single-W735 stable route</p></div>
+      <div class="card"><div class="label">Outcome</div><div class="metric small">nonterminal_comparison_selected_cochain_single_w735_route</div><p>The terminal outcome intentionally rejects product completion.</p></div>
+      <div class="card"><div class="label">Source Tree Hash</div><div class="metric code">803ac4861a9c57d740c366252963763100dcd55536ea02d348509a6ca3543d37</div><p>Lean/audit/docs source hash recorded in verification evidence.</p></div>
+      <div class="card"><div class="label">Remaining Input</div><div class="metric">1 W735 branch</div><p>A concrete closed-map or closed-embedding exact-input branch is still required.</p></div>
     </section>
 
     <section>
-      <h2>Current Increment</h2>
-      <p>W850 keeps the target nonterminal under the immutable original four-task contract. It assembles W847 selected-cochain direct-source stable route data from W735 exact inputs plus the W736 universal comparison-isomorphism input by consuming the W849 selected-cochain strictification route.</p>
-      <p>The new W850 declarations now produce direct bounded left calculus and the existing bounded derived infinity-category package for both closed-map and closed-embedding branches from those two inputs. The inputs are still not concrete values, so <code>product_success=false</code>.</p>
-      <div class="grid">
-        <div class="card span-6">
-          <h3>Core Declarations</h3>
-          <ul>
-            <li><code>Dbounded.closedMapSelectedCochainDirectSourceDataOfExactInputsW850</code></li>
-            <li><code>Dbounded.closedEmbeddingSelectedCochainDirectSourceDataOfExactInputsW850</code></li>
-            <li><code>Dbounded.directBoundedLeftCalculusOfClosedMapExactInputsSelectedCochainW850</code></li>
-            <li><code>Dbounded.directBoundedLeftCalculusOfClosedEmbeddingExactInputsSelectedCochainW850</code></li>
-            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapExactInputsSelectedCochainW850</code></li>
-            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingExactInputsSelectedCochainW850</code></li>
-          </ul>
-        </div>
-        <div class="card span-6">
-          <h3>Remaining Work</h3>
-          <ul>
-            <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes.</li>
-            <li>Construct one W735 exact-input branch, including W720 endpoint data, W721 localized-right-adjoint data, and W722 source-triangulation data.</li>
-            <li>Expose the final original four-task witness and clean review packet only after those inputs are real.</li>
-          </ul>
-        </div>
-      </div>
+      <h2>Current Status</h2>
+      <p>W851 keeps the target nonterminal under the immutable original four-task contract while discharging W850&#x27;s universal comparison-isomorphism input. It uses W831 universalLeftRightComparisonIso_of_comparisonBijectivityW831 to feed the W850 selected-cochain direct-source stable route, so the current stable package now depends only on one W735 closed-map or closed-embedding exact-input branch. The final original four-task witness is still absent because no concrete W735 branch value and no completion review packet have been constructed.</p>
+      <p>The key change is that <code>Dbounded.universalLeftRightComparisonIso_of_comparisonBijectivityW831</code> now supplies W850's comparison-isomorphism input. The stable package still depends on one W735 exact-input branch, so this is evidence progress, not a product-success claim.</p>
+    </section>
+
+    <section class="grid two">
+      <article class="card span-2">
+        <h2>Checked Declarations</h2>
+        <ul><li><code>Dbounded.closedMapSelectedCochainDirectSourceDataOfComparisonW851</code></li>
+<li><code>Dbounded.closedEmbeddingSelectedCochainDirectSourceDataOfComparisonW851</code></li>
+<li><code>Dbounded.directBoundedLeftCalculusOfClosedMapComparisonSelectedCochainW851</code></li>
+<li><code>Dbounded.directBoundedLeftCalculusOfClosedEmbeddingComparisonSelectedCochainW851</code></li>
+<li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonSelectedCochainW851</code></li>
+<li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonSelectedCochainW851</code></li>
+<li><code>Dbounded.comparisonSelectedCochainStableRouteInputNamesW851_count</code></li>
+<li><code>Dbounded.currentW851ComparisonSelectedCochainStableRoute_productSuccess</code></li>
+<li><code>originalFourTaskContract_comparisonSelectedCochainStableRoute_inputCount</code></li>
+<li><code>originalFourTaskContract_comparisonSelectedCochainStableRoute_nonterminal</code></li>
+</ul>
+      </article>
+      <article class="card span-2">
+        <h2>Known Nonterminal Facts</h2>
+        <ul><li>Task 4 is not contract-complete under the original four-task contract: W851 reaches the existing selected-cochain direct-source stable package from one W735 branch, but that branch is still an input rather than a constructed value.</li>
+<li>The final Dbounded MetrizableLCA original four-task completion witness is still missing because no concrete W735 closed-map or closed-embedding branch value has been constructed.</li>
+<li>ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still record nonterminal evidence and lack originalFourTaskContractCompletion.</li>
+<li>The review packet still does not expose the immutable-contract negative fixtures and clean extraction audit in the completion packet shape required for product success.</li>
+</ul>
+      </article>
     </section>
 
     <section>
-      <h2>Evidence</h2>
+      <h2>Verification Evidence</h2>
       <table>
-        <thead><tr><th>Check</th><th>Status</th><th>Evidence</th></tr></thead>
+        <thead><tr><th>Command</th><th>Status</th><th>Evidence</th><th>Note</th></tr></thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ExactInputsSelectedCochainDirectSourceStableRoute.lean</code></td><td>passed</td><td><code>w850_new_module_lean.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ExactInputsSelectedCochainDirectSourceStableRoute</code></td><td>passed</td><td><code>w850_new_module_lake_build.log</code></td></tr>
-          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w850_required_audit_lean.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w850_product_audit_lean.log</code></td></tr>
-          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w850_original_audit_lean.log</code></td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td><code>w850_lake_build.log</code></td></tr>
-          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w850_forbidden_tokens.log</code></td></tr>
-          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w850_git_diff_check.log</code></td></tr>
-          <tr><td><code>python3 audit/original_four_task_contract_audit.py --root ...</code></td><td>passed</td><td><code>w850_contract_audit.log</code></td></tr>
-          <tr><td><code>python3 audit/external_audit.py --root ...</code></td><td>failed_expected</td><td><code>w850_external_audit_nonterminal_expected.log</code></td></tr>
-          <tr><td><code>render_static_report.py --html scratch-log.html</code></td><td>passed</td><td><code>browser_evidence_fidelity.json</code></td></tr>
+<tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ExactInputsComparisonSelectedCochainStableRoute.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_new_module_lean.log</code></td><td>focused Lean check for the W851 comparison-selected-cochain stable route</td></tr>
+<tr><td><code>lake build LeanLCAExactChallenge.Derived.ExactInputsComparisonSelectedCochainStableRoute</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_new_module_lake_build.log</code></td><td>named Lake target for the W851 route</td></tr>
+<tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_required_audit_lean.log</code></td><td>required public declarations still elaborate</td></tr>
+<tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_product_audit_lean.log</code></td><td>checks W851 declarations while product_success remains false</td></tr>
+<tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_original_audit_lean.log</code></td><td>records W851 as nonterminal original-four-task evidence</td></tr>
+<tr><td><code>lake build</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_lake_build.log</code></td><td>full build after W851</td></tr>
+<tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_forbidden_tokens.log</code></td><td>no forbidden Lean tokens under LeanLCAExactChallenge</td></tr>
+<tr><td><code>rg -n productSuccessClaimed/product_success/product_complete true scan</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_source_product_success_true_scan.log</code></td><td>Lean/audit/outcome surfaces have no product-success true claim outside negative fixtures</td></tr>
+<tr><td><code>git diff --check</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_git_diff_check.log</code></td><td>whitespace check after W851 source edits</td></tr>
+<tr><td><code>python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_html_check_report.log</code></td><td>static HTML report validation passed</td></tr>
+<tr><td><code>python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_contract_audit.log</code></td><td>expected nonterminal pass: product_success is false and original witness plus packet requirements remain</td></tr>
+<tr><td><code>python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json</code></td><td>failed_expected</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_external_audit_nonterminal_expected.log</code></td><td>legacy product-success audit rejects the nonterminal state at the product-success outcome gate</td></tr>
+<tr><td><code>python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214650Z_codex_parent_w851_comparison_selected_cochain_single_w735_route/logs/w851_browser_evidence_scratch_log.log</code></td><td>browser-rendered report evidence with W851 DOM expectations</td></tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <h2>Decision Timeline</h2>
+      <h2>Timeline</h2>
       <div class="timeline">
-        <article class="event"><time datetime="2026-05-26T06:33:43+09:00">2026-05-26 06:33 JST</time><h3>W849 derived Closed2 from exact inputs</h3><p>W735 endpoint strict-topology data and the W736 comparison-isomorphism input build <code>Closed2</code>, then consume W848.</p></article>
-        <article class="event"><time datetime="2026-05-26T06:43:00+09:00">2026-05-26 06:43 JST</time><h3>W850 fed W849 into the stable route</h3><p>The direct-source stable package now follows from the comparison-isomorphism input plus one W735 branch.</p></article>
+        <article class="event"><time datetime="2026-05-26T06:33:43+09:00">2026-05-26 06:33 JST</time><h3>W849 derived Closed2 from exact inputs</h3><p>W735 endpoint strict-topology data and W736 comparison-isomorphism input build <code>Closed2</code>, then consume W848.</p></article>
+        <article class="event"><time datetime="2026-05-26T06:43:00+09:00">2026-05-26 06:43 JST</time><h3>W850 fed W849 into the stable route</h3><p>The direct-source stable package followed from the comparison-isomorphism input plus one W735 branch.</p></article>
+        <article class="event"><time datetime="2026-05-26T06:51:31+09:00">2026-05-26 06:51 JST</time><h3>W851 discharged the comparison input</h3><p>W831 supplies the universal comparison isomorphism, leaving one W735 branch as the next Lean target.</p></article>
       </div>
     </section>
 
     <section>
-      <h2>Product State</h2>
-      <div class="warnbox"><strong>Nonterminal:</strong> the original four-task contract is not complete. The report and terminal outcome intentionally keep <code>product_success=false</code>, <code>product_complete=false</code>, and <code>update_goal_allowed=false</code>.</div>
-      <p>Run root: <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T214131Z_codex_parent_w850_exact_inputs_selected_cochain_direct_source_route</code></p>
-      <p>Terminal outcome: <code>nonterminal_exact_inputs_selected_cochain_direct_source_route</code></p>
-      <p>Contract SHA256: <code>a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</code></p>
-      <p>Dynamic guidance SHA256: <code>9f75854eb9b5573d43146d9ad6e8c6e09f7dd44dfe22c5adbe0d1399c6be9e8b</code></p>
-      <p>Source tree hash: <code>7f787d73214bebd62be9a91d578f57fa789dc81582fa28a7346d84534a45ac68</code></p>
+      <h2>Next Safe Action</h2>
+      <ol><li>Construct concrete values for one W735 closed-map or closed-embedding exact-input branch, including W720 endpoint strict-topology data, W721 localized-right-adjoint data, and W722 source-triangulation data.</li>
+<li>Expose a no-argument or fully instance-resolved original four-task completion witness using the W851 route after the W735 branch is real.</li>
+<li>Refresh the review packet fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists.</li>
+</ol>
+      <div class="warnbox"><strong>Nonterminal:</strong> the original four-task contract is not complete. This report and terminal outcome intentionally keep <code>product_success=false</code>, <code>product_complete=false</code>, and <code>update_goal_allowed=false</code>.</div>
     </section>
   </main>
 </body>

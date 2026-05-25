@@ -10,6 +10,7 @@ import LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainStrictificationR
 import LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainClosed2Route
 import LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainExactInputsRoute
 import LeanLCAExactChallenge.Derived.ExactInputsSelectedCochainDirectSourceStableRoute
+import LeanLCAExactChallenge.Derived.ExactInputsComparisonSelectedCochainStableRoute
 
 set_option autoImplicit false
 
@@ -406,5 +407,15 @@ theorem originalFourTaskContract_exactInputsSelectedCochainDirectSourceRoute_non
     Dbounded.currentMetrizableExactInputsSelectedCochainDirectSourceStableRouteStateW850.productSuccessClaimed =
       false :=
   Dbounded.currentW850ExactInputsSelectedCochainDirectSourceStableRoute_productSuccess
+
+theorem originalFourTaskContract_comparisonSelectedCochainStableRoute_inputCount :
+    Dbounded.comparisonSelectedCochainStableRouteInputNamesW851.length =
+      1 :=
+  Dbounded.comparisonSelectedCochainStableRouteInputNamesW851_count
+
+theorem originalFourTaskContract_comparisonSelectedCochainStableRoute_nonterminal :
+    Dbounded.currentMetrizableComparisonSelectedCochainStableRouteStateW851.productSuccessClaimed =
+      false :=
+  Dbounded.currentW851ComparisonSelectedCochainStableRoute_productSuccess
 
 end LeanLCAExactChallenge
