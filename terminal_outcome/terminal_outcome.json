@@ -1,65 +1,65 @@
 {
-  "outcome": "nonterminal_target_homology_zero_stable_exact_at",
-  "generated_utc": "2026-05-25T23:44:05Z",
+  "outcome": "nonterminal_target_exact_at_direct_source_stable_exact_at",
+  "generated_utc": "2026-05-25T23:54:28Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "75a753be799a531895b15a25a098292b743a136b5e94dda2058e510ddf129c59"
+    "sha256": "2b583a7e0112bb993b900d2575b3d69f7b0927cb2401f59b8e2f0a2efa10cb17"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W863 keeps the target nonterminal under the immutable original four-task contract while reconciling the W862 concrete-leaves target-ExactAt direct route with the W842 direct-source stable package. From one W839 target homology-zero branch datum, W863 checks direct bounded left calculus through W862 and obtains the bounded derived infinity-category package through W842, removing the separate finite-limit, finite-colimit, pretriangulated, and triangulated arguments from this surface. Product success remains false because concrete W839 branch fields, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W864 keeps the target nonterminal under the immutable original four-task contract while composing W843 target ExactAt direct-source data with the W863 stable-ExactAt route. From one W843 datum, W864 checks direct bounded left calculus through the W862 concrete-leaves target ExactAt route and obtains the bounded derived infinity-category package through W842/W863. Product success remains false because concrete W843 fields, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W863 removes the separate stable Dbounded fields from the W862 surface, but still requires concrete W839 target homology-zero branch data.",
-    "Concrete W839 data still includes W735 closed-map or closed-embedding exact inputs and a W790 target homology-zero payload; those fields are not yet fully instantiated.",
+    "Task 4 is not contract-complete under the original four-task contract: W864 replaces the W863 W839 target homology-zero boundary with W843 target ExactAt direct-source data, but still requires concrete W843 fields.",
+    "Concrete W843 data still includes W735 closed-map or closed-embedding exact inputs and a W785/W663 target ExactAt realization payload; those fields are not yet fully instantiated.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete W839 branch data, especially the W735 exact inputs or W790 target homology-zero payload now isolated by W863.",
+    "Construct or precisely block concrete W843 target ExactAt direct-source data, especially the W735 exact inputs or W785 target ExactAt payload now isolated by W864.",
     "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_target_homology_zero_stable_exact_at",
-  "latest_verified_increment": "W863 target-homology-zero stable ExactAt route",
+  "support_result_classification": "nonterminal_target_exact_at_direct_source_stable_exact_at",
+  "latest_verified_increment": "W864 target ExactAt direct-source stable ExactAt route",
   "reference_route_log": "docs/research/reference_route_log.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W863 removes the separate stable Dbounded fields from the W862 surface, but still requires concrete W839 target homology-zero branch data.",
-    "Concrete W839 data still includes W735 closed-map or closed-embedding exact inputs and a W790 target homology-zero payload; those fields are not yet fully instantiated.",
+    "Task 4 is not contract-complete under the original four-task contract: W864 replaces the W863 W839 target homology-zero boundary with W843 target ExactAt direct-source data, but still requires concrete W843 fields.",
+    "Concrete W843 data still includes W735 closed-map or closed-embedding exact inputs and a W785/W663 target ExactAt realization payload; those fields are not yet fully instantiated.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "implemented_declarations": [
-    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetHomologyZeroStableExactAtW863",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingTargetHomologyZeroStableExactAtW863",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroStableExactAtW863",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetHomologyZeroStableExactAtW863",
-    "Dbounded.targetHomologyZeroStableExactAtInputNamesW863_count",
-    "Dbounded.targetHomologyZeroStableExactAtExpandedInputNamesW863_count",
-    "Dbounded.currentW863TargetHomologyZeroStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_targetHomologyZeroStableExactAt_inputCount",
-    "originalFourTaskContract_targetHomologyZeroStableExactAt_expandedInputCount",
-    "originalFourTaskContract_targetHomologyZeroStableExactAt_nonterminal"
+    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetExactAtDirectSourceStableExactAtW864",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingTargetExactAtDirectSourceStableExactAtW864",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetExactAtDirectSourceStableExactAtW864",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetExactAtDirectSourceStableExactAtW864",
+    "Dbounded.targetExactAtDirectSourceStableExactAtInputNamesW864_count",
+    "Dbounded.targetExactAtDirectSourceStableExactAtExpandedInputNamesW864_count",
+    "Dbounded.currentW864TargetExactAtDirectSourceStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_targetExactAtDirectSourceStableExactAt_inputCount",
+    "originalFourTaskContract_targetExactAtDirectSourceStableExactAt_expandedInputCount",
+    "originalFourTaskContract_targetExactAtDirectSourceStableExactAt_nonterminal"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetHomologyZeroStableExactAtW863",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingTargetHomologyZeroStableExactAtW863",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroStableExactAtW863",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetHomologyZeroStableExactAtW863",
-    "Dbounded.targetHomologyZeroStableExactAtInputNamesW863_count",
-    "Dbounded.targetHomologyZeroStableExactAtExpandedInputNamesW863_count",
-    "Dbounded.currentW863TargetHomologyZeroStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_targetHomologyZeroStableExactAt_inputCount",
-    "originalFourTaskContract_targetHomologyZeroStableExactAt_expandedInputCount",
-    "originalFourTaskContract_targetHomologyZeroStableExactAt_nonterminal"
+    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetExactAtDirectSourceStableExactAtW864",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingTargetExactAtDirectSourceStableExactAtW864",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetExactAtDirectSourceStableExactAtW864",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetExactAtDirectSourceStableExactAtW864",
+    "Dbounded.targetExactAtDirectSourceStableExactAtInputNamesW864_count",
+    "Dbounded.targetExactAtDirectSourceStableExactAtExpandedInputNamesW864_count",
+    "Dbounded.currentW864TargetExactAtDirectSourceStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_targetExactAtDirectSourceStableExactAt_inputCount",
+    "originalFourTaskContract_targetExactAtDirectSourceStableExactAt_expandedInputCount",
+    "originalFourTaskContract_targetExactAtDirectSourceStableExactAt_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/TargetExactAtConcreteLeavesStableFromTargetHomologyZero.lean",
-    "lake build LeanLCAExactChallenge.Derived.TargetExactAtConcreteLeavesStableFromTargetHomologyZero",
+    "lake env lean LeanLCAExactChallenge/Derived/TargetExactAtDirectSourceStableExactAtRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableExactAtRoute",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
@@ -67,7 +67,7 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "rg -n productSuccessClaimed/product_success/product_complete true scan",
     "git diff --check",
-    "W863 helper module size and declaration accounting",
+    "W864 helper module size and declaration accounting",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
