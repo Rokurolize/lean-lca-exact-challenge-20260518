@@ -160,48 +160,48 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W783 triangleh realization homotopy-object route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W784 target-isomorphism realization triangleh route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TrianglehRealizationHomotopyObjectSelectedW461RowsProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T045755Z_codex_parent_w783</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetIsoRealizationTrianglehSelectedW461RowsProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T050330Z_codex_parent_w784</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W783 triangleh realization homotopy-object route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 14:00 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W784 target-isomorphism realization triangleh route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 14:06 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W783 replaces W782's exact-acyclic homotopy-object <code>Closed₂</code> premise with the existing strict mapping-cone triangle-realization input. The new helper applies <code>exactAcyclicHomotopyObject_isTriangulatedClosed2_of_triangleh_iso13_realization</code>, then feeds W782 unchanged. The increment lives in a new 200-line helper module with 13 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W784 replaces W783's strict exact-acyclic homotopy-object triangle-realization premise with the existing target-isomorphism realization input. The new helper applies <code>exactAcyclicHomotopyObjectTrianglehIso13Realization_of_targetIsoRealization</code>, then feeds W783 unchanged. The increment lives in a new 196-line helper module with 13 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>MetrizableExactAcyclicHomotopyObjectTrianglehIso13RealizationW783</code> names the strict realization input.</li>
-            <li><code>homotopyObjectClosed2OfTrianglehRealizationW783</code> converts that realization into W782's homotopy-object <code>Closed₂</code> input.</li>
-            <li><code>closedMapHomotopyObjectDataOfTrianglehRealizationW783</code> and <code>closedEmbeddingHomotopyObjectDataOfTrianglehRealizationW783</code> feed W782 branch data.</li>
-            <li><code>productEvidence_of_closedMapTrianglehRealizationRouteW783</code> and <code>productEvidence_of_closedEmbeddingTrianglehRealizationRouteW783</code> expose product evidence while keeping product success false.</li>
+            <li><code>MetrizableExactAcyclicHomotopyObjectTargetIsoRealizationW784</code> names the target-isomorphism realization input.</li>
+            <li><code>trianglehRealizationOfTargetIsoRealizationW784</code> converts that input into W783's strict triangleh realization premise.</li>
+            <li><code>closedMapTrianglehDataOfTargetIsoRealizationW784</code> and <code>closedEmbeddingTrianglehDataOfTargetIsoRealizationW784</code> feed W783 branch data.</li>
+            <li><code>productEvidence_of_closedMapTargetIsoRealizationRouteW784</code> and <code>productEvidence_of_closedEmbeddingTargetIsoRealizationRouteW784</code> expose product evidence while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/TrianglehRealizationHomotopyObjectSelectedW461RowsProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.TrianglehRealizationHomotopyObjectSelectedW461RowsProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetIsoRealizationTrianglehSelectedW461RowsProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.TargetIsoRealizationTrianglehSelectedW461RowsProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T045755Z_codex_parent_w783/w783_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/w784_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 200 lines with 13 top-level declarations.</li>
-            <li><code>goal_sha_comparison_after_focused.tsv</code> records that the active goal SHA stayed stable for W783 focused verification.</li>
-            <li>Focused W783 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>w784_goal_sha_delta_decision.tsv</code> records the active-goal SHA advance after focused verification and the explicit continuation decision under the refreshed goal.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 196 lines with 13 top-level declarations.</li>
+            <li>Focused W784 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W783 work.</p></div>
-      <p>W782 transported exact-acyclic homotopy-object <code>Closed₂</code> into the isomorphism-closure <code>Closed₂</code> field used by W781.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W784 work.</p></div>
+      <p>W783 converted exact-acyclic homotopy-object triangleh iso13 realization data into the homotopy-object <code>Closed₂</code> premise used by W782.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct W696 closed-range endpoint-topology data, exact-acyclic homotopy-object triangleh iso13 realization data, closed quotient-cover right-open boundary, Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and the remaining Dbounded stable-infinity inputs.</li>
+        <li>Construct W696 closed-range endpoint-topology data, exact-acyclic homotopy-object target-isomorphism realization data, closed quotient-cover right-open boundary, Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>

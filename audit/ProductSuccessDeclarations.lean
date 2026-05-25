@@ -21,6 +21,7 @@ import LeanLCAExactChallenge.Derived.ClosedQuotientEpiDirectComparisonLeftSnakeP
 import LeanLCAExactChallenge.Derived.SelectedW461RowsClosedQuotientEpiProductRoute
 import LeanLCAExactChallenge.Derived.HomotopyObjectTriangulatedSelectedW461RowsProductRoute
 import LeanLCAExactChallenge.Derived.TrianglehRealizationHomotopyObjectSelectedW461RowsProductRoute
+import LeanLCAExactChallenge.Derived.TargetIsoRealizationTrianglehSelectedW461RowsProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9361,6 +9362,20 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTrianglehRealizationHomotopyObjectRouteStateW783
   #check Dbounded.currentMetrizableTrianglehRealizationHomotopyObjectRouteStateW783
   #check Dbounded.currentW783TrianglehRealizationRoute_productSuccess
+  #check Dbounded.MetrizableExactAcyclicHomotopyObjectTargetIsoRealizationW784
+  #check Dbounded.trianglehRealizationOfTargetIsoRealizationW784
+  #check Dbounded.MetrizableClosedMapTargetIsoRealizationTrianglehBranchDataW784
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetIsoRealizationTrianglehBranchDataW784
+  #check Dbounded.closedMapTrianglehDataOfTargetIsoRealizationW784
+  #check Dbounded.closedEmbeddingTrianglehDataOfTargetIsoRealizationW784
+  #check Dbounded.productEvidence_of_closedMapTargetIsoRealizationRouteW784
+  #check Dbounded.productEvidence_of_closedEmbeddingTargetIsoRealizationRouteW784
+  #check Dbounded.targetIsoRealizationTrianglehProductRouteInputNamesW784
+  #check Dbounded.targetIsoRealizationTrianglehProductRouteInputNamesW784_count
+  #check Dbounded.MetrizableTargetIsoRealizationTrianglehRouteStateW784
+  #check Dbounded.currentMetrizableTargetIsoRealizationTrianglehRouteStateW784
+  #check Dbounded.currentW784TargetIsoRealizationRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w783-triangleh-realization-homotopy-object-route",
-  "generated_utc": "2026-05-25T05:02:08Z",
-  "source_tree_hash": "c22e8d53e2cc95fe9999db9dc8a440cf562b7beadb64e3bbd6e61848fa967733",
-  "summary": "W783 uses the existing Bounded theorem deriving exactAcyclicHomotopyObject Closed2 from exactAcyclicHomotopyObjectTrianglehIso13Realization, replacing W782's homotopy-object triangulated-closed premise while preserving the selected-W461/row-aware route. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w784-target-iso-realization-triangleh-route",
+  "generated_utc": "2026-05-25T05:07:48Z",
+  "source_tree_hash": "372fd241ee3038fd925f0b69f7d25ecf6d4d2f429debfa11661d9229b95f7fcc",
+  "summary": "W784 uses the existing Bounded theorem deriving exactAcyclicHomotopyObjectTrianglehIso13Realization from exactAcyclicHomotopyObjectTrianglehIso13TargetIsoRealization, replacing W783's strict triangleh realization premise while preserving the selected-W461/row-aware route. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -17845,6 +17845,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T045755Z_codex_parent_w783/logs/w783_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/TargetIsoRealizationTrianglehSelectedW461RowsProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/logs/w784_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.TargetIsoRealizationTrianglehSelectedW461RowsProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/logs/w784_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/logs/w784_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/w784_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/logs/w784_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/logs/w784_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/logs/w784_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/logs/w784_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/logs/w784_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T050330Z_codex_parent_w784/logs/w784_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -23077,14 +23122,27 @@
     "Dbounded.trianglehRealizationHomotopyObjectProductRouteInputNamesW783_count",
     "Dbounded.MetrizableTrianglehRealizationHomotopyObjectRouteStateW783",
     "Dbounded.currentMetrizableTrianglehRealizationHomotopyObjectRouteStateW783",
-    "Dbounded.currentW783TrianglehRealizationRoute_productSuccess"
+    "Dbounded.currentW783TrianglehRealizationRoute_productSuccess",
+    "Dbounded.MetrizableExactAcyclicHomotopyObjectTargetIsoRealizationW784",
+    "Dbounded.trianglehRealizationOfTargetIsoRealizationW784",
+    "Dbounded.MetrizableClosedMapTargetIsoRealizationTrianglehBranchDataW784",
+    "Dbounded.MetrizableClosedEmbeddingTargetIsoRealizationTrianglehBranchDataW784",
+    "Dbounded.closedMapTrianglehDataOfTargetIsoRealizationW784",
+    "Dbounded.closedEmbeddingTrianglehDataOfTargetIsoRealizationW784",
+    "Dbounded.productEvidence_of_closedMapTargetIsoRealizationRouteW784",
+    "Dbounded.productEvidence_of_closedEmbeddingTargetIsoRealizationRouteW784",
+    "Dbounded.targetIsoRealizationTrianglehProductRouteInputNamesW784",
+    "Dbounded.targetIsoRealizationTrianglehProductRouteInputNamesW784_count",
+    "Dbounded.MetrizableTargetIsoRealizationTrianglehRouteStateW784",
+    "Dbounded.currentMetrizableTargetIsoRealizationTrianglehRouteStateW784",
+    "Dbounded.currentW784TargetIsoRealizationRoute_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
     "Construct W696 closed-range endpoint-topology data.",
-    "Construct exact-acyclic homotopy-object triangleh iso13 realization data.",
+    "Construct exact-acyclic homotopy-object target-isomorphism realization data.",
     "Construct closed quotient-cover boundary data for WPP limit right-open maps.",
     "Construct Epi boundary data for WPP limit right-surjectivity.",
     "Construct selected W461 provider data for WPP-op left closed-embedding.",
@@ -23097,12 +23155,12 @@
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete W735 branch data values.",
     "Construct W696 closed-range endpoint-topology data.",
-    "Construct exact-acyclic homotopy-object triangleh iso13 realization data.",
+    "Construct exact-acyclic homotopy-object target-isomorphism realization data.",
     "Construct closed quotient-cover right-open boundary, Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W783 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, module-size accounting, goal-SHA, and rendered-report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W783 triangleh realization homotopy-object route",
+  "summary_log_tail": "Focused W784 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA delta, module-size accounting, and rendered-report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W784 target-isomorphism realization triangleh route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -24718,6 +24776,13 @@
       "latest_verified_increment": "W783 triangleh realization homotopy-object route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W783 metadata records the triangleh realization homotopy-object route and leaves product_success/product_complete false."
+    },
+    "w784_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T05:07:48Z",
+      "source_tree_hash": "372fd241ee3038fd925f0b69f7d25ecf6d4d2f429debfa11661d9229b95f7fcc",
+      "latest_verified_increment": "W784 target-isomorphism realization triangleh route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W784 metadata records the target-isomorphism realization triangleh route and leaves product_success/product_complete false."
     }
   }
 }
