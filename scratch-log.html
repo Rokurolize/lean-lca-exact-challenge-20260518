@@ -160,48 +160,48 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W786 target homology-zero endpoint target-isomorphism route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W787 target homology-zero conditioned-endpoint route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroEndpointTargetIsoSelectedW461RowsProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T054340Z_codex_parent_w786</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroConditionedEndpointTargetIsoSelectedW461RowsProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T055215Z_codex_parent_w787</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W786 target homology-zero endpoint target-isomorphism route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 14:49 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W787 target homology-zero conditioned-endpoint route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 14:55 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W786 replaces W785's target <code>ExactAt</code> realization payload with target homology-zero realization data plus global homology existence and endpoint-strict topology. The new helper rebuilds the W664 bridge locally, then feeds W784 unchanged. The increment lives in a new 236-line helper module with 13 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W787 replaces W786's unconditional endpoint-strict topology premise with W667 <code>ExactAt</code>-conditioned endpoint topology. The new helper uses conditioned homology detection to turn target homology-zero realization data into W784's target-isomorphism input. The increment lives in a new 242-line helper module with 13 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>MetrizableExactAcyclicHomotopyObjectTargetHomologyZeroPayloadW786</code> names the target homology-zero realization input.</li>
-            <li><code>targetIsoRealizationOfTargetHomologyZeroEndpointW786</code> converts that payload plus homology existence and endpoint-strict topology into W784's target-isomorphism input.</li>
-            <li><code>closedMapTargetIsoDataOfTargetHomologyZeroEndpointW786</code> and <code>closedEmbeddingTargetIsoDataOfTargetHomologyZeroEndpointW786</code> feed W784 branch data.</li>
-            <li><code>productEvidence_of_closedMapTargetHomologyZeroEndpointRouteW786</code> and <code>productEvidence_of_closedEmbeddingTargetHomologyZeroEndpointRouteW786</code> expose product evidence while keeping product success false.</li>
+            <li><code>MetrizableExactAcyclicHomotopyObjectTargetHomologyZeroPayloadW787</code> names the target homology-zero realization input.</li>
+            <li><code>targetIsoRealizationOfTargetHomologyZeroConditionedEndpointW787</code> converts that payload plus homology existence and conditioned endpoint topology into W784's target-isomorphism input.</li>
+            <li><code>closedMapTargetIsoDataOfTargetHomologyZeroConditionedEndpointW787</code> and <code>closedEmbeddingTargetIsoDataOfTargetHomologyZeroConditionedEndpointW787</code> feed W784 branch data.</li>
+            <li><code>productEvidence_of_closedMapTargetHomologyZeroConditionedRouteW787</code> and <code>productEvidence_of_closedEmbeddingTargetHomologyZeroConditionedRouteW787</code> expose product evidence while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroEndpointTargetIsoSelectedW461RowsProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroEndpointTargetIsoSelectedW461RowsProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroConditionedEndpointTargetIsoSelectedW461RowsProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroConditionedEndpointTargetIsoSelectedW461RowsProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/w786_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T055215Z_codex_parent_w787/w787_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 236 lines with 13 top-level declarations.</li>
-            <li><code>goal_sha_comparison_after_focused.tsv</code> records that the active goal SHA stayed stable for W786 focused verification.</li>
-            <li>Focused W786 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 242 lines with 13 top-level declarations.</li>
+            <li><code>w787_goal_sha_delta_decision.tsv</code> records the active-goal SHA advance after focused verification and the explicit continuation decision under the refreshed goal.</li>
+            <li>Focused W787 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W786 work.</p></div>
-      <p>W785 converted target <code>ExactAt</code> realization data plus endpoint-strict topology into the target-isomorphism realization premise used by W784.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W787 work.</p></div>
+      <p>W786 converted target homology-zero realization data plus global homology existence and endpoint-strict topology into the target-isomorphism realization premise used by W784.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct W696 closed-range endpoint-topology data, target homology-zero realization data, global homology existence, endpoint-strict topology data, closed quotient-cover right-open boundary, Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and the remaining Dbounded stable-infinity inputs.</li>
+        <li>Construct W696 closed-range endpoint-topology data, target homology-zero realization data, global homology existence, <code>ExactAt</code>-conditioned endpoint topology data, closed quotient-cover right-open boundary, Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>
