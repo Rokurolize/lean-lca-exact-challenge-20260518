@@ -25,6 +25,7 @@ import LeanLCAExactChallenge.Derived.TargetIsoRealizationTrianglehSelectedW461Ro
 import LeanLCAExactChallenge.Derived.TargetExactAtEndpointTargetIsoSelectedW461RowsProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroEndpointTargetIsoSelectedW461RowsProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroConditionedEndpointTargetIsoSelectedW461RowsProductRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroKernelCokernelTargetIsoSelectedW461RowsProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9430,6 +9431,22 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check
     Dbounded.currentMetrizableTargetHomologyZeroConditionedEndpointRouteStateW787
   #check Dbounded.currentW787TargetHomologyZeroConditionedRoute_productSuccess
+  #check Dbounded.MetrizableExactAcyclicHomotopyObjectTargetHomologyZeroPayloadW788
+  #check Dbounded.targetIsoRealizationOfTargetHomologyZeroKernelCokernelW788
+  #check Dbounded.MetrizableClosedMapTargetHomologyZeroKernelCokernelBranchDataW788
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroKernelCokernelBranchDataW788
+  #check Dbounded.closedMapTargetIsoDataOfTargetHomologyZeroKernelCokernelW788
+  #check
+    Dbounded.closedEmbeddingTargetIsoDataOfTargetHomologyZeroKernelCokernelW788
+  #check Dbounded.productEvidence_of_closedMapTargetHomologyZeroKernelRouteW788
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingTargetHomologyZeroKernelRouteW788
+  #check Dbounded.targetHomologyZeroKernelCokernelProductRouteInputNamesW788
+  #check Dbounded.targetHomologyZeroKernelCokernelProductRouteInputNamesW788_count
+  #check Dbounded.MetrizableTargetHomologyZeroKernelCokernelRouteStateW788
+  #check Dbounded.currentMetrizableTargetHomologyZeroKernelCokernelRouteStateW788
+  #check Dbounded.currentW788TargetHomologyZeroKernelRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
