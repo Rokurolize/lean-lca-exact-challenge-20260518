@@ -5,6 +5,7 @@ import LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectSourceStableRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableRoute
 import LeanLCAExactChallenge.Derived.TargetIsoDirectSourceStableRoute
 import LeanLCAExactChallenge.Derived.IsoClosureDirectSourceStableRoute
+import LeanLCAExactChallenge.Derived.StrictRealizationDirectSourceStableRoute
 
 set_option autoImplicit false
 
@@ -157,6 +158,12 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapIsoClosureDirectSourceW845
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingIsoClosureDirectSourceW845
+#check
+  LeanLCAExactChallenge.Dbounded.closedMapIsoClosureDataOfStrictDirectSourceW846
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictDirectSourceW846
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingStrictDirectSourceW846
 
 namespace LeanLCAExactChallenge
 
@@ -333,5 +340,16 @@ theorem originalFourTaskContract_isoClosureDirectSourceStableRoute_expandedRequi
     Dbounded.isoClosureDirectSourceStableRouteExpandedRequiredFieldNamesW845.length =
       2 :=
   Dbounded.isoClosureDirectSourceStableRouteExpandedRequiredFieldNamesW845_count
+
+theorem originalFourTaskContract_strictRealizationDirectSourceStableRoute_bundledInputCount :
+    Dbounded.strictRealizationDirectSourceStableRouteInputNamesW846.length =
+      1 :=
+  Dbounded.strictRealizationDirectSourceStableRouteInputNamesW846_count
+
+theorem
+    originalFourTaskContract_strictRealizationDirectSourceStableRoute_expandedRequiredFieldCount :
+    Dbounded.strictRealizationDirectSourceStableRouteExpandedRequiredFieldNamesW846.length =
+      2 :=
+  Dbounded.strictRealizationDirectSourceStableRouteExpandedRequiredFieldNamesW846_count
 
 end LeanLCAExactChallenge

@@ -159,7 +159,7 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-26 05:36 JST</span>
+        <span class="badge info">Updated 2026-05-26 05:49 JST</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">product_success=false</span>
       </div>
@@ -169,13 +169,13 @@ textarea.goal-text {
     <section class="grid" aria-label="Current status">
       <div class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W845</div>
-        <p>iso-closure direct-source stable route</p>
+        <div class="metric">W846</div>
+        <p>strict-realization direct-source stable route</p>
       </div>
       <div class="card span-3">
         <div class="label">Verification</div>
         <div class="metric">Guarded</div>
-        <p>W651 data derives the W844 surface</p>
+        <p>W783 data derives the W845 surface</p>
       </div>
       <div class="card span-3">
         <div class="label">Primary Surface</div>
@@ -185,34 +185,35 @@ textarea.goal-text {
       <div class="card span-3">
         <div class="label">Next Safe Action</div>
         <div class="metric">Implement</div>
-        <p>construct W735 branch data and W651 iso-closure data</p>
+        <p>construct W735 branch data and W783 strict-realization data</p>
       </div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W845 keeps the target nonterminal under the immutable original four-task contract and routes W651 iso-closure strict-realization data through W810 and W809 into the W844 target-isomorphism direct-source surface. <code>Dbounded.targetIsoRealizationOfIsoClosureDirectSourceW845</code> derives W784 target-isomorphism realization data from W651, <code>Dbounded.closedMapTargetIsoDataOfIsoClosureW845</code> derives the W844 route data, and <code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapIsoClosureDirectSourceW845</code> assembles the stable package from W651 data. The route still requires concrete W735 branch data and W651 iso-closure realization data before it can become original four-task completion evidence.</p>
+      <p>W846 keeps the target nonterminal under the immutable original four-task contract and routes W783 strict triangleh realization data through W812 homology detection and W831 comparison bijectivity into the W845 iso-closure direct-source surface. <code>Dbounded.closedMapIsoClosureDataOfStrictDirectSourceW846</code> and its closed-embedding analogue derive W651 iso-closure data from W735 exact inputs plus W783 data, <code>Dbounded.closedMapTargetIsoDataOfStrictDirectSourceW846</code> feeds the W844 target-isomorphism surface, and <code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictDirectSourceW846</code> assembles the stable package from W783 data. The route still requires concrete W735 branch data and W783 strict triangleh realization data before it can become original four-task completion evidence.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>Touched Sources</h3>
           <table>
             <tbody>
-              <tr><th>Baseline</th><td><code>36b24ffe46c26a95ae44423fcf1a10bd546f4793</code></td></tr>
+              <tr><th>Baseline</th><td><code>1ab9351cfc941c07ffe236d57db07c435e67e484</code></td></tr>
               <tr><th>Contract SHA</th><td><code>a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</code></td></tr>
-              <tr><th>Dynamic Guidance SHA</th><td><code>18359a4636f9c757b7e01a24cdcb9ca862f77d98abc354140a33a657b414d2af</code></td></tr>
-              <tr><th>Remaining Inputs</th><td>W735 branch data, W651 iso-closure data, original witness, final packet fixtures</td></tr>
-              <tr><th>Target Data</th><td>W784 target-isomorphism, W785/W663 target ExactAt, and W790/W839 surfaces derived through W810/W809/W808/W803</td></tr>
+              <tr><th>Dynamic Guidance SHA</th><td><code>186cc44843f24d5d76859587c82fd7d437125e7ea4ad64b24309dfebba9cacd1</code></td></tr>
+              <tr><th>Remaining Inputs</th><td>W735 closed-map or closed-embedding exact branch data including W721/W722 payloads, W783 strict triangleh realization data, original witness, final packet fixtures</td></tr>
+              <tr><th>Target Data</th><td>W651 iso-closure, W784 target-isomorphism, W785/W663 target ExactAt, and W790/W839 surfaces derived through W812/W831/W810/W809/W808/W803</td></tr>
             </tbody>
           </table>
         </div>
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>Dbounded.targetIsoRealizationOfIsoClosureDirectSourceW845</code></li>
-            <li><code>Dbounded.closedMapTargetIsoDataOfIsoClosureW845</code></li>
-            <li><code>Dbounded.closedMapTargetHomologyZeroDataOfIsoClosureW845</code></li>
-            <li><code>Dbounded.remainingStableFieldsOfClosedMapIsoClosureDirectSourceW845</code></li>
-            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapIsoClosureDirectSourceW845</code></li>
+            <li><code>Dbounded.closedMapIsoClosureDataOfStrictDirectSourceW846</code></li>
+            <li><code>Dbounded.closedEmbeddingIsoClosureDataOfStrictDirectSourceW846</code></li>
+            <li><code>Dbounded.closedMapTargetIsoDataOfStrictDirectSourceW846</code></li>
+            <li><code>Dbounded.closedMapTargetHomologyZeroDataOfStrictDirectSourceW846</code></li>
+            <li><code>Dbounded.remainingStableFieldsOfClosedMapStrictDirectSourceW846</code></li>
+            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictDirectSourceW846</code></li>
             <li><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></li>
@@ -231,16 +232,20 @@ textarea.goal-text {
           <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/IsoClosureDirectSourceStableRoute.lean</code></td><td>passed</td><td><code>w845_iso_closure_direct_source_stable_route_lean.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.IsoClosureDirectSourceStableRoute</code></td><td>passed</td><td><code>w845_lake_build_iso_closure_direct_source_stable_route.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge</code></td><td>passed</td><td><code>w845_lake_build_root.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w845_audit_product_success_declarations.log</code></td></tr>
-          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w845_audit_original_four_task_completion_declarations.log</code></td></tr>
-          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w845_audit_required_declarations.log</code></td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td><code>w845_lake_build.log</code></td></tr>
-          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w845_forbidden_tokens.log</code></td></tr>
-          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>passed</td><td><code>w845_source_product_success_true_scan.log</code></td></tr>
-          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w845_git_diff_check.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/StrictRealizationDirectSourceStableRoute.lean</code></td><td>passed</td><td><code>w846_strict_realization_direct_source_stable_route_lean.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge.Derived.StrictRealizationDirectSourceStableRoute</code></td><td>passed</td><td><code>w846_lake_build_strict_realization_direct_source_stable_route.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge</code></td><td>passed</td><td><code>w846_lake_build_root.log</code></td></tr>
+          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w846_audit_product_success_declarations.log</code></td></tr>
+          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w846_audit_original_four_task_completion_declarations.log</code></td></tr>
+          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w846_audit_required_declarations.log</code></td></tr>
+          <tr><td><code>lake build</code></td><td>passed</td><td><code>w846_lake_build.log</code></td></tr>
+          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w846_forbidden_tokens.log</code></td></tr>
+          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>passed</td><td><code>w846_source_product_success_true_scan.log</code></td></tr>
+          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w846_git_diff_check.log</code></td></tr>
+          <tr><td><code>python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html</code></td><td>passed</td><td><code>w846_html_check_report.log</code></td></tr>
+          <tr><td><code>python3 audit/original_four_task_contract_audit.py --root ...</code></td><td>passed</td><td><code>w846_contract_audit.log</code></td></tr>
+          <tr><td><code>python3 audit/external_audit.py --root ...</code></td><td>failed_expected</td><td><code>w846_external_audit_nonterminal_expected.log</code></td></tr>
+          <tr><td><code>python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...</code></td><td>passed</td><td><code>w846_browser_evidence_scratch_log.log</code></td></tr>
           <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ComparisonBijectivityRoute.lean</code></td><td>passed</td><td><code>w821_focused_source_lean.log</code></td></tr>
           <tr><td><code>lake build LeanLCAExactChallenge.Derived.ComparisonBijectivityRoute</code></td><td>passed</td><td><code>w821_focused_lake_build_source.log</code></td></tr>
           <tr><td><code>lake env lean LeanLCAExactChallenge.lean</code></td><td>passed</td><td><code>w821_root_import.log</code></td></tr>
@@ -373,6 +378,11 @@ textarea.goal-text {
           <h3>Derived target-isomorphism data from iso-closure data</h3>
           <p><code>IsoClosureDirectSourceStableRoute</code> uses W810 and W809 to feed W844 from W651 iso-closure strict-realization data and W735 exact inputs, reducing the remaining realization premise from target-isomorphism to iso-closure while preserving <code>product_success=false</code>.</p>
         </article>
+        <article class="event">
+          <time datetime="2026-05-26T05:49:00+09:00">2026-05-26 05:49 JST</time>
+          <h3>Derived iso-closure data from strict realization</h3>
+          <p><code>StrictRealizationDirectSourceStableRoute</code> uses W812 homology detection and W831 comparison bijectivity to feed W845 from W783 strict triangleh realization data and W735 exact inputs, reducing the remaining realization premise from iso-closure to strict realization while preserving <code>product_success=false</code>.</p>
+        </article>
       </div>
     </section>
 
@@ -395,7 +405,8 @@ textarea.goal-text {
         <li>W843 derives W842's W839 input surface from W785/W663 target ExactAt realization data through W803.</li>
         <li>W844 derives W843's target ExactAt input surface from W784 target-isomorphism realization data through W808.</li>
         <li>W845 derives W844's target-isomorphism input surface from W651 iso-closure strict-realization data through W810 and W809.</li>
-        <li>The remaining mathematical product work is to construct W735 branch data and W651 iso-closure realization data.</li>
+        <li>W846 derives W845's W651 iso-closure input surface from W783 strict triangleh realization data through W812 and W831.</li>
+        <li>The remaining mathematical product work is to construct W735 branch data, including W721/W722 payloads, and W783 strict triangleh realization data.</li>
       </ul>
       <div class="note">
         <strong>Goal completion rule.</strong>
