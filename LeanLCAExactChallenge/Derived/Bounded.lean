@@ -4006,6 +4006,46 @@ noncomputable def Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInp
   pretriangulatedStructure := input.pretriangulated
   triangulatedStructure := input.triangulated
 
+/--
+Typeclass-resolved stable bounded-derived package for `MetrizableLCA`. Unlike the legacy semantic
+input adapter, this route has no explicit evidence bundle argument; it becomes a nullary witness
+exactly when the concrete `Dbounded MetrizableLCA` stable instances are available.
+-/
+noncomputable def Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances
+    [Preadditive (Dbounded MetrizableLCA.{0})]
+    [HasFiniteLimits (Dbounded MetrizableLCA.{0})]
+    [HasFiniteColimits (Dbounded MetrizableLCA.{0})]
+    [HasZeroObject (Dbounded MetrizableLCA.{0})]
+    [∀ n : ℤ, (shiftFunctor (Dbounded MetrizableLCA.{0}) n).Additive]
+    [Pretriangulated (Dbounded MetrizableLCA.{0})]
+    [IsTriangulated (Dbounded MetrizableLCA.{0})] :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) where
+  quasicategoryCarrier := rfl
+  preadditive := inferInstance
+  finiteLimitInstance := inferInstance
+  finiteColimitInstance := inferInstance
+  zeroObjectInstance := inferInstance
+  shiftAdditiveAll := inferInstance
+  suspensionAdditive := inferInstance
+  pretriangulatedStructure := inferInstance
+  triangulatedStructure := inferInstance
+
+/-- The typeclass route still requires seven stable `Dbounded MetrizableLCA` instance families. -/
+def Dbounded.metrizableStableInstanceFieldNames : List String :=
+  ["Preadditive (Dbounded MetrizableLCA)",
+    "HasFiniteLimits (Dbounded MetrizableLCA)",
+    "HasFiniteColimits (Dbounded MetrizableLCA)",
+    "HasZeroObject (Dbounded MetrizableLCA)",
+    "forall n, (shiftFunctor (Dbounded MetrizableLCA) n).Additive",
+    "Pretriangulated (Dbounded MetrizableLCA)",
+    "IsTriangulated (Dbounded MetrizableLCA)"]
+
+/-- Seven stable instance families remain before the typeclass route is nullary. -/
+theorem Dbounded.metrizableStableInstanceFieldNames_count :
+    Dbounded.metrizableStableInstanceFieldNames.length = 7 :=
+  rfl
+
 /-- Concrete ordinary fields required by the semantic adapter for `Dbounded MetrizableLCA`. -/
 def Dbounded.metrizableSemanticStableRequiredFieldNames : List String :=
   ["Preadditive (Dbounded MetrizableLCA)", "HasFiniteLimits (Dbounded MetrizableLCA)",

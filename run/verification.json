@@ -1,90 +1,101 @@
 {
-  "schema": "lean_lca_original_four_task_nonterminal_verification_v3",
-  "generated_utc": "2026-05-25T16:58:25Z",
-  "source_tree_hash": "a3261fa3084e9f448f8119554124b4e26708c7edbd7bf57ecc23404fc7496c73",
-  "summary": "W827 keeps the target nonterminal under the immutable original four-task contract and changes BoundedDerivedInfinityCategory from arbitrary readiness predicates into concrete categorical structure on Dbounded. The remaining task-4 blocker is the missing nullary or typeclass-resolved original four-task completion witness.",
+  "schema": "lean_lca_original_four_task_nonterminal_verification_v4",
+  "generated_utc": "2026-05-25T17:07:08Z",
+  "source_tree_hash": "1cf7a812401a5f31fac378ef860487024bb4d71385aea5124e6f46fdbfe705cc",
+  "summary": "W828 keeps the target nonterminal under the immutable original four-task contract and adds a typeclass-resolved BoundedDerivedInfinityCategory route for MetrizableLCA. The route has no explicit semantic input record, but seven concrete Dbounded stable instance families are still missing before it can be a completion witness.",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "95d79f09e84c98a3dea7e05c32d654bc3dbdcb969f92e93dcaf03863dd38b50b"
+    "sha256": "878bb6862fff21fe2a91943700a3c6d4a854fe8afea5ceac49468471ef80f78d"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
   "known_gaps": [
-    "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory now requires concrete Dbounded stable fields, but the target still lacks a no-argument witness assembling them for MetrizableLCA.",
+    "Task 4 is not yet contract-complete: the typeclass stable route requires seven Dbounded MetrizableLCA instance families that do not synthesize yet.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
   ],
   "remaining_work": [
-    "Construct the concrete stable Dbounded fields from the actual bounded localization and expose them through a no-argument or typeclass-resolved original four-task completion witness.",
-    "Make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations check that original four-task completion witness instead of only checking public names.",
+    "Construct Preadditive, finite limits, finite colimits, zero object, all-shift additivity, pretriangulated, and triangulated instances for Dbounded MetrizableLCA from the actual bounded localization.",
+    "Once those instances synthesize, expose a no-argument or fully typeclass-resolved original four-task completion witness and make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations check it.",
     "Refresh the review packet with contract-specific negative fixtures, external SHA256 sidecar, and clean extraction audit before any future product-success claim."
   ],
-  "support_result_classification": "nonterminal_concrete_bounded_stable_surface",
-  "latest_verified_increment": "W827 concrete bounded stable surface",
+  "support_result_classification": "nonterminal_typeclass_stable_route",
+  "latest_verified_increment": "W828 typeclass stable route",
   "implemented_declarations_checked": [
-    "BoundedDerivedInfinityCategory concrete Dbounded stable structure fields",
-    "bounded-derived semantic data route projects concrete stable fields",
-    "originalFourTaskContract_currentOrdinaryRouteRejected",
-    "originalFourTaskContract_currentSemanticRouteNonterminal"
+    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances",
+    "Dbounded.metrizableStableInstanceFieldNames_count",
+    "originalFourTaskContract_typeclassStableRoute_remainingFieldCount",
+    "ProductSuccessDeclarations checks the typeclass stable route instead of the explicit semantic adapter"
   ],
   "commands": [
     {
+      "command": "lake build LeanLCAExactChallenge.Derived.Bounded",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_lake_build_bounded.log"
+    },
+    {
       "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_bounded_lean_retry.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_bounded_lean.log"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_product_declarations.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_product_declarations_retry.log"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_original_four_task_declarations.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_original_four_task_declarations_retry.log"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_required_declarations.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_required_declarations.log"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_lake_build.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_lake_build.log"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_forbidden_tokens.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_forbidden_tokens.log"
+    },
+    {
+      "command": "lake env lean w828_synth_probe.lean",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_synth_probe.log",
+      "note": "confirms the seven stable Dbounded instance families are not globally synthesized yet"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_contract_audit_after_metadata.log",
-      "note": "passes because the target outcome is honestly nonterminal; the four-Prop wrapper blocker is gone"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_contract_audit_after_metadata.log",
+      "note": "passes because the target outcome is honestly nonterminal; completion witness and packet blockers remain"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_external_audit_nonterminal_expected.log",
       "note": "legacy product-success audit rejects the reopened nonterminal state"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_git_diff_check.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_git_diff_check.log"
     },
     {
       "command": "python3 browser-evidence-check render_static_report.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_browser_evidence.log",
-      "note": "rendered scratch-log.html and checked W827/product flags"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T171500Z_codex_parent_w828_typeclass_stable_route/logs/w828_browser_evidence.log",
+      "note": "rendered scratch-log.html and checked W828/product flags"
     }
   ]
 }

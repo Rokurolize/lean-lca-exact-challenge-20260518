@@ -10,6 +10,8 @@ W826では、歴史的なLean宣言自体は残しつつ、`audit/ProductSuccess
 
 W827では、`BoundedDerivedInfinityCategory`を4つの任意`Prop` readiness fieldから、`Dbounded`の実際のpreadditive構造、有限極限、有限余極限、zero object、shift加法性、pretriangulated構造、triangulated構造を保持するLean構造へ変更した。これにより不変契約監査のfour-`Prop` wrapper blockerは消えたが、まだproduct successではない。残る未完了理由は、これらのstable fieldsを`D^b(MetrizableLCA,E)`から無引数またはtypeclass解決で構成するoriginal four-task completion witnessがないことと、review packetの不変契約fixtureとclean extraction auditが未更新であること。
 
+W828では、明示的なsemantic input recordをfinal product declaration surfaceから外し、`D^b(MetrizableLCA,E)`のstable packageをtypeclass解決で組み立てる`Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances`を追加した。このrouteはまだ無引数witnessではない。Lean上で残る7つのinstance family、すなわち`Dbounded MetrizableLCA`のpreadditive構造、有限極限、有限余極限、zero object、全shiftの加法性、pretriangulated構造、triangulated構造を`D^b(MetrizableLCA,E)`から構成する必要がある。
+
 このリポジトリでは、Lean/mathlibで次の境界まではコンパイル確認済みである。
 
 - `ShortComplex`上の`QuillenExactCategory`インターフェイス

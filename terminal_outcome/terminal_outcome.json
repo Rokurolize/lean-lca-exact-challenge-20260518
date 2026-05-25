@@ -1,55 +1,57 @@
 {
-  "outcome": "nonterminal_concrete_bounded_stable_surface",
+  "outcome": "nonterminal_typeclass_stable_route",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W827 keeps the target nonterminal under the immutable original four-task contract and changes BoundedDerivedInfinityCategory from arbitrary readiness predicates into concrete categorical structure on Dbounded. The remaining task-4 blocker is the missing nullary or typeclass-resolved original four-task completion witness.",
+  "summary": "W828 keeps the target nonterminal under the immutable original four-task contract and adds a typeclass-resolved BoundedDerivedInfinityCategory route for MetrizableLCA. The route has no explicit semantic input record, but seven concrete Dbounded stable instance families are still missing before it can be a completion witness.",
   "known_gaps": [
-    "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory now requires concrete Dbounded stable fields, but the target still lacks a no-argument witness assembling them for MetrizableLCA.",
+    "Task 4 is not yet contract-complete: the typeclass stable route requires seven Dbounded MetrizableLCA instance families that do not synthesize yet.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
   ],
   "remaining_gaps": [
-    "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory now requires concrete Dbounded stable fields, but the target still lacks a no-argument witness assembling them for MetrizableLCA.",
+    "Task 4 is not yet contract-complete: the typeclass stable route requires seven Dbounded MetrizableLCA instance families that do not synthesize yet.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
   ],
   "remaining_work": [
-    "Construct the concrete stable Dbounded fields from the actual bounded localization and expose them through a no-argument or typeclass-resolved original four-task completion witness.",
-    "Make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations check that original four-task completion witness instead of only checking public names.",
+    "Construct Preadditive, finite limits, finite colimits, zero object, all-shift additivity, pretriangulated, and triangulated instances for Dbounded MetrizableLCA from the actual bounded localization.",
+    "Once those instances synthesize, expose a no-argument or fully typeclass-resolved original four-task completion witness and make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations check it.",
     "Refresh the review packet with contract-specific negative fixtures, external SHA256 sidecar, and clean extraction audit before any future product-success claim."
   ],
-  "generated_utc": "2026-05-25T16:58:25Z",
+  "generated_utc": "2026-05-25T17:07:08Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "95d79f09e84c98a3dea7e05c32d654bc3dbdcb969f92e93dcaf03863dd38b50b"
+    "sha256": "878bb6862fff21fe2a91943700a3c6d4a854fe8afea5ceac49468471ef80f78d"
   },
-  "support_result_classification": "nonterminal_concrete_bounded_stable_surface",
-  "latest_verified_increment": "W827 concrete bounded stable surface",
+  "support_result_classification": "nonterminal_typeclass_stable_route",
+  "latest_verified_increment": "W828 typeclass stable route",
   "reference_route_log": "docs/research/reference_route_log.md",
   "implemented_declarations": [
-    "BoundedDerivedInfinityCategory concrete Dbounded stable structure fields",
-    "bounded-derived semantic data route projects concrete stable fields",
-    "originalFourTaskContract_currentOrdinaryRouteRejected",
-    "originalFourTaskContract_currentSemanticRouteNonterminal"
+    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances",
+    "Dbounded.metrizableStableInstanceFieldNames_count",
+    "originalFourTaskContract_typeclassStableRoute_remainingFieldCount",
+    "ProductSuccessDeclarations checks the typeclass stable route instead of the explicit semantic adapter"
   ],
   "implemented_declarations_checked": [
-    "BoundedDerivedInfinityCategory concrete Dbounded stable structure fields",
-    "bounded-derived semantic data route projects concrete stable fields",
-    "originalFourTaskContract_currentOrdinaryRouteRejected",
-    "originalFourTaskContract_currentSemanticRouteNonterminal"
+    "Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances",
+    "Dbounded.metrizableStableInstanceFieldNames_count",
+    "originalFourTaskContract_typeclassStableRoute_remainingFieldCount",
+    "ProductSuccessDeclarations checks the typeclass stable route instead of the explicit semantic adapter"
   ],
   "verified_commands": [
+    "lake build LeanLCAExactChallenge.Derived.Bounded",
     "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
     "lake build",
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "lake env lean w828_synth_probe.lean",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
     "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
     "git diff --check",

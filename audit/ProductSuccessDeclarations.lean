@@ -2969,19 +2969,11 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
 #check (Dbounded.currentOrdinaryInfinityContext (C := MetrizableLCA))
 #check (Dbounded.currentOrdinaryStableRouteAttempt (C := MetrizableLCA))
 #check (Dbounded.currentOrdinaryStableRouteAttempt_rejected (C := MetrizableLCA))
-#check Dbounded.metrizableSemanticSuspensionLoopReady
-#check Dbounded.metrizableSemanticPushoutPullbackReady
-#check Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput
-#check Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready
 #check Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfCertificate
 #check Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted
-#check Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
-#check Dbounded.metrizableSemanticStableRequiredFieldNames
-#check Dbounded.metrizableSemanticStableRequiredFieldNames_count
-#check Dbounded.MetrizableSemanticStableRouteState
-#check Dbounded.currentMetrizableSemanticStableRouteState
-#check Dbounded.currentMetrizableSemanticStableRouteState_semanticInput_not_supplied
-#check Dbounded.currentMetrizableSemanticStableRouteState_productSuccess
+#check Dbounded.boundedDerivedInfinityCategoryOfMetrizableStableInstances
+#check Dbounded.metrizableStableInstanceFieldNames
+#check Dbounded.metrizableStableInstanceFieldNames_count
 #check Dbounded.MetrizableLeftCalculusSemanticFields
 #check Dbounded.metrizableLeftCalculusSemanticFields
 #check Dbounded.MetrizableRemainingStableSemanticFields
