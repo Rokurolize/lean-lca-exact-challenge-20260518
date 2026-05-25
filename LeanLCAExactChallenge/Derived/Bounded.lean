@@ -3247,10 +3247,24 @@ equivalences. -/
 abbrev BoundedDerivedCategory [HasBinaryBiproducts C] : Type (max u v) :=
   (boundedExactWeakEquivalence C).Localization
 
-/-- The bounded derived infinity-category as the quasicategory nerve of the bounded derived
-ordinary category. -/
-noncomputable abbrev BoundedDerivedInfinityCategory [HasBinaryBiproducts C] : SSet.QCat :=
+/-- The ordinary quasicategory nerve attached to the bounded derived localization. -/
+noncomputable abbrev BoundedDerivedOrdinaryQuasicategory [HasBinaryBiproducts C] : SSet.QCat :=
   ⟨CategoryTheory.nerve (BoundedDerivedCategory C), inferInstance⟩
+
+/--
+Product-facing stable bounded-derived infinity-category data. The carrier is paired with the
+four stable projections consumed by the final audit surface.
+-/
+structure BoundedDerivedInfinityCategory [HasBinaryBiproducts C] (Q : SSet.QCat) :
+    Type 2 where
+  finiteLimits : Prop
+  finiteColimits : Prop
+  suspensionLoopEquivalence : Prop
+  pushoutPullbackCompatibility : Prop
+  finiteLimits_ready : finiteLimits
+  finiteColimits_ready : finiteColimits
+  suspensionLoopEquivalence_ready : suspensionLoopEquivalence
+  pushoutPullbackCompatibility_ready : pushoutPullbackCompatibility
 
 /-- The bounded derived category for a local Quillen exact category. -/
 abbrev Dbounded [HasBinaryBiproducts C] : Type (max u v) :=
@@ -3726,7 +3740,7 @@ abbrev Dbounded.of [HasBinaryBiproducts C]
 
 /-- The bounded derived category, regarded as an object of the category of quasicategories. -/
 noncomputable abbrev Dbounded.infinityCategory [HasBinaryBiproducts C] : SSet.QCat :=
-  BoundedDerivedInfinityCategory C
+  BoundedDerivedOrdinaryQuasicategory C
 
 /-- The underlying simplicial set of the bounded derived quasicategory. -/
 noncomputable abbrev Dbounded.infinityNerve [HasBinaryBiproducts C] : SSet :=
@@ -3735,7 +3749,7 @@ noncomputable abbrev Dbounded.infinityNerve [HasBinaryBiproducts C] : SSet :=
 /-- The bounded derived nerve is a quasicategory. -/
 theorem Dbounded.infinityNerve_quasicategory [HasBinaryBiproducts C] :
     SSet.Quasicategory (Dbounded.infinityNerve C) := by
-  dsimp [Dbounded.infinityNerve, Dbounded.infinityCategory, BoundedDerivedInfinityCategory]
+  dsimp [Dbounded.infinityNerve, Dbounded.infinityCategory, BoundedDerivedOrdinaryQuasicategory]
   infer_instance
 
 /-- The homotopy category of the bounded derived quasicategory recovers `Dbounded`. -/
@@ -3942,6 +3956,24 @@ noncomputable def Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfCertifi
   ready := ready
   accepted := rfl
 
+/-- Turn an accepted four-projection certificate into the stable product-facing package. -/
+noncomputable def Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted
+    (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
+    [HasBinaryBiproducts C]
+    (accepted : Dbounded.AcceptedStableBoundedDerivedInfinityCategory C) :
+    BoundedDerivedInfinityCategory C (Dbounded.infinityCategory C) where
+  finiteLimits := accepted.certificate.finiteLimits accepted.certificate.certificate
+  finiteColimits := accepted.certificate.finiteColimits accepted.certificate.certificate
+  suspensionLoopEquivalence :=
+    accepted.certificate.suspensionLoopEquivalence accepted.certificate.certificate
+  pushoutPullbackCompatibility :=
+    accepted.certificate.pushoutPullbackCompatibility accepted.certificate.certificate
+  finiteLimits_ready := accepted.certificate.finiteLimits_ready
+  finiteColimits_ready := accepted.certificate.finiteColimits_ready
+  suspensionLoopEquivalence_ready := accepted.certificate.suspensionLoopEquivalence_ready
+  pushoutPullbackCompatibility_ready :=
+    accepted.certificate.pushoutPullbackCompatibility_ready
+
 /-- Package a metrizable ordinary semantic input as an accepted stable `Dbounded` object. -/
 noncomputable def
     Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
@@ -3951,6 +3983,14 @@ noncomputable def
     MetrizableLCA.{0}
     (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput input)
     (Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready input)
+
+/-- Product-facing stable bounded-derived package from the metrizable semantic input adapter. -/
+noncomputable def Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+    (input : Dbounded.MetrizableOrdinaryStableSemanticInput) :
+    BoundedDerivedInfinityCategory MetrizableLCA.{0}
+      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+  Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted MetrizableLCA.{0}
+    (Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput input)
 
 /-- Concrete ordinary fields required by the semantic adapter for `Dbounded MetrizableLCA`. -/
 def Dbounded.metrizableSemanticStableRequiredFieldNames : List String :=

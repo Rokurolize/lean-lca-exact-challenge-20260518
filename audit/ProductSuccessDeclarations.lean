@@ -2942,10 +2942,12 @@ noncomputable example (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExac
   BoundedHomotopyDerivedCategory.boundedVerdierComparison_comp_ambientIso C
 
 /-
-The bounded derived infinity-category is exposed as a quasicategory, and its homotopy category
-recovers the localized ordinary category.
+The bounded derived infinity-category surface is stable product-facing data. Its ordinary
+quasicategory carrier remains checked separately, and its homotopy category recovers the localized
+ordinary category.
 -/
 #check (BoundedDerivedInfinityCategory (C := MetrizableLCA))
+#check (BoundedDerivedOrdinaryQuasicategory (C := MetrizableLCA))
 #check (Dbounded.infinityCategory (C := MetrizableLCA))
 #check (Dbounded.infinityNerve (C := MetrizableLCA))
 #check (Dbounded.infinityNerve_quasicategory (C := MetrizableLCA))
@@ -2978,7 +2980,9 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
 #check Dbounded.stableFourProjectionCertificateOfMetrizableOrdinaryInput_ready
 #check Dbounded.AcceptedStableBoundedDerivedInfinityCategory
 #check Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfCertificate
+#check Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted
 #check Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
+#check Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
 #check Dbounded.metrizableSemanticStableRequiredFieldNames
 #check Dbounded.metrizableSemanticStableRequiredFieldNames_count
 #check Dbounded.MetrizableSemanticStableRouteState
@@ -9999,7 +10003,12 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check MetrizableLCA.currentComparisonBijectivityRouteStateW821_productSuccess
 
   noncomputable example : SSet.QCat :=
-    BoundedDerivedInfinityCategory (C := MetrizableLCA)
+    BoundedDerivedOrdinaryQuasicategory (C := MetrizableLCA)
+
+  noncomputable example (input : Dbounded.MetrizableOrdinaryStableSemanticInput) :
+      BoundedDerivedInfinityCategory MetrizableLCA.{0}
+        (Dbounded.infinityCategory MetrizableLCA.{0}) :=
+    Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput input
 
 noncomputable example :
     SSet.Quasicategory (Dbounded.infinityNerve (C := MetrizableLCA)) :=

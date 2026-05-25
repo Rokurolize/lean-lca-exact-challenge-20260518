@@ -159,7 +159,7 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-25 22:08 JST</span>
+        <span class="badge info">Updated 2026-05-25 22:37 JST</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">product_success=false</span>
       </div>
@@ -169,50 +169,49 @@ textarea.goal-text {
     <section class="grid" aria-label="Current status">
       <div class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W821</div>
-        <p>comparison-bijectivity route</p>
+        <div class="metric">W823</div>
+        <p>stable bounded-derived package surface</p>
       </div>
       <div class="card span-3">
         <div class="label">Verification</div>
         <div class="metric">Passed</div>
-        <p>helper, root, audit, required declarations, and full build</p>
+        <p>focused source, audit declarations, required declarations, and full build</p>
       </div>
       <div class="card span-3">
         <div class="label">Primary Surface</div>
-        <div class="metric">Derived</div>
-        <p><code>ComparisonBijectivityRoute</code></p>
+        <div class="metric">Bounded</div>
+        <p><code>BoundedDerivedInfinityCategory</code></p>
       </div>
       <div class="card span-3">
         <div class="label">Next Safe Action</div>
         <div class="metric">Next</div>
-        <p>address the stable bounded derived infinity-category product contract</p>
+        <p>close out the nonterminal stable package increment</p>
       </div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W821 proves algebraic bijectivity of the canonical left-right homology comparison for every <code>MetrizableLCA</code> short complex. The final route feeds W820 and supplies <code>CategoryWithHomology MetrizableLCA</code>. The new helper leaves <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> untouched.</p>
+      <p>W823 changes the bounded-derived infinity-category surface directly: <code>BoundedDerivedOrdinaryQuasicategory</code> now names the ordinary carrier, while <code>BoundedDerivedInfinityCategory</code> is stable product-facing data indexed by <code>Dbounded.infinityCategory</code> and carrying finite-limit, finite-colimit, suspension-loop, and pushout-pullback readiness. The W821 comparison route remains available, and <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> is untouched.</p>
       <div class="grid">
         <div class="card span-6">
-          <h3>New Helper</h3>
+          <h3>Touched Sources</h3>
           <table>
             <tbody>
-              <tr><th>Path</th><td><code>LeanLCAExactChallenge/Derived/ComparisonBijectivityRoute.lean</code></td></tr>
-              <tr><th>Line Count</th><td>219</td></tr>
-              <tr><th>Top-Level Declarations</th><td>12</td></tr>
-              <tr><th>Long-Line Outliers</th><td>0</td></tr>
+              <tr><th>Primary</th><td><code>LeanLCAExactChallenge/Derived/Bounded.lean</code></td></tr>
+              <tr><th>Audit Hook</th><td><code>audit/ProductSuccessDeclarations.lean</code></td></tr>
+              <tr><th>Actual Diff</th><td>57 added, 8 deleted</td></tr>
+              <tr><th>WPP Source</th><td>untouched</td></tr>
             </tbody>
           </table>
         </div>
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>leftRightHomologyComparison'_surjectiveW821</code></li>
-            <li><code>leftRightHomologyComparison'_injectiveW821</code></li>
-            <li><code>leftRightHomologyComparison'_bijectiveW821</code></li>
-            <li><code>comparisonBijectiveTargetW821</code></li>
+            <li><code>BoundedDerivedOrdinaryQuasicategory</code></li>
+            <li><code>BoundedDerivedInfinityCategory</code></li>
+            <li><code>Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted</code></li>
+            <li><code>Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput</code></li>
             <li><code>categoryWithHomology_of_leftRightComparisonBijectiveW821</code></li>
-            <li><code>currentComparisonBijectivityRouteStateW821_productSuccess</code></li>
           </ul>
         </div>
       </div>
