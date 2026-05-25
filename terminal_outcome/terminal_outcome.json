@@ -1,65 +1,67 @@
 {
-  "outcome": "nonterminal_target_exact_at_left_calculus_route",
+  "outcome": "nonterminal_target_iso_left_calculus_route",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W832 keeps the target nonterminal under the immutable original four-task contract and expands W831's remaining direct-left-calculus fields into concrete route inputs. Dbounded.targetExactAtLeftCalculusDataW832 derives the exact-closure field via W796, the kernel/cokernel topology field via W696, and the localized-right-adjoint input via W767. Dbounded.directBoundedLeftCalculusOfTargetExactAtW832 then proves (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions from W696/W785/W721 data. The route still lacks concrete W696/W785/W721 data values, finite limits, finite colimits, pretriangulated structure, triangulated structure, and the original four-task completion witness.",
+  "summary": "W833 keeps the target nonterminal under the immutable original four-task contract and replaces W832's direct W785 target ExactAt payload input with W784 target-isomorphism realization data. Dbounded.targetExactAtPayloadOfTargetIsoLeftCalculusW833 applies W808 using W831 comparison bijectivity and W696 forgetful homology preservation, then Dbounded.targetExactAtLeftCalculusDataOfTargetIsoW833 feeds W832. Dbounded.directBoundedLeftCalculusOfTargetIsoW833 proves (boundedExactWeakEquivalence MetrizableLCA).HasLeftCalculusOfFractions from W696/W784/W721 data. The route still lacks concrete W696/W784/W721 data values, finite limits, finite colimits, pretriangulated structure, triangulated structure, and the original four-task completion witness.",
   "known_gaps": [
-    "Task 4 is not contract-complete: W832 derives the W831 direct-left-calculus fields only from W696 closed-range endpoint topology, W785 target ExactAt payload, and W721 localized-right-adjoint provider data that still must be constructed.",
+    "Task 4 is not contract-complete: W833 derives W832's W785 target ExactAt payload from W784 target-isomorphism realization, but concrete W696/W784/W721 values still must be constructed.",
     "The final Dbounded MetrizableLCA finite-limit, finite-colimit, pretriangulated, and triangulated structures remain missing.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet still does not expose the immutable-contract negative fixtures and clean extraction audit in the completion packet shape required for product success."
   ],
   "remaining_gaps": [
-    "Task 4 is not contract-complete: W832 derives the W831 direct-left-calculus fields only from W696 closed-range endpoint topology, W785 target ExactAt payload, and W721 localized-right-adjoint provider data that still must be constructed.",
+    "Task 4 is not contract-complete: W833 derives W832's W785 target ExactAt payload from W784 target-isomorphism realization, but concrete W696/W784/W721 values still must be constructed.",
     "The final Dbounded MetrizableLCA finite-limit, finite-colimit, pretriangulated, and triangulated structures remain missing.",
     "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet still does not expose the immutable-contract negative fixtures and clean extraction audit in the completion packet shape required for product success."
   ],
   "remaining_work": [
     "Construct W696 closed-range endpoint topology data for MetrizableLCA.",
-    "Construct the W785 target ExactAt payload for exact-acyclic homotopy objects.",
+    "Construct W784 target-isomorphism realization data for exact-acyclic homotopy objects.",
     "Construct W721 bounded homotopy localized-right-adjoint provider data.",
     "Construct finite limits, finite colimits, pretriangulated structure, and triangulated structure for Dbounded MetrizableLCA from the bounded localization rather than a semantic input record.",
     "Expose a no-argument or fully instance-resolved original four-task completion witness only after those structures are real, then refresh the review packet fixtures and clean extraction audit."
   ],
-  "generated_utc": "2026-05-25T18:02:46Z",
+  "generated_utc": "2026-05-25T18:15:14Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "f1a68f61e18a085037f9905e2f6c489ecdb7b5a2168d83a186973dd5cf4dff5a"
+    "sha256": "a85a8661f93ac431e225804f4f486c80060f379f362b56c9b211d37733d8916a"
   },
-  "support_result_classification": "nonterminal_target_exact_at_left_calculus_route",
-  "latest_verified_increment": "W832 target-ExactAt left-calculus route",
+  "support_result_classification": "nonterminal_target_iso_left_calculus_route",
+  "latest_verified_increment": "W833 target-isomorphism left-calculus route",
   "reference_route_log": "docs/research/reference_route_log.md",
   "implemented_declarations": [
-    "Dbounded.MetrizableTargetExactAtLeftCalculusDataW832",
-    "Dbounded.targetExactAtLeftCalculusDataW832",
-    "Dbounded.directBoundedLeftCalculusOfTargetExactAtW832",
-    "Dbounded.boundedDerivedInfinityCategoryOfTargetExactAtLeftCalculusW832",
-    "Dbounded.targetExactAtLeftCalculusInputNamesW832_count",
-    "Dbounded.targetExactAtLeftCalculusStableRouteRequiredFieldNamesW832_count",
-    "Dbounded.targetExactAtLeftCalculusExpandedRequiredFieldNamesW832_count",
-    "Dbounded.currentMetrizableTargetExactAtLeftCalculusRouteStateW832_productSuccess",
-    "originalFourTaskContract_targetExactAtLeftCalculusRoute_expandedRequiredFieldCount"
+    "Dbounded.MetrizableTargetIsoLeftCalculusDataW833",
+    "Dbounded.targetExactAtPayloadOfTargetIsoLeftCalculusW833",
+    "Dbounded.targetExactAtLeftCalculusDataOfTargetIsoW833",
+    "Dbounded.directBoundedLeftCalculusOfTargetIsoW833",
+    "Dbounded.boundedDerivedInfinityCategoryOfTargetIsoLeftCalculusW833",
+    "Dbounded.targetIsoLeftCalculusInputNamesW833_count",
+    "Dbounded.targetIsoLeftCalculusStableRouteRequiredFieldNamesW833_count",
+    "Dbounded.targetIsoLeftCalculusExpandedRequiredFieldNamesW833_count",
+    "Dbounded.currentMetrizableTargetIsoLeftCalculusRouteStateW833_productSuccess",
+    "originalFourTaskContract_targetIsoLeftCalculusRoute_expandedRequiredFieldCount"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.MetrizableTargetExactAtLeftCalculusDataW832",
-    "Dbounded.targetExactAtLeftCalculusDataW832",
-    "Dbounded.directBoundedLeftCalculusOfTargetExactAtW832",
-    "Dbounded.boundedDerivedInfinityCategoryOfTargetExactAtLeftCalculusW832",
-    "Dbounded.targetExactAtLeftCalculusInputNamesW832_count",
-    "Dbounded.targetExactAtLeftCalculusStableRouteRequiredFieldNamesW832_count",
-    "Dbounded.targetExactAtLeftCalculusExpandedRequiredFieldNamesW832_count",
-    "Dbounded.currentMetrizableTargetExactAtLeftCalculusRouteStateW832_productSuccess",
-    "originalFourTaskContract_targetExactAtLeftCalculusRoute_expandedRequiredFieldCount"
+    "Dbounded.MetrizableTargetIsoLeftCalculusDataW833",
+    "Dbounded.targetExactAtPayloadOfTargetIsoLeftCalculusW833",
+    "Dbounded.targetExactAtLeftCalculusDataOfTargetIsoW833",
+    "Dbounded.directBoundedLeftCalculusOfTargetIsoW833",
+    "Dbounded.boundedDerivedInfinityCategoryOfTargetIsoLeftCalculusW833",
+    "Dbounded.targetIsoLeftCalculusInputNamesW833_count",
+    "Dbounded.targetIsoLeftCalculusStableRouteRequiredFieldNamesW833_count",
+    "Dbounded.targetIsoLeftCalculusExpandedRequiredFieldNamesW833_count",
+    "Dbounded.currentMetrizableTargetIsoLeftCalculusRouteStateW833_productSuccess",
+    "originalFourTaskContract_targetIsoLeftCalculusRoute_expandedRequiredFieldCount"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/TargetExactAtLeftCalculusRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.TargetExactAtLeftCalculusRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/TargetIsoLeftCalculusRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.TargetIsoLeftCalculusRoute",
     "lake build LeanLCAExactChallenge",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
@@ -70,6 +72,6 @@
     "git diff --check",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
     "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
-    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html $PWD/scratch-log.html --out-dir $RUN/browser_evidence --expect \"Current Increment\" --expect \"W832 keeps the target nonterminal\" --expect \"targetExactAtLeftCalculusDataW832\" --expect \"product_success=false\""
+    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html $PWD/scratch-log.html --out-dir $RUN/browser_evidence --expect \"Current Increment\" --expect \"W833 keeps the target nonterminal\" --expect \"targetExactAtPayloadOfTargetIsoLeftCalculusW833\" --expect \"product_success=false\""
   ]
 }
