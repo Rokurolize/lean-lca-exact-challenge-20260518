@@ -159,7 +159,7 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-25 21:20 JST</span>
+        <span class="badge info">Updated 2026-05-25 21:34 JST</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">product_success=false</span>
       </div>
@@ -169,8 +169,8 @@ textarea.goal-text {
     <section class="grid" aria-label="Current status">
       <div class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W818</div>
-        <p>comparison embedding criterion route</p>
+        <div class="metric">W819</div>
+        <p>comparison fiber-saturation route</p>
       </div>
       <div class="card span-3">
         <div class="label">Verification</div>
@@ -180,26 +180,26 @@ textarea.goal-text {
       <div class="card span-3">
         <div class="label">Primary Surface</div>
         <div class="metric">Derived</div>
-        <p><code>ComparisonEmbeddingCriterionRoute</code></p>
+        <p><code>ComparisonFiberSaturationRoute</code></p>
       </div>
       <div class="card span-3">
         <div class="label">Next Safe Action</div>
-        <div class="metric">Fiber criterion</div>
-        <p>prove algebraic bijectivity and the right-cokernel fiber-saturation condition</p>
+        <div class="metric">W820</div>
+        <p>prove right-cokernel fiber closure or algebraic bijectivity</p>
       </div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W818 ports the <code>TopModuleCat</code> open-quotient/inducing comparison pattern to <code>MetrizableLCA</code> homology data. It proves that W815 projection topology plus algebraic bijectivity and a concrete right-cokernel fiber-saturation condition give the W816 embedding field, then routes that target to <code>CategoryWithHomology MetrizableLCA</code>. The new helper leaves <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> untouched.</p>
+      <p>W819 reduces W818's fiber-saturation hypothesis to a remaining right-cokernel closure input. It proves that closed boundary-range points are cycles, that points killed by an arbitrary limiting kernel fork are in the kernel inclusion range, and that those facts convert the right-cokernel closure input into W818 fiber saturation. The new helper leaves <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> untouched.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>New Helper</h3>
           <table>
             <tbody>
-              <tr><th>Path</th><td><code>LeanLCAExactChallenge/Derived/ComparisonEmbeddingCriterionRoute.lean</code></td></tr>
-              <tr><th>Line Count</th><td>225</td></tr>
-              <tr><th>Top-Level Declarations</th><td>16</td></tr>
+              <tr><th>Path</th><td><code>LeanLCAExactChallenge/Derived/ComparisonFiberSaturationRoute.lean</code></td></tr>
+              <tr><th>Line Count</th><td>209</td></tr>
+              <tr><th>Top-Level Declarations</th><td>13</td></tr>
               <tr><th>Long-Line Outliers</th><td>0</td></tr>
             </tbody>
           </table>
@@ -207,13 +207,13 @@ textarea.goal-text {
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>leftHomologyData_π_openQuotientMapW818</code></li>
-            <li><code>rightHomologyData_p_openQuotientMapW818</code></li>
-            <li><code>leftRightComparisonFiberSaturationW818</code></li>
-            <li><code>leftRightHomologyComparison'_embedding_of_bijective_saturatedW818</code></li>
-            <li><code>comparisonBijectiveEmbeddingTarget_of_fiberSaturationW818</code></li>
-            <li><code>categoryWithHomology_of_comparisonFiberSaturationW818</code></li>
-            <li><code>currentComparisonEmbeddingCriterionRouteStateW818_productSuccess</code></li>
+            <li><code>kernelFork_range_of_apply_eq_zeroW819</code></li>
+            <li><code>boundary_closure_subset_kernelW819</code></li>
+            <li><code>rightCokernelFiberClosureTargetW819</code></li>
+            <li><code>leftRightComparisonFiberSaturation_of_rightCokernelFiberClosureW819</code></li>
+            <li><code>comparisonFiberSaturationTarget_of_rightCokernelFiberClosureW819</code></li>
+            <li><code>categoryWithHomology_of_rightCokernelFiberClosureW819</code></li>
+            <li><code>currentComparisonFiberSaturationRouteStateW819_productSuccess</code></li>
           </ul>
         </div>
       </div>
@@ -226,15 +226,15 @@ textarea.goal-text {
           <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ComparisonEmbeddingCriterionRoute.lean</code></td><td>passed</td><td><code>w818_focused_source_lean.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ComparisonEmbeddingCriterionRoute</code></td><td>passed</td><td><code>w818_focused_lake_build_source.log</code></td></tr>
-          <tr><td><code>lake env lean LeanLCAExactChallenge.lean</code></td><td>passed</td><td><code>w818_root_import.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w818_product_success_declarations.log</code></td></tr>
-          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w818_required_declarations_audit.log</code></td></tr>
-          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w818_forbidden_tokens.log</code></td></tr>
-          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w818_git_diff_check.log</code></td></tr>
-          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>failed_expected</td><td><code>w818_product_success_true_scan.log</code></td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td><code>w818_focused_full_lake_build.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ComparisonFiberSaturationRoute.lean</code></td><td>passed</td><td><code>w819_focused_source_lean.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ComparisonFiberSaturationRoute</code></td><td>passed</td><td><code>w819_focused_lake_build_source.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge.lean</code></td><td>passed</td><td><code>w819_root_import.log</code></td></tr>
+          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w819_product_success_declarations.log</code></td></tr>
+          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w819_required_declarations_audit.log</code></td></tr>
+          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w819_forbidden_tokens.log</code></td></tr>
+          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w819_git_diff_check.log</code></td></tr>
+          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>failed_expected</td><td><code>w819_product_success_true_scan.log</code></td></tr>
+          <tr><td><code>lake build</code></td><td>passed</td><td><code>w819_focused_full_lake_build.log</code></td></tr>
         </tbody>
       </table>
     </section>
@@ -257,6 +257,16 @@ textarea.goal-text {
           <h3>Verification completed</h3>
           <p>Helper, root import, product declarations, required declarations, forbidden-token scan, diff check, and full <code>lake build</code> all passed while preserving <code>product_complete=false</code>.</p>
         </article>
+        <article class="event">
+          <time datetime="2026-05-25T21:28:00+09:00">2026-05-25 21:28 JST</time>
+          <h3>Started W819 from pushed W818 baseline</h3>
+          <p>Run root created at <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T122804Z_codex_parent_w819_comparison_fiber_saturation</code>.</p>
+        </article>
+        <article class="event">
+          <time datetime="2026-05-25T21:34:00+09:00">2026-05-25 21:34 JST</time>
+          <h3>Reduced fiber saturation to right-cokernel closure</h3>
+          <p><code>ComparisonFiberSaturationRoute</code> proves the kernel-range and boundary-closure route. The focused verifier, root import, product declarations, required declarations, forbidden-token scan, product-success true scan, and diff check passed with <code>product_success=false</code>.</p>
+        </article>
       </div>
     </section>
 
@@ -264,7 +274,7 @@ textarea.goal-text {
       <h2>Remaining Product Blockers</h2>
       <ul>
         <li>Prove algebraic bijectivity of the canonical left-right homology comparison for arbitrary <code>MetrizableLCA</code> short complexes.</li>
-        <li>Prove the W818 fiber-saturation condition for the left-cycle range under the right cokernel projection.</li>
+        <li>Prove the remaining W819 right-cokernel closure input: equality under the right cokernel projection detects closed boundary-range differences.</li>
         <li>Feed the resulting W818 target into <code>comparisonBijectiveEmbeddingTargetW816</code> and <code>comparisonBijectiveOpenTargetW814</code>.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
         <li>Construct exact-acyclic homotopy-object strict triangleh realization data without looping through W651/W809 equivalence.</li>
