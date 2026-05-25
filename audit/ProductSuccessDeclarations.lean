@@ -23,6 +23,7 @@ import LeanLCAExactChallenge.Derived.HomotopyObjectTriangulatedSelectedW461RowsP
 import LeanLCAExactChallenge.Derived.TrianglehRealizationHomotopyObjectSelectedW461RowsProductRoute
 import LeanLCAExactChallenge.Derived.TargetIsoRealizationTrianglehSelectedW461RowsProductRoute
 import LeanLCAExactChallenge.Derived.TargetExactAtEndpointTargetIsoSelectedW461RowsProductRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroEndpointTargetIsoSelectedW461RowsProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9391,6 +9392,24 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetExactAtEndpointTargetIsoRouteStateW785
   #check Dbounded.currentMetrizableTargetExactAtEndpointTargetIsoRouteStateW785
   #check Dbounded.currentW785TargetExactAtEndpointRoute_productSuccess
+  #check Dbounded.MetrizableExactAcyclicHomotopyObjectTargetHomologyZeroPayloadW786
+  #check Dbounded.targetIsoRealizationOfTargetHomologyZeroEndpointW786
+  #check
+    Dbounded.MetrizableClosedMapTargetHomologyZeroEndpointTargetIsoBranchDataW786
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroEndpointTargetIsoBranchDataW786
+  #check Dbounded.closedMapTargetIsoDataOfTargetHomologyZeroEndpointW786
+  #check Dbounded.closedEmbeddingTargetIsoDataOfTargetHomologyZeroEndpointW786
+  #check Dbounded.productEvidence_of_closedMapTargetHomologyZeroEndpointRouteW786
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingTargetHomologyZeroEndpointRouteW786
+  #check Dbounded.targetHomologyZeroEndpointTargetIsoProductRouteInputNamesW786
+  #check
+    Dbounded.targetHomologyZeroEndpointTargetIsoProductRouteInputNamesW786_count
+  #check Dbounded.MetrizableTargetHomologyZeroEndpointTargetIsoRouteStateW786
+  #check
+    Dbounded.currentMetrizableTargetHomologyZeroEndpointTargetIsoRouteStateW786
+  #check Dbounded.currentW786TargetHomologyZeroEndpointRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

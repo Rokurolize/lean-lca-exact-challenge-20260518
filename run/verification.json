@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w785-target-exactat-endpoint-target-iso-route",
-  "generated_utc": "2026-05-25T05:40:47Z",
-  "source_tree_hash": "e62d679703d9de86cfc8807e90284499f44614be7f2cd893a1ed70172a913dc5",
-  "summary": "W785 uses the W663 target ExactAt endpoint theorem to replace W784's target-isomorphism realization premise with target ExactAt payload plus endpoint strict topology, then feeds the W784 selected-W461/row-aware route unchanged. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w786-target-homology-zero-endpoint-target-iso-route",
+  "generated_utc": "2026-05-25T05:50:31Z",
+  "source_tree_hash": "2e407b97c0ddb895ba9954d62764c913f8c5331c03c4fa586df06a8b910259dd",
+  "summary": "W786 uses the W664 homology-zero endpoint bridge pattern to replace W785's target ExactAt realization payload with target homology-zero realization data plus global homology existence and endpoint strict topology, then feeds the W784 selected-W461/row-aware route unchanged. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -17935,6 +17935,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T051208Z_codex_parent_w785/logs/w785_focused_final_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroEndpointTargetIsoSelectedW461RowsProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/logs/w786_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroEndpointTargetIsoSelectedW461RowsProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/logs/w786_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/logs/w786_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/w786_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/logs/w786_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/logs/w786_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/logs/w786_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/logs/w786_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/logs/w786_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T054340Z_codex_parent_w786/logs/w786_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -23193,14 +23238,28 @@
     "Dbounded.targetExactAtEndpointTargetIsoProductRouteInputNamesW785_count",
     "Dbounded.MetrizableTargetExactAtEndpointTargetIsoRouteStateW785",
     "Dbounded.currentMetrizableTargetExactAtEndpointTargetIsoRouteStateW785",
-    "Dbounded.currentW785TargetExactAtEndpointRoute_productSuccess"
+    "Dbounded.currentW785TargetExactAtEndpointRoute_productSuccess",
+    "Dbounded.MetrizableExactAcyclicHomotopyObjectTargetHomologyZeroPayloadW786",
+    "Dbounded.targetIsoRealizationOfTargetHomologyZeroEndpointW786",
+    "Dbounded.MetrizableClosedMapTargetHomologyZeroEndpointTargetIsoBranchDataW786",
+    "Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroEndpointTargetIsoBranchDataW786",
+    "Dbounded.closedMapTargetIsoDataOfTargetHomologyZeroEndpointW786",
+    "Dbounded.closedEmbeddingTargetIsoDataOfTargetHomologyZeroEndpointW786",
+    "Dbounded.productEvidence_of_closedMapTargetHomologyZeroEndpointRouteW786",
+    "Dbounded.productEvidence_of_closedEmbeddingTargetHomologyZeroEndpointRouteW786",
+    "Dbounded.targetHomologyZeroEndpointTargetIsoProductRouteInputNamesW786",
+    "Dbounded.targetHomologyZeroEndpointTargetIsoProductRouteInputNamesW786_count",
+    "Dbounded.MetrizableTargetHomologyZeroEndpointTargetIsoRouteStateW786",
+    "Dbounded.currentMetrizableTargetHomologyZeroEndpointTargetIsoRouteStateW786",
+    "Dbounded.currentW786TargetHomologyZeroEndpointRoute_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
     "Construct W696 closed-range endpoint-topology data.",
-    "Construct exact-acyclic homotopy-object target ExactAt realization data.",
+    "Construct target homology-zero realization data for exact-acyclic homotopy objects.",
+    "Construct homology existence for all MetrizableLCA cochain complexes in every degree.",
     "Construct endpoint strict topology data.",
     "Construct closed quotient-cover boundary data for WPP limit right-open maps.",
     "Construct Epi boundary data for WPP limit right-surjectivity.",
@@ -23214,12 +23273,13 @@
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete W735 branch data values.",
     "Construct W696 closed-range endpoint-topology data.",
-    "Construct exact-acyclic homotopy-object target ExactAt payload data and endpoint strict topology data.",
+    "Construct target homology-zero realization data and global homology existence.",
+    "Construct endpoint strict topology data or reduce it to conditioned endpoint topology data.",
     "Construct closed quotient-cover right-open boundary, Epi right-surjectivity boundary, selected W461 provider data, row-aware closed-map or closed-embedding provider data, and remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused-final W785 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA delta, module-size accounting, and rendered-report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W785 target ExactAt endpoint target-isomorphism route",
+  "summary_log_tail": "Focused W786 source, module, product declaration, run-owned required declaration, full build, JSON, diff, helper accounting, and rendered-report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W786 target homology-zero endpoint target-isomorphism route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -24849,6 +24909,13 @@
       "latest_verified_increment": "W785 target ExactAt endpoint target-isomorphism route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W785 metadata records the target ExactAt endpoint target-isomorphism route and leaves product_success/product_complete false."
+    },
+    "w786_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T05:50:31Z",
+      "source_tree_hash": "2e407b97c0ddb895ba9954d62764c913f8c5331c03c4fa586df06a8b910259dd",
+      "latest_verified_increment": "W786 target homology-zero endpoint target-isomorphism route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W786 metadata records the target homology-zero endpoint target-isomorphism route and leaves product_success/product_complete false."
     }
   }
 }
