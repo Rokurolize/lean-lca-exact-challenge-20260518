@@ -2,7 +2,7 @@
   "outcome": "blocked_nonterminal_frontier",
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W794 removes the separate global homology-existence field by deriving HasHomology for all metrizable cochain complexes from the universal comparison premise through W768, while reusing the W793 concrete-leaf colimit route and feeding W774 normalized direct-source evidence. Product_success remains false.",
+  "summary": "W795 replaces the W794 target homology-zero realization premise with the already-normalized W784 target-isomorphism realization premise, deriving W774 Closed2 directly through W784, W783, and W782 while reusing W793 concrete-leaf colimit stability and W792 boundary limit stability. Product_success remains false.",
   "verified_commands": [
     "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
     "lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields",
@@ -2823,7 +2823,19 @@
     "python3 json validation for manifest/run/terminal_outcome (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T065916Z_codex_parent_w794/logs/w794_focused_json_validation.log exit_code=0)",
     "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T065916Z_codex_parent_w794/logs/w794_focused_git_diff_check.log exit_code=0)",
     "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T065916Z_codex_parent_w794/product_success_true_grep.log exit_code=1)",
-    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T065916Z_codex_parent_w794/logs/w794_focused_external_audit_terminal_expected_nonterminal.log exit_code=1)"
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T065916Z_codex_parent_w794/logs/w794_focused_external_audit_terminal_expected_nonterminal.log exit_code=1)",
+    "lake env lean LeanLCAExactChallenge/Derived/TargetIsoClosed2ProductRoute.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_source_lean.log exit_code=0)",
+    "lake build LeanLCAExactChallenge.Derived.TargetIsoClosed2ProductRoute (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_lake_build_source.log exit_code=0)",
+    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_root_lean.log exit_code=0)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_product_declarations_lean.log exit_code=0)",
+    "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/w795_required_declarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_required_declarations.log exit_code=0)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_focused_forbidden_tokens.log exit_code=0)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_focused_external_audit_self_check.log exit_code=0)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_focused_full_lake_build.log exit_code=0)",
+    "python3 -c import json; [json.load(open(p, encoding='utf-8')) for p in ['manifest.json','run/verification.json','terminal_outcome/terminal_outcome.json']] (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_focused_json_validation.log exit_code=0)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_focused_git_diff_check.log exit_code=0)",
+    "bash -lc rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_product_success_true_grep.log exit_code=1)",
+    "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/logs/w795_focused_external_audit_terminal_expected_nonterminal.log exit_code=1)"
   ],
   "required_declarations_checked": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
@@ -7632,12 +7644,24 @@
     "Dbounded.targetHomologyZeroComparisonHomologyProductRouteInputNamesW794_count",
     "Dbounded.MetrizableTargetHomologyZeroComparisonHomologyRouteStateW794",
     "Dbounded.currentMetrizableTargetHomologyZeroComparisonHomologyRouteStateW794",
-    "Dbounded.currentW794TargetHomologyZeroComparisonHomologyRoute_productSuccess"
+    "Dbounded.currentW794TargetHomologyZeroComparisonHomologyRoute_productSuccess",
+    "Dbounded.exactClosed2OfTargetIsoRealizationW795",
+    "Dbounded.MetrizableClosedMapTargetIsoClosed2BranchDataW795",
+    "Dbounded.MetrizableClosedEmbeddingTargetIsoClosed2BranchDataW795",
+    "Dbounded.closedMapNormalizedDataOfTargetIsoClosed2W795",
+    "Dbounded.closedEmbeddingNormalizedDataOfTargetIsoClosed2W795",
+    "Dbounded.productEvidence_of_closedMapTargetIsoClosed2RouteW795",
+    "Dbounded.productEvidence_of_closedEmbeddingTargetIsoClosed2RouteW795",
+    "Dbounded.targetIsoClosed2ProductRouteInputNamesW795",
+    "Dbounded.targetIsoClosed2ProductRouteInputNamesW795_count",
+    "Dbounded.MetrizableTargetIsoClosed2RouteStateW795",
+    "Dbounded.currentMetrizableTargetIsoClosed2RouteStateW795",
+    "Dbounded.currentW795TargetIsoClosed2Route_productSuccess"
   ],
   "known_gaps": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
-    "Construct target homology-zero realization data indexed by W768-derived homology existence.",
+    "Construct exact-acyclic homotopy-object target-isomorphism realization data.",
     "Construct remaining Dbounded stable-infinity inputs."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -7645,15 +7669,15 @@
   "packet_sha256_sidecar": "packets/lean_lca_exact_category_challenge.zip.sha256",
   "git_commit": null,
   "terminal_outcome_json": "terminal_outcome/terminal_outcome.json",
-  "worker_frontier_summary": "No worker lane admitted for W794; parent-solo strategy derived global homology existence from W768 comparison data in a helper module without touching the oversized WPP file.",
+  "worker_frontier_summary": "No worker lane admitted for W795; parent-solo strategy derived W774 Closed2 from W784 target-isomorphism realization in a helper module without touching the oversized WPP file.",
   "claim_review_result": "not_product_success; update_goal_not_allowed",
   "remaining_gaps": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
-    "Construct target homology-zero realization data indexed by W768-derived homology existence.",
+    "Construct exact-acyclic homotopy-object target-isomorphism realization data.",
     "Construct remaining Dbounded stable-infinity inputs."
   ],
-  "next_recommended_goal": "Continue from W794 by reducing target homology-zero realization data, universal left-right comparison, concrete W735 branch data, or remaining Dbounded stable-infinity inputs; do not claim product success until the terminal challenge endpoint and external audit pass.",
+  "next_recommended_goal": "Continue from W795 by reducing exact-acyclic target-isomorphism realization data, universal left-right comparison, concrete W735 branch data, or remaining Dbounded stable-infinity inputs; do not claim product success until the terminal challenge endpoint and external audit pass.",
   "implemented_declarations": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
     "Dbounded.exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeafInputsW758",
@@ -12997,9 +13021,21 @@
     "Dbounded.targetHomologyZeroComparisonHomologyProductRouteInputNamesW794_count",
     "Dbounded.MetrizableTargetHomologyZeroComparisonHomologyRouteStateW794",
     "Dbounded.currentMetrizableTargetHomologyZeroComparisonHomologyRouteStateW794",
-    "Dbounded.currentW794TargetHomologyZeroComparisonHomologyRoute_productSuccess"
+    "Dbounded.currentW794TargetHomologyZeroComparisonHomologyRoute_productSuccess",
+    "Dbounded.exactClosed2OfTargetIsoRealizationW795",
+    "Dbounded.MetrizableClosedMapTargetIsoClosed2BranchDataW795",
+    "Dbounded.MetrizableClosedEmbeddingTargetIsoClosed2BranchDataW795",
+    "Dbounded.closedMapNormalizedDataOfTargetIsoClosed2W795",
+    "Dbounded.closedEmbeddingNormalizedDataOfTargetIsoClosed2W795",
+    "Dbounded.productEvidence_of_closedMapTargetIsoClosed2RouteW795",
+    "Dbounded.productEvidence_of_closedEmbeddingTargetIsoClosed2RouteW795",
+    "Dbounded.targetIsoClosed2ProductRouteInputNamesW795",
+    "Dbounded.targetIsoClosed2ProductRouteInputNamesW795_count",
+    "Dbounded.MetrizableTargetIsoClosed2RouteStateW795",
+    "Dbounded.currentMetrizableTargetIsoClosed2RouteStateW795",
+    "Dbounded.currentW795TargetIsoClosed2Route_productSuccess"
   ],
-  "generated_utc": "2026-05-25T07:04:18Z",
+  "generated_utc": "2026-05-25T07:18:50Z",
   "support_result_classification": "nonterminal_support_increment",
   "implemented_declarations_checked": [
     "Dbounded.MetrizableWppExactStableEvidenceW758",
@@ -18374,21 +18410,33 @@
     "Dbounded.targetHomologyZeroComparisonHomologyProductRouteInputNamesW794_count",
     "Dbounded.MetrizableTargetHomologyZeroComparisonHomologyRouteStateW794",
     "Dbounded.currentMetrizableTargetHomologyZeroComparisonHomologyRouteStateW794",
-    "Dbounded.currentW794TargetHomologyZeroComparisonHomologyRoute_productSuccess"
+    "Dbounded.currentW794TargetHomologyZeroComparisonHomologyRoute_productSuccess",
+    "Dbounded.exactClosed2OfTargetIsoRealizationW795",
+    "Dbounded.MetrizableClosedMapTargetIsoClosed2BranchDataW795",
+    "Dbounded.MetrizableClosedEmbeddingTargetIsoClosed2BranchDataW795",
+    "Dbounded.closedMapNormalizedDataOfTargetIsoClosed2W795",
+    "Dbounded.closedEmbeddingNormalizedDataOfTargetIsoClosed2W795",
+    "Dbounded.productEvidence_of_closedMapTargetIsoClosed2RouteW795",
+    "Dbounded.productEvidence_of_closedEmbeddingTargetIsoClosed2RouteW795",
+    "Dbounded.targetIsoClosed2ProductRouteInputNamesW795",
+    "Dbounded.targetIsoClosed2ProductRouteInputNamesW795_count",
+    "Dbounded.MetrizableTargetIsoClosed2RouteStateW795",
+    "Dbounded.currentMetrizableTargetIsoClosed2RouteStateW795",
+    "Dbounded.currentW795TargetIsoClosed2Route_productSuccess"
   ],
   "product_success": false,
   "workdir": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
   "remaining_work": [
     "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete W735 branch data values.",
-    "Construct target homology-zero realization data indexed by comparison-derived homology existence.",
+    "Construct exact-acyclic homotopy-object target-isomorphism realization data.",
     "Construct remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "latest_verified_increment": "W794 target homology-zero comparison-homology route",
-  "source_tree_hash": "269935de4baa02c3a3bb0fc9dff8507050923147b26b5b55b42f350b2e171368",
-  "summary_log_tail": "Focused W794 source, module, root import, product declaration, run-owned required declaration, full build, JSON, diff, helper accounting, stale-goal delta decision, and rendered-report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "git_commit_note": "Commit SHA is recorded after verified W794 commit and push closeout.",
+  "latest_verified_increment": "W795 target-isomorphism Closed2 route",
+  "source_tree_hash": "405cd5618c80c63e1dcb4c885cf666011edd8703def834f68ba79d78358d7a81",
+  "summary_log_tail": "Focused W795 source, module, root import, product declaration, run-owned required declarations, forbidden-token scan, full build, JSON, diff, helper accounting, and expected nonterminal audit gates passed; terminal external audit still fails only at the expected nonterminal product gate.",
+  "git_commit_note": "Commit SHA is recorded after verified W795 commit and push closeout.",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -20563,6 +20611,16 @@
       "product_complete": false,
       "update_goal_allowed": false,
       "note": "Terminal outcome remains blocked_nonterminal_frontier for W794; update_goal is not allowed."
+    },
+    "w795_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T07:18:50Z",
+      "source_tree_hash": "405cd5618c80c63e1dcb4c885cf666011edd8703def834f68ba79d78358d7a81",
+      "latest_verified_increment": "W795 target-isomorphism Closed2 route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "product_success": false,
+      "product_complete": false,
+      "update_goal_allowed": false,
+      "note": "Terminal outcome remains blocked_nonterminal_frontier for W795; update_goal is not allowed."
     }
   },
   "classification": "verified_nonterminal_support_increment",

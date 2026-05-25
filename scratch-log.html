@@ -160,47 +160,47 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W794 target homology-zero comparison-homology route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W795 target-isomorphism Closed2 route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroComparisonHomologyProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T065916Z_codex_parent_w794</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetIsoClosed2ProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T071007Z_codex_parent_w795</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W794 target homology-zero comparison-homology route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 16:02 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W795 target-isomorphism Closed2 route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 16:14 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W794 removes the separate global homology-existence field from the target homology-zero branch data. The new helper derives <code>HasHomology</code> for all metrizable cochain complexes from the universal left-right comparison premise through W768, reuses the W793 concrete-leaf colimit route, and feeds W774 normalized direct-source evidence. The increment lives in a new 173-line helper module with 11 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W795 replaces the W794 target homology-zero realization premise with the already-normalized W784 target-isomorphism realization premise. The new helper derives W774 <code>Closed2</code> directly through W784, W783, and W782, then reuses W793 concrete-leaf colimit stability and W792 boundary limit stability. The increment lives in a new 161-line helper module with 12 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>MetrizableClosedMapTargetHomologyZeroComparisonHomologyBranchDataW794</code> and the closed-embedding analogue omit the separate <code>hasHomology</code> field.</li>
-            <li><code>closedMapNormalizedDataOfComparisonHomologyW794</code> and <code>closedEmbeddingNormalizedDataOfComparisonHomologyW794</code> feed W774 using <code>cochainHasHomology_of_leftRightComparisonIsoW768</code>.</li>
-            <li><code>productEvidence_of_closedMapComparisonHomologyRouteW794</code> and <code>productEvidence_of_closedEmbeddingComparisonHomologyRouteW794</code> expose product evidence while keeping product success false.</li>
+            <li><code>exactClosed2OfTargetIsoRealizationW795</code> derives the normalized <code>Closed2</code> input from W784 target-isomorphism realization data.</li>
+            <li><code>closedMapNormalizedDataOfTargetIsoClosed2W795</code> and <code>closedEmbeddingNormalizedDataOfTargetIsoClosed2W795</code> feed W774 without target homology-zero realization data.</li>
+            <li><code>productEvidence_of_closedMapTargetIsoClosed2RouteW795</code> and <code>productEvidence_of_closedEmbeddingTargetIsoClosed2RouteW795</code> expose product evidence while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroComparisonHomologyProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroComparisonHomologyProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetIsoClosed2ProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.TargetIsoClosed2ProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T065916Z_codex_parent_w794/w794_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T071007Z_codex_parent_w795/w795_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 173 lines with 11 top-level declarations.</li>
-            <li><code>w794_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
-            <li>Focused W794 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 161 lines with 12 top-level declarations.</li>
+            <li><code>w795_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
+            <li>Focused W795 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W794 work.</p></div>
-      <p>W793 derived WPP colimit stability from W735 concrete leaf data through the W758/W757 exact-acyclic WPP-op colimit closure route.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W795 work.</p></div>
+      <p>W794 derived global homology existence from W768 comparison data while preserving the target homology-zero route.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct target homology-zero realization data indexed by the comparison-derived homology existence and the remaining Dbounded stable-infinity inputs.</li>
+        <li>Construct exact-acyclic homotopy-object target-isomorphism realization data and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>
