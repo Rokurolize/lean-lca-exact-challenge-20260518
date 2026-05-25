@@ -160,42 +160,42 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W801 W664 source-triangulation terminal route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W802 W664 route-consistency check</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroW664SourceTriangulationTerminalProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T082401Z_codex_parent_w801</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetHomologyZeroW664RouteConsistencyProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T083206Z_codex_parent_w802</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W801 W664 source-triangulation terminal route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 17:28 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W802 W664 route-consistency check</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 17:36 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W801 routes the W800 W664 source-triangulation surface through the existing W773 product-evidence route, then exposes exact/stable evidence, stable certificates, readiness, and acceptance for closed-map and closed-embedding branches. The new helper is a 173-line module with 15 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W802 records that the W799 terminal route and the W801 source-triangulation terminal route compute the same product evidence for the same W664 branch data. The helper proves closed-map and closed-embedding product evidence, exact/stable evidence, and stable certificates agree by definitional equality. The new module is 126 lines with 11 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>productEvidence_of_closedMapW664SourceTriangulationRouteW801</code> and <code>productEvidence_of_closedEmbeddingW664SourceTriangulationRouteW801</code> feed W800 data through W773.</li>
-            <li><code>closedMapExactStableEvidenceOfW664SourceTriangulationW801</code> and <code>closedEmbeddingExactStableEvidenceOfW664SourceTriangulationW801</code> project terminal exact/stable evidence.</li>
-            <li><code>closedMapStableCertificateAcceptedOfW664SourceTriangulationW801</code> and <code>closedEmbeddingStableCertificateAcceptedOfW664SourceTriangulationW801</code> project stable route acceptance while keeping product success false.</li>
+            <li><code>closedMapProductEvidenceW664Terminal_eq_sourceTriangulationW802</code> and <code>closedEmbeddingProductEvidenceW664Terminal_eq_sourceTriangulationW802</code> prove the two product-evidence routes agree.</li>
+            <li><code>closedMapExactStableEvidenceW664Terminal_eq_sourceTriangulationW802</code> and <code>closedEmbeddingExactStableEvidenceW664Terminal_eq_sourceTriangulationW802</code> prove exact/stable projections agree.</li>
+            <li><code>closedMapStableCertificateW664Terminal_eq_sourceTriangulationW802</code> and <code>closedEmbeddingStableCertificateW664Terminal_eq_sourceTriangulationW802</code> prove stable-certificate projections agree while product success remains false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroW664SourceTriangulationTerminalProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroW664SourceTriangulationTerminalProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetHomologyZeroW664RouteConsistencyProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.TargetHomologyZeroW664RouteConsistencyProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T082401Z_codex_parent_w801/w801_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T083206Z_codex_parent_w802/w802_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>w801_goal_sha_delta_decision.tsv</code> records the active-goal SHA delta and the decision to continue under the current goal.</li>
+            <li><code>w802_goal_sha_delta_decision.tsv</code> records the active-goal SHA delta and the decision to continue under the current goal.</li>
             <li><code>goal_sha_comparison_after_focused.tsv</code> shows the refreshed run goal, active goal file, and sidecar all matched.</li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 173 lines with 15 top-level declarations.</li>
-            <li><code>w801_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
-            <li>Focused W801 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 126 lines with 11 top-level declarations.</li>
+            <li><code>w802_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
+            <li>Focused W802 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W801 work.</p></div>
-      <p>W800 exposed W799 W664 terminal data at the W774 normalized-direct-source and W773 source-triangulation layers.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W802 work.</p></div>
+      <p>W801 routed W800 source-triangulation data through W773 and exposed exact/stable evidence plus accepted stable certificates.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
