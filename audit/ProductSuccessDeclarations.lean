@@ -6,6 +6,7 @@ import LeanLCAExactChallenge.Derived.LeftRightComparisonRoute
 import LeanLCAExactChallenge.Derived.CategoryHomologyStableRoute
 import LeanLCAExactChallenge.Derived.CategoryHomologyComparisonBijectiveOpenRoute
 import LeanLCAExactChallenge.Derived.ComparisonProjectionTopologyRoute
+import LeanLCAExactChallenge.Derived.ComparisonBijectiveEmbeddingRoute
 import LeanLCAExactChallenge.Derived.KernelCokernelProductRoute
 import LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
 import LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
@@ -9912,6 +9913,15 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check MetrizableLCA.ComparisonProjectionTopologyRouteStateW815
   #check MetrizableLCA.currentComparisonProjectionTopologyRouteStateW815
   #check MetrizableLCA.currentComparisonProjectionTopologyRouteStateW815_productSuccess
+  #check MetrizableLCA.isOpenMap_of_surjective_isEmbeddingW816
+  #check MetrizableLCA.comparisonBijectiveEmbeddingTargetW816
+  #check MetrizableLCA.comparisonBijectiveOpenTarget_of_bijectiveEmbeddingW816
+  #check MetrizableLCA.categoryWithHomology_of_comparisonBijectiveEmbeddingW816
+  #check MetrizableLCA.comparisonBijectiveEmbeddingInputNamesW816
+  #check MetrizableLCA.comparisonBijectiveEmbeddingInputNamesW816_count
+  #check MetrizableLCA.ComparisonBijectiveEmbeddingRouteStateW816
+  #check MetrizableLCA.currentComparisonBijectiveEmbeddingRouteStateW816
+  #check MetrizableLCA.currentComparisonBijectiveEmbeddingRouteStateW816_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
