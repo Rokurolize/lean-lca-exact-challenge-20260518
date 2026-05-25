@@ -18,6 +18,7 @@ import LeanLCAExactChallenge.Derived.RouteDataProviderFromComparisonBijectivity
 import LeanLCAExactChallenge.Derived.EndpointTopologyFromClosednessBranch
 import LeanLCAExactChallenge.Derived.EndpointKernelCokernelFromClosednessBranch
 import LeanLCAExactChallenge.Derived.EndpointKernelCokernelLocalizedFromClosednessBranch
+import LeanLCAExactChallenge.Derived.TargetExactAtFromClosednessBranch
 
 set_option autoImplicit false
 
@@ -507,5 +508,24 @@ theorem originalFourTaskContract_endpointKernelCokernelLocalizedRoute_nontermina
     Dbounded.currentMetrizableEndpointKernelCokernelLocalizedRouteStateW858.productSuccessClaimed =
       false :=
   Dbounded.currentW858EndpointKernelCokernelLocalizedRoute_productSuccess
+
+theorem originalFourTaskContract_endpointExactAtTopologyFacts_remainingFactCount :
+    Dbounded.endpointExactAtTopologyFactInputNamesW859.length = 3 :=
+  Dbounded.endpointExactAtTopologyFactInputNamesW859_count
+
+theorem originalFourTaskContract_closednessBranchTargetExactAtLeftCalculus_inputCount :
+    Dbounded.closednessBranchTargetExactAtLeftCalculusInputNamesW859.length =
+      4 :=
+  Dbounded.closednessBranchTargetExactAtLeftCalculusInputNamesW859_count
+
+theorem originalFourTaskContract_closednessBranchTargetExactAtStableRoute_expandedInputCount :
+    Dbounded.closednessBranchTargetExactAtStableRouteExpandedInputNamesW859.length =
+      8 :=
+  Dbounded.closednessBranchTargetExactAtStableRouteExpandedInputNamesW859_count
+
+theorem originalFourTaskContract_closednessBranchTargetExactAtRoute_nonterminal :
+    Dbounded.currentMetrizableClosednessBranchTargetExactAtRouteStateW859.productSuccessClaimed =
+      false :=
+  Dbounded.currentW859ClosednessBranchTargetExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
