@@ -159,7 +159,7 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-26 05:49 JST</span>
+        <span class="badge info">Updated 2026-05-26 06:03 JST</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">product_success=false</span>
       </div>
@@ -169,13 +169,13 @@ textarea.goal-text {
     <section class="grid" aria-label="Current status">
       <div class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W846</div>
-        <p>strict-realization direct-source stable route</p>
+        <div class="metric">W847</div>
+        <p>exact-acyclic selected-cochain strictification route</p>
       </div>
       <div class="card span-3">
         <div class="label">Verification</div>
         <div class="metric">Guarded</div>
-        <p>W783 data derives the W845 surface</p>
+        <p>selected-cochain strictification feeds W783/W846</p>
       </div>
       <div class="card span-3">
         <div class="label">Primary Surface</div>
@@ -185,35 +185,35 @@ textarea.goal-text {
       <div class="card span-3">
         <div class="label">Next Safe Action</div>
         <div class="metric">Implement</div>
-        <p>construct W735 branch data and W783 strict-realization data</p>
+        <p>prove W847 strictification and construct W735 branch data</p>
       </div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W846 keeps the target nonterminal under the immutable original four-task contract and routes W783 strict triangleh realization data through W812 homology detection and W831 comparison bijectivity into the W845 iso-closure direct-source surface. <code>Dbounded.closedMapIsoClosureDataOfStrictDirectSourceW846</code> and its closed-embedding analogue derive W651 iso-closure data from W735 exact inputs plus W783 data, <code>Dbounded.closedMapTargetIsoDataOfStrictDirectSourceW846</code> feeds the W844 target-isomorphism surface, and <code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictDirectSourceW846</code> assembles the stable package from W783 data. The route still requires concrete W735 branch data and W783 strict triangleh realization data before it can become original four-task completion evidence.</p>
+      <p>W847 keeps the target nonterminal under the immutable original four-task contract and names the exact-acyclic selected-cochain strictification boundary behind W783. <code>ExactAcyclicTrianglehIso13SelectedCochainPayload</code> records, for each relevant distinguished triangle, selected source and target complexes, a selected map, endpoint isomorphisms to the standard mapping-cone triangle, the required commutative endpoint square, and a strictly exact-acyclic selected target. <code>exactAcyclicHomotopyObjectTrianglehIso13Realization_of_selected_cochain</code> converts that payload to W783, and <code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapSelectedCochainW847</code> plus its closed-embedding analogue feed W846. The route still requires concrete W735 branch data and a proof of W847 selected-cochain strictification for <code>MetrizableLCA</code>; it does not claim product success.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>Touched Sources</h3>
           <table>
             <tbody>
-              <tr><th>Baseline</th><td><code>1ab9351cfc941c07ffe236d57db07c435e67e484</code></td></tr>
+              <tr><th>Baseline</th><td><code>88e3ffd9ca13c9c8b0858a69a9e228b761604906</code></td></tr>
               <tr><th>Contract SHA</th><td><code>a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</code></td></tr>
               <tr><th>Dynamic Guidance SHA</th><td><code>186cc44843f24d5d76859587c82fd7d437125e7ea4ad64b24309dfebba9cacd1</code></td></tr>
-              <tr><th>Remaining Inputs</th><td>W735 closed-map or closed-embedding exact branch data including W721/W722 payloads, W783 strict triangleh realization data, original witness, final packet fixtures</td></tr>
-              <tr><th>Target Data</th><td>W651 iso-closure, W784 target-isomorphism, W785/W663 target ExactAt, and W790/W839 surfaces derived through W812/W831/W810/W809/W808/W803</td></tr>
+              <tr><th>Remaining Inputs</th><td>W735 closed-map or closed-embedding exact branch data including W721/W722 payloads, W847 selected-cochain strictification for MetrizableLCA, original witness, final packet fixtures</td></tr>
+              <tr><th>Target Data</th><td>W783 strict realization, W651 iso-closure, W784 target-isomorphism, W785/W663 target ExactAt, and W790/W839 surfaces derived through W847/W846/W812/W831/W810/W809/W808/W803</td></tr>
             </tbody>
           </table>
         </div>
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>Dbounded.closedMapIsoClosureDataOfStrictDirectSourceW846</code></li>
-            <li><code>Dbounded.closedEmbeddingIsoClosureDataOfStrictDirectSourceW846</code></li>
-            <li><code>Dbounded.closedMapTargetIsoDataOfStrictDirectSourceW846</code></li>
-            <li><code>Dbounded.closedMapTargetHomologyZeroDataOfStrictDirectSourceW846</code></li>
-            <li><code>Dbounded.remainingStableFieldsOfClosedMapStrictDirectSourceW846</code></li>
-            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictDirectSourceW846</code></li>
+            <li><code>ExactAcyclicTrianglehIso13SelectedCochainPayload</code></li>
+            <li><code>exactAcyclicTrianglehIso13SelectedCochainStrictification</code></li>
+            <li><code>exactAcyclicHomotopyObjectTrianglehIso13Realization_of_selected_cochain</code></li>
+            <li><code>Dbounded.trianglehRealizationOfSelectedCochainStrictificationW847</code></li>
+            <li><code>Dbounded.closedMapStrictRealizationDataOfSelectedCochainW847</code></li>
+            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapSelectedCochainW847</code></li>
             <li><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></li>
@@ -232,17 +232,17 @@ textarea.goal-text {
           <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/StrictRealizationDirectSourceStableRoute.lean</code></td><td>passed</td><td><code>w846_strict_realization_direct_source_stable_route_lean.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.StrictRealizationDirectSourceStableRoute</code></td><td>passed</td><td><code>w846_lake_build_strict_realization_direct_source_stable_route.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge</code></td><td>passed</td><td><code>w846_lake_build_root.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w846_audit_product_success_declarations.log</code></td></tr>
-          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w846_audit_original_four_task_completion_declarations.log</code></td></tr>
-          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w846_audit_required_declarations.log</code></td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td><code>w846_lake_build.log</code></td></tr>
-          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w846_forbidden_tokens.log</code></td></tr>
-          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>passed</td><td><code>w846_source_product_success_true_scan.log</code></td></tr>
-          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w846_git_diff_check.log</code></td></tr>
-          <tr><td><code>python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html</code></td><td>passed</td><td><code>w846_html_check_report.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ExactAcyclicSelectedCochainStrictificationRoute.lean</code></td><td>passed</td><td><code>w847_new_module_lean.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainStrictificationRoute</code></td><td>passed</td><td><code>w847_lake_build_new_module_after_longline.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge.lean</code></td><td>passed</td><td><code>w847_root_import_lean_after_build.log</code></td></tr>
+          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w847_product_success_lean_after_build.log</code></td></tr>
+          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w847_original_four_task_lean_after_build.log</code></td></tr>
+          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w847_audit_required_declarations.log</code></td></tr>
+          <tr><td><code>lake build</code></td><td>passed</td><td><code>w847_lake_build.log</code></td></tr>
+          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w847_forbidden_tokens.log</code></td></tr>
+          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>passed</td><td><code>w847_source_product_success_true_scan.log</code></td></tr>
+          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w847_git_diff_check.log</code></td></tr>
+          <tr><td><code>python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html</code></td><td>passed</td><td><code>w847_html_check_report.log</code></td></tr>
           <tr><td><code>python3 audit/original_four_task_contract_audit.py --root ...</code></td><td>passed</td><td><code>w846_contract_audit.log</code></td></tr>
           <tr><td><code>python3 audit/external_audit.py --root ...</code></td><td>failed_expected</td><td><code>w846_external_audit_nonterminal_expected.log</code></td></tr>
           <tr><td><code>python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...</code></td><td>passed</td><td><code>w846_browser_evidence_scratch_log.log</code></td></tr>
@@ -383,6 +383,11 @@ textarea.goal-text {
           <h3>Derived iso-closure data from strict realization</h3>
           <p><code>StrictRealizationDirectSourceStableRoute</code> uses W812 homology detection and W831 comparison bijectivity to feed W845 from W783 strict triangleh realization data and W735 exact inputs, reducing the remaining realization premise from iso-closure to strict realization while preserving <code>product_success=false</code>.</p>
         </article>
+        <article class="event">
+          <time datetime="2026-05-26T06:03:00+09:00">2026-05-26 06:03 JST</time>
+          <h3>Named selected-cochain strictification boundary</h3>
+          <p><code>ExactAcyclicSelectedCochainStrictificationRoute</code> exposes the per-triangle exact-acyclic selected-cochain payload equivalent to W783 and feeds W846 through <code>Dbounded.closedMapStrictRealizationDataOfSelectedCochainW847</code>, while preserving <code>product_success=false</code>.</p>
+        </article>
       </div>
     </section>
 
@@ -406,7 +411,8 @@ textarea.goal-text {
         <li>W844 derives W843's target ExactAt input surface from W784 target-isomorphism realization data through W808.</li>
         <li>W845 derives W844's target-isomorphism input surface from W651 iso-closure strict-realization data through W810 and W809.</li>
         <li>W846 derives W845's W651 iso-closure input surface from W783 strict triangleh realization data through W812 and W831.</li>
-        <li>The remaining mathematical product work is to construct W735 branch data, including W721/W722 payloads, and W783 strict triangleh realization data.</li>
+        <li>W847 names a selected-cochain strictification payload equivalent to W783 and routes it into W846 without using the false unrestricted endpoint strictification principle.</li>
+        <li>The remaining mathematical product work is to construct W735 branch data, including W721/W722 payloads, and prove the W847 selected-cochain strictification theorem for <code>MetrizableLCA</code>.</li>
       </ul>
       <div class="note">
         <strong>Goal completion rule.</strong>

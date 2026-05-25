@@ -6,6 +6,7 @@ import LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableRoute
 import LeanLCAExactChallenge.Derived.TargetIsoDirectSourceStableRoute
 import LeanLCAExactChallenge.Derived.IsoClosureDirectSourceStableRoute
 import LeanLCAExactChallenge.Derived.StrictRealizationDirectSourceStableRoute
+import LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainStrictificationRoute
 
 set_option autoImplicit false
 
@@ -164,6 +165,16 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictDirectSourceW846
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingStrictDirectSourceW846
+#check
+  LeanLCAExactChallenge.exactAcyclicHomotopyObjectTrianglehIso13Realization_of_selected_cochain
+#check
+  LeanLCAExactChallenge.Dbounded.trianglehRealizationOfSelectedCochainStrictificationW847
+#check
+  LeanLCAExactChallenge.Dbounded.closedMapStrictRealizationDataOfSelectedCochainW847
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapSelectedCochainW847
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingSelectedCochainW847
 
 namespace LeanLCAExactChallenge
 
@@ -351,5 +362,16 @@ theorem
     Dbounded.strictRealizationDirectSourceStableRouteExpandedRequiredFieldNamesW846.length =
       2 :=
   Dbounded.strictRealizationDirectSourceStableRouteExpandedRequiredFieldNamesW846_count
+
+theorem originalFourTaskContract_selectedCochainDirectSourceStableRoute_bundledInputCount :
+    Dbounded.selectedCochainDirectSourceStableRouteInputNamesW847.length =
+      1 :=
+  Dbounded.selectedCochainDirectSourceStableRouteInputNamesW847_count
+
+theorem
+    originalFourTaskContract_selectedCochainDirectSourceStableRoute_expandedRequiredFieldCount :
+    Dbounded.selectedCochainDirectSourceStableRouteExpandedRequiredFieldNamesW847.length =
+      2 :=
+  Dbounded.selectedCochainDirectSourceStableRouteExpandedRequiredFieldNamesW847_count
 
 end LeanLCAExactChallenge
