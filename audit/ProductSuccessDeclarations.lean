@@ -8863,6 +8863,22 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW758
   #check
     Dbounded.currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW758_productSuccess
+  #check
+    Dbounded.exactAcyclic_walkingParallelPairOp_colimit_closure_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759
+  #check
+    Dbounded.exactStableEvidence_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759
+  #check
+    Dbounded.exactStableWppOpBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW759
+  #check
+    Dbounded.exactStableWppOpBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW759_count
+  #check
+    Dbounded.MetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759
+  #check
+    Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteSupportStateW759
+  #check
+    Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759
+  #check
+    Dbounded.currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

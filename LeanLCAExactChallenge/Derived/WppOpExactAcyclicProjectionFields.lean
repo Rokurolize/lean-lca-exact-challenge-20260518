@@ -54776,6 +54776,107 @@ theorem
       false :=
   rfl
 
+/--
+W759 derives WPP-op exactness directly from a W733 concrete leaf record. The
+record already carries W717 relation data and a W725 closed-map or
+closed-embedding branch whose component provider is exactly the W756 input.
+-/
+theorem exactAcyclic_walkingParallelPairOp_colimit_closure_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure := by
+  cases leaves.diagramAndMappedCokernelClosednessData with
+  | closedMap globalClosedMapComponents _mappedCokernelClosedMapProvider =>
+      exact
+        exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedMapW756
+          leaves.relationData globalClosedMapComponents
+  | closedEmbedding globalClosedEmbeddingComponents
+      _mappedCokernelClosedEmbeddingProvider =>
+      exact
+        exactAcyclic_walkingParallelPairOp_colimit_closure_of_relationDataDiagramComponentProviderClosedEmbeddingW756
+          leaves.relationData globalClosedEmbeddingComponents
+
+/--
+W759 packages exactness and accepted stable evidence from one W733 concrete leaf
+record, avoiding both the W735 category-homology-instance wrapper and W758's
+separate W736 comparison-isomorphism premise.
+-/
+noncomputable def
+    exactStableEvidence_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759
+    (leaves :
+      MetrizableWppBoundaryRelationTargetClosednessNormalizedConcreteLeavesW733) :
+    MetrizableWppExactStableEvidenceW758
+    where
+  exactAcyclic :=
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759
+      leaves
+  acceptedStable :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733
+      leaves
+  acceptedStableAccepted :=
+    metrizableAcceptedStableBoundedDerivedInfinityCategory_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW733_accepted
+      leaves
+
+/-- Input name for the W759 W733 concrete leaf exact/stable bridge. -/
+def exactStableWppOpBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW759 :
+    List String :=
+  ["W733 boundary/relation target/closedness normalized concrete leaf record with source-homological data"]
+
+theorem
+    exactStableWppOpBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW759_count :
+    exactStableWppOpBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW759.length =
+      1 :=
+  rfl
+
+/--
+Current checked W759 state for the W733 concrete leaf exact/stable bridge.
+-/
+structure MetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759 :
+    Type where
+  seed : String
+  declarations : List String
+  concreteLeafExactnessResult : String
+  concreteLeafStableResult : String
+  removedWrappers : List String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W759 state. -/
+def currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteSupportStateW759 :
+    MetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759
+    where
+  seed := "w759-w733-concrete-leaf-exact-stable-bridge"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759",
+      "exactStableEvidence_of_boundaryRelationTargetClosednessNormalizedConcreteLeavesW759",
+      "exactStableWppOpBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW759",
+      "exactStableWppOpBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW759_count"]
+  concreteLeafExactnessResult :=
+    "proved: W733 concrete leaves expose W717 relation data and W725 branch component providers, so W756 supplies exactness"
+  concreteLeafStableResult :=
+    "proved: the same W733 concrete leaf record feeds the accepted stable bounded-derived-infinity-category route"
+  removedWrappers :=
+    ["W735 category-homology-instance concrete leaf wrapper",
+      "W736 universal comparison-isomorphism premise at the exact/stable bridge surface"]
+  exposedInputs :=
+    exactStableWppOpBoundaryRelationTargetClosednessNormalizedConcreteLeafInputNamesW759
+  remainingInputs :=
+    ["construct one concrete W733 boundary/relation target/closedness normalized concrete leaf record",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759 :
+    MetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759 :=
+  currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteSupportStateW759
+
+theorem
+    currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759_productSuccess :
+    currentMetrizableWppBoundaryRelationConcreteLeafExactStableRouteStateW759.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in
