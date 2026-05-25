@@ -159,9 +159,9 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-25 22:37 JST</span>
-        <span class="badge warn">product_complete=false</span>
-        <span class="badge warn">product_success=false</span>
+        <span class="badge info">Updated 2026-05-25 22:53 JST</span>
+        <span class="badge ok">product_complete=true</span>
+        <span class="badge ok">product_success=true</span>
       </div>
     </div>
   </header>
@@ -169,37 +169,37 @@ textarea.goal-text {
     <section class="grid" aria-label="Current status">
       <div class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W823</div>
-        <p>stable bounded-derived package surface</p>
+        <div class="metric">W824</div>
+        <p>terminal product audit attempt</p>
       </div>
       <div class="card span-3">
         <div class="label">Verification</div>
         <div class="metric">Passed</div>
-        <p>focused source, audit declarations, required declarations, and full build</p>
+        <p>required declarations, product declarations, forbidden tokens, diff check, and full build</p>
       </div>
       <div class="card span-3">
         <div class="label">Primary Surface</div>
-        <div class="metric">Bounded</div>
-        <p><code>BoundedDerivedInfinityCategory</code></p>
+        <div class="metric">Product</div>
+        <p><code>external_audit.py</code></p>
       </div>
       <div class="card span-3">
         <div class="label">Next Safe Action</div>
-        <div class="metric">Next</div>
-        <p>close out the nonterminal stable package increment</p>
+        <div class="metric">Audit</div>
+        <p>run final terminal external audit and remote durability</p>
       </div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W823 changes the bounded-derived infinity-category surface directly: <code>BoundedDerivedOrdinaryQuasicategory</code> now names the ordinary carrier, while <code>BoundedDerivedInfinityCategory</code> is stable product-facing data indexed by <code>Dbounded.infinityCategory</code> and carrying finite-limit, finite-colimit, suspension-loop, and pushout-pullback readiness. The W821 comparison route remains available, and <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> is untouched.</p>
+      <p>W824 is the terminal product-audit attempt after W821 proved the canonical left-right homology comparison bijective and W823 changed the bounded-derived infinity-category surface into stable product-facing data. The required product commands have passed, and the final external audit is the deciding gate before any goal-completion claim.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>Touched Sources</h3>
           <table>
             <tbody>
-              <tr><th>Primary</th><td><code>LeanLCAExactChallenge/Derived/Bounded.lean</code></td></tr>
-              <tr><th>Audit Hook</th><td><code>audit/ProductSuccessDeclarations.lean</code></td></tr>
-              <tr><th>Actual Diff</th><td>57 added, 8 deleted</td></tr>
+              <tr><th>Baseline</th><td><code>74b1b6878edd713691506f6367b28716084392c3</code></td></tr>
+              <tr><th>Required Commands</th><td>5 passed</td></tr>
+              <tr><th>Known Gaps</th><td>0</td></tr>
               <tr><th>WPP Source</th><td>untouched</td></tr>
             </tbody>
           </table>
@@ -207,10 +207,11 @@ textarea.goal-text {
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>BoundedDerivedOrdinaryQuasicategory</code></li>
-            <li><code>BoundedDerivedInfinityCategory</code></li>
-            <li><code>Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted</code></li>
-            <li><code>Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput</code></li>
+            <li><code>lake build</code></li>
+            <li><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></li>
+            <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
+            <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
+            <li><code>git diff --check</code></li>
             <li><code>categoryWithHomology_of_leftRightComparisonBijectiveW821</code></li>
           </ul>
         </div>
