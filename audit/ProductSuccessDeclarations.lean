@@ -27,6 +27,7 @@ import LeanLCAExactChallenge.Derived.TargetHomologyZeroEndpointTargetIsoSelected
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroConditionedEndpointTargetIsoSelectedW461RowsProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroKernelCokernelTargetIsoSelectedW461RowsProductRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroClosedRangeTargetIsoSelectedW461RowsProductRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroExactInputsClosedRangeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9464,6 +9465,28 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableTargetHomologyZeroClosedRangeRouteStateW789
   #check Dbounded.currentMetrizableTargetHomologyZeroClosedRangeRouteStateW789
   #check Dbounded.currentW789TargetHomologyZeroClosedRangeRoute_productSuccess
+  #check Dbounded.MetrizableExactAcyclicHomotopyObjectTargetHomologyZeroPayloadW790
+  #check Dbounded.targetIsoRealizationOfTargetHomologyZeroExactInputsClosedRangeW790
+  #check Dbounded.closedRangeEndpointTopologyOfClosedMapExactInputsW790
+  #check Dbounded.closedRangeEndpointTopologyOfClosedEmbeddingExactInputsW790
+  #check
+    Dbounded.MetrizableClosedMapTargetHomologyZeroExactInputsClosedRangeBranchDataW790
+  #check
+    Dbounded.MetrizableClosedEmbeddingTargetHomologyZeroExactInputsClosedRangeBranchDataW790
+  #check Dbounded.closedMapTargetIsoDataOfTargetHomologyZeroExactInputsClosedRangeW790
+  #check
+    Dbounded.closedEmbeddingTargetIsoDataOfTargetHomologyZeroExactInputsClosedRangeW790
+  #check
+    Dbounded.productEvidence_of_closedMapTargetHomologyZeroExactInputsClosedRangeRouteW790
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingTargetHomologyZeroExactInputsClosedRangeRouteW790
+  #check Dbounded.targetHomologyZeroExactInputsClosedRangeProductRouteInputNamesW790
+  #check
+    Dbounded.targetHomologyZeroExactInputsClosedRangeProductRouteInputNamesW790_count
+  #check Dbounded.MetrizableTargetHomologyZeroExactInputsClosedRangeRouteStateW790
+  #check
+    Dbounded.currentMetrizableTargetHomologyZeroExactInputsClosedRangeRouteStateW790
+  #check Dbounded.currentW790TargetHomologyZeroExactInputsClosedRangeRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
