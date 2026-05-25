@@ -3251,24 +3251,40 @@ abbrev BoundedDerivedCategory [HasBinaryBiproducts C] : Type (max u v) :=
 noncomputable abbrev BoundedDerivedOrdinaryQuasicategory [HasBinaryBiproducts C] : SSet.QCat :=
   ⟨CategoryTheory.nerve (BoundedDerivedCategory C), inferInstance⟩
 
-/--
-Product-facing stable bounded-derived infinity-category data. The carrier is paired with the
-four stable projections consumed by the final audit surface.
--/
-structure BoundedDerivedInfinityCategory [HasBinaryBiproducts C] (Q : SSet.QCat) :
-    Type 2 where
-  finiteLimits : Prop
-  finiteColimits : Prop
-  suspensionLoopEquivalence : Prop
-  pushoutPullbackCompatibility : Prop
-  finiteLimits_ready : finiteLimits
-  finiteColimits_ready : finiteColimits
-  suspensionLoopEquivalence_ready : suspensionLoopEquivalence
-  pushoutPullbackCompatibility_ready : pushoutPullbackCompatibility
-
 /-- The bounded derived category for a local Quillen exact category. -/
 abbrev Dbounded [HasBinaryBiproducts C] : Type (max u v) :=
   BoundedDerivedCategory C
+
+/--
+Product-facing stable bounded-derived infinity-category data. The carrier is tied to the actual
+bounded derived localization, and the stable projections are recorded as concrete categorical
+structure on `Dbounded`, not as arbitrary readiness predicates.
+-/
+structure BoundedDerivedInfinityCategory [HasBinaryBiproducts C] (Q : SSet.QCat) :
+    Type (max (max (u + 1) (v + 1)) 2) where
+  quasicategoryCarrier : Q = BoundedDerivedOrdinaryQuasicategory C
+  preadditive : Preadditive (Dbounded C)
+  finiteLimitInstance : HasFiniteLimits (Dbounded C)
+  finiteColimitInstance : HasFiniteColimits (Dbounded C)
+  zeroObjectInstance : HasZeroObject (Dbounded C)
+  shiftAdditiveAll :
+    letI : Preadditive (Dbounded C) := preadditive
+    ∀ n : ℤ, (shiftFunctor (Dbounded C) n).Additive
+  suspensionAdditive :
+    letI : Preadditive (Dbounded C) := preadditive
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded C) n).Additive := shiftAdditiveAll
+    (shiftFunctor (Dbounded C) (1 : ℤ)).Additive
+  pretriangulatedStructure :
+    letI : Preadditive (Dbounded C) := preadditive
+    letI : HasZeroObject (Dbounded C) := zeroObjectInstance
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded C) n).Additive := shiftAdditiveAll
+    Pretriangulated (Dbounded C)
+  triangulatedStructure :
+    letI : Preadditive (Dbounded C) := preadditive
+    letI : HasZeroObject (Dbounded C) := zeroObjectInstance
+    letI : ∀ n : ℤ, (shiftFunctor (Dbounded C) n).Additive := shiftAdditiveAll
+    letI : Pretriangulated (Dbounded C) := pretriangulatedStructure
+    IsTriangulated (Dbounded C)
 
 /-- The localization functor from bounded complexes to the bounded derived category. -/
 abbrev Dbounded.localization [HasBinaryBiproducts C] :
@@ -3960,19 +3976,10 @@ noncomputable def Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfCertifi
 noncomputable def Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted
     (C : Type u) [Category.{v} C] [Preadditive C] [QuillenExactCategory C]
     [HasBinaryBiproducts C]
-    (accepted : Dbounded.AcceptedStableBoundedDerivedInfinityCategory C) :
-    BoundedDerivedInfinityCategory C (Dbounded.infinityCategory C) where
-  finiteLimits := accepted.certificate.finiteLimits accepted.certificate.certificate
-  finiteColimits := accepted.certificate.finiteColimits accepted.certificate.certificate
-  suspensionLoopEquivalence :=
-    accepted.certificate.suspensionLoopEquivalence accepted.certificate.certificate
-  pushoutPullbackCompatibility :=
-    accepted.certificate.pushoutPullbackCompatibility accepted.certificate.certificate
-  finiteLimits_ready := accepted.certificate.finiteLimits_ready
-  finiteColimits_ready := accepted.certificate.finiteColimits_ready
-  suspensionLoopEquivalence_ready := accepted.certificate.suspensionLoopEquivalence_ready
-  pushoutPullbackCompatibility_ready :=
-    accepted.certificate.pushoutPullbackCompatibility_ready
+    (_accepted : Dbounded.AcceptedStableBoundedDerivedInfinityCategory C)
+    (stableStructure : BoundedDerivedInfinityCategory C (Dbounded.infinityCategory C)) :
+    BoundedDerivedInfinityCategory C (Dbounded.infinityCategory C) :=
+  stableStructure
 
 /-- Package a metrizable ordinary semantic input as an accepted stable `Dbounded` object. -/
 noncomputable def
@@ -3988,9 +3995,16 @@ noncomputable def
 noncomputable def Dbounded.boundedDerivedInfinityCategoryOfMetrizableOrdinaryInput
     (input : Dbounded.MetrizableOrdinaryStableSemanticInput) :
     BoundedDerivedInfinityCategory MetrizableLCA.{0}
-      (Dbounded.infinityCategory MetrizableLCA.{0}) :=
-  Dbounded.stableBoundedDerivedInfinityCategoryOfAccepted MetrizableLCA.{0}
-    (Dbounded.acceptedStableBoundedDerivedInfinityCategoryOfMetrizableOrdinaryInput input)
+      (Dbounded.infinityCategory MetrizableLCA.{0}) where
+  quasicategoryCarrier := rfl
+  preadditive := input.preadditive
+  finiteLimitInstance := input.finiteLimits
+  finiteColimitInstance := input.finiteColimits
+  zeroObjectInstance := input.zeroObject
+  shiftAdditiveAll := input.shiftAdditiveAll
+  suspensionAdditive := input.suspensionAdditive
+  pretriangulatedStructure := input.pretriangulated
+  triangulatedStructure := input.triangulated
 
 /-- Concrete ordinary fields required by the semantic adapter for `Dbounded MetrizableLCA`. -/
 def Dbounded.metrizableSemanticStableRequiredFieldNames : List String :=

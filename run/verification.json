@@ -1,74 +1,90 @@
 {
-  "schema": "lean_lca_original_four_task_nonterminal_verification_v2",
-  "generated_utc": "2026-05-25T16:40:57Z",
-  "source_tree_hash": "f6bc6dc48eefcfa454e18e94bb2d5448b7ed093856a3ada6a1e345606a730528",
-  "summary": "W826 keeps the target nonterminal under the immutable original four-task contract and removes semantic-input/certificate-adapter route names from the product-success audit surface. The remaining task-4 blocker is the actual four-Prop bounded-derived infinity-category wrapper.",
+  "schema": "lean_lca_original_four_task_nonterminal_verification_v3",
+  "generated_utc": "2026-05-25T16:58:25Z",
+  "source_tree_hash": "a3261fa3084e9f448f8119554124b4e26708c7edbd7bf57ecc23404fc7496c73",
+  "summary": "W827 keeps the target nonterminal under the immutable original four-task contract and changes BoundedDerivedInfinityCategory from arbitrary readiness predicates into concrete categorical structure on Dbounded. The remaining task-4 blocker is the missing nullary or typeclass-resolved original four-task completion witness.",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
+  },
+  "dynamic_guidance": {
+    "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
+    "sha256": "95d79f09e84c98a3dea7e05c32d654bc3dbdcb969f92e93dcaf03863dd38b50b"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
   "known_gaps": [
-    "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory is still a four-Prop wrapper rather than stable infinity-category data constructed from Dbounded MetrizableLCA.",
-    "ProductSuccessDeclarations no longer cites the semantic-input/certificate-adapter route names, but it still lacks an original four-task completion witness.",
+    "Task 4 is not yet contract-complete: BoundedDerivedInfinityCategory now requires concrete Dbounded stable fields, but the target still lacks a no-argument witness assembling them for MetrizableLCA.",
+    "ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations still lack an original four-task completion witness.",
     "The review packet does not yet contain the immutable-contract negative fixtures and clean extraction audit required for completion."
   ],
   "remaining_work": [
-    "Replace the task-4 four-Prop wrapper with nullary or typeclass-resolved stable infinity-category data constructed from the actual bounded localization.",
-    "Make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations expose a real original-four-task completion witness.",
+    "Construct the concrete stable Dbounded fields from the actual bounded localization and expose them through a no-argument or typeclass-resolved original four-task completion witness.",
+    "Make ProductSuccessDeclarations or OriginalFourTaskCompletionDeclarations check that original four-task completion witness instead of only checking public names.",
     "Refresh the review packet with contract-specific negative fixtures, external SHA256 sidecar, and clean extraction audit before any future product-success claim."
   ],
-  "support_result_classification": "nonterminal_final_surface_quarantine",
-  "latest_verified_increment": "W826 final-surface quarantine",
+  "support_result_classification": "nonterminal_concrete_bounded_stable_surface",
+  "latest_verified_increment": "W827 concrete bounded stable surface",
   "implemented_declarations_checked": [
-    "ProductSuccessDeclarations semantic-input/certificate adapter route names removed",
+    "BoundedDerivedInfinityCategory concrete Dbounded stable structure fields",
+    "bounded-derived semantic data route projects concrete stable fields",
     "originalFourTaskContract_currentOrdinaryRouteRejected",
     "originalFourTaskContract_currentSemanticRouteNonterminal"
   ],
   "commands": [
     {
-      "command": "lake build",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/Bounded.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_lake_build.log"
-    },
-    {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_forbidden_tokens.log"
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_required_declarations.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_bounded_lean_retry.log"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_product_declarations_retry.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_product_declarations.log"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_original_four_task_declarations.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_original_four_task_declarations.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_required_declarations.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_lake_build.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_forbidden_tokens.log"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_original_four_task_contract_audit.log",
-      "note": "passes because the target outcome is honestly nonterminal and final-surface adapter names were removed"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_contract_audit_after_metadata.log",
+      "note": "passes because the target outcome is honestly nonterminal; the four-Prop wrapper blocker is gone"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_external_audit_nonterminal_expected.log",
       "note": "legacy product-success audit rejects the reopened nonterminal state"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T163604Z_codex_parent_w826_final_surface_quarantine/logs/w826_git_diff_check.log"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_git_diff_check.log"
+    },
+    {
+      "command": "python3 browser-evidence-check render_static_report.py --html scratch-log.html",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T170000Z_codex_parent_w827_concrete_bounded_stable_surface/logs/w827_browser_evidence.log",
+      "note": "rendered scratch-log.html and checked W827/product flags"
     }
   ]
 }
