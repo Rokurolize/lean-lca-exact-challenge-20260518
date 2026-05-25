@@ -160,47 +160,47 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W775 WPP-op closure normalized closed-range route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W776 limit/op-closure normalized closed-range route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/OpClosureNormalizedDirectSourceClosedRangeProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T034035Z_codex_parent_w775</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/LimitOpClosureNormalizedClosedRangeProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T035159Z_codex_parent_w776</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W775 WPP-op closure normalized closed-range route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 12:46 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W776 limit/op-closure normalized closed-range route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 12:55 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W775 replaces W774's abstract WPP colimit-stability field with WPP-op exact-acyclic colimit closure via <code>walkingParallelPairColimitStability_of_exactAcyclicClosure</code>. Closed-map and closed-embedding branch records now supply WPP-op closure input to W774's normalized closed-range route. The increment lives in a new 182-line helper module with 13 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W776 replaces W775's abstract WPP limit-stability field with direct WPP limit comparison plus exact-acyclic limit closure via <code>metrizableWalkingParallelPairLimitStability_of_comparison_and_closure</code>. Closed-map and closed-embedding branch records now feed W775 using WPP limit closure and WPP-op colimit closure inputs. The increment lives in a new 180-line helper module with 13 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>colimitStabilityOfClosedMapOpClosureW775</code> and <code>colimitStabilityOfClosedEmbeddingOpClosureW775</code> derive WPP colimit stability from WPP-op exact-acyclic closure.</li>
-            <li><code>closedMapNormalizedDataOfOpClosureW775</code> and <code>closedEmbeddingNormalizedDataOfOpClosureW775</code> rebuild W774 normalized route inputs from op-closure branch records.</li>
-            <li><code>productEvidence_of_closedMapOpClosureNormalizedClosedRangeRouteW775</code> and <code>productEvidence_of_closedEmbeddingOpClosureNormalizedClosedRangeRouteW775</code> expose op-closure normalized closed-range product evidence while keeping product success false.</li>
+            <li><code>limitStabilityOfClosedMapLimitOpClosureW776</code> and <code>limitStabilityOfClosedEmbeddingLimitOpClosureW776</code> derive WPP limit stability from direct comparison and limit closure.</li>
+            <li><code>closedMapOpClosureDataOfLimitClosureW776</code> and <code>closedEmbeddingOpClosureDataOfLimitClosureW776</code> rebuild W775 branch records from limit/op-closure data.</li>
+            <li><code>productEvidence_of_closedMapLimitOpClosureNormalizedClosedRangeRouteW776</code> and <code>productEvidence_of_closedEmbeddingLimitOpClosureNormalizedClosedRangeRouteW776</code> expose limit/op-closure normalized closed-range product evidence while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/OpClosureNormalizedDirectSourceClosedRangeProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.OpClosureNormalizedDirectSourceClosedRangeProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/LimitOpClosureNormalizedClosedRangeProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.LimitOpClosureNormalizedClosedRangeProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T034035Z_codex_parent_w775/w775_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T035159Z_codex_parent_w776/w776_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 182 lines with 13 top-level declarations.</li>
-            <li><code>w775_goal_sha_delta_decision.tsv</code>, <code>goal_sha_comparison_before_focused.tsv</code>, and <code>goal_sha_comparison_after_focused.tsv</code> record the active-goal SHA refresh to the Round 18 W774 baseline update before focused verification.</li>
-            <li>Focused W775 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 180 lines with 13 top-level declarations.</li>
+            <li><code>goal_sha_comparison_before_focused.tsv</code> and <code>goal_sha_comparison_after_focused.tsv</code> record that the active-goal SHA stayed stable for W776 focused verification.</li>
+            <li>Focused W776 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W775 work.</p></div>
-      <p>W774 rebuilt W653 direct finite-shape source inputs from W735 normalized fixed-target data and explicit WPP limit/colimit stability.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W776 work.</p></div>
+      <p>W775 replaced W774's abstract WPP colimit-stability field with WPP-op exact-acyclic colimit closure.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct W696 closed-range endpoint-topology data, the triangulated-closure premise, WPP limit stability, WPP-op exact-acyclic colimit closure, and the remaining Dbounded stable-infinity inputs.</li>
+        <li>Construct W696 closed-range endpoint-topology data, the triangulated-closure premise, mapping-cone WPP limit comparison, WPP exact-acyclic limit closure, WPP-op exact-acyclic colimit closure, and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>

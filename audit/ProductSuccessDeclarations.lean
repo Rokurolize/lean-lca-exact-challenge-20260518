@@ -13,6 +13,7 @@ import LeanLCAExactChallenge.Derived.ClosedRangeDirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.SourceTriangulationClosedRangeDirectFiniteShapeProductRoute
 import LeanLCAExactChallenge.Derived.NormalizedDirectSourceClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.OpClosureNormalizedDirectSourceClosedRangeProductRoute
+import LeanLCAExactChallenge.Derived.LimitOpClosureNormalizedClosedRangeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9215,6 +9216,23 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableOpClosureNormalizedClosedRangeProductRouteStateW775
   #check Dbounded.currentMetrizableOpClosureNormalizedClosedRangeProductRouteSupportStateW775
   #check Dbounded.currentW775OpClosureNormalizedClosedRangeRoute_productSuccess
+  #check Dbounded.MetrizableClosedMapLimitOpClosureNormalizedClosedRangeBranchDataW776
+  #check
+    Dbounded.MetrizableClosedEmbeddingLimitOpClosureNormalizedClosedRangeBranchDataW776
+  #check Dbounded.limitStabilityOfClosedMapLimitOpClosureW776
+  #check Dbounded.limitStabilityOfClosedEmbeddingLimitOpClosureW776
+  #check Dbounded.closedMapOpClosureDataOfLimitClosureW776
+  #check Dbounded.closedEmbeddingOpClosureDataOfLimitClosureW776
+  #check
+    Dbounded.productEvidence_of_closedMapLimitOpClosureNormalizedClosedRangeRouteW776
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingLimitOpClosureNormalizedClosedRangeRouteW776
+  #check Dbounded.limitOpClosureNormalizedClosedRangeProductRouteInputNamesW776
+  #check Dbounded.limitOpClosureNormalizedClosedRangeProductRouteInputNamesW776_count
+  #check Dbounded.MetrizableLimitOpClosureNormalizedClosedRangeProductRouteStateW776
+  #check
+    Dbounded.currentMetrizableLimitOpClosureNormalizedClosedRangeProductRouteSupportStateW776
+  #check Dbounded.currentW776LimitOpClosureNormalizedClosedRangeRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
