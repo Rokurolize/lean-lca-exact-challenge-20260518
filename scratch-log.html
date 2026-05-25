@@ -154,57 +154,125 @@ textarea.goal-text {
   </style>
 </head>
 <body>
-  <main>
-    <header>
+  <header class="report-hero">
+    <div class="wrap">
       <h1>Lean LCA Exact Challenge Progress</h1>
-      <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
-    </header>
+      <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
+      <div class="toolbar">
+        <span class="badge info">Updated 2026-05-25 20:38 JST</span>
+        <span class="badge warn">product_complete=false</span>
+        <span class="badge warn">product_success=false</span>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W814 category-homology bijective-open route</span></div>
-      <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/CategoryHomologyComparisonBijectiveOpenRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T111154Z_codex_parent_w814_category_homology_scout</span></div>
+      <div class="card span-3">
+        <div class="label">Latest Increment</div>
+        <div class="metric">W815</div>
+        <p>comparison projection topology route</p>
+      </div>
+      <div class="card span-3">
+        <div class="label">Verification</div>
+        <div class="metric">Passed</div>
+        <p>helper, root, audit, required declarations, and full build</p>
+      </div>
+      <div class="card span-3">
+        <div class="label">Primary Surface</div>
+        <div class="metric">Derived</div>
+        <p><code>ComparisonProjectionTopologyRoute</code></p>
+      </div>
+      <div class="card span-3">
+        <div class="label">Next Safe Action</div>
+        <div class="metric">W814 target</div>
+        <p>prove algebraic bijectivity plus the comparison-map topological bridge</p>
+      </div>
     </section>
-    <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W814 category-homology bijective-open route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 20:20 JST</span></p></div>
-      <div class="columns">
-        <div>
-          <p>W814 records the accepted W814 scout reduction from the category-level homology frontier to a concrete topological theorem: for every <code>MetrizableLCA</code> short complex, the canonical left-right homology comparison must be bijective and open. Once that theorem is supplied, the new helper constructs <code>CategoryWithHomology MetrizableLCA</code> through <code>MetrizableLCA.isIso_of_bijective_openMap</code> and mathlib's <code>ShortComplex.hasHomology_of_isIsoLeftRightHomologyComparison</code>. The new module is 109 lines with 8 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
-          <ul>
-            <li><code>comparisonBijectiveOpenTargetW814</code> names the exact bijective-open comparison theorem needed for arbitrary <code>MetrizableLCA</code> short complexes.</li>
-            <li><code>categoryWithHomology_of_comparisonBijectiveOpenW814</code> proves that this concrete comparison theorem supplies <code>CategoryWithHomology MetrizableLCA</code>.</li>
-            <li><code>currentW814CategoryHomologyComparisonBijectiveOpen_productSuccess</code> keeps the helper explicitly nonterminal while recording the remaining input.</li>
-          </ul>
+
+    <section>
+      <h2>Current Increment</h2>
+      <p>W815 proves the projection-topology facts needed by the W814 MetrizableLCA comparison route. Arbitrary left and right homology data now expose open and surjective cokernel projections, plus closed-embedding kernel inclusions. The new helper leaves <code>LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code> untouched.</p>
+      <div class="grid">
+        <div class="card span-6">
+          <h3>New Helper</h3>
+          <table>
+            <tbody>
+              <tr><th>Path</th><td><code>LeanLCAExactChallenge/Derived/ComparisonProjectionTopologyRoute.lean</code></td></tr>
+              <tr><th>Line Count</th><td>226</td></tr>
+              <tr><th>Top-Level Declarations</th><td>21</td></tr>
+              <tr><th>Long-Line Outliers</th><td>0</td></tr>
+            </tbody>
+          </table>
         </div>
-        <div>
-          <p><strong>Evidence captured</strong></p>
+        <div class="card span-6">
+          <h3>Core Declarations</h3>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/CategoryHomologyComparisonBijectiveOpenRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.CategoryHomologyComparisonBijectiveOpenRoute</code></li>
-            <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T111154Z_codex_parent_w814_category_homology_scout/w814_required_declarations.lean</code></li>
-            <li><code>lake build</code></li>
-            <li><code>w813_worker_result_summary.json</code> records that three W813 scouts produced no accepted implementation candidate but identified the category-homology bottleneck.</li>
-            <li><code>w814_parent_probe_rerun_result.json</code> confirms the W814 scratch probe passed before integration.</li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 109 lines with 8 top-level declarations.</li>
-            <li>Focused W814 gate status is recorded: source, module build, root import, product declaration, run-owned required declaration, full build, diff check, forbidden-token scan, and expected product-success grep miss all passed.</li>
+            <li><code>cokernelCofork_π_openMap_of_isColimitW815</code></li>
+            <li><code>cokernelCofork_π_surjective_of_isColimitW815</code></li>
+            <li><code>kernelFork_ι_closedEmbedding_of_isLimitW815</code></li>
+            <li><code>leftHomologyData_π_openMapW815</code></li>
+            <li><code>rightHomologyData_p_openMapW815</code></li>
+            <li><code>rightHomologyι_closedEmbeddingW815</code></li>
           </ul>
         </div>
       </div>
     </section>
-    <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W814 work.</p></div>
-      <p>W812 derived homology detection from W735 exact-input fields plus W768 universal-comparison homology existence, then used it to route strict realization evidence through the W651 iso-closure terminal surface.</p>
+
+    <section>
+      <h2>Evidence</h2>
+      <table>
+        <thead>
+          <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ComparisonProjectionTopologyRoute.lean</code></td><td>passed</td><td><code>w815_helper_lean.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ComparisonProjectionTopologyRoute</code></td><td>passed</td><td><code>w815_helper_lake_build.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge.lean</code></td><td>passed</td><td><code>w815_root_import.log</code></td></tr>
+          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w815_product_success_declarations.log</code></td></tr>
+          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w815_required_declarations.log</code></td></tr>
+          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w815_forbidden_tokens.log</code></td></tr>
+          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w815_git_diff_check.log</code></td></tr>
+          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>failed_expected</td><td><code>w815_product_success_true_grep.log</code></td></tr>
+          <tr><td><code>lake build</code></td><td>passed</td><td><code>w815_lake_build.log</code></td></tr>
+        </tbody>
+      </table>
     </section>
-    <section class="entry">
-      <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
+
+    <section>
+      <h2>Decision Timeline</h2>
+      <div class="timeline">
+        <article class="event">
+          <time datetime="2026-05-25T20:31:50+09:00">2026-05-25 20:31 JST</time>
+          <h3>Started W815 from clean W814 baseline</h3>
+          <p>Run root created at <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology</code>.</p>
+        </article>
+        <article class="event">
+          <time datetime="2026-05-25T20:35:15+09:00">2026-05-25 20:35 JST</time>
+          <h3>Accepted direct projection-topology route</h3>
+          <p>After a failed proof-shape attempt through <code>f - 0</code>, the helper uses colimit uniqueness against the explicit local LCA quotient model and the existing equalizer closed-embedding theorem.</p>
+        </article>
+        <article class="event">
+          <time datetime="2026-05-25T20:38:42+09:00">2026-05-25 20:38 JST</time>
+          <h3>Metadata refreshed</h3>
+          <p><code>manifest.json</code>, <code>run/verification.json</code>, and <code>terminal_outcome/terminal_outcome.json</code> now identify W815 as the latest verified increment while preserving <code>product_complete=false</code>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Remaining Product Blockers</h2>
       <ul>
-        <li>Prove the W814 bijective-open theorem for the canonical left-right homology comparison of arbitrary <code>MetrizableLCA</code> short complexes.</li>
+        <li>Prove algebraic bijectivity of the canonical left-right homology comparison for arbitrary <code>MetrizableLCA</code> short complexes.</li>
+        <li>Prove the topological embedding/open-map bridge for the canonical comparison map using the W815 projection-topology facts.</li>
+        <li>Prove <code>comparisonBijectiveOpenTargetW814</code> for arbitrary <code>MetrizableLCA</code> short complexes.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
         <li>Construct exact-acyclic homotopy-object strict triangleh realization data without looping through W651/W809 equivalence.</li>
       </ul>
+      <div class="warnbox">
+        <strong>Goal completion is not allowed.</strong>
+        <p>The product endpoint remains unproved, so <code>update_goal(status=&quot;complete&quot;)</code> is still forbidden.</p>
+      </div>
     </section>
-    <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>
   </main>
 </body>
 </html>

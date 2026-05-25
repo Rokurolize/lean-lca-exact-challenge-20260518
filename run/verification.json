@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w814-category-homology-bijective-open-route",
-  "generated_utc": "2026-05-25T11:23:35Z",
-  "source_tree_hash": "5a258acc5e4a9912331bdca2882800671edc8ed9d6853225aba9bd9ac56b2d7f",
-  "summary": "W814 records an accepted CategoryWithHomology MetrizableLCA reduction: a universal bijective-open left-right homology comparison theorem supplies CategoryWithHomology through existing MetrizableLCA and ShortComplex APIs. Product remains nonterminal.",
+  "schema": "lean-lca-exact-challenge-verification-w815-comparison-projection-topology-route",
+  "generated_utc": "2026-05-25T11:41:10Z",
+  "source_tree_hash": "26eed70d2f184db90215bd82e172a8575eb300f6a2165a60047e0aba2d568da2",
+  "summary": "W815 proves the projection-topology facts used by the W814 MetrizableLCA comparison route: arbitrary left/right homology data have open and surjective cokernel projections, and their kernel inclusions are closed embeddings. Product remains nonterminal.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/CategoryHomologyComparisonBijectiveOpenRoute.lean",
@@ -68,9 +68,112 @@
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T111154Z_codex_parent_w814_category_homology_scout/scratch_log_browser_evidence_precloseout",
       "status": "passed",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T111154Z_codex_parent_w814_category_homology_scout/scratch_log_browser_evidence_precloseout/browser_evidence_fidelity.json"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ComparisonProjectionTopologyRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_helper_lean.log"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.ComparisonProjectionTopologyRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_helper_lake_build.log"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_root_import.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_product_success_declarations.log"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/w815_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_required_declarations_run_owned.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_required_declarations.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_forbidden_tokens.log"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_git_diff_check.log"
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_product_success_true_grep.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_lake_build.log"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/logs/w815_scratch_log_check_report.log"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/scratch_log_browser_evidence_precloseout --expect Latest Increment --expect W815 --expect product_complete=false --expect product_success=false --expect ComparisonProjectionTopologyRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T113150Z_codex_parent_w815_comparison_projection_topology/scratch_log_browser_evidence_precloseout/browser_evidence_fidelity.json"
     }
   ],
   "product_success": false,
   "product_complete": false,
-  "support_result_classification": "blocked_nonterminal_frontier"
+  "support_result_classification": "blocked_nonterminal_frontier",
+  "known_gaps": [
+    "Prove algebraic bijectivity of the canonical left-right homology comparison for arbitrary MetrizableLCA short complexes.",
+    "Prove the topological embedding/open-map bridge for the canonical comparison map using the W815 projection-topology facts.",
+    "Prove comparisonBijectiveOpenTargetW814 for arbitrary MetrizableLCA short complexes.",
+    "Construct concrete W735 closed-map or closed-embedding branch-data values.",
+    "Construct exact-acyclic homotopy-object strict triangleh realization data without looping through W651/W809 equivalence."
+  ],
+  "remaining_work": [
+    "Combine W815 projection topology with the algebraic comparison argument to prove comparisonBijectiveOpenTargetW814.",
+    "Then use categoryWithHomology_of_comparisonBijectiveOpenW814 to instantiate CategoryWithHomology MetrizableLCA and feed the W736/W768 product route."
+  ],
+  "latest_verified_increment": "W815 comparison projection topology route",
+  "implemented_declarations_checked": [
+    "MetrizableLCA.cokernelCofork_π_surjective_of_isColimitW815",
+    "MetrizableLCA.cokernelCofork_π_openMap_of_isColimitW815",
+    "MetrizableLCA.kernelFork_ι_closedEmbedding_of_isLimitW815",
+    "MetrizableLCA.leftHomologyData_i_closedEmbeddingW815",
+    "MetrizableLCA.leftHomologyData_π_surjectiveW815",
+    "MetrizableLCA.leftHomologyData_π_openMapW815",
+    "MetrizableLCA.rightHomologyData_p_surjectiveW815",
+    "MetrizableLCA.rightHomologyData_p_openMapW815",
+    "MetrizableLCA.rightHomologyData_ι_closedEmbeddingW815",
+    "MetrizableLCA.iCycles_closedEmbeddingW815",
+    "MetrizableLCA.leftHomologyπ_surjectiveW815",
+    "MetrizableLCA.leftHomologyπ_openMapW815",
+    "MetrizableLCA.pOpcycles_surjectiveW815",
+    "MetrizableLCA.pOpcycles_openMapW815",
+    "MetrizableLCA.rightHomologyι_closedEmbeddingW815",
+    "MetrizableLCA.comparisonProjectionTopologyInputNamesW815",
+    "MetrizableLCA.comparisonProjectionTopologyInputNamesW815_count",
+    "MetrizableLCA.ComparisonProjectionTopologyRouteStateW815",
+    "MetrizableLCA.currentComparisonProjectionTopologyRouteStateW815",
+    "MetrizableLCA.currentComparisonProjectionTopologyRouteStateW815_productSuccess"
+  ],
+  "metadata_corrections": {
+    "w815_comparison_projection_topology_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T11:41:10Z",
+      "source_tree_hash": "26eed70d2f184db90215bd82e172a8575eb300f6a2165a60047e0aba2d568da2",
+      "latest_verified_increment": "W815 comparison projection topology route",
+      "claim_review_status": "pending_claim_review_loop_v3",
+      "note": "W815 is a checked helper increment toward W814; it does not prove the final comparison theorem."
+    }
+  }
 }

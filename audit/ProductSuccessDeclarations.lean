@@ -5,6 +5,7 @@ import LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields
 import LeanLCAExactChallenge.Derived.LeftRightComparisonRoute
 import LeanLCAExactChallenge.Derived.CategoryHomologyStableRoute
 import LeanLCAExactChallenge.Derived.CategoryHomologyComparisonBijectiveOpenRoute
+import LeanLCAExactChallenge.Derived.ComparisonProjectionTopologyRoute
 import LeanLCAExactChallenge.Derived.KernelCokernelProductRoute
 import LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
 import LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
@@ -9891,6 +9892,26 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     MetrizableLCA.currentCategoryHomologyComparisonBijectiveOpenRouteStateW814
   #check
     MetrizableLCA.currentW814CategoryHomologyComparisonBijectiveOpen_productSuccess
+  #check MetrizableLCA.cokernelCofork_π_surjective_of_isColimitW815
+  #check MetrizableLCA.cokernelCofork_π_openMap_of_isColimitW815
+  #check MetrizableLCA.kernelFork_ι_closedEmbedding_of_isLimitW815
+  #check MetrizableLCA.leftHomologyData_i_closedEmbeddingW815
+  #check MetrizableLCA.leftHomologyData_π_surjectiveW815
+  #check MetrizableLCA.leftHomologyData_π_openMapW815
+  #check MetrizableLCA.rightHomologyData_p_surjectiveW815
+  #check MetrizableLCA.rightHomologyData_p_openMapW815
+  #check MetrizableLCA.rightHomologyData_ι_closedEmbeddingW815
+  #check MetrizableLCA.iCycles_closedEmbeddingW815
+  #check MetrizableLCA.leftHomologyπ_surjectiveW815
+  #check MetrizableLCA.leftHomologyπ_openMapW815
+  #check MetrizableLCA.pOpcycles_surjectiveW815
+  #check MetrizableLCA.pOpcycles_openMapW815
+  #check MetrizableLCA.rightHomologyι_closedEmbeddingW815
+  #check MetrizableLCA.comparisonProjectionTopologyInputNamesW815
+  #check MetrizableLCA.comparisonProjectionTopologyInputNamesW815_count
+  #check MetrizableLCA.ComparisonProjectionTopologyRouteStateW815
+  #check MetrizableLCA.currentComparisonProjectionTopologyRouteStateW815
+  #check MetrizableLCA.currentComparisonProjectionTopologyRouteStateW815_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
