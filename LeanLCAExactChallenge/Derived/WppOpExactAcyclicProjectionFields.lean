@@ -55136,6 +55136,145 @@ theorem
       false :=
   rfl
 
+/--
+W762 closed-map branch: W736 left-right comparison-isomorphism data supply the
+`CategoryWithHomology MetrizableLCA` instance needed by the W761 exact/stable
+bridge.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapLeftRightComparisonConcreteLeavesW762
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure := by
+  letI : CategoryWithHomology MetrizableLCA.{0} :=
+    categoryWithHomology_of_metrizableLeftRightComparisonIsoW736
+      comparisonIso
+  exact
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeavesW761
+      inputs
+
+/--
+W762 closed-embedding branch: W736 left-right comparison-isomorphism data supply
+the `CategoryWithHomology MetrizableLCA` instance needed by the W761 bridge.
+-/
+theorem
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingLeftRightComparisonConcreteLeavesW762
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    WppOpExactAcyclicFrontierConsolidatedW318.exactAcyclic_metrizableLCA_walkingParallelPairOp_colimit_closure := by
+  letI : CategoryWithHomology MetrizableLCA.{0} :=
+    categoryWithHomology_of_metrizableLeftRightComparisonIsoW736
+      comparisonIso
+  exact
+    exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761
+      inputs
+
+/--
+W762 packages closed-map W736 comparison data plus W735 branch data by deriving
+the W761 category-homology instance bridge.
+-/
+noncomputable def
+    exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeavesW762
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs : MetrizableWppClosedMapCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppExactStableEvidenceW758 := by
+  letI : CategoryWithHomology MetrizableLCA.{0} :=
+    categoryWithHomology_of_metrizableLeftRightComparisonIsoW736
+      comparisonIso
+  exact
+    exactStableEvidence_of_closedMapCategoryHomologyInstanceConcreteLeavesW761
+      inputs
+
+/--
+W762 packages closed-embedding W736 comparison data plus W735 branch data by
+deriving the W761 category-homology instance bridge.
+-/
+noncomputable def
+    exactStableEvidence_of_closedEmbeddingLeftRightComparisonConcreteLeavesW762
+    (comparisonIso :
+      ∀ S : ShortComplex MetrizableLCA.{0},
+        IsIso (leftRightHomologyComparison_of_metrizableKernelCokernelW736 S))
+    (inputs :
+      MetrizableWppClosedEmbeddingCategoryHomologyInstanceConcreteLeafInputsW735) :
+    MetrizableWppExactStableEvidenceW758 := by
+  letI : CategoryWithHomology MetrizableLCA.{0} :=
+    categoryWithHomology_of_metrizableLeftRightComparisonIsoW736
+      comparisonIso
+  exact
+    exactStableEvidence_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761
+      inputs
+
+/-- Input names for the W762 W736 comparison exact/stable bridge. -/
+def exactStableWppOpLeftRightComparisonConcreteLeafInputNamesW762 :
+    List String :=
+  metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736
+
+theorem
+    exactStableWppOpLeftRightComparisonConcreteLeafInputNamesW762_count :
+    exactStableWppOpLeftRightComparisonConcreteLeafInputNamesW762.length =
+      10 := by
+  simpa [exactStableWppOpLeftRightComparisonConcreteLeafInputNamesW762] using
+    metrizableAcceptedStableBoundedDerivedInfinityCategoryLeftRightComparisonConcreteLeafInputNamesW736_count
+
+/--
+Current checked W762 state for the W736 left-right comparison exact/stable
+bridge through W761.
+-/
+structure MetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW762 :
+    Type where
+  seed : String
+  declarations : List String
+  closedMapExactStableResult : String
+  closedEmbeddingExactStableResult : String
+  comparisonReductionResult : String
+  exposedInputs : List String
+  remainingInputs : List String
+  productSuccessClaimed : Bool
+
+/-- Current checked W762 state. -/
+def currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteSupportStateW762 :
+    MetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW762
+    where
+  seed := "w762-w736-left-right-comparison-concrete-leaf-exact-stable-bridge"
+  declarations :=
+    ["exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapLeftRightComparisonConcreteLeavesW762",
+      "exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingLeftRightComparisonConcreteLeavesW762",
+      "exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeavesW762",
+      "exactStableEvidence_of_closedEmbeddingLeftRightComparisonConcreteLeavesW762",
+      "exactStableWppOpLeftRightComparisonConcreteLeafInputNamesW762",
+      "exactStableWppOpLeftRightComparisonConcreteLeafInputNamesW762_count"]
+  closedMapExactStableResult :=
+    "proved: W736 comparison data derive CategoryWithHomology, and W761 packages closed-map W735 inputs into exactness plus accepted stable evidence"
+  closedEmbeddingExactStableResult :=
+    "proved: W736 comparison data derive CategoryWithHomology, and W761 packages closed-embedding W735 inputs into exactness plus accepted stable evidence"
+  comparisonReductionResult :=
+    "proved: W736 converts the universal left-right comparison isomorphism into the category-homology instance required by W761"
+  exposedInputs :=
+    exactStableWppOpLeftRightComparisonConcreteLeafInputNamesW762
+  remainingInputs :=
+    ["construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes",
+      "construct concrete values for the W735 branch data inputs",
+      "construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs"]
+  productSuccessClaimed := false
+
+/-- Short alias used by the checked product-success marker. -/
+abbrev currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW762 :
+    MetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW762 :=
+  currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteSupportStateW762
+
+theorem
+    currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW762_productSuccess :
+    currentMetrizableWppLeftRightComparisonConcreteLeafExactStableRouteStateW762.productSuccessClaimed =
+      false :=
+  rfl
+
 section Checks
 
 set_option linter.style.longLine false in

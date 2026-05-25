@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-05-25T00:29:36Z",
-  "content_hash_tree": "bab91f00f97401a20171b57698635b326a3a7ca034bca9028fc5fbd6be7d3ef3",
+  "generated_utc": "2026-05-25T00:49:51Z",
+  "content_hash_tree": "2354402b8f66053fc17e6616f8487cd981d60323895f7a664efe87e13ee1cff3",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -99,8 +99,8 @@
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
-      "bytes": 3472943,
-      "sha256": "9a0da33869b4e53ba788e82f76497ca7bb9085db7550de622cfbb79b4b267e93"
+      "bytes": 3479710,
+      "sha256": "2e98713d9af3ca64a0c802cf1043aec3016c52824980bdb65fc8884e5ce1539e"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean",
@@ -189,8 +189,8 @@
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 583601,
-      "sha256": "6ca73233be10ac64391249a30d3a8bea5ed9782b6d7cf1152ffbb4eb5f2e679a"
+      "bytes": 584628,
+      "sha256": "7fd3f682b33a65fd0a5d88fe642d653c31c177bd0553550686661e8d129c740c"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -4159,13 +4159,13 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 1841744,
-      "sha256": "f4d8362183caf0c8850a3b37febef14245abc7590e1388b08cdac79a6727b801"
+      "bytes": 1848264,
+      "sha256": "3c50500389924f52a0552e77924d030419a937fa04ca2fab6363d7b7bad95eae"
     },
     {
       "path": "scratch-log.html",
-      "bytes": 9220,
-      "sha256": "a8d23da7b96f94e543daf68a916416ec55050fff05ca65b883d39215d6a9c072"
+      "bytes": 9428,
+      "sha256": "4b55275ee3fe43c42de05c9d54f0e84607793881bc510576fc30a893ea0858c2"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -4179,8 +4179,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 2274416,
-      "sha256": "6dd50f34e20f02fdf6050ff948ba68ff1e0d1793a73528afb4e442652b81fa9d"
+      "bytes": 2282140,
+      "sha256": "17677a5514f2a439ab43ad77584c20ea342174e558d731e45ff05993d42bede1"
     },
     {
       "path": "workers/README.md",

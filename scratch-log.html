@@ -160,20 +160,20 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W761 W735 category-homology instance concrete leaf exact/stable bridge</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W762 W736 left-right comparison concrete leaf exact/stable bridge</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
       <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T002141Z_codex_parent_w761</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T003149Z_codex_parent_w762</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W761 W735 category-homology instance concrete leaf exact/stable bridge</h2><p class="meta"><span class="status">Final gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 09:28 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W762 W736 left-right comparison concrete leaf exact/stable bridge</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 09:40 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W761 W735 category-homology instance concrete leaf exact/stable bridge composes the W759 W733 exact/stable bridge with the existing W735 closed-map and closed-embedding category-homology instance constructors. The combined evidence surface now starts from a CategoryWithHomology MetrizableLCA instance plus W735 branch data, rather than a W734 bundle with an explicit homology provider field.</p>
+          <p>W762 W736 left-right comparison concrete leaf exact/stable bridge composes the W736 universal left-right comparison-isomorphism route with the W761 CategoryWithHomology bridge. The combined evidence surface now starts from the W736 comparison-isomorphism premise plus W735 branch data, derives <code>CategoryWithHomology MetrizableLCA</code>, and then reuses the W761 exact/stable bridge.</p>
           <ul>
-            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapCategoryHomologyInstanceConcreteLeavesW761</code> sends W735 closed-map branch data into W759 through the W735-to-W733 constructor.</li>
-            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761</code> adds the parallel closed-embedding branch.</li>
-            <li><code>exactStableEvidence_of_closedMapCategoryHomologyInstanceConcreteLeavesW761</code> and <code>exactStableEvidence_of_closedEmbeddingCategoryHomologyInstanceConcreteLeavesW761</code> package exactness with accepted stable evidence from the same W735 inputs.</li>
+            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedMapLeftRightComparisonConcreteLeavesW762</code> derives the W761 category-homology instance from W736 comparison data and closes the closed-map branch.</li>
+            <li><code>exactAcyclic_walkingParallelPairOp_colimit_closure_of_closedEmbeddingLeftRightComparisonConcreteLeavesW762</code> adds the parallel closed-embedding branch.</li>
+            <li><code>exactStableEvidence_of_closedMapLeftRightComparisonConcreteLeavesW762</code> and <code>exactStableEvidence_of_closedEmbeddingLeftRightComparisonConcreteLeavesW762</code> package exactness with accepted stable evidence from the same comparison-derived instance and W735 inputs.</li>
           </ul>
         </div>
         <div>
@@ -182,23 +182,24 @@ textarea.goal-text {
             <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
             <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T002141Z_codex_parent_w761/w761_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T003149Z_codex_parent_w762/w762_required_declarations.lean</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></li>
-            <li>Focused and final W761 gate statuses are recorded: full build, browser evidence, JSON parse, manifest, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li>Focused W762 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W761 work.</p></div>
-      <p>W760 W734 category-homology concrete leaf exact/stable bridge packaged WPP-op exactness and accepted stable evidence at the W734 category-homology branch surface.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W762 work.</p></div>
+      <p>W761 W735 category-homology instance concrete leaf exact/stable bridge packaged WPP-op exactness and accepted stable evidence at the CategoryWithHomology plus W735 branch-data surface.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>Construct CategoryWithHomology MetrizableLCA and concrete values for the W735 branch data inputs.</li>
-        <li>Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
+        <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes.</li>
+        <li>Construct concrete values for the W735 closed-map and closed-embedding branch data inputs.</li>
+        <li>Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>
