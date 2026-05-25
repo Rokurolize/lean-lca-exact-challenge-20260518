@@ -1,67 +1,65 @@
 {
-  "outcome": "nonterminal_endpoint_localized_target_exact_at_from_closedness_branch",
-  "generated_utc": "2026-05-25T23:19:17Z",
+  "outcome": "nonterminal_concrete_leaves_target_exact_at_from_closedness_branch",
+  "generated_utc": "2026-05-25T23:28:29Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "939a3875110f9c303a58534016cc51896be6cdd61bd0b38df1f79341e78060e9"
+    "sha256": "cf8e6f6c18daad39db551e3ee856a18c13fd62e865d10ac48faa706c5b5fec54"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W860 keeps the target nonterminal under the immutable original four-task contract while feeding the W859/W832 target-ExactAt left-calculus route from W725 closedness plus W726 endpoint/localized data. It derives W859 endpoint ExactAt closed-embedding, open-map, and epi facts from the W720 endpoint strict-topology component inside W726, and projects the W721 localized-right-adjoint data from the same provider. Product success remains false because concrete route inputs, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W861 keeps the target nonterminal under the immutable original four-task contract while feeding the W860 endpoint/localized target-ExactAt route from W733 concrete leaves plus the W785 target ExactAt payload. It projects the W725 matched closedness branch and assembles the W726 endpoint/localized-right-adjoint data from W733, then reuses W860/W859/W832 for direct bounded left calculus and the stable package. Product success remains false because the concrete leaves, target ExactAt payload, stable-category inputs, final original-four-task witness, and completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W860 derives W859 endpoint ExactAt facts and W721 localized-right-adjoint data from one W726 endpoint/localized provider, but still requires a matched W725 closedness branch, concrete W726 endpoint/localized data, W785 target ExactAt payload, finite limits, finite colimits, pretriangulated, and triangulated data.",
-    "The W856 homology-free selected-cochain provider is still not concretely instantiated; its boundary, relation, target-surjective/compact, closedness branch, normalized target, source triangulation, endpoint/localized data, and downstream target ExactAt payload fields remain open.",
+    "Task 4 is not contract-complete under the original four-task contract: W861 derives the W860 data surface from W733 concrete leaves and W785 payload data, but still requires concrete W733 leaves, a concrete W785 target ExactAt payload, finite limits, finite colimits, pretriangulated, and triangulated data.",
+    "The W856 homology-free selected-cochain provider is still not concretely instantiated; its boundary, relation, target-surjective/compact, closedness branch, normalized target, source triangulation, endpoint/localized data, concrete leaves, and downstream target ExactAt payload fields remain open.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block one concrete W860 input next, preferably the W726 endpoint/localized provider, a matched W725 closedness branch, or the W785 target ExactAt payload.",
-    "Connect the W860 route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
+    "Construct or precisely block W733 concrete leaves or the W785 target ExactAt payload, then wire the resulting fully concrete input into the W861 route.",
+    "Connect the W861 route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs and stable-category hypotheses are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_endpoint_localized_target_exact_at_from_closedness_branch",
-  "latest_verified_increment": "W860 endpoint/localized target ExactAt from closedness branch",
+  "support_result_classification": "nonterminal_concrete_leaves_target_exact_at_from_closedness_branch",
+  "latest_verified_increment": "W861 concrete-leaves target ExactAt from closedness branch",
   "reference_route_log": "docs/research/reference_route_log.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W860 derives W859 endpoint ExactAt facts and W721 localized-right-adjoint data from one W726 endpoint/localized provider, but still requires a matched W725 closedness branch, concrete W726 endpoint/localized data, W785 target ExactAt payload, finite limits, finite colimits, pretriangulated, and triangulated data.",
-    "The W856 homology-free selected-cochain provider is still not concretely instantiated; its boundary, relation, target-surjective/compact, closedness branch, normalized target, source triangulation, endpoint/localized data, and downstream target ExactAt payload fields remain open.",
+    "Task 4 is not contract-complete under the original four-task contract: W861 derives the W860 data surface from W733 concrete leaves and W785 payload data, but still requires concrete W733 leaves, a concrete W785 target ExactAt payload, finite limits, finite colimits, pretriangulated, and triangulated data.",
+    "The W856 homology-free selected-cochain provider is still not concretely instantiated; its boundary, relation, target-surjective/compact, closedness branch, normalized target, source triangulation, endpoint/localized data, concrete leaves, and downstream target ExactAt payload fields remain open.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "implemented_declarations": [
-    "Dbounded.endpointExactAtTopologyFactsOfEndpointLocalizedRightAdjointW860",
-    "Dbounded.MetrizableEndpointLocalizedTargetExactAtClosednessBranchDataW860",
-    "Dbounded.closednessBranchTargetExactAtLeftCalculusDataOfEndpointLocalizedW860",
-    "Dbounded.directBoundedLeftCalculusOfEndpointLocalizedClosednessBranchTargetExactAtW860",
-    "Dbounded.boundedDerivedInfinityCategoryOfEndpointLocalizedClosednessBranchTargetExactAtW860",
-    "Dbounded.endpointLocalizedClosednessBranchTargetExactAtLeftCalculusInputNamesW860_count",
-    "Dbounded.endpointLocalizedClosednessBranchTargetExactAtStableRouteExpandedInputNamesW860_count",
-    "Dbounded.currentW860EndpointLocalizedClosednessBranchTargetExactAtRoute_productSuccess",
-    "originalFourTaskContract_endpointLocalizedTargetExactAtLeftCalculus_inputCount",
-    "originalFourTaskContract_endpointLocalizedTargetExactAtStableRoute_expandedInputCount",
-    "originalFourTaskContract_endpointLocalizedTargetExactAtRoute_nonterminal"
+    "Dbounded.MetrizableConcreteLeavesTargetExactAtLeftCalculusDataW861",
+    "Dbounded.endpointLocalizedTargetExactAtDataOfConcreteLeavesW861",
+    "Dbounded.directBoundedLeftCalculusOfConcreteLeavesTargetExactAtW861",
+    "Dbounded.boundedDerivedInfinityCategoryOfConcreteLeavesTargetExactAtW861",
+    "Dbounded.concreteLeavesTargetExactAtLeftCalculusInputNamesW861_count",
+    "Dbounded.concreteLeavesTargetExactAtStableRouteExpandedInputNamesW861_count",
+    "Dbounded.currentW861ConcreteLeavesTargetExactAtRoute_productSuccess",
+    "originalFourTaskContract_concreteLeavesTargetExactAtLeftCalculus_inputCount",
+    "originalFourTaskContract_concreteLeavesTargetExactAtStableRoute_expandedInputCount",
+    "originalFourTaskContract_concreteLeavesTargetExactAtRoute_nonterminal"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.endpointExactAtTopologyFactsOfEndpointLocalizedRightAdjointW860",
-    "Dbounded.MetrizableEndpointLocalizedTargetExactAtClosednessBranchDataW860",
-    "Dbounded.closednessBranchTargetExactAtLeftCalculusDataOfEndpointLocalizedW860",
-    "Dbounded.directBoundedLeftCalculusOfEndpointLocalizedClosednessBranchTargetExactAtW860",
-    "Dbounded.boundedDerivedInfinityCategoryOfEndpointLocalizedClosednessBranchTargetExactAtW860",
-    "Dbounded.endpointLocalizedClosednessBranchTargetExactAtLeftCalculusInputNamesW860_count",
-    "Dbounded.endpointLocalizedClosednessBranchTargetExactAtStableRouteExpandedInputNamesW860_count",
-    "Dbounded.currentW860EndpointLocalizedClosednessBranchTargetExactAtRoute_productSuccess",
-    "originalFourTaskContract_endpointLocalizedTargetExactAtLeftCalculus_inputCount",
-    "originalFourTaskContract_endpointLocalizedTargetExactAtStableRoute_expandedInputCount",
-    "originalFourTaskContract_endpointLocalizedTargetExactAtRoute_nonterminal"
+    "Dbounded.MetrizableConcreteLeavesTargetExactAtLeftCalculusDataW861",
+    "Dbounded.endpointLocalizedTargetExactAtDataOfConcreteLeavesW861",
+    "Dbounded.directBoundedLeftCalculusOfConcreteLeavesTargetExactAtW861",
+    "Dbounded.boundedDerivedInfinityCategoryOfConcreteLeavesTargetExactAtW861",
+    "Dbounded.concreteLeavesTargetExactAtLeftCalculusInputNamesW861_count",
+    "Dbounded.concreteLeavesTargetExactAtStableRouteExpandedInputNamesW861_count",
+    "Dbounded.currentW861ConcreteLeavesTargetExactAtRoute_productSuccess",
+    "originalFourTaskContract_concreteLeavesTargetExactAtLeftCalculus_inputCount",
+    "originalFourTaskContract_concreteLeavesTargetExactAtStableRoute_expandedInputCount",
+    "originalFourTaskContract_concreteLeavesTargetExactAtRoute_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/TargetExactAtEndpointLocalizedFromClosednessBranch.lean",
-    "lake build LeanLCAExactChallenge.Derived.TargetExactAtEndpointLocalizedFromClosednessBranch",
+    "lake env lean LeanLCAExactChallenge/Derived/TargetExactAtConcreteLeavesFromClosednessBranch.lean",
+    "lake build LeanLCAExactChallenge.Derived.TargetExactAtConcreteLeavesFromClosednessBranch",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
