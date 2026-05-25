@@ -160,43 +160,44 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W764 W736-to-W732 route-data exact/stable bridge</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W765 category-homology comparison route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>WppOpExactAcyclicProjectionFields</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T011400Z_codex_parent_w764</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/LeftRightComparisonRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T012803Z_codex_parent_w765</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W764 W736-to-W732 route-data exact/stable bridge</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 10:29 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W765 category-homology comparison route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 10:33 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W764 constructs concrete W732 route-data providers from the existing W736 left-right comparison branches, then feeds those providers through the W763 exact/stable bridge. This removes the opaque W732 provider from the immediate exact/stable surface while keeping the real homology and branch-data obligations explicit.</p>
+          <p>W765 proves that an existing <code>CategoryWithHomology MetrizableLCA</code> premise supplies the W736 universal left-right comparison-isomorphism function for arbitrary MetrizableLCA short complexes. The increment lives in a new 148-line helper module and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>boundaryRelationTargetClosednessNormalizedDataProvider_of_closedMapLeftRightComparisonW764</code> builds the closed-map W732 provider from W736 comparison data and a W735 branch record.</li>
-            <li><code>boundaryRelationTargetClosednessNormalizedDataProvider_of_closedEmbeddingLeftRightComparisonW764</code> does the same for the closed-embedding branch.</li>
-            <li><code>exactStableEvidence_of_closedMapLeftRightComparisonRouteDataW764</code> and <code>exactStableEvidence_of_closedEmbeddingLeftRightComparisonRouteDataW764</code> package W763 exactness plus accepted stable evidence through those constructed providers.</li>
+            <li><code>leftRightComparisonIso_of_categoryWithHomologyInstanceW765</code> is the per-short-complex comparison-isomorphism bridge.</li>
+            <li><code>universalLeftRightComparisonIso_of_categoryWithHomologyInstanceW765</code> packages that bridge in the W736 function shape consumed by W764.</li>
+            <li><code>exactStableEvidence_of_closedMapCategoryHomologyInstanceRouteDataW765</code> and <code>exactStableEvidence_of_closedEmbeddingCategoryHomologyInstanceRouteDataW765</code> route the category-homology premise through W764/W763 exact/stable evidence.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/LeftRightComparisonRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.LeftRightComparisonRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/w764_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/w765_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li>Focused W764 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 148 lines.</li>
+            <li>Focused W765 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W764 work.</p></div>
-      <p>W763 projected one W732 boundary/relation target/closedness normalized source/endpoint route-data provider into the W733 concrete leaf record used by W759, then packaged W759 exactness with W732 accepted stable evidence.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W765 work.</p></div>
+      <p>W764 constructed concrete W732 route-data providers from W736 left-right comparison data and W735 branch records, then fed those providers through W763 to package WPP-op exactness plus accepted stable evidence.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.</li>
+        <li>Construct <code>CategoryWithHomology MetrizableLCA</code> itself; W765 only proves the W736 comparison-isomorphism once that premise is available.</li>
         <li>Construct concrete values for the W735 closed-map or closed-embedding branch-data inputs.</li>
         <li>Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.</li>
       </ul>

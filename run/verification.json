@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w764-w736-to-w732-route-data-exact-stable",
-  "generated_utc": "2026-05-25T01:23:28Z",
-  "source_tree_hash": "9b34180fddde9f6af2a71296a5e964a9a14983891ecd59cecf4068b0a3c6cca8",
-  "summary": "W764 W736-to-W732 route-data exact/stable bridge constructs W732 boundary/relation target/closedness normalized route-data providers from the existing W736 left-right comparison closed-map and closed-embedding branches, then feeds those providers through W763 to package WPP-op exactness plus accepted stable evidence. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w765-category-homology-left-right-comparison-route",
+  "generated_utc": "2026-05-25T01:36:58Z",
+  "source_tree_hash": "e501e01b71bc420430e65330feab8519c55aaca0c8e1091d14d2a9ac877eb884",
+  "summary": "W765 proves that a CategoryWithHomology MetrizableLCA instance supplies the W736 universal left-right comparison-isomorphism function for arbitrary MetrizableLCA short complexes, then routes that comparison through the W764 W732 route-data bridge and W763 exact/stable evidence. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -16955,6 +16955,86 @@
       "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T011400Z_codex_parent_w764/product_success_true_grep.log exit_code=1"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/scratch/left_right_category_homology_probe.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/logs/left_right_category_homology_probe.log exit_code=0"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/LeftRightComparisonRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/logs/w765_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.LeftRightComparisonRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/logs/w765_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/logs/w765_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/w765_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/logs/w765_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/logs/w765_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/logs/w765_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/logs/w765_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/logs/w765_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "actual-diff/module-size gate",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/actual_diff_module_size_gate.tsv records WPP added_lines=0 and helper line_count=148"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/logs/w765_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/audit_no_forbidden_lean_tokens.log exit_code=0"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/report_style_inject.log exit_code=0"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/html_check_report.log exit_code=0"
+    },
+    {
+      "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518/scratch-log.html --out-dir /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/scratch_log_browser_evidence --expect W765 category-homology comparison route --expect product_complete=false --expect 20260525T012803Z_codex_parent_w765",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/scratch_log_browser_evidence/browser_evidence_fidelity.json passed=true"
+    },
+    {
+      "command": "rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T012803Z_codex_parent_w765/product_success_true_grep.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -21947,24 +22027,36 @@
     "Dbounded.MetrizableWppLeftRightComparisonRouteDataExactStableStateW764",
     "Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableSupportStateW764",
     "Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764",
-    "Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764_productSuccess"
+    "Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764_productSuccess",
+    "Dbounded.leftRightComparisonIso_of_categoryWithHomologyInstanceW765",
+    "Dbounded.universalLeftRightComparisonIso_of_categoryWithHomologyInstanceW765",
+    "Dbounded.boundaryRelationTargetClosednessNormalizedDataProvider_of_closedMapCategoryHomologyInstanceRouteDataW765",
+    "Dbounded.boundaryRelationTargetClosednessNormalizedDataProvider_of_closedEmbeddingCategoryHomologyInstanceRouteDataW765",
+    "Dbounded.exactStableEvidence_of_closedMapCategoryHomologyInstanceRouteDataW765",
+    "Dbounded.exactStableEvidence_of_closedEmbeddingCategoryHomologyInstanceRouteDataW765",
+    "Dbounded.exactStableWppOpCategoryHomologyInstanceRouteDataInputNamesW765",
+    "Dbounded.exactStableWppOpCategoryHomologyInstanceRouteDataInputNamesW765_count",
+    "Dbounded.MetrizableWppCategoryHomologyInstanceRouteDataExactStableStateW765",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceRouteDataExactStableSupportStateW765",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceRouteDataExactStableStateW765",
+    "Dbounded.currentMetrizableWppCategoryHomologyInstanceRouteDataExactStableStateW765_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
+    "Construct CategoryWithHomology MetrizableLCA itself; W765 only closes the W736 comparison-isomorphism premise once that category-homology premise is available.",
     "Construct concrete values for the W735 closed-map or closed-embedding branch-data inputs.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs."
   ],
   "support_result_classification": "nonterminal_support_increment",
   "product_success": false,
   "remaining_work": [
-    "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
+    "Construct CategoryWithHomology MetrizableLCA.",
     "Construct concrete values for the W735 closed-map or closed-embedding branch-data inputs.",
     "Construct Dbounded finite-limit, finite-colimit, suspension-loop, and pushout-pullback stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W764 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, scratch-log, and browser-rendered report gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W764 W736-to-W732 route-data exact/stable bridge",
+  "summary_log_tail": "Focused W765 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, scratch-log, browser-rendered report, and actual-diff/module-size gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W765 category-homology left-right comparison route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -23447,6 +23539,13 @@
       "latest_verified_increment": "W764 W736-to-W732 route-data exact/stable bridge",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W764 metadata records the W736-to-W732 route-data exact/stable bridge and leaves product_success/product_complete false."
+    },
+    "w765_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T01:36:58Z",
+      "source_tree_hash": "e501e01b71bc420430e65330feab8519c55aaca0c8e1091d14d2a9ac877eb884",
+      "latest_verified_increment": "W765 category-homology left-right comparison route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W765 metadata records the CategoryWithHomology-to-W736 comparison route and leaves product_success/product_complete false."
     }
   }
 }

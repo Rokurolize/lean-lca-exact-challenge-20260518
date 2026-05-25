@@ -2,6 +2,7 @@ import LeanLCAExactChallenge
 import LeanLCAExactChallenge.Derived.Bounded
 import LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer
 import LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields
+import LeanLCAExactChallenge.Derived.LeftRightComparisonRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -8981,6 +8982,30 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764
   #check
     Dbounded.currentMetrizableWppLeftRightComparisonRouteDataExactStableStateW764_productSuccess
+  #check
+    Dbounded.leftRightComparisonIso_of_categoryWithHomologyInstanceW765
+  #check
+    Dbounded.universalLeftRightComparisonIso_of_categoryWithHomologyInstanceW765
+  #check
+    Dbounded.boundaryRelationTargetClosednessNormalizedDataProvider_of_closedMapCategoryHomologyInstanceRouteDataW765
+  #check
+    Dbounded.boundaryRelationTargetClosednessNormalizedDataProvider_of_closedEmbeddingCategoryHomologyInstanceRouteDataW765
+  #check
+    Dbounded.exactStableEvidence_of_closedMapCategoryHomologyInstanceRouteDataW765
+  #check
+    Dbounded.exactStableEvidence_of_closedEmbeddingCategoryHomologyInstanceRouteDataW765
+  #check
+    Dbounded.exactStableWppOpCategoryHomologyInstanceRouteDataInputNamesW765
+  #check
+    Dbounded.exactStableWppOpCategoryHomologyInstanceRouteDataInputNamesW765_count
+  #check
+    Dbounded.MetrizableWppCategoryHomologyInstanceRouteDataExactStableStateW765
+  #check
+    Dbounded.currentMetrizableWppCategoryHomologyInstanceRouteDataExactStableSupportStateW765
+  #check
+    Dbounded.currentMetrizableWppCategoryHomologyInstanceRouteDataExactStableStateW765
+  #check
+    Dbounded.currentMetrizableWppCategoryHomologyInstanceRouteDataExactStableStateW765_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
