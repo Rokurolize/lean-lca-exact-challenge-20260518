@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w766-category-homology-stable-route",
-  "generated_utc": "2026-05-25T01:58:26Z",
-  "source_tree_hash": "b8084664bf30f96ce48eace48f3bb4ff7cbb098e988eacfa4cec713611a0041e",
-  "summary": "W766 proves that a CategoryWithHomology MetrizableLCA instance supplies the raw cochain-homology function consumed by the W669 kernel/cokernel-conditioned stable route, then routes that category-homology premise through the W669 WPP-transfer stable-certificate path. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w767-kernel-cokernel-product-route",
+  "generated_utc": "2026-05-25T02:21:29Z",
+  "source_tree_hash": "e177d5d0739c4019eada9877ef9496dd540ebd5d0e200b04c3f7bd86c5571833",
+  "summary": "W767 packages the W765 category-homology exact/WPP route together with the W766 kernel-cokernel category-homology WPP-transfer stable route, and projects the existing W721 localized-right-adjoint data into the W766 input shape. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -17080,6 +17080,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T014153Z_codex_parent_w766/logs/w766_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/KernelCokernelProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/logs/w767_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.KernelCokernelProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/logs/w767_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/logs/w767_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/w767_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/logs/w767_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/logs/w767_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/logs/w767_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/logs/w767_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/logs/w767_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/logs/w767_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -22093,28 +22138,38 @@
     "Dbounded.MetrizableKernelCokernelCategoryHomologyWppTransferStableRouteStateW766",
     "Dbounded.currentMetrizableKernelCokernelCategoryHomologyWppTransferStableRouteSupportStateW766",
     "Dbounded.currentMetrizableKernelCokernelCategoryHomologyWppTransferStableRouteStateW766",
-    "Dbounded.currentMetrizableKernelCokernelCategoryHomologyWppTransferStableRouteStateW766_productSuccess"
+    "Dbounded.currentMetrizableKernelCokernelCategoryHomologyWppTransferStableRouteStateW766_productSuccess",
+    "Dbounded.boundedHomotopyLocalizedRightAdjointInput_of_localizedRightAdjointDataW767",
+    "Dbounded.MetrizableKernelCokernelCategoryHomologyWppTransferDataW767",
+    "Dbounded.MetrizableWppKernelCokernelProductEvidenceW767",
+    "Dbounded.productEvidence_of_closedMapCategoryHomologyKernelCokernelRouteW767",
+    "Dbounded.productEvidence_of_closedEmbeddingCategoryHomologyKernelCokernelRouteW767",
+    "Dbounded.kernelCokernelCategoryHomologyProductRouteInputNamesW767",
+    "Dbounded.kernelCokernelCategoryHomologyProductRouteInputNamesW767_count",
+    "Dbounded.MetrizableKernelCokernelCategoryHomologyProductRouteStateW767",
+    "Dbounded.currentMetrizableKernelCokernelCategoryHomologyProductRouteSupportStateW767",
+    "Dbounded.currentMetrizableKernelCokernelCategoryHomologyProductRouteStateW767_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct CategoryWithHomology MetrizableLCA itself; W766 only closes a downstream raw cochain-homology premise once that category-homology premise is available.",
+    "Construct CategoryWithHomology MetrizableLCA itself.",
+    "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
     "Construct MetrizableExactAtKernelCokernelConditionedTopologyInputs.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
-    "Construct bounded homotopy localized right-adjoint/unit data and concrete WPP-transfer stable semantic inputs.",
-    "Construct concrete values for the W735 closed-map or closed-embedding branch-data inputs and remaining Dbounded stable-infinity inputs."
+    "Construct concrete WPP-transfer stable semantic inputs and remaining Dbounded stable-infinity inputs."
   ],
   "support_result_classification": "nonterminal_support_increment",
   "product_success": false,
   "remaining_work": [
     "Construct CategoryWithHomology MetrizableLCA.",
+    "Construct concrete W735 branch data values.",
     "Construct MetrizableExactAtKernelCokernelConditionedTopologyInputs.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
-    "Construct bounded homotopy localized right-adjoint/unit data and concrete WPP-transfer stable semantic inputs.",
-    "Construct concrete values for the W735 closed-map or closed-embedding branch-data inputs and remaining Dbounded stable-infinity inputs.",
+    "Construct WPP-transfer stable semantic inputs and remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W766 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, scratch-log, browser-rendered report, goal-SHA, and new-file accounting gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W766 category-homology stable route",
+  "summary_log_tail": "Focused W767 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, and new-file accounting gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W767 kernel-cokernel product route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -23611,6 +23666,13 @@
       "latest_verified_increment": "W766 category-homology stable route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W766 metadata records the CategoryWithHomology-to-W669 stable route and leaves product_success/product_complete false."
+    },
+    "w767_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T02:21:29Z",
+      "source_tree_hash": "e177d5d0739c4019eada9877ef9496dd540ebd5d0e200b04c3f7bd86c5571833",
+      "latest_verified_increment": "W767 kernel-cokernel product route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W767 metadata records the kernel-cokernel product-route integration and leaves product_success/product_complete false."
     }
   }
 }
