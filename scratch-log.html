@@ -160,49 +160,49 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W809 strict realization to target-isomorphism terminal route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W810 iso-closure realization terminal route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/TargetIsoStrictRealizationTerminalProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T094833Z_codex_parent_w809</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/IsoClosureStrictRealizationTerminalProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T100027Z_codex_parent_w810_discovery</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W809 strict realization to target-isomorphism terminal route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 18:52 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W810 iso-closure realization terminal route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 19:04 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W809 proves W808's target-isomorphism realization premise is supplied by strict triangleh realization data: choose <code>Lexact = L</code> and use the reflexive target isomorphism. The terminal route can now consume strict realization branch data directly, so target-isomorphism realization is no longer a separate named input. The new module is 153 lines with 12 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W810 consolidates W809's strict homotopy-object realization input with the older W651 exact-acyclic iso-closure realization input. Exact-acyclic homotopy-object endpoints embed into their isomorphism closure by reflexive endpoint isomorphisms, so W651 realization data feeds the W809 terminal route directly. The new module is 159 lines with 11 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>targetIsoRealizationOfTrianglehRealizationW809</code> turns strict triangleh realization data into W784/W808 target-isomorphism realization data.</li>
-            <li><code>closedMapTargetIsoDataOfStrictRealizationW809</code> and <code>closedEmbeddingTargetIsoDataOfStrictRealizationW809</code> reduce W809 branch data to the W808 terminal route.</li>
-            <li><code>productEvidence_of_closedMapStrictRealizationTerminalRouteW809</code> and <code>productEvidence_of_closedEmbeddingStrictRealizationTerminalRouteW809</code> expose terminal product evidence while product success remains false.</li>
+            <li><code>strictRealizationOfIsoClosureRealizationW810</code> turns W651 iso-closure strict realization data into W783/W809 homotopy-object strict realization data.</li>
+            <li><code>closedMapStrictDataOfIsoClosureRealizationW810</code> and <code>closedEmbeddingStrictDataOfIsoClosureRealizationW810</code> reduce W810 branch data to the W809 terminal route.</li>
+            <li><code>productEvidence_of_closedMapIsoClosureRealizationTerminalRouteW810</code> and <code>productEvidence_of_closedEmbeddingIsoClosureRealizationTerminalRouteW810</code> expose terminal product evidence while product success remains false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/TargetIsoStrictRealizationTerminalProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.TargetIsoStrictRealizationTerminalProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/IsoClosureStrictRealizationTerminalProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.IsoClosureStrictRealizationTerminalProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T094833Z_codex_parent_w809/w809_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T100027Z_codex_parent_w810_discovery/w810_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
             <li><code>goal_sha_comparison_after_focused.tsv</code> shows the run goal, active goal file, and sidecar all matched.</li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 153 lines with 12 top-level declarations.</li>
-            <li><code>w809_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
-            <li>Focused W809 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
-            <li>The first focused run exposed a direct audit-import gap; adding the explicit W809 helper import made the audit file pass on rerun.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 159 lines with 11 top-level declarations.</li>
+            <li><code>w810_new_file_accounting.tsv</code> records zero long-line outliers and the root/audit import hooks.</li>
+            <li>Focused W810 gate status is recorded: source, module, root import, product declaration, run-owned required declaration, full build, JSON parse, diff check, forbidden-token scan, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>work_discovery/CANDIDATE_MATRIX.json</code> records the accepted iso-closure realization route and rejected W661/W662, W735-construction, and universal-comparison probes.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W809 work.</p></div>
-      <p>W808 converted W784 target-isomorphism realization data into the W803 target ExactAt terminal route using W768-derived homology existence plus W790/W696 forgetful homology preservation from concrete W735 exact inputs.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W810 work.</p></div>
+      <p>W809 proved W808's target-isomorphism realization premise is supplied by strict triangleh realization data, choosing <code>Lexact = L</code> and the reflexive target isomorphism.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct exact-acyclic homotopy-object strict triangleh realization data now that W809 shows it supplies the target-isomorphism realization route.</li>
+        <li>Construct W651 exact-acyclic homotopy-object iso-closure strict realization data now that W810 shows it supplies the W809 terminal route.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>
