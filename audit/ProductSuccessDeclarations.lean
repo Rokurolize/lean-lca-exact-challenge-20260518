@@ -7,6 +7,7 @@ import LeanLCAExactChallenge.Derived.CategoryHomologyStableRoute
 import LeanLCAExactChallenge.Derived.KernelCokernelProductRoute
 import LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
 import LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
+import LeanLCAExactChallenge.Derived.BranchLocalizedDirectFiniteShapeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9103,6 +9104,28 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteSupportStateW769
   #check
     Dbounded.currentMetrizableLeftRightComparisonDirectFiniteShapeProductRouteStateW769_productSuccess
+  #check Dbounded.MetrizableClosedMapLeftRightComparisonDirectFiniteShapeBranchDataW770
+  #check
+    Dbounded.MetrizableClosedEmbeddingLeftRightComparisonDirectFiniteShapeBranchDataW770
+  #check Dbounded.directFiniteShapeStableDataOfClosedMapBranchLocalizedW770
+  #check
+    Dbounded.directFiniteShapeStableDataOfClosedEmbeddingBranchLocalizedW770
+  #check
+    Dbounded.stableCertificateOfClosedMapBranchLocalizedDirectFiniteShapeRouteW770_ready
+  #check
+    Dbounded.stableCertificateOfClosedEmbeddingBranchLocalizedDirectFiniteShapeRouteW770_ready
+  #check
+    Dbounded.productEvidence_of_closedMapBranchLocalizedDirectFiniteShapeRouteW770
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingBranchLocalizedDirectFiniteShapeRouteW770
+  #check Dbounded.branchLocalizedDirectFiniteShapeProductRouteInputNamesW770
+  #check
+    Dbounded.branchLocalizedDirectFiniteShapeProductRouteInputNamesW770_count
+  #check Dbounded.MetrizableBranchLocalizedDirectFiniteShapeProductRouteStateW770
+  #check
+    Dbounded.currentMetrizableBranchLocalizedDirectFiniteShapeProductRouteSupportStateW770
+  #check
+    Dbounded.currentMetrizableBranchLocalizedDirectFiniteShapeProductRouteStateW770_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)
