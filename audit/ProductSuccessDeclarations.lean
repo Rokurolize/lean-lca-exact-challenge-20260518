@@ -5,6 +5,7 @@ import LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields
 import LeanLCAExactChallenge.Derived.LeftRightComparisonRoute
 import LeanLCAExactChallenge.Derived.CategoryHomologyStableRoute
 import LeanLCAExactChallenge.Derived.KernelCokernelProductRoute
+import LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9054,6 +9055,30 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
     Dbounded.currentMetrizableKernelCokernelCategoryHomologyProductRouteSupportStateW767
   #check
     Dbounded.currentMetrizableKernelCokernelCategoryHomologyProductRouteStateW767_productSuccess
+  #check
+    Dbounded.cochainHasHomology_of_leftRightComparisonIsoW768
+  #check
+    Dbounded.metrizableLeftCalculusFieldsOfKernelCokernelLeftRightComparison_w768
+  #check
+    Dbounded.MetrizableKernelCokernelLeftRightComparisonWppTransferDataW768
+  #check
+    Dbounded.metrizableOrdinaryStableSemanticInputOfKernelCokernelLeftRightComparisonProductRoute_w768
+  #check
+    Dbounded.stableCertificateOfKernelCokernelLeftRightComparisonProductRoute_w768_ready
+  #check
+    Dbounded.productEvidence_of_closedMapLeftRightComparisonKernelCokernelRouteW768
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingLeftRightComparisonKernelCokernelRouteW768
+  #check
+    Dbounded.kernelCokernelLeftRightComparisonProductRouteInputNamesW768
+  #check
+    Dbounded.kernelCokernelLeftRightComparisonProductRouteInputNamesW768_count
+  #check
+    Dbounded.MetrizableKernelCokernelLeftRightComparisonProductRouteStateW768
+  #check
+    Dbounded.currentMetrizableKernelCokernelLeftRightComparisonProductRouteSupportStateW768
+  #check
+    Dbounded.currentMetrizableKernelCokernelLeftRightComparisonProductRouteStateW768_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

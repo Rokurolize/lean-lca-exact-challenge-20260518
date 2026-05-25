@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w767-kernel-cokernel-product-route",
-  "generated_utc": "2026-05-25T02:21:29Z",
-  "source_tree_hash": "e177d5d0739c4019eada9877ef9496dd540ebd5d0e200b04c3f7bd86c5571833",
-  "summary": "W767 packages the W765 category-homology exact/WPP route together with the W766 kernel-cokernel category-homology WPP-transfer stable route, and projects the existing W721 localized-right-adjoint data into the W766 input shape. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w768-left-right-comparison-product-route",
+  "generated_utc": "2026-05-25T02:35:58Z",
+  "source_tree_hash": "ee01316781bc6b8c107502a93b537e95c9f399b93bf9db9a942e6fb18f77444d",
+  "summary": "W768 replaces the direct CategoryWithHomology MetrizableLCA product-route input with the explicit W736 universal left-right comparison-isomorphism premise, then combines W762 exact/WPP evidence with the W669 kernel/cokernel WPP-transfer stable route. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -17125,6 +17125,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/logs/w767_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/LeftRightComparisonProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/logs/w768_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/logs/w768_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/logs/w768_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/w768_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/logs/w768_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/logs/w768_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/logs/w768_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/logs/w768_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/logs/w768_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/logs/w768_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -22148,11 +22193,20 @@
     "Dbounded.kernelCokernelCategoryHomologyProductRouteInputNamesW767_count",
     "Dbounded.MetrizableKernelCokernelCategoryHomologyProductRouteStateW767",
     "Dbounded.currentMetrizableKernelCokernelCategoryHomologyProductRouteSupportStateW767",
-    "Dbounded.currentMetrizableKernelCokernelCategoryHomologyProductRouteStateW767_productSuccess"
+    "Dbounded.currentMetrizableKernelCokernelCategoryHomologyProductRouteStateW767_productSuccess",
+    "Dbounded.cochainHasHomology_of_leftRightComparisonIsoW768",
+    "Dbounded.MetrizableKernelCokernelLeftRightComparisonWppTransferDataW768",
+    "Dbounded.productEvidence_of_closedMapLeftRightComparisonKernelCokernelRouteW768",
+    "Dbounded.productEvidence_of_closedEmbeddingLeftRightComparisonKernelCokernelRouteW768",
+    "Dbounded.kernelCokernelLeftRightComparisonProductRouteInputNamesW768",
+    "Dbounded.kernelCokernelLeftRightComparisonProductRouteInputNamesW768_count",
+    "Dbounded.MetrizableKernelCokernelLeftRightComparisonProductRouteStateW768",
+    "Dbounded.currentMetrizableKernelCokernelLeftRightComparisonProductRouteSupportStateW768",
+    "Dbounded.currentMetrizableKernelCokernelLeftRightComparisonProductRouteStateW768_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
-    "Construct CategoryWithHomology MetrizableLCA itself.",
+    "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
     "Construct MetrizableExactAtKernelCokernelConditionedTopologyInputs.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
@@ -22161,15 +22215,15 @@
   "support_result_classification": "nonterminal_support_increment",
   "product_success": false,
   "remaining_work": [
-    "Construct CategoryWithHomology MetrizableLCA.",
+    "Construct the universal left-right comparison isomorphism for arbitrary MetrizableLCA short complexes.",
     "Construct concrete W735 branch data values.",
     "Construct MetrizableExactAtKernelCokernelConditionedTopologyInputs.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
     "Construct WPP-transfer stable semantic inputs and remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W767 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, and new-file accounting gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W767 kernel-cokernel product route",
+  "summary_log_tail": "Focused W768 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, and new-file accounting gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W768 left-right comparison product route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -23673,6 +23727,13 @@
       "latest_verified_increment": "W767 kernel-cokernel product route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W767 metadata records the kernel-cokernel product-route integration and leaves product_success/product_complete false."
+    },
+    "w768_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T02:35:58Z",
+      "source_tree_hash": "ee01316781bc6b8c107502a93b537e95c9f399b93bf9db9a942e6fb18f77444d",
+      "latest_verified_increment": "W768 left-right comparison product route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W768 metadata records the left-right comparison product-route integration and leaves product_success/product_complete false."
     }
   }
 }

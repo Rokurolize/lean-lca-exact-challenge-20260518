@@ -160,44 +160,44 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W767 kernel-cokernel product route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W768 left-right comparison product route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/KernelCokernelProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T020345Z_codex_parent_w767</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/LeftRightComparisonProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T022356Z_codex_parent_w768</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W767 kernel-cokernel product route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 11:20 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W768 left-right comparison product route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 11:36 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W767 packages the W765 category-homology exact/WPP route together with the W766 kernel-cokernel category-homology WPP-transfer stable route, then projects the existing W721 localized-right-adjoint data into the W766 input shape. The increment lives in a new 181-line helper module and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W768 replaces the direct <code>CategoryWithHomology MetrizableLCA</code> input in the product route with the explicit W736 universal left-right comparison-isomorphism input. It feeds that comparison data into the W669 kernel/cokernel stable route and combines it with W762 exact/WPP evidence. The increment lives in a new 199-line helper module and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>boundedHomotopyLocalizedRightAdjointInput_of_localizedRightAdjointDataW767</code> adapts the W721 localized-right-adjoint package for the W766 stable input.</li>
-            <li><code>metrizableOrdinaryStableSemanticInputOfKernelCokernelCategoryHomologyProductRoute_w767</code> composes the kernel/cokernel category-homology stable route with existing exact/WPP evidence.</li>
-            <li><code>productEvidence_of_closedMapCategoryHomologyKernelCokernelRouteW767</code> and <code>productEvidence_of_closedEmbeddingCategoryHomologyKernelCokernelRouteW767</code> expose the two branch-product evidence routes while keeping product success false.</li>
+            <li><code>cochainHasHomology_of_leftRightComparisonIsoW768</code> derives the cochain homology function from the W736 comparison-isomorphism premise.</li>
+            <li><code>metrizableOrdinaryStableSemanticInputOfKernelCokernelLeftRightComparisonProductRoute_w768</code> feeds that premise through the W669 kernel/cokernel WPP-transfer stable route.</li>
+            <li><code>productEvidence_of_closedMapLeftRightComparisonKernelCokernelRouteW768</code> and <code>productEvidence_of_closedEmbeddingLeftRightComparisonKernelCokernelRouteW768</code> expose the two comparison-based product evidence routes while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/KernelCokernelProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.KernelCokernelProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/LeftRightComparisonProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T020345Z_codex_parent_w767/w767_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T022356Z_codex_parent_w768/w768_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 181 lines with 12 top-level declarations.</li>
-            <li>Focused W767 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 199 lines with 12 top-level declarations.</li>
+            <li>Focused W768 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W767 work.</p></div>
-      <p>W766 proved that an existing <code>CategoryWithHomology MetrizableLCA</code> premise supplies the raw cochain-homology function consumed by the W669 kernel/cokernel-conditioned stable route.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W768 work.</p></div>
+      <p>W767 packaged the W765 category-homology exact/WPP route together with the W766 kernel/cokernel category-homology WPP-transfer stable route.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
-        <li>Construct <code>CategoryWithHomology MetrizableLCA</code> itself; W767 only routes consequences once that premise is available.</li>
+        <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
         <li>Construct <code>MetrizableExactAtKernelCokernelConditionedTopologyInputs</code>, the triangulated-closure premise, concrete WPP-transfer stable semantic inputs, and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
