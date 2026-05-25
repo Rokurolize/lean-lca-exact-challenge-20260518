@@ -16,6 +16,7 @@ import LeanLCAExactChallenge.Derived.HomologyFreeSelectedCochainStableRoute
 import LeanLCAExactChallenge.Derived.HomologyFreeRouteDataProviderFromRouteData
 import LeanLCAExactChallenge.Derived.RouteDataProviderFromComparisonBijectivity
 import LeanLCAExactChallenge.Derived.EndpointTopologyFromClosednessBranch
+import LeanLCAExactChallenge.Derived.EndpointKernelCokernelFromClosednessBranch
 
 set_option autoImplicit false
 
@@ -474,5 +475,22 @@ theorem originalFourTaskContract_endpointFactsHomologyFreeRouteData_nonterminal 
     Dbounded.currentMetrizableEndpointFactsHomologyFreeRouteDataStateW856.productSuccessClaimed =
       false :=
   Dbounded.currentW856EndpointFactsHomologyFreeRouteData_productSuccess
+
+theorem originalFourTaskContract_endpointKernelCokernelFacts_remainingFactCount :
+    Dbounded.endpointKernelCokernelFactInputNamesW857.length = 2 :=
+  Dbounded.endpointKernelCokernelFactInputNamesW857_count
+
+theorem originalFourTaskContract_endpointKernelCokernelLeftCalculus_inputCount :
+    Dbounded.endpointKernelCokernelLeftCalculusInputNamesW857.length = 4 :=
+  Dbounded.endpointKernelCokernelLeftCalculusInputNamesW857_count
+
+theorem originalFourTaskContract_endpointKernelCokernelStableRoute_expandedInputCount :
+    Dbounded.endpointKernelCokernelStableRouteExpandedInputNamesW857.length = 8 :=
+  Dbounded.endpointKernelCokernelStableRouteExpandedInputNamesW857_count
+
+theorem originalFourTaskContract_endpointKernelCokernelFromClosednessBranch_nonterminal :
+    Dbounded.currentMetrizableEndpointKernelCokernelFromClosednessBranchStateW857.productSuccessClaimed =
+      false :=
+  Dbounded.currentW857EndpointKernelCokernelFromClosednessBranch_productSuccess
 
 end LeanLCAExactChallenge

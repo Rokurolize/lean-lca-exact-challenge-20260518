@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lean LCA W856 Nonterminal Progress Report</title>
+  <title>Lean LCA W857 Nonterminal Progress Report</title>
   <style id="html-progress-report-style">
 :root {
   color-scheme: light;
@@ -156,57 +156,43 @@ textarea.goal-text {
 <body>
   <header class="report-hero">
     <div class="wrap">
-      <h1>W856 endpoint topology from closedness branch</h1>
-      <p class="lede">Generated 2026-05-26 07:39 JST. W856 derives W720 forgetful homology preservation from the existing W519 mapped-cokernel closedness branch via W503/W694, while keeping the immutable original four-task contract nonterminal.</p>
+      <h1>W857 endpoint kernel/cokernel from closedness branch</h1>
+      <p class="lede">Generated 2026-05-26 07:51 JST. W857 derives the W668 kernel/cokernel-conditioned topology input from W519 closedness-derived forgetful homology preservation plus two ExactAt endpoint universal-property facts, while keeping the immutable original four-task contract nonterminal.</p>
       <div class="badges">
         <span class="badge warn">product_success=false</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">update_goal_allowed=false</span>
-        <span class="badge info">nonterminal_endpoint_topology_from_closedness_branch</span>
+        <span class="badge info">nonterminal_endpoint_kernel_cokernel_from_closedness_branch</span>
       </div>
     </div>
   </header>
 
   <main class="wrap">
     <section class="grid">
-      <div class="card span-3"><div class="label">Latest Increment</div><div class="metric">W856</div><p>Endpoint homology field derived from W519 closedness.</p></div>
-      <div class="card span-3"><div class="label">Outcome</div><div class="metric">Nonterminal</div><p>The route removes one endpoint subfield, not the product gate.</p></div>
-      <div class="card span-3"><div class="label">Endpoint Facts Left</div><div class="metric">3</div><p>Closed embedding, open map, and ExactAt-to-epi facts remain.</p></div>
-      <div class="card span-3"><div class="label">Route Fields Left</div><div class="metric">8</div><p>The weakened W856 route-data provider still needs concrete data.</p></div>
+      <div class="card span-3"><div class="label">Latest Increment</div><div class="metric">W857</div><p>Endpoint kernel/cokernel route from W519 closedness.</p></div>
+      <div class="card span-3"><div class="label">Outcome</div><div class="metric">Nonterminal</div><p>The route is checked, but the product gate remains closed.</p></div>
+      <div class="card span-3"><div class="label">Endpoint Facts Left</div><div class="metric">2</div><p>ExactAt kernel fork and cokernel cofork facts remain.</p></div>
+      <div class="card span-3"><div class="label">Expanded Stable Inputs</div><div class="metric">8</div><p>W857 records the concrete nonterminal stable-route surface.</p></div>
     </section>
 
     <section>
       <h2>Current Result</h2>
-      <p>W856 adds <code>LeanLCAExactChallenge/Derived/EndpointTopologyFromClosednessBranch.lean</code>. The module proves that closed-map and closed-embedding W519 mapped-cokernel closedness data supply <code>(forget₂ MetrizableLCA AddCommGrpCat).PreservesHomology</code> through the W503 closure-kernel provider and W694.</p>
-      <p>The new <code>Dbounded.MetrizableWppEndpointTopologyFactsProviderW856</code> keeps only the three non-homology endpoint facts. W856 reconstructs the full W720 endpoint provider, builds a W853 homology-free selected-cochain route-data provider, and reuses the W853 direct bounded left-calculus and bounded-derived package route.</p>
-      <div class="warnbox">Product success remains false. The original four-task contract still requires concrete route-data fields, a final no-argument or fully instance-resolved completion witness, and a clean review packet with required negative fixtures.</div>
+      <p>W857 adds <code>LeanLCAExactChallenge/Derived/EndpointKernelCokernelFromClosednessBranch.lean</code>. The module reuses W856 to get <code>(forget2 MetrizableLCA AddCommGrpCat).PreservesHomology</code> from the W519 mapped-cokernel closedness branch, then packages the two remaining ExactAt endpoint universal-property facts as <code>Dbounded.MetrizableWppEndpointKernelCokernelFactsProviderW857</code>.</p>
+      <p>The constructed <code>Dbounded.kernelCokernelConditionedTopologyInputsOfClosednessBranchW857</code> feeds the W668 kernel/cokernel topology surface into W831, yielding checked direct bounded left calculus and a bounded-derived infinity-category route under the remaining explicit stable inputs.</p>
+      <div class="warnbox">Product success remains false. W857 is a verified route-surface reduction, not the final original four-task witness or completion packet.</div>
     </section>
 
     <section class="grid">
       <div class="card span-6">
         <h2>Implemented Declarations</h2>
         <ul>
-          <li><code>Dbounded.MetrizableWppEndpointTopologyFactsProviderW856</code></li>
-          <li><code>Dbounded.endpointForgetPreservesHomologyOfClosedMapW856</code></li>
-          <li><code>Dbounded.endpointForgetPreservesHomologyOfClosedEmbeddingW856</code></li>
-          <li><code>Dbounded.endpointForgetPreservesHomologyOfClosednessBranchW856</code></li>
-          <li><code>Dbounded.endpointStrictTopologyDataOfClosednessBranchW856</code></li>
-          <li><code>Dbounded.MetrizableWppEndpointFactsHomologyFreeRouteDataProviderW856</code></li>
-          <li><code>Dbounded.homologyFreeSelectedCochainRouteDataProviderOfEndpointFactsW856</code></li>
-          <li><code>Dbounded.selectedCochainDirectSourceDataOfEndpointFactsW856</code></li>
-          <li><code>Dbounded.directBoundedLeftCalculusOfEndpointFactsW856</code></li>
-          <li><code>Dbounded.boundedDerivedInfinityCategoryOfEndpointFactsW856</code></li>
-          <li><code>Dbounded.endpointTopologyFactInputNamesW856_count</code></li>
-          <li><code>Dbounded.endpointFactsHomologyFreeRouteDataInputNamesW856_count</code></li>
-          <li><code>Dbounded.currentW856EndpointFactsHomologyFreeRouteData_productSuccess</code></li>
+          <li><code>Dbounded.MetrizableWppEndpointKernelCokernelFactsProviderW857</code></li><li><code>Dbounded.kernelCokernelConditionedTopologyInputsOfClosednessBranchW857</code></li><li><code>Dbounded.MetrizableComparisonBijectivityEndpointKernelCokernelLeftCalculusDataW857</code></li><li><code>Dbounded.comparisonBijectivityLeftCalculusDataOfEndpointKernelCokernelW857</code></li><li><code>Dbounded.directBoundedLeftCalculusOfEndpointKernelCokernelW857</code></li><li><code>Dbounded.boundedDerivedInfinityCategoryOfEndpointKernelCokernelW857</code></li><li><code>Dbounded.endpointKernelCokernelFactInputNamesW857_count</code></li><li><code>Dbounded.endpointKernelCokernelLeftCalculusInputNamesW857_count</code></li><li><code>Dbounded.endpointKernelCokernelStableRouteExpandedInputNamesW857_count</code></li><li><code>Dbounded.currentW857EndpointKernelCokernelFromClosednessBranch_productSuccess</code></li><li><code>originalFourTaskContract_endpointKernelCokernelFacts_remainingFactCount</code></li><li><code>originalFourTaskContract_endpointKernelCokernelLeftCalculus_inputCount</code></li><li><code>originalFourTaskContract_endpointKernelCokernelStableRoute_expandedInputCount</code></li><li><code>originalFourTaskContract_endpointKernelCokernelFromClosednessBranch_nonterminal</code></li>
         </ul>
       </div>
       <div class="card span-6">
         <h2>Remaining Gaps</h2>
         <ul>
-          <li>Concrete W856 route-data values are still missing: boundary, relation, target-surjective/compact, matched closedness branch, normalized fixed-target, source triangulation, endpoint facts, and localized-right-adjoint data.</li>
-          <li>The endpoint provider still needs the three non-homology endpoint topology facts.</li>
-          <li>The final original-four-task witness and completion review packet are still absent.</li>
+          <li>Task 4 is not contract-complete under the original four-task contract: W857 reduces one endpoint topology route to two ExactAt kernel/cokernel universal-property facts, but still requires exact-closedness, a matched W519 closedness branch, endpoint kernel/cokernel facts, localized-right-adjoint data, finite limits, finite colimits, pretriangulated, and triangulated data.</li><li>The W856 homology-free selected-cochain provider is still not concretely instantiated; its boundary, relation, target-surjective/compact, closedness branch, normalized target, source triangulation, endpoint facts, and localized-right-adjoint fields remain open.</li><li>The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.</li><li>The review packet still does not expose the immutable-contract negative fixtures, external SHA256 sidecar, and clean extraction audit required for product success.</li>
         </ul>
       </div>
     </section>
@@ -216,14 +202,7 @@ textarea.goal-text {
       <table>
         <thead><tr><th>Command</th><th>Status</th><th>Evidence</th></tr></thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/EndpointTopologyFromClosednessBranch.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T223612Z_codex_parent_w856_endpoint_topology_from_closedness_branch/logs/w856_new_module_lean.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.EndpointTopologyFromClosednessBranch</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T223612Z_codex_parent_w856_endpoint_topology_from_closedness_branch/logs/w856_new_module_lake_build.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T223612Z_codex_parent_w856_endpoint_topology_from_closedness_branch/logs/w856_product_audit_lean.log</code></td></tr>
-          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T223612Z_codex_parent_w856_endpoint_topology_from_closedness_branch/logs/w856_original_audit_lean.log</code></td></tr>
-          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T223612Z_codex_parent_w856_endpoint_topology_from_closedness_branch/logs/w856_required_audit_lean.log</code></td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T223612Z_codex_parent_w856_endpoint_topology_from_closedness_branch/logs/w856_lake_build.log</code></td></tr>
-          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T223612Z_codex_parent_w856_endpoint_topology_from_closedness_branch/logs/w856_forbidden_tokens.log</code></td></tr>
-          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T223612Z_codex_parent_w856_endpoint_topology_from_closedness_branch/logs/w856_git_diff_check.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/EndpointKernelCokernelFromClosednessBranch.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_new_module_lean.log</code></td></tr><tr><td><code>lake build LeanLCAExactChallenge.Derived.EndpointKernelCokernelFromClosednessBranch</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_new_module_lake_build.log</code></td></tr><tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_product_audit_lean.log</code></td></tr><tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_original_audit_lean.log</code></td></tr><tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_required_audit_lean.log</code></td></tr><tr><td><code>lake build</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_lake_build.log</code></td></tr><tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_forbidden_tokens.log</code></td></tr><tr><td><code>rg -n productSuccessClaimed/product_success/product_complete true scan</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_source_product_success_true_scan.log</code></td></tr><tr><td><code>git diff --check</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_git_diff_check_prebuild.log</code></td></tr><tr><td><code>python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_html_apply_style.log</code></td></tr><tr><td><code>python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_html_check_report.log</code></td></tr><tr><td><code>python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_contract_audit.log</code></td></tr><tr><td><code>python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json</code></td><td>failed_expected</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_external_audit_nonterminal_expected.log</code></td></tr><tr><td><code>git diff --check after metadata refresh</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_git_diff_check_after_metadata.log</code></td></tr><tr><td><code>python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T224651Z_codex_parent_w857_endpoint_kernel_cokernel_from_closedness_branch/logs/w857_browser_evidence_scratch_log.log</code></td></tr>
         </tbody>
       </table>
     </section>
@@ -233,23 +212,16 @@ textarea.goal-text {
         <h2>Hashes</h2>
         <table>
           <tbody>
+            <tr><th>Source Tree Hash</th><td><code>a584525df7ad27460b5fc638f844576718cf7c19b81d58ebc37c1c7b0977ad2d</code></td></tr>
             <tr><th>Immutable Contract SHA256</th><td><code>a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</code></td></tr>
-            <tr><th>Dynamic Guidance SHA256</th><td><code>687d7a02166cb8633adbd1d85e6cb5a9dd679e21c84de859bcf434ef799f2d14</code></td></tr>
-            <tr><th>Source Tree Hash</th><td><code>e7b92189ee0113872a5e657fe4ee6dc60dcedb1e359657ce16af5fdec49dcc18</code></td></tr>
+            <tr><th>Dynamic Guidance SHA256</th><td><code>78efdd17fa12eb594a66f23837c6c1ec36bb0436864ceec6f1167ad445a33bd0</code></td></tr>
           </tbody>
         </table>
       </div>
       <div class="card span-6">
         <h2>Next Safe Action</h2>
-        <p>Continue from the W856 weakened endpoint provider. The smallest next target is to construct or precisely block one of the eight W856 route-data fields, with special focus on the three endpoint topology facts because the forgetful homology-preservation subfield is now derived.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Timeline</h2>
-      <div class="timeline">
-        <div class="event"><time>2026-05-26 07:36 JST</time><strong>W856 module added.</strong><p>Introduced endpoint facts provider and W519/W694-derived forgetful homology preservation.</p></div>
-        <div class="event"><time>2026-05-26 07:39 JST</time><strong>Lean verification passed.</strong><p>Focused module, product audit, original contract audit declarations, required declarations, full Lake build, forbidden-token audit, and diff check passed.</p></div>
+        <p>Construct or precisely block one concrete W857 input, with priority on the ExactAt kernel/cokernel facts or a reusable exact-closedness/localized-right-adjoint provider.</p>
+        <p>Do not call <code>update_goal(status="complete")</code>; the immutable original four-task contract is still unsatisfied.</p>
       </div>
     </section>
   </main>
