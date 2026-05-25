@@ -1,6 +1,7 @@
 import LeanLCAExactChallenge
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroFiniteShapeStableRoute
 import LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectLocalizationStableRoute
+import LeanLCAExactChallenge.Derived.TargetHomologyZeroDirectSourceStableRoute
 
 set_option autoImplicit false
 
@@ -122,6 +123,16 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroDirectLocalizationW841
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetHomologyZeroDirectLocalizationW841
+#check
+  LeanLCAExactChallenge.Dbounded.closedMapDirectSourceOfTargetHomologyZeroW842
+#check
+  LeanLCAExactChallenge.Dbounded.closedMapDirectLocalizationOfTargetHomologyZeroW842
+#check
+  LeanLCAExactChallenge.Dbounded.remainingStableFieldsOfClosedMapTargetHomologyZeroDirectSourceW842
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetHomologyZeroDirectSourceW842
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingTargetHomologyZeroDirectSourceW842
 
 namespace LeanLCAExactChallenge
 
@@ -258,5 +269,15 @@ theorem
     Dbounded.targetHomologyZeroDirectLocalizationStableRouteExpandedRequiredFieldNamesW841.length =
       4 :=
   Dbounded.targetHomologyZeroDirectLocalizationStableRouteExpandedRequiredFieldNamesW841_count
+
+theorem originalFourTaskContract_targetHomologyZeroDirectSourceStableRoute_bundledInputCount :
+    Dbounded.targetHomologyZeroDirectSourceStableRouteInputNamesW842.length =
+      1 :=
+  Dbounded.targetHomologyZeroDirectSourceStableRouteInputNamesW842_count
+
+theorem originalFourTaskContract_targetHomologyZeroDirectSourceStableRoute_expandedRequiredFieldCount :
+    Dbounded.targetHomologyZeroDirectSourceStableRouteExpandedRequiredFieldNamesW842.length =
+      2 :=
+  Dbounded.targetHomologyZeroDirectSourceStableRouteExpandedRequiredFieldNamesW842_count
 
 end LeanLCAExactChallenge
