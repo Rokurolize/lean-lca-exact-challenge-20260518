@@ -159,7 +159,7 @@ textarea.goal-text {
       <h1>Lean LCA Exact Challenge Progress</h1>
       <p class="lede">Browser-readable status for the active Lean LCA exact-category goal. This report separates verified helper progress from product completion.</p>
       <div class="toolbar">
-        <span class="badge info">Updated 2026-05-26 03:51 JST</span>
+        <span class="badge info">Updated 2026-05-26 04:03 JST</span>
         <span class="badge warn">product_complete=false</span>
         <span class="badge warn">product_success=false</span>
       </div>
@@ -169,13 +169,13 @@ textarea.goal-text {
     <section class="grid" aria-label="Current status">
       <div class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W837</div>
-        <p>strict-realization left-calculus route</p>
+        <div class="metric">W838</div>
+        <p>comparison-bijectivity strict-realization route</p>
       </div>
       <div class="card span-3">
         <div class="label">Verification</div>
         <div class="metric">Guarded</div>
-        <p>W651 is derived from W809 through W812</p>
+        <p>W831 supplies W837 comparison isomorphisms</p>
       </div>
       <div class="card span-3">
         <div class="label">Primary Surface</div>
@@ -185,21 +185,21 @@ textarea.goal-text {
       <div class="card span-3">
         <div class="label">Next Safe Action</div>
         <div class="metric">Implement</div>
-        <p>construct W735 branch data, comparison isomorphism, W783 data, and stable structures</p>
+        <p>construct W735 branch data, W783 data, and stable structures</p>
       </div>
     </section>
 
     <section>
       <h2>Current Increment</h2>
-      <p>W837 keeps the target nonterminal under the immutable original four-task contract and replaces W836's direct W651 iso-closure strict realization input with W812 homology detection from W809 strict triangleh realization branch data. <code>Dbounded.exactInputsLeftCalculusDataOfClosedMapStrictRealizationW837</code> and <code>Dbounded.exactInputsLeftCalculusDataOfClosedEmbeddingStrictRealizationW837</code> feed W836, then the W837 direct-left-calculus routes reach the same left calculus result. The stable route still requires concrete W735 branch data, the universal comparison isomorphism, W783 strict triangleh realization data, finite limits, finite colimits, pretriangulated structure, and triangulated structure before it can become original four-task completion evidence.</p>
+      <p>W838 keeps the target nonterminal under the immutable original four-task contract and routes the W821/W831 comparison-bijectivity theorem into W837 strict-realization left calculus. <code>Dbounded.strictRealizationDataOfClosedMapComparisonBijectivityW838</code> and <code>Dbounded.strictRealizationDataOfClosedEmbeddingComparisonBijectivityW838</code> supply W809 data with W831's universal comparison isomorphism, then the W838 direct-left-calculus routes reach the same left calculus result. The stable route still requires concrete W735 branch data, W783 strict triangleh realization data, finite limits, finite colimits, pretriangulated structure, and triangulated structure before it can become original four-task completion evidence.</p>
       <div class="grid">
         <div class="card span-6">
           <h3>Touched Sources</h3>
           <table>
             <tbody>
-              <tr><th>Baseline</th><td><code>718fda3e3344ad2de33c9d794c23ffc280ce9b00</code></td></tr>
+              <tr><th>Baseline</th><td><code>71cf5b28975b7fcbc3a1df12728842c4af749c8c</code></td></tr>
               <tr><th>Contract SHA</th><td><code>a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1</code></td></tr>
-              <tr><th>Known Gaps</th><td>W735 branch data, comparison isomorphism, W783 data, remaining stable structures, original witness, final packet fixtures</td></tr>
+              <tr><th>Known Gaps</th><td>W735 branch data, W783 data, remaining stable structures, original witness, final packet fixtures</td></tr>
               <tr><th>WPP Source</th><td>untouched</td></tr>
             </tbody>
           </table>
@@ -207,10 +207,10 @@ textarea.goal-text {
         <div class="card span-6">
           <h3>Core Declarations</h3>
           <ul>
-            <li><code>Dbounded.exactInputsLeftCalculusDataOfClosedMapStrictRealizationW837</code></li>
-            <li><code>Dbounded.exactInputsLeftCalculusDataOfClosedEmbeddingStrictRealizationW837</code></li>
-            <li><code>Dbounded.directBoundedLeftCalculusOfClosedMapStrictRealizationW837</code></li>
-            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictRealizationW837</code></li>
+            <li><code>Dbounded.strictRealizationDataOfClosedMapComparisonBijectivityW838</code></li>
+            <li><code>Dbounded.strictRealizationDataOfClosedEmbeddingComparisonBijectivityW838</code></li>
+            <li><code>Dbounded.directBoundedLeftCalculusOfClosedMapComparisonBijectivityStrictRealizationW838</code></li>
+            <li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonBijectivityStrictRealizationW838</code></li>
             <li><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></li>
             <li><code>lake env lean audit/RequiredDeclarations.lean</code></li>
             <li><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></li>
@@ -229,16 +229,16 @@ textarea.goal-text {
           <tr><th>Check</th><th>Status</th><th>Evidence</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/StrictRealizationLeftCalculusRoute.lean</code></td><td>passed</td><td><code>w837_strict_realization_left_calculus_route_lean.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.StrictRealizationLeftCalculusRoute</code></td><td>passed</td><td><code>w837_lake_build_strict_realization_left_calculus_route.log</code></td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge</code></td><td>passed</td><td><code>w837_lake_build_root.log</code></td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w837_product_success_declarations.log</code></td></tr>
-          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w837_original_four_task_declarations.log</code></td></tr>
-          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w837_required_declarations.log</code></td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td><code>w837_lake_build.log</code></td></tr>
-          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w837_forbidden_tokens.log</code></td></tr>
-          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>passed</td><td><code>w837_source_product_success_true_scan.log</code></td></tr>
-          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w837_git_diff_check.log</code></td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ComparisonBijectivityStrictRealizationLeftCalculusRoute.lean</code></td><td>passed</td><td><code>w838_comparison_bijectivity_strict_left_calculus_route_lean.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ComparisonBijectivityStrictRealizationLeftCalculusRoute</code></td><td>passed</td><td><code>w838_lake_build_comparison_bijectivity_strict_left_calculus_route.log</code></td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge</code></td><td>passed</td><td><code>w838_lake_build_root.log</code></td></tr>
+          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>w838_product_success_declarations.log</code></td></tr>
+          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>w838_original_four_task_declarations.log</code></td></tr>
+          <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>w838_required_declarations.log</code></td></tr>
+          <tr><td><code>lake build</code></td><td>passed</td><td><code>w838_lake_build.log</code></td></tr>
+          <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>w838_forbidden_tokens.log</code></td></tr>
+          <tr><td><code>rg -n 'productSuccessClaimed := true' LeanLCAExactChallenge audit</code></td><td>passed</td><td><code>w838_source_product_success_true_scan.log</code></td></tr>
+          <tr><td><code>git diff --check</code></td><td>passed</td><td><code>w838_git_diff_check.log</code></td></tr>
           <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ComparisonBijectivityRoute.lean</code></td><td>passed</td><td><code>w821_focused_source_lean.log</code></td></tr>
           <tr><td><code>lake build LeanLCAExactChallenge.Derived.ComparisonBijectivityRoute</code></td><td>passed</td><td><code>w821_focused_lake_build_source.log</code></td></tr>
           <tr><td><code>lake env lean LeanLCAExactChallenge.lean</code></td><td>passed</td><td><code>w821_root_import.log</code></td></tr>
@@ -344,8 +344,8 @@ textarea.goal-text {
         <li>W834 derives W833's W784 realization input from W651 iso-closure strict realization data through W810 and W809.</li>
         <li>W835 derives W834's W696 endpoint topology input from W735 exact-input branch data through W790.</li>
         <li>W836 derives W835's W721 input from the W735 branch data itself.</li>
-        <li>W837 derives W836's W651 input from W809 strict triangleh realization data through W812 homology detection.</li>
-        <li>The remaining mathematical product work is to construct W735 branch data, the universal comparison isomorphism, W783 strict triangleh realization data, finite limits, finite colimits, pretriangulated structure, and triangulated structure.</li>
+        <li>W837 derives W836's W651 input from W809 strict triangleh realization data through W812 homology detection. W838 derives W837's comparison input from W821/W831 comparison bijectivity.</li>
+        <li>The remaining mathematical product work is to construct W735 branch data, W783 strict triangleh realization data, finite limits, finite colimits, pretriangulated structure, and triangulated structure.</li>
       </ul>
       <div class="note">
         <strong>Goal completion rule.</strong>

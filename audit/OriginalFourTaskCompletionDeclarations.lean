@@ -74,6 +74,14 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictRealizationW837
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingStrictRealizationW837
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapComparisonBijectivityStrictRealizationW838
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedEmbeddingComparisonBijectivityStrictRealizationW838
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonBijectivityStrictRealizationW838
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonBijectivityStrictRealizationW838
 
 namespace LeanLCAExactChallenge
 
@@ -164,5 +172,15 @@ theorem originalFourTaskContract_strictRealizationLeftCalculusRoute_expandedRequ
     Dbounded.strictRealizationLeftCalculusExpandedRequiredFieldNamesW837.length =
       7 :=
   Dbounded.strictRealizationLeftCalculusExpandedRequiredFieldNamesW837_count
+
+theorem originalFourTaskContract_comparisonBijectivityStrictRealizationLeftCalculusRoute_concreteInputCount :
+    Dbounded.comparisonBijectivityStrictRealizationLeftCalculusInputNamesW838.length =
+      2 :=
+  Dbounded.comparisonBijectivityStrictRealizationLeftCalculusInputNamesW838_count
+
+theorem originalFourTaskContract_comparisonBijectivityStrictRealizationLeftCalculusRoute_expandedRequiredFieldCount :
+    Dbounded.comparisonBijectivityStrictRealizationLeftCalculusExpandedRequiredFieldNamesW838.length =
+      6 :=
+  Dbounded.comparisonBijectivityStrictRealizationLeftCalculusExpandedRequiredFieldNamesW838_count
 
 end LeanLCAExactChallenge
