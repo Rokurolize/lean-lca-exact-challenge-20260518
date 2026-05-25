@@ -16,6 +16,7 @@ import LeanLCAExactChallenge.Derived.OpClosureNormalizedDirectSourceClosedRangeP
 import LeanLCAExactChallenge.Derived.LimitOpClosureNormalizedClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.DirectRightLcaLimitOpClosureNormalizedClosedRangeProductRoute
 import LeanLCAExactChallenge.Derived.LeftSnakeDirectRightLcaNormalizedClosedRangeProductRoute
+import LeanLCAExactChallenge.Derived.DirectComparisonLeftSnakeProductRoute
 
 /-!
 Product-success contract for the exact LCA category challenge.
@@ -9273,6 +9274,19 @@ ordinary `Dbounded` context is checked separately and remains rejected by that g
   #check Dbounded.MetrizableLeftSnakeDirectRightLcaProductRouteStateW778
   #check Dbounded.currentMetrizableLeftSnakeDirectRightLcaProductRouteSupportStateW778
   #check Dbounded.currentW778LeftSnakeDirectRightLcaRoute_productSuccess
+  #check Dbounded.MetrizableClosedMapDirectComparisonLeftSnakeBranchDataW779
+  #check Dbounded.MetrizableClosedEmbeddingDirectComparisonLeftSnakeBranchDataW779
+  #check Dbounded.limitComparisonOfDirectComparisonW779
+  #check Dbounded.closedMapLeftSnakeDataOfDirectComparisonW779
+  #check Dbounded.closedEmbeddingLeftSnakeDataOfDirectComparisonW779
+  #check Dbounded.productEvidence_of_closedMapDirectComparisonLeftSnakeRouteW779
+  #check
+    Dbounded.productEvidence_of_closedEmbeddingDirectComparisonLeftSnakeRouteW779
+  #check Dbounded.directComparisonLeftSnakeProductRouteInputNamesW779
+  #check Dbounded.directComparisonLeftSnakeProductRouteInputNamesW779_count
+  #check Dbounded.MetrizableDirectComparisonLeftSnakeProductRouteStateW779
+  #check Dbounded.currentMetrizableDirectComparisonLeftSnakeProductRouteSupportStateW779
+  #check Dbounded.currentW779DirectComparisonLeftSnakeRoute_productSuccess
 
   noncomputable example : SSet.QCat :=
     BoundedDerivedInfinityCategory (C := MetrizableLCA)

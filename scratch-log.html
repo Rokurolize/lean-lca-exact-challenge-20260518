@@ -160,47 +160,47 @@ textarea.goal-text {
       <p class="meta">HTML run log for implementation commits in <code>/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518</code>. This page follows the practical idea from <a href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html">The unreasonable effectiveness of HTML</a>: keep status, evidence, and next work visible in a browser-native artifact.</p>
     </header>
     <section class="grid" aria-label="Current status">
-      <div class="metric"><strong>Latest Increment</strong><span>W778 left/Snake direct-right-LCA route</span></div>
+      <div class="metric"><strong>Latest Increment</strong><span>W779 direct-comparison left/Snake route</span></div>
       <div class="metric"><strong>Product Status</strong><span>Nonterminal</span></div>
-      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/LeftSnakeDirectRightLcaNormalizedClosedRangeProductRoute</span></div>
-      <div class="metric"><strong>Run Evidence</strong><span>20260525T040907Z_codex_parent_w778</span></div>
+      <div class="metric"><strong>Primary Lean Surface</strong><span>Derived/DirectComparisonLeftSnakeProductRoute</span></div>
+      <div class="metric"><strong>Run Evidence</strong><span>20260525T041737Z_codex_parent_w779</span></div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Current Increment: W778 left/Snake direct-right-LCA route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 13:13 JST</span></p></div>
+      <div class="entry-head"><h2>Current Increment: W779 direct-comparison left/Snake route</h2><p class="meta"><span class="status">Focused gates passed</span> <span class="status warn">product_complete=false</span> <span>2026-05-25 13:22 JST</span></p></div>
       <div class="columns">
         <div>
-          <p>W778 replaces the WPP-op exact-acyclic colimit-closure field with WPP-op left closed-embedding and Snake cokernel certificates via <code>walkingParallelPairColimitStability_of_left_and_snakeCokernel</code>. The same branch data also derives WPP limit stability from direct-right-LCA fields and feeds W774 directly. The increment lives in a new 217-line helper module with 15 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
+          <p>W779 replaces W778's explicit mapping-cone WPP limit-comparison field with the direct W551 comparison theorem <code>metrizableWppLimitComparisonInput_direct</code>, then feeds the W778 left/Snake route unchanged. The same branch data still carries the right-side pure LCA limit certificates and the WPP-op left/Snake colimit certificates. The increment lives in a new 177-line helper module with 12 top-level declarations and leaves the 59,258-line WPP projection-fields file untouched.</p>
           <ul>
-            <li><code>limitStabilityOfClosedMapLeftSnakeDirectRightLcaW778</code> and the closed-embedding counterpart derive WPP limit stability from mapping-cone comparison plus right-side pure LCA certificates.</li>
-            <li><code>colimitStabilityOfClosedMapLeftSnakeW778</code> and <code>colimitStabilityOfClosedEmbeddingLeftSnakeW778</code> derive WPP colimit stability from WPP-op left/Snake certificates.</li>
-            <li><code>productEvidence_of_closedMapLeftSnakeDirectRightLcaRouteW778</code> and <code>productEvidence_of_closedEmbeddingLeftSnakeDirectRightLcaRouteW778</code> expose left/Snake direct-right-LCA product evidence while keeping product success false.</li>
+            <li><code>limitComparisonOfDirectComparisonW779</code> supplies W778's comparison input directly from the W551 theorem.</li>
+            <li><code>closedMapLeftSnakeDataOfDirectComparisonW779</code> and <code>closedEmbeddingLeftSnakeDataOfDirectComparisonW779</code> route direct-comparison branch data into W778's left/Snake direct-right-LCA branch data.</li>
+            <li><code>productEvidence_of_closedMapDirectComparisonLeftSnakeRouteW779</code> and <code>productEvidence_of_closedEmbeddingDirectComparisonLeftSnakeRouteW779</code> expose direct-comparison left/Snake product evidence while keeping product success false.</li>
           </ul>
         </div>
         <div>
           <p><strong>Evidence captured</strong></p>
           <ul>
-            <li><code>lake env lean LeanLCAExactChallenge/Derived/LeftSnakeDirectRightLcaNormalizedClosedRangeProductRoute.lean</code></li>
-            <li><code>lake build LeanLCAExactChallenge.Derived.LeftSnakeDirectRightLcaNormalizedClosedRangeProductRoute</code></li>
+            <li><code>lake env lean LeanLCAExactChallenge/Derived/DirectComparisonLeftSnakeProductRoute.lean</code></li>
+            <li><code>lake build LeanLCAExactChallenge.Derived.DirectComparisonLeftSnakeProductRoute</code></li>
             <li><code>lake env lean audit/ProductSuccessDeclarations.lean</code></li>
-            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T040907Z_codex_parent_w778/w778_required_declarations.lean</code></li>
+            <li><code>lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/w779_required_declarations.lean</code></li>
             <li><code>lake build</code></li>
-            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 217 lines with 15 top-level declarations.</li>
-            <li><code>goal_sha_comparison_before_focused.tsv</code> and <code>goal_sha_comparison_after_focused.tsv</code> record that the active-goal SHA stayed stable for W778 focused verification.</li>
-            <li>Focused W778 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
+            <li><code>actual_diff_module_size_gate.tsv</code> records WPP as untouched and the helper module as 177 lines with 12 top-level declarations.</li>
+            <li><code>goal_sha_comparison_before_focused.tsv</code> and <code>goal_sha_comparison_after_focused.tsv</code> record that the active-goal SHA stayed stable for W779 focused verification.</li>
+            <li>Focused W779 gate status is recorded: source, module, product declaration, run-owned required declaration, full build, JSON parse, diff check, and external-audit self-check passed; the terminal product gate remains the expected nonterminal rejection.</li>
           </ul>
         </div>
       </div>
     </section>
     <section class="entry">
-      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W778 work.</p></div>
-      <p>W777 replaced W776's opaque WPP exact-acyclic limit-closure field with the direct-left/algebraic-right-LCA route.</p>
+      <div class="entry-head"><h2>Previous Increment</h2><p class="meta">Committed before this W779 work.</p></div>
+      <p>W778 replaced the WPP-op exact-acyclic colimit-closure field with WPP-op left closed-embedding and Snake cokernel certificates while still deriving WPP limit stability from direct-right-LCA branch data.</p>
     </section>
     <section class="entry">
       <div class="entry-head"><h2>Remaining Product Blockers</h2><p class="meta">Product success is intentionally not claimed.</p></div>
       <ul>
         <li>Construct the universal left-right comparison isomorphism for arbitrary <code>MetrizableLCA</code> short complexes; W768 only routes consequences once that premise is available.</li>
         <li>Construct concrete W735 closed-map or closed-embedding branch-data values.</li>
-        <li>Construct W696 closed-range endpoint-topology data, the triangulated-closure premise, mapping-cone WPP limit comparison, pure LCA right-open and right-surjective WPP limit certificates, WPP-op left closed-embedding and Snake cokernel certificates, and the remaining Dbounded stable-infinity inputs.</li>
+        <li>Construct W696 closed-range endpoint-topology data, the triangulated-closure premise, pure LCA right-open and right-surjective WPP limit certificates, WPP-op left closed-embedding and Snake cokernel certificates, and the remaining Dbounded stable-infinity inputs.</li>
       </ul>
     </section>
     <section class="note"><p>Commit hashes are intentionally not embedded in this file before commit creation; use <code>git log --oneline</code> for the authoritative SHA. This page is updated as part of each implementation commit so the repository itself carries the latest progress report.</p></section>

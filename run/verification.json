@@ -1,8 +1,8 @@
 {
-  "schema": "lean-lca-exact-challenge-verification-w778-left-snake-direct-right-lca-route",
-  "generated_utc": "2026-05-25T04:15:49Z",
-  "source_tree_hash": "35e000854ac2564989036d9ba7aff5427f8399217283cbe529e94e84d2b95794",
-  "summary": "W778 derives WPP limit stability from direct-right-LCA fields and WPP colimit stability from WPP-op left closed-embedding plus Snake cokernel certificates, feeding W774 directly without requiring the WPP-op exact-acyclic colimit-closure field. Product_success remains false.",
+  "schema": "lean-lca-exact-challenge-verification-w779-direct-comparison-left-snake-route",
+  "generated_utc": "2026-05-25T04:24:44Z",
+  "source_tree_hash": "4f838dab5a50105c4a7bc7e7b6676ead12247c0f0bf6a4ca799d449bb46e339d",
+  "summary": "W779 uses metrizableWppLimitComparisonInput_direct to supply W778's limitComparison field, preserving right-LCA limit certificates and WPP-op left/Snake colimit certificates while feeding the W778 route. Product_success remains false.",
   "commands": [
     {
       "command": "lake env lean LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean",
@@ -17620,6 +17620,51 @@
       "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
       "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T040907Z_codex_parent_w778/logs/w778_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge/Derived/DirectComparisonLeftSnakeProductRoute.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/logs/w779_focused_source_lean.log exit_code=0"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge.Derived.DirectComparisonLeftSnakeProductRoute",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/logs/w779_focused_lake_build_source.log exit_code=0"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/logs/w779_focused_product_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "lake env lean /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/w779_required_declarations.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/logs/w779_focused_required_declarations_lean.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --self-check-only",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/logs/w779_focused_external_audit_self_check.log exit_code=0"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/logs/w779_focused_full_lake_build.log exit_code=0"
+    },
+    {
+      "command": "python3 json validation for manifest/run/terminal_outcome",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/logs/w779_focused_json_validation.log exit_code=0"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/logs/w779_focused_git_diff_check.log exit_code=0"
+    },
+    {
+      "command": "python3 audit/external_audit.py --root /home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518 --terminal-outcome terminal_outcome/terminal_outcome.json",
+      "status": "failed_expected",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260525T041737Z_codex_parent_w779/logs/w779_focused_external_audit_terminal_expected_nonterminal.log exit_code=1"
     }
   ],
   "implemented_declarations_checked": [
@@ -22783,7 +22828,19 @@
     "Dbounded.leftSnakeDirectRightLcaProductRouteInputNamesW778_count",
     "Dbounded.MetrizableLeftSnakeDirectRightLcaProductRouteStateW778",
     "Dbounded.currentMetrizableLeftSnakeDirectRightLcaProductRouteSupportStateW778",
-    "Dbounded.currentW778LeftSnakeDirectRightLcaRoute_productSuccess"
+    "Dbounded.currentW778LeftSnakeDirectRightLcaRoute_productSuccess",
+    "Dbounded.MetrizableClosedMapDirectComparisonLeftSnakeBranchDataW779",
+    "Dbounded.MetrizableClosedEmbeddingDirectComparisonLeftSnakeBranchDataW779",
+    "Dbounded.limitComparisonOfDirectComparisonW779",
+    "Dbounded.closedMapLeftSnakeDataOfDirectComparisonW779",
+    "Dbounded.closedEmbeddingLeftSnakeDataOfDirectComparisonW779",
+    "Dbounded.productEvidence_of_closedMapDirectComparisonLeftSnakeRouteW779",
+    "Dbounded.productEvidence_of_closedEmbeddingDirectComparisonLeftSnakeRouteW779",
+    "Dbounded.directComparisonLeftSnakeProductRouteInputNamesW779",
+    "Dbounded.directComparisonLeftSnakeProductRouteInputNamesW779_count",
+    "Dbounded.MetrizableDirectComparisonLeftSnakeProductRouteStateW779",
+    "Dbounded.currentMetrizableDirectComparisonLeftSnakeProductRouteSupportStateW779",
+    "Dbounded.currentW779DirectComparisonLeftSnakeRoute_productSuccess"
   ],
   "product_complete": false,
   "known_gaps": [
@@ -22791,7 +22848,6 @@
     "Construct concrete values for one W735 closed-map or closed-embedding branch-data record.",
     "Construct W696 closed-range endpoint-topology data.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
-    "Construct mapping-cone WPP limit comparison.",
     "Construct WPP limit right-open pure LCA certificate.",
     "Construct WPP limit right-surjectivity pure LCA certificate.",
     "Construct WPP-op colimit left closed-embedding certificate.",
@@ -22805,11 +22861,11 @@
     "Construct concrete W735 branch data values.",
     "Construct W696 closed-range endpoint-topology data.",
     "Prove exactAcyclicHomotopyIsoClosure MetrizableLCA is triangulated closed.",
-    "Construct mapping-cone WPP limit comparison, pure LCA right-open and right-surjective WPP limit certificates, WPP-op left/Snake colimit certificates, and remaining Dbounded stable-infinity inputs.",
+    "Construct pure LCA right-open and right-surjective WPP limit certificates, WPP-op left/Snake colimit certificates, and remaining Dbounded stable-infinity inputs.",
     "Only claim product_success after the original Lean LCA challenge endpoint and terminal audit are fully satisfied."
   ],
-  "summary_log_tail": "Focused W778 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, new-file accounting, and rendered-report precheck gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
-  "latest_verified_increment": "W778 left/Snake direct-right-LCA route",
+  "summary_log_tail": "Focused W779 source, module, product declaration, run-owned required declaration, full build, JSON, diff, forbidden-token, goal-SHA, new-file accounting, and rendered-report precheck gates passed; external terminal audit still fails only at the expected nonterminal product gate.",
+  "latest_verified_increment": "W779 direct-comparison left/Snake route",
   "metadata_corrections": {
     "w739_metadata_refresh": {
       "corrected_utc": "2026-05-24T20:25:43Z",
@@ -24390,6 +24446,13 @@
       "latest_verified_increment": "W778 left/Snake direct-right-LCA route",
       "claim_review_status": "not_run_nonterminal_support_increment",
       "note": "W778 metadata records the left/Snake direct-right-LCA product-route integration and leaves product_success/product_complete false."
+    },
+    "w779_metadata_refresh": {
+      "refreshed_utc": "2026-05-25T04:24:44Z",
+      "source_tree_hash": "4f838dab5a50105c4a7bc7e7b6676ead12247c0f0bf6a4ca799d449bb46e339d",
+      "latest_verified_increment": "W779 direct-comparison left/Snake route",
+      "claim_review_status": "not_run_nonterminal_support_increment",
+      "note": "W779 metadata records the direct-comparison left/Snake product-route integration and leaves product_success/product_complete false."
     }
   }
 }
