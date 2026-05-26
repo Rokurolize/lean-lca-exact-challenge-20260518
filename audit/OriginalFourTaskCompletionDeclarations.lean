@@ -79,6 +79,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapRelationRawFieldsTargetRawFieldsRo
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRawFieldsRelationRawFieldsRoute
 import LeanLCAExactChallenge.Derived.ClosedMapTriangleCompletionRawFieldBoundaryRawFieldsRoute
 import LeanLCAExactChallenge.Derived.ClosedMapSourceRawFieldsTriangleCompletionRawFieldRoute
+import LeanLCAExactChallenge.Derived.ClosedMapRelationPrimitiveFieldsSourceRawFieldsRoute
 
 set_option autoImplicit false
 
@@ -1564,5 +1565,19 @@ theorem originalFourTaskContract_closedMapSourceRawFields_nonterminal :
     Dbounded.currentMetrizableClosedMapSourceRawFieldsRouteStateW919.productSuccessClaimed =
       false :=
   Dbounded.currentW919ClosedMapSourceRawFieldsRoute_productSuccess
+
+#check Dbounded.w919LeavesOfRelationPrimitiveFieldsW920
+#check Dbounded.directBoundedLeftCalculusOfClosedMapRelationPrimitiveFieldsW920
+#check Dbounded.boundedDerivedInfinityCategoryOfClosedMapRelationPrimitiveFieldsW920
+
+theorem originalFourTaskContract_closedMapRelationPrimitiveFields_inputCount :
+    Dbounded.closedMapRelationPrimitiveFieldsInputNamesW920.length =
+      39 :=
+  Dbounded.closedMapRelationPrimitiveFieldsInputNamesW920_count
+
+theorem originalFourTaskContract_closedMapRelationPrimitiveFields_nonterminal :
+    Dbounded.currentMetrizableClosedMapRelationPrimitiveFieldsRouteStateW920.productSuccessClaimed =
+      false :=
+  Dbounded.currentW920ClosedMapRelationPrimitiveFieldsRoute_productSuccess
 
 end LeanLCAExactChallenge
