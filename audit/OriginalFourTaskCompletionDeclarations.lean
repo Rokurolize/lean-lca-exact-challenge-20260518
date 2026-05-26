@@ -77,6 +77,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapSelectedDifferenceFieldsFixedTarge
 import LeanLCAExactChallenge.Derived.ClosedMapTargetRawFieldsSelectedDifferenceFieldsRoute
 import LeanLCAExactChallenge.Derived.ClosedMapRelationRawFieldsTargetRawFieldsRoute
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRawFieldsRelationRawFieldsRoute
+import LeanLCAExactChallenge.Derived.ClosedMapTriangleCompletionRawFieldBoundaryRawFieldsRoute
 
 set_option autoImplicit false
 
@@ -1534,5 +1535,19 @@ theorem originalFourTaskContract_closedMapBoundaryRawFields_nonterminal :
     Dbounded.currentMetrizableClosedMapBoundaryRawFieldsRouteStateW917.productSuccessClaimed =
       false :=
   Dbounded.currentW917ClosedMapBoundaryRawFieldsRoute_productSuccess
+
+#check Dbounded.w917LeavesOfTriangleCompletionRawFieldW918
+#check Dbounded.directBoundedLeftCalculusOfClosedMapTriangleCompletionRawFieldBoundaryRawFieldsW918
+#check Dbounded.boundedDerivedInfinityCategoryOfClosedMapTriangleCompletionRawFieldBoundaryRawFieldsW918
+
+theorem originalFourTaskContract_closedMapTriangleCompletionRawField_inputCount :
+    Dbounded.closedMapTriangleCompletionRawFieldBoundaryRawFieldsInputNamesW918.length =
+      39 :=
+  Dbounded.closedMapTriangleCompletionRawFieldBoundaryRawFieldsInputNamesW918_count
+
+theorem originalFourTaskContract_closedMapTriangleCompletionRawField_nonterminal :
+    Dbounded.currentMetrizableClosedMapTriangleCompletionRawFieldBoundaryRawFieldsRouteStateW918.productSuccessClaimed =
+      false :=
+  Dbounded.currentW918ClosedMapTriangleCompletionRawFieldBoundaryRawFieldsRoute_productSuccess
 
 end LeanLCAExactChallenge
