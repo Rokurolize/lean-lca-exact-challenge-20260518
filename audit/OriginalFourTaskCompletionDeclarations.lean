@@ -89,6 +89,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactClusterPrimitiveField
 import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNonbottomPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactOuterNonbottomPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoPrincipalPrimitiveFieldRoute
+import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipPrimitiveFieldRoute
 
 set_option autoImplicit false
 
@@ -1732,5 +1733,21 @@ theorem originalFourTaskContract_closedMapTargetCompactNoPrincipalPrimitiveField
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW929ClosedMapTargetCompactNoPrincipalPrimitiveFieldsRoute_productSuccess
+
+#check Dbounded.w929LeavesOfTargetCompactNoUnivMembershipPrimitiveFieldsW930
+#check Dbounded.directBoundedLeftCalculusOfClosedMapTargetCompactNoUnivMembershipPrimitiveFieldsW930
+#check Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetCompactNoUnivMembershipPrimitiveFieldsW930
+
+theorem originalFourTaskContract_closedMapTargetCompactNoUnivMembershipPrimitiveFields_inputCount :
+    Dbounded.closedMapTargetCompactNoUnivMembershipPrimitiveFieldsInputNamesW930.length =
+      39 :=
+  Dbounded.closedMapTargetCompactNoUnivMembershipPrimitiveFieldsInputNamesW930_count
+
+theorem originalFourTaskContract_closedMapTargetCompactNoUnivMembershipPrimitiveFields_nonterminal :
+    (let state :=
+        Dbounded.currentMetrizableClosedMapTargetCompactNoUnivMembershipPrimitiveFieldsRouteStateW930;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW930ClosedMapTargetCompactNoUnivMembershipPrimitiveFieldsRoute_productSuccess
 
 end LeanLCAExactChallenge
