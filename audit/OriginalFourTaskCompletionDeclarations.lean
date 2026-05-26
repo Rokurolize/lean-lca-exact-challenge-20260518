@@ -34,6 +34,7 @@ import LeanLCAExactChallenge.Derived.RouteDataSelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.HomologyFreeSelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.EndpointFactsHomologyFreeSelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.EndpointLocalizedHomologyFreeSelectedCochainStableExactAtRoute
+import LeanLCAExactChallenge.Derived.W732SelectedCochainStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -216,6 +217,10 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfEndpointLocalizedHomologyFreeSelectedCochainStableExactAtW874
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfEndpointLocalizedHomologyFreeSelectedCochainStableExactAtW874
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfW732SelectedCochainStableExactAtW875
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfW732SelectedCochainStableExactAtW875
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -806,5 +811,14 @@ theorem originalFourTaskContract_endpointLocalizedHomologyFreeSelectedCochainSta
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW874EndpointLocalizedHomologyFreeSelectedCochainStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_w732SelectedCochainStableExactAt_inputCount :
+    Dbounded.w732SelectedCochainStableExactAtInputNamesW875.length = 1 :=
+  Dbounded.w732SelectedCochainStableExactAtInputNamesW875_count
+
+theorem originalFourTaskContract_w732SelectedCochainStableExactAt_nonterminal :
+    Dbounded.currentMetrizableW732SelectedCochainStableExactAtRouteStateW875.productSuccessClaimed =
+      false :=
+  Dbounded.currentW875W732SelectedCochainStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
