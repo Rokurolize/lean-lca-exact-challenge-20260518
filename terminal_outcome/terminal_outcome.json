@@ -1,57 +1,61 @@
 {
-  "outcome": "nonterminal_endpoint_facts_homology_free_selected_cochain_stable_exact_at",
-  "generated_utc": "2026-05-26T01:14:10Z",
+  "outcome": "nonterminal_endpoint_localized_homology_free_selected_cochain_stable_exact_at",
+  "generated_utc": "2026-05-26T01:25:33Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "b095c9abeb2a687ca703476e3139a8d4d5087626dfdf4b7bae9561d1e1950b80"
+    "sha256": "ae80762e601f83d371d58c225de5ff695aa647a4a64907fdd39daa54efff8b29"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W873 keeps the target nonterminal under the immutable original four-task contract while composing W856 endpoint-facts reconstruction with the W872 homology-free selected-cochain stable-ExactAt route. From one W856 endpoint-facts provider, W873 checks direct bounded left calculus and obtains the bounded derived infinity-category package through W856, W853, W831, and W869/W870/W872. Product success remains false because the eight endpoint-facts route-data fields, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W874 keeps the target nonterminal under the immutable original four-task contract while combining W856 endpoint topology facts and W721 localized-right-adjoint data into one W726 endpoint/localized provider. From seven W874 field groups, the route reconstructs the W873 endpoint-facts provider and checks the direct bounded left calculus plus bounded derived infinity-category package through W873, W856, W853, W831, and W869/W870/W872. Product success remains false because the seven endpoint-localized route-data fields, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W873 moves the latest stable ExactAt boundary to the W856 endpoint-facts provider surface, but its eight concrete fields are still not instantiated.",
-    "Concrete W856 endpoint-facts data is not yet fully instantiated; the latest route boundary is boundary/relation data, target closedness branch, normalized target, source triangulation, endpoint topology facts, and localized right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W874 moves the latest stable ExactAt boundary to the W726 endpoint/localized provider surface, but its seven concrete fields are still not instantiated.",
+    "Concrete W874 endpoint-localized data is not yet fully instantiated; the latest route boundary is boundary/relation data, target closedness branch, normalized target, source triangulation, and W726 endpoint/localized-right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block the eight concrete W856 endpoint-facts provider fields now isolated by W873.",
+    "Construct or precisely block the seven concrete W874 endpoint-localized provider field groups now isolated by W874.",
     "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_endpoint_facts_homology_free_selected_cochain_stable_exact_at",
-  "latest_verified_increment": "W873 endpoint-facts homology-free selected-cochain stable ExactAt route",
+  "support_result_classification": "nonterminal_endpoint_localized_homology_free_selected_cochain_stable_exact_at",
+  "latest_verified_increment": "W874 endpoint-localized homology-free selected-cochain stable ExactAt route",
   "reference_route_log": "docs/research/reference_route_log.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W873 moves the latest stable ExactAt boundary to the W856 endpoint-facts provider surface, but its eight concrete fields are still not instantiated.",
-    "Concrete W856 endpoint-facts data is not yet fully instantiated; the latest route boundary is boundary/relation data, target closedness branch, normalized target, source triangulation, endpoint topology facts, and localized right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W874 moves the latest stable ExactAt boundary to the W726 endpoint/localized provider surface, but its seven concrete fields are still not instantiated.",
+    "Concrete W874 endpoint-localized data is not yet fully instantiated; the latest route boundary is boundary/relation data, target closedness branch, normalized target, source triangulation, and W726 endpoint/localized-right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "implemented_declarations": [
-    "Dbounded.directBoundedLeftCalculusOfEndpointFactsHomologyFreeSelectedCochainStableExactAtW873",
-    "Dbounded.boundedDerivedInfinityCategoryOfEndpointFactsHomologyFreeSelectedCochainStableExactAtW873",
-    "Dbounded.endpointFactsHomologyFreeSelectedCochainStableExactAtInputNamesW873_count",
-    "Dbounded.currentW873EndpointFactsHomologyFreeSelectedCochainStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_endpointFactsHomologyFreeSelectedCochainStableExactAt_inputCount",
-    "originalFourTaskContract_endpointFactsHomologyFreeSelectedCochainStableExactAt_nonterminal"
+    "Dbounded.endpointTopologyFactsOfEndpointLocalizedW874",
+    "Dbounded.endpointFactsRouteDataProviderOfEndpointLocalizedW874",
+    "Dbounded.directBoundedLeftCalculusOfEndpointLocalizedHomologyFreeSelectedCochainStableExactAtW874",
+    "Dbounded.boundedDerivedInfinityCategoryOfEndpointLocalizedHomologyFreeSelectedCochainStableExactAtW874",
+    "Dbounded.endpointLocalizedHomologyFreeSelectedCochainStableExactAtInputNamesW874_count",
+    "Dbounded.currentW874EndpointLocalizedHomologyFreeSelectedCochainStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_endpointLocalizedHomologyFreeSelectedCochainStableExactAt_inputCount",
+    "originalFourTaskContract_endpointLocalizedHomologyFreeSelectedCochainStableExactAt_nonterminal"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.directBoundedLeftCalculusOfEndpointFactsHomologyFreeSelectedCochainStableExactAtW873",
-    "Dbounded.boundedDerivedInfinityCategoryOfEndpointFactsHomologyFreeSelectedCochainStableExactAtW873",
-    "Dbounded.endpointFactsHomologyFreeSelectedCochainStableExactAtInputNamesW873_count",
-    "Dbounded.currentW873EndpointFactsHomologyFreeSelectedCochainStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_endpointFactsHomologyFreeSelectedCochainStableExactAt_inputCount",
-    "originalFourTaskContract_endpointFactsHomologyFreeSelectedCochainStableExactAt_nonterminal"
+    "Dbounded.endpointTopologyFactsOfEndpointLocalizedW874",
+    "Dbounded.endpointFactsRouteDataProviderOfEndpointLocalizedW874",
+    "Dbounded.directBoundedLeftCalculusOfEndpointLocalizedHomologyFreeSelectedCochainStableExactAtW874",
+    "Dbounded.boundedDerivedInfinityCategoryOfEndpointLocalizedHomologyFreeSelectedCochainStableExactAtW874",
+    "Dbounded.endpointLocalizedHomologyFreeSelectedCochainStableExactAtInputNamesW874_count",
+    "Dbounded.currentW874EndpointLocalizedHomologyFreeSelectedCochainStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_endpointLocalizedHomologyFreeSelectedCochainStableExactAt_inputCount",
+    "originalFourTaskContract_endpointLocalizedHomologyFreeSelectedCochainStableExactAt_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/EndpointFactsHomologyFreeSelectedCochainStableExactAtRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.EndpointFactsHomologyFreeSelectedCochainStableExactAtRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/EndpointLocalizedHomologyFreeSelectedCochainStableExactAtRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.EndpointLocalizedHomologyFreeSelectedCochainStableExactAtRoute",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
@@ -59,7 +63,7 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "strict live product-success true scan",
     "git diff --check",
-    "W873 helper module size and declaration accounting",
+    "W874 helper module size and declaration accounting",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",

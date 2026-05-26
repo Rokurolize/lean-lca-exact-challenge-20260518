@@ -33,6 +33,7 @@ import LeanLCAExactChallenge.Derived.ExactInputsComparisonSelectedCochainStableE
 import LeanLCAExactChallenge.Derived.RouteDataSelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.HomologyFreeSelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.EndpointFactsHomologyFreeSelectedCochainStableExactAtRoute
+import LeanLCAExactChallenge.Derived.EndpointLocalizedHomologyFreeSelectedCochainStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -211,6 +212,10 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfEndpointFactsHomologyFreeSelectedCochainStableExactAtW873
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfEndpointFactsHomologyFreeSelectedCochainStableExactAtW873
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfEndpointLocalizedHomologyFreeSelectedCochainStableExactAtW874
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfEndpointLocalizedHomologyFreeSelectedCochainStableExactAtW874
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -789,5 +794,17 @@ theorem originalFourTaskContract_endpointFactsHomologyFreeSelectedCochainStableE
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW873EndpointFactsHomologyFreeSelectedCochainStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_endpointLocalizedHomologyFreeSelectedCochainStableExactAt_inputCount :
+    Dbounded.endpointLocalizedHomologyFreeSelectedCochainStableExactAtInputNamesW874.length =
+      7 :=
+  Dbounded.endpointLocalizedHomologyFreeSelectedCochainStableExactAtInputNamesW874_count
+
+theorem originalFourTaskContract_endpointLocalizedHomologyFreeSelectedCochainStableExactAt_nonterminal :
+    (let state :=
+        Dbounded.currentMetrizableEndpointLocalizedHomologyFreeSelectedCochainStableExactAtRouteStateW874;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW874EndpointLocalizedHomologyFreeSelectedCochainStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
