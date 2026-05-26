@@ -1,6 +1,6 @@
 {
-  "content_hash_tree": "a67c3c00899cb81317f1ea4e74bf597e82b768cf085b1c6434d15612029dd6a0",
-  "file_count": 1095,
+  "content_hash_tree": "07a65beb87bc2dc1548df3120e6ee428e1457ec6195dfc9c9c27b5daab6445b7",
+  "file_count": 1097,
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -29,8 +29,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "bytes": 19147,
-      "sha256": "63fbc30c21244d7879e545ba152876e29d0fdfcbf179c87fd74d58adfdd12a97"
+      "bytes": 19290,
+      "sha256": "206b56462505f84b7ca0eb24b9977e175e7952a70d4738f10199c1ef0372a4b8"
     },
     {
       "path": "LeanLCAExactChallenge/AlternatingTailExtendTransport.lean",
@@ -201,6 +201,11 @@
       "path": "LeanLCAExactChallenge/Derived/ClosedMapMappedCokernelPrimitiveFieldsRoute.lean",
       "bytes": 23618,
       "sha256": "6c056021678ff5f6fb229d47d744053b5a0a03a4d7047e2a902972257fc9d97d"
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapRawBoundarySplitTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsRoute.lean",
+      "bytes": 15245,
+      "sha256": "fbfed2795d6df55baddaae4c4e02cb3b82229c88bd149b811e74e497c77319bd"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapRelationDataBoundaryDataSourceTriangulationEndpointFactsLocalizedRightAdjointComparisonStableExactAtRoute.lean",
@@ -1099,18 +1104,18 @@
     },
     {
       "path": "audit/OriginalFourTaskCompletionDeclarations.lean",
-      "bytes": 135618,
-      "sha256": "a88922b8dc2e8e3259056139e5839b7f3cd165c169f530b70bc209e2115f55c1"
+      "bytes": 137128,
+      "sha256": "a5e6ea673f54667862e13a7123981e4c2fbbb57e207f277216107384e78a6e90"
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 677405,
-      "sha256": "d255a12b62591fb809cb9672c96a5f0a64ad95e42769c1d531aa8621dcfa6cdc"
+      "bytes": 678508,
+      "sha256": "5b2c2c6c53d2850e379f9f4e4f75a0f44a1925403ea2afc1dca8ca61caad81bd"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
-      "bytes": 46058,
-      "sha256": "641658bf40ce99fe84cb757b50a1d78273226382773c5e2602ecafc3d485251c"
+      "bytes": 46999,
+      "sha256": "457beeab7dce3eea26b623c2510bf994a9391040adf899c31e2a3e9718fa4d33"
     },
     {
       "path": "audit/YonedaUnsuffixedPortSmokeW84.lean",
@@ -2874,8 +2879,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "bytes": 233466,
-      "sha256": "c7192051f67b69494aff1f73129735de07c2bc9b12cd74940f51e103b81b4237"
+      "bytes": 234207,
+      "sha256": "b87b3adf2c19f9cf95492eed846495ab3c12d0b5cf5af3a08535d8ef6acffa81"
     },
     {
       "path": "docs/research/sources.md",
@@ -3251,6 +3256,11 @@
       "path": "docs/research/w955_provider_search_ledger.md",
       "bytes": 1784,
       "sha256": "7d06ea737aef40c58a2512a1f8652f03f2f82bf123dc0bfd60e52b6b428108f0"
+    },
+    {
+      "path": "docs/research/w956_provider_search_ledger.md",
+      "bytes": 1537,
+      "sha256": "bf733a64460c01b3edd74cec855e6da240cf94d8ac3b3ce49027a3027685a5ed"
     },
     {
       "path": "implementation-notes.html",
@@ -5449,13 +5459,13 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 10578,
-      "sha256": "54d3a9a423008e26a68416c87a680ca2c7898decdea16dd4763c581d3a0695c0"
+      "bytes": 10816,
+      "sha256": "525a24905a1412f49c3b45dce9698f3bd8e5f1bde1e562955169540ed6393934"
     },
     {
       "path": "scratch-log.html",
-      "bytes": 11593,
-      "sha256": "246719a9ddb4848f4ab887e2617cb64d26fb7bc696e4405a693f4df620a9fb78"
+      "bytes": 11568,
+      "sha256": "fb74502b1ec32a9bd464d4b6963935851bef48b89d3b46985948e0ec3564bdb4"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -5469,8 +5479,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 10713,
-      "sha256": "6bbcbea08a1dcf2509cec8ff291d833196811d53e886dc383b30b0b79ccb8a93"
+      "bytes": 10837,
+      "sha256": "932ae240f0e8bbb2aa3537a66c43ae77625c6c59a316e6ba90e0cefd28336b7c"
     },
     {
       "path": "workers/README.md",
