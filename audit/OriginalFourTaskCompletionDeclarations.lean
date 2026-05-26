@@ -85,6 +85,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapSelectedDifferencePrimitiveFieldsR
 import LeanLCAExactChallenge.Derived.ClosedMapTargetSurjectivePrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactFilterPrimitiveFieldRoute
+import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactClusterPrimitiveFieldRoute
 
 set_option autoImplicit false
 
@@ -1664,5 +1665,21 @@ theorem originalFourTaskContract_closedMapTargetCompactFilterPrimitiveFields_non
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW925ClosedMapTargetCompactFilterPrimitiveFieldsRoute_productSuccess
+
+#check Dbounded.w925LeavesOfTargetCompactClusterPrimitiveFieldsW926
+#check Dbounded.directBoundedLeftCalculusOfClosedMapTargetCompactClusterPrimitiveFieldsW926
+#check Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetCompactClusterPrimitiveFieldsW926
+
+theorem originalFourTaskContract_closedMapTargetCompactClusterPrimitiveFields_inputCount :
+    Dbounded.closedMapTargetCompactClusterPrimitiveFieldsInputNamesW926.length =
+      39 :=
+  Dbounded.closedMapTargetCompactClusterPrimitiveFieldsInputNamesW926_count
+
+theorem originalFourTaskContract_closedMapTargetCompactClusterPrimitiveFields_nonterminal :
+    (let state :=
+        Dbounded.currentMetrizableClosedMapTargetCompactClusterPrimitiveFieldsRouteStateW926;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW926ClosedMapTargetCompactClusterPrimitiveFieldsRoute_productSuccess
 
 end LeanLCAExactChallenge
