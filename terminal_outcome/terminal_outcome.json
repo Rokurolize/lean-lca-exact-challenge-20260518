@@ -1,63 +1,65 @@
 {
-  "outcome": "nonterminal_w884_source_triangulation_comparison_stable_exact_at",
-  "generated_utc": "2026-05-26T03:02:23Z",
+  "outcome": "nonterminal_w885_source_triangulation_fields_comparison_stable_exact_at",
+  "generated_utc": "2026-05-26T03:10:53Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "bda1adb80777a6df65fd72306263235664b241ee2ddea38926aaa3db101a8370"
+    "sha256": "7a68bd4473f94def319d57e3c0d4ce7922b19ac69a2e53075c1148765c2f35b8"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W884 keeps the target nonterminal under the immutable original four-task contract while replacing the W883 source-homological-triangulation leaf with source-triangulation data; the W821/W855 comparison-bijectivity route supplies the category-homology provider, and the result feeds W883, W882, W881, W880, and W879. Product success remains false because the remaining W884 concrete leaf providers, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W885 keeps the target nonterminal under the immutable original four-task contract while replacing the W884 bundled source-triangulation provider with explicit source pretriangulated, source triangulated, and triangle-completion fields. The assembled W722 provider feeds W884, then W883, W882, W881, W880, and W879. Product success remains false because the explicit W885 fields, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W884 removes the caller-supplied category-homology part of the W733 source-homological leaf, but the source-triangulation provider and the other W884 concrete leaves are still not instantiated.",
-    "The remaining W884 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, normalized fixed-target data, source triangulation and triangle-completion data, endpoint strict-topology data, and localized-right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W885 exposes the W722 source-triangulation provider as three explicit fields, but those fields and the other W885 concrete leaves are still not instantiated.",
+    "The remaining W885 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, normalized fixed-target data, a Pretriangulated structure on BoundedComplexCategory MetrizableLCA, an IsTriangulated structure on that source, source-side triangle-completion data, endpoint strict-topology data, and localized-right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the eight W884 source-triangulation concrete leaf providers.",
+    "Construct or precisely block concrete values for the ten W885 explicit source-triangulation field inputs.",
     "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w884_source_triangulation_comparison_stable_exact_at",
-  "latest_verified_increment": "W884 source-triangulation comparison stable ExactAt route",
+  "support_result_classification": "nonterminal_w885_source_triangulation_fields_comparison_stable_exact_at",
+  "latest_verified_increment": "W885 source-triangulation fields comparison stable ExactAt route",
   "reference_route_log": "docs/research/reference_route_log.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W884 removes the caller-supplied category-homology part of the W733 source-homological leaf, but the source-triangulation provider and the other W884 concrete leaves are still not instantiated.",
-    "The remaining W884 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, normalized fixed-target data, source triangulation and triangle-completion data, endpoint strict-topology data, and localized-right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W885 exposes the W722 source-triangulation provider as three explicit fields, but those fields and the other W885 concrete leaves are still not instantiated.",
+    "The remaining W885 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, normalized fixed-target data, a Pretriangulated structure on BoundedComplexCategory MetrizableLCA, an IsTriangulated structure on that source, source-side triangle-completion data, endpoint strict-topology data, and localized-right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "implemented_declarations": [
-    "Dbounded.sourceHomologicalTriangulationDataOfSourceTriangulationW884",
-    "Dbounded.concreteLeavesOfSourceTriangulationComparisonW884",
-    "Dbounded.routeDataProviderOfSourceTriangulationComparisonW884",
-    "Dbounded.directBoundedLeftCalculusOfSourceTriangulationComparisonStableExactAtW884",
-    "Dbounded.boundedDerivedInfinityCategoryOfSourceTriangulationComparisonStableExactAtW884",
-    "Dbounded.sourceTriangulationComparisonStableExactAtInputNamesW884_count",
-    "Dbounded.currentW884SourceTriangulationComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_sourceTriangulationComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_sourceTriangulationComparisonStableExactAt_nonterminal"
+    "Dbounded.sourceTriangulationDataOfFieldsW885",
+    "Dbounded.sourceTriangulationLeavesOfFieldsW885",
+    "Dbounded.concreteLeavesOfSourceTriangulationFieldsComparisonW885",
+    "Dbounded.routeDataProviderOfSourceTriangulationFieldsComparisonW885",
+    "Dbounded.directBoundedLeftCalculusOfSourceTriangulationFieldsComparisonStableExactAtW885",
+    "Dbounded.boundedDerivedInfinityCategoryOfSourceTriangulationFieldsComparisonStableExactAtW885",
+    "Dbounded.sourceTriangulationFieldsComparisonStableExactAtInputNamesW885_count",
+    "Dbounded.currentW885SourceTriangulationFieldsComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_sourceTriangulationFieldsComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_sourceTriangulationFieldsComparisonStableExactAt_nonterminal"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.sourceHomologicalTriangulationDataOfSourceTriangulationW884",
-    "Dbounded.concreteLeavesOfSourceTriangulationComparisonW884",
-    "Dbounded.routeDataProviderOfSourceTriangulationComparisonW884",
-    "Dbounded.directBoundedLeftCalculusOfSourceTriangulationComparisonStableExactAtW884",
-    "Dbounded.boundedDerivedInfinityCategoryOfSourceTriangulationComparisonStableExactAtW884",
-    "Dbounded.sourceTriangulationComparisonStableExactAtInputNamesW884_count",
-    "Dbounded.currentW884SourceTriangulationComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_sourceTriangulationComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_sourceTriangulationComparisonStableExactAt_nonterminal"
+    "Dbounded.sourceTriangulationDataOfFieldsW885",
+    "Dbounded.sourceTriangulationLeavesOfFieldsW885",
+    "Dbounded.concreteLeavesOfSourceTriangulationFieldsComparisonW885",
+    "Dbounded.routeDataProviderOfSourceTriangulationFieldsComparisonW885",
+    "Dbounded.directBoundedLeftCalculusOfSourceTriangulationFieldsComparisonStableExactAtW885",
+    "Dbounded.boundedDerivedInfinityCategoryOfSourceTriangulationFieldsComparisonStableExactAtW885",
+    "Dbounded.sourceTriangulationFieldsComparisonStableExactAtInputNamesW885_count",
+    "Dbounded.currentW885SourceTriangulationFieldsComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_sourceTriangulationFieldsComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_sourceTriangulationFieldsComparisonStableExactAt_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/SourceTriangulationComparisonStableExactAtRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.SourceTriangulationComparisonStableExactAtRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/SourceTriangulationFieldsComparisonStableExactAtRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.SourceTriangulationFieldsComparisonStableExactAtRoute",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
@@ -65,7 +67,7 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "strict live product-success true scan",
     "git diff --check",
-    "W884 helper module size and declaration accounting",
+    "W885 helper module size and declaration accounting",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",

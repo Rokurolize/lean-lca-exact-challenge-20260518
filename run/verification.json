@@ -1,139 +1,140 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-26T03:02:23Z",
+  "generated_utc": "2026-05-26T03:10:53Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "bda1adb80777a6df65fd72306263235664b241ee2ddea38926aaa3db101a8370"
+    "sha256": "7a68bd4473f94def319d57e3c0d4ce7922b19ac69a2e53075c1148765c2f35b8"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W884 keeps the target nonterminal under the immutable original four-task contract while replacing the W883 source-homological-triangulation leaf with source-triangulation data; the W821/W855 comparison-bijectivity route supplies the category-homology provider, and the result feeds W883, W882, W881, W880, and W879. Product success remains false because the remaining W884 concrete leaf providers, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W885 keeps the target nonterminal under the immutable original four-task contract while replacing the W884 bundled source-triangulation provider with explicit source pretriangulated, source triangulated, and triangle-completion fields. The assembled W722 provider feeds W884, then W883, W882, W881, W880, and W879. Product success remains false because the explicit W885 fields, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W884 removes the caller-supplied category-homology part of the W733 source-homological leaf, but the source-triangulation provider and the other W884 concrete leaves are still not instantiated.",
-    "The remaining W884 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, normalized fixed-target data, source triangulation and triangle-completion data, endpoint strict-topology data, and localized-right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W885 exposes the W722 source-triangulation provider as three explicit fields, but those fields and the other W885 concrete leaves are still not instantiated.",
+    "The remaining W885 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, normalized fixed-target data, a Pretriangulated structure on BoundedComplexCategory MetrizableLCA, an IsTriangulated structure on that source, source-side triangle-completion data, endpoint strict-topology data, and localized-right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the eight W884 source-triangulation concrete leaf providers.",
+    "Construct or precisely block concrete values for the ten W885 explicit source-triangulation field inputs.",
     "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w884_source_triangulation_comparison_stable_exact_at",
-  "latest_verified_increment": "W884 source-triangulation comparison stable ExactAt route",
-  "source_tree_hash": "f4d64bcc43ae276eed5d9157cbe70bf622c7398d6788ebd22d4de2dddb31acd5",
+  "support_result_classification": "nonterminal_w885_source_triangulation_fields_comparison_stable_exact_at",
+  "latest_verified_increment": "W885 source-triangulation fields comparison stable ExactAt route",
+  "source_tree_hash": "40b695341bdec9e94e7588d3858458abfc91b0778c1f20d50ac0ba5f6ca25ddb",
   "implemented_declarations_checked": [
-    "Dbounded.sourceHomologicalTriangulationDataOfSourceTriangulationW884",
-    "Dbounded.concreteLeavesOfSourceTriangulationComparisonW884",
-    "Dbounded.routeDataProviderOfSourceTriangulationComparisonW884",
-    "Dbounded.directBoundedLeftCalculusOfSourceTriangulationComparisonStableExactAtW884",
-    "Dbounded.boundedDerivedInfinityCategoryOfSourceTriangulationComparisonStableExactAtW884",
-    "Dbounded.sourceTriangulationComparisonStableExactAtInputNamesW884_count",
-    "Dbounded.currentW884SourceTriangulationComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_sourceTriangulationComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_sourceTriangulationComparisonStableExactAt_nonterminal"
+    "Dbounded.sourceTriangulationDataOfFieldsW885",
+    "Dbounded.sourceTriangulationLeavesOfFieldsW885",
+    "Dbounded.concreteLeavesOfSourceTriangulationFieldsComparisonW885",
+    "Dbounded.routeDataProviderOfSourceTriangulationFieldsComparisonW885",
+    "Dbounded.directBoundedLeftCalculusOfSourceTriangulationFieldsComparisonStableExactAtW885",
+    "Dbounded.boundedDerivedInfinityCategoryOfSourceTriangulationFieldsComparisonStableExactAtW885",
+    "Dbounded.sourceTriangulationFieldsComparisonStableExactAtInputNamesW885_count",
+    "Dbounded.currentW885SourceTriangulationFieldsComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_sourceTriangulationFieldsComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_sourceTriangulationFieldsComparisonStableExactAt_nonterminal"
   ],
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/SourceTriangulationComparisonStableExactAtRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/SourceTriangulationFieldsComparisonStableExactAtRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_new_module_lean.log",
-      "note": "focused Lean check for the W884 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_new_module_lean.log",
+      "note": "focused Lean check for the W885 helper module"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.SourceTriangulationComparisonStableExactAtRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.SourceTriangulationFieldsComparisonStableExactAtRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_new_module_lake_build.log",
-      "note": "named Lake target for the W884 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_new_module_lake_build.log",
+      "note": "named Lake target for the W885 helper module"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_ProductSuccessDeclarations_lean.log",
-      "note": "checks W884 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_ProductSuccessDeclarations_lean.log",
+      "note": "checks W885 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_OriginalFourTaskCompletionDeclarations_lean.log",
-      "note": "records W884 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_OriginalFourTaskCompletionDeclarations_lean.log",
+      "note": "records W885 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_RequiredDeclarations_lean.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_RequiredDeclarations_lean.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_lake_build_full.log",
-      "note": "full build after W884 source edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_lake_build_full.log",
+      "note": "full build after W885 source edits"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_forbidden_tokens.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_forbidden_tokens.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live product-success true scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_product_success_true_scan_strict.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_product_success_true_scan_strict.log",
       "note": "no product-success true claim in live Lean, Lean audits, or current metadata surfaces"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_git_diff_check_source.log",
-      "note": "whitespace check after W884 source and audit edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_git_diff_check_source.log",
+      "note": "whitespace check after W885 source and audit edits"
     },
     {
-      "command": "W884 helper module size and declaration accounting",
+      "command": "W885 helper module size and declaration accounting",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_module_size_accounting.log",
-      "note": "records W884 helper line count and declaration references"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_module_size_accounting.log",
+      "note": "records W885 helper line count and declaration references"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_html_apply_style.log",
       "note": "normalizes the local HTML progress report style"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_html_check_report.log",
       "note": "checks report structure after style normalization"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_contract_audit.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_contract_audit.log",
       "note": "immutable original four-task contract audit accepts the nonterminal outcome"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_external_audit_nonterminal_expected.log",
       "note": "expected nonterminal failure: external_audit requires terminal_outcome.outcome=product_success"
     },
     {
       "command": "git diff --check after metadata refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_git_diff_check_after_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_git_diff_check_after_metadata.log",
       "note": "whitespace check after generated evidence refresh"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030000Z_codex_parent_w884_source_triangulation_comparison_stable_exact_at/logs/w884_browser_evidence_scratch_log.log",
-      "note": "browser-rendered evidence for scratch-log.html and visible W884 summary values"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T030500Z_codex_parent_w885_source_triangulation_fields_comparison_stable_exact_at/logs/w885_browser_evidence_scratch_log.log",
+      "note": "browser-rendered evidence for scratch-log.html and visible W885 summary values"
     }
   ]
 }
