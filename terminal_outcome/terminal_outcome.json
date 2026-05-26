@@ -1,6 +1,6 @@
 {
-  "outcome": "nonterminal_w911_closed_map_endpoint_fields_source_fields_target_fields_route",
-  "generated_utc": "2026-05-26T10:35:25Z",
+  "outcome": "nonterminal_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route",
+  "generated_utc": "2026-05-26T10:46:12Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
@@ -12,180 +12,180 @@
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W911 keeps the target nonterminal under the immutable original four-task contract while replacing W910's bundled W856 endpoint-topology facts provider with endpoint closed-embedding, endpoint open-map, and endpoint ExactAt-to-epi fields. This preserves the W899-W910 endpoint-homology-free closed-map route and still routes through W910 into the stable ExactAt construction. Product success remains false because the route fields are not yet instantiated and the original four-task completion witness and review packet are still incomplete.",
+  "summary": "W912 keeps the target nonterminal under the immutable original four-task contract while replacing W911's bundled W721 localized-right-adjoint data provider with a bounded-homotopy localized right adjoint, its adjunction, and unit-membership field. This preserves the W899-W911 endpoint-homology-free closed-map route and still routes through W911 into the stable ExactAt construction. Product success remains false because the route fields are not yet instantiated and the original four-task completion witness and review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W911 exposes W856 endpoint topology facts as three fields, but the remaining W911 concrete leaves are still not instantiated.",
-    "W911 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
-    "The remaining W911 fields are the right-open closed-quotient-cover boundary, the source-difference cokernel pi-zero boundary, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, selected-difference pi1/pi2/pi3 closed-map diagram component fields, the raw mapped explicit cokernel IsClosedMap field, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, source pretriangulated/triangulated/triangle-completion fields, endpoint closed-embedding/open-map/ExactAt-to-epi facts, and W721 localized-right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W912 exposes W721 localized-right-adjoint data as three fields, but the remaining W912 concrete leaves are still not instantiated.",
+    "W912 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
+    "The remaining W912 fields are the right-open closed-quotient-cover boundary, the source-difference cokernel pi-zero boundary, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, selected-difference pi1/pi2/pi3 closed-map diagram component fields, the raw mapped explicit cokernel IsClosedMap field, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, source pretriangulated/triangulated/triangle-completion fields, endpoint closed-embedding/open-map/ExactAt-to-epi facts, a bounded-homotopy localized right adjoint, its adjunction, and unit membership.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the thirty-seven W911 closed-map endpoint-fields source-fields target-fields relation-fields boundary-fields component-fields mapped-cokernel explicit field inputs.",
-    "Choose whether the next smallest contract-closing increment should expose W721 localized-right-adjoint fields, fixed-target uniqueness, source-image normalization, branch selection, or another currently supported concrete provider boundary.",
+    "Construct or precisely block concrete values for the thirty-nine W912 closed-map localized-right-adjoint-fields endpoint-fields source-fields target-fields relation-fields boundary-fields component-fields mapped-cokernel explicit field inputs.",
+    "Choose whether the next smallest contract-closing increment should expose fixed-target uniqueness, source-image normalization, strict-preimage coherence consolidation, branch selection, or another currently supported concrete provider boundary.",
     "Connect a real no-argument route to the original four-task completion witness only after all route inputs are real rather than merely exposed as fields.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w911_closed_map_endpoint_fields_source_fields_target_fields_route",
-  "latest_verified_increment": "W911 closed-map endpoint-fields source-fields target-fields route",
+  "support_result_classification": "nonterminal_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route",
+  "latest_verified_increment": "W912 closed-map localized-right-adjoint-fields endpoint-fields route",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w911_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w912_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W911 exposes W856 endpoint topology facts as three fields, but the remaining W911 concrete leaves are still not instantiated.",
-    "W911 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
-    "The remaining W911 fields are the right-open closed-quotient-cover boundary, the source-difference cokernel pi-zero boundary, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, selected-difference pi1/pi2/pi3 closed-map diagram component fields, the raw mapped explicit cokernel IsClosedMap field, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, source pretriangulated/triangulated/triangle-completion fields, endpoint closed-embedding/open-map/ExactAt-to-epi facts, and W721 localized-right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W912 exposes W721 localized-right-adjoint data as three fields, but the remaining W912 concrete leaves are still not instantiated.",
+    "W912 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
+    "The remaining W912 fields are the right-open closed-quotient-cover boundary, the source-difference cokernel pi-zero boundary, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, selected-difference pi1/pi2/pi3 closed-map diagram component fields, the raw mapped explicit cokernel IsClosedMap field, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, source pretriangulated/triangulated/triangle-completion fields, endpoint closed-embedding/open-map/ExactAt-to-epi facts, a bounded-homotopy localized right adjoint, its adjunction, and unit membership.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "implemented_declarations_checked": [
-    "Dbounded.endpointTopologyFactsOfFieldsW911",
-    "Dbounded.w910LeavesOfEndpointFieldsW911",
-    "Dbounded.concreteLeavesOfClosedMapEndpointFieldsW911",
-    "Dbounded.routeDataProviderOfClosedMapEndpointFieldsW911",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapEndpointFieldsW911",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapEndpointFieldsW911",
-    "Dbounded.closedMapEndpointFieldsInputNamesW911_count",
-    "Dbounded.currentW911ClosedMapEndpointFieldsRoute_productSuccess",
-    "originalFourTaskContract_closedMapEndpointFields_inputCount",
-    "originalFourTaskContract_closedMapEndpointFields_nonterminal"
+    "Dbounded.localizedRightAdjointDataOfFieldsW912",
+    "Dbounded.w911LeavesOfLocalizedRightAdjointFieldsW912",
+    "Dbounded.concreteLeavesOfClosedMapLocalizedRightAdjointFieldsW912",
+    "Dbounded.routeDataProviderOfClosedMapLocalizedRightAdjointFieldsW912",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapLocalizedRightAdjointFieldsW912",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapLocalizedRightAdjointFieldsW912",
+    "Dbounded.closedMapLocalizedRightAdjointFieldsInputNamesW912_count",
+    "Dbounded.currentW912ClosedMapLocalizedRightAdjointFieldsRoute_productSuccess",
+    "originalFourTaskContract_closedMapLocalizedRightAdjointFields_inputCount",
+    "originalFourTaskContract_closedMapLocalizedRightAdjointFields_nonterminal"
   ],
-  "source_tree_hash": "d0e04826e7d66f98789da20ae816b2681fb9563b115cb34c54f2beb0692c34bb",
-  "remaining_explicit_inputs": 37,
+  "source_tree_hash": "a22e78b28ff4652ccc23e2170758bd66aaaa8d20c1710c04040b21a83dbac198",
+  "remaining_explicit_inputs": 39,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapEndpointFieldsSourceFieldsTargetFieldsRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapLocalizedRightAdjointFieldsEndpointFieldsRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_focused_lean.log",
-      "note": "focused Lean check for the W911 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_focused_lean.log",
+      "note": "focused Lean check for the W912 helper module"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapEndpointFieldsSourceFieldsTargetFieldsRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapLocalizedRightAdjointFieldsEndpointFieldsRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_new_module_lake_build.log",
-      "note": "named Lake target for the W911 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_new_module_lake_build.log",
+      "note": "named Lake target for the W912 helper module"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_ProductSuccessDeclarations_lean.log",
-      "note": "checks W911 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_ProductSuccessDeclarations_lean.log",
+      "note": "checks W912 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_OriginalFourTaskCompletionDeclarations_lean.log",
-      "note": "records W911 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_OriginalFourTaskCompletionDeclarations_lean.log",
+      "note": "records W912 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_RequiredDeclarations_lean.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_RequiredDeclarations_lean.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_lake_build_full.log",
-      "note": "full build after W911 source edits; only pre-existing long-line warnings were observed"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_lake_build_full.log",
+      "note": "full build after W912 source edits; only pre-existing long-line warnings were observed"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_forbidden_tokens.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_forbidden_tokens.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live product-success true scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_product_success_true_scan_strict.log",
-      "note": "no product-success true claim in live W911 Lean, Lean audits, or current metadata outside negative fixtures"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_product_success_true_scan_strict.log",
+      "note": "no product-success true claim in live W912 Lean, Lean audits, or current metadata outside negative fixtures"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_git_diff_check_source.log",
-      "note": "whitespace check after W911 source and audit edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_git_diff_check_source.log",
+      "note": "whitespace check after W912 source and audit edits"
     },
     {
-      "command": "W911 deterministic new-file/source accounting",
+      "command": "W912 deterministic new-file/source accounting",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_new_file_accounting_pre_metadata.log",
-      "note": "records the new W911 route, provider ledger, and audit/import hooks"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_new_file_accounting_pre_metadata.log",
+      "note": "records the new W912 route, provider ledger, and audit/import hooks"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_html_check_report.log",
       "note": "HTML report parse/style/JST validation passed"
     },
     {
-      "command": "W911 manifest refresh",
+      "command": "W912 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_manifest_refresh.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_manifest_refresh.log",
       "note": "manifest.json regenerated with a fresh content hash tree"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_contract_audit.log",
-      "note": "original four-task contract audit accepts the W911 nonterminal outcome and lists the remaining blockers"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_contract_audit.log",
+      "note": "original four-task contract audit accepts the W912 nonterminal outcome and lists the remaining blockers"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_external_audit_nonterminal_expected.log",
       "note": "external audit reaches only the expected product-success gate for this nonterminal outcome"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/browser_evidence/scratch_log/fidelity.json",
-      "note": "Chromium-rendered report evidence contains the W911 classification, source hash, product_success=false, and remaining input count"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/browser_evidence/scratch_log/fidelity.json",
+      "note": "Chromium-rendered report evidence contains the W912 classification, source hash, product_success=false, and remaining input count"
     },
     {
       "command": "git diff --check after metadata refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_git_diff_check_after_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_git_diff_check_after_metadata.log",
       "note": "whitespace check after report, manifest, and terminal metadata refresh"
     },
     {
       "command": "strict live product-success true scan after metadata",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_product_success_true_scan_after_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_product_success_true_scan_after_metadata.log",
       "note": "no live product-success true claim after metadata refresh outside negative fixtures"
     },
     {
-      "command": "W911 deterministic new-file/source accounting after metadata",
+      "command": "W912 deterministic new-file/source accounting after metadata",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T102934Z_codex_parent_w911_closed_map_endpoint_fields_source_fields_target_fields_route/logs/w911_new_file_accounting_post_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T104133Z_codex_parent_w912_closed_map_localized_right_adjoint_fields_endpoint_fields_route/logs/w912_new_file_accounting_post_metadata.log",
       "note": "records staged-source and metadata accounting after refresh"
     }
   ],
   "implemented_declarations": [
-    "Dbounded.MetrizableWppClosedMapEndpointFieldLeavesW911",
-    "Dbounded.endpointTopologyFactsOfFieldsW911",
-    "Dbounded.w910LeavesOfEndpointFieldsW911",
-    "Dbounded.concreteLeavesOfClosedMapEndpointFieldsW911",
-    "Dbounded.routeDataProviderOfClosedMapEndpointFieldsW911",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapEndpointFieldsW911",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapEndpointFieldsW911",
-    "Dbounded.closedMapEndpointFieldsInputNamesW911",
-    "Dbounded.closedMapEndpointFieldsInputNamesW911_count",
-    "Dbounded.MetrizableClosedMapEndpointFieldsRouteStateW911",
-    "Dbounded.currentMetrizableClosedMapEndpointFieldsRouteStateW911",
-    "Dbounded.currentW911ClosedMapEndpointFieldsRoute_productSuccess",
-    "originalFourTaskContract_closedMapEndpointFields_inputCount",
-    "originalFourTaskContract_closedMapEndpointFields_nonterminal"
+    "Dbounded.MetrizableWppClosedMapLocalizedRightAdjointFieldLeavesW912",
+    "Dbounded.localizedRightAdjointDataOfFieldsW912",
+    "Dbounded.w911LeavesOfLocalizedRightAdjointFieldsW912",
+    "Dbounded.concreteLeavesOfClosedMapLocalizedRightAdjointFieldsW912",
+    "Dbounded.routeDataProviderOfClosedMapLocalizedRightAdjointFieldsW912",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapLocalizedRightAdjointFieldsW912",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapLocalizedRightAdjointFieldsW912",
+    "Dbounded.closedMapLocalizedRightAdjointFieldsInputNamesW912",
+    "Dbounded.closedMapLocalizedRightAdjointFieldsInputNamesW912_count",
+    "Dbounded.MetrizableClosedMapLocalizedRightAdjointFieldsRouteStateW912",
+    "Dbounded.currentMetrizableClosedMapLocalizedRightAdjointFieldsRouteStateW912",
+    "Dbounded.currentW912ClosedMapLocalizedRightAdjointFieldsRoute_productSuccess",
+    "originalFourTaskContract_closedMapLocalizedRightAdjointFields_inputCount",
+    "originalFourTaskContract_closedMapLocalizedRightAdjointFields_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapEndpointFieldsSourceFieldsTargetFieldsRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.ClosedMapEndpointFieldsSourceFieldsTargetFieldsRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapLocalizedRightAdjointFieldsEndpointFieldsRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.ClosedMapLocalizedRightAdjointFieldsEndpointFieldsRoute",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
@@ -193,15 +193,15 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "strict live product-success true scan",
     "git diff --check",
-    "W911 deterministic new-file/source accounting",
+    "W912 deterministic new-file/source accounting",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
-    "W911 manifest refresh",
+    "W912 manifest refresh",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
     "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
     "git diff --check after metadata refresh",
     "strict live product-success true scan after metadata",
-    "W911 deterministic new-file/source accounting after metadata"
+    "W912 deterministic new-file/source accounting after metadata"
   ]
 }
