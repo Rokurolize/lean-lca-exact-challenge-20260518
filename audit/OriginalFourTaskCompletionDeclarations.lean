@@ -50,6 +50,7 @@ import LeanLCAExactChallenge.Derived.LocalizedRightAdjointFieldsComparisonStable
 import LeanLCAExactChallenge.Derived.NormalizedFixedTargetFieldsComparisonStableExactAtRoute
 import LeanLCAExactChallenge.Derived.NormalizedLiftBlueprintFieldsComparisonStableExactAtRoute
 import LeanLCAExactChallenge.Derived.StrictRepresentativeLiftFieldsComparisonStableExactAtRoute
+import LeanLCAExactChallenge.Derived.StrictPreimageObjectFieldsComparisonStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -1096,5 +1097,21 @@ theorem originalFourTaskContract_strictRepresentativeFieldsComparisonStableExact
     Dbounded.currentMetrizableStrictRepresentativeFieldsComparisonStableExactAtRouteStateW890.productSuccessClaimed =
       false :=
   Dbounded.currentW890StrictRepresentativeFieldsComparisonStableExactAtRoute_productSuccess
+
+#check Dbounded.strictRepresentativeFieldLeavesOfObjectFieldsW891
+#check
+  Dbounded.directBoundedLeftCalculusOfStrictPreimageObjectFieldsComparisonStableExactAtW891
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfStrictPreimageObjectFieldsComparisonStableExactAtW891
+
+theorem originalFourTaskContract_strictPreimageObjectFieldsComparisonStableExactAt_inputCount :
+    Dbounded.strictPreimageObjectFieldsComparisonStableExactAtInputNamesW891.length =
+      29 :=
+  Dbounded.strictPreimageObjectFieldsComparisonStableExactAtInputNamesW891_count
+
+theorem originalFourTaskContract_strictPreimageObjectFieldsComparisonStableExactAt_nonterminal :
+    Dbounded.currentMetrizableStrictPreimageObjectFieldsComparisonStableExactAtRouteStateW891.productSuccessClaimed =
+      false :=
+  Dbounded.currentW891StrictPreimageObjectFieldsComparisonStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge

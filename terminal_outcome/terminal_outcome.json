@@ -1,6 +1,6 @@
 {
-  "outcome": "nonterminal_w890_strict_representative_lift_fields_comparison_stable_exact_at",
-  "generated_utc": "2026-05-26T04:15:24Z",
+  "outcome": "nonterminal_w891_strict_preimage_object_fields_comparison_stable_exact_at",
+  "generated_utc": "2026-05-26T04:23:04Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
@@ -12,56 +12,58 @@
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W890 keeps the target nonterminal under the immutable original four-task contract while replacing W889's bundled coherent strict-representative lift blueprint with four explicit fields. The assembled strict-representative lift blueprint feeds W889, then W888, W887, W886, W885, W884, W883, W882, W881, W880, and W879. Product success remains false because the explicit W890 fields, the remaining concrete leaves, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W891 keeps the target nonterminal under the immutable original four-task contract while replacing W890's bundled strict preimage object-data family with eight explicit constructor fields. The assembled strict preimage object data feeds W890, then W889, W888, W887, W886, W885, W884, W883, W882, W881, W880, and W879. Product success remains false because the explicit W891 fields, the remaining concrete leaves, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W890 exposes the coherent strict-representative lift blueprint as four explicit fields, but those fields and the other W890 concrete leaves are still not instantiated.",
-    "The remaining W890 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage object and map data, identity and composition coherence, source-image object and map normalization, two fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W891 exposes the strict preimage object-data family as eight explicit fields, but those fields and the other W891 concrete leaves are still not instantiated.",
+    "The remaining W891 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage zero/one objects, zero/one localization isomorphisms, left/right source maps, left/right factorization equations, strict preimage map data, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the twenty-two W890 explicit field inputs.",
+    "Construct or precisely block concrete values for the twenty-nine W891 explicit field inputs.",
     "Continue splitting or discharging the remaining bundled providers only when the split is supported by current Lean definitions and provider-search evidence.",
     "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w890_strict_representative_lift_fields_comparison_stable_exact_at",
-  "latest_verified_increment": "W890 strict-representative lift fields comparison stable ExactAt route",
+  "support_result_classification": "nonterminal_w891_strict_preimage_object_fields_comparison_stable_exact_at",
+  "latest_verified_increment": "W891 strict-preimage object fields comparison stable ExactAt route",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w890_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w891_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W890 exposes the coherent strict-representative lift blueprint as four explicit fields, but those fields and the other W890 concrete leaves are still not instantiated.",
-    "The remaining W890 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage object and map data, identity and composition coherence, source-image object and map normalization, two fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W891 exposes the strict preimage object-data family as eight explicit fields, but those fields and the other W891 concrete leaves are still not instantiated.",
+    "The remaining W891 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage zero/one objects, zero/one localization isomorphisms, left/right source maps, left/right factorization equations, strict preimage map data, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "implemented_declarations": [
-    "Dbounded.strictRepresentativeLiftBlueprintOfFieldsW890",
-    "Dbounded.normalizedLiftBlueprintFieldLeavesOfStrictRepresentativeFieldsW890",
-    "Dbounded.concreteLeavesOfStrictRepresentativeFieldsComparisonW890",
-    "Dbounded.routeDataProviderOfStrictRepresentativeFieldsComparisonW890",
-    "Dbounded.directBoundedLeftCalculusOfStrictRepresentativeFieldsComparisonStableExactAtW890",
-    "Dbounded.boundedDerivedInfinityCategoryOfStrictRepresentativeFieldsComparisonStableExactAtW890",
-    "Dbounded.strictRepresentativeFieldsComparisonStableExactAtInputNamesW890_count",
-    "Dbounded.currentW890StrictRepresentativeFieldsComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_strictRepresentativeFieldsComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_strictRepresentativeFieldsComparisonStableExactAt_nonterminal"
+    "Dbounded.strictPreimageObjectDataOfFieldsW891",
+    "Dbounded.strictRepresentativeObjectDataOfFieldsW891",
+    "Dbounded.strictRepresentativeFieldLeavesOfObjectFieldsW891",
+    "Dbounded.concreteLeavesOfStrictPreimageObjectFieldsComparisonW891",
+    "Dbounded.routeDataProviderOfStrictPreimageObjectFieldsComparisonW891",
+    "Dbounded.directBoundedLeftCalculusOfStrictPreimageObjectFieldsComparisonStableExactAtW891",
+    "Dbounded.boundedDerivedInfinityCategoryOfStrictPreimageObjectFieldsComparisonStableExactAtW891",
+    "Dbounded.strictPreimageObjectFieldsComparisonStableExactAtInputNamesW891_count",
+    "Dbounded.currentW891StrictPreimageObjectFieldsComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_strictPreimageObjectFieldsComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_strictPreimageObjectFieldsComparisonStableExactAt_nonterminal"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.strictRepresentativeLiftBlueprintOfFieldsW890",
-    "Dbounded.normalizedLiftBlueprintFieldLeavesOfStrictRepresentativeFieldsW890",
-    "Dbounded.concreteLeavesOfStrictRepresentativeFieldsComparisonW890",
-    "Dbounded.routeDataProviderOfStrictRepresentativeFieldsComparisonW890",
-    "Dbounded.directBoundedLeftCalculusOfStrictRepresentativeFieldsComparisonStableExactAtW890",
-    "Dbounded.boundedDerivedInfinityCategoryOfStrictRepresentativeFieldsComparisonStableExactAtW890",
-    "Dbounded.strictRepresentativeFieldsComparisonStableExactAtInputNamesW890_count",
-    "Dbounded.currentW890StrictRepresentativeFieldsComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_strictRepresentativeFieldsComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_strictRepresentativeFieldsComparisonStableExactAt_nonterminal"
+    "Dbounded.strictPreimageObjectDataOfFieldsW891",
+    "Dbounded.strictRepresentativeObjectDataOfFieldsW891",
+    "Dbounded.strictRepresentativeFieldLeavesOfObjectFieldsW891",
+    "Dbounded.concreteLeavesOfStrictPreimageObjectFieldsComparisonW891",
+    "Dbounded.routeDataProviderOfStrictPreimageObjectFieldsComparisonW891",
+    "Dbounded.directBoundedLeftCalculusOfStrictPreimageObjectFieldsComparisonStableExactAtW891",
+    "Dbounded.boundedDerivedInfinityCategoryOfStrictPreimageObjectFieldsComparisonStableExactAtW891",
+    "Dbounded.strictPreimageObjectFieldsComparisonStableExactAtInputNamesW891_count",
+    "Dbounded.currentW891StrictPreimageObjectFieldsComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_strictPreimageObjectFieldsComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_strictPreimageObjectFieldsComparisonStableExactAt_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/StrictRepresentativeLiftFieldsComparisonStableExactAtRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.StrictRepresentativeLiftFieldsComparisonStableExactAtRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/StrictPreimageObjectFieldsComparisonStableExactAtRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.StrictPreimageObjectFieldsComparisonStableExactAtRoute",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
@@ -69,7 +71,7 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "strict live product-success true scan",
     "git diff --check",
-    "W890 deterministic new-file/source accounting",
+    "W891 deterministic new-file/source accounting",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -77,9 +79,9 @@
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
     "git diff --check after metadata refresh",
     "strict live product-success true scan after metadata",
-    "W890 manifest refresh",
-    "W890 deterministic new-file/source accounting after metadata"
+    "W891 manifest refresh",
+    "W891 deterministic new-file/source accounting after metadata"
   ],
-  "source_tree_hash": "e384065f36a6a29f1d8b013a064a61c2a80513ae2220f9686d501e3b88981657",
-  "remaining_explicit_inputs": 22
+  "source_tree_hash": "fb1ef09884c798e82e31648f24e2c93056bdb43938b89b272bfd24d17ba4b710",
+  "remaining_explicit_inputs": 29
 }
