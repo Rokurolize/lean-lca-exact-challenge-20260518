@@ -38,6 +38,7 @@ import LeanLCAExactChallenge.Derived.W732SelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.W735W732SelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.W733ConcreteLeavesSelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.SelectedCochainConcreteLeavesStableExactAtRoute
+import LeanLCAExactChallenge.Derived.ComparisonSelectedCochainConcreteLeavesStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -244,6 +245,14 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapSelectedCochainConcreteLeavesStableExactAtW878
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingSelectedCochainConcreteLeavesStableExactAtW878
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapComparisonConcreteLeavesStableExactAtW879
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedEmbeddingComparisonConcreteLeavesStableExactAtW879
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonConcreteLeavesStableExactAtW879
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonConcreteLeavesStableExactAtW879
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -878,5 +887,20 @@ theorem originalFourTaskContract_selectedCochainConcreteLeavesStableExactAt_nont
     Dbounded.currentMetrizableSelectedCochainConcreteLeavesStableExactAtRouteStateW878.productSuccessClaimed =
       false :=
   Dbounded.currentW878SelectedCochainConcreteLeavesStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_comparisonConcreteLeavesStableExactAt_inputCount :
+    Dbounded.comparisonConcreteLeavesStableExactAtInputNamesW879.length =
+      1 :=
+  Dbounded.comparisonConcreteLeavesStableExactAtInputNamesW879_count
+
+theorem originalFourTaskContract_comparisonConcreteLeavesStableExactAt_expandedInputCount :
+    Dbounded.comparisonConcreteLeavesStableExactAtExpandedInputNamesW879.length =
+      9 :=
+  Dbounded.comparisonConcreteLeavesStableExactAtExpandedInputNamesW879_count
+
+theorem originalFourTaskContract_comparisonConcreteLeavesStableExactAt_nonterminal :
+    Dbounded.currentMetrizableComparisonConcreteLeavesStableExactAtRouteStateW879.productSuccessClaimed =
+      false :=
+  Dbounded.currentW879ComparisonConcreteLeavesStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
