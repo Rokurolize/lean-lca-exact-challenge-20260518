@@ -60,6 +60,7 @@ import LeanLCAExactChallenge.Derived.ClosedEmbeddingClosednessFieldsComparisonSt
 import LeanLCAExactChallenge.Derived.ClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtRoute
 import LeanLCAExactChallenge.Derived.ClosedMapEndpointHomologyFreeComparisonStableExactAtRoute
 import LeanLCAExactChallenge.Derived.ClosedMapEndpointFactsLocalizedRightAdjointComparisonStableExactAtRoute
+import LeanLCAExactChallenge.Derived.ClosedMapSourceTriangulationEndpointFactsLocalizedRightAdjointComparisonStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -1267,5 +1268,21 @@ theorem originalFourTaskContract_closedMapEndpointLocalizedAdjoint_nonterminal :
     Dbounded.currentMetrizableClosedMapEndpointLocalizedAdjointRouteStateW900.productSuccessClaimed =
       false :=
   Dbounded.currentW900ClosedMapEndpointLocalizedAdjointRoute_productSuccess
+
+#check Dbounded.closedMapEndpointLocalizedAdjointLeavesOfSourceTriangulationW901
+#check
+  Dbounded.directBoundedLeftCalculusOfClosedMapSourceTriangulationEndpointFactsW901
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfClosedMapSourceTriangulationEndpointFactsW901
+
+theorem originalFourTaskContract_closedMapSourceTriangulationEndpointFacts_inputCount :
+    Dbounded.closedMapSourceTriangulationEndpointFactsInputNamesW901.length =
+      31 :=
+  Dbounded.closedMapSourceTriangulationEndpointFactsInputNamesW901_count
+
+theorem originalFourTaskContract_closedMapSourceTriangulationEndpointFacts_nonterminal :
+    Dbounded.currentMetrizableClosedMapSourceTriangulationEndpointFactsRouteStateW901.productSuccessClaimed =
+      false :=
+  Dbounded.currentW901ClosedMapSourceTriangulationEndpointFactsRoute_productSuccess
 
 end LeanLCAExactChallenge

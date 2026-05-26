@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lean LCA W900 Nonterminal Progress Report</title>
+  <title>Lean LCA W901 Nonterminal Progress Report</title>
   <style id="html-progress-report-style">
 :root {
   color-scheme: light;
@@ -156,63 +156,70 @@ textarea.goal-text {
 <body>
   <header class="report-hero">
     <div class="wrap">
-      <h1>Lean LCA W900 Nonterminal Progress Report</h1>
-      <p class="lede">Generated 2026-05-26 15:59 JST. W900 replaces six W899 explicit leaves with the existing W856 endpoint-topology-facts provider and W721 localized-right-adjoint provider.</p>
-      <div class="badges"><span class="badge warn">product_success=false</span><span class="badge warn">product_complete=false</span><span class="badge warn">update_goal_allowed=false</span><span class="badge info">nonterminal_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at</span></div>
+      <h1>Lean LCA W901 Nonterminal Progress Report</h1>
+      <p class="lede">Generated 2026-05-26 17:13 JST. W901 replaces W900's separate source triangulation and triangle-completion leaves with the existing W722 provider while keeping the original four-task product gate closed.</p>
+      <div class="badges"><span class="badge warn">product_success=false</span><span class="badge warn">product_complete=false</span><span class="badge warn">update_goal_allowed=false</span><span class="badge info">nonterminal_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at</span></div>
     </div>
   </header>
   <main class="wrap">
     <section class="grid">
-      <div class="card span-3"><div class="label">Latest Increment</div><div class="metric">W900</div><p>W856 and W721 supply bundled provider boundaries for W899.</p></div>
+      <div class="card span-3"><div class="label">Latest Increment</div><div class="metric">W901</div><p>W722 supplies W900 source triangulation and triangle-completion data.</p></div>
       <div class="card span-3"><div class="label">Outcome</div><div class="metric">Nonterminal</div><p>The immutable original four-task product gate remains closed.</p></div>
-      <div class="card span-3"><div class="label">Remaining Explicit Inputs</div><div class="metric">33</div><p>Thirty-three W900 closed-map branch inputs remain.</p></div>
+      <div class="card span-3"><div class="label">Remaining Explicit Inputs</div><div class="metric">31</div><p>Thirty-one W901 closed-map branch inputs remain.</p></div>
       <div class="card span-3"><div class="label">Product State</div><div class="metric">False</div><p>No update_goal completion is allowed.</p></div>
     </section>
     <section>
       <h2>Current Result</h2>
-      <p>W900 adds <code>LeanLCAExactChallenge/Derived/ClosedMapEndpointFactsLocalizedRightAdjointComparisonStableExactAtRoute.lean</code>. It projects W900 leaves into W899 leaves by taking endpoint closed-embedding, open-map, and epi facts from <code>MetrizableWppEndpointTopologyFactsProviderW856</code>, and bounded-homotopy localized-right-adjoint data from <code>MetrizableWppLocalizedRightAdjointDataProviderW721</code>.</p>
-      <p>The provider-search ledger is <code>docs/research/w900_provider_search_ledger.md</code>. It records why <code>MetrizableWppEndpointLocalizedRightAdjointDataProviderW726</code> was rejected: W726 would require W720 endpoint strict topology data and reintroduce endpoint forgetful homology preservation.</p>
-      <div class="warnbox">Product success remains false. W900 is verified provider-boundary reduction for the closed-map branch, not the final original four-task witness or completion packet.</div>
+      <p>W901 adds <code>LeanLCAExactChallenge/Derived/ClosedMapSourceTriangulationEndpointFactsLocalizedRightAdjointComparisonStableExactAtRoute.lean</code>. The route projects <code>MetrizableWppSourceTriangulationDataProviderW722</code> into W900's source <code>Pretriangulated</code>, source <code>IsTriangulated</code>, and source-side triangle-completion leaves, then reuses the W900 stable ExactAt route.</p>
+      <p>The provider-search ledger is <code>docs/research/w901_provider_search_ledger.md</code>. It records why W722 is the smallest supported boundary for this increment and why W856 endpoint facts plus W721 localized-right-adjoint data remain unchanged.</p>
+      <div class="warnbox">Product success remains false. W901 is a verified provider-boundary reduction for the closed-map branch, not the final original four-task witness or completion packet.</div>
     </section>
     <section class="grid">
-      <div class="card span-6"><h2>Checked Declarations</h2><ul><li><code>Dbounded.endpointClosedEmbeddingOfEndpointFactsW900</code></li>
-<li><code>Dbounded.endpointOpenMapOfEndpointFactsW900</code></li>
-<li><code>Dbounded.endpointEpiOfExactAtOfEndpointFactsW900</code></li>
-<li><code>Dbounded.boundedHomotopyLocalizedRightAdjointOfLocalizedRightAdjointW900</code></li>
-<li><code>Dbounded.boundedHomotopyLocalizedAdjunctionOfLocalizedRightAdjointW900</code></li>
-<li><code>Dbounded.boundedHomotopyLocalizedUnitMemOfLocalizedRightAdjointW900</code></li>
-<li><code>Dbounded.closedMapEndpointHomologyFreeLeavesOfEndpointFactsLocalizedRightAdjointW900</code></li>
-<li><code>Dbounded.concreteLeavesOfClosedMapEndpointFactsLocalizedRightAdjointComparisonW900</code></li>
-<li><code>Dbounded.routeDataProviderOfClosedMapEndpointFactsLocalizedRightAdjointComparisonW900</code></li>
-<li><code>Dbounded.directBoundedLeftCalculusOfClosedMapEndpointLocalizedAdjointW900</code></li>
-<li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapEndpointLocalizedAdjointW900</code></li>
-<li><code>Dbounded.closedMapEndpointLocalizedAdjointInputNamesW900_count</code></li>
-<li><code>Dbounded.currentW900ClosedMapEndpointLocalizedAdjointRoute_productSuccess</code></li>
-<li><code>originalFourTaskContract_closedMapEndpointLocalizedAdjoint_inputCount</code></li>
-<li><code>originalFourTaskContract_closedMapEndpointLocalizedAdjoint_nonterminal</code></li></ul></div>
-      <div class="card span-6"><h2>Remaining Gaps</h2><ul><li>Task 4 is not contract-complete: W900 bundles W899 endpoint facts and localized-right-adjoint data through W856/W721, but the remaining W900 concrete leaves are still fields, not instantiated values.</li>
-<li>W900 is still a closed-map branch route; W898 remains the separate closed-embedding endpoint-homology-free branch, and there is no no-argument branch choice or final original-four-task witness.</li>
-<li>The remaining W900 inputs include boundary data, relation data, target data, selected closed-map components, W519 mapped-cokernel closed-map data, strict preimage object/map data, normalization/coherence obligations, fixed-target uniqueness, source triangulation data, the W856 endpoint topology facts provider, and the W721 localized-right-adjoint provider.</li>
-<li>The completion review packet still needs the final witness, negative-fixture coverage, external SHA256 sidecar, and clean extraction audit before product success can be claimed.</li></ul></div>
+      <div class="card span-6"><h2>Checked Declarations</h2><ul><li><code>Dbounded.sourcePretriangulatedOfSourceTriangulationW901</code></li>
+<li><code>Dbounded.sourceTriangulatedOfSourceTriangulationW901</code></li>
+<li><code>Dbounded.triangleCompletionOfSourceTriangulationW901</code></li>
+<li><code>Dbounded.closedMapEndpointLocalizedAdjointLeavesOfSourceTriangulationW901</code></li>
+<li><code>Dbounded.concreteLeavesOfClosedMapSourceTriangulationEndpointFactsW901</code></li>
+<li><code>Dbounded.routeDataProviderOfClosedMapSourceTriangulationEndpointFactsW901</code></li>
+<li><code>Dbounded.directBoundedLeftCalculusOfClosedMapSourceTriangulationEndpointFactsW901</code></li>
+<li><code>Dbounded.boundedDerivedInfinityCategoryOfClosedMapSourceTriangulationEndpointFactsW901</code></li>
+<li><code>Dbounded.closedMapSourceTriangulationEndpointFactsInputNamesW901_count</code></li>
+<li><code>Dbounded.currentW901ClosedMapSourceTriangulationEndpointFactsRoute_productSuccess</code></li>
+<li><code>originalFourTaskContract_closedMapSourceTriangulationEndpointFacts_inputCount</code></li>
+<li><code>originalFourTaskContract_closedMapSourceTriangulationEndpointFacts_nonterminal</code></li></ul></div>
+      <div class="card span-6"><h2>Remaining Gaps</h2><ul><li>Task 4 is not contract-complete under the original four-task contract: W901 bundles W900 source triangulation data through W722, but the remaining W901 concrete leaves are still not instantiated.</li>
+<li>W901 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.</li>
+<li>The remaining W901 fields are WPP right-open boundary data, WPP source-pi-zero boundary data, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, selected-difference closed-map components, mapped explicit cokernel closed-map data, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, the W722 source-triangulation provider, the W856 endpoint topology facts provider, and the W721 localized-right-adjoint data provider.</li>
+<li>The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.</li>
+<li>The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success.</li></ul></div>
     </section>
     <section>
       <h2>Verification Evidence</h2>
-      <table><thead><tr><th>Check</th><th>Status</th><th>Evidence</th></tr></thead><tbody><tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ClosedMapEndpointFactsLocalizedRightAdjointComparisonStableExactAtRoute.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w900_new_module_lean.log</code></td></tr>
-<tr><td><code>lake build LeanLCAExactChallenge.Derived.ClosedMapEndpointFactsLocalizedRightAdjointComparisonStableExactAtRoute</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w900_new_module_lake_build.log</code></td></tr>
-<tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w900_ProductSuccessDeclarations_lean.log</code></td></tr>
-<tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w900_OriginalFourTaskCompletionDeclarations_lean.log</code></td></tr>
-<tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w900_RequiredDeclarations_lean.log</code></td></tr>
-<tr><td><code>lake build</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w900_lake_build_full.log</code></td></tr>
-<tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w900_forbidden_tokens.log</code></td></tr>
-<tr><td><code>strict live product-success true scan</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w900_product_success_true_scan_strict.log</code></td></tr>
-<tr><td><code>git diff --check</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w900_git_diff_check_source.log</code></td></tr>
-<tr><td><code>W900 deterministic new-file/source accounting</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w900_new_file_accounting_pre_metadata.log</code></td></tr></tbody></table>
-      <p class="meta">Source tree hash: <code>4bcd9dcbbc46954df773d4724580f5915a713ba18fd4f542519c808753771456</code></p>
+      <table><thead><tr><th>Check</th><th>Status</th><th>Evidence</th></tr></thead><tbody><tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ClosedMapSourceTriangulationEndpointFactsLocalizedRightAdjointComparisonStableExactAtRoute.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_new_module_lean.log</code></td></tr>
+<tr><td><code>lake build LeanLCAExactChallenge.Derived.ClosedMapSourceTriangulationEndpointFactsLocalizedRightAdjointComparisonStableExactAtRoute</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_new_module_lake_build.log</code></td></tr>
+<tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_ProductSuccessDeclarations_lean.log</code></td></tr>
+<tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_OriginalFourTaskCompletionDeclarations_lean.log</code></td></tr>
+<tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_RequiredDeclarations_lean.log</code></td></tr>
+<tr><td><code>lake build</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_lake_build_full.log</code></td></tr>
+<tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_forbidden_tokens.log</code></td></tr>
+<tr><td><code>strict live product-success true scan</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_product_success_true_scan_strict.log</code></td></tr>
+<tr><td><code>git diff --check</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_git_diff_check_source.log</code></td></tr>
+<tr><td><code>W901 deterministic new-file/source accounting</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_new_file_accounting_pre_metadata.log</code></td></tr>
+<tr><td><code>python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_html_apply_style.log</code></td></tr>
+<tr><td><code>python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_html_check_report.log</code></td></tr>
+<tr><td><code>W901 manifest refresh</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_manifest_refresh.log</code></td></tr>
+<tr><td><code>python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_contract_audit.log</code></td></tr>
+<tr><td><code>python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json</code></td><td>failed_expected</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_external_audit_nonterminal_expected.log</code></td></tr>
+<tr><td><code>python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_browser_evidence_scratch_log.log</code></td></tr>
+<tr><td><code>git diff --check after metadata refresh</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_git_diff_check_after_metadata.log</code></td></tr>
+<tr><td><code>strict live product-success true scan after metadata</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_product_success_true_scan_after_metadata.log</code></td></tr>
+<tr><td><code>W901 deterministic new-file/source accounting after metadata</code></td><td>passed</td><td><code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at/logs/w901_new_file_accounting_post_metadata.log</code></td></tr></tbody></table>
+      <p class="meta">Source tree hash: <code>830c81407faca371f3ec8c145c6f01edd1db810a27caf2c39fe75a1d8f47b526</code></p>
+      <p class="meta">Run root: <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T071000Z_codex_parent_w901_closed_map_source_triangulation_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at</code></p>
     </section>
     <section>
       <h2>Next Safe Action</h2>
-      <p>Continue from W900 by splitting the next supported provider boundary, with strict preimage object/map fields and fixed-target/source-image data as the most concrete candidates exposed by the current route stack.</p>
-      <p class="meta">Run root: <code>/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T063000Z_codex_parent_w900_closed_map_endpoint_facts_localized_right_adjoint_comparison_stable_exact_at</code></p>
+      <p>Continue from W901 by choosing the next supported provider boundary, with W716 boundary data, W717 relation data, W715 target surjective-compact data, strict preimage object/map fields, fixed-target uniqueness, and source-image normalization as the visible candidates.</p>
     </section>
   </main>
 </body>
