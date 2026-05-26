@@ -1,136 +1,144 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-26T17:26:10Z",
-  "source_tree_hash": "8b4773388d2dffb866aeb43a3587db6c8b174feef889afaad9352997a6d6712e",
+  "generated_utc": "2026-05-26T17:38:20Z",
+  "source_tree_hash": "42a70af373aa5162ccc725832dce5cabf0d5fd84d698a7f08d74f36058a0ad17",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "latest_verified_increment": "W941 closed-map target-compact boundary-relation-data normalized-strict-representative-lift source-triangulation endpoint-strict-exact unit-strict-exact-components route",
-  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route",
+  "latest_verified_increment": "W942 closed-map target-compact closedness-data boundary-relation-data normalized-strict-representative-lift source-triangulation endpoint-strict-exact unit-strict-exact-components route",
+  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_focused_lean.log",
-      "note": "focused Lean check for the W941 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_focused_lean.log",
+      "note": "focused Lean check for the W942 helper module"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_module_build.log",
-      "note": "named Lake target for the W941 helper module; long route-name style warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_module_build.log",
+      "note": "named Lake target for the W942 helper module; long route-name style warnings remain nonfatal"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_root_import.log",
-      "note": "root import surface includes the W941 route after the module .olean was built"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_root_import.log",
+      "note": "root import surface includes the W942 route after the module .olean was built"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_product_success_declarations.log",
-      "note": "checks W941 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_product_success_declarations.log",
+      "note": "checks W942 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_original_four_task_declarations.log",
-      "note": "records W941 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_original_four_task_declarations.log",
+      "note": "records W942 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_required_declarations.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_required_declarations.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_full_lake_build.log",
-      "note": "full build after W941 source, audit, ledger, report, and metadata edits; long-name style warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_full_lake_build.log",
+      "note": "full build after W942 source, audit, ledger, report, and metadata edits; long-name style warnings remain nonfatal"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_forbidden_lean_token_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_forbidden_lean_token_scan.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live product-success true scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_product_success_true_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_product_success_true_scan.log",
       "note": "no product-success true claim in live Lean/audit/terminal/run/report surfaces"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_git_diff_check.log",
-      "note": "whitespace check after W941 source, audit, ledger, report, and metadata edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_git_diff_check.log",
+      "note": "whitespace check after W942 source, audit, ledger, report, and metadata edits"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html --require-linked-artifacts",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_html_check_report.log",
       "note": "local report parse/style/secret/link checks passed"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
-      "note": "browser DOM evidence verifies W941 summary values"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
+      "note": "browser DOM evidence verifies W942 summary values"
     },
     {
-      "command": "W941 manifest refresh",
+      "command": "W942 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_manifest_refresh.log",
-      "note": "manifest regenerated after W941 metadata and report refresh"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_manifest_refresh.log",
+      "note": "manifest regenerated after W942 metadata and report refresh"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_contract_audit.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_contract_audit.log",
       "note": "immutable original-four-task contract accepts the nonterminal outcome as not complete"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T172058Z_codex_parent_w941_boundary_relation_data_normalized_strict_representative_lift_route/logs/w941_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T173426Z_codex_parent_w942_closedness_data_boundary_relation_route/logs/w942_external_audit_nonterminal_expected.log",
       "note": "expected nonterminal failure: terminal_outcome.outcome is not product_success"
     }
   ],
   "implemented_declarations": [
-    "Dbounded.MetrizableWppClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldLeavesW941",
-    "Dbounded.w940LeavesOfBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW941",
-    "Dbounded.concreteLeavesOfClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW941",
-    "Dbounded.routeDataProviderOfClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW941",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW941",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW941",
-    "Dbounded.closedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsInputNamesW941_count",
-    "Dbounded.MetrizableClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRouteStateW941",
-    "Dbounded.currentMetrizableClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRouteStateW941",
-    "Dbounded.currentW941ClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRoute_productSuccess",
-    "originalFourTaskContract_closedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFields_inputCount",
-    "originalFourTaskContract_closedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFields_nonterminal"
+    "Dbounded.selectedDifferenceClosedMapPi1PrimitiveOfClosednessDataW942",
+    "Dbounded.selectedDifferenceClosedMapPi2PrimitiveOfClosednessDataW942",
+    "Dbounded.selectedDifferenceClosedMapPi3PrimitiveOfClosednessDataW942",
+    "Dbounded.mappedCokernelClosedMapPrimitiveOfClosednessDataW942",
+    "Dbounded.MetrizableWppClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldLeavesW942",
+    "Dbounded.w941LeavesOfClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW942",
+    "Dbounded.concreteLeavesOfClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW942",
+    "Dbounded.routeDataProviderOfClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW942",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW942",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW942",
+    "Dbounded.closedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsInputNamesW942_count",
+    "Dbounded.MetrizableClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRouteStateW942",
+    "Dbounded.currentMetrizableClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRouteStateW942",
+    "Dbounded.currentW942ClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRoute_productSuccess",
+    "originalFourTaskContract_closedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFields_inputCount",
+    "originalFourTaskContract_closedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFields_nonterminal"
   ],
   "required_declarations_checked": [
-    "Dbounded.MetrizableWppClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldLeavesW941",
-    "Dbounded.w940LeavesOfBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW941",
-    "Dbounded.concreteLeavesOfClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW941",
-    "Dbounded.routeDataProviderOfClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW941",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW941",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW941",
-    "Dbounded.closedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsInputNamesW941_count",
-    "Dbounded.MetrizableClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRouteStateW941",
-    "Dbounded.currentMetrizableClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRouteStateW941",
-    "Dbounded.currentW941ClosedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRoute_productSuccess",
-    "originalFourTaskContract_closedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFields_inputCount",
-    "originalFourTaskContract_closedMapTargetCompactBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFields_nonterminal"
+    "Dbounded.selectedDifferenceClosedMapPi1PrimitiveOfClosednessDataW942",
+    "Dbounded.selectedDifferenceClosedMapPi2PrimitiveOfClosednessDataW942",
+    "Dbounded.selectedDifferenceClosedMapPi3PrimitiveOfClosednessDataW942",
+    "Dbounded.mappedCokernelClosedMapPrimitiveOfClosednessDataW942",
+    "Dbounded.MetrizableWppClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldLeavesW942",
+    "Dbounded.w941LeavesOfClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW942",
+    "Dbounded.concreteLeavesOfClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW942",
+    "Dbounded.routeDataProviderOfClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW942",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW942",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsW942",
+    "Dbounded.closedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsInputNamesW942_count",
+    "Dbounded.MetrizableClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRouteStateW942",
+    "Dbounded.currentMetrizableClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRouteStateW942",
+    "Dbounded.currentW942ClosedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFieldsRoute_productSuccess",
+    "originalFourTaskContract_closedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFields_inputCount",
+    "originalFourTaskContract_closedMapTargetCompactClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsFields_nonterminal"
   ]
 }

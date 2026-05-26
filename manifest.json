@@ -1,6 +1,8 @@
 {
-  "generated_utc": "2026-05-26T17:28:52Z",
-  "content_hash_tree": "789ba8d74c8b22967952fc3e963f7ad6188675ed9776620992b4305d9758bf45",
+  "schema": "lean_lca_manifest_v1",
+  "root": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
+  "file_count": 1064,
+  "content_hash_tree": "898ae3fe72793db0eff0f86d123b948f6dc10d0790fc513ec16cce26a156b004",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -29,8 +31,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "bytes": 16587,
-      "sha256": "cd515dbc025f55912444d0ed9926c8fd03b5e4fe470380c791c51a0f0a00db99"
+      "bytes": 16813,
+      "sha256": "35acb94801a85a4bdfab9a41d14e80b97164e0303093c8bfb4539ac1c877ac46"
     },
     {
       "path": "LeanLCAExactChallenge/AlternatingTailExtendTransport.lean",
@@ -216,6 +218,11 @@
       "path": "LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean",
       "bytes": 15885,
       "sha256": "77bef17a7d712d3699c7bb194e543be9e1d8847296bc9b06da45c5cdd6c9fdb7"
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean",
+      "bytes": 20171,
+      "sha256": "2218b45027629ba9f08fd2752bab3c8da01c5bd55f2cc976e6c3a3b8b5172d29"
     },
     {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitConflationWitnessPrimitiveFieldRoute.lean",
@@ -1029,13 +1036,13 @@
     },
     {
       "path": "audit/OriginalFourTaskCompletionDeclarations.lean",
-      "bytes": 110531,
-      "sha256": "823b85a0d2f1b84e88009df7328a6b1df68944a91e511760d2424e4274688a3b"
+      "bytes": 112642,
+      "sha256": "b2d30644b65778e1e381197a8de005d9f782ee3125bd225615fe9db44931478c"
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "bytes": 654231,
-      "sha256": "a09432b6574a14b80fa6413b661f3418b2da093f015c6bb4e7985fb8fcd2065a"
+      "bytes": 656141,
+      "sha256": "5c948aa33d72da349d3dbefcb4d0825d6c894fea3d050f76f8e56d6b73db7e7e"
     },
     {
       "path": "audit/RequiredDeclarations.lean",
@@ -2799,8 +2806,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "bytes": 220282,
-      "sha256": "b3ebc57e7edb88d81ea25477befc908239ef1808de92aa2bd3333fb9ad250d0b"
+      "bytes": 221343,
+      "sha256": "bdc45a74c4f8f3126460ad7bc8799105f532c91e99429b032a2bd797b0c7d746"
     },
     {
       "path": "docs/research/sources.md",
@@ -3106,6 +3113,11 @@
       "path": "docs/research/w941_provider_search_ledger.md",
       "bytes": 2445,
       "sha256": "aba81a17c1adc1bf51e2dbd0e4097282dc77cf2cb36d6392e44578bdbc5f1d5e"
+    },
+    {
+      "path": "docs/research/w942_provider_search_ledger.md",
+      "bytes": 2100,
+      "sha256": "98ff9408bd6c9384b3c21dde9ee8d50e9862f54029dc6a303d7cbc2236eaed83"
     },
     {
       "path": "implementation-notes.html",
@@ -5284,13 +5296,13 @@
     },
     {
       "path": "run/verification.json",
-      "bytes": 12640,
-      "sha256": "cb25b2e3181bde67185490bc03504fa0dbbbebada83d4cd23b747cca4c04af31"
+      "bytes": 13155,
+      "sha256": "2e5be471d5ee8ac2838bcf4170cc45b8b70ab76009b73c9117d9e83c62a293d3"
     },
     {
       "path": "scratch-log.html",
-      "bytes": 14017,
-      "sha256": "278e789d93f224fa95af2d403560488eb19302f9e9d8e64dea82bdb600babda2"
+      "bytes": 14222,
+      "sha256": "ab477bcd1118d515e86d0820ce5eedc62cb6f27f434659c3560a684ea20a06b0"
     },
     {
       "path": "scripts/audit_no_forbidden_lean_tokens.sh",
@@ -5304,8 +5316,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "bytes": 13684,
-      "sha256": "cdf3cb63248dd767d10becff1a9d72bf6aeadf13550ca34fcf64c13a7b8a900d"
+      "bytes": 13687,
+      "sha256": "4ce295017c7ca84d05ff515b10be53110ecebe219eeb62b2ab7a71c7b66738bf"
     },
     {
       "path": "workers/README.md",
