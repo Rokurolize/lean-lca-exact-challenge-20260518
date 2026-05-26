@@ -1,6 +1,6 @@
 {
-  "outcome": "nonterminal_w935_closed_map_target_compact_endpoint_short_exact_unit_conflation_witness_route",
-  "generated_utc": "2026-05-26T15:35:46Z",
+  "outcome": "nonterminal_w936_closed_map_target_compact_endpoint_short_exact_unit_strict_exact_witness_route",
+  "generated_utc": "2026-05-26T15:52:02Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
@@ -12,152 +12,165 @@
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W935 keeps the target nonterminal under the immutable original four-task contract while exposing W934's endpoint ExactAt-to-epi field through the stronger endpoint ShortExact witness. endpointEpiOfShortExactPrimitiveW935 derives the outgoing epi by ShortExact.epi_g before delegating through the W934/W933/W932/W931/W930 route stack. Product success remains false because the endpoint ShortExact witness, the unit conflation witness, and the rest of the route leaves are still explicit assumptions, and the original four-task completion witness and review packet remain incomplete.",
+  "summary": "W936 keeps the target nonterminal under the immutable original four-task contract while exposing W935's unit mapping-cone Quillen-conflation witness through degreewise strict MetrizableLCA short exact sequence data. The bridge boundedHomotopyLocalizedEndpointShortExactUnitConflationWitnessOfStrictExactPrimitiveW936 unfolds MetrizableLCA.quillenExactCategory to recover W935, then delegates through the W935/W934/W933/W932/W931/W930 route stack. Product success remains false because the W936 leaves are still explicit assumptions, and the original four-task completion witness and review packet remain incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W935 only refines W934's endpoint ExactAt-to-epi field to an endpoint ShortExact witness while that ShortExact witness and the rest of the W935 concrete leaves are still not instantiated.",
-    "W935 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
-    "The remaining W935 fields include raw WPP-limit boundary propositions, primitive relation-pullback and target-relation-lift propositions, primitive target-difference and target-codomain compactness quantifiers, primitive selected-difference and mapped-cokernel closed-map propositions, strict preimage object and map fields, identity and composition coherence, source-image normalization, raw fixed-target uniqueness quantifier fields, raw source-category pretriangulated and triangulated propositions, the raw source-side triangle-completion proposition, endpoint closed-embedding/open-map/ShortExact facts, bounded-homotopy localized right-adjoint fields, and the unit mapping-cone conflation witness.",
+    "Task 4 is not contract-complete under the original four-task contract: W936 only refines W935's unit mapping-cone Quillen-conflation witness to degreewise strict MetrizableLCA short exact sequence data, while that witness and the rest of the W936 concrete leaves are still not instantiated.",
+    "W936 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
+    "The remaining W936 fields include raw WPP-limit boundary propositions, primitive relation-pullback and target-relation-lift propositions, primitive target-difference and target-codomain compactness quantifiers, primitive selected-difference and mapped-cokernel closed-map propositions, strict preimage object and map fields, identity and composition coherence, source-image normalization, raw fixed-target uniqueness quantifier fields, raw source-category pretriangulated and triangulated propositions, the raw source-side triangle-completion proposition, endpoint closed-embedding/open-map/ShortExact facts, bounded-homotopy localized right-adjoint fields, and the strict unit mapping-cone witness.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the thirty-nine W935 closed-map target-compact endpoint-short-exact unit-conflation-witness explicit inputs.",
-    "Choose the next smallest contract-closing increment from target-compactness proof construction, strict-preimage/source-image coherence, endpoint ShortExact construction, localized-right-adjoint data, source-category triangulation evidence, relation primitive proofs, target-surjectivity proof, mapped-cokernel primitive proof, selected-difference primitive proofs, or another supported concrete provider boundary.",
+    "Construct or precisely block concrete values for the thirty-nine W936 closed-map target-compact endpoint-short-exact unit-strict-exact-witness explicit inputs.",
+    "Choose the next smallest contract-closing increment from target-compactness proof construction, strict-preimage/source-image coherence, endpoint topological exactness, localized-right-adjoint data, source-category triangulation evidence, relation primitive proofs, target-surjectivity proof, mapped-cokernel primitive proof, selected-difference primitive proofs, or another supported concrete provider boundary.",
     "Connect a real no-argument route to the original four-task completion witness only after all route inputs are real rather than merely exposed as fields.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w935_closed_map_target_compact_endpoint_short_exact_unit_conflation_witness_route",
-  "latest_verified_increment": "W935 closed-map target-compact endpoint-short-exact unit-conflation-witness route",
+  "support_result_classification": "nonterminal_w936_closed_map_target_compact_endpoint_short_exact_unit_strict_exact_witness_route",
+  "latest_verified_increment": "W936 closed-map target-compact endpoint-short-exact unit-strict-exact-witness route",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w935_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w936_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W935 only refines W934's endpoint ExactAt-to-epi field to an endpoint ShortExact witness while that ShortExact witness and the rest of the W935 concrete leaves are still not instantiated.",
-    "W935 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
-    "The remaining W935 fields include raw WPP-limit boundary propositions, primitive relation-pullback and target-relation-lift propositions, primitive target-difference and target-codomain compactness quantifiers, primitive selected-difference and mapped-cokernel closed-map propositions, strict preimage object and map fields, identity and composition coherence, source-image normalization, raw fixed-target uniqueness quantifier fields, raw source-category pretriangulated and triangulated propositions, the raw source-side triangle-completion proposition, endpoint closed-embedding/open-map/ShortExact facts, bounded-homotopy localized right-adjoint fields, and the unit mapping-cone conflation witness.",
+    "Task 4 is not contract-complete under the original four-task contract: W936 only refines W935's unit mapping-cone Quillen-conflation witness to degreewise strict MetrizableLCA short exact sequence data, while that witness and the rest of the W936 concrete leaves are still not instantiated.",
+    "W936 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
+    "The remaining W936 fields include raw WPP-limit boundary propositions, primitive relation-pullback and target-relation-lift propositions, primitive target-difference and target-codomain compactness quantifiers, primitive selected-difference and mapped-cokernel closed-map propositions, strict preimage object and map fields, identity and composition coherence, source-image normalization, raw fixed-target uniqueness quantifier fields, raw source-category pretriangulated and triangulated propositions, the raw source-side triangle-completion proposition, endpoint closed-embedding/open-map/ShortExact facts, bounded-homotopy localized right-adjoint fields, and the strict unit mapping-cone witness.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
-  "source_tree_hash": "158447ae40c3a17210844c90fcd9716dcbd5c59809cece8c473ed812f2ab655d",
+  "source_tree_hash": "41b2cfd86f025623d85f389e66c899bd70239faed29fad0637150e9347eadefa",
   "remaining_explicit_inputs": 39,
   "implemented_declarations_checked": [
-    "Dbounded.MetrizableWppClosedMapTargetCompactEndpointShortExactFieldLeavesW935",
-    "Dbounded.boundedHomotopyLocalizedEndpointShortExactUnitConflationWitnessPrimitiveW935",
-    "Dbounded.boundedHomotopyLocalizedUnitIsoClosureWitnessOfConflationPrimitiveW935",
-    "Dbounded.endpointEpiOfShortExactPrimitiveW935",
-    "Dbounded.w934LeavesOfEndpointShortExactFieldsW935",
-    "Dbounded.concreteLeavesOfClosedMapTargetCompactEndpointShortExactFieldsW935",
-    "Dbounded.routeDataProviderOfClosedMapTargetCompactEndpointShortExactFieldsW935",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetCompactEndpointShortExactFieldsW935",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetCompactEndpointShortExactFieldsW935",
-    "Dbounded.closedMapTargetCompactEndpointShortExactFieldsInputNamesW935_count",
-    "Dbounded.MetrizableClosedMapTargetCompactEndpointShortExactFieldsRouteStateW935",
-    "Dbounded.currentMetrizableClosedMapTargetCompactEndpointShortExactFieldsRouteStateW935",
-    "Dbounded.currentW935ClosedMapTargetCompactEndpointShortExactFieldsRoute_productSuccess",
-    "originalFourTaskContract_closedMapTargetCompactEndpointShortExactUnitConflationWitnessFields_inputCount",
-    "originalFourTaskContract_closedMapTargetCompactEndpointShortExactUnitConflationWitnessFields_nonterminal"
+    "Dbounded.MetrizableWppClosedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFieldLeavesW936",
+    "Dbounded.boundedHomotopyLocalizedEndpointShortExactUnitStrictExactWitnessPrimitiveW936",
+    "Dbounded.boundedHomotopyLocalizedEndpointShortExactUnitConflationWitnessOfStrictExactPrimitiveW936",
+    "Dbounded.w935LeavesOfEndpointShortExactUnitStrictExactWitnessFieldsW936",
+    "Dbounded.concreteLeavesOfClosedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFieldsW936",
+    "Dbounded.routeDataProviderOfClosedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFieldsW936",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFieldsW936",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFieldsW936",
+    "Dbounded.closedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFieldsInputNamesW936_count",
+    "Dbounded.MetrizableClosedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFieldsRouteStateW936",
+    "Dbounded.currentMetrizableClosedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFieldsRouteStateW936",
+    "Dbounded.currentW936ClosedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFieldsRoute_productSuccess",
+    "originalFourTaskContract_closedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFields_inputCount",
+    "originalFourTaskContract_closedMapTargetCompactEndpointShortExactUnitStrictExactWitnessFields_nonterminal"
   ],
   "verified_commands": [
-    "lake build",
-    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-    "lake env lean audit/RequiredDeclarations.lean",
+    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactWitnessPrimitiveFieldRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactWitnessPrimitiveFieldRoute",
+    "lake env lean LeanLCAExactChallenge.lean",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
+    "lake env lean audit/RequiredDeclarations.lean",
+    "lake build",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+    "strict live product-success true scan",
     "git diff --check",
-    "strict live product-success true scan"
+    "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
+    "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
+    "W936 manifest refresh",
+    "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
+    "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ..."
   ],
   "review_packet_status": "not_product_success_ready",
   "update_goal_status": "forbidden_until_product_success",
   "schema": "lean_lca_nonterminal_verification_v1",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitConflationWitnessPrimitiveFieldRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactWitnessPrimitiveFieldRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_focused_lean.log",
-      "note": "focused Lean check for the W935 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_focused_lean.log",
+      "note": "focused Lean check for the W936 helper module"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitConflationWitnessPrimitiveFieldRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactWitnessPrimitiveFieldRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_module_build.log",
-      "note": "named Lake target for the W935 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_module_build.log",
+      "note": "named Lake target for the W936 helper module"
+    },
+    {
+      "command": "lake env lean LeanLCAExactChallenge.lean",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_root_import.log",
+      "note": "root import surface includes the W936 route"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_product_success_declarations.log",
-      "note": "checks W935 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_product_success_declarations.log",
+      "note": "checks W936 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_original_four_task_declarations.log",
-      "note": "records W935 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_original_four_task_declarations.log",
+      "note": "records W936 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_required_declarations.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_required_declarations.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_lake_build.log",
-      "note": "full build after W935 source edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_lake_build.log",
+      "note": "full build after W936 source edits; existing style warnings remain nonfatal"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_forbidden_lean_tokens.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_forbidden_lean_tokens.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live product-success true scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_strict_product_success_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_strict_product_success_scan.log",
       "note": "no product-success true claim in live Lean/audit/terminal/run/report surfaces"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_git_diff_check.log",
-      "note": "whitespace check after W935 source, audit, and ledger edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_git_diff_check.log",
+      "note": "whitespace check after W936 source, audit, report, and ledger edits"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_html_check_report.log",
       "note": "local report parse/style/secret checks passed"
     },
     {
-      "command": "W935 manifest refresh",
+      "command": "W936 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_manifest_refresh.log",
-      "note": "manifest regenerated after W935 metadata/report refresh"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_manifest_refresh.log",
+      "note": "manifest regenerated after W936 metadata/report refresh"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_contract_audit.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_contract_audit.log",
       "note": "immutable original-four-task contract accepts the nonterminal outcome as not complete"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/logs/w935_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/logs/w936_external_audit_nonterminal_expected.log",
       "note": "expected nonterminal failure: terminal_outcome.outcome is not product_success"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T152503Z_codex_parent_w935_endpoint_short_exact_unit_conflation_witness_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
-      "note": "browser DOM evidence verifies W935 summary values"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T154929Z_codex_parent_w936_endpoint_short_exact_unit_strict_exact_witness_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
+      "note": "browser DOM evidence verifies W936 summary values"
     }
   ]
 }

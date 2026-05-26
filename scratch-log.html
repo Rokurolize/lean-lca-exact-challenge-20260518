@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lean LCA W935 Nonterminal Progress</title>
+  <title>Lean LCA W936 Nonterminal Progress</title>
   <style id="html-progress-report-style">
 :root {
   color-scheme: light;
@@ -156,21 +156,21 @@ textarea.goal-text {
 <body>
   <header class="report-hero">
     <div class="wrap">
-      <h1>Lean LCA W935 Nonterminal Progress</h1>
-      <p class="lede">W935 exposes W934's endpoint ExactAt-to-epi field through endpoint ShortExact witness data while preserving the unit mapping-cone conflation witness route. Product success remains false under the immutable original four-task contract.</p>
+      <h1>Lean LCA W936 Nonterminal Progress</h1>
+      <p class="lede">W936 exposes the unit mapping-cone witness as degreewise strict <code>MetrizableLCA</code> short exact data, then recovers W935's Quillen-conflation witness through the strict exact-category instance. Product success remains false under the immutable original four-task contract.</p>
       <div class="badges">
-        <span class="badge info">Generated 2026-05-27 00:32 JST</span>
+        <span class="badge info">Generated 2026-05-27 00:52 JST</span>
         <span class="badge warn">Nonterminal route</span>
         <span class="badge risk">update_goal_allowed false</span>
       </div>
     </div>
   </header>
   <main class="wrap">
-    <section class="grid" aria-label="Current W935 status">
+    <section class="grid" aria-label="Current W936 status">
       <article class="card span-3">
         <div class="label">Latest Increment</div>
-        <div class="metric">W935</div>
-        <p>closed-map target-compact unit-conflation-witness primitive-field route</p>
+        <div class="metric">W936</div>
+        <p>closed-map target-compact endpoint-short-exact unit-strict-exact-witness primitive-field route</p>
       </article>
       <article class="card span-3">
         <div class="label">Product Success</div>
@@ -180,18 +180,18 @@ textarea.goal-text {
       <article class="card span-3">
         <div class="label">Remaining Explicit Inputs</div>
         <div class="metric">39</div>
-        <p>The count is unchanged; one field is now stated at a lower predicate layer.</p>
+        <p>The count is unchanged; the unit witness is now stated as strict exact LCA data.</p>
       </article>
       <article class="card span-3">
         <div class="label">Source Tree Hash</div>
-        <p><code>158447ae40c3a17210844c90fcd9716dcbd5c59809cece8c473ed812f2ab655d</code></p>
+        <p><code>41b2cfd86f025623d85f389e66c899bd70239faed29fad0637150e9347eadefa</code></p>
       </article>
     </section>
 
     <section>
       <h2>What Changed</h2>
-      <p>W935 keeps the target nonterminal under the immutable original four-task contract while exposing W934's endpoint ExactAt-to-epi field through endpoint <code>ShortExact</code> witness data.</p>
-      <p><code>endpointEpiOfShortExactPrimitiveW935</code> derives the outgoing epi by <code>ShortExact.epi_g</code> before delegating through the W934/W933/W932/W931/W930 route stack.</p>
+      <p>W936 keeps the target nonterminal under the immutable original four-task contract while replacing W935's degreewise Quillen-conflation unit witness input with degreewise <code>MetrizableLCA.strictShortExact</code> witness data.</p>
+      <p><code>boundedHomotopyLocalizedEndpointShortExactUnitConflationWitnessOfStrictExactPrimitiveW936</code> recovers W935's conflation witness by unfolding <code>MetrizableLCA.quillenExactCategory</code>, then delegates through the W935/W934/W933/W932/W931/W930 route stack.</p>
     </section>
 
     <section>
@@ -199,12 +199,12 @@ textarea.goal-text {
       <table>
         <thead><tr><th>Command</th><th>Status</th><th>Evidence</th></tr></thead>
         <tbody>
-          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitConflationWitnessPrimitiveFieldRoute.lean</code></td><td>passed</td><td>focused Lean check for the W935 helper module</td></tr>
-          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitConflationWitnessPrimitiveFieldRoute</code></td><td>passed</td><td>named Lake target for the W935 helper module</td></tr>
-          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td>W935 declarations elaborate while <code>product_success</code> remains false</td></tr>
-          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td>Lean-native original four-task audit surface records W935 as nonterminal</td></tr>
+          <tr><td><code>lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactWitnessPrimitiveFieldRoute.lean</code></td><td>passed</td><td>focused Lean check for the W936 helper module</td></tr>
+          <tr><td><code>lake build LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactWitnessPrimitiveFieldRoute</code></td><td>passed</td><td>named Lake target for the W936 helper module</td></tr>
+          <tr><td><code>lake env lean audit/ProductSuccessDeclarations.lean</code></td><td>passed</td><td>W936 declarations elaborate while <code>product_success</code> remains false</td></tr>
+          <tr><td><code>lake env lean audit/OriginalFourTaskCompletionDeclarations.lean</code></td><td>passed</td><td>Lean-native original four-task audit surface records W936 as nonterminal</td></tr>
           <tr><td><code>lake env lean audit/RequiredDeclarations.lean</code></td><td>passed</td><td>required public declarations still elaborate</td></tr>
-          <tr><td><code>lake build</code></td><td>passed</td><td>full repository build after W935 edits</td></tr>
+          <tr><td><code>lake build</code></td><td>passed</td><td>full repository build after W936 edits</td></tr>
           <tr><td><code>scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge</code></td><td>passed</td><td>no forbidden Lean tokens under source tree</td></tr>
           <tr><td><code>strict live product-success true scan</code></td><td>passed</td><td>no live product-success true claim in Lean/audit/terminal/run/report surfaces</td></tr>
           <tr><td><code>git diff --check</code></td><td>passed</td><td>whitespace check after source, audit, and ledger edits</td></tr>
@@ -215,16 +215,16 @@ textarea.goal-text {
     <section>
       <h2>Known Gaps</h2>
       <ul>
-        <li>Task 4 is not contract-complete under the original four-task contract: W935 only refines W934's endpoint ExactAt-to-epi field to endpoint ShortExact witness data.</li>
-        <li>W935 is still a closed-map branch route; no no-argument branch choice or final original-four-task witness has been constructed.</li>
-        <li>The remaining W935 fields still include the raw WPP-limit boundary propositions, target compactness quantifiers, strict-preimage/source-image fields, endpoint closed-embedding/open-map/ShortExact facts, localized-right-adjoint fields, and the unit mapping-cone conflation witness.</li>
+        <li>Task 4 is not contract-complete under the original four-task contract: W936 only refines W935's unit mapping-cone witness field to degreewise strict short exact data.</li>
+        <li>W936 is still a closed-map branch route; no no-argument branch choice or final original-four-task witness has been constructed.</li>
+        <li>The remaining W936 fields still include the raw WPP-limit boundary propositions, target compactness quantifiers, strict-preimage/source-image fields, endpoint closed-embedding/open-map/ShortExact facts, localized-right-adjoint fields, and the strict unit mapping-cone witness.</li>
         <li>The completion review packet still lacks the required product-success evidence, negative-fixture coverage, external SHA256 sidecar, and clean extraction audit.</li>
       </ul>
     </section>
 
     <section>
       <h2>Next Safe Action</h2>
-      <p>Construct or precisely block concrete values for the thirty-nine W935 closed-map target-compact endpoint-short-exact unit-conflation-witness explicit inputs before attempting any original four-task completion witness or <code>update_goal(status="complete")</code>.</p>
+      <p>Construct or precisely block concrete values for the thirty-nine W936 closed-map target-compact endpoint-short-exact unit-strict-exact-witness explicit inputs before attempting any original four-task completion witness or <code>update_goal(status="complete")</code>.</p>
     </section>
 
     <section>
@@ -232,6 +232,7 @@ textarea.goal-text {
       <div class="timeline">
         <div class="event"><time>2026-05-26 23:55 JST</time><strong>Definition frontier selected.</strong><p>The W931 objectwise weak-equivalence field was traced to <code>boundedHomotopyExactWeakEquivalence_iff_mappingCone_isoClosure</code>.</p></div>
         <div class="event"><time>2026-05-27 00:32 JST</time><strong>W935 verified as nonterminal.</strong><p>Focused Lean, named Lake target, audit declaration files, full build, forbidden-token scan, live product-success scan, and whitespace check passed for the endpoint ShortExact route.</p></div>
+        <div class="event"><time>2026-05-27 00:52 JST</time><strong>W936 verified as nonterminal.</strong><p>The unit mapping-cone witness was exposed as degreewise strict <code>MetrizableLCA</code> short exact data, then bridged back to W935's Quillen-conflation witness.</p></div>
       </div>
     </section>
   </main>
