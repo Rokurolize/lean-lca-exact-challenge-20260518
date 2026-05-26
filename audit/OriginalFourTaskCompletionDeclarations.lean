@@ -55,6 +55,7 @@ import LeanLCAExactChallenge.Derived.StrictPreimageMapFieldsComparisonStableExac
 import LeanLCAExactChallenge.Derived.BoundaryFieldsComparisonStableExactAtRoute
 import LeanLCAExactChallenge.Derived.RelationFieldsComparisonStableExactAtRoute
 import LeanLCAExactChallenge.Derived.TargetSurjectiveCompactFieldsComparisonStableExactAtRoute
+import LeanLCAExactChallenge.Derived.ClosedMapClosednessFieldsComparisonStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -1181,5 +1182,21 @@ theorem originalFourTaskContract_targetSurjectiveCompactFieldsComparisonStableEx
     Dbounded.currentMetrizableTargetSurjectiveCompactFieldsComparisonStableExactAtRouteStateW895.productSuccessClaimed =
       false :=
   Dbounded.currentW895TargetSurjectiveCompactFieldsComparisonStableExactAtRoute_productSuccess
+
+#check Dbounded.targetSurjectiveCompactFieldLeavesOfClosedMapClosednessFieldsW896
+#check
+  Dbounded.directBoundedLeftCalculusOfClosedMapClosednessFieldsComparisonStableExactAtW896
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfClosedMapClosednessFieldsComparisonStableExactAtW896
+
+theorem originalFourTaskContract_closedMapClosednessFieldsComparisonStableExactAt_inputCount :
+    Dbounded.closedMapClosednessFieldsComparisonStableExactAtInputNamesW896.length =
+      38 :=
+  Dbounded.closedMapClosednessFieldsComparisonStableExactAtInputNamesW896_count
+
+theorem originalFourTaskContract_closedMapClosednessFieldsComparisonStableExactAt_nonterminal :
+    Dbounded.currentMetrizableClosedMapClosednessFieldsComparisonStableExactAtRouteStateW896.productSuccessClaimed =
+      false :=
+  Dbounded.currentW896ClosedMapClosednessFieldsComparisonStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
