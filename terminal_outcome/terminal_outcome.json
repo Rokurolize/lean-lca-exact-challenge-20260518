@@ -1,65 +1,61 @@
 {
-  "outcome": "nonterminal_selected_cochain_direct_source_stable_exact_at",
-  "generated_utc": "2026-05-26T00:31:28Z",
+  "outcome": "nonterminal_exact_inputs_selected_cochain_stable_exact_at",
+  "generated_utc": "2026-05-26T00:39:33Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "d77ce926e57f5dd028d70bd0ce84a89d5d166741c7e13ed3626841e78e9c8af2"
+    "sha256": "36f6944d48e97ee099dee7ba897430dad1856b8bf5c8b5fdf761cc1d8da95827"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W868 keeps the target nonterminal under the immutable original four-task contract while composing W847 exact-acyclic selected-cochain direct-source data with the W867 stable-ExactAt route. From one W847 datum, W868 checks direct bounded left calculus through W846/W867 and obtains the bounded derived infinity-category package through W846/W867. Product success remains false because concrete W847 fields, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W869 keeps the target nonterminal under the immutable original four-task contract while composing W850 exact-input selected-cochain data with the W868 stable-ExactAt route. From W850 inputs, W869 checks direct bounded left calculus through W847/W868 and obtains the bounded derived infinity-category package through W847/W868. Product success remains false because the W736 comparison isomorphism input, concrete W735 exact-input data, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W868 replaces the W867 W846 strict-realization boundary with W847 selected-cochain direct-source data, but still requires concrete W847 fields.",
-    "Concrete W847 data still includes W735 closed-map or closed-embedding exact inputs and a W847 exact-acyclic selected-cochain strictification theorem; those fields are not yet fully instantiated.",
+    "Task 4 is not contract-complete under the original four-task contract: W869 replaces the W868 W847 selected-cochain boundary with W850 exact-input selected-cochain inputs, but still requires the W736 comparison isomorphism and concrete W735 exact-input branch.",
+    "Concrete W850 data still includes a universal IsIso proof for every MetrizableLCA left-right homology comparison and one W735 closed-map or closed-embedding exact-input branch; those fields are not yet fully instantiated.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete W847 selected-cochain direct-source data, especially the W735 exact inputs or W847 selected-cochain strictification theorem now isolated by W868.",
+    "Construct or precisely block the W850 inputs now isolated by W869: the universal W736 comparison-isomorphism input and one concrete W735 exact-input branch.",
     "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_selected_cochain_direct_source_stable_exact_at",
-  "latest_verified_increment": "W868 selected-cochain direct-source stable ExactAt route",
+  "support_result_classification": "nonterminal_exact_inputs_selected_cochain_stable_exact_at",
+  "latest_verified_increment": "W869 exact-inputs selected-cochain stable ExactAt route",
   "reference_route_log": "docs/research/reference_route_log.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W868 replaces the W867 W846 strict-realization boundary with W847 selected-cochain direct-source data, but still requires concrete W847 fields.",
-    "Concrete W847 data still includes W735 closed-map or closed-embedding exact inputs and a W847 exact-acyclic selected-cochain strictification theorem; those fields are not yet fully instantiated.",
+    "Task 4 is not contract-complete under the original four-task contract: W869 replaces the W868 W847 selected-cochain boundary with W850 exact-input selected-cochain inputs, but still requires the W736 comparison isomorphism and concrete W735 exact-input branch.",
+    "Concrete W850 data still includes a universal IsIso proof for every MetrizableLCA left-right homology comparison and one W735 closed-map or closed-embedding exact-input branch; those fields are not yet fully instantiated.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "implemented_declarations": [
-    "Dbounded.directBoundedLeftCalculusOfClosedMapSelectedCochainDirectSourceStableExactAtW868",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingSelectedCochainDirectSourceStableExactAtW868",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapSelectedCochainDirectSourceStableExactAtW868",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingSelectedCochainDirectSourceStableExactAtW868",
-    "Dbounded.selectedCochainDirectSourceStableExactAtInputNamesW868_count",
-    "Dbounded.selectedCochainDirectSourceStableExactAtExpandedInputNamesW868_count",
-    "Dbounded.currentW868SelectedCochainDirectSourceStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_selectedCochainDirectSourceStableExactAt_inputCount",
-    "originalFourTaskContract_selectedCochainDirectSourceStableExactAt_expandedInputCount",
-    "originalFourTaskContract_selectedCochainDirectSourceStableExactAt_nonterminal"
+    "Dbounded.directBoundedLeftCalculusOfClosedMapExactInputsSelectedCochainStableExactAtW869",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingExactInputsSelectedCochainStableExactAtW869",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapExactInputsSelectedCochainStableExactAtW869",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingExactInputsSelectedCochainStableExactAtW869",
+    "Dbounded.exactInputsSelectedCochainStableExactAtInputNamesW869_count",
+    "Dbounded.currentW869ExactInputsSelectedCochainStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_exactInputsSelectedCochainStableExactAt_inputCount",
+    "originalFourTaskContract_exactInputsSelectedCochainStableExactAt_nonterminal"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.directBoundedLeftCalculusOfClosedMapSelectedCochainDirectSourceStableExactAtW868",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingSelectedCochainDirectSourceStableExactAtW868",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapSelectedCochainDirectSourceStableExactAtW868",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingSelectedCochainDirectSourceStableExactAtW868",
-    "Dbounded.selectedCochainDirectSourceStableExactAtInputNamesW868_count",
-    "Dbounded.selectedCochainDirectSourceStableExactAtExpandedInputNamesW868_count",
-    "Dbounded.currentW868SelectedCochainDirectSourceStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_selectedCochainDirectSourceStableExactAt_inputCount",
-    "originalFourTaskContract_selectedCochainDirectSourceStableExactAt_expandedInputCount",
-    "originalFourTaskContract_selectedCochainDirectSourceStableExactAt_nonterminal"
+    "Dbounded.directBoundedLeftCalculusOfClosedMapExactInputsSelectedCochainStableExactAtW869",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingExactInputsSelectedCochainStableExactAtW869",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapExactInputsSelectedCochainStableExactAtW869",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingExactInputsSelectedCochainStableExactAtW869",
+    "Dbounded.exactInputsSelectedCochainStableExactAtInputNamesW869_count",
+    "Dbounded.currentW869ExactInputsSelectedCochainStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_exactInputsSelectedCochainStableExactAt_inputCount",
+    "originalFourTaskContract_exactInputsSelectedCochainStableExactAt_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/ExactAcyclicSelectedCochainDirectSourceStableExactAtRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainDirectSourceStableExactAtRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/ExactInputsSelectedCochainDirectSourceStableExactAtRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.ExactInputsSelectedCochainDirectSourceStableExactAtRoute",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
@@ -67,7 +63,7 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "rg -n productSuccessClaimed/product_success/product_complete true scan",
     "git diff --check",
-    "W868 helper module size and declaration accounting",
+    "W869 helper module size and declaration accounting",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
