@@ -1,6 +1,6 @@
 {
-  "outcome": "nonterminal_w894_relation_fields_comparison_stable_exact_at",
-  "generated_utc": "2026-05-26T05:01:17Z",
+  "outcome": "nonterminal_w895_target_surjective_compact_fields_comparison_stable_exact_at",
+  "generated_utc": "2026-05-26T05:16:24Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
@@ -12,60 +12,60 @@
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W894 keeps the target nonterminal under the immutable original four-task contract while replacing W893's bundled W717 relation-data input with explicit relation-pullback and target-relation-lift fields. The assembled relation data feeds W893, then W892, W891, W890, W889, W888, W887, W886, W885, W884, W883, W882, W881, W880, and W879. Product success remains false because the explicit W894 fields, the remaining concrete leaves, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W895 keeps the target nonterminal under the immutable original four-task contract while replacing W894's bundled W715 target-surjective-compact input with explicit target-difference-surjectivity and target-codomain-compactness fields. The assembled paired target provider feeds W894, then W893, W892, W891, W890, W889, W888, W887, W886, W885, W884, W883, W882, W881, W880, and W879. Product success remains false because the explicit W895 fields, the remaining concrete leaves, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W894 exposes the W717 relation-data bundle as two explicit fields, but those fields and the other W894 concrete leaves are still not instantiated.",
-    "The remaining W894 fields are WPP right-open boundary data, WPP source-pi-zero boundary data, relation-pullback data, target-relation-lift data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W895 exposes the W715 paired target-surjective-compact bundle as two explicit fields, but those fields and the other W895 concrete leaves are still not instantiated.",
+    "The remaining W895 fields are WPP right-open boundary data, WPP source-pi-zero boundary data, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the thirty-six W894 explicit field inputs.",
+    "Construct or precisely block concrete values for the thirty-seven W895 explicit field inputs.",
     "Continue splitting or discharging the remaining bundled providers only when the split is supported by current Lean definitions and provider-search evidence.",
     "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w894_relation_fields_comparison_stable_exact_at",
-  "latest_verified_increment": "W894 relation fields comparison stable ExactAt route",
+  "support_result_classification": "nonterminal_w895_target_surjective_compact_fields_comparison_stable_exact_at",
+  "latest_verified_increment": "W895 target-surjective compact fields comparison stable ExactAt route",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w894_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w895_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W894 exposes the W717 relation-data bundle as two explicit fields, but those fields and the other W894 concrete leaves are still not instantiated.",
-    "The remaining W894 fields are WPP right-open boundary data, WPP source-pi-zero boundary data, relation-pullback data, target-relation-lift data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W895 exposes the W715 paired target-surjective-compact bundle as two explicit fields, but those fields and the other W895 concrete leaves are still not instantiated.",
+    "The remaining W895 fields are WPP right-open boundary data, WPP source-pi-zero boundary data, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "implemented_declarations": [
-    "Dbounded.relationDataOfFieldsW894",
-    "Dbounded.MetrizableWppRelationFieldLeavesW894",
-    "Dbounded.boundaryFieldLeavesOfRelationFieldsW894",
-    "Dbounded.concreteLeavesOfRelationFieldsComparisonW894",
-    "Dbounded.routeDataProviderOfRelationFieldsComparisonW894",
-    "Dbounded.directBoundedLeftCalculusOfRelationFieldsComparisonStableExactAtW894",
-    "Dbounded.boundedDerivedInfinityCategoryOfRelationFieldsComparisonStableExactAtW894",
-    "Dbounded.relationFieldsComparisonStableExactAtInputNamesW894",
-    "Dbounded.relationFieldsComparisonStableExactAtInputNamesW894_count",
-    "Dbounded.MetrizableRelationFieldsComparisonStableExactAtRouteStateW894",
-    "Dbounded.currentMetrizableRelationFieldsComparisonStableExactAtRouteStateW894",
-    "Dbounded.currentW894RelationFieldsComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_relationFieldsComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_relationFieldsComparisonStableExactAt_nonterminal"
+    "Dbounded.targetSurjectiveCompactForTargetOfFieldsW895",
+    "Dbounded.MetrizableWppTargetSurjectiveCompactFieldLeavesW895",
+    "Dbounded.relationFieldLeavesOfTargetSurjectiveCompactFieldsW895",
+    "Dbounded.concreteLeavesOfTargetSurjectiveCompactFieldsComparisonW895",
+    "Dbounded.routeDataProviderOfTargetSurjectiveCompactFieldsComparisonW895",
+    "Dbounded.directBoundedLeftCalculusOfTargetSurjectiveCompactFieldsComparisonStableExactAtW895",
+    "Dbounded.boundedDerivedInfinityCategoryOfTargetSurjectiveCompactFieldsComparisonStableExactAtW895",
+    "Dbounded.targetSurjectiveCompactFieldsComparisonStableExactAtInputNamesW895",
+    "Dbounded.targetSurjectiveCompactFieldsComparisonStableExactAtInputNamesW895_count",
+    "Dbounded.MetrizableTargetSurjectiveCompactFieldsComparisonStableExactAtRouteStateW895",
+    "Dbounded.currentMetrizableTargetSurjectiveCompactFieldsComparisonStableExactAtRouteStateW895",
+    "Dbounded.currentW895TargetSurjectiveCompactFieldsComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_targetSurjectiveCompactFieldsComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_targetSurjectiveCompactFieldsComparisonStableExactAt_nonterminal"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.relationDataOfFieldsW894",
-    "Dbounded.boundaryFieldLeavesOfRelationFieldsW894",
-    "Dbounded.concreteLeavesOfRelationFieldsComparisonW894",
-    "Dbounded.routeDataProviderOfRelationFieldsComparisonW894",
-    "Dbounded.directBoundedLeftCalculusOfRelationFieldsComparisonStableExactAtW894",
-    "Dbounded.boundedDerivedInfinityCategoryOfRelationFieldsComparisonStableExactAtW894",
-    "Dbounded.relationFieldsComparisonStableExactAtInputNamesW894_count",
-    "Dbounded.currentW894RelationFieldsComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_relationFieldsComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_relationFieldsComparisonStableExactAt_nonterminal"
+    "Dbounded.targetSurjectiveCompactForTargetOfFieldsW895",
+    "Dbounded.relationFieldLeavesOfTargetSurjectiveCompactFieldsW895",
+    "Dbounded.concreteLeavesOfTargetSurjectiveCompactFieldsComparisonW895",
+    "Dbounded.routeDataProviderOfTargetSurjectiveCompactFieldsComparisonW895",
+    "Dbounded.directBoundedLeftCalculusOfTargetSurjectiveCompactFieldsComparisonStableExactAtW895",
+    "Dbounded.boundedDerivedInfinityCategoryOfTargetSurjectiveCompactFieldsComparisonStableExactAtW895",
+    "Dbounded.targetSurjectiveCompactFieldsComparisonStableExactAtInputNamesW895_count",
+    "Dbounded.currentW895TargetSurjectiveCompactFieldsComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_targetSurjectiveCompactFieldsComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_targetSurjectiveCompactFieldsComparisonStableExactAt_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/RelationFieldsComparisonStableExactAtRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.RelationFieldsComparisonStableExactAtRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/TargetSurjectiveCompactFieldsComparisonStableExactAtRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.TargetSurjectiveCompactFieldsComparisonStableExactAtRoute",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
@@ -73,7 +73,7 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "strict live product-success true scan",
     "git diff --check",
-    "W894 deterministic new-file/source accounting",
+    "W895 deterministic new-file/source accounting",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -81,9 +81,9 @@
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
     "git diff --check after metadata refresh",
     "strict live product-success true scan after metadata",
-    "W894 manifest refresh",
-    "W894 deterministic new-file/source accounting after metadata"
+    "W895 manifest refresh",
+    "W895 deterministic new-file/source accounting after metadata"
   ],
-  "source_tree_hash": "6e6255b417a1836651b96d94cb277621272ad45dd99ebd6aba38cb505c327f13",
-  "remaining_explicit_inputs": 36
+  "source_tree_hash": "d791e0bf6163bab93ba35b4067a2988c18c38c31ab71606a093ba117242205c0",
+  "remaining_explicit_inputs": 37
 }
