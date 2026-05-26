@@ -42,6 +42,7 @@ import LeanLCAExactChallenge.Derived.ComparisonSelectedCochainConcreteLeavesStab
 import LeanLCAExactChallenge.Derived.HomologyFreeComparisonConcreteLeavesStableExactAtRoute
 import LeanLCAExactChallenge.Derived.EndpointLocalizedComparisonConcreteLeavesStableExactAtRoute
 import LeanLCAExactChallenge.Derived.W732ComparisonConcreteLeavesStableExactAtRoute
+import LeanLCAExactChallenge.Derived.W733ConcreteLeavesComparisonConcreteLeavesStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -268,6 +269,10 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfW732ComparisonConcreteLeavesStableExactAtW882
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfW732ComparisonConcreteLeavesStableExactAtW882
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfConcreteLeavesComparisonStableExactAtW883
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfConcreteLeavesComparisonStableExactAtW883
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -962,5 +967,15 @@ theorem originalFourTaskContract_w732ComparisonConcreteLeavesStableExactAt_nonte
     Dbounded.currentMetrizableW732ComparisonConcreteLeavesStableExactAtRouteStateW882.productSuccessClaimed =
       false :=
   Dbounded.currentW882W732ComparisonConcreteLeavesStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_concreteLeavesComparisonStableExactAt_inputCount :
+    Dbounded.concreteLeavesComparisonStableExactAtInputNamesW883.length =
+      8 :=
+  Dbounded.concreteLeavesComparisonStableExactAtInputNamesW883_count
+
+theorem originalFourTaskContract_concreteLeavesComparisonStableExactAt_nonterminal :
+    Dbounded.currentMetrizableConcreteLeavesComparisonStableExactAtRouteStateW883.productSuccessClaimed =
+      false :=
+  Dbounded.currentW883ConcreteLeavesComparisonStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
