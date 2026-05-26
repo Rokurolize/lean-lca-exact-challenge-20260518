@@ -1,160 +1,160 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-26T04:23:04Z",
+  "generated_utc": "2026-05-26T04:35:06Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "7a68bd4473f94def319d57e3c0d4ce7922b19ac69a2e53075c1148765c2f35b8"
+    "sha256": "e9fc63e49655c126b18ced108eab781d6d51602d5855af946ece356bd6ee406a"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W891 keeps the target nonterminal under the immutable original four-task contract while replacing W890's bundled strict preimage object-data family with eight explicit constructor fields. The assembled strict preimage object data feeds W890, then W889, W888, W887, W886, W885, W884, W883, W882, W881, W880, and W879. Product success remains false because the explicit W891 fields, the remaining concrete leaves, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W892 keeps the target nonterminal under the immutable original four-task contract while replacing W891's bundled strict preimage map-data family with six explicit constructor fields. The assembled strict preimage map data feeds W891, then W890, W889, W888, W887, W886, W885, W884, W883, W882, W881, W880, and W879. Product success remains false because the explicit W892 fields, the remaining concrete leaves, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W891 exposes the strict preimage object-data family as eight explicit fields, but those fields and the other W891 concrete leaves are still not instantiated.",
-    "The remaining W891 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage zero/one objects, zero/one localization isomorphisms, left/right source maps, left/right factorization equations, strict preimage map data, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W892 exposes the strict preimage map-data family as six explicit fields, but those fields and the other W892 concrete leaves are still not instantiated.",
+    "The remaining W892 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage object fields, strict preimage zero/one component maps, zero/one component factorization equations, left/right naturality squares, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the twenty-nine W891 explicit field inputs.",
+    "Construct or precisely block concrete values for the thirty-four W892 explicit field inputs.",
     "Continue splitting or discharging the remaining bundled providers only when the split is supported by current Lean definitions and provider-search evidence.",
     "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w891_strict_preimage_object_fields_comparison_stable_exact_at",
-  "latest_verified_increment": "W891 strict-preimage object fields comparison stable ExactAt route",
-  "source_tree_hash": "fb1ef09884c798e82e31648f24e2c93056bdb43938b89b272bfd24d17ba4b710",
+  "support_result_classification": "nonterminal_w892_strict_preimage_map_fields_comparison_stable_exact_at",
+  "latest_verified_increment": "W892 strict-preimage map fields comparison stable ExactAt route",
+  "source_tree_hash": "994bab1d567e52f8e07ab1f161f9d003b2b70eab8bc12739b61fb1f24f8f447d",
   "implemented_declarations_checked": [
-    "Dbounded.strictPreimageObjectDataOfFieldsW891",
-    "Dbounded.strictRepresentativeObjectDataOfFieldsW891",
-    "Dbounded.strictRepresentativeFieldLeavesOfObjectFieldsW891",
-    "Dbounded.concreteLeavesOfStrictPreimageObjectFieldsComparisonW891",
-    "Dbounded.routeDataProviderOfStrictPreimageObjectFieldsComparisonW891",
-    "Dbounded.directBoundedLeftCalculusOfStrictPreimageObjectFieldsComparisonStableExactAtW891",
-    "Dbounded.boundedDerivedInfinityCategoryOfStrictPreimageObjectFieldsComparisonStableExactAtW891",
-    "Dbounded.strictPreimageObjectFieldsComparisonStableExactAtInputNamesW891_count",
-    "Dbounded.currentW891StrictPreimageObjectFieldsComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_strictPreimageObjectFieldsComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_strictPreimageObjectFieldsComparisonStableExactAt_nonterminal"
+    "Dbounded.strictPreimageMapDataOfFieldsW892",
+    "Dbounded.strictRepresentativeMapDataOfFieldsW892",
+    "Dbounded.strictRepresentativeObjectFieldLeavesOfMapFieldsW892",
+    "Dbounded.concreteLeavesOfStrictPreimageMapFieldsComparisonW892",
+    "Dbounded.routeDataProviderOfStrictPreimageMapFieldsComparisonW892",
+    "Dbounded.directBoundedLeftCalculusOfStrictPreimageMapFieldsComparisonStableExactAtW892",
+    "Dbounded.boundedDerivedInfinityCategoryOfStrictPreimageMapFieldsComparisonStableExactAtW892",
+    "Dbounded.strictPreimageMapFieldsComparisonStableExactAtInputNamesW892_count",
+    "Dbounded.currentW892StrictPreimageMapFieldsComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_strictPreimageMapFieldsComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_strictPreimageMapFieldsComparisonStableExactAt_nonterminal"
   ],
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/StrictPreimageObjectFieldsComparisonStableExactAtRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/StrictPreimageMapFieldsComparisonStableExactAtRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_new_module_lean.log",
-      "note": "focused Lean check for the W891 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_new_module_lean.log",
+      "note": "focused Lean check for the W892 helper module"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.StrictPreimageObjectFieldsComparisonStableExactAtRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.StrictPreimageMapFieldsComparisonStableExactAtRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_new_module_lake_build.log",
-      "note": "named Lake target for the W891 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_new_module_lake_build.log",
+      "note": "named Lake target for the W892 helper module"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_ProductSuccessDeclarations_lean.log",
-      "note": "checks W891 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_ProductSuccessDeclarations_lean.log",
+      "note": "checks W892 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_OriginalFourTaskCompletionDeclarations_lean.log",
-      "note": "records W891 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_OriginalFourTaskCompletionDeclarations_lean.log",
+      "note": "records W892 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_RequiredDeclarations_lean.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_RequiredDeclarations_lean.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_lake_build_full.log",
-      "note": "full build after W891 source edits; only pre-existing long-line warnings were observed"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_lake_build_full.log",
+      "note": "full build after W892 source edits; only pre-existing long-line warnings were observed"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_forbidden_tokens.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_forbidden_tokens.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live product-success true scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_product_success_true_scan_strict.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_product_success_true_scan_strict.log",
       "note": "no product-success true claim in live Lean, Lean audits, or current metadata surfaces"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_git_diff_check_source.log",
-      "note": "whitespace check after W891 source and audit edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_git_diff_check_source.log",
+      "note": "whitespace check after W892 source and audit edits"
     },
     {
-      "command": "W891 deterministic new-file/source accounting",
+      "command": "W892 deterministic new-file/source accounting",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_new_file_accounting_pre_metadata.log",
-      "note": "records the new W891 route, provider ledger, and audit/import hooks"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_new_file_accounting_pre_metadata.log",
+      "note": "records the new W892 route, provider ledger, and audit/import hooks"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_html_check_report.log",
       "note": "HTML report parse/style/JST validation passed"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_contract_audit.log",
-      "note": "original four-task contract audit accepts the W891 nonterminal outcome and lists remaining blockers"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_contract_audit.log",
+      "note": "original four-task contract audit accepts the W892 nonterminal outcome and lists remaining blockers"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_external_audit_nonterminal_expected.log",
       "note": "external audit reaches only the expected product-success gate for this nonterminal run"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_browser_evidence_scratch_log.log",
-      "note": "Chromium-rendered report evidence contains the W891 classification, source hash, product state, and remaining-input count"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_browser_evidence_scratch_log.log",
+      "note": "Chromium-rendered report evidence contains the W892 classification, source hash, product state, and remaining-input count"
     },
     {
       "command": "git diff --check after metadata refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_git_diff_check_after_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_git_diff_check_after_metadata.log",
       "note": "whitespace check after report, manifest, and terminal metadata refresh"
     },
     {
       "command": "strict live product-success true scan after metadata",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_product_success_true_scan_after_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_product_success_true_scan_after_metadata.log",
       "note": "no live product-success true claim after metadata refresh"
     },
     {
-      "command": "W891 manifest refresh",
+      "command": "W892 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_manifest_refresh.log",
-      "note": "manifest includes audit-required content_hash_tree and excludes self/progress/local build artifacts"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_manifest_refresh.log",
+      "note": "manifest.json regenerated with a fresh content hash tree"
     },
     {
-      "command": "W891 deterministic new-file/source accounting after metadata",
+      "command": "W892 deterministic new-file/source accounting after metadata",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041850Z_codex_parent_w891_strict_preimage_object_fields_comparison_stable_exact_at/logs/w891_new_file_accounting_post_metadata.log",
-      "note": "post-metadata diff accounting records W891 source, ledger, and metadata artifacts"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T042700Z_codex_parent_w892_strict_preimage_map_fields_comparison_stable_exact_at/logs/w892_new_file_accounting_post_metadata.log",
+      "note": "records staged-source and metadata accounting after refresh"
     }
   ]
 }
