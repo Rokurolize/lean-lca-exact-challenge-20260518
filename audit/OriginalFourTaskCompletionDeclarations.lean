@@ -92,6 +92,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoPrincipalPrimitiveF
 import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipObjectwiseUnitPrimitiveFieldRoute
 import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipUnitConeIsoClosurePrimitiveFieldRoute
+import LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipUnitIsoClosureWitnessPrimitiveFieldRoute
 
 set_option autoImplicit false
 
@@ -1783,5 +1784,21 @@ theorem originalFourTaskContract_closedMapTargetCompactUnitConeIsoClosureFields_
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW932ClosedMapTargetCompactUnitConeIsoClosureFieldsRoute_productSuccess
+
+#check Dbounded.w932LeavesOfUnitIsoClosureWitnessFieldsW933
+#check Dbounded.directBoundedLeftCalculusOfClosedMapTargetCompactUnitIsoClosureWitnessFieldsW933
+#check Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetCompactUnitIsoClosureWitnessFieldsW933
+
+theorem originalFourTaskContract_closedMapTargetCompactUnitIsoClosureWitnessFields_inputCount :
+    Dbounded.closedMapTargetCompactUnitIsoClosureWitnessFieldsInputNamesW933.length =
+      39 :=
+  Dbounded.closedMapTargetCompactUnitIsoClosureWitnessFieldsInputNamesW933_count
+
+theorem originalFourTaskContract_closedMapTargetCompactUnitIsoClosureWitnessFields_nonterminal :
+    (let state :=
+        Dbounded.currentMetrizableClosedMapTargetCompactUnitIsoClosureWitnessFieldsRouteStateW933;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW933ClosedMapTargetCompactUnitIsoClosureWitnessFieldsRoute_productSuccess
 
 end LeanLCAExactChallenge
