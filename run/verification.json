@@ -1,138 +1,138 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-26T18:37:00Z",
-  "source_tree_hash": "347c5079a65a3c6654cadbd8c131b9938f880a046000e5533efe23e53734c1fe",
+  "generated_utc": "2026-05-26T18:45:00Z",
+  "source_tree_hash": "8df2f0e14832aee1faa6285482a8237b0a828da32526067ee10a913692c8a5a4",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "latest_verified_increment": "W947 closed-map boundary-relation-data target-no-univ-closedness-data normalized-fixed-target-data source-triangulation endpoint-strict-exact localized-unit-data route",
-  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route",
+  "latest_verified_increment": "W948 closed-map boundary-relation-data target-no-univ-closedness-data normalized-source-triangulation-data endpoint-strict-exact localized-unit-data route",
+  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_focused_lean.log",
-      "note": "focused Lean check for the W947 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_focused_lean.log",
+      "note": "focused Lean check for the W948 helper module"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_module_build.log",
-      "note": "named Lake target for the W947 helper module; long route-name style warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_module_build.log",
+      "note": "named Lake target for the W948 helper module; long route-name style warnings remain nonfatal"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_root_import.log",
-      "note": "root import surface includes the W947 route after the module was added"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_root_import.log",
+      "note": "root import surface includes the W948 route after the module was added"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_product_success_declarations.log",
-      "note": "checks W947 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_product_success_declarations.log",
+      "note": "checks W948 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_original_four_task_declarations.log",
-      "note": "records W947 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_original_four_task_declarations.log",
+      "note": "records W948 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_required_declarations.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_required_declarations.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_full_lake_build.log",
-      "note": "full build after W947 source and audit edits; long-name style warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_full_lake_build.log",
+      "note": "full build after W948 source and audit edits; long-name style warnings remain nonfatal"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_forbidden_lean_token_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_forbidden_lean_token_scan.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live true-valued product claim scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_product_success_true_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_product_success_true_scan.log",
       "note": "no true-valued product completion claim in live Lean/audit/terminal/run/report surfaces"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_git_diff_check.log",
-      "note": "whitespace check after W947 source, audit, ledger, report, and metadata edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_git_diff_check.log",
+      "note": "whitespace check after W948 source, audit, ledger, report, and metadata edits"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html --require-linked-artifacts",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_html_check_report.log",
       "note": "local report parse/style/secret/link checks passed"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
-      "note": "browser DOM evidence verifies W947 summary values"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
+      "note": "browser DOM evidence verifies W948 summary values"
     },
     {
-      "command": "W947 manifest refresh",
+      "command": "W948 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_manifest_refresh.log",
-      "note": "manifest regenerated after W947 metadata and report refresh"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_manifest_refresh.log",
+      "note": "manifest regenerated after W948 metadata and report refresh"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_contract_audit.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_contract_audit.log",
       "note": "immutable original-four-task contract accepts the nonterminal outcome as not complete"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T183624Z_codex_parent_w947_target_no_univ_closedness_provider_route/logs/w947_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T184451Z_codex_parent_w948_normalized_source_triangulation_provider_route/logs/w948_external_audit_nonterminal_expected.log",
       "note": "expected nonterminal failure: terminal_outcome.outcome is not product_success"
     }
   ],
   "implemented_declarations": [
-    "Dbounded.TargetNoUnivMembershipClosednessDataProviderW947",
-    "Dbounded.targetNoUnivDataOfTargetNoUnivClosednessDataW947",
-    "Dbounded.diagramAndMappedCokernelClosednessDataOfTargetNoUnivClosednessDataW947",
-    "Dbounded.MetrizableWppClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldLeavesW947",
-    "Dbounded.w946LeavesOfTargetNoUnivClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947",
-    "Dbounded.concreteLeavesOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947",
-    "Dbounded.routeDataProviderOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947",
-    "Dbounded.closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsInputNamesW947_count",
-    "Dbounded.currentW947ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsRoute_productSuccess",
-    "originalFourTaskContract_closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFields_inputCount",
-    "originalFourTaskContract_closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFields_nonterminal"
+    "Dbounded.NormalizedFixedTargetSourceTriangulationDataProviderW948",
+    "Dbounded.normalizedFixedTargetDataOfNormalizedSourceTriangulationDataW948",
+    "Dbounded.sourceTriangulationDataOfNormalizedSourceTriangulationDataW948",
+    "Dbounded.MetrizableWppClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldLeavesW948",
+    "Dbounded.w947LeavesOfNormalizedSourceTriangulationDataBoundaryRelationDataTargetNoUnivClosednessDataEndpointStrictExactLocalizedUnitDataFieldsW948",
+    "Dbounded.concreteLeavesOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsW948",
+    "Dbounded.routeDataProviderOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsW948",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsW948",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsW948",
+    "Dbounded.closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsInputNamesW948_count",
+    "Dbounded.currentW948ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsRoute_productSuccess",
+    "originalFourTaskContract_closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFields_inputCount",
+    "originalFourTaskContract_closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFields_nonterminal"
   ],
   "required_declarations_checked": [
-    "Dbounded.TargetNoUnivMembershipClosednessDataProviderW947",
-    "Dbounded.targetNoUnivDataOfTargetNoUnivClosednessDataW947",
-    "Dbounded.diagramAndMappedCokernelClosednessDataOfTargetNoUnivClosednessDataW947",
-    "Dbounded.MetrizableWppClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldLeavesW947",
-    "Dbounded.w946LeavesOfTargetNoUnivClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947",
-    "Dbounded.concreteLeavesOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947",
-    "Dbounded.routeDataProviderOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsW947",
-    "Dbounded.closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsInputNamesW947_count",
-    "Dbounded.currentW947ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFieldsRoute_productSuccess",
-    "originalFourTaskContract_closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFields_inputCount",
-    "originalFourTaskContract_closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataFields_nonterminal"
+    "Dbounded.NormalizedFixedTargetSourceTriangulationDataProviderW948",
+    "Dbounded.normalizedFixedTargetDataOfNormalizedSourceTriangulationDataW948",
+    "Dbounded.sourceTriangulationDataOfNormalizedSourceTriangulationDataW948",
+    "Dbounded.MetrizableWppClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldLeavesW948",
+    "Dbounded.w947LeavesOfNormalizedSourceTriangulationDataBoundaryRelationDataTargetNoUnivClosednessDataEndpointStrictExactLocalizedUnitDataFieldsW948",
+    "Dbounded.concreteLeavesOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsW948",
+    "Dbounded.routeDataProviderOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsW948",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsW948",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsW948",
+    "Dbounded.closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsInputNamesW948_count",
+    "Dbounded.currentW948ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFieldsRoute_productSuccess",
+    "originalFourTaskContract_closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFields_inputCount",
+    "originalFourTaskContract_closedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataFields_nonterminal"
   ]
 }

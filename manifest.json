@@ -1,6 +1,6 @@
 {
-  "content_hash_tree": "cf7ddc410e1d304c64865b634dafc463819c479a5a661b35c24c603e03ee12ba",
-  "file_count": 1074,
+  "content_hash_tree": "a185de1f756f9ff5d01f462d7284ea86bcc621f2620b6829230f378f70daa334",
+  "file_count": 1076,
   "files": [
     {
       "bytes": 427,
@@ -28,9 +28,9 @@
       "sha256": "27afa95d342522c622651d69ccbe515d9904804b560d4a8cc5b4a81465c3b372"
     },
     {
-      "bytes": 17848,
+      "bytes": 18029,
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "3b57c47132f0863add161c3ec5980d6535f42e16fc353c3ce795b3147930c69a"
+      "sha256": "74a41f9a63dd55ff75b43e11143aa4acf1f8690c3119aa6ac952a700a5b09fa5"
     },
     {
       "bytes": 10692,
@@ -111,6 +111,11 @@
       "bytes": 13273,
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean",
       "sha256": "720f19b9081f42eac05933e654cee382e901150c2567d428806a44f0dcb46c51"
+    },
+    {
+      "bytes": 12446,
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean",
+      "sha256": "3af77a58d1bf074e94135d4f1e89378a4b5dfb3d0b00c4118cbedc40e19fcd35"
     },
     {
       "bytes": 14296,
@@ -1058,14 +1063,14 @@
       "sha256": "d02e606875589115f708681c71e9a1600c1f7f12c17261a087bc3d7454c4fe9b"
     },
     {
-      "bytes": 122901,
+      "bytes": 124718,
       "path": "audit/OriginalFourTaskCompletionDeclarations.lean",
-      "sha256": "6107c7c283153056ae3335b3ec97482657447ee77526fc14b867382554fa7221"
+      "sha256": "6c89862fc6dda99369cb48fae5620fa3c11d63a4ea66f35028c605a32d1b987d"
     },
     {
-      "bytes": 665392,
+      "bytes": 667003,
       "path": "audit/ProductSuccessDeclarations.lean",
-      "sha256": "faf252cbd2ef696aa2bd705a04c66c7774d3ac22d02f147868aa0708a5aada2a"
+      "sha256": "ccd44274e4ce4c80236ed7f60f61dfb1d19b52b9d11330392104e9cf135fe4fe"
     },
     {
       "bytes": 43252,
@@ -2828,9 +2833,9 @@
       "sha256": "a18fa7e424518a78e0ddc4be499ec389266b9a5e7cc44401e6a3940d7dd8b4fa"
     },
     {
-      "bytes": 226478,
+      "bytes": 227461,
       "path": "docs/research/reference_route_log.md",
-      "sha256": "509cb59b77dc3965b76c608bf494745e9915f033161d5a1b8edb586758821c5e"
+      "sha256": "83ba791c0ead7d9ed597732c28893ba6e6df6fc42374769d5fed0fb12cdefd2a"
     },
     {
       "bytes": 19873,
@@ -3166,6 +3171,11 @@
       "bytes": 2031,
       "path": "docs/research/w947_provider_search_ledger.md",
       "sha256": "6d075ac2d5ee24e8fe28ab5cb8dedc7a30ad0aaabd29e6ab7a4038556bcf606e"
+    },
+    {
+      "bytes": 2078,
+      "path": "docs/research/w948_provider_search_ledger.md",
+      "sha256": "23adb28c96d3709e74a005c608a5d24c4b8174887f73eb13838037f1d52854e1"
     },
     {
       "bytes": 411845,
@@ -5343,14 +5353,14 @@
       "sha256": "59719fbfb5da66e47f446ff323a15ba528a7f18600d253b6bd5ff9cafa870ada"
     },
     {
-      "bytes": 11759,
+      "bytes": 11638,
       "path": "run/verification.json",
-      "sha256": "020585e36dd0b35207a9ea3e63654f140e6c62f08d079e587ac96b6369b81b59"
+      "sha256": "4ede7f2b2d8575c6c19f6bd80fc2a3efa4eb0378a82800c97ec3cb1f7fda17a8"
     },
     {
-      "bytes": 11458,
+      "bytes": 11424,
       "path": "scratch-log.html",
-      "sha256": "21902db08d35d888198f99438d0df208e4d18fbb6f5aafbe7d645c9c975c921e"
+      "sha256": "a50503bba31aeba0e863505c9f57c92cd846fd18e8941a6267eec31ca747d8e7"
     },
     {
       "bytes": 276,
@@ -5363,16 +5373,14 @@
       "sha256": "b6a101e39bda70258f7a2aeb312f16a5797ab28b4b2c7253f45c4f01145446ea"
     },
     {
-      "bytes": 12174,
+      "bytes": 12088,
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "1ce6e77a3253f8896e4b30436803a2c771cd0de988f155970af158599e13401c"
+      "sha256": "d186006b5b3fae723b3608719192465f021a77162bcfefb935d0ab55e9b4ee8c"
     },
     {
       "bytes": 131,
       "path": "workers/README.md",
       "sha256": "b4ba0be0ad31f2118f67d860388b64931659bd96742e8b5c73a1b92846040191"
     }
-  ],
-  "root": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
-  "schema": "lean-lca-exact-challenge-manifest-v1"
+  ]
 }
