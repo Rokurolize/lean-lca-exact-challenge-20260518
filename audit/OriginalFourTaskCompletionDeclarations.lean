@@ -39,6 +39,7 @@ import LeanLCAExactChallenge.Derived.W735W732SelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.W733ConcreteLeavesSelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.SelectedCochainConcreteLeavesStableExactAtRoute
 import LeanLCAExactChallenge.Derived.ComparisonSelectedCochainConcreteLeavesStableExactAtRoute
+import LeanLCAExactChallenge.Derived.HomologyFreeComparisonConcreteLeavesStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -253,6 +254,10 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonConcreteLeavesStableExactAtW879
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingComparisonConcreteLeavesStableExactAtW879
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfHomologyFreeComparisonConcreteLeavesStableExactAtW880
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfHomologyFreeComparisonConcreteLeavesStableExactAtW880
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -902,5 +907,20 @@ theorem originalFourTaskContract_comparisonConcreteLeavesStableExactAt_nontermin
     Dbounded.currentMetrizableComparisonConcreteLeavesStableExactAtRouteStateW879.productSuccessClaimed =
       false :=
   Dbounded.currentW879ComparisonConcreteLeavesStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_homologyFreeComparisonConcreteLeavesStableExactAt_inputCount :
+    Dbounded.homologyFreeComparisonConcreteLeavesStableExactAtInputNamesW880.length =
+      1 :=
+  Dbounded.homologyFreeComparisonConcreteLeavesStableExactAtInputNamesW880_count
+
+theorem originalFourTaskContract_homologyFreeComparisonConcreteLeavesStableExactAt_expandedInputCount :
+    Dbounded.homologyFreeComparisonConcreteLeavesStableExactAtExpandedInputNamesW880.length =
+      8 :=
+  Dbounded.homologyFreeComparisonConcreteLeavesStableExactAtExpandedInputNamesW880_count
+
+theorem originalFourTaskContract_homologyFreeComparisonConcreteLeavesStableExactAt_nonterminal :
+    Dbounded.currentMetrizableHomologyFreeComparisonConcreteLeavesStableExactAtRouteStateW880.productSuccessClaimed =
+      false :=
+  Dbounded.currentW880HomologyFreeComparisonConcreteLeavesStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
