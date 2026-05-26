@@ -25,6 +25,7 @@ import LeanLCAExactChallenge.Derived.TargetExactAtConcreteLeavesFromTargetHomolo
 import LeanLCAExactChallenge.Derived.TargetExactAtConcreteLeavesStableFromTargetHomologyZero
 import LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableExactAtRoute
 import LeanLCAExactChallenge.Derived.TargetIsoDirectSourceStableExactAtRoute
+import LeanLCAExactChallenge.Derived.IsoClosureDirectSourceStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -171,6 +172,10 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapTargetIsoDirectSourceStableExactAtW865
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetIsoDirectSourceStableExactAtW865
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapIsoClosureDirectSourceStableExactAtW866
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapIsoClosureDirectSourceStableExactAtW866
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -638,5 +643,22 @@ theorem originalFourTaskContract_targetIsoDirectSourceStableExactAt_nonterminal 
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW865TargetIsoDirectSourceStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_isoClosureDirectSourceStableExactAt_inputCount :
+    Dbounded.isoClosureDirectSourceStableExactAtInputNamesW866.length =
+      1 :=
+  Dbounded.isoClosureDirectSourceStableExactAtInputNamesW866_count
+
+theorem originalFourTaskContract_isoClosureDirectSourceStableExactAt_expandedInputCount :
+    Dbounded.isoClosureDirectSourceStableExactAtExpandedInputNamesW866.length =
+      2 :=
+  Dbounded.isoClosureDirectSourceStableExactAtExpandedInputNamesW866_count
+
+theorem originalFourTaskContract_isoClosureDirectSourceStableExactAt_nonterminal :
+    (let state :=
+        Dbounded.currentMetrizableIsoClosureDirectSourceStableExactAtRouteStateW866;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW866IsoClosureDirectSourceStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
