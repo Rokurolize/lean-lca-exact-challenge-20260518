@@ -1,169 +1,169 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-26T08:55:25Z",
+  "generated_utc": "2026-05-26T09:04:50Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "313e2d2cc36036e499104f8b2b69d42dddb1b3c3cf1e8b9b04e886f535d8ec75"
+    "sha256": "a209dc999ce143ef7e6b199debc2104848d98eba0dcc0d6c417c86e18379c71f"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W905 keeps the target nonterminal under the immutable original four-task contract while replacing W904's packaged W519 mapped-explicit-cokernel closed-map provider with its raw IsClosedMap field. This preserves the W899/W900/W901/W902/W903/W904 endpoint-homology-free closed-map route and keeps W716 boundary data, W717 relation data, W715 target data, W722 source triangulation, W856 endpoint facts, and W721 localized-right-adjoint data intact. Product success remains false because the remaining concrete fields, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W906 keeps the target nonterminal under the immutable original four-task contract while replacing W905's bundled W718 selected-difference closed-map component provider with its three W714 pi1/pi2/pi3 diagram component fields. This preserves the W899-W905 endpoint-homology-free closed-map route and still routes through W905 into the stable ExactAt construction. Product success remains false because these fields are not yet instantiated and the original four-task completion witness and review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W905 opens W519 mapped-cokernel closed-map data to its raw field, but the remaining W905 concrete leaves are still not instantiated.",
-    "W905 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
-    "The remaining W905 fields are selected-difference closed-map components, the raw mapped explicit cokernel IsClosedMap field, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, the W716 boundary-data provider, the W717 relation-data provider, the W715 target-surjective-compact provider, the W722 source-triangulation provider, the W856 endpoint topology facts provider, and the W721 localized-right-adjoint data provider.",
+    "Task 4 is not contract-complete under the original four-task contract: W906 exposes W718 component data as three W714 fields, but the remaining W906 concrete leaves are still not instantiated.",
+    "W906 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
+    "The remaining W906 fields are W716 boundary data, W717 relation data, W715 target-surjective-compact data, selected-difference pi1/pi2/pi3 closed-map diagram component fields, the raw mapped explicit cokernel IsClosedMap field, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, W722 source-triangulation data, W856 endpoint topology facts, and W721 localized-right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the twenty-eight W905 closed-map mapped-cokernel-field target-data relation-data boundary-data source-triangulation endpoint-facts explicit field inputs.",
-    "Choose whether the next smallest contract-closing increment should expose W718 selected closed-map component fields, strict preimage object/map fields, fixed-target uniqueness, source-image normalization, or another currently supported concrete provider boundary.",
+    "Construct or precisely block concrete values for the thirty W906 closed-map component-fields mapped-cokernel-field target-data relation-data boundary-data source-triangulation endpoint-facts explicit field inputs.",
+    "Choose whether the next smallest contract-closing increment should expose W716 boundary fields, W717 relation fields, strict preimage object/map fields, fixed-target uniqueness, source-image normalization, or another currently supported concrete provider boundary.",
     "Connect a real no-argument route to the original four-task completion witness only after all route inputs are real rather than merely exposed as fields.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route",
-  "latest_verified_increment": "W905 closed-map mapped-cokernel-field target-data relation-data boundary-data source-triangulation endpoint-facts localized-right-adjoint route",
+  "support_result_classification": "nonterminal_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route",
+  "latest_verified_increment": "W906 closed-map component-fields mapped-cokernel-field target-data relation-data boundary-data source-triangulation endpoint-facts localized-right-adjoint route",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w905_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w906_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W905 opens W519 mapped-cokernel closed-map data to its raw field, but the remaining W905 concrete leaves are still not instantiated.",
-    "W905 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
-    "The remaining W905 fields are selected-difference closed-map components, the raw mapped explicit cokernel IsClosedMap field, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, the W716 boundary-data provider, the W717 relation-data provider, the W715 target-surjective-compact provider, the W722 source-triangulation provider, the W856 endpoint topology facts provider, and the W721 localized-right-adjoint data provider.",
+    "Task 4 is not contract-complete under the original four-task contract: W906 exposes W718 component data as three W714 fields, but the remaining W906 concrete leaves are still not instantiated.",
+    "W906 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
+    "The remaining W906 fields are W716 boundary data, W717 relation data, W715 target-surjective-compact data, selected-difference pi1/pi2/pi3 closed-map diagram component fields, the raw mapped explicit cokernel IsClosedMap field, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, W722 source-triangulation data, W856 endpoint topology facts, and W721 localized-right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "implemented_declarations_checked": [
-    "Dbounded.mappedCokernelClosedMapProviderOfFieldW905",
-    "Dbounded.w904LeavesOfMappedCokernelFieldW905",
-    "Dbounded.concreteLeavesOfClosedMapMappedCokernelFieldTargetDataW905",
-    "Dbounded.routeDataProviderOfClosedMapMappedCokernelFieldTargetDataW905",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapMappedCokernelFieldTargetDataW905",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapMappedCokernelFieldTargetDataW905",
-    "Dbounded.closedMapMappedCokernelFieldTargetDataInputNamesW905_count",
-    "Dbounded.currentW905ClosedMapMappedCokernelFieldTargetDataRoute_productSuccess",
-    "originalFourTaskContract_closedMapMappedCokernelFieldTargetData_inputCount",
-    "originalFourTaskContract_closedMapMappedCokernelFieldTargetData_nonterminal"
+    "Dbounded.closedMapDiagramComponentProviderOfFieldsW906",
+    "Dbounded.w905LeavesOfClosedMapComponentFieldsW906",
+    "Dbounded.concreteLeavesOfClosedMapComponentFieldsMappedCokernelFieldTargetDataW906",
+    "Dbounded.routeDataProviderOfClosedMapComponentFieldsMappedCokernelFieldTargetDataW906",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapComponentFieldsMappedCokernelFieldTargetDataW906",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapComponentFieldsMappedCokernelFieldTargetDataW906",
+    "Dbounded.closedMapComponentFieldsMappedCokernelFieldTargetDataInputNamesW906_count",
+    "Dbounded.currentW906ClosedMapComponentFieldsMappedCokernelFieldTargetDataRoute_productSuccess",
+    "originalFourTaskContract_closedMapComponentFieldsMappedCokernelFieldTargetData_inputCount",
+    "originalFourTaskContract_closedMapComponentFieldsMappedCokernelFieldTargetData_nonterminal"
   ],
-  "source_tree_hash": "18d063c7f7352f60142c2dae7bb6d80a2b6254d229b9c86091769d7357c960de",
-  "remaining_explicit_inputs": 28,
+  "source_tree_hash": "816fb5c7446dee1e90a8fe92a4b9816852087b1db81a0826ebde4f4728e6c130",
+  "remaining_explicit_inputs": 30,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapMappedCokernelFieldTargetDataEndpointFactsRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapComponentFieldsMappedCokernelFieldTargetDataEndpointFactsRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_new_module_lean.log",
-      "note": "focused Lean check for the W905 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_new_module_lean.log",
+      "note": "focused Lean check for the W906 helper module"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapMappedCokernelFieldTargetDataEndpointFactsRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapComponentFieldsMappedCokernelFieldTargetDataEndpointFactsRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_new_module_lake_build.log",
-      "note": "named Lake target for the W905 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_new_module_lake_build.log",
+      "note": "named Lake target for the W906 helper module"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_ProductSuccessDeclarations_lean.log",
-      "note": "checks W905 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_ProductSuccessDeclarations_lean.log",
+      "note": "checks W906 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_OriginalFourTaskCompletionDeclarations_lean.log",
-      "note": "records W905 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_OriginalFourTaskCompletionDeclarations_lean.log",
+      "note": "records W906 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_RequiredDeclarations_lean.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_RequiredDeclarations_lean.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_lake_build_full.log",
-      "note": "full build after W905 source edits; only pre-existing long-line warnings were observed"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_lake_build_full.log",
+      "note": "full build after W906 source edits; only pre-existing long-line warnings were observed"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_forbidden_tokens.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_forbidden_tokens.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live product-success true scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_product_success_true_scan_strict.log",
-      "note": "no product-success true claim in live W905 Lean, Lean audits, or current metadata"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_product_success_true_scan_strict.log",
+      "note": "no product-success true claim in live W906 Lean, Lean audits, or current metadata"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_git_diff_check_source.log",
-      "note": "whitespace check after W905 source and audit edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_git_diff_check_source.log",
+      "note": "whitespace check after W906 source and audit edits"
     },
     {
-      "command": "W905 deterministic new-file/source accounting",
+      "command": "W906 deterministic new-file/source accounting",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_new_file_accounting_pre_metadata.log",
-      "note": "records the new W905 route, provider ledger, and audit/import hooks"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_new_file_accounting_pre_metadata.log",
+      "note": "records the new W906 route, provider ledger, and audit/import hooks"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_html_check_report.log",
       "note": "HTML report parse/style/JST validation passed"
     },
     {
-      "command": "W905 manifest refresh",
+      "command": "W906 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_manifest_refresh.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_manifest_refresh.log",
       "note": "manifest.json regenerated with a fresh content hash tree"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_contract_audit.log",
-      "note": "original four-task contract audit accepts the W905 nonterminal outcome and lists the remaining blockers"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_contract_audit.log",
+      "note": "original four-task contract audit accepts the W906 nonterminal outcome and lists the remaining blockers"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_external_audit_nonterminal_expected.log",
       "note": "external audit reaches only the expected product-success gate for this nonterminal outcome"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/browser_evidence/scratch_log/fidelity.json",
-      "note": "Chromium-rendered report evidence contains the W905 classification, source hash, product_success=false, and remaining input count"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/browser_evidence/scratch_log/fidelity.json",
+      "note": "Chromium-rendered report evidence contains the W906 classification, source hash, product_success=false, and remaining input count"
     },
     {
       "command": "git diff --check after metadata refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_git_diff_check_after_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_git_diff_check_after_metadata.log",
       "note": "whitespace check after report, manifest, and terminal metadata refresh"
     },
     {
       "command": "strict live product-success true scan after metadata",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_product_success_true_scan_after_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_product_success_true_scan_after_metadata.log",
       "note": "no live product-success true claim after metadata refresh"
     },
     {
-      "command": "W905 deterministic new-file/source accounting after metadata",
+      "command": "W906 deterministic new-file/source accounting after metadata",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T085200Z_codex_parent_w905_closed_map_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w905_new_file_accounting_post_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T090100Z_codex_parent_w906_closed_map_component_fields_mapped_cokernel_field_target_data_endpoint_facts_route/logs/w906_new_file_accounting_post_metadata.log",
       "note": "records staged-source and metadata accounting after refresh"
     }
   ]
