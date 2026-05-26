@@ -1,65 +1,65 @@
 {
-  "outcome": "nonterminal_iso_closure_direct_source_stable_exact_at",
-  "generated_utc": "2026-05-26T00:08:20Z",
+  "outcome": "nonterminal_strict_realization_direct_source_stable_exact_at",
+  "generated_utc": "2026-05-26T00:21:20Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "f546813f6a25647d9ad674890061ff14446b44b5e696d7b8f5ba9dba0bff7fd8"
+    "sha256": "18f615dc142682b4ddd43501f22b319841729dc0061ede800e74490002866fc0"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W866 keeps the target nonterminal under the immutable original four-task contract while composing W845 iso-closure direct-source data with the W865 stable-ExactAt route. From one W845 datum, W866 checks direct bounded left calculus through the W844/W865 concrete-leaves target ExactAt route and obtains the bounded derived infinity-category package through W844/W865. Product success remains false because concrete W845 fields, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W867 keeps the target nonterminal under the immutable original four-task contract while composing W846 strict-realization direct-source data with the W866 stable-ExactAt route. From one W846 datum, W867 checks direct bounded left calculus through W845/W866 and obtains the bounded derived infinity-category package through W845/W866. Product success remains false because concrete W846 fields, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W866 replaces the W865 W844 target-isomorphism boundary with W845 iso-closure direct-source data, but still requires concrete W845 fields.",
-    "Concrete W845 data still includes W735 closed-map or closed-embedding exact inputs and a W651 exact-acyclic iso-closure strict realization payload; those fields are not yet fully instantiated.",
+    "Task 4 is not contract-complete under the original four-task contract: W867 replaces the W866 W845 iso-closure boundary with W846 strict-realization direct-source data, but still requires concrete W846 fields.",
+    "Concrete W846 data still includes W735 closed-map or closed-embedding exact inputs and a W783 exact-acyclic homotopy-object strict triangleh realization payload; those fields are not yet fully instantiated.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete W845 iso-closure direct-source data, especially the W735 exact inputs or W651 iso-closure strict realization payload now isolated by W866.",
+    "Construct or precisely block concrete W846 strict-realization direct-source data, especially the W735 exact inputs or W783 strict triangleh realization payload now isolated by W867.",
     "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_iso_closure_direct_source_stable_exact_at",
-  "latest_verified_increment": "W866 iso-closure direct-source stable ExactAt route",
+  "support_result_classification": "nonterminal_strict_realization_direct_source_stable_exact_at",
+  "latest_verified_increment": "W867 strict-realization direct-source stable ExactAt route",
   "reference_route_log": "docs/research/reference_route_log.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W866 replaces the W865 W844 target-isomorphism boundary with W845 iso-closure direct-source data, but still requires concrete W845 fields.",
-    "Concrete W845 data still includes W735 closed-map or closed-embedding exact inputs and a W651 exact-acyclic iso-closure strict realization payload; those fields are not yet fully instantiated.",
+    "Task 4 is not contract-complete under the original four-task contract: W867 replaces the W866 W845 iso-closure boundary with W846 strict-realization direct-source data, but still requires concrete W846 fields.",
+    "Concrete W846 data still includes W735 closed-map or closed-embedding exact inputs and a W783 exact-acyclic homotopy-object strict triangleh realization payload; those fields are not yet fully instantiated.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "implemented_declarations": [
-    "Dbounded.directBoundedLeftCalculusOfClosedMapIsoClosureDirectSourceStableExactAtW866",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingIsoClosureDirectSourceStableExactAtW866",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapIsoClosureDirectSourceStableExactAtW866",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingIsoClosureDirectSourceStableExactAtW866",
-    "Dbounded.isoClosureDirectSourceStableExactAtInputNamesW866_count",
-    "Dbounded.isoClosureDirectSourceStableExactAtExpandedInputNamesW866_count",
-    "Dbounded.currentW866IsoClosureDirectSourceStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_isoClosureDirectSourceStableExactAt_inputCount",
-    "originalFourTaskContract_isoClosureDirectSourceStableExactAt_expandedInputCount",
-    "originalFourTaskContract_isoClosureDirectSourceStableExactAt_nonterminal"
+    "Dbounded.directBoundedLeftCalculusOfClosedMapStrictRealizationDirectSourceStableExactAtW867",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingStrictRealizationDirectSourceStableExactAtW867",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictRealizationDirectSourceStableExactAtW867",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingStrictRealizationDirectSourceStableExactAtW867",
+    "Dbounded.strictRealizationDirectSourceStableExactAtInputNamesW867_count",
+    "Dbounded.strictRealizationDirectSourceStableExactAtExpandedInputNamesW867_count",
+    "Dbounded.currentW867StrictRealizationDirectSourceStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_strictRealizationDirectSourceStableExactAt_inputCount",
+    "originalFourTaskContract_strictRealizationDirectSourceStableExactAt_expandedInputCount",
+    "originalFourTaskContract_strictRealizationDirectSourceStableExactAt_nonterminal"
   ],
   "implemented_declarations_checked": [
-    "Dbounded.directBoundedLeftCalculusOfClosedMapIsoClosureDirectSourceStableExactAtW866",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingIsoClosureDirectSourceStableExactAtW866",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapIsoClosureDirectSourceStableExactAtW866",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingIsoClosureDirectSourceStableExactAtW866",
-    "Dbounded.isoClosureDirectSourceStableExactAtInputNamesW866_count",
-    "Dbounded.isoClosureDirectSourceStableExactAtExpandedInputNamesW866_count",
-    "Dbounded.currentW866IsoClosureDirectSourceStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_isoClosureDirectSourceStableExactAt_inputCount",
-    "originalFourTaskContract_isoClosureDirectSourceStableExactAt_expandedInputCount",
-    "originalFourTaskContract_isoClosureDirectSourceStableExactAt_nonterminal"
+    "Dbounded.directBoundedLeftCalculusOfClosedMapStrictRealizationDirectSourceStableExactAtW867",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingStrictRealizationDirectSourceStableExactAtW867",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictRealizationDirectSourceStableExactAtW867",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingStrictRealizationDirectSourceStableExactAtW867",
+    "Dbounded.strictRealizationDirectSourceStableExactAtInputNamesW867_count",
+    "Dbounded.strictRealizationDirectSourceStableExactAtExpandedInputNamesW867_count",
+    "Dbounded.currentW867StrictRealizationDirectSourceStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_strictRealizationDirectSourceStableExactAt_inputCount",
+    "originalFourTaskContract_strictRealizationDirectSourceStableExactAt_expandedInputCount",
+    "originalFourTaskContract_strictRealizationDirectSourceStableExactAt_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/IsoClosureDirectSourceStableExactAtRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.IsoClosureDirectSourceStableExactAtRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/StrictRealizationDirectSourceStableExactAtRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.StrictRealizationDirectSourceStableExactAtRoute",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
@@ -67,7 +67,7 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "rg -n productSuccessClaimed/product_success/product_complete true scan",
     "git diff --check",
-    "W866 helper module size and declaration accounting",
+    "W867 helper module size and declaration accounting",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
