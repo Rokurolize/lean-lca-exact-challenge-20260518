@@ -69,6 +69,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapComponentFieldsMappedCokernelField
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryFieldsComponentFieldsMappedCokernelFieldTargetDataEndpointFactsRoute
 import LeanLCAExactChallenge.Derived.ClosedMapRelationFieldsBoundaryFieldsComponentFieldsRoute
 import LeanLCAExactChallenge.Derived.ClosedMapTargetFieldsRelationFieldsBoundaryFieldsRoute
+import LeanLCAExactChallenge.Derived.ClosedMapSourceFieldsTargetFieldsRelationFieldsRoute
 
 set_option autoImplicit false
 
@@ -1414,5 +1415,19 @@ theorem originalFourTaskContract_closedMapTargetFields_nonterminal :
     Dbounded.currentMetrizableClosedMapTargetFieldsRouteStateW909.productSuccessClaimed =
       false :=
   Dbounded.currentW909ClosedMapTargetFieldsRoute_productSuccess
+
+#check Dbounded.w909LeavesOfSourceFieldsW910
+#check Dbounded.directBoundedLeftCalculusOfClosedMapSourceFieldsW910
+#check Dbounded.boundedDerivedInfinityCategoryOfClosedMapSourceFieldsW910
+
+theorem originalFourTaskContract_closedMapSourceFields_inputCount :
+    Dbounded.closedMapSourceFieldsInputNamesW910.length =
+      35 :=
+  Dbounded.closedMapSourceFieldsInputNamesW910_count
+
+theorem originalFourTaskContract_closedMapSourceFields_nonterminal :
+    Dbounded.currentMetrizableClosedMapSourceFieldsRouteStateW910.productSuccessClaimed =
+      false :=
+  Dbounded.currentW910ClosedMapSourceFieldsRoute_productSuccess
 
 end LeanLCAExactChallenge
