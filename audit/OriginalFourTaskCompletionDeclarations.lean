@@ -27,6 +27,7 @@ import LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableExactAtRoute
 import LeanLCAExactChallenge.Derived.TargetIsoDirectSourceStableExactAtRoute
 import LeanLCAExactChallenge.Derived.IsoClosureDirectSourceStableExactAtRoute
 import LeanLCAExactChallenge.Derived.StrictRealizationDirectSourceStableExactAtRoute
+import LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainDirectSourceStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -181,6 +182,10 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapStrictRealizationDirectSourceStableExactAtW867
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapStrictRealizationDirectSourceStableExactAtW867
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapSelectedCochainDirectSourceStableExactAtW868
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapSelectedCochainDirectSourceStableExactAtW868
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -682,5 +687,22 @@ theorem originalFourTaskContract_strictRealizationDirectSourceStableExactAt_nont
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW867StrictRealizationDirectSourceStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_selectedCochainDirectSourceStableExactAt_inputCount :
+    Dbounded.selectedCochainDirectSourceStableExactAtInputNamesW868.length =
+      1 :=
+  Dbounded.selectedCochainDirectSourceStableExactAtInputNamesW868_count
+
+theorem originalFourTaskContract_selectedCochainDirectSourceStableExactAt_expandedInputCount :
+    Dbounded.selectedCochainDirectSourceStableExactAtExpandedInputNamesW868.length =
+      2 :=
+  Dbounded.selectedCochainDirectSourceStableExactAtExpandedInputNamesW868_count
+
+theorem originalFourTaskContract_selectedCochainDirectSourceStableExactAt_nonterminal :
+    (let state :=
+        Dbounded.currentMetrizableSelectedCochainDirectSourceStableExactAtRouteStateW868;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW868SelectedCochainDirectSourceStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
