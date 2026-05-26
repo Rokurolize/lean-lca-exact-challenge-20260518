@@ -35,6 +35,7 @@ import LeanLCAExactChallenge.Derived.HomologyFreeSelectedCochainStableExactAtRou
 import LeanLCAExactChallenge.Derived.EndpointFactsHomologyFreeSelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.EndpointLocalizedHomologyFreeSelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.W732SelectedCochainStableExactAtRoute
+import LeanLCAExactChallenge.Derived.W735W732SelectedCochainStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -221,6 +222,14 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfW732SelectedCochainStableExactAtW875
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfW732SelectedCochainStableExactAtW875
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapW735W732SelectedCochainStableExactAtW876
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedEmbeddingW735W732SelectedCochainStableExactAtW876
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapW735W732SelectedCochainStableExactAtW876
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingW735W732SelectedCochainStableExactAtW876
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -820,5 +829,14 @@ theorem originalFourTaskContract_w732SelectedCochainStableExactAt_nonterminal :
     Dbounded.currentMetrizableW732SelectedCochainStableExactAtRouteStateW875.productSuccessClaimed =
       false :=
   Dbounded.currentW875W732SelectedCochainStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_w735W732SelectedCochainStableExactAt_inputCount :
+    Dbounded.w735W732SelectedCochainStableExactAtInputNamesW876.length = 9 :=
+  Dbounded.w735W732SelectedCochainStableExactAtInputNamesW876_count
+
+theorem originalFourTaskContract_w735W732SelectedCochainStableExactAt_nonterminal :
+    Dbounded.currentMetrizableW735W732SelectedCochainStableExactAtRouteStateW876.productSuccessClaimed =
+      false :=
+  Dbounded.currentW876W735W732SelectedCochainStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
