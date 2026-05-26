@@ -36,6 +36,7 @@ import LeanLCAExactChallenge.Derived.EndpointFactsHomologyFreeSelectedCochainSta
 import LeanLCAExactChallenge.Derived.EndpointLocalizedHomologyFreeSelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.W732SelectedCochainStableExactAtRoute
 import LeanLCAExactChallenge.Derived.W735W732SelectedCochainStableExactAtRoute
+import LeanLCAExactChallenge.Derived.W733ConcreteLeavesSelectedCochainStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -230,6 +231,10 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapW735W732SelectedCochainStableExactAtW876
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingW735W732SelectedCochainStableExactAtW876
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfConcreteLeavesSelectedCochainStableExactAtW877
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfConcreteLeavesSelectedCochainStableExactAtW877
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -838,5 +843,15 @@ theorem originalFourTaskContract_w735W732SelectedCochainStableExactAt_nontermina
     Dbounded.currentMetrizableW735W732SelectedCochainStableExactAtRouteStateW876.productSuccessClaimed =
       false :=
   Dbounded.currentW876W735W732SelectedCochainStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_concreteLeavesSelectedCochainStableExactAt_inputCount :
+    Dbounded.concreteLeavesSelectedCochainStableExactAtInputNamesW877.length =
+      8 :=
+  Dbounded.concreteLeavesSelectedCochainStableExactAtInputNamesW877_count
+
+theorem originalFourTaskContract_concreteLeavesSelectedCochainStableExactAt_nonterminal :
+    Dbounded.currentMetrizableConcreteLeavesSelectedCochainStableExactAtRouteStateW877.productSuccessClaimed =
+      false :=
+  Dbounded.currentW877ConcreteLeavesSelectedCochainStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
