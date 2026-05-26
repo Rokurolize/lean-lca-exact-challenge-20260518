@@ -30,6 +30,7 @@ import LeanLCAExactChallenge.Derived.StrictRealizationDirectSourceStableExactAtR
 import LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainDirectSourceStableExactAtRoute
 import LeanLCAExactChallenge.Derived.ExactInputsSelectedCochainDirectSourceStableExactAtRoute
 import LeanLCAExactChallenge.Derived.ExactInputsComparisonSelectedCochainStableExactAtRoute
+import LeanLCAExactChallenge.Derived.RouteDataSelectedCochainStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -196,6 +197,10 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapComparisonSelectedCochainStableExactAtW870
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonSelectedCochainStableExactAtW870
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfRouteDataComparisonSelectedCochainStableExactAtW871
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfRouteDataComparisonSelectedCochainStableExactAtW871
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -738,5 +743,17 @@ theorem originalFourTaskContract_comparisonSelectedCochainStableExactAt_nontermi
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW870ComparisonSelectedCochainStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_routeDataSelectedCochainStableExactAt_inputCount :
+    Dbounded.routeDataSelectedCochainStableExactAtInputNamesW871.length =
+      1 :=
+  Dbounded.routeDataSelectedCochainStableExactAtInputNamesW871_count
+
+theorem originalFourTaskContract_routeDataSelectedCochainStableExactAt_nonterminal :
+    (let state :=
+        Dbounded.currentMetrizableRouteDataSelectedCochainStableExactAtRouteStateW871;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW871RouteDataSelectedCochainStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
