@@ -1,144 +1,134 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-26T19:54:00Z",
-  "source_tree_hash": "81b1bb332f500aaf94476afc345d4411fce1dacd0540e39084e95cc462530d48",
+  "generated_utc": "2026-05-26T20:03:00Z",
+  "source_tree_hash": "62990869ad7bd5c0ae9214ff877bbc5918a9ac2dbf7efa786fb2953073b21488",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "latest_verified_increment": "W953 W945 primitive-fields-to-W952-provider constructor route",
-  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route",
+  "latest_verified_increment": "W954 W944 unit-components-to-W953 provider constructor route",
+  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitDataFromPrimitiveFieldsRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitDataFromUnitComponentsPrimitiveFieldsRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_focused_lean.log",
-      "note": "focused Lean check for the W953 constructor route"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_focused_lean.log",
+      "note": "focused Lean check for the W954 constructor route"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitDataFromPrimitiveFieldsRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitDataFromUnitComponentsPrimitiveFieldsRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_named_module_build.log",
-      "note": "named Lake target for the W953 helper module; inherited W950 long-name style warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_named_module_build.log",
+      "note": "named Lake target for the W954 helper module; inherited W950 long-name style warnings remain nonfatal"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_root_import.log",
-      "note": "root import surface includes the W953 route after the module was added"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_root_import.log",
+      "note": "root import surface includes the W954 route after the module was added"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_product_success_declarations.log",
-      "note": "checks W953 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_product_success_declarations.log",
+      "note": "checks W954 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_original_four_audit.log",
-      "note": "records W953 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_original_four_audit.log",
+      "note": "records W954 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_required_declarations.log",
-      "note": "required public declarations include W953 route checks"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_required_declarations.log",
+      "note": "required public declarations include W954 route checks"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_full_lake_build.log",
-      "note": "full build after W953 source and audit edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_full_lake_build.log",
+      "note": "full build after W954 source and audit edits"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_forbidden_lean_token_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_forbidden_lean_token_scan.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live true-valued product claim scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_product_success_true_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_product_success_true_scan.log",
       "note": "no true-valued product completion claim in live Lean/audit/terminal/run/report surfaces outside intentional negative fixtures"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_git_diff_check.log",
-      "note": "whitespace check after W953 source, audit, ledger, report, and metadata edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_git_diff_check.log",
+      "note": "whitespace check after W954 source, audit, ledger, report, and metadata edits"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html --require-linked-artifacts",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_html_check_report.log",
       "note": "local report parse/style/secret/link checks passed"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/browser_evidence/scratch_log/scratch_log_fidelity.json",
-      "note": "browser DOM evidence verifies W953 summary values"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/browser_evidence/scratch_log/scratch_log_fidelity.json",
+      "note": "browser DOM evidence verifies W954 summary values"
     },
     {
-      "command": "W953 manifest refresh",
+      "command": "W954 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_manifest_refresh.log",
-      "note": "manifest regenerated after W953 metadata and report refresh"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_manifest_refresh.log",
+      "note": "manifest regenerated after W954 metadata and report refresh"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_contract_audit.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_contract_audit.log",
       "note": "immutable original-four-task contract accepts the nonterminal outcome as not complete"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T195100Z_codex_parent_w953_w945_primitive_fields_to_w952_provider_route/logs/w953_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T200100Z_codex_parent_w954_unit_components_to_w953_provider_route/logs/w954_external_audit_nonterminal_expected.log",
       "note": "expected nonterminal failure: terminal_outcome.outcome is not product_success"
     }
   ],
   "implemented_declarations": [
-    "Dbounded.boundaryRelationDataOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.targetNoUnivClosednessDataOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.normalizedSourceTriangulationDataOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.endpointLocalizedUnitDataOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.normalizedSourceEndpointLocalizedUnitDataOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.targetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitDataOfPrimitiveFieldsW953",
-    "Dbounded.boundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitDataOfPrimitiveFieldsW953",
-    "Dbounded.w952LeavesOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.concreteLeavesOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.routeDataProviderOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsInputNamesW953_count",
-    "Dbounded.currentW953ClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsRoute_productSuccess",
-    "originalFourTaskContract_closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFields_inputCount",
-    "originalFourTaskContract_closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFields_nonterminal"
+    "Dbounded.localizedUnitDataOfTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.w953PrimitiveLeavesOfTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.w952LeavesOfTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.concreteLeavesOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.routeDataProviderOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsInputNamesW954_count",
+    "Dbounded.currentW954ClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsRoute_productSuccess",
+    "originalFourTaskContract_closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFields_inputCount",
+    "originalFourTaskContract_closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFields_nonterminal"
   ],
   "required_declarations_checked": [
-    "Dbounded.boundaryRelationDataOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.targetNoUnivClosednessDataOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.normalizedSourceTriangulationDataOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.endpointLocalizedUnitDataOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.normalizedSourceEndpointLocalizedUnitDataOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.targetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitDataOfPrimitiveFieldsW953",
-    "Dbounded.boundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitDataOfPrimitiveFieldsW953",
-    "Dbounded.w952LeavesOfTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.concreteLeavesOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.routeDataProviderOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsW953",
-    "Dbounded.closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsInputNamesW953_count",
-    "Dbounded.currentW953ClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFieldsRoute_productSuccess",
-    "originalFourTaskContract_closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFields_inputCount",
-    "originalFourTaskContract_closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointLocalizedUnitPrimitiveFields_nonterminal"
+    "Dbounded.localizedUnitDataOfTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.w953PrimitiveLeavesOfTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.w952LeavesOfTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.concreteLeavesOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.routeDataProviderOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsW954",
+    "Dbounded.closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsInputNamesW954_count",
+    "Dbounded.currentW954ClosedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFieldsRoute_productSuccess",
+    "originalFourTaskContract_closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFields_inputCount",
+    "originalFourTaskContract_closedMapBoundaryRelationTargetNoUnivClosednessNormalizedSourceEndpointUnitComponentsPrimitiveFields_nonterminal"
   ]
 }
