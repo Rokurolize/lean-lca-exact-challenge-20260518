@@ -70,6 +70,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryFieldsComponentFieldsMappe
 import LeanLCAExactChallenge.Derived.ClosedMapRelationFieldsBoundaryFieldsComponentFieldsRoute
 import LeanLCAExactChallenge.Derived.ClosedMapTargetFieldsRelationFieldsBoundaryFieldsRoute
 import LeanLCAExactChallenge.Derived.ClosedMapSourceFieldsTargetFieldsRelationFieldsRoute
+import LeanLCAExactChallenge.Derived.ClosedMapEndpointFieldsSourceFieldsTargetFieldsRoute
 
 set_option autoImplicit false
 
@@ -1429,5 +1430,19 @@ theorem originalFourTaskContract_closedMapSourceFields_nonterminal :
     Dbounded.currentMetrizableClosedMapSourceFieldsRouteStateW910.productSuccessClaimed =
       false :=
   Dbounded.currentW910ClosedMapSourceFieldsRoute_productSuccess
+
+#check Dbounded.w910LeavesOfEndpointFieldsW911
+#check Dbounded.directBoundedLeftCalculusOfClosedMapEndpointFieldsW911
+#check Dbounded.boundedDerivedInfinityCategoryOfClosedMapEndpointFieldsW911
+
+theorem originalFourTaskContract_closedMapEndpointFields_inputCount :
+    Dbounded.closedMapEndpointFieldsInputNamesW911.length =
+      37 :=
+  Dbounded.closedMapEndpointFieldsInputNamesW911_count
+
+theorem originalFourTaskContract_closedMapEndpointFields_nonterminal :
+    Dbounded.currentMetrizableClosedMapEndpointFieldsRouteStateW911.productSuccessClaimed =
+      false :=
+  Dbounded.currentW911ClosedMapEndpointFieldsRoute_productSuccess
 
 end LeanLCAExactChallenge
