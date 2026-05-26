@@ -45,6 +45,7 @@ import LeanLCAExactChallenge.Derived.W732ComparisonConcreteLeavesStableExactAtRo
 import LeanLCAExactChallenge.Derived.W733ConcreteLeavesComparisonConcreteLeavesStableExactAtRoute
 import LeanLCAExactChallenge.Derived.SourceTriangulationComparisonStableExactAtRoute
 import LeanLCAExactChallenge.Derived.SourceTriangulationFieldsComparisonStableExactAtRoute
+import LeanLCAExactChallenge.Derived.EndpointStrictTopologyFieldsComparisonStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -1011,5 +1012,21 @@ theorem originalFourTaskContract_sourceTriangulationFieldsComparisonStableExactA
     Dbounded.currentMetrizableSourceTriangulationFieldsComparisonStableExactAtRouteStateW885.productSuccessClaimed =
       false :=
   Dbounded.currentW885SourceTriangulationFieldsComparisonStableExactAtRoute_productSuccess
+
+#check Dbounded.sourceTriangulationFieldLeavesOfEndpointFieldsW886
+#check
+  Dbounded.directBoundedLeftCalculusOfEndpointFieldsComparisonStableExactAtW886
+#check
+  Dbounded.boundedDerivedInfinityCategoryOfEndpointFieldsComparisonStableExactAtW886
+
+theorem originalFourTaskContract_endpointFieldsComparisonStableExactAt_inputCount :
+    Dbounded.endpointFieldsComparisonStableExactAtInputNamesW886.length =
+      13 :=
+  Dbounded.endpointFieldsComparisonStableExactAtInputNamesW886_count
+
+theorem originalFourTaskContract_endpointFieldsComparisonStableExactAt_nonterminal :
+    Dbounded.currentMetrizableEndpointFieldsComparisonStableExactAtRouteStateW886.productSuccessClaimed =
+      false :=
+  Dbounded.currentW886EndpointFieldsComparisonStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
