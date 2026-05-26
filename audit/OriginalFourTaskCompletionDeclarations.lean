@@ -24,6 +24,7 @@ import LeanLCAExactChallenge.Derived.TargetExactAtConcreteLeavesFromClosednessBr
 import LeanLCAExactChallenge.Derived.TargetExactAtConcreteLeavesFromTargetHomologyZero
 import LeanLCAExactChallenge.Derived.TargetExactAtConcreteLeavesStableFromTargetHomologyZero
 import LeanLCAExactChallenge.Derived.TargetExactAtDirectSourceStableExactAtRoute
+import LeanLCAExactChallenge.Derived.TargetIsoDirectSourceStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -166,6 +167,10 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapTargetExactAtDirectSourceStableExactAtW864
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetExactAtDirectSourceStableExactAtW864
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapTargetIsoDirectSourceStableExactAtW865
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetIsoDirectSourceStableExactAtW865
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -616,5 +621,22 @@ theorem originalFourTaskContract_targetExactAtDirectSourceStableExactAt_nontermi
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW864TargetExactAtDirectSourceStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_targetIsoDirectSourceStableExactAt_inputCount :
+    Dbounded.targetIsoDirectSourceStableExactAtInputNamesW865.length =
+      1 :=
+  Dbounded.targetIsoDirectSourceStableExactAtInputNamesW865_count
+
+theorem originalFourTaskContract_targetIsoDirectSourceStableExactAt_expandedInputCount :
+    Dbounded.targetIsoDirectSourceStableExactAtExpandedInputNamesW865.length =
+      2 :=
+  Dbounded.targetIsoDirectSourceStableExactAtExpandedInputNamesW865_count
+
+theorem originalFourTaskContract_targetIsoDirectSourceStableExactAt_nonterminal :
+    (let state :=
+        Dbounded.currentMetrizableTargetIsoDirectSourceStableExactAtRouteStateW865;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW865TargetIsoDirectSourceStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
