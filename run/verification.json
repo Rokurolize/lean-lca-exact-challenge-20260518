@@ -1,6 +1,6 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-26T04:09:41Z",
+  "generated_utc": "2026-05-26T04:15:24Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
@@ -12,148 +12,148 @@
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W889 keeps the target nonterminal under the immutable original four-task contract while replacing W888's bundled normalized strict-representative lift blueprint with three explicit fields. The assembled normalized lift blueprint feeds W888, then W887, W886, W885, W884, W883, W882, W881, W880, and W879. Product success remains false because the explicit W889 fields, the remaining concrete leaves, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W890 keeps the target nonterminal under the immutable original four-task contract while replacing W889's bundled coherent strict-representative lift blueprint with four explicit fields. The assembled strict-representative lift blueprint feeds W889, then W888, W887, W886, W885, W884, W883, W882, W881, W880, and W879. Product success remains false because the explicit W890 fields, the remaining concrete leaves, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W889 exposes the normalized strict-representative lift blueprint as three explicit fields, but those fields and the other W889 concrete leaves are still not instantiated.",
-    "The remaining W889 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, coherent strict representatives for WalkingParallelPair diagrams and maps, source-image object and map normalization, two fixed-target uniqueness obligations, a Pretriangulated structure, an IsTriangulated structure, source-side triangle-completion data, forgetful homology preservation, endpoint closed-embedding facts, endpoint open-map facts, endpoint ExactAt epi facts, the bounded homotopy localized right adjoint, its adjunction, and unit membership.",
+    "Task 4 is not contract-complete under the original four-task contract: W890 exposes the coherent strict-representative lift blueprint as four explicit fields, but those fields and the other W890 concrete leaves are still not instantiated.",
+    "The remaining W890 fields are boundary data, relation data, target surjectivity and compactness, matched selected-difference and mapped-cokernel closedness branch data, strict preimage object and map data, identity and composition coherence, source-image object and map normalization, two fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the nineteen W889 explicit field inputs.",
+    "Construct or precisely block concrete values for the twenty-two W890 explicit field inputs.",
     "Continue splitting or discharging the remaining bundled providers only when the split is supported by current Lean definitions and provider-search evidence.",
     "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at",
-  "latest_verified_increment": "W889 normalized-lift blueprint fields comparison stable ExactAt route",
-  "source_tree_hash": "389ef15193f16e1c3345828a96e073ed1f34e5a76d65f6b9db51daf3a582efa3",
+  "support_result_classification": "nonterminal_w890_strict_representative_lift_fields_comparison_stable_exact_at",
+  "latest_verified_increment": "W890 strict-representative lift fields comparison stable ExactAt route",
+  "source_tree_hash": "e384065f36a6a29f1d8b013a064a61c2a80513ae2220f9686d501e3b88981657",
   "implemented_declarations_checked": [
-    "Dbounded.normalizedLiftBlueprintOfFieldsW889",
-    "Dbounded.normalizedFixedTargetFieldLeavesOfNormalizedLiftBlueprintFieldsW889",
-    "Dbounded.concreteLeavesOfNormalizedLiftBlueprintFieldsComparisonW889",
-    "Dbounded.routeDataProviderOfNormalizedLiftBlueprintFieldsComparisonW889",
-    "Dbounded.directBoundedLeftCalculusOfNormalizedLiftBlueprintFieldsComparisonStableExactAtW889",
-    "Dbounded.boundedDerivedInfinityCategoryOfNormalizedLiftBlueprintFieldsComparisonStableExactAtW889",
-    "Dbounded.normalizedLiftBlueprintFieldsComparisonStableExactAtInputNamesW889_count",
-    "Dbounded.currentW889NormalizedLiftBlueprintFieldsComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_normalizedLiftBlueprintFieldsComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_normalizedLiftBlueprintFieldsComparisonStableExactAt_nonterminal"
+    "Dbounded.strictRepresentativeLiftBlueprintOfFieldsW890",
+    "Dbounded.normalizedLiftBlueprintFieldLeavesOfStrictRepresentativeFieldsW890",
+    "Dbounded.concreteLeavesOfStrictRepresentativeFieldsComparisonW890",
+    "Dbounded.routeDataProviderOfStrictRepresentativeFieldsComparisonW890",
+    "Dbounded.directBoundedLeftCalculusOfStrictRepresentativeFieldsComparisonStableExactAtW890",
+    "Dbounded.boundedDerivedInfinityCategoryOfStrictRepresentativeFieldsComparisonStableExactAtW890",
+    "Dbounded.strictRepresentativeFieldsComparisonStableExactAtInputNamesW890_count",
+    "Dbounded.currentW890StrictRepresentativeFieldsComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_strictRepresentativeFieldsComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_strictRepresentativeFieldsComparisonStableExactAt_nonterminal"
   ],
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/NormalizedLiftBlueprintFieldsComparisonStableExactAtRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/StrictRepresentativeLiftFieldsComparisonStableExactAtRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_new_module_lean.log",
-      "note": "focused Lean check for the W889 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_new_module_lean.log",
+      "note": "focused Lean check for the W890 helper module"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.NormalizedLiftBlueprintFieldsComparisonStableExactAtRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.StrictRepresentativeLiftFieldsComparisonStableExactAtRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_new_module_lake_build.log",
-      "note": "named Lake target for the W889 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_new_module_lake_build.log",
+      "note": "named Lake target for the W890 helper module"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_ProductSuccessDeclarations_lean.log",
-      "note": "checks W889 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_ProductSuccessDeclarations_lean.log",
+      "note": "checks W890 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_OriginalFourTaskCompletionDeclarations_lean.log",
-      "note": "records W889 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_OriginalFourTaskCompletionDeclarations_lean.log",
+      "note": "records W890 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_RequiredDeclarations_lean.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_RequiredDeclarations_lean.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_lake_build_full.log",
-      "note": "full build after W889 source edits; only pre-existing long-line warnings were observed"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_lake_build_full.log",
+      "note": "full build after W890 source edits; only pre-existing long-line warnings were observed"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_forbidden_tokens.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_forbidden_tokens.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live product-success true scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_product_success_true_scan_strict.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_product_success_true_scan_strict.log",
       "note": "no product-success true claim in live Lean, Lean audits, or current metadata surfaces"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_git_diff_check_source.log",
-      "note": "whitespace check after W889 source and audit edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_git_diff_check_source.log",
+      "note": "whitespace check after W890 source and audit edits"
     },
     {
-      "command": "W889 deterministic new-file/source accounting",
+      "command": "W890 deterministic new-file/source accounting",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_new_file_accounting_pre_metadata.log",
-      "note": "records the new W889 route, provider ledger, and audit/import hooks"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_new_file_accounting_pre_metadata.log",
+      "note": "records the new W890 route, provider ledger, and audit/import hooks"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_html_check_report.log",
       "note": "HTML report parse/style/JST validation passed"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_contract_audit.log",
-      "note": "original four-task contract audit accepts the W889 nonterminal outcome and lists remaining blockers"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_contract_audit.log",
+      "note": "original four-task contract audit accepts the W890 nonterminal outcome and lists remaining blockers"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_external_audit_nonterminal_expected.log",
       "note": "external audit reaches only the expected product-success gate for this nonterminal run"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_browser_evidence_scratch_log.log",
-      "note": "Chromium-rendered report evidence contains the W889 classification, source hash, product state, and remaining-input count"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_browser_evidence_scratch_log.log",
+      "note": "Chromium-rendered report evidence contains the W890 classification, source hash, product state, and remaining-input count"
     },
     {
       "command": "git diff --check after metadata refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_git_diff_check_after_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_git_diff_check_after_metadata.log",
       "note": "whitespace check after report, manifest, and terminal metadata refresh"
     },
     {
       "command": "strict live product-success true scan after metadata",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_product_success_true_scan_after_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_product_success_true_scan_after_metadata.log",
       "note": "no live product-success true claim after metadata refresh"
     },
     {
-      "command": "W889 manifest refresh",
+      "command": "W890 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_manifest_refresh.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_manifest_refresh.log",
       "note": "manifest includes audit-required content_hash_tree and excludes self/progress/local build artifacts"
     },
     {
-      "command": "W889 deterministic new-file/source accounting after metadata",
+      "command": "W890 deterministic new-file/source accounting after metadata",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T040620Z_codex_parent_w889_normalized_lift_blueprint_fields_comparison_stable_exact_at/logs/w889_new_file_accounting_post_metadata.log",
-      "note": "post-metadata diff accounting records W889 source, ledger, and metadata artifacts"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T041230Z_codex_parent_w890_strict_representative_lift_fields_comparison_stable_exact_at/logs/w890_new_file_accounting_post_metadata.log",
+      "note": "post-metadata diff accounting records W890 source, ledger, and metadata artifacts"
     }
   ]
 }
