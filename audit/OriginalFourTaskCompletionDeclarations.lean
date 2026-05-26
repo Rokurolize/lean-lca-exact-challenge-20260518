@@ -29,6 +29,7 @@ import LeanLCAExactChallenge.Derived.IsoClosureDirectSourceStableExactAtRoute
 import LeanLCAExactChallenge.Derived.StrictRealizationDirectSourceStableExactAtRoute
 import LeanLCAExactChallenge.Derived.ExactAcyclicSelectedCochainDirectSourceStableExactAtRoute
 import LeanLCAExactChallenge.Derived.ExactInputsSelectedCochainDirectSourceStableExactAtRoute
+import LeanLCAExactChallenge.Derived.ExactInputsComparisonSelectedCochainStableExactAtRoute
 
 set_option autoImplicit false
 
@@ -191,6 +192,10 @@ contract-completing stable bounded derived infinity-category witness.
   LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapExactInputsSelectedCochainStableExactAtW869
 #check
   LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapExactInputsSelectedCochainStableExactAtW869
+#check
+  LeanLCAExactChallenge.Dbounded.directBoundedLeftCalculusOfClosedMapComparisonSelectedCochainStableExactAtW870
+#check
+  LeanLCAExactChallenge.Dbounded.boundedDerivedInfinityCategoryOfClosedMapComparisonSelectedCochainStableExactAtW870
 #check LeanLCAExactChallenge.Dbounded.closedMapW808DataOfTargetIsoW844
 #check LeanLCAExactChallenge.Dbounded.closedMapW803DataOfTargetIsoW844
 #check
@@ -721,5 +726,17 @@ theorem originalFourTaskContract_exactInputsSelectedCochainStableExactAt_nonterm
       state.productSuccessClaimed) =
       false :=
   Dbounded.currentW869ExactInputsSelectedCochainStableExactAtRoute_productSuccess
+
+theorem originalFourTaskContract_comparisonSelectedCochainStableExactAt_inputCount :
+    Dbounded.comparisonSelectedCochainStableExactAtInputNamesW870.length =
+      1 :=
+  Dbounded.comparisonSelectedCochainStableExactAtInputNamesW870_count
+
+theorem originalFourTaskContract_comparisonSelectedCochainStableExactAt_nonterminal :
+    (let state :=
+        Dbounded.currentMetrizableComparisonSelectedCochainStableExactAtRouteStateW870;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW870ComparisonSelectedCochainStableExactAtRoute_productSuccess
 
 end LeanLCAExactChallenge
