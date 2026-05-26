@@ -1,74 +1,75 @@
 {
-  "outcome": "nonterminal_w897_closed_embedding_closedness_fields_comparison_stable_exact_at",
-  "generated_utc": "2026-05-26T05:38:40Z",
+  "outcome": "nonterminal_w898_closed_embedding_endpoint_homology_free_comparison_stable_exact_at",
+  "generated_utc": "2026-05-26T06:16:05Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "4b683daaef68475767b72d17dcabff3c6bc6c6b5c34415d0d57a06941c41eda7"
+    "sha256": "5e1b3de862894979f71b180c792652f8d2190acd8c5480f835027a0e01ecba8e"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W897 keeps the target nonterminal under the immutable original four-task contract while replacing W895's bundled W725 closedness-branch input with explicit closed-embedding branch fields: selected-difference closed-embedding diagram components and the W519 mapped explicit cokernel closed-embedding provider. The assembled W725 closed-embedding branch feeds W895, then W894, W893, W892, W891, W890, W889, W888, W887, W886, W885, W884, W883, W882, W881, W880, and W879. Product success remains false because the explicit W897 fields, the remaining concrete leaves, the final original-four-task witness, and the completion review packet are still incomplete.",
+  "summary": "W898 keeps the target nonterminal under the immutable original four-task contract while removing W897's explicit endpoint forgetful homology-preservation input. The W519 mapped explicit cokernel closed-embedding provider now supplies that field through W856, and the resulting W898 leaves feed W897, then W895 through W879. Product success remains false because the remaining explicit fields, the final original-four-task witness, and the completion review packet are still incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W897 exposes the W725 closed-embedding branch as two explicit fields, but those fields and the other W897 concrete leaves are still not instantiated.",
-    "The W725 closed-map branch is available separately through W896; W897 is the symmetric closed-embedding branch route rather than a no-argument branch choice.",
-    "The remaining W897 fields are WPP right-open boundary data, WPP source-pi-zero boundary data, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, selected-difference closed-embedding components, mapped explicit cokernel closed-embedding data, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W898 derives W897 endpoint forgetful homology preservation from the W519 closed-embedding provider, but the remaining W898 concrete leaves are still not instantiated.",
+    "W898 is still a closed-embedding branch route. The W896 closed-map branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
+    "The remaining W898 fields are WPP right-open boundary data, WPP source-pi-zero boundary data, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, selected-difference closed-embedding components, mapped explicit cokernel closed-embedding data, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint closed-embedding/open-map/epi facts, and bounded homotopy localized right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the thirty-eight W897 closed-embedding branch explicit field inputs.",
-    "Choose and instantiate an actual W725 branch path, or refactor a shared closedness-free surface only if it reduces real downstream complexity.",
-    "Continue splitting or discharging the remaining bundled providers only when the split is supported by current Lean definitions and provider-search evidence.",
-    "Connect the resulting route to a no-argument or fully instance-resolved original four-task completion witness only after all route inputs are real.",
+    "Construct or precisely block concrete values for the thirty-seven W898 closed-embedding endpoint-homology-free explicit field inputs.",
+    "Apply the same W856 endpoint homology reduction to the closed-map branch if it is the next smallest supported branch improvement, or continue splitting a shared provider boundary only when current Lean definitions justify it.",
+    "Connect a real no-argument route to the original four-task completion witness only after all route inputs are real rather than merely exposed as fields.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w897_closed_embedding_closedness_fields_comparison_stable_exact_at",
-  "latest_verified_increment": "W897 closed-embedding closedness fields comparison stable ExactAt route",
+  "support_result_classification": "nonterminal_w898_closed_embedding_endpoint_homology_free_comparison_stable_exact_at",
+  "latest_verified_increment": "W898 closed-embedding endpoint-homology-free comparison stable ExactAt route",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w897_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w898_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W897 exposes the W725 closed-embedding branch as two explicit fields, but those fields and the other W897 concrete leaves are still not instantiated.",
-    "The W725 closed-map branch is available separately through W896; W897 is the symmetric closed-embedding branch route rather than a no-argument branch choice.",
-    "The remaining W897 fields are WPP right-open boundary data, WPP source-pi-zero boundary data, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, selected-difference closed-embedding components, mapped explicit cokernel closed-embedding data, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint ExactAt facts, and bounded homotopy localized right-adjoint data.",
+    "Task 4 is not contract-complete under the original four-task contract: W898 derives W897 endpoint forgetful homology preservation from the W519 closed-embedding provider, but the remaining W898 concrete leaves are still not instantiated.",
+    "W898 is still a closed-embedding branch route. The W896 closed-map branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
+    "The remaining W898 fields are WPP right-open boundary data, WPP source-pi-zero boundary data, relation-pullback data, target-relation-lift data, target-difference surjectivity, target-codomain compactness, selected-difference closed-embedding components, mapped explicit cokernel closed-embedding data, strict preimage object fields, strict preimage map fields, identity and composition coherence, source-image normalization, fixed-target uniqueness obligations, triangulated/source-side data, endpoint closed-embedding/open-map/epi facts, and bounded homotopy localized right-adjoint data.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
-  "implemented_declarations": [
-    "Dbounded.diagramAndMappedCokernelClosednessDataOfClosedEmbeddingFieldsW897",
-    "Dbounded.MetrizableWppClosedEmbeddingClosednessFieldLeavesW897",
-    "Dbounded.targetSurjectiveCompactFieldLeavesOfClosedEmbeddingClosednessFieldsW897",
-    "Dbounded.concreteLeavesOfClosedEmbeddingClosednessFieldsComparisonW897",
-    "Dbounded.routeDataProviderOfClosedEmbeddingClosednessFieldsComparisonW897",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingClosednessFieldsComparisonStableExactAtW897",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingClosednessFieldsComparisonStableExactAtW897",
-    "Dbounded.closedEmbeddingClosednessFieldsComparisonStableExactAtInputNamesW897",
-    "Dbounded.closedEmbeddingClosednessFieldsComparisonStableExactAtInputNamesW897_count",
-    "Dbounded.MetrizableClosedEmbeddingClosednessFieldsComparisonStableExactAtRouteStateW897",
-    "Dbounded.currentMetrizableClosedEmbeddingClosednessFieldsComparisonStableExactAtRouteStateW897",
-    "Dbounded.currentW897ClosedEmbeddingClosednessFieldsComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_closedEmbeddingClosednessFieldsComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_closedEmbeddingClosednessFieldsComparisonStableExactAt_nonterminal"
-  ],
   "implemented_declarations_checked": [
-    "Dbounded.diagramAndMappedCokernelClosednessDataOfClosedEmbeddingFieldsW897",
-    "Dbounded.targetSurjectiveCompactFieldLeavesOfClosedEmbeddingClosednessFieldsW897",
-    "Dbounded.concreteLeavesOfClosedEmbeddingClosednessFieldsComparisonW897",
-    "Dbounded.routeDataProviderOfClosedEmbeddingClosednessFieldsComparisonW897",
-    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingClosednessFieldsComparisonStableExactAtW897",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingClosednessFieldsComparisonStableExactAtW897",
-    "Dbounded.closedEmbeddingClosednessFieldsComparisonStableExactAtInputNamesW897_count",
-    "Dbounded.currentW897ClosedEmbeddingClosednessFieldsComparisonStableExactAtRoute_productSuccess",
-    "originalFourTaskContract_closedEmbeddingClosednessFieldsComparisonStableExactAt_inputCount",
-    "originalFourTaskContract_closedEmbeddingClosednessFieldsComparisonStableExactAt_nonterminal"
+    "Dbounded.endpointForgetPreservesHomologyOfClosedEmbeddingFieldsW898",
+    "Dbounded.closedEmbeddingClosednessFieldLeavesOfEndpointHomologyFreeW898",
+    "Dbounded.concreteLeavesOfClosedEmbeddingEndpointHomologyFreeComparisonW898",
+    "Dbounded.routeDataProviderOfClosedEmbeddingEndpointHomologyFreeComparisonW898",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtW898",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtW898",
+    "Dbounded.closedEmbeddingEndpointHomologyFreeComparisonStableExactAtInputNamesW898_count",
+    "Dbounded.currentW898ClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_closedEmbeddingEndpointHomologyFreeComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_closedEmbeddingEndpointHomologyFreeComparisonStableExactAt_nonterminal"
+  ],
+  "source_tree_hash": "48eba5dccb866c45c8f730ecf7b6724bebb47b137d25d9e4ca7d06c66674b522",
+  "remaining_explicit_inputs": 37,
+  "implemented_declarations": [
+    "Dbounded.endpointForgetPreservesHomologyOfClosedEmbeddingFieldsW898",
+    "Dbounded.MetrizableWppClosedEmbeddingEndpointHomologyFreeLeavesW898",
+    "Dbounded.closedEmbeddingClosednessFieldLeavesOfEndpointHomologyFreeW898",
+    "Dbounded.concreteLeavesOfClosedEmbeddingEndpointHomologyFreeComparisonW898",
+    "Dbounded.routeDataProviderOfClosedEmbeddingEndpointHomologyFreeComparisonW898",
+    "Dbounded.directBoundedLeftCalculusOfClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtW898",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtW898",
+    "Dbounded.closedEmbeddingEndpointHomologyFreeComparisonStableExactAtInputNamesW898",
+    "Dbounded.closedEmbeddingEndpointHomologyFreeComparisonStableExactAtInputNamesW898_count",
+    "Dbounded.MetrizableClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtRouteStateW898",
+    "Dbounded.currentMetrizableClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtRouteStateW898",
+    "Dbounded.currentW898ClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtRoute_productSuccess",
+    "originalFourTaskContract_closedEmbeddingEndpointHomologyFreeComparisonStableExactAt_inputCount",
+    "originalFourTaskContract_closedEmbeddingEndpointHomologyFreeComparisonStableExactAt_nonterminal"
   ],
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/ClosedEmbeddingClosednessFieldsComparisonStableExactAtRoute.lean",
-    "lake build LeanLCAExactChallenge.Derived.ClosedEmbeddingClosednessFieldsComparisonStableExactAtRoute",
+    "lake env lean LeanLCAExactChallenge/Derived/ClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtRoute.lean",
+    "lake build LeanLCAExactChallenge.Derived.ClosedEmbeddingEndpointHomologyFreeComparisonStableExactAtRoute",
     "lake env lean audit/ProductSuccessDeclarations.lean",
     "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
     "lake env lean audit/RequiredDeclarations.lean",
@@ -76,7 +77,7 @@
     "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
     "strict live product-success true scan",
     "git diff --check",
-    "W897 deterministic new-file/source accounting",
+    "W898 deterministic new-file/source accounting",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
     "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
     "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
@@ -84,9 +85,7 @@
     "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
     "git diff --check after metadata refresh",
     "strict live product-success true scan after metadata",
-    "W897 manifest refresh",
-    "W897 deterministic new-file/source accounting after metadata"
-  ],
-  "source_tree_hash": "8c14c918bd3a2d38bee5185317cee0948b59ff64fb5f0501fe4ad811e1cc1523",
-  "remaining_explicit_inputs": 38
+    "W898 manifest refresh",
+    "W898 deterministic new-file/source accounting after metadata"
+  ]
 }
