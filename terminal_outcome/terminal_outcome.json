@@ -1,6 +1,6 @@
 {
-  "outcome": "nonterminal_w923_closed_map_target_surjective_primitive_field_route",
-  "generated_utc": "2026-05-26T13:21:36Z",
+  "outcome": "nonterminal_w924_closed_map_target_compact_primitive_field_route",
+  "generated_utc": "2026-05-26T13:33:34Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
@@ -12,162 +12,162 @@
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W923 keeps the target nonterminal under the immutable original four-task contract while exposing W922's target-difference Function.Surjective leaf as a primitive preimage quantifier. The new targetDifferenceSurjectivePrimitiveW923 field states that every element of the target codomain has a preimage under the target difference map, and targetDifferenceSurjectiveOfPrimitiveW923 reconstructs W922's Function.Surjective field before projecting through the W922 route. Product success remains false because all W923 route leaves are still explicit assumptions and the original four-task completion witness and review packet are still incomplete.",
+  "summary": "W924 keeps the target nonterminal under the immutable original four-task contract while exposing W923's target-codomain CompactSpace leaf as the primitive compactness proposition IsCompact (Set.univ : Set (wppOpCodomainW441 Y)). targetCodomainCompactSpaceOfPrimitiveW924 reconstructs W923's CompactSpace field from that primitive and then projects through the W923 route. Product success remains false because all W924 route leaves are still explicit assumptions and the original four-task completion witness and review packet remain incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W923 exposes the target-difference Function.Surjective field as a primitive preimage quantifier, but that primitive field and the rest of the W923 concrete leaves are still not instantiated.",
-    "W923 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
-    "The remaining W923 fields include raw WPP-limit boundary propositions, primitive relation-pullback and target-relation-lift propositions inherited through W920, the primitive target-difference preimage quantifier, raw target compactness proposition, primitive selected-difference pi1/pi2/pi3 closed-set image propositions, the primitive mapped explicit cokernel closed-set image proposition, strict preimage object and map fields, identity and composition coherence, source-image normalization, raw fixed-target uniqueness quantifier fields, raw source-category pretriangulated and triangulated propositions, the raw source-side triangle-completion proposition, endpoint closed-embedding/open-map/ExactAt-to-epi facts, and bounded-homotopy localized right-adjoint fields.",
+    "Task 4 is not contract-complete under the original four-task contract: W924 exposes the target-codomain CompactSpace field as primitive compactness of the universe, but that primitive field and the rest of the W924 concrete leaves are still not instantiated.",
+    "W924 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
+    "The remaining W924 fields include raw WPP-limit boundary propositions, primitive relation-pullback and target-relation-lift propositions, the primitive target-difference preimage quantifier inherited from W923, primitive target-codomain compactness of the universe, primitive selected-difference pi1/pi2/pi3 closed-set image propositions, the primitive mapped explicit cokernel closed-set image proposition, strict preimage object and map fields, identity and composition coherence, source-image normalization, raw fixed-target uniqueness quantifier fields, raw source-category pretriangulated and triangulated propositions, the raw source-side triangle-completion proposition, endpoint closed-embedding/open-map/ExactAt-to-epi facts, and bounded-homotopy localized right-adjoint fields.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct or precisely block concrete values for the thirty-nine W923 closed-map target-surjective-primitive-field explicit inputs.",
+    "Construct or precisely block concrete values for the thirty-nine W924 closed-map target-compact-primitive-field explicit inputs.",
     "Choose the next smallest contract-closing increment from source-image normalization, strict-preimage coherence consolidation, branch selection, endpoint facts, localized-right-adjoint data, source-category triangulation evidence, relation primitive proofs, target-surjectivity proof, target-compactness proof, mapped-cokernel primitive proof, selected-difference primitive proofs, or another supported concrete provider boundary.",
     "Connect a real no-argument route to the original four-task completion witness only after all route inputs are real rather than merely exposed as fields.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w923_closed_map_target_surjective_primitive_field_route",
-  "latest_verified_increment": "W923 closed-map target-surjective-primitive-field route",
+  "support_result_classification": "nonterminal_w924_closed_map_target_compact_primitive_field_route",
+  "latest_verified_increment": "W924 closed-map target-compact-primitive-field route",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w923_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w924_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W923 exposes the target-difference Function.Surjective field as a primitive preimage quantifier, but that primitive field and the rest of the W923 concrete leaves are still not instantiated.",
-    "W923 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
-    "The remaining W923 fields include raw WPP-limit boundary propositions, primitive relation-pullback and target-relation-lift propositions inherited through W920, the primitive target-difference preimage quantifier, raw target compactness proposition, primitive selected-difference pi1/pi2/pi3 closed-set image propositions, the primitive mapped explicit cokernel closed-set image proposition, strict preimage object and map fields, identity and composition coherence, source-image normalization, raw fixed-target uniqueness quantifier fields, raw source-category pretriangulated and triangulated propositions, the raw source-side triangle-completion proposition, endpoint closed-embedding/open-map/ExactAt-to-epi facts, and bounded-homotopy localized right-adjoint fields.",
+    "Task 4 is not contract-complete under the original four-task contract: W924 exposes the target-codomain CompactSpace field as primitive compactness of the universe, but that primitive field and the rest of the W924 concrete leaves are still not instantiated.",
+    "W924 is still a closed-map branch route. The W898 closed-embedding endpoint-homology-free branch remains separately available; no no-argument branch choice or final original-four-task witness has been constructed.",
+    "The remaining W924 fields include raw WPP-limit boundary propositions, primitive relation-pullback and target-relation-lift propositions, the primitive target-difference preimage quantifier inherited from W923, primitive target-codomain compactness of the universe, primitive selected-difference pi1/pi2/pi3 closed-set image propositions, the primitive mapped explicit cokernel closed-set image proposition, strict preimage object and map fields, identity and composition coherence, source-image normalization, raw fixed-target uniqueness quantifier fields, raw source-category pretriangulated and triangulated propositions, the raw source-side triangle-completion proposition, endpoint closed-embedding/open-map/ExactAt-to-epi facts, and bounded-homotopy localized right-adjoint fields.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract negative-fixture coverage, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
-  "source_tree_hash": "60e55cd7f44e049ff7d08537eaa6a98813a8691c370aa25a26f8eab723e64c3f",
+  "source_tree_hash": "b8c2d0d2456d03de798c01fdc30fb039290d225101120818806f855c3ab4c4e4",
   "remaining_explicit_inputs": 39,
   "implemented_declarations_checked": [
-    "Dbounded.MetrizableWppClosedMapTargetSurjectivePrimitiveFieldLeavesW923",
-    "Dbounded.targetDifferenceSurjectivePrimitiveW923",
-    "Dbounded.targetDifferenceSurjectiveOfPrimitiveW923",
-    "Dbounded.w922LeavesOfTargetSurjectivePrimitiveFieldsW923",
-    "Dbounded.concreteLeavesOfClosedMapTargetSurjectivePrimitiveFieldsW923",
-    "Dbounded.routeDataProviderOfClosedMapTargetSurjectivePrimitiveFieldsW923",
-    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetSurjectivePrimitiveFieldsW923",
-    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetSurjectivePrimitiveFieldsW923",
-    "Dbounded.closedMapTargetSurjectivePrimitiveFieldsInputNamesW923_count",
-    "Dbounded.MetrizableClosedMapTargetSurjectivePrimitiveFieldsRouteStateW923",
-    "Dbounded.currentMetrizableClosedMapTargetSurjectivePrimitiveFieldsRouteStateW923",
-    "Dbounded.currentW923ClosedMapTargetSurjectivePrimitiveFieldsRoute_productSuccess",
-    "originalFourTaskContract_closedMapTargetSurjectivePrimitiveFields_inputCount",
-    "originalFourTaskContract_closedMapTargetSurjectivePrimitiveFields_nonterminal"
+    "Dbounded.MetrizableWppClosedMapTargetCompactPrimitiveFieldLeavesW924",
+    "Dbounded.targetCodomainCompactPrimitiveW924",
+    "Dbounded.targetCodomainCompactSpaceOfPrimitiveW924",
+    "Dbounded.w923LeavesOfTargetCompactPrimitiveFieldsW924",
+    "Dbounded.concreteLeavesOfClosedMapTargetCompactPrimitiveFieldsW924",
+    "Dbounded.routeDataProviderOfClosedMapTargetCompactPrimitiveFieldsW924",
+    "Dbounded.directBoundedLeftCalculusOfClosedMapTargetCompactPrimitiveFieldsW924",
+    "Dbounded.boundedDerivedInfinityCategoryOfClosedMapTargetCompactPrimitiveFieldsW924",
+    "Dbounded.closedMapTargetCompactPrimitiveFieldsInputNamesW924_count",
+    "Dbounded.MetrizableClosedMapTargetCompactPrimitiveFieldsRouteStateW924",
+    "Dbounded.currentMetrizableClosedMapTargetCompactPrimitiveFieldsRouteStateW924",
+    "Dbounded.currentW924ClosedMapTargetCompactPrimitiveFieldsRoute_productSuccess",
+    "originalFourTaskContract_closedMapTargetCompactPrimitiveFields_inputCount",
+    "originalFourTaskContract_closedMapTargetCompactPrimitiveFields_nonterminal"
   ],
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetSurjectivePrimitiveFieldRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapTargetCompactPrimitiveFieldRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_focused_lean.log",
-      "note": "focused Lean check for the W923 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_focused_lean.log",
+      "note": "focused Lean check for the W924 helper module"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetSurjectivePrimitiveFieldRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapTargetCompactPrimitiveFieldRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_named_lake_build.log",
-      "note": "named Lake target for the W923 helper module"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_lake_build_target.log",
+      "note": "named Lake target for the W924 helper module"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/product_success_declarations.log",
-      "note": "checks W923 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_product_success_lean.log",
+      "note": "checks W924 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/original_four_declarations.log",
-      "note": "records W923 as nonterminal original-four-task evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_original_contract_lean.log",
+      "note": "records W924 as nonterminal original-four-task evidence"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/required_declarations.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_required_declarations_lean.log",
       "note": "required public declarations still elaborate"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/full_lake_build.log",
-      "note": "full build after W923 source edits; pre-existing informational output and older long-line warnings remain present"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_lake_build_full.log",
+      "note": "full build after W924 source edits"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_forbidden_token_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_forbidden_tokens.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live product-success true scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_product_success_true_scan_strict.log",
-      "note": "no product-success true claim in live W923 Lean, Lean audits, or current metadata outside negative fixtures before metadata refresh"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_strict_product_success_scan.log",
+      "note": "no product-success true claim in live W924 Lean, Lean audits, or current metadata outside negative fixtures before metadata refresh"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/git_diff_check.log",
-      "note": "whitespace check after W923 source and audit edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_git_diff_check.log",
+      "note": "whitespace check after W924 source and audit edits"
     },
     {
-      "command": "W923 deterministic new-file/source accounting",
+      "command": "W924 deterministic new-file/source accounting",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_new_file_accounting_pre_metadata.log",
-      "note": "records the new W923 route, provider ledger, and audit/import hooks"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_new_file_accounting_pre_metadata.log",
+      "note": "records the new W924 route, provider ledger, and audit/import hooks"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_html_check_report.log",
       "note": "HTML report parse/style/JST validation passed"
     },
     {
-      "command": "W923 manifest refresh",
+      "command": "W924 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_manifest_refresh.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_manifest_refresh.log",
       "note": "manifest.json regenerated with a fresh content hash tree"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_contract_audit.log",
-      "note": "immutable contract audit accepts W923 only as nonterminal evidence"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_contract_audit.log",
+      "note": "immutable contract audit accepts W924 only as nonterminal evidence"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_external_audit_nonterminal_expected.log",
       "note": "expected nonterminal failure: terminal_outcome.outcome must be product_success"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/browser_evidence/scratch_log/scratch_log_fidelity.json",
-      "note": "browser-rendered report contains W923 classification, false product success, remaining input count, and source hash"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
+      "note": "browser-rendered report contains W924 classification, false product success, remaining input count, and source hash"
     },
     {
       "command": "git diff --check after metadata refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_git_diff_check_post_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_git_diff_check_post_metadata.log",
       "note": "whitespace check after generated metadata refresh"
     },
     {
       "command": "strict live product-success true scan after metadata refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_product_success_true_scan_post_metadata.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_product_success_true_scan_post_metadata.log",
       "note": "confirms refreshed metadata still has no true product-success/update-goal claim outside negative fixtures"
     },
     {
-      "command": "W923 deterministic post-metadata accounting",
+      "command": "W924 deterministic post-metadata accounting",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T131802Z_codex_parent_w923_closed_map_target_surjective_primitive_field_route/logs/w923_post_metadata_accounting.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T132704Z_codex_parent_w924_closed_map_target_compact_primitive_field_route/logs/w924_post_metadata_accounting.log",
       "note": "records post-metadata source hash, manifest file count, browser evidence, and git status"
     }
   ],
