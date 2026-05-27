@@ -3237,4 +3237,32 @@ theorem originalFourTaskContract_localizedUnitChoice_nonterminalW1002 :
       false :=
   Dbounded.currentW1002LocalizedUnitChoiceRoute_productSuccess
 
+#check Dbounded.localizedUnitChoiceDataOfEndpointLocalizedUnitW1003
+#check Dbounded.branchFullDataOfEndpointLocalizedUnitW1003
+#check Dbounded.targetSurjectiveCompactDataOfEndpointLocalizedUnitW1003
+#check Dbounded.targetSurjectiveCompactBranchFullDataOfEndpointLocalizedUnitW1003
+#check Dbounded.targetProviderDataOfEndpointLocalizedUnitW1003
+#check Dbounded.normalizedSourceEndpointDataOfEndpointLocalizedUnitW1003
+#check Dbounded.fullDataOfEndpointLocalizedUnitW1003
+#check Dbounded.w977LeavesOfEndpointLocalizedUnitW1003
+#check Dbounded.componentFieldsOfEndpointLocalizedUnitW1003
+#check Dbounded.endpointStrictExactOfEndpointLocalizedUnitW1003
+#check Dbounded.unitMappingConeAlgebraicExactOfEndpointLocalizedUnitW1003
+#check Dbounded.unitMappingConeStrictExactOfEndpointLocalizedUnitW1003
+#check Dbounded.unitMappingConeIsoNonemptyOfEndpointLocalizedUnitW1003
+#check Dbounded.directBoundedLeftCalculusOfEndpointLocalizedUnitW1003
+#check Dbounded.boundedDerivedInfinityCategoryOfEndpointLocalizedUnitW1003
+
+theorem originalFourTaskContract_endpointLocalizedUnit_inputCountW1003 :
+    Dbounded.endpointLocalizedUnitInputNamesW1003.length =
+      5 :=
+  Dbounded.endpointLocalizedUnitInputNamesW1003_count
+
+theorem originalFourTaskContract_endpointLocalizedUnit_nonterminalW1003 :
+    (let state :=
+        Dbounded.currentMetrizableEndpointLocalizedUnitTargetSurjectiveCompactRouteStateW1003;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW1003EndpointLocalizedUnitRoute_productSuccess
+
 end LeanLCAExactChallenge
