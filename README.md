@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1034 is the latest checked nonterminal increment. It constructs W1033's W1006 target/closedness/normalized-source/endpoint provider surface from the W1007 branch-full-data surface, then feeds W1033/W1032/W1031/W1030/W1029/W1028/W1027/W1026/W1025/W1024/W1023/W1022/W1021/W1020/W1019/W1018/W1017/W1016/W1015/W1014/W1013/W1012/W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998. The explicit frontier is the 1 W1007 branch-full-data provider input. Product success remains false.
+W1035 is the latest checked nonterminal increment. It constructs W1034's W1007 branch-full-data provider surface from the W1008 current-full-data surface, then feeds W1034/W1033/W1032/W1031/W1030/W1029/W1028/W1027/W1026/W1025/W1024/W1023/W1022/W1021/W1020/W1019/W1018/W1017/W1016/W1015/W1014/W1013/W1012/W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998. The explicit frontier is the 1 W1008 current-full-data provider input. Product success remains false.
