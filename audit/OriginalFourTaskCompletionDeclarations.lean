@@ -3090,4 +3090,68 @@ theorem originalFourTaskContract_targetSurjectiveCompactBranchFullData_nontermin
       false :=
   Dbounded.currentW997TargetSurjectiveCompactBranchFullDataRoute_productSuccess
 
+#check Dbounded.targetNoUnivDataOfBranchFullDataW998
+#check Dbounded.targetCodomainCompactSpaceOfNoUnivMembershipW998
+#check Dbounded.targetSurjectiveCompactDataOfBranchFullDataW998
+#check Dbounded.targetSurjectiveCompactFullDataOfBranchFullDataW998
+#check Dbounded.targetSurjectiveCompactBranchFullDataOfBranchFullDataW998
+#check Dbounded.targetProviderDataOfBranchFullDataW998
+#check Dbounded.normalizedSourceEndpointDataOfBranchFullDataW998
+#check Dbounded.fullDataOfBranchFullDataW998
+#check Dbounded.w981LeavesOfBranchFullDataW998
+#check Dbounded.componentFieldsOfBranchFullDataW998
+#check Dbounded.endpointStrictExactOfBranchFullDataW998
+#check Dbounded.unitMappingConeAlgebraicExactOfBranchFullDataW998
+#check Dbounded.unitMappingConeStrictExactOfBranchFullDataW998
+#check Dbounded.unitMappingConeIsoNonemptyOfBranchFullDataW998
+#check Dbounded.directBoundedLeftCalculusOfBranchFullDataW998
+#check Dbounded.boundedDerivedInfinityCategoryOfBranchFullDataW998
+
+theorem originalFourTaskContract_branchFullData_inputCountW998 :
+    Dbounded.branchFullDataInputNamesW998.length =
+      1 :=
+  Dbounded.branchFullDataInputNamesW998_count
+
+theorem originalFourTaskContract_branchFullData_nonterminalW998 :
+    (let state :=
+        Dbounded.currentMetrizableBranchFullDataRouteStateW998;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW998BranchFullDataRoute_productSuccess
+
+#check Dbounded.leavesOfCurrentFullDataW999
+#check Dbounded.unitStrictExactIsoDataOfCurrentFullDataW999
+#check Dbounded.unitStrictExactIsoFullDataOfCurrentFullDataW999
+#check Dbounded.localizedUnitDataOfCurrentFullDataW999
+#check Dbounded.endpointLocalizedUnitDataOfCurrentFullDataW999
+#check Dbounded.normalizedSourceEndpointLocalizedUnitDataOfCurrentFullDataW999
+#check Dbounded.targetClosedEmbeddingClosednessDataOfCurrentFullDataW999
+#check Dbounded.targetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataOfCurrentFullDataW999
+#check Dbounded.branchFullDataOfCurrentFullDataW999
+#check Dbounded.targetSurjectiveCompactDataOfCurrentFullDataW999
+#check Dbounded.targetSurjectiveCompactBranchFullDataOfCurrentFullDataW999
+#check Dbounded.targetProviderDataOfCurrentFullDataW999
+#check Dbounded.normalizedSourceEndpointDataOfCurrentFullDataW999
+#check Dbounded.fullDataOfCurrentFullDataW999
+#check Dbounded.w981LeavesOfCurrentFullDataW999
+#check Dbounded.componentFieldsOfCurrentFullDataW999
+#check Dbounded.endpointStrictExactOfCurrentFullDataW999
+#check Dbounded.unitMappingConeAlgebraicExactOfCurrentFullDataW999
+#check Dbounded.unitMappingConeStrictExactOfCurrentFullDataW999
+#check Dbounded.unitMappingConeIsoNonemptyOfCurrentFullDataW999
+#check Dbounded.directBoundedLeftCalculusOfCurrentFullDataW999
+#check Dbounded.boundedDerivedInfinityCategoryOfCurrentFullDataW999
+
+theorem originalFourTaskContract_currentFullData_inputCountW999 :
+    Dbounded.currentFullDataInputNamesW999.length =
+      1 :=
+  Dbounded.currentFullDataInputNamesW999_count
+
+theorem originalFourTaskContract_currentFullData_nonterminalW999 :
+    (let state :=
+        Dbounded.currentMetrizableCurrentFullDataRouteStateW999;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW999CurrentFullDataRoute_productSuccess
+
 end LeanLCAExactChallenge

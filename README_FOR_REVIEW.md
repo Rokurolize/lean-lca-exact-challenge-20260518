@@ -4,6 +4,10 @@
 
 この成果物はproduct successではない。更新後のgoalではsource-patch-needed handoffで完了できないため、このpacketは歴史的な調査証跡と未完了診断として読む。
 
+2026-05-27のW999更新では、W998で残っていたW987 branch-specific full-data provider入力を、既存のW977 current full-data providerからLean内で再構成した。W977のW976 unit mapping-cone dataからW981 strict-exact/isomorphism dataを作り、W989でW945 localized-unit dataを回収し、W950、W984、W986、W987を順に組み立てたうえでW998へ渡す。これにより最新の非終端frontierはW977 current full-data provider一つへ戻ったが、そのW977 provider自体はまだ仮定であり、original four-task completion witness、product-success terminal outcome、clean review packetは未完成なので、product successは引き続きfalseである。
+
+2026-05-27のW998更新では、W997で一つのprovider内に残っていたW715 target surjective-compact仮定を、W987 branch-specific full dataからLean内で再構成した。具体的にはW987からW977 full dataを経由してW944 target no-univ dataを取り出し、target difference surjectivityとW930 no-univ compactnessからW715のsurjectivity/`CompactSpace` pairを作る。ただしW987 branch-specific full-data provider自体はまだ仮定であり、original four-task completion witness、product-success terminal outcome、clean review packetは未完成なので、product successは引き続きfalseである。
+
 2026-05-26の不変4課題契約再監査では、直前のW824 terminal outcomeが`product_success=true`を主張していたことを過大主張として扱い直した。`audit/original_four_task_contract_audit.py`は、`BoundedDerivedInfinityCategory`が4つの抽象`Prop` field wrapperであること、final surfaceが`MetrizableOrdinaryStableSemanticInput`、`StableFourProjectionCertificate`、`AcceptedStableBoundedDerivedInfinityCategory`経路を参照していること、packet側に不変契約で要求されるnegative fixtureがまだ揃っていないことを、original four-task contract上の未完了理由として検出する。このためtarget側のterminal outcomeとverification metadataは非完了へ戻した。
 
 W826では、歴史的なLean宣言自体は残しつつ、`audit/ProductSuccessDeclarations.lean`とterminal metadataからsemantic-input/certificate-adapter経路名を外し、final product surfaceがその経路を完了証拠として参照しないようにした。残る未完了理由は、`BoundedDerivedInfinityCategory`自体がまだ4つの抽象`Prop` field wrapperであること、original four-task completion witnessがまだないこと、review packetの不変契約fixtureとclean extraction auditが未更新であることに縮小された。
