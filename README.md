@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1023 is the latest checked nonterminal increment. It constructs W1022's W1004 normalized-source/endpoint-localized-unit provider surface from the W1005 target/closed-embedding-closedness surface, then feeds W1022/W1021/W1020/W1019/W1018/W1017/W1016/W1015/W1014/W1013/W1012/W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998. The explicit frontier is the 3 W1005 target/closed-embedding-closedness provider inputs. Product success remains false.
+W1024 is the latest checked nonterminal increment. It constructs W1023's W1005 target/closed-embedding-closedness provider surface from the W1006 target/closedness/normalized-source/endpoint surface, then feeds W1023/W1022/W1021/W1020/W1019/W1018/W1017/W1016/W1015/W1014/W1013/W1012/W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998. The explicit frontier is the 2 W1006 target/closedness/normalized-source/endpoint provider inputs. Product success remains false.
