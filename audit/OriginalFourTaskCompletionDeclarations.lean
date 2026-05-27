@@ -3756,4 +3756,30 @@ theorem originalFourTaskContract_componentFieldsDirect_nonterminalW1018 :
       false :=
   Dbounded.currentW1018ComponentFieldsDirectRoute_productSuccess
 
+#check Dbounded.componentFieldsOfUnitStrictExactIsoDataW1019
+#check Dbounded.currentFullDataProviderOfUnitStrictExactIsoDataW1019
+#check Dbounded.branchFullDataProviderOfUnitStrictExactIsoDataW1019
+#check Dbounded.targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfUnitStrictExactIsoDataW1019
+#check Dbounded.targetClosedEmbeddingClosednessDataProviderOfUnitStrictExactIsoDataW1019
+#check Dbounded.normalizedSourceEndpointLocalizedUnitDataProviderOfUnitStrictExactIsoDataW1019
+#check Dbounded.localizedUnitChoiceDataOfUnitStrictExactIsoDataW1019
+#check Dbounded.componentFieldsOfComponentFieldsOfUnitStrictExactIsoDataW1019
+#check Dbounded.currentFullDataOfUnitStrictExactIsoDataW1019
+#check Dbounded.branchFullDataOfUnitStrictExactIsoDataW1019
+#check Dbounded.targetSurjectiveCompactDataOfUnitStrictExactIsoDataW1019
+#check Dbounded.fullDataOfUnitStrictExactIsoDataW1019
+#check Dbounded.directBoundedLeftCalculusOfUnitStrictExactIsoDataW1019
+#check Dbounded.boundedDerivedInfinityCategoryOfUnitStrictExactIsoDataW1019
+
+theorem originalFourTaskContract_unitStrictExactIsoToComponentFields_inputCountW1019 :
+    Dbounded.unitStrictExactIsoDataInputNamesW1019.length = 7 :=
+  Dbounded.unitStrictExactIsoDataInputNamesW1019_count
+
+theorem originalFourTaskContract_unitStrictExactIsoToComponentFields_nonterminalW1019 :
+    (let state :=
+        Dbounded.currentMetrizableUnitStrictExactIsoDataToComponentFieldsDirectRouteStateW1019;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW1019UnitStrictExactIsoDataToComponentFieldsDirectRoute_productSuccess
+
 end LeanLCAExactChallenge
