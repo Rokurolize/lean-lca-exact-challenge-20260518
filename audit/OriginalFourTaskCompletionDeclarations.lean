@@ -3636,4 +3636,26 @@ theorem originalFourTaskContract_normalizedSourceEndpointLocalizedUnitDirect_non
       false :=
   Dbounded.currentW1013NormalizedSourceEndpointLocalizedUnitDirectRoute_productSuccess
 
+#check Dbounded.normalizedSourceEndpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessW1014
+#check Dbounded.localizedUnitChoiceDataOfTargetClosedEmbeddingClosednessW1014
+#check Dbounded.componentFieldsOfTargetClosedEmbeddingClosednessW1014
+#check Dbounded.currentFullDataOfTargetClosedEmbeddingClosednessW1014
+#check Dbounded.currentFullDataProviderOfTargetClosedEmbeddingClosednessW1014
+#check Dbounded.branchFullDataOfTargetClosedEmbeddingClosednessW1014
+#check Dbounded.targetSurjectiveCompactDataOfTargetClosedEmbeddingClosednessW1014
+#check Dbounded.fullDataOfTargetClosedEmbeddingClosednessW1014
+#check Dbounded.directBoundedLeftCalculusOfTargetClosedEmbeddingClosednessW1014
+#check Dbounded.boundedDerivedInfinityCategoryOfTargetClosedEmbeddingClosednessW1014
+
+theorem originalFourTaskContract_targetClosedEmbeddingClosednessDirect_inputCountW1014 :
+    Dbounded.targetClosedEmbeddingClosednessInputNamesW1014.length = 3 :=
+  Dbounded.targetClosedEmbeddingClosednessInputNamesW1014_count
+
+theorem originalFourTaskContract_targetClosedEmbeddingClosednessDirect_nonterminalW1014 :
+    (let state :=
+        Dbounded.currentMetrizableTargetClosedEmbeddingClosednessDirectRouteStateW1014;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW1014TargetClosedEmbeddingClosednessDirectRoute_productSuccess
+
 end LeanLCAExactChallenge
