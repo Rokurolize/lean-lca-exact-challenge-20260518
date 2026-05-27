@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1004 is the latest checked nonterminal increment. It packages W1003's separate W949 endpoint-localized-unit data and W948 normalized-source-triangulation data into the existing W950 normalized-source/endpoint-localized-unit provider, reducing the explicit frontier from five W1003 items to four provider items: W730 boundary/relation data, W944 target no-univ data, W973 closed-embedding closedness data, and W950 normalized-source/endpoint-localized-unit data. Product success remains false.
+W1005 is the latest checked nonterminal increment. It packages W1004's separate W944 target no-univ data and W973 closed-embedding closedness data into the existing W984 target/closed-embedding closedness provider, reducing the explicit frontier from four W1004 items to three provider items: W730 boundary/relation data, W984 target no-univ plus closed-embedding closedness data, and W950 normalized-source/endpoint-localized-unit data. Product success remains false.
