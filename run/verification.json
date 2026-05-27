@@ -1,115 +1,115 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-27T02:37:30Z",
-  "source_tree_hash": "77e002c49464efb1f3c1561442f5358ecbc7d9c9a429af0eef12c7b717c25e02",
+  "generated_utc": "2026-05-27T02:50:48Z",
+  "source_tree_hash": "a4656006edc4ee56cd5afc25b6b4f33a6a7abd61732ccd93857f6d348b0edb39",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "latest_verified_increment": "W983 endpoint-localized-unit provider to W982 endpoint strict-exact and localized-unit route",
-  "remaining_explicit_inputs": 5,
-  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route",
+  "latest_verified_increment": "W984 target no-univ plus closed-embedding closedness provider to W983 endpoint-localized-unit route",
+  "remaining_explicit_inputs": 4,
+  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetNoUnivClosedEmbeddingEndpointLocalizedUnitChoiceDataRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetNoUnivClosedEmbeddingClosednessEndpointLocalizedUnitChoiceDataRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_focused_lean.log",
-      "note": "focused Lean check for the W983 endpoint-localized-unit route"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_focused_lean.log",
+      "note": "focused Lean check for the W984 target/closed-embedding-closedness route"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetNoUnivClosedEmbeddingEndpointLocalizedUnitChoiceDataRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetNoUnivClosedEmbeddingClosednessEndpointLocalizedUnitChoiceDataRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_named_module_build.log",
-      "note": "named Lake target for the W983 helper module; inherited long-name style warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_named_module_build.log",
+      "note": "named Lake target for the W984 helper module; inherited long-name style warnings remain nonfatal"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_root_import.log",
-      "note": "root import surface includes the W983 route"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_root_import.log",
+      "note": "root import surface includes the W984 route"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_product_success_declarations.log",
-      "note": "checks W983 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_product_success_declarations.log",
+      "note": "checks W984 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_original_four_audit.log",
-      "note": "records W983 as nonterminal original-four-task evidence with five provider-level inputs"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_original_four_audit.log",
+      "note": "records W984 as nonterminal original-four-task evidence with four provider-level inputs"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_required_declarations.log",
-      "note": "required public declarations include W983 route checks"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_required_declarations.log",
+      "note": "required public declarations include W984 route checks"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_full_lake_build.log",
-      "note": "full build after W983 source, audit, ledger, route log, report, and metadata edits; inherited long-line warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_full_lake_build.log",
+      "note": "full build after W984 source, audit, ledger, route log, report, and metadata edits; inherited long-line warnings remain nonfatal"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_forbidden_lean_token_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_forbidden_lean_token_scan.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live true-valued product claim scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_product_success_true_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_product_success_true_scan.log",
       "note": "no true-valued product completion claim in live Lean/audit/metadata/report surfaces; intentional audit negative fixtures were excluded"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_git_diff_check.log",
-      "note": "whitespace check after W983 source, audit, ledger, report, and metadata edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_git_diff_check.log",
+      "note": "whitespace check after W984 source, audit, ledger, report, and metadata edits"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html --require-linked-artifacts",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_html_check_report.log",
       "note": "HTML report parse, style, local asset, linked artifact, and secret-pattern checks passed"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_browser_render.log",
-      "note": "browser-rendered evidence confirms W983/nonterminal/false product state appears in the DOM"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_browser_render.log",
+      "note": "browser-rendered evidence confirms W984/nonterminal/false product state appears in the DOM"
     },
     {
       "command": "source_tree_hash consistency check via audit/external_audit.py",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_source_tree_hash_consistency.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_source_tree_hash_consistency.log",
       "note": "recorded run/verification source_tree_hash equals the audit script recomputation"
     },
     {
       "command": "manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_manifest_refresh.log",
-      "note": "manifest.json refreshed after W983 metadata updates"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_manifest_refresh.log",
+      "note": "manifest.json refreshed after W984 metadata updates"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root . --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_contract_audit.log",
-      "note": "immutable-contract audit accepts W983 as nonterminal and reports the remaining blockers"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_contract_audit.log",
+      "note": "immutable-contract audit accepts W984 as nonterminal and reports the remaining blockers"
     },
     {
       "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T023200Z_codex_parent_w983_endpoint_localized_unit_choice_route/logs/w983_external_audit_nonterminal_expected.log",
-      "note": "external product audit reaches the expected product-success terminal-outcome gate for W983"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T024400Z_codex_parent_w984_target_closed_embedding_closedness_route/logs/w984_external_audit_nonterminal_expected.log",
+      "note": "external product audit reaches the expected product-success terminal-outcome gate for W984"
     }
   ]
 }
