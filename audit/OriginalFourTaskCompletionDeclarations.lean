@@ -3924,4 +3924,33 @@ theorem originalFourTaskContract_targetClosedEmbeddingClosednessNormalizedSource
       false :=
   Dbounded.currentW1024TargetClosedEmbeddingClosednessNormalizedSourceEndpointToComponentFieldsDirectRoute_productSuccess
 
+#check Dbounded.targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfBranchFullDataW1025
+#check Dbounded.targetClosedEmbeddingClosednessDataProviderOfBranchFullDataW1025
+#check Dbounded.normalizedSourceEndpointLocalizedUnitDataProviderOfBranchFullDataW1025
+#check Dbounded.endpointLocalizedUnitDataProviderOfBranchFullDataW1025
+#check Dbounded.localizedUnitChoiceDataOfBranchFullDataW1025
+#check Dbounded.unitStrictExactIsoDataOfBranchFullDataW1025
+#check Dbounded.componentFieldsOfBranchFullDataW1025
+#check Dbounded.currentFullDataProviderOfBranchFullDataW1025
+#check Dbounded.branchFullDataProviderOfBranchFullDataW1025
+#check Dbounded.localizedUnitChoiceDataOfLocalizedUnitChoiceOfBranchFullDataW1025
+#check Dbounded.componentFieldsOfComponentFieldsOfBranchFullDataW1025
+#check Dbounded.currentFullDataOfBranchFullDataW1025
+#check Dbounded.branchFullDataOfBranchFullDataW1025
+#check Dbounded.targetSurjectiveCompactDataOfBranchFullDataW1025
+#check Dbounded.fullDataOfBranchFullDataW1025
+#check Dbounded.directBoundedLeftCalculusOfBranchFullDataW1025
+#check Dbounded.boundedDerivedInfinityCategoryOfBranchFullDataW1025
+
+theorem originalFourTaskContract_branchFullDataToComponentFields_inputCountW1025 :
+    Dbounded.branchFullDataInputNamesW1025.length = 1 :=
+  Dbounded.branchFullDataInputNamesW1025_count
+
+theorem originalFourTaskContract_branchFullDataToComponentFields_nonterminalW1025 :
+    (let state :=
+        Dbounded.currentMetrizableBranchFullDataToComponentFieldsDirectRouteStateW1025;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW1025BranchFullDataToComponentFieldsDirectRoute_productSuccess
+
 end LeanLCAExactChallenge
