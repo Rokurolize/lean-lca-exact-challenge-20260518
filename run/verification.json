@@ -1,158 +1,166 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-27T01:25:18Z",
-  "source_tree_hash": "83d758e198466cf2674dd41631981f097f5c471d82740639242f4fa1f1975f56",
+  "generated_utc": "2026-05-27T01:49:30Z",
+  "source_tree_hash": "e36514fa0feac67b726b7f55e7f90b8398cfbde4d3d3d6d3dd7b1f3a40e553bf",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "latest_verified_increment": "W980 endpoint strict-exact family to W974 endpoint kernel-cokernel provider route",
+  "latest_verified_increment": "W981 unit mapping-cone strict-exact family to W976 unit kernel-cokernel provider route",
   "remaining_explicit_inputs": 7,
-  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route",
+  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetNoUnivClosedEmbeddingEndpointStrictExactLocalizedUnitDataRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetNoUnivClosedEmbeddingEndpointStrictExactLocalizedUnitStrictExactIsoDataRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_focused_lean.log",
-      "note": "focused Lean check for the W980 endpoint-strict full-data route"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_focused_lean.log",
+      "note": "focused Lean check for the W981 unit-strict route"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetNoUnivClosedEmbeddingEndpointStrictExactLocalizedUnitDataRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetNoUnivClosedEmbeddingEndpointStrictExactLocalizedUnitStrictExactIsoDataRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_named_module_build.log",
-      "note": "named Lake target for the W980 helper module; inherited long-name style warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_named_module_build.log",
+      "note": "named Lake target for the W981 helper module; inherited long-name style warnings remain nonfatal"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_root_import.log",
-      "note": "root import surface includes the W980 route after the module was built"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_root_import.log",
+      "note": "root import surface includes the W981 route after the module was built"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_product_success_declarations.log",
-      "note": "checks W980 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_product_success_declarations.log",
+      "note": "checks W981 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_original_four_audit.log",
-      "note": "records W980 as nonterminal original-four-task evidence with seven provider-level inputs"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_original_four_audit.log",
+      "note": "records W981 as nonterminal original-four-task evidence with seven provider-level inputs"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_required_declarations.log",
-      "note": "required public declarations include W980 route checks"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_required_declarations.log",
+      "note": "required public declarations include W981 route checks"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_full_lake_build.log",
-      "note": "full build after W980 source, audit, ledger, report, and metadata edits; inherited long-line warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_full_lake_build.log",
+      "note": "full build after W981 source, audit, ledger, route log, report, and metadata edits; inherited long-line warnings remain nonfatal"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_forbidden_lean_token_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_forbidden_lean_token_scan.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live true-valued product claim scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_product_success_true_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_product_success_true_scan.log",
       "note": "no true-valued product completion claim in live Lean/audit/terminal/run/report surfaces"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_git_diff_check.log",
-      "note": "whitespace check after W980 source, audit, ledger, report, and metadata edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_git_diff_check.log",
+      "note": "whitespace check after W981 source, audit, ledger, report, and metadata edits"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html --require-linked-artifacts",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_html_check_report.log",
       "note": "local report parse/style/secret/link checks passed"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
-      "note": "browser DOM evidence verifies W980 summary values"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
+      "note": "browser DOM evidence verifies W981 summary values"
     },
     {
       "command": "python3 -m json.tool run/verification.json terminal_outcome/terminal_outcome.json manifest.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_json_validation.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_json_validation.log",
       "note": "JSON parse validation for verification, terminal outcome, and manifest metadata"
     },
     {
       "command": "source_tree_hash consistency check via audit/external_audit.py",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_source_tree_hash_consistency.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_source_tree_hash_consistency.log",
       "note": "recorded run/verification source_tree_hash equals the audit script recomputation"
     },
     {
-      "command": "W980 manifest refresh",
+      "command": "W981 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_manifest_refresh.log",
-      "note": "manifest regenerated after W980 metadata and report refresh"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_manifest_refresh.log",
+      "note": "manifest regenerated after W981 metadata and report refresh"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_contract_audit.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_contract_audit.log",
       "note": "immutable original-four-task contract accepts the nonterminal outcome as not complete"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T011800Z_codex_parent_w980_endpoint_strict_exact_full_data_route/logs/w980_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T013300Z_codex_parent_w981_unit_strict_exact_iso_route/logs/w981_external_audit_nonterminal_expected.log",
       "note": "expected nonterminal failure: terminal_outcome.outcome is not product_success"
     }
   ],
   "implemented_declarations": [
-    "Dbounded.BoundaryRelationTargetNoUnivClosedEmbeddingEndpointStrictExactLocalizedUnitDataProviderW980",
-    "Dbounded.endpointKernelCokernelTopDataOfEndpointStrictExactW980",
-    "Dbounded.fullDataOfEndpointStrictExactW980",
-    "Dbounded.componentFieldsOfEndpointStrictExactW980",
-    "Dbounded.endpointStrictExactOfEndpointStrictExactW980",
-    "Dbounded.unitMappingConeAlgebraicExactOfEndpointStrictExactW980",
-    "Dbounded.unitMappingConeStrictExactOfEndpointStrictExactW980",
-    "Dbounded.unitMappingConeIsoNonemptyOfEndpointStrictExactW980",
-    "Dbounded.directBoundedLeftCalculusOfEndpointStrictExactW980",
-    "Dbounded.boundedDerivedInfinityCategoryOfEndpointStrictExactW980",
-    "Dbounded.endpointStrictExactLocalizedUnitFullDataInputNamesW980_count",
-    "Dbounded.currentW980EndpointStrictExactLocalizedUnitFullDataRoute_productSuccess",
-    "originalFourTaskContract_endpointStrictExactLocalizedUnitFullData_inputCountW980",
-    "originalFourTaskContract_endpointStrictExactLocalizedUnitFullData_nonterminalW980"
+    "Dbounded.UnitMappingConeStrictExactIsoDataProviderW981",
+    "Dbounded.unitKernelCokernelTopIsoDataOfUnitStrictExactIsoW981",
+    "Dbounded.BoundaryRelationTargetNoUnivClosedEmbeddingEndpointStrictExactLocalizedUnitStrictExactIsoDataProviderW981",
+    "Dbounded.fullDataOfUnitStrictExactIsoW981",
+    "Dbounded.w980LeavesOfUnitStrictExactIsoW981",
+    "Dbounded.componentFieldsOfUnitStrictExactIsoW981",
+    "Dbounded.endpointStrictExactOfUnitStrictExactIsoW981",
+    "Dbounded.unitMappingConeAlgebraicExactOfUnitStrictExactIsoW981",
+    "Dbounded.unitMappingConeStrictExactOfUnitStrictExactIsoW981",
+    "Dbounded.unitMappingConeIsoNonemptyOfUnitStrictExactIsoW981",
+    "Dbounded.directBoundedLeftCalculusOfUnitStrictExactIsoW981",
+    "Dbounded.boundedDerivedInfinityCategoryOfUnitStrictExactIsoW981",
+    "Dbounded.unitStrictExactIsoDataInputNamesW981_count",
+    "Dbounded.endpointUnitStrictExactLocalizedUnitFullDataInputNamesW981_count",
+    "Dbounded.currentW981EndpointUnitStrictExactLocalizedUnitFullDataRoute_productSuccess",
+    "originalFourTaskContract_unitStrictExactIsoData_inputCountW981",
+    "originalFourTaskContract_endpointUnitStrictExactLocalizedUnitFullData_inputCountW981",
+    "originalFourTaskContract_endpointUnitStrictExactLocalizedUnitFullData_nonterminalW981"
   ],
   "required_declarations_checked": [
-    "Dbounded.BoundaryRelationTargetNoUnivClosedEmbeddingEndpointStrictExactLocalizedUnitDataProviderW980",
-    "Dbounded.endpointKernelCokernelTopDataOfEndpointStrictExactW980",
-    "Dbounded.fullDataOfEndpointStrictExactW980",
-    "Dbounded.componentFieldsOfEndpointStrictExactW980",
-    "Dbounded.endpointStrictExactOfEndpointStrictExactW980",
-    "Dbounded.unitMappingConeAlgebraicExactOfEndpointStrictExactW980",
-    "Dbounded.unitMappingConeStrictExactOfEndpointStrictExactW980",
-    "Dbounded.unitMappingConeIsoNonemptyOfEndpointStrictExactW980",
-    "Dbounded.directBoundedLeftCalculusOfEndpointStrictExactW980",
-    "Dbounded.boundedDerivedInfinityCategoryOfEndpointStrictExactW980",
-    "Dbounded.endpointStrictExactLocalizedUnitFullDataInputNamesW980_count",
-    "Dbounded.currentW980EndpointStrictExactLocalizedUnitFullDataRoute_productSuccess",
-    "originalFourTaskContract_endpointStrictExactLocalizedUnitFullData_inputCountW980",
-    "originalFourTaskContract_endpointStrictExactLocalizedUnitFullData_nonterminalW980"
+    "Dbounded.UnitMappingConeStrictExactIsoDataProviderW981",
+    "Dbounded.unitKernelCokernelTopIsoDataOfUnitStrictExactIsoW981",
+    "Dbounded.BoundaryRelationTargetNoUnivClosedEmbeddingEndpointStrictExactLocalizedUnitStrictExactIsoDataProviderW981",
+    "Dbounded.fullDataOfUnitStrictExactIsoW981",
+    "Dbounded.w980LeavesOfUnitStrictExactIsoW981",
+    "Dbounded.componentFieldsOfUnitStrictExactIsoW981",
+    "Dbounded.endpointStrictExactOfUnitStrictExactIsoW981",
+    "Dbounded.unitMappingConeAlgebraicExactOfUnitStrictExactIsoW981",
+    "Dbounded.unitMappingConeStrictExactOfUnitStrictExactIsoW981",
+    "Dbounded.unitMappingConeIsoNonemptyOfUnitStrictExactIsoW981",
+    "Dbounded.directBoundedLeftCalculusOfUnitStrictExactIsoW981",
+    "Dbounded.boundedDerivedInfinityCategoryOfUnitStrictExactIsoW981",
+    "Dbounded.unitStrictExactIsoDataInputNamesW981_count",
+    "Dbounded.endpointUnitStrictExactLocalizedUnitFullDataInputNamesW981_count",
+    "Dbounded.currentW981EndpointUnitStrictExactLocalizedUnitFullDataRoute_productSuccess",
+    "originalFourTaskContract_unitStrictExactIsoData_inputCountW981",
+    "originalFourTaskContract_endpointUnitStrictExactLocalizedUnitFullData_inputCountW981",
+    "originalFourTaskContract_endpointUnitStrictExactLocalizedUnitFullData_nonterminalW981"
   ],
   "notes": [
-    "W980 is intentionally nonterminal: it constructs the W974 endpoint kernel/cokernel-top provider from one endpoint strict short-exact family, but seven provider-level inputs remain explicit assumptions.",
-    "This is a local endpoint-surface reduction from four W974 endpoint fields to one strict-exact family; it does not construct boundary/relation, target, closedness, localized-adjunction, normalized-source, or unit mapping-cone providers.",
+    "W981 is intentionally nonterminal: it constructs the W976 unit mapping-cone kernel/cokernel-top provider from model, unit strict short-exact family, and chosen isomorphism data, but seven provider-level inputs remain explicit assumptions.",
+    "This is a local unit-surface reduction from the four W976 unit kernel/cokernel-top fields to one unit strict-exact family; it does not construct boundary/relation, target, closedness, localized-adjunction, normalized-source, unit model, or unit isomorphism providers.",
     "Do not call update_goal(status=\"complete\") until the immutable original four-task contract has product-success Lean, audit, packet, and terminal-outcome evidence."
   ]
 }
