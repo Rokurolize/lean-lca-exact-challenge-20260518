@@ -3034,4 +3034,32 @@ theorem originalFourTaskContract_targetSurjectiveCompactTargetProvider_nontermin
       false :=
   Dbounded.currentW995TargetSurjectiveCompactTargetProviderRoute_productSuccess
 
+#check Dbounded.BoundaryRelationTargetSurjectiveCompactFullDataProviderW996
+#check Dbounded.targetSurjectiveCompactDataOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.boundaryRelationDataOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.targetClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitDataOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.targetProviderDataOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.normalizedSourceEndpointDataOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.fullDataOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.w981LeavesOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.componentFieldsOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.endpointStrictExactOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.unitMappingConeAlgebraicExactOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.unitMappingConeStrictExactOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.unitMappingConeIsoNonemptyOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.directBoundedLeftCalculusOfTargetSurjectiveCompactFullDataW996
+#check Dbounded.boundedDerivedInfinityCategoryOfTargetSurjectiveCompactFullDataW996
+
+theorem originalFourTaskContract_targetSurjectiveCompactFullData_inputCountW996 :
+    Dbounded.targetSurjectiveCompactFullDataInputNamesW996.length =
+      2 :=
+  Dbounded.targetSurjectiveCompactFullDataInputNamesW996_count
+
+theorem originalFourTaskContract_targetSurjectiveCompactFullData_nonterminalW996 :
+    (let state :=
+        Dbounded.currentMetrizableTargetSurjectiveCompactFullDataRouteStateW996;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW996TargetSurjectiveCompactFullDataRoute_productSuccess
+
 end LeanLCAExactChallenge
