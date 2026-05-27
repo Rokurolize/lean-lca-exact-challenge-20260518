@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1012 is the latest checked nonterminal increment. It constructs W1011's W982 localized-unit-choice surface from the W1003 endpoint-localized-unit surface, then feeds W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998. The explicit frontier is the 5 W1003 endpoint-localized-unit provider inputs. Product success remains false.
+W1013 is the latest checked nonterminal increment. It constructs W1012's W1003 endpoint-localized-unit surface from the W1004 normalized-source/endpoint-localized-unit surface, then feeds W1012/W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998. The explicit frontier is the 4 W1004 normalized-source/endpoint-localized-unit provider inputs. Product success remains false.
