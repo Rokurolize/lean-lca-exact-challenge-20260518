@@ -3782,4 +3782,31 @@ theorem originalFourTaskContract_unitStrictExactIsoToComponentFields_nonterminal
       false :=
   Dbounded.currentW1019UnitStrictExactIsoDataToComponentFieldsDirectRoute_productSuccess
 
+#check Dbounded.unitStrictExactIsoDataOfLocalizedUnitChoiceW1020
+#check Dbounded.componentFieldsOfLocalizedUnitChoiceW1020
+#check Dbounded.currentFullDataProviderOfLocalizedUnitChoiceW1020
+#check Dbounded.branchFullDataProviderOfLocalizedUnitChoiceW1020
+#check Dbounded.targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfLocalizedUnitChoiceW1020
+#check Dbounded.targetClosedEmbeddingClosednessDataProviderOfLocalizedUnitChoiceW1020
+#check Dbounded.normalizedSourceEndpointLocalizedUnitDataProviderOfLocalizedUnitChoiceW1020
+#check Dbounded.localizedUnitChoiceDataOfLocalizedUnitChoiceW1020
+#check Dbounded.componentFieldsOfComponentFieldsOfLocalizedUnitChoiceW1020
+#check Dbounded.currentFullDataOfLocalizedUnitChoiceW1020
+#check Dbounded.branchFullDataOfLocalizedUnitChoiceW1020
+#check Dbounded.targetSurjectiveCompactDataOfLocalizedUnitChoiceW1020
+#check Dbounded.fullDataOfLocalizedUnitChoiceW1020
+#check Dbounded.directBoundedLeftCalculusOfLocalizedUnitChoiceW1020
+#check Dbounded.boundedDerivedInfinityCategoryOfLocalizedUnitChoiceW1020
+
+theorem originalFourTaskContract_localizedUnitChoiceToComponentFields_inputCountW1020 :
+    Dbounded.localizedUnitChoiceInputNamesW1020.length = 6 :=
+  Dbounded.localizedUnitChoiceInputNamesW1020_count
+
+theorem originalFourTaskContract_localizedUnitChoiceToComponentFields_nonterminalW1020 :
+    (let state :=
+        Dbounded.currentMetrizableLocalizedUnitChoiceToComponentFieldsDirectRouteStateW1020;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW1020LocalizedUnitChoiceToComponentFieldsDirectRoute_productSuccess
+
 end LeanLCAExactChallenge
