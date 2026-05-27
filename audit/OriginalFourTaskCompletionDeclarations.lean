@@ -3809,4 +3809,32 @@ theorem originalFourTaskContract_localizedUnitChoiceToComponentFields_nontermina
       false :=
   Dbounded.currentW1020LocalizedUnitChoiceToComponentFieldsDirectRoute_productSuccess
 
+#check Dbounded.localizedUnitChoiceDataOfEndpointLocalizedUnitW1021
+#check Dbounded.unitStrictExactIsoDataOfEndpointLocalizedUnitW1021
+#check Dbounded.componentFieldsOfEndpointLocalizedUnitW1021
+#check Dbounded.currentFullDataProviderOfEndpointLocalizedUnitW1021
+#check Dbounded.branchFullDataProviderOfEndpointLocalizedUnitW1021
+#check Dbounded.targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfEndpointLocalizedUnitW1021
+#check Dbounded.targetClosedEmbeddingClosednessDataProviderOfEndpointLocalizedUnitW1021
+#check Dbounded.normalizedSourceEndpointLocalizedUnitDataProviderOfEndpointLocalizedUnitW1021
+#check Dbounded.localizedUnitChoiceDataOfLocalizedUnitChoiceOfEndpointLocalizedUnitW1021
+#check Dbounded.componentFieldsOfComponentFieldsOfEndpointLocalizedUnitW1021
+#check Dbounded.currentFullDataOfEndpointLocalizedUnitW1021
+#check Dbounded.branchFullDataOfEndpointLocalizedUnitW1021
+#check Dbounded.targetSurjectiveCompactDataOfEndpointLocalizedUnitW1021
+#check Dbounded.fullDataOfEndpointLocalizedUnitW1021
+#check Dbounded.directBoundedLeftCalculusOfEndpointLocalizedUnitW1021
+#check Dbounded.boundedDerivedInfinityCategoryOfEndpointLocalizedUnitW1021
+
+theorem originalFourTaskContract_endpointLocalizedUnitToComponentFields_inputCountW1021 :
+    Dbounded.endpointLocalizedUnitInputNamesW1021.length = 5 :=
+  Dbounded.endpointLocalizedUnitInputNamesW1021_count
+
+theorem originalFourTaskContract_endpointLocalizedUnitToComponentFields_nonterminalW1021 :
+    (let state :=
+        Dbounded.currentMetrizableEndpointLocalizedUnitToComponentFieldsDirectRouteStateW1021;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW1021EndpointLocalizedUnitToComponentFieldsDirectRoute_productSuccess
+
 end LeanLCAExactChallenge
