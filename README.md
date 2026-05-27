@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1016 is the latest checked nonterminal increment. It constructs W1015's W1006 target/closed-embedding-closedness/normalized-source/endpoint-localized surface from the W1007 branch-full-data surface, then feeds W1015/W1014/W1013/W1012/W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998. The explicit frontier is the 1 W1007 branch-specific full-data provider input. Product success remains false.
+W1017 is the latest checked nonterminal increment. It constructs W1016's W1007 branch-full-data surface from the W1008 current-full-data surface, then feeds W1016/W1015/W1014/W1013/W1012/W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998. The explicit frontier is the 1 W1008 current full-data provider input. Product success remains false.
