@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1010 is the latest checked nonterminal increment. It constructs W1009's W971 component-field surface from the W981 endpoint/unit strict-exact provider surface through W1001, then feeds W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998. The explicit frontier is the 7 W981 endpoint/unit strict-exact provider inputs. Product success remains false.
+W1011 is the latest checked nonterminal increment. It constructs W1010's W981 endpoint/unit strict-exact provider surface from the W982 localized-unit-choice surface, then feeds W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998. The explicit frontier is the 6 W982 localized-unit-choice provider inputs. Product success remains false.
