@@ -3154,4 +3154,32 @@ theorem originalFourTaskContract_currentFullData_nonterminalW999 :
       false :=
   Dbounded.currentW999CurrentFullDataRoute_productSuccess
 
+#check Dbounded.currentFullDataOfComponentFieldsW1000
+#check Dbounded.branchFullDataOfComponentFieldsW1000
+#check Dbounded.targetSurjectiveCompactDataOfComponentFieldsW1000
+#check Dbounded.targetSurjectiveCompactBranchFullDataOfComponentFieldsW1000
+#check Dbounded.targetProviderDataOfComponentFieldsW1000
+#check Dbounded.normalizedSourceEndpointDataOfComponentFieldsW1000
+#check Dbounded.fullDataOfComponentFieldsW1000
+#check Dbounded.w981LeavesOfComponentFieldsW1000
+#check Dbounded.componentFieldsOfComponentFieldsW1000
+#check Dbounded.endpointStrictExactOfComponentFieldsW1000
+#check Dbounded.unitMappingConeAlgebraicExactOfComponentFieldsW1000
+#check Dbounded.unitMappingConeStrictExactOfComponentFieldsW1000
+#check Dbounded.unitMappingConeIsoNonemptyOfComponentFieldsW1000
+#check Dbounded.directBoundedLeftCalculusOfComponentFieldsW1000
+#check Dbounded.boundedDerivedInfinityCategoryOfComponentFieldsW1000
+
+theorem originalFourTaskContract_componentFields_inputCountW1000 :
+    Dbounded.componentFieldsInputNamesW1000.length =
+      18 :=
+  Dbounded.componentFieldsInputNamesW1000_count
+
+theorem originalFourTaskContract_componentFields_nonterminalW1000 :
+    (let state :=
+        Dbounded.currentMetrizableComponentFieldsRouteStateW1000;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW1000ComponentFieldsRoute_productSuccess
+
 end LeanLCAExactChallenge
