@@ -3182,4 +3182,32 @@ theorem originalFourTaskContract_componentFields_nonterminalW1000 :
       false :=
   Dbounded.currentW1000ComponentFieldsRoute_productSuccess
 
+#check Dbounded.componentFieldsOfUnitStrictExactIsoDataW1001
+#check Dbounded.currentFullDataOfUnitStrictExactIsoDataW1001
+#check Dbounded.branchFullDataOfUnitStrictExactIsoDataW1001
+#check Dbounded.targetSurjectiveCompactDataOfUnitStrictExactIsoDataW1001
+#check Dbounded.targetSurjectiveCompactBranchFullDataOfUnitStrictExactIsoDataW1001
+#check Dbounded.targetProviderDataOfUnitStrictExactIsoDataW1001
+#check Dbounded.normalizedSourceEndpointDataOfUnitStrictExactIsoDataW1001
+#check Dbounded.fullDataOfUnitStrictExactIsoDataW1001
+#check Dbounded.w977LeavesOfUnitStrictExactIsoDataW1001
+#check Dbounded.endpointStrictExactOfUnitStrictExactIsoDataW1001
+#check Dbounded.unitMappingConeAlgebraicExactOfUnitStrictExactIsoDataW1001
+#check Dbounded.unitMappingConeStrictExactOfUnitStrictExactIsoDataW1001
+#check Dbounded.unitMappingConeIsoNonemptyOfUnitStrictExactIsoDataW1001
+#check Dbounded.directBoundedLeftCalculusOfUnitStrictExactIsoDataW1001
+#check Dbounded.boundedDerivedInfinityCategoryOfUnitStrictExactIsoDataW1001
+
+theorem originalFourTaskContract_unitStrictExactIsoData_inputCountW1001 :
+    Dbounded.unitStrictExactIsoDataInputNamesW1001.length =
+      7 :=
+  Dbounded.unitStrictExactIsoDataInputNamesW1001_count
+
+theorem originalFourTaskContract_unitStrictExactIsoData_nonterminalW1001 :
+    (let state :=
+        Dbounded.currentMetrizableUnitStrictExactIsoDataRouteStateW1001;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW1001UnitStrictExactIsoDataRoute_productSuccess
+
 end LeanLCAExactChallenge

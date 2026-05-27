@@ -4,6 +4,8 @@
 
 この成果物はproduct successではない。更新後のgoalではsource-patch-needed handoffで完了できないため、このpacketは歴史的な調査証跡と未完了診断として読む。
 
+2026-05-27のW1001更新では、W1000で残っていたW971の18個のcomponent field入力を、既存W981のendpoint/unit-strict-exact provider surfaceから構成してからW1000へ渡すrouteを追加した。これにより最新の非終端frontierは、W971 raw component fieldsではなく、W730 boundary/relation data、W944 target no-univ data、W973 closed-embedding closedness data、endpoint strict short-exact family、W975 localized-adjunction data、W948 normalized-source-triangulation data、W981 unit mapping-cone strict-exact/isomorphism dataの7項目へ戻った。ただしこれら7項目自体はまだ仮定であり、original four-task completion witness、product-success terminal outcome、clean review packetは未完成なので、product successは引き続きfalseである。
+
 2026-05-27のW1000更新では、W999で残っていたW977 current full-data provider入力を、既存W978の構成済み経路でW971 component-field surfaceから組み立ててからW999へ渡すrouteを追加した。これにより最新の非終端frontierは、W977 providerではなくW971の18個のcomponent field、すなわちboundary/relation、target no-univ、closed-embedding closedness、endpoint kernel/cokernel-top、localized adjunction、normalized-source、unit mapping-cone component fieldsへ開いた。ただしこれらのcomponent field自体はまだ仮定であり、original four-task completion witness、product-success terminal outcome、clean review packetは未完成なので、product successは引き続きfalseである。
 
 2026-05-27のW999更新では、W998で残っていたW987 branch-specific full-data provider入力を、既存のW977 current full-data providerからLean内で再構成した。W977のW976 unit mapping-cone dataからW981 strict-exact/isomorphism dataを作り、W989でW945 localized-unit dataを回収し、W950、W984、W986、W987を順に組み立てたうえでW998へ渡す。これにより最新の非終端frontierはW977 current full-data provider一つへ戻ったが、そのW977 provider自体はまだ仮定であり、original four-task completion witness、product-success terminal outcome、clean review packetは未完成なので、product successは引き続きfalseである。
