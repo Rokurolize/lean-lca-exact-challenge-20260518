@@ -1,149 +1,149 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-27T00:06:04Z",
-  "source_tree_hash": "e428e9baf8b7843e9cd80f356783bb71bf22174de522aaba195a4606bc035832",
+  "generated_utc": "2026-05-27T00:16:37Z",
+  "source_tree_hash": "5f6a6fc0ad8618e797bb678fb66d54d86c5b1688fbd83370f40916e665410ac7",
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "latest_verified_increment": "W974 endpoint kernel-cokernel-top data-to-W973 route",
-  "remaining_explicit_inputs": 13,
-  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route",
+  "latest_verified_increment": "W975 localized-adjunction data-to-W974 route",
+  "remaining_explicit_inputs": 12,
+  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsRoute.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsRoute.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_focused_lean.log",
-      "note": "focused Lean check for the W974 endpoint kernel-cokernel-top data route"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_focused_lean.log",
+      "note": "focused Lean check for the W975 localized-adjunction data route"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsRoute",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsRoute",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_named_module_build.log",
-      "note": "named Lake target for the W974 helper module; inherited long-name style warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_named_module_build.log",
+      "note": "named Lake target for the W975 helper module; inherited long-name style warnings remain nonfatal"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_root_import.log",
-      "note": "root import surface includes the W974 route after the module was built"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_root_import.log",
+      "note": "root import surface includes the W975 route after the module was built"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_product_success_declarations.log",
-      "note": "checks W974 declarations while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_product_success_declarations.log",
+      "note": "checks W975 declarations while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_original_four_audit.log",
-      "note": "records W974 as nonterminal original-four-task evidence with 13 explicit inputs"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_original_four_audit.log",
+      "note": "records W975 as nonterminal original-four-task evidence with 12 explicit inputs"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_required_declarations.log",
-      "note": "required public declarations include W974 route checks"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_required_declarations.log",
+      "note": "required public declarations include W975 route checks"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_full_lake_build.log",
-      "note": "full build after W974 source, audit, ledger, report, and metadata edits; inherited long-line warnings remain nonfatal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_full_lake_build.log",
+      "note": "full build after W975 source, audit, ledger, report, and metadata edits; inherited long-line warnings and existing info output remain nonfatal"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_forbidden_lean_token_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_forbidden_lean_token_scan.log",
       "note": "no forbidden Lean tokens under LeanLCAExactChallenge"
     },
     {
       "command": "strict live true-valued product claim scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_product_success_true_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_product_success_true_scan.log",
       "note": "no true-valued product completion claim in live Lean/audit/terminal/run/report surfaces"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_git_diff_check.log",
-      "note": "whitespace check after W974 source, audit, ledger, report, and metadata edits"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_git_diff_check.log",
+      "note": "whitespace check after W975 source, audit, ledger, report, and metadata edits"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/apply_report_style.py --html scratch-log.html",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_html_apply_style.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_html_apply_style.log",
       "note": "canonical local report CSS injected"
     },
     {
       "command": "python3 /home/roku/.agents/skills/html-progress-report/scripts/check_report.py --html scratch-log.html --require-linked-artifacts",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_html_check_report.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_html_check_report.log",
       "note": "local report parse/style/secret/link checks passed"
     },
     {
       "command": "python3 /home/roku/.agents/skills/browser-evidence-check/scripts/render_static_report.py --html scratch-log.html ...",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
-      "note": "browser DOM evidence verifies W974 summary values"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/browser_evidence/scratch_log/browser_evidence_fidelity.json",
+      "note": "browser DOM evidence verifies W975 summary values"
     },
     {
       "command": "python3 -m json.tool run/verification.json terminal_outcome/terminal_outcome.json manifest.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_json_validation.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_json_validation.log",
       "note": "JSON parse validation for verification, terminal outcome, and manifest metadata"
     },
     {
       "command": "source_tree_hash consistency check via audit/external_audit.py",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_source_tree_hash_consistency.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_source_tree_hash_consistency.log",
       "note": "recorded run/verification source_tree_hash equals the audit script recomputation"
     },
     {
-      "command": "W974 manifest refresh",
+      "command": "W975 manifest refresh",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_manifest_refresh.log",
-      "note": "manifest regenerated after W974 metadata and report refresh"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_manifest_refresh.log",
+      "note": "manifest regenerated after W975 metadata and report refresh"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root $PWD --contract ... --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_contract_audit.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_contract_audit.log",
       "note": "immutable original-four-task contract accepts the nonterminal outcome as not complete"
     },
     {
       "command": "python3 audit/external_audit.py --root $PWD --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260526T235205Z_codex_parent_w974_endpoint_kernel_cokernel_top_data_route/logs/w974_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260527T000920Z_codex_parent_w975_localized_adjunction_data_route/logs/w975_external_audit_nonterminal_expected.log",
       "note": "expected nonterminal failure: terminal_outcome.outcome is not product_success"
     }
   ],
   "implemented_declarations": [
-    "Dbounded.EndpointKernelCokernelTopDataProviderW974",
-    "Dbounded.endpointStrictExactOfEndpointKernelCokernelTopDataW974",
-    "Dbounded.w973LeavesOfEndpointKernelCokernelTopDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW974",
-    "Dbounded.unitMappingConeAlgebraicExactOfUnitKernelEqualityW974",
-    "Dbounded.unitMappingConeStrictExactOfUnitKernelCokernelTopW974",
-    "Dbounded.unitMappingConeIsoNonemptyOfUnitIsoChoiceW974",
-    "Dbounded.directBoundedLeftCalculusOfEndpointKernelCokernelTopDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW974",
-    "Dbounded.boundedDerivedInfinityCategoryOfEndpointKernelCokernelTopDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW974",
-    "Dbounded.closedEmbeddingClosednessEndpointKernelCokernelTopUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataIsoComponentFieldsInputNamesW974_count",
-    "Dbounded.currentW974ClosedEmbeddingClosednessEndpointKernelCokernelTopUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataIsoComponentFieldsRoute_productSuccess",
-    "originalFourTaskContract_endpointKernelCokernelTopUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataIsoComponentFields_inputCountW974",
-    "originalFourTaskContract_endpointKernelCokernelTopUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataIsoComponentFields_nonterminalW974"
+    "Dbounded.BoundedHomotopyLocalizedAdjunctionDataProviderW975",
+    "Dbounded.w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975",
+    "Dbounded.endpointStrictExactOfLocalizedAdjunctionDataW975",
+    "Dbounded.unitMappingConeAlgebraicExactOfLocalizedAdjunctionDataW975",
+    "Dbounded.unitMappingConeStrictExactOfLocalizedAdjunctionDataW975",
+    "Dbounded.unitMappingConeIsoNonemptyOfLocalizedAdjunctionDataW975",
+    "Dbounded.directBoundedLeftCalculusOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975",
+    "Dbounded.boundedDerivedInfinityCategoryOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975",
+    "Dbounded.closedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldsInputNamesW975_count",
+    "Dbounded.currentW975ClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldsRoute_productSuccess",
+    "originalFourTaskContract_endpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFields_inputCountW975",
+    "originalFourTaskContract_endpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFields_nonterminalW975"
   ],
   "required_declarations_checked": [
-    "Dbounded.EndpointKernelCokernelTopDataProviderW974",
-    "Dbounded.endpointStrictExactOfEndpointKernelCokernelTopDataW974",
-    "Dbounded.w973LeavesOfEndpointKernelCokernelTopDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW974",
-    "Dbounded.unitMappingConeAlgebraicExactOfUnitKernelEqualityW974",
-    "Dbounded.unitMappingConeStrictExactOfUnitKernelCokernelTopW974",
-    "Dbounded.unitMappingConeIsoNonemptyOfUnitIsoChoiceW974",
-    "Dbounded.directBoundedLeftCalculusOfEndpointKernelCokernelTopDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW974",
-    "Dbounded.boundedDerivedInfinityCategoryOfEndpointKernelCokernelTopDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW974",
-    "Dbounded.closedEmbeddingClosednessEndpointKernelCokernelTopUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataIsoComponentFieldsInputNamesW974_count",
-    "Dbounded.currentW974ClosedEmbeddingClosednessEndpointKernelCokernelTopUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataIsoComponentFieldsRoute_productSuccess",
-    "originalFourTaskContract_endpointKernelCokernelTopUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataIsoComponentFields_inputCountW974",
-    "originalFourTaskContract_endpointKernelCokernelTopUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataIsoComponentFields_nonterminalW974"
+    "Dbounded.BoundedHomotopyLocalizedAdjunctionDataProviderW975",
+    "Dbounded.w974LeavesOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975",
+    "Dbounded.endpointStrictExactOfLocalizedAdjunctionDataW975",
+    "Dbounded.unitMappingConeAlgebraicExactOfLocalizedAdjunctionDataW975",
+    "Dbounded.unitMappingConeStrictExactOfLocalizedAdjunctionDataW975",
+    "Dbounded.unitMappingConeIsoNonemptyOfLocalizedAdjunctionDataW975",
+    "Dbounded.directBoundedLeftCalculusOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975",
+    "Dbounded.boundedDerivedInfinityCategoryOfLocalizedAdjunctionDataBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataNormalizedSourceTriangulationDataUnitKernelCokernelTopIsoComponentFieldsW975",
+    "Dbounded.closedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldsInputNamesW975_count",
+    "Dbounded.currentW975ClosedEmbeddingClosednessEndpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFieldsRoute_productSuccess",
+    "originalFourTaskContract_endpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFields_inputCountW975",
+    "originalFourTaskContract_endpointKernelCokernelTopLocalizedAdjunctionUnitKernelCokernelTopBoundaryRelationTargetNoUnivDataClosedEmbeddingClosednessDataEndpointKernelCokernelTopDataLocalizedAdjunctionDataNormalizedSourceTriangulationDataIsoComponentFields_nonterminalW975"
   ]
 }
