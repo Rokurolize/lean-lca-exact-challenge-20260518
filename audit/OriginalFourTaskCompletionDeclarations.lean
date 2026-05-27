@@ -3210,4 +3210,31 @@ theorem originalFourTaskContract_unitStrictExactIsoData_nonterminalW1001 :
       false :=
   Dbounded.currentW1001UnitStrictExactIsoDataRoute_productSuccess
 
+#check Dbounded.branchFullDataOfLocalizedUnitChoiceW1002
+#check Dbounded.targetSurjectiveCompactDataOfLocalizedUnitChoiceW1002
+#check Dbounded.targetSurjectiveCompactBranchFullDataOfLocalizedUnitChoiceW1002
+#check Dbounded.targetProviderDataOfLocalizedUnitChoiceW1002
+#check Dbounded.normalizedSourceEndpointDataOfLocalizedUnitChoiceW1002
+#check Dbounded.fullDataOfLocalizedUnitChoiceW1002
+#check Dbounded.w977LeavesOfLocalizedUnitChoiceW1002
+#check Dbounded.componentFieldsOfLocalizedUnitChoiceW1002
+#check Dbounded.endpointStrictExactOfLocalizedUnitChoiceW1002
+#check Dbounded.unitMappingConeAlgebraicExactOfLocalizedUnitChoiceW1002
+#check Dbounded.unitMappingConeStrictExactOfLocalizedUnitChoiceW1002
+#check Dbounded.unitMappingConeIsoNonemptyOfLocalizedUnitChoiceW1002
+#check Dbounded.directBoundedLeftCalculusOfLocalizedUnitChoiceW1002
+#check Dbounded.boundedDerivedInfinityCategoryOfLocalizedUnitChoiceW1002
+
+theorem originalFourTaskContract_localizedUnitChoice_inputCountW1002 :
+    Dbounded.localizedUnitChoiceInputNamesW1002.length =
+      6 :=
+  Dbounded.localizedUnitChoiceInputNamesW1002_count
+
+theorem originalFourTaskContract_localizedUnitChoice_nonterminalW1002 :
+    (let state :=
+        Dbounded.currentMetrizableLocalizedUnitChoiceTargetSurjectiveCompactRouteStateW1002;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW1002LocalizedUnitChoiceRoute_productSuccess
+
 end LeanLCAExactChallenge
