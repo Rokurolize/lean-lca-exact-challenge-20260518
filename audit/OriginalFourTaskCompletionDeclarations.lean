@@ -3983,4 +3983,35 @@ theorem originalFourTaskContract_currentFullDataToComponentFields_nonterminalW10
       false :=
   Dbounded.currentW1026CurrentFullDataToComponentFieldsDirectRoute_productSuccess
 
+#check Dbounded.currentFullDataProviderOfComponentFieldsW1027
+#check Dbounded.branchFullDataProviderOfComponentFieldsW1027
+#check Dbounded.targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfComponentFieldsW1027
+#check Dbounded.targetClosedEmbeddingClosednessDataProviderOfComponentFieldsW1027
+#check Dbounded.normalizedSourceEndpointLocalizedUnitDataProviderOfComponentFieldsW1027
+#check Dbounded.endpointLocalizedUnitDataProviderOfComponentFieldsW1027
+#check Dbounded.localizedUnitChoiceDataOfComponentFieldsW1027
+#check Dbounded.unitStrictExactIsoDataOfComponentFieldsW1027
+#check Dbounded.componentFieldsOfComponentFieldsW1027
+#check Dbounded.currentFullDataProviderOfCurrentFullDataOfComponentFieldsW1027
+#check Dbounded.branchFullDataProviderOfBranchFullDataOfComponentFieldsW1027
+#check Dbounded.localizedUnitChoiceDataOfLocalizedUnitChoiceOfComponentFieldsW1027
+#check Dbounded.componentFieldsOfComponentFieldsOfComponentFieldsW1027
+#check Dbounded.currentFullDataOfComponentFieldsW1027
+#check Dbounded.branchFullDataOfComponentFieldsW1027
+#check Dbounded.targetSurjectiveCompactDataOfComponentFieldsW1027
+#check Dbounded.fullDataOfComponentFieldsW1027
+#check Dbounded.directBoundedLeftCalculusOfComponentFieldsW1027
+#check Dbounded.boundedDerivedInfinityCategoryOfComponentFieldsW1027
+
+theorem originalFourTaskContract_componentFieldsToCurrentFullData_inputCountW1027 :
+    Dbounded.componentFieldsInputNamesW1027.length = 18 :=
+  Dbounded.componentFieldsInputNamesW1027_count
+
+theorem originalFourTaskContract_componentFieldsToCurrentFullData_nonterminalW1027 :
+    (let state :=
+        Dbounded.currentMetrizableComponentFieldsToCurrentFullDataDirectRouteStateW1027;
+      state.productSuccessClaimed) =
+      false :=
+  Dbounded.currentW1027ComponentFieldsToCurrentFullDataDirectRoute_productSuccess
+
 end LeanLCAExactChallenge
