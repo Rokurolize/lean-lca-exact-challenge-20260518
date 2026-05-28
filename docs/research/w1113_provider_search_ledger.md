@@ -1,0 +1,59 @@
+# W1113 Provider Search Ledger
+
+## Route
+
+W1113 targets W1112's W1013 normalized-source/endpoint-localized-unit frontier. The existing W1014 target/closed-embedding-closedness route already constructs the W1004 normalized-source/endpoint-localized-unit provider accepted by W1112 via `normalizedSourceEndpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessW1014`, so W1113 repackages W1005 target/closed-embedding-closedness provider data and feeds W1112.
+
+## Search Notes
+
+- `normalizedSourceEndpointLocalizedUnitInputNamesW1112`: rejected as the latest frontier because it still exposes four W1013 normalized-source/endpoint-localized-unit provider inputs.
+- `normalizedSourceEndpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessW1014`: chosen because W1014 already constructs the W1004 normalized-source/endpoint-localized-unit provider consumed by W1112.
+- `targetClosedEmbeddingClosednessInputNamesW1014`: accepted as the next input ledger because it records the three W1014 provider inputs that remain explicit after W1014.
+- W1112 delegation: accepted because it keeps the new increment connected to the latest W1112/W1111/W1110/W1109/W1108/W1107/W1106/W1105/W1104/W1103/W1102/W1101/W1100 chain rather than bypassing the latest normalized-source/endpoint-localized-unit-to-endpoint-localized-unit route.
+
+## Remaining W1113 Inputs
+
+- 3 W1014 target/closed-embedding-closedness provider inputs
+
+The count is checked by `targetClosedEmbeddingClosednessInputNamesW1113_count`.
+
+## Checked W1113 Surface
+
+- `normalizedSourceEndpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessW1113`
+- `endpointLocalizedUnitDataProviderOfTargetClosedEmbeddingClosednessW1113`
+- `localizedUnitChoiceDataOfTargetClosedEmbeddingClosednessW1113`
+- `unitStrictExactIsoDataOfTargetClosedEmbeddingClosednessW1113`
+- `componentFieldsOfTargetClosedEmbeddingClosednessW1113`
+- `currentFullDataProviderOfTargetClosedEmbeddingClosednessW1113`
+- `branchFullDataProviderOfTargetClosedEmbeddingClosednessW1113`
+- `targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfTargetClosedEmbeddingClosednessW1113`
+- `targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessW1113`
+- `normalizedSourceEndpointLocalizedUnitDataProviderOfNormalizedSourceEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessW1113`
+- `endpointLocalizedUnitDataProviderOfEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessW1113`
+- `localizedUnitChoiceDataOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessW1113`
+- `unitStrictExactIsoDataOfUnitStrictExactIsoDataOfTargetClosedEmbeddingClosednessW1113`
+- `componentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessW1113`
+- `currentFullDataProviderOfCurrentFullDataOfTargetClosedEmbeddingClosednessW1113`
+- `branchFullDataProviderOfBranchFullDataOfTargetClosedEmbeddingClosednessW1113`
+- `targetClosedEmbeddingClosednessNormalizedSourceEndpointDataProviderOfTargetClosedEmbeddingClosednessNormalizedSourceEndpointOfTargetClosedEmbeddingClosednessW1113`
+- `targetClosedEmbeddingClosednessDataProviderOfTargetClosedEmbeddingClosednessOfTargetClosedEmbeddingClosednessW1113`
+- `normalizedSourceEndpointLocalizedUnitDataProviderOfNormalizedSourceEndpointLocalizedUnitOfNormalizedSourceEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessW1113`
+- `endpointLocalizedUnitDataProviderOfEndpointLocalizedUnitOfEndpointLocalizedUnitOfTargetClosedEmbeddingClosednessW1113`
+- `localizedUnitChoiceDataOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessW1113`
+- `unitStrictExactIsoDataOfUnitStrictExactIsoDataOfUnitStrictExactIsoDataOfTargetClosedEmbeddingClosednessW1113`
+- `componentFieldsOfComponentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessW1113`
+- `currentFullDataProviderOfCurrentFullDataOfCurrentFullDataOfTargetClosedEmbeddingClosednessW1113`
+- `branchFullDataProviderOfBranchFullDataOfBranchFullDataOfTargetClosedEmbeddingClosednessW1113`
+- `localizedUnitChoiceDataOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfLocalizedUnitChoiceOfTargetClosedEmbeddingClosednessW1113`
+- `componentFieldsOfComponentFieldsOfComponentFieldsOfComponentFieldsOfTargetClosedEmbeddingClosednessW1113`
+- `currentFullDataOfTargetClosedEmbeddingClosednessW1113`
+- `branchFullDataOfTargetClosedEmbeddingClosednessW1113`
+- `targetSurjectiveCompactDataOfTargetClosedEmbeddingClosednessW1113`
+- `fullDataOfTargetClosedEmbeddingClosednessW1113`
+- `directBoundedLeftCalculusOfTargetClosedEmbeddingClosednessW1113`
+- `boundedDerivedInfinityCategoryOfTargetClosedEmbeddingClosednessW1113`
+- `targetClosedEmbeddingClosednessInputNamesW1113_count`
+
+## Nonterminal Status
+
+Product success remains false. W1113 replaces W1112's four W1013 normalized-source/endpoint-localized-unit assumptions by the three W1014 target/closed-embedding-closedness inputs, but those inputs remain explicit assumptions and the original four-task completion witness and review packet are still missing.
