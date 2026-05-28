@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1173 is the latest checked nonterminal increment. It constructs W1172's W1010 unit-strict-exact-iso input surface from the W1011 localized-unit-choice provider route, then delegates through W1172 and the previously checked route chain. The explicit input surface is the 6 W1011 localized-unit-choice inputs. Product success remains false.
+W1174 is the latest checked nonterminal increment. It constructs W1173's W1011 localized-unit-choice input surface from the W1012 endpoint-localized-unit provider route, then delegates through W1173 and the previously checked route chain. The explicit input surface is the 5 W1012 endpoint-localized-unit inputs. Product success remains false.
