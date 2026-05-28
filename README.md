@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1159 is the latest checked nonterminal increment. It constructs W1158's W1014 target/closed-embedding-closedness input surface from the W1015 target/closed-embedding-closedness/normalized-source endpoint provider route, then delegates through W1158 and the previously checked route chain. The explicit input surface is the 2 W1015 target/closed-embedding-closedness/normalized-source endpoint inputs. Product success remains false.
+W1160 is the latest checked nonterminal increment. It constructs W1159's W1015 target/closed-embedding-closedness/normalized-source endpoint input surface from the W1016 branch-full-data provider route, then delegates through W1159 and the previously checked route chain. The explicit input surface is the 1 W1016 branch-full-data input. Product success remains false.
