@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1151 is the latest checked nonterminal increment. It constructs W1150's W1015 target/closed-embedding-closedness/normalized-source/endpoint input surface from the W1016 branch-full-data provider route, then delegates through W1150 and the previously checked route chain. The explicit input surface is the 1 W1016 branch-full-data input. Product success remains false.
+W1152 is the latest checked nonterminal increment. It constructs W1151's W1016 branch-full-data input surface from the W1017 current-full-data provider route, then delegates through W1151 and the previously checked route chain. The explicit input surface is the 1 W1017 current-full-data input. Product success remains false.
