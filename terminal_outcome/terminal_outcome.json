@@ -1,6 +1,6 @@
 {
-  "outcome": "nonterminal_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge",
-  "generated_utc": "2026-05-28T23:30:00Z",
+  "outcome": "nonterminal_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge",
+  "generated_utc": "2026-05-28T23:39:00Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
@@ -12,52 +12,52 @@
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1194 keeps the target nonterminal under the immutable original four-task contract while constructing W1193's W1013 normalized-source/endpoint-localized-unit input surface from the W1014 target/closed-embedding-closedness provider route, then delegating through W1193 and the previously checked route chain. Product success remains false because the 3 W1014 target/closed-embedding-closedness inputs remain explicit assumptions and the original four-task completion witness and review packet remain incomplete.",
+  "summary": "W1195 keeps the target nonterminal under the immutable original four-task contract while constructing W1194's W1014 target/closed-embedding-closedness input surface from the W1015 target/closed-embedding-closedness/normalized-source endpoint provider route, then delegating through W1194 and the previously checked route chain. Product success remains false because the 2 W1015 target/closed-embedding-closedness/normalized-source endpoint inputs remain explicit assumptions and the original four-task completion witness and review packet remain incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete: W1194 still has 3 explicit W1014 target/closed-embedding-closedness input assumptions.",
-    "No no-argument target/closed-embedding-closedness route has been connected to the original four-task completion witness.",
+    "Task 4 is not contract-complete: W1195 still has 2 explicit W1015 target/closed-embedding-closedness/normalized-source endpoint input assumptions.",
+    "No no-argument target/closed-embedding-closedness/normalized-source endpoint route has been connected to the original four-task completion witness.",
     "The review packet is not ready because terminal outcome remains nonterminal and product_success is false."
   ],
   "remaining_work": [
-    "Construct or reduce the remaining W1014 target/closed-embedding-closedness inputs to earlier concrete route data rather than exposing them as input fields.",
-    "Connect a real no-argument route only after the W1014 assumptions are eliminated.",
+    "Construct or reduce the remaining W1015 target/closed-embedding-closedness/normalized-source endpoint inputs to earlier concrete route data rather than exposing them as input fields.",
+    "Connect a real no-argument route only after the W1015 assumptions are eliminated.",
     "Build the review packet only after Lean, terminal outcome, and audit evidence satisfy the immutable contract."
   ],
-  "support_result_classification": "nonterminal_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge",
-  "latest_verified_increment": "W1194 W1014-to-W1193 target/closed-embedding-closedness bridge",
+  "support_result_classification": "nonterminal_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge",
+  "latest_verified_increment": "W1195 W1015-to-W1194 target/closed-embedding-closedness/normalized-source endpoint bridge",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w1194_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w1195_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete: W1194 still has 3 explicit W1014 target/closed-embedding-closedness input assumptions.",
-    "No no-argument target/closed-embedding-closedness route has been connected to the original four-task completion witness.",
+    "Task 4 is not contract-complete: W1195 still has 2 explicit W1015 target/closed-embedding-closedness/normalized-source endpoint input assumptions.",
+    "No no-argument target/closed-embedding-closedness/normalized-source endpoint route has been connected to the original four-task completion witness.",
     "The review packet is not ready because terminal outcome remains nonterminal and product_success is false."
   ],
-  "source_tree_hash": "df0047d0061e6605b945e3cefd863fa2771e0a3b13581db4a7e6a166e7b145de",
-  "remaining_explicit_inputs": 3,
-  "remaining_explicit_input_groups": 3,
+  "source_tree_hash": "1ab12b708dd39f11d145ea9a71200d4c89dc366a1d62ea4530c464baa1177f6f",
+  "remaining_explicit_inputs": 2,
+  "remaining_explicit_input_groups": 2,
   "implemented_declarations_checked": 32,
   "terminal_evidence": {
-    "module_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessToNormalizedSourceEndpointLocalizedUnitDirectRouteW1194.lean",
-    "module_target": "LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessToNormalizedSourceEndpointLocalizedUnitDirectRouteW1194",
-    "input_count_theorem": "LeanLCAExactChallenge.Dbounded.targetClosedEmbeddingClosednessInputNamesW1194_count",
-    "nonterminal_theorem": "LeanLCAExactChallenge.Dbounded.currentW1194TargetClosedEmbeddingClosednessToNormalizedSourceEndpointLocalizedUnitDirectRoute_productSuccess"
+    "module_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRouteW1195.lean",
+    "module_target": "LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRouteW1195",
+    "input_count_theorem": "LeanLCAExactChallenge.Dbounded.targetClosedEmbeddingClosednessNormalizedSourceEndpointInputNamesW1195_count",
+    "nonterminal_theorem": "LeanLCAExactChallenge.Dbounded.currentW1195TargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRoute_productSuccess"
   },
-  "review_packet_status": "not_ready_nonterminal_w1194_target_closed_embedding_closedness_inputs_explicit",
+  "review_packet_status": "not_ready_nonterminal_w1195_target_closed_embedding_closedness_normalized_source_endpoint_inputs_explicit",
   "update_goal_status": "not_allowed_product_success_false",
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessToNormalizedSourceEndpointLocalizedUnitDirectRouteW1194.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_focused_lean_module.log)",
-    "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessToNormalizedSourceEndpointLocalizedUnitDirectRouteW1194 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_focused_lake_module.log)",
-    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_focused_lean_aggregate.log)",
-    "lake build LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_root_lake_build.log)",
-    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_focused_required.log)",
-    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_focused_product.log)",
-    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_focused_original_four.log)",
-    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_full_lake_build.log)",
-    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_forbidden_lean_token_scan.log)",
-    "true-valued product claim scan excluding audit/negative_fixtures (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_product_success_true_scan.log)",
-    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_git_diff_check.log)",
-    "JSON and manifest validation (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_json_validation.log)",
-    "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_contract_audit.log)",
-    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233000Z_codex_parent_w1194_target_closed_embedding_closedness_to_normalized_source_endpoint_localized_unit_bridge/logs/w1194_external_audit_nonterminal_expected.log)"
+    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRouteW1195.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_focused_lean_module.log)",
+    "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessNormalizedSourceEndpointToTargetClosedEmbeddingClosednessDirectRouteW1195 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_focused_lake_module.log)",
+    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_focused_lean_aggregate.log)",
+    "lake build LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_root_lake_build.log)",
+    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_focused_required.log)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_focused_product.log)",
+    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_focused_original_four.log)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_full_lake_build.log)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_forbidden_lean_token_scan.log)",
+    "true-valued product claim scan excluding audit/negative_fixtures (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_product_success_true_scan.log)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_git_diff_check.log)",
+    "JSON and manifest validation (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_json_validation.log)",
+    "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_contract_audit.log)",
+    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T233900Z_codex_parent_w1195_target_closed_embedding_closedness_normalized_source_endpoint_to_target_closed_embedding_closedness_bridge/logs/w1195_external_audit_nonterminal_expected.log)"
   ]
 }
