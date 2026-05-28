@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1170 is the latest checked nonterminal increment. It constructs W1169's W1016 branch-full-data input surface from the W1017 current-full-data provider route, then delegates through W1169 and the previously checked route chain. The explicit input surface is the 1 W1017 current-full-data input. Product success remains false.
+W1171 is the latest checked nonterminal increment. It constructs W1170's W1017 current-full-data input surface from the W1018 component-field provider route, then delegates through W1170 and the previously checked route chain. The explicit input surface is the 18 W1018 component-field inputs. Product success remains false.
