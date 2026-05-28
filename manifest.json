@@ -1,8 +1,8 @@
 {
   "schema": "lean_lca_manifest_v1",
-  "generated_utc": "2026-05-28T22:00:00Z",
-  "source_tree_hash": "26e923958ecbd1fc05ec73417095167c15764681396558af1b9138f679c6c438",
-  "content_hash_tree": "ceaf42161fe4302d06909dd5fef0be401a0c0402d2eea711db7eb3373db69f7b",
+  "generated_utc": "2026-05-28T22:09:00Z",
+  "source_tree_hash": "baf48689df1b0d18fed382aef57625c4e10ff4878bc2176aace59e67952dc218",
+  "content_hash_tree": "ae53dda7223f092ec90ba7927d5b3fedf14d617c7f14977db4ac277d151a8369",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -1112,6 +1112,11 @@
     {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessToNormalizedSourceEndpointLocalizedUnitDirectRouteW1176.lean",
       "sha256": "2580f1888fc914301a1c1bd604aedf32bc6b09f7865f166ba2942e37a3176cd1",
+      "bytes": 31128
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromTargetClosedEmbeddingClosednessToNormalizedSourceEndpointLocalizedUnitDirectRouteW1185.lean",
+      "sha256": "cd2c73a86d9fb844dd362cf110b95140eec9c1257b81340104e9512c4d28de10",
       "bytes": 31128
     },
     {
@@ -2226,13 +2231,13 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "85b0967f8738cea494efa1fa9fff653f3f69006d49ffac9f2e0740b69505947f",
-      "bytes": 69280
+      "sha256": "a7bfd4b419d24b40c0c5b8425ecdef672c6abb68c4f3813281c14d3ae95ef75d",
+      "bytes": 69526
     },
     {
       "path": "README.md",
-      "sha256": "5a9e779a294652b68c35fb755710a0113d0925d4f770c9c908fb1d1f70b3e5cc",
-      "bytes": 965
+      "sha256": "89f2a58b3c39ed8019fd1235e5e2616cb1457c8687b3341d2b3ec8f2445c6dd5",
+      "bytes": 969
     },
     {
       "path": "README_FOR_REVIEW.md",
@@ -2246,18 +2251,18 @@
     },
     {
       "path": "audit/OriginalFourTaskCompletionDeclarations.lean",
-      "sha256": "5d062720fd82419327cc067e28a9cad7ef8dda6695fd49d54948f88b12c73a87",
-      "bytes": 898414
+      "sha256": "99585cf3b126453ffd5be138d3bfb5b4e5c2863b0b02493d890b99e078722ccd",
+      "bytes": 904215
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "sha256": "5b3a05381c84b2c1a0eba8198a1bc4109c5ee0372c3de324d36372d092f51708",
-      "bytes": 1321305
+      "sha256": "d5ca7a167219a864686095973cc62250af4aab204ea0870c42023ff9834c6c00",
+      "bytes": 1326316
     },
     {
       "path": "audit/RequiredDeclarations.lean",
-      "sha256": "0c642fb6d6200097951237496576d399d339c5f9cdec5056779dea4c77083084",
-      "bytes": 749599
+      "sha256": "93bd7108ee98dafa83ec3aa0dc38dad2e823482656dbf2c34049b7f06e5af23d",
+      "bytes": 754610
     },
     {
       "path": "audit/YonedaUnsuffixedPortSmokeW84.lean",
@@ -4016,8 +4021,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "sha256": "d0b442eb6acac172ae2b3f44dfff4dc32f26e0fceedb689b59685b675e36f788",
-      "bytes": 508672
+      "sha256": "7cabb760d2748c260f52a47bf1bc787d8d2eeb5e6eee3d4e3c6cfe9a862f85d9",
+      "bytes": 509845
     },
     {
       "path": "docs/research/sources.md",
@@ -4968,6 +4973,11 @@
       "path": "docs/research/w1184_provider_search_ledger.md",
       "sha256": "24c52f2fe191627f6beba7c0d25a2e6876eb3cb2667b98f4b67500cbf7ca0fde",
       "bytes": 1713
+    },
+    {
+      "path": "docs/research/w1185_provider_search_ledger.md",
+      "sha256": "b88296d1177bdcbe112d9f4d325e10367fbf8426773782dcefe8b02f00e5a520",
+      "bytes": 1857
     },
     {
       "path": "docs/research/w886_provider_search_ledger.md",
@@ -7716,8 +7726,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "d4601e95497dcbf887229f2ecd367d55b7371ec5dd5ce507c09cb2dc97e4671e",
-      "bytes": 7208
+      "sha256": "db290a994fca15604e71a014f971a8fd4a0a91f429aa1ecbd1e2bd5dcd7c84fb",
+      "bytes": 7397
     },
     {
       "path": "scratch-log.html",
@@ -7736,8 +7746,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "66d18dad5304eca6ac7306d139b9daffacb8292c44ce7ccc0adaeca1c461ff26",
-      "bytes": 8652
+      "sha256": "0e9c9ee07b2fe8e248ba35bb8af2a68997b60031e36c43d28ee75e3d22a5d037",
+      "bytes": 8841
     },
     {
       "path": "workers/README.md",
