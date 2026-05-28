@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1201 is the latest checked nonterminal increment. It constructs W1200's W1011 localized-unit-choice input surface from the W1012 endpoint-localized-unit provider route, then delegates through W1200 and the previously checked route chain. The explicit input surface is the 5 W1012 endpoint-localized-unit inputs. Product success remains false.
+W1202 is the latest checked nonterminal increment. It constructs W1201's W1012 endpoint-localized-unit input surface from the W1013 normalized-source/endpoint-localized-unit provider route, then delegates through W1201 and the previously checked route chain. The explicit input surface is the 4 W1013 normalized-source/endpoint-localized-unit inputs. Product success remains false.
