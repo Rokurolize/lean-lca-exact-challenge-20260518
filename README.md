@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1193 is the latest checked nonterminal increment. It constructs W1192's W1012 endpoint-localized-unit input surface from the W1013 normalized-source/endpoint-localized-unit provider route, then delegates through W1192 and the previously checked route chain. The explicit input surface is the 4 W1013 normalized-source/endpoint-localized-unit inputs. Product success remains false.
+W1194 is the latest checked nonterminal increment. It constructs W1193's W1013 normalized-source/endpoint-localized-unit input surface from the W1014 target/closed-embedding-closedness provider route, then delegates through W1193 and the previously checked route chain. The explicit input surface is the 3 W1014 target/closed-embedding-closedness inputs. Product success remains false.
