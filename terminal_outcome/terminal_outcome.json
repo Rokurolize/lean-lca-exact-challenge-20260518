@@ -1,69 +1,69 @@
 {
-  "outcome": "nonterminal_w1102_endpoint_localized_unit_to_localized_unit_choice_bridge",
-  "generated_utc": "2026-05-28T11:25:10Z",
+  "outcome": "nonterminal_w1103_normalized_source_endpoint_localized_unit_to_endpoint_localized_unit_bridge",
+  "generated_utc": "2026-05-28T11:35:05Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "bb2a27ce674ff3cfc50d230fff875ddafb592a647910e7ecd39184555880e2af"
+    "sha256": "97538edaef8f04affa7764566fb5b71250fc687b3401b90bad8637b9315ed3c6"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1102 keeps the target nonterminal under the immutable original four-task contract while constructing W1101 localized-unit-choice data from the W1012 endpoint-localized-unit route, then delegating through W1101/W1100/W1099/W1098/W1097/W1096/W1095/W1094/W1093/W1092/W1091/W1090/W1089/W1088/W1087/W1086/W1085/W1084/W1083/W1082/W1081/W1080/W1079/W1078/W1077/W1076/W1075/W1074/W1073/W1072/W1071/W1070/W1069/W1068/W1067/W1066/W1065/W1064/W1063/W1062/W1061/W1060/W1059/W1058/W1057/W1056/W1055/W1054/W1053/W1052/W1051/W1050/W1049/W1048/W1047/W1046/W1045/W1044/W1043/W1042/W1041/W1040/W1039/W1038/W1037/W1036/W1035/W1034/W1033/W1032/W1031/W1030/W1029/W1028/W1027/W1026/W1025/W1024/W1023/W1022/W1021/W1020/W1019/W1018/W1017/W1016/W1015/W1014/W1013/W1012/W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998 for target surjective-compact recovery. Product success remains false because the 5 W1012 endpoint-localized-unit inputs are still explicit assumptions and the original four-task completion witness and review packet remain incomplete.",
+  "summary": "W1103 keeps the target nonterminal under the immutable original four-task contract while constructing W1102 endpoint-localized-unit data from the W1013 normalized-source/endpoint-localized-unit route, then delegating through W1102/W1101/W1100/W1099/W1098/W1097/W1096/W1095/W1094/W1093/W1092/W1091/W1090/W1089/W1088/W1087/W1086/W1085/W1084/W1083/W1082/W1081/W1080/W1079/W1078/W1077/W1076/W1075/W1074/W1073/W1072/W1071/W1070/W1069/W1068/W1067/W1066/W1065/W1064/W1063/W1062/W1061/W1060/W1059/W1058/W1057/W1056/W1055/W1054/W1053/W1052/W1051/W1050/W1049/W1048/W1047/W1046/W1045/W1044/W1043/W1042/W1041/W1040/W1039/W1038/W1037/W1036/W1035/W1034/W1033/W1032/W1031/W1030/W1029/W1028/W1027/W1026/W1025/W1024/W1023/W1022/W1021/W1020/W1019/W1018/W1017/W1016/W1015/W1014/W1013/W1012/W1011/W1010/W1009/W1008/W1007/W1006/W1005/W1004/W1003/W1002/W998 for target surjective-compact recovery. Product success remains false because the 4 W1013 normalized-source/endpoint-localized-unit inputs are still explicit assumptions and the original four-task completion witness and review packet remain incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W1102 constructs W1101 localized-unit-choice data from W1012 endpoint-localized-unit data, but the 5 W1012 endpoint-localized-unit inputs remain explicit assumptions.",
-    "The W1102 endpoint-localized-unit provider surface remains explicit: 5 W1012 inputs are still assumptions.",
-    "No no-argument endpoint-localized-unit or localized-unit-choice provider construction has been constructed.",
+    "Task 4 is not contract-complete under the original four-task contract: W1103 constructs W1102 endpoint-localized-unit data from W1013 normalized-source/endpoint-localized-unit data, but the 4 W1013 normalized-source/endpoint-localized-unit inputs remain explicit assumptions.",
+    "The W1103 normalized-source/endpoint-localized-unit provider surface remains explicit: 4 W1013 inputs are still assumptions.",
+    "No no-argument normalized-source/endpoint-localized-unit or endpoint-localized-unit provider construction has been constructed.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract product-success evidence, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
   "remaining_work": [
-    "Construct the remaining 5 W1012 endpoint-localized-unit inputs from real data rather than exposing them as input fields.",
-    "Prefer real endpoint-localized-unit construction over another opaque packaging layer before returning to localized-unit-choice, endpoint/unit-strict-exact, or component-field routes.",
-    "Connect a real no-argument route to the original four-task completion witness only after the endpoint-localized-unit inputs are real rather than exposed as fields.",
+    "Construct the remaining 4 W1013 normalized-source/endpoint-localized-unit inputs from real data rather than exposing them as input fields.",
+    "Prefer real normalized-source/endpoint-localized-unit construction over another opaque packaging layer before returning to endpoint-localized-unit or localized-unit-choice routes.",
+    "Connect a real no-argument route to the original four-task completion witness only after the normalized-source/endpoint-localized-unit inputs are real rather than exposed as fields.",
     "Refresh the completion review packet, negative fixtures, manifest, clean extraction audit, and terminal outcome only after the original witness exists."
   ],
-  "support_result_classification": "nonterminal_w1102_endpoint_localized_unit_to_localized_unit_choice_bridge",
-  "latest_verified_increment": "W1102 W1012-to-W1101 endpoint-localized-unit bridge",
+  "support_result_classification": "nonterminal_w1103_normalized_source_endpoint_localized_unit_to_endpoint_localized_unit_bridge",
+  "latest_verified_increment": "W1103 W1013-to-W1102 normalized-source/endpoint-localized-unit bridge",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w1102_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w1103_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete under the original four-task contract: W1102 constructs W1101 localized-unit-choice data from W1012 endpoint-localized-unit data, but the 5 W1012 endpoint-localized-unit inputs remain explicit assumptions.",
-    "The W1102 endpoint-localized-unit provider surface remains explicit: 5 W1012 inputs are still assumptions.",
-    "No no-argument endpoint-localized-unit or localized-unit-choice provider construction has been constructed.",
+    "Task 4 is not contract-complete under the original four-task contract: W1103 constructs W1102 endpoint-localized-unit data from W1013 normalized-source/endpoint-localized-unit data, but the 4 W1013 normalized-source/endpoint-localized-unit inputs remain explicit assumptions.",
+    "The W1103 normalized-source/endpoint-localized-unit provider surface remains explicit: 4 W1013 inputs are still assumptions.",
+    "No no-argument normalized-source/endpoint-localized-unit or endpoint-localized-unit provider construction has been constructed.",
     "The final Dbounded MetrizableLCA original four-task completion witness is still missing; ProductSuccessDeclarations and OriginalFourTaskCompletionDeclarations only record nonterminal route evidence.",
     "The completion review packet still lacks the immutable-contract product-success evidence, external SHA256 sidecar, and clean extraction audit required for product success."
   ],
-  "source_tree_hash": "177d5b471fbaf1a4941ffb46cd2adc082942f8027c19a3ce7e45747f6105a9ac",
-  "remaining_explicit_inputs": 5,
+  "source_tree_hash": "4bbfce4b643de31e4ce990c39de46fbbf5a3567b339b14a80cf0eb29bd08235b",
+  "remaining_explicit_inputs": 4,
   "remaining_explicit_input_groups": 1,
-  "implemented_declarations_checked": 32,
+  "implemented_declarations_checked": 33,
   "terminal_evidence": {
-    "module_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromEndpointLocalizedUnitToLocalizedUnitChoiceDirectRouteW1102.lean",
-    "module_target": "LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromEndpointLocalizedUnitToLocalizedUnitChoiceDirectRouteW1102",
-    "input_count_theorem": "LeanLCAExactChallenge.Dbounded.endpointLocalizedUnitInputNamesW1102_count",
-    "nonterminal_theorem": "LeanLCAExactChallenge.Dbounded.currentW1102EndpointLocalizedUnitToLocalizedUnitChoiceDirectRoute_productSuccess"
+    "module_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromNormalizedSourceEndpointLocalizedUnitToEndpointLocalizedUnitDirectRouteW1103.lean",
+    "module_target": "LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromNormalizedSourceEndpointLocalizedUnitToEndpointLocalizedUnitDirectRouteW1103",
+    "input_count_theorem": "LeanLCAExactChallenge.Dbounded.normalizedSourceEndpointLocalizedUnitInputNamesW1103_count",
+    "nonterminal_theorem": "LeanLCAExactChallenge.Dbounded.currentW1103NormalizedSourceEndpointLocalizedUnitToEndpointLocalizedUnitDirectRoute_productSuccess"
   },
-  "review_packet_status": "not_ready_nonterminal_w1102_endpoint_localized_unit_inputs_explicit",
+  "review_packet_status": "not_ready_nonterminal_w1103_normalized_source_endpoint_localized_unit_inputs_explicit",
   "update_goal_status": "not_allowed_product_success_false",
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromEndpointLocalizedUnitToLocalizedUnitChoiceDirectRouteW1102.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_focused_verification.log)",
-    "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromEndpointLocalizedUnitToLocalizedUnitChoiceDirectRouteW1102 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_focused_verification.log)",
-    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_focused_verification.log)",
-    "lake build LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_focused_verification.log)",
-    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_focused_verification.log)",
-    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_focused_verification.log)",
-    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_focused_verification.log)",
-    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_full_lake_build.log)",
-    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_forbidden_lean_token_scan.log)",
-    "strict live true-valued product claim scan (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_product_success_true_scan.log)",
-    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_git_diff_check.log)",
-    "manifest refresh (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_json_validation.log)",
-    "python3 JSON validation for terminal_outcome, run/verification, and manifest (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_json_validation.log)",
-    "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_contract_audit.log)",
-    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T112200Z_codex_parent_w1102_endpoint_localized_unit_bridge/logs/w1102_external_audit_nonterminal_expected.log)"
+    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromNormalizedSourceEndpointLocalizedUnitToEndpointLocalizedUnitDirectRouteW1103.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_focused_verification.log)",
+    "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromNormalizedSourceEndpointLocalizedUnitToEndpointLocalizedUnitDirectRouteW1103 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_focused_verification.log)",
+    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_focused_verification.log)",
+    "lake build LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_focused_verification.log)",
+    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_focused_verification.log)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_focused_verification.log)",
+    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_focused_verification.log)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_full_lake_build.log)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_forbidden_lean_token_scan.log)",
+    "strict live true-valued product claim scan (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_product_success_true_scan.log)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_git_diff_check.log)",
+    "manifest refresh (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_json_validation.log)",
+    "python3 JSON validation for terminal_outcome, run/verification, and manifest (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_json_validation.log)",
+    "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_contract_audit.log)",
+    "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json (failed_expected: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260528T113100Z_codex_parent_w1103_normalized_source_endpoint_bridge/logs/w1103_external_audit_nonterminal_expected.log)"
   ]
 }
