@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T18:55:34Z",
-  "git_head": "002afc45fa1e287cf4e222fd94ed39dfcdb6db37",
-  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRowAwareClosedRangeRowsFieldSplitGuardW1358.lean\n",
-  "source_tree_hash": "f43bdc86863bc65c2666ef9c0d10ade6f52f2f946a8dd431d0e21532e3cbe060",
+  "generated_utc": "2026-05-29T19:01:18Z",
+  "git_head": "4ec25ac2e5940a2f444ca3994dd1563dc1ad2048",
+  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFiniteShapeRowTransferFieldSplitGuardW1359.lean\n",
+  "source_tree_hash": "017269c61f3a19ab6fa259d35bb69a1ff45a246c13ec2ff5462ac92976d2a260",
   "product_success": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRowAwareClosedRangeRowsFieldSplitGuardW1358.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFiniteShapeRowTransferFieldSplitGuardW1359.lean",
       "status": "passed",
-      "evidence": "run/w1358_focused_lean.log"
+      "evidence": "run/w1359_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRowAwareClosedRangeRowsFieldSplitGuardW1358",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFiniteShapeRowTransferFieldSplitGuardW1359",
       "status": "passed",
-      "evidence": "run/w1358_module_build.log"
+      "evidence": "run/w1359_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
