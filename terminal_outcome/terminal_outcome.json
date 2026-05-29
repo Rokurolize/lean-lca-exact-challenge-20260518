@@ -1,11 +1,11 @@
 {
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T134044Z_codex_parent_w1304_target_no_univ_closedness_boundary_unpack_guard",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T134641Z_codex_parent_w1305_boundary_relation_boundary_unpack_guard",
   "known_gaps": [
     "The remaining contract-closing Lean obligation is still the W1270 one-input W987 branch-specific full-data provider surface.",
-    "W1304 shows W947 target-no-univ/closedness unpacking and adjacent W946/W725/W944 routes do not close the provider obligation.",
+    "W1305 shows W730 boundary/relation unpacking and adjacent W730/W716/W717 routes do not close the provider obligation.",
     "No product_success terminal witness or review packet has been produced."
   ],
-  "outcome": "nonterminal_w1304_target_no_univ_closedness_boundary_unpack_guard",
+  "outcome": "nonterminal_w1305_boundary_relation_boundary_unpack_guard",
   "product_success": false,
   "product_success_claimed": false,
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -14,7 +14,7 @@
     "Replace the nonterminal product_success=false outcome with a product_success outcome only after the immutable original four-task contract has Lean evidence, audit evidence, and a review packet.",
     "Run the required contract and external audits again after any claimed terminal witness."
   ],
-  "source_tree_hash": "109fbaad8604808e9e8a4145c4db6db7c56b9f2f274971b044da367897b0b927",
-  "summary": "W1304 proves W947 target-no-univ/closedness unpacking does not close the original four-task contract: W947 opens to W944 plus W725, and adjacent W946, W725, and W944 routes expand to seven, eight, and ten inputs, all larger than the remaining W1270 one-input W987 surface.",
-  "updated_utc": "2026-05-29T13:42:19Z"
+  "source_tree_hash": "19de8f21dfece4a6bb5795d2f6e4a5fa2e3fb05ea3d8574b6f6e7708cdc6eb19",
+  "summary": "W1305 proves W730 boundary/relation unpacking does not close the original four-task contract: W730 opens to W716 plus W717, and W730/W716/W717 routes expand to three, twenty-two, and twenty-one inputs, all larger than the remaining W1270 one-input W987 surface.",
+  "updated_utc": "2026-05-29T13:48:17Z"
 }
