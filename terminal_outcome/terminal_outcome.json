@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T14:15:59Z",
-  "outcome": "nonterminal_w1309_localized_adjunction_boundary_unpack_guard",
+  "generated_utc": "2026-05-29T14:21:48Z",
+  "outcome": "nonterminal_w1310_unit_mapping_cone_boundary_unpack_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1309 adds a checked guard for the W975 localized-adjunction boundary. The original four-task contract remains unfulfilled because the remaining W1270/W987 full-data provider obligation is not discharged by a product-success witness.",
+  "summary": "W1310 adds a checked guard for the W976 dependent unit mapping-cone boundary. The original four-task contract remains unfulfilled because the remaining W1270/W987 full-data provider obligation is not discharged by a product-success witness.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",

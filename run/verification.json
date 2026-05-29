@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T14:15:59Z",
-  "run_id": "w1309_localized_adjunction_boundary_unpack_guard",
-  "source_tree_hash": "93010f151656d86a7eb24c15b0e72814606e9fc64719a1c4f086d7b6f781a67d",
+  "generated_utc": "2026-05-29T14:21:48Z",
+  "run_id": "w1310_unit_mapping_cone_boundary_unpack_guard",
+  "source_tree_hash": "4320e37ce99b305566dcf597ecf50eac2f61d9b0f22193511a6b7292300f4c06",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedAdjunctionBoundaryUnpackGuardW1309.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitMappingConeBoundaryUnpackGuardW1310.lean",
       "status": "passed",
-      "evidence": "run/w1309_focused_lean.log"
+      "evidence": "run/w1310_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedAdjunctionBoundaryUnpackGuardW1309",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitMappingConeBoundaryUnpackGuardW1310",
       "status": "passed",
-      "evidence": "run/w1309_module_build.log"
+      "evidence": "run/w1310_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -58,8 +58,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1309_focused_lean.log",
-    "module_build": "run/w1309_module_build.log",
+    "focused_lean": "run/w1310_focused_lean.log",
+    "module_build": "run/w1310_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -72,5 +72,5 @@
     "product_success_true_scan": "run/product_success_true_scan.log",
     "git_diff_check": "run/git_diff_check.log"
   },
-  "summary": "W1309 records W975 localized-adjunction provider unpacking as a two-input provider boundary and a twelve-input route surface; both expand the current one-input W1270/W987 obligation, so product success is not claimed."
+  "summary": "W1310 records W976 unit mapping-cone provider unpacking as a six-input provider boundary and a seven-input route surface; both expand the current one-input W1270/W987 obligation, so product success is not claimed."
 }
