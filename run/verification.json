@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T17:12:00Z",
-  "run_id": "w1342_descended_quotient_topology_facts_field_split_guard",
-  "source_tree_hash": "5c145c11be49f4280f7ced547a4eb913a287a55ce61b2e97f0b6e3d55a133248",
+  "generated_utc": "2026-05-29T17:19:00Z",
+  "run_id": "w1343_relation_fields_closed_map_field_split_guard",
+  "source_tree_hash": "16b4109549ef28a943972bfb592cf7e352ef411ff1789a1175d3b40da0beeb2f",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataDescendedQuotientTopologyFactsFieldSplitGuardW1342.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRelationFieldsClosedMapFieldSplitGuardW1343.lean",
       "status": "passed",
-      "evidence": "run/w1342_focused_lean.log"
+      "evidence": "run/w1343_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataDescendedQuotientTopologyFactsFieldSplitGuardW1342",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRelationFieldsClosedMapFieldSplitGuardW1343",
       "status": "passed",
-      "evidence": "run/w1342_module_build.log"
+      "evidence": "run/w1343_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -63,8 +63,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1342_focused_lean.log",
-    "module_build": "run/w1342_module_build.log",
+    "focused_lean": "run/w1343_focused_lean.log",
+    "module_build": "run/w1343_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -79,5 +79,5 @@
     "original_four_task_contract_audit": "run/original_four_task_contract_audit.log",
     "external_audit": "run/external_audit.log"
   },
-  "summary": "W1342 records W510 descended-quotient topology-facts field-split equalities through W509 while preserving a nonterminal local three-fact boundary; product success is not claimed."
+  "summary": "W1343 records W512 relation-fields closed-map field-split equalities through W511 while preserving a nonterminal local two-field relation boundary; product success is not claimed."
 }
