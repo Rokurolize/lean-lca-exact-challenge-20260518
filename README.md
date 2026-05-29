@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1231 is the latest checked nonterminal increment. It constructs W1230's W1014/W1005 target-closed-embedding-closedness provider input surface from the W1015/W1006 target-closed-embedding-closedness-normalized-source-endpoint provider route, then delegates through W1230 and the previously checked route chain. The explicit input surface is the 2 W1015/W1006 target-closed-embedding-closedness-normalized-source-endpoint provider inputs. Product success remains false.
+W1232 is the latest checked nonterminal increment. It constructs W1231's W1015/W1006 target-closed-embedding-closedness-normalized-source-endpoint provider input surface from the W1016/W1007 branch-full-data provider route, then delegates through W1231 and the previously checked route chain. The explicit input surface is the 1 W1016/W1007 branch-full-data provider input. Product success remains false.
