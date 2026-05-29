@@ -1,22 +1,22 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T23:29:54Z",
-  "git_head": "60ed1a3164496c688e7b1b148990e501dfa2254c",
-  "source_tree_hash": "80a3e99978c0e51c45978e686995742a289ccba361af1bb0a68b2eed5515c978",
+  "generated_utc": "2026-05-29T23:38:24Z",
+  "git_head": "e66d60762d8a8063ad85304bb15e78172b259180",
+  "source_tree_hash": "076d7f29f7cfbbe7ce2d75fac7699c9e09bfed770be9d6393f70af50c9514670",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1406 adds a checked closed-map endpoint cokernel-top stable convergence guard tying W964 through W963 into the closed-map route chain. The original four-task product goal remains open.",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T232640Z_codex_parent_w1406_endpoint_cokernel_top_stable_convergence_guard",
+  "summary": "W1407 adds a checked closed-map endpoint kernel/cokernel-top stable convergence guard tying W965 through W964 into the closed-map route chain. The original four-task product goal remains open.",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T233610Z_codex_parent_w1407_endpoint_kernel_cokernel_top_stable_convergence_guard",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointCokernelTopStableConvergenceFieldSplitGuardW1406.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointKernelCokernelTopStableConvergenceFieldSplitGuardW1407.lean",
       "status": "passed",
-      "evidence": "run/w1406_focused_lean.log"
+      "evidence": "run/w1407_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointCokernelTopStableConvergenceFieldSplitGuardW1406",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointKernelCokernelTopStableConvergenceFieldSplitGuardW1407",
       "status": "passed",
-      "evidence": "run/w1406_module_build.log"
+      "evidence": "run/w1407_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -35,7 +35,7 @@
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
-      "status": "failed_expected",
+      "status": "passed",
       "evidence": "run/original_four_task_completion_declarations.log"
     },
     {
@@ -70,5 +70,5 @@
     "Required negative fixtures remain incomplete for several premature-success patterns.",
     "External final readonly audit is expected to fail until terminal_outcome.outcome is product_success."
   ],
-  "remaining_work": "Advance the remaining Lean route blockers after W1406, including downstream W965+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
+  "remaining_work": "Advance the remaining Lean route blockers after W1407, including downstream W966+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
 }
