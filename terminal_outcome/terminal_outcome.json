@@ -1,62 +1,20 @@
 {
-  "outcome": "nonterminal_w1297_candidate_guard_consolidation",
-  "generated_utc": "2026-05-29T12:23:03Z",
-  "immutable_contract": {
-    "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
-    "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
-  },
-  "dynamic_guidance": {
-    "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "2dbea5d8f6888c1ed4e55d632f5bd74a5a0adac6ffe7765806ea9afe3af38c7c"
-  },
-  "product_success": false,
-  "product_complete": false,
-  "update_goal_allowed": false,
-  "summary": "W1297 keeps the target nonterminal under the immutable original four-task contract while consolidating W1272-W1277 candidate guards around the remaining one-input W987 provider surface. Product success remains false.",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T123334Z_codex_parent_w1298_provider_boundary_unpack_guard",
   "known_gaps": [
-    "Task 4 is not contract-complete: W1297 still has 1 explicit W987 branch-full-data provider input.",
-    "W1272 and W1277 contain one-input alternatives that do not reduce the current W1270 surface; W1272-W1277 expansion candidates are larger surfaces rather than completion witnesses.",
-    "The review packet is not ready because terminal outcome remains nonterminal and product_success is false."
+    "The remaining contract-closing Lean obligation is still the W1270 one-input W987 branch-specific full-data provider surface.",
+    "W1298 shows canonical unpacking of W987 expands to the W986 two-input surface and does not close the provider obligation.",
+    "No product_success terminal witness or review packet has been produced."
   ],
-  "remaining_work": [
-    "Find a genuine constructor for the remaining W987 branch-full-data provider that does not assume W977 current full data, W1007/W997/W998 wrappers, W99x/W100x expansion routes, direct route aliases through W1260, payload expansion guards through W1271, W1272-W1277 candidate guard surfaces, larger field surfaces, lower-level atom expansions, direct atom field splits, the older W952/W947/W725 route, or W990 primitive-unit expansion.",
-    "Search for direct theorem-level closure of the raw boundary/relation/target/normalized endpoint fields or another non-cyclic W987 path.",
-    "Build the review packet only after Lean, terminal outcome, and audit evidence satisfy the immutable contract."
-  ],
-  "support_result_classification": "nonterminal_w1297_candidate_guard_consolidation",
-  "latest_verified_increment": "W1297 candidate guard consolidation",
+  "outcome": "nonterminal_w1298_provider_boundary_unpack_guard",
+  "product_success": false,
+  "product_success_claimed": false,
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w1297_provider_search_ledger.md",
-  "remaining_gaps": [
-    "Task 4 is not contract-complete: W1297 has 1 explicit W987 branch-full-data input.",
-    "The W1272-W1277 candidate guards are not completion witnesses.",
-    "The review packet is not ready because terminal outcome remains nonterminal and product_success is false."
+  "remaining_work": [
+    "Construct or eliminate the remaining W1270 one-input W987 branch-specific full-data provider obligation.",
+    "Replace the nonterminal product_success=false outcome with a product_success outcome only after the immutable original four-task contract has Lean evidence, audit evidence, and a review packet.",
+    "Run the required contract and external audits again after any claimed terminal witness."
   ],
-  "source_tree_hash": "276acfdadd327fae3ff663f3686694f9013486bb2da4e3cb3a7ebad0d70561cf",
-  "remaining_explicit_inputs": 1,
-  "remaining_explicit_input_groups": 1,
-  "implemented_declarations_checked": 4,
-  "terminal_evidence": {
-    "module_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCandidateGuardConsolidationW1297.lean",
-    "module_target": "LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCandidateGuardConsolidationW1297",
-    "one_input_theorem": "LeanLCAExactChallenge.Dbounded.candidateOneInputSurfacesKeepCurrentSurfaceW1297",
-    "immediate_expansion_theorem": "LeanLCAExactChallenge.Dbounded.immediateCandidateExpansionsDoNotReduceW1297",
-    "recorded_expansion_theorem": "LeanLCAExactChallenge.Dbounded.previouslyRecordedCandidateExpansionsDoNotReduceW1297",
-    "nonterminal_theorem": "LeanLCAExactChallenge.Dbounded.currentW1297CandidateGuardConsolidation_productSuccess"
-  },
-  "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCandidateGuardConsolidationW1297.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/focused_w1297_lean.log)",
-    "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCandidateGuardConsolidationW1297 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/focused_w1297_module_build.log)",
-    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/root_lean.log)",
-    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/required_declarations.log)",
-    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/product_success_declarations.log)",
-    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/original_four_task_completion_declarations.log)",
-    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/package_build.log)",
-    "lake build LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/full_lake_build.log)",
-    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/forbidden_lean_tokens.log)",
-    "live product-success false scan excluding audit negative fixtures (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/product_success_true_scan.log)",
-    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T122112Z_codex_parent_w1297_candidate_guard_consolidation/run/git_diff_check.log)"
-  ],
-  "review_packet_status": "not_ready_nonterminal_w1297_w987_input_explicit",
-  "update_goal_status": "not_allowed_product_success_false"
+  "source_tree_hash": "d670b88b64efb98f37d7406598ebaff6120dcaa0c84a11c09eda2a545e3dad2b",
+  "summary": "W1298 proves canonical W987 unpacking expands to the W986 two-input surface and repacking W987 projections returns the same provider; the original four-task contract remains open.",
+  "updated_utc": "2026-05-29T12:41:52Z"
 }
