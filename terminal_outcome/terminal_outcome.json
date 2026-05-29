@@ -1,20 +1,19 @@
 {
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard",
-  "known_gaps": [
-    "The remaining contract-closing Lean obligation is still the W1270 one-input W987 branch-specific full-data provider surface.",
-    "W1307 shows W973 closed-embedding closedness unpacking and its component route do not close the provider obligation.",
-    "No product_success terminal witness or review packet has been produced."
-  ],
-  "outcome": "nonterminal_w1307_closed_embedding_closedness_boundary_unpack_guard",
+  "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
+  "generated_utc": "2026-05-29T14:07:35Z",
+  "outcome": "nonterminal_w1308_endpoint_kernel_cokernel_top_boundary_unpack_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "reference_route_log": "docs/research/reference_route_log.md",
-  "remaining_work": [
-    "Construct or eliminate the remaining W1270 one-input W987 branch-specific full-data provider obligation.",
-    "Replace the nonterminal product_success=false outcome with a product_success outcome only after the immutable original four-task contract has Lean evidence, audit evidence, and a review packet.",
-    "Run the required contract and external audits again after any claimed terminal witness."
+  "summary": "W1308 adds a checked guard for the W974 endpoint kernel/cokernel-top boundary. The original four-task contract remains unfulfilled because the remaining W1270/W987 full-data provider obligation is not discharged by a product-success witness.",
+  "known_gaps": [
+    "No product-success terminal outcome has been produced.",
+    "No original four-task completion review packet has been produced.",
+    "The current route still depends on the one-input W1270/W987 full-data provider obligation."
   ],
-  "source_tree_hash": "d0db482a57dd5f57645ede0d37622d8e27b88769786bbd2879167377287462aa",
-  "summary": "W1307 proves W973 closed-embedding closedness unpacking does not close the original four-task contract: W973 opens to W718 closed-embedding components plus W519 mapped explicit cokernel closed-embedding provider, while its component route expands to sixteen inputs, all larger than the remaining W1270 one-input W987 surface.",
-  "updated_utc": "2026-05-29T13:59:42Z"
+  "remaining_work": [
+    "Find or construct a genuine completion path for the W1270/W987 full-data provider obligation.",
+    "Prove the original four-task completion declarations without nonterminal provider assumptions.",
+    "Produce and externally audit the required review packet only after product success is true."
+  ],
+  "reference_route_log": "docs/research/reference_route_log.md"
 }

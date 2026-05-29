@@ -1,63 +1,76 @@
 {
+  "schema": "lean_lca_exact_challenge.verification.v1",
+  "generated_utc": "2026-05-29T14:07:35Z",
+  "run_id": "w1308_endpoint_kernel_cokernel_top_boundary_unpack_guard",
+  "source_tree_hash": "343c00008fe6b154805052e71fb7adf1019f90c039f26329191d1fd8af6e0fab",
+  "product_success": false,
+  "product_success_claimed": false,
+  "lean_checks": {
+    "focused_lean": "run/w1308_focused_lean.log",
+    "module_build": "run/w1308_module_build.log",
+    "root_lean": "run/root_lean.log",
+    "required_declarations": "run/required_declarations.log",
+    "product_success_declarations": "run/product_success_declarations.log",
+    "original_four_task_completion_declarations": "run/original_four_task_completion_declarations.log",
+    "lake_build": "run/lake_build.log",
+    "lake_build_root": "run/lake_build_root.log"
+  },
+  "audits": {
+    "forbidden_token_audit": "run/forbidden_token_audit.log",
+    "product_success_true_scan": "run/product_success_true_scan.log",
+    "git_diff_check": "run/git_diff_check.log"
+  },
+  "summary": "W1308 records W974 endpoint kernel/cokernel-top provider unpacking as a four-input provider boundary and a thirteen-input route surface; both expand the current one-input W1270/W987 obligation, so product success is not claimed.",
   "commands": [
     {
-      "command": "lake build",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/lake_build.log",
-      "status": "passed"
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataEndpointKernelCokernelTopBoundaryUnpackGuardW1308.lean",
+      "status": "passed",
+      "evidence": "run/w1308_focused_lean.log"
     },
     {
-      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/forbidden_token_audit.log",
-      "status": "passed"
-    },
-    {
-      "command": "lake env lean audit/RequiredDeclarations.lean",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/required_declarations.log",
-      "status": "passed"
-    },
-    {
-      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/product_success_declarations.log",
-      "status": "passed"
-    },
-    {
-      "command": "git diff --check",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/git_diff_check.log",
-      "status": "passed"
-    },
-    {
-      "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/original_four_task_completion_declarations.log",
-      "status": "passed"
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataEndpointKernelCokernelTopBoundaryUnpackGuardW1308",
+      "status": "passed",
+      "evidence": "run/w1308_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/root_lean.log",
-      "status": "passed"
+      "status": "passed",
+      "evidence": "run/root_lean.log"
+    },
+    {
+      "command": "lake env lean audit/RequiredDeclarations.lean",
+      "status": "passed",
+      "evidence": "run/required_declarations.log"
+    },
+    {
+      "command": "lake env lean audit/ProductSuccessDeclarations.lean",
+      "status": "passed",
+      "evidence": "run/product_success_declarations.log"
+    },
+    {
+      "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
+      "status": "passed",
+      "evidence": "run/original_four_task_completion_declarations.log"
+    },
+    {
+      "command": "lake build",
+      "status": "passed",
+      "evidence": "run/lake_build.log"
     },
     {
       "command": "lake build LeanLCAExactChallenge",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/lake_build_root.log",
-      "status": "passed"
+      "status": "passed",
+      "evidence": "run/lake_build_root.log"
+    },
+    {
+      "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "run/forbidden_token_audit.log"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "evidence": "run/git_diff_check.log"
     }
-  ],
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard",
-  "lean_checks": {
-    "focused_lean": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/focused_lean.log",
-    "forbidden_token_audit": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/forbidden_token_audit.log",
-    "git_diff_check": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/git_diff_check.log",
-    "lake_build": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/lake_build.log",
-    "lake_build_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/lake_build_root.log",
-    "module_build": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/module_build.log",
-    "original_four_task_completion_declarations": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/original_four_task_completion_declarations.log",
-    "product_success_declarations": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/product_success_declarations.log",
-    "product_success_true_scan": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/product_success_true_scan.log",
-    "required_declarations": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/required_declarations.log",
-    "root_lean": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T135758Z_codex_parent_w1307_closed_embedding_closedness_boundary_unpack_guard/run/root_lean.log"
-  },
-  "product_success": false,
-  "run_id": "w1307_closed_embedding_closedness_boundary_unpack_guard",
-  "source_tree_hash": "d0db482a57dd5f57645ede0d37622d8e27b88769786bbd2879167377287462aa",
-  "terminal_outcome": "nonterminal_w1307_closed_embedding_closedness_boundary_unpack_guard",
-  "timestamp_utc": "2026-05-29T13:59:42Z"
+  ]
 }
