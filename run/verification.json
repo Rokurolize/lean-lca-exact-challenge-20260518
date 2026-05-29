@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T15:10:47Z",
-  "run_id": "w1319_kernel_cokernel_top_iso_component_fields_guard",
-  "source_tree_hash": "55fdec7bbfe785e39c2c2990e9ad630499995610c6b16f31e9f80a005ccfea4f",
+  "generated_utc": "2026-05-29T15:14:37Z",
+  "run_id": "w1320_target_surjective_compact_kernel_cokernel_top_iso_guard",
+  "source_tree_hash": "4ae61d067db1ce384564a36c76b828e7a1efc33719436239130e77199a7acc5f",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataKernelCokernelTopIsoComponentFieldsGuardW1319.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetSurjectiveCompactKernelCokernelTopIsoComponentFieldsGuardW1320.lean",
       "status": "passed",
-      "evidence": "run/w1319_focused_lean.log"
+      "evidence": "run/w1320_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataKernelCokernelTopIsoComponentFieldsGuardW1319",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetSurjectiveCompactKernelCokernelTopIsoComponentFieldsGuardW1320",
       "status": "passed",
-      "evidence": "run/w1319_module_build.log"
+      "evidence": "run/w1320_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -58,8 +58,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1319_focused_lean.log",
-    "module_build": "run/w1319_module_build.log",
+    "focused_lean": "run/w1320_focused_lean.log",
+    "module_build": "run/w1320_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -72,5 +72,5 @@
     "product_success_true_scan": "run/product_success_true_scan.log",
     "git_diff_check": "run/git_diff_check.log"
   },
-  "summary": "W1319 records W991 as reconstructing W990 primitive-unit-components data from W974 endpoint kernel/cokernel-top data and unit mapping-cone component fields, expanding the current W1270/W987 one-input obligation to a thirteen-input route surface; product success is not claimed."
+  "summary": "W1320 records W992 as deriving W991 target no-univ data from W715 target surjective-compact data and delegating through W991, expanding the current W1270/W987 one-input obligation to a thirteen-input route surface; product success is not claimed."
 }
