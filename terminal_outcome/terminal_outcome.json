@@ -1,11 +1,11 @@
 {
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T132852Z_codex_parent_w1302_normalized_endpoint_boundary_unpack_guard",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T133437Z_codex_parent_w1303_normalized_source_triangulation_boundary_unpack_guard",
   "known_gaps": [
     "The remaining contract-closing Lean obligation is still the W1270 one-input W987 branch-specific full-data provider surface.",
-    "W1302 shows W950 normalized-source/endpoint-localized unpacking and its primitive route do not close the provider obligation.",
+    "W1303 shows W948 normalized-source-triangulation unpacking and its primitive route do not close the provider obligation.",
     "No product_success terminal witness or review packet has been produced."
   ],
-  "outcome": "nonterminal_w1302_normalized_endpoint_boundary_unpack_guard",
+  "outcome": "nonterminal_w1303_normalized_source_triangulation_boundary_unpack_guard",
   "product_success": false,
   "product_success_claimed": false,
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -14,7 +14,7 @@
     "Replace the nonterminal product_success=false outcome with a product_success outcome only after the immutable original four-task contract has Lean evidence, audit evidence, and a review packet.",
     "Run the required contract and external audits again after any claimed terminal witness."
   ],
-  "source_tree_hash": "9d288643867f314ed57c71556750748d7de13252ed5e702de2e18270ee34a530",
-  "summary": "W1302 proves W950 normalized-source/endpoint-localized unpacking does not close the original four-task contract: W950 exposes a two-input inner provider boundary and a three-input primitive route, both larger than the remaining W1270 one-input W987 surface.",
-  "updated_utc": "2026-05-29T13:30:37Z"
+  "source_tree_hash": "fa62c1ffdef28f304edbe811287a5cdf738a69311fc882ae9d6aca3feebca522",
+  "summary": "W1303 proves W948 normalized-source-triangulation unpacking does not close the original four-task contract: W948 exposes a two-input inner provider boundary and a five-input primitive route, both larger than the remaining W1270 one-input W987 surface.",
+  "updated_utc": "2026-05-29T13:36:21Z"
 }
