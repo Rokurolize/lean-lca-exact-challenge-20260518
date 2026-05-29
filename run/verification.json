@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T20:52:52Z",
-  "git_head": "8e0855d9f73032f80dc3e8c46df8dd5748485b95",
-  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n M run/lake_build.log\n M run/lake_build_root.log\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSourceEndpointFieldsComparisonStableConvergenceFieldSplitGuardW1378.lean\n?? run/w1378_focused_lean.log\n?? run/w1378_module_build.log\n",
-  "source_tree_hash": "37d7f49df5f9b3ad3909b695c420e5e927824a8c647c565b77eedb0423f8554e",
+  "generated_utc": "2026-05-29T20:58:12Z",
+  "git_head": "994584a771c00758e9a037babfcea92adba74318",
+  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n M run/lake_build.log\n M run/lake_build_root.log\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedNormalizedStrictRepresentativeComparisonStableConvergenceFieldSplitGuardW1379.lean\n?? run/w1379_focused_lean.log\n?? run/w1379_module_build.log\n",
+  "source_tree_hash": "37b888e4a2ee23564411bd440fff027e576cb52f8e297074aaab6ea5e4afc85e",
   "product_success": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSourceEndpointFieldsComparisonStableConvergenceFieldSplitGuardW1378.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedNormalizedStrictRepresentativeComparisonStableConvergenceFieldSplitGuardW1379.lean",
       "status": "passed",
-      "evidence": "run/w1378_focused_lean.log"
+      "evidence": "run/w1379_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSourceEndpointFieldsComparisonStableConvergenceFieldSplitGuardW1378",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedNormalizedStrictRepresentativeComparisonStableConvergenceFieldSplitGuardW1379",
       "status": "passed",
-      "evidence": "run/w1378_module_build.log"
+      "evidence": "run/w1379_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
