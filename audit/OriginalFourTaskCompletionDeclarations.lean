@@ -14616,3 +14616,23 @@ theorem originalFourTaskContract_currentFullDataPayloadFromUnitStrictExactIsoDat
       state.productSuccessClaimed) =
       false :=
   LeanLCAExactChallenge.Dbounded.currentW1264CurrentFullDataPayloadFromUnitStrictExactIsoData_productSuccess
+
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadOfLocalizedUnitChoiceW1265
+#check LeanLCAExactChallenge.Dbounded.currentFullDataProviderOfLocalizedUnitChoiceW1265
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadFromLocalizedUnitChoiceInputNamesW1265
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadFromLocalizedUnitChoiceInputNamesW1265_count
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadFromLocalizedUnitChoiceReducesW1265
+#check LeanLCAExactChallenge.Dbounded.MetrizableCurrentFullDataPayloadFromLocalizedUnitChoiceStateW1265
+#check LeanLCAExactChallenge.Dbounded.currentMetrizableCurrentFullDataPayloadFromLocalizedUnitChoiceStateW1265
+#check LeanLCAExactChallenge.Dbounded.currentW1265CurrentFullDataPayloadFromLocalizedUnitChoice_productSuccess
+
+theorem originalFourTaskContract_currentFullDataPayloadFromLocalizedUnitChoice_inputCountW1265 :
+    LeanLCAExactChallenge.Dbounded.currentFullDataPayloadFromLocalizedUnitChoiceInputNamesW1265.length = 6 :=
+  LeanLCAExactChallenge.Dbounded.currentFullDataPayloadFromLocalizedUnitChoiceInputNamesW1265_count
+
+theorem originalFourTaskContract_currentFullDataPayloadFromLocalizedUnitChoice_nonterminalW1265 :
+    (let state :=
+        LeanLCAExactChallenge.Dbounded.currentMetrizableCurrentFullDataPayloadFromLocalizedUnitChoiceStateW1265;
+      state.productSuccessClaimed) =
+      false :=
+  LeanLCAExactChallenge.Dbounded.currentW1265CurrentFullDataPayloadFromLocalizedUnitChoice_productSuccess
