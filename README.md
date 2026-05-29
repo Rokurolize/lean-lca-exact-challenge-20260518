@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1262 is the latest checked nonterminal increment. It unwraps the W1261/W1008 current-full-data input to its exact W977 payload and records that this W977 current full-data provider still has to be constructed without external input. Product success remains false.
+W1263 is the latest checked nonterminal increment. It preserves the W1262 one-entry W977 current full-data payload and adds a Lean guard proving that expanding it to the W976 leaf surface would expose seven explicit inputs, not a completion witness. Product success remains false.

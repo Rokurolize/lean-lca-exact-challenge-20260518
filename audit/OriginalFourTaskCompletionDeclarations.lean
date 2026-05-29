@@ -14578,3 +14578,21 @@ theorem originalFourTaskContract_currentFullDataPayload_nonterminalW1262 :
       state.productSuccessClaimed) =
       false :=
   LeanLCAExactChallenge.Dbounded.currentW1262CurrentFullDataPayload_productSuccess
+
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadLeafInputNamesW1263
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadLeafInputNamesW1263_count
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadLeafExpansionW1263
+#check LeanLCAExactChallenge.Dbounded.MetrizableCurrentFullDataPayloadLeafExpansionGuardStateW1263
+#check LeanLCAExactChallenge.Dbounded.currentMetrizableCurrentFullDataPayloadLeafExpansionGuardStateW1263
+#check LeanLCAExactChallenge.Dbounded.currentW1263CurrentFullDataPayloadLeafExpansionGuard_productSuccess
+
+theorem originalFourTaskContract_currentFullDataPayloadLeafExpansion_inputCountW1263 :
+    LeanLCAExactChallenge.Dbounded.currentFullDataPayloadInputNamesW1262.length = 1 :=
+  LeanLCAExactChallenge.Dbounded.currentFullDataPayloadInputNamesW1262_count
+
+theorem originalFourTaskContract_currentFullDataPayloadLeafExpansion_nonterminalW1263 :
+    (let state :=
+        LeanLCAExactChallenge.Dbounded.currentMetrizableCurrentFullDataPayloadLeafExpansionGuardStateW1263;
+      state.productSuccessClaimed) =
+      false :=
+  LeanLCAExactChallenge.Dbounded.currentW1263CurrentFullDataPayloadLeafExpansionGuard_productSuccess
