@@ -1,9 +1,9 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T21:27:13Z",
+  "generated_utc": "2026-05-29T21:32:24Z",
   "outcome": "nonterminal",
   "product_success": false,
-  "summary": "W1384 adds a checked closed-map target/component/relation-fields stable convergence guard tying W904-W908 through W903-W907 into the closed-map route chain. The original four-task product goal remains open.",
+  "summary": "W1385 adds a checked closed-map source/endpoint/fixed-target stable convergence guard tying W909-W913 through W908-W912 into the closed-map route chain. The original four-task product goal remains open.",
   "known_gaps": [
     "No product-success declaration is claimed.",
     "Further branch convergence, negative fixtures, and remaining completion-contract blockers remain to inspect.",
@@ -15,5 +15,5 @@
     "Keep reference-route evidence aligned with docs/research/reference_route_log.md."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T212530Z_codex_parent_w1384_closed_map_target_component_relation_fields_stable_convergence_guard"
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T213039Z_codex_parent_w1385_closed_map_source_endpoint_fixed_target_stable_convergence_guard"
 }
