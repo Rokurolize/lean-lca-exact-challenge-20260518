@@ -1,11 +1,11 @@
 {
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard",
   "known_gaps": [
     "The remaining contract-closing Lean obligation is still the W1270 one-input W987 branch-specific full-data provider surface.",
-    "W1299 shows canonical inner unpacking of W986 expands to the W985 three-input surface and does not close the provider obligation.",
+    "W1300 shows W984 target/closedness unpacking and the W983 full-data surface do not close the provider obligation.",
     "No product_success terminal witness or review packet has been produced."
   ],
-  "outcome": "nonterminal_w1299_inner_provider_boundary_unpack_guard",
+  "outcome": "nonterminal_w1300_target_closedness_boundary_unpack_guard",
   "product_success": false,
   "product_success_claimed": false,
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -14,7 +14,7 @@
     "Replace the nonterminal product_success=false outcome with a product_success outcome only after the immutable original four-task contract has Lean evidence, audit evidence, and a review packet.",
     "Run the required contract and external audits again after any claimed terminal witness."
   ],
-  "source_tree_hash": "4bdf0415e65fd71cbeff241800653f335f52ccddc6e324b7121c4e18b0a62495",
-  "summary": "W1299 proves canonical W986 inner unpacking expands to the W985 three-input surface and repacking W986 inner projections returns the same provider; the original four-task contract remains open.",
-  "updated_utc": "2026-05-29T13:01:11Z"
+  "source_tree_hash": "363e50e8d4ceb273dc3163b7db48a8eea32ce1a6db545aa79afe1eafd1b396b4",
+  "summary": "W1300 proves W984 target/closedness unpacking does not close the original four-task contract: its inner boundary stays two-input and the surrounding W984 full-data route expands to the W983 four-input surface.",
+  "updated_utc": "2026-05-29T13:09:46Z"
 }

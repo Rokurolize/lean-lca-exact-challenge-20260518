@@ -2,62 +2,62 @@
   "commands": [
     {
       "command": "lake build",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/lake_build.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/lake_build.log",
       "status": "passed"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/forbidden_token_audit.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/forbidden_token_audit.log",
       "status": "passed"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/required_declarations.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/required_declarations.log",
       "status": "passed"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/product_success_declarations.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/product_success_declarations.log",
       "status": "passed"
     },
     {
       "command": "git diff --check",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/git_diff_check.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/git_diff_check.log",
       "status": "passed"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/original_four_task_completion_declarations.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/original_four_task_completion_declarations.log",
       "status": "passed"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/root_lean.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/root_lean.log",
       "status": "passed"
     },
     {
       "command": "lake build LeanLCAExactChallenge",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/lake_build_root.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/lake_build_root.log",
       "status": "passed"
     }
   ],
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard",
   "lean_checks": {
-    "focused_lean": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/focused_lean.log",
-    "forbidden_token_audit": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/forbidden_token_audit.log",
-    "git_diff_check": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/git_diff_check.log",
-    "lake_build": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/lake_build.log",
-    "lake_build_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/lake_build_root.log",
-    "module_build": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/module_build.log",
-    "original_four_task_completion_declarations": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/original_four_task_completion_declarations.log",
-    "product_success_declarations": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/product_success_declarations.log",
-    "product_success_true_scan": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/product_success_true_scan.log",
-    "required_declarations": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/required_declarations.log",
-    "root_lean": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard/run/root_lean.log"
+    "focused_lean": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/focused_lean.log",
+    "forbidden_token_audit": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/forbidden_token_audit.log",
+    "git_diff_check": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/git_diff_check.log",
+    "lake_build": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/lake_build.log",
+    "lake_build_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/lake_build_root.log",
+    "module_build": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/module_build.log",
+    "original_four_task_completion_declarations": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/original_four_task_completion_declarations.log",
+    "product_success_declarations": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/product_success_declarations.log",
+    "product_success_true_scan": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/product_success_true_scan.log",
+    "required_declarations": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/required_declarations.log",
+    "root_lean": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T130710Z_codex_parent_w1300_target_closedness_boundary_unpack_guard/run/root_lean.log"
   },
   "product_success": false,
-  "run_id": "w1299_inner_provider_boundary_unpack_guard",
-  "source_tree_hash": "4bdf0415e65fd71cbeff241800653f335f52ccddc6e324b7121c4e18b0a62495",
-  "terminal_outcome": "nonterminal_w1299_inner_provider_boundary_unpack_guard",
-  "timestamp_utc": "2026-05-29T13:01:11Z"
+  "run_id": "w1300_target_closedness_boundary_unpack_guard",
+  "source_tree_hash": "363e50e8d4ceb273dc3163b7db48a8eea32ce1a6db545aa79afe1eafd1b396b4",
+  "terminal_outcome": "nonterminal_w1300_target_closedness_boundary_unpack_guard",
+  "timestamp_utc": "2026-05-29T13:09:46Z"
 }

@@ -1,8 +1,8 @@
 {
   "schema": "lean_lca_manifest_v1",
-  "generated_utc": "2026-05-29T13:01:11Z",
-  "source_tree_hash": "4bdf0415e65fd71cbeff241800653f335f52ccddc6e324b7121c4e18b0a62495",
-  "content_hash_tree": "35c2e10cc69da0df68e8db30b579822bac8c991c58bf2fc9f6125d195c7ac238",
+  "generated_utc": "2026-05-29T13:09:46Z",
+  "source_tree_hash": "363e50e8d4ceb273dc3163b7db48a8eea32ce1a6db545aa79afe1eafd1b396b4",
+  "content_hash_tree": "849d2392d105f4a5f084181f6a8fcce0a625c75ba0748042c430be23cd180138",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -31,8 +31,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "377268517abf4a58920262aa7618a757dd2014379365794bae2dfbb664215c49",
-      "bytes": 94251
+      "sha256": "e388d18ba7f5906bab7f91d0fb027f4fda0cc19ce35e6bc33cd173ecc4293a4f",
+      "bytes": 94447
     },
     {
       "path": "LeanLCAExactChallenge/AlternatingTailExtendTransport.lean",
@@ -4586,8 +4586,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "sha256": "0ae29f61e30efb250c4d40e091d66cae50002035ad53b89ec87d7f2e55ab7754",
-      "bytes": 640224
+      "sha256": "29a3b09ccb7bc5d13f133a2fce8d82e85ba753fb340230dc8874f33589cb892a",
+      "bytes": 641019
     },
     {
       "path": "docs/research/sources.md",
@@ -8871,8 +8871,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "56c313abb15db2f9575b99d678428d530874a3196a3f5ee912646cf7edc65ac3",
-      "bytes": 5157
+      "sha256": "77c4471362fcde7d891c17374612d7674565ccfeac5d237983f3dd047bf7682c",
+      "bytes": 5223
     },
     {
       "path": "scratch-log.html",
@@ -8891,8 +8891,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "fcde7a12b25597dd8b932f618333b1e70c31aea47e030f57c46c8dd5f2c9a503",
-      "bytes": 1518
+      "sha256": "710ded9529c01fbc1dfc4d4e10aa8be598d6bf4ad3e0889df5d620491c742b6e",
+      "bytes": 1524
     },
     {
       "path": "workers/README.md",
@@ -8938,6 +8938,16 @@
       "path": "docs/research/w1299_provider_search_ledger.md",
       "sha256": "7ef914e47d368ad67e63b5e4944e1e45f1bb4928b45fc37cfeac6da9ffecf817",
       "bytes": 958
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetClosednessBoundaryUnpackGuardW1300.lean",
+      "sha256": "87771f63b831ccc9f1814a65327a4c4777d4de48d0211ab03229d1a5a37e0f68",
+      "bytes": 5342
+    },
+    {
+      "path": "docs/research/w1300_provider_search_ledger.md",
+      "sha256": "07ca169d5c2ae6a3870d607180075fd524b92493e4224351a23101609b4d6e76",
+      "bytes": 1091
     }
   ]
 }
