@@ -1,8 +1,8 @@
 {
   "schema": "lean_lca_exact_challenge.manifest.v1",
-  "generated_utc": "2026-05-29T22:56:49Z",
-  "source_tree_hash": "c10c5fdb88db10e778ed2698468e8ed7a7b55acb320f7c6fc34061659a1af374",
-  "content_hash_tree": "4c6c947a1519254ec98c9555eb76be8a0741d6f3622f63eb0eb7be5b973094bb",
+  "generated_utc": "2026-05-29T23:01:07Z",
+  "source_tree_hash": "a3bc5d28e59883cf505effbfdd88450d5811a024334c721f3dc14562fab987a8",
+  "content_hash_tree": "460a0e039257ee6bd3a915a244318ac3c36566462c8cf3e76eabd2716a264e17",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -343,6 +343,11 @@
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointStrictExactStableConvergenceFieldSplitGuardW1390.lean",
       "sha256": "0e1bcf23172c42cf7e4682a54b529b4b2a0b955556560859194a32551d620c5c",
       "bytes": 12315
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapNormalizedFixedTargetPrimitiveStableConvergenceFieldSplitGuardW1400.lean",
+      "sha256": "3f2bf5a2856119e1e38b1f3a154c78c142560eb418d65ea1168a1a445a724a21",
+      "bytes": 6416
     },
     {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapPrimitiveBridgeStableConvergenceFieldSplitGuardW1396.lean",
@@ -3301,8 +3306,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "b855e8fffa54c7e5974b7e13a9e90fa0dc2e2b2ad303c11bdbefc72accfc559c",
-      "bytes": 115181
+      "sha256": "f62b894bbae7f4fd58068c683282c4b604e88a2de3ff4dcc807a4c07249bee8c",
+      "bytes": 115413
     },
     {
       "path": "README.md",
@@ -5061,8 +5066,8 @@
     },
     {
       "path": "codex-progress-thread-019e5c90-4877-77a1-a792-34feb85174ab.tsv",
-      "sha256": "59db0b6d2f4300138add7bf743be7c7c137f6266bb65088e356315a08907e957",
-      "bytes": 423088
+      "sha256": "0c8d1090cdf719c7b5b1b00d127350b615f41450bf5400e5c6c700136fdee79a",
+      "bytes": 423680
     },
     {
       "path": "codex-progress-thread-w841.tsv",
@@ -9736,12 +9741,12 @@
     },
     {
       "path": "run/lake_build.log",
-      "sha256": "3e5d522032ba512bab24db0e1f985b528a6ce40791a330f646355239305b6741",
+      "sha256": "f8289919a65181b0da60eb68d53f359cba89784feedd8b47cdd171c0fdb9dc96",
       "bytes": 3415765
     },
     {
       "path": "run/lake_build_root.log",
-      "sha256": "f90e9c3c6c93d80077a7179b1190f5181fa12f9fbff2a0e1e9289ec1ead40c48",
+      "sha256": "21c0ae2feefe981c1d104b6569764cd500a4f7c6c1c86467dddcf81df018dda3",
       "bytes": 3415714
     },
     {
@@ -9776,8 +9781,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "a350cba5e041ec792adef647432489d56f8ea4b402b20c916e17de4a4d62190a",
-      "bytes": 2902
+      "sha256": "0de8efce69ed99053e68a51242d23b0f9f4f2abf3adeeb8437837049be519e8e",
+      "bytes": 2932
     },
     {
       "path": "run/w1342_focused_lean.log",
@@ -10240,6 +10245,16 @@
       "bytes": 3409277
     },
     {
+      "path": "run/w1400_focused_lean.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1400_module_build.log",
+      "sha256": "39ecdbf4d14aab34de14cd2d9a120f2a2847cfe219d4d841eae663caa41e4811",
+      "bytes": 3409287
+    },
+    {
       "path": "scratch-log.html",
       "sha256": "be336f1f7c297c637b626c4cd19cd7962812e4653ab589afbf329bc13073e785",
       "bytes": 12231
@@ -10256,8 +10271,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "4b672fbfe3f3e8ed5244868047dce0b4cdc9e3827cc7a51751289f967d03147b",
-      "bytes": 2052
+      "sha256": "2fd70e4d93b0752ff7c1453545797370bc0778932df6bf05315872e831205396",
+      "bytes": 2074
     },
     {
       "path": "workers/README.md",
