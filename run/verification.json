@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T19:06:27Z",
-  "git_head": "af84919e206fed59175bf51a30041c7eac97dc87",
-  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepresentativeImageFiniteShapeTransferBundleFieldSplitGuardW1360.lean\n",
-  "source_tree_hash": "0c630f8145d6c9e81359dadce0b10fefbda0cbb7f965c13e4645a56e1d178322",
+  "generated_utc": "2026-05-29T19:11:53Z",
+  "git_head": "f3b781d8fb41a9ddbe572806decfdd6b07a4f99a",
+  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepresentativeImageDirectLimitTransferBundleFieldSplitGuardW1361.lean\n",
+  "source_tree_hash": "2e0144901daeaffcb72b3e60d5de141c799692fb5baf42bdba0f388fd0102ef2",
   "product_success": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepresentativeImageFiniteShapeTransferBundleFieldSplitGuardW1360.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepresentativeImageDirectLimitTransferBundleFieldSplitGuardW1361.lean",
       "status": "passed",
-      "evidence": "run/w1360_focused_lean.log"
+      "evidence": "run/w1361_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepresentativeImageFiniteShapeTransferBundleFieldSplitGuardW1360",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepresentativeImageDirectLimitTransferBundleFieldSplitGuardW1361",
       "status": "passed",
-      "evidence": "run/w1360_module_build.log"
+      "evidence": "run/w1361_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",

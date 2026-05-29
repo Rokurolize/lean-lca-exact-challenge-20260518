@@ -1,12 +1,12 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T19:06:27Z",
+  "generated_utc": "2026-05-29T19:11:53Z",
   "outcome": "nonterminal",
   "product_success": false,
-  "summary": "W1360 adds a checked representative-image W532 finite-shape transfer bundle field-split guard covering limit-stability preservation, W535 colimit-stability rebuilding, and localization preservation/adaptation. The original four-task product goal remains open.",
+  "summary": "W1361 adds a checked representative-image normalized/direct-limit W532 transfer bundle field-split guard covering direct-right limit rebuilding, W535 colimit rebuilding, and explicit/normalized localization preservation. The original four-task product goal remains open.",
   "known_gaps": [
     "No product-success declaration is claimed.",
-    "Only the representative-image finite-shape transfer bundles are covered by this guard; further W532 provider variants remain to inspect.",
+    "Top-target and compact-target W532 provider variants remain to inspect.",
     "Concrete providers and categorical closure structures remain to be consolidated into the final accepted path."
   ],
   "remaining_work": [
@@ -15,5 +15,5 @@
     "Keep reference-route evidence aligned with docs/research/reference_route_log.md."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T190512Z_codex_parent_w1360_representative_image_finite_shape_transfer_bundle_field_split_guard"
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T191036Z_codex_parent_w1361_representative_image_direct_limit_transfer_bundle_field_split_guard"
 }
