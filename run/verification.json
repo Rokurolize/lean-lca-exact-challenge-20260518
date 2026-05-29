@@ -1,81 +1,81 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-29T09:33:07Z",
-  "source_tree_hash": "3f4189001175e58d2f0dc2ba84685a2ccaf2eedfb2ea3a4234f50f635ea628ce",
-  "latest_verified_increment": "W1274 provider atom expansion guard",
+  "generated_utc": "2026-05-29T09:40:51Z",
+  "source_tree_hash": "328cb77b366a438e05ed98988b735a240c49d6db48928b19f657349a8089e685",
+  "latest_verified_increment": "W1275 atom-route expansion guard",
   "remaining_explicit_inputs": 1,
   "remaining_explicit_input_groups": 1,
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard",
+  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderAtomExpansionGuardW1274.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataAtomRouteExpansionGuardW1275.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/focused_lean.log",
-      "note": "focused Lean source check for W1274"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/focused_lean.log",
+      "note": "focused Lean source check for W1275"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataProviderAtomExpansionGuardW1274",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataAtomRouteExpansionGuardW1275",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/focused_module_build.log",
-      "note": "named Lake target for W1274"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/focused_module_build.log",
+      "note": "named Lake target for W1275"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/root_lean.log",
-      "note": "root import source includes W1274"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/root_lean.log",
+      "note": "root import source includes W1275"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/required_declarations.log",
-      "note": "required public declarations after W1274"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/required_declarations.log",
+      "note": "required public declarations after W1275"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/product_success_declarations.log",
-      "note": "checks W1274 while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/product_success_declarations.log",
+      "note": "checks W1275 while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/original_four_declarations.log",
-      "note": "records W1274 atom-expansion guard and nonterminal status"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/original_four_declarations.log",
+      "note": "records W1275 atom-route guard and nonterminal status"
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/package_build.log",
-      "note": "root Lake target includes W1274"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/package_build.log",
+      "note": "root Lake target includes W1275"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/full_lake_build.log",
-      "note": "full Lake build after W1274"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/full_lake_build.log",
+      "note": "full Lake build after W1275"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/forbidden_token_audit.log",
-      "note": "forbidden-token scan after W1274"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/forbidden_token_audit.log",
+      "note": "forbidden-token scan after W1275"
     },
     {
       "command": "live product-success false scan excluding audit negative fixtures",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/product_success_true_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/product_success_true_scan.log",
       "note": "no true-valued product claim in product-facing Lean surface"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093146Z_codex_parent_w1274_provider_atom_expansion_guard/run/diff_check.log",
-      "note": "whitespace check after W1274"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T093919Z_codex_parent_w1275_atom_route_expansion_guard/run/diff_check.log",
+      "note": "whitespace check after W1275"
     }
   ],
-  "notes": "W1274 is a verified nonterminal provider-search guard: opening W987 through W730 and W986 exposes W716/W717/W984/W950 provider atoms, expanding the W1270 one-input surface to four inputs."
+  "notes": "W1275 is a verified nonterminal provider-search guard: checked routes for W716/W717/W984/W950 have 22/21/2/3 inputs, all larger than the W1270 one-input W987 surface."
 }
