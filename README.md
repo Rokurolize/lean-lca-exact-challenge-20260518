@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1265 is the latest checked nonterminal increment. It constructs the W977 current full-data payload from the existing W982 localized-unit-choice route through W1264, then wraps it as W1008 current full data. This reduces W1264's seven-input W981 surface to six W982 inputs, but it is still not a completion witness. Product success remains false.
+W1266 is the latest checked nonterminal increment. It constructs the W977 current full-data payload from the existing W983 endpoint-localized-unit route through W1265, then wraps it as W1008 current full data. This reduces W1265's six-input W982 surface to five W983 inputs, but it is still not a completion witness. Product success remains false.
