@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T14:44:46Z",
-  "run_id": "w1314_current_full_data_wrapper_guard",
-  "source_tree_hash": "e11010e8a61b36ee5a22a20371ff7d96c556eb5b93320bba2d84d89d285ef70e",
+  "generated_utc": "2026-05-29T14:50:36Z",
+  "run_id": "w1315_component_field_construction_guard",
+  "source_tree_hash": "c8436df02ab2b13c9d126f4f0bb41c665e7abdff09584559acd5074095aa6657",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCurrentFullDataWrapperGuardW1314.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataComponentFieldConstructionGuardW1315.lean",
       "status": "passed",
-      "evidence": "run/w1314_focused_lean.log"
+      "evidence": "run/w1315_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCurrentFullDataWrapperGuardW1314",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataComponentFieldConstructionGuardW1315",
       "status": "passed",
-      "evidence": "run/w1314_module_build.log"
+      "evidence": "run/w1315_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -58,8 +58,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1314_focused_lean.log",
-    "module_build": "run/w1314_module_build.log",
+    "focused_lean": "run/w1315_focused_lean.log",
+    "module_build": "run/w1315_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -72,5 +72,5 @@
     "product_success_true_scan": "run/product_success_true_scan.log",
     "git_diff_check": "run/git_diff_check.log"
   },
-  "summary": "W1314 records W977 as a same-size one-input current full-data wrapper expanding to the seven W976 leaves; product success is not claimed."
+  "summary": "W1315 records W978 as constructing W977 from the eighteen-input W971 component-field surface, expanding the current W1270/W987 one-input obligation; product success is not claimed."
 }

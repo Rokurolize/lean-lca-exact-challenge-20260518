@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T14:44:46Z",
-  "outcome": "nonterminal_w1314_current_full_data_wrapper_guard",
+  "generated_utc": "2026-05-29T14:50:36Z",
+  "outcome": "nonterminal_w1315_component_field_construction_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1314 adds a checked guard for the W977 current full-data wrapper. The original four-task contract remains unfulfilled because the remaining W1270/W987 full-data provider obligation is not discharged by a product-success witness.",
+  "summary": "W1315 adds a checked guard for the W978 component-field construction route. The original four-task contract remains unfulfilled because the remaining W1270/W987 full-data provider obligation is not discharged by a product-success witness.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
