@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1270 is the latest checked nonterminal increment. It constructs the W977 current full-data payload from the existing W987 branch-full-data route through W1269, then wraps it as W1008 current full data. This reduces W1269's two-input W986 surface to one W987 input, but it is still not a completion witness. Product success remains false.
+W1271 is the latest checked nonterminal increment. It records that W999 constructs W987 branch full data only from a W977 current full-data payload, while W1270 constructs that W977 payload from W987. This is a one-input cycle guard, not a completion witness. Product success remains false.
