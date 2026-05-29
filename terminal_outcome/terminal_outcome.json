@@ -1,19 +1,19 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T17:55:00Z",
-  "outcome": "nonterminal_w1349_top_target_relation_representative_image_field_split_guard",
+  "generated_utc": "2026-05-29T18:06:25Z",
+  "run_id": "20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard",
+  "outcome": "nonterminal",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1349 adds a checked guard for the W516 top-target relation representative-image field split through W515 routes. The original four-task contract remains unfulfilled because this local boundary still exposes top-target relation data plus selected preservation data rather than discharging the remaining W1270/W987 full-data provider obligation.",
+  "summary": "W1350 proves W593 preserves the split compact-target provider fields and copies the closed-map normalized bundle fields into the W591 route; it does not discharge the original four-task completion contract.",
   "known_gaps": [
-    "No product-success terminal outcome has been produced.",
-    "No original four-task completion review packet has been produced.",
-    "The current route still depends on the one-input W1270/W987 full-data provider obligation."
+    "The current W987 obligation is still represented by a one-input full-data payload surface, while W593 still exposes an eleven-input stable route surface.",
+    "Concrete relation-pullback, target-relation compactness, closed-map provider, normalized-localization, homotopy-isomorphism, left-calculus, pretriangulated, and triangulated inputs remain required."
   ],
   "remaining_work": [
-    "Find or construct a genuine completion path for the W1270/W987 full-data provider obligation.",
-    "Prove the original four-task completion declarations without nonterminal provider assumptions.",
-    "Produce and externally audit the required review packet only after product success is true."
+    "Continue reducing or bridging direct route surfaces toward the immutable original four-task contract.",
+    "Inspect W595/W596 endpoint routes, W594 closed-embedding analogues, or W520/W519 preservation convergence for the next guarded split."
   ],
-  "reference_route_log": "docs/research/reference_route_log.md"
+  "reference_route_log": "docs/research/reference_route_log.md",
+  "verification_json": "run/verification.json"
 }
