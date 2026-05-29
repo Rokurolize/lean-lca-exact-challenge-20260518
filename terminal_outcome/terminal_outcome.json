@@ -1,12 +1,12 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T19:57:24Z",
+  "generated_utc": "2026-05-29T20:04:21Z",
   "outcome": "nonterminal",
   "product_success": false,
-  "summary": "W1368 adds a checked W725/W519 convergence guard tying the W856 endpoint homology route and the W859 target-ExactAt closed-range route to the same closed-map and closed-embedding closedness branches. The original four-task product goal remains open.",
+  "summary": "W1369 adds a checked endpoint-localized and concrete-leaves convergence guard tying W726 endpoint/localized data and W733 concrete leaves into the W859/W1368 W725 closedness-branch route. The original four-task product goal remains open.",
   "known_gaps": [
     "No product-success declaration is claimed.",
-    "Further direct-route surfaces and remaining completion-contract blockers remain to inspect.",
+    "Further direct-route surfaces, negative fixtures, and remaining completion-contract blockers remain to inspect.",
     "Concrete providers and categorical closure structures remain to be consolidated into the final accepted path."
   ],
   "remaining_work": [
@@ -15,5 +15,5 @@
     "Keep reference-route evidence aligned with docs/research/reference_route_log.md."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T195549Z_codex_parent_w1368_closedness_branch_endpoint_exact_at_convergence_field_split_guard"
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T200120Z_codex_parent_w1369_endpoint_localized_concrete_leaves_convergence_field_split_guard"
 }
