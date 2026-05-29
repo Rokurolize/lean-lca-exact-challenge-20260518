@@ -1,81 +1,81 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-29T10:57:28Z",
-  "source_tree_hash": "d318e4cbec3ea1d58e855287ca07fc785b067eb8f5e35ad537ce652c76f259a9",
-  "latest_verified_increment": "W1285 repeated direct route alias guard",
+  "generated_utc": "2026-05-29T11:07:14Z",
+  "source_tree_hash": "11ec577f82e3fc9a04cddba147357c0e1fe4dd7a84b943292a917c21d5454ae5",
+  "latest_verified_increment": "W1286 repeated direct route alias guard",
   "remaining_explicit_inputs": 1,
   "remaining_explicit_input_groups": 1,
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard",
+  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepeatedDirectRouteAliasGuardW1285.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepeatedDirectRouteAliasGuardW1286.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/focused_lean.log",
-      "note": "focused Lean source check for W1285"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/focused_w1286_lean.log",
+      "note": "focused Lean source check for W1286"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepeatedDirectRouteAliasGuardW1285",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepeatedDirectRouteAliasGuardW1286",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/focused_module_build.log",
-      "note": "named Lake target for W1285"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/focused_w1286_module_build.log",
+      "note": "named Lake target for W1286"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/root_lean.log",
-      "note": "root import source includes W1285"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/root_lean.log",
+      "note": "root import source includes W1286"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/required_declarations.log",
-      "note": "required public declarations after W1285"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/required_declarations.log",
+      "note": "required public declarations after W1286"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/product_success_declarations.log",
-      "note": "checks W1285 while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/product_success_declarations.log",
+      "note": "checks W1286 while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/original_four_declarations.log",
-      "note": "original four-task declarations remain nonterminal after W1285"
-    },
-    {
-      "command": "lake build LeanLCAExactChallenge",
-      "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/package_build.log",
-      "note": "root Lake target includes W1285"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/original_four_task_completion_declarations.log",
+      "note": "original four-task declarations remain nonterminal after W1286"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/full_lake_build.log",
-      "note": "full Lake build after W1285"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/package_build.log",
+      "note": "package build after W1286"
+    },
+    {
+      "command": "lake build LeanLCAExactChallenge",
+      "status": "passed",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/full_lake_build.log",
+      "note": "root Lake target includes W1286"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/forbidden_token_audit.log",
-      "note": "forbidden-token scan after W1285"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/forbidden_lean_tokens.log",
+      "note": "forbidden-token scan after W1286"
     },
     {
       "command": "live product-success false scan excluding audit negative fixtures",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/product_success_true_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/product_success_true_scan.log",
       "note": "no true-valued product claim in product-facing Lean surface"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T105555Z_codex_parent_w1285_repeated_direct_route_alias_guard/run/diff_check.log",
-      "note": "whitespace check after W1285"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T110450Z_codex_parent_w1286_repeated_direct_route_alias_guard/run/git_diff_check.log",
+      "note": "whitespace check after W1286"
     }
   ],
-  "notes": "W1285 is a verified nonterminal provider-search guard: W1071/W1079/W1080/W1088 keep the W1270 one-input surface, while W1072-W1078 and W1081-W1087 expand to 18, 7, 6, 5, 4, 3, and 2 inputs in each band."
+  "notes": "W1286 is a verified nonterminal provider-search guard: W1089/W1097/W1098/W1106 keep the W1270 one-input surface, while W1090-W1096 and W1099-W1105 expand to 18, 7, 6, 5, 4, 3, and 2 inputs in each band."
 }
