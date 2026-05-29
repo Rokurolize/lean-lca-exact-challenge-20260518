@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T15:33:39Z",
-  "run_id": "w1324_target_compact_full_data_guard",
-  "source_tree_hash": "a90506e9ef2d72147e99eec61362e32827005b7014992decddd4322f29e24260",
+  "generated_utc": "2026-05-29T15:38:15Z",
+  "run_id": "w1325_target_compact_target_provider_guard",
+  "source_tree_hash": "d82392179251583c0d204d1b028280b863f585381a82497ec3c4b30805abb614",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetCompactFullDataGuardW1324.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetCompactTargetProviderGuardW1325.lean",
       "status": "passed",
-      "evidence": "run/w1324_focused_lean.log"
+      "evidence": "run/w1325_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetCompactFullDataGuardW1324",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetCompactTargetProviderGuardW1325",
       "status": "passed",
-      "evidence": "run/w1324_module_build.log"
+      "evidence": "run/w1325_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -58,8 +58,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1324_focused_lean.log",
-    "module_build": "run/w1324_module_build.log",
+    "focused_lean": "run/w1325_focused_lean.log",
+    "module_build": "run/w1325_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -72,5 +72,5 @@
     "product_success_true_scan": "run/product_success_true_scan.log",
     "git_diff_check": "run/git_diff_check.log"
   },
-  "summary": "W1324 records W996 as projecting W730 and W986 from W987 full data while keeping W715 target surjective-compact data separate, expanding the current W1270/W987 one-input obligation to a two-input route surface; product success is not claimed."
+  "summary": "W1325 records W995 as projecting W973 and W950 from W986 while keeping W730 and W715 separate, expanding the current W1270/W987 one-input obligation to a three-input target-provider route surface; product success is not claimed."
 }
