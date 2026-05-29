@@ -1,8 +1,8 @@
 {
   "schema": "lean_lca_manifest_v1",
-  "generated_utc": "2026-05-29T12:53:32Z",
-  "source_tree_hash": "d670b88b64efb98f37d7406598ebaff6120dcaa0c84a11c09eda2a545e3dad2b",
-  "content_hash_tree": "b90c28d3c34479ace379f46f8e800f476709fa8818577252e9905ea5c8f7b7ed",
+  "generated_utc": "2026-05-29T13:01:11Z",
+  "source_tree_hash": "4bdf0415e65fd71cbeff241800653f335f52ccddc6e324b7121c4e18b0a62495",
+  "content_hash_tree": "35c2e10cc69da0df68e8db30b579822bac8c991c58bf2fc9f6125d195c7ac238",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -31,8 +31,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "76c23c0405e98be4e0284cf5474516858aced7efc4556e7a07f6c3ddcea38c28",
-      "bytes": 94058
+      "sha256": "377268517abf4a58920262aa7618a757dd2014379365794bae2dfbb664215c49",
+      "bytes": 94251
     },
     {
       "path": "LeanLCAExactChallenge/AlternatingTailExtendTransport.lean",
@@ -4586,8 +4586,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "sha256": "7bf88fe12056d7b6907fc6d7b91792e46c37ebd79c56e21d2158af0dd5b9bd4a",
-      "bytes": 639430
+      "sha256": "0ae29f61e30efb250c4d40e091d66cae50002035ad53b89ec87d7f2e55ab7754",
+      "bytes": 640224
     },
     {
       "path": "docs/research/sources.md",
@@ -8871,8 +8871,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "23ef2fa372894459f99244a772d6c7a8d22f69d6b6906b9c117920471d124e1b",
-      "bytes": 5025
+      "sha256": "56c313abb15db2f9575b99d678428d530874a3196a3f5ee912646cf7edc65ac3",
+      "bytes": 5157
     },
     {
       "path": "scratch-log.html",
@@ -8891,8 +8891,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "25ac26b8029ad4f85e1adf8d39ab2345d182cc2366b89edf0cd28180d32b30f8",
-      "bytes": 1484
+      "sha256": "fcde7a12b25597dd8b932f618333b1e70c31aea47e030f57c46c8dd5f2c9a503",
+      "bytes": 1518
     },
     {
       "path": "workers/README.md",
@@ -8928,6 +8928,16 @@
       "path": "packets/lean_lca_exact_category_challenge/input/workdir/codex-progress-usage-limit-debug-20260520T040956.104517288Z-pid153640.tsv",
       "sha256": "19d67d43d78ffc538571ca1a861d52e69d7e751267bac5579724b5d6b3f144a4",
       "bytes": 690
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataInnerProviderBoundaryUnpackGuardW1299.lean",
+      "sha256": "f99dca62634629c178da4473caf1d6ef05434dc61b8434ce9db9dcda8e355845",
+      "bytes": 5083
+    },
+    {
+      "path": "docs/research/w1299_provider_search_ledger.md",
+      "sha256": "7ef914e47d368ad67e63b5e4944e1e45f1bb4928b45fc37cfeac6da9ffecf817",
+      "bytes": 958
     }
   ]
 }

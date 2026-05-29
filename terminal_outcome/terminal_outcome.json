@@ -1,11 +1,11 @@
 {
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T123334Z_codex_parent_w1298_provider_boundary_unpack_guard",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T125905Z_codex_parent_w1299_inner_provider_boundary_unpack_guard",
   "known_gaps": [
     "The remaining contract-closing Lean obligation is still the W1270 one-input W987 branch-specific full-data provider surface.",
-    "W1298 shows canonical unpacking of W987 expands to the W986 two-input surface and does not close the provider obligation.",
+    "W1299 shows canonical inner unpacking of W986 expands to the W985 three-input surface and does not close the provider obligation.",
     "No product_success terminal witness or review packet has been produced."
   ],
-  "outcome": "nonterminal_w1298_provider_boundary_unpack_guard",
+  "outcome": "nonterminal_w1299_inner_provider_boundary_unpack_guard",
   "product_success": false,
   "product_success_claimed": false,
   "reference_route_log": "docs/research/reference_route_log.md",
@@ -14,7 +14,7 @@
     "Replace the nonterminal product_success=false outcome with a product_success outcome only after the immutable original four-task contract has Lean evidence, audit evidence, and a review packet.",
     "Run the required contract and external audits again after any claimed terminal witness."
   ],
-  "source_tree_hash": "d670b88b64efb98f37d7406598ebaff6120dcaa0c84a11c09eda2a545e3dad2b",
-  "summary": "W1298 proves canonical W987 unpacking expands to the W986 two-input surface and repacking W987 projections returns the same provider; the original four-task contract remains open.",
-  "updated_utc": "2026-05-29T12:41:52Z"
+  "source_tree_hash": "4bdf0415e65fd71cbeff241800653f335f52ccddc6e324b7121c4e18b0a62495",
+  "summary": "W1299 proves canonical W986 inner unpacking expands to the W985 three-input surface and repacking W986 inner projections returns the same provider; the original four-task contract remains open.",
+  "updated_utc": "2026-05-29T13:01:11Z"
 }
