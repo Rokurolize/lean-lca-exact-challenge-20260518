@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T16:03:15Z",
-  "outcome": "nonterminal_w1329_primitive_unit_components_field_split_guard",
+  "generated_utc": "2026-05-29T16:08:15Z",
+  "outcome": "nonterminal_w1330_kernel_cokernel_top_iso_field_split_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1329 adds a checked guard for the W990 field-split route from primitive unit components into W975 localized-adjunction data and W981 unit strict-exact/isomorphism data. The original four-task contract remains unfulfilled because this route expands rather than discharges the remaining W1270/W987 full-data provider obligation.",
+  "summary": "W1330 adds a checked guard for the W991 field-split route from endpoint kernel/cokernel-top data and unit kernel/cokernel-top/isomorphism component fields into W990 primitive unit-components data. The original four-task contract remains unfulfilled because this route expands rather than discharges the remaining W1270/W987 full-data provider obligation.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
