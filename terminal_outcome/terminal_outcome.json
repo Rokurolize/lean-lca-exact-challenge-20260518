@@ -1,9 +1,9 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T20:15:12Z",
+  "generated_utc": "2026-05-29T20:20:13Z",
   "outcome": "nonterminal",
   "product_success": false,
-  "summary": "W1371 adds a checked selected-cochain strictification stable convergence guard tying W847 data into the W868 route through W846 and W867. The original four-task product goal remains open.",
+  "summary": "W1372 adds a checked exact-input and comparison-selected-cochain stable convergence guard tying W850/W851 data into the W869/W870 stable ExactAt routes. The original four-task product goal remains open.",
   "known_gaps": [
     "No product-success declaration is claimed.",
     "Further direct-route surfaces, negative fixtures, and remaining completion-contract blockers remain to inspect.",
@@ -15,5 +15,5 @@
     "Keep reference-route evidence aligned with docs/research/reference_route_log.md."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T201305Z_codex_parent_w1371_selected_cochain_strictification_stable_convergence_field_split_guard"
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T201836Z_codex_parent_w1372_exact_inputs_comparison_selected_cochain_stable_convergence_field_split_guard"
 }
