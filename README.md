@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1235 is the latest checked nonterminal increment. It constructs W1234's W1018/W971 component-field provider input surface from the W1010/W981 endpoint/unit-strict-exact provider route, then delegates through W1234 and the previously checked route chain. The explicit input surface is the 7 W1010/W981 endpoint/unit-strict-exact provider inputs. Product success remains false.
+W1236 is the latest checked nonterminal increment. It constructs W1235's W1010/W981 endpoint/unit-strict-exact provider input surface from the W1011/W982 localized-unit-choice provider route, then delegates through W1235 and the previously checked route chain. The explicit input surface is the 6 W1011/W982 localized-unit-choice provider inputs. Product success remains false.
