@@ -1,36 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T14:07:35Z",
-  "run_id": "w1308_endpoint_kernel_cokernel_top_boundary_unpack_guard",
-  "source_tree_hash": "343c00008fe6b154805052e71fb7adf1019f90c039f26329191d1fd8af6e0fab",
+  "generated_utc": "2026-05-29T14:15:59Z",
+  "run_id": "w1309_localized_adjunction_boundary_unpack_guard",
+  "source_tree_hash": "93010f151656d86a7eb24c15b0e72814606e9fc64719a1c4f086d7b6f781a67d",
   "product_success": false,
   "product_success_claimed": false,
-  "lean_checks": {
-    "focused_lean": "run/w1308_focused_lean.log",
-    "module_build": "run/w1308_module_build.log",
-    "root_lean": "run/root_lean.log",
-    "required_declarations": "run/required_declarations.log",
-    "product_success_declarations": "run/product_success_declarations.log",
-    "original_four_task_completion_declarations": "run/original_four_task_completion_declarations.log",
-    "lake_build": "run/lake_build.log",
-    "lake_build_root": "run/lake_build_root.log"
-  },
-  "audits": {
-    "forbidden_token_audit": "run/forbidden_token_audit.log",
-    "product_success_true_scan": "run/product_success_true_scan.log",
-    "git_diff_check": "run/git_diff_check.log"
-  },
-  "summary": "W1308 records W974 endpoint kernel/cokernel-top provider unpacking as a four-input provider boundary and a thirteen-input route surface; both expand the current one-input W1270/W987 obligation, so product success is not claimed.",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataEndpointKernelCokernelTopBoundaryUnpackGuardW1308.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedAdjunctionBoundaryUnpackGuardW1309.lean",
       "status": "passed",
-      "evidence": "run/w1308_focused_lean.log"
+      "evidence": "run/w1309_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataEndpointKernelCokernelTopBoundaryUnpackGuardW1308",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedAdjunctionBoundaryUnpackGuardW1309",
       "status": "passed",
-      "evidence": "run/w1308_module_build.log"
+      "evidence": "run/w1309_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -72,5 +56,21 @@
       "status": "passed",
       "evidence": "run/git_diff_check.log"
     }
-  ]
+  ],
+  "lean_checks": {
+    "focused_lean": "run/w1309_focused_lean.log",
+    "module_build": "run/w1309_module_build.log",
+    "root_lean": "run/root_lean.log",
+    "required_declarations": "run/required_declarations.log",
+    "product_success_declarations": "run/product_success_declarations.log",
+    "original_four_task_completion_declarations": "run/original_four_task_completion_declarations.log",
+    "lake_build": "run/lake_build.log",
+    "lake_build_root": "run/lake_build_root.log"
+  },
+  "audits": {
+    "forbidden_token_audit": "run/forbidden_token_audit.log",
+    "product_success_true_scan": "run/product_success_true_scan.log",
+    "git_diff_check": "run/git_diff_check.log"
+  },
+  "summary": "W1309 records W975 localized-adjunction provider unpacking as a two-input provider boundary and a twelve-input route surface; both expand the current one-input W1270/W987 obligation, so product success is not claimed."
 }
