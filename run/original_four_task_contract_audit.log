@@ -1,0 +1,17 @@
+{
+  "audit": "original_four_task_contract_audit",
+  "blockers": [
+    "ProductSuccessDeclarations only checks the bounded-derived name without an original-four-task completion witness",
+    "OriginalFourTaskCompletionDeclarations lacks the original-four-task completion witness",
+    "review packet missing negative fixture self_referential_zip_sha_authoritative",
+    "review packet missing negative fixture ordinary_nerve_claimed_product_success",
+    "review packet missing negative fixture stable_certificate_name_without_field_evidence",
+    "review packet missing negative fixture semantic_input_claimed_product_success",
+    "review packet missing negative fixture prop_field_wrapper_claimed_product_success"
+  ],
+  "contract": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
+  "contract_sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1",
+  "root": "/home/roku/src/Rokurolize/lean-lca-exact-challenge-20260518",
+  "status": "passed",
+  "terminal_claims_product_success": false
+}
