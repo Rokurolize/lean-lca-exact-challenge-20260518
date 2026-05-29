@@ -14540,3 +14540,21 @@ theorem originalFourTaskContract_currentFullDataToBranchFullData_nonterminalW126
       state.productSuccessClaimed) =
       false :=
   LeanLCAExactChallenge.Dbounded.currentW1260CurrentFullDataToBranchFullDataDirectRoute_productSuccess
+
+#check LeanLCAExactChallenge.Dbounded.currentFullDataCycleGuardInputNamesW1261
+#check LeanLCAExactChallenge.Dbounded.currentFullDataCycleGuardInputNamesW1261_count
+#check LeanLCAExactChallenge.Dbounded.currentFullDataCycleGuard_componentFieldsExpansionW1261
+#check LeanLCAExactChallenge.Dbounded.MetrizableCurrentFullDataCycleGuardStateW1261
+#check LeanLCAExactChallenge.Dbounded.currentMetrizableCurrentFullDataCycleGuardStateW1261
+#check LeanLCAExactChallenge.Dbounded.currentW1261CurrentFullDataCycleGuard_productSuccess
+
+theorem originalFourTaskContract_currentFullDataCycleGuard_inputCountW1261 :
+    LeanLCAExactChallenge.Dbounded.currentFullDataCycleGuardInputNamesW1261.length = 1 :=
+  LeanLCAExactChallenge.Dbounded.currentFullDataCycleGuardInputNamesW1261_count
+
+theorem originalFourTaskContract_currentFullDataCycleGuard_nonterminalW1261 :
+    (let state :=
+        LeanLCAExactChallenge.Dbounded.currentMetrizableCurrentFullDataCycleGuardStateW1261;
+      state.productSuccessClaimed) =
+      false :=
+  LeanLCAExactChallenge.Dbounded.currentW1261CurrentFullDataCycleGuard_productSuccess

@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1260 is the latest checked nonterminal increment. It constructs W1259's W1016/W1007 branch-full-data provider surface from the W1017/W1008 current-full-data route, then delegates through W1259 and the previously checked route chain. The explicit input surface is the single W1017/W1008 current-full-data provider input. Product success remains false.
+W1261 is the latest checked nonterminal increment. It preserves the W1260 one-entry W1017/W1008 current-full-data frontier and adds a Lean guard proving that the available W1018 component-field route would expand the frontier to 18 explicit inputs rather than close it. Product success remains false.
