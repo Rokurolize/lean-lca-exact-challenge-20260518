@@ -1,12 +1,12 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T19:39:41Z",
+  "generated_utc": "2026-05-29T19:44:48Z",
   "outcome": "nonterminal",
   "product_success": false,
-  "summary": "W1365 adds a checked pure-LCA right-open/source-difference W532 transfer bundle field-split guard for representative-image, top-target, and compact-target variants, covering source-difference limit rebuilding, W535 colimit rebuilding, and explicit localization preservation. The original four-task product goal remains open.",
+  "summary": "W1366 adds a checked quotient and closed-quotient source-difference W532 transfer wrapper guard for representative-image, top-target, and compact-target variants. The wrappers convert quotient right-open boundary data to LCA source-difference packages and delegate to the W1365 source-difference constructors. The original four-task product goal remains open.",
   "known_gaps": [
     "No product-success declaration is claimed.",
-    "Quotient-boundary W532 source-difference wrappers remain to inspect.",
+    "Named source-boundary W532 quotient wrappers remain to inspect.",
     "Concrete providers and categorical closure structures remain to be consolidated into the final accepted path."
   ],
   "remaining_work": [
@@ -15,5 +15,5 @@
     "Keep reference-route evidence aligned with docs/research/reference_route_log.md."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T193831Z_codex_parent_w1365_lca_right_source_difference_transfer_bundle_field_split_guard"
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T194337Z_codex_parent_w1366_quotient_source_difference_transfer_bundle_field_split_guard"
 }
