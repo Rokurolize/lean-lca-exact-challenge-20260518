@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T15:38:15Z",
-  "run_id": "w1325_target_compact_target_provider_guard",
-  "source_tree_hash": "d82392179251583c0d204d1b028280b863f585381a82497ec3c4b30805abb614",
+  "generated_utc": "2026-05-29T15:48:15Z",
+  "run_id": "w1326_normalized_source_endpoint_guard",
+  "source_tree_hash": "3cdaa788f1cfc10f6858031e49ea1d031a91d52449472354ff8a4b76c153b5d1",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetCompactTargetProviderGuardW1325.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataNormalizedSourceEndpointGuardW1326.lean",
       "status": "passed",
-      "evidence": "run/w1325_focused_lean.log"
+      "evidence": "run/w1326_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetCompactTargetProviderGuardW1325",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataNormalizedSourceEndpointGuardW1326",
       "status": "passed",
-      "evidence": "run/w1325_module_build.log"
+      "evidence": "run/w1326_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -52,14 +52,19 @@
       "evidence": "run/forbidden_token_audit.log"
     },
     {
+      "command": "rg product_success true scan over LeanLCAExactChallenge run terminal_outcome",
+      "status": "passed",
+      "evidence": "run/product_success_true_scan.log"
+    },
+    {
       "command": "git diff --check",
       "status": "passed",
       "evidence": "run/git_diff_check.log"
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1325_focused_lean.log",
-    "module_build": "run/w1325_module_build.log",
+    "focused_lean": "run/w1326_focused_lean.log",
+    "module_build": "run/w1326_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -72,5 +77,5 @@
     "product_success_true_scan": "run/product_success_true_scan.log",
     "git_diff_check": "run/git_diff_check.log"
   },
-  "summary": "W1325 records W995 as projecting W973 and W950 from W986 while keeping W730 and W715 separate, expanding the current W1270/W987 one-input obligation to a three-input target-provider route surface; product success is not claimed."
+  "summary": "W1326 records W994 as projecting endpoint strict exactness, localized-unit data, and normalized-source triangulation from W950 while keeping W730, W715, and W973 separate, expanding the current W1270/W987 one-input obligation to a four-input normalized-source/endpoint route surface; product success is not claimed."
 }
