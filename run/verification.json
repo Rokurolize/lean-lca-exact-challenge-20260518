@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T15:19:18Z",
-  "run_id": "w1321_primitive_unit_components_guard",
-  "source_tree_hash": "fbfcd386770cd4d1da97fc784f29f4eb122f11858a7d4f64a2ecc1dd14c03fa3",
+  "generated_utc": "2026-05-29T15:23:58Z",
+  "run_id": "w1322_branch_full_data_target_compact_recovery_guard",
+  "source_tree_hash": "48e3844f9a3b050fa53c86efb436fca47efe01b6775f764714e9cc5f711f972c",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataPrimitiveUnitComponentsGuardW1321.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataBranchFullDataTargetCompactRecoveryGuardW1322.lean",
       "status": "passed",
-      "evidence": "run/w1321_focused_lean.log"
+      "evidence": "run/w1322_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataPrimitiveUnitComponentsGuardW1321",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataBranchFullDataTargetCompactRecoveryGuardW1322",
       "status": "passed",
-      "evidence": "run/w1321_module_build.log"
+      "evidence": "run/w1322_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -58,8 +58,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1321_focused_lean.log",
-    "module_build": "run/w1321_module_build.log",
+    "focused_lean": "run/w1322_focused_lean.log",
+    "module_build": "run/w1322_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -72,5 +72,5 @@
     "product_success_true_scan": "run/product_success_true_scan.log",
     "git_diff_check": "run/git_diff_check.log"
   },
-  "summary": "W1321 records W990 as constructing W975 localized-adjunction data and W981 unit strict-exact/isomorphism data from primitive unit components, expanding the current W1270/W987 one-input obligation to an eight-input route surface; product success is not claimed."
+  "summary": "W1322 records W998 as recovering W715 target surjective-compact data from the W987 branch-full-data provider and feeding W997, keeping the current W1270/W987 one-input obligation rather than closing it; product success is not claimed."
 }
