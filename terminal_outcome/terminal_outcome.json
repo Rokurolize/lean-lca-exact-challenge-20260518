@@ -1,12 +1,12 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T19:50:07Z",
+  "generated_utc": "2026-05-29T19:57:24Z",
   "outcome": "nonterminal",
   "product_success": false,
-  "summary": "W1367 adds a checked named source-boundary quotient and closed-quotient W532 transfer wrapper guard for representative-image, top-target, and compact-target variants. The wrappers map named source boundaries to LCA source-difference fields and delegate to the W1366 quotient source-difference wrappers. The original four-task product goal remains open.",
+  "summary": "W1368 adds a checked W725/W519 convergence guard tying the W856 endpoint homology route and the W859 target-ExactAt closed-range route to the same closed-map and closed-embedding closedness branches. The original four-task product goal remains open.",
   "known_gaps": [
     "No product-success declaration is claimed.",
-    "W519/W520 convergence and direct route surfaces remain to inspect.",
+    "Further direct-route surfaces and remaining completion-contract blockers remain to inspect.",
     "Concrete providers and categorical closure structures remain to be consolidated into the final accepted path."
   ],
   "remaining_work": [
@@ -15,5 +15,5 @@
     "Keep reference-route evidence aligned with docs/research/reference_route_log.md."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T194856Z_codex_parent_w1367_quotient_source_boundary_transfer_bundle_field_split_guard"
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T195549Z_codex_parent_w1368_closedness_branch_endpoint_exact_at_convergence_field_split_guard"
 }
