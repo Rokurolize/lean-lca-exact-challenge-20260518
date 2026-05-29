@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1216 is the latest checked nonterminal increment. It constructs W1215's W1017 current-full-data input surface from the W1018 component-field provider route, then delegates through W1215 and the previously checked route chain. The explicit input surface is the 18 W1018 component-field inputs. Product success remains false.
+W1217 is the latest checked nonterminal increment. It constructs W1216's W1018 component-field input surface from the W1010/W981 endpoint/unit-strict-exact provider route, then delegates through W1216 and the previously checked route chain. The explicit input surface is the 7 W981 unit-strict-exact provider inputs. Product success remains false.
