@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T15:53:15Z",
-  "run_id": "w1327_localized_unit_choice_field_split_guard",
-  "source_tree_hash": "52ac0249c9ba037b5050dd25daaa9be60ae38a823114002290d4151e8844b024",
+  "generated_utc": "2026-05-29T15:58:15Z",
+  "run_id": "w1328_unit_strict_exact_iso_field_split_guard",
+  "source_tree_hash": "13808c34c88db2bdcc2b1baf44ff83f1a6c3829f37ec5e8a3dcc2d16b9175eb0",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedUnitChoiceFieldSplitGuardW1327.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitStrictExactIsoFieldSplitGuardW1328.lean",
       "status": "passed",
-      "evidence": "run/w1327_focused_lean.log"
+      "evidence": "run/w1328_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedUnitChoiceFieldSplitGuardW1327",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitStrictExactIsoFieldSplitGuardW1328",
       "status": "passed",
-      "evidence": "run/w1327_module_build.log"
+      "evidence": "run/w1328_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -63,8 +63,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1327_focused_lean.log",
-    "module_build": "run/w1327_module_build.log",
+    "focused_lean": "run/w1328_focused_lean.log",
+    "module_build": "run/w1328_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -77,5 +77,5 @@
     "product_success_true_scan": "run/product_success_true_scan.log",
     "git_diff_check": "run/git_diff_check.log"
   },
-  "summary": "W1327 records the remaining W988 field-split equalities from W982 localized-unit-choice data into W984, W949, W950, and W986 while preserving a six-input localized-unit-choice route surface; product success is not claimed."
+  "summary": "W1328 records W989 field-split equalities from W981 unit strict-exact/isomorphism data into W982 localized-unit-choice data and W945 localized-unit data while preserving a seven-input route surface; product success is not claimed."
 }

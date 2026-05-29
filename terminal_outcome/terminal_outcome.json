@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T15:53:15Z",
-  "outcome": "nonterminal_w1327_localized_unit_choice_field_split_guard",
+  "generated_utc": "2026-05-29T15:58:15Z",
+  "outcome": "nonterminal_w1328_unit_strict_exact_iso_field_split_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1327 adds a checked guard for the remaining W988 field-split route from W982 localized-unit-choice data into W984 target/closedness data, W949 endpoint-localized-unit data, W950 normalized-source/endpoint-localized data, W986 target/closedness/normalized-source/endpoint data, and W987 full data. The original four-task contract remains unfulfilled because this route expands rather than discharges the remaining W1270/W987 full-data provider obligation.",
+  "summary": "W1328 adds a checked guard for the W989 field-split route from W981 unit strict-exact/isomorphism data into W982 localized-unit-choice data and W945 localized-unit data. The original four-task contract remains unfulfilled because this route expands rather than discharges the remaining W1270/W987 full-data provider obligation.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
