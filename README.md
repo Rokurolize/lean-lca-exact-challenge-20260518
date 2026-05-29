@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1252 is the latest checked nonterminal increment. It constructs W1251's W1017/W1008 current-full-data provider surface from the W1018/W971 component-field route, then delegates through W1251 and the previously checked route chain. The explicit input surface is the 18 W1018/W971 component-field provider inputs. Product success remains false.
+W1253 is the latest checked nonterminal increment. It constructs W1252's W1018/W971 component-field provider surface from the W1010/W981 unit-strict-exact-iso route, then delegates through W1252 and the previously checked route chain. The explicit input surface is the 7 W1010/W981 unit-strict-exact-iso provider inputs. Product success remains false.
