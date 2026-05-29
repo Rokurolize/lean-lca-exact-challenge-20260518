@@ -1,8 +1,8 @@
 {
   "schema": "lean_lca_exact_challenge.manifest.v1",
-  "generated_utc": "2026-05-29T23:14:09Z",
-  "source_tree_hash": "22ace90fb210d1e537e69f2cdf62b2ae800672984db9633c8f40574e0ea35015",
-  "content_hash_tree": "338756994d11366fbee210f96979b6e9836d3ab04d3ad0bebbae738f396c4928",
+  "generated_utc": "2026-05-29T23:19:22Z",
+  "source_tree_hash": "c2beebc9c7a56f267c4feec716a1e5b0d61396ce9c212e5dbd3ee19d0172b58b",
+  "content_hash_tree": "10b7bf4c0096622c36421a834146d5c0acf99606e33469c3947e22c82f0a37b7",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -418,6 +418,11 @@
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapTargetNoUnivLocalizedUnitStableConvergenceFieldSplitGuardW1393.lean",
       "sha256": "0f2d230018189f5f10c69dbfa607ec0fdabdf7ac69b35fb5db11221844755245",
       "bytes": 10611
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapUnitMappingConeComponentStableConvergenceFieldSplitGuardW1404.lean",
+      "sha256": "09976412f76d52d3b8a97e9ee5e613d25a1e84c1a48d4579cd102a83d8b9f897",
+      "bytes": 4582
     },
     {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapUnitWitnessStableConvergenceFieldSplitGuardW1389.lean",
@@ -3321,8 +3326,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "4cf9a05ab6a0a829912c5b0c2633423d3a0a4fc7487f6dd4c85d10828e9ff768",
-      "bytes": 116102
+      "sha256": "779dd40a5cf4afe9d6cdd2debf774feb2c8decf8bc44836b29d515bed9d9cfdc",
+      "bytes": 116328
     },
     {
       "path": "README.md",
@@ -5081,8 +5086,8 @@
     },
     {
       "path": "codex-progress-thread-019e5c90-4877-77a1-a792-34feb85174ab.tsv",
-      "sha256": "aae6cceafae1ec4d83c06289950b98e753b99e685fb2ecef328eb39c0720cf6b",
-      "bytes": 425504
+      "sha256": "476f6fc945995a60d1d16b7ec80f9ba201507bed8da56d6bc637635906d89b2e",
+      "bytes": 426074
     },
     {
       "path": "codex-progress-thread-w841.tsv",
@@ -9756,12 +9761,12 @@
     },
     {
       "path": "run/lake_build.log",
-      "sha256": "918534becee642ea75d5ca526292b0fe74ab17c8c5bf938b45ae14050c2ac062",
+      "sha256": "6633f9fc4d14aede1e79ffeab10138ad765adec1ebf664b1df8f1000ed523760",
       "bytes": 3415765
     },
     {
       "path": "run/lake_build_root.log",
-      "sha256": "47a9abc00ce2f61df362634a1d702dec6e9d24086ddf111f6a30063b5c516e2f",
+      "sha256": "366788e42d7f58bf5d0f817ea9807375fc41ced2a262a479fb2a24cf7b8e3b86",
       "bytes": 3415714
     },
     {
@@ -9796,8 +9801,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "de4d64213eed40602f2269d0e44e4956c1ad40a36b3826e2e1f385d5da2c8e00",
-      "bytes": 2932
+      "sha256": "9a05e681900231e0f03a23bc657df312d30e1dc2ae31efcc2af9f9145bdb25fd",
+      "bytes": 2914
     },
     {
       "path": "run/w1342_focused_lean.log",
@@ -10300,6 +10305,16 @@
       "bytes": 3409287
     },
     {
+      "path": "run/w1404_focused_lean.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1404_module_build.log",
+      "sha256": "adf5398f5d6b71cc75c732c16a3bcdc08155d94735b5502c37738256895b842c",
+      "bytes": 3409280
+    },
+    {
       "path": "scratch-log.html",
       "sha256": "be336f1f7c297c637b626c4cd19cd7962812e4653ab589afbf329bc13073e785",
       "bytes": 12231
@@ -10316,8 +10331,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "7cd1837704f99f6c4ef7f77fda6db7f216640898c2d65cbcc6dc1237ead5c46c",
-      "bytes": 2030
+      "sha256": "eb4153b2e91a3fa87cc66f799b6b621a5af0bbf2b18643fae497d194a4323ae7",
+      "bytes": 2018
     },
     {
       "path": "workers/README.md",
