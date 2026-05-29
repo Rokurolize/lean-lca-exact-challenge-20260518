@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1219 is the latest checked nonterminal increment. It constructs W1218's W982 localized-unit-choice provider input surface from the W1012/W1003 endpoint-localized-unit provider route, then delegates through W1218 and the previously checked route chain. The explicit input surface is the 5 W1003 endpoint-localized-unit provider inputs. Product success remains false.
+W1220 is the latest checked nonterminal increment. It constructs W1219's W1003 endpoint-localized-unit provider input surface from the W1013/W1004 normalized-source-endpoint-localized-unit provider route, then delegates through W1219 and the previously checked route chain. The explicit input surface is the 4 W1004 normalized-source-endpoint-localized-unit provider inputs. Product success remains false.
