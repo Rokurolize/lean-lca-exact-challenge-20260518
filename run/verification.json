@@ -1,20 +1,22 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T23:23:54Z",
-  "git_head": "0ea832967b568ec4a451e017c8c307a1d0638be9",
-  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n M run/lake_build.log\n M run/lake_build_root.log\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointStrictComponentStableConvergenceFieldSplitGuardW1405.lean\n?? run/w1405_focused_lean.log\n?? run/w1405_module_build.log\n",
-  "source_tree_hash": "fdb6d97217771a2b125a0106cf44a92f51f91acc20c75da1976e7afdba07cc9f",
+  "generated_utc": "2026-05-29T23:29:54Z",
+  "git_head": "60ed1a3164496c688e7b1b148990e501dfa2254c",
+  "source_tree_hash": "80a3e99978c0e51c45978e686995742a289ccba361af1bb0a68b2eed5515c978",
   "product_success": false,
+  "product_success_claimed": false,
+  "summary": "W1406 adds a checked closed-map endpoint cokernel-top stable convergence guard tying W964 through W963 into the closed-map route chain. The original four-task product goal remains open.",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T232640Z_codex_parent_w1406_endpoint_cokernel_top_stable_convergence_guard",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointStrictComponentStableConvergenceFieldSplitGuardW1405.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointCokernelTopStableConvergenceFieldSplitGuardW1406.lean",
       "status": "passed",
-      "evidence": "run/w1405_focused_lean.log"
+      "evidence": "run/w1406_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointStrictComponentStableConvergenceFieldSplitGuardW1405",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointCokernelTopStableConvergenceFieldSplitGuardW1406",
       "status": "passed",
-      "evidence": "run/w1405_module_build.log"
+      "evidence": "run/w1406_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -33,7 +35,7 @@
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
-      "status": "passed",
+      "status": "failed_expected",
       "evidence": "run/original_four_task_completion_declarations.log"
     },
     {
@@ -53,7 +55,7 @@
     },
     {
       "command": "rg -n --glob '!verification.json' 'productSuccessClaimed := true|\"product_success\"[[:space:]]*:[[:space:]]*true|\"product_success_claimed\"[[:space:]]*:[[:space:]]*true' LeanLCAExactChallenge run terminal_outcome",
-      "status": "failed_expected",
+      "status": "passed",
       "evidence": "run/product_success_true_scan.log"
     },
     {
@@ -61,5 +63,12 @@
       "status": "passed",
       "evidence": "run/git_diff_check.log"
     }
-  ]
+  ],
+  "known_gaps": [
+    "ProductSuccessDeclarations only checks the bounded-derived name without an original-four-task completion witness.",
+    "OriginalFourTaskCompletionDeclarations lacks the original-four-task completion witness.",
+    "Required negative fixtures remain incomplete for several premature-success patterns.",
+    "External final readonly audit is expected to fail until terminal_outcome.outcome is product_success."
+  ],
+  "remaining_work": "Advance the remaining Lean route blockers after W1406, including downstream W965+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
 }

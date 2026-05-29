@@ -1,8 +1,8 @@
 {
   "schema": "lean_lca_exact_challenge.manifest.v1",
-  "generated_utc": "2026-05-29T23:23:58Z",
-  "source_tree_hash": "fdb6d97217771a2b125a0106cf44a92f51f91acc20c75da1976e7afdba07cc9f",
-  "content_hash_tree": "6e7481f137ac4bbf501fe28023060a2682c680624786e06a02c350ba24d8c607",
+  "generated_utc": "2026-05-29T23:32:22Z",
+  "source_tree_hash": "80a3e99978c0e51c45978e686995742a289ccba361af1bb0a68b2eed5515c978",
+  "content_hash_tree": "419542ec73778912bb1e19faa952e3553159a8baa7315bec010b27d24e3fb51b",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -348,6 +348,11 @@
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapDataConsolidationStableConvergenceFieldSplitGuardW1392.lean",
       "sha256": "d5b340ba4853ccdfbb7c477ece85d6fc7d4cf35fe2c26544004e530493995d7e",
       "bytes": 18348
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointCokernelTopStableConvergenceFieldSplitGuardW1406.lean",
+      "sha256": "b15122e8bf2f74b375f69d04a3cad2ccba3934c434ad32612a0041995a2bbbac",
+      "bytes": 4321
     },
     {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointStrictComponentStableConvergenceFieldSplitGuardW1405.lean",
@@ -3331,8 +3336,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "be61caf55cfdddfb9014add23b036d50d1185941b12740ae5d98d25d68290cfa",
-      "bytes": 116553
+      "sha256": "b6c4e80e72af8374edcdfbaa1d8f54a87d8636b303b1ec0a40f74dc555ea62f7",
+      "bytes": 116774
     },
     {
       "path": "README.md",
@@ -3368,6 +3373,11 @@
       "path": "audit/YonedaUnsuffixedPortSmokeW84.lean",
       "sha256": "3d0d4054e296e358c7ea3e5c93f6326c22108fa6c43c2e47774d26e3f24fc7be",
       "bytes": 2040
+    },
+    {
+      "path": "audit/__pycache__/external_audit.cpython-312.pyc",
+      "sha256": "3090c65014ea13c02a4fee960e1df45b325d1a7f1d3ac174a6df682afd24dba9",
+      "bytes": 30664
     },
     {
       "path": "audit/blockers/addcommgrp_closed_embedding_cokernel_preservation_package_v370_support_w448.lean",
@@ -5078,66 +5088,6 @@
       "path": "audit/original_four_task_contract_audit.py",
       "sha256": "a3086d07f4a44698153daab2cb6df13e7ba174796cf5404222f11f8c0fc54fd9",
       "bytes": 12105
-    },
-    {
-      "path": "codex-progress-thread-019e3c1e-ce8e-7190-9df0-18452cc5e187.tsv",
-      "sha256": "c7972ffe3e640f6c2d513eac76d649c9dbf3a436eb7e8bf87a5931ad70f8d7a7",
-      "bytes": 8265
-    },
-    {
-      "path": "codex-progress-thread-019e599f-9415-7d71-9805-24826b1a28c1.tsv",
-      "sha256": "c6f2bc932008e2b244bed49bfd2e4b6acec4e60c9627fdd4cc956f16e415d36a",
-      "bytes": 49106
-    },
-    {
-      "path": "codex-progress-thread-019e5c90-4877-77a1-a792-34feb85174ab.tsv",
-      "sha256": "e81609576e2285f8dcb2aad25b540e4e8cad2538b03d74a1449d6751454e6606",
-      "bytes": 426632
-    },
-    {
-      "path": "codex-progress-thread-w841.tsv",
-      "sha256": "5fd619a5f21b5aa246a88ca75e3a5578e02895084e229f5cba2159e604b4c214",
-      "bytes": 1018
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260518T172459.256820896Z-pid2040222.tsv",
-      "sha256": "35b59974e76cc246ca0a0727d9bb6ce0a51575d6a51fbdf6d31866293f08646a",
-      "bytes": 34218
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260520T040852.652420406Z-pid150823.tsv",
-      "sha256": "a8efe9fe7ca3db9497ae059a339330a232718a75b7460ade61a73bd9448dd8be",
-      "bytes": 690
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260520T040956.104517288Z-pid153640.tsv",
-      "sha256": "19d67d43d78ffc538571ca1a861d52e69d7e751267bac5579724b5d6b3f144a4",
-      "bytes": 690
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260524T105449.327339068Z-pid2864536.tsv",
-      "sha256": "11f46c6617fad5dd5da14b5e9793955822e18eb8756fab403eb7f559eeb948cb",
-      "bytes": 695
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260525T003634.793950502Z-pid1160980.tsv",
-      "sha256": "424bc12892a928d378cb6b31689b7e840423597c8343b144013770cba8e49575",
-      "bytes": 695
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260525T003658.801205574Z-pid1163227.tsv",
-      "sha256": "ed51ebc44b624f09fbe7668bdefa6cf41c6b5f9bae7dbdfe9257f7cbee53f8b4",
-      "bytes": 695
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260525T151341.372508153Z-pid302790.tsv",
-      "sha256": "fa56e6f7893ed6d5e781734d5c65d0bdc46033b85206dfd1a738a0891ce111d4",
-      "bytes": 690
-    },
-    {
-      "path": "codex-progress-usage-limit-debug-20260525T162102.413611293Z-pid471864.tsv",
-      "sha256": "3be29eb98913debcc42b1198bce2edc6f57b9d9a3993ae2a83bb3e6077d50f6a",
-      "bytes": 690
     },
     {
       "path": "docs/research/alternating_tail_extend_transport_probe.md",
@@ -7865,6 +7815,11 @@
       "bytes": 2040
     },
     {
+      "path": "packets/lean_lca_exact_category_challenge/input/workdir/audit/__pycache__/external_audit.cpython-312.pyc",
+      "sha256": "45f212a6c6f763115e7f19f4505a775c3dd60fea45a315c84ab7ccbe6e557102",
+      "bytes": 30037
+    },
+    {
       "path": "packets/lean_lca_exact_category_challenge/input/workdir/audit/blockers/addcommgrp_closed_embedding_cokernel_preservation_package_v370_support_w448.lean",
       "sha256": "9bcb025c3f86d3a7ba002b42cd429f423fcf5eb4170b381475b2c56e5d2a60e3",
       "bytes": 22989
@@ -9766,12 +9721,12 @@
     },
     {
       "path": "run/lake_build.log",
-      "sha256": "9c1f90271939c5c756d5331f4f86ffb4811ca70d4cca53ea88984ab58766a66e",
+      "sha256": "4465a665ab618bb4b5825a2c16e8aaca0f40c1c19c6b72ccd22c7e3566ce4294",
       "bytes": 3415765
     },
     {
       "path": "run/lake_build_root.log",
-      "sha256": "b166ccc5a0190f04016bfba14b512d659fb7677d1baf9e3bc46cb94941d3bc91",
+      "sha256": "25c63d620ba828bf5c694bac9d17f06827aa5c87595ba4c11873fc6aadfce4a5",
       "bytes": 3415714
     },
     {
@@ -9806,8 +9761,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "d73f8d384bd79733624633af24d4abebc404618b66c1c30548bbaf4350ce7f9d",
-      "bytes": 2911
+      "sha256": "1a4b943c7a1ae56a84d30b03e594e58b177eee0940812205739d215be57f4ea8",
+      "bytes": 3556
     },
     {
       "path": "run/w1342_focused_lean.log",
@@ -10330,6 +10285,16 @@
       "bytes": 3409280
     },
     {
+      "path": "run/w1406_focused_lean.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1406_module_build.log",
+      "sha256": "f6c529bc46e47931e7c9ab2a3546c67db628164e3b941a11b0db4c7fa14e07b0",
+      "bytes": 3409276
+    },
+    {
       "path": "scratch-log.html",
       "sha256": "be336f1f7c297c637b626c4cd19cd7962812e4653ab589afbf329bc13073e785",
       "bytes": 12231
@@ -10346,8 +10311,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "6f531d39e91ef8bfe08c0c3cd805bd7b786fe56c3437ebef9b7ae3e9595793ba",
-      "bytes": 2014
+      "sha256": "76a7df10772d06cfb16e51af4801fc9c5afa8388af8b9f1c580d712048a8aea4",
+      "bytes": 1444
     },
     {
       "path": "workers/README.md",
