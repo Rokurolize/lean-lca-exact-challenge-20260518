@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T16:58:15Z",
-  "run_id": "w1340_representative_image_selected_colimit_field_split_guard",
-  "source_tree_hash": "1e1bdd1f8dce9525c0cf95c5efe7314763e14d002f1c0d9c42142299f84d5448",
+  "generated_utc": "2026-05-29T17:03:15Z",
+  "run_id": "w1341_relation_topology_field_split_guard",
+  "source_tree_hash": "faab6af985db8596423a26a8c0f15d961f27d88a17c365ba4460efbd5ef545f2",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepresentativeImageSelectedColimitFieldSplitGuardW1340.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRelationTopologyFieldSplitGuardW1341.lean",
       "status": "passed",
-      "evidence": "run/w1340_focused_lean.log"
+      "evidence": "run/w1341_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRepresentativeImageSelectedColimitFieldSplitGuardW1340",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRelationTopologyFieldSplitGuardW1341",
       "status": "passed",
-      "evidence": "run/w1340_module_build.log"
+      "evidence": "run/w1341_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -63,8 +63,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1340_focused_lean.log",
-    "module_build": "run/w1340_module_build.log",
+    "focused_lean": "run/w1341_focused_lean.log",
+    "module_build": "run/w1341_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -79,5 +79,5 @@
     "original_four_task_contract_audit": "run/original_four_task_contract_audit.log",
     "external_audit": "run/external_audit.log"
   },
-  "summary": "W1340 records W515 representative-image selected-colimit field-split equalities through W511/W514 while preserving a nonterminal local two-field boundary; product success is not claimed."
+  "summary": "W1341 records W511 relation-topology field-split equalities through W510 while preserving a nonterminal local two-field boundary; product success is not claimed."
 }

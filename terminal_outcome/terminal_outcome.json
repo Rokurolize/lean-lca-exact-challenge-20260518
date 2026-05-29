@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T16:58:15Z",
-  "outcome": "nonterminal_w1340_representative_image_selected_colimit_field_split_guard",
+  "generated_utc": "2026-05-29T17:03:15Z",
+  "outcome": "nonterminal_w1341_relation_topology_field_split_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1340 adds a checked guard for the W515 representative-image selected-colimit field split through W511/W514 routes. The original four-task contract remains unfulfilled because this local boundary still exposes relation-pullback, representative-image closedness, and selected-preservation obligations rather than discharging the remaining W1270/W987 full-data provider obligation.",
+  "summary": "W1341 adds a checked guard for the W511 relation-topology field split through W510 routes. The original four-task contract remains unfulfilled because this local boundary still exposes relation-pullback, descended closed-map, and preservation-provider obligations rather than discharging the remaining W1270/W987 full-data provider obligation.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
