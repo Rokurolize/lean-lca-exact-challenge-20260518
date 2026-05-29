@@ -1,11 +1,11 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T22:47:58Z",
+  "generated_utc": "2026-05-29T22:52:39Z",
   "outcome": "nonterminal",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1397 adds a checked closed-map split-target/no-univ primitive stable convergence guard tying W955 through W954 into the closed-map route chain. The original four-task product goal remains open.",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T224612Z_codex_parent_w1397_split_target_no_univ_primitive_stable_convergence_guard",
+  "summary": "W1398 adds a checked closed-map raw-boundary primitive stable convergence guard tying W956 through W955 into the closed-map route chain. The original four-task product goal remains open.",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T225100Z_codex_parent_w1398_raw_boundary_primitive_stable_convergence_guard",
   "verification": "run/verification.json",
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
@@ -18,6 +18,6 @@
     "Provide a real originalFourTaskContractCompletion witness instead of bounded-derived-name-only audit checks.",
     "Resolve the missing original-four-task completion declaration in audit/OriginalFourTaskCompletionDeclarations.lean.",
     "Add and verify the required negative fixtures for self-referential zip SHA authority, ordinary nerve product claims, stable certificate naming without field evidence, semantic input product claims, and Prop-field wrapper product claims.",
-    "Advance the remaining Lean route blockers after W1397, including closed-embedding mirrored bundled branches, downstream W956+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
+    "Advance the remaining Lean route blockers after W1398, including closed-embedding mirrored bundled branches, downstream W957+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
   ]
 }
