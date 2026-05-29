@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T14:21:48Z",
-  "run_id": "w1310_unit_mapping_cone_boundary_unpack_guard",
-  "source_tree_hash": "4320e37ce99b305566dcf597ecf50eac2f61d9b0f22193511a6b7292300f4c06",
+  "generated_utc": "2026-05-29T14:27:41Z",
+  "run_id": "w1311_unit_strict_exact_iso_boundary_guard",
+  "source_tree_hash": "64e301867cd2b1a79d2bac36e734b914fc073e0d81dd0d65ab17dd87b14c0794",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitMappingConeBoundaryUnpackGuardW1310.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitStrictExactIsoBoundaryGuardW1311.lean",
       "status": "passed",
-      "evidence": "run/w1310_focused_lean.log"
+      "evidence": "run/w1311_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitMappingConeBoundaryUnpackGuardW1310",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitStrictExactIsoBoundaryGuardW1311",
       "status": "passed",
-      "evidence": "run/w1310_module_build.log"
+      "evidence": "run/w1311_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -58,8 +58,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1310_focused_lean.log",
-    "module_build": "run/w1310_module_build.log",
+    "focused_lean": "run/w1311_focused_lean.log",
+    "module_build": "run/w1311_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -72,5 +72,5 @@
     "product_success_true_scan": "run/product_success_true_scan.log",
     "git_diff_check": "run/git_diff_check.log"
   },
-  "summary": "W1310 records W976 unit mapping-cone provider unpacking as a six-input provider boundary and a seven-input route surface; both expand the current one-input W1270/W987 obligation, so product success is not claimed."
+  "summary": "W1311 records W981 unit strict-exact/isomorphism data as a three-input unit boundary and a seven-input full-data route; both expand the current one-input W1270/W987 obligation, so product success is not claimed."
 }
