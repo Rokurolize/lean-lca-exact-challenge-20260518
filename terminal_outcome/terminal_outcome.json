@@ -1,12 +1,12 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T19:11:53Z",
+  "generated_utc": "2026-05-29T19:20:33Z",
   "outcome": "nonterminal",
   "product_success": false,
-  "summary": "W1361 adds a checked representative-image normalized/direct-limit W532 transfer bundle field-split guard covering direct-right limit rebuilding, W535 colimit rebuilding, and explicit/normalized localization preservation. The original four-task product goal remains open.",
+  "summary": "W1362 adds a checked top-target direct-limit W532 transfer bundle field-split guard covering direct-right limit rebuilding, W535 colimit rebuilding, and explicit, fixed-target, or normalized localization preservation. The original four-task product goal remains open.",
   "known_gaps": [
     "No product-success declaration is claimed.",
-    "Top-target and compact-target W532 provider variants remain to inspect.",
+    "Compact-target and LCA-right W532 provider variants remain to inspect.",
     "Concrete providers and categorical closure structures remain to be consolidated into the final accepted path."
   ],
   "remaining_work": [
@@ -15,5 +15,5 @@
     "Keep reference-route evidence aligned with docs/research/reference_route_log.md."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T191036Z_codex_parent_w1361_representative_image_direct_limit_transfer_bundle_field_split_guard"
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T191853Z_codex_parent_w1362_top_target_direct_limit_transfer_bundle_field_split_guard"
 }
