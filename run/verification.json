@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T18:39:48Z",
-  "git_head": "076f6dd5c7564d467c91f0436fd0d670dee52882",
-  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n M manifest.json\n M run/verification.json\n M terminal_outcome/terminal_outcome.json\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitTopTargetCompactSpaceRowsFieldSplitGuardW1355.lean\n",
-  "source_tree_hash": "860dd14cea2966b9b8d34f23d78194f3fc8cf1b816423c4ae04bc24cab10220f",
+  "generated_utc": "2026-05-29T18:44:40Z",
+  "git_head": "0a65078988f44dfe5d3b22c1c7859eaf44b36411",
+  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedRangeOnlyPreservationBridgeFieldSplitGuardW1356.lean\n",
+  "source_tree_hash": "e25e3a1bb6334da575dc52e737b8a9ceffcd130fb261e238846a02e79947de2f",
   "product_success": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitTopTargetCompactSpaceRowsFieldSplitGuardW1355.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedRangeOnlyPreservationBridgeFieldSplitGuardW1356.lean",
       "status": "passed",
-      "evidence": "run/w1355_focused_lean.log"
+      "evidence": "run/w1356_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitTopTargetCompactSpaceRowsFieldSplitGuardW1355",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedRangeOnlyPreservationBridgeFieldSplitGuardW1356",
       "status": "passed",
-      "evidence": "run/w1355_module_build.log"
+      "evidence": "run/w1356_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",

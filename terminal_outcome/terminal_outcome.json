@@ -1,12 +1,12 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T18:39:48Z",
+  "generated_utc": "2026-05-29T18:44:40Z",
   "outcome": "nonterminal",
   "product_success": false,
-  "summary": "W1355 adds a checked W600 split top-target compact-space row field-split guard covering remaining normalized-bundle fields, stable-bundle adapters, and W595/W535 endpoint delegations. The original four-task product goal remains open.",
+  "summary": "W1356 adds a checked W521/W522 closed-range-only preservation bridge field-split guard covering provider evaluation and endpoint delegation into W520 and W483. The original four-task product goal remains open.",
   "known_gaps": [
     "No product-success declaration is claimed.",
-    "The active route still exposes the W600 twelve-input surface instead of the current one-input W987 obligation.",
+    "The bridge still requires a provider pair rather than discharging the current one-input W987 obligation.",
     "Concrete providers and categorical closure structures remain to be consolidated into the final accepted path."
   ],
   "remaining_work": [
@@ -15,5 +15,5 @@
     "Keep reference-route evidence aligned with docs/research/reference_route_log.md."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T183546Z_codex_parent_w1355_split_top_target_compact_space_rows_field_split_guard"
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T184315Z_codex_parent_w1356_closed_range_only_preservation_bridge_field_split_guard"
 }
