@@ -1,11 +1,11 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T23:05:18Z",
+  "generated_utc": "2026-05-29T23:09:48Z",
   "outcome": "nonterminal",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1401 adds a checked closed-map source-triangulation primitive stable convergence guard tying W959 through W958 into the closed-map route chain. The original four-task product goal remains open.",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T230338Z_codex_parent_w1401_source_triangulation_primitive_stable_convergence_guard",
+  "summary": "W1402 adds a checked closed-map closedness-branch primitive stable convergence guard tying W960 through W959 into the closed-map route chain. The original four-task product goal remains open.",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T230815Z_codex_parent_w1402_closedness_branch_primitive_stable_convergence_guard",
   "verification": "run/verification.json",
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
@@ -18,6 +18,6 @@
     "Provide a real originalFourTaskContractCompletion witness instead of bounded-derived-name-only audit checks.",
     "Resolve the missing original-four-task completion declaration in audit/OriginalFourTaskCompletionDeclarations.lean.",
     "Add and verify the required negative fixtures for self-referential zip SHA authority, ordinary nerve product claims, stable certificate naming without field evidence, semantic input product claims, and Prop-field wrapper product claims.",
-    "Advance the remaining Lean route blockers after W1401, including closed-embedding mirrored bundled branches, downstream W960+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
+    "Advance the remaining Lean route blockers after W1402, including closed-embedding mirrored bundled branches, downstream W961+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
   ]
 }
