@@ -1,7 +1,7 @@
 {
   "schema": "lean_lca_manifest_v1",
-  "generated_utc": "2026-05-29T07:28:10Z",
-  "source_tree_hash": "79439f3959c2132881701c9f1da8c6978076c44b367fb476ec3a91628d2227f8",
+  "generated_utc": "2026-05-29T07:36:03Z",
+  "source_tree_hash": "1573be60735a95194811755b5a1b22eda4ce1c466025646cad8606288f72b772",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -30,8 +30,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "9f203201fafdde7d3d2d90f741d655a0e21cda9140b08238d1447976f1cbf2ba",
-      "bytes": 86517
+      "sha256": "0bb0eb4d6165f87e925abfb2682525f2c24b9c7eb03e1787b3d6d8f47e43e718",
+      "bytes": 86724
     },
     {
       "path": "LeanLCAExactChallenge/AlternatingTailExtendTransport.lean",
@@ -721,6 +721,11 @@
     {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromCurrentFullDataToBranchFullDataDirectRouteW1251.lean",
       "sha256": "a4d629ed2f88c904890ad0c5022d8486332e5c0f29bdf39bfbf4e8b83478b00a",
+      "bytes": 21704
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromCurrentFullDataToBranchFullDataDirectRouteW1260.lean",
+      "sha256": "d38bfa155d79376edb37eef25bfcc4552f08a46cdf8187bf7468621c0a6c5ce0",
       "bytes": 21704
     },
     {
@@ -2605,8 +2610,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "a23c02f3f88ccaba33cc641c3136e8a8dfdba7d5ac01a9671c4777ab4d25552a",
-      "bytes": 978
+      "sha256": "8223d4e3626c61571236d65e971320d040151d77735061e7f52b99022ba2eabe",
+      "bytes": 935
     },
     {
       "path": "README_FOR_REVIEW.md",
@@ -2620,18 +2625,18 @@
     },
     {
       "path": "audit/OriginalFourTaskCompletionDeclarations.lean",
-      "sha256": "4d79f34a7318777e73787d3634f8bfaf9025e06dac49db514ee961b3fbb05188",
-      "bytes": 1280688
+      "sha256": "f56961a7038987aec475360a6ad8cd8f5b1436e0677ee081010e459721e8e4b4",
+      "bytes": 1284734
     },
     {
       "path": "audit/ProductSuccessDeclarations.lean",
-      "sha256": "1cd4b3841fde8509b9a22dad4b69b83012f431dd13ea403fcc2cf101af27dce3",
-      "bytes": 1645864
+      "sha256": "436155126020e75050930fe04619ec6bd997829033516500124a6211d568bcc2",
+      "bytes": 1649308
     },
     {
       "path": "audit/RequiredDeclarations.lean",
-      "sha256": "d7298abdc283dfa936776316259f3f89505dd6dc67b40b9fcd295accc88d82c9",
-      "bytes": 1074157
+      "sha256": "83ffb55b99178fcd855cefe7dae32bba857ebc1792efd3a67104608126fe51b9",
+      "bytes": 1077601
     },
     {
       "path": "audit/YonedaUnsuffixedPortSmokeW84.lean",
@@ -4395,8 +4400,8 @@
     },
     {
       "path": "docs/research/reference_route_log.md",
-      "sha256": "ec25276cf571c10ea2c11e9fcdfb03358f488651152e45c988877fa25257e76c",
-      "bytes": 609285
+      "sha256": "b9555ac28e96958c2c789fa84fa552f94b0c15a7d837562e55dee31f610cb990",
+      "bytes": 610775
     },
     {
       "path": "docs/research/sources.md",
@@ -5722,6 +5727,11 @@
       "path": "docs/research/w1259_provider_search_ledger.md",
       "sha256": "22ceac9faa80481a0d0236faf9d9ad22209b8897f2319dd1cd6cb634127e388f",
       "bytes": 818
+    },
+    {
+      "path": "docs/research/w1260_provider_search_ledger.md",
+      "sha256": "7d067097753a9b267a4ad97774a224e70abebfbff427f46f61df48ea7bf2b3e6",
+      "bytes": 690
     },
     {
       "path": "docs/research/w886_provider_search_ledger.md",
@@ -8490,8 +8500,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "1e41d6e1a45bfe731cccb6a8bc73a4352c58ea1a87108b39e04e714d91aa61c3",
-      "bytes": 5851
+      "sha256": "3f32b6cb37dad4d61e34cdeede799554a0c572d42784d328cce9bbb9feadc54e",
+      "bytes": 5200
     },
     {
       "path": "scratch-log.html",
@@ -8510,8 +8520,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "838e6af72866fc7496a88ef58ab0e1c478cc0e1f3f6a7e0bdd779867f919a1e8",
-      "bytes": 7523
+      "sha256": "522c2929de6fbe958cd191e2986aff79d810344f123333f082c91931e16bc896",
+      "bytes": 6711
     },
     {
       "path": "workers/README.md",
@@ -8519,5 +8529,5 @@
       "bytes": 131
     }
   ],
-  "content_hash_tree": "764a28828401297daa028c6bd148b9fcdb81535cb0de1607d207cc8b83af300b"
+  "content_hash_tree": "a3344b504cb5efdfd051cbb8d0b31582ba0959146e1f7319779d983ac9694464"
 }
