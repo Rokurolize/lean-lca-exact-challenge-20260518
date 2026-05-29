@@ -1,6 +1,6 @@
 {
-  "outcome": "nonterminal_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge",
-  "generated_utc": "2026-05-29T03:17:50Z",
+  "outcome": "nonterminal_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge",
+  "generated_utc": "2026-05-29T03:33:00Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
@@ -12,51 +12,51 @@
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1227 keeps the target nonterminal under the immutable original four-task contract while constructing W1226's W1010/W981 unit-strict-exact-iso provider input surface from the W1011/W982 localized-unit-choice provider route, then delegating through W1226 and the previously checked route chain. Product success remains false because the 6 W1011/W982 localized-unit-choice provider inputs remain explicit assumptions and the original four-task completion witness and review packet remain incomplete.",
+  "summary": "W1228 keeps the target nonterminal under the immutable original four-task contract while constructing W1227's W1011/W982 localized-unit-choice provider input surface from the W1012/W1003 endpoint-localized-unit provider route, then delegating through W1227 and the previously checked route chain. Product success remains false because the 5 W1012/W1003 endpoint-localized-unit provider inputs remain explicit assumptions and the original four-task completion witness and review packet remain incomplete.",
   "known_gaps": [
-    "Task 4 is not contract-complete: W1227 still has 6 explicit W1011/W982 localized-unit-choice provider input assumptions.",
-    "No no-argument localized-unit-choice provider route has been connected to the original four-task completion witness.",
+    "Task 4 is not contract-complete: W1228 still has 5 explicit W1012/W1003 endpoint-localized-unit provider input assumptions.",
+    "No no-argument endpoint-localized-unit provider route has been connected to the original four-task completion witness.",
     "The review packet is not ready because terminal outcome remains nonterminal and product_success is false."
   ],
   "remaining_work": [
-    "Construct or reduce the remaining W1011/W982 localized-unit-choice provider inputs to earlier concrete route data rather than exposing them as input fields.",
-    "Connect a real no-argument route only after the W1011/W982 assumptions are eliminated.",
+    "Construct or reduce the remaining W1012/W1003 endpoint-localized-unit provider inputs to earlier concrete route data rather than exposing them as input fields.",
+    "Connect a real no-argument route only after the W1012/W1003 assumptions are eliminated.",
     "Build the review packet only after Lean, terminal outcome, and audit evidence satisfy the immutable contract."
   ],
-  "support_result_classification": "nonterminal_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge",
-  "latest_verified_increment": "W1227 W1011-to-W1226 localized-unit-choice bridge",
+  "support_result_classification": "nonterminal_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge",
+  "latest_verified_increment": "W1228 W1012-to-W1227 endpoint-localized-unit bridge",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w1227_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w1228_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete: W1227 still has 6 explicit W1011/W982 localized-unit-choice provider input assumptions.",
-    "No no-argument localized-unit-choice provider route has been connected to the original four-task completion witness.",
+    "Task 4 is not contract-complete: W1228 still has 5 explicit W1012/W1003 endpoint-localized-unit provider input assumptions.",
+    "No no-argument endpoint-localized-unit provider route has been connected to the original four-task completion witness.",
     "The review packet is not ready because terminal outcome remains nonterminal and product_success is false."
   ],
-  "source_tree_hash": "711c9da91fd734bd9ad9c59c077b55b8b365109777a0a8088fec65d4494eb644",
-  "remaining_explicit_inputs": 6,
+  "source_tree_hash": "a4fd3031dfb77f3c22c369565419a7e2eab056b2243684e5470200a8576d9299",
+  "remaining_explicit_inputs": 5,
   "remaining_explicit_input_groups": 1,
-  "implemented_declarations_checked": 35,
+  "implemented_declarations_checked": 36,
   "terminal_evidence": {
-    "module_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromLocalizedUnitChoiceToUnitStrictExactIsoDataDirectRouteW1227.lean",
-    "module_target": "LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromLocalizedUnitChoiceToUnitStrictExactIsoDataDirectRouteW1227",
-    "input_count_theorem": "LeanLCAExactChallenge.Dbounded.localizedUnitChoiceInputNamesW1227_count",
-    "nonterminal_theorem": "LeanLCAExactChallenge.Dbounded.currentW1227LocalizedUnitChoiceToUnitStrictExactIsoDataDirectRoute_productSuccess"
+    "module_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromEndpointLocalizedUnitToLocalizedUnitChoiceDirectRouteW1228.lean",
+    "module_target": "LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromEndpointLocalizedUnitToLocalizedUnitChoiceDirectRouteW1228",
+    "input_count_theorem": "LeanLCAExactChallenge.Dbounded.endpointLocalizedUnitInputNamesW1228_count",
+    "nonterminal_theorem": "LeanLCAExactChallenge.Dbounded.currentW1228EndpointLocalizedUnitToLocalizedUnitChoiceDirectRoute_productSuccess"
   },
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromLocalizedUnitChoiceToUnitStrictExactIsoDataDirectRouteW1227.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_focused_lean_module.log)",
-    "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromLocalizedUnitChoiceToUnitStrictExactIsoDataDirectRouteW1227 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_focused_lake_module.log)",
-    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_root_import_lean.log)",
-    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_required_declarations.log)",
-    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_product_success_declarations.log)",
-    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_original_four_declarations.log)",
-    "lake build LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_lake_build_root_target.log)",
-    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_lake_build_all.log)",
-    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_forbidden_tokens.log)",
-    "live product-success false scan (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_product_success_live_false_scan.log)",
-    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_git_diff_check.log)",
-    "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_contract_audit_after_manifest.log)",
-    "JSON and manifest validation (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_json_metadata_validation.log)"
+    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromEndpointLocalizedUnitToLocalizedUnitChoiceDirectRouteW1228.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_focused_lean_module.log)",
+    "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromEndpointLocalizedUnitToLocalizedUnitChoiceDirectRouteW1228 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_focused_lake_module.log)",
+    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_root_import_lean.log)",
+    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_required_declarations.log)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_product_success_declarations.log)",
+    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_original_four_declarations.log)",
+    "lake build LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_lake_build_root_target.log)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_lake_build_all.log)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_forbidden_tokens.log)",
+    "live product-success false scan (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_product_success_live_false_scan.log)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_git_diff_check.log)",
+    "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_contract_audit_after_manifest.log)",
+    "JSON and manifest validation (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T033300Z_codex_parent_w1228_endpoint_localized_unit_to_localized_unit_choice_bridge/logs/w1228_json_metadata_validation.log)"
   ],
-  "review_packet_status": "not_ready_nonterminal_w1227_localized_unit_choice_inputs_explicit",
+  "review_packet_status": "not_ready_nonterminal_w1228_endpoint_localized_unit_inputs_explicit",
   "update_goal_status": "not_allowed_product_success_false"
 }
