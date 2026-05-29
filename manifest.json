@@ -1,8 +1,8 @@
 {
   "schema": "lean_lca_exact_challenge.manifest.v1",
-  "generated_utc": "2026-05-29T23:19:22Z",
-  "source_tree_hash": "c2beebc9c7a56f267c4feec716a1e5b0d61396ce9c212e5dbd3ee19d0172b58b",
-  "content_hash_tree": "10b7bf4c0096622c36421a834146d5c0acf99606e33469c3947e22c82f0a37b7",
+  "generated_utc": "2026-05-29T23:23:58Z",
+  "source_tree_hash": "fdb6d97217771a2b125a0106cf44a92f51f91acc20c75da1976e7afdba07cc9f",
+  "content_hash_tree": "6e7481f137ac4bbf501fe28023060a2682c680624786e06a02c350ba24d8c607",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -348,6 +348,11 @@
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapDataConsolidationStableConvergenceFieldSplitGuardW1392.lean",
       "sha256": "d5b340ba4853ccdfbb7c477ece85d6fc7d4cf35fe2c26544004e530493995d7e",
       "bytes": 18348
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointStrictComponentStableConvergenceFieldSplitGuardW1405.lean",
+      "sha256": "51ceb0d1a95088a28fb2fc91f2e08209bb23946ef9248a2feed42172fa1c9f7d",
+      "bytes": 4870
     },
     {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapEndpointStrictExactStableConvergenceFieldSplitGuardW1390.lean",
@@ -3326,8 +3331,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "779dd40a5cf4afe9d6cdd2debf774feb2c8decf8bc44836b29d515bed9d9cfdc",
-      "bytes": 116328
+      "sha256": "be61caf55cfdddfb9014add23b036d50d1185941b12740ae5d98d25d68290cfa",
+      "bytes": 116553
     },
     {
       "path": "README.md",
@@ -5086,8 +5091,8 @@
     },
     {
       "path": "codex-progress-thread-019e5c90-4877-77a1-a792-34feb85174ab.tsv",
-      "sha256": "476f6fc945995a60d1d16b7ec80f9ba201507bed8da56d6bc637635906d89b2e",
-      "bytes": 426074
+      "sha256": "e81609576e2285f8dcb2aad25b540e4e8cad2538b03d74a1449d6751454e6606",
+      "bytes": 426632
     },
     {
       "path": "codex-progress-thread-w841.tsv",
@@ -9761,12 +9766,12 @@
     },
     {
       "path": "run/lake_build.log",
-      "sha256": "6633f9fc4d14aede1e79ffeab10138ad765adec1ebf664b1df8f1000ed523760",
+      "sha256": "9c1f90271939c5c756d5331f4f86ffb4811ca70d4cca53ea88984ab58766a66e",
       "bytes": 3415765
     },
     {
       "path": "run/lake_build_root.log",
-      "sha256": "366788e42d7f58bf5d0f817ea9807375fc41ced2a262a479fb2a24cf7b8e3b86",
+      "sha256": "b166ccc5a0190f04016bfba14b512d659fb7677d1baf9e3bc46cb94941d3bc91",
       "bytes": 3415714
     },
     {
@@ -9801,8 +9806,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "9a05e681900231e0f03a23bc657df312d30e1dc2ae31efcc2af9f9145bdb25fd",
-      "bytes": 2914
+      "sha256": "d73f8d384bd79733624633af24d4abebc404618b66c1c30548bbaf4350ce7f9d",
+      "bytes": 2911
     },
     {
       "path": "run/w1342_focused_lean.log",
@@ -10315,6 +10320,16 @@
       "bytes": 3409280
     },
     {
+      "path": "run/w1405_focused_lean.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1405_module_build.log",
+      "sha256": "1ad9144645092d72976b5c3e8d46b3aa0e914d7e308ea18d8fafa710ab772593",
+      "bytes": 3409280
+    },
+    {
       "path": "scratch-log.html",
       "sha256": "be336f1f7c297c637b626c4cd19cd7962812e4653ab589afbf329bc13073e785",
       "bytes": 12231
@@ -10331,8 +10346,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "eb4153b2e91a3fa87cc66f799b6b621a5af0bbf2b18643fae497d194a4323ae7",
-      "bytes": 2018
+      "sha256": "6f531d39e91ef8bfe08c0c3cd805bd7b786fe56c3437ebef9b7ae3e9595793ba",
+      "bytes": 2014
     },
     {
       "path": "workers/README.md",
