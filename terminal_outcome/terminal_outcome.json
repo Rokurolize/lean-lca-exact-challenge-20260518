@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T15:23:58Z",
-  "outcome": "nonterminal_w1322_branch_full_data_target_compact_recovery_guard",
+  "generated_utc": "2026-05-29T15:28:59Z",
+  "outcome": "nonterminal_w1323_target_compact_branch_wrapper_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1322 adds a checked guard for the W998 route that derives W715 target surjective-compact data from W987 branch full data and delegates through W997. The original four-task contract remains unfulfilled because the remaining W1270/W987 full-data provider obligation is not discharged by a product-success witness.",
+  "summary": "W1323 adds a checked guard for the W997 wrapper that packages W715 target surjective-compact data and W987 branch full data before delegating through W996. The original four-task contract remains unfulfilled because the W997 wrapper still contains the unconstructed W987 full-data provider obligation.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
