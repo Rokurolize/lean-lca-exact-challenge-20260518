@@ -1,8 +1,8 @@
 {
   "schema": "lean_lca_exact_challenge.manifest.v1",
-  "generated_utc": "2026-05-29T23:01:07Z",
-  "source_tree_hash": "a3bc5d28e59883cf505effbfdd88450d5811a024334c721f3dc14562fab987a8",
-  "content_hash_tree": "460a0e039257ee6bd3a915a244318ac3c36566462c8cf3e76eabd2716a264e17",
+  "generated_utc": "2026-05-29T23:05:21Z",
+  "source_tree_hash": "b5f1f916acdc815258ce26a724111be968ddf8f38e540f4cf553e4f71531f2c6",
+  "content_hash_tree": "055f6249e9c159f24b59cdbb005bef73022d96c03523d2d34f6665f0e47669a9",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -383,6 +383,11 @@
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapSourceTriangulationEndpointStrictExactStableConvergenceFieldSplitGuardW1391.lean",
       "sha256": "864e07d80a8d37a1916686e46500f66e9ed3bcb8fa370ae455ba3a066d94b780",
       "bytes": 5148
+    },
+    {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapSourceTriangulationPrimitiveStableConvergenceFieldSplitGuardW1401.lean",
+      "sha256": "aadb9352608eefb894666181470c224c4c3f35a3529cef7c40c2d49a6f27a3d8",
+      "bytes": 5370
     },
     {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapSplitTargetNoUnivPrimitiveStableConvergenceFieldSplitGuardW1397.lean",
@@ -3306,8 +3311,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "f62b894bbae7f4fd58068c683282c4b604e88a2de3ff4dcc807a4c07249bee8c",
-      "bytes": 115413
+      "sha256": "14e1db9548ebdcc253cdb80c9e1317faba458e57385249320e3730fc56a7b08e",
+      "bytes": 115643
     },
     {
       "path": "README.md",
@@ -5066,8 +5071,8 @@
     },
     {
       "path": "codex-progress-thread-019e5c90-4877-77a1-a792-34feb85174ab.tsv",
-      "sha256": "0c8d1090cdf719c7b5b1b00d127350b615f41450bf5400e5c6c700136fdee79a",
-      "bytes": 423680
+      "sha256": "ccea58e84ec2d335c1524c6c30dee009b430712d312fd729abd4a1a8505cf5c9",
+      "bytes": 424294
     },
     {
       "path": "codex-progress-thread-w841.tsv",
@@ -9741,12 +9746,12 @@
     },
     {
       "path": "run/lake_build.log",
-      "sha256": "f8289919a65181b0da60eb68d53f359cba89784feedd8b47cdd171c0fdb9dc96",
+      "sha256": "a45cd5bdec9a35f9d974477fcca0b2b6f3648d2440549d439dfa6edc8dcb40ff",
       "bytes": 3415765
     },
     {
       "path": "run/lake_build_root.log",
-      "sha256": "21c0ae2feefe981c1d104b6569764cd500a4f7c6c1c86467dddcf81df018dda3",
+      "sha256": "92e9b6a2ba9e04f205e3cd923ce98b7f54b432347833f83cc0094ccd157a5bf6",
       "bytes": 3415714
     },
     {
@@ -9781,8 +9786,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "0de8efce69ed99053e68a51242d23b0f9f4f2abf3adeeb8437837049be519e8e",
-      "bytes": 2932
+      "sha256": "522a0f3a301bf1960ec99d5eb9edab6565b4bc6e5583bc6f25d16886ec460b4b",
+      "bytes": 2926
     },
     {
       "path": "run/w1342_focused_lean.log",
@@ -10255,6 +10260,16 @@
       "bytes": 3409287
     },
     {
+      "path": "run/w1401_focused_lean.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run/w1401_module_build.log",
+      "sha256": "5772783149c0526632130698c14357c191f5de75bd768bbb7e0b25d5e05856fc",
+      "bytes": 3409285
+    },
+    {
       "path": "scratch-log.html",
       "sha256": "be336f1f7c297c637b626c4cd19cd7962812e4653ab589afbf329bc13073e785",
       "bytes": 12231
@@ -10271,8 +10286,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "2fd70e4d93b0752ff7c1453545797370bc0778932df6bf05315872e831205396",
-      "bytes": 2074
+      "sha256": "25779aa14613685383f12253228782656fdb85f26b86aa301efa7b2b7441d4a6",
+      "bytes": 2068
     },
     {
       "path": "workers/README.md",
