@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T17:19:00Z",
-  "outcome": "nonterminal_w1343_relation_fields_closed_map_field_split_guard",
+  "generated_utc": "2026-05-29T17:25:00Z",
+  "outcome": "nonterminal_w1344_selected_colimit_quotient_identification_field_split_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1343 adds a checked guard for the W512 relation-fields closed-map field split through W511 routes. The original four-task contract remains unfulfilled because this local boundary still exposes relation-pullback, target-relation-lift, and preservation-provider obligations rather than discharging the remaining W1270/W987 full-data provider obligation.",
+  "summary": "W1344 adds a checked guard for the W514 selected-colimit quotient-identification field split through W512 routes. The original four-task contract remains unfulfilled because this local boundary still exposes W512 relation fields plus quotient-identification, closed-range quotient-identification, or componentwise projection provider obligations rather than discharging the remaining W1270/W987 full-data provider obligation.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
