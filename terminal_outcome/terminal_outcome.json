@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T16:28:15Z",
-  "outcome": "nonterminal_w1334_localized_adjunction_field_split_guard",
+  "generated_utc": "2026-05-29T16:33:15Z",
+  "outcome": "nonterminal_w1335_target_surjective_compact_provider_field_split_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1334 adds a checked guard for the W975 field-split route from localized-adjunction data into W974 leaves. The original four-task contract remains unfulfilled because this route expands rather than discharges the remaining W1270/W987 full-data provider obligation.",
+  "summary": "W1335 adds a checked guard for the W715 target-surjective compact provider field split into W714 closed-map and closed-embedding bundles. The original four-task contract remains unfulfilled because this route expands rather than discharges the remaining W1270/W987 full-data provider obligation.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
