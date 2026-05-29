@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T14:58:23Z",
-  "run_id": "w1316_unit_strict_exact_iso_to_localized_unit_choice_guard",
-  "source_tree_hash": "5b91d01cd7f513e6e418f7e262e23822581bbc7ab1ba2dd563ee8c523e470681",
+  "generated_utc": "2026-05-29T15:01:51Z",
+  "run_id": "w1317_localized_unit_choice_to_full_data_guard",
+  "source_tree_hash": "0f870205c36ba9f8944ccc37f589ab11ee321e058e97b15eb41f09b7f9bca03a",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitStrictExactIsoToLocalizedUnitChoiceGuardW1316.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedUnitChoiceToFullDataGuardW1317.lean",
       "status": "passed",
-      "evidence": "run/w1316_focused_lean.log"
+      "evidence": "run/w1317_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitStrictExactIsoToLocalizedUnitChoiceGuardW1316",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedUnitChoiceToFullDataGuardW1317",
       "status": "passed",
-      "evidence": "run/w1316_module_build.log"
+      "evidence": "run/w1317_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -58,8 +58,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1316_focused_lean.log",
-    "module_build": "run/w1316_module_build.log",
+    "focused_lean": "run/w1317_focused_lean.log",
+    "module_build": "run/w1317_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -72,5 +72,5 @@
     "product_success_true_scan": "run/product_success_true_scan.log",
     "git_diff_check": "run/git_diff_check.log"
   },
-  "summary": "W1316 records W989 as routing W981 unit strict-exact/isomorphism data through W988 to construct W987 full data, expanding the current W1270/W987 one-input obligation to the seven-input W981 surface; product success is not claimed."
+  "summary": "W1317 records W988 as packaging W982 localized-unit-choice data into W987 full data through W984, W949, W950, and W986, expanding the current W1270/W987 one-input obligation to the six-input W982 surface; product success is not claimed."
 }
