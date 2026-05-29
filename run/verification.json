@@ -1,70 +1,70 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T18:06:25Z",
-  "run_id": "20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard",
-  "git_head": "7e534a3fd717741bddea19a97732ee460dd5f367",
-  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitCompactTargetGlobalClosedMapFieldSplitGuardW1350.lean\n",
+  "generated_utc": "2026-05-29T18:12:50Z",
+  "run_id": "20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard",
+  "git_head": "ff3702ce53c5ae4dad180429ded67febace16e25",
+  "source_tree_hash": "6b32dbb8fc3cdc864a5f708a39f599a6ed61acbdfa0fb8c4656b5d54f3e817c3",
+  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitCompactTargetGlobalClosedEmbeddingFieldSplitGuardW1351.lean\n",
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitCompactTargetGlobalClosedMapFieldSplitGuardW1350.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitCompactTargetGlobalClosedEmbeddingFieldSplitGuardW1351.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/w1350_focused_lean.log (bytes=0)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/w1351_focused_lean.log (bytes=0)"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitCompactTargetGlobalClosedMapFieldSplitGuardW1350",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitCompactTargetGlobalClosedEmbeddingFieldSplitGuardW1351",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/w1350_module_build.log (bytes=3301619)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/w1351_module_build.log (bytes=3301619)"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/root_lean.log (bytes=0)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/root_lean.log (bytes=0)"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/required_declarations.log (bytes=3851225)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/required_declarations.log (bytes=3851225)"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/product_success_declarations.log (bytes=5145270)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/product_success_declarations.log (bytes=5145270)"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/original_four_task_completion_declarations.log (bytes=3509030)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/original_four_task_completion_declarations.log (bytes=3509030)"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/lake_build.log (bytes=3308351)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/lake_build.log (bytes=3308351)"
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/lake_build_root.log (bytes=3308300)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/lake_build_root.log (bytes=3308300)"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/forbidden_token_audit.log (bytes=60)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/forbidden_token_audit.log (bytes=60)"
     },
     {
-      "command": "rg -n productSuccessClaimed := true / product_success true LeanLCAExactChallenge run terminal_outcome",
+      "command": "rg -n --glob !verification.json productSuccessClaimed true / product_success true LeanLCAExactChallenge run terminal_outcome",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/product_success_true_scan.log (bytes=0)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/product_success_true_scan.log (bytes=0)"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard/run/git_diff_check.log (bytes=0)"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard/run/git_diff_check.log (bytes=0)"
     }
   ],
   "notes": [
-    "W1350 adds a split compact-target global closed-map field-split guard for W593.",
+    "W1351 adds the closed-embedding analogue of the W1350 split compact-target field-split guard for W594.",
     "Product success remains false; terminal outcome remains nonterminal."
-  ],
-  "source_tree_hash": "62361c3abb9a942e4d17d42c9ffde5e6ca1328e20651dfe49843cce0954e8b1e"
+  ]
 }

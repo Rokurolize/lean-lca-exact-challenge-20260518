@@ -1,18 +1,18 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T18:06:25Z",
-  "run_id": "20260529T180322Z_codex_parent_w1350_split_compact_target_global_closed_map_field_split_guard",
+  "generated_utc": "2026-05-29T18:12:50Z",
+  "run_id": "20260529T181044Z_codex_parent_w1351_split_compact_target_global_closed_embedding_field_split_guard",
   "outcome": "nonterminal",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1350 proves W593 preserves the split compact-target provider fields and copies the closed-map normalized bundle fields into the W591 route; it does not discharge the original four-task completion contract.",
+  "summary": "W1351 proves W594 copies split compact-target global closed-embedding bundle fields into the W581 route and preserves stable-bundle witnesses; it does not discharge the original four-task completion contract.",
   "known_gaps": [
-    "The current W987 obligation is still represented by a one-input full-data payload surface, while W593 still exposes an eleven-input stable route surface.",
-    "Concrete relation-pullback, target-relation compactness, closed-map provider, normalized-localization, homotopy-isomorphism, left-calculus, pretriangulated, and triangulated inputs remain required."
+    "The current W987 obligation is still represented by a one-input full-data payload surface, while W594 still exposes an eleven-input stable route surface.",
+    "Concrete relation-pullback, target-relation compactness, closed-embedding provider, normalized-localization, homotopy-isomorphism, left-calculus, pretriangulated, and triangulated inputs remain required."
   ],
   "remaining_work": [
     "Continue reducing or bridging direct route surfaces toward the immutable original four-task contract.",
-    "Inspect W595/W596 endpoint routes, W594 closed-embedding analogues, or W520/W519 preservation convergence for the next guarded split."
+    "Inspect W595/W596 endpoint routes, W520/W519 preservation convergence, or remaining direct route surfaces for the next guarded split."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "verification_json": "run/verification.json"
