@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T16:13:15Z",
-  "outcome": "nonterminal_w1331_target_surjective_compact_kernel_cokernel_top_iso_field_split_guard",
+  "generated_utc": "2026-05-29T16:18:15Z",
+  "outcome": "nonterminal_w1332_endpoint_kernel_cokernel_top_field_split_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1331 adds a checked guard for the W992 field-split route from target-surjective compact kernel/cokernel-top data into W991 leaves. The original four-task contract remains unfulfilled because this route expands rather than discharges the remaining W1270/W987 full-data provider obligation.",
+  "summary": "W1332 adds a checked guard for the W974 field-split route from endpoint kernel/cokernel-top data into W973 leaves. The original four-task contract remains unfulfilled because this route expands rather than discharges the remaining W1270/W987 full-data provider obligation.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
