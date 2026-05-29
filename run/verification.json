@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T16:43:15Z",
-  "run_id": "w1337_split_top_target_compact_space_field_split_guard",
-  "source_tree_hash": "a80dbeb20a5c9dbb3298b76ff0fe8e88b9615b0afb0209af4dc5b0d1f69adfc4",
+  "generated_utc": "2026-05-29T16:48:15Z",
+  "run_id": "w1338_top_target_compact_space_field_split_guard",
+  "source_tree_hash": "06b2b2e279305e78b51e00f7fbc43861691e8e18d94c441e66b7f10e1d030bb7",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitTopTargetCompactSpaceFieldSplitGuardW1337.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTopTargetCompactSpaceFieldSplitGuardW1338.lean",
       "status": "passed",
-      "evidence": "run/w1337_focused_lean.log"
+      "evidence": "run/w1338_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSplitTopTargetCompactSpaceFieldSplitGuardW1337",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTopTargetCompactSpaceFieldSplitGuardW1338",
       "status": "passed",
-      "evidence": "run/w1337_module_build.log"
+      "evidence": "run/w1338_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -63,8 +63,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1337_focused_lean.log",
-    "module_build": "run/w1337_module_build.log",
+    "focused_lean": "run/w1338_focused_lean.log",
+    "module_build": "run/w1338_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -79,5 +79,5 @@
     "original_four_task_contract_audit": "run/original_four_task_contract_audit.log",
     "external_audit": "run/external_audit.log"
   },
-  "summary": "W1337 records W600 split top-target compact-space field-split equalities into W599 row-level bundles while preserving a twelve-input route surface; product success is not claimed."
+  "summary": "W1338 records W597 top-target compact-space field-split equalities through W593/W595/W596 while preserving a three-input route surface; product success is not claimed."
 }

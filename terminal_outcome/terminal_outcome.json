@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T16:43:15Z",
-  "outcome": "nonterminal_w1337_split_top_target_compact_space_field_split_guard",
+  "generated_utc": "2026-05-29T16:48:15Z",
+  "outcome": "nonterminal_w1338_top_target_compact_space_field_split_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1337 adds a checked guard for the W600 split top-target compact-space field split into W599 row-level bundles. The original four-task contract remains unfulfilled because this route expands rather than discharges the remaining W1270/W987 full-data provider obligation.",
+  "summary": "W1338 adds a checked guard for the W597 top-target compact-space field split through W593/W595/W596 routes. The original four-task contract remains unfulfilled because this route expands rather than discharges the remaining W1270/W987 full-data provider obligation.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
