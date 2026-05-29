@@ -1,99 +1,99 @@
 {
   "schema": "lean_lca_nonterminal_verification_v1",
-  "generated_utc": "2026-05-29T02:59:51Z",
-  "source_tree_hash": "345a20609eb586c694cd5d13d5cd60807331f0afc6f190c710e35ae5e48fb681",
-  "latest_verified_increment": "W1226 W1010-to-W1225 unit-strict-exact-iso bridge",
-  "remaining_explicit_inputs": 7,
+  "generated_utc": "2026-05-29T03:17:50Z",
+  "source_tree_hash": "711c9da91fd734bd9ad9c59c077b55b8b365109777a0a8088fec65d4494eb644",
+  "latest_verified_increment": "W1227 W1011-to-W1226 localized-unit-choice bridge",
+  "remaining_explicit_inputs": 6,
   "remaining_explicit_input_groups": 1,
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge",
+  "run_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge",
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromUnitStrictExactIsoDataToComponentFieldsDirectRouteW1226.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromLocalizedUnitChoiceToUnitStrictExactIsoDataDirectRouteW1227.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_focused_lean_module.log",
-      "note": "focused Lean source check for W1226"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_focused_lean_module.log",
+      "note": "focused Lean source check for W1227"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromUnitStrictExactIsoDataToComponentFieldsDirectRouteW1226",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataFromLocalizedUnitChoiceToUnitStrictExactIsoDataDirectRouteW1227",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_focused_lake_module.log",
-      "note": "named Lake target for W1226"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_focused_lake_module.log",
+      "note": "named Lake target for W1227"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_root_import_lean.log",
-      "note": "root import source includes W1226"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_root_import_lean.log",
+      "note": "root import source includes W1227"
     },
     {
       "command": "lake env lean audit/RequiredDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_required_declarations.log",
-      "note": "required public declarations include W1226"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_required_declarations.log",
+      "note": "required public declarations include W1227"
     },
     {
       "command": "lake env lean audit/ProductSuccessDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_product_success_declarations.log",
-      "note": "checks W1226 while product_success remains false"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_product_success_declarations.log",
+      "note": "checks W1227 while product_success remains false"
     },
     {
       "command": "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_original_four_declarations.log",
-      "note": "records W1226 with 7 W1010/W981 unit-strict-exact inputs still explicit"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_original_four_declarations.log",
+      "note": "records W1227 with 6 W1011/W982 localized-unit-choice inputs still explicit"
     },
     {
       "command": "lake build LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_lake_build_root_target.log",
-      "note": "root Lake target includes W1226"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_lake_build_root_target.log",
+      "note": "root Lake target includes W1227"
     },
     {
       "command": "lake build",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_lake_build_all.log",
-      "note": "full Lake build after W1226"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_lake_build_all.log",
+      "note": "full Lake build after W1227"
     },
     {
       "command": "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_forbidden_tokens.log",
-      "note": "forbidden-token scan after W1226"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_forbidden_tokens.log",
+      "note": "forbidden-token scan after W1227"
     },
     {
       "command": "live product-success false scan",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_product_success_live_false_scan.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_product_success_live_false_scan.log",
       "note": "no true-valued product claim in product-facing Lean; terminal success flags are false"
     },
     {
       "command": "git diff --check",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_git_diff_check.log",
-      "note": "whitespace check after W1226"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_git_diff_check.log",
+      "note": "whitespace check after W1227"
     },
     {
       "command": "python3 audit/original_four_task_contract_audit.py --root . --contract /home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_contract_audit.log",
-      "note": "immutable contract audit accepts W1226 only as nonterminal"
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_contract_audit_after_manifest.log",
+      "note": "immutable contract audit accepts W1227 only as nonterminal"
     },
     {
       "command": "JSON and manifest validation",
       "status": "passed",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_json_validation.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_json_metadata_validation.log",
       "note": "terminal outcome, verification, manifest, and source hash validated"
     },
     {
       "command": "python3 audit/external_audit.py --root . --terminal-outcome terminal_outcome/terminal_outcome.json",
       "status": "failed_expected",
-      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T025951Z_codex_parent_w1226_unit_strict_exact_iso_to_component_fields_bridge/logs/w1226_external_audit_nonterminal_expected.log",
+      "evidence": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T031750Z_codex_parent_w1227_localized_unit_choice_to_unit_strict_exact_iso_bridge/logs/w1227_external_audit_after_manifest_nonterminal_expected.log",
       "note": "external audit rejects nonterminal product_success false outcome as expected"
     }
   ],
-  "notes": "W1226 is a verified nonterminal route movement from 18 W1018/W971 component-field provider inputs to 7 W1010/W981 unit-strict-exact-iso provider inputs. It does not satisfy the immutable original four-task completion contract."
+  "notes": "W1227 is a verified nonterminal route movement from 7 W1010/W981 unit-strict-exact-iso provider inputs to 6 W1011/W982 localized-unit-choice provider inputs. It does not satisfy the immutable original four-task completion contract."
 }
