@@ -1,9 +1,9 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T21:40:17Z",
+  "generated_utc": "2026-05-29T21:46:11Z",
   "outcome": "nonterminal",
   "product_success": false,
-  "summary": "W1386 adds a checked closed-map raw/primitive stable convergence guard tying W914-W920 through W913-W919 into the closed-map route chain. The original four-task product goal remains open.",
+  "summary": "W1387 adds a checked closed-map primitive target stable convergence guard tying W921-W924 through W920-W923 into the closed-map route chain. The original four-task product goal remains open.",
   "known_gaps": [
     "No product-success declaration is claimed.",
     "Further branch convergence, negative fixtures, and remaining completion-contract blockers remain to inspect.",
@@ -15,5 +15,5 @@
     "Keep reference-route evidence aligned with docs/research/reference_route_log.md."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T213747Z_codex_parent_w1386_closed_map_raw_primitive_stable_convergence_guard"
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T214421Z_codex_parent_w1387_closed_map_primitive_target_stable_convergence_guard"
 }
