@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T16:18:15Z",
-  "run_id": "w1332_endpoint_kernel_cokernel_top_field_split_guard",
-  "source_tree_hash": "8c43d346e97988f1f5e42b17073b25bbc7fab3b1b23bf321a13bddb3db42f60a",
+  "generated_utc": "2026-05-29T16:23:15Z",
+  "run_id": "w1333_unit_mapping_cone_field_split_guard",
+  "source_tree_hash": "3069731b984650cb70cf865c38cfff0eea00e90ea8d72208ba758f6540385ac9",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataEndpointKernelCokernelTopFieldSplitGuardW1332.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitMappingConeFieldSplitGuardW1333.lean",
       "status": "passed",
-      "evidence": "run/w1332_focused_lean.log"
+      "evidence": "run/w1333_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataEndpointKernelCokernelTopFieldSplitGuardW1332",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitMappingConeFieldSplitGuardW1333",
       "status": "passed",
-      "evidence": "run/w1332_module_build.log"
+      "evidence": "run/w1333_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -63,8 +63,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1332_focused_lean.log",
-    "module_build": "run/w1332_module_build.log",
+    "focused_lean": "run/w1333_focused_lean.log",
+    "module_build": "run/w1333_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -77,5 +77,5 @@
     "product_success_true_scan": "run/product_success_true_scan.log",
     "git_diff_check": "run/git_diff_check.log"
   },
-  "summary": "W1332 records additional W974 field-split equalities from endpoint kernel/cokernel-top data into W973 leaves while preserving a thirteen-input route surface; product success is not claimed."
+  "summary": "W1333 records additional W976 field-split equalities from dependent unit mapping-cone data into W975 leaves while preserving a seven-input route surface; product success is not claimed."
 }
