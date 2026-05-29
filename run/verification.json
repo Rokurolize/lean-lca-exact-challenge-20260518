@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T16:33:15Z",
-  "run_id": "w1335_target_surjective_compact_provider_field_split_guard",
-  "source_tree_hash": "c81ee2edd3ab7665bca092ec4babca5c6232df2e92bc8ce3ede2cefa774ed4fb",
+  "generated_utc": "2026-05-29T16:38:15Z",
+  "run_id": "w1336_target_surjective_compact_adapter_field_split_guard",
+  "source_tree_hash": "2e7847ff1e9dec7d06fa5b6985a748060a53aa809297844681a52bda117c865a",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetSurjectiveCompactProviderFieldSplitGuardW1335.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetSurjectiveCompactAdapterFieldSplitGuardW1336.lean",
       "status": "passed",
-      "evidence": "run/w1335_focused_lean.log"
+      "evidence": "run/w1336_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetSurjectiveCompactProviderFieldSplitGuardW1335",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTargetSurjectiveCompactAdapterFieldSplitGuardW1336",
       "status": "passed",
-      "evidence": "run/w1335_module_build.log"
+      "evidence": "run/w1336_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -63,8 +63,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1335_focused_lean.log",
-    "module_build": "run/w1335_module_build.log",
+    "focused_lean": "run/w1336_focused_lean.log",
+    "module_build": "run/w1336_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -79,5 +79,5 @@
     "original_four_task_contract_audit": "run/original_four_task_contract_audit.log",
     "external_audit": "run/external_audit.log"
   },
-  "summary": "W1335 records W715 target-surjective compact provider field-split equalities into W714 closed-map and closed-embedding bundles while preserving a twenty-three-input route surface; product success is not claimed."
+  "summary": "W1336 records W601 target-surjective compact-codomain adapter field-split equalities into W600/W606 routes while preserving a four-input route surface; product success is not claimed."
 }
