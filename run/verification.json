@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T18:49:54Z",
-  "git_head": "8529c15f5d8a417299c8fc5117e8c56491f9b94c",
-  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedRangeOnlyProviderNarrowingFieldSplitGuardW1357.lean\n",
-  "source_tree_hash": "626fd8babc62771ebd6e1b5c41acc5a186c38833584119d4b1305160eb2e285f",
+  "generated_utc": "2026-05-29T18:55:34Z",
+  "git_head": "002afc45fa1e287cf4e222fd94ed39dfcdb6db37",
+  "working_tree_status_short": " M LeanLCAExactChallenge.lean\n?? LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRowAwareClosedRangeRowsFieldSplitGuardW1358.lean\n",
+  "source_tree_hash": "f43bdc86863bc65c2666ef9c0d10ade6f52f2f946a8dd431d0e21532e3cbe060",
   "product_success": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedRangeOnlyProviderNarrowingFieldSplitGuardW1357.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRowAwareClosedRangeRowsFieldSplitGuardW1358.lean",
       "status": "passed",
-      "evidence": "run/w1357_focused_lean.log"
+      "evidence": "run/w1358_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedRangeOnlyProviderNarrowingFieldSplitGuardW1357",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRowAwareClosedRangeRowsFieldSplitGuardW1358",
       "status": "passed",
-      "evidence": "run/w1357_module_build.log"
+      "evidence": "run/w1358_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",

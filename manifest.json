@@ -1,8 +1,8 @@
 {
   "schema": "lean_lca_exact_challenge.manifest.v1",
-  "generated_utc": "2026-05-29T18:50:43Z",
-  "source_tree_hash": "626fd8babc62771ebd6e1b5c41acc5a186c38833584119d4b1305160eb2e285f",
-  "content_hash_tree": "12031cc5cdfaf4a84c188f2c7d038da7439888974105063ca8c4213454afde94",
+  "generated_utc": "2026-05-29T18:56:23Z",
+  "source_tree_hash": "f43bdc86863bc65c2666ef9c0d10ade6f52f2f946a8dd431d0e21532e3cbe060",
+  "content_hash_tree": "79b9517ba0400752f6e1517e1e6f49f45028b103174331f27c3f70ff07254849",
   "files": [
     {
       "path": ".github/workflows/create-release.yml",
@@ -1940,6 +1940,11 @@
       "bytes": 11906
     },
     {
+      "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataRowAwareClosedRangeRowsFieldSplitGuardW1358.lean",
+      "sha256": "d0e5f97a9b1e8b1ed62a5955535146e1ce21ece370c21b0df406a02fc032c3af",
+      "bytes": 9719
+    },
+    {
       "path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataSelectedColimitQuotientIdentificationFieldSplitGuardW1344.lean",
       "sha256": "41d313f4c1482eaed698b8c49e8e0ebd07ee88f871390918d478f478fec38356",
       "bytes": 6455
@@ -3091,8 +3096,8 @@
     },
     {
       "path": "LeanLCAExactChallenge.lean",
-      "sha256": "049c67c53acc5c08e41d5038dfaf9ad8f96ab736b7b7cccfb7c47ead75b0f2cd",
-      "bytes": 105908
+      "sha256": "3b53535eebc8ca01584712be1d292b22d604e8505c68d82427c0755689bca67c",
+      "bytes": 106107
     },
     {
       "path": "README.md",
@@ -4851,8 +4856,8 @@
     },
     {
       "path": "codex-progress-thread-019e5c90-4877-77a1-a792-34feb85174ab.tsv",
-      "sha256": "154196378a08e9b353cd039c8658927e765e43ac8d11cb6c0a91647b376e48c1",
-      "bytes": 397883
+      "sha256": "39abb7a97fd54a9ae49d7746333af06b482c6ba2461b8531a38461b0fad08c16",
+      "bytes": 398420
     },
     {
       "path": "codex-progress-thread-w841.tsv",
@@ -9566,8 +9571,8 @@
     },
     {
       "path": "run/verification.json",
-      "sha256": "b3942d05fea93483f36828ed671604cb6d26163268ed2efaa45a0f6a95e47af2",
-      "bytes": 2738
+      "sha256": "fb1b1a7a077f6ead87d9540a4671c0aa008a12144434399f20d65e44824728e7",
+      "bytes": 2711
     },
     {
       "path": "run/w1342_focused_lean.log",
@@ -9666,8 +9671,8 @@
     },
     {
       "path": "terminal_outcome/terminal_outcome.json",
-      "sha256": "2531a70703145549aa3d8fbb3f6c4decba12760fdf850a5408abf36553019801",
-      "bytes": 1299
+      "sha256": "d135f638f6b2fa135264ec236d95e4e1e893e015accf2e56bced6d50b67715fb",
+      "bytes": 1240
     },
     {
       "path": "workers/README.md",
