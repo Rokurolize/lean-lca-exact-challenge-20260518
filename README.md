@@ -22,4 +22,4 @@ is a starting point, not a solution.
 
 ## Current Frontier
 
-W1261 is the latest checked nonterminal increment. It preserves the W1260 one-entry W1017/W1008 current-full-data frontier and adds a Lean guard proving that the available W1018 component-field route would expand the frontier to 18 explicit inputs rather than close it. Product success remains false.
+W1262 is the latest checked nonterminal increment. It unwraps the W1261/W1008 current-full-data input to its exact W977 payload and records that this W977 current full-data provider still has to be constructed without external input. Product success remains false.

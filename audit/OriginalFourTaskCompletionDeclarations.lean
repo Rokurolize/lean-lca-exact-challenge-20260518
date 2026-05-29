@@ -14558,3 +14558,23 @@ theorem originalFourTaskContract_currentFullDataCycleGuard_nonterminalW1261 :
       state.productSuccessClaimed) =
       false :=
   LeanLCAExactChallenge.Dbounded.currentW1261CurrentFullDataCycleGuard_productSuccess
+
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadOfCurrentFullDataW1262
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadInputNamesW1262
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadInputNamesW1262_count
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadMatchesW977InputCountW1262
+#check LeanLCAExactChallenge.Dbounded.currentFullDataPayloadMatchesW1261InputCountW1262
+#check LeanLCAExactChallenge.Dbounded.MetrizableCurrentFullDataPayloadStateW1262
+#check LeanLCAExactChallenge.Dbounded.currentMetrizableCurrentFullDataPayloadStateW1262
+#check LeanLCAExactChallenge.Dbounded.currentW1262CurrentFullDataPayload_productSuccess
+
+theorem originalFourTaskContract_currentFullDataPayload_inputCountW1262 :
+    LeanLCAExactChallenge.Dbounded.currentFullDataPayloadInputNamesW1262.length = 1 :=
+  LeanLCAExactChallenge.Dbounded.currentFullDataPayloadInputNamesW1262_count
+
+theorem originalFourTaskContract_currentFullDataPayload_nonterminalW1262 :
+    (let state :=
+        LeanLCAExactChallenge.Dbounded.currentMetrizableCurrentFullDataPayloadStateW1262;
+      state.productSuccessClaimed) =
+      false :=
+  LeanLCAExactChallenge.Dbounded.currentW1262CurrentFullDataPayload_productSuccess
