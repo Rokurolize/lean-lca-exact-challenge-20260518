@@ -1,4 +1,4 @@
-ℹ [1783/2001] Replayed LeanLCAExactChallenge.MathlibSurvey
+ℹ [1783/1911] Replayed LeanLCAExactChallenge.MathlibSurvey
 info: LeanLCAExactChallenge/MathlibSurvey.lean:21:0: TopCat.{u} : Type (u + 1)
 info: LeanLCAExactChallenge/MathlibSurvey.lean:22:0: TopCat.Hom.{u} (X Y : TopCat) : Type u
 info: LeanLCAExactChallenge/MathlibSurvey.lean:23:0: AddGroupTopology.{u} (α : Type u) [AddGroup α] : Type u
@@ -19,7 +19,7 @@ info: LeanLCAExactChallenge/MathlibSurvey.lean:35:0: CategoryTheory.Limits.HasKe
   (f : X ⟶ Y) : Prop
 info: LeanLCAExactChallenge/MathlibSurvey.lean:36:0: CategoryTheory.Limits.HasCokernel.{v, u} {C : Type u} [Category.{v, u} C] [Limits.HasZeroMorphisms C] {X Y : C}
   (f : X ⟶ Y) : Prop
-⚠ [1803/2001] Replayed LeanLCAExactChallenge.LCA.Cokernel
+⚠ [1803/1911] Replayed LeanLCAExactChallenge.LCA.Cokernel
 warning: LeanLCAExactChallenge/LCA/Cokernel.lean:222:6: try 'simp' instead of 'simpa'
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
@@ -32,7 +32,7 @@ Note: This linter can be disabled with `set_option linter.unnecessarySimpa false
 warning: LeanLCAExactChallenge/LCA/Cokernel.lean:295:4: try 'simp' instead of 'simpa'
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
-⚠ [2083/2741] Replayed LeanLCAExactChallenge.Derived.Bounded
+⚠ [2082/2282] Replayed LeanLCAExactChallenge.Derived.Bounded
 warning: LeanLCAExactChallenge/Derived/Bounded.lean:320:14: This simp argument is unused:
   strictShortExactBiprodComplex
 
@@ -114,7 +114,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/Bounded.lean:4954:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2107/2741] Replayed LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated
+⚠ [2106/2282] Replayed LeanLCAExactChallenge.Derived.WppOpExactAcyclicFrontierConsolidated
 warning: LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean:26:0: Unscoped option maxHeartbeats is not allowed:
 Please scope this to individual declarations, as in
 ```
@@ -139,7 +139,7 @@ Note: This linter can be disabled with `set_option linter.unnecessarySimpa false
 warning: LeanLCAExactChallenge/Derived/WppOpExactAcyclicFrontierConsolidated.lean:523:6: try 'simp' instead of 'simpa'
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
-⚠ [2110/2741] Replayed LeanLCAExactChallenge.Derived.OptionProductDecomposition
+⚠ [2109/2282] Replayed LeanLCAExactChallenge.Derived.OptionProductDecomposition
 warning: LeanLCAExactChallenge/Derived/OptionProductDecomposition.lean:274:0: automatically included section variable(s) unused in theorem `LeanLCAExactChallenge.OptionProductDecompositionW151.optionProductComplexTransportedBinaryFan_pt`:
   [HasBinaryBiproducts C]
 consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
@@ -245,7 +245,7 @@ Note: This linter can be disabled with `set_option linter.unusedSectionVars fals
 warning: LeanLCAExactChallenge/Derived/OptionProductDecomposition.lean:1178:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2111/2741] Replayed LeanLCAExactChallenge.Derived.MappingConeBiprod
+⚠ [2110/2282] Replayed LeanLCAExactChallenge.Derived.MappingConeBiprod
 warning: LeanLCAExactChallenge/Derived/MappingConeBiprod.lean:347:10: try 'simp' instead of 'simpa'
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
@@ -258,11 +258,11 @@ Note: This linter can be disabled with `set_option linter.unnecessarySimpa false
 warning: LeanLCAExactChallenge/Derived/MappingConeBiprod.lean:509:8: try 'simp' instead of 'simpa'
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
-⚠ [2112/2741] Replayed LeanLCAExactChallenge.Derived.FiniteProductExactness
+⚠ [2111/2282] Replayed LeanLCAExactChallenge.Derived.FiniteProductExactness
 warning: LeanLCAExactChallenge/Derived/FiniteProductExactness.lean:65:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2113/2741] Replayed LeanLCAExactChallenge.Derived.MappingConeFiniteProduct
+⚠ [2112/2282] Replayed LeanLCAExactChallenge.Derived.MappingConeFiniteProduct
 warning: LeanLCAExactChallenge/Derived/MappingConeFiniteProduct.lean:8:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -599,7 +599,7 @@ info: LeanLCAExactChallenge/Derived/MappingConeFiniteProduct.lean:779:0: Categor
   [HasProduct g] (p : (b : β) → f b ⟶ g b) : ∏ᶜ f ⟶ ∏ᶜ g
 info: LeanLCAExactChallenge/Derived/MappingConeFiniteProduct.lean:780:0: CategoryTheory.Limits.biprod.map.{uC', uC} {C : Type uC} [Category.{uC', uC} C] [HasZeroMorphisms C] {W X Y Z : C}
   [HasBinaryBiproduct W X] [HasBinaryBiproduct Y Z] (f : W ⟶ Y) (g : X ⟶ Z) : W ⊞ X ⟶ Y ⊞ Z
-⚠ [2114/2741] Replayed LeanLCAExactChallenge.Derived.BoundedFiniteProducts
+⚠ [2113/2282] Replayed LeanLCAExactChallenge.Derived.BoundedFiniteProducts
 warning: LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean:15:0: Unscoped option maxHeartbeats is not allowed:
 Please scope this to individual declarations, as in
 ```
@@ -899,7 +899,7 @@ info: LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean:1667:0: LeanLCAEx
 info: LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean:1668:0: LeanLCAExactChallenge.Dbounded.metrizableWppFiniteShapeTransferFromNormalizedInputNames : List String
 info: LeanLCAExactChallenge/Derived/BoundedFiniteProducts.lean:1669:0: LeanLCAExactChallenge.Dbounded.metrizableWppFiniteShapeTransferFromNormalizedInputNames_count :
   Dbounded.metrizableWppFiniteShapeTransferFromNormalizedInputNames.length = 4
-⚠ [2115/2741] Replayed LeanLCAExactChallenge.Derived.WppOpMappingConeBoundedLeftCochain
+⚠ [2114/2282] Replayed LeanLCAExactChallenge.Derived.WppOpMappingConeBoundedLeftCochain
 warning: LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean:14:0: Unscoped option maxHeartbeats is not allowed:
 Please scope this to individual declarations, as in
 ```
@@ -970,7 +970,7 @@ info: LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean:453:
     HomComplex.Cochain.zero_cochain_comp_v, HomComplex.Cochain.ofHom_v,
     HomComplex.Cochain.comp_zero_cochain_v] at h₄ hnat hfacq ⊢
 info: LeanLCAExactChallenge/Derived/WppOpMappingConeBoundedLeftCochain.lean:458:2: 'exact h₄' uses 'h₄'!
-⚠ [2116/2741] Replayed LeanLCAExactChallenge.Derived.WppOpMappingConeUniqueMediator
+⚠ [2115/2282] Replayed LeanLCAExactChallenge.Derived.WppOpMappingConeUniqueMediator
 warning: LeanLCAExactChallenge/Derived/WppOpMappingConeUniqueMediator.lean:22:0: Unscoped option maxHeartbeats is not allowed:
 Please scope this to individual declarations, as in
 ```
@@ -1009,7 +1009,7 @@ warning: LeanLCAExactChallenge/Derived/WppOpMappingConeUniqueMediator.lean:729:1
 You can use "string gaps" to format long strings: within a string quotation, using a '\' at the end of a line allows you to continue the string on the following line, removing all intervening whitespace.
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2117/2741] Replayed LeanLCAExactChallenge.Derived.DirectWppOpColimitFiniteShapeTransfer
+⚠ [2116/2282] Replayed LeanLCAExactChallenge.Derived.DirectWppOpColimitFiniteShapeTransfer
 warning: LeanLCAExactChallenge/Derived/DirectWppOpColimitFiniteShapeTransfer.lean:16:0: Unscoped option maxHeartbeats is not allowed:
 Please scope this to individual declarations, as in
 ```
@@ -1114,7 +1114,7 @@ info: LeanLCAExactChallenge/Derived/DirectWppOpColimitFiniteShapeTransfer.lean:3
 info: LeanLCAExactChallenge/Derived/DirectWppOpColimitFiniteShapeTransfer.lean:321:0: LeanLCAExactChallenge.Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromLeftSnakeInputNames : List String
 info: LeanLCAExactChallenge/Derived/DirectWppOpColimitFiniteShapeTransfer.lean:322:0: LeanLCAExactChallenge.Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromLeftSnakeInputNames_count :
   Dbounded.metrizableWalkingParallelPairFiniteShapeTransferFromLeftSnakeInputNames.length = 4
-⚠ [2118/2741] Replayed LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer
+⚠ [2117/2282] Replayed LeanLCAExactChallenge.Derived.DirectWppLimitFiniteShapeTransfer
 warning: LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean:251:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -1160,7 +1160,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/DirectWppLimitFiniteShapeTransfer.lean:2111:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2119/2741] Replayed LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields
+⚠ [2122/2742] Replayed LeanLCAExactChallenge.Derived.WppOpExactAcyclicProjectionFields
 warning: LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean:208:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -32395,7 +32395,7 @@ info: LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean:59248
 info: LeanLCAExactChallenge/Derived/WppOpExactAcyclicProjectionFields.lean:59251:0: LeanLCAExactChallenge.Dbounded.currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693_productSuccess :
   currentMetrizableAcceptedStableBoundedDerivedInfinityCategoryTargetTopCompactGlobalProviderNormalizedFixedTargetClosureKernelBalancedMonoEpiRouteStateW693.productSuccessClaimed =
     false
-⚠ [2120/2741] Replayed LeanLCAExactChallenge.Derived.LeftRightComparisonRoute
+⚠ [2123/2742] Replayed LeanLCAExactChallenge.Derived.LeftRightComparisonRoute
 warning: LeanLCAExactChallenge/Derived/LeftRightComparisonRoute.lean:41:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -32433,7 +32433,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/LeftRightComparisonRoute.lean:142:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2121/2741] Replayed LeanLCAExactChallenge.Derived.CategoryHomologyStableRoute
+⚠ [2124/2742] Replayed LeanLCAExactChallenge.Derived.CategoryHomologyStableRoute
 warning: LeanLCAExactChallenge/Derived/CategoryHomologyStableRoute.lean:127:100: This line exceeds the 100 character limit, please shorten it!
 You can use "string gaps" to format long strings: within a string quotation, using a '\' at the end of a line allows you to continue the string on the following line, removing all intervening whitespace.
 
@@ -32445,7 +32445,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/CategoryHomologyStableRoute.lean:149:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2123/2741] Replayed LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
+⚠ [2126/2742] Replayed LeanLCAExactChallenge.Derived.LeftRightComparisonProductRoute
 warning: LeanLCAExactChallenge/Derived/LeftRightComparisonProductRoute.lean:178:100: This line exceeds the 100 character limit, please shorten it!
 You can use "string gaps" to format long strings: within a string quotation, using a '\' at the end of a line allows you to continue the string on the following line, removing all intervening whitespace.
 
@@ -32457,14 +32457,14 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/LeftRightComparisonProductRoute.lean:193:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2134/2741] Replayed LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
+⚠ [2134/2742] Replayed LeanLCAExactChallenge.Derived.DirectFiniteShapeProductRoute
 warning: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:68:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/DirectFiniteShapeProductRoute.lean:98:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2281/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactWitnessPrimitiveFieldRoute
+⚠ [2281/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactWitnessPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactWitnessPrimitiveFieldRoute.lean:76:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -32494,7 +32494,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactWitnessPrimitiveFieldRoute.lean:494:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2282/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactComponentsPrimitiveFieldRoute
+⚠ [2282/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactComponentsPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:90:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -32556,7 +32556,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointShortExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:510:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2283/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
+⚠ [2283/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:91:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -32626,7 +32626,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:527:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2284/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipSourceTriangulationDataEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
+⚠ [2284/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipSourceTriangulationDataEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipSourceTriangulationDataEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:90:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -32718,7 +32718,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipSourceTriangulationDataEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:523:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2285/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
+⚠ [2285/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:32:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -32829,7 +32829,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:332:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2286/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
+⚠ [2286/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:33:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -32949,7 +32949,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:249:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2287/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
+⚠ [2287/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:109:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -33069,7 +33069,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedStrictRepresentativeLiftSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:320:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2288/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
+⚠ [2288/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:33:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -33189,7 +33189,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetCompactNoUnivMembershipClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:223:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2289/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
+⚠ [2289/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:55:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -33309,7 +33309,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactUnitStrictExactComponentsPrimitiveFieldRoute.lean:236:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2290/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
+⚠ [2290/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean:111:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -33435,7 +33435,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapTargetNoUnivMembershipDataClosednessDataBoundaryRelationDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean:312:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2291/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
+⚠ [2291/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean:31:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -33581,7 +33581,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivMembershipDataClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean:197:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2292/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
+⚠ [2292/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean:56:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -33701,7 +33701,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedFixedTargetDataSourceTriangulationEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean:202:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2293/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
+⚠ [2293/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean:55:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -33821,7 +33821,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointStrictExactLocalizedUnitDataPrimitiveFieldRoute.lean:196:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2294/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointLocalizedUnitDataPrimitiveFieldRoute
+⚠ [2294/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointLocalizedUnitDataPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointLocalizedUnitDataPrimitiveFieldRoute.lean:57:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -33941,7 +33941,7 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationDataEndpointLocalizedUnitDataPrimitiveFieldRoute.lean:191:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2295/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationEndpointLocalizedUnitDataPrimitiveFieldRoute
+⚠ [2295/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationEndpointLocalizedUnitDataPrimitiveFieldRoute
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationEndpointLocalizedUnitDataPrimitiveFieldRoute.lean:57:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
@@ -34061,15 +34061,15 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationDataTargetNoUnivClosednessDataNormalizedSourceTriangulationEndpointLocalizedUnitDataPrimitiveFieldRoute.lean:188:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2315/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedNormalizedStrictRepresentativeComparisonStableConvergenceFieldSplitGuardW1379
+⚠ [2362/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedNormalizedStrictRepresentativeComparisonStableConvergenceFieldSplitGuardW1379
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedNormalizedStrictRepresentativeComparisonStableConvergenceFieldSplitGuardW1379.lean:297:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [2316/2741] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataStrictPreimageBoundaryRelationComparisonStableConvergenceFieldSplitGuardW1380
+⚠ [2363/2742] Replayed LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataStrictPreimageBoundaryRelationComparisonStableConvergenceFieldSplitGuardW1380
 warning: LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataStrictPreimageBoundaryRelationComparisonStableConvergenceFieldSplitGuardW1380.lean:254:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-ℹ [2329/2741] Replayed LeanLCAExactChallenge.AlternatingTailExtendTransport
+ℹ [2377/2742] Replayed LeanLCAExactChallenge.AlternatingTailExtendTransport
 info: LeanLCAExactChallenge/AlternatingTailExtendTransport.lean:241:0: LeanLCAExactChallenge.AlternatingTailExtendTransport.natAlternatingTailContractingHomotopy :
   Homotopy (𝟙 natAlternatingTail) 0
 info: LeanLCAExactChallenge/AlternatingTailExtendTransport.lean:242:0: LeanLCAExactChallenge.AlternatingTailExtendTransport.intAlternatingTailGE (p : ℤ) : CochainComplex IntModuleCat ℤ
@@ -34092,7 +34092,7 @@ info: LeanLCAExactChallenge/AlternatingTailExtendTransport.lean:249:0: LeanLCAEx
   (transportedNatTailHomotopy p h).hom i' j' =
     (extendXIso natAlternatingTail (embeddingUpIntGE p) hi).hom ≫
       h.hom i j ≫ (extendXIso natAlternatingTail (embeddingUpIntGE p) hj).inv
-ℹ [2330/2741] Replayed LeanLCAExactChallenge.Derived.ContractibleTail
+ℹ [2378/2742] Replayed LeanLCAExactChallenge.Derived.ContractibleTail
 info: LeanLCAExactChallenge/Derived/ContractibleTail.lean:130:0: LeanLCAExactChallenge.AlternatingTailExtendTransport.intAlternatingTailGERightUnboundedContractible (p : ℤ) :
   RightUnboundedContractibleComplex IntModuleCat
 info: LeanLCAExactChallenge/Derived/ContractibleTail.lean:131:0: LeanLCAExactChallenge.AlternatingTailExtendTransport.not_strictBoundednessTransport_intAlternatingTailGE (p : ℤ) :
@@ -34109,4 +34109,4 @@ info: LeanLCAExactChallenge/Derived/ContractibleTail.lean:134:0: LeanLCAExactCha
 info: LeanLCAExactChallenge/Derived/ContractibleTail.lean:135:0: LeanLCAExactChallenge.nonemptyHomotopyEquivZeroOfContractingHomotopy.{u_1, u_2, u_3} {ι : Type u_1} {C : Type u_2}
   [Category.{u_3, u_2} C] [Preadditive C] [HasZeroObject C] {c : ComplexShape ι} (K : HomologicalComplex C c)
   (h : Homotopy (𝟙 K) 0) : Nonempty (HomotopyEquiv K 0)
-Build completed successfully (2741 jobs).
+Build completed successfully (2742 jobs).
