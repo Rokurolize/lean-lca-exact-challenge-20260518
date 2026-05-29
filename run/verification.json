@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T16:23:15Z",
-  "run_id": "w1333_unit_mapping_cone_field_split_guard",
-  "source_tree_hash": "3069731b984650cb70cf865c38cfff0eea00e90ea8d72208ba758f6540385ac9",
+  "generated_utc": "2026-05-29T16:28:15Z",
+  "run_id": "w1334_localized_adjunction_field_split_guard",
+  "source_tree_hash": "2bfa56d3da9830d74d1b0caf568973130432bacf0657a2ff39ae71200ebbdb37",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitMappingConeFieldSplitGuardW1333.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedAdjunctionFieldSplitGuardW1334.lean",
       "status": "passed",
-      "evidence": "run/w1333_focused_lean.log"
+      "evidence": "run/w1334_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataUnitMappingConeFieldSplitGuardW1333",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataLocalizedAdjunctionFieldSplitGuardW1334",
       "status": "passed",
-      "evidence": "run/w1333_module_build.log"
+      "evidence": "run/w1334_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -63,8 +63,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1333_focused_lean.log",
-    "module_build": "run/w1333_module_build.log",
+    "focused_lean": "run/w1334_focused_lean.log",
+    "module_build": "run/w1334_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -75,7 +75,9 @@
   "audits": {
     "forbidden_token_audit": "run/forbidden_token_audit.log",
     "product_success_true_scan": "run/product_success_true_scan.log",
-    "git_diff_check": "run/git_diff_check.log"
+    "git_diff_check": "run/git_diff_check.log",
+    "original_four_task_contract_audit": "run/original_four_task_contract_audit.log",
+    "external_audit": "run/external_audit.log"
   },
-  "summary": "W1333 records additional W976 field-split equalities from dependent unit mapping-cone data into W975 leaves while preserving a seven-input route surface; product success is not claimed."
+  "summary": "W1334 records W975 localized-adjunction field-split equalities into W974 leaves while preserving a twelve-input route surface; product success is not claimed."
 }
