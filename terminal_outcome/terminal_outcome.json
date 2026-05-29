@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T15:14:37Z",
-  "outcome": "nonterminal_w1320_target_surjective_compact_kernel_cokernel_top_iso_guard",
+  "generated_utc": "2026-05-29T15:19:18Z",
+  "outcome": "nonterminal_w1321_primitive_unit_components_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1320 adds a checked guard for the W992 route from W715 target surjective-compact data through W991 to W987 full data. The original four-task contract remains unfulfilled because the remaining W1270/W987 full-data provider obligation is not discharged by a product-success witness.",
+  "summary": "W1321 adds a checked guard for the W990 route from explicit localized adjunction fields and the W939 unit-component witness through W989 to W987 full data. The original four-task contract remains unfulfilled because the remaining W1270/W987 full-data provider obligation is not discharged by a product-success witness.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
