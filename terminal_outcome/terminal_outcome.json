@@ -1,18 +1,18 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T18:19:21Z",
-  "run_id": "20260529T181804Z_codex_parent_w1352_split_compact_target_endpoints_field_split_guard",
+  "generated_utc": "2026-05-29T18:24:46Z",
+  "run_id": "20260529T182317Z_codex_parent_w1353_top_target_compact_space_global_provider_field_split_guard",
   "outcome": "nonterminal",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1352 proves W595 exact-acyclic endpoints delegate through W525 and W596 colimit-stability endpoints delegate through W535 after W581 row-provider narrowing; it does not discharge the original four-task completion contract.",
+  "summary": "W1353 proves W598 copies top-target compact-space global-provider bundle fields into W593/W594 split compact-target routes while rebuilding relation-pullback and target-compactness providers through W597; it does not discharge the original four-task completion contract.",
   "known_gaps": [
-    "The current W987 obligation is still represented by a one-input full-data payload surface, while W595/W596 endpoint routes still expose a three-input split surface.",
-    "Concrete relation-pullback, target-relation compactness, and global W525 closed-map or closed-embedding provider inputs remain required."
+    "The current W987 obligation is still represented by a one-input full-data payload surface, while W598 still exposes an eleven-input stable route surface.",
+    "Concrete W516 top-target relation, target compact-space, global W525 provider, normalized-localization, homotopy-isomorphism, left-calculus, pretriangulated, and triangulated inputs remain required."
   ],
   "remaining_work": [
     "Continue reducing or bridging direct route surfaces toward the immutable original four-task contract.",
-    "Inspect W520/W519 preservation convergence, W597/W598/W599 top-target compact-space routes, or remaining direct route surfaces for the next guarded split."
+    "Inspect W599 row-level top-target compact-space routes, W600 split top-target compact-space internals, W520/W519 preservation convergence, or remaining direct route surfaces for the next guarded split."
   ],
   "reference_route_log": "docs/research/reference_route_log.md",
   "verification_json": "run/verification.json"
