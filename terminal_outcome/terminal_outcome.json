@@ -1,68 +1,70 @@
 {
-  "outcome": "nonterminal_w1280_older_chain_expansion_guard",
-  "generated_utc": "2026-05-29T10:16:52Z",
+  "outcome": "nonterminal_w1281_direct_route_alias_guard",
+  "generated_utc": "2026-05-29T10:27:44Z",
   "immutable_contract": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_original_four_task_completion_contract_20260526.md",
     "sha256": "a7c9f6493dfd369bae9d18196e8379635f958630306f5272fad3faea1f8edfd1"
   },
   "dynamic_guidance": {
     "path": "/home/roku/codex-consultant-20260517/outputs/proposed_goals/lean_lca_context_engineered_fresh_session_20260525_boosted.md",
-    "sha256": "e0de0abf6d15e2e77c66b98559fcfa18e4935819a983ea3ee583e4f87b11c01b"
+    "sha256": "1bdd77c95f2a3766dd7904a6f07cc95ff93461132277280b8c8661ede043c40e"
   },
   "product_success": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1280 keeps the target nonterminal under the immutable original four-task contract while proving W988/W989 and W1000-W1005 expand W987 construction to 6, 7, 18, 7, 6, 5, 4, and 3 inputs. Product success remains false.",
+  "summary": "W1281 keeps the target nonterminal under the immutable original four-task contract while proving the W1016-W1024 direct-route alias layer does not reduce the current one-input W987 provider surface. Product success remains false.",
   "known_gaps": [
-    "Task 4 is not contract-complete: W1280 still has 1 explicit W987 branch-full-data provider input.",
-    "W988/W989 and W1000-W1005 are expansion routes, not no-input W987 constructors.",
+    "Task 4 is not contract-complete: W1281 still has 1 explicit W987 branch-full-data provider input.",
+    "W1016 and W1017 are one-input wrappers, and W1018-W1024 expand to larger input surfaces rather than closing W987.",
     "The review packet is not ready because terminal outcome remains nonterminal and product_success is false."
   ],
   "remaining_work": [
-    "Find a genuine constructor for the remaining W987 branch-full-data provider that does not assume W977 current full data, W1007/W997/W998 wrappers, W99x/W100x expansion routes, larger field surfaces, lower-level atom expansions, direct atom field splits, the older W952/W947/W725 route, or W990 primitive-unit expansion.",
+    "Find a genuine constructor for the remaining W987 branch-full-data provider that does not assume W977 current full data, W1007/W997/W998 wrappers, W99x/W100x expansion routes, direct route aliases, larger field surfaces, lower-level atom expansions, direct atom field splits, the older W952/W947/W725 route, or W990 primitive-unit expansion.",
     "Search for direct theorem-level closure of the raw boundary/relation/target/normalized endpoint fields or another non-cyclic W987 path.",
     "Build the review packet only after Lean, terminal outcome, and audit evidence satisfy the immutable contract."
   ],
-  "support_result_classification": "nonterminal_w1280_older_chain_expansion_guard",
-  "latest_verified_increment": "W1280 older chain expansion guard",
+  "support_result_classification": "nonterminal_w1281_direct_route_alias_guard",
+  "latest_verified_increment": "W1281 direct route alias guard",
   "reference_route_log": "docs/research/reference_route_log.md",
-  "provider_search_ledger": "docs/research/w1280_provider_search_ledger.md",
+  "provider_search_ledger": "docs/research/w1281_provider_search_ledger.md",
   "remaining_gaps": [
-    "Task 4 is not contract-complete: W1280 has 1 explicit W987 branch-full-data input.",
-    "The older W988/W989 and W1000-W1005 routes are not completion witnesses.",
+    "Task 4 is not contract-complete: W1281 has 1 explicit W987 branch-full-data input.",
+    "The W1016-W1024 alias routes are not completion witnesses.",
     "The review packet is not ready because terminal outcome remains nonterminal and product_success is false."
   ],
-  "source_tree_hash": "cca69a7aa43cb9ade4b207303de1cdfd940794d0e0bf5e04281a407036470201",
+  "source_tree_hash": "f1906c46ed3c73c408dda31647decbda6c5a5a7b77f9fcdac3fdbe4cc9003a2a",
   "remaining_explicit_inputs": 1,
   "remaining_explicit_input_groups": 1,
-  "implemented_declarations_checked": 10,
+  "implemented_declarations_checked": 13,
   "terminal_evidence": {
-    "module_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataOlderChainExpansionGuardW1280.lean",
-    "module_target": "LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataOlderChainExpansionGuardW1280",
-    "w988_count_theorem": "LeanLCAExactChallenge.Dbounded.noUnivLocalizedUnitChoiceInputNamesW1280_count",
-    "w989_count_theorem": "LeanLCAExactChallenge.Dbounded.noUnivUnitStrictExactIsoInputNamesW1280_count",
-    "w1000_count_theorem": "LeanLCAExactChallenge.Dbounded.componentFieldsInputNamesW1280_count",
-    "w1001_count_theorem": "LeanLCAExactChallenge.Dbounded.unitStrictExactIsoDataInputNamesW1280_count",
-    "w1002_count_theorem": "LeanLCAExactChallenge.Dbounded.localizedUnitChoiceInputNamesW1280_count",
-    "w1003_count_theorem": "LeanLCAExactChallenge.Dbounded.endpointLocalizedUnitInputNamesW1280_count",
-    "w1004_count_theorem": "LeanLCAExactChallenge.Dbounded.normalizedSourceEndpointLocalizedUnitInputNamesW1280_count",
-    "w1005_count_theorem": "LeanLCAExactChallenge.Dbounded.targetClosedEmbeddingClosednessInputNamesW1280_count",
-    "older_chain_expansion_theorem": "LeanLCAExactChallenge.Dbounded.olderChainExpansionsDoNotReduceW1280",
-    "nonterminal_theorem": "LeanLCAExactChallenge.Dbounded.currentW1280OlderChainExpansionGuard_productSuccess"
+    "module_path": "LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataDirectRouteAliasGuardW1281.lean",
+    "module_target": "LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataDirectRouteAliasGuardW1281",
+    "w1016_count_theorem": "LeanLCAExactChallenge.Dbounded.branchFullDataAliasInputNamesW1281_count",
+    "w1017_count_theorem": "LeanLCAExactChallenge.Dbounded.currentFullDataAliasInputNamesW1281_count",
+    "w1018_count_theorem": "LeanLCAExactChallenge.Dbounded.componentFieldsAliasInputNamesW1281_count",
+    "w1019_count_theorem": "LeanLCAExactChallenge.Dbounded.unitStrictExactIsoDataAliasInputNamesW1281_count",
+    "w1020_count_theorem": "LeanLCAExactChallenge.Dbounded.localizedUnitChoiceAliasInputNamesW1281_count",
+    "w1021_count_theorem": "LeanLCAExactChallenge.Dbounded.endpointLocalizedUnitAliasInputNamesW1281_count",
+    "w1022_count_theorem": "LeanLCAExactChallenge.Dbounded.normalizedSourceEndpointLocalizedUnitAliasInputNamesW1281_count",
+    "w1023_count_theorem": "LeanLCAExactChallenge.Dbounded.targetClosedEmbeddingClosednessAliasInputNamesW1281_count",
+    "w1024_count_theorem": "LeanLCAExactChallenge.Dbounded.targetClosedEmbeddingClosednessNormalizedSourceEndpointAliasInputNamesW1281_count",
+    "wrapper_guard_theorem": "LeanLCAExactChallenge.Dbounded.directRouteWrappersKeepCurrentSurfaceW1281",
+    "alias_expansion_theorem": "LeanLCAExactChallenge.Dbounded.directRouteAliasesDoNotReduceW1281",
+    "nonterminal_theorem": "LeanLCAExactChallenge.Dbounded.currentW1281DirectRouteAliasGuard_productSuccess"
   },
   "verified_commands": [
-    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataOlderChainExpansionGuardW1280.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/focused_lean.log)",
-    "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataOlderChainExpansionGuardW1280 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/focused_module_build.log)",
-    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/root_lean.log)",
-    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/required_declarations.log)",
-    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/product_success_declarations.log)",
-    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/original_four_declarations.log)",
-    "lake build LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/package_build.log)",
-    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/full_lake_build.log)",
-    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/forbidden_token_audit.log)",
-    "live product-success false scan excluding audit negative fixtures (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/product_success_true_scan.log)",
-    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T101508Z_codex_parent_w1280_older_chain_expansion_guard/run/diff_check.log)"
+    "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataDirectRouteAliasGuardW1281.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/focused_lean.log)",
+    "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataDirectRouteAliasGuardW1281 (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/focused_module_build.log)",
+    "lake env lean LeanLCAExactChallenge.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/root_lean.log)",
+    "lake env lean audit/RequiredDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/required_declarations.log)",
+    "lake env lean audit/ProductSuccessDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/product_success_declarations.log)",
+    "lake env lean audit/OriginalFourTaskCompletionDeclarations.lean (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/original_four_declarations.log)",
+    "lake build LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/package_build.log)",
+    "lake build (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/full_lake_build.log)",
+    "scripts/audit_no_forbidden_lean_tokens.sh LeanLCAExactChallenge (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/forbidden_token_audit.log)",
+    "live product-success false scan excluding audit negative fixtures (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/product_success_true_scan.log)",
+    "git diff --check (passed: /home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260529T102529Z_codex_parent_w1281_direct_route_alias_guard/run/diff_check.log)"
   ],
-  "review_packet_status": "not_ready_nonterminal_w1280_w987_input_explicit",
+  "review_packet_status": "not_ready_nonterminal_w1281_w987_input_explicit",
   "update_goal_status": "not_allowed_product_success_false"
 }
