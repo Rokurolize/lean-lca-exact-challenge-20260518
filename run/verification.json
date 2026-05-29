@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T17:37:00Z",
-  "run_id": "w1346_closed_range_mapped_cokernel_field_split_guard",
-  "source_tree_hash": "da58adbbe0d18ca9affa8d2696b446a6d9ae1fd880f5951da4ef6ce042ce94ac",
+  "generated_utc": "2026-05-29T17:43:00Z",
+  "run_id": "w1347_compact_target_representative_image_field_split_guard",
+  "source_tree_hash": "2a7dd91760a9aef97eb61e6b5550e4ed2c5c04154a8b4550ca32598c37550c98",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedRangeMappedCokernelFieldSplitGuardW1346.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCompactTargetRepresentativeImageFieldSplitGuardW1347.lean",
       "status": "passed",
-      "evidence": "run/w1346_focused_lean.log"
+      "evidence": "run/w1347_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedRangeMappedCokernelFieldSplitGuardW1346",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCompactTargetRepresentativeImageFieldSplitGuardW1347",
       "status": "passed",
-      "evidence": "run/w1346_module_build.log"
+      "evidence": "run/w1347_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -63,8 +63,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1346_focused_lean.log",
-    "module_build": "run/w1346_module_build.log",
+    "focused_lean": "run/w1347_focused_lean.log",
+    "module_build": "run/w1347_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -79,5 +79,5 @@
     "original_four_task_contract_audit": "run/original_four_task_contract_audit.log",
     "external_audit": "run/external_audit.log"
   },
-  "summary": "W1346 records W519 closed-range mapped-cokernel field-split equalities through W518 while preserving nonterminal compact-target plus mapped-cokernel closed-range obligations; product success is not claimed."
+  "summary": "W1347 records W517 compact-target representative-image field-split equalities through W515 while preserving nonterminal compact-target and selected-preservation obligations; product success is not claimed."
 }

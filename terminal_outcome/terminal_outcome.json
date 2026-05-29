@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T17:37:00Z",
-  "outcome": "nonterminal_w1346_closed_range_mapped_cokernel_field_split_guard",
+  "generated_utc": "2026-05-29T17:43:00Z",
+  "outcome": "nonterminal_w1347_compact_target_representative_image_field_split_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1346 adds a checked guard for the W519 closed-range mapped-cokernel field split through W518 routes. The original four-task contract remains unfulfilled because this local boundary still exposes compact-target relation data plus mapped-cokernel closed-range, closed-map, or closed-embedding evidence rather than discharging the remaining W1270/W987 full-data provider obligation.",
+  "summary": "W1347 adds a checked guard for the W517 compact-target representative-image field split through W515 routes. The original four-task contract remains unfulfilled because this local boundary still exposes compact-target relation data plus selected preservation data rather than discharging the remaining W1270/W987 full-data provider obligation.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
