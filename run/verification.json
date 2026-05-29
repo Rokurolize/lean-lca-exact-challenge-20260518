@@ -1,20 +1,20 @@
 {
   "schema": "lean_lca_exact_challenge.verification.v1",
-  "generated_utc": "2026-05-29T17:49:00Z",
-  "run_id": "w1348_compact_target_preservation_exits_field_split_guard",
-  "source_tree_hash": "d1418b54af5cfea16a1666009112fe7e4d0caa2dcb6c992badcfd2afd5c5d06c",
+  "generated_utc": "2026-05-29T17:55:00Z",
+  "run_id": "w1349_top_target_relation_representative_image_field_split_guard",
+  "source_tree_hash": "87563db751b59f0a4c0b9f5a7a6a05ced1de13c00c98f4ad1a57c6bbc4943f91",
   "product_success": false,
   "product_success_claimed": false,
   "commands": [
     {
-      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCompactTargetPreservationExitsFieldSplitGuardW1348.lean",
+      "command": "lake env lean LeanLCAExactChallenge/Derived/ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTopTargetRelationRepresentativeImageFieldSplitGuardW1349.lean",
       "status": "passed",
-      "evidence": "run/w1348_focused_lean.log"
+      "evidence": "run/w1349_focused_lean.log"
     },
     {
-      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCompactTargetPreservationExitsFieldSplitGuardW1348",
+      "command": "lake build LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataTopTargetRelationRepresentativeImageFieldSplitGuardW1349",
       "status": "passed",
-      "evidence": "run/w1348_module_build.log"
+      "evidence": "run/w1349_module_build.log"
     },
     {
       "command": "lake env lean LeanLCAExactChallenge.lean",
@@ -63,8 +63,8 @@
     }
   ],
   "lean_checks": {
-    "focused_lean": "run/w1348_focused_lean.log",
-    "module_build": "run/w1348_module_build.log",
+    "focused_lean": "run/w1349_focused_lean.log",
+    "module_build": "run/w1349_module_build.log",
     "root_lean": "run/root_lean.log",
     "required_declarations": "run/required_declarations.log",
     "product_success_declarations": "run/product_success_declarations.log",
@@ -79,5 +79,5 @@
     "original_four_task_contract_audit": "run/original_four_task_contract_audit.log",
     "external_audit": "run/external_audit.log"
   },
-  "summary": "W1348 records W518 compact-target preservation-exit field-split equalities through W515/W511 while preserving nonterminal compact-target plus preservation-provider obligations; product success is not claimed."
+  "summary": "W1349 records W516 top-target relation representative-image field-split equalities through W515 while preserving nonterminal top-target and selected-preservation obligations; product success is not claimed."
 }

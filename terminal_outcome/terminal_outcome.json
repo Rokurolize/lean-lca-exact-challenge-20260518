@@ -1,10 +1,10 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-29T17:49:00Z",
-  "outcome": "nonterminal_w1348_compact_target_preservation_exits_field_split_guard",
+  "generated_utc": "2026-05-29T17:55:00Z",
+  "outcome": "nonterminal_w1349_top_target_relation_representative_image_field_split_guard",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1348 adds a checked guard for the W518 compact-target preservation-exits field split through W515/W511 routes. The original four-task contract remains unfulfilled because this local boundary still exposes compact-target relation data plus selected or global preservation providers rather than discharging the remaining W1270/W987 full-data provider obligation.",
+  "summary": "W1349 adds a checked guard for the W516 top-target relation representative-image field split through W515 routes. The original four-task contract remains unfulfilled because this local boundary still exposes top-target relation data plus selected preservation data rather than discharging the remaining W1270/W987 full-data provider obligation.",
   "known_gaps": [
     "No product-success terminal outcome has been produced.",
     "No original four-task completion review packet has been produced.",
