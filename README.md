@@ -48,4 +48,6 @@ W1438 connects that W1007/W987 input to the canonical W1298 unpack: the wrapped 
 
 W1439 connects the W986 component from W1438 to W1299: W986 repacks judgmentally, feeds W985 with W730 plus its W984 target/closedness and W950 normalized-source/endpoint projections, and exposes the three-input W730/W984/W950 surface. Product success remains false.
 
+W1440 connects the W984 target/closedness component from W1439 to W1300: W984 repacks judgmentally, feeds the W984 full-data route with W944 target no-univ data and W973 closed-embedding closedness data, and exposes the four-input W730/W944/W973/W950 surface. Product success remains false.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.

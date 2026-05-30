@@ -15,6 +15,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCo
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataOneInputCycleGuardW1437
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987UnpackBoundaryGuardW1438
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW986UnpackBoundaryGuardW1439
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW984TargetClosednessUnpackBoundaryGuardW1440
 
 namespace LeanLCAExactChallenge
 namespace Dbounded
@@ -79,6 +80,16 @@ structure OriginalFourTaskContractCompletion where
   branchFullDataBridgeUnpackExpandsToW986InnerInputCount :
     branchFullDataInputNamesW1169.length <
       canonicalW986InnerUnpackedInputNamesW1299.length
+  branchFullDataUnpackedW730W944W973W950InputCount :
+    w1007W985TargetClosednessUnpackedInputNamesW1440.length = 4
+  branchFullDataW984TargetClosednessInnerInputCount :
+    canonicalW984TargetClosednessUnpackedInputNamesW1300.length = 2
+  branchFullDataW986InnerUnpackExpandsToW984TargetClosednessInputCount :
+    canonicalW986InnerUnpackedInputNamesW1299.length <
+      w1007W985TargetClosednessUnpackedInputNamesW1440.length
+  branchFullDataBridgeUnpackExpandsToW984TargetClosednessInputCount :
+    branchFullDataInputNamesW1169.length <
+      w1007W985TargetClosednessUnpackedInputNamesW1440.length
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
@@ -131,6 +142,14 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
     w1439W1298UnpackExpandsToW1299
   branchFullDataBridgeUnpackExpandsToW986InnerInputCount :=
     w1439W1169UnpackExpandsToW1299
+  branchFullDataUnpackedW730W944W973W950InputCount :=
+    w1440BranchFullDataUnpackedW730W944W973W950InputCount
+  branchFullDataW984TargetClosednessInnerInputCount :=
+    w1440W984TargetClosednessInnerInputCount
+  branchFullDataW986InnerUnpackExpandsToW984TargetClosednessInputCount :=
+    w1440W1299UnpackExpandsToW984TargetClosedness
+  branchFullDataBridgeUnpackExpandsToW984TargetClosednessInputCount :=
+    w1440W1169UnpackExpandsToW984TargetClosedness
   productSuccessClaimed := false
 
 theorem originalFourTaskContractCompletion_productSuccessClaimed :
