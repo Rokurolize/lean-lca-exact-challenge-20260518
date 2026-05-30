@@ -26,6 +26,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCo
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrapCycleGuardW1448
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987RewrappedStableRouteGuardW1449
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987FieldDataConstructionGuardW1450
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataW987BoundaryFieldDataConstructionGuardW1451
 
 namespace LeanLCAExactChallenge
 namespace Dbounded
@@ -171,6 +172,16 @@ structure OriginalFourTaskContractCompletion where
   branchFullDataW987FieldDataConstructionExpandsCurrentProviderInputCount :
     w1007W987RewrappedInputNamesW1448.length <
       w987FieldDataConstructionInputNamesW1450.length
+  branchFullDataW987BoundaryFieldDataConstructionInputCount :
+    w987BoundaryFieldDataConstructionInputNamesW1451.length = 5
+  branchFullDataW987BoundaryFieldDataConstructionBoundaryInputCount :
+    w987BoundaryFieldDataConstructionBoundaryInputNamesW1451.length = 2
+  branchFullDataW987BoundaryFieldDataConstructionSplitsW716InputCount :
+    w987BoundaryFieldDataConstructionBundledBoundaryInputNamesW1451.length <
+      w987BoundaryFieldDataConstructionBoundaryInputNamesW1451.length
+  branchFullDataW987BoundaryFieldDataConstructionExpandsW1450InputCount :
+    w987FieldDataConstructionInputNamesW1450.length <
+      w987BoundaryFieldDataConstructionInputNamesW1451.length
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
@@ -289,6 +300,14 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
     w987FieldDataConstructionInputNamesW1450_count
   branchFullDataW987FieldDataConstructionExpandsCurrentProviderInputCount :=
     w1450W987FieldDataConstructionExpandsCurrentProvider
+  branchFullDataW987BoundaryFieldDataConstructionInputCount :=
+    w987BoundaryFieldDataConstructionInputNamesW1451_count
+  branchFullDataW987BoundaryFieldDataConstructionBoundaryInputCount :=
+    w987BoundaryFieldDataConstructionBoundaryInputNamesW1451_count
+  branchFullDataW987BoundaryFieldDataConstructionSplitsW716InputCount :=
+    w1451BoundaryFieldDataConstructionSplitsW716Input
+  branchFullDataW987BoundaryFieldDataConstructionExpandsW1450InputCount :=
+    w1451BoundaryFieldDataConstructionExpandsW1450InputCount
   productSuccessClaimed := false
 
 theorem originalFourTaskContractCompletion_productSuccessClaimed :

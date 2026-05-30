@@ -70,4 +70,6 @@ W1449 exposes the W1448 rewrapped provider through W1007's stable-route outputs:
 
 W1450 replaces that one W987 provider argument with a direct field-data construction surface: W716 boundary data and W717 relation data build W730, W984 target/closedness data and W950 normalized-source/endpoint data build W986, and those two constructed providers assemble W987 with projection theorems back to the four named inputs. Product success remains false because these four inputs are still assumed data, not a positive `OriginalFourTaskProductSuccess` witness.
 
+W1451 refines the W1450 construction by replacing the bundled W716 boundary-data input with the two raw boundary fields used by W907. It constructs W716 from the right-open boundary field and source-pi-zero boundary field, feeds the resulting W1450 input, and proves the constructed W716/W730/W987 projections return to those fields and the carried W717/W984/W950 data. Product success remains false because W717/W984/W950 and the two raw boundary fields are still assumed data, not a positive `OriginalFourTaskProductSuccess` witness.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
