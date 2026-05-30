@@ -30,6 +30,8 @@ W1439では、W1438で露出したW986 componentをW1299へ接続した。W986 c
 
 W1440では、W1439で露出したW984 target/closedness componentをW1300へ接続した。W984 componentはjudgmentallyにrepackでき、W984 full-data routeへW944 target no-univ dataとW973 closed-embedding closedness dataを渡すため、4入力のW730/W944/W973/W950 surfaceが現れる。product successは引き続きfalseである。
 
+W1441では、W1440で露出したW950 normalized-source/endpoint componentをW1302へ接続した。W950 componentはjudgmentallyにrepackでき、W985へW948 normalized-source-triangulation dataとW949 endpoint-localized-unit dataを渡すため、5入力のW730/W944/W973/W948/W949 surfaceが現れる。product successは引き続きfalseである。
+
 この成果物はproduct successではない。更新後のgoalではsource-patch-needed handoffで完了できないため、このpacketは歴史的な調査証跡と未完了診断として読む。
 
 2026-05-27のW1002更新では、W1001で残っていたW981 endpoint/unit-strict-exact provider surfaceを、既存W982のlocalized-unit-choice surfaceからW988でW987 branch full dataへ構成し、W998へ渡すrouteを追加した。これにより最新の非終端frontierは、W981の7項目ではなく、W730 boundary/relation data、W944 target no-univ data、W973 closed-embedding closedness data、endpoint strict short-exact family、W945 localized-unit data、W948 normalized-source-triangulation dataの6項目へ戻った。ただしこれら6項目自体はまだ仮定であり、original four-task completion witness、product-success terminal outcome、clean review packetは未完成なので、product successは引き続きfalseである。

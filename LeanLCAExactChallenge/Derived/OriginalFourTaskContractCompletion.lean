@@ -16,6 +16,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCo
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW987UnpackBoundaryGuardW1438
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW986UnpackBoundaryGuardW1439
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW984TargetClosednessUnpackBoundaryGuardW1440
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapBranchFullDataW950NormalizedEndpointUnpackBoundaryGuardW1441
 
 namespace LeanLCAExactChallenge
 namespace Dbounded
@@ -90,6 +91,16 @@ structure OriginalFourTaskContractCompletion where
   branchFullDataBridgeUnpackExpandsToW984TargetClosednessInputCount :
     branchFullDataInputNamesW1169.length <
       w1007W985TargetClosednessUnpackedInputNamesW1440.length
+  branchFullDataUnpackedW730W944W973W948W949InputCount :
+    w1007W950NormalizedEndpointUnpackedInputNamesW1441.length = 5
+  branchFullDataW950NormalizedEndpointInnerInputCount :
+    canonicalW950NormalizedEndpointInnerInputNamesW1302.length = 2
+  branchFullDataW984TargetClosednessUnpackExpandsToW950NormalizedEndpointInputCount :
+    w1007W985TargetClosednessUnpackedInputNamesW1440.length <
+      w1007W950NormalizedEndpointUnpackedInputNamesW1441.length
+  branchFullDataBridgeUnpackExpandsToW950NormalizedEndpointInputCount :
+    branchFullDataInputNamesW1169.length <
+      w1007W950NormalizedEndpointUnpackedInputNamesW1441.length
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
@@ -150,6 +161,14 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
     w1440W1299UnpackExpandsToW984TargetClosedness
   branchFullDataBridgeUnpackExpandsToW984TargetClosednessInputCount :=
     w1440W1169UnpackExpandsToW984TargetClosedness
+  branchFullDataUnpackedW730W944W973W948W949InputCount :=
+    w1441BranchFullDataUnpackedW730W944W973W948W949InputCount
+  branchFullDataW950NormalizedEndpointInnerInputCount :=
+    w1441W950NormalizedEndpointInnerInputCount
+  branchFullDataW984TargetClosednessUnpackExpandsToW950NormalizedEndpointInputCount :=
+    w1441W1440UnpackExpandsToW950NormalizedEndpoint
+  branchFullDataBridgeUnpackExpandsToW950NormalizedEndpointInputCount :=
+    w1441W1169UnpackExpandsToW950NormalizedEndpoint
   productSuccessClaimed := false
 
 theorem originalFourTaskContractCompletion_productSuccessClaimed :
