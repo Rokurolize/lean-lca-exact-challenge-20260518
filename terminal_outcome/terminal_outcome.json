@@ -1,19 +1,19 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-30T11:18:46Z",
-  "git_head": "640ebbfe86646ec82e808048f259530187b01ca0",
-  "source_tree_hash": "7fd0bbe2bab76ac01dd1ac49fbaefea62e60494972cdf37edb7e7985cea64311",
+  "generated_utc": "2026-05-30T11:32:11Z",
+  "git_head": "f98528176ee80473f1519350d3076038071c34b1",
+  "source_tree_hash": "331ade485aae6a7c4ae8568690f0b783f377f2fd9f1739efc8f3a42b66c80fe4",
   "outcome": "mathematical_frontier_nonterminal",
   "product_success": false,
   "product_success_claimed": false,
   "product_complete": false,
   "update_goal_allowed": false,
-  "summary": "W1430 extends the checked nonterminal W982 localized-unit-choice route by exposing nested target/closedness/normalized-source/endpoint and rebuilt W982/W981/W971 projections through W1164/W1163; product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported completion surface still proves productSuccessClaimed=false.",
+  "summary": "W1431 extends the checked nonterminal W982 localized-unit-choice route by exposing deeper rebuilt current-full-data, branch-full-data, target, endpoint, localized-choice, unit-strict-exact, and component-field projections through W1164/W1163; product success remains false because no positive OriginalFourTaskProductSuccess witness exists and the final imported completion surface still proves productSuccessClaimed=false.",
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "Positive Lean witness is absent: ProductSuccessDeclarations.lean does not import or check an OriginalFourTaskProductSuccess surface with field-level evidence for the four tasks.",
     "Final imported completion surface remains nonterminal: originalFourTaskContractCompletion.productSuccessClaimed = false still compiles.",
-    "Original four mathematical tasks remain open under the positive-witness supplement; W1430 is nested projection route evidence, not a completed product-success witness."
+    "Original four mathematical tasks remain open under the positive-witness supplement; W1431 is deep projection route evidence, not a completed product-success witness."
   ],
   "remaining_work": [
     "Continue Lean implementation toward a positive OriginalFourTaskProductSuccess-style declaration backed by actual exact-category, metrizable LCA exact-category, Yoneda-Ext, and bounded derived infinity-category constructions.",

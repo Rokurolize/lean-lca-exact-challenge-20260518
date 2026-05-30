@@ -1,0 +1,5 @@
+LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean:60:  productSuccessClaimed := false
+LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean:62:theorem originalFourTaskContractCompletion_productSuccessClaimed :
+LeanLCAExactChallenge/Derived/OriginalFourTaskContractCompletion.lean:63:    originalFourTaskContractCompletion.productSuccessClaimed = false :=
+audit/OriginalFourTaskCompletionDeclarations.lean:14846:#check LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion_productSuccessClaimed
+audit/ProductSuccessDeclarations.lean:19943:#check LeanLCAExactChallenge.Dbounded.originalFourTaskContractCompletion_productSuccessClaimed

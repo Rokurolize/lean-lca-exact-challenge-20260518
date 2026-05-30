@@ -30,4 +30,6 @@ W1425 extends that checked W982 surface to the component-field, current-full-dat
 
 W1430 records the nested W982 target/closedness/normalized-source/endpoint and rebuilt W982/W981/W971 projections exposed by W1164/W1163. It deliberately skips the historical W1426 number because W1426 was the reopened false-positive product-success promotion.
 
+W1431 extends the same route to deeper rebuilt current-full-data, branch-full-data, target, endpoint, localized-choice, unit-strict-exact, and component-field projections through W1164/W1163. This continues the checked route surface without changing the nonterminal product status.
+
 The next implementation work is mathematical, not metadata promotion: build the missing positive Lean surface for the original four tasks, or continue the smallest checked route increment that moves one of those four tasks closer to such a witness.
