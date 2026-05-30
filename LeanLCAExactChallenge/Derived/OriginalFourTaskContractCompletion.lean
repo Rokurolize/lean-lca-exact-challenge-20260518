@@ -4,6 +4,7 @@ import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCo
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataCurrentFullDataPayloadFromBranchFullDataW1270
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataBranchFullDataCurrentFullDataCycleGuardW1271
 import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapLocalizedUnitChoiceFullDataStableConvergenceFieldSplitGuardW1424
+import LeanLCAExactChallenge.Derived.ClosedMapBoundaryRelationTargetSurjectiveCompactClosedEmbeddingClosednessNormalizedSourceEndpointLocalizedUnitFullDataClosedMapLocalizedUnitChoiceProjectionStableConvergenceFieldSplitGuardW1425
 
 namespace LeanLCAExactChallenge
 namespace Dbounded
@@ -26,6 +27,8 @@ structure OriginalFourTaskContractCompletion where
     branchFullDataCurrentFullDataCycleInputNamesW1271.length = 1
   localizedUnitChoiceBridgeInputCount :
     localizedUnitChoiceInputNamesW1164.length = 6
+  localizedUnitChoiceProjectionInputCount :
+    localizedUnitChoiceInputNamesW1164.length = 6
   productSuccessClaimed : Bool
 
 /-- The current original-four-task completion witness surface is still nonterminal. -/
@@ -41,6 +44,8 @@ def originalFourTaskContractCompletion : OriginalFourTaskContractCompletion wher
   branchFullDataCurrentFullDataCycleInputCount :=
     branchFullDataCurrentFullDataCycleInputNamesW1271_count
   localizedUnitChoiceBridgeInputCount :=
+    w1424ClosedMapLocalizedUnitChoiceFullDataInputCount
+  localizedUnitChoiceProjectionInputCount :=
     w1424ClosedMapLocalizedUnitChoiceFullDataInputCount
   productSuccessClaimed := false
 
