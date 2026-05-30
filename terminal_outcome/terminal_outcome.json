@@ -1,13 +1,13 @@
 {
   "schema": "lean_lca_exact_challenge.terminal_outcome.v1",
-  "generated_utc": "2026-05-30T00:15:53Z",
-  "git_head": "7fdc35f98d9a52b71979d45faf9bb708ae3133ba",
-  "source_tree_hash": "f5a4937200fc18eb52b379dab9a2fe9229e3ed4bb6419b9e32fdb61e5b5c8042",
+  "generated_utc": "2026-05-30T00:20:17Z",
+  "git_head": "01888e3da0025e81c64727ec1554c0b3b2f8c1c3",
+  "source_tree_hash": "e2d8aa6a20f0e36fcd969c8aee4706ad885ff376f137c52ef89695a1ec95f307",
   "outcome": "nonterminal",
   "product_success": false,
   "product_success_claimed": false,
-  "summary": "W1414 adds a checked closed-map target-no-univ-data stable convergence guard tying W972 through W971 into the closed-map route chain. The original four-task product goal remains open.",
-  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260530T001359Z_codex_parent_w1414_target_no_univ_data_stable_convergence_guard",
+  "summary": "W1415 adds a checked closed-map closed-embedding-closedness-data stable convergence guard tying W973 through W972 into the closed-map route chain. The original four-task product goal remains open.",
+  "evidence_root": "/home/roku/codex-consultant-20260517/outputs/lean_lca_hourly_strategy_runs/20260530T001840Z_codex_parent_w1415_closed_embedding_closedness_data_stable_convergence_guard",
   "reference_route_log": "docs/research/reference_route_log.md",
   "known_gaps": [
     "ProductSuccessDeclarations only checks the bounded-derived name without an original-four-task completion witness.",
@@ -16,6 +16,6 @@
     "External final readonly audit is expected to fail until terminal_outcome.outcome is product_success."
   ],
   "remaining_work": [
-    "Advance the remaining Lean route blockers after W1414, including downstream W973+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
+    "Advance the remaining Lean route blockers after W1415, including downstream W974+ field splits, packet blockers, and any completion-contract blockers still recorded by the audits."
   ]
 }
